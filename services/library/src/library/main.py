@@ -19,13 +19,9 @@ from library.api.v1 import (
     internal_code,
     internal_events,
     internal_feedback,
-    internal_moved,
-    internal_news_moved,
     internal_practice,
     internal_quality,
     internal_reuse,
-    moved_news,
-    moved_public,
     schedules,
     superadmin,
     superadmin_quality,
@@ -58,19 +54,15 @@ app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
 compress_answers(app)
-app.include_router(moved_public.router)
 app.include_router(superadmin.router)
 app.include_router(superadmin_quality.router)
 app.include_router(templates.router)
-app.include_router(moved_news.router)
 app.include_router(internal.router)
-app.include_router(internal_moved.router)
 app.include_router(internal_accounts.router)
 app.include_router(internal_additions.router)
 app.include_router(schedules.router)
 app.include_router(internal_events.router)
 app.include_router(internal_feedback.router)
-app.include_router(internal_news_moved.router)
 app.include_router(internal_practice.router)
 app.include_router(internal_quality.router)
 app.include_router(internal_reuse.router)

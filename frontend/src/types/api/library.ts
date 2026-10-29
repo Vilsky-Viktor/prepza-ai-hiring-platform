@@ -400,8 +400,8 @@ export interface paths {
     post?: never
     /**
      * Delete Interview
-     * @description No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one
-     *     release for a companies still calling it (microservices.md, 3); safe to repeat.
+     * @description Generation's: a set saved for a generation cancelled meanwhile. A deleted interview's set
+     *     goes by interview.deleted (handlers/interview_deleted.py). Safe to repeat.
      */
     delete: operations["delete_interview_internal_interviews__set_id__delete"]
     options?: never
@@ -535,108 +535,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/users/ids": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** User Ids */
-    get: operations["user_ids_internal_users_ids_get"]
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/users/with-setting": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Users With Setting */
-    post: operations["users_with_setting_internal_users_with_setting_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/users/email-recipients": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Email Recipients */
-    post: operations["email_recipients_internal_users_email_recipients_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/users/{user_id}/unsubscribe": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Unsubscribe */
-    post: operations["unsubscribe_internal_users__user_id__unsubscribe_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/accounts/{user_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Get Account */
-    get: operations["get_account_internal_accounts__user_id__get"]
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/accounts/lookup": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** Look Up */
-    post: operations["look_up_internal_accounts_lookup_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/users/{user_id}": {
     parameters: {
       query?: never
@@ -740,28 +638,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/schedules/erasures": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /**
-     * Replay Erasures
-     * @description The replay of recent account deletions moved to the accounts service (its own
-     *     /internal/schedules/erasures). Kept one release for a Cloud Scheduler job still calling
-     *     here: it does nothing, and the next daily run reaches accounts.
-     */
-    post: operations["replay_erasures_internal_schedules_erasures_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/schedules/bank": {
     parameters: {
       query?: never
@@ -858,57 +734,6 @@ export interface paths {
      *     before it's counted; the count is against floods (with Redis down, not counted).
      */
     post: operations["report_internal_questions__question_id__reports_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/news/titles": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /** News Titles */
-    post: operations["news_titles_internal_news_titles_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/news/{news_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    /** Get News Source */
-    get: operations["get_news_source_internal_news__news_id__get"]
-    put?: never
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/news/{news_id}/translations": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    /** Save News Translations */
-    put: operations["save_news_translations_internal_news__news_id__translations_put"]
-    post?: never
     delete?: never
     options?: never
     head?: never
@@ -2986,148 +2811,6 @@ export interface operations {
       }
     }
   }
-  user_ids_internal_users_ids_get: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-    }
-  }
-  users_with_setting_internal_users_with_setting_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-    }
-  }
-  email_recipients_internal_users_email_recipients_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-    }
-  }
-  unsubscribe_internal_users__user_id__unsubscribe_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  get_account_internal_accounts__user_id__get: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  look_up_internal_accounts_lookup_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-    }
-  }
   delete_user_internal_users__user_id__delete: {
     parameters: {
       query?: never
@@ -3265,24 +2948,6 @@ export interface operations {
     }
   }
   flush_outbox_internal_schedules_outbox_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-    }
-  }
-  replay_erasures_internal_schedules_erasures_post: {
     parameters: {
       query?: never
       header?: never
@@ -3465,88 +3130,6 @@ export interface operations {
     responses: {
       /** @description Successful Response */
       201: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  news_titles_internal_news_titles_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-    }
-  }
-  get_news_source_internal_news__news_id__get: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        news_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": unknown
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  save_news_translations_internal_news__news_id__translations_put: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        news_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      200: {
         headers: {
           [name: string]: unknown
         }

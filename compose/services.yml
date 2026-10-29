@@ -6,9 +6,6 @@ x-library-env: &library-env
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
   GENERATION_URL: http://generation:8000
-  # Library's old account and news routes forward there for one release.
-  ACCOUNTS_URL: http://accounts:8000
-  SITE_SERVICE_URL: http://site:8000
 
 x-generation-env: &generation-env
   DATABASE_URL: postgresql://generation:${POSTGRES_PASSWORD}@postgres:5432/generation

@@ -73,7 +73,7 @@ A practice test's page and its result both offer the template for hiring. The bu
 
 ## How it's built
 
-Library's routes and event handlers call services (`src/library/services/`), which open each transaction and pass it to the repositories; generation, the other services, Firebase and Redis are called outside it. A question's replacement (its old content kept as a revision, the new content, its owner's notification and the `question.fixed` event for its copies) is one save, and so is each batch of copies fixed after it, with their companies' notifications. A new news post is saved with its notification for everyone, and an edit with its translations dropped. When an account is deleted, library's own rows and the note that replays the deletion after a restore (`erasures`) are one save, made once every other service has deleted the account; a failure keeps both and the sign-in, so the user's retry does it all again.
+Library's routes and event handlers call services (`src/library/services/`), which open each transaction and pass it to the repositories; generation, the other services, Firebase and Redis are called outside it. A question's replacement (its old content kept as a revision, the new content, its owner's notification and the `question.fixed` event for its copies) is one save, and so is each batch of copies fixed after it, with their companies' notifications. When an account is deleted, accounts asks library to delete the user's votes and reports (`DELETE /internal/users/{id}`), safe to repeat.
 
 ## Related pages
 

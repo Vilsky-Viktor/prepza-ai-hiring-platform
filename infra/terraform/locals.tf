@@ -103,8 +103,7 @@ locals {
   # Which services each one calls; it gets their keys, to sign tokens for them.
   calls = {
     frontend = []
-    # accounts and site: library's old account and news routes forward there for one release.
-    library = ["generation", "accounts", "site"]
+    library  = ["generation"]
     # site: the news posts it translates.
     generation        = ["library", "notifications", "site"]
     generation-worker = ["library", "notifications", "site"]

@@ -95,7 +95,7 @@ def interview_delete(client, monkeypatch, kind):
     return response.status_code, removed
 
 
-def test_companies_deletes_an_interview_set(client, monkeypatch):
+def test_generation_deletes_an_interview_set(client, monkeypatch):
     assert interview_delete(client, monkeypatch, SetKind.INTERVIEW) == (204, [GENERATION_ID])
 
 

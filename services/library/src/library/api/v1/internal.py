@@ -49,8 +49,8 @@ async def copy_template(
 
 @router.delete("/interviews/{set_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_interview(set_id: UUID, caller: ServiceCaller) -> None:
-    """No longer called: interview.deleted does it (handlers/interview_deleted.py). Kept one
-    release for a companies still calling it (microservices.md, 3); safe to repeat."""
+    """Generation's: a set saved for a generation cancelled meanwhile. A deleted interview's set
+    goes by interview.deleted (handlers/interview_deleted.py). Safe to repeat."""
     await sets.delete(set_id)
 
 

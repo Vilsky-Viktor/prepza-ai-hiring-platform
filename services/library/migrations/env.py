@@ -14,25 +14,9 @@ from library.models.base import Base
 fileConfig(context.config.config_file_name)
 
 
-# Users' email settings, their consent log, accepted terms and recent erasures moved to the
-# accounts service; library no longer reads these tables, which go in the release after the move
-# (expand, then contract: the version before still reads them while this one deploys).
-MOVED_TO_ACCOUNTS = {"email_preferences", "email_consents", "terms_acceptances", "erasures"}
-# News posts and their translations moved to the site service, the same way.
-MOVED_TO_SITE = {"news", "news_translations"}
-MOVED = MOVED_TO_ACCOUNTS | MOVED_TO_SITE
-
-
 def include_object(object, name, type_, reflected, compare_to):
     """topics.embedding is a pgvector column (migration 0011), read and written with SQL
-    (repositories/reuse.py) rather than mapped: autogenerate leaves it alone. The tables moved to
-    accounts and site aren't library's models any more, until a migration drops them."""
-    if type_ == "table" and name in MOVED:
-        return False
-
-    if type_ in ("index", "column", "unique_constraint") and object.table.name in MOVED:
-        return False
-
+    (repositories/reuse.py) rather than mapped: autogenerate leaves it alone."""
     return not (type_ == "column" and name == "embedding" and object.table.name == "topics")
 
 

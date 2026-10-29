@@ -6,13 +6,7 @@ statistics and quality checks (ratings, reports, flags, revisions and the patter
 It keeps all of it in its own database. Users' accounts (email settings, accepted
 terms, deleting and downloading an account, the erasures replayed after a restore) are the
 accounts service's, which asks library for a user's votes and reports
-(`/internal/users/{id}`). Library's old account routes stay one release: its internal ones
-forward to accounts (`api/v1/internal_moved.py`), its public ones send the browser there
-(`api/v1/moved_public.py`); its old tables (`email_preferences`, `email_consents`,
-`terms_acceptances`, `erasures`) go in the next release. News posts are the site service's the
-same way: its old news routes forward to site (`api/v1/internal_news_moved.py`) or send the
-browser there (`api/v1/moved_news.py`) for one release, and its `news` and `news_translations`
-tables go in the next. What it does and its settings:
+(`/internal/users/{id}`); news posts are the site service's. What it does and its settings:
 [templates and practice](../../docs/features/templates-and-practice.md) and
 [the admin zone](../../docs/features/admin-zone.md).
 
@@ -33,7 +27,7 @@ src/library/
 │                           # feedback, ...; take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (pools, slugs, quality flags); fixed values
-├── integrations/           # Other services (generation; accounts, for the old routes), Redis
+├── integrations/           # Other services (generation), Redis
 └── jobs/db_roles.py        # `python -m library.jobs.db_roles`: each service's Postgres user
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
@@ -41,7 +35,7 @@ migrations/                       # Alembic
 
 Routes and handlers call services; services open the transaction (`async with
 Session.begin() as session:`) and pass it to the repositories, so an action's steps are saved
-together, and call generation, accounts and Redis outside it. A plain read
+together, and call generation and Redis outside it. A plain read
 may open `async with Session() as session:` in the route. `tests/unit/test_layers.py` checks the
 imports and that no repository commits; batched deletions take the session factory, each batch
 its own transaction.
