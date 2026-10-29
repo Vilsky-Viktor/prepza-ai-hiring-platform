@@ -117,7 +117,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Voice messages (`gpt-transcribe`): heard right / character errors / script | 98.7% (93.1–99.8) / 0.7% ± 0.4 / 100%; $0.00035 and 2.9 s a message | `voice.json`, 26 × 3 (all 23 languages; audio by `gpt-realtime-2.1-mini`) | 2026-10-29 |
 | Text check: false refusals / accepted / refused | 0 / 100% (95.9–100) / 100% (90.4–100); $0.00003 and 1.9 s a check | `screen.json`, 42 × 3 | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
-| Help chat: passed / made up / sign-in marker; who-are-you answers | 100% (95.1–100) / 0.0% / 100%; 18/18; with the page guide's contact card (96.0% / 4.0% just before, within the noise) | `help_questions.json` (25), 3 repeats | 2026-10-29 |
+| Help chat: passed / made up / sign-in marker; who-are-you answers | 100% (95.1–100) / 0.0% / 100%; 18/18; with allowed domains only for the SDK (97.3% / 4.0% just before, within the noise) | `help_questions.json` (25), 3 repeats | 2026-10-29 |
 
 ## Datasets
 

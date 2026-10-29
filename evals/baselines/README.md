@@ -290,3 +290,12 @@ an idea or a missing feature, and the help chat's guide says so. `help_chat.py`,
 → after (`…_pagehelp-new.json`): passed 96.0% (88.9–98.6) → 100% (95.1–100); made up 4.0% →
 0.0%; sign-in marker 100% both; language 3 → 6 of 6 (h17's invented retake limit didn't come
 up). Within the noise; kept so the guide says what is true. $1.66 and $1.58.
+
+## Help chat: allowed domains only for the SDK (2026-10-29, kept)
+
+The help chat's guide now says an API invite's return address only has to be https (http on
+localhost while testing), the SDK's allowed domains only govern embedding, and the API and web
+hooks are limited by IP per key. `help_chat.py`, 25 × 3, `gpt-6-luna` at none, judged by
+`gpt-6.1-sol` high, before (`results/help_chat_returnurl-base.json`) → after
+(`…_returnurl-new.json`): passed 97.3% (90.8–99.3) → 100% (95.1–100); made up 4.0% → 0.0%;
+sign-in marker 100% both. Within the noise; kept so the guide says what is true. $1.58 after.
