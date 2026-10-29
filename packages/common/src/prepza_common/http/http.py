@@ -3,7 +3,12 @@ from functools import cache
 
 import httpx
 from fastapi import HTTPException
-from prepza_common.config.constants import HTTP_TIMEOUT_SECONDS, RETRY_AFTER, TRACE_HEADER
+from prepza_common.config.constants import (
+    HTTP_TIMEOUT_SECONDS,
+    RETRY_AFTER,
+    SERVICE_KEEPALIVE_SECONDS,
+    TRACE_HEADER,
+)
 from prepza_common.i18n.i18n import CodedError
 from prepza_common.observability.logging import trace_header
 
@@ -20,9 +25,11 @@ async def pass_trace(request: httpx.Request) -> None:
 @cache
 def get_client() -> httpx.AsyncClient:
     """One client per process, so calls to other services reuse their connections; each call
-    carries the trace of the request being served. It retries nothing (constants.py)."""
+    carries the trace of the request being served. It retries nothing, and drops an idle
+    connection before the other service's server would (constants.py)."""
     return httpx.AsyncClient(
         timeout=HTTP_TIMEOUT_SECONDS,
+        limits=httpx.Limits(keepalive_expiry=SERVICE_KEEPALIVE_SECONDS),
         event_hooks={"request": [pass_trace]},
     )
 

@@ -12,6 +12,11 @@ HTTP_TIMEOUT_SECONDS = 15
 # The shared client doesn't retry, not even a failed connection: each call has one layer of
 # retries, its caller's (Pub/Sub's or Cloud Tasks' redelivery, the outbox's flush, a jittered loop
 # around it, or the person), so a call is never retried both underneath and above, nor at once.
+# An idle connection to another service is closed after this long, before the service's own
+# server closes it (uvicorn's keep-alive, 5 s): a call that reused a connection as the server was
+# closing it failed with a ReadError. Under Cloud Run's front end, which keeps them far longer,
+# it only costs a new connection now and then.
+SERVICE_KEEPALIVE_SECONDS = 4
 # Looking up the address of a URL someone gave (a web hook, an AI app's metadata) gives up after
 # this long, as a lookup that found nothing: it may work on a retry.
 ADDRESS_LOOKUP_SECONDS = 5
