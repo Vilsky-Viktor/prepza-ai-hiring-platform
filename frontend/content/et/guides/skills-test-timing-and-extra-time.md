@@ -2,7 +2,7 @@
 title: "Kuidas ajastada oskustesti: küsimuse taimer, pikkus ja lisaaeg"
 seoTitle: "Oskustesti ajapiirang: taimer küsimuse kohta ja lisaaeg"
 description: "Kui palju aega anda igale küsimusele, mitu küsimust esitada, milline kogupikkus toimib ja kuidas anda õiglaselt lisaaega kandidaatidele, kes seda vajavad."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Kuidas ajastada oskustesti: küsimuse taimer, pikkus ja lisaaeg
@@ -103,12 +103,13 @@ prepzas on intervjuu ajapiiranguga valikvastustega oskustest, mis luuakse sinu t
 
 - **Igal küsimusel on oma pöördloendus,** mida peab server, nii et vahelehe sulgemine või lehe uuesti laadimine seda ei peata.
 - **Vaikeväärtus sõltub intervjuu tasemest,** mis loodud intervjuu puhul tuleneb töökuulutuses nõutud kogemustasemest: lihtsa või keskmise intervjuu puhul 60 sekundit, raske puhul 75 sekundit.
-- **Saad seda muuta intervjuu kaupa** selle seadetes, 10 kuni 600 sekundit. Muudatus kehtib kandidaatidele, kes alustavad pärast seda; kandidaadi aeg lukustub, kui ta alustab.
+- **See on keskmine: iga küsimus saab sellest oma aja,** kui kandidaadi küsimused valitakse, selle järgi, kui kaua selle lugemine ja vastamine võtab: selle sõnad, kood või näide (mida loetakse aeglasemalt) ja aeg vastuse leidmiseks. Lühikesed küsimused saavad vähem, pikemad ja koodiga küsimused rohkem, igaüks pool kuni kaks korda keskmisest, ja kokku annavad need täpselt küsimuste arv korda keskmine. Taimer näitab iga küsimuse enda aega ja tulemuste kaart näitab, kui palju sellest iga vastus võttis.
+- **Saad keskmist muuta intervjuu kaupa** selle seadetes, 10 kuni 600 sekundit. Muudatus kehtib kandidaatidele, kes alustavad pärast seda; kandidaadi aeg lukustub, kui ta alustab.
 - **Kui aeg saab otsa,** läheb arvesse ekraanil valitud variant ja avaneb järgmine küsimus; kui midagi pole valitud, loetakse küsimus valeks. Vastamata küsimused loetakse valeks ja intervjuu, millest kandidaat lahkub, lõpeb ise, kui selle koguaeg pluss 10% on möödas.
 - **Küsimused kirjutatakse taimerile sobivaks:** neile saab vastata umbes minutiga (kõige raskematele kuni poolteist minutit), ka teises keeles. Küsimus on kuni 40 sõna (raske puhul 50), variant kuni 10 ja näide kuni 8 lühikest rida.
 - **Küsimused, millel aeg liiga sageli otsa saab, märgitakse** ja kirjutatakse taustal ümber. Ümberkirjutatud küsimus kehtib kandidaatidele, kes alustavad pärast parandust; juba antud tulemused ei muutu.
 
-Intervjuu kõigil küsimustel on sama aeg. Umbes 1 küsimus 10-st on tüüpi „vali kõik sobivad variandid“, millel on 2 või 3 õiget varianti: iga märgitud õige variandi eest saab osa punktist ja kui märgitud on vale variant, ei saa midagi.
+Araabia-, hiina-, jaapani-, pärsia-, vene-, tai- või ukrainakeelses intervjuus saab iga küsimus keskmise aja, sest nendes keeltes ei ennusta küsimuse pikkus veel selle aega piisavalt täpselt. Umbes 1 küsimus 10-st on tüüpi „vali kõik sobivad variandid“, millel on 2 või 3 õiget varianti: iga märgitud õige variandi eest saab osa punktist ja kui märgitud on vale variant, ei saa midagi.
 
 ### Küsimuste arv
 
@@ -117,14 +118,14 @@ Intervjuu kõigil küsimustel on sama aeg. Umbes 1 küsimus 10-st on tüüpi „
 
 ### Kogupikkus
 
-Enne alustamist näevad kandidaadid aega küsimuse kohta ja kogu intervjuu aega minutites, ülespoole ümardatuna: küsimused, mille nad igast teemast saavad, korda sekundid küsimuse kohta. Vaikeseadetega võtavad kolm teemat kõige rohkem 30 minutit või raske intervjuu puhul 38. Intervjuu teemade vahekaardil näed küsimusi kokku, aega küsimuse kohta ja kogu intervjuu aega, mis muutuvad iga muudatusega.
+Enne alustamist näevad kandidaadid keskmist aega küsimuse kohta ja kogu intervjuu aega minutites, ülespoole ümardatuna: küsimused, mille nad igast teemast saavad, korda keskmised sekundid küsimuse kohta. Vaikeseadetega võtavad kolm teemat kõige rohkem 30 minutit või raske intervjuu puhul 38. Intervjuu teemade vahekaardil näed küsimusi kokku, keskmist aega küsimuse kohta ja kogu intervjuu aega, mis muutuvad iga muudatusega.
 
 ### Lisaaeg
 
 - **Omanikud ja administraatorid saavad anda kandidaadile +25%, +50% või +100%** iga küsimuse ajast kandidaadi lehel.
 - **Ainult enne, kui kandidaat alustab.** Pärast seda aeg lukustub ja kandidaadi lehel on endiselt näha, kui palju lisaaega tal oli.
 - **Põhjust ei salvestata.** Ettevõtte toimingute logi salvestab ainult muudatuse.
-- **Kandidaadid näevad oma aega:** aega küsimuse kohta ja koguaega koos lisaajaga, ning alguslehel öeldakse igale kandidaadile, et ta võib rohkem küsida.
+- **Kandidaadid näevad oma aega:** keskmist aega küsimuse kohta ja koguaega koos lisaajaga, seejärel iga küsimuse enda taimerit, ning alguslehel öeldakse igale kandidaadile, et ta võib rohkem küsida.
 - **Jagatava lingi kaudu tulevatele kandidaatidele** ei saa lisaaega anda lingil endal, sest nende kutse luuakse alles siis, kui nad alustavad. Lingi lehel palutakse neil enne alustamist küsida sinult isiklikku kutset.
 
 Enne kellegi kutsumist tee intervjuu ise selle lehelt läbi: see on tasuta, ei lähe kandidaadina arvesse ja näitab kiiresti, kas taimer tundub õige.

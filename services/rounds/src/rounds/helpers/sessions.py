@@ -2,6 +2,7 @@ import uuid
 from datetime import datetime, timedelta
 
 from rounds.constants.rounds import RoundStatus
+from rounds.helpers.question_times import add_times
 from rounds.helpers.rounds import next_question, shuffled
 from rounds.models.sessions import Session
 from rounds.schemas.library import TopicQuestions
@@ -18,9 +19,16 @@ def new_sections(
     practice: bool = False,
     company_id: uuid.UUID | None = None,
 ) -> list[Session]:
-    """One running section a topic, with its questions in the candidate's own order. Each starts
+    """One running section a topic, with its questions in the candidate's own order, each with its
+    own time fitted to `question_seconds`, the average (helpers/question_times.py). Each starts
     a microsecond after the one before, so the sections keep the topics' order wherever they're
     listed (repositories/sessions.py list_for_invite)."""
+    drawn = [
+        shuffled([question.model_dump(mode="json") for question in topic.questions])
+        for topic in topics
+    ]
+    add_times([question for questions in drawn for question in questions], question_seconds)
+
     return [
         Session(
             user_id=user_id,
@@ -30,7 +38,7 @@ def new_sections(
             company_id=company_id,
             topic_title=topic.title,
             status=RoundStatus.IN_PROGRESS,
-            questions=shuffled([question.model_dump(mode="json") for question in topic.questions]),
+            questions=questions,
             final_score=None,
             finished_at=None,
             question_seconds=question_seconds,
@@ -39,7 +47,7 @@ def new_sections(
             started_at=now + timedelta(microseconds=position),
             answers=[],
         )
-        for position, topic in enumerate(topics)
+        for position, (topic, questions) in enumerate(zip(topics, drawn, strict=True))
     ]
 
 
@@ -52,11 +60,14 @@ def answer_seconds(shown_at: datetime | None, answered_at: datetime) -> int | No
 
 
 def question_deadline(row: Session) -> datetime | None:
-    """When the question on screen counts as wrong; None when untimed or nothing is shown."""
-    if row.question_seconds is None or row.question_shown_at is None:
+    """When the question on screen counts as wrong, from its own time; None when untimed or
+    nothing is shown."""
+    question = next_question(row) if row.question_shown_at else None
+
+    if question is None or question.seconds is None:
         return None
 
-    return row.question_shown_at + timedelta(seconds=row.question_seconds)
+    return row.question_shown_at + timedelta(seconds=question.seconds)
 
 
 def time_is_up(row: Session, now: datetime, grace_seconds: int = 0) -> bool:

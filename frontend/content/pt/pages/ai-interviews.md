@@ -2,7 +2,7 @@
 title: "Entrevistas com IA: o que são e como usá-las de forma justa"
 seoTitle: "IA no recrutamento e seleção: entrevista com IA e riscos"
 description: "IA no recrutamento e seleção: o que fazem entrevistas com IA, chatbots, análise de vídeo e testes gerados, riscos, compliance e a abordagem da prepza."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Entrevistas com IA: o que são e como usá-las de forma justa
@@ -61,7 +61,7 @@ Você também pode testar a sua própria entrevista como candidato antes de conv
 
 **O conteúdo pode ser revisado.** Você aprova os tópicos antes de qualquer coisa ser escrita, e as perguntas ficam abertas para você. Se um tópico não for um requisito real da vaga, você pode removê-lo.
 
-**Todos enfrentam condições parecidas.** Os mesmos tópicos, o mesmo número de perguntas por tópico, o mesmo tempo por pergunta. As perguntas de cada candidato são sorteadas, então os conjuntos variam um pouco em dificuldade. Candidatos que precisam de mais tempo podem recebê-lo: você pode adicionar tempo extra por candidato.
+**Todos enfrentam condições parecidas.** Os mesmos tópicos, o mesmo número de perguntas por tópico, o mesmo tempo médio por pergunta e o mesmo tempo total. As perguntas de cada candidato são sorteadas, então os conjuntos variam um pouco em dificuldade. Candidatos que precisam de mais tempo podem recebê-lo: você pode adicionar tempo extra por candidato.
 
 **Menos sinais irrelevantes.** Uma resposta de múltipla escolha não carrega sotaque, rosto, cenário ou estilo de escrita, então a pontuação não depende da aparência ou da voz de ninguém. Isso não elimina o viés: testes de conhecimento podem mostrar diferenças de pontuação entre grupos, e um teste no segundo idioma do candidato pode prejudicá-lo. Acompanhe os resultados entre grupos.
 

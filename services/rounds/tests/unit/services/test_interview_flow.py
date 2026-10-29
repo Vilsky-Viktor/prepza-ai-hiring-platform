@@ -28,7 +28,12 @@ def section(answered=False, status="in_progress"):
         topic_title="Python",
         status=status,
         questions=[
-            {"id": str(question_id), "text": "Q?", "options": [{"answer": "A", "correct": True}]}
+            {
+                "id": str(question_id),
+                "text": "Q?",
+                "options": [{"answer": "A", "correct": True}],
+                "seconds": 30,
+            }
         ],
         final_score=None,
         started_at=datetime.now(UTC),

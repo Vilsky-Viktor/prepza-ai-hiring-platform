@@ -56,3 +56,41 @@ def test_every_check_allows_what_its_model_allows():
     from rounds.config import settings
 
     assert stale_checks(settings.database_url, rounds.models) == []
+
+
+def test_sections_drawn_before_fitted_times_get_the_average_on_every_question(run):
+    """Migration 0033: a section saved without each question's own time gets its time per
+    question on each, so its deadlines stay as they were."""
+    import importlib.util
+    import uuid
+
+    from sqlalchemy import update
+
+    from rounds.core.db import Session
+    from rounds.models.sessions import Session as SessionRow
+    from rounds.repositories import sessions
+    from tests.integration.factories import created, topic
+    from tests.integration.transactions import transaction
+
+    spec = importlib.util.spec_from_file_location(
+        "question_times_migration", "migrations/versions/0033_question_times.py"
+    )
+    migration = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(migration)
+
+    async def scenario():
+        [row] = await created("cand", uuid.uuid4(), [topic()], 45, company_id=uuid.uuid4())
+        bare = [{k: v for k, v in question.items() if k != "seconds"} for question in row.questions]
+
+        async with Session() as session:
+            await session.execute(
+                update(SessionRow).where(SessionRow.id == row.id).values(questions=bare)
+            )
+            await session.execute(migration.FILL)
+            await session.commit()
+
+        return await transaction(sessions.get, row.id)
+
+    filled = run(scenario())
+
+    assert [question["seconds"] for question in filled.questions] == [45, 45, 45]

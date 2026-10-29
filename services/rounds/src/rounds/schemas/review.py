@@ -37,6 +37,8 @@ class ReviewItem(BaseModel):
     options: list[str]
     # Multi-answer ("select all that apply").
     multi: bool = False
+    # The question's own time; None when untimed.
+    limit_seconds: int | None = None
     # The right option of a single-answer question; None for a multi-answer one (see
     # correct_indexes) and before it's answered.
     correct_option_index: int | None

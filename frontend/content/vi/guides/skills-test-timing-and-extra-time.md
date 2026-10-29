@@ -2,7 +2,7 @@
 title: "Cách đặt thời gian cho bài kiểm tra kỹ năng: thời gian mỗi câu, độ dài và thời gian cộng thêm"
 seoTitle: "Thời gian bài kiểm tra kỹ năng: mỗi câu và thêm giờ"
 description: "Nên cho mỗi câu bao nhiêu thời gian, hỏi bao nhiêu câu, tổng thời lượng bao nhiêu là hợp lý, và cách cho thêm thời gian công bằng với ứng viên cần điều đó."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Cách đặt thời gian cho bài kiểm tra kỹ năng: thời gian mỗi câu, độ dài và thời gian cộng thêm
@@ -103,12 +103,13 @@ Trong prepza, một buổi phỏng vấn là một bài kiểm tra kỹ năng tr
 
 - **Mỗi câu hỏi có đồng hồ đếm ngược riêng,** do máy chủ giữ, nên đóng tab hay tải lại trang cũng không làm nó dừng.
 - **Mặc định phụ thuộc vào cấp độ của buổi phỏng vấn,** với buổi phỏng vấn được tạo tự động thì cấp độ lấy từ mức thâm niên mà mô tả công việc yêu cầu: 60 giây cho buổi phỏng vấn cơ bản hoặc trung bình, 75 giây cho buổi phỏng vấn khó.
-- **Bạn có thể đổi cho từng buổi phỏng vấn,** trong phần cài đặt của nó, từ 10 đến 600 giây. Thay đổi áp dụng cho ứng viên bắt đầu sau đó; thời gian của một ứng viên được cố định khi họ bắt đầu.
+- **Đây là mức trung bình: mỗi câu hỏi nhận thời gian riêng từ mức này** khi các câu hỏi của một ứng viên được rút ra, tùy theo thời gian cần để đọc và trả lời: số từ, đoạn mã hoặc ví dụ nếu có (đọc chậm hơn) và thời gian để nghĩ ra câu trả lời. Câu hỏi ngắn có ít thời gian hơn, câu dài hơn và câu có mã có nhiều thời gian hơn, mỗi câu từ một nửa đến gấp đôi mức trung bình, và cộng lại đúng bằng số câu hỏi nhân mức trung bình. Đồng hồ đếm ngược hiển thị thời gian riêng của từng câu, và bảng điểm cho thấy mỗi câu trả lời đã dùng bao nhiêu trong thời gian đó.
+- **Bạn có thể đổi mức trung bình cho từng buổi phỏng vấn,** trong phần cài đặt của nó, từ 10 đến 600 giây. Thay đổi áp dụng cho ứng viên bắt đầu sau đó; thời gian của một ứng viên được cố định khi họ bắt đầu.
 - **Khi hết giờ,** phương án đang chọn trên màn hình được tính và câu tiếp theo mở ra; nếu chưa chọn gì, câu đó tính là sai. Câu chưa trả lời tính là sai, và một buổi phỏng vấn mà ứng viên bỏ dở sẽ tự kết thúc khi đã qua tổng thời gian cộng thêm 10%.
 - **Câu hỏi được viết cho vừa đồng hồ:** trả lời được trong khoảng một phút (đến một phút rưỡi với câu khó nhất), kể cả bằng ngôn ngữ thứ hai. Một câu hỏi tối đa 40 từ (50 với câu khó), một phương án tối đa 10 từ, và một ví dụ tối đa 8 dòng ngắn.
 - **Câu hỏi hết giờ quá thường xuyên sẽ bị đánh dấu** và được viết lại trong nền. Câu viết lại áp dụng cho ứng viên bắt đầu sau khi sửa; kết quả đã đưa ra không thay đổi.
 
-Mọi câu hỏi trong một buổi phỏng vấn có cùng thời gian. Khoảng 1 trong 10 câu là dạng "chọn tất cả phương án đúng", có 2 hoặc 3 phương án đúng, mỗi phương án đúng được đánh dấu mang lại một phần điểm của câu, và không được điểm nào nếu đánh dấu một phương án sai.
+Trong buổi phỏng vấn bằng tiếng Ả Rập, Trung, Nhật, Ba Tư, Nga, Thái hoặc Ukraina, mọi câu hỏi nhận mức trung bình, vì ở những ngôn ngữ này độ dài câu hỏi chưa dự đoán đủ chính xác thời gian cần cho nó. Khoảng 1 trong 10 câu là dạng "chọn tất cả phương án đúng", có 2 hoặc 3 phương án đúng, mỗi phương án đúng được đánh dấu mang lại một phần điểm của câu, và không được điểm nào nếu đánh dấu một phương án sai.
 
 ### Số câu hỏi
 
@@ -117,14 +118,14 @@ Mọi câu hỏi trong một buổi phỏng vấn có cùng thời gian. Khoản
 
 ### Tổng thời lượng
 
-Trước khi bắt đầu, ứng viên thấy thời gian mỗi câu và thời gian của cả buổi phỏng vấn tính bằng phút, làm tròn lên: số câu họ nhận từ mọi chủ đề, nhân số giây mỗi câu. Với mặc định, ba chủ đề mất tối đa 30 phút, hoặc 38 phút với buổi phỏng vấn khó. Trên thẻ chủ đề của buổi phỏng vấn, bạn thấy tổng số câu hỏi, thời gian mỗi câu và thời gian của toàn bộ buổi phỏng vấn, cập nhật theo mỗi thay đổi.
+Trước khi bắt đầu, ứng viên thấy thời gian trung bình mỗi câu và thời gian của cả buổi phỏng vấn tính bằng phút, làm tròn lên: số câu họ nhận từ mọi chủ đề, nhân số giây trung bình mỗi câu. Với mặc định, ba chủ đề mất tối đa 30 phút, hoặc 38 phút với buổi phỏng vấn khó. Trên thẻ chủ đề của buổi phỏng vấn, bạn thấy tổng số câu hỏi, thời gian trung bình mỗi câu và thời gian của toàn bộ buổi phỏng vấn, cập nhật theo mỗi thay đổi.
 
 ### Thời gian cộng thêm
 
 - **Chủ sở hữu và quản trị viên có thể cho một ứng viên thêm +25%, +50% hoặc +100%** thời gian của mỗi câu, trên trang của ứng viên.
 - **Chỉ trước khi ứng viên bắt đầu.** Sau đó thời gian được cố định, và trang của ứng viên vẫn hiển thị thời gian cộng thêm họ đã có.
 - **Không ghi lại lý do.** Nhật ký thao tác của công ty chỉ ghi lại thay đổi.
-- **Ứng viên thấy thời gian của chính mình:** thời gian mỗi câu và tổng thời gian, đã gồm thời gian cộng thêm, và trang bắt đầu cho mọi ứng viên biết họ có thể đề nghị thêm thời gian.
+- **Ứng viên thấy thời gian của chính mình:** thời gian trung bình mỗi câu và tổng thời gian, đã gồm thời gian cộng thêm, rồi đồng hồ đếm ngược riêng của từng câu, và trang bắt đầu cho mọi ứng viên biết họ có thể đề nghị thêm thời gian.
 - **Ứng viên vào qua liên kết chia sẻ** không thể được thêm thời gian ngay trên liên kết, vì lời mời của họ được tạo khi họ bắt đầu. Trang của liên kết nhắc họ xin bạn một lời mời riêng trước khi bắt đầu.
 
 Trước khi mời bất kỳ ai, hãy tự làm buổi phỏng vấn từ trang của nó: miễn phí, không tính là một ứng viên, và cho thấy nhanh chóng đồng hồ có hợp lý hay không.

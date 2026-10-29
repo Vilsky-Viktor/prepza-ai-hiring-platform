@@ -172,10 +172,14 @@ function ScorecardAnswer({
       {/* Not known for answers given before timing was recorded. */}
       {seconds != null && (
         <p
+          data-testid="answer-time"
           className={cn("text-sm text-muted-foreground", fast && WARNING_TONE)}
         >
-          {t.rich("answeredIn", {
+          {/* Out of the question's own time, when it had one. */}
+          {t.rich(item.limit_seconds != null ? "answeredInOf" : "answeredIn", {
             time: duration(seconds),
+            limit:
+              item.limit_seconds != null ? duration(item.limit_seconds) : "",
             b: (chunks) => (
               <span
                 className={cn(

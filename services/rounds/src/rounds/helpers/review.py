@@ -40,6 +40,7 @@ def build_review(round_, reveal_all: bool = False) -> list[ReviewItem]:
                 text=question["text"],
                 options=[option["answer"] for option in question["options"]],
                 multi=multi,
+                limit_seconds=question.get("seconds"),
                 correct_option_index=right[0] if right and not multi else None,
                 correct_indexes=right,
                 answer=(

@@ -2,7 +2,7 @@
 title: "Colloqui con IA: cosa sono e come usarli in modo equo"
 seoTitle: "IA nel recruiting: colloqui con IA, rischi e uso corretto"
 description: "IA nel recruiting: cosa fanno colloqui con intelligenza artificiale, chatbot, analisi video e test generati, rischi, conformità e l'approccio di prepza."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Colloqui con IA: cosa sono e come usarli in modo equo
@@ -61,7 +61,7 @@ Puoi anche provare il tuo colloquio come candidato prima di invitare qualcuno: l
 
 **Il contenuto è verificabile.** Approvi gli argomenti prima che venga scritto qualcosa, e le domande sono consultabili. Se un argomento non è un vero requisito del lavoro, puoi eliminarlo.
 
-**Tutti affrontano condizioni simili.** Stessi argomenti, stesso numero di domande per argomento, stesso tempo per domanda. Le domande di ogni candidato sono estratte a caso, quindi i set differiscono un po' in difficoltà. I candidati che hanno bisogno di più tempo possono ottenerlo: puoi aggiungere tempo extra per singolo candidato.
+**Tutti affrontano condizioni simili.** Stessi argomenti, stesso numero di domande per argomento, stesso tempo medio per domanda e stessa durata totale. Le domande di ogni candidato sono estratte a caso, quindi i set differiscono un po' in difficoltà. I candidati che hanno bisogno di più tempo possono ottenerlo: puoi aggiungere tempo extra per singolo candidato.
 
 **Meno segnali irrilevanti.** Una risposta a scelta multipla non porta con sé un accento, un volto, uno sfondo o uno stile di scrittura, quindi il punteggio non dipende da come qualcuno appare o suona. Questo non esclude i bias: i test di conoscenza possono mostrare differenze di punteggio tra gruppi, e un test nella seconda lingua di un candidato può penalizzarlo. Monitora i risultati tra i gruppi.
 

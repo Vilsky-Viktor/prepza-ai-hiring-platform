@@ -10987,6 +10987,17 @@
       "title": "Multi",
       "default": false
      },
+     "limit_seconds": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Limit Seconds"
+     },
      "correct_option_index": {
       "anyOf": [
        {

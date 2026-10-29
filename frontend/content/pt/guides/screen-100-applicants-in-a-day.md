@@ -2,7 +2,7 @@
 title: "Como fazer a triagem de 100 candidatos em um dia"
 seoTitle: "Triagem de 100 candidatos em um dia: um plano prático"
 description: "Um plano passo a passo para triar 100 candidatos em um dia de trabalho, de forma justa: requisitos, teste curto, lista ordenada e revisão humana."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Como fazer a triagem de 100 candidatos em um dia
@@ -42,7 +42,7 @@ Com a prepza:
 
 1. **Cole a descrição da vaga.** A prepza identifica o que um candidato precisa saber e propõe tópicos.
 2. **Revise os tópicos comparando com a sua lista do passo 1.** Desmarque o que não for um requisito real, renomeie tópicos, edite subtópicos ou descreva as mudanças em texto livre ("adicione um tópico sobre o básico de folha de pagamento"). As perguntas só são escritas depois da sua aprovação.
-3. **Defina a duração.** Por padrão, cada tópico tem 10 perguntas, cada uma com contagem regressiva de 60 segundos, ou 75 segundos em um teste difícil. Três tópicos significam no máximo 30 minutos por candidato (cerca de 38 em um teste difícil), e normalmente menos. Limite ao que você precisa.
+3. **Defina a duração.** Por padrão, cada tópico tem 10 perguntas, cada uma com sua própria contagem regressiva, de 60 segundos em média, ou 75 segundos em um teste difícil. Três tópicos significam no máximo 30 minutos por candidato (cerca de 38 em um teste difícil), e normalmente menos. Limite ao que você precisa.
 4. **Defina uma nota de aprovação.** O padrão é 70%. Use-a como guia para ler os resultados, não como corte automático.
 5. **Teste como candidato.** Faça o teste você mesmo. É gratuito e não conta como candidato. Se uma pergunta parecer estranha, gere-a novamente.
 

@@ -2,7 +2,7 @@
 title: "Paano mag-screen ng 100 aplikante sa isang araw"
 seoTitle: "Paano Mag-screen ng 100 Aplikante sa Isang Araw"
 description: "Hakbang-hakbang na plano para patas na ma-screen ang 100 aplikante sa isang araw: mahigpit na requirement, maikling skills test, ranking at review ng tao."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Paano mag-screen ng 100 aplikante sa isang araw
@@ -42,7 +42,7 @@ Gamit ang prepza:
 
 1. **I-paste ang job description.** Kinukuha ng prepza ang dapat malaman ng aplikante at nagmumungkahi ng mga topic.
 2. **I-review ang mga topic batay sa listahan mo mula sa hakbang 1.** I-uncheck ang anumang hindi tunay na requirement, palitan ang pangalan ng mga topic, i-edit ang mga subtopic, o ilarawan ang pagbabago sa simpleng text ("magdagdag ng topic tungkol sa payroll basics"). Isinusulat lang ang mga tanong pagkatapos mong aprubahan.
-3. **Itakda ang haba.** Bilang default, 10 tanong ang bawat topic, bawat isa may 60-segundong countdown, o 75 segundo sa hard na test. Kung tatlong topic, hanggang 30 minuto lang para sa isang aplikante (mga 38 sa hard na test), at kadalasan mas maikli pa. Limitahan sa kailangan mo.
+3. **Itakda ang haba.** Bilang default, 10 tanong ang bawat topic, bawat isa may sariling countdown, 60 segundo sa average, o 75 segundo sa hard na test. Kung tatlong topic, hanggang 30 minuto lang para sa isang aplikante (mga 38 sa hard na test), at kadalasan mas maikli pa. Limitahan sa kailangan mo.
 4. **Magtakda ng pass mark.** Ang default ay 70%. Ituring ito bilang gabay sa pagbasa ng resulta, hindi awtomatikong cut.
 5. **I-preview ito bilang aplikante.** Kunin mo mismo ang test. Libre ito at hindi binibilang bilang aplikante. Kung may tanong na mukhang mali, i-generate ito ulit.
 

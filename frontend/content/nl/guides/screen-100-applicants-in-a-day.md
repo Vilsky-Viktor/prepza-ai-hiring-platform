@@ -2,7 +2,7 @@
 title: "Zo screen je 100 sollicitanten in één dag"
 seoTitle: "100 sollicitanten screenen in één dag: een praktisch plan"
 description: "Een stappenplan om 100 sollicitanten eerlijk te screenen in één werkdag: harde eisen, een korte selectietest, een ranglijst en beoordeling door mensen."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Zo screen je 100 sollicitanten in één dag
@@ -42,7 +42,7 @@ Met prepza:
 
 1. **Plak de functieomschrijving.** prepza haalt eruit wat een kandidaat moet weten en stelt onderwerpen voor.
 2. **Leg de onderwerpen naast je lijst uit stap 1.** Vink alles uit wat geen echte eis is, hernoem onderwerpen, pas subonderwerpen aan of beschrijf wijzigingen in gewone tekst ("voeg een onderwerp toe over de basis van salarisadministratie"). Vragen worden pas geschreven nadat jij hebt goedgekeurd.
-3. **Stel de lengte in.** Standaard stelt elk onderwerp 10 vragen, elk met een aftelklok van 60 seconden, of 75 seconden bij een moeilijke test. Drie onderwerpen betekent maximaal 30 minuten voor een kandidaat (ongeveer 38 bij een moeilijke test), en meestal minder. Houd het bij wat je nodig hebt.
+3. **Stel de lengte in.** Standaard stelt elk onderwerp 10 vragen, elk met een eigen aftelklok, gemiddeld 60 seconden, of 75 seconden bij een moeilijke test. Drie onderwerpen betekent maximaal 30 minuten voor een kandidaat (ongeveer 38 bij een moeilijke test), en meestal minder. Houd het bij wat je nodig hebt.
 4. **Stel een slaaggrens in.** De standaard is 70%. Zie die als richtlijn om resultaten te lezen, niet als automatische afkapgrens.
 5. **Bekijk de test als kandidaat.** Maak de test zelf. Dat is gratis en telt niet als kandidaat. Ziet een vraag er niet goed uit, genereer hem dan opnieuw.
 

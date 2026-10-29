@@ -30,14 +30,14 @@ your audit summary is published (see prepza's instructions for companies).
 > will be assessed.
 >
 > **What it assesses.** A timed multiple-choice test of job knowledge in these areas, taken from
-> the job's requirements: [list topics]. Each question has a time limit of [N] seconds. Your score
-> is the percentage of points earned: each question is worth one point, and on a "select all that
-> apply" question you earn part of it for each right option ticked, and nothing if you tick a
-> wrong one. The tool also records how long each answer
-> took, when you left the test page or copied text during it, and answers given too fast to have
-> read the question. Before you start, you confirm that you'll answer on your own, without AI tools
-> or other people, and when you did is recorded. [Company] may give you extra time, which is
-> recorded without a reason.
+> the job's requirements: [list topics]. Each question has its own time limit, on average [N]
+> seconds: shorter questions get less, longer ones and code more. Your score is the percentage
+> of points earned: each question is worth one point, and on a "select all that apply" question
+> you earn part of it for each right option ticked, and nothing if you tick a wrong one. The tool
+> also records how long each answer took, when you left the test page or copied text during it,
+> and answers given too fast to have read the question. Before you start, you confirm that you'll
+> answer on your own, without AI tools or other people, and when you did is recorded. [Company]
+> may give you extra time, which is recorded without a reason.
 >
 > **How it is used.** Your score is compared with a passing grade of [N]% and with other
 > candidates' scores. [Name or role at Company] reviews every result before any decision, together
@@ -69,7 +69,8 @@ your audit summary is published (see prepza's instructions for companies).
 > **prepza**. Please read this before you start.
 >
 > **What it is.** An AI system that helps us assess candidates; under the EU AI Act it counts as a
-> high-risk AI system. [N] multiple-choice questions about [topics], with [N] seconds for each.
+> high-risk AI system. [N] multiple-choice questions about [topics], with on average [N] seconds
+> for each; each question shows its own timer.
 > Questions were written with the help of AI from the job description, on topics our team chose.
 > Each candidate gets their own selection of questions. Most have one right option; a "select all
 > that apply" question has 2 or 3, and you tick every one you think is right: it earns part of its

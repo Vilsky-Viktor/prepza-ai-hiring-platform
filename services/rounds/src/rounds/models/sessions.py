@@ -52,8 +52,10 @@ class Session(Base):
         DateTime(timezone=True), default=lambda: datetime.now(UTC), server_default=func.now()
     )
     finished_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
-    # The seconds each question has before it counts as wrong; None only for sessions from
-    # before every interview was timed.
+    # The average seconds a question, with the candidate's extra time: each question's own time
+    # (`seconds` in `questions`, helpers/question_times.py) is fitted to it, so they add up to
+    # this times the questions. None when untimed (a practice round, sessions from before every
+    # interview was timed).
     question_seconds: Mapped[int | None]
     # Answers that stay out of the questions' statistics: a company member trying their own test,
     # or a talent's practice round after their first on the template.

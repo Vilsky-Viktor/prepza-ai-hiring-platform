@@ -2,7 +2,7 @@
 title: "So sichtest du 100 Bewerbungen an einem Tag"
 seoTitle: "100 Bewerbungen an einem Tag sichten: ein Praxisplan"
 description: "Ein Plan, um 100 Bewerbungen an einem Arbeitstag fair zu sichten: harte Anforderungen, kurzer Fachtest, Rangliste und Prüfung durch Menschen."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # So sichtest du 100 Bewerbungen an einem Tag
@@ -42,7 +42,7 @@ Mit prepza:
 
 1. **Stellenbeschreibung einfügen.** prepza erkennt, was ein Kandidat wissen muss, und schlägt Themen vor.
 2. **Themen mit deiner Liste aus Schritt 1 abgleichen.** Entferne alles, was keine echte Anforderung ist, benenne Themen um, bearbeite Unterthemen oder beschreib Änderungen in normalem Text („ein Thema zu Grundlagen der Lohnabrechnung ergänzen“). Fragen werden erst geschrieben, wenn du zugestimmt hast.
-3. **Länge festlegen.** Standardmäßig stellt jedes Thema 10 Fragen mit jeweils 60 Sekunden Countdown, bei einem schweren Test 75 Sekunden. Drei Themen bedeuten höchstens 30 Minuten für einen Kandidaten (bei einem schweren Test etwa 38), meist weniger. Beschränk dich auf das, was du brauchst.
+3. **Länge festlegen.** Standardmäßig stellt jedes Thema 10 Fragen mit jeweils eigenem Countdown, im Durchschnitt 60 Sekunden, bei einem schweren Test 75 Sekunden. Drei Themen bedeuten höchstens 30 Minuten für einen Kandidaten (bei einem schweren Test etwa 38), meist weniger. Beschränk dich auf das, was du brauchst.
 4. **Bestehensgrenze festlegen.** Standard sind 70 %. Versteh sie als Orientierung beim Lesen der Ergebnisse, nicht als automatischen Schnitt.
 5. **Als Kandidat ausprobieren.** Mach den Test selbst. Das ist kostenlos und zählt nicht als Kandidat. Wirkt eine Frage seltsam, lass sie neu generieren.
 

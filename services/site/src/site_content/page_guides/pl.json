@@ -105,7 +105,7 @@
     "tips": [
       "Pytania napisane przez AI mogą zawierać błędy: przejrzyj każdy temat, zanim kogokolwiek zaprosisz.",
       "Kliknij tytuł, by zmienić nazwę rozmowy.",
-      "Karty na górze sumują to, co dostaje każdy kandydat: łączną liczbę pytań, czas na pytanie i czas całej rozmowy. Zmieniają się po każdej zmianie."
+      "Karty na górze sumują to, co dostaje każdy kandydat: łączną liczbę pytań, średni czas na pytanie i czas całej rozmowy. Zmieniają się po każdej zmianie."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Jak ta rozmowa przebiega dla każdego kandydata.",
     "actions": [
       "Włącz link do udostępnienia do ogłoszenia o pracę: każdy, kto go ma, może przejść rozmowę.",
-      "Ustaw czas na każde pytanie, w sekundach.",
+      "Ustaw średni czas na pytanie, w sekundach: każde pytanie dostaje własny czas zależnie od długości i kodu, który pokazuje, a łączny czas rozmowy pozostaje taki sam.",
       "Ustaw próg zaliczenia: kandydaci, którzy go osiągną, przechodzą.",
       "Oznacz rozmowę jako zakończoną zatrudnieniem, gdy obsadzisz stanowisko.",
       "Nie dodawaj pytań z rozmowy do wspólnej bazy pytań prepza; pytania już użyte ponownie w innych rozmowach tam pozostaną."

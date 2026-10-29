@@ -105,7 +105,7 @@
     "tips": [
       "AI-written questions can be wrong: skim each topic before you invite anyone.",
       "Click the title to rename the interview.",
-      "The cards at the top add up what each candidate gets: the total questions, the time per question and the whole interview's time. They follow every change."
+      "The cards at the top add up what each candidate gets: the total questions, the average time per question and the whole interview's time. They follow every change."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "How this interview runs for every candidate.",
     "actions": [
       "Turn on the shareable link for a job ad: anyone with it can take the interview.",
-      "Set the time each question has, in seconds.",
+      "Set the average time per question, in seconds: each question gets its own time from its length and any code it shows, and the interview's total time stays the same.",
       "Set the passing grade: candidates who reach it pass.",
       "Mark the interview as hired once you've filled the role.",
       "Keep the interview's questions out of prepza's shared question bank; questions already reused in other interviews stay there."

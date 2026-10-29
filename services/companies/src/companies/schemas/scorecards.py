@@ -34,6 +34,8 @@ class ScorecardQuestion(BaseModel):
     options: list[str]
     # Multi-answer ("select all that apply").
     multi: bool = False
+    # The question's own time (rounds fits it to the interview's average); None when untimed.
+    limit_seconds: int | None = None
     # Only once the question is answered: the right option of a single-answer question, and
     # every right option.
     correct_option_index: int | None

@@ -2,7 +2,7 @@
 title: "Beceri testinin süresi nasıl ayarlanır: soru başına süre, uzunluk ve ek süre"
 seoTitle: "Beceri Testinde Süre Sınırı: Soru Başına Süre ve Ek Süre"
 description: "Her soruya ne kadar süre verilmeli, kaç soru sorulmalı, toplam süre ne olmalı ve ihtiyacı olan adaylara ek süre adil şekilde nasıl verilir."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Beceri testinin süresi nasıl ayarlanır: soru başına süre, uzunluk ve ek süre
@@ -103,12 +103,13 @@ prepza'da mülakat, iş tanımınızdan oluşturulan süreli, çoktan seçmeli b
 
 - **Her sorunun kendi geri sayımı vardır** ve bu sayımı sunucu tutar; bu yüzden sekmeyi kapatmak ya da sayfayı yenilemek onu durdurmaz.
 - **Varsayılan süre mülakatın seviyesine bağlıdır;** oluşturulan bir mülakatta bu seviye, iş tanımının istediği kıdemden gelir: temel veya orta seviye bir mülakat için 60 saniye, zor bir mülakat için 75 saniye.
-- **Mülakat bazında değiştirebilirsiniz,** mülakatın ayarlarından, 10 ile 600 saniye arasında. Değişiklik, sonrasında başlayan adaylar için geçerli olur; bir adayın süresi başladığı anda sabitlenir.
+- **Bu bir ortalamadır: her soru, adayın soruları seçilirken bundan kendi süresini alır;** süre, soruyu okuyup cevaplamanın ne kadar sürdüğüne göre belirlenir: kelimeleri, varsa kod ya da örnek (daha yavaş okunur) ve cevabı bulma süresi. Kısa sorular daha az, daha uzun sorular ve kod içerenler daha fazla süre alır; her biri ortalamanın yarısı ile iki katı arasındadır ve hepsi birlikte tam olarak soru sayısı çarpı ortalamaya eşittir. Geri sayım her sorunun kendi süresini gösterir; puan kartı da her cevabın bundan ne kadar sürdüğünü gösterir.
+- **Ortalamayı mülakat bazında değiştirebilirsiniz,** mülakatın ayarlarından, 10 ile 600 saniye arasında. Değişiklik, sonrasında başlayan adaylar için geçerli olur; bir adayın süresi başladığı anda sabitlenir.
 - **Süre dolduğunda** ekranda seçili cevap sayılır ve sonraki soru açılır; seçim yoksa soru yanlış sayılır. Cevapsız sorular yanlış sayılır ve adayın yarıda bıraktığı bir mülakat, toplam süresi artı %10 geçtiğinde kendiliğinden biter.
 - **Sorular sayaca uygun yazılır:** yaklaşık bir dakikada cevaplanır (en zorlar için bir buçuk dakikaya kadar), ikinci bir dilde de. Bir soru en fazla 40 kelimedir (zor bir soru için 50), bir seçenek en fazla 10, bir örnek de en fazla 8 kısa satır.
 - **Süresi çok sık dolan sorular işaretlenir** ve arka planda yeniden yazılır. Yeniden yazılan soru, düzeltmeden sonra başlayan adaylar için geçerli olur; daha önce verilmiş sonuçlar değişmez.
 
-Bir mülakattaki her sorunun süresi aynıdır. Yaklaşık 10 sorudan 1'i, 2 ya da 3 doğru seçeneği olan "doğru olanların tümünü seçin" sorusudur: işaretlenen her doğru seçenek puanın bir kısmını kazandırır, yanlış bir seçenek işaretlenirse hiç puan verilmez.
+Arapça, Çince, Japonca, Farsça, Rusça, Tayca veya Ukraynaca bir mülakatta her soru ortalama süreyi alır; çünkü bu dillerde bir sorunun uzunluğu, süresini henüz yeterince iyi öngörmez. Yaklaşık 10 sorudan 1'i, 2 ya da 3 doğru seçeneği olan "doğru olanların tümünü seçin" sorusudur: işaretlenen her doğru seçenek puanın bir kısmını kazandırır, yanlış bir seçenek işaretlenirse hiç puan verilmez.
 
 ### Soru sayısı
 
@@ -117,14 +118,14 @@ Bir mülakattaki her sorunun süresi aynıdır. Yaklaşık 10 sorudan 1'i, 2 ya 
 
 ### Toplam uzunluk
 
-Adaylar başlamadan önce soru başına süreyi ve tüm mülakatın süresini yukarı yuvarlanmış dakika olarak görür: her konudan aldıkları sorular çarpı soru başına saniye. Varsayılanlarla üç konu en fazla 30 dakika, zor bir mülakatta ise 38 dakika sürer. Mülakatın konular sekmesinde toplam soruyu, soru başına süreyi ve mülakatın tamamının süresini görürsünüz; her değişiklikle güncellenir.
+Adaylar başlamadan önce soru başına ortalama süreyi ve tüm mülakatın süresini yukarı yuvarlanmış dakika olarak görür: her konudan aldıkları sorular çarpı soru başına ortalama saniye. Varsayılanlarla üç konu en fazla 30 dakika, zor bir mülakatta ise 38 dakika sürer. Mülakatın konular sekmesinde toplam soruyu, soru başına ortalama süreyi ve mülakatın tamamının süresini görürsünüz; her değişiklikle güncellenir.
 
 ### Ek süre
 
 - **Sahipler ve yöneticiler bir adaya her sorunun süresinin +%25'i, +%50'si veya +%100'ü kadar** ek süreyi adayın sayfasından verebilir.
 - **Yalnızca aday başlamadan önce.** Sonrasında süre sabitlenir ve adayın sayfası, adayın aldığı ek süreyi göstermeye devam eder.
 - **Gerekçe kaydedilmez.** Şirketin işlem kaydı yalnızca değişikliği kaydeder.
-- **Adaylar kendi sürelerini görür:** ek süre dahil soru başına süreyi ve toplam süreyi; başlangıç sayfası da her adaya daha fazla süre isteyebileceğini söyler.
+- **Adaylar kendi sürelerini görür:** ek süre dahil soru başına ortalama süreyi ve toplam süreyi, ardından her sorunun kendi geri sayımını; başlangıç sayfası da her adaya daha fazla süre isteyebileceğini söyler.
 - **Paylaşılabilir bağlantıyla gelen adaylara** bağlantının kendisi üzerinden ek süre verilemez, çünkü davetleri başladıkları anda oluşturulur. Bağlantının sayfası onlara, başlamadan önce sizden kişiye özel bir davet istemelerini söyler.
 
 Kimseyi davet etmeden önce mülakatı sayfasından kendiniz çözün: ücretsizdir, aday sayılmaz ve sayacın doğru gelip gelmediğini hızlıca gösterir.

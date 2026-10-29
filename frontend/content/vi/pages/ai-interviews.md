@@ -2,7 +2,7 @@
 title: "Phỏng vấn AI: là gì và cách dùng công bằng"
 seoTitle: "AI trong tuyển dụng: phỏng vấn AI, rủi ro và cách dùng"
 description: "Ứng dụng AI trong tuyển dụng: chatbot phỏng vấn AI, phân tích video, bài kiểm tra tạo tự động. Cách prepza dùng trắc nghiệm tính giờ và điều cần tuân thủ."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Phỏng vấn AI: là gì và cách dùng công bằng
@@ -61,7 +61,7 @@ Bạn cũng có thể xem trước buổi phỏng vấn của mình với tư c�
 
 **Nội dung có thể xem xét.** Bạn duyệt các chủ đề trước khi có bất cứ thứ gì được viết, và bạn xem được các câu hỏi. Nếu một chủ đề không phải yêu cầu thực sự của công việc, bạn có thể bỏ nó.
 
-**Mọi người gặp điều kiện tương tự nhau.** Cùng chủ đề, cùng số câu hỏi mỗi chủ đề, cùng thời gian mỗi câu. Câu hỏi của mỗi ứng viên được chọn ngẫu nhiên, nên các bộ câu hỏi có độ khó hơi khác nhau. Ứng viên cần thêm thời gian có thể được cấp: bạn có thể thêm thời gian cho từng ứng viên.
+**Mọi người gặp điều kiện tương tự nhau.** Cùng chủ đề, cùng số câu hỏi mỗi chủ đề, cùng thời gian trung bình mỗi câu và cùng tổng thời gian. Câu hỏi của mỗi ứng viên được chọn ngẫu nhiên, nên các bộ câu hỏi có độ khó hơi khác nhau. Ứng viên cần thêm thời gian có thể được cấp: bạn có thể thêm thời gian cho từng ứng viên.
 
 **Ít tín hiệu không liên quan hơn.** Một câu trả lời trắc nghiệm không mang theo giọng nói, khuôn mặt, xuất thân hay văn phong, nên điểm số không phụ thuộc vào ngoại hình hay giọng nói của ai đó. Điều đó không loại trừ thiên lệch: bài kiểm tra kiến thức có thể cho thấy chênh lệch điểm giữa các nhóm, và một bài kiểm tra bằng ngôn ngữ thứ hai của ứng viên có thể gây bất lợi cho họ. Hãy theo dõi kết quả giữa các nhóm.
 

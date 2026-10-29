@@ -21,9 +21,9 @@ MULTI = [
 ]
 
 
-def topic(size=3, multi=False):
+def topic(size=3, multi=False, texts=None):
     """A topic whose questions all have option "right" as a correct one; multi-answer ones
-    (MULTI) with `multi`."""
+    (MULTI) with `multi`; questions of the given `texts` instead of `size` short ones."""
     return TopicQuestions.model_validate(
         {
             "id": str(uuid.uuid4()),
@@ -32,7 +32,7 @@ def topic(size=3, multi=False):
             "questions": [
                 {
                     "id": str(uuid.uuid4()),
-                    "text": f"Question {index}?",
+                    "text": text,
                     "options": MULTI
                     if multi
                     else [
@@ -40,7 +40,7 @@ def topic(size=3, multi=False):
                         {"answer": "wrong", "correct": False},
                     ],
                 }
-                for index in range(size)
+                for text in texts or [f"Question {index}?" for index in range(size)]
             ],
         }
     )

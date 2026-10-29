@@ -17,6 +17,7 @@ def next_question(row) -> NextQuestion | None:
                 text=question["text"],
                 options=[option["answer"] for option in question["options"]],
                 multi=is_multi(question["options"]),
+                seconds=question.get("seconds"),
             )
 
     return None

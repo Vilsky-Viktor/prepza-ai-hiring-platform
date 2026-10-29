@@ -2,7 +2,7 @@
 title: "Cara menyaring 100 pelamar dalam sehari"
 seoTitle: "Cara Seleksi 100 Pelamar Kerja dalam Sehari: Rencana Praktis"
 description: "Rencana langkah demi langkah menyeleksi 100 pelamar kerja dalam sehari secara adil: syarat wajib, tes keterampilan singkat, peringkat, tinjauan manusia."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Cara menyaring 100 pelamar dalam sehari
@@ -42,7 +42,7 @@ Dengan prepza:
 
 1. **Tempel deskripsi pekerjaan.** prepza mengambil apa yang wajib diketahui kandidat dan mengusulkan topik.
 2. **Tinjau topiknya berdasarkan daftarmu dari langkah 1.** Hapus centang apa pun yang bukan persyaratan sebenarnya, ganti nama topik, ubah subtopik, atau jelaskan perubahan dengan teks biasa ("tambahkan topik tentang dasar-dasar penggajian"). Soal baru ditulis setelah kamu menyetujuinya.
-3. **Atur panjangnya.** Secara default setiap topik berisi 10 soal, masing-masing dengan hitung mundur 60 detik, atau 75 detik pada tes sulit. Tiga topik berarti paling lama 30 menit untuk seorang kandidat (sekitar 38 pada tes sulit), dan biasanya kurang. Batasi pada yang kamu butuhkan.
+3. **Atur panjangnya.** Secara default setiap topik berisi 10 soal, masing-masing dengan hitung mundurnya sendiri, rata-rata 60 detik, atau 75 detik pada tes sulit. Tiga topik berarti paling lama 30 menit untuk seorang kandidat (sekitar 38 pada tes sulit), dan biasanya kurang. Batasi pada yang kamu butuhkan.
 4. **Tetapkan nilai lulus.** Default-nya 70%. Anggap ini sebagai panduan untuk membaca hasil, bukan batas otomatis.
 5. **Lihat pratinjaunya sebagai kandidat.** Kerjakan tesnya sendiri. Gratis dan tidak dihitung sebagai kandidat. Kalau ada soal yang terlihat janggal, buat ulang soal itu.
 

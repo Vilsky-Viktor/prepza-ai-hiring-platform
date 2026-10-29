@@ -50,16 +50,20 @@ def test_anyone_sees_how_many_questions_a_round_has(client, monkeypatch, redis):
     [(None, 40, False), ({"timing": "double"}, 80, True), ({"timing": "untimed"}, None, True)],
 )
 def test_a_talent_chooses_the_time_per_question(client, monkeypatch, redis, body, seconds, preview):
-    """More time or none for whoever needs it (WCAG 2.2.1); such a round, as a repeat, measures
-    something else, so it doesn't count in the questions' statistics."""
+    """More time or none for whoever needs it (WCAG 2.2.1), on the questions' fitted times; such a
+    round, as a repeat, measures something else, so it doesn't count in the questions'
+    statistics."""
     redis.limits["QUESTION_SECONDS_MEDIUM"] = 40
     created = []
+    given_times = []
 
     async def fake_content(template_id):
         return content(10)
 
     async def fake_create(session, rows):
+        times = [question.get("seconds") for row in rows for question in row.questions]
         created.append((rows[0].question_seconds, rows[0].preview))
+        given_times.extend(times)
         given_ids(rows)
 
     async def fake_practiced(session, user_id, template_id):
@@ -71,6 +75,13 @@ def test_a_talent_chooses_the_time_per_question(client, monkeypatch, redis, body
 
     assert client.post(f"/practice/{TEMPLATE_ID}", json=body).status_code == 201
     assert created == [(seconds, preview)]
+    # Each question its own time, adding up to the chosen average times the questions.
+    assert len(given_times) == 10
+
+    if seconds is None:
+        assert given_times == [None] * 10
+    else:
+        assert sum(given_times) == 10 * seconds
 
 
 def test_an_unknown_timing_is_refused(client, monkeypatch, redis):

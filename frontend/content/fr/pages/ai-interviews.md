@@ -2,7 +2,7 @@
 title: "Entretiens IA : ce qu'ils sont et comment les utiliser équitablement"
 seoTitle: "Entretien IA en recrutement : types, risques et conformité"
 description: "IA en recrutement : chatbots, analyse vidéo, tests générés. Risques, conformité et l'approche QCM chronométrée de prepza pour évaluer les candidats."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Entretiens IA : ce qu'ils sont et comment les utiliser équitablement
@@ -61,7 +61,7 @@ Vous pouvez aussi essayer votre propre entretien en tant que candidat avant d'in
 
 **Le contenu peut être contrôlé.** Vous validez les thèmes avant que quoi que ce soit ne soit rédigé, et les questions vous sont accessibles. Si un thème ne correspond pas à une réelle exigence du poste, vous pouvez le retirer.
 
-**Tout le monde passe le test dans des conditions similaires.** Mêmes thèmes, même nombre de questions par thème, même temps par question. Les questions de chaque candidat sont tirées au hasard, si bien que les séries diffèrent un peu en difficulté. Les candidats qui ont besoin de plus de temps peuvent l'obtenir : vous pouvez ajouter du temps par candidat.
+**Tout le monde passe le test dans des conditions similaires.** Mêmes thèmes, même nombre de questions par thème, même temps moyen par question et même durée totale. Les questions de chaque candidat sont tirées au hasard, si bien que les séries diffèrent un peu en difficulté. Les candidats qui ont besoin de plus de temps peuvent l'obtenir : vous pouvez ajouter du temps par candidat.
 
 **Moins de signaux sans rapport avec le poste.** Une réponse à choix multiples n'a ni accent, ni visage, ni arrière-plan, ni style d'écriture : le score ne dépend donc pas de l'apparence ou de la voix de quelqu'un. Cela n'exclut pas les biais : les tests de connaissances peuvent faire apparaître des écarts de score entre groupes, et un test dans la deuxième langue d'un candidat peut le désavantager. Surveillez les résultats selon les groupes.
 

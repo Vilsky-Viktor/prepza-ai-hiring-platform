@@ -2,7 +2,7 @@
 title: "Cómo fijar el tiempo de una prueba de habilidades: tiempo por pregunta, duración y tiempo extra"
 seoTitle: "Tiempo en pruebas de habilidades: por pregunta y extra"
 description: "Cuánto tiempo dar a cada pregunta, cuántas preguntas hacer, qué duración total funciona y cómo dar tiempo extra justo a los candidatos que lo necesitan."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Cómo fijar el tiempo de una prueba de habilidades: tiempo por pregunta, duración y tiempo extra
@@ -103,12 +103,13 @@ En prepza, una entrevista es una prueba de habilidades de opción múltiple con 
 
 - **Cada pregunta tiene su propia cuenta atrás,** controlada por el servidor, así que cerrar la pestaña o recargar la página no la detiene.
 - **El valor por defecto depende del nivel de la entrevista,** que en una entrevista generada viene de la experiencia que pide la descripción del puesto: 60 segundos para una entrevista básica o intermedia, 75 segundos para una difícil.
-- **Puedes cambiarlo en cada entrevista,** en sus ajustes, de 10 a 600 segundos. El cambio se aplica a los candidatos que empiecen después; el tiempo de un candidato queda fijado cuando empieza.
+- **Es una media: cada pregunta tiene su propio tiempo** a partir de ella cuando se sacan las preguntas de un candidato, según lo que se tarda en leerla y responderla: sus palabras, el código o ejemplo que tenga (que se lee más despacio) y el tiempo para pensar la respuesta. Las preguntas cortas tienen menos, y las más largas y las que llevan código, más; cada una entre la mitad y el doble de la media, y entre todas suman exactamente el número de preguntas por la media. La cuenta atrás muestra el tiempo propio de cada pregunta, y el informe de resultados muestra cuánto de él llevó cada respuesta.
+- **Puedes cambiar la media en cada entrevista,** en sus ajustes, de 10 a 600 segundos. El cambio se aplica a los candidatos que empiecen después; el tiempo de un candidato queda fijado cuando empieza.
 - **Cuando se acaba el tiempo,** cuenta la opción marcada en pantalla y se abre la siguiente pregunta; si no hay ninguna marcada, la pregunta cuenta como incorrecta. Las preguntas sin responder cuentan como incorrectas, y una entrevista que un candidato abandona termina sola cuando ha pasado su tiempo total más un 10 %.
 - **Las preguntas se redactan para encajar en el temporizador:** se responden en un minuto aproximadamente (hasta un minuto y medio las más difíciles), también en un segundo idioma. Una pregunta tiene como máximo 40 palabras (50 si es difícil), una opción como máximo 10 y un ejemplo como máximo 8 líneas cortas.
 - **Las preguntas en las que se agota el tiempo con demasiada frecuencia se marcan** y se reescriben en segundo plano. Una pregunta reescrita se aplica a los candidatos que empiecen después de la corrección; los resultados ya dados no cambian.
 
-Todas las preguntas de una entrevista tienen el mismo tiempo. Aproximadamente 1 de cada 10 es de «Selecciona todas las opciones que correspondan», con 2 o 3 opciones correctas: cada opción correcta marcada suma una parte del punto, y si se marca una incorrecta, la pregunta no suma nada.
+En una entrevista en árabe, chino, japonés, persa, ruso, tailandés o ucraniano, cada pregunta tiene la media, porque en estos idiomas la longitud de una pregunta aún no predice su tiempo con suficiente precisión. Aproximadamente 1 de cada 10 es de «Selecciona todas las opciones que correspondan», con 2 o 3 opciones correctas: cada opción correcta marcada suma una parte del punto, y si se marca una incorrecta, la pregunta no suma nada.
 
 ### Número de preguntas
 
@@ -117,14 +118,14 @@ Todas las preguntas de una entrevista tienen el mismo tiempo. Aproximadamente 1 
 
 ### Duración total
 
-Antes de empezar, los candidatos ven el tiempo por pregunta y el tiempo de toda la entrevista en minutos, redondeado hacia arriba: las preguntas que reciben de todos los temas por los segundos por pregunta. Con los valores por defecto, tres temas duran como máximo 30 minutos, o 38 en una entrevista difícil. En la pestaña de temas de la entrevista ves el total de preguntas, el tiempo por pregunta y el de toda la entrevista, actualizados con cada cambio.
+Antes de empezar, los candidatos ven el tiempo medio por pregunta y el tiempo de toda la entrevista en minutos, redondeado hacia arriba: las preguntas que reciben de todos los temas por los segundos medios por pregunta. Con los valores por defecto, tres temas duran como máximo 30 minutos, o 38 en una entrevista difícil. En la pestaña de temas de la entrevista ves el total de preguntas, el tiempo medio por pregunta y el de toda la entrevista, actualizados con cada cambio.
 
 ### Tiempo extra
 
 - **Los propietarios y administradores pueden dar a un candidato +25 %, +50 % o +100 %** del tiempo de cada pregunta, en la página del candidato.
 - **Solo antes de que el candidato empiece.** Después, el tiempo queda fijado, y la página del candidato sigue mostrando el tiempo extra que tuvo.
 - **No se registra ningún motivo.** El registro de acciones de la empresa solo anota el cambio.
-- **Los candidatos ven su propio tiempo:** el tiempo por pregunta y el total, con el tiempo extra incluido, y la página de inicio indica a todos los candidatos que pueden pedir más.
+- **Los candidatos ven su propio tiempo:** el tiempo medio por pregunta y el total, con el tiempo extra incluido, y después la cuenta atrás propia de cada pregunta, y la página de inicio indica a todos los candidatos que pueden pedir más.
 - **A los candidatos que llegan por el enlace para compartir** no se les puede dar tiempo extra en el propio enlace, porque su invitación se crea cuando empiezan. La página del enlace les indica que te pidan una invitación personal antes de empezar.
 
 Antes de invitar a nadie, haz tú mismo la entrevista desde su página: es gratis, no cuenta como candidato y muestra rápidamente si el temporizador está bien ajustado.

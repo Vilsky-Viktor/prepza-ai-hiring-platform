@@ -105,7 +105,7 @@
     "tips": [
       "Câu hỏi do AI viết có thể sai: hãy đọc lướt từng chủ đề trước khi mời ai.",
       "Nhấp vào tiêu đề để đổi tên buổi phỏng vấn.",
-      "Các thẻ ở trên cộng lại những gì mỗi ứng viên nhận được: tổng số câu hỏi, thời gian mỗi câu và thời gian của toàn bộ buổi phỏng vấn. Chúng thay đổi theo mỗi chỉnh sửa."
+      "Các thẻ ở trên cộng lại những gì mỗi ứng viên nhận được: tổng số câu hỏi, thời gian trung bình mỗi câu và thời gian của toàn bộ buổi phỏng vấn. Chúng thay đổi theo mỗi chỉnh sửa."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Cách buổi phỏng vấn này diễn ra với mọi ứng viên.",
     "actions": [
       "Bật liên kết chia sẻ cho tin tuyển dụng: bất kỳ ai có liên kết đều có thể làm bài phỏng vấn.",
-      "Đặt thời gian cho mỗi câu hỏi, tính bằng giây.",
+      "Đặt thời gian trung bình mỗi câu hỏi, tính bằng giây: mỗi câu hỏi có thời gian riêng dựa trên độ dài và đoạn mã mà nó hiển thị, còn tổng thời gian của buổi phỏng vấn vẫn giữ nguyên.",
       "Đặt điểm đạt: ứng viên đạt mức này là đậu.",
       "Đánh dấu buổi phỏng vấn là đã tuyển khi bạn đã tuyển được người cho vị trí.",
       "Không đưa câu hỏi của buổi phỏng vấn vào ngân hàng câu hỏi dùng chung của prepza; các câu hỏi đã được dùng lại trong buổi phỏng vấn khác vẫn ở đó."

@@ -1,4 +1,4 @@
-import type { Page } from "@playwright/test"
+import type { Page, Response } from "@playwright/test"
 
 import { expect, test } from "../fixtures"
 import { api, createCompany, inviteCandidate } from "../helpers/api"
@@ -118,6 +118,138 @@ test("an interview question sits beside its options and rates before a pick", as
     const lowest = Math.max(...phoneOptions.map((option) => option.bottom))
     expect((await box(rating)).top).toBeGreaterThanOrEqual(lowest)
     await shot(candidate, "question-phone")
+  } finally {
+    await deleteTemplate(template)
+  }
+})
+
+// Code for some of the questions, so they take longer to read than the others.
+const CODE =
+  "What does this print?\n```python\n" +
+  Array.from({ length: 12 }, (_, index) => `total = total + item_${index}`).join("\n") +
+  "\n```"
+const AVERAGE = 60
+
+/** A duration as the report writes it. */
+function duration(seconds: number) {
+  const m = Math.floor(seconds / 60)
+  const s = seconds % 60
+
+  if (m === 0) {
+    return `${s} s`
+  }
+
+  return s === 0 ? `${m} min` : `${m} min ${s} s`
+}
+
+// Each question has its own time, fitted to its length: the timer counts down that question's
+// time, the times differ and add up to the whole interview the invite page shows. A question's
+// code sits under its card, and the report shows each answer's time out of the question's.
+test("each question has its own time, adding up to the whole interview", async ({
+  signInAs,
+}) => {
+  test.setTimeout(240_000)
+  const template = await addTemplate(`E2E times ${randomId()}`, 12)
+
+  try {
+    await lengthenQuestions(template, CODE, [0, 2, 4, 6, 8, 10])
+    const owner = await signInAs(ownerEmail())
+    const company = await createCompany(owner)
+    const interview = await api<{ id: string }>(
+      owner,
+      "POST",
+      `/companies/interviews/from-template?company_id=${company.id}`,
+      { template_id: template },
+    )
+    await api(owner, "PATCH", `/companies/interviews/${interview.id}/settings`, {
+      question_seconds: AVERAGE,
+    })
+    const email = throwawayEmail("times-candidate")
+    await inviteCandidate(owner, interview.id, email)
+    const candidate = await signInAs(email)
+    // Each question's own time, as the server sends it with the question.
+    const times: number[] = []
+    candidate.on("response", async (response: Response) => {
+      if (response.request().method() === "POST" && response.url().endsWith("/step")) {
+        const step = await response.json()
+
+        if (step.question) {
+          times.push(step.question.seconds)
+        }
+      }
+    })
+    await visit(candidate, `/invite/${await inviteToken(email)}`)
+    const total = candidate.getByTestId("total-minutes").filter({ visible: true })
+    await expect(total).toBeVisible()
+    const minutes = Number((await total.textContent())?.match(/\d+/)?.[0])
+    await candidate.getByTestId("start-pledge").filter({ visible: true }).click()
+    await candidate.getByRole("main").getByRole("button").click()
+    await expect(candidate).toHaveURL(/\/sessions\//)
+
+    const card = candidate.getByTestId("question-card")
+    const questionBox = candidate.getByTestId("question-box")
+    const question = questionBox.getByRole("heading")
+    const options = candidate.getByRole("main").locator("li > button[aria-pressed]")
+    const footer = candidate.locator("[data-round-footer]")
+    const { total_questions: count } = await api<{ total_questions: number }>(
+      owner,
+      "GET",
+      `/companies/interviews/${interview.id}`,
+    )
+    let codeChecked = false
+
+    for (let shown = 1; shown <= count; shown++) {
+      await expect.poll(() => times.length).toBe(shown)
+      await expect(options.first()).toBeVisible()
+      // The timer starts from this question's own time.
+      const own = times[shown - 1]
+      const [m, s] = ((await candidate.getByRole("timer").textContent()) ?? "").split(":")
+      const left = Number(m) * 60 + Number(s)
+      expect(left).toBeLessThanOrEqual(own)
+      expect(left).toBeGreaterThan(own - 10)
+
+      // Code under the question's card, outside it.
+      if (!codeChecked && (await card.locator("pre").count())) {
+        await expect(questionBox.locator("pre")).toHaveCount(0)
+        expect((await box(card.locator("pre").first())).top).toBeGreaterThanOrEqual(
+          (await box(questionBox)).bottom,
+        )
+        await shot(candidate, "question-code")
+        codeChecked = true
+      }
+
+      await options.first().click()
+
+      // The last one is answered as the interview finishes.
+      if (shown < count) {
+        const text = await question.textContent()
+        await footer.getByRole("button").last().click()
+        await expect(question).not.toHaveText(text ?? "")
+      }
+    }
+
+    expect(codeChecked).toBe(true)
+    // The times differ, and add up to the whole interview shown before the start.
+    expect(new Set(times).size).toBeGreaterThan(1)
+    expect(times.reduce((sum, time) => sum + time, 0)).toBe(times.length * AVERAGE)
+    expect(minutes).toBe(times.length)
+    await candidate.getByTestId("finish-interview").click()
+    await expect(candidate.getByRole("dialog")).toBeVisible()
+    await candidate.getByRole("dialog").getByRole("button").last().click()
+    await expect(footer).toHaveCount(0)
+
+    // The report: each answer's time out of its question's own.
+    await visit(owner, `/companies/${company.id}/interviews/${interview.id}?tab=candidates`)
+    await owner.getByText(email, { exact: true }).first().click()
+    // The list renders the answers near the screen only: the first ones, in the order shown.
+    const lines = owner.getByTestId("answer-time").filter({ visible: true })
+
+    for (const [index, time] of times.slice(0, 3).entries()) {
+      // The question's time ends the line, before any warning of a fast answer.
+      await expect(lines.nth(index)).toHaveText(new RegExp(`${duration(time)}(:.*)?$`))
+    }
+
+    await shot(owner, "report-limits")
   } finally {
     await deleteTemplate(template)
   }

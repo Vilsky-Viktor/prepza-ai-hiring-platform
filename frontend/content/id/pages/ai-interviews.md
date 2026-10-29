@@ -2,7 +2,7 @@
 title: "Wawancara AI: apa itu dan cara memakainya secara adil"
 seoTitle: "AI dalam Rekrutmen: Wawancara AI, Risiko, dan Cara Adil"
 description: "AI dalam rekrutmen: fungsi AI interview, chatbot, analisis video, dan tes buatan AI, risikonya, serta cara kerja tes pilihan ganda berwaktu prepza."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Wawancara AI: apa itu dan cara memakainya secara adil
@@ -61,7 +61,7 @@ Kamu juga bisa melihat pratinjau wawancaramu sendiri sebagai kandidat sebelum me
 
 **Isinya bisa ditinjau.** Kamu menyetujui topik sebelum apa pun ditulis, dan soal-soalnya terbuka untukmu. Kalau sebuah topik bukan persyaratan kerja yang sebenarnya, kamu bisa menghapusnya.
 
-**Semua orang menghadapi kondisi yang serupa.** Topik yang sama, jumlah soal per topik yang sama, waktu per soal yang sama. Soal tiap kandidat diambil secara acak, jadi tingkat kesulitan setnya sedikit berbeda. Kandidat yang butuh waktu lebih bisa mendapatkannya: kamu bisa menambah waktu per kandidat.
+**Semua orang menghadapi kondisi yang serupa.** Topik yang sama, jumlah soal per topik yang sama, rata-rata waktu per soal yang sama, dan total waktu yang sama. Soal tiap kandidat diambil secara acak, jadi tingkat kesulitan setnya sedikit berbeda. Kandidat yang butuh waktu lebih bisa mendapatkannya: kamu bisa menambah waktu per kandidat.
 
 **Lebih sedikit sinyal yang tidak relevan.** Jawaban pilihan ganda tidak membawa aksen, wajah, latar belakang, atau gaya menulis, jadi skornya tidak bergantung pada penampilan atau suara seseorang. Ini tidak menghapus kemungkinan bias: tes pengetahuan bisa menunjukkan perbedaan skor antarkelompok, dan tes dalam bahasa kedua kandidat bisa menghambatnya. Pantau hasil antarkelompok.
 

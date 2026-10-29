@@ -100,7 +100,7 @@ Every action a company's members take on it is logged: who took it, what it was 
 
 | Group | Actions |
 |---|---|
-| Interviews | created (from a description or a template), deleted, renamed, settings changed (time per question, a topic's question count, hired), shareable link on or off, a question regenerated, an answer key marked wrong, topics approved, passing grade changed |
+| Interviews | created (from a description or a template), deleted, renamed, settings changed (average time per question, a topic's question count, hired), shareable link on or off, a question regenerated, an answer key marked wrong, topics approved, passing grade changed |
 | Candidates | invited, invite sent again, revoked, deleted, name changed, extra time given, results viewed, report emailed |
 | Team | member invited, joined, removed, role changed, ownership handed on |
 | Company | renamed, logo, brand colors or style, website sent for verification, AI apps allowed or stopped |

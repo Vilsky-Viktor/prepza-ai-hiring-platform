@@ -2,7 +2,7 @@
 title: "Come fare lo screening di 100 candidati in un giorno"
 seoTitle: "Screening di 100 candidati in un giorno: piano pratico"
 description: "Un piano passo per passo per lo screening equo di 100 candidati in una giornata: requisiti indispensabili, un breve test, una classifica e revisione umana."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Come fare lo screening di 100 candidati in un giorno
@@ -42,7 +42,7 @@ Con prepza:
 
 1. **Incolla la descrizione del ruolo.** prepza individua ciò che un candidato deve sapere e propone gli argomenti.
 2. **Confronta gli argomenti con la tua lista del passo 1.** Deseleziona tutto ciò che non è un requisito reale, rinomina gli argomenti, modifica i sottoargomenti o descrivi le modifiche a parole ("aggiungi un argomento sulle basi delle buste paga"). Le domande vengono scritte solo dopo la tua approvazione.
-3. **Imposta la durata.** Di default ogni argomento pone 10 domande, ciascuna con un conto alla rovescia di 60 secondi, o di 75 secondi in un test difficile. Tre argomenti significano al massimo 30 minuti per un candidato (circa 38 in un test difficile), e di solito meno. Limitati a ciò che ti serve.
+3. **Imposta la durata.** Di default ogni argomento pone 10 domande, ciascuna con il proprio conto alla rovescia, di 60 secondi in media, o di 75 secondi in un test difficile. Tre argomenti significano al massimo 30 minuti per un candidato (circa 38 in un test difficile), e di solito meno. Limitati a ciò che ti serve.
 4. **Imposta una soglia di superamento.** Il default è il 70%. Trattala come una guida per leggere i risultati, non come un taglio automatico.
 5. **Provalo in anteprima come candidato.** Fai il test tu stesso. È gratuito e non conta come candidato. Se una domanda non ti convince, rigenerala.
 

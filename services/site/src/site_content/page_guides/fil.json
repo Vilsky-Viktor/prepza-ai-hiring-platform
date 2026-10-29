@@ -105,7 +105,7 @@
     "tips": [
       "Puwedeng mali ang mga tanong na isinulat ng AI: silipin ang bawat topic bago ka mag-imbita.",
       "I-click ang pamagat para palitan ang pangalan ng interview.",
-      "Ipinapakita ng mga card sa itaas ang kabuuan ng makukuha ng bawat aplikante: kabuuang tanong, oras bawat tanong at oras ng buong interview. Sumusunod ang mga ito sa bawat pagbabago."
+      "Ipinapakita ng mga card sa itaas ang kabuuan ng makukuha ng bawat aplikante: kabuuang tanong, average na oras bawat tanong at oras ng buong interview. Sumusunod ang mga ito sa bawat pagbabago."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Kung paano tumatakbo ang interview na ito para sa bawat aplikante.",
     "actions": [
       "I-on ang link na puwedeng i-share para sa job ad: puwedeng sumagot sa interview ang sinumang may link.",
-      "Itakda ang oras ng bawat tanong, sa segundo.",
+      "Itakda ang average na oras bawat tanong, sa segundo: may sariling oras ang bawat tanong batay sa haba nito at sa anumang code na ipinapakita nito, at hindi nagbabago ang kabuuang oras ng interview.",
       "Itakda ang passing grade: pasado ang mga aplikanteng aabot dito.",
       "Markahan ang interview bilang na-hire kapag may napili ka na para sa role.",
       "Huwag isama ang mga tanong ng interview sa shared question bank ng prepza; mananatili roon ang mga tanong na nagamit na sa ibang interview."

@@ -2,7 +2,7 @@
 title: "Zeit im Fachtest richtig festlegen: Timer pro Frage, Länge und zusätzliche Zeit"
 seoTitle: "Zeitlimit im Fachtest: Timer pro Frage und zusätzliche Zeit"
 description: "Wie viel Zeit pro Frage, wie viele Fragen, welche Gesamtdauer sinnvoll ist und wie du Kandidaten, die sie brauchen, fair zusätzliche Zeit gibst."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Zeit im Fachtest richtig festlegen: Timer pro Frage, Länge und zusätzliche Zeit
@@ -103,12 +103,13 @@ In prepza ist ein Interview ein Multiple-Choice-Fachtest mit Zeitlimit, erstellt
 
 - **Jede Frage hat einen eigenen Countdown,** den der Server führt; den Tab zu schließen oder die Seite neu zu laden hält ihn nicht an.
 - **Der Standard hängt vom Level des Interviews ab,** das bei einem generierten Interview aus der Erfahrungsstufe kommt, die die Stellenbeschreibung verlangt: 60 Sekunden für ein grundlegendes oder mittleres Interview, 75 Sekunden für ein schweres.
-- **Du kannst ihn pro Interview ändern,** in dessen Einstellungen, von 10 bis 600 Sekunden. Eine Änderung gilt für Kandidaten, die danach beginnen; die Zeit eines Kandidaten steht fest, sobald er beginnt.
+- **Das ist ein Durchschnitt: Jede Frage bekommt ihre eigene Zeit** daraus, wenn die Fragen eines Kandidaten gezogen werden, je nachdem, wie lange Lesen und Antworten dauern: ihre Wörter, Code oder ein Beispiel (langsamer gelesen) und Zeit, um die Antwort zu finden. Kurze Fragen bekommen weniger, längere Fragen und Code mehr, jede zwischen der Hälfte und dem Doppelten des Durchschnitts, und zusammen ergeben sie genau die Anzahl der Fragen mal den Durchschnitt. Der Countdown zeigt die eigene Zeit jeder Frage, und die Auswertung zeigt, wie viel davon jede Antwort gebraucht hat.
+- **Du kannst den Durchschnitt pro Interview ändern,** in dessen Einstellungen, von 10 bis 600 Sekunden. Eine Änderung gilt für Kandidaten, die danach beginnen; die Zeit eines Kandidaten steht fest, sobald er beginnt.
 - **Wenn die Zeit abläuft,** zählt die auf dem Bildschirm gewählte Option und die nächste Frage öffnet sich; ohne Auswahl zählt die Frage als falsch. Unbeantwortete Fragen zählen als falsch, und ein Interview, das ein Kandidat verlässt, endet von selbst, sobald seine Gesamtdauer plus 10 % vergangen ist.
 - **Fragen werden passend zum Timer geschrieben:** in etwa einer Minute zu beantworten (bis zu anderthalb Minuten für die schwierigsten), auch in einer Zweitsprache. Eine Frage hat höchstens 40 Wörter (50 bei einer schweren), eine Option höchstens 10 und ein Beispiel höchstens 8 kurze Zeilen.
 - **Fragen, bei denen die Zeit zu oft abläuft, werden markiert** und im Hintergrund neu geschrieben. Eine neu geschriebene Frage gilt für Kandidaten, die nach der Korrektur beginnen; bereits vergebene Ergebnisse ändern sich nicht.
 
-Jede Frage in einem Interview hat dieselbe Zeit. Etwa jede zehnte ist eine Frage mit „Alle zutreffenden Optionen auswählen“, mit 2 oder 3 richtigen Optionen: Jede angekreuzte richtige Option bringt einen Teil des Punktes, und ist eine falsche angekreuzt, bringt die Frage nichts.
+In einem Interview auf Arabisch, Chinesisch, Japanisch, Persisch, Russisch, Thai oder Ukrainisch bekommt jede Frage den Durchschnitt, da die Länge einer Frage in diesen Sprachen ihre Zeit noch nicht genau genug vorhersagt. Etwa jede zehnte ist eine Frage mit „Alle zutreffenden Optionen auswählen“, mit 2 oder 3 richtigen Optionen: Jede angekreuzte richtige Option bringt einen Teil des Punktes, und ist eine falsche angekreuzt, bringt die Frage nichts.
 
 ### Anzahl der Fragen
 
@@ -117,14 +118,14 @@ Jede Frage in einem Interview hat dieselbe Zeit. Etwa jede zehnte ist eine Frage
 
 ### Gesamtdauer
 
-Vor dem Start sehen Kandidaten die Zeit pro Frage und die Zeit für das ganze Interview in Minuten, aufgerundet: die Fragen, die sie aus allen Themen erhalten, mal die Sekunden pro Frage. Mit den Standardwerten dauern drei Themen höchstens 30 Minuten, bei einem schweren Interview 38. Auf dem Themen-Tab des Interviews siehst du die Fragen insgesamt, die Zeit pro Frage und die Zeit des ganzen Interviews, aktualisiert bei jeder Änderung.
+Vor dem Start sehen Kandidaten die durchschnittliche Zeit pro Frage und die Zeit für das ganze Interview in Minuten, aufgerundet: die Fragen, die sie aus allen Themen erhalten, mal die durchschnittlichen Sekunden pro Frage. Mit den Standardwerten dauern drei Themen höchstens 30 Minuten, bei einem schweren Interview 38. Auf dem Themen-Tab des Interviews siehst du die Fragen insgesamt, die durchschnittliche Zeit pro Frage und die Zeit des ganzen Interviews, aktualisiert bei jeder Änderung.
 
 ### Zusätzliche Zeit
 
 - **Inhaber und Admins können einem Kandidaten +25 %, +50 % oder +100 %** der Zeit jeder Frage geben, auf der Seite des Kandidaten.
 - **Nur bevor der Kandidat beginnt.** Danach steht die Zeit fest, und die Seite des Kandidaten zeigt weiterhin die zusätzliche Zeit, die er hatte.
 - **Es wird kein Grund gespeichert.** Das Aktionsprotokoll des Unternehmens hält nur die Änderung fest.
-- **Kandidaten sehen ihre eigene Zeit:** die Zeit pro Frage und die Gesamtdauer, zusätzliche Zeit eingerechnet, und die Startseite sagt jedem Kandidaten, dass er um mehr bitten kann.
+- **Kandidaten sehen ihre eigene Zeit:** die durchschnittliche Zeit pro Frage und die Gesamtdauer, zusätzliche Zeit eingerechnet, dann den eigenen Countdown jeder Frage, und die Startseite sagt jedem Kandidaten, dass er um mehr bitten kann.
 - **Kandidaten über den Link zum Teilen** können über den Link selbst keine zusätzliche Zeit erhalten, weil ihre Einladung erst entsteht, wenn sie beginnen. Die Seite des Links bittet sie, dich vor dem Start um eine persönliche Einladung zu bitten.
 
 Bevor du jemanden einlädst, mach das Interview selbst von seiner Seite aus: Das ist kostenlos, zählt nicht als Kandidat und zeigt schnell, ob sich der Timer richtig anfühlt.

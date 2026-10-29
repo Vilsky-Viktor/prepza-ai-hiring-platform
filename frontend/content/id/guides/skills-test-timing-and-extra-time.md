@@ -2,7 +2,7 @@
 title: "Cara mengatur waktu tes keterampilan: timer per soal, panjang tes, dan waktu tambahan"
 seoTitle: "Waktu Tes Keterampilan: Timer per Soal dan Waktu Tambahan"
 description: "Berapa lama waktu tiap soal, berapa banyak soal, total durasi yang pas, dan cara memberi waktu tambahan secara adil kepada kandidat yang membutuhkannya."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Cara mengatur waktu tes keterampilan: timer per soal, panjang tes, dan waktu tambahan
@@ -103,12 +103,13 @@ Di prepza, wawancara adalah tes keterampilan pilihan ganda berbatas waktu yang d
 
 - **Setiap soal punya hitung mundurnya sendiri,** yang dijalankan oleh server, jadi menutup tab atau memuat ulang halaman tidak menghentikannya.
 - **Default-nya bergantung pada level wawancara,** yang untuk wawancara yang dibuat otomatis berasal dari tingkat senioritas yang diminta deskripsi pekerjaan: 60 detik untuk wawancara dasar atau menengah, 75 detik untuk wawancara sulit.
-- **Kamu bisa mengubahnya per wawancara,** di pengaturannya, dari 10 sampai 600 detik. Perubahan berlaku untuk kandidat yang mulai setelahnya; waktu seorang kandidat ditetapkan saat ia mulai.
+- **Ini rata-rata: setiap soal mendapat waktunya sendiri** darinya saat soal seorang kandidat diambil, sesuai lama membaca dan menjawabnya: kata-katanya, kode atau contoh di dalamnya (yang dibaca lebih lambat), dan waktu untuk memikirkan jawaban. Soal pendek mendapat lebih sedikit, soal yang lebih panjang dan yang berisi kode mendapat lebih banyak, masing-masing antara setengah dan dua kali rata-rata, dan jumlah semuanya tepat sama dengan jumlah soal dikali rata-rata. Hitung mundur menampilkan waktu masing-masing soal, dan kartu nilai menunjukkan berapa banyak dari waktu itu yang dipakai setiap jawaban.
+- **Kamu bisa mengubah rata-ratanya per wawancara,** di pengaturannya, dari 10 sampai 600 detik. Perubahan berlaku untuk kandidat yang mulai setelahnya; waktu seorang kandidat ditetapkan saat ia mulai.
 - **Saat waktu habis,** pilihan yang ada di layar dihitung dan soal berikutnya terbuka; kalau belum memilih, soal itu dihitung salah. Soal yang tidak dijawab dihitung salah, dan wawancara yang ditinggalkan kandidat selesai dengan sendirinya setelah total waktunya, ditambah 10%, berlalu.
 - **Soal ditulis agar sesuai dengan timer:** bisa dijawab dalam sekitar satu menit (sampai satu setengah menit untuk yang tersulit), juga dalam bahasa kedua. Satu soal paling banyak 40 kata (50 untuk soal sulit), satu pilihan paling banyak 10, dan satu contoh paling banyak 8 baris pendek.
 - **Soal yang terlalu sering kehabisan waktu ditandai** dan ditulis ulang di latar belakang. Soal yang ditulis ulang berlaku untuk kandidat yang mulai setelah perbaikan; hasil yang sudah diberikan tidak berubah.
 
-Setiap soal dalam satu wawancara punya waktu yang sama. Sekitar 1 dari 10 soal berjenis "pilih semua jawaban yang benar", dengan 2 atau 3 pilihan yang benar, yang memberi sebagian poin untuk setiap pilihan benar yang dicentang dan tidak memberi apa pun jika ada pilihan salah yang dicentang.
+Dalam wawancara berbahasa Arab, Mandarin, Jepang, Persia, Rusia, Thai, atau Ukraina, setiap soal mendapat waktu rata-rata, karena panjang soal dalam bahasa-bahasa ini belum cukup akurat memperkirakan waktunya. Sekitar 1 dari 10 soal berjenis "pilih semua jawaban yang benar", dengan 2 atau 3 pilihan yang benar, yang memberi sebagian poin untuk setiap pilihan benar yang dicentang dan tidak memberi apa pun jika ada pilihan salah yang dicentang.
 
 ### Jumlah soal
 
@@ -117,14 +118,14 @@ Setiap soal dalam satu wawancara punya waktu yang sama. Sekitar 1 dari 10 soal b
 
 ### Total durasi
 
-Sebelum mulai, kandidat melihat waktu per soal dan waktu seluruh wawancara dalam menit, dibulatkan ke atas: jumlah soal yang mereka dapat dari semua topik, dikali detik per soal. Dengan pengaturan default, tiga topik paling lama 30 menit, atau 38 pada wawancara sulit. Di tab topik wawancara, kamu melihat total soal, waktu per soal, dan waktu seluruh wawancara, yang diperbarui setiap kali kamu mengubahnya.
+Sebelum mulai, kandidat melihat rata-rata waktu per soal dan waktu seluruh wawancara dalam menit, dibulatkan ke atas: jumlah soal yang mereka dapat dari semua topik, dikali rata-rata detik per soal. Dengan pengaturan default, tiga topik paling lama 30 menit, atau 38 pada wawancara sulit. Di tab topik wawancara, kamu melihat total soal, rata-rata waktu per soal, dan waktu seluruh wawancara, yang diperbarui setiap kali kamu mengubahnya.
 
 ### Waktu tambahan
 
 - **Pemilik dan admin bisa memberi kandidat +25%, +50%, atau +100%** dari waktu tiap soal, di halaman kandidat.
 - **Hanya sebelum kandidat mulai.** Setelah itu waktunya tetap, dan halaman kandidat tetap menampilkan waktu tambahan yang ia dapat.
 - **Tidak ada alasan yang dicatat.** Log tindakan perusahaan hanya mencatat perubahannya.
-- **Kandidat melihat waktunya sendiri:** waktu per soal dan totalnya, termasuk waktu tambahan, dan halaman awal memberi tahu setiap kandidat bahwa mereka bisa meminta waktu lebih.
+- **Kandidat melihat waktunya sendiri:** rata-rata waktu per soal dan totalnya, termasuk waktu tambahan, lalu hitung mundur masing-masing soal, dan halaman awal memberi tahu setiap kandidat bahwa mereka bisa meminta waktu lebih.
 - **Kandidat dari tautan yang bisa dibagikan** tidak bisa diberi waktu tambahan lewat tautan itu sendiri, karena undangan mereka dibuat saat mereka mulai. Halaman tautan meminta mereka untuk meminta undangan pribadi darimu sebelum mulai.
 
 Sebelum mengundang siapa pun, kerjakan sendiri wawancaranya dari halamannya: gratis, tidak dihitung sebagai kandidat, dan cepat menunjukkan apakah timernya terasa pas.

@@ -44,3 +44,40 @@ def test_a_rating_after_the_deadline_doesnt_time_out_an_answer_still_in_its_grac
     assert after_rating.answers == []
     # The answer's own check gives the grace: still nothing timed out.
     assert at_answer.answers == []
+
+
+# Questions of very different lengths, so each gets a time of its own, none the average.
+UNEVEN = [
+    "Short?",
+    "What does this print?\n\n```python\n"
+    + "\n".join(f"total = total + item_{index}" for index in range(30))
+    + "\n```",
+]
+
+
+def test_a_question_times_out_on_its_own_time_not_the_average(run):
+    async def scenario():
+        [row] = await created(
+            "cand", uuid.uuid4(), [topic(texts=UNEVEN)], 60, company_id=uuid.uuid4()
+        )
+        own = row.questions[0]["seconds"]
+        await transaction(sessions.mark_shown, row.id)
+        # Shown just over its own time ago.
+        shown = datetime.now(UTC) - timedelta(seconds=own + 1)
+
+        async with Session() as session:
+            await session.execute(
+                update(SessionRow).where(SessionRow.id == row.id).values(question_shown_at=shown)
+            )
+            await session.commit()
+
+        await get_owned_session(row.id, CANDIDATE)
+
+        return row, own, await transaction(sessions.get, row.id)
+
+    row, own, after = run(scenario())
+
+    # The times differ and add up to the questions times the average.
+    assert own != 60
+    assert sum(question["seconds"] for question in row.questions) == 120
+    assert [(answer.timed_out, answer.seconds) for answer in after.answers] == [(True, own)]

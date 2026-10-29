@@ -2,7 +2,7 @@
 title: "Chronométrer un test de compétences : temps par question, durée et temps supplémentaire"
 seoTitle: "Durée d'un test de compétences et temps supplémentaire"
 description: "Combien de temps par question, combien de questions, quelle durée totale retenir, et comment accorder équitablement du temps supplémentaire aux candidats."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Chronométrer un test de compétences : temps par question, durée et temps supplémentaire
@@ -103,12 +103,13 @@ Dans prepza, un entretien est un test de compétences chronométré à choix mul
 
 - **Chaque question a son propre compte à rebours,** tenu par le serveur : fermer l'onglet ou recharger la page ne l'arrête pas.
 - **La valeur par défaut dépend du niveau de l'entretien,** qui, pour un entretien généré, découle du niveau d'expérience demandé dans la fiche de poste : 60 secondes pour un entretien basique ou intermédiaire, 75 secondes pour un entretien difficile.
-- **Vous pouvez la modifier pour chaque entretien,** dans ses paramètres, de 10 à 600 secondes. Une modification s'applique aux candidats qui commencent après elle ; le temps d'un candidat est fixé quand il commence.
+- **C'est une moyenne : chaque question reçoit son propre temps** à partir d'elle quand les questions d'un candidat sont tirées, selon le temps qu'il faut pour la lire et y répondre : ses mots, le code ou l'exemple qu'elle contient (lu plus lentement) et le temps de trouver la réponse. Les questions courtes en ont moins, les plus longues et celles avec du code en ont plus, chacune entre la moitié et le double de la moyenne, et ensemble elles font exactement le nombre de questions multiplié par la moyenne. Le compte à rebours affiche le temps propre à chaque question, et la fiche de résultats montre combien chaque réponse en a pris.
+- **Vous pouvez modifier la moyenne pour chaque entretien,** dans ses paramètres, de 10 à 600 secondes. Une modification s'applique aux candidats qui commencent après elle ; le temps d'un candidat est fixé quand il commence.
 - **Quand le temps est écoulé,** la réponse sélectionnée à l'écran compte et la question suivante s'ouvre ; sans sélection, la question compte comme fausse. Les questions sans réponse comptent comme fausses, et un entretien qu'un candidat quitte se termine tout seul une fois sa durée totale, plus 10 %, écoulée.
 - **Les questions sont rédigées pour tenir dans le temps imparti :** une réponse en une minute environ (jusqu'à une minute et demie pour les plus difficiles), y compris dans une langue seconde. Une question fait au plus 40 mots (50 pour une question difficile), une réponse proposée au plus 10, et un exemple au plus 8 lignes courtes.
 - **Les questions qui arrivent trop souvent au bout du temps sont signalées** et réécrites en arrière-plan. Une question réécrite s'applique aux candidats qui commencent après la correction ; les résultats déjà obtenus ne changent pas.
 
-Toutes les questions d'un entretien ont le même temps. Environ 1 sur 10 est une question « Cochez toutes les bonnes réponses », avec 2 ou 3 bonnes réponses : chaque bonne réponse cochée rapporte une partie du point, et la question ne rapporte rien si une mauvaise réponse est cochée.
+Dans un entretien en arabe, chinois, japonais, persan, russe, thaï ou ukrainien, chaque question reçoit la moyenne, car dans ces langues la longueur d'une question ne prédit pas encore assez bien son temps. Environ 1 sur 10 est une question « Cochez toutes les bonnes réponses », avec 2 ou 3 bonnes réponses : chaque bonne réponse cochée rapporte une partie du point, et la question ne rapporte rien si une mauvaise réponse est cochée.
 
 ### Nombre de questions
 
@@ -117,14 +118,14 @@ Toutes les questions d'un entretien ont le même temps. Environ 1 sur 10 est une
 
 ### Durée totale
 
-Avant de commencer, les candidats voient le temps par question et la durée de tout l'entretien en minutes, arrondie à l'unité supérieure : les questions qu'ils reçoivent de tous les thèmes, multipliées par les secondes par question. Avec les valeurs par défaut, trois thèmes prennent au plus 30 minutes, ou 38 pour un entretien difficile. Dans l'onglet des thèmes de l'entretien, vous voyez le total des questions, le temps par question et la durée de l'entretien complet, mis à jour à chaque changement.
+Avant de commencer, les candidats voient le temps moyen par question et la durée de tout l'entretien en minutes, arrondie à l'unité supérieure : les questions qu'ils reçoivent de tous les thèmes, multipliées par les secondes moyennes par question. Avec les valeurs par défaut, trois thèmes prennent au plus 30 minutes, ou 38 pour un entretien difficile. Dans l'onglet des thèmes de l'entretien, vous voyez le total des questions, le temps moyen par question et la durée de l'entretien complet, mis à jour à chaque changement.
 
 ### Temps supplémentaire
 
 - **Les propriétaires et les admins peuvent accorder à un candidat +25 %, +50 % ou +100 %** du temps de chaque question, sur la page du candidat.
 - **Uniquement avant que le candidat commence.** Ensuite, le temps est fixé, et la page du candidat continue d'afficher le temps supplémentaire dont il a bénéficié.
 - **Aucun motif n'est enregistré.** Le journal des actions de l'entreprise n'enregistre que la modification.
-- **Les candidats voient leur propre temps :** le temps par question et la durée totale, temps supplémentaire compris, et la page de démarrage indique à chaque candidat qu'il peut en demander davantage.
+- **Les candidats voient leur propre temps :** le temps moyen par question et la durée totale, temps supplémentaire compris, puis le compte à rebours propre à chaque question, et la page de démarrage indique à chaque candidat qu'il peut en demander davantage.
 - **Les candidats venus par le lien de partage** ne peuvent pas recevoir de temps supplémentaire sur le lien lui-même, car leur invitation est créée au moment où ils commencent. La page du lien leur indique de vous demander une invitation personnelle avant de commencer.
 
 Avant d'inviter qui que ce soit, passez l'entretien vous-même depuis sa page : c'est gratuit, cela ne compte pas comme un candidat, et vous voyez vite si le minuteur est bien réglé.

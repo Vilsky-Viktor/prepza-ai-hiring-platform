@@ -2,7 +2,7 @@
 title: "AI-intervjuud: mis need on ja kuidas neid õiglaselt kasutada"
 seoTitle: "Tehisintellekt värbamisel: AI-intervjuud, riskid, reeglid"
 description: "Tehisintellekt (AI) värbamisel: mida teevad AI-intervjuud, vestlusrobotid, videoanalüüs ja loodud testid, millised on riskid ja seaduse nõuded."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # AI-intervjuud: mis need on ja kuidas neid õiglaselt kasutada
@@ -61,7 +61,7 @@ Enne kellegi kutsumist saad oma intervjuu ka ise kandidaadina läbi teha: samad 
 
 **Sisu saab üle vaadata.** Kiidad teemad heaks enne, kui midagi kirjutatakse, ja küsimused on sulle avatud. Kui teema ei ole tegelik töönõue, saad selle eemaldada.
 
-**Kõigil on sarnased tingimused.** Samad teemad, sama arv küsimusi teema kohta, sama aeg küsimuse kohta. Iga kandidaadi küsimused valitakse juhuslikult, nii et komplektide raskus erineb veidi. Kandidaadid, kes vajavad rohkem aega, saavad seda: saad lisada aega konkreetsele kandidaadile.
+**Kõigil on sarnased tingimused.** Samad teemad, sama arv küsimusi teema kohta, sama keskmine aeg küsimuse kohta ja sama koguaeg. Iga kandidaadi küsimused valitakse juhuslikult, nii et komplektide raskus erineb veidi. Kandidaadid, kes vajavad rohkem aega, saavad seda: saad lisada aega konkreetsele kandidaadile.
 
 **Vähem asjasse mittepuutuvaid signaale.** Valikvastuses pole aktsenti, nägu, tausta ega kirjutamisstiili, nii et tulemus ei sõltu sellest, kuidas keegi välja näeb või kõlab. Kallutatust see ei välista: teadmiste testides võib rühmade tulemustes olla erinevusi ja test kandidaadi teises keeles võib teda takistada. Jälgi tulemusi rühmade lõikes.
 

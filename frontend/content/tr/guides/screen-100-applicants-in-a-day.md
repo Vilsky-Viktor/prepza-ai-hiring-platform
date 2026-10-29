@@ -2,7 +2,7 @@
 title: "Bir günde 100 başvuru nasıl elenir"
 seoTitle: "Bir Günde 100 Başvuru Nasıl Elenir: Pratik Bir Plan"
 description: "100 başvuruyu bir iş gününde adil şekilde elemek için adım adım plan: kesin gereklilikler, kısa bir beceri testi, sıralı liste ve insan değerlendirmesi."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Bir günde 100 başvuru nasıl elenir
@@ -42,7 +42,7 @@ prepza ile:
 
 1. **İş tanımını yapıştırın.** prepza adayın bilmesi gerekenleri çıkarır ve konular önerir.
 2. **Konuları 1. adımdaki listenizle karşılaştırarak gözden geçirin.** Gerçek bir gereklilik olmayan her şeyin işaretini kaldırın, konuları yeniden adlandırın, alt konuları düzenleyin veya değişiklikleri düz metinle anlatın (“bordronun temelleri üzerine bir konu ekle”). Sorular ancak siz onayladıktan sonra yazılır.
-3. **Uzunluğu belirleyin.** Varsayılan olarak her konu, her biri 60 saniyelik (zor bir testte 75 saniyelik) geri sayımlı 10 soru sorar. Üç konu, bir aday için en fazla 30 dakika (zor bir testte yaklaşık 38), genellikle daha az demektir. İhtiyacınız olanla sınırlı tutun.
+3. **Uzunluğu belirleyin.** Varsayılan olarak her konu, her biri kendi geri sayımına sahip, ortalama 60 saniyelik (zor bir testte 75 saniyelik) 10 soru sorar. Üç konu, bir aday için en fazla 30 dakika (zor bir testte yaklaşık 38), genellikle daha az demektir. İhtiyacınız olanla sınırlı tutun.
 4. **Bir geçme notu belirleyin.** Varsayılan %70'tir. Bunu otomatik bir kesme noktası olarak değil, sonuçları okumak için bir kılavuz olarak görün.
 5. **Aday gözüyle önizleyin.** Testi kendiniz çözün. Ücretsizdir ve aday olarak sayılmaz. Bir soru tuhaf görünüyorsa yeniden oluşturun.
 

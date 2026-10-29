@@ -105,7 +105,7 @@
     "tips": [
       "Yapay zekânın yazdığı sorular hatalı olabilir: kimseyi davet etmeden önce her konuya göz atın.",
       "Mülakatı yeniden adlandırmak için başlığa tıklayın.",
-      "Üstteki kartlar her adayın alacaklarını toplar: toplam soru, soru başına süre ve mülakatın tamamının süresi. Her değişiklikle güncellenir."
+      "Üstteki kartlar her adayın alacaklarını toplar: toplam soru, soru başına ortalama süre ve mülakatın tamamının süresi. Her değişiklikle güncellenir."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Bu mülakatın her aday için nasıl işlediği.",
     "actions": [
       "İş ilanı için paylaşılabilir bağlantıyı açın: bağlantıya sahip herkes mülakata girebilir.",
-      "Her soru için süreyi saniye olarak belirleyin.",
+      "Soru başına ortalama süreyi saniye olarak belirleyin: her soru, uzunluğuna ve gösterdiği koda göre kendi süresini alır; mülakatın toplam süresi aynı kalır.",
       "Geçme notunu belirleyin: buna ulaşan adaylar geçer.",
       "Pozisyonu doldurduğunuzda mülakatı işe alındı olarak işaretleyin.",
       "Mülakatın sorularını prepza'nın ortak soru bankasının dışında tutun; başka mülakatlarda zaten yeniden kullanılan sorular orada kalır."

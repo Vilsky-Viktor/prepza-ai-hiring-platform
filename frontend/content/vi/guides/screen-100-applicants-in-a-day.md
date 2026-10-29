@@ -2,7 +2,7 @@
 title: "Cách sàng lọc 100 ứng viên trong một ngày"
 seoTitle: "Cách sàng lọc 100 hồ sơ ứng viên trong một ngày"
 description: "Kế hoạch sàng lọc công bằng 100 ứng viên trong một ngày làm việc: yêu cầu bắt buộc, bài kiểm tra kỹ năng ngắn, danh sách xếp hạng và người duyệt."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Cách sàng lọc 100 ứng viên trong một ngày
@@ -42,7 +42,7 @@ Với prepza:
 
 1. **Dán mô tả công việc.** prepza chọn ra những gì ứng viên phải biết và đề xuất chủ đề.
 2. **Đối chiếu các chủ đề với danh sách ở bước 1.** Bỏ chọn những gì không phải yêu cầu thực sự, đổi tên chủ đề, sửa chủ đề con, hoặc mô tả thay đổi bằng lời ("thêm một chủ đề về cơ bản tính lương"). Câu hỏi chỉ được viết sau khi bạn duyệt.
-3. **Đặt độ dài.** Mặc định mỗi chủ đề có 10 câu hỏi, mỗi câu đếm ngược 60 giây, hoặc 75 giây với bài kiểm tra khó. Ba chủ đề nghĩa là tối đa 30 phút cho một ứng viên (khoảng 38 phút với bài kiểm tra khó), và thường ít hơn. Chỉ giữ những gì bạn cần.
+3. **Đặt độ dài.** Mặc định mỗi chủ đề có 10 câu hỏi, mỗi câu có đồng hồ đếm ngược riêng, trung bình 60 giây, hoặc 75 giây với bài kiểm tra khó. Ba chủ đề nghĩa là tối đa 30 phút cho một ứng viên (khoảng 38 phút với bài kiểm tra khó), và thường ít hơn. Chỉ giữ những gì bạn cần.
 4. **Đặt điểm đạt.** Mặc định là 70%. Hãy coi đó là mốc tham khảo khi đọc kết quả, không phải ngưỡng loại tự động.
 5. **Xem trước với tư cách ứng viên.** Tự làm bài kiểm tra. Việc này miễn phí và không tính là một ứng viên. Nếu một câu hỏi có vẻ không ổn, hãy tạo lại nó.
 

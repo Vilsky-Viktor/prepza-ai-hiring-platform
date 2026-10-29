@@ -82,7 +82,7 @@ that applies to you, stay yours.
   what is in it becomes topics.
 - Your review of the topics before questions are written: uncheck what the job doesn't need,
   rename or edit, then approve. The approval is recorded.
-- A passing grade and time per question that fit the role (section 6).
+- A passing grade and average time per question that fit the role (section 6).
 
 ## 5. Human review: your duty
 
@@ -149,7 +149,8 @@ on signals alone; follow up in a conversation, and let the candidate explain.
 - If timed multiple choice doesn't suit the candidate's needs at all (for example some screen-reader
   or motor impairments), offer an **alternative assessment** outside prepza. Don't ask for medical
   details beyond what you need.
-- You can also raise the time per question for everyone in the interview's settings.
+- You can also raise the average time per question for everyone in the interview's settings;
+  each question's own time grows with it.
 - prepza's candidate pages are built to WCAG 2.2 AA.
 
 ## 9. Telling candidates

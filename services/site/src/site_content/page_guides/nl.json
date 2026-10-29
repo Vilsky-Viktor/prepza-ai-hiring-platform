@@ -105,7 +105,7 @@
     "tips": [
       "Door AI geschreven vragen kunnen fout zijn: loop elk onderwerp even door voordat je iemand uitnodigt.",
       "Klik op de titel om het interview een andere naam te geven.",
-      "De kaarten bovenaan tellen op wat elke kandidaat krijgt: het totaal aantal vragen, de tijd per vraag en de tijd van het hele interview. Ze volgen elke wijziging."
+      "De kaarten bovenaan tellen op wat elke kandidaat krijgt: het totaal aantal vragen, de gemiddelde tijd per vraag en de tijd van het hele interview. Ze volgen elke wijziging."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Hoe dit interview verloopt voor elke kandidaat.",
     "actions": [
       "Zet de deelbare link aan voor een vacaturetekst: iedereen met de link kan het interview doen.",
-      "Stel de tijd per vraag in, in seconden.",
+      "Stel de gemiddelde tijd per vraag in, in seconden: elke vraag krijgt een eigen tijd op basis van de lengte en de code die ze toont, en de totale tijd van het interview blijft gelijk.",
       "Stel de slaaggrens in: kandidaten die die halen, zijn geslaagd.",
       "Markeer het interview als aangenomen zodra de vacature is vervuld.",
       "Houd de vragen van het interview buiten de gedeelde vragenbank van prepza; vragen die al in andere interviews worden hergebruikt, blijven daar."

@@ -2,7 +2,7 @@
 title: "Jak przeprowadzić selekcję 100 kandydatów w jeden dzień"
 seoTitle: "Selekcja 100 kandydatów w jeden dzień: praktyczny plan"
 description: "Plan krok po kroku, jak uczciwie przeprowadzić selekcję 100 kandydatów w jeden dzień roboczy: wymogi, krótki test umiejętności, ranking i decyzja ludzi."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Jak przeprowadzić selekcję 100 kandydatów w jeden dzień
@@ -42,7 +42,7 @@ Z prepza:
 
 1. **Wklej opis stanowiska.** prepza wyłuskuje, co kandydat musi wiedzieć, i proponuje tematy.
 2. **Porównaj tematy ze swoją listą z kroku 1.** Odznacz wszystko, co nie jest prawdziwym wymaganiem, zmieniaj nazwy tematów, edytuj podtematy albo opisz zmiany zwykłym tekstem („dodaj temat o podstawach płac”). Pytania powstają dopiero po Twojej akceptacji.
-3. **Ustaw długość.** Domyślnie każdy temat zawiera 10 pytań, każde z 60-sekundowym odliczaniem, a w trudnym teście z 75-sekundowym. Trzy tematy to dla kandydata najwyżej 30 minut (w trudnym teście około 38), a zwykle mniej. Ogranicz test do tego, czego potrzebujesz.
+3. **Ustaw długość.** Domyślnie każdy temat zawiera 10 pytań, każde z własnym odliczaniem, średnio 60 sekund, a w trudnym teście 75 sekund. Trzy tematy to dla kandydata najwyżej 30 minut (w trudnym teście około 38), a zwykle mniej. Ogranicz test do tego, czego potrzebujesz.
 4. **Ustaw próg zaliczenia.** Domyślnie to 70%. Traktuj go jako wskazówkę przy czytaniu wyników, a nie automatyczne odcięcie.
 5. **Wyświetl podgląd jako kandydat.** Rozwiąż test samodzielnie. To nic nie kosztuje i nie liczy się jako kandydat. Jeśli jakieś pytanie wygląda nie tak, wygeneruj je ponownie.
 

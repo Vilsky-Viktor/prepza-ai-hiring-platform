@@ -12,7 +12,8 @@ import type { InterviewSettingsData } from "@/types/company"
 import { LIST_BOX } from "@/config/lists"
 import { CARD_PADDING } from "@/config/cards"
 
-/** The interview's settings tab: the time each question has, the pass mark, whether the company
+/** The interview's settings tab: the average time per question (each question gets its own,
+fitted to it by rounds), the pass mark, whether the company
 hired, and whether its questions stay out of prepza's shared question bank, one row each in a
 list like the topics'. Every interview is timed, and candidates never see their scores. */
 export function InterviewSettings({
@@ -71,6 +72,7 @@ export function InterviewSettings({
     <div className={LIST_BOX}>
       <NumberSetting
         label={t("timePerQuestion")}
+        help={t("timePerQuestionHelp")}
         fieldLabel={t("secondsLabel")}
         unit={t("secondsUnit")}
         value={seconds}
@@ -141,9 +143,11 @@ function CheckSetting({
   )
 }
 
-/** A number setting: its name, and a field with its unit that saves when left. */
+/** A number setting: its name, an optional line under it, and a field with its unit that saves
+ * when left. */
 function NumberSetting({
   label,
+  help,
   fieldLabel,
   unit,
   value,
@@ -152,6 +156,7 @@ function NumberSetting({
   onSave,
 }: {
   label: string
+  help?: string
   fieldLabel: string
   unit: string
   value: string
@@ -163,9 +168,14 @@ function NumberSetting({
     <label
       className={`flex items-center justify-between gap-4 ${CARD_PADDING}`}
     >
-      <span className="text-lg font-light">{label}</span>
+      <span className="min-w-0 space-y-1">
+        <span className="block text-lg font-light">{label}</span>
+        {help && (
+          <span className="block text-sm text-muted-foreground">{help}</span>
+        )}
+      </span>
       {/* Same look as the app's other fields (library search, candidate invite). */}
-      <span className="relative w-36 rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient">
+      <span className="relative w-36 shrink-0 rounded-xl border border-transparent transition-colors focus-within:border-ring-gradient">
         <Input
           type="number"
           inputMode="numeric"

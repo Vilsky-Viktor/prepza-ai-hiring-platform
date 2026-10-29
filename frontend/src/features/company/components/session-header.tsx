@@ -61,9 +61,7 @@ export function SessionHeader({
                 <Countdown
                   key={question.question_id}
                   seconds={question.seconds_left}
-                  questionSeconds={
-                    session.question_seconds ?? question.seconds_left
-                  }
+                  questionSeconds={question.seconds ?? question.seconds_left}
                   paused={sending}
                   onExpire={onTimeUp}
                 />

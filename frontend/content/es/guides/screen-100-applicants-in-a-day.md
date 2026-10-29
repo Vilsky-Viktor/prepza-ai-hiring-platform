@@ -2,7 +2,7 @@
 title: "Cómo filtrar 100 candidatos en un día"
 seoTitle: "Cómo filtrar 100 candidatos en un día: plan práctico"
 description: "Un plan paso a paso para filtrar 100 candidaturas en una jornada de forma justa: requisitos clave, una prueba breve, una lista ordenada y revisión humana."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Cómo filtrar 100 candidatos en un día
@@ -42,7 +42,7 @@ Con prepza:
 
 1. **Pega la descripción del puesto.** prepza extrae lo que un candidato debe saber y propone temas.
 2. **Revisa los temas frente a tu lista del paso 1.** Desmarca lo que no sea un requisito real, cambia el nombre de los temas, edita los subtemas o describe los cambios en texto libre («añade un tema sobre nóminas básicas»). Las preguntas se redactan solo después de tu aprobación.
-3. **Fija la duración.** Por defecto, cada tema tiene 10 preguntas, cada una con una cuenta atrás de 60 segundos, o de 75 segundos en una prueba difícil. Tres temas significan como máximo 30 minutos por candidato (unos 38 en una prueba difícil), y normalmente menos. Limítala a lo que necesitas.
+3. **Fija la duración.** Por defecto, cada tema tiene 10 preguntas, cada una con su propia cuenta atrás, de 60 segundos de media, o de 75 segundos en una prueba difícil. Tres temas significan como máximo 30 minutos por candidato (unos 38 en una prueba difícil), y normalmente menos. Limítala a lo que necesitas.
 4. **Fija una nota de aprobado.** Por defecto es el 70 %. Úsala como guía para leer los resultados, no como un corte automático.
 5. **Pruébala como candidato.** Haz la prueba tú mismo. Es gratis y no cuenta como candidato. Si una pregunta no te convence, vuelve a generarla.
 

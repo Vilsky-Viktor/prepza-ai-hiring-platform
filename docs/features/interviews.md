@@ -39,7 +39,7 @@ How generation works step by step is in [Generation](../generation.md).
 
 ### What's next
 
-When a generated interview is ready, the generation page opens it marked as just generated (`?ready=1`), and owners and admins see a "What's next" dialog with three steps, each a button that takes them there: set how many questions each candidate gets per topic (it closes the dialog and puts the cursor in the first topic's count), adjust the time per question (the settings tab) and invite candidates (the candidates tab). Closing it takes the mark off the address, so a reload doesn't show it again. Viewers, and interviews copied from templates, don't get it.
+When a generated interview is ready, the generation page opens it marked as just generated (`?ready=1`), and owners and admins see a "What's next" dialog with three steps, each a button that takes them there: set how many questions each candidate gets per topic (it closes the dialog and puts the cursor in the first topic's count), adjust the average time per question (the settings tab) and invite candidates (the candidates tab). Closing it takes the mark off the address, so a reload doesn't show it again. Viewers, and interviews copied from templates, don't get it.
 
 ## The interviews list
 
@@ -51,14 +51,14 @@ An interview's page has three tabs, in its side menu as on a company's pages ([C
 
 | Tab | Who sees it | What it holds |
 |---|---|---|
-| **topics** | Every member | What the interview adds up to for each candidate (total questions, time per question and the whole interview's minutes, as companies counts them, which follow each change), then the interview's topics and questions, each with its number of questions for each candidate |
+| **topics** | Every member | What the interview adds up to for each candidate (total questions, average time per question and the whole interview's minutes, questions × average, as companies counts them, which follow each change), then the interview's topics and questions, each with its number of questions for each candidate |
 | **candidates** | Every member | The candidate list (see [Candidates](candidates.md#the-candidate-list)) |
-| **settings** | Owners and admins | The [shareable link](candidates.md#shareable-link) in a card at the top, then time per question, pass mark, "Mark as hired" and keeping its questions out of the shared question bank, each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
+| **settings** | Owners and admins | The [shareable link](candidates.md#shareable-link) in a card at the top, then average time per question, pass mark, "Mark as hired" and keeping its questions out of the shared question bank, each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
 
 ### Settings
 
 - **Shareable link:** a card above the settings turns the job ad's link on or off and copies it ([Shareable link](candidates.md#shareable-link)).
-- **Time per question:** a new test starts with its level's: 60 seconds for a basic or medium one, 75 for a hard one, by default (`QUESTION_SECONDS_BASIC`, `_MEDIUM`, `_HARD`, values in the admin zone's Controls). A template's copy gets them at once; a generated test when its questions are ready, the first time only. Adjustable per interview (see [Timing](candidates.md#timing)); a change in Controls reaches only new tests.
+- **Average time per question:** each question gets its own time from it when a candidate's questions are drawn (see [Timing](candidates.md#timing)); the interview's total stays questions × average. A new test starts with its level's: 60 seconds for a basic or medium one, 75 for a hard one, by default (`QUESTION_SECONDS_BASIC`, `_MEDIUM`, `_HARD`, values in the admin zone's Controls). A template's copy gets them at once; a generated test when its questions are ready, the first time only. Adjustable per interview (see [Timing](candidates.md#timing)); a change in Controls reaches only new tests.
 - **Pass mark:** 70% by default, from 1 to 100. Grades show green or red against it.
 - **Mark as hired:** marks the interview as hired and stops its shareable link at once.
 - **Keep these questions out of prepza's shared question bank:** off by default, as the terms (2026-10-23) say: an interview's generated questions may be reused in other companies' interviews, without anything that identifies the company or anyone else. Checking it keeps the interview's questions out from then on (`keep_private` on the interview in companies); questions already reused in other interviews stay there. A change is in the action log (`interview_settings_changed`), and Mira and AI apps can set it (`keep_questions_private`). Today the bank holds only the templates' questions ([Generation](../generation.md)), so the setting records the company's choice ahead of companies' questions joining it.

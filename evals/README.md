@@ -109,7 +109,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Assistant handover when a call fails: contact page linked after a failure / without one / no link in the text | 100% (75.7–100) / 0 of 4 / 100%; $0.0023 a turn | `assistant_handover.json`, 2 repeats | 2026-10-22 |
 | Assistant judges (pair, page, guide): traps caught / answers kept / kappa | 8/8 / 8/8 / 1.0 each (`assistant_judge_traps.py`) | traps from `…_page_context_p1.json`, `…_guides_g1.json` | 2026-10-22 |
 | Re-generated questions: written / keys / distractors / relevance | 40 of 40 / 97.5% / 3.23 ± 0.27 / 4.53; the verifier's batched rewrite 40 / 100% / 3.27 / 4.53; batched new options 40 / 100% / 2.85 / 4.08 | 40 of `multi_questions.json` | 2026-10-22 |
-| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 97.8% (93.7–99.2) / 98.5% / 100% / 100% / 94.4% / 100%; 12,500 tokens, $0.0013, 11.4 s a turn (tools routed) | `assistant_actions.json` (67 cases; e13, the question bank opt-out, added after: 5 of 5), 2 repeats | 2026-10-23 |
+| Assistant actions: task success / tool choice / arguments / asked first / link / injection safe | 99.3% (96.0–99.9) / 99.3% / 100% / 100% / 100% / 100%; 13,600 tokens, $0.0014, 7.4 s a turn (tools routed; the average time per question) | `assistant_actions.json` (69 cases), 2 repeats | 2026-10-29 |
 | Planning: code checks / extraction covered / invented / topics covered / revisions applied / kept; judge traps | 88.2% (73.4–95.3) / 97.1% (85.1–99.5) / 0% / 94.1% (80.9–98.4) / 75.0% (46.8–91.1) / 50.0% (25.4–74.6); 78 of 78; $0.012 and 24 s a plan | `postings.json` (with the Arabic, Thai, Hindi and Russian tests) and 7 of `inputs.json`, 17 × 2, 6 revisions × 2 | 2026-10-22 |
 | Translations (their batch requests): code checks / faithful / native / one language; judge traps | 100% / 88.6% (79.0–94.1) / 97.1% (90.2–99.2) / 100%; 97 of 97; $0.0023 a translation at once, half in a batch | `translations.json`, 10 texts × 7 languages | 2026-10-22 |
 | Quality patterns: planted found / kept supported / no rule when none / known named; judge traps | 100% (79.6–100) / 100% (84.5–100) / 3 of 3 / 3 of 3; 10 of 10; $0.016 and 30 s a run | `patterns.json`, 4 groups × 3 | 2026-10-22 |
@@ -119,7 +119,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Text check: false refusals / accepted / refused | 0 / 100% (95.9–100) / 100% (90.4–100); $0.00003 and 1.9 s a check | `screen.json`, 42 × 3 | 2026-10-22 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
 | Fitted question times: distance from the judge's times, fitted / equal; judge's own repeat | 0.158 ± 0.002 / 0.167 ± 0.002 of the average (basic 0.116 / 0.147; with an example 0.181 / 0.209; text-only medium 0.193 / 0.186, within the noise); repeat Spearman 0.95, 2.1 s apart | `question_times.json` (452 questions, 40 twice), `gpt-6.1-sol` high; free | 2026-10-29 |
-| Help chat: passed / made up / sign-in marker; who-are-you answers | 100% (95.1–100) / 0.0% / 100%; 18/18; with allowed domains only for the SDK (97.3% / 4.0% just before, within the noise) | `help_questions.json` (25), 3 repeats | 2026-10-29 |
+| Help chat: passed / made up / sign-in marker; who-are-you answers | 97.3% (90.8–99.3) / 1.3% / 100%; 18/18; with the average time per question (100% / 0.0% just before, within the noise) | `help_questions.json` (25), 3 repeats | 2026-10-29 |
 
 ## Datasets
 

@@ -1701,6 +1701,17 @@
       "title": "Multi",
       "default": false
      },
+     "seconds": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Seconds"
+     },
      "seconds_left": {
       "anyOf": [
        {
@@ -2223,6 +2234,17 @@
       "type": "boolean",
       "title": "Multi",
       "default": false
+     },
+     "limit_seconds": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Limit Seconds"
      },
      "correct_option_index": {
       "anyOf": [

@@ -2,7 +2,7 @@
 title: "Kuidas sõeluda 100 kandidaati päevaga"
 seoTitle: "Kuidas sõeluda 100 kandidaati päevaga: praktiline plaan"
 description: "Samm-sammuline plaan, kuidas sõeluda 100 kandideerijat ühe tööpäevaga õiglaselt: kohustuslikud nõuded, lühike oskustest, pingerida ja inimese ülevaatus."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Kuidas sõeluda 100 kandidaati päevaga
@@ -42,7 +42,7 @@ prepzaga:
 
 1. **Kleebi töökuulutus.** prepza toob välja, mida kandidaat peab teadma, ja pakub teemad.
 2. **Võrdle teemasid oma 1. sammu nimekirjaga.** Eemalda linnuke kõigelt, mis pole tegelik nõue, nimeta teemad ümber, muuda alateemasid või kirjelda muudatusi tavalise tekstiga („lisa teema palgaarvestuse põhitõdede kohta“). Küsimused kirjutatakse alles pärast sinu heakskiitu.
-3. **Määra pikkus.** Vaikimisi on igas teemas 10 küsimust ja igal küsimusel 60-sekundiline taimer, raskes testis 75 sekundit. Kolm teemat tähendab kandidaadile kõige rohkem 30 minutit (raskes testis umbes 38) ja tavaliselt vähem. Piirdu sellega, mida vajad.
+3. **Määra pikkus.** Vaikimisi on igas teemas 10 küsimust ja igal küsimusel oma taimer, keskmiselt 60 sekundit, raskes testis 75 sekundit. Kolm teemat tähendab kandidaadile kõige rohkem 30 minutit (raskes testis umbes 38) ja tavaliselt vähem. Piirdu sellega, mida vajad.
 4. **Määra läbimise lävi.** Vaikimisi on see 70%. Käsitle seda tulemuste lugemise juhisena, mitte automaatse piirina.
 5. **Tee eelvaade kandidaadina.** Tee test ise läbi. See on tasuta ega lähe kandidaadina arvesse. Kui mõni küsimus tundub vale, loo see uuesti.
 

@@ -2,7 +2,7 @@
 title: "Jak ustawić czas w teście umiejętności: limit na pytanie, długość i dodatkowy czas"
 seoTitle: "Limit czasu w teście umiejętności i dodatkowy czas"
 description: "Ile czasu dać na każde pytanie, ile pytań zadać, jaka łączna długość się sprawdza i jak uczciwie przyznać dodatkowy czas kandydatom, którzy go potrzebują."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Jak ustawić czas w teście umiejętności: limit na pytanie, długość i dodatkowy czas
@@ -103,12 +103,13 @@ W prepza rozmowa to test umiejętności w formie testu wyboru z limitem czasu, u
 
 - **Każde pytanie ma własne odliczanie,** prowadzone przez serwer, więc zamknięcie karty czy odświeżenie strony go nie zatrzymuje.
 - **Wartość domyślna zależy od poziomu rozmowy,** który w wygenerowanej rozmowie wynika z poziomu doświadczenia wymaganego w opisie stanowiska: 60 sekund dla rozmowy na poziomie podstawowym lub średnim, 75 sekund dla trudnej.
-- **Możesz ją zmienić dla każdej rozmowy,** w jej ustawieniach, od 10 do 600 sekund. Zmiana dotyczy kandydatów, którzy zaczną po niej; czas kandydata jest ustalany w chwili, gdy zaczyna.
+- **To średnia: każde pytanie dostaje z niej własny czas,** gdy losowane są pytania kandydata, zależnie od tego, ile trwa przeczytanie go i odpowiedź: jego słów, kodu lub przykładu (czytanych wolniej) i czasu na znalezienie odpowiedzi. Krótkie pytania dostają mniej, dłuższe i te z kodem — więcej, każde od połowy do dwukrotności średniej, a razem dają dokładnie liczbę pytań razy średnią. Odliczanie pokazuje własny czas każdego pytania, a karta wyników — ile z niego zajęła każda odpowiedź.
+- **Możesz zmienić średnią dla każdej rozmowy,** w jej ustawieniach, od 10 do 600 sekund. Zmiana dotyczy kandydatów, którzy zaczną po niej; czas kandydata jest ustalany w chwili, gdy zaczyna.
 - **Gdy czas minie,** liczy się odpowiedź zaznaczona na ekranie i otwiera się następne pytanie; bez zaznaczenia pytanie liczy się jako błędne. Pytania bez odpowiedzi liczą się jako błędne, a rozmowa porzucona przez kandydata kończy się sama, gdy upłynie jej łączny czas plus 10%.
 - **Pytania są pisane tak, by mieściły się w limicie:** odpowiedź zajmuje około minuty (do półtorej minuty przy najtrudniejszych), także w drugim języku. Pytanie ma najwyżej 40 słów (50 przy trudnym), odpowiedź do wyboru najwyżej 10, a przykład najwyżej 8 krótkich linijek.
 - **Pytania, przy których czas zbyt często się kończy, są oznaczane** i przepisywane w tle. Przepisane pytanie dotyczy kandydatów, którzy zaczną po poprawce; wyniki już podane się nie zmieniają.
 
-Każde pytanie w rozmowie ma ten sam czas. Mniej więcej 1 na 10 to pytanie typu „Zaznacz wszystkie poprawne odpowiedzi”, z 2 lub 3 poprawnymi odpowiedziami: każda zaznaczona poprawna odpowiedź daje część punktu, a jeśli zaznaczona jest błędna, pytanie nie daje nic.
+W rozmowie po arabsku, chińsku, japońsku, persku, rosyjsku, tajsku lub ukraińsku każde pytanie dostaje średnią, bo w tych językach długość pytania nie przewiduje jeszcze wystarczająco dobrze jego czasu. Mniej więcej 1 na 10 to pytanie typu „Zaznacz wszystkie poprawne odpowiedzi”, z 2 lub 3 poprawnymi odpowiedziami: każda zaznaczona poprawna odpowiedź daje część punktu, a jeśli zaznaczona jest błędna, pytanie nie daje nic.
 
 ### Liczba pytań
 
@@ -117,14 +118,14 @@ Każde pytanie w rozmowie ma ten sam czas. Mniej więcej 1 na 10 to pytanie typu
 
 ### Łączna długość
 
-Przed startem kandydaci widzą czas na pytanie i czas całej rozmowy w minutach, zaokrąglony w górę: pytania, które dostają ze wszystkich tematów, razy sekundy na pytanie. Przy wartościach domyślnych trzy tematy zajmują najwyżej 30 minut, a w trudnej rozmowie 38. Na karcie tematów rozmowy widzisz łączną liczbę pytań, czas na pytanie i czas całej rozmowy, aktualizowane przy każdej zmianie.
+Przed startem kandydaci widzą średni czas na pytanie i czas całej rozmowy w minutach, zaokrąglony w górę: pytania, które dostają ze wszystkich tematów, razy średnie sekundy na pytanie. Przy wartościach domyślnych trzy tematy zajmują najwyżej 30 minut, a w trudnej rozmowie 38. Na karcie tematów rozmowy widzisz łączną liczbę pytań, średni czas na pytanie i czas całej rozmowy, aktualizowane przy każdej zmianie.
 
 ### Dodatkowy czas
 
 - **Właściciele i administratorzy mogą dać kandydatowi +25%, +50% lub +100%** czasu na każde pytanie, na stronie kandydata.
 - **Tylko zanim kandydat zacznie.** Potem czas jest ustalony, a strona kandydata nadal pokazuje dodatkowy czas, jaki miał.
 - **Powód nie jest zapisywany.** Dziennik działań firmy odnotowuje tylko samą zmianę.
-- **Kandydaci widzą swój czas:** czas na pytanie i łączny czas, z uwzględnieniem dodatkowego czasu, a strona startowa informuje każdego kandydata, że może poprosić o więcej.
+- **Kandydaci widzą swój czas:** średni czas na pytanie i łączny czas, z uwzględnieniem dodatkowego czasu, a potem własne odliczanie każdego pytania, a strona startowa informuje każdego kandydata, że może poprosić o więcej.
 - **Kandydatom z linku do udostępnienia** nie można dać dodatkowego czasu na samym linku, bo ich zaproszenie powstaje dopiero, gdy zaczynają. Strona linku prosi ich, by przed startem poprosili Cię o osobiste zaproszenie.
 
 Zanim kogokolwiek zaprosisz, przejdź rozmowę samodzielnie z jej strony: to nic nie kosztuje, nie liczy się jako kandydat i szybko pokazuje, czy limit czasu jest dobrze dobrany.

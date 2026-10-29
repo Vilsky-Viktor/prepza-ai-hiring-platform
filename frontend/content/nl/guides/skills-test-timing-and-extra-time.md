@@ -2,7 +2,7 @@
 title: "Zo stel je de tijd van een vaardigheidstest in: timer per vraag, lengte en extra tijd"
 seoTitle: "Tijdslimiet vaardigheidstest: timer per vraag en extra tijd"
 description: "Hoeveel tijd per vraag, hoeveel vragen, welke totale duur werkt en hoe je kandidaten die het nodig hebben op een eerlijke manier extra tijd geeft."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Zo stel je de tijd van een vaardigheidstest in: timer per vraag, lengte en extra tijd
@@ -103,12 +103,13 @@ In prepza is een interview een meerkeuze-vaardigheidstest met tijdslimiet, gemaa
 
 - **Elke vraag heeft een eigen aftelling,** bijgehouden door de server, dus het tabblad sluiten of de pagina herladen houdt hem niet tegen.
 - **De standaard hangt af van het niveau van het interview,** dat bij een gegenereerd interview volgt uit het senioriteitsniveau dat de functieomschrijving vraagt: 60 seconden voor een basis- of gemiddeld interview, 75 seconden voor een moeilijk interview.
-- **Je kunt hem per interview wijzigen,** in de instellingen, van 10 tot 600 seconden. Een wijziging geldt voor kandidaten die daarna beginnen; de tijd van een kandidaat ligt vast zodra die begint.
+- **Dit is een gemiddelde: elke vraag krijgt daaruit een eigen tijd** wanneer de vragen van een kandidaat worden getrokken, naar hoe lang lezen en antwoorden duurt: de woorden, eventuele code of een voorbeeld (dat langzamer wordt gelezen) en tijd om het antwoord te bedenken. Korte vragen krijgen minder, langere vragen en code krijgen meer, elk tussen de helft en het dubbele van het gemiddelde, en samen komen ze precies uit op het aantal vragen maal het gemiddelde. De afteltimer toont de eigen tijd van elke vraag, en de scorekaart laat zien hoeveel daarvan elk antwoord kostte.
+- **Je kunt het gemiddelde per interview wijzigen,** in de instellingen, van 10 tot 600 seconden. Een wijziging geldt voor kandidaten die daarna beginnen; de tijd van een kandidaat ligt vast zodra die begint.
 - **Als de tijd om is,** telt de keuze op het scherm en opent de volgende vraag; zonder keuze telt de vraag als fout. Onbeantwoorde vragen tellen als fout, en een interview dat een kandidaat verlaat, rondt zichzelf af zodra de totale tijd plus 10% verstreken is.
 - **Vragen worden geschreven om in de timer te passen:** te beantwoorden in ongeveer een minuut (tot anderhalve minuut voor de moeilijkste), ook in een tweede taal. Een vraag telt hooguit 40 woorden (50 voor een moeilijke), een optie hooguit 10 en een voorbeeld hooguit 8 korte regels.
 - **Vragen waarbij de tijd te vaak afloopt, worden gemarkeerd** en op de achtergrond herschreven. Een herschreven vraag geldt voor kandidaten die na de correctie beginnen; al gegeven resultaten veranderen niet.
 
-Elke vraag in een interview heeft dezelfde tijd. Ongeveer 1 op de 10 is een vraag met "Kies alle juiste opties", met 2 of 3 juiste opties: elke aangevinkte juiste optie levert een deel van het punt op, en als er een foute is aangevinkt, levert de vraag niets op.
+In een interview in het Arabisch, Chinees, Japans, Perzisch, Russisch, Thai of Oekraïens krijgt elke vraag het gemiddelde, omdat de lengte van een vraag in deze talen haar tijd nog niet goed genoeg voorspelt. Ongeveer 1 op de 10 is een vraag met "Kies alle juiste opties", met 2 of 3 juiste opties: elke aangevinkte juiste optie levert een deel van het punt op, en als er een foute is aangevinkt, levert de vraag niets op.
 
 ### Aantal vragen
 
@@ -117,14 +118,14 @@ Elke vraag in een interview heeft dezelfde tijd. Ongeveer 1 op de 10 is een vraa
 
 ### Totale duur
 
-Voordat ze beginnen, zien kandidaten de tijd per vraag en de tijd voor het hele interview in minuten, naar boven afgerond: de vragen die ze uit alle onderwerpen krijgen, maal de seconden per vraag. Met de standaardinstellingen duren drie onderwerpen hooguit 30 minuten, of 38 bij een moeilijk interview. Op het tabblad onderwerpen van het interview zie je het totaal aantal vragen, de tijd per vraag en de tijd van het hele interview, bijgewerkt bij elke wijziging.
+Voordat ze beginnen, zien kandidaten de gemiddelde tijd per vraag en de tijd voor het hele interview in minuten, naar boven afgerond: de vragen die ze uit alle onderwerpen krijgen, maal de gemiddelde seconden per vraag. Met de standaardinstellingen duren drie onderwerpen hooguit 30 minuten, of 38 bij een moeilijk interview. Op het tabblad onderwerpen van het interview zie je het totaal aantal vragen, de gemiddelde tijd per vraag en de tijd van het hele interview, bijgewerkt bij elke wijziging.
 
 ### Extra tijd
 
 - **Eigenaren en beheerders kunnen een kandidaat +25%, +50% of +100%** van de tijd per vraag geven, op de pagina van de kandidaat.
 - **Alleen voordat de kandidaat begint.** Daarna ligt de tijd vast, en de pagina van de kandidaat blijft de extra tijd tonen die die kandidaat had.
 - **Er wordt geen reden vastgelegd.** De actielog van het bedrijf legt alleen de wijziging vast.
-- **Kandidaten zien hun eigen tijd:** de tijd per vraag en de totale tijd, inclusief extra tijd, en de startpagina vertelt elke kandidaat dat hij of zij om meer kan vragen.
+- **Kandidaten zien hun eigen tijd:** de gemiddelde tijd per vraag en de totale tijd, inclusief extra tijd, en daarna de eigen afteltimer van elke vraag, en de startpagina vertelt elke kandidaat dat hij of zij om meer kan vragen.
 - **Kandidaten via de deelbare link** kunnen op de link zelf geen extra tijd krijgen, omdat hun uitnodiging pas wordt aangemaakt als ze beginnen. De pagina van de link vraagt hun om jou vóór de start om een persoonlijke uitnodiging te vragen.
 
 Doe het interview zelf vanaf de pagina ervan voordat je iemand uitnodigt: het is gratis, telt niet als kandidaat en laat snel zien of de timer goed voelt.

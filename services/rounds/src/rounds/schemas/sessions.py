@@ -35,7 +35,8 @@ class SessionsCreate(BaseModel):
     user_id: str
     candidate_invite_id: UUID
     topics: list[TopicQuestions]
-    # Every interview is timed: the seconds each question has.
+    # Every interview is timed: the average seconds a question, with the candidate's extra time;
+    # each question's own time is fitted to it (helpers/question_times.py).
     question_seconds: int = Field(ge=1)
     # A company member trying their own test (see models/sessions.py).
     preview: bool = False
@@ -67,7 +68,7 @@ class SessionOut(BaseModel):
     answered: int
     started_at: datetime
     finished_at: datetime | None
-    # The seconds each question has; None for sessions from before every interview was timed.
+    # The average seconds a question; None when untimed.
     question_seconds: int | None
 
 

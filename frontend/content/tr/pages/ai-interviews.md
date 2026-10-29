@@ -2,7 +2,7 @@
 title: "Yapay zekâ mülakatları: nedir ve adil şekilde nasıl kullanılır"
 seoTitle: "Yapay Zekâ ile İşe Alım ve Mülakat: Riskler, Adil Kullanım"
 description: "Yapay zekâ ile işe alım: mülakat araçları, sohbet botları, video analizi ve otomatik testler ne yapar; riskler, uyum esasları ve prepza'nın yaklaşımı."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Yapay zekâ mülakatları: nedir ve adil şekilde nasıl kullanılır
@@ -61,7 +61,7 @@ Kimseyi davet etmeden önce kendi mülakatınızı aday gözüyle de önizleyebi
 
 **İçerik incelenebilir.** Herhangi bir şey yazılmadan önce konuları siz onaylarsınız ve sorular size açıktır. Bir konu işin gerçek bir gerekliliği değilse onu kaldırabilirsiniz.
 
-**Herkes benzer koşullarla karşılaşır.** Aynı konular, konu başına aynı sayıda soru, soru başına aynı süre. Her adayın soruları rastgele seçilir, bu nedenle setler zorluk açısından biraz farklılık gösterir. Daha fazla süreye ihtiyaç duyan adaylara bu süre verilebilir: aday başına ek süre ekleyebilirsiniz.
+**Herkes benzer koşullarla karşılaşır.** Aynı konular, konu başına aynı sayıda soru, soru başına aynı ortalama süre ve aynı toplam süre. Her adayın soruları rastgele seçilir, bu nedenle setler zorluk açısından biraz farklılık gösterir. Daha fazla süreye ihtiyaç duyan adaylara bu süre verilebilir: aday başına ek süre ekleyebilirsiniz.
 
 **Daha az alakasız sinyal.** Çoktan seçmeli bir yanıt aksan, yüz, arka plan veya yazı üslubu taşımaz; bu nedenle puan, kişinin nasıl göründüğüne veya nasıl konuştuğuna bağlı değildir. Bu, yanlılığı ortadan kaldırmaz: bilgi testleri gruplar arasında puan farkları gösterebilir ve adayın ikinci dilindeki bir test onu geride bırakabilir. Sonuçları gruplar genelinde izleyin.
 

@@ -2,7 +2,7 @@
 title: "KI-Interviews: was sie sind und wie du sie fair einsetzt"
 seoTitle: "KI im Recruiting: KI-Interviews, Risiken und fairer Einsatz"
 description: "KI im Recruiting: was KI-Interviewer, Chatbots, Videoanalyse und generierte Tests leisten, wo Risiken liegen und was rechtlich gilt. Mit prepzas Ansatz."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # KI-Interviews: was sie sind und wie du sie fair einsetzt
@@ -61,7 +61,7 @@ Du kannst dein eigenes Interview auch vorab als Kandidat ausprobieren, bevor du 
 
 **Die Inhalte sind überprüfbar.** Du gibst die Themen frei, bevor etwas geschrieben wird, und die Fragen sind für dich einsehbar. Ist ein Thema keine echte Anforderung der Stelle, kannst du es entfernen.
 
-**Alle haben ähnliche Bedingungen.** Gleiche Themen, gleiche Anzahl Fragen pro Thema, gleiche Zeit pro Frage. Die Fragen jedes Kandidaten werden zufällig gezogen, daher unterscheiden sich die Sätze leicht im Schwierigkeitsgrad. Kandidaten, die mehr Zeit brauchen, können sie bekommen: Du kannst pro Kandidat zusätzliche Zeit gewähren.
+**Alle haben ähnliche Bedingungen.** Gleiche Themen, gleiche Anzahl Fragen pro Thema, gleiche durchschnittliche Zeit pro Frage und gleiche Gesamtzeit. Die Fragen jedes Kandidaten werden zufällig gezogen, daher unterscheiden sich die Sätze leicht im Schwierigkeitsgrad. Kandidaten, die mehr Zeit brauchen, können sie bekommen: Du kannst pro Kandidat zusätzliche Zeit gewähren.
 
 **Weniger irrelevante Signale.** Eine Multiple-Choice-Antwort hat keinen Akzent, kein Gesicht, keinen Hintergrund und keinen Schreibstil, die Punktzahl hängt also nicht davon ab, wie jemand aussieht oder klingt. Bias ist damit nicht ausgeschlossen: Wissenstests können Punktunterschiede zwischen Gruppen zeigen, und ein Test in der Zweitsprache kann Kandidaten benachteiligen. Beobachte die Ergebnisse über Gruppen hinweg.
 

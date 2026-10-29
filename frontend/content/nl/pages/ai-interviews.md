@@ -2,7 +2,7 @@
 title: "AI-interviews: wat ze zijn en hoe je ze eerlijk inzet"
 seoTitle: "AI in werving en selectie: AI-interviews, risico's en regels"
 description: "AI in werving en selectie: wat AI-interviewtools doen (chatbots, video-analyse, gegenereerde assessments), hoe prepza werkt en de juridische basis."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # AI-interviews: wat ze zijn en hoe je ze eerlijk inzet
@@ -61,7 +61,7 @@ Je kunt je eigen interview ook als kandidaat proberen voordat je iemand uitnodig
 
 **De inhoud is te controleren.** Je keurt de onderwerpen goed voordat er iets geschreven wordt, en de vragen zijn voor jou zichtbaar. Is een onderwerp geen echte functie-eis, dan kun je het verwijderen.
 
-**Iedereen krijgt vergelijkbare omstandigheden.** Dezelfde onderwerpen, hetzelfde aantal vragen per onderwerp, dezelfde tijd per vraag. De vragen van elke kandidaat worden willekeurig getrokken, dus sets verschillen een beetje in moeilijkheid. Kandidaten die meer tijd nodig hebben, kunnen die krijgen: je kunt per kandidaat extra tijd toevoegen.
+**Iedereen krijgt vergelijkbare omstandigheden.** Dezelfde onderwerpen, hetzelfde aantal vragen per onderwerp, dezelfde gemiddelde tijd per vraag en dezelfde totale tijd. De vragen van elke kandidaat worden willekeurig getrokken, dus sets verschillen een beetje in moeilijkheid. Kandidaten die meer tijd nodig hebben, kunnen die krijgen: je kunt per kandidaat extra tijd toevoegen.
 
 **Minder irrelevante signalen.** Een meerkeuzeantwoord heeft geen accent, gezicht, achtergrond of schrijfstijl, dus de score hangt niet af van hoe iemand eruitziet of klinkt. Dat sluit vooringenomenheid niet uit: kennistests kunnen scoreverschillen tussen groepen laten zien, en een test in de tweede taal van een kandidaat kan die kandidaat benadelen. Volg de resultaten per groep.
 

@@ -132,3 +132,15 @@ hooks are limited by IP per key. `help_chat.py`, 25 × 3, `gpt-6-luna` at none, 
 `gpt-6.1-sol` high, before (`results/help_chat_returnurl-base.json`) → after
 (`…_returnurl-new.json`): passed 97.3% (90.8–99.3) → 100% (95.1–100); made up 4.0% → 0.0%;
 sign-in marker 100% both. Within the noise; kept so the guide says what is true. $1.58 after.
+
+## Help chat: the average time per question (2026-10-29, kept)
+
+The help chat's guide now says the test's setting is the average time per question: each
+question gets its own time from it (short questions less, longer ones and code more, from half
+to twice the average), the total stays the questions times the average, and extra time adds to
+the average; the interview page guides say the same. `help_chat.py`, 25 × 3, `gpt-6-luna` at
+none, judged by `gpt-6.1-sol` high, before (`results/help_chat_returnurl-new.json`, the same code
+otherwise) → after (`…_fitted-times-new.json`): passed 100% (95.1–100) → 97.3% (90.8–99.3); made
+up 0.0% → 1.3%; sign-in marker 100% both; the misses are h12's poem not declined (twice) and
+h17's known invented retake limit, neither about timing. Within the noise; kept so the guide
+says what is true. $1.59.

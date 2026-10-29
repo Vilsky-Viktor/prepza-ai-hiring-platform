@@ -2,7 +2,7 @@
 title: "Entrevistas con IA: qué son y cómo usarlas de forma justa"
 seoTitle: "IA en la selección de personal: entrevistas con IA y riesgos"
 description: "Cómo se usa la IA en reclutamiento: chatbots, análisis de vídeo y pruebas generadas. Riesgos, uso justo, cumplimiento y el enfoque de prepza."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Entrevistas con IA: qué son y cómo usarlas de forma justa
@@ -61,7 +61,7 @@ También puedes probar tu propia entrevista como candidato antes de invitar a na
 
 **El contenido se puede revisar.** Apruebas los temas antes de que se redacte nada, y las preguntas están a tu disposición. Si un tema no es un requisito real del puesto, puedes eliminarlo.
 
-**Todos se enfrentan a condiciones similares.** Los mismos temas, el mismo número de preguntas por tema y el mismo tiempo por pregunta. Las preguntas de cada candidato se eligen al azar, así que los conjuntos varían un poco en dificultad. Los candidatos que necesiten más tiempo pueden tenerlo: puedes añadir tiempo extra por candidato.
+**Todos se enfrentan a condiciones similares.** Los mismos temas, el mismo número de preguntas por tema, el mismo tiempo medio por pregunta y el mismo tiempo total. Las preguntas de cada candidato se eligen al azar, así que los conjuntos varían un poco en dificultad. Los candidatos que necesiten más tiempo pueden tenerlo: puedes añadir tiempo extra por candidato.
 
 **Menos señales irrelevantes.** Una respuesta de opción múltiple no lleva acento, rostro, entorno ni estilo de redacción, así que la puntuación no depende de cómo se ve o cómo suena alguien. Eso no descarta el sesgo: las pruebas de conocimientos pueden mostrar diferencias de puntuación entre grupos, y una prueba en la segunda lengua del candidato puede perjudicarle. Supervisa los resultados entre grupos.
 

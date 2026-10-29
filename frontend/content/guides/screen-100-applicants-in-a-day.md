@@ -2,7 +2,7 @@
 title: "How to screen 100 applicants in a day"
 seoTitle: "How to Screen 100 Applicants in a Day: A Practical Plan"
 description: "A step-by-step plan to screen 100 job applicants in one working day, fairly: hard requirements, a short skills test, a ranked list and human review."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # How to screen 100 applicants in a day
@@ -42,7 +42,7 @@ With prepza:
 
 1. **Paste the job description.** prepza picks out what a candidate must know and proposes topics.
 2. **Review the topics against your list from step 1.** Uncheck anything that isn't a real requirement, rename topics, edit subtopics, or describe changes in plain text ("add a topic on payroll basics"). Questions are written only after you approve.
-3. **Set the length.** By default each topic asks 10 questions, each with a 60-second countdown, or 75 seconds on a hard test. Three topics means at most 30 minutes for a candidate (about 38 on a hard test), and usually less. Keep it to what you need.
+3. **Set the length.** By default each topic asks 10 questions, each with its own countdown, 60 seconds on average, or 75 on a hard test. Three topics means at most 30 minutes for a candidate (about 38 on a hard test), and usually less. Keep it to what you need.
 4. **Set a pass mark.** The default is 70%. Treat it as a guide for reading results, not an automatic cut.
 5. **Preview it as a candidate.** Take the test yourself. It's free and doesn't count as a candidate. If a question looks off, re-generate it.
 

@@ -34,6 +34,8 @@ SECTION = {
             "text": "What does len([]) return?",
             "options": ["0", "None"],
             "multi": False,
+            # The question's own time, which the report shows the answer's time against.
+            "limit_seconds": 49,
             "correct_option_index": 0,
             "correct_indexes": [0],
             "answer": {

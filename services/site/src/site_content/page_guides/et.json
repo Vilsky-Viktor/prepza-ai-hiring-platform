@@ -105,7 +105,7 @@
     "tips": [
       "Tehisintellekti kirjutatud küsimustes võib olla vigu: sirvi iga teema läbi, enne kui kedagi kutsud.",
       "Klõpsa pealkirjal, et intervjuu ümber nimetada.",
-      "Ülal olevad kaardid liidavad kokku, mida iga kandidaat saab: küsimusi kokku, aja küsimuse kohta ja kogu intervjuu aja. Need muutuvad iga muudatusega."
+      "Ülal olevad kaardid liidavad kokku, mida iga kandidaat saab: küsimusi kokku, keskmise aja küsimuse kohta ja kogu intervjuu aja. Need muutuvad iga muudatusega."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Kuidas see intervjuu iga kandidaadi jaoks kulgeb.",
     "actions": [
       "Lülita töökuulutuse jaoks sisse jagatav link: igaüks, kellel see on, saab intervjuu teha.",
-      "Määra iga küsimuse aeg sekundites.",
+      "Määra keskmine aeg küsimuse kohta sekundites: iga küsimus saab oma aja vastavalt pikkusele ja koodile, mida see näitab, ning intervjuu koguaeg jääb samaks.",
       "Määra läbimise lävi: selle saavutanud kandidaadid läbivad intervjuu.",
       "Märgi intervjuu palgatuks, kui oled ametikoha täitnud.",
       "Hoia intervjuu küsimused prepza ühisest küsimustepangast väljas; teistes intervjuudes juba kasutatavad küsimused jäävad sinna."

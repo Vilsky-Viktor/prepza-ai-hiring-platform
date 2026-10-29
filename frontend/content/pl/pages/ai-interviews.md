@@ -2,7 +2,7 @@
 title: "Rozmowy rekrutacyjne z AI: czym są i jak korzystać z nich uczciwie"
 seoTitle: "AI w rekrutacji: rozmowy z AI, ryzyka i uczciwe użycie"
 description: "Narzędzia AI w rekrutacji: chatboty, analiza wideo i generowane testy. Co mówi prawo, jakie są ryzyka i jak działa podejście prepza."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Rozmowy rekrutacyjne z AI: czym są i jak korzystać z nich uczciwie
@@ -61,7 +61,7 @@ Zanim kogokolwiek zaprosisz, możesz też odbyć własną rozmowę jako kandydat
 
 **Treść można przejrzeć.** Zatwierdzasz tematy, zanim cokolwiek zostanie napisane, a pytania są dla Ciebie dostępne. Jeśli temat nie jest rzeczywistym wymaganiem stanowiska, możesz go usunąć.
 
-**Wszyscy mają podobne warunki.** Te same tematy, ta sama liczba pytań na temat, ten sam czas na pytanie. Pytania każdego kandydata są losowane, więc zestawy nieco różnią się trudnością. Kandydaci, którzy potrzebują więcej czasu, mogą go dostać: możesz dodać dodatkowy czas konkretnemu kandydatowi.
+**Wszyscy mają podobne warunki.** Te same tematy, ta sama liczba pytań na temat, ten sam średni czas na pytanie i ten sam łączny czas. Pytania każdego kandydata są losowane, więc zestawy nieco różnią się trudnością. Kandydaci, którzy potrzebują więcej czasu, mogą go dostać: możesz dodać dodatkowy czas konkretnemu kandydatowi.
 
 **Mniej nieistotnych sygnałów.** Odpowiedź w teście wyboru nie niesie akcentu, twarzy, tła ani stylu pisania, więc wynik nie zależy od tego, jak ktoś wygląda lub brzmi. To nie wyklucza uprzedzeń: testy wiedzy mogą wykazywać różnice wyników między grupami, a test w drugim języku kandydata może go stawiać w gorszej sytuacji. Monitoruj wyniki w poszczególnych grupach.
 

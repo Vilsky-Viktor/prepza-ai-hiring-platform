@@ -7,7 +7,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from rounds.constants.rounds import INTERVIEW_TIME_MARGIN
 
 # Candidate interviews (all sessions of an invite) still in progress past their deadline: the
-# start plus every question's seconds, plus the margin. Sessions from before every interview
+# start plus every question's seconds (their own times add up to the questions times the
+# average), plus the margin. Sessions from before every interview
 # was timed have no seconds and never expire. Only interviews with a running section are looked
 # at, through the partial index on them (ix_sessions_running_invite); the status is written out,
 # as the index's condition is, so the planner can always use it.

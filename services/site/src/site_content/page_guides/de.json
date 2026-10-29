@@ -105,7 +105,7 @@
     "tips": [
       "Von KI geschriebene Fragen können falsch sein: Überfliege jedes Thema, bevor du jemanden einlädst.",
       "Klicke auf den Titel, um das Interview umzubenennen.",
-      "Die Karten oben zählen zusammen, was jeder Kandidat bekommt: Fragen insgesamt, Zeit pro Frage und die Zeit des gesamten Interviews. Sie folgen jeder Änderung."
+      "Die Karten oben zählen zusammen, was jeder Kandidat bekommt: Fragen insgesamt, durchschnittliche Zeit pro Frage und die Zeit des gesamten Interviews. Sie folgen jeder Änderung."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Wie dieses Interview für jeden Kandidaten abläuft.",
     "actions": [
       "Schalte den Link zum Teilen für eine Stellenanzeige ein: Jeder mit dem Link kann das Interview machen.",
-      "Lege die Zeit pro Frage in Sekunden fest.",
+      "Lege die durchschnittliche Zeit pro Frage in Sekunden fest: Jede Frage bekommt ihre eigene Zeit, abhängig von ihrer Länge und dem Code, den sie zeigt; die Gesamtzeit des Interviews bleibt gleich.",
       "Lege die Bestehensgrenze fest: Kandidaten, die sie erreichen, bestehen.",
       "Markiere das Interview als eingestellt, sobald die Stelle besetzt ist.",
       "Halte die Fragen des Interviews aus dem gemeinsamen Fragenpool von prepza heraus; Fragen, die bereits in anderen Interviews wiederverwendet werden, bleiben dort."

@@ -105,7 +105,7 @@
     "tips": [
       "Soal buatan AI bisa salah: periksa sekilas setiap topik sebelum mengundang siapa pun.",
       "Klik judul untuk mengganti nama wawancara.",
-      "Kartu di atas menjumlahkan yang didapat setiap kandidat: total soal, waktu per soal, dan waktu seluruh wawancara. Kartu ini ikut berubah setiap ada perubahan."
+      "Kartu di atas menjumlahkan yang didapat setiap kandidat: total soal, rata-rata waktu per soal, dan waktu seluruh wawancara. Kartu ini ikut berubah setiap ada perubahan."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Cara wawancara ini berjalan untuk setiap kandidat.",
     "actions": [
       "Aktifkan tautan yang bisa dibagikan untuk iklan lowongan: siapa pun yang memilikinya bisa mengikuti wawancara.",
-      "Atur waktu untuk setiap soal, dalam detik.",
+      "Atur rata-rata waktu per soal, dalam detik: setiap soal mendapat waktunya sendiri berdasarkan panjangnya dan kode yang ditampilkannya, dan total waktu wawancara tetap sama.",
       "Atur nilai lulus: kandidat yang mencapainya dinyatakan lulus.",
       "Tandai wawancara sebagai diterima setelah posisinya terisi.",
       "Jangan masukkan pertanyaan wawancara ke bank soal bersama prepza; pertanyaan yang sudah dipakai ulang di wawancara lain tetap di sana."

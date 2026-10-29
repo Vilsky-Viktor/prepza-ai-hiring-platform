@@ -2,7 +2,7 @@
 title: "AI interviews: ano ang mga ito at paano gamitin nang patas"
 seoTitle: "AI in Recruitment: AI Interview Tools, Panganib at Gamit"
 description: "AI in recruitment: ano ang AI interview tools, chatbot, video analysis at generated tests, paano gumagana ang timed test ng prepza, at compliance."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # AI interviews: ano ang mga ito at paano gamitin nang patas
@@ -61,7 +61,7 @@ Puwede mo ring i-preview ang sarili mong interview bilang aplikante bago ka mag-
 
 **Nare-review ang nilalaman.** Inaaprubahan mo ang mga topic bago may maisulat, at bukas sa iyo ang mga tanong. Kung hindi tunay na job requirement ang isang topic, puwede mo itong alisin.
 
-**Halos pareho ang kondisyon ng lahat.** Parehong mga topic, parehong bilang ng tanong bawat topic, parehong oras bawat tanong. Random na kinukuha ang mga tanong ng bawat aplikante, kaya bahagyang nagkakaiba sa hirap ang mga set. Puwedeng mabigyan ng mas maraming oras ang mga aplikanteng nangangailangan nito: puwede kang magdagdag ng oras bawat aplikante.
+**Halos pareho ang kondisyon ng lahat.** Parehong mga topic, parehong bilang ng tanong bawat topic, parehong average na oras bawat tanong at parehong kabuuang oras. Random na kinukuha ang mga tanong ng bawat aplikante, kaya bahagyang nagkakaiba sa hirap ang mga set. Puwedeng mabigyan ng mas maraming oras ang mga aplikanteng nangangailangan nito: puwede kang magdagdag ng oras bawat aplikante.
 
 **Mas kaunting walang-kaugnayang signal.** Walang dalang accent, mukha, background o istilo ng pagsulat ang isang multiple-choice na sagot, kaya hindi nakadepende ang score sa itsura o boses ng isang tao. Hindi nito inaalis ang posibilidad ng bias: puwedeng magpakita ng pagkakaiba sa score sa pagitan ng mga grupo ang knowledge tests, at puwedeng mahirapan ang aplikante sa test na nasa ikalawa niyang wika. Bantayan ang mga resulta sa iba't ibang grupo.
 

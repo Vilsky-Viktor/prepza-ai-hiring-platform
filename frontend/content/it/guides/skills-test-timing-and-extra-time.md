@@ -2,7 +2,7 @@
 title: "Come impostare i tempi di un test di competenze: timer per domanda, durata e tempo extra"
 seoTitle: "Tempi del test di competenze: timer e tempo extra"
 description: "Quanto tempo dare a ogni domanda, quante domande fare, quale durata totale funziona e come concedere tempo extra equo ai candidati che ne hanno bisogno."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Come impostare i tempi di un test di competenze: timer per domanda, durata e tempo extra
@@ -103,12 +103,13 @@ In prepza, un colloquio è un test di competenze a scelta multipla e a tempo, cr
 
 - **Ogni domanda ha il proprio conto alla rovescia,** gestito dal server, quindi chiudere la scheda o ricaricare la pagina non lo ferma.
 - **Il valore predefinito dipende dal livello del colloquio,** che per un colloquio generato deriva dall'anzianità richiesta dalla descrizione del ruolo: 60 secondi per un colloquio base o intermedio, 75 secondi per uno difficile.
-- **Puoi cambiarlo per ogni colloquio,** nelle sue impostazioni, da 10 a 600 secondi. Una modifica vale per i candidati che iniziano dopo; il tempo di un candidato è fissato quando inizia.
+- **È una media: ogni domanda riceve da essa il suo tempo** quando vengono estratte le domande di un candidato, in base a quanto serve per leggerla e rispondere: le sue parole, il codice o l'esempio che contiene (letto più lentamente) e il tempo per trovare la risposta. Le domande brevi hanno meno tempo, quelle più lunghe e quelle con codice ne hanno di più, ciascuna tra la metà e il doppio della media, e insieme fanno esattamente il numero di domande per la media. Il conto alla rovescia mostra il tempo di ogni domanda, e la scheda dei risultati mostra quanto ne ha richiesto ogni risposta.
+- **Puoi cambiare la media per ogni colloquio,** nelle sue impostazioni, da 10 a 600 secondi. Una modifica vale per i candidati che iniziano dopo; il tempo di un candidato è fissato quando inizia.
 - **Quando il tempo scade,** vale la scelta selezionata sullo schermo e si apre la domanda successiva; senza scelta, la domanda conta come sbagliata. Le domande senza risposta contano come sbagliate, e un colloquio abbandonato da un candidato si chiude da solo una volta trascorso il suo tempo totale più il 10%.
 - **Le domande sono scritte per stare nel timer:** basta circa un minuto per rispondere (fino a un minuto e mezzo per le più difficili), anche in una seconda lingua. Una domanda ha al massimo 40 parole (50 se difficile), un'opzione al massimo 10 e un esempio al massimo 8 righe brevi.
 - **Le domande in cui il tempo scade troppo spesso vengono segnalate** e riscritte in background. Una domanda riscritta vale per i candidati che iniziano dopo la correzione; i risultati già dati non cambiano.
 
-Tutte le domande di un colloquio hanno lo stesso tempo. Circa 1 su 10 è una domanda «Seleziona tutte le opzioni corrette», con 2 o 3 opzioni giuste: ogni opzione giusta spuntata vale una parte del punto, e se ne viene spuntata una sbagliata la domanda non vale nulla.
+In un colloquio in arabo, cinese, giapponese, persiano, russo, thailandese o ucraino, ogni domanda riceve la media, perché in queste lingue la lunghezza di una domanda non prevede ancora abbastanza bene il suo tempo. Circa 1 su 10 è una domanda «Seleziona tutte le opzioni corrette», con 2 o 3 opzioni giuste: ogni opzione giusta spuntata vale una parte del punto, e se ne viene spuntata una sbagliata la domanda non vale nulla.
 
 ### Numero di domande
 
@@ -117,14 +118,14 @@ Tutte le domande di un colloquio hanno lo stesso tempo. Circa 1 su 10 è una dom
 
 ### Durata totale
 
-Prima di iniziare, i candidati vedono il tempo per domanda e il tempo dell'intero colloquio in minuti, arrotondato per eccesso: le domande che ricevono da tutti gli argomenti per i secondi per domanda. Con i valori predefiniti, tre argomenti richiedono al massimo 30 minuti, o 38 in un colloquio difficile. Nella scheda degli argomenti del colloquio vedi le domande totali, il tempo per domanda e la durata dell'intero colloquio, aggiornati a ogni modifica.
+Prima di iniziare, i candidati vedono il tempo medio per domanda e il tempo dell'intero colloquio in minuti, arrotondato per eccesso: le domande che ricevono da tutti gli argomenti per i secondi medi per domanda. Con i valori predefiniti, tre argomenti richiedono al massimo 30 minuti, o 38 in un colloquio difficile. Nella scheda degli argomenti del colloquio vedi le domande totali, il tempo medio per domanda e la durata dell'intero colloquio, aggiornati a ogni modifica.
 
 ### Tempo extra
 
 - **Proprietari e amministratori possono dare a un candidato +25%, +50% o +100%** del tempo di ogni domanda, nella pagina del candidato.
 - **Solo prima che il candidato inizi.** Dopo, il tempo è fissato, e la pagina del candidato continua a mostrare il tempo extra che ha avuto.
 - **Non viene registrato alcun motivo.** Il registro attività dell'azienda registra solo la modifica.
-- **I candidati vedono il proprio tempo:** il tempo per domanda e il totale, tempo extra incluso, e la pagina iniziale dice a ogni candidato che può chiederne di più.
+- **I candidati vedono il proprio tempo:** il tempo medio per domanda e il totale, tempo extra incluso, poi il conto alla rovescia di ogni domanda, e la pagina iniziale dice a ogni candidato che può chiederne di più.
 - **Ai candidati che arrivano dal link condivisibile** non si può dare tempo extra sul link stesso, perché il loro invito viene creato quando iniziano. La pagina del link dice loro di chiederti un invito personale prima di iniziare.
 
 Prima di invitare qualcuno, svolgi tu stesso il colloquio dalla sua pagina: è gratis, non conta come candidato e mostra in fretta se il timer è giusto.

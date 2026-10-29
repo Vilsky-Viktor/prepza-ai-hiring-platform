@@ -665,6 +665,8 @@ export interface components {
        * @default false
        */
       multi: boolean
+      /** Seconds */
+      seconds?: number | null
       /** Seconds Left */
       seconds_left?: number | null
     }
@@ -915,6 +917,8 @@ export interface components {
        * @default false
        */
       multi: boolean
+      /** Limit Seconds */
+      limit_seconds?: number | null
       /** Correct Option Index */
       correct_option_index: number | null
       /** Correct Indexes */

@@ -41,6 +41,8 @@ class NextQuestion(BaseModel):
     # Multi-answer ("select all that apply"): the candidate ticks every right option; how many
     # are right is never said.
     multi: bool = False
+    # Timed rounds only: the question's own time, fitted to the average (helpers/question_times.py).
+    seconds: int | None = None
     # Timed interviews only: seconds until the question counts as wrong. Relative, so the
     # candidate's clock being off doesn't matter.
     seconds_left: float | None = None

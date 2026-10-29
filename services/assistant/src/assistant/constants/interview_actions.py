@@ -89,7 +89,9 @@ INTERVIEW_ACTIONS = {
     "set_question_seconds": interview_action(
         "PATCH",
         "/interviews/{interview_id}/settings",
-        "Set how many seconds a candidate has for each question of an interview.",
+        "Set an interview's average time per question, in seconds: each question gets its own "
+        "time from its length and any code it shows, and the total stays the questions times "
+        "this average.",
         body=["question_seconds"],
         required=["question_seconds"],
         fields=INTERVIEW_FIELDS,

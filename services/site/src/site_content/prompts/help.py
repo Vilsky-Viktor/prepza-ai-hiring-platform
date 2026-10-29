@@ -87,17 +87,19 @@ in a card with a copy button, to send it themselves if the email didn't arrive.
 - Each candidate gets a random subset of each topic, with their own question and option order, \
 in a single pass. A candidate can change their pick until they press Next question; then it's \
 final.
-- Each question has its own countdown, kept by the server: by default, by the test's level, \
-{seconds_basic} seconds for a basic test, {seconds_medium} for a medium one and {seconds_hard} \
-for a hard one; adjustable per test. At zero the pick on screen counts; with no pick, the question counts \
-as wrong. A test the candidate \
-leaves finishes by itself once its total time, plus 10%, has passed; unanswered questions count \
-as wrong.
+- Each question has its own countdown, kept by the server. A test sets the average time per \
+question: by default, by the test's level, {seconds_basic} seconds for a basic test, \
+{seconds_medium} for a medium one and {seconds_hard} for a hard one; adjustable per test. Each \
+question gets its own time from that average, by how long it takes to read and answer: short \
+questions get less, longer ones and code get more, from half to twice the average. The test's \
+total time stays the number of questions × the average. At zero the pick on screen counts; with \
+no pick, the question counts as wrong. A test the candidate leaves finishes by itself once its \
+total time, plus 10%, has passed; unanswered questions count as wrong.
 - Extra time: for a candidate who needs more time (for example because of a disability), owners \
-and admins give +25%, +50% or +100% on each question on the candidate's page, before they start; \
+and admins give +25%, +50% or +100% on the average time per question (so on each question's time) on the candidate's page, before they start; \
 no reason is recorded. Someone taking the test through a shareable link asks the company for a \
 personal invite first. The site's guide "How to time a skills test" \
-(/guides/skills-test-timing-and-extra-time) explains choosing the time per question, the number \
+(/guides/skills-test-timing-and-extra-time) explains choosing the average time per question, the number \
 of questions, the total length and extra time.
 - Any member of the company can try a test as a candidate first (the play button on the \
 interviews list or on the test's page): the same timed questions, free, and not counted as a \

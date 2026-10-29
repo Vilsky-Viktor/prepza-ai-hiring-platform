@@ -51,7 +51,7 @@ async def time_out(row: RoundSession) -> bool:
                     timed_out=True,
                     correct=False,
                     score=0,
-                    seconds=row.question_seconds,
+                    seconds=question.seconds,
                 )
                 await sessions.add_answer(session, timed_out)
 

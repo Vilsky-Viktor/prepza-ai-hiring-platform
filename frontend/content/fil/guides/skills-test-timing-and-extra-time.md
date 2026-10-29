@@ -2,7 +2,7 @@
 title: "Paano itakda ang oras ng skills test: oras bawat tanong, haba at dagdag na oras"
 seoTitle: "Oras ng Skills Test: Timer Bawat Tanong at Dagdag na Oras"
 description: "Gaano katagal bawat tanong, ilang tanong, anong kabuuang haba ang epektibo, at paano patas na magbigay ng dagdag na oras sa aplikanteng kailangan ito."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # Paano itakda ang oras ng skills test: oras bawat tanong, haba at dagdag na oras
@@ -103,12 +103,13 @@ Sa prepza, ang interview ay isang timed na multiple-choice skills test na ginawa
 
 - **May sariling countdown ang bawat tanong,** na hawak ng server, kaya hindi ito tumitigil kapag isinara ang tab o ni-reload ang pahina.
 - **Nakadepende ang default sa level ng interview,** na sa isang generated na interview ay galing sa seniority na hinihingi ng job description: 60 segundo para sa basic o medium na interview, 75 segundo para sa hard.
-- **Puwede mo itong baguhin bawat interview,** sa mga setting nito, mula 10 hanggang 600 segundo. Para sa mga aplikanteng magsisimula pagkatapos nito ang pagbabago; nakatakda na ang oras ng isang aplikante pagsimula niya.
+- **Average ito: may sariling oras ang bawat tanong** mula rito kapag binunot ang mga tanong ng isang aplikante, batay sa tagal ng pagbasa at pagsagot dito: ang mga salita nito, anumang code o halimbawa (na mas mabagal basahin), at oras para pag-isipan ang sagot. Mas kaunti ang sa maiikling tanong, mas marami ang sa mas mahahaba at sa may code, bawat isa sa pagitan ng kalahati at doble ng average, at pinagsama-sama ay eksaktong katumbas ng bilang ng tanong times ang average. Ipinapakita ng countdown ang sariling oras ng bawat tanong, at ipinapakita ng scorecard kung gaano karami nito ang nagamit ng bawat sagot.
+- **Puwede mong baguhin ang average bawat interview,** sa mga setting nito, mula 10 hanggang 600 segundo. Para sa mga aplikanteng magsisimula pagkatapos nito ang pagbabago; nakatakda na ang oras ng isang aplikante pagsimula niya.
 - **Kapag naubos ang oras,** binibilang ang napiling sagot na nasa screen at nagbubukas ang susunod na tanong; kapag walang napili, mali ang bilang sa tanong. Mali ang bilang sa mga tanong na hindi nasagot, at kusang natatapos ang interview na iniwan ng aplikante kapag lumipas na ang kabuuang oras nito, dagdag ang 10%.
 - **Isinusulat ang mga tanong para tumugma sa timer:** masasagot sa loob ng mga isang minuto (hanggang isang minuto't kalahati para sa pinakamahirap), kahit sa pangalawang wika. Hanggang 40 salita ang isang tanong (50 para sa hard), hanggang 10 ang isang opsyon, at hanggang 8 maiikling linya ang isang halimbawa.
 - **Fina-flag ang mga tanong na madalas maubusan ng oras** at isinusulat ulit sa background. Para sa mga aplikanteng magsisimula pagkatapos ng ayos ang isinulat-ulit na tanong; hindi nagbabago ang mga resultang naibigay na.
 
-Pareho ang oras ng bawat tanong sa isang interview. Mga 1 sa 10 ang "piliin ang lahat ng tamang opsyon", na may 2 o 3 tamang opsyon: may bahagi ng puntos ang bawat tamang opsyong na-tick, at wala kapag may na-tick na mali.
+Sa interview na nasa Arabic, Chinese, Japanese, Persian, Russian, Thai o Ukrainian, average ang oras ng bawat tanong, dahil hindi pa sapat na natataya ng haba ng tanong sa mga wikang ito ang oras nito. Mga 1 sa 10 ang "piliin ang lahat ng tamang opsyon", na may 2 o 3 tamang opsyon: may bahagi ng puntos ang bawat tamang opsyong na-tick, at wala kapag may na-tick na mali.
 
 ### Bilang ng tanong
 
@@ -117,14 +118,14 @@ Pareho ang oras ng bawat tanong sa isang interview. Mga 1 sa 10 ang "piliin ang 
 
 ### Kabuuang haba
 
-Bago magsimula, nakikita ng mga aplikante ang oras bawat tanong at ang oras ng buong interview sa minuto, naka-round up: ang mga tanong na nakukuha nila mula sa bawat topic, times ang segundo bawat tanong. Sa mga default, hanggang 30 minuto ang tatlong topic, o 38 sa hard na interview. Sa tab ng mga topic ng interview, makikita mo ang kabuuang tanong, ang oras bawat tanong at ang oras ng buong interview, na nagbabago habang binabago mo ang mga ito.
+Bago magsimula, nakikita ng mga aplikante ang average na oras bawat tanong at ang oras ng buong interview sa minuto, naka-round up: ang mga tanong na nakukuha nila mula sa bawat topic, times ang average na segundo bawat tanong. Sa mga default, hanggang 30 minuto ang tatlong topic, o 38 sa hard na interview. Sa tab ng mga topic ng interview, makikita mo ang kabuuang tanong, ang average na oras bawat tanong at ang oras ng buong interview, na nagbabago habang binabago mo ang mga ito.
 
 ### Dagdag na oras
 
 - **Puwedeng bigyan ng mga may-ari at admin ang isang aplikante ng +25%, +50% o +100%** ng oras ng bawat tanong, sa pahina ng aplikante.
 - **Bago lang magsimula ang aplikante.** Pagkatapos noon, nakatakda na ang oras, at ipinapakita pa rin ng pahina ng aplikante ang dagdag na oras na natanggap niya.
 - **Walang dahilang itinatala.** Ang pagbabago lang ang itinatala ng log ng aksyon ng kumpanya.
-- **Nakikita ng mga aplikante ang sarili nilang oras:** ang oras bawat tanong at ang kabuuan, kasama ang dagdag na oras, at sinasabi ng start page sa bawat aplikante na puwede silang humingi ng mas maraming oras.
+- **Nakikita ng mga aplikante ang sarili nilang oras:** ang average na oras bawat tanong at ang kabuuan, kasama ang dagdag na oras, pagkatapos ang sariling countdown ng bawat tanong, at sinasabi ng start page sa bawat aplikante na puwede silang humingi ng mas maraming oras.
 - **Ang mga aplikante mula sa link na puwedeng i-share** ay hindi mabibigyan ng dagdag na oras sa mismong link, dahil ginagawa ang kanilang imbitasyon pagsimula nila. Sinasabi sa kanila ng pahina ng link na humingi sa iyo ng personal na imbitasyon bago sila magsimula.
 
 Bago mag-imbita ng kahit sino, kunin mo mismo ang interview mula sa pahina nito: libre ito, hindi binibilang bilang aplikante, at mabilis na ipinapakita kung tama ang pakiramdam ng timer.

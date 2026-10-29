@@ -63,7 +63,7 @@ As the company's candidate list shows them, never their questions or answers:
 
 - email, name, status, company and interview,
 - when they were invited, when the invite was last sent, when they started and finished,
-- grade and whether they passed, the extra time they were given (a percentage of each question's time),
+- grade and whether they passed, the extra time they were given (a percentage of the average time per question, which each question's own time is fitted from),
 - their integrity signals, counted: page leaves, copy attempts and answers picked too fast,
 - their credits, from billing: held (set aside), charged or released (given back); none when none were held,
 - when the address is on the suppression list (it bounced, marked an email as spam, or Resend stopped sending to it), since when and why, with **Take off the list**, as on an account's page,

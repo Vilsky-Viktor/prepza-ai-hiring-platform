@@ -154,14 +154,19 @@ export async function multiAnswerTemplate(
   });
 }
 
-/** Adds `extra` to the end of every question of a template addTemplate made, before a company
- * copies it, so its questions run long. */
-export async function lengthenQuestions(templateId: string, extra: string) {
+/** Adds `extra` to the end of every question of a template addTemplate made (or of those at
+ * `positions`), before a company copies it, so its questions run long. */
+export async function lengthenQuestions(
+  templateId: string,
+  extra: string,
+  positions?: number[],
+) {
   await withDatabase("library", (client) =>
     client.query(
       `UPDATE questions q SET text = q.text || ' ' || $2
-       FROM topics t WHERE t.id = q.topic_id AND t.set_id = $1`,
-      [templateId, extra],
+       FROM topics t WHERE t.id = q.topic_id AND t.set_id = $1
+         AND ($3::int[] IS NULL OR q.position = ANY($3))`,
+      [templateId, extra, positions ?? null],
     ),
   );
 }

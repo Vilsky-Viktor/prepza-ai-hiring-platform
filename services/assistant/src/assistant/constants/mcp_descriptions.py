@@ -22,7 +22,7 @@ MCP_DESCRIPTIONS = {
         "Use it for who is on the team and who can do what."
     ),
     "get_interview": (
-        "One interview by interview_id: title, status, pass mark, seconds per question, "
+        "One interview by interview_id: title, status, pass mark, average seconds per question, "
         "candidate count, whether someone was hired, its topics and subtopics, question count "
         "and limit, and the shareable link while it's on. Use it for an interview's settings "
         "and questions overview; its candidates come from list_candidates."

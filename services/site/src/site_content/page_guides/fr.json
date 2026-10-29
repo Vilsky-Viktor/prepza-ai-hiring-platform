@@ -105,7 +105,7 @@
     "tips": [
       "Les questions rédigées par l'IA peuvent être fausses : parcourez chaque thème avant d'inviter qui que ce soit.",
       "Cliquez sur le titre pour renommer l'entretien.",
-      "Les cartes en haut additionnent ce que reçoit chaque candidat : le total des questions, le temps par question et la durée de l'entretien complet. Elles suivent chaque changement."
+      "Les cartes en haut additionnent ce que reçoit chaque candidat : le total des questions, le temps moyen par question et la durée de l'entretien complet. Elles suivent chaque changement."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Le déroulement de cet entretien pour chaque candidat.",
     "actions": [
       "Activez le lien de partage pour une offre d'emploi : toute personne qui l'a peut passer l'entretien.",
-      "Définissez le temps par question, en secondes.",
+      "Définissez le temps moyen par question, en secondes : chaque question reçoit son propre temps selon sa longueur et le code qu'elle affiche, et la durée totale de l'entretien reste la même.",
       "Définissez le seuil de réussite : les candidats qui l'atteignent réussissent.",
       "Marquez l'entretien comme recruté une fois le poste pourvu.",
       "Gardez les questions de l'entretien hors de la banque de questions partagée de prepza ; celles déjà réutilisées dans d'autres entretiens y restent."

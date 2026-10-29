@@ -105,7 +105,7 @@
     "tips": [
       "Questões escritas por IA podem estar erradas: dê uma olhada em cada tópico antes de convidar alguém.",
       "Clique no título para renomear a entrevista.",
-      "Os cartões no topo somam o que cada candidato recebe: o total de questões, o tempo por questão e o tempo da entrevista completa. Eles acompanham cada mudança."
+      "Os cartões no topo somam o que cada candidato recebe: o total de questões, o tempo médio por questão e o tempo da entrevista completa. Eles acompanham cada mudança."
     ]
   },
   "interviewCandidates": {
@@ -126,7 +126,7 @@
     "text": "Como esta entrevista funciona para cada candidato.",
     "actions": [
       "Ative o link compartilhável para um anúncio de vaga: qualquer pessoa com ele pode fazer a entrevista.",
-      "Defina o tempo de cada questão, em segundos.",
+      "Defina o tempo médio por questão, em segundos: cada questão recebe seu próprio tempo de acordo com o tamanho e o código que mostra, e o tempo total da entrevista continua o mesmo.",
       "Defina a nota de aprovação: os candidatos que a atingem são aprovados.",
       "Marque a entrevista como “Contratado” quando preencher a vaga.",
       "Mantenha as perguntas da entrevista fora do banco de perguntas compartilhado do prepza; as já reutilizadas em outras entrevistas continuam lá."

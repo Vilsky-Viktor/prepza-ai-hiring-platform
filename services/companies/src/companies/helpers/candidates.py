@@ -107,7 +107,9 @@ def company_candidate_out(
 
 
 def candidate_seconds(question_seconds: int, extra_time: int | None) -> int:
-    """Each question's time for a candidate, with any extra time they were given."""
+    """A candidate's average time a question, with any extra time they were given: rounds fits
+    each question's own time to it, so every question gets the same share more and the total
+    stays exact in whole seconds."""
     return round(question_seconds * (100 + (extra_time or 0)) / 100)
 
 

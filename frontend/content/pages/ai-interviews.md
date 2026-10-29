@@ -2,7 +2,7 @@
 title: "AI interviews: what they are and how to use them fairly"
 seoTitle: "AI Interview Tools: Types, Risks and How to Use Them Fairly"
 description: "What AI interview tools do: chatbots, video analysis and generated tests. How prepza's timed multiple-choice approach works, and the compliance basics."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # AI interviews: what they are and how to use them fairly
@@ -61,7 +61,7 @@ You can also preview your own interview as a candidate before inviting anyone: t
 
 **The content is reviewable.** You approve the topics before anything is written, and the questions are open to you. If a topic isn't a real job requirement, you can remove it.
 
-**Everyone faces similar conditions.** Same topics, same number of questions per topic, same time per question. Each candidate's questions are drawn at random, so sets differ a little in difficulty. Candidates who need more time can get it: you can add extra time per candidate.
+**Everyone faces similar conditions.** Same topics, same number of questions per topic, same average time per question and the same total time. Each candidate's questions are drawn at random, so sets differ a little in difficulty. Candidates who need more time can get it: you can add extra time per candidate.
 
 **Fewer irrelevant signals.** A multiple-choice answer doesn't carry an accent, a face, a background or a writing style, so the score doesn't depend on how someone looks or sounds. That doesn't rule out bias: knowledge tests can show score differences between groups, and a test in a candidate's second language can hold them back. Monitor results across groups.
 

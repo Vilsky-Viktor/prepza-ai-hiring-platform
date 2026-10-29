@@ -38,6 +38,7 @@ def timed(shown_seconds_ago, answers=None):
                 "id": str(QUESTION_ID),
                 "text": "Q?",
                 "options": [{"answer": "A", "correct": True}, {"answer": "B", "correct": False}],
+                "seconds": 30,
             }
         ],
         final_score=None,

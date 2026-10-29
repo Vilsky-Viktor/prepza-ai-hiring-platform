@@ -2,7 +2,7 @@
 title: "How to time a skills test: question timers, length and extra time"
 seoTitle: "Skills Test Time Limits: Per-Question Timers and Extra Time"
 description: "How long to give each question, how many questions to ask, what total length works, and how to give extra time fairly to candidates who need it."
-updated: "2026-10-17"
+updated: "2026-10-29"
 ---
 
 # How to time a skills test: question timers, length and extra time
@@ -103,12 +103,13 @@ In prepza, an interview is a timed multiple-choice skills test created from your
 
 - **Every question has its own countdown,** kept by the server, so closing the tab or reloading the page doesn't stop it.
 - **The default depends on the interview's level,** which for a generated interview comes from the seniority the job description asks for: 60 seconds for a basic or medium interview, 75 seconds for a hard one.
-- **You can change it per interview,** in its settings, from 10 to 600 seconds. A change applies to candidates who start after it; a candidate's time is fixed when they start.
+- **This is an average: each question gets its own time** from it when a candidate's questions are drawn, by how long it takes to read and answer: its words, any code or example (read more slowly), and time to work out the answer. Short questions get less, longer ones and code get more, each between half and twice the average, and together they add up to exactly the number of questions times the average. The countdown shows each question's own time, and the scorecard shows how long each answer took out of it.
+- **You can change the average per interview,** in its settings, from 10 to 600 seconds. A change applies to candidates who start after it; a candidate's time is fixed when they start.
 - **When time runs out,** the pick on screen counts and the next question opens; with no pick, the question counts as wrong. Unanswered questions count as wrong, and an interview a candidate leaves finishes by itself once its total time, plus 10%, has passed.
 - **Questions are written to fit the timer:** answered in about a minute (up to a minute and a half for the hardest), also in a second language. A question is at most 40 words (50 for a hard one), an option at most 10, and an example at most 8 short lines.
 - **Questions that run out of time too often are flagged** and rewritten in the background. A rewritten question applies to candidates who start after the fix; results already given don't change.
 
-Every question in an interview has the same time. About 1 in 10 are "select all that apply", with 2 or 3 right options, earning part of the point for each right option ticked and nothing if a wrong one is ticked.
+In an interview in Arabic, Chinese, Japanese, Persian, Russian, Thai or Ukrainian, every question gets the average, as a question's length in these languages doesn't yet predict its time well enough. About 1 in 10 are "select all that apply", with 2 or 3 right options, earning part of the point for each right option ticked and nothing if a wrong one is ticked.
 
 ### Number of questions
 
@@ -117,14 +118,14 @@ Every question in an interview has the same time. About 1 in 10 are "select all 
 
 ### Total length
 
-Before starting, candidates see the time per question and the whole interview's time in minutes, rounded up: the questions they get from every topic, times the seconds per question. With the defaults, three topics take at most 30 minutes, or 38 on a hard interview. On the interview's topics tab you see the total questions, the time per question and the whole interview's time, updated as you change them.
+Before starting, candidates see the average time per question and the whole interview's time in minutes, rounded up: the questions they get from every topic, times the average seconds per question. With the defaults, three topics take at most 30 minutes, or 38 on a hard interview. On the interview's topics tab you see the total questions, the average time per question and the whole interview's time, updated as you change them.
 
 ### Extra time
 
 - **Owners and admins can give a candidate +25%, +50% or +100%** of each question's time, on the candidate's page.
 - **Only before the candidate starts.** After that the time is fixed, and the candidate's page still shows the extra time they had.
 - **No reason is recorded.** The company's action log records only the change.
-- **Candidates see their own time:** the time per question and the total, extra time included, and the start page tells every candidate they can ask for more.
+- **Candidates see their own time:** the average time per question and the total, extra time included, then each question's own countdown, and the start page tells every candidate they can ask for more.
 - **Shareable-link candidates** can't be given extra time on the link itself, because their invite is made when they start. The link's page tells them to ask you for a personal invite before they start.
 
 Before inviting anyone, take the interview yourself from its page: it's free, doesn't count as a candidate, and shows quickly whether the timer feels right.

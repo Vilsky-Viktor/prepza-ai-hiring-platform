@@ -2,7 +2,7 @@
 title: "Comment présélectionner 100 candidats en une journée"
 seoTitle: "Trier 100 candidatures en une journée : méthode pratique"
 description: "Un plan étape par étape pour présélectionner 100 candidats en une journée, équitablement : critères impératifs, court test, liste classée et examen humain."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Comment présélectionner 100 candidats en une journée
@@ -42,7 +42,7 @@ Avec prepza :
 
 1. **Collez la fiche de poste.** prepza repère ce qu'un candidat doit savoir et propose des thèmes.
 2. **Comparez les thèmes à votre liste de l'étape 1.** Décochez tout ce qui n'est pas une vraie exigence, renommez des thèmes, modifiez les sous-thèmes ou décrivez vos changements en texte libre (« ajouter un thème sur les bases de la paie »). Les questions ne sont rédigées qu'après votre validation.
-3. **Fixez la durée.** Par défaut, chaque thème pose 10 questions, chacune avec un compte à rebours de 60 secondes, ou de 75 secondes sur un test difficile. Trois thèmes, c'est au plus 30 minutes pour un candidat (environ 38 sur un test difficile), et généralement moins. Limitez-vous à ce dont vous avez besoin.
+3. **Fixez la durée.** Par défaut, chaque thème pose 10 questions, chacune avec son propre compte à rebours, de 60 secondes en moyenne, ou de 75 secondes sur un test difficile. Trois thèmes, c'est au plus 30 minutes pour un candidat (environ 38 sur un test difficile), et généralement moins. Limitez-vous à ce dont vous avez besoin.
 4. **Fixez un seuil de réussite.** Il est de 70 % par défaut. Considérez-le comme un repère pour lire les résultats, pas comme une coupe automatique.
 5. **Essayez-le en tant que candidat.** Passez le test vous-même. C'est gratuit et cela ne compte pas comme un candidat. Si une question vous semble bancale, régénérez-la.
 

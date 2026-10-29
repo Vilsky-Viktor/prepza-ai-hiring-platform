@@ -13,7 +13,8 @@ Contents: [Mira](#mira-an-ai-assistant-that-says-so-2026-10-22-kept) ·
 [How to narrow a list](#how-to-narrow-a-list-cut-short-2026-10-22-kept) ·
 [Fewer tools a turn](#fewer-tools-a-turn-chosen-by-a-routing-call-2026-10-23-kept) ·
 [Handing over to a person](#handing-over-to-a-person-when-a-call-fails-2026-10-22-kept) ·
-[The shared bank](#keeping-an-interviews-questions-out-of-the-shared-bank-2026-10-23-kept)
+[The shared bank](#keeping-an-interviews-questions-out-of-the-shared-bank-2026-10-23-kept) ·
+[The average time per question](#the-average-time-per-question-2026-10-29-kept)
 
 ## Mira, an AI assistant that says so (2026-10-22, kept)
 
@@ -114,3 +115,16 @@ injection safe 100%, judge traps 8/8; 13,200 tokens, $0.0014, 11.4 s a turn. Of 
 were OpenAI connection errors (i02, i04, i06) and e07 (a pass mark without an interview: it picked
 one instead of asking) failed twice; run again with 3 repeats (`…_bank-recheck.json`), e07, i02,
 i04, i06 and e13 passed 15 of 15. $0.30 in all.
+
+## The average time per question (2026-10-29, kept)
+
+`set_question_seconds` now says it sets the interview's average time per question (each question
+gets its own time from it, the total stays the questions times the average), its title "Set the
+average time per question", and `get_interview` says "average seconds per question".
+`assistant_actions.py`, 2 repeats, 69 cases, `gpt-6-luna` low (`…_fitted-times.json`): task
+success 99.3% (96.0–99.9) against 97.8% (93.7–99.2), within both intervals; tool choice 99.3%,
+arguments 100%, link 100%, asked first 100%, injection safe 100%, judge traps 8/8; e04 (90 seconds
+per question) 2 of 2 with the right arguments; 13,600 tokens, $0.0014, 7.4 s a turn. The one
+failure, i08.1, asked which of two companies held the interview instead of looking in both (its
+repeat passed). The run's fixture read invite tokens with the companies service's database user:
+the assistant's own user no longer has CONNECT on the companies database. $0.26.

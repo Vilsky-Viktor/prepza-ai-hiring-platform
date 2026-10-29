@@ -31,12 +31,13 @@ def session(shown_at):
                     {"answer": "Right", "correct": True},
                     {"answer": "Wrong", "correct": False},
                 ],
+                "seconds": 49,
             }
         ],
         final_score=None,
         started_at=datetime.now(UTC),
         finished_at=None,
-        question_seconds=None,
+        question_seconds=60,
         question_shown_at=shown_at,
         answers=[],
     )
@@ -87,7 +88,9 @@ def test_answer_records_the_seconds_since_the_question_was_shown(monkeypatch):
 
     assert 29 <= saved[0].seconds <= 31
     row.answers = saved
-    assert build_review(row)[0].answer.seconds == saved[0].seconds
+    # The report shows it out of the question's own time.
+    review = build_review(row)[0]
+    assert (review.answer.seconds, review.limit_seconds) == (saved[0].seconds, 49)
 
 
 def test_only_a_candidates_answer_tells_library_about_the_question(monkeypatch):
