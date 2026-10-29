@@ -20,6 +20,7 @@ import { WarningCard } from "@/components/common/warning-card"
 import { apiFetch, serviceRefusal } from "@/lib/api"
 import { languageOf } from "@/lib/locale"
 import type { QuestionStats } from "@/types/feedback"
+import { LoadingSpinner } from "@/components/common/loading-spinner"
 
 /** A topic's questions in a dialog, written in `language` (the interview's or template's). */
 export function TopicQuestions({
@@ -142,10 +143,10 @@ export function TopicQuestions({
               />
             )}
           />
+        ) : missing ? (
+          <p className="text-muted-foreground">{t("loadFailed")}</p>
         ) : (
-          <p className="text-muted-foreground">
-            {missing ? t("loadFailed") : common("loading")}
-          </p>
+          <LoadingSpinner label={common("loading")} compact />
         )}
         <DialogFooter showCloseButton />
       </DialogContent>

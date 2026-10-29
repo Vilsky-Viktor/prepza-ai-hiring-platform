@@ -9,6 +9,7 @@ import { usePagedList } from "@/hooks/use-paged-list"
 import { byId } from "@/lib/paged-list"
 import { hasMessage } from "@/lib/messages"
 import type { QuestionReport } from "@/types/feedback"
+import { LoadingSpinner } from "@/components/common/loading-spinner"
 
 /** A question's reports in their own scroll box, loading more as the user scrolls it. */
 export function QuestionReports({ path }: { path: string }) {
@@ -31,7 +32,7 @@ export function QuestionReports({ path }: { path: string }) {
   }
 
   if (!loaded) {
-    return <p className="text-sm text-muted-foreground">{common("loading")}</p>
+    return <LoadingSpinner label={common("loading")} compact />
   }
 
   if (items.length === 0) {

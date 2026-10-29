@@ -26,6 +26,7 @@ import { SIGN_CARD } from "@/config/cards"
 import { usePageKey } from "@/hooks/use-page-key"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { PageGuide, PageHelpKey } from "@/types/page-help"
+import { LoadingSpinner } from "@/components/common/loading-spinner"
 
 /** A page's info button: a muted icon that opens a short guide to the page, which rounds serves
  * (the assistant reads the same): what it's for, what you can do there, a tip or two and, on some
@@ -107,16 +108,12 @@ export function PageHelp({
               </LocalizedLink>
             )}
           </>
-        ) : (
-          <p
-            role="status"
-            className={cn(
-              "text-base",
-              error ? "text-destructive" : "text-muted-foreground"
-            )}
-          >
-            {error ?? common("loading")}
+        ) : error ? (
+          <p role="status" className="text-base text-destructive">
+            {error}
           </p>
+        ) : (
+          <LoadingSpinner label={common("loading")} compact />
         )}
         <FeedbackCard />
         <DialogFooter>

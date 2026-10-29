@@ -22,7 +22,7 @@ import type { Locale } from "@/config/i18n"
 import type { AtsProvider } from "@/config/ats"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { AtsItem, Interview } from "@/types/company"
-import { CARD_PADDING } from "@/config/cards"
+import { LoadingSpinner } from "@/components/common/loading-spinner"
 
 // The interview menu's first choice: a new interview made from the job's own text.
 const NEW = "new"
@@ -228,11 +228,7 @@ export function LinkJob({
               {t("jobTextNote", { ats: provider.name })}
             </p>
             {jobText === null ? (
-              <p
-                className={`rounded-xl bg-surface ${CARD_PADDING} text-muted-foreground`}
-              >
-                {t("loading")}
-              </p>
+              <LoadingSpinner label={t("loading")} compact />
             ) : (
               <DescriptionBox
                 key={job}

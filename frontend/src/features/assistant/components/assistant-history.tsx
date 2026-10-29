@@ -19,6 +19,7 @@ import { deleteConversation, listConversations } from "@/lib/assistant"
 import { bdiText } from "@/lib/bidi"
 import type { Conversation } from "@/types/assistant"
 import { ROW_HOVER } from "@/config/lists"
+import { LoadingSpinner } from "@/components/common/loading-spinner"
 
 /** The user's past conversations with the assistant, the latest first: one opens, the bin
  * deletes it. `companyNames` names each one's company. */
@@ -65,11 +66,7 @@ export function AssistantHistory({
   }
 
   if (items === null) {
-    return (
-      <p className="py-16 text-center text-muted-foreground">
-        {common("loading")}
-      </p>
-    )
+    return <LoadingSpinner label={common("loading")} compact />
   }
 
   if (items.length === 0) {
