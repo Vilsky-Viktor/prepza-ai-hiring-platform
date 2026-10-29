@@ -1,7 +1,7 @@
 from site_content.constants.legal import COMPANY
 
-# The privacy policy, in English only: it's a legal text, and a translation would need its own
-# legal review. The help chat (the signed-out assistant) answers from it too.
+# The privacy policy. Only this English text is binding; the site's translations are for reading.
+# The help chat (the signed-out assistant) answers from it too.
 PRIVACY_INTRO = f"This policy explains what personal data prepza collects, why, how long we keep it, and the rights you have. prepza is run by {COMPANY['name']} (registry code {COMPANY['registry_code']}), {COMPANY['address']}. prepza.ai also shows this document in other languages; only this English version is binding, and where a translation differs, the English version applies."
 
 PRIVACY_SECTIONS = [

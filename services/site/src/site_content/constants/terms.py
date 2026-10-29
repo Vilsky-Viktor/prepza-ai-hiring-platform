@@ -1,7 +1,7 @@
 from site_content.constants.legal import COMPANY
 
-# The terms of use, in English only: it's a legal text, and a translation would need its own
-# legal review. The FAQ page's chat answers from it too.
+# The terms of use. Only this English text is binding; the site's translations are for reading.
+# The FAQ page's chat answers from it too.
 TERMS_INTRO = f"These terms apply when you use prepza, a service of {COMPANY['name']} (registry code {COMPANY['registry_code']}), {COMPANY['address']}. By signing in, you agree to them. prepza.ai also shows this document in other languages; only this English version is binding, and where a translation differs, the English version applies."
 
 TERMS_SECTIONS = [

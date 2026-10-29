@@ -1,8 +1,8 @@
 from site_content.constants.legal import COMPANY
 
-# The data processing agreement (GDPR Article 28) between prepza and each company, in English
-# only: it's a legal text, and a translation would need its own legal review. The terms make it
-# part of every company's agreement. The FAQ page's chat answers from it too.
+# The data processing agreement (GDPR Article 28) between prepza and each company. Only this
+# English text is binding; the site's translations are for reading. The terms make it part of
+# every company's agreement. The FAQ page's chat answers from it too.
 DPA_INTRO = f"This agreement applies when a company uses prepza to assess candidates. The company is the controller of its candidates' data and {COMPANY['name']} (registry code {COMPANY['registry_code']}), {COMPANY['address']}, processes it on the company's behalf. It forms part of the terms and is accepted with them; nothing needs to be signed. prepza.ai also shows this document in other languages; only this English version is binding, and where a translation differs, the English version applies."
 
 DPA_SECTIONS = [
