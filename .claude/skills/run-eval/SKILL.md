@@ -53,7 +53,7 @@ hash.
 ## 6. Record
 
 For a change that ships, in the same commit: add the run to `evals/baselines/README.md` (the assistant's
-to `evals/baselines/assistant.md`, its actions' to `evals/baselines/assistant-actions.md`, generation's prompts' to `evals/baselines/generation.md`, the small utility prompts' to
+to `evals/baselines/assistant.md`, its actions' to `evals/baselines/assistant-actions.md`, the help chat's to `evals/baselines/help-chat.md`, generation's prompts' to `evals/baselines/generation.md`, the small utility prompts' to
 `evals/baselines/utility.md`) and update the Baselines table in `evals/README.md` (rule 9). A
 real failure found on the way becomes a made-up case in its dataset.
 

@@ -88,7 +88,7 @@ constants and of the judge prompts, the judge, the model and effort, the scores 
 The numbers each metric reached last, on its dataset and judge; `baselines/README.md` has every run
 behind them, by date (the assistant's in `baselines/assistant.md` and, for its actions,
 `baselines/assistant-actions.md`, what was tried there and not kept in
-`baselines/assistant-tried.md`, generation's prompts' in
+`baselines/assistant-tried.md`, the help chat's in `baselines/help-chat.md`, generation's prompts' in
 `baselines/generation.md`, the small utility prompts' in `baselines/utility.md`). Compare a change only with a baseline on the same dataset and judge, and act
 only on a difference beyond both intervals (every result prints its 95% interval, `stats.py`).
 
