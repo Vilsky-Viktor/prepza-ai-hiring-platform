@@ -1,15 +1,20 @@
 """Every route taking the id of something a company owns lets its owner through and refuses the
 owner of another company, a viewer's change and anyone signed out; superadmin routes refuse
-everyone else (access_matrix, .claude/rules/testing.md, Security)."""
+everyone else (access_matrix); every /internal route taking an id with the id that scopes it
+refuses an object outside that scope, and a call without this service's token
+(internal_matrix; .claude/rules/testing.md, Security)."""
 
 from uuid import uuid4
 
 import access_matrix
+import internal_matrix
 import pytest
 from access_matrix import ALLOWED, REFUSED, Side, World, user_id
 from sqlalchemy import update
 
+from companies.config import settings
 from companies.core.db import Session
+from companies.core.security import SERVICE_NAME
 from companies.main import app
 from companies.models.interviews import Interview
 from companies.repositories import interviews, invites, members
@@ -32,6 +37,16 @@ NOT_OWNED = {
     "GET /companies/{company_id}/logo": "Public on purpose (test_route_guards): emails show it.",
 }
 
+# The ids /internal routes scope: the api and ats vouch for the company, and for the member a
+# candidate is invited as (`sender_id`, in the body).
+INTERNAL_OWNED = {"company_id", "interview_id", "invite_id", "sender_id"}
+BODY_IDS = {"POST /internal/interviews/{interview_id}/invites": ("sender_id",)}
+NOT_SCOPED = {
+    "GET /internal/companies/{company_id}/access": "Answers whether the user is a member.",
+    "POST /internal/companies/{company_id}/interviews": "The acting user the api checked.",
+}
+KEY = (settings.service_secret, SERVICE_NAME)
+
 # Values of the parameters naming nothing this service owns: the question bank's topics and
 # questions are library's, which checks them against the interview's set.
 VALUES = {"theme": "light", "topic_id": str(uuid4()), "question_id": str(uuid4())}
@@ -44,6 +59,10 @@ BODIES = {
     "PUT /interviews/{interview_id}/candidates/{invite_id}/extra-time": {"extra_time": 25},
     "PUT /companies/{company_id}/brand-colors/{theme}": {"colors": None},
     "PUT /companies/{company_id}/allowed-domains": {"domains": []},
+    "POST /internal/interviews/{interview_id}/invites": lambda ids: {
+        "email": "another@example.com",
+        "sender_id": ids["sender_id"],
+    },
 }
 
 OWNER_ONLY = {"viewer": REFUSED}
@@ -88,6 +107,7 @@ async def side(kind: str) -> Side:
         "invite_id": candidate.id,
         "member_id": member.id,
         "user_id": owner,
+        "sender_id": owner,
     }
 
     return Side(owner, {name: str(value) for name, value in ids.items()}, viewer)
@@ -113,3 +133,16 @@ def test_only_whoever_may_gets_through(route, world, run):
     found, statuses = run(access_matrix.outcomes(app, route, world, BODIES, VALUES))
 
     assert found == access_matrix.expected(route, world, EXCEPTIONS), str(statuses)
+
+
+def test_every_internal_route_taking_two_ids_is_scoped_or_listed_with_why():
+    assert internal_matrix.unlisted(app, INTERNAL_OWNED, NOT_SCOPED, BODY_IDS) == []
+
+
+@pytest.mark.parametrize(
+    "route", internal_matrix.routes(app, INTERNAL_OWNED, NOT_SCOPED, BODY_IDS), ids=str
+)
+def test_only_the_scoped_object_gets_through(route, world, run):
+    found, statuses = run(internal_matrix.outcomes(app, route, world, KEY, BODIES, VALUES))
+
+    assert found == internal_matrix.expected(route, {}), str(statuses)
