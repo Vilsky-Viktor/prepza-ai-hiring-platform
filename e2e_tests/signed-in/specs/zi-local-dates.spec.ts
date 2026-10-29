@@ -35,7 +35,7 @@ test("a date shows in the visitor's time zone", async ({
       .getByRole("main")
       .getByText(email)
       .locator("xpath=ancestor::li[1]");
-    await expect(row.getByText("Oct 14, 2026")).toBeVisible({
+    await expect(row.getByText("Oct 14, 2026").filter({ visible: true })).toBeVisible({
       timeout: 60_000,
     });
   } finally {

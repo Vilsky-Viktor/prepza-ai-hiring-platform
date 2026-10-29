@@ -36,7 +36,7 @@ test("owner invites candidates with names three ways and finds one by name", asy
   // local dev server can be slow to refresh it).
   await expect(dialog).toBeHidden({ timeout: 60_000 })
   await visit(owner, list)
-  await expect(owner.getByText("Ann Lee", { exact: true })).toBeVisible()
+  await expect(owner.getByText("Ann Lee", { exact: true }).filter({ visible: true })).toBeVisible()
 
   // Invite many: a name beside one email, none beside the other.
   await visit(owner, list)
@@ -49,7 +49,7 @@ test("owner invites candidates with names three ways and finds one by name", asy
   // local dev server can be slow to refresh it).
   await expect(dialog).toBeHidden({ timeout: 60_000 })
   await visit(owner, list)
-  await expect(owner.getByText("Bob Stone", { exact: true })).toBeVisible()
+  await expect(owner.getByText("Bob Stone", { exact: true }).filter({ visible: true })).toBeVisible()
   const plainRow = owner.getByRole("link").filter({ hasText: plain })
   const noName = plainRow.getByTestId("no-name")
   await expect(noName).toBeVisible()
@@ -93,7 +93,7 @@ test("owner invites candidates with names three ways and finds one by name", asy
   await search.fill("stone")
   await search.press("Enter")
   await expect(owner).toHaveURL(/q=stone/)
-  await expect(owner.getByText(bob, { exact: true })).toBeVisible()
+  await expect(owner.getByText(bob, { exact: true }).filter({ visible: true })).toBeVisible()
   await expect(owner.getByText(ann, { exact: true })).toHaveCount(0)
   await shot(owner, "search-by-name")
 })
@@ -108,14 +108,14 @@ test("the sign-in fills a name once and an owner's correction stays", async ({ s
   await inviteCandidate(owner, interviewId, email)
   const list = `/companies/${company.id}/interviews/${interviewId}?tab=candidates`
   await visit(owner, list)
-  await expect(owner.getByRole("link").filter({ hasText: email }).getByTestId("no-name")).toBeVisible()
+  await expect(owner.getByRole("link").filter({ hasText: email }).getByTestId("no-name").filter({ visible: true })).toBeVisible()
 
   const candidate = await signInAs(email, { ui: true }, "Maria Kowalska")
   const start = `/companies/invites/${await inviteToken(email)}/start`
   await api(candidate, "POST", start, { pledged: true })
 
   await visit(owner, list)
-  await owner.getByText("Maria Kowalska", { exact: true }).click()
+  await owner.getByText("Maria Kowalska", { exact: true }).filter({ visible: true }).click()
   await expect(owner).toHaveURL(/\/candidates\/[^/?]+$/, { timeout: 90_000 })
   await expect(owner.getByRole("heading", { name: email })).toBeVisible()
   // The name's line under the email, with its pencil for an owner: the visible one, as the page
@@ -159,7 +159,7 @@ test("the invite dialog says what it couldn't read", async ({ signInAs }) => {
     buffer: Buffer.from(`email\n${throwawayEmail("xlsx")}\n`),
   })
   await invite.click()
-  await expect(dialog.getByText("Only CSV or TXT files.")).toBeVisible()
+  await expect(dialog.getByText("Only CSV or TXT files.").filter({ visible: true })).toBeVisible()
   await shot(owner, "wrong-file-type")
 
   await file.setInputFiles({
@@ -178,12 +178,12 @@ test("the invite dialog says what it couldn't read", async ({ signInAs }) => {
     buffer: Buffer.from("email,name\nJohn Smith,\nbob@example,Bob\n"),
   })
   await invite.click()
-  await expect(dialog.getByText("No email found: John Smith,")).toBeVisible()
+  await expect(dialog.getByText("No email found: John Smith,").filter({ visible: true })).toBeVisible()
   // In a live region, so screen readers hear them as they appear.
   await expect(
     dialog.getByRole("status").filter({ hasText: "No email found: John Smith," })
   ).toBeVisible()
-  await expect(dialog.getByText("Email isn't valid: bob@example,Bob")).toBeVisible()
+  await expect(dialog.getByText("Email isn't valid: bob@example,Bob").filter({ visible: true })).toBeVisible()
   await shot(owner, "file-unusable-lines")
 
   // A list keeps only its unusable lines, each named once with its main reason.
@@ -191,9 +191,9 @@ test("the invite dialog says what it couldn't read", async ({ signInAs }) => {
   const list = ["John Smith", "bob@example", "Bob <bob@example", "Ann <ann@example.com"]
   await dialog.getByRole("textbox").fill(list.join("\n"))
   await invite.click()
-  await expect(dialog.getByText("No email found: John Smith")).toBeVisible()
-  await expect(dialog.getByText("Email isn't valid: bob@example", { exact: true })).toBeVisible()
-  await expect(dialog.getByText("Email isn't valid: Bob <bob@example")).toBeVisible()
+  await expect(dialog.getByText("No email found: John Smith").filter({ visible: true })).toBeVisible()
+  await expect(dialog.getByText("Email isn't valid: bob@example", { exact: true }).filter({ visible: true })).toBeVisible()
+  await expect(dialog.getByText("Email isn't valid: Bob <bob@example").filter({ visible: true })).toBeVisible()
   await expect(
     dialog.getByText("Write the name as Name <email>: Ann <ann@example.com")
   ).toBeVisible()

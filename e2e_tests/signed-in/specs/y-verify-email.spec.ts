@@ -32,6 +32,6 @@ test("a candidate whose email isn't confirmed is told to confirm it", async ({ s
   // The one error is the API's reason, word for word: no other message in its place.
   const error = candidate.locator('[data-sonner-toast][data-type="error"]')
   await expect(error).toHaveCount(1)
-  await expect(error.getByText(refusal, { exact: true })).toBeVisible()
+  await expect(error.getByText(refusal, { exact: true }).filter({ visible: true })).toBeVisible()
   await shot(candidate, "confirm-email")
 })

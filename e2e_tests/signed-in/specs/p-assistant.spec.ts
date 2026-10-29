@@ -31,14 +31,14 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
   await expect(panel.getByRole("textbox")).toBeFocused();
 
   // No company yet, then a company that isn't verified: the service decides the stage.
-  await expect(panel.getByTestId("welcome-no_company")).toBeVisible();
+  await expect(panel.getByTestId("welcome-no_company").filter({ visible: true })).toBeVisible();
   // The welcome introduces the assistant by name, kept as written in the lowercase title.
   await expect(panel.getByTestId("welcome-no_company").getByRole("heading").locator(".normal-case").first()).toBeVisible();
   await shot(owner, "welcome-no-company");
   await panel.getByTestId("assistant-close").click();
   const company = await createCompany(owner);
   panel = await openPanel(owner);
-  await expect(panel.getByTestId("welcome-unverified")).toBeVisible();
+  await expect(panel.getByTestId("welcome-unverified").filter({ visible: true })).toBeVisible();
 
   // The company picker: all companies outside a company's pages, the page's company on them.
   const picker = panel.getByTestId("assistant-company").getByRole("button");
@@ -88,7 +88,7 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
   await shot(owner, "recording");
   await owner.clock.fastForward(1_200);
   await owner.keyboard.press("Enter");
-  await expect(panel.getByRole("list").getByText("Who else passed?")).toBeVisible();
+  await expect(panel.getByRole("list").getByText("Who else passed?").filter({ visible: true })).toBeVisible();
   expect(sent[1]).toMatchObject({ message: "Who else passed?", source: "voice", conversation_id: CONVERSATION });
   expect(sent[1].company_id).toBeUndefined();
 
@@ -105,7 +105,7 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
   await owner.mouse.click(100, 500);
   await expect(panel).toHaveCount(0);
   panel = await openPanel(owner);
-  await expect(panel.getByRole("list").getByText("Who else passed?")).toBeVisible();
+  await expect(panel.getByRole("list").getByText("Who else passed?").filter({ visible: true })).toBeVisible();
 
   // Its width: wider with the arrow keys, no narrower than 360px however far it's dragged.
   const handle = panel.getByRole("separator");
@@ -134,7 +134,7 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
   // A reload in the middle of the chat brings the panel and the conversation back.
   await owner.reload();
   panel = owner.getByRole("dialog");
-  await expect(panel.getByRole("list").getByText("Who passed?")).toBeVisible();
+  await expect(panel.getByRole("list").getByText("Who passed?").filter({ visible: true })).toBeVisible();
   // The pick and the width came back with it.
   await expect(panel.getByTestId("assistant-company").getByRole("button")).not.toHaveText(company.name);
   await expect.poll(async () => (await panel.boundingBox())!.width).toBe(360);
@@ -165,7 +165,7 @@ test("the assistant welcomes by stage, answers, takes voice, keeps history and s
   await expect(owner.getByRole("banner").locator("[data-assistant-toggle]")).toBeVisible();
   await expect(owner.getByRole("dialog")).toHaveCount(0);
   panel = await openPanel(owner);
-  await expect(panel.getByTestId("welcome-unverified")).toBeVisible();
+  await expect(panel.getByTestId("welcome-unverified").filter({ visible: true })).toBeVisible();
 });
 
 test("a visitor who signs in from the sign-in card keeps their chat", async ({ browser }) => {
@@ -185,12 +185,12 @@ test("a visitor who signs in from the sign-in card keeps their chat", async ({ b
   const panel = await openPanel(page);
   await panel.getByRole("textbox").fill("Create a company");
   await panel.locator("button[type=submit]").click();
-  await expect(panel.getByRole("list").getByText("Sign in below to create it.")).toBeVisible();
+  await expect(panel.getByRole("list").getByText("Sign in below to create it.").filter({ visible: true })).toBeVisible();
 
   // A reload keeps the visitor's chat and the open panel.
   await page.reload();
   const again = page.getByRole("dialog");
-  await expect(again.getByRole("list").getByText("Create a company")).toBeVisible();
+  await expect(again.getByRole("list").getByText("Create a company").filter({ visible: true })).toBeVisible();
 
   const sent = await assistantAnswers(page);
   const opened = context.waitForEvent("page");
@@ -205,17 +205,17 @@ test("a visitor who signs in from the sign-in card keeps their chat", async ({ b
 
   // Signed in, the panel is still open with the chat, without the sign-in card, and the next
   // message carries the chat.
-  await expect(again.getByTestId("assistant-history")).toBeVisible();
-  await expect(again.getByRole("list").getByText("Create a company")).toBeVisible();
-  await expect(again.getByRole("list").getByText("Sign in below to create it.")).toBeVisible();
+  await expect(again.getByTestId("assistant-history").filter({ visible: true })).toBeVisible();
+  await expect(again.getByRole("list").getByText("Create a company").filter({ visible: true })).toBeVisible();
+  await expect(again.getByRole("list").getByText("Sign in below to create it.").filter({ visible: true })).toBeVisible();
   await expect(again.locator('[data-testid^="sign-in-"]')).toHaveCount(0);
 
   // A reload before the first message keeps that chat (the user has no newer conversation).
   await page.route("**/api/assistant/conversations/active", (route) => route.fulfill({ status: 204 }));
   await page.reload();
-  await expect(again.getByTestId("assistant-history")).toBeVisible({ timeout: 45_000 });
-  await expect(again.getByRole("list").getByText("Create a company")).toBeVisible();
-  await expect(again.getByRole("list").getByText("Sign in below to create it.")).toBeVisible();
+  await expect(again.getByTestId("assistant-history").filter({ visible: true })).toBeVisible({ timeout: 45_000 });
+  await expect(again.getByRole("list").getByText("Create a company").filter({ visible: true })).toBeVisible();
+  await expect(again.getByRole("list").getByText("Sign in below to create it.").filter({ visible: true })).toBeVisible();
   await expect(again.locator('[data-testid^="sign-in-"]')).toHaveCount(0);
   await again.getByRole("textbox").fill("Call it Acme");
   await again.locator("button[type=submit]").click();

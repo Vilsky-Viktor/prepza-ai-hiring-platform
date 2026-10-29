@@ -135,8 +135,8 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
     const step = await stepToMulti(candidate, sessions[0].id)
     await visit(candidate, `/sessions/${step.session.id}`)
     await expect(main.getByText(step.question!.text.split("(")[0].trim())).toBeVisible()
-    await expect(candidate.getByTestId("multi-choice")).toBeVisible()
-    await expect(candidate.getByTestId("select-all")).toBeVisible()
+    await expect(candidate.getByTestId("multi-choice").filter({ visible: true })).toBeVisible()
+    await expect(candidate.getByTestId("select-all").filter({ visible: true })).toBeVisible()
     await expect(candidate.getByTestId("option-check")).toHaveCount(4)
     await shots(candidate, "question-multi")
 

@@ -33,7 +33,7 @@ test("text that names nothing to test is refused with the reason", async ({ sign
   await box.fill("Banana bread: mash three bananas, stir in flour and sugar, bake for an hour.")
   await box.press("ControlOrMeta+Enter")
 
-  await expect(owner.getByText(NOTHING_TO_TEST)).toBeVisible()
+  await expect(owner.getByText(NOTHING_TO_TEST).filter({ visible: true })).toBeVisible()
   await expect(owner).toHaveURL(/\/interviews\/new$/)
   // What was pasted stays, so it can be fixed.
   await expect(box).toHaveValue(/Banana bread/)

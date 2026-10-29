@@ -38,10 +38,10 @@ test("a viewer emails reports only to the company's members", async ({ signInAs 
   }
 
   await share(throwawayEmail("outside"))
-  await expect(viewer.getByText(OUTSIDE_COMPANY)).toBeVisible()
+  await expect(viewer.getByText(OUTSIDE_COMPANY).filter({ visible: true })).toBeVisible()
   await shot(viewer, "outside-refused")
 
   await viewer.keyboard.press("Escape")
   await share(ownerAddress)
-  await expect(viewer.getByText(NO_FINISHED_CANDIDATES)).toBeVisible()
+  await expect(viewer.getByText(NO_FINISHED_CANDIDATES).filter({ visible: true })).toBeVisible()
 })

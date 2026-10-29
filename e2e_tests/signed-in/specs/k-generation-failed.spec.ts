@@ -79,6 +79,6 @@ test("a description sent twice quickly asks for one interview", async ({ signInA
   await box.press("ControlOrMeta+Enter")
   answer()
 
-  await expect(owner.getByText("Too many requests. Try again later.")).toBeVisible()
+  await expect(owner.getByText("Too many requests. Try again later.").filter({ visible: true })).toBeVisible()
   expect(asked).toBe(1)
 })

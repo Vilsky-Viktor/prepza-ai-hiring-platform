@@ -11,7 +11,7 @@ test("owner creates a company, an interview from a template and invites a candid
   // Through the site's sign-in, as a new owner would.
   const owner = await signInAs(ownerEmail(), { ui: true })
   // No company yet: the list has no rows.
-  await expect(owner.getByTestId("new-company")).toBeVisible()
+  await expect(owner.getByTestId("new-company").filter({ visible: true })).toBeVisible()
   await expect(owner.getByRole("main").getByRole("listitem")).toHaveCount(0)
   await shot(owner, "companies-empty")
 
@@ -49,7 +49,7 @@ test("owner creates a company, an interview from a template and invites a candid
 
   try {
     await visit(owner, `/practice?q=${encodeURIComponent(uncopyable)}&lang=de`)
-    await expect(owner.getByText(uncopyable)).toBeVisible()
+    await expect(owner.getByText(uncopyable).filter({ visible: true })).toBeVisible()
     await visit(owner, `${companyUrl}/templates?q=${encodeURIComponent(uncopyable)}&lang=de`)
     await expect(owner.getByRole("main").getByRole("listitem")).toHaveCount(0)
     await expect(owner.getByText(uncopyable)).toHaveCount(0)

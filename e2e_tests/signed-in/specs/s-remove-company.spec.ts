@@ -47,5 +47,5 @@ test("removing a company warns about the credits it loses", async ({ signInAs })
   // Removed, it's gone from the list.
   await dialog.getByRole("button").last().click();
   await expect(owner.getByText(empty.name)).toHaveCount(0);
-  await expect(owner.getByText(funded.name)).toBeVisible();
+  await expect(owner.getByText(funded.name).filter({ visible: true })).toBeVisible();
 });

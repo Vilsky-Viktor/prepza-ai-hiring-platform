@@ -137,7 +137,7 @@ test("a company's pages on a phone", async ({ signInAs }) => {
     await finishOneAnswer(await signInAs(candidate), candidate);
     await visit(user, `/companies/${company.id}/interviews/${interview}?tab=candidates`);
     await user.getByRole("link").filter({ hasText: "averyveryverylong" }).click();
-    await expect(user.getByTestId("human-review")).toBeVisible();
+    await expect(user.getByTestId("human-review").filter({ visible: true })).toBeVisible();
     expect(await user.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(
       PHONE.width,
     );

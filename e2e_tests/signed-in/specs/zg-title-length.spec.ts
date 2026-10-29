@@ -21,7 +21,7 @@ test("a short test title or company name is refused, saying why", async ({ signI
   await input.fill("ab");
   await input.press("Enter");
 
-  await expect(owner.getByText("Use at least 3 characters.")).toBeVisible();
+  await expect(owner.getByText("Use at least 3 characters.").filter({ visible: true })).toBeVisible();
   await expect(input).toHaveValue("ab");
   await input.press("Escape");
   await expect(heading).toHaveText(before);

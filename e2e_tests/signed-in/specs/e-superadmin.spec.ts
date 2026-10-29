@@ -132,13 +132,13 @@ test("superadmin turns the pause and maintenance mode on and off", { tag: "@glob
   const newInterview = `/companies/${company.id}/interviews/new`
   const description = owner.getByRole("main").getByRole("textbox")
   await visit(owner, newInterview)
-  await expect(owner.getByTestId("paused-notice")).toBeVisible()
+  await expect(owner.getByTestId("paused-notice").filter({ visible: true })).toBeVisible()
   // The start box is there but off, so it's clearly unavailable.
   await expect(description).toBeDisabled()
   await shot(owner, "new-interview-paused")
   // A job ad's link says so too, as an invite does: no new candidate can start.
   await visit(owner, "/apply/e2e-paused-link")
-  await expect(owner.getByTestId("paused-notice")).toBeVisible()
+  await expect(owner.getByTestId("paused-notice").filter({ visible: true })).toBeVisible()
   await shot(owner, "job-link-paused")
   await flip(superadmin, PAUSE, false)
   await expect.poll(() => paused(superadmin)).toBe(false)
@@ -169,7 +169,9 @@ test("superadmin turns the pause and maintenance mode on and off", { tag: "@glob
   // Superadmins keep the site, with the warning card above it.
   await expect(async () => {
     await visit(superadmin, "/companies")
-    await expect(superadmin.getByTestId("maintenance-notice")).toBeVisible({ timeout: 2_000 })
+    await expect(superadmin.getByTestId("maintenance-notice").filter({ visible: true })).toBeVisible({
+      timeout: 2_000,
+    })
   }).toPass({ timeout: 60_000 })
   await shot(superadmin, "maintenance-superadmin")
 
@@ -225,7 +227,7 @@ test("superadmin sees a template's practice and company questions per topic", as
     await visit(superadmin, `/superadmin/templates/${templateId}`)
     // Practice first, then company.
     await expect(superadmin.getByTestId("pool-counts")).toHaveText(/^0\D+12\D*$/)
-    await expect(superadmin.getByTestId("top-up")).toBeVisible()
+    await expect(superadmin.getByTestId("top-up").filter({ visible: true })).toBeVisible()
     await shot(superadmin, "template-pools")
     await openDialog(superadmin, superadmin.getByTestId("add-questions"))
     await expect(superadmin.getByRole("dialog").getByRole("spinbutton")).toHaveValue("30")

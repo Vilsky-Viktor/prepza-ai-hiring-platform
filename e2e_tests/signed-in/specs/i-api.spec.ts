@@ -120,7 +120,7 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   await expect(owner.getByRole("dialog").getByRole("textbox")).toHaveValue(/^whsec_/)
   await shot(owner, "secret-shown")
   await owner.keyboard.press("Escape")
-  await expect(owner.getByText("https://example.com/prepza", { exact: true })).toBeVisible()
+  await expect(owner.getByText("https://example.com/prepza", { exact: true }).filter({ visible: true })).toBeVisible()
   await shot(owner, "filled")
   await visit(owner, tab)
   await shot(owner, "list-filled")
@@ -128,7 +128,7 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   // A web hook that stopped taking events, after days of retries, is paused, and says so.
   await markWebhookFailing("https://example.com/prepza", company.id)
   await visit(owner, `${tab}/api?tab=webhooks`)
-  await expect(owner.getByText(/^Paused: it didn't answer for 3 days/)).toBeVisible()
+  await expect(owner.getByText(/^Paused: it didn't answer for 3 days/).filter({ visible: true })).toBeVisible()
   await shot(owner, "webhook-failing")
 
   // One whose member is no longer an owner or admin gets no events, and says so instead.

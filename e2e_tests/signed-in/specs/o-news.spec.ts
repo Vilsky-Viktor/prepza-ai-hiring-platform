@@ -61,7 +61,7 @@ test("superadmin writes, edits and deletes a news post", { tag: "@global" }, asy
     await text.evaluate((field) => field.removeAttribute("maxlength"));
     await text.fill("x".repeat(501));
     await save.click();
-    await expect(superadmin.getByText(/at most 500 characters/)).toBeVisible();
+    await expect(superadmin.getByText(/at most 500 characters/).filter({ visible: true })).toBeVisible();
     await expect(dialog).toBeVisible();
 
     await text.fill("First line.\nSecond line.");
@@ -87,7 +87,7 @@ test("superadmin writes, edits and deletes a news post", { tag: "@global" }, asy
       post.getByRole("heading").locator("span.text-primary"),
     ).toHaveText(".");
     await expect(post.locator("time")).toHaveText(today);
-    await expect(post.getByText("First line.")).toBeVisible();
+    await expect(post.getByText("First line.").filter({ visible: true })).toBeVisible();
     await shot(superadmin, "news-page");
 
     const [{ id: postId }] = (

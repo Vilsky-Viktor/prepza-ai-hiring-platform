@@ -43,7 +43,7 @@ test("company verification: pending, declined, renamed, approved", async ({
   const superadmin = await signInSuperadmin()
   // Waiting for review: Decline and Approve, in that order.
   let row = await requestRow(superadmin, company.name)
-  await expect(row.getByText(domain)).toBeVisible()
+  await expect(row.getByText(domain).filter({ visible: true })).toBeVisible()
   await expect(row.getByRole("button")).toHaveCount(2)
   await shot(superadmin, "superadmin-pending")
   await row.getByRole("button").first().click()
@@ -53,14 +53,14 @@ test("company verification: pending, declined, renamed, approved", async ({
   await superadmin.getByRole("dialog").locator('button[type="submit"]').click()
   // Decided: nothing left to choose, and the reason with it.
   await expect(row.getByRole("button")).toHaveCount(0)
-  await expect(row.getByText(reason)).toBeVisible()
+  await expect(row.getByText(reason).filter({ visible: true })).toBeVisible()
   await shot(superadmin, "superadmin-declined")
 
   // The company sees why, in the verify dialog.
   await visit(owner, interviews)
   await expect(pending).toHaveCount(0)
   await verify.click()
-  await expect(owner.getByRole("dialog").getByText(`Declined: ${reason}`)).toBeVisible()
+  await expect(owner.getByRole("dialog").getByText(`Declined: ${reason}`).filter({ visible: true })).toBeVisible()
   await shot(owner, "declined")
   await owner.keyboard.press("Escape")
 

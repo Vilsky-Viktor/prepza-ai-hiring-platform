@@ -110,7 +110,7 @@ test("an owner connects Greenhouse and finds its web hook in the info dialog", a
   await shot(owner, "page")
 
   const header = owner.getByRole("heading", { level: 1 }).locator("xpath=../..")
-  await expect(header.getByText(company.name, { exact: true })).toBeVisible()
+  await expect(header.getByText(company.name, { exact: true }).filter({ visible: true })).toBeVisible()
   await visit(owner, tab)
   await expect(
     integrationRow(owner, "/greenhouse").getByText(company.name, { exact: true })
@@ -174,7 +174,7 @@ test("an owner connects Breezy HR with one key", async ({ signInAs }) => {
     timeout: 60_000,
   })
   await expect(owner.getByRole("dialog")).toHaveCount(0)
-  await expect(owner.getByText("E2E Backend developer")).toBeVisible()
+  await expect(owner.getByText("E2E Backend developer").filter({ visible: true })).toBeVisible()
   await shot(owner, "page")
 
   await openDialog(owner, main.getByTestId("instructions"))

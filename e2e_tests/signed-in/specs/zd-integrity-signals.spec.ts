@@ -56,6 +56,6 @@ test("only a real page leave counts", async ({
   const [row] = await api<Row[]>(owner, "GET", `/companies/interviews/${interviewId}/candidates`)
   await visit(owner, `/companies/${company.id}/interviews/${interviewId}/candidates/${row.id}`)
   // The candidate's results, with the note on their score and signals.
-  await expect(owner.getByTestId("human-review")).toBeVisible()
+  await expect(owner.getByTestId("human-review").filter({ visible: true })).toBeVisible()
   await shot(owner, "results-note")
 })

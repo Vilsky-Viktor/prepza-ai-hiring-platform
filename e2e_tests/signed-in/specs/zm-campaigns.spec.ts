@@ -192,7 +192,7 @@ test("superadmin sees a suppressed candidate address and takes it off the list",
       await suppress(address, reason)
       const userId = await supportId((await supportSearch(superadmin, address)).first())
       await visit(superadmin, `/superadmin/support/users/${userId}`)
-      await expect(superadmin.getByTestId("remove-suppression")).toBeVisible()
+      await expect(superadmin.getByTestId("remove-suppression").filter({ visible: true })).toBeVisible()
       await shot(superadmin, `account-${reason}`)
     }
   } finally {

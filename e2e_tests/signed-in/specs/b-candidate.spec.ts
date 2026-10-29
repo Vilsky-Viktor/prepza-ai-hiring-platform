@@ -179,6 +179,6 @@ test("a candidate's page has their invite link to copy", async ({
   await expect(owner.getByRole("main").getByRole("textbox")).toHaveValue(
     new RegExp(`/invite/${await inviteToken(email)}$`),
   );
-  await expect(owner.getByTestId("resend-invite")).toBeVisible();
+  await expect(owner.getByTestId("resend-invite").filter({ visible: true })).toBeVisible();
   await shot(owner, "candidate-invite-link");
 });

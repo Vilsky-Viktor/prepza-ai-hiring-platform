@@ -62,7 +62,7 @@ test("an owner sees the MCP server's instructions and disconnects AI apps", asyn
 
     await visit(owner, `${tab}/ai`)
     const apps = owner.getByRole("main").getByRole("listitem")
-    await expect(owner.getByRole("main").getByTestId("instructions")).toBeVisible()
+    await expect(owner.getByRole("main").getByTestId("instructions").filter({ visible: true })).toBeVisible()
     await expect(apps).toHaveCount(0)
     await shot(owner, "no-apps")
 
@@ -70,7 +70,7 @@ test("an owner sees the MCP server's instructions and disconnects AI apps", asyn
     await addAiConnections(uid, ["Claude", "ChatGPT"])
     await visit(owner, tab)
     await expect(row.locator("[data-slot=badge]")).toHaveCount(1)
-    await expect(row.getByText("Claude, ChatGPT", { exact: true })).toBeVisible()
+    await expect(row.getByText("Claude, ChatGPT", { exact: true }).filter({ visible: true })).toBeVisible()
     await shot(owner, "row-connected")
 
     // The row opens the apps' page: each with Disconnect, which asks first.

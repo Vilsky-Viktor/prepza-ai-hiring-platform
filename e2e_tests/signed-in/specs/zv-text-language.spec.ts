@@ -32,11 +32,11 @@ test("an interview's topics and questions carry the interview's language", async
 
     await visit(owner, `/companies/${company.id}/interviews/${interview.id}`)
     const topics = owner.getByRole("main").locator('[lang="de"][dir="ltr"]')
-    await expect(topics.getByText("E2E topic")).toBeVisible()
+    await expect(topics.getByText("E2E topic").filter({ visible: true })).toBeVisible()
 
     await openDialog(owner, owner.getByTestId("manage-questions").first())
     const questions = owner.getByRole("dialog").locator('[lang="de"]')
-    await expect(questions.getByText("E2E question 1?")).toBeVisible()
+    await expect(questions.getByText("E2E question 1?").filter({ visible: true })).toBeVisible()
   } finally {
     await deleteTemplate(templateId)
   }

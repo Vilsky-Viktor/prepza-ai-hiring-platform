@@ -23,14 +23,14 @@ test("a practice result leads to using its test in a company", async ({ signInAs
   // No company yet: the choice is empty, and a new company opens on the test.
   await hire.click()
   await user.waitForURL(new RegExp(`${picker}$`))
-  await expect(user.getByTestId("new-company")).toBeVisible()
+  await expect(user.getByTestId("new-company").filter({ visible: true })).toBeVisible()
   await expect(user.getByRole("main").getByRole("listitem")).toHaveCount(0)
   await shot(user, "pick-none")
   await user.getByTestId("new-company").click()
   await user.getByRole("dialog").getByRole("textbox").fill(`E2E ${randomId()}`)
   await user.getByRole("dialog").locator('button[type="submit"]').click()
   await user.waitForURL(opensTemplate)
-  await expect(user.getByTestId("use-template")).toBeVisible()
+  await expect(user.getByTestId("use-template").filter({ visible: true })).toBeVisible()
 
   // One company: straight to the test in it.
   await visit(user, picker)

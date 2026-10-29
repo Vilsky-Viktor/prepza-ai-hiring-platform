@@ -79,7 +79,7 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   // Text too close to its background is refused, saying which, and nothing is saved.
   await field("page", 1).fill("#202428")
   await save.click()
-  await expect(owner.getByText("The page's text is too hard to read on its background.")).toBeVisible()
+  await expect(owner.getByText("The page's text is too hard to read on its background.").filter({ visible: true })).toBeVisible()
   expect((await saved()).brand_colors?.light ?? null).toBeNull()
   await shot(owner, "unreadable")
   await field("page", 1).fill("#f4f1ea")

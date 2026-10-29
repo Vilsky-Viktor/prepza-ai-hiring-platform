@@ -71,7 +71,7 @@ test("choosing another currency says what automatic top-up now charges", async (
   });
 
   await visit(page, `/companies/${id}/billing`);
-  await expect(page.getByTestId("next-price")).toBeVisible();
+  await expect(page.getByTestId("next-price").filter({ visible: true })).toBeVisible();
   const currency = page.getByTestId("company-currency");
   await currency.getByRole("combobox").click();
   await page.locator("input:focus").fill("EUR");

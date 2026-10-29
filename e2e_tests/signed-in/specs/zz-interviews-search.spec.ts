@@ -38,7 +38,7 @@ test("the interviews list is searched by title, in the address and across pages"
   const list = `/companies/${company.id}/interviews`
 
   await visit(owner, list)
-  await expect(owner.getByText("Designer", { exact: true })).toBeVisible()
+  await expect(owner.getByText("Designer", { exact: true }).filter({ visible: true })).toBeVisible()
 
   // Any case finds the titles containing it; the address keeps the search.
   await searchField(owner).fill("BACKEND")
@@ -46,7 +46,7 @@ test("the interviews list is searched by title, in the address and across pages"
   await expect(owner).toHaveURL(/[?&]q=BACKEND/)
   // The visible rows: while the list renders again, Next.js can keep a hidden copy of it.
   await expect(owner.getByText("Backend 21", { exact: true }).filter({ visible: true })).toBeVisible()
-  await expect(owner.getByText("Designer", { exact: true })).toHaveCount(0)
+  await expect(owner.getByText("Designer", { exact: true }).filter({ visible: true })).toHaveCount(0)
   await shot(owner, "desktop-searched")
 
   // The next page is asked for with the same search (listened for from the reload on: a tall
@@ -60,7 +60,7 @@ test("the interviews list is searched by title, in the address and across pages"
   await owner.reload()
   await expect(searchField(owner)).toHaveValue("BACKEND")
   await expect(owner.getByText("Backend 21", { exact: true }).filter({ visible: true })).toBeVisible()
-  await expect(owner.getByText("Designer", { exact: true })).toHaveCount(0)
+  await expect(owner.getByText("Designer", { exact: true }).filter({ visible: true })).toHaveCount(0)
 
   await expect(async () => {
     await owner.mouse.wheel(0, 4000)
@@ -69,13 +69,13 @@ test("the interviews list is searched by title, in the address and across pages"
     ).toBeVisible({ timeout: 1000 })
   }).toPass({ timeout: 30_000 })
   expect(new URL((await nextPage).url()).searchParams.get("q")).toBe("BACKEND")
-  await expect(owner.getByText("Designer", { exact: true })).toHaveCount(0)
+  await expect(owner.getByText("Designer", { exact: true }).filter({ visible: true })).toHaveCount(0)
 
   // Nothing matching: the no-matches state, not the "no interviews yet" one.
   await visit(owner, `${list}?q=${encodeURIComponent("50%_off")}`)
-  await expect(owner.getByTestId("no-matches")).toBeVisible()
+  await expect(owner.getByTestId("no-matches").filter({ visible: true })).toBeVisible()
   await expect(owner.getByTestId("no-interviews")).toHaveCount(0)
-  await expect(owner.getByText("Backend 21", { exact: true })).toHaveCount(0)
+  await expect(owner.getByText("Backend 21", { exact: true }).filter({ visible: true })).toHaveCount(0)
   await shot(owner, "desktop-no-matches")
 
   await owner.setViewportSize(PHONE)

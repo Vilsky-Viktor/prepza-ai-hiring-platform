@@ -177,7 +177,7 @@ test("owner adds a viewer, who sees the company read-only", async ({
   const stranger = await signInAs(throwawayEmail("stranger"));
   await visit(stranger, new URL(joinLink).pathname);
   // A new browser loads the whole page's code from the local dev server first: it can be slow.
-  await expect(stranger.getByText("This invite has already been used.")).toBeVisible({
+  await expect(stranger.getByText("This invite has already been used.").filter({ visible: true })).toBeVisible({
     timeout: 60_000,
   });
   await expect(stranger.getByRole("main").getByRole("button")).toHaveCount(0);

@@ -44,7 +44,7 @@ test("an owner sees how to connect Workable and manages its linked jobs", async 
   await addAtsConnection(company.id, interviewId, { invited: 3, notInvited: 2 })
   await visit(owner, tab)
   await expect(row.locator("[data-slot=badge]")).toBeVisible()
-  await expect(row.getByText("e2e-acme")).toBeVisible()
+  await expect(row.getByText("e2e-acme").filter({ visible: true })).toBeVisible()
 
   // The row opens Workable's page: its linked jobs and how their candidates went.
   await row.getByRole("link").click()

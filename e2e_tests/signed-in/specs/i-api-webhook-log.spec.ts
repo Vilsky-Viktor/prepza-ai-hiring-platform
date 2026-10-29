@@ -23,7 +23,7 @@ test("an owner tests a web hook and reads its delivery log", async ({ signInAs }
 
   await openDialog(owner, owner.getByRole("button", { name: "Delivery log" }))
   const log = owner.getByRole("dialog")
-  await expect(log.getByText("test", { exact: true })).toBeVisible()
+  await expect(log.getByText("test", { exact: true }).filter({ visible: true })).toBeVisible()
   await shot(owner, "log")
   await owner.keyboard.press("Escape")
 

@@ -72,7 +72,7 @@ test("owner sees the company's billing, a viewer doesn't", async ({
   await expect(reserved).toContainText("500");
   await expect(reservedTab(owner)).toHaveText(/\b1\b/);
   await openTab(owner, "?tab=reserved");
-  await expect(owner.getByText(candidate)).toBeVisible();
+  await expect(owner.getByText(candidate).filter({ visible: true })).toBeVisible();
   await expect(openSub(owner)).toHaveAttribute(
     "href",
     `/companies/${company.id}/billing?tab=reserved`,

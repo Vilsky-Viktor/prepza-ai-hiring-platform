@@ -30,7 +30,7 @@ test("an interview deleted past the first page leaves the list at once", async (
   const company = await longList(owner)
 
   await visit(owner, `/companies/${company.id}/interviews`)
-  await expect(owner.getByText("E2E 22")).toBeVisible()
+  await expect(owner.getByText("E2E 22").filter({ visible: true })).toBeVisible()
   // The oldest's row; its last button deletes it.
   const oldest = owner
     .getByRole("main")
@@ -47,7 +47,7 @@ test("an interview deleted past the first page leaves the list at once", async (
   await owner.getByRole("dialog").getByRole("button").last().click()
   await expect(owner.getByRole("dialog")).toHaveCount(0)
   await expect(owner.getByText("E2E 01", { exact: true })).toHaveCount(0)
-  await expect(owner.getByText("E2E 02", { exact: true })).toBeVisible()
+  await expect(owner.getByText("E2E 02", { exact: true }).filter({ visible: true })).toBeVisible()
 })
 
 // A page that fails to load (here the load balancer's own 503 page) says so in an error toast
@@ -64,7 +64,7 @@ test("a page that fails to load can be tried again", async ({ signInAs }) => {
 
   const failed = owner.locator('[data-sonner-toast][data-type="error"]').first()
   await visit(owner, `/companies/${company.id}/interviews`)
-  await expect(owner.getByText("E2E 22")).toBeVisible()
+  await expect(owner.getByText("E2E 22").filter({ visible: true })).toBeVisible()
   await expect(async () => {
     await owner.mouse.wheel(0, 4000)
     await expect(failed).toContainText("Couldn't load more. Please try again.", { timeout: 1000 })
@@ -75,6 +75,6 @@ test("a page that fails to load can be tried again", async ({ signInAs }) => {
   await failed.locator("[data-button]").click()
   await expect(async () => {
     await owner.mouse.wheel(0, 4000)
-    await expect(owner.getByText("E2E 01", { exact: true })).toBeVisible({ timeout: 1000 })
+    await expect(owner.getByText("E2E 01", { exact: true }).filter({ visible: true })).toBeVisible({ timeout: 1000 })
   }).toPass({ timeout: 30_000 })
 })

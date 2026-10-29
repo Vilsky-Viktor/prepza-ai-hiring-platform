@@ -63,7 +63,7 @@ test("superadmin adjusts a company's credits from its page", async ({
 
   await expect(superadmin.getByRole("heading", { level: 1 })).toHaveText(name)
   // The history: the welcome credits; held: the invited candidate; members: the owner.
-  await expect(superadmin.getByRole("main").getByText("+1,500")).toBeVisible()
+  await expect(superadmin.getByRole("main").getByText("+1,500").filter({ visible: true })).toBeVisible()
   await shot(superadmin, "company")
   // The company's sections are pages under Support in the admin zone's menu: credits at the
   // company's own address, the open one marked.
@@ -73,11 +73,11 @@ test("superadmin adjusts a company's credits from its page", async ({
   await menu.locator(`a[href="${page}?page=reserved"]:visible`).click()
   await expect(superadmin).toHaveURL(new RegExp(`${page}\\?page=reserved$`), { timeout: 90_000 })
   await expect(marked).toHaveAttribute("href", `${page}?page=reserved`)
-  await expect(superadmin.getByText(candidate)).toBeVisible()
+  await expect(superadmin.getByText(candidate).filter({ visible: true })).toBeVisible()
   // The old tabs' addresses open the matching page.
   await visit(superadmin, `${page}?tab=members`)
   await expect(superadmin).toHaveURL(new RegExp(`${page}\\?page=members$`))
-  await expect(superadmin.getByText(ownerAddress)).toBeVisible()
+  await expect(superadmin.getByText(ownerAddress).filter({ visible: true })).toBeVisible()
 
   // On a phone, the sections are in the bar under the tabs, the open one checked.
   await superadmin.setViewportSize({ width: 390, height: 844 })
@@ -107,12 +107,12 @@ test("superadmin adjusts a company's credits from its page", async ({
   await expect(dialog.getByRole("spinbutton")).toHaveCount(0)
   await shot(superadmin, "adjust-confirm")
   await dialog.getByRole("button").last().click()
-  await expect(superadmin.getByText(note)).toBeVisible()
-  await expect(superadmin.getByRole("main").getByText("+500")).toBeVisible()
+  await expect(superadmin.getByText(note).filter({ visible: true })).toBeVisible()
+  await expect(superadmin.getByRole("main").getByText("+500").filter({ visible: true })).toBeVisible()
   await shot(superadmin, "adjusted")
 
   await visit(owner, `/companies/${company.id}/billing`)
-  await expect(owner.getByText(note)).toBeVisible()
+  await expect(owner.getByText(note).filter({ visible: true })).toBeVisible()
   await shot(owner, "owner-history")
 
   // Removing more than is available is refused, saying why: the history doesn't get it.
@@ -128,7 +128,7 @@ test("superadmin adjusts a company's credits from its page", async ({
   )
   await expect(dialog).toBeVisible()
   await visit(superadmin, page)
-  await expect(superadmin.getByText(note)).toBeVisible()
+  await expect(superadmin.getByText(note).filter({ visible: true })).toBeVisible()
   await expect(superadmin.getByText(tooMuch)).toHaveCount(0)
 })
 
@@ -178,7 +178,7 @@ test("superadmin follows a company to its interviews and their candidates", asyn
   await expect(supportLink(superadmin, "companies", company.id)).toBeVisible()
 
   for (const topic of topics) {
-    await expect(superadmin.getByRole("main").getByText(topic.title, { exact: true })).toBeVisible()
+    await expect(superadmin.getByRole("main").getByText(topic.title, { exact: true }).filter({ visible: true })).toBeVisible()
   }
 
   // Its candidates, each opening their page; only the finished one has a grade.
@@ -255,7 +255,7 @@ test("superadmin suspends, lifts, renames and deletes a company from its page", 
 
   await superadmin.getByTestId("suspend").click()
   await superadmin.getByRole("dialog").getByRole("button").last().click()
-  await expect(superadmin.getByTestId("unsuspend")).toBeVisible()
+  await expect(superadmin.getByTestId("unsuspend").filter({ visible: true })).toBeVisible()
   await shot(superadmin, "suspended")
 
   // What a suspended company's members and candidates see (its rules are the companies
@@ -266,7 +266,7 @@ test("superadmin suspends, lifts, renames and deletes a company from its page", 
   // Clicked again if the first click came while the page was still refreshing.
   await expect(async () => {
     await superadmin.getByTestId("unsuspend").click({ timeout: 5_000 })
-    await expect(superadmin.getByTestId("suspend")).toBeVisible({ timeout: 5_000 })
+    await expect(superadmin.getByTestId("suspend").filter({ visible: true })).toBeVisible({ timeout: 5_000 })
   }).toPass({ timeout: 60_000 })
 
   // The icons beside Suspend: rename, then delete; beside the visible one, as while the page

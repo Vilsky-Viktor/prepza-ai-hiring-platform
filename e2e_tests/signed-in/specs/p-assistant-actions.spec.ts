@@ -63,14 +63,14 @@ test("an action runs once its card is confirmed, and asking to sign out signs ou
 
   // The card shows exactly what runs; Confirm (its first button) runs it once.
   const shown = panel.getByTestId("action-card");
-  await expect(shown.getByText("Acme", { exact: true })).toBeVisible();
+  await expect(shown.getByText("Acme", { exact: true }).filter({ visible: true })).toBeVisible();
   await expect(shown.getByRole("button")).toHaveCount(2);
   await shot(owner, "action-card");
   await shown.getByRole("button").first().click();
   // Done: no buttons left, and the link to what it made.
   await expect(shown.locator('a[href="/companies/c1/interviews"]')).toBeVisible();
   await expect(shown.getByRole("button")).toHaveCount(0);
-  await expect(panel.getByRole("list").getByText("Acme is ready.")).toBeVisible();
+  await expect(panel.getByRole("list").getByText("Acme is ready.").filter({ visible: true })).toBeVisible();
   expect(confirms).toBe(1);
   await shot(owner, "action-done");
 
@@ -81,7 +81,7 @@ test("an action runs once its card is confirmed, and asking to sign out signs ou
     .poll(async () => (await owner.context().cookies()).some((c) => c.name === TOKEN_COOKIE))
     .toBe(false);
   await expect(panel.getByTestId("assistant-history")).toHaveCount(0);
-  await expect(panel.getByTestId("welcome-signed_out")).toBeVisible();
+  await expect(panel.getByTestId("welcome-signed_out").filter({ visible: true })).toBeVisible();
 });
 
 test("a pasted secret is removed from the chat and explained, with the page it belongs on", async ({
@@ -97,8 +97,8 @@ test("a pasted secret is removed from the chat and explained, with the page it b
   await panel.locator("button[type=submit]").click();
 
   // The message is replaced by a note; the answer refuses it, with the page to enter it on.
-  await expect(panel.getByTestId("message-removed")).toBeVisible();
-  await expect(panel.getByRole("list").getByText(/Enter it yourself on the integrations page\./)).toBeVisible();
+  await expect(panel.getByTestId("message-removed").filter({ visible: true })).toBeVisible();
+  await expect(panel.getByRole("list").getByText(/Enter it yourself on the integrations page\./).filter({ visible: true })).toBeVisible();
   await expect(panel.locator(`a[href="/companies/${company.id}/integrations"]`)).toBeVisible();
   await shot(owner, "secret-removed");
   // Nowhere on the page, nor in what the browser keeps.

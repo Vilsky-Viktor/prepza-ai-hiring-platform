@@ -128,7 +128,7 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   await expect(start).toBeEnabled()
   expect(await frameHeight()).toBe(settled)
   await start.click()
-  await expect(frame.getByTestId("finish-interview")).toBeVisible({
+  await expect(frame.getByTestId("finish-interview").filter({ visible: true })).toBeVisible({
     timeout: 60_000,
   })
   await expect(frame.locator("header, footer")).toHaveCount(0)

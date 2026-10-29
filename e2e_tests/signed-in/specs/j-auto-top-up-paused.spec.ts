@@ -63,7 +63,7 @@ test("a running automatic top-up offers no card update", async ({ owned }) => {
   await setAutoTopUp(id, await uidOf(page), {});
 
   await visit(page, "/top-up");
-  await expect(page.getByTestId("auto-top-up-on")).toBeVisible();
+  await expect(page.getByTestId("auto-top-up-on").filter({ visible: true })).toBeVisible();
   await expect(page.getByTestId("auto-top-up-on")).not.toHaveAttribute(
     "data-paused",
   );
