@@ -39,7 +39,7 @@ class CandidateOut(BaseModel):
     tab_leaves: int = 0
     copies: int = 0
     fast_answers: int = 0
-    # Too many integrity signals to trust the result, as the ATS integrations are told.
+    # Any integrity signal, worth a closer look, as the ATS integrations are told.
     flagged: bool = False
     # Extra time per question, as a percentage of its time.
     extra_time: int = 0

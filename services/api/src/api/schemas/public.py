@@ -91,8 +91,8 @@ class Candidate(BaseModel):
     flagged: bool = Field(
         default=False,
         description=(
-            "Whether the integrity signals are too many to trust the result as it is: worth a "
-            "person's look at the full results, not a reason to reject"
+            "Whether the candidate has any integrity signal (a page leave, a copy attempt or a "
+            "fast answer): worth a person's look at the full results, not a reason to reject"
         ),
     )
     extra_time: int = Field(
