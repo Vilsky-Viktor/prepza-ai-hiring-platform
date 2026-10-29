@@ -95,7 +95,9 @@ Python tests: `testing-backend.md`; vitest and browser, load and smoke tests:
 ## Security
 
 - IDOR: every endpoint that takes an id is tested with another user's or company's id and
-  refuses it; aim for a role × endpoint × owner matrix.
+  refuses it, in a role × endpoint × owner matrix: each service's
+  `tests/integration/api/test_access_matrix.py` (`packages/common/tests/access_matrix.py`) finds
+  its routes from the app; a new route is in it at once, or listed with why it takes no owned id.
 - Dependencies are scanned in CI (pip-audit, `pnpm audit`, osv-scanner; `audit.yml`).
 
 ## Third-party integrations

@@ -64,6 +64,12 @@ Each service's `tests/integration` runs against the running stack's real Postgre
 ./scripts/integration.sh            # or: ./scripts/integration.sh rounds library
 ```
 
+Each service's `tests/integration/api/test_access_matrix.py` is its access matrix (IDOR): every route taking the id of something a company or a user owns, found from the app, is called against the real database by its owner (let through), another company's owner or another user with the owner's ids (refused), on a route with several ids that other owner with their own ids but one of the owner's (refused), a viewer of the company changing something (refused), nobody signed in (401) and, on superadmin routes, anyone but the superadmin (404). Calls to other services stay in the test: companies' membership check is answered from the test's own roles, anything else gets a 503. A new route taking an id fails the matrix until it's covered, or listed with why it takes no owned id (a link's token, public content); a route that differs on purpose (an owner-only read) is listed with its reason. The shared code is `packages/common/tests/access_matrix.py`; `test_route_guards.py` beside it in each service's unit tests catches a route that runs no guard at all.
+
+```bash
+PYTEST_ADDOPTS="-k access_matrix" ./scripts/integration.sh companies
+```
+
 ## The assistant's OpenAPI snapshots
 
 The assistant builds its tools from snapshots of the other services' OpenAPI descriptions in `services/assistant/src/assistant/openapi/`. After changing a route of companies, billing, library, notifications, ats, api, rounds or accounts, refresh them with the stack running and commit the result; CI's stack job runs the script and fails when a snapshot differs.

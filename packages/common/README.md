@@ -82,7 +82,13 @@ Compression: `compression.compress_answers(app)` gzips every service's answers o
 server-sent event streams stay uncompressed, so each event goes out as it comes.
 Access checks: `route_guards.unguarded(app, public)` lists the routes that run no guard (a signed-in user,
 a superadmin, another service, Google's pushes): each service's `test_route_guards.py` fails on one
-that isn't listed as public on purpose.
+that isn't listed as public on purpose. `tests/access_matrix.py` checks the guard looks at the right
+object: each service's `tests/integration/api/test_access_matrix.py` calls every route taking an id
+of something owned (found from the app) as the owner, another company's owner (with the owner's ids,
+and with its own ids but one of the owner's), a viewer changing something, nobody signed in and, on
+superadmin routes, anyone but the superadmin, against the real database; a route taking an id of
+nothing owned is listed with why. `tests/request_examples.py` builds each request's smallest valid
+query and body from the route's models.
 Logs: `logging.configure_logging` writes one JSON line per entry in the fields Cloud Logging reads
 (`severity`, `message`), and `RequestLogMiddleware` ties every line logged while serving a request
 to its trace (`logging.googleapis.com/trace`, from the load balancer's `X-Cloud-Trace-Context`),
