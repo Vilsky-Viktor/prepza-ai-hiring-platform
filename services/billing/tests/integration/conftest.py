@@ -1,10 +1,9 @@
-import uuid
-
 """Integration tests run against a real, freshly migrated database. They run only with
 INTEGRATION_TESTS set (see scripts/integration.sh); plain `pytest` skips them."""
 
 import asyncio
 import os
+import uuid
 
 import pytest
 from alembic import command

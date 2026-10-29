@@ -6,14 +6,13 @@ bytes). A payload that fails validation can never be handled (dropped by handle_
 
 from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
-
 from prepza_common.auth.user import Language
 from prepza_common.config.constants import (
     MAX_CAMPAIGN_BUTTON_LENGTH,
     MAX_CAMPAIGN_SUBJECT_LENGTH,
     MAX_CAMPAIGN_TEXT_LENGTH,
 )
+from pydantic import BaseModel, ConfigDict, Field
 
 CAMPAIGN_TRANSLATED = "notification.campaign_translated"
 

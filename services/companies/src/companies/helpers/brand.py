@@ -5,8 +5,8 @@ from companies.constants.brand import (
     PREPZA_BUTTON_RADIUS,
     PREPZA_COLORS,
     PREPZA_HEADING_FONT,
-    PREPZA_TEXT_FONT,
     PREPZA_RADIUS,
+    PREPZA_TEXT_FONT,
     BrandFont,
     Theme,
 )

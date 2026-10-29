@@ -7,6 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.constants.verification import VerificationStatus
 from companies.models.companies import Company
+from companies.repositories import outbox
 
 # A new request clears the last one's decision.
 UNDECIDED = {
@@ -14,7 +15,6 @@ UNDECIDED = {
     "verification_decided_by": None,
     "verification_decided_at": None,
 }
-from companies.repositories import outbox
 
 
 async def set_website(

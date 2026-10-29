@@ -6,7 +6,6 @@ from library.api.dependencies import ServiceCaller
 from library.constants.sets import Pool, SetKind
 from library.core.db import Session
 from library.repositories import preparations
-
 from library.schemas.sets import ContentQuestion, SetContent, SetTopicOut
 
 # Free practice for talents: only a template's practice questions, never its company ones.

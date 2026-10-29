@@ -18,8 +18,8 @@ from generation.integrations.usage import ai_run
 from generation.models.batch_work import BatchWork
 from generation.repositories import batch_work, outbox
 from generation.schemas.regenerate import QuestionContext, RegeneratedQuestion
-from generation.services.batch_steps import advance, body_for
 from generation.services import outbox as outbox_service
+from generation.services.batch_steps import advance, body_for
 from generation.services.batch_usage import record_batch
 
 logger = logging.getLogger(__name__)

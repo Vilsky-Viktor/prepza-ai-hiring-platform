@@ -11,9 +11,8 @@ from generation.models.batch_work import BatchWork
 from generation.models.outbox import OutboxEvent
 from generation.repositories import generations
 from generation.schemas.news import TranslatedNews
-from generation.services import batch_work
+from generation.services import batch_work, schedules
 from generation.services import outbox as outbox_service
-from generation.services import schedules
 from tests.integration.transactions import transaction
 
 

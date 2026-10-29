@@ -12,4 +12,3 @@ class NewsSource(BaseModel):
 class TranslatedNews(BaseModel):
     title: str = Field(description="The post's title, translated.")
     text: str = Field(description="The post's text, translated, with its line breaks.")
-
