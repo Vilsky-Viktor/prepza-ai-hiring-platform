@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "Tek listede çok fazla e-posta var: en fazla {limit}.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "En fazla 500 KB boyutunda PNG, JPEG veya WebP görsel kullanın",
     "The page's text is too hard to read on its background.": "Sayfa metni, arka planı üzerinde çok zor okunuyor.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "Sayfa metni, soruların arkasındaki ikincil dolgu üzerinde çok zor okunuyor.",
     "The dialogs' text is too hard to read on their background.": "İletişim kutularının metni, arka planları üzerinde çok zor okunuyor.",
     "The text on buttons is too hard to read on the primary color.": "Düğmelerdeki metin, ana renk üzerinde çok zor okunuyor.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "İkincil metin sayfada, iletişim kutularında veya kendi dolgusunda çok zor okunuyor.",

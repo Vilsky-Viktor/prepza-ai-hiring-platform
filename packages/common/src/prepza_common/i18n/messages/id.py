@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "Terlalu banyak email dalam satu daftar: maksimal {limit}.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "Gunakan gambar PNG, JPEG, atau WebP hingga 500 KB",
     "The page's text is too hard to read on its background.": "Teks halaman terlalu sulit dibaca di atas latar belakangnya.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "Teks halaman terlalu sulit dibaca di atas isian sekunder di belakang pertanyaan.",
     "The dialogs' text is too hard to read on their background.": "Teks dialog terlalu sulit dibaca di atas latar belakangnya.",
     "The text on buttons is too hard to read on the primary color.": "Teks pada tombol terlalu sulit dibaca di atas warna utama.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "Teks sekunder terlalu sulit dibaca di atas halaman, dialog, atau warna isiannya.",

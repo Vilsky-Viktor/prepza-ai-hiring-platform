@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Trang",
-        "text": "Nền, cùng tiêu đề và câu hỏi trên nền."
+        "text": "Nền và chữ: tiêu đề trên nền và câu hỏi trên phần tô phụ."
       },
       "primary": {
         "name": "Chính",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Phụ",
-        "text": "Phần tô như ô quy tắc và câu trả lời đã chọn, cùng chữ màu xám: gợi ý và chữ cái của đáp án."
+        "text": "Phần tô như thẻ câu hỏi, ô quy tắc và câu trả lời đã chọn, cùng chữ màu xám: gợi ý và chữ cái của đáp án."
       },
       "dialogs": {
         "name": "Hộp thoại",

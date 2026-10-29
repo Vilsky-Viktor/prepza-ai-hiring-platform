@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "Забагато адрес в одному списку: максимум {limit}.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "Використайте зображення PNG, JPEG або WebP до 500 КБ",
     "The page's text is too hard to read on its background.": "Текст сторінки надто важко читати на її тлі.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "Текст сторінки надто важко читати на додатковій заливці за запитаннями.",
     "The dialogs' text is too hard to read on their background.": "Текст діалогових вікон надто важко читати на їхньому тлі.",
     "The text on buttons is too hard to read on the primary color.": "Текст на кнопках надто важко читати на основному кольорі.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "Другорядний текст надто важко читати на сторінці, у діалогових вікнах або на його заливці.",

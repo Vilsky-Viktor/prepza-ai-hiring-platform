@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Sayfa",
-        "text": "Arka plan ve üzerindeki başlıklar ile sorular."
+        "text": "Arka plan ve metin: üzerindeki başlıklar ile ikincil dolgudaki sorular."
       },
       "primary": {
         "name": "Birincil",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "İkincil",
-        "text": "Kurallar kutusu ve seçilen cevap gibi dolgular ile gri metin: ipuçları ve cevap harfleri."
+        "text": "Sorunun kartı, kurallar kutusu ve seçilen cevap gibi dolgular ile gri metin: ipuçları ve cevap harfleri."
       },
       "dialogs": {
         "name": "İletişim kutuları",

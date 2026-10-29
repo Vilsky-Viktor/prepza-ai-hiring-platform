@@ -88,6 +88,7 @@ export default async function BrandPage({
           companyId={companyId}
           saved={company.brand_colors ?? null}
           current={company.candidate_colors}
+          problems={company.brand_problems ?? {}}
           style={company.brand_style ?? prepza.style}
           prepza={prepza}
           page={page}

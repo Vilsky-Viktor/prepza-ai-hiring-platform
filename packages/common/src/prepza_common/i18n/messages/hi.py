@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "एक सूची में बहुत ज़्यादा ईमेल हैं: अधिकतम {limit} हो सकते हैं।",
     "Use a PNG, JPEG or WebP image up to 500 KB": "500 KB तक की PNG, JPEG या WebP इमेज इस्तेमाल करें",
     "The page's text is too hard to read on its background.": "पेज का टेक्स्ट उसके बैकग्राउंड पर पढ़ना बहुत मुश्किल है।",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "पेज का टेक्स्ट सवालों के पीछे वाले सेकेंडरी फ़िल पर पढ़ना बहुत मुश्किल है।",
     "The dialogs' text is too hard to read on their background.": "डायलॉग का टेक्स्ट उनके बैकग्राउंड पर पढ़ना बहुत मुश्किल है।",
     "The text on buttons is too hard to read on the primary color.": "बटन का टेक्स्ट प्राइमरी रंग पर पढ़ना बहुत मुश्किल है।",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "सेकंडरी टेक्स्ट को पेज, डायलॉग या उसके फ़िल रंग पर पढ़ना बहुत मुश्किल है।",

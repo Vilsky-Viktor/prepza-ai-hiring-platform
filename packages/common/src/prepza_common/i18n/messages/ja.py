@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "1 つのリストのメールアドレスが多すぎます。上限は {limit} 件です。",
     "Use a PNG, JPEG or WebP image up to 500 KB": "500 KB 以下の PNG、JPEG、WebP 画像を使ってください",
     "The page's text is too hard to read on its background.": "ページの文字が背景に対して読みにくすぎます。",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "ページの文字が質問の背後にあるセカンダリの塗りに対して読みにくすぎます。",
     "The dialogs' text is too hard to read on their background.": "ダイアログの文字が背景に対して読みにくすぎます。",
     "The text on buttons is too hard to read on the primary color.": "ボタンの文字がメインカラーに対して読みにくすぎます。",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "補助テキストがページ、ダイアログ、または塗りの色に対して読みにくすぎます。",

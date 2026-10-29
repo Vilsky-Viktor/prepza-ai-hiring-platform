@@ -4,11 +4,12 @@ from fastapi import APIRouter, HTTPException, Request, status
 from prepza_common.auth.auth import CurrentUser
 from prepza_common.db.paging import PageParams
 from prepza_common.http.visitor_country import VisitorCountry
+from prepza_common.i18n.i18n import request_language
 
 from companies.api.dependencies import Via
 from companies.constants.roles import Role
 from companies.core.db import Session
-from companies.helpers.brand import color_sets, style_of
+from companies.helpers.brand import brand_problems, color_sets, style_of
 from companies.helpers.logos import logo_path
 from companies.models.companies import Company
 from companies.repositories import interviews
@@ -35,7 +36,9 @@ from companies.services.verification import verify_by_email
 router = APIRouter(prefix="/companies", tags=["companies"])
 
 
-def company_out(company: Company, user_id: str, interview_count: int = 0) -> CompanyOut:
+def company_out(
+    company: Company, user_id: str, language: str, interview_count: int = 0
+) -> CompanyOut:
     member = next(item for item in company.members if item.user_id == user_id)
 
     return CompanyOut(
@@ -50,6 +53,7 @@ def company_out(company: Company, user_id: str, interview_count: int = 0) -> Com
         logo_url=logo_path(company),
         brand_colors=company.brand_colors,
         candidate_colors=BrandColorSets(**color_sets(company.brand_colors)),
+        brand_problems=brand_problems(company.brand_colors, language),
         brand_style=BrandStyle(**style_of(company)),
         website_domain=company.website_domain,
         verified_domain=company.verified_domain,
@@ -91,11 +95,13 @@ async def create_company(
 
 
 @router.get("")
-async def list_companies(user: CurrentUser, page: PageParams) -> list[CompanyOut]:
+async def list_companies(user: CurrentUser, page: PageParams, request: Request) -> list[CompanyOut]:
     """The user's companies; for an AI agent signed in with an API key, the key's only."""
     rows = await company_views.listed(user.uid, page.offset, page.limit)
 
-    return [company_out(item, user.uid, count) for item, count in rows]
+    language = request_language(request)
+
+    return [company_out(item, user.uid, language, count) for item, count in rows]
 
 
 @router.get("/credits")
@@ -149,7 +155,7 @@ async def get_referral(company_id: UUID, user: CurrentUser) -> ReferralOut:
 
 
 @router.get("/{company_id}")
-async def get_company(company_id: UUID, user: CurrentUser) -> CompanyOut:
+async def get_company(company_id: UUID, user: CurrentUser, request: Request) -> CompanyOut:
     company, member = await require_company(user, company_id)
 
     # Opening the company is enough: an owner or admin with a work email on its website sends
@@ -160,7 +166,7 @@ async def get_company(company_id: UUID, user: CurrentUser) -> CompanyOut:
     async with Session() as session:
         totals = await interviews.counts(session, [company.id])
 
-    return company_out(company, user.uid, totals.get(company.id, 0))
+    return company_out(company, user.uid, request_language(request), totals.get(company.id, 0))
 
 
 @router.patch("/{company_id}/name", status_code=status.HTTP_204_NO_CONTENT)

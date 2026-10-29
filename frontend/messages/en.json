@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Page",
-        "text": "The background, and the titles and questions on it."
+        "text": "The background, and the text: titles on it and questions on the secondary fill."
       },
       "primary": {
         "name": "Primary",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Secondary",
-        "text": "Fills such as the rules box and the picked answer, and the gray text: hints and answer letters."
+        "text": "Fills such as the question's card, the rules box and the picked answer, and the gray text: hints and answer letters."
       },
       "dialogs": {
         "name": "Dialogs",

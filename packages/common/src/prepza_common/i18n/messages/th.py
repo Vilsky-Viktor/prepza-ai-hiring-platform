@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "อีเมลในรายการเดียวมากเกินไป: สูงสุด {limit} อีเมล",
     "Use a PNG, JPEG or WebP image up to 500 KB": "ใช้รูปภาพ PNG, JPEG หรือ WebP ขนาดไม่เกิน 500 KB",
     "The page's text is too hard to read on its background.": "ข้อความของหน้าอ่านยากเกินไปบนพื้นหลัง",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "ข้อความของหน้าอ่านยากเกินไปบนพื้นสีรองที่อยู่หลังคำถาม",
     "The dialogs' text is too hard to read on their background.": "ข้อความในกล่องโต้ตอบอ่านยากเกินไปบนพื้นหลังของกล่อง",
     "The text on buttons is too hard to read on the primary color.": "ข้อความบนปุ่มอ่านยากเกินไปบนสีหลัก",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "ข้อความรองอ่านยากเกินไปบนหน้า กล่องโต้ตอบ หรือสีพื้นของข้อความ",

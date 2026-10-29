@@ -1,6 +1,6 @@
 import { expect, test } from "../fixtures"
 import { api, createCompany, createInterview, inviteCandidate } from "../helpers/api"
-import { inviteToken } from "../helpers/db"
+import { inviteToken, saveLightColors } from "../helpers/db"
 import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { setScheme } from "../helpers/theme"
@@ -168,4 +168,37 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   // Asked for the dark theme in the address: prepza's dark set, as the company has none.
   await visit(candidate, `/invite/${await inviteToken(email)}?theme=dark`)
   await expect(candidate.locator("html")).toHaveCSS("--background", "#0a0a0a")
+})
+
+// Colors saved before a check that now refuses them (the page's text on the gray card behind
+// the questions): the light page shows them as saved, with why, to adjust.
+test("saved colors a check now refuses stay in the brand settings with why", async ({
+  signInAs,
+}) => {
+  const owner = await signInAs(ownerEmail())
+  const company = await createCompany(owner)
+  const prepza = await api<{ colors: { light: Record<string, string> } }>(
+    owner,
+    "GET",
+    "/companies/brand/prepza"
+  )
+  const colors = { ...prepza.colors.light, foreground: "#1a1a1a", muted: "#767676", muted_foreground: "#000000" }
+  await saveLightColors(company.id, colors)
+  const problem = owner.getByTestId("brand-problem")
+
+  await owner.setViewportSize({ width: 1280, height: 1300 })
+  await visit(owner, `/companies/${company.id}/brand?page=light`)
+  await expect(problem).toContainText(
+    "The page's text is too hard to read on the secondary fill behind the questions."
+  )
+  // The saved secondary fill, not prepza's.
+  await expect(
+    owner.getByTestId("brand-secondary").locator("input:not([type=color])").first()
+  ).toHaveValue("#767676")
+  await shot(owner, "refused-saved")
+
+  // Darker text that reads on the fill too: saved, and the notice goes.
+  await owner.getByTestId("brand-page").locator("input:not([type=color])").nth(1).fill("#000000")
+  await owner.getByTestId("brand-save").first().click()
+  await expect(problem).toHaveCount(0)
 })

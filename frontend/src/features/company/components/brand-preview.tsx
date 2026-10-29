@@ -40,7 +40,7 @@ export function BrandPreview({
       <div className="h-1.5 overflow-hidden rounded-full bg-muted">
         <div className="h-full w-2/5 bg-primary" />
       </div>
-      <p className="text-lg">{t("sampleQuestion")}</p>
+      <p className="rounded-xl bg-surface p-4 text-lg">{t("sampleQuestion")}</p>
       <ChoiceOptions
         options={t.raw("sampleOptions") as string[]}
         chosen={[0]}

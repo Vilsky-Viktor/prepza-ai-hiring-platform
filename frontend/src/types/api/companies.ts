@@ -2938,6 +2938,13 @@ export interface components {
       logo_url?: string | null
       brand_colors?: components["schemas"]["SavedBrandColors"] | null
       candidate_colors?: components["schemas"]["BrandColorSets"] | null
+      /**
+       * Brand Problems
+       * @default {}
+       */
+      brand_problems: {
+        [key: string]: string
+      }
       brand_style?: components["schemas"]["BrandStyle"] | null
       /** Website Domain */
       website_domain?: string | null

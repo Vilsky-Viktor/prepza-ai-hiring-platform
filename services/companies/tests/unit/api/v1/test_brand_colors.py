@@ -7,6 +7,7 @@ from companies.constants.brand import (
     PAGE_TEXT_UNREADABLE,
     PREPZA_COLORS,
     PRIMARY_UNSEEN,
+    QUESTION_TEXT_UNREADABLE,
     SECONDARY_TEXT_UNREADABLE,
 )
 from companies.helpers.brand import color_sets, contrast, unreadable
@@ -32,6 +33,11 @@ def test_prepzas_own_colors_read_in_both_themes():
     ("changes", "message"),
     [
         ({"foreground": "#eeeeee"}, PAGE_TEXT_UNREADABLE),
+        # Reads on the page, not on the gray card the question sits on.
+        (
+            {"foreground": "#1a1a1a", "muted": "#767676", "muted_foreground": "#000000"},
+            QUESTION_TEXT_UNREADABLE,
+        ),
         ({"card_foreground": "#f0f0f0"}, CARD_TEXT_UNREADABLE),
         ({"primary_foreground": "#0060c0"}, BUTTON_TEXT_UNREADABLE),
         ({"muted_foreground": "#cccccc"}, SECONDARY_TEXT_UNREADABLE),
@@ -47,6 +53,16 @@ def test_a_theme_without_colors_of_its_own_is_prepzas():
 
     assert color_sets(None) == PREPZA_COLORS
     assert color_sets({"dark": mine}) == {"light": LIGHT, "dark": mine}
+
+
+# Saved before the question's card was checked: page text on the secondary fill under 4.5:1.
+SAVED_BEFORE = {**LIGHT, "foreground": "#1a1a1a", "muted": "#767676", "muted_foreground": "#000000"}
+
+
+def test_a_theme_whose_saved_colors_a_check_now_refuses_is_prepzas_for_candidates():
+    mine = {**DARK, "primary": "#ff7a1a"}
+
+    assert color_sets({"light": SAVED_BEFORE, "dark": mine}) == {"light": LIGHT, "dark": mine}
 
 
 @pytest.fixture

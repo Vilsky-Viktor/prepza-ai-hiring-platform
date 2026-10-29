@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Pagina",
-        "text": "Lo sfondo, e i titoli e le domande che ci stanno sopra."
+        "text": "Lo sfondo, e il testo: i titoli che ci stanno sopra e le domande sul riempimento secondario."
       },
       "primary": {
         "name": "Primario",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Secondario",
-        "text": "Riempimenti come il riquadro delle regole e la risposta scelta, e il testo grigio: suggerimenti e lettere delle risposte."
+        "text": "Riempimenti come la scheda della domanda, il riquadro delle regole e la risposta scelta, e il testo grigio: suggerimenti e lettere delle risposte."
       },
       "dialogs": {
         "name": "Finestre di dialogo",

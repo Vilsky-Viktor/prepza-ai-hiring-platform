@@ -138,7 +138,7 @@ project), as candidates on iPhones take it in Safari.
 - a candidate's invitation: their extra time doubling each question's time, and the pledge to answer on their own gating the start (`zt-start-pledge.spec.ts`),
 - an interview's start page on a computer: the whole interview's minutes from its topics' questions and seconds, the big start button, and the rules card from the screen's top to its bottom, scrolling inside on a short screen (`zo-start-page.spec.ts`),
 - a new hard test starting with the hard level's seconds a question, and the value saved in the admin zone's Controls and set back (`zn-level-seconds.spec.ts`; that it reaches the next new test is billing's integration test),
-- a company's brand tab: colors previewed as they're typed, unreadable ones refused, the font and rounding saved with them, and its candidate's invitation in those colors,
+- a company's brand tab: colors previewed as they're typed, unreadable ones refused, saved ones a newer check refuses shown with why, the font and rounding saved with them, and its candidate's invitation in those colors,
 - API keys and web hooks,
 - a web hook's signed test event and its delivery log,
 - the API's operations: inviting a candidate twice, with and without a client's Idempotency-Key (invited once; the retry is a `200`), a reused key with another body refused, correcting them, extra time, a reminder, finding them by email, the credits, removing them, and a new interview within the app's limits,

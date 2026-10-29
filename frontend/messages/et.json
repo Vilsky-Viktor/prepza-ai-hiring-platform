@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Leht",
-        "text": "Taust ning sellel olevad pealkirjad ja küsimused."
+        "text": "Taust ja tekst: sellel olevad pealkirjad ning lisavärvi täitel olevad küsimused."
       },
       "primary": {
         "name": "Põhivärv",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Lisavärv",
-        "text": "Täited, näiteks reeglite kast ja valitud vastus, ning hall tekst: vihjed ja vastuste tähed."
+        "text": "Täited, näiteks küsimuse kaart, reeglite kast ja valitud vastus, ning hall tekst: vihjed ja vastuste tähed."
       },
       "dialogs": {
         "name": "Dialoogid",

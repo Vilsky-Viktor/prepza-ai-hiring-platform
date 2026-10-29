@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "Trop d'e-mails dans une liste : {limit} au maximum.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "Utilisez une image PNG, JPEG ou WebP de 500 Ko maximum",
     "The page's text is too hard to read on its background.": "Le texte de la page est trop difficile à lire sur son arrière-plan.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "Le texte de la page est trop difficile à lire sur l'aplat secondaire derrière les questions.",
     "The dialogs' text is too hard to read on their background.": "Le texte des boîtes de dialogue est trop difficile à lire sur leur arrière-plan.",
     "The text on buttons is too hard to read on the primary color.": "Le texte des boutons est trop difficile à lire sur la couleur principale.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "Le texte secondaire est trop difficile à lire sur la page, les boîtes de dialogue ou son fond.",

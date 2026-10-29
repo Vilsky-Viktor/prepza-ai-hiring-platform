@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "一个列表中的邮箱太多：最多 {limit} 个。",
     "Use a PNG, JPEG or WebP image up to 500 KB": "请使用不超过 500 KB 的 PNG、JPEG 或 WebP 图片",
     "The page's text is too hard to read on its background.": "页面文字在其背景上太难看清。",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "页面文字在题目背后的辅色填充上太难看清。",
     "The dialogs' text is too hard to read on their background.": "对话框文字在其背景上太难看清。",
     "The text on buttons is too hard to read on the primary color.": "按钮上的文字在主色上太难看清。",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "次要文字在页面、对话框或其填充色上太难看清。",

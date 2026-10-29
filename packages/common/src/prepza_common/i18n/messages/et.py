@@ -52,6 +52,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "Ühes loendis on liiga palju e-posti aadresse: kõige rohkem {limit}.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "Kasuta PNG-, JPEG- või WebP-pilti suurusega kuni 500 KB",
     "The page's text is too hard to read on its background.": "Lehe teksti on selle taustal liiga raske lugeda.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "Lehe teksti on küsimuste taga oleval lisavärvi täitel liiga raske lugeda.",
     "The dialogs' text is too hard to read on their background.": "Dialoogiakende teksti on nende taustal liiga raske lugeda.",
     "The text on buttons is too hard to read on the primary color.": "Nuppude teksti on põhivärvil liiga raske lugeda.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "Teisejärgulist teksti on lehel, dialoogiakendes või selle täitevärvil liiga raske lugeda.",

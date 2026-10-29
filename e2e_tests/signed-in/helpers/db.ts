@@ -89,6 +89,20 @@ export async function verifyCompany(companyId: string, domain: string) {
   );
 }
 
+/** A throwaway company's light colors, saved as they are: colors a check added since refuses,
+ * which the API itself no longer saves. */
+export async function saveLightColors(
+  companyId: string,
+  colors: Record<string, string>,
+) {
+  await withDatabase("companies", (client) =>
+    client.query(
+      "UPDATE companies SET brand_colors = jsonb_build_object('light', $2::jsonb) WHERE id = $1",
+      [companyId, JSON.stringify(colors)],
+    ),
+  );
+}
+
 /** Moves a throwaway candidate's invite to `iso`, as if they were invited then. */
 export async function setInvitedAt(email: string, iso: string) {
   await withDatabase("companies", (client) =>

@@ -8682,6 +8682,14 @@
        }
       ]
      },
+     "brand_problems": {
+      "additionalProperties": {
+       "type": "string"
+      },
+      "type": "object",
+      "title": "Brand Problems",
+      "default": {}
+     },
      "brand_style": {
       "anyOf": [
        {

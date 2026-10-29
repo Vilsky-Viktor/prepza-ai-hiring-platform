@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "Masyadong maraming email sa isang listahan: hanggang {limit} lang.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "Gumamit ng PNG, JPEG o WebP na image na hanggang 500 KB",
     "The page's text is too hard to read on its background.": "Masyadong mahirap basahin ang text ng page sa background nito.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "Masyadong mahirap basahin ang text ng page sa secondary fill sa likod ng mga tanong.",
     "The dialogs' text is too hard to read on their background.": "Masyadong mahirap basahin ang text ng mga dialog sa background ng mga ito.",
     "The text on buttons is too hard to read on the primary color.": "Masyadong mahirap basahin ang text sa mga button sa primary color.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "Masyadong mahirap basahin ang secondary text sa page, sa mga dialog o sa fill nito.",

@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Halaman",
-        "text": "Latar belakang, serta judul dan pertanyaan di atasnya."
+        "text": "Latar belakang, dan teks: judul di atasnya serta pertanyaan di atas isian sekunder."
       },
       "primary": {
         "name": "Utama",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Sekunder",
-        "text": "Isian seperti kotak aturan dan jawaban yang dipilih, serta teks abu-abu: petunjuk dan huruf jawaban."
+        "text": "Isian seperti kartu pertanyaan, kotak aturan, dan jawaban yang dipilih, serta teks abu-abu: petunjuk dan huruf jawaban."
       },
       "dialogs": {
         "name": "Dialog",

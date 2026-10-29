@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Página",
-        "text": "O fundo, e os títulos e as perguntas sobre ele."
+        "text": "O fundo, e o texto: os títulos sobre ele e as perguntas sobre o preenchimento secundário."
       },
       "primary": {
         "name": "Primária",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Secundária",
-        "text": "Preenchimentos como o quadro de regras e a resposta escolhida, e o texto cinza: dicas e letras das respostas."
+        "text": "Preenchimentos como o cartão da pergunta, o quadro de regras e a resposta escolhida, e o texto cinza: dicas e letras das respostas."
       },
       "dialogs": {
         "name": "Diálogos",

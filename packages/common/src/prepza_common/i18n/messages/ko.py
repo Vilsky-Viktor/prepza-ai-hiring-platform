@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "한 목록의 이메일이 너무 많습니다. 최대 {limit}개까지 가능합니다.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "500KB 이하의 PNG, JPEG 또는 WebP 이미지를 사용하세요",
     "The page's text is too hard to read on its background.": "페이지 텍스트가 배경 위에서 읽기 너무 어렵습니다.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "페이지 텍스트가 질문 뒤의 보조 채우기 위에서 읽기 너무 어렵습니다.",
     "The dialogs' text is too hard to read on their background.": "대화 상자 텍스트가 배경 위에서 읽기 너무 어렵습니다.",
     "The text on buttons is too hard to read on the primary color.": "버튼 텍스트가 기본 색상 위에서 읽기 너무 어렵습니다.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "보조 텍스트가 페이지, 대화 상자 또는 채우기 색상 위에서 읽기 너무 어렵습니다.",

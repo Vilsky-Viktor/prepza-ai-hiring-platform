@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Pahina",
-        "text": "Ang background, at ang mga title at tanong dito."
+        "text": "Ang background, at ang text: ang mga title dito at ang mga tanong sa secondary fill."
       },
       "primary": {
         "name": "Primary",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Secondary",
-        "text": "Mga fill gaya ng kahon ng mga panuntunan at ng napiling sagot, at ang gray na text: mga hint at mga letra ng sagot."
+        "text": "Mga fill gaya ng card ng tanong, ng kahon ng mga panuntunan at ng napiling sagot, at ang gray na text: mga hint at mga letra ng sagot."
       },
       "dialogs": {
         "name": "Mga dialog",

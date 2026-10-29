@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Page",
-        "text": "Le fond, et les titres et les questions qui s'y trouvent."
+        "text": "Le fond, et le texte : les titres qui s'y trouvent et les questions sur l'aplat secondaire."
       },
       "primary": {
         "name": "Principale",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Secondaire",
-        "text": "Les aplats comme l'encadré des règles et la réponse choisie, et le texte gris : indications et lettres des réponses."
+        "text": "Les aplats comme la carte de la question, l'encadré des règles et la réponse choisie, et le texte gris : indications et lettres des réponses."
       },
       "dialogs": {
         "name": "Boîtes de dialogue",

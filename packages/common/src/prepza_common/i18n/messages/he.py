@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "יותר מדי כתובות אימייל ברשימה אחת: המקסימום הוא {limit}.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "יש להשתמש בתמונת PNG, JPEG או WebP של עד 500 KB",
     "The page's text is too hard to read on its background.": "קשה מדי לקרוא את הטקסט של הדף על הרקע שלו.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "קשה מדי לקרוא את הטקסט של הדף על המילוי המשני שמאחורי השאלות.",
     "The dialogs' text is too hard to read on their background.": "קשה מדי לקרוא את הטקסט של חלונות הדו-שיח על הרקע שלהם.",
     "The text on buttons is too hard to read on the primary color.": "קשה מדי לקרוא את הטקסט בכפתורים על הצבע הראשי.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "קשה מדי לקרוא את הטקסט המשני על הדף, על חלונות הדו-שיח או על המילוי שלו.",

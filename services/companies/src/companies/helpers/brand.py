@@ -1,3 +1,5 @@
+from prepza_common.i18n.i18n import translate
+
 from companies.constants.brand import (
     CONTRAST_RULES,
     PREPZA_BUTTON_RADIUS,
@@ -37,8 +39,24 @@ def unreadable(colors: dict[str, str]) -> str | None:
 
 def color_sets(saved: dict | None) -> dict[str, dict[str, str]]:
     """The colors a company's candidates see, by theme: its own set, or prepza's for a theme it
-    has none for."""
-    return {theme: (saved or {}).get(theme) or PREPZA_COLORS[theme] for theme in Theme}
+    has none for, or whose set a stricter check now finds hard to read (saved before it)."""
+    sets = {}
+
+    for theme in Theme:
+        colors = (saved or {}).get(theme)
+        sets[theme] = colors if colors and not unreadable(colors) else PREPZA_COLORS[theme]
+
+    return sets
+
+
+def brand_problems(saved: dict | None, language: str) -> dict[str, str]:
+    """Why each theme's saved colors are refused now, in the user's language: a check added
+    since they were saved. Their brand settings show the colors with it, to adjust."""
+    return {
+        theme: translate(problem, language)
+        for theme, colors in (saved or {}).items()
+        if colors and (problem := unreadable(colors))
+    }
 
 
 def style_of(company) -> dict:

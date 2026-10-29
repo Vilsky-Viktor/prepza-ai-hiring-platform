@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "Te veel e-mailadressen in één lijst: het maximum is {limit}.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "Gebruik een PNG-, JPEG- of WebP-afbeelding tot 500 KB",
     "The page's text is too hard to read on its background.": "De tekst van de pagina is te moeilijk leesbaar op de achtergrond.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "De tekst van de pagina is te moeilijk leesbaar op het secundaire vlak achter de vragen.",
     "The dialogs' text is too hard to read on their background.": "De tekst van de dialoogvensters is te moeilijk leesbaar op hun achtergrond.",
     "The text on buttons is too hard to read on the primary color.": "De tekst op knoppen is te moeilijk leesbaar op de hoofdkleur.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "De secundaire tekst is te moeilijk leesbaar op de pagina, de dialoogvensters of de opvulkleur.",

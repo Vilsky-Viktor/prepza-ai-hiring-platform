@@ -13,6 +13,7 @@ import {
   BrandRoundingFields,
 } from "@/features/company/components/brand-style-fields"
 import { ColorField } from "@/features/company/components/color-field"
+import { WarningCard } from "@/components/common/warning-card"
 import { Button } from "@/components/ui/button"
 import { BRAND_GROUPS } from "@/config/brand"
 import { FLOAT_LABEL, FLOAT_LABEL_UP } from "@/config/floating-label"
@@ -34,11 +35,13 @@ import type {
  * colors in both themes, font and rounding. Each part is a page of brand's in the side menu
  * (`page`): "general" holds the font and rounding (the logo is above it, on the page), each theme
  * its colors; save and reset act on what the page shows, and edits elsewhere are kept while
- * switching. */
+ * switching. A theme whose saved colors a check now refuses shows why above its colors (its
+ * candidates see prepza's meanwhile) until colors that pass are saved. */
 export function BrandColorsForm({
   companyId,
   saved,
   current,
+  problems,
   style,
   prepza,
   page,
@@ -48,16 +51,19 @@ export function BrandColorsForm({
   // The colors the candidates' pages use now (the company's, or prepza's), and their font and
   // rounding.
   current: BrandColorSets
+  // Why a theme's saved colors are refused now, by theme (companies says).
+  problems: Record<string, string>
   style: BrandStyle
   prepza: PrepzaBrand
   page: "general" | Theme
 }) {
   const t = useTranslations("brand")
   const router = useRouter()
-  const [colors, setColors] = useState<BrandColorSets>(current)
+  const start = startColors(saved, current)
+  const [colors, setColors] = useState<BrandColorSets>(start)
   const [look, setLook] = useState(style)
   // What was last saved, and which themes have colors of their own.
-  const [last, setLast] = useState({ colors: current, look: style })
+  const [last, setLast] = useState({ colors: start, look: style })
   const [own, setOwn] = useState({
     light: Boolean(saved?.light),
     dark: Boolean(saved?.dark),
@@ -71,6 +77,8 @@ export function BrandColorsForm({
   const lookChanged = general && !same(look, last.look)
   const changed = colorsChanged || lookChanged
   const custom = own.light || own.dark || !same(last.look, prepza.style)
+  // Gone once colors that pass are saved (the page refreshes).
+  const problem = general ? undefined : problems[theme]
 
   async function put(path: string, body: unknown) {
     await apiFetch(`/companies/companies/${companyId}/${path}`, {
@@ -182,6 +190,11 @@ export function BrandColorsForm({
         </div>
         {actions()}
       </div>
+      {problem && (
+        <div data-testid="brand-problem">
+          <WarningCard>{problem}</WarningCard>
+        </div>
+      )}
       <div className="grid gap-8 lg:grid-cols-2 lg:items-start">
         <div className="space-y-8">
           {general ? (
@@ -249,6 +262,19 @@ export function BrandColorsForm({
       </div>
     </section>
   )
+}
+
+/** The colors the form starts from, by theme: the company's own saved ones where it has them,
+ * even ones a check now refuses (shown with why, to adjust); else what its candidates' pages
+ * use. */
+function startColors(
+  saved: SavedBrandColors | null,
+  current: BrandColorSets
+): BrandColorSets {
+  return {
+    light: saved?.light ?? current.light,
+    dark: saved?.dark ?? current.dark,
+  }
 }
 
 /** Whether two flat objects hold the same values. */

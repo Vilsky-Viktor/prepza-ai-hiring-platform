@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Página",
-        "text": "El fondo, y los títulos y las preguntas sobre él."
+        "text": "El fondo, y el texto: los títulos sobre él y las preguntas sobre el relleno secundario."
       },
       "primary": {
         "name": "Principal",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Secundario",
-        "text": "Rellenos como el recuadro de reglas y la respuesta elegida, y el texto gris: pistas y letras de las respuestas."
+        "text": "Rellenos como la tarjeta de la pregunta, el recuadro de reglas y la respuesta elegida, y el texto gris: pistas y letras de las respuestas."
       },
       "dialogs": {
         "name": "Diálogos",

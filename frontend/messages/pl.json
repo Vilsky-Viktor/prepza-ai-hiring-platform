@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Strona",
-        "text": "Tło oraz tytuły i pytania na nim."
+        "text": "Tło oraz tekst: tytuły na nim i pytania na dodatkowym wypełnieniu."
       },
       "primary": {
         "name": "Główny",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Dodatkowy",
-        "text": "Wypełnienia, takie jak ramka z zasadami i wybrana odpowiedź, oraz szary tekst: podpowiedzi i litery odpowiedzi."
+        "text": "Wypełnienia, takie jak karta pytania, ramka z zasadami i wybrana odpowiedź, oraz szary tekst: podpowiedzi i litery odpowiedzi."
       },
       "dialogs": {
         "name": "Okna dialogowe",

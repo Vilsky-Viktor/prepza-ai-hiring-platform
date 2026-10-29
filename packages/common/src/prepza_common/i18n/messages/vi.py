@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "Quá nhiều email trong một danh sách: tối đa là {limit}.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "Hãy dùng ảnh PNG, JPEG hoặc WebP tối đa 500 KB",
     "The page's text is too hard to read on its background.": "Chữ trên trang quá khó đọc trên nền của trang.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "Chữ trên trang quá khó đọc trên phần tô phụ phía sau câu hỏi.",
     "The dialogs' text is too hard to read on their background.": "Chữ trong hộp thoại quá khó đọc trên nền của hộp thoại.",
     "The text on buttons is too hard to read on the primary color.": "Chữ trên nút quá khó đọc trên màu chính.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "Chữ phụ quá khó đọc trên trang, trong hộp thoại hoặc trên màu tô của nó.",

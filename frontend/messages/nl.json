@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Pagina",
-        "text": "De achtergrond, en de titels en vragen erop."
+        "text": "De achtergrond, en de tekst: de titels erop en de vragen op het secundaire vlak."
       },
       "primary": {
         "name": "Primair",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Secundair",
-        "text": "Vlakken zoals het regelvak en het gekozen antwoord, en de grijze tekst: hints en antwoordletters."
+        "text": "Vlakken zoals de kaart van de vraag, het regelvak en het gekozen antwoord, en de grijze tekst: hints en antwoordletters."
       },
       "dialogs": {
         "name": "Dialoogvensters",

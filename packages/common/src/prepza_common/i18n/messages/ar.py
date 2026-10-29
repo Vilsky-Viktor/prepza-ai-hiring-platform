@@ -42,6 +42,7 @@ MESSAGES = {
     "Too many emails in one list: the most is {limit}.": "عدد عناوين البريد الإلكتروني في القائمة الواحدة كبير جدًا: الحد الأقصى {limit}.",
     "Use a PNG, JPEG or WebP image up to 500 KB": "استخدم صورة PNG أو JPEG أو WebP بحجم 500 KB على الأكثر",
     "The page's text is too hard to read on its background.": "نص الصفحة صعب القراءة جدًا على خلفيتها.",
+    "The page's text is too hard to read on the secondary fill behind the questions.": "نص الصفحة صعب القراءة جدًا على التعبئة الثانوية خلف الأسئلة.",
     "The dialogs' text is too hard to read on their background.": "نص مربعات الحوار صعب القراءة جدًا على خلفيتها.",
     "The text on buttons is too hard to read on the primary color.": "النص على الأزرار صعب القراءة جدًا على اللون الأساسي.",
     "The secondary text is too hard to read on the page, the dialogs or its fill.": "النص الثانوي صعب القراءة جدًا على الصفحة أو مربعات الحوار أو لون تعبئته.",

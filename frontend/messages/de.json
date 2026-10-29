@@ -1957,7 +1957,7 @@
       },
       "page": {
         "name": "Seite",
-        "text": "Der Hintergrund und die Titel und Fragen darauf."
+        "text": "Der Hintergrund und der Text: die Titel darauf und die Fragen auf der sekundären Fläche."
       },
       "primary": {
         "name": "Primär",
@@ -1965,7 +1965,7 @@
       },
       "secondary": {
         "name": "Sekundär",
-        "text": "Flächen wie der Regelkasten und die gewählte Antwort sowie der graue Text: Hinweise und Antwortbuchstaben."
+        "text": "Flächen wie die Karte der Frage, der Regelkasten und die gewählte Antwort sowie der graue Text: Hinweise und Antwortbuchstaben."
       },
       "dialogs": {
         "name": "Dialoge",
