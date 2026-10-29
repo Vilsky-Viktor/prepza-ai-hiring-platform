@@ -27,7 +27,13 @@ production build of the frontend (`frontend-test`, the gateway's port 8082), nev
   global limit) is tagged `@global` and runs after the others, alone.
 - Tests own their data through fixtures and teardown (setup and cleanup together in a fixture,
   not in hooks); each test makes its own rows; repeated steps in `helpers/` (one module per
-  area); no page objects (rule 4). Auth state is saved once (`storageState`).
+  area); no page objects (rule 4). Signing in goes through the UI only in the tests of signing
+  in; every other test signs its own user in at the Auth emulator's API and opens a fresh
+  context with that session (`storageState`).
+- A viewport plays no part in most checks: the signed-out suite's phone project runs only tests
+  tagged `@phone` (or `@phone-only`), where the phone's layout differs.
+- Checks of data that a lower level can make (every language's messages, every currency) go to
+  vitest or the service's tests, with one or two browser cases left for the screen.
 - Locators as rule 8 (role and position first, `data-testid` last); a text, test id or CSS
   locator on a streamed page takes the visible one (`.filter({ visible: true })`: React parks
   streamed parts in a hidden copy first, `docs/browser-tests.md`); web-first assertions
@@ -37,7 +43,8 @@ production build of the frontend (`frontend-test`, the gateway's port 8082), nev
   `page.clock` (`install`, `fastForward`, `runFor`).
 - No `networkidle`: wait for the element or response the step needs.
 - A test that shows something never appears first waits for proof the page has loaded.
-- Screenshots use `animations: "disabled"` instead of waiting for animations.
+- Screenshots use `animations: "disabled"` instead of waiting for animations. Review screenshots
+  (`shot`) are taken only with `SHOTS=1`.
 - Network is mocked only at the edges (`page.route`); no third-party sites. A mocked slow
   reply is held until the test releases it, never delayed by a timer.
 - At most one retry; a pass on retry is flaky and gets fixed. Traces kept on failure
@@ -51,9 +58,10 @@ production build of the frontend (`frontend-test`, the gateway's port 8082), nev
 
 ## Accessibility
 
-- `@axe-core/playwright` on key screens and states (tags `wcag2a`, `wcag2aa`), with known
-  issues tracked rather than rules disabled; it is a new dev dependency, added only on the
-  user's approval. Scans find about half of WCAG issues, so keyboard checks stay.
+- `@axe-core/playwright` on key screens and states (tags `wcag2a`, `wcag2aa`; the signed-out
+  pages WCAG 2.2 AA), signed out (`accessibility.spec.ts`) and signed in
+  (`y-accessibility.spec.ts`), with known issues tracked in a list beside the check rather than
+  rules disabled. Scans find about half of WCAG issues, so keyboard checks stay.
 
 ## Load and smoke
 

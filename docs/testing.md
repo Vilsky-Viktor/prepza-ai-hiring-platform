@@ -97,7 +97,10 @@ A smoke test against a running stack:
 ## Browser tests
 
 Playwright tests of the signed-out and signed-in pages, run on a production build of the frontend
-in parallel: [Browser tests](browser-tests.md).
+in parallel: [Browser tests](browser-tests.md). The signed-out tests run on a desktop, and on a
+phone those tagged `@phone`; the signed-in tests sign their users in straight at the Auth
+emulator, but for the tests of signing in. Both scan key screens with axe. Review screenshots are
+taken only with `SHOTS=1`.
 
 ## Translations
 
