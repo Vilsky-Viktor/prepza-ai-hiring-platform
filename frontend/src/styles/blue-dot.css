@@ -1,7 +1,7 @@
 /* The logo's blue dot, larger than the text it ends (titles, menu links, the wordmark), without
    making the line taller. */
 :root {
-  --blue-dot-size: 1.7em;
+  --blue-dot-size: 1.5em;
 }
 
 @layer base {

@@ -83,7 +83,7 @@ export async function drawPreview(lines: string[], locale: Locale = "en") {
         }}
       >
         prepza
-        <span style={{ color: PREVIEW_COLORS.dot, fontSize: "1.7em" }}>.</span>
+        <span style={{ color: PREVIEW_COLORS.dot, fontSize: "1.5em" }}>.</span>
       </div>
       {/* The title as the site's headings: regular, grey, lines set tight. */}
       <div
@@ -117,7 +117,7 @@ export async function drawPreview(lines: string[], locale: Locale = "en") {
                   {index === words.length - 1 &&
                     !ENDS_IN_PUNCTUATION.test(line) && (
                       <span
-                        style={{ color: PREVIEW_COLORS.dot, fontSize: "1.7em" }}
+                        style={{ color: PREVIEW_COLORS.dot, fontSize: "1.5em" }}
                       >
                         .
                       </span>
