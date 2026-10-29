@@ -44,24 +44,29 @@ test("the interviews list is searched by title, in the address and across pages"
   await searchField(owner).fill("BACKEND")
   await searchField(owner).press("Enter")
   await expect(owner).toHaveURL(/[?&]q=BACKEND/)
-  await expect(owner.getByText("Backend 21", { exact: true })).toBeVisible()
+  // The visible rows: while the list renders again, Next.js can keep a hidden copy of it.
+  await expect(owner.getByText("Backend 21", { exact: true }).filter({ visible: true })).toBeVisible()
   await expect(owner.getByText("Designer", { exact: true })).toHaveCount(0)
   await shot(owner, "desktop-searched")
 
-  // A reload keeps it.
-  await owner.reload()
-  await expect(searchField(owner)).toHaveValue("BACKEND")
-  await expect(owner.getByText("Backend 21", { exact: true })).toBeVisible()
-  await expect(owner.getByText("Designer", { exact: true })).toHaveCount(0)
-
-  // The next page is asked for with the same search, and brings the last match.
+  // The next page is asked for with the same search (listened for from the reload on: a tall
+  // window can ask for it as soon as the list shows), and brings the last match.
   const nextPage = owner.waitForRequest(
     (request) =>
       request.url().includes("/companies/interviews?") && request.url().includes("offset=20")
   )
+
+  // A reload keeps it.
+  await owner.reload()
+  await expect(searchField(owner)).toHaveValue("BACKEND")
+  await expect(owner.getByText("Backend 21", { exact: true }).filter({ visible: true })).toBeVisible()
+  await expect(owner.getByText("Designer", { exact: true })).toHaveCount(0)
+
   await expect(async () => {
     await owner.mouse.wheel(0, 4000)
-    await expect(owner.getByText("Backend 01", { exact: true })).toBeVisible({ timeout: 1000 })
+    await expect(
+      owner.getByText("Backend 01", { exact: true }).filter({ visible: true })
+    ).toBeVisible({ timeout: 1000 })
   }).toPass({ timeout: 30_000 })
   expect(new URL((await nextPage).url()).searchParams.get("q")).toBe("BACKEND")
   await expect(owner.getByText("Designer", { exact: true })).toHaveCount(0)
@@ -75,6 +80,6 @@ test("the interviews list is searched by title, in the address and across pages"
 
   await owner.setViewportSize(PHONE)
   await visit(owner, `${list}?q=backend`)
-  await expect(owner.getByText("Backend 21", { exact: true })).toBeVisible()
+  await expect(owner.getByText("Backend 21", { exact: true }).filter({ visible: true })).toBeVisible()
   await shot(owner, "phone-searched", false)
 })

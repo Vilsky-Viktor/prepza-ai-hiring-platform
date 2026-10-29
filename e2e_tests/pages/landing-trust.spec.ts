@@ -1,5 +1,6 @@
 import { expect, test, type Locator, type Page } from "@playwright/test";
 
+import { pauseClock } from "./helpers/clock";
 import { loaded } from "./helpers/waits";
 
 // The home page's "trust, quality and compliance" section: five steps of one size spaced evenly
@@ -49,9 +50,7 @@ test("the steps light up one at a time, in order round the ring", async ({
   test.setTimeout(120_000);
   await page.clock.install();
   const section = await openTrust(page);
-  const now = await page.evaluate(() => Date.now());
-  // A few seconds ahead, so a slow page never has the clock past it already.
-  await page.clock.pauseAt(now + 5_000);
+  await pauseClock(page);
   const steps = section.getByTestId("quality-step");
   await expect(steps).toHaveCount(5);
 
@@ -68,9 +67,7 @@ test("the steps are one size, mirrored round the middle, and lighting keeps the 
   test.setTimeout(120_000);
   await page.clock.install();
   const section = await openTrust(page);
-  const now = await page.evaluate(() => Date.now());
-  // A few seconds ahead, so a slow page never has the clock past it already.
-  await page.clock.pauseAt(now + 5_000);
+  await pauseClock(page);
   const steps = section.getByTestId("quality-step");
   const before = await Promise.all((await steps.all()).map(centre));
   const [top, right, lowerRight, lowerLeft, left] = before;

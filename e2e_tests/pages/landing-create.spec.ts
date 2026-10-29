@@ -1,6 +1,7 @@
 import { expect, test, type Page } from "@playwright/test";
 
 import { REQUEST_URL } from "./helpers/env";
+import { pauseClock } from "./helpers/clock";
 import { loaded } from "./helpers/waits";
 
 // The home page's "create an interview" section: three panels (the description, the topics and
@@ -39,15 +40,15 @@ test("with reduced motion the create section rests on the finished interview", a
 
 // Once the section comes into view, the topics and the interview panels wait for the steps
 // before them: the topics' panel until its first topic shows, the interview's until the
-// questions are being written.
+// questions are being written. The clock runs a second at a time: the steps between the two
+// take far longer, and a busy page still gets through the demo in time.
 test("the create demo's later panels wait for the earlier steps", async ({ page }) => {
   test.setTimeout(120_000);
   await page.clock.install();
   await page.goto("/");
   await loaded(page);
   // Time stands still from here on, moving only as the test runs it.
-  const now = await page.evaluate(() => Date.now());
-  await page.clock.pauseAt(now + 1_000);
+  await pauseClock(page);
   const section = page.locator("#how");
   await section.scrollIntoViewIfNeeded();
   const panels = section.getByTestId("demo-panel");
@@ -61,7 +62,7 @@ test("the create demo's later panels wait for the earlier steps", async ({ page 
   await expect
     .poll(
       async () => {
-        await page.clock.runFor(250);
+        await page.clock.runFor(1_000);
 
         return topics.getByTestId("demo-waiting").count();
       },
@@ -74,7 +75,7 @@ test("the create demo's later panels wait for the earlier steps", async ({ page 
   await expect
     .poll(
       async () => {
-        await page.clock.runFor(250);
+        await page.clock.runFor(1_000);
 
         return ready.getByTestId("demo-waiting").count();
       },

@@ -54,36 +54,46 @@ export async function signIn(
     await popup.locator("#display-name-input").fill(displayName)
   }
 
-  await submit.click()
-  await waitForPopupClose(popup, submit)
+  await chooseAccount(popup, submit)
   // Signed in once the frontend writes the token cookie and re-renders the page with it.
   await expect
     .poll(async () => (await context.cookies()).some((c) => c.name === TOKEN_COOKIE))
     .toBe(true)
   // The companies page, in whatever language the account uses, rendered again as signed in: its
-  // sign-in options gone (the dev server may take a while to render it the first time).
+  // sign-in options gone (a busy run may take a while to render it).
   await expect(page.locator("main h1")).toBeVisible()
   await expect(page.getByTestId(`sign-in-${provider}`)).toHaveCount(0, { timeout: 90_000 })
 
   return page
 }
 
-/** Waits for the emulator's page to close once its account is chosen. A click that lands before
- * the page's script is ready does nothing and the page stays open, so if it's still open after a
- * while and the button is still there, it's clicked once more; never an endless wait. */
-async function waitForPopupClose(popup: Page, submit: Locator) {
-  // Both listen from now on, so a close between the two steps is never missed.
+/** Chooses the account on the emulator's page and waits for the page to close. It listens for the
+ * close before clicking: the page can close while the click is still being reported. A click that
+ * lands before the page's script is ready does nothing and the page stays open, so if it's still
+ * open after a while and the button is still there, it's clicked once more; never an endless
+ * wait. */
+async function chooseAccount(popup: Page, submit: Locator) {
   const closed = popup.waitForEvent("close", { timeout: 60_000 })
-  const soon = await popup
+  const soon = popup
     .waitForEvent("close", { timeout: 15_000 })
     .then(() => true)
     .catch(() => false)
+  await clickUnlessClosed(popup, submit)
 
-  if (!soon && !popup.isClosed() && (await submit.isVisible().catch(() => false))) {
-    await submit.click()
+  if (!(await soon) && !popup.isClosed() && (await submit.isVisible().catch(() => false))) {
+    await clickUnlessClosed(popup, submit)
   }
 
   await closed
+}
+
+/** Clicks `submit` on the emulator's page; the page closing as it's clicked is what's wanted. */
+async function clickUnlessClosed(popup: Page, submit: Locator) {
+  await submit.click().catch((error: unknown) => {
+    if (!popup.isClosed()) {
+      throw error
+    }
+  })
 }
 
 /** Clicks the provider's button until the emulator's page opens: a click before the page is

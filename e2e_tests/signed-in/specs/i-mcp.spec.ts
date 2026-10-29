@@ -132,7 +132,8 @@ test("the consent page asks before an AI app may use the account", async ({ sign
     })
   )
   await user.route("**/assistant/connect/e2e-request/deny", (route) =>
-    route.fulfill({ json: { redirect_url: "/?error=access_denied" } })
+    // An app's address is absolute (the page never follows anything else).
+    route.fulfill({ json: { redirect_url: new URL("/?error=access_denied", user.url()).href } })
   )
   await visit(user, "/connect?request=e2e-request")
   // Who asks: the app, where it goes back to, and the account it would use.
@@ -160,7 +161,7 @@ test("the consent page asks before an AI app may use the account", async ({ sign
   await user.route("**/assistant/connect/e2e-request/approve", (route) => {
     approvals.push(route.request().postDataJSON())
 
-    return route.fulfill({ json: { redirect_url: "/?code=e2e" } })
+    return route.fulfill({ json: { redirect_url: new URL("/?code=e2e", user.url()).href } })
   })
   await visit(user, "/connect?request=e2e-request")
   await main.getByRole("switch").click()

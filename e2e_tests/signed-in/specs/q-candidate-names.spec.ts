@@ -26,7 +26,7 @@ test("owner invites candidates with names three ways and finds one by name", asy
   const invite = dialog.locator("button[type=submit]")
 
   // Invite one: an email and its name.
-  await owner.getByTestId("new-candidate").click()
+  await owner.getByTestId("new-candidate").filter({ visible: true }).click()
   await tabs.nth(0).click()
   await dialog.getByRole("textbox").first().fill(ann)
   await dialog.getByRole("textbox").nth(1).fill("  Ann Lee ")
@@ -40,7 +40,7 @@ test("owner invites candidates with names three ways and finds one by name", asy
 
   // Invite many: a name beside one email, none beside the other.
   await visit(owner, list)
-  await owner.getByTestId("new-candidate").click()
+  await owner.getByTestId("new-candidate").filter({ visible: true }).click()
   await tabs.nth(1).click()
   await dialog.getByRole("textbox").fill(`Bob Stone <${bob}>\n${plain}`)
   await shot(owner, "invite-many")
@@ -60,7 +60,7 @@ test("owner invites candidates with names three ways and finds one by name", asy
 
   // Upload from file: the example files download, and a CSV with a name column invites.
   await visit(owner, list)
-  await owner.getByTestId("new-candidate").click()
+  await owner.getByTestId("new-candidate").filter({ visible: true }).click()
   await tabs.nth(2).click()
 
   for (const file of ["prepza-candidates-example.csv", "prepza-candidates-example.txt"]) {
@@ -81,7 +81,7 @@ test("owner invites candidates with names three ways and finds one by name", asy
   await shot(owner, "candidates-with-names")
 
   // The dialog opens on the tab used last.
-  await owner.getByTestId("new-candidate").click()
+  await owner.getByTestId("new-candidate").filter({ visible: true }).click()
   await expect(tabs.nth(2)).toHaveAttribute(
     "aria-selected",
     "true"
@@ -118,8 +118,9 @@ test("the sign-in fills a name once and an owner's correction stays", async ({ s
   await owner.getByText("Maria Kowalska", { exact: true }).click()
   await expect(owner).toHaveURL(/\/candidates\/[^/?]+$/, { timeout: 90_000 })
   await expect(owner.getByRole("heading", { name: email })).toBeVisible()
-  // The name's line under the email, with its pencil for an owner.
-  const nameLine = owner.locator("main h1 + div > p")
+  // The name's line under the email, with its pencil for an owner: the visible one, as the page
+  // can hold a hidden copy of it while it renders again.
+  const nameLine = owner.locator("main h1 + div > p").filter({ visible: true })
   await expect(nameLine).toContainText("Maria Kowalska")
   await expect(nameLine.getByRole("button")).toBeVisible()
   await shot(owner, "report-name")
@@ -150,7 +151,7 @@ test("the invite dialog says what it couldn't read", async ({ signInAs }) => {
 
   const tabs = dialog.getByRole("tab")
   const invite = dialog.locator("button[type=submit]")
-  await owner.getByTestId("new-candidate").click()
+  await owner.getByTestId("new-candidate").filter({ visible: true }).click()
   await tabs.nth(2).click()
   await file.setInputFiles({
     name: "candidates.xlsx",

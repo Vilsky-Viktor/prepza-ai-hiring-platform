@@ -1,5 +1,6 @@
 import { expect, test, type Locator } from "@playwright/test";
 
+import { pauseClock } from "./helpers/clock";
 import { loaded } from "./helpers/waits";
 
 // The home page's "just ask Mira" section: Mira's chat plays beside three cards, the one the
@@ -15,8 +16,7 @@ test("the lit card's icon stands out from the others", async ({ page }) => {
   await page.goto("/");
   await loaded(page);
   // Time stands still from here on, moving only as the test runs it, so the lit card stays.
-  const now = await page.evaluate(() => Date.now());
-  await page.clock.pauseAt(now + 1_000);
+  await pauseClock(page);
   const section = page.locator("#agent");
   await section.scrollIntoViewIfNeeded();
   const cards = section.getByTestId("icon-card");

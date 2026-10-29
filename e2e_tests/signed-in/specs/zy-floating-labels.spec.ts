@@ -39,7 +39,7 @@ test("a field's name rests inside it and rises onto its edge when focused or fil
 
   // The invite dialog's email and name fields.
   await visit(owner, `/companies/${company.id}/interviews/${interviewId}?tab=candidates`)
-  await owner.getByTestId("new-candidate").click()
+  await owner.getByTestId("new-candidate").filter({ visible: true }).click()
   const dialog = owner.getByRole("dialog")
   await dialog.getByRole("tab").first().click()
   const email = dialog.locator('input[type="email"]')

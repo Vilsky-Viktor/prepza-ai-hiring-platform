@@ -185,7 +185,8 @@ test("superadmin turns the pause and maintenance mode on and off", { tag: "@glob
   await flip(superadmin, MAINTENANCE, false)
   await expect.poll(() => maintenanceOn(superadmin)).toBe(false)
   await visitUntil(owner, "/companies", 200)
-  await expect(owner.getByText(company.name)).toBeVisible()
+  // The visible card: while the page renders again, Next.js can keep a hidden copy of it.
+  await expect(owner.getByText(company.name).filter({ visible: true })).toBeVisible()
 })
 
 // A replaced question shows, behind its "replaced with" button, the question that took its place.

@@ -17,7 +17,7 @@ test("the keyboard skips the header and moves between tabs with the arrows", asy
   // The skip link is the first Tab, even on a page whose tab row scrolled to its current tab;
   // hidden until then, it takes the focus past the header.
   const skip = owner.locator('a[href="#content"]')
-  const invite = owner.getByTestId("new-candidate")
+  const invite = owner.getByTestId("new-candidate").filter({ visible: true })
   await expect(invite).toBeVisible()
   await owner.keyboard.press("Tab")
   await expect(skip).toBeFocused()

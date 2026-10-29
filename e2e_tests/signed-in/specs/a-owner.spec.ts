@@ -101,7 +101,8 @@ test("owner creates a company, an interview from a template and invites a candid
   await expect(rows).toHaveCount(0)
   await shot(owner, "candidates-empty")
   const candidate = throwawayEmail("candidate")
-  await owner.getByTestId("new-candidate").click()
+  // The visible one: while the page renders again, Next.js can keep a hidden copy of it.
+  await owner.getByTestId("new-candidate").filter({ visible: true }).click()
   // The first tab invites one candidate by email.
   await owner.getByRole("dialog").getByRole("tab").first().click()
   await owner.getByRole("dialog").locator('input[type="email"]').fill(candidate)

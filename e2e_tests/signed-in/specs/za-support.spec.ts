@@ -243,8 +243,13 @@ test("superadmin suspends, lifts, renames and deletes a company from its page", 
     await expect(superadmin.getByTestId("suspend")).toBeVisible({ timeout: 5_000 })
   }).toPass({ timeout: 60_000 })
 
-  // The icons beside Suspend: rename, then delete.
-  const actions = superadmin.getByTestId("suspend").locator("xpath=following-sibling::span[1]").getByRole("button")
+  // The icons beside Suspend: rename, then delete; beside the visible one, as while the page
+  // renders again Next.js can keep a hidden copy of it.
+  const actions = superadmin
+    .getByTestId("suspend")
+    .filter({ visible: true })
+    .locator("xpath=following-sibling::span[1]")
+    .getByRole("button")
 
   await actions.first().click()
   await superadmin.getByRole("dialog").getByRole("textbox").fill(`${name} renamed`)

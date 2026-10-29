@@ -120,7 +120,7 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   await expect(owner.getByRole("dialog").getByRole("textbox")).toHaveValue(/^whsec_/)
   await shot(owner, "secret-shown")
   await owner.keyboard.press("Escape")
-  await expect(owner.getByText("https://example.com/prepza")).toBeVisible()
+  await expect(owner.getByText("https://example.com/prepza", { exact: true })).toBeVisible()
   await shot(owner, "filled")
   await visit(owner, tab)
   await shot(owner, "list-filled")
