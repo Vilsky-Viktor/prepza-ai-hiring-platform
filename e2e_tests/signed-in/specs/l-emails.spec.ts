@@ -56,9 +56,11 @@ test("a user chooses their emails in settings", async ({ signInAs }) => {
 })
 
 // The sign-in's boxes: an unticked opt-out turns product updates on at a first sign-in only;
-// offers go on only when ticked; a later sign-in never turns updates back on.
+// offers go on only when ticked; a later sign-in never turns updates back on. The boxes are
+// ticked on the site's own sign-in; the other sign-ins send what the site sends with them
+// unticked (helpers/sign-in.ts, lib/emails.ts's signInEmailChanges).
 test("signing in sets product updates and offers", async ({ signInAs }) => {
-  const ticked = await signInAs(ownerEmail(), { noUpdates: true, promotions: true })
+  const ticked = await signInAs(ownerEmail(), { noUpdates: true, promotions: true, ui: true })
   await visit(ticked, "/settings")
   await expect(emailBoxes(ticked).nth(EMAIL_BOXES.updates)).not.toBeChecked()
   await expect(emailBoxes(ticked).nth(EMAIL_BOXES.offers)).toBeChecked()

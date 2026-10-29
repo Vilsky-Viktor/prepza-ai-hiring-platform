@@ -15,7 +15,8 @@ type Fixtures = {
     displayName?: string
   ) => Promise<Page>
   // A new browser signed in as `email`, a throwaway user the test made up (named `displayName`
-  // when new); `emails` ticks the sign-in's email boxes first.
+  // when new): straight at the Auth emulator, or with `{ ui: true }` through the site's sign-in,
+  // ticking the sign-in's email boxes `emails` names first.
   signInAs: (email: string, emails?: SignInEmails, displayName?: string) => Promise<Page>
   // A new browser signed in as the first superadmin in SUPERADMIN_EMAILS (emulator only). Nothing
   // of theirs is deleted.

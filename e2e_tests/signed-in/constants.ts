@@ -1,5 +1,9 @@
+// The site's address as the browser has it (signed-in.sh maps it to the gateway's test port).
+export const SITE_URL = process.env.SITE_URL ?? "http://localhost:8090";
 // The token cookie the frontend writes once signed in (frontend/src/config/auth.ts).
 export const TOKEN_COOKIE = "prepza_token";
+// The interface's language, which the frontend writes from the account's (frontend/src/config/i18n.ts).
+export const LOCALE_COOKIE = "prepza_locale";
 // Screenshots, one folder per spec, in the results folder Playwright empties at the start of a run;
 // git ignores it.
 export const SCREENSHOTS = "test-results/screenshots";
@@ -18,3 +22,5 @@ export const GREENHOUSE_E2E_SECRET = "e2e-webhook-secret";
 export const HUMAN_CHECK_TOKEN = "XXXX.DUMMY.TOKEN.XXXX";
 // Billing as the test process reaches it on the stack's network, for its scheduled jobs.
 export const BILLING_URL = process.env.BILLING_URL ?? "http://billing:8000";
+// The Firebase Auth emulator as the test process reaches it on the stack's network.
+export const AUTH_URL = process.env.AUTH_URL ?? "http://firebase-auth:9199";

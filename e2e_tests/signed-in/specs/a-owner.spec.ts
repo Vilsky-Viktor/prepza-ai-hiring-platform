@@ -8,7 +8,8 @@ import { ownerEmail, randomId, throwawayEmail } from "../helpers/users"
 test("owner creates a company, an interview from a template and invites a candidate", async ({
   signInAs,
 }) => {
-  const owner = await signInAs(ownerEmail())
+  // Through the site's sign-in, as a new owner would.
+  const owner = await signInAs(ownerEmail(), { ui: true })
   // No company yet: the list has no rows.
   await expect(owner.getByTestId("new-company")).toBeVisible()
   await expect(owner.getByRole("main").getByRole("listitem")).toHaveCount(0)

@@ -1,4 +1,4 @@
-import { API_URL } from "./constants"
+import { API_URL, AUTH_URL } from "./constants"
 import { env } from "./helpers/env"
 import { RUN } from "./helpers/users"
 
@@ -12,7 +12,6 @@ const THROWAWAY =
   /^(e2e-owner-[0-9a-f-]+@(example\.com|e2e-[0-9a-f]+\.test)|delivered\+e2e-[a-z0-9-]+@resend\.dev)$/
 // Longer than a whole run of the suite takes.
 const STALE_MS = 6 * 60 * 60 * 1000
-const AUTH_URL = process.env.AUTH_URL ?? "http://firebase-auth:9199"
 const IDENTITY = `${AUTH_URL}/identitytoolkit.googleapis.com/v1`
 // The emulator takes "owner" as an admin's token.
 const ADMIN = { Authorization: "Bearer owner", "Content-Type": "application/json" }

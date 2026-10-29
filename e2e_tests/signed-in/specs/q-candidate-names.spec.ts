@@ -110,7 +110,7 @@ test("the sign-in fills a name once and an owner's correction stays", async ({ s
   await visit(owner, list)
   await expect(owner.getByRole("link").filter({ hasText: email }).getByTestId("no-name")).toBeVisible()
 
-  const candidate = await signInAs(email, {}, "Maria Kowalska")
+  const candidate = await signInAs(email, { ui: true }, "Maria Kowalska")
   const start = `/companies/invites/${await inviteToken(email)}/start`
   await api(candidate, "POST", start, { pledged: true })
 

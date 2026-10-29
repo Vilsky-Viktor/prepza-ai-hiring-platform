@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test"
 
+import { SITE_URL } from "./constants"
+
 // Runs in Playwright's Docker image (e2e_tests/signed-in.sh), like the signed-out page tests,
 // against the production build of the frontend. HOST_RULES points the site and the Firebase Auth
 // emulator at their containers, so the browser keeps the addresses the frontend uses.
@@ -26,7 +28,7 @@ export default defineConfig({
   use: {
     ...devices["Desktop Chrome"],
     viewport: { width: 1280, height: 800 },
-    baseURL: process.env.SITE_URL ?? "http://localhost:8090",
+    baseURL: SITE_URL,
     acceptDownloads: true,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
@@ -51,6 +53,8 @@ export default defineConfig({
     ...(["firefox", "webkit"] as const).map((name) => ({
       name,
       testMatch: /i-api-embed\.spec\.ts/,
+      // The embedded interview; the hosted script's headers are a request, the same anywhere.
+      grep: /embeds a candidate's interview/,
       use: {
         ...devices[name === "firefox" ? "Desktop Firefox" : "Desktop Safari"],
         viewport: { width: 1280, height: 800 },
