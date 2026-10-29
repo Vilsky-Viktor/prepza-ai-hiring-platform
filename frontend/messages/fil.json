@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "Tungkol sa page na ito",
     "actionsTitle": "Ang puwede mong gawin",
-    "tipsTitle": "Mga tip"
+    "tipsTitle": "Mga tip",
+    "feedbackText": "May napansin kang problema, may ideya para sa page na ito, o may kulang na feature? Gusto naming marinig mula sa iyo.",
+    "feedbackLink": "Makipag-ugnayan sa amin"
   },
   "companyBilling": {
     "reservedTab": "Naka-reserve ({count, number})",

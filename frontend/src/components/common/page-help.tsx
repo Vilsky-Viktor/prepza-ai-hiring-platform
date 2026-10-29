@@ -1,10 +1,11 @@
 "use client"
 
 import { cn } from "cn"
-import { BadgeQuestionMarkIcon } from "lucide-react"
+import { BadgeQuestionMarkIcon, MailIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
+import { CornerSign } from "@/components/common/corner-sign"
 import { LocalizedLink } from "@/components/common/localized-link"
 import { Button } from "@/components/ui/button"
 import {
@@ -21,6 +22,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { SIGN_CARD } from "@/config/cards"
 import { usePageKey } from "@/hooks/use-page-key"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { PageGuide, PageHelpKey } from "@/types/page-help"
@@ -85,7 +87,7 @@ export function PageHelp({
       {/* On phones it fills the screen: the guide scrolls, Close stays at the bottom. */}
       <DialogContent
         showCloseButton={false}
-        className="max-h-[90dvh] max-sm:h-dvh max-sm:max-h-dvh sm:max-w-lg"
+        className="max-h-[90dvh] max-sm:h-dvh max-sm:max-h-dvh sm:max-w-2xl"
         bodyClassName="gap-6"
       >
         <DialogHeader>
@@ -116,6 +118,7 @@ export function PageHelp({
             {error ?? common("loading")}
           </p>
         )}
+        <FeedbackCard />
         <DialogFooter>
           <DialogClose
             render={
@@ -140,5 +143,33 @@ function HelpList({ title, items }: { title: string; items: string[] }) {
         ))}
       </ul>
     </section>
+  )
+}
+
+/** The invitation at every guide's end to tell us what's wrong or missing, with the way to the
+ * contact page on its end side. Built like the content pages' start card. */
+function FeedbackCard() {
+  const t = useTranslations("pageHelp")
+
+  return (
+    <div
+      data-testid="page-help-feedback"
+      className={cn(
+        SIGN_CARD,
+        "-mx-10 mb-10 flex min-h-max shrink-0 flex-col gap-4 rounded-none sm:flex-row sm:items-center sm:justify-between"
+      )}
+    >
+      <CornerSign>
+        <MailIcon className="text-primary" />
+      </CornerSign>
+      <p className="text-base text-muted-foreground">{t("feedbackText")}</p>
+      <Button
+        className="h-10 shrink-0 px-5 text-base"
+        render={<LocalizedLink href="/contact" />}
+        nativeButton={false}
+      >
+        {t("feedbackLink")}
+      </Button>
+    </div>
   )
 }

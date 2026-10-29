@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "دربارهٔ این صفحه",
     "actionsTitle": "چه کارهایی می‌توانید بکنید",
-    "tipsTitle": "نکته‌ها"
+    "tipsTitle": "نکته‌ها",
+    "feedbackText": "مشکلی دیده‌اید، ایده‌ای برای این صفحه دارید یا قابلیتی کم است؟ خوشحال می‌شویم از شما بشنویم.",
+    "feedbackLink": "تماس با ما"
   },
   "companyBilling": {
     "reservedTab": "رزرو شده ({count, number})",

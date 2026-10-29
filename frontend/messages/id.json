@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "Tentang halaman ini",
     "actionsTitle": "Yang bisa kamu lakukan",
-    "tipsTitle": "Tips"
+    "tipsTitle": "Tips",
+    "feedbackText": "Menemukan masalah, punya ide untuk halaman ini, atau ada fitur yang kurang? Kami senang mendengar darimu.",
+    "feedbackLink": "Hubungi kami"
   },
   "companyBilling": {
     "reservedTab": "Dicadangkan ({count, number})",

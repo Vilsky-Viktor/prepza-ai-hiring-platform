@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "このページについて",
     "actionsTitle": "できること",
-    "tipsTitle": "ヒント"
+    "tipsTitle": "ヒント",
+    "feedbackText": "問題を見つけた、このページへのアイデアがある、または足りない機能がある場合は、ぜひお知らせください。",
+    "feedbackLink": "お問い合わせ"
   },
   "companyBilling": {
     "reservedTab": "確保中 ({count, number})",

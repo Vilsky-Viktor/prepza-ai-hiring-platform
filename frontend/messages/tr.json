@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "Bu sayfa hakkında",
     "actionsTitle": "Neler yapabilirsiniz",
-    "tipsTitle": "İpuçları"
+    "tipsTitle": "İpuçları",
+    "feedbackText": "Bir sorun mu fark ettiniz, bu sayfa için bir fikriniz mi var ya da eksik bir özellik mi var? Sizden haber almaktan memnuniyet duyarız.",
+    "feedbackLink": "Bize ulaşın"
   },
   "companyBilling": {
     "reservedTab": "Ayrılan ({count, number})",

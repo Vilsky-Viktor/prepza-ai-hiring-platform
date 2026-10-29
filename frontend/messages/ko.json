@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "이 페이지 정보",
     "actionsTitle": "할 수 있는 일",
-    "tipsTitle": "팁"
+    "tipsTitle": "팁",
+    "feedbackText": "문제를 발견하셨거나, 이 페이지에 대한 아이디어가 있거나, 필요한 기능이 없나요? 의견을 보내 주시면 반갑겠습니다.",
+    "feedbackLink": "문의하기"
   },
   "companyBilling": {
     "reservedTab": "예약됨 ({count, number})",

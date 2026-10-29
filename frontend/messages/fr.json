@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "À propos de cette page",
     "actionsTitle": "Ce que vous pouvez faire",
-    "tipsTitle": "Conseils"
+    "tipsTitle": "Conseils",
+    "feedbackText": "Vous avez repéré un problème, vous avez une idée pour cette page ou une fonctionnalité vous manque ? Écrivez-nous, nous serons ravis de vous lire.",
+    "feedbackLink": "Contactez-nous"
   },
   "companyBilling": {
     "reservedTab": "Réservés ({count, number})",

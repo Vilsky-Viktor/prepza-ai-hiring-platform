@@ -15,7 +15,8 @@ Contents: [Baselines (2026-10-04)](#baselines-2026-10-04) ·
 [Help chat: Mira](#help-chat-mira-an-ai-assistant-that-says-so-2026-10-22-kept) ·
 [The scope rule's language](#the-scope-rule-names-no-language-of-its-own-2026-10-22-kept) ·
 [Help chat: the shareable link's tab](#help-chat-the-shareable-link-on-the-settings-tab-2026-10-23-kept) ·
-[Help chat: moved to the assistant](#help-chat-moved-from-rounds-to-the-assistant-2026-10-29-kept)
+[Help chat: moved to the assistant](#help-chat-moved-from-rounds-to-the-assistant-2026-10-29-kept) ·
+[Help chat: the guide's contact card](#help-chat-the-page-guides-contact-card-2026-10-29-kept)
 
 ## Baselines (2026-10-04)
 
@@ -280,3 +281,12 @@ for three cases (two pages, two countries, a signed reply) were byte-identical b
 before (`results/help_chat_before_move.json`) → in the assistant (`…_after_move.json`): passed
 96.0% (88.9–98.6) both; made up 4.0% both; sign-in marker 100% both; language 3 of 6 both; the
 misses are h17's known invented retake limit. $1.64 and $1.17.
+
+## Help chat: the page guide's contact card (2026-10-29, kept)
+
+Every page guide's dialog now ends with a "contact us" button to the contact page, for a problem,
+an idea or a missing feature, and the help chat's guide says so. `help_chat.py`, 25 × 3,
+`gpt-6-luna` at none, judged by `gpt-6.1-sol` high, before (`results/help_chat_pagehelp-base.json`)
+→ after (`…_pagehelp-new.json`): passed 96.0% (88.9–98.6) → 100% (95.1–100); made up 4.0% →
+0.0%; sign-in marker 100% both; language 3 → 6 of 6 (h17's invented retake limit didn't come
+up). Within the noise; kept so the guide says what is true. $1.66 and $1.58.

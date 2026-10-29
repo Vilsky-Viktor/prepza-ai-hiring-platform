@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "Selle lehe kohta",
     "actionsTitle": "Mida saad teha",
-    "tipsTitle": "Nõuanded"
+    "tipsTitle": "Nõuanded",
+    "feedbackText": "Märkasid probleemi, sul on idee selle lehe jaoks või jääb mõnest funktsioonist puudu? Kuuleme sinust hea meelega.",
+    "feedbackLink": "Võta meiega ühendust"
   },
   "companyBilling": {
     "reservedTab": "Broneeritud ({count, number})",

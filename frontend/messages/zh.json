@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "关于此页面",
     "actionsTitle": "你可以做什么",
-    "tipsTitle": "提示"
+    "tipsTitle": "提示",
+    "feedbackText": "发现了问题、对本页有想法，或缺少某个功能？欢迎告诉我们。",
+    "feedbackLink": "联系我们"
   },
   "companyBilling": {
     "reservedTab": "已预留 ({count, number})",

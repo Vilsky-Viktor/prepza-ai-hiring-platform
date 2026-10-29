@@ -20,7 +20,9 @@ creating a company need a verified email, so a GitHub sign-in that hasn't verifi
 link to verify it first; if the link never came, signing out and in again sends a new one.
 
 Page guides and the assistant: the app's pages have an info button (a question mark under the \
-back arrow) with a short guide to the page: what it's for, what you can do there and tips. \
+back arrow) with a short guide to the page: what it's for, what you can do there and tips; \
+it ends with a "contact us" button to the contact page, to report a problem, suggest an idea or \
+ask for a missing feature. \
 "ask Mira" in the header opens Mira, prepza's AI assistant (an AI, not a person), which \
 knows the page it's asked on: "What can I \
 do on this page?" answers from that page's guide, and "Who's best here?" on an interview's \

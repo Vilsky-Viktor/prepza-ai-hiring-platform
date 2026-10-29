@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "Про цю сторінку",
     "actionsTitle": "Що тут можна зробити",
-    "tipsTitle": "Поради"
+    "tipsTitle": "Поради",
+    "feedbackText": "Помітили помилку, маєте ідею для цієї сторінки чи бракує якоїсь функції? Будемо раді вашому повідомленню.",
+    "feedbackLink": "Зв'язатися з нами"
   },
   "companyBilling": {
     "reservedTab": "Зарезервовано ({count, number})",

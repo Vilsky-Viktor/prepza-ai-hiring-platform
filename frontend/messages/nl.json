@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "Over deze pagina",
     "actionsTitle": "Wat je kunt doen",
-    "tipsTitle": "Tips"
+    "tipsTitle": "Tips",
+    "feedbackText": "Zie je een probleem, heb je een idee voor deze pagina of mis je een functie? We horen graag van je.",
+    "feedbackLink": "Neem contact op"
   },
   "companyBilling": {
     "reservedTab": "Gereserveerd ({count, number})",

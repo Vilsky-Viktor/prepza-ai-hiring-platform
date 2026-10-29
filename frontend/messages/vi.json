@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "Về trang này",
     "actionsTitle": "Bạn có thể làm gì",
-    "tipsTitle": "Mẹo"
+    "tipsTitle": "Mẹo",
+    "feedbackText": "Bạn phát hiện lỗi, có ý tưởng cho trang này hay thấy thiếu một tính năng? Chúng tôi rất mong nhận được phản hồi của bạn.",
+    "feedbackLink": "Liên hệ với chúng tôi"
   },
   "companyBilling": {
     "reservedTab": "Đang giữ ({count, number})",

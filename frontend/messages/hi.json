@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "इस पेज के बारे में",
     "actionsTitle": "आप क्या कर सकते हैं",
-    "tipsTitle": "सुझाव"
+    "tipsTitle": "सुझाव",
+    "feedbackText": "कोई समस्या दिखी, इस पेज के लिए कोई आइडिया है या कोई फ़ीचर कम लग रहा है? हमें आपकी बात सुनकर खुशी होगी।",
+    "feedbackLink": "हमसे संपर्क करें"
   },
   "companyBilling": {
     "reservedTab": "रिज़र्व ({count, number})",

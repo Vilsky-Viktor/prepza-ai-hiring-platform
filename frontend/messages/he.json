@@ -2241,7 +2241,9 @@
   "pageHelp": {
     "label": "על הדף הזה",
     "actionsTitle": "מה אפשר לעשות",
-    "tipsTitle": "טיפים"
+    "tipsTitle": "טיפים",
+    "feedbackText": "נתקלתם בבעיה, יש לכם רעיון לעמוד הזה או שחסרה לכם תכונה? נשמח לשמוע מכם.",
+    "feedbackLink": "צרו קשר"
   },
   "companyBilling": {
     "reservedTab": "שמורים ({count, number})",
