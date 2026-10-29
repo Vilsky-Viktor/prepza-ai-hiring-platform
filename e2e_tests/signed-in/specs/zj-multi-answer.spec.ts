@@ -48,6 +48,28 @@ async function stepToMulti(page: Page, sessionId: string): Promise<Step> {
   }
 }
 
+/** The answered multi-answer question's row on a scorecard or a practice review, scrolled to.
+ * Both are virtual lists: only the rows near the screen are in the page, and once the list has
+ * measured them the server's first ones may go, so the page is scrolled until the row shows. */
+async function scrolledToMulti(page: Page) {
+  const rows = page.getByRole("main").getByRole("listitem")
+  const row = rows
+    .filter({ has: page.getByTestId("multi-choice") })
+    .filter({ has: page.locator('[data-verdict="partlyCorrect"]') })
+    .first()
+  await expect(rows.first()).toBeVisible()
+  await expect(async () => {
+    if ((await row.count()) === 0) {
+      await page.mouse.move(640, 400)
+      await page.mouse.wheel(0, 400)
+    }
+
+    await row.scrollIntoViewIfNeeded({ timeout: 1_000 })
+  }).toPass({ timeout: 60_000 })
+
+  return row
+}
+
 // A select-all-that-apply question: the candidate ticks options with check boxes under a hint, a
 // partly right answer earns part of its point, and the scorecard, the practice review and the
 // question lists show it.
@@ -144,18 +166,10 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
       `/companies/interviews/${interview.id}/candidates`,
     )
     await visit(owner, `/companies/${company.id}/interviews/${interview.id}/candidates/${row.id}`)
-    // Each multi-answer question of the draw is tagged; the ticked one is partly correct.
-    const drawnMulti = owner.getByRole("main").getByText(MULTI_QUESTION, { exact: false })
-    await expect(drawnMulti.first()).toBeVisible()
-    await expect(owner.getByTestId("multi-choice")).toHaveCount(await drawnMulti.count())
-    await expect(owner.locator('[data-verdict="partlyCorrect"]')).toHaveCount(1)
-    const points = owner.getByTestId("answer-points")
-    await expect(points).toHaveCount(1)
-    await expect(points).toContainText("0.67")
-    // The scorecard may render once more as its data settles: scrolled to whichever is current.
-    await expect(async () => {
-      await points.scrollIntoViewIfNeeded({ timeout: 2_000 })
-    }).toPass()
+    // The ticked multi-answer question, tagged, is partly correct with two thirds of the point.
+    const drawnMulti = await scrolledToMulti(owner)
+    await expect(drawnMulti).toContainText(MULTI_QUESTION)
+    await expect(drawnMulti.getByTestId("answer-points")).toContainText("0.67")
     await shots(owner, "scorecard")
 
     // Practice: the same partial point in the review, with every right option shown.
@@ -177,17 +191,9 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
     })
     await api(learner, "POST", `/rounds/sessions/${practiceStep.session.id}/finish-interview`)
     await visit(learner, `/practice/rounds/${round.round_id}`)
-    const practiceMulti = learner.getByRole("main").getByText(MULTI_QUESTION, { exact: false })
-    await expect(practiceMulti.first()).toBeVisible()
-    await expect(learner.getByTestId("multi-choice")).toHaveCount(await practiceMulti.count())
-    await expect(learner.locator('[data-verdict="partlyCorrect"]')).toHaveCount(1)
-    const practicePoints = learner.getByTestId("answer-points")
-    await expect(practicePoints).toHaveCount(1)
-    await expect(practicePoints).toContainText("0.67")
-    // The review may render once more as its data settles: scrolled to whichever is current.
-    await expect(async () => {
-      await practicePoints.scrollIntoViewIfNeeded({ timeout: 2_000 })
-    }).toPass()
+    const practiceMulti = await scrolledToMulti(learner)
+    await expect(practiceMulti).toContainText(MULTI_QUESTION)
+    await expect(practiceMulti.getByTestId("answer-points")).toContainText("0.67")
     await shots(learner, "practice-review")
   } finally {
     await deleteTemplate(template)
