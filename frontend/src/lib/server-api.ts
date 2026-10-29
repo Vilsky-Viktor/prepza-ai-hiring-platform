@@ -66,7 +66,8 @@ export async function optionalFetch<T>(path: string): Promise<T | null> {
 /**
  * Server-side API call for data that is the same for every visitor, without the user's token:
  * kept for a few minutes, and given up on after a few seconds so a slow or sleeping service
- * doesn't hold the page. Null and errors as in serverFetch. In the interface language, or in
+ * doesn't hold the page: null then, so the page shows without it. Otherwise null and errors as
+ * in serverFetch. In the interface language, or in
  * `locale` when the caller names one; `fresh` asks every time, for data a change must reach at
  * once (a deleted news post must not stay on the page).
  */
@@ -74,13 +75,23 @@ export async function publicFetch<T>(
   path: string,
   { locale, fresh = false }: { locale?: string; fresh?: boolean } = {}
 ): Promise<T | null> {
-  return request<T>(path, {
-    headers: { "Accept-Language": locale ?? (await getLocale()) },
-    ...(fresh
-      ? { cache: "no-store" }
-      : { next: { revalidate: PUBLIC_REVALIDATE_SECONDS } }),
-    signal: AbortSignal.timeout(PUBLIC_TIMEOUT_MS),
-  })
+  try {
+    return await request<T>(path, {
+      headers: { "Accept-Language": locale ?? (await getLocale()) },
+      ...(fresh
+        ? { cache: "no-store" }
+        : { next: { revalidate: PUBLIC_REVALIDATE_SECONDS } }),
+      signal: AbortSignal.timeout(PUBLIC_TIMEOUT_MS),
+    })
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "TimeoutError") {
+      console.error(`Gave up on ${path}: no answer in ${PUBLIC_TIMEOUT_MS} ms`)
+
+      return null
+    }
+
+    throw error
+  }
 }
 
 async function request<T>(path: string, init: RequestInit): Promise<T | null> {

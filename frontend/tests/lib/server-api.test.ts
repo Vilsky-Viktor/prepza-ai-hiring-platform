@@ -34,6 +34,17 @@ describe("publicFetch", () => {
     expect(init.next).toEqual({ revalidate: PUBLIC_REVALIDATE_SECONDS })
     expect(init.signal).toBeInstanceOf(AbortSignal)
     expect(init.cache).toBeUndefined()
+
+    // Given up on: null, so the page shows without it.
+    vi.spyOn(console, "error").mockImplementation(() => {})
+    fetchMock.mockRejectedValueOnce(
+      new DOMException(
+        "The operation was aborted due to timeout",
+        "TimeoutError"
+      )
+    )
+    expect(await publicFetch("/library/templates/filters")).toBeNull()
+    vi.restoreAllMocks()
   })
 
   it("is null for a missing resource and throws on a failure", async () => {
