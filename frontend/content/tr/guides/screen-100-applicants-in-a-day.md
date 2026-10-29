@@ -30,7 +30,7 @@ Kimseyi test etmeden önce, bu pozisyondaki bir kişinin ilk gün bilmesi gereke
 
 - **Bilgi:** “Banka ekstrelerinin mutabakatını yapar, KDV'nin temellerini bilir, büyük defter kullanır” test edilebilir. “Güçlü finans geçmişi” edilemez.
 - **Kesin gereklilikler:** bir lisans, çalışma izni, dil seviyesi, müsaitlik. Bunlar evet ya da hayır kontrolleridir, test malzemesi değildir.
-- **Olsa iyi olur:** bunları ilk filtrenin dışında tutun. Bunların yeri mülakattır.
+- **Tercih sebepleri:** bunları ilk filtrenin dışında tutun. Bunların yeri mülakattır.
 
 İşe alımda iki veya üç kişi yer alıyorsa bu listede şimdi anlaşın. Adayları gördükten sonra anlaşmak çok daha zordur.
 
@@ -95,7 +95,7 @@ Her kişinin listeye neden girdiğini not edin. Aday başına bir dakika sürer 
 
 ## Sık yapılan hatalar
 
-- **“Olsa iyi olur” özellikleri test etmek.** Her ek konu testi uzatır ve öğretebileceğiniz şeyler yüzünden insanları eler.
+- **Tercih sebeplerini test etmek.** Her ek konu testi uzatır ve öğretebileceğiniz şeyler yüzünden insanları eler.
 - **Çok uzun bir test.** Uzun testler, başka teklifleri olan iyi adayları kaybettirir.
 - **Geçme notunu bir duvar gibi görmek.** O bir okuma yardımcısıdır. Yanıtlara bakın.
 - **Önizlemeyi atlamak.** Adaylardan önce testi kendiniz çözün.

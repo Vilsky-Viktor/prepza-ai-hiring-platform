@@ -57,7 +57,7 @@ Uzunluğun da bedeli vardır: yorgunluk, dikkatin düşmesi ve başka teklifleri
 
 - **Konu başına yaklaşık 10 soru,** konuyu bilenle bilmeyeni ayırt etmeye yeter.
 - **En önemli konulara daha fazla.** İşe alımı tek bir beceri belirliyorsa ona 15 ya da 20 soru verin.
-- **Konu başına daha az soru değil, daha az konu.** 10'ar sorudan oluşan dört konu, 5'er sorudan oluşan sekiz konudan daha çok şey söyler. "Olsa iyi olur" becerilerini sonraki görüşmelere bırakın.
+- **Konu başına daha az soru değil, daha az konu.** 10'ar sorudan oluşan dört konu, 5'er sorudan oluşan sekiz konudan daha çok şey söyler. Tercih sebebi olan becerileri sonraki görüşmelere bırakın.
 
 ### Daha büyük bir soru havuzundan çekin
 

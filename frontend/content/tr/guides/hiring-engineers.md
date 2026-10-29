@@ -54,7 +54,7 @@ Herhangi bir şey yayınlamadan önce, kişinin ilk altı ayında ne yapacağın
 
 Bu konuda işe alımda yer alan herkesle anlaşın. Ardından iş tanımını buna göre yazın. Gerçek işle örtüşen bir iş tanımı doğru kişileri çeker ve sonraki her adımın kurulmasını kolaylaştırır, çünkü her test ve mülakat ona dayandırılabilir.
 
-“Olsa iyi olur” listesini kısa tutun. Uzun gereklilik listeleri, her kutucuğu işaretlemeyen nitelikli kişileri caydırır.
+Tercih sebepleri listesini kısa tutun. Uzun gereklilik listeleri, her kutucuğu işaretlemeyen nitelikli kişileri caydırır.
 
 ## 2. adım: CV'leri yalnızca kesin gerekliliklere göre tarayın
 
