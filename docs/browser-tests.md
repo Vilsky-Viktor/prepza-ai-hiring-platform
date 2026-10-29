@@ -39,6 +39,13 @@ itself. Runs take a slot in `e2e_tests/browser_lock.py` (a directory under
 later run prints "waiting for earlier browser runs" and starts in the order it came, and a slot
 left by a killed run is taken over once its process is gone.
 
+**Hidden copies of a page's parts.** A page streams in: React first parks a finished part in a
+hidden `<div hidden id="S:0">` and moves it into place a moment later, and a part the browser
+renders itself meanwhile is in the page twice until then. Role locators (`getByRole`) skip hidden
+elements; `getByText`, `getByTestId` and CSS locators don't, so on a page that just loaded or
+rendered again they take the visible one, `.filter({ visible: true })`, or an assertion can meet
+two elements (a strict-mode error) or click the hidden one.
+
 ## Browser tests of the signed-out pages
 
 Playwright tests of the signed-out pages, on desktop and phone sizes, in Playwright's Docker image. The pages (`pages.spec.ts`): home, companies, pricing (also in German and Japanese), terms, privacy, documents, FAQ, about, contact, practice, skills tests by role, and the articles (pre-employment testing, AI interviews, a comparison, a guide and their hubs). It also checks that the sign-in dialog offers its two email boxes, unticked.

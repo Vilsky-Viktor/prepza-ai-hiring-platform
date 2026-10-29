@@ -34,7 +34,8 @@ test("candidate takes the interview from the invite link", async ({
 
   // The pick can change until Next: one option marked at a time.
   const question = candidate.locator("[role=heading]").first();
-  const options = candidate.getByRole("main").locator("button[aria-pressed]");
+  // The answer's options, a list beside the question (the rating's buttons are pressed too).
+  const options = candidate.getByRole("main").locator("li > button[aria-pressed]");
   await expect(options.first()).toBeVisible();
   await shot(candidate, "question");
   await options.nth(0).click();

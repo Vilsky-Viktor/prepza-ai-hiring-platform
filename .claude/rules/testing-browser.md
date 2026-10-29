@@ -28,7 +28,9 @@ production build of the frontend (`frontend-test`, the gateway's port 8082), nev
 - Tests own their data through fixtures and teardown (setup and cleanup together in a fixture,
   not in hooks); each test makes its own rows; repeated steps in `helpers/` (one module per
   area); no page objects (rule 4). Auth state is saved once (`storageState`).
-- Locators as rule 8 (role and position first, `data-testid` last); web-first assertions
+- Locators as rule 8 (role and position first, `data-testid` last); a text, test id or CSS
+  locator on a streamed page takes the visible one (`.filter({ visible: true })`: React parks
+  streamed parts in a hidden copy first, `docs/browser-tests.md`); web-first assertions
   (`await expect(locator)...`). Every promise is awaited; no floating promises.
 - No fixed waits (`waitForTimeout`): wait for an element, a response or a state with
   auto-retrying `expect`, `expect.poll` or `toPass`. Time-dependent page code runs on
