@@ -87,7 +87,16 @@ export async function InterviewHeader({
         )}
       </PageHeader>
       {ready ? (
-        <InterviewNav href={interviewHref} current={current} canEdit={canEdit}>
+        <InterviewNav
+          href={interviewHref}
+          current={current}
+          canEdit={canEdit}
+          counts={{
+            topics: interview.topics.length,
+            candidates: interview.candidate_count,
+            notes: interview.note_count ?? 0,
+          }}
+        >
           {/* What it adds up to for each candidate, on the topics tab, once its topics are
               known. */}
           {current === "topics" &&

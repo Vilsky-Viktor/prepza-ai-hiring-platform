@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Jah, kui oled ettevõtte omanik. Selle vahekaardil Toimingute logi on kõik, mida liikmed tegid, uuemad eespool: kandidaatide kutsumine või eemaldamine, tulemuste vaatamine ning intervjuude, meeskonna, arvelduse ja integratsioonide muutmine, koos sellega, kes ja millal seda tegi ning kas assistent, AI-rakendus või API tegi seda tema nimel. Saad seda filtreerida liikme, toimingu liigi ja kuupäevade järgi. Toiminguid hoitakse 12 kuud.",
     },
     {
+        "key": "notes",
+        "question": "Kas mu meeskond saab intervjuu kohta märkmeid teha?",
+        "answer": "Jah. Igal intervjuul on vahekaart Märkmed, kuhu sinu meeskond kirjutab värbamise kohta lihttekstis märkmeid, näiteks kellele järgmisena helistada või, kui oled värbamisagentuur, millise kliendi jaoks intervjuu on. Iga liige saab märkmeid kirjutada, ka vaatajad, ja oma märkmeid muuta; märkme saavad kustutada selle autor, omanikud ja administraatorid. Omanikud ja administraatorid saavad ühe märkme üles kinnitada, mis on siis näha intervjuu nime all. Kandidaadid ei näe märkmeid kunagi.",
+    },
+    {
         "key": "integrations",
         "question": "Kas prepza töötab minu ATS-i või muude tööriistadega?",
         "answer": "Jah, ilma lisatasuta. Ühenda Workable, Greenhouse, Teamtailor, Recruitee või Breezy HR oma ettevõtte vahekaardil Integratsioonid: kandidaadid, kelle viid etappi, saavad intervjuu ja nende tulemused lähevad tagasi ATS-i ([kuidas ühendada oskustestid ATS-iga](/guides/ats-integration-skills-tests)). Slack saab postitada sinu ettevõtte teavitusi kanalisse ja API kaudu saab sinu enda platvorm luua intervjuusid, kandidaate kutsuda ja hallata ning nende tulemusi vastu võtta, kusjuures iga API-võti saab teha ainult seda, mille talle märgid; vaata [API dokumentatsiooni](/api-docs).",

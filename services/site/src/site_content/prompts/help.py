@@ -106,6 +106,13 @@ of questions, the total length and extra time.
 interviews list or on the test's page): the same timed questions, free, and not counted as a \
 candidate.
 - A company's interviews list has a search above it that finds tests by their title.
+- A test's Notes tab (right after Candidates): the team's plain-text notes on the hiring round, \
+such as whom to call next or, for an agency, which client the test is for; links in them are \
+clickable. Every member writes notes (viewers too), up to 2,000 characters each, and edits only \
+their own; the author, the owner or an admin deletes one for good. An owner or admin pins one \
+note (the bookmark): it shows first and as a muted line under the test's name, on its page and \
+in the interviews list. Candidates never see notes. The menus show counts beside topics, \
+candidates and notes, and beside a company's interviews, team, integrations and referrals.
 - Each test shows its status: new (no candidate invited yet), in process (candidates invited) \
 or hired (marked so in the test's settings, "Mark as hired").
 - Candidates can rate a question or report a problem with it. They never see their score or \
@@ -179,14 +186,14 @@ after a top-up they're invited by themselves.
 (a candidate finished, an ATS candidate not invited, an undelivered invite and more).
 - API: for a company's own platform. On the API page an owner or admin makes API keys (shown \
 once; they expire in 1, 3, 6 or 12 months, or never), ticking what each may do (read or create \
-interviews; read, invite, change or remove candidates; read credits; use with AI agents), and \
-web hooks. A new key starts with reading interviews and candidates; owners and admins can \
+interviews; read, invite, change or remove candidates; read or add notes on a test; read \
+credits; use with AI agents), and web hooks. A new key starts with reading interviews and candidates; owners and admins can \
 later change a key's permissions, adding or taking away any, on the key's own page (opened from \
 its row in the list), and a call it may not make gets a 403 naming the missing permission. A key creates tests from \
 job descriptions, lists the company's tests and candidates with their results, invites \
 candidates (an Idempotency-Key makes a retry safe), reminds, renames, gives extra time to or \
-removes them, finds a candidate by email and reads the credits, and syncs its lists by what \
-changed (updated_since); a web hook hears, signed with \
+removes them, finds a candidate by email, reads and adds notes on a test, reads the credits, \
+and syncs its lists by what changed (updated_since); a web hook hears, signed with \
 its secret, when a candidate starts, finishes (with their results), isn't reached, expires or is \
 removed, and when an interview is ready; each web hook can be sent a test event and has a \
 delivery log of its latest sends. A web hook that doesn't answer for 3 days is paused (no \

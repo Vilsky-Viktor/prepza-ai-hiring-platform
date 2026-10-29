@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "ไม่มีคำตอบนี้",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "เฉพาะเจ้าของหรือผู้ดูแลเท่านั้นที่ส่งรายงานทางอีเมลไปนอกบริษัทได้ โปรดส่งถึงสมาชิกคนใดคนหนึ่งของบริษัทคุณ",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "หากต้องการเริ่ม โปรดยืนยันว่าคุณจะตอบด้วยตัวเอง โดยไม่ใช้เครื่องมือ AI หรือความช่วยเหลือจากผู้อื่น",
+    "Note not found": "ไม่พบโน้ต",
+    "Only the note's author can edit it.": "มีเพียงผู้เขียนโน้ตเท่านั้นที่แก้ไขได้",
+    "Only the note's author, the owner or an admin can delete it.": "มีเพียงผู้เขียนโน้ต เจ้าของ หรือผู้ดูแลเท่านั้นที่ลบได้",
+    "Only the owner or an admin can pin a note.": "มีเพียงเจ้าของหรือผู้ดูแลเท่านั้นที่ปักหมุดโน้ตได้",
+    "Reading the interview's notes…": "กำลังดูโน้ตของการสัมภาษณ์…",
 }

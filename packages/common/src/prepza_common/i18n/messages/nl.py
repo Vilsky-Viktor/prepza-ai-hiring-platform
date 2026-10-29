@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "Dit antwoord bestaat niet.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Alleen een eigenaar of beheerder kan een rapport mailen naar iemand buiten het bedrijf. Stuur het naar een van de leden van je bedrijf.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "Bevestig om te beginnen dat je de vragen zelf beantwoordt, zonder AI-tools of hulp van anderen.",
+    "Note not found": "Notitie niet gevonden",
+    "Only the note's author can edit it.": "Alleen wie de notitie schreef, kan haar bewerken.",
+    "Only the note's author, the owner or an admin can delete it.": "Alleen wie de notitie schreef, de eigenaar of een beheerder kan haar verwijderen.",
+    "Only the owner or an admin can pin a note.": "Alleen de eigenaar of een beheerder kan een notitie vastzetten.",
+    "Reading the interview's notes…": "De notities bij het interview bekijken…",
 }

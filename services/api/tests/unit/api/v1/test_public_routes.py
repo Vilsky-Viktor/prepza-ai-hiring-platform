@@ -153,6 +153,7 @@ def test_the_public_reference_lists_only_the_public_api(client):
         "/interviews/{interview_id}/candidates",
         "/interviews/{interview_id}/candidates/{candidate_id}",
         "/interviews/{interview_id}/candidates/{candidate_id}/resend",
+        "/interviews/{interview_id}/notes",
         "/candidates",
         "/candidates/search",
         "/credits",

@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "การสัมภาษณ์ที่สร้างแล้วรอโดยไม่มีผู้สมัคร",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "การสัมภาษณ์ที่สร้างแล้วรอโดยไม่มีผู้สมัคร ยังไม่ชำระเงิน",
       "PREVIEWS_PER_USER_HOUR": "การดูตัวอย่างการสัมภาษณ์ต่อผู้ใช้ต่อชั่วโมง",
+      "NOTES_PER_USER_HOUR": "โน้ตการสัมภาษณ์ต่อผู้ใช้ต่อชั่วโมง",
       "CHECKOUT_CALLS_PER_USER_HOUR": "การชำระเงิน การตรวจสอบการชำระเงิน และใบแจ้งหนี้ต่อผู้ใช้ต่อชั่วโมง",
       "TEMPLATE_COPIES_PER_HOUR": "การสัมภาษณ์ที่คัดลอกจากเทมเพลตต่อบริษัทต่อชั่วโมง",
       "LINK_STARTS_PER_HOUR": "การเริ่มผ่านลิงก์ของการสัมภาษณ์หนึ่งรายการต่อชั่วโมง",
@@ -1056,6 +1057,20 @@
     "interview": "การสัมภาษณ์",
     "topicsTab": "หัวข้อ",
     "candidates": "ผู้สมัคร",
+    "notes": "โน้ต",
+    "notesEmpty": "ยังไม่มีโน้ต เขียนโน้ตแรกให้ทีมของคุณเลย",
+    "noteLabel": "เขียนโน้ตถึงทีมของคุณ",
+    "notePlaceholder": "โน้ตเจ๋ง ๆ ตรงนี้…",
+    "notePost": "โพสต์",
+    "notePosting": "กำลังโพสต์…",
+    "noteEdited": "แก้ไขแล้ว",
+    "notePinned": "ปักหมุดแล้ว",
+    "notePin": "ปักหมุดไว้ด้านบน",
+    "noteUnpin": "เลิกปักหมุด",
+    "noteFormerMember": "อดีตสมาชิก",
+    "noteDeleteTitle": "ลบโน้ตนี้ไหม?",
+    "noteDeleteText": "โน้ตจะถูกลบสำหรับทุกคนในทีมของคุณและกู้คืนไม่ได้",
+    "noteFailed": "บันทึกโน้ตไม่สำเร็จ โปรดลองอีกครั้ง",
     "new": "การสัมภาษณ์ใหม่",
     "createTitle": "สร้างการสัมภาษณ์",
     "try": "ลองในฐานะผู้สมัคร",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "การสัมภาษณ์",
       "candidates": "ผู้สมัคร",
+      "notes": "โน้ต",
       "credits": "เครดิต",
       "ai_agents": "เอเจนต์ AI"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "เชิญ",
       "candidates:change": "แก้ไข",
       "candidates:delete": "ลบ",
+      "notes:read": "ดู",
+      "notes:add": "เพิ่ม",
       "credits:read": "ดู",
       "mcp": "ใช้กับเอเจนต์ AI (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "เชิญ",
       "candidates:change": "แก้ไข",
       "candidates:delete": "ลบ",
+      "notes:read": "ดู",
+      "notes:add": "เพิ่ม",
       "credits:read": "ดู",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "ตั้งเกณฑ์ผ่าน",
         "set_question_seconds": "ตั้งเวลาเฉลี่ยต่อคำถาม",
         "mark_hired": "ทำเครื่องหมายว่าการสัมภาษณ์จ้างคนได้แล้ว",
-        "keep_questions_private": "ไม่นำคำถามเข้าคลังคำถามที่ใช้ร่วมกัน"
+        "keep_questions_private": "ไม่นำคำถามเข้าคลังคำถามที่ใช้ร่วมกัน",
+        "add_interview_note": "เพิ่มโน้ต",
+        "pin_interview_note": "ปักหมุดหรือเลิกปักหมุดโน้ต"
       },
       "fields": {
         "company": "บริษัท",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "อีเมล"
+        },
+        "add_interview_note": {
+          "text": "โน้ต"
+        },
+        "pin_interview_note": {
+          "pinned": "ปักหมุดแล้ว"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "แจ้งว่าเฉลยผิด",
       "topics_approved": "อนุมัติหัวข้อของการสัมภาษณ์",
       "pass_mark_changed": "เปลี่ยนเกณฑ์ผ่าน",
+      "note_added": "เขียนโน้ตในการสัมภาษณ์",
+      "note_edited": "แก้ไขโน้ตในการสัมภาษณ์",
+      "note_deleted": "ลบโน้ตในการสัมภาษณ์",
+      "note_pinned": "ปักหมุดโน้ตในการสัมภาษณ์",
+      "note_unpinned": "เลิกปักหมุดโน้ตในการสัมภาษณ์",
       "candidate_invited": "เชิญผู้สมัคร",
       "invite_resent": "ส่งคำเชิญอีกครั้ง",
       "invite_revoked": "เพิกถอนคำเชิญ",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "เชิญผู้สมัคร",
       "candidates:change": "แก้ไขผู้สมัคร",
       "candidates:delete": "ลบผู้สมัคร",
+      "notes:read": "ดูโน้ต",
+      "notes:add": "เพิ่มโน้ต",
       "credits:read": "ดูเครดิต",
       "mcp": "ใช้กับเอเจนต์ AI (MCP)"
     },

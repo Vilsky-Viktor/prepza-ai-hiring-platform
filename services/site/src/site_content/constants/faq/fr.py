@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Oui, si vous êtes propriétaire de l'entreprise. Son onglet Journal des actions liste tout ce que ses membres ont fait, du plus récent au plus ancien : inviter ou retirer des candidats, consulter des résultats, modifier les entretiens, l'équipe, la facturation et les intégrations, avec qui l'a fait, quand, et si l'assistant, une application d'IA ou l'API l'a fait en son nom. Vous pouvez le filtrer par membre, type d'action et dates. Les actions sont conservées 12 mois.",
     },
     {
+        "key": "notes",
+        "question": "Mon équipe peut-elle laisser des commentaires sur un entretien ?",
+        "answer": "Oui. Chaque entretien a un onglet Commentaires où votre équipe écrit des commentaires en texte brut sur le recrutement, par exemple qui appeler ensuite ou, pour un cabinet de recrutement, pour quel client est l'entretien. Tout membre peut écrire des commentaires, les lecteurs aussi, et modifier les siens ; l'auteur, les propriétaires et les admins peuvent en supprimer un. Les propriétaires et les admins peuvent épingler un commentaire, qui s'affiche alors sous le nom de l'entretien. Les candidats ne voient jamais les commentaires.",
+    },
+    {
         "key": "integrations",
         "question": "prepza fonctionne-t-il avec mon ATS ou d'autres outils ?",
         "answer": "Oui, sans frais supplémentaires. Connectez Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR dans l'onglet Intégrations de votre entreprise : les candidats que vous déplacez vers une étape reçoivent l'entretien, et leurs résultats reviennent dans l'ATS ([comment connecter vos tests de compétences à votre ATS](/guides/ats-integration-skills-tests)). Slack peut publier les notifications de votre entreprise dans un canal, et l'API permet à votre propre plateforme de créer des entretiens, d'inviter et de gérer des candidats et de recevoir leurs résultats, chaque clé API étant limitée à ce que vous cochez pour elle ; consultez la [Documentation de l'API](/api-docs).",

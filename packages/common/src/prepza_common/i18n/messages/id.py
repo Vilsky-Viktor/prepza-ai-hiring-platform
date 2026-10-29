@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "Tidak ada jawaban seperti itu.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Hanya pemilik atau admin yang bisa mengirim laporan lewat email ke luar perusahaan. Kirimkan ke salah satu anggota perusahaanmu.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "Untuk mulai, konfirmasi bahwa kamu akan menjawab sendiri, tanpa alat AI atau bantuan orang lain.",
+    "Note not found": "Catatan tidak ditemukan",
+    "Only the note's author can edit it.": "Hanya penulis catatan yang bisa mengeditnya.",
+    "Only the note's author, the owner or an admin can delete it.": "Hanya penulis catatan, pemilik, atau admin yang bisa menghapusnya.",
+    "Only the owner or an admin can pin a note.": "Hanya pemilik atau admin yang bisa menyematkan catatan.",
+    "Reading the interview's notes…": "Melihat catatan wawancara…",
 }

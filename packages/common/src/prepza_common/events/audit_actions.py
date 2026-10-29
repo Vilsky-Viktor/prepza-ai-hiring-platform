@@ -42,6 +42,12 @@ class AuditAction(StrEnum):
     ANSWER_KEY_REPORTED = "answer_key_reported"
     TOPICS_APPROVED = "topics_approved"
     PASS_MARK_CHANGED = "pass_mark_changed"
+    # An interview's notes: who wrote, edited, deleted or pinned one, never its text.
+    NOTE_ADDED = "note_added"
+    NOTE_EDITED = "note_edited"
+    NOTE_DELETED = "note_deleted"
+    NOTE_PINNED = "note_pinned"
+    NOTE_UNPINNED = "note_unpinned"
     # Candidates.
     CANDIDATE_INVITED = "candidate_invited"
     INVITE_RESENT = "invite_resent"
@@ -104,6 +110,11 @@ _GROUPS = {
         AuditAction.ANSWER_KEY_REPORTED,
         AuditAction.TOPICS_APPROVED,
         AuditAction.PASS_MARK_CHANGED,
+        AuditAction.NOTE_ADDED,
+        AuditAction.NOTE_EDITED,
+        AuditAction.NOTE_DELETED,
+        AuditAction.NOTE_PINNED,
+        AuditAction.NOTE_UNPINNED,
     ),
     AuditGroup.CANDIDATES: (
         AuditAction.CANDIDATE_INVITED,

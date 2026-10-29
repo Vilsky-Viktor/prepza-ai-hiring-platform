@@ -133,6 +133,10 @@ def test_partial_updates_are_safe_to_repeat_and_a_removed_logo_cant_be_undone():
     assert hints["remove_company_logo"].destructive_hint is True
     # Inviting again sends another email: not safe to repeat.
     assert hints["invite_candidate"].idempotent_hint is False
+    # Pinning again changes nothing; adding a note again adds another.
+    assert hints["pin_interview_note"].idempotent_hint is True
+    assert hints["pin_interview_note"].destructive_hint is False
+    assert hints["add_interview_note"].idempotent_hint is False
     # The panel's own warnings are unchanged.
     assert tools()["remove_company_logo"].destructive is False
 

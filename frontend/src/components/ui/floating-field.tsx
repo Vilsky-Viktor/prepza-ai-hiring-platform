@@ -97,15 +97,25 @@ export function FloatingInput({
   )
 }
 
-/** FloatingInput for a textarea: the name rests on the first line. */
+/** FloatingInput for a textarea: the name rests on the first line. `hint` (the send shortcut)
+ * and `action` (a button or a few: "Post") share the box's bottom row, the hint at its start and
+ * the buttons at its end, as the home page's description box has them, the text kept clear of
+ * that row; with `action`, the name rests at the field's start, as FloatingInput's does. */
 export function FloatingTextarea({
   label,
+  action,
+  hint,
   boxClassName,
   className,
   id,
   placeholder,
   ...props
-}: ComponentProps<"textarea"> & { label: string; boxClassName?: string }) {
+}: ComponentProps<"textarea"> & {
+  label: string
+  action?: ReactNode
+  hint?: ReactNode
+  boxClassName?: string
+}) {
   const own = useId()
   const fieldId = id ?? own
 
@@ -115,11 +125,31 @@ export function FloatingTextarea({
         {...props}
         id={fieldId}
         placeholder={placeholder ?? " "}
-        className={cn(FLOAT_FIELD, "min-h-32 resize-none py-4", className)}
+        className={cn(
+          FLOAT_FIELD,
+          "min-h-32 resize-none py-4",
+          (hint || action) && "pb-16",
+          className
+        )}
       />
+      {(hint || action) && (
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-center justify-between gap-4 ps-6 pe-3 pb-3">
+          {hint}
+          {action && (
+            <div className="pointer-events-auto ms-auto flex items-center gap-2">
+              {action}
+            </div>
+          )}
+        </div>
+      )}
       <label
         htmlFor={fieldId}
-        className={cn(FLOAT_LABEL, FLOAT_LABEL_REST_TOP, FLOAT_LABEL_PEER_UP)}
+        className={cn(
+          FLOAT_LABEL,
+          FLOAT_LABEL_REST_TOP,
+          FLOAT_LABEL_PEER_UP,
+          action && FLOAT_LABEL_REST_START
+        )}
       >
         {label}
       </label>

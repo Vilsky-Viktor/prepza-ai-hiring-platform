@@ -44,7 +44,7 @@
     "text": "Semua wawancara perusahaan ini dan kreditnya untuk kandidat. Setiap wawancara adalah tes berbatas waktu yang dibuat dari deskripsi pekerjaan.",
     "actions": [
       "Buat wawancara dari deskripsi pekerjaan dengan “Wawancara baru”.",
-      "Buka wawancara untuk melihat topik, kandidat, dan pengaturannya.",
+      "Buka wawancara untuk melihat topik, kandidat, catatan, dan pengaturannya; catatan yang disematkan tampil di bawah namanya.",
       "Cari wawancara berdasarkan judulnya.",
       "Coba wawancara sebagai kandidat, atau hapus.",
       "Isi ulang kredit dari saldo, atau aktifkan isi ulang otomatis di tab Tagihan."
@@ -119,6 +119,19 @@
     "tips": [
       "Setiap kandidat yang menjawab setidaknya satu soal memakai kredit, termasuk yang datang dari tautan.",
       "Pengingat dikirim ke kandidat secara otomatis."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Catatan",
+    "text": "Catatan timmu tentang rekrutmen ini: apa yang sudah disepakati, siapa yang dihubungi berikutnya, atau untuk siapa wawancara ini. Semua orang di perusahaanmu bisa melihatnya; kandidat tidak pernah.",
+    "actions": [
+      "Tulis catatan di kotak paling atas lalu pilih Kirim, atau tekan ⌘/Ctrl+Enter. Tautan di dalamnya bisa diklik.",
+      "Edit atau hapus catatanmu sendiri dengan tombol di barisnya; pemilik dan admin bisa menghapus catatan siapa pun.",
+      "Sematkan catatan dengan ikon penanda (pemilik dan admin): catatan itu tampil paling atas di sini, serta di bawah nama wawancara di halamannya dan di daftar wawancara."
+    ],
+    "tips": [
+      "Bekerja untuk klien? Sematkan catatan seperti “Untuk Acme, Backend Developer” agar langsung terlihat untuk siapa setiap wawancara.",
+      "Catatan yang dihapus hilang selamanya. Log tindakan mencatat siapa yang menulis, mengubah, atau menghapus catatan, tetapi tidak pernah isinya."
     ]
   },
   "interviewSettings": {

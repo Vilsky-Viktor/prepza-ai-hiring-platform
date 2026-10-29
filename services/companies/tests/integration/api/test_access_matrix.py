@@ -17,13 +17,13 @@ from companies.core.db import Session
 from companies.core.security import SERVICE_NAME
 from companies.main import app
 from companies.models.interviews import Interview
-from companies.repositories import interviews, invites, members
+from companies.repositories import interview_notes, interviews, invites, members
 from companies.services import generation_steps
 from tests.integration import factories
 from tests.integration.transactions import transaction
 
 # The parameters naming something a company owns.
-OWNED = {"company_id", "interview_id", "invite_id", "member_id", "user_id"}
+OWNED = {"company_id", "interview_id", "invite_id", "member_id", "user_id", "note_id"}
 
 # Routes taking an id of nothing owned, and why.
 NOT_OWNED = {
@@ -69,6 +69,8 @@ OWNER_ONLY = {"viewer": REFUSED}
 EXCEPTIONS = {
     # Every member, viewers too, may take their own test as a candidate would.
     "POST /interviews/{interview_id}/preview": {"viewer": ALLOWED},
+    # Every member, viewers too, writes notes on an interview.
+    "POST /interviews/{interview_id}/notes": {"viewer": ALLOWED},
     # The audit and action logs are the owner's; credits' history, owners' and admins'.
     "GET /companies/{company_id}/audit": OWNER_ONLY,
     "GET /companies/{company_id}/actions": OWNER_ONLY,
@@ -84,8 +86,8 @@ async def pass_human(request, secret):
 
 
 async def side(kind: str) -> Side:
-    """A company with its owner, a viewer, an interview, a candidate and the viewer's
-    membership."""
+    """A company with its owner, a viewer, an interview, a candidate, the owner's note on the
+    interview and the viewer's membership."""
     owner, viewer = user_id(kind), user_id(f"{kind}-viewer")
     company = await factories.company(f"Matrix {uuid4()}", owner, f"{owner}@example.com")
     member = await transaction(members.add, company.id, f"{viewer}@example.com", "viewer", {})
@@ -101,8 +103,10 @@ async def side(kind: str) -> Side:
     candidate, _ = await transaction(
         invites.upsert, interview.id, "candidate@example.com", "Backend", company.name, "en"
     )
+    note = await transaction(interview_notes.add, interview, company.members[0].id, "Matrix")
     ids = {
         "company_id": company.id,
+        "note_id": note.id,
         "interview_id": interview.id,
         "invite_id": candidate.id,
         "member_id": member.id,

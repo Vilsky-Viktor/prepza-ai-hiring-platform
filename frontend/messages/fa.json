@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "مصاحبه‌های ساخته‌شدهٔ منتظر بدون متقاضی",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "مصاحبه‌های ساخته‌شدهٔ منتظر بدون متقاضی، بدون پرداخت",
       "PREVIEWS_PER_USER_HOUR": "پیش‌نمایش‌های مصاحبه برای هر کاربر در ساعت",
+      "NOTES_PER_USER_HOUR": "یادداشت‌های مصاحبه برای هر کاربر در ساعت",
       "CHECKOUT_CALLS_PER_USER_HOUR": "پرداخت‌ها، بررسی‌های پرداخت و فاکتورها برای هر کاربر در ساعت",
       "TEMPLATE_COPIES_PER_HOUR": "مصاحبه‌های کپی‌شده از قالب‌ها برای هر شرکت در ساعت",
       "LINK_STARTS_PER_HOUR": "شروع‌ها از طریق پیوند یک مصاحبه در ساعت",
@@ -1056,6 +1057,20 @@
     "interview": "مصاحبه",
     "topicsTab": "موضوع‌ها",
     "candidates": "متقاضیان",
+    "notes": "یادداشت‌ها",
+    "notesEmpty": "هنوز یادداشتی نیست. اولین یادداشت را برای تیمتان بنویسید.",
+    "noteLabel": "یک یادداشت برای تیمتان بنویسید",
+    "notePlaceholder": "یه یادداشت عالی اینجا…",
+    "notePost": "ارسال",
+    "notePosting": "در حال ارسال…",
+    "noteEdited": "ویرایش‌شده",
+    "notePinned": "سنجاق‌شده",
+    "notePin": "سنجاق کردن در بالا",
+    "noteUnpin": "برداشتن سنجاق",
+    "noteFormerMember": "عضو سابق",
+    "noteDeleteTitle": "این یادداشت حذف شود؟",
+    "noteDeleteText": "برای همه اعضای تیمتان حذف می‌شود و برگرداندنش ممکن نیست.",
+    "noteFailed": "ذخیره یادداشت ممکن نشد. دوباره امتحان کنید.",
     "new": "مصاحبه جدید",
     "createTitle": "ساختن مصاحبه",
     "try": "امتحان به‌عنوان متقاضی",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "مصاحبه‌ها",
       "candidates": "متقاضیان",
+      "notes": "یادداشت‌ها",
       "credits": "اعتبار",
       "ai_agents": "عامل‌های هوش مصنوعی"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "دعوت",
       "candidates:change": "تغییر",
       "candidates:delete": "حذف",
+      "notes:read": "خواندن",
+      "notes:add": "افزودن",
       "credits:read": "خواندن",
       "mcp": "استفاده با عامل‌های هوش مصنوعی (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "دعوت",
       "candidates:change": "تغییر",
       "candidates:delete": "حذف",
+      "notes:read": "خواندن",
+      "notes:add": "افزودن",
       "credits:read": "خواندن",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "تعیین نمره قبولی",
         "set_question_seconds": "تعیین میانگین زمان هر سؤال",
         "mark_hired": "علامت‌گذاری مصاحبه به‌عنوان استخدام‌شده",
-        "keep_questions_private": "بیرون نگه داشتن پرسش‌ها از بانک پرسش مشترک"
+        "keep_questions_private": "بیرون نگه داشتن پرسش‌ها از بانک پرسش مشترک",
+        "add_interview_note": "افزودن یادداشت",
+        "pin_interview_note": "سنجاق کردن یا برداشتن سنجاق یادداشت"
       },
       "fields": {
         "company": "شرکت",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "نشانی‌های ایمیل"
+        },
+        "add_interview_note": {
+          "text": "یادداشت"
+        },
+        "pin_interview_note": {
+          "pinned": "سنجاق‌شده"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "یک کلید پاسخ را نادرست علامت زد",
       "topics_approved": "موضوع‌های یک مصاحبه را تأیید کرد",
       "pass_mark_changed": "یک نمره قبولی را تغییر داد",
+      "note_added": "یک یادداشت برای یک مصاحبه نوشت",
+      "note_edited": "یک یادداشت مصاحبه را ویرایش کرد",
+      "note_deleted": "یک یادداشت مصاحبه را حذف کرد",
+      "note_pinned": "یک یادداشت مصاحبه را سنجاق کرد",
+      "note_unpinned": "سنجاق یک یادداشت مصاحبه را برداشت",
       "candidate_invited": "یک متقاضی را دعوت کرد",
       "invite_resent": "یک دعوت را دوباره فرستاد",
       "invite_revoked": "یک دعوت را لغو کرد",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "دعوت از متقاضیان",
       "candidates:change": "تغییر متقاضیان",
       "candidates:delete": "حذف متقاضیان",
+      "notes:read": "خواندن یادداشت‌ها",
+      "notes:add": "افزودن یادداشت‌ها",
       "credits:read": "خواندن اعتبار",
       "mcp": "استفاده با عامل‌های هوش مصنوعی (MCP)"
     },

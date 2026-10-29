@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "چنین پاسخی وجود ندارد.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "فقط مالک یا مدیر می‌تواند گزارش را به نشانی‌ای بیرون از شرکت ایمیل کند. آن را برای یکی از اعضای شرکتتان بفرستید.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "برای شروع، تأیید کنید که خودتان پاسخ می‌دهید، بدون ابزارهای هوش مصنوعی یا کمک افراد دیگر.",
+    "Note not found": "یادداشت پیدا نشد",
+    "Only the note's author can edit it.": "فقط نویسنده یادداشت می‌تواند آن را ویرایش کند.",
+    "Only the note's author, the owner or an admin can delete it.": "فقط نویسنده یادداشت، مالک یا یکی از مدیران می‌تواند آن را حذف کند.",
+    "Only the owner or an admin can pin a note.": "فقط مالک یا یکی از مدیران می‌تواند یادداشتی را سنجاق کند.",
+    "Reading the interview's notes…": "در حال بررسی یادداشت‌های مصاحبه…",
 }

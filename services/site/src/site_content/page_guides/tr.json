@@ -44,7 +44,7 @@
     "text": "Bu şirketin tüm mülakatları ve adaylar için kredileri. Her mülakat, bir iş tanımından oluşturulan süreli bir testtir.",
     "actions": [
       "“Yeni mülakat” ile bir iş tanımından mülakat oluşturun.",
-      "Konularını, adaylarını ve ayarlarını görmek için bir mülakatı açın.",
+      "Konularını, adaylarını, yorumlarını ve ayarlarını görmek için bir mülakatı açın; sabitlenen yorum mülakatın adının altında görünür.",
       "Mülakatları başlıklarına göre arayın.",
       "Bir mülakatı aday olarak deneyin veya silin.",
       "Bakiyeden kredi yükleyin veya Faturalandırma sekmesinde otomatik yüklemeyi açın."
@@ -119,6 +119,19 @@
     "tips": [
       "En az bir soruyu cevaplayan her aday, bağlantıdan gelenler dahil, kredi kullanır.",
       "Hatırlatmalar adaylara otomatik olarak gönderilir."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Yorumlar",
+    "text": "Ekibinizin bu işe alım süreciyle ilgili yorumları: ne üzerinde anlaştığınız, sırada kimi arayacağınız ya da mülakatın kimin için olduğu. Şirketinizdeki herkes görür; adaylar asla görmez.",
+    "actions": [
+      "Üstteki kutuya bir yorum yazın ve Paylaş'ı seçin ya da ⌘/Ctrl+Enter'a basın. İçindeki bağlantılar tıklanabilir olur.",
+      "Kendi yorumlarınızı satırlarındaki düğmelerle düzenleyin veya silin; sahipler ve yöneticiler herkesin yorumunu silebilir.",
+      "Bir yorumu yer imi düğmesiyle sabitleyin (sahipler ve yöneticiler): burada en üstte, ayrıca mülakatın sayfasında ve mülakat listesinde mülakatın adının altında görünür."
+    ],
+    "tips": [
+      "Müşteriler için mi çalışıyorsunuz? Her mülakatın kimin için olduğunu bir bakışta görmek için “Acme için, Backend Developer” gibi bir yorumu sabitleyin.",
+      "Silinen bir yorum kalıcı olarak gider. İşlem kaydı, bir yorumu kimin yazdığını, değiştirdiğini veya sildiğini kaydeder, metnini asla kaydetmez."
     ]
   },
   "interviewSettings": {

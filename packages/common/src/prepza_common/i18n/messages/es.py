@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "No existe esa respuesta.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Solo un propietario o administrador puede enviar un informe por correo fuera de la empresa. Envíalo a uno de los miembros de tu empresa.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "Para empezar, confirma que responderás por tu cuenta, sin herramientas de IA ni ayuda de otras personas.",
+    "Note not found": "Comentario no encontrado",
+    "Only the note's author can edit it.": "Solo el autor del comentario puede editarlo.",
+    "Only the note's author, the owner or an admin can delete it.": "Solo el autor del comentario, el propietario o un administrador puede eliminarlo.",
+    "Only the owner or an admin can pin a note.": "Solo el propietario o un administrador puede fijar un comentario.",
+    "Reading the interview's notes…": "Consultando los comentarios de la entrevista…",
 }

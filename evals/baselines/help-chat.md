@@ -174,3 +174,13 @@ Run again when thumbs-down answers became a source of feedback cases (`disliked_
 is the hand-written set, 3 repeats: passed 98.7% (92.8–99.8), made up 4.0% (1.4–11.1), sign-in
 marker 100%; identity 18/18. Misses: h04 twice (says viewers see billing), h17 once (invents a
 one-attempt limit). Within the noise of the last run. $1.75 (the judge $1.72).
+
+## Help chat: an interview's notes (2026-10-30, kept)
+
+The platform guide, the FAQ and the page guides now name the interview's Notes tab, the counts
+beside a company's menu pages, and API keys that read and add notes. `help_chat.py`, 25 × 3,
+`gpt-6-luna` at none, judged by `gpt-6.1-sol` high (`results/help_chat_notes-docs.json`), against
+the feedback-cases run: passed 98.7% (92.8–99.8) → 96.0% (88.9–98.6); made up 4.0% → 2.7%
+(0.7–9.2); sign-in marker 100% both; identity 18 of 18. Misses: h17's known invented retake limit
+(2 of 3) and h12 once (a poem request not declined); none about notes or menus. Within the
+noise; kept so the guides say what is true. $1.73.

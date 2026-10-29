@@ -27,6 +27,8 @@ NOT_OWNED = {
     "PATCH /interviews/{interview_id}/candidates/{candidate_id}": PUBLIC_API,
     "DELETE /interviews/{interview_id}/candidates/{candidate_id}": PUBLIC_API,
     "POST /interviews/{interview_id}/candidates/{candidate_id}/resend": PUBLIC_API,
+    "GET /interviews/{interview_id}/notes": PUBLIC_API,
+    "POST /interviews/{interview_id}/notes": PUBLIC_API,
 }
 
 BODIES = {

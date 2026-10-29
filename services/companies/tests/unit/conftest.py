@@ -14,8 +14,10 @@ from companies.repositories import (
     batch_deletion,
     candidates,
     companies,
+    interview_notes,
     invites,
 )
+from companies.services import company_deletion, interview_removal
 from tests.unit import fake_candidates
 
 
@@ -56,6 +58,22 @@ def nothing_to_delete_in_batches(monkeypatch):
     monkeypatch.setattr(batch_deletion, "delete_invites_batch", no_invites)
     monkeypatch.setattr(batch_deletion, "delete_interviews_batch", no_interviews)
     monkeypatch.setattr(audit, "delete_company", no_log)
+
+    async def no_notes(sessions, model, *conditions):
+        pass
+
+    monkeypatch.setattr(interview_removal, "delete_in_batches", no_notes)
+    monkeypatch.setattr(company_deletion, "delete_in_batches", no_notes)
+
+
+@pytest.fixture(autouse=True)
+def no_notes_by_default(monkeypatch):
+    """Interviews have no notes unless a test says (unit tests have no database)."""
+
+    async def none(session, interview_ids):
+        return {}
+
+    monkeypatch.setattr(interview_notes, "summaries", none)
 
 
 @pytest.fixture(autouse=True)

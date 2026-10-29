@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Ja, als je eigenaar van het bedrijf bent. Het tabblad Actielog toont alles wat de leden hebben gedaan, nieuwste eerst: kandidaten uitnodigen of verwijderen, resultaten bekijken, en interviews, het team, de facturering en integraties wijzigen, met wie het deed, wanneer en of de assistent, een AI-app of de API het namens diegene deed. Je kunt filteren op lid, soort actie en datums. Acties worden 12 maanden bewaard.",
     },
     {
+        "key": "notes",
+        "question": "Kan mijn team notities bijhouden bij een interview?",
+        "answer": "Ja. Elk interview heeft een tabblad Notities waar je team notities in platte tekst schrijft over de wervingsronde, zoals wie jullie hierna bellen of, voor een bureau, voor welke klant het interview is. Elk lid kan notities schrijven, kijkers ook, en de eigen notities bewerken; de schrijver, eigenaren en beheerders kunnen er een verwijderen. Eigenaren en beheerders kunnen één notitie vastzetten, die dan onder de naam van het interview staat. Kandidaten zien notities nooit.",
+    },
+    {
         "key": "integrations",
         "question": "Werkt prepza met mijn ATS of andere tools?",
         "answer": "Ja, zonder extra kosten. Koppel Workable, Greenhouse, Teamtailor, Recruitee of Breezy HR op het tabblad Integraties van je bedrijf: kandidaten die je naar een fase verplaatst, krijgen het interview, en hun resultaten gaan terug naar het ATS ([zo koppel je vaardigheidstests aan je ATS](/guides/ats-integration-skills-tests)). Slack kan de meldingen van je bedrijf in een kanaal plaatsen, en met de API kan je eigen platform interviews aanmaken, kandidaten uitnodigen en beheren en hun resultaten ontvangen, waarbij elke API-sleutel alleen mag wat je ervoor aanvinkt; zie de [API-documentatie](/api-docs).",

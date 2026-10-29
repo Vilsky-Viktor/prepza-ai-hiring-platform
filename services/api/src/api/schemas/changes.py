@@ -1,8 +1,10 @@
 from typing import Literal
 
 from prepza_common.auth.user import Language
-from prepza_common.config.constants import MAX_GOAL_LENGTH
+from prepza_common.config.constants import MAX_GOAL_LENGTH, MAX_NOTE_LENGTH
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
+
+from api.constants import examples
 
 
 class InterviewIn(BaseModel):
@@ -45,6 +47,21 @@ class CandidateUpdate(BaseModel):
         description=(
             "Extra time on each question, in percent, for a candidate who needs it; only "
             "before they start (409 after)"
+        ),
+    )
+
+
+class NoteIn(BaseModel):
+    """The note to add."""
+
+    model_config = ConfigDict(json_schema_extra={"examples": [examples.NOTE_IN]})
+
+    text: str = Field(
+        min_length=1,
+        max_length=MAX_NOTE_LENGTH,
+        description=(
+            f"The note, as plain text, at most {MAX_NOTE_LENGTH} characters; line breaks are "
+            "kept, and blanks at either end are dropped"
         ),
     )
 

@@ -44,7 +44,7 @@
     "text": "Tutti i colloqui di questa azienda e i suoi crediti per i candidati. Ogni colloquio è un test a tempo creato da una descrizione del ruolo.",
     "actions": [
       "Crea un colloquio da una descrizione del ruolo con «Nuovo colloquio».",
-      "Apri un colloquio per vederne argomenti, candidati e impostazioni.",
+      "Apri un colloquio per vederne argomenti, candidati, note e impostazioni; una nota fissata compare sotto il suo nome.",
       "Cerca i colloqui per titolo.",
       "Prova un colloquio come candidato, oppure eliminalo.",
       "Ricarica i crediti dal saldo, o attiva la ricarica automatica nella scheda Fatturazione."
@@ -119,6 +119,19 @@
     "tips": [
       "Ogni candidato che risponde ad almeno una domanda consuma crediti, compresi quelli arrivati dal link.",
       "I promemoria vengono inviati ai candidati automaticamente."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Note",
+    "text": "Le note del tuo team su questa selezione: cosa avete deciso, chi chiamare dopo o per chi è il colloquio. Le vede chiunque nella tua azienda; i candidati mai.",
+    "actions": [
+      "Scrivi una nota nel riquadro in alto e seleziona Pubblica, oppure premi ⌘/Ctrl+Enter. I link al suo interno diventano cliccabili.",
+      "Modifica o elimina le tue note con i pulsanti sulla loro riga; proprietari e amministratori possono eliminare quelle di chiunque.",
+      "Fissa una nota con il segnalibro (proprietari e amministratori): compare per prima qui, e sotto il nome del colloquio nella sua pagina e nell'elenco dei colloqui."
+    ],
+    "tips": [
+      "Lavori per dei clienti? Fissa una nota come «Per Acme, sviluppatore backend» per vedere a colpo d'occhio per chi è ogni colloquio.",
+      "Una nota eliminata non si può recuperare. Il registro attività annota chi ha scritto, modificato o eliminato una nota, mai il suo testo."
     ]
   },
   "interviewSettings": {

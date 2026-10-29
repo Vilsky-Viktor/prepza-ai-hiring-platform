@@ -37,6 +37,26 @@ async def account_by_id(user_id: str) -> firebase_auth.UserRecord | None:
         return None
 
 
+async def profiles(user_ids: list[str]) -> list[dict]:
+    """Each account's name (its email without one) and picture, in one lookup (at most
+    FIREBASE_LOOKUP_LIMIT ids); accounts that are gone are left out."""
+    if not user_ids:
+        return []
+
+    found = await asyncio.to_thread(
+        firebase_auth.get_users, [firebase_auth.UidIdentifier(uid) for uid in user_ids]
+    )
+
+    return [
+        {
+            "user_id": account.uid,
+            "name": account.display_name or account.email,
+            "photo_url": account.photo_url,
+        }
+        for account in found.users
+    ]
+
+
 async def set_language(user: User, language: Language, country: str | None = None) -> None:
     """Stored on the sign-in, so every service reads it from the user's next ID token. A new
     account sets it on its first sign-in (the frontend does), which counts as signing up; it

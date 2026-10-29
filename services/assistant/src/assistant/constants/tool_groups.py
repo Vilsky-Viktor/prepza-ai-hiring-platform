@@ -50,6 +50,9 @@ TOOL_GROUPS = {
             "set_extra_time",
             "mark_hired",
             "get_interview_report",
+            "list_interview_notes",
+            "add_interview_note",
+            "pin_interview_note",
         }
     ),
     ToolGroup.INTERVIEW_SETUP: frozenset(

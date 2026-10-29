@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "候補者のいない待機中の生成済み面接数",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "候補者のいない待機中の生成済み面接数（無料）",
       "PREVIEWS_PER_USER_HOUR": "ユーザーごとの 1 時間あたりの面接プレビュー数",
+      "NOTES_PER_USER_HOUR": "ユーザーごとの 1 時間あたりの面接メモ数",
       "CHECKOUT_CALLS_PER_USER_HOUR": "ユーザーごとの 1 時間あたりの決済、支払い確認、請求書の回数",
       "TEMPLATE_COPIES_PER_HOUR": "会社ごとの 1 時間あたりのテンプレートからコピーした面接数",
       "LINK_STARTS_PER_HOUR": "1 つの面接リンクからの 1 時間あたりの開始数",
@@ -1056,6 +1057,20 @@
     "interview": "面接",
     "topicsTab": "トピック",
     "candidates": "候補者",
+    "notes": "メモ",
+    "notesEmpty": "メモはまだありません。チームに向けて最初のメモを書きましょう。",
+    "noteLabel": "チームに向けてメモを書く",
+    "notePlaceholder": "ここにすてきなメモを…",
+    "notePost": "投稿",
+    "notePosting": "投稿中…",
+    "noteEdited": "編集済み",
+    "notePinned": "固定中",
+    "notePin": "上部に固定",
+    "noteUnpin": "固定を解除",
+    "noteFormerMember": "以前のメンバー",
+    "noteDeleteTitle": "このメモを削除しますか？",
+    "noteDeleteText": "チーム全員から削除され、元に戻せません。",
+    "noteFailed": "メモを保存できませんでした。もう一度お試しください。",
     "new": "新しい面接",
     "createTitle": "面接を作成",
     "try": "候補者として試す",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "面接",
       "candidates": "候補者",
+      "notes": "メモ",
       "credits": "クレジット",
       "ai_agents": "AI エージェント"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "招待",
       "candidates:change": "変更",
       "candidates:delete": "削除",
+      "notes:read": "閲覧",
+      "notes:add": "追加",
       "credits:read": "閲覧",
       "mcp": "AI エージェントで使用 (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "招待",
       "candidates:change": "変更",
       "candidates:delete": "削除",
+      "notes:read": "閲覧",
+      "notes:add": "追加",
       "credits:read": "閲覧",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "合格ラインを設定",
         "set_question_seconds": "1 問あたりの平均時間を設定",
         "mark_hired": "面接を採用済みにする",
-        "keep_questions_private": "質問を共有問題バンクに含めない"
+        "keep_questions_private": "質問を共有問題バンクに含めない",
+        "add_interview_note": "メモを追加",
+        "pin_interview_note": "メモを固定または固定解除"
       },
       "fields": {
         "company": "会社",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "メールアドレス"
+        },
+        "add_interview_note": {
+          "text": "メモ"
+        },
+        "pin_interview_note": {
+          "pinned": "固定"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "正解の誤りを報告しました",
       "topics_approved": "面接のトピックを承認しました",
       "pass_mark_changed": "合格ラインを変更しました",
+      "note_added": "面接にメモを書きました",
+      "note_edited": "面接のメモを編集しました",
+      "note_deleted": "面接のメモを削除しました",
+      "note_pinned": "面接のメモを固定しました",
+      "note_unpinned": "面接のメモの固定を解除しました",
       "candidate_invited": "候補者を招待しました",
       "invite_resent": "招待を再送しました",
       "invite_revoked": "招待を取り消しました",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "候補者の招待",
       "candidates:change": "候補者の変更",
       "candidates:delete": "候補者の削除",
+      "notes:read": "メモの閲覧",
+      "notes:add": "メモの追加",
       "credits:read": "クレジットの閲覧",
       "mcp": "AI エージェントで使用 (MCP)"
     },

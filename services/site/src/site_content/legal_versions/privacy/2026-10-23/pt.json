@@ -12,7 +12,7 @@
       "heading": "O que coletamos",
       "items": [
         "Conta: seu nome, endereço de e-mail, foto de perfil e ID de conta, da conta Google, LinkedIn ou GitHub com que você entra, e quais delas estão vinculadas à sua conta.",
-        "O que você nos fornece: as descrições de vagas que você cola e as entrevistas criadas a partir delas, os e-mails dos candidatos que você convida (e os nomes deles, se você os informar ou corrigir), das pessoas que você convida para a equipe da sua empresa e das pessoas a quem você envia um relatório, e suas avaliações e denúncias de perguntas.",
+        "O que você nos fornece: as descrições de vagas que você cola e as entrevistas criadas a partir delas, as notas que você escreve nas entrevistas de uma empresa, os e-mails dos candidatos que você convida (e os nomes deles, se você os informar ou corrigir), das pessoas que você convida para a equipe da sua empresa e das pessoas a quem você envia um relatório, e suas avaliações e denúncias de perguntas.",
         "O assistente: quando você está conectado, o que você escreve ou diz a ele (uma mensagem de voz é convertida em texto e nunca armazenada) e as respostas dele, para que você possa voltar a uma conversa. Ele não guarda o que leu para responder a você, como os resultados dos candidatos, exceto nos registros de chamadas à IA descritos abaixo: quando você abre uma conversa de novo, ele os busca novamente com o seu acesso atual. Se você não estiver conectado, suas perguntas são usadas apenas para respondê-las e não são armazenadas, exceto nos registros de chamadas à IA descritos abaixo. Uma mensagem que contenha uma chave, um token ou uma senha é removida imediatamente: não é armazenada nem encaminhada.",
         "Empresas: o nome, o logotipo e o site da empresa, e o domínio de e-mail com que ela foi verificada; quando um proprietário ou administrador pede a verificação, o endereço de e-mail nesse domínio que ele confirmou e o nome da empresa que ele enviou para análise.",
         "Prática: se você faz entrevistas de prática gratuitas, suas respostas, notas e quanto tempo levou cada resposta. Só você as vê.",
@@ -111,6 +111,7 @@
         "Apps de IA que você conecta: até você desconectá-los ou excluir a sua conta; uma conexão não usada por 90 dias termina sozinha.",
         "As suas conversas com o assistente: 90 dias após a última mensagem. Você pode excluir uma conversa a qualquer momento, e elas são excluídas com a sua conta ou com a empresa a que se referem.",
         "O registro de ações de uma empresa: quem fez o quê, guardado por 12 meses.",
+        "As notas que você escreve nas entrevistas de uma empresa: até você excluir a nota ou a empresa excluir a entrevista ou a si mesma. Elas pertencem à empresa, então ficam com ela, sem o seu nome, quando você sai dela ou exclui a sua conta.",
         "Os registros do uso de IA e dos limites atingidos: 13 meses, sem o ID da sua conta depois que você exclui a sua conta.",
         "Rodadas de prática: até você excluir a sua conta.",
         "Um relatório enviado por e-mail pela prepza: o PDF é guardado apenas para enviar o e-mail e excluído no máximo 7 dias depois.",

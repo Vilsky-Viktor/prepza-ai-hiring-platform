@@ -12,7 +12,7 @@
       "heading": "Chúng tôi thu thập những gì",
       "items": [
         "Tài khoản: tên, địa chỉ email, ảnh hồ sơ và ID tài khoản của bạn, từ tài khoản Google, LinkedIn hoặc GitHub mà bạn dùng để đăng nhập, và những tài khoản nào trong số đó được liên kết với tài khoản của bạn.",
-        "Những gì bạn cung cấp cho chúng tôi: các mô tả công việc bạn dán vào và các buổi phỏng vấn được tạo từ chúng, email của các ứng viên bạn mời (và tên của họ, nếu bạn cung cấp hoặc sửa), của những người bạn mời vào nhóm của công ty bạn và của những người bạn gửi báo cáo, cùng các đánh giá và báo cáo của bạn về câu hỏi.",
+        "Những gì bạn cung cấp cho chúng tôi: các mô tả công việc bạn dán vào và các buổi phỏng vấn được tạo từ chúng, các ghi chú bạn viết trên các buổi phỏng vấn của một công ty, email của các ứng viên bạn mời (và tên của họ, nếu bạn cung cấp hoặc sửa), của những người bạn mời vào nhóm của công ty bạn và của những người bạn gửi báo cáo, cùng các đánh giá và báo cáo của bạn về câu hỏi.",
         "Trợ lý: khi bạn đã đăng nhập, những gì bạn viết hoặc nói với trợ lý (tin nhắn thoại được chuyển thành văn bản và không bao giờ được lưu) và các câu trả lời của trợ lý, để bạn có thể quay lại cuộc trò chuyện. Trợ lý không lưu những gì nó đã đọc để trả lời bạn, chẳng hạn như kết quả của ứng viên, ngoại trừ trong bản ghi các lệnh gọi AI nêu dưới đây: khi bạn mở lại cuộc trò chuyện, trợ lý lấy lại dữ liệu đó với quyền truy cập hiện tại của bạn. Nếu bạn chưa đăng nhập, câu hỏi của bạn chỉ được dùng để trả lời và không được lưu, ngoại trừ trong bản ghi các lệnh gọi AI nêu dưới đây. Tin nhắn chứa khóa, token hoặc mật khẩu sẽ bị xóa ngay: tin nhắn đó không được lưu hay chuyển tiếp.",
         "Công ty: tên, logo và trang web của công ty, và tên miền email đã dùng để xác minh công ty; khi chủ sở hữu hoặc quản trị viên yêu cầu xác minh, địa chỉ email thuộc tên miền đó mà họ đã xác nhận và tên công ty mà họ đã gửi để xem xét.",
         "Luyện tập: nếu bạn làm các buổi phỏng vấn luyện tập miễn phí, câu trả lời, điểm của bạn và thời gian cho mỗi câu trả lời. Chỉ bạn xem được.",
@@ -111,6 +111,7 @@
         "Ứng dụng AI bạn kết nối: cho đến khi bạn ngắt kết nối hoặc xóa tài khoản; kết nối không được sử dụng trong 90 ngày sẽ tự kết thúc.",
         "Các cuộc trò chuyện của bạn với trợ lý: 90 ngày sau tin nhắn cuối cùng. Bạn có thể xóa một cuộc trò chuyện bất cứ lúc nào, và chúng bị xóa cùng tài khoản của bạn hoặc cùng công ty mà chúng liên quan.",
         "Nhật ký thao tác của công ty: ai đã làm gì, được lưu 12 tháng.",
+        "Ghi chú bạn viết trên các buổi phỏng vấn của một công ty: cho đến khi bạn xóa ghi chú, hoặc công ty xóa buổi phỏng vấn hoặc chính công ty bị xóa. Ghi chú thuộc về công ty, vì vậy chúng vẫn ở lại với công ty, không kèm tên của bạn, khi bạn rời công ty hoặc xóa tài khoản.",
         "Bản ghi mức sử dụng AI và các giới hạn đã chạm tới: 13 tháng, không kèm ID tài khoản của bạn sau khi bạn xóa tài khoản.",
         "Các lượt luyện tập: cho đến khi bạn xóa tài khoản.",
         "Báo cáo được gửi qua email từ prepza: tệp PDF chỉ được giữ để gửi email, và bị xóa chậm nhất 7 ngày sau đó.",

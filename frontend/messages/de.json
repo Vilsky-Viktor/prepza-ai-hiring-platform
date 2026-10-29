@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Erstellte Interviews, die ohne Kandidaten warten",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Erstellte Interviews, die ohne Kandidaten warten, nicht zahlend",
       "PREVIEWS_PER_USER_HOUR": "Interview-Vorschauen pro Nutzer und Stunde",
+      "NOTES_PER_USER_HOUR": "Interview-Notizen pro Nutzer und Stunde",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Bezahlvorgänge, Zahlungsprüfungen und Rechnungen pro Nutzer und Stunde",
       "TEMPLATE_COPIES_PER_HOUR": "Aus Vorlagen kopierte Interviews pro Unternehmen und Stunde",
       "LINK_STARTS_PER_HOUR": "Starts über den Link eines Interviews pro Stunde",
@@ -1056,6 +1057,20 @@
     "interview": "Interview",
     "topicsTab": "Themen",
     "candidates": "Kandidaten",
+    "notes": "Notizen",
+    "notesEmpty": "Noch keine Notizen. Schreib die erste für dein Team.",
+    "noteLabel": "Schreib eine Notiz für dein Team",
+    "notePlaceholder": "eine richtig gute Notiz hier…",
+    "notePost": "Posten",
+    "notePosting": "Wird gepostet…",
+    "noteEdited": "bearbeitet",
+    "notePinned": "Angeheftet",
+    "notePin": "Oben anheften",
+    "noteUnpin": "Lösen",
+    "noteFormerMember": "Ehemaliges Mitglied",
+    "noteDeleteTitle": "Diese Notiz löschen?",
+    "noteDeleteText": "Sie wird für alle in deinem Team gelöscht und lässt sich nicht wiederherstellen.",
+    "noteFailed": "Die Notiz konnte nicht gespeichert werden. Bitte versuche es erneut.",
     "new": "Neues Interview",
     "createTitle": "Interview erstellen",
     "try": "Als Kandidat ausprobieren",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Interviews",
       "candidates": "Kandidaten",
+      "notes": "Notizen",
       "credits": "Credits",
       "ai_agents": "KI-Agenten"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Einladen",
       "candidates:change": "Ändern",
       "candidates:delete": "Löschen",
+      "notes:read": "Lesen",
+      "notes:add": "Hinzufügen",
       "credits:read": "Lesen",
       "mcp": "Mit KI-Agenten nutzen (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "einladen",
       "candidates:change": "ändern",
       "candidates:delete": "löschen",
+      "notes:read": "lesen",
+      "notes:add": "hinzufügen",
       "credits:read": "lesen",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Bestehensgrenze festlegen",
         "set_question_seconds": "Durchschnittliche Zeit pro Frage festlegen",
         "mark_hired": "Interview als besetzt markieren",
-        "keep_questions_private": "Fragen aus dem gemeinsamen Fragenpool heraushalten"
+        "keep_questions_private": "Fragen aus dem gemeinsamen Fragenpool heraushalten",
+        "add_interview_note": "Eine Notiz hinzufügen",
+        "pin_interview_note": "Die Notiz anheften oder lösen"
       },
       "fields": {
         "company": "Unternehmen",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "E-Mail-Adressen"
+        },
+        "add_interview_note": {
+          "text": "Notiz"
+        },
+        "pin_interview_note": {
+          "pinned": "Angeheftet"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Hat einen Lösungsschlüssel als falsch gemeldet",
       "topics_approved": "Hat die Themen eines Interviews freigegeben",
       "pass_mark_changed": "Hat eine Bestehensgrenze geändert",
+      "note_added": "Hat eine Notiz zu einem Interview geschrieben",
+      "note_edited": "Hat eine Notiz zu einem Interview bearbeitet",
+      "note_deleted": "Hat eine Notiz zu einem Interview gelöscht",
+      "note_pinned": "Hat eine Notiz zu einem Interview angeheftet",
+      "note_unpinned": "Hat eine Notiz zu einem Interview gelöst",
       "candidate_invited": "Hat einen Kandidaten eingeladen",
       "invite_resent": "Hat eine Einladung erneut gesendet",
       "invite_revoked": "Hat eine Einladung widerrufen",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "Kandidaten einladen",
       "candidates:change": "Kandidaten ändern",
       "candidates:delete": "Kandidaten löschen",
+      "notes:read": "Notizen lesen",
+      "notes:add": "Notizen hinzufügen",
       "credits:read": "Credits lesen",
       "mcp": "mit KI-Agenten nutzen (MCP)"
     },

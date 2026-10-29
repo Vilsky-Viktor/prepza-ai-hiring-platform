@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Entrevistas generadas en espera sin candidatos",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Entrevistas generadas en espera sin candidatos, empresas sin pagar",
       "PREVIEWS_PER_USER_HOUR": "Vistas previas de entrevistas por usuario y hora",
+      "NOTES_PER_USER_HOUR": "Comentarios en entrevistas por usuario y hora",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Pagos, consultas de pagos y facturas por usuario y hora",
       "TEMPLATE_COPIES_PER_HOUR": "Entrevistas copiadas de plantillas por empresa y hora",
       "LINK_STARTS_PER_HOUR": "Inicios desde el enlace de una entrevista por hora",
@@ -1056,6 +1057,20 @@
     "interview": "Entrevista",
     "topicsTab": "Temas",
     "candidates": "Candidatos",
+    "notes": "Comentarios",
+    "notesEmpty": "Aún no hay comentarios. Escribe el primero para tu equipo.",
+    "noteLabel": "Escribe un comentario para tu equipo",
+    "notePlaceholder": "un comentario genial aquí…",
+    "notePost": "Publicar",
+    "notePosting": "Publicando…",
+    "noteEdited": "editado",
+    "notePinned": "Fijado",
+    "notePin": "Fijar arriba",
+    "noteUnpin": "Dejar de fijar",
+    "noteFormerMember": "Antiguo miembro",
+    "noteDeleteTitle": "¿Eliminar este comentario?",
+    "noteDeleteText": "Se elimina para todo tu equipo y no se puede recuperar.",
+    "noteFailed": "No se pudo guardar el comentario. Inténtalo de nuevo.",
     "new": "Nueva entrevista",
     "createTitle": "Crear una entrevista",
     "try": "Probar como candidato",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Entrevistas",
       "candidates": "Candidatos",
+      "notes": "Comentarios",
       "credits": "Créditos",
       "ai_agents": "Agentes de IA"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Invitar",
       "candidates:change": "Modificar",
       "candidates:delete": "Eliminar",
+      "notes:read": "Ver",
+      "notes:add": "Añadir",
       "credits:read": "Ver",
       "mcp": "Usar con agentes de IA (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "invitar",
       "candidates:change": "modificar",
       "candidates:delete": "eliminar",
+      "notes:read": "ver",
+      "notes:add": "añadir",
       "credits:read": "ver",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Fijar la nota para aprobar",
         "set_question_seconds": "Fijar el tiempo medio por pregunta",
         "mark_hired": "Marcar la entrevista como contratada",
-        "keep_questions_private": "Mantener las preguntas fuera del banco de preguntas compartido"
+        "keep_questions_private": "Mantener las preguntas fuera del banco de preguntas compartido",
+        "add_interview_note": "Añadir un comentario",
+        "pin_interview_note": "Fijar o dejar de fijar el comentario"
       },
       "fields": {
         "company": "Empresa",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "Correos"
+        },
+        "add_interview_note": {
+          "text": "Comentario"
+        },
+        "pin_interview_note": {
+          "pinned": "Fijado"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Marcó una clave de respuesta como incorrecta",
       "topics_approved": "Aprobó los temas de una entrevista",
       "pass_mark_changed": "Cambió una nota de aprobado",
+      "note_added": "Escribió un comentario en una entrevista",
+      "note_edited": "Editó un comentario en una entrevista",
+      "note_deleted": "Eliminó un comentario en una entrevista",
+      "note_pinned": "Fijó un comentario en una entrevista",
+      "note_unpinned": "Dejó de fijar un comentario en una entrevista",
       "candidate_invited": "Invitó a un candidato",
       "invite_resent": "Reenvió una invitación",
       "invite_revoked": "Revocó una invitación",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "invitar candidatos",
       "candidates:change": "modificar candidatos",
       "candidates:delete": "eliminar candidatos",
+      "notes:read": "ver comentarios",
+      "notes:add": "añadir comentarios",
       "credits:read": "ver créditos",
       "mcp": "usar con agentes de IA (MCP)"
     },

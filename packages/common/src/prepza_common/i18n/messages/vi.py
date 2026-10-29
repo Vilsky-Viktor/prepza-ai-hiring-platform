@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "Không có câu trả lời này.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Chỉ chủ sở hữu hoặc quản trị viên mới có thể gửi báo cáo qua email ra ngoài công ty. Hãy gửi cho một thành viên trong công ty của bạn.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "Để bắt đầu, hãy xác nhận rằng bạn sẽ tự trả lời, không dùng công cụ AI hay nhờ người khác.",
+    "Note not found": "Không tìm thấy ghi chú",
+    "Only the note's author can edit it.": "Chỉ người viết ghi chú mới có thể sửa nó.",
+    "Only the note's author, the owner or an admin can delete it.": "Chỉ người viết ghi chú, chủ sở hữu hoặc quản trị viên mới có thể xóa nó.",
+    "Only the owner or an admin can pin a note.": "Chỉ chủ sở hữu hoặc quản trị viên mới có thể ghim ghi chú.",
+    "Reading the interview's notes…": "Đang xem ghi chú của buổi phỏng vấn…",
 }

@@ -506,6 +506,71 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/interviews/{interview_id}/notes": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * List Notes
+     * @description The pinned note first, then newest first, each with what the user may do with it.
+     */
+    get: operations["list_notes_interviews__interview_id__notes_get"]
+    put?: never
+    /** Add Note */
+    post: operations["add_note_interviews__interview_id__notes_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/interviews/{interview_id}/notes/{note_id}": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    post?: never
+    /**
+     * Delete Note
+     * @description The note's author, the owner or an admin deletes it, for good.
+     */
+    delete: operations["delete_note_interviews__interview_id__notes__note_id__delete"]
+    options?: never
+    head?: never
+    /**
+     * Edit Note
+     * @description Only the note's author changes its text.
+     */
+    patch: operations["edit_note_interviews__interview_id__notes__note_id__patch"]
+    trace?: never
+  }
+  "/interviews/{interview_id}/notes/{note_id}/pinned": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    /**
+     * Pin Note
+     * @description The owner or an admin pins the note (unpinning any other) or unpins it.
+     */
+    put: operations["pin_note_interviews__interview_id__notes__note_id__pinned_put"]
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/interviews/{interview_id}/candidates": {
     parameters: {
       query?: never
@@ -1430,6 +1495,24 @@ export interface paths {
     get: operations["get_credits_internal_companies__company_id__credits_get"]
     put?: never
     post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/companies/{company_id}/interviews/{interview_id}/notes": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** List Notes */
+    get: operations["list_notes_internal_companies__company_id__interviews__interview_id__notes_get"]
+    put?: never
+    /** Add Note */
+    post: operations["add_note_internal_companies__company_id__interviews__interview_id__notes_post"]
     delete?: never
     options?: never
     head?: never
@@ -3272,6 +3355,13 @@ export interface components {
       /** Updated At */
       updated_at?: string | null
       /**
+       * Note Count
+       * @default 0
+       */
+      note_count: number
+      /** Pinned Note */
+      pinned_note?: string | null
+      /**
        * Company Id
        * Format: uuid
        */
@@ -3337,6 +3427,13 @@ export interface components {
       created_at: string
       /** Updated At */
       updated_at?: string | null
+      /**
+       * Note Count
+       * @default 0
+       */
+      note_count: number
+      /** Pinned Note */
+      pinned_note?: string | null
     }
     /**
      * InterviewReportOut
@@ -3611,6 +3708,65 @@ export interface components {
       /** Referrals */
       referrals: number | null
     }
+    /**
+     * NoteAuthor
+     * @description Who wrote a note: their name (or email without one) and picture; `former` when they're no
+     *     longer a member, with neither.
+     */
+    NoteAuthor: {
+      /** Name */
+      name?: string | null
+      /** Photo Url */
+      photo_url?: string | null
+      /**
+       * Former
+       * @default false
+       */
+      former: boolean
+    }
+    /** NoteIn */
+    NoteIn: {
+      /**
+       * Text
+       * @description The note, as plain text; line breaks are kept.
+       */
+      text: string
+    }
+    /** NoteOut */
+    NoteOut: {
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string
+      /** Text */
+      text: string
+      author: components["schemas"]["NoteAuthor"]
+      /** Pinned */
+      pinned: boolean
+      /**
+       * Created At
+       * Format: date-time
+       */
+      created_at: string
+      /** Edited At */
+      edited_at: string | null
+      /**
+       * Can Edit
+       * @default false
+       */
+      can_edit: boolean
+      /**
+       * Can Delete
+       * @default false
+       */
+      can_delete: boolean
+      /**
+       * Can Pin
+       * @default false
+       */
+      can_pin: boolean
+    }
     /** OwnedCompany */
     OwnedCompany: {
       /**
@@ -3684,6 +3840,14 @@ export interface components {
     PauseOut: {
       /** Paused */
       paused: boolean
+    }
+    /** PinIn */
+    PinIn: {
+      /**
+       * Pinned
+       * @description True pins the note (unpinning any other); false unpins it.
+       */
+      pinned: boolean
     }
     /** PrepzaBrand */
     PrepzaBrand: {
@@ -5510,6 +5674,177 @@ export interface operations {
       }
     }
   }
+  list_notes_interviews__interview_id__notes_get: {
+    parameters: {
+      query?: {
+        /** @description Number of items to skip */
+        offset?: number
+        /** @description Number of items to return, up to 100 */
+        limit?: number
+      }
+      header?: never
+      path: {
+        interview_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["NoteOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  add_note_interviews__interview_id__notes_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        interview_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NoteIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["NoteOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  delete_note_interviews__interview_id__notes__note_id__delete: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        interview_id: string
+        note_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  edit_note_interviews__interview_id__notes__note_id__patch: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        interview_id: string
+        note_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NoteIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["NoteOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  pin_note_interviews__interview_id__notes__note_id__pinned_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        interview_id: string
+        note_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PinIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   list_candidates_interviews__interview_id__candidates_get: {
     parameters: {
       query?: {
@@ -7244,6 +7579,82 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["CompanyCreditsOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  list_notes_internal_companies__company_id__interviews__interview_id__notes_get: {
+    parameters: {
+      query: {
+        user_id: string
+        /** @description Number of items to skip */
+        offset?: number
+        /** @description Number of items to return, up to 100 */
+        limit?: number
+      }
+      header?: never
+      path: {
+        company_id: string
+        interview_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["NoteOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  add_note_internal_companies__company_id__interviews__interview_id__notes_post: {
+    parameters: {
+      query: {
+        user_id: string
+      }
+      header?: never
+      path: {
+        company_id: string
+        interview_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NoteIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      201: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["NoteOut"]
         }
       }
       /** @description Validation Error */

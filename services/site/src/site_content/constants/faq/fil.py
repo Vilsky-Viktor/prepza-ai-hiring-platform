@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Oo, kung ikaw ang may-ari ng kumpanya. Nakalista sa tab na Log ng aksyon nito ang lahat ng ginawa ng mga miyembro nito, simula sa pinakabago: pag-imbita o pag-alis ng mga aplikante, pagtingin sa mga resulta, at pagbabago sa mga interview, sa team, sa billing at sa mga integration, kasama kung sino ang gumawa, kailan, at kung ang assistant, isang AI app o ang API ang gumawa nito para sa kanila. Puwede mo itong i-filter ayon sa miyembro, uri ng aksyon at petsa. Itinatago ang mga aksyon nang 12 buwan.",
     },
     {
+        "key": "notes",
+        "question": "Puwede bang magtala ng mga note ang team ko tungkol sa isang interview?",
+        "answer": "Oo. May tab na Mga note ang bawat interview kung saan nagsusulat ang team mo ng mga plain-text na note tungkol sa hiring, gaya ng kung sino ang susunod na tatawagan o, para sa isang recruitment agency, kung para saang kliyente ang interview. Puwedeng magsulat ng note ang bawat miyembro, pati ang mga viewer, at i-edit ang sarili nilang note; puwede itong i-delete ng sumulat, ng mga may-ari at ng mga admin. Puwedeng mag-pin ng isang note ang mga may-ari at admin, na lalabas sa ilalim ng pangalan ng interview. Hindi kailanman nakikita ng mga aplikante ang mga note.",
+    },
+    {
         "key": "integrations",
         "question": "Gumagana ba ang prepza sa ATS ko o sa iba pang tool?",
         "answer": "Oo, nang walang dagdag na bayad. I-connect ang Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR sa tab na Mga integration ng iyong kumpanya: makukuha ng mga aplikanteng ililipat mo sa isang stage ang interview, at babalik sa ATS ang mga resulta nila ([paano ikonekta ang skills tests sa iyong ATS](/guides/ats-integration-skills-tests)). Kayang i-post ng Slack ang mga notification ng iyong kumpanya sa isang channel, at sa pamamagitan ng API, makakagawa ang sarili mong platform ng mga interview, makakapag-imbita at makakapamahala ng mga aplikante, at makakatanggap ng mga resulta nila, at limitado ang bawat API key sa kung ano ang i-check mo para rito; tingnan ang [Dokumentasyon ng API](/api-docs).",

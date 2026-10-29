@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Buổi phỏng vấn đã tạo đang chờ mà chưa có ứng viên",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Buổi phỏng vấn đã tạo đang chờ mà chưa có ứng viên, chưa thanh toán",
       "PREVIEWS_PER_USER_HOUR": "Lượt xem trước phỏng vấn mỗi người dùng mỗi giờ",
+      "NOTES_PER_USER_HOUR": "Ghi chú phỏng vấn mỗi người dùng mỗi giờ",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Lượt thanh toán, kiểm tra thanh toán và hóa đơn mỗi người dùng mỗi giờ",
       "TEMPLATE_COPIES_PER_HOUR": "Bài phỏng vấn sao chép từ mẫu mỗi công ty mỗi giờ",
       "LINK_STARTS_PER_HOUR": "Lượt bắt đầu qua liên kết của một buổi phỏng vấn mỗi giờ",
@@ -1056,6 +1057,20 @@
     "interview": "Phỏng vấn",
     "topicsTab": "Chủ đề",
     "candidates": "Ứng viên",
+    "notes": "Ghi chú",
+    "notesEmpty": "Chưa có ghi chú nào. Hãy viết ghi chú đầu tiên cho nhóm của bạn.",
+    "noteLabel": "Viết ghi chú cho nhóm của bạn",
+    "notePlaceholder": "một ghi chú thật hay ở đây…",
+    "notePost": "Đăng",
+    "notePosting": "Đang đăng…",
+    "noteEdited": "đã sửa",
+    "notePinned": "Đã ghim",
+    "notePin": "Ghim lên đầu",
+    "noteUnpin": "Bỏ ghim",
+    "noteFormerMember": "Cựu thành viên",
+    "noteDeleteTitle": "Xóa ghi chú này?",
+    "noteDeleteText": "Ghi chú sẽ bị xóa với mọi người trong nhóm của bạn và không thể khôi phục.",
+    "noteFailed": "Không lưu được ghi chú. Vui lòng thử lại.",
     "new": "Buổi phỏng vấn mới",
     "createTitle": "Tạo buổi phỏng vấn",
     "try": "Thử với vai trò ứng viên",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Phỏng vấn",
       "candidates": "Ứng viên",
+      "notes": "Ghi chú",
       "credits": "Credit",
       "ai_agents": "Agent AI"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Mời",
       "candidates:change": "Thay đổi",
       "candidates:delete": "Xóa",
+      "notes:read": "Xem",
+      "notes:add": "Thêm",
       "credits:read": "Xem",
       "mcp": "Dùng với agent AI (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "mời",
       "candidates:change": "thay đổi",
       "candidates:delete": "xóa",
+      "notes:read": "xem",
+      "notes:add": "thêm",
       "credits:read": "xem",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Đặt điểm đạt",
         "set_question_seconds": "Đặt thời gian trung bình mỗi câu hỏi",
         "mark_hired": "Đánh dấu buổi phỏng vấn đã tuyển được",
-        "keep_questions_private": "Không đưa câu hỏi vào ngân hàng câu hỏi dùng chung"
+        "keep_questions_private": "Không đưa câu hỏi vào ngân hàng câu hỏi dùng chung",
+        "add_interview_note": "Thêm ghi chú",
+        "pin_interview_note": "Ghim hoặc bỏ ghim ghi chú"
       },
       "fields": {
         "company": "Công ty",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "Địa chỉ email"
+        },
+        "add_interview_note": {
+          "text": "Ghi chú"
+        },
+        "pin_interview_note": {
+          "pinned": "Đã ghim"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Đã đánh dấu một đáp án là sai",
       "topics_approved": "Đã duyệt chủ đề của một buổi phỏng vấn",
       "pass_mark_changed": "Đã đổi một điểm đạt",
+      "note_added": "Đã viết một ghi chú cho buổi phỏng vấn",
+      "note_edited": "Đã sửa một ghi chú của buổi phỏng vấn",
+      "note_deleted": "Đã xóa một ghi chú của buổi phỏng vấn",
+      "note_pinned": "Đã ghim một ghi chú của buổi phỏng vấn",
+      "note_unpinned": "Đã bỏ ghim một ghi chú của buổi phỏng vấn",
       "candidate_invited": "Đã mời một ứng viên",
       "invite_resent": "Đã gửi lại một lời mời",
       "invite_revoked": "Đã thu hồi một lời mời",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "mời ứng viên",
       "candidates:change": "thay đổi ứng viên",
       "candidates:delete": "xóa ứng viên",
+      "notes:read": "xem ghi chú",
+      "notes:add": "thêm ghi chú",
       "credits:read": "xem credit",
       "mcp": "dùng với agent AI (MCP)"
     },

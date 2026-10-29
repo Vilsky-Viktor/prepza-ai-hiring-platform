@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "지원자 없이 대기 중인 생성된 면접",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "지원자 없이 대기 중인 생성된 면접, 무료",
       "PREVIEWS_PER_USER_HOUR": "사용자별 시간당 면접 미리보기",
+      "NOTES_PER_USER_HOUR": "사용자별 시간당 면접 메모",
       "CHECKOUT_CALLS_PER_USER_HOUR": "사용자별 시간당 결제, 결제 확인 및 인보이스 횟수",
       "TEMPLATE_COPIES_PER_HOUR": "회사별 시간당 템플릿에서 복사한 면접",
       "LINK_STARTS_PER_HOUR": "면접 링크 하나로 시간당 시작",
@@ -1056,6 +1057,20 @@
     "interview": "면접",
     "topicsTab": "주제",
     "candidates": "지원자",
+    "notes": "메모",
+    "notesEmpty": "아직 메모가 없습니다. 팀을 위해 첫 메모를 남겨 보세요.",
+    "noteLabel": "팀을 위한 메모 작성",
+    "notePlaceholder": "여기에 멋진 메모를…",
+    "notePost": "게시",
+    "notePosting": "게시 중…",
+    "noteEdited": "수정됨",
+    "notePinned": "고정됨",
+    "notePin": "맨 위에 고정",
+    "noteUnpin": "고정 해제",
+    "noteFormerMember": "이전 멤버",
+    "noteDeleteTitle": "이 메모를 삭제할까요?",
+    "noteDeleteText": "팀 전체에서 삭제되며 되돌릴 수 없습니다.",
+    "noteFailed": "메모를 저장하지 못했습니다. 다시 시도해 주세요.",
     "new": "새 면접",
     "createTitle": "면접 만들기",
     "try": "지원자로 체험하기",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "면접",
       "candidates": "지원자",
+      "notes": "메모",
       "credits": "크레딧",
       "ai_agents": "AI 에이전트"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "초대",
       "candidates:change": "변경",
       "candidates:delete": "삭제",
+      "notes:read": "조회",
+      "notes:add": "추가",
       "credits:read": "조회",
       "mcp": "AI 에이전트에서 사용 (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "초대",
       "candidates:change": "변경",
       "candidates:delete": "삭제",
+      "notes:read": "조회",
+      "notes:add": "추가",
       "credits:read": "조회",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "합격 기준 설정",
         "set_question_seconds": "질문당 평균 시간 설정",
         "mark_hired": "면접을 채용 완료로 표시",
-        "keep_questions_private": "질문을 공유 문제 은행에서 제외"
+        "keep_questions_private": "질문을 공유 문제 은행에서 제외",
+        "add_interview_note": "메모 추가",
+        "pin_interview_note": "메모 고정 또는 고정 해제"
       },
       "fields": {
         "company": "회사",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "이메일 주소"
+        },
+        "add_interview_note": {
+          "text": "메모"
+        },
+        "pin_interview_note": {
+          "pinned": "고정"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "정답이 틀렸다고 표시함",
       "topics_approved": "면접 주제를 승인함",
       "pass_mark_changed": "합격 기준을 변경함",
+      "note_added": "면접에 메모를 작성함",
+      "note_edited": "면접 메모를 수정함",
+      "note_deleted": "면접 메모를 삭제함",
+      "note_pinned": "면접 메모를 고정함",
+      "note_unpinned": "면접 메모의 고정을 해제함",
       "candidate_invited": "지원자를 초대함",
       "invite_resent": "초대를 다시 보냄",
       "invite_revoked": "초대를 취소함",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "지원자 초대",
       "candidates:change": "지원자 변경",
       "candidates:delete": "지원자 삭제",
+      "notes:read": "메모 조회",
+      "notes:add": "메모 추가",
       "credits:read": "크레딧 조회",
       "mcp": "AI 에이전트에서 사용 (MCP)"
     },

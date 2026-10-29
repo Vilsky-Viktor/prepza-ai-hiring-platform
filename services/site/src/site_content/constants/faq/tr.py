@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Evet, şirketin sahibiyseniz. Şirketin İşlem kaydı sekmesi, üyelerinin yaptığı her şeyi en yeniden başlayarak listeler: aday davet etme veya kaldırma, sonuçları görüntüleme ve mülakatlarda, ekipte, faturalandırmada ve entegrasyonlarda yapılan değişiklikler; bunu kimin, ne zaman yaptığı ve asistanın, bir yapay zekâ uygulamasının veya API'nin onun adına yapıp yapmadığıyla birlikte. Kaydı üyeye, işlem türüne ve tarihlere göre filtreleyebilirsiniz. İşlemler 12 ay saklanır.",
     },
     {
+        "key": "notes",
+        "question": "Ekibim bir mülakata yorum yazabilir mi?",
+        "answer": "Evet. Her mülakatın, ekibinizin işe alım süreciyle ilgili düz metin yorumlar yazdığı bir Yorumlar sekmesi vardır; örneğin sırada kimin aranacağı ya da bir ajanssanız mülakatın hangi müşteri için olduğu. Görüntüleyiciler dahil her üye yorum yazabilir ve kendi yorumlarını düzenleyebilir; bir yorumu yazarı, sahipler ve yöneticiler silebilir. Sahipler ve yöneticiler bir yorumu sabitleyebilir; bu yorum mülakatın adının altında görünür. Adaylar yorumları asla görmez.",
+    },
+    {
         "key": "integrations",
         "question": "prepza, ATS'imle veya diğer araçlarla çalışır mı?",
         "answer": "Evet, ek ücret olmadan. Workable, Greenhouse, Teamtailor, Recruitee veya Breezy HR'ı şirketinizin Entegrasyonlar sekmesinden bağlayın: bir aşamaya taşıdığınız adaylar mülakatı alır ve sonuçları ATS'ye geri gönderilir ([beceri testlerini ATS'nize nasıl bağlarsınız](/guides/ats-integration-skills-tests)). Slack, şirketinizin bildirimlerini bir kanala gönderebilir; API ise kendi platformunuzun mülakat oluşturmasını, adayları davet edip yönetmesini ve sonuçlarını almasını sağlar; her API anahtarı yalnızca onun için işaretlediğiniz işlemleri yapabilir. Ayrıntılar için [API belgeleri](/api-docs) sayfasına bakın.",

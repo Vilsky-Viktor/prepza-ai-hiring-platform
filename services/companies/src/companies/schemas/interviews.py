@@ -49,6 +49,9 @@ class InterviewOut(BaseModel):
     created_at: datetime
     # When it last changed; the API syncs lists by it (updated_since).
     updated_at: datetime | None = None
+    # Its team's notes: how many, and the pinned one's text (None without one).
+    note_count: int = 0
+    pinned_note: str | None = None
 
 
 class QuestionOption(BaseModel):

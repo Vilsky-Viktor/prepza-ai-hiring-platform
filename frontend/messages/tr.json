@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Adaysız bekleyen oluşturulmuş mülakatlar",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Adaysız bekleyen oluşturulmuş mülakatlar, ödeme yapmayan",
       "PREVIEWS_PER_USER_HOUR": "Kullanıcı başına saatlik mülakat önizlemesi",
+      "NOTES_PER_USER_HOUR": "Kullanıcı başına saatlik mülakat yorumu",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Kullanıcı başına saatlik ödeme, ödeme kontrolü ve fatura",
       "TEMPLATE_COPIES_PER_HOUR": "Şirket başına saatlik şablondan kopyalanan mülakat",
       "LINK_STARTS_PER_HOUR": "Bir mülakatın bağlantısıyla saatlik başlatma",
@@ -1056,6 +1057,20 @@
     "interview": "Mülakat",
     "topicsTab": "Konular",
     "candidates": "Adaylar",
+    "notes": "Yorumlar",
+    "notesEmpty": "Henüz yorum yok. Ekibiniz için ilkini yazın.",
+    "noteLabel": "Ekibiniz için bir yorum yazın",
+    "notePlaceholder": "buraya harika bir yorum…",
+    "notePost": "Paylaş",
+    "notePosting": "Paylaşılıyor…",
+    "noteEdited": "düzenlendi",
+    "notePinned": "Sabitlendi",
+    "notePin": "En üste sabitle",
+    "noteUnpin": "Sabitlemeyi kaldır",
+    "noteFormerMember": "Eski üye",
+    "noteDeleteTitle": "Bu yorum silinsin mi?",
+    "noteDeleteText": "Ekibinizdeki herkes için silinir ve geri getirilemez.",
+    "noteFailed": "Yorum kaydedilemedi. Lütfen tekrar deneyin.",
     "new": "Yeni mülakat",
     "createTitle": "Mülakat oluştur",
     "try": "Aday olarak dene",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Mülakatlar",
       "candidates": "Adaylar",
+      "notes": "Yorumlar",
       "credits": "Krediler",
       "ai_agents": "Yapay zekâ ajanları"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Davet etme",
       "candidates:change": "Değiştirme",
       "candidates:delete": "Silme",
+      "notes:read": "Okuma",
+      "notes:add": "Ekleme",
       "credits:read": "Okuma",
       "mcp": "Yapay zekâ ajanlarıyla kullanma (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "davet etme",
       "candidates:change": "değiştirme",
       "candidates:delete": "silme",
+      "notes:read": "okuma",
+      "notes:add": "ekleme",
       "credits:read": "okuma",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Geçme notunu ayarla",
         "set_question_seconds": "Soru başına ortalama süreyi ayarla",
         "mark_hired": "Mülakatı işe alım yapıldı olarak işaretle",
-        "keep_questions_private": "Soruları ortak soru bankasının dışında tut"
+        "keep_questions_private": "Soruları ortak soru bankasının dışında tut",
+        "add_interview_note": "Yorum ekle",
+        "pin_interview_note": "Yorumu sabitle veya sabitlemeyi kaldır"
       },
       "fields": {
         "company": "Şirket",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "E-posta adresleri"
+        },
+        "add_interview_note": {
+          "text": "Yorum"
+        },
+        "pin_interview_note": {
+          "pinned": "Sabitlendi"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Bir cevap anahtarını yanlış olarak işaretledi",
       "topics_approved": "Bir mülakatın konularını onayladı",
       "pass_mark_changed": "Bir geçme notunu değiştirdi",
+      "note_added": "Bir mülakata yorum yazdı",
+      "note_edited": "Bir mülakattaki yorumu düzenledi",
+      "note_deleted": "Bir mülakattaki yorumu sildi",
+      "note_pinned": "Bir mülakattaki yorumu sabitledi",
+      "note_unpinned": "Bir mülakattaki yorumun sabitlemesini kaldırdı",
       "candidate_invited": "Bir adayı davet etti",
       "invite_resent": "Bir daveti yeniden gönderdi",
       "invite_revoked": "Bir daveti geri aldı",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "aday davet etme",
       "candidates:change": "adayları değiştirme",
       "candidates:delete": "adayları silme",
+      "notes:read": "yorumları okuma",
+      "notes:add": "yorum ekleme",
       "credits:read": "kredileri okuma",
       "mcp": "yapay zekâ ajanlarıyla kullanma (MCP)"
     },

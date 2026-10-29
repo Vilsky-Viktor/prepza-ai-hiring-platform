@@ -41,3 +41,19 @@ async def account_by_email(email: str) -> dict | None:
     response.raise_for_status()
 
     return response.json()
+
+
+async def profiles(user_ids: list[str]) -> dict[str, dict]:
+    """Each account's name and picture by its id ({"name", "photo_url"}); those gone are left
+    out. At most a page of ids (accounts' lookup limit)."""
+    if not user_ids:
+        return {}
+
+    response = await http.get_client().post(
+        f"{settings.accounts_url}/internal/accounts/profiles",
+        json={"user_ids": user_ids},
+        headers=bearer(service_token("accounts")),
+    )
+    response.raise_for_status()
+
+    return {item["user_id"]: item for item in response.json()["profiles"]}

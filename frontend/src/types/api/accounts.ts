@@ -209,6 +209,26 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/accounts/profiles": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Get Profiles
+     * @description Each account's name and picture, for the notes' authors; ids in the body, as a list.
+     */
+    post: operations["get_profiles_internal_accounts_profiles_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/users/ids": {
     parameters: {
       query?: never
@@ -495,6 +515,28 @@ export interface components {
         | "et"
       /** Is Superadmin */
       is_superadmin: boolean
+    }
+    /**
+     * ProfileOut
+     * @description How an account shows itself to its team: its name (its email without one) and picture.
+     */
+    ProfileOut: {
+      /** User Id */
+      user_id: string
+      /** Name */
+      name: string | null
+      /** Photo Url */
+      photo_url: string | null
+    }
+    /** ProfilesIn */
+    ProfilesIn: {
+      /** User Ids */
+      user_ids: string[]
+    }
+    /** ProfilesOut */
+    ProfilesOut: {
+      /** Profiles */
+      profiles: components["schemas"]["ProfileOut"][]
     }
     /**
      * PushBody
@@ -967,6 +1009,39 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["AccountOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_profiles_internal_accounts_profiles_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["ProfilesIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["ProfilesOut"]
         }
       }
       /** @description Validation Error */

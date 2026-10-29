@@ -36,6 +36,7 @@ TOOL_LABELS = {
     "get_guide": "Reading the guide…",
     "list_topic_questions": "Reading the questions…",
     "list_question_reports": "Reading the question's reports…",
+    "list_interview_notes": "Reading the interview's notes…",
     "list_company_actions": "Reading the action log…",
     "list_credit_history": "Reading the credit history…",
     "list_reserved_credits": "Reading reserved credits…",

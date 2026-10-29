@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Sì, se sei il proprietario dell'azienda. La sua scheda Registro attività elenca tutto ciò che hanno fatto i membri, dal più recente: invitare o rimuovere candidati, vedere i risultati, modificare colloqui, team, fatturazione e integrazioni, con chi l'ha fatto, quando e se l'ha fatto per suo conto l'assistente, un'app di IA o l'API. Puoi filtrarlo per membro, tipo di azione e date. Le attività vengono conservate per 12 mesi.",
     },
     {
+        "key": "notes",
+        "question": "Il mio team può prendere note su un colloquio?",
+        "answer": "Sì. Ogni colloquio ha una scheda Note in cui il tuo team scrive note in testo semplice sulla selezione, ad esempio chi chiamare dopo o, per un'agenzia, per quale cliente è il colloquio. Ogni membro può scrivere note, anche i visualizzatori, e modificare le proprie; possono eliminarne una l'autore, i proprietari e gli amministratori. Proprietari e amministratori possono fissare una nota, che compare poi sotto il nome del colloquio. I candidati non vedono mai le note.",
+    },
+    {
         "key": "integrations",
         "question": "prepza funziona con il mio ATS o con altri strumenti?",
         "answer": "Sì, senza costi aggiuntivi. Collega Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR nella scheda Integrazioni della tua azienda: i candidati che sposti in una fase ricevono il colloquio, e i loro risultati tornano nell'ATS ([come collegare i test di competenze al tuo ATS](/guides/ats-integration-skills-tests)). Slack può pubblicare le notifiche della tua azienda in un canale, e l'API permette alla tua piattaforma di creare colloqui, invitare e gestire candidati e ricevere i loro risultati, con ogni chiave API limitata a ciò che spunti per lei; consulta la [Documentazione API](/api-docs).",

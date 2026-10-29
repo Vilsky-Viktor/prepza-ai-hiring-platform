@@ -44,7 +44,7 @@
     "text": "All of this company's interviews and its credits for candidates. Each interview is a timed test made from a job description.",
     "actions": [
       "Create an interview from a job description with “new interview”.",
-      "Open an interview to see its topics, candidates and settings.",
+      "Open an interview to see its topics, candidates, notes and settings; a pinned note shows under its name.",
       "Search the interviews by title.",
       "Try an interview as a candidate, or delete it.",
       "Top up credits from the balance, or turn on automatic top-ups on the Billing tab."
@@ -119,6 +119,19 @@
     "tips": [
       "Each candidate who answers at least one question uses credits, including those from the link.",
       "Reminders go to candidates automatically."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Notes",
+    "text": "Your team's notes on this hiring round: what you agreed, whom to call next, or whom the interview is for. Everyone in your company sees them; candidates never do.",
+    "actions": [
+      "Write a note in the box at the top and select Post, or press ⌘/Ctrl+Enter. Links in it become clickable.",
+      "Edit or delete your own notes with the buttons on their row; owners and admins can delete anyone's.",
+      "Pin a note with the bookmark (owners and admins): it shows first here, and under the interview's name on its page and in the interviews list."
+    ],
+    "tips": [
+      "Working for clients? Pin a note like “For Acme, Backend Developer” to see at a glance whom each interview is for.",
+      "A deleted note is gone for good. The action log records who wrote, changed or deleted a note, never its text."
     ]
   },
   "interviewSettings": {

@@ -44,7 +44,7 @@
     "text": "Tous les entretiens de cette entreprise et ses crédits pour les candidats. Chaque entretien est un test chronométré créé à partir d'une description de poste.",
     "actions": [
       "Créez un entretien à partir d'une description de poste avec « Nouvel entretien ».",
-      "Ouvrez un entretien pour voir ses thèmes, ses candidats et ses paramètres.",
+      "Ouvrez un entretien pour voir ses thèmes, ses candidats, ses commentaires et ses paramètres ; un commentaire épinglé s'affiche sous son nom.",
       "Recherchez des entretiens par leur titre.",
       "Essayez un entretien en tant que candidat, ou supprimez-le.",
       "Rechargez des crédits depuis le solde, ou activez la recharge automatique dans l'onglet Facturation."
@@ -119,6 +119,19 @@
     "tips": [
       "Chaque candidat qui répond à au moins une question consomme des crédits, y compris ceux venus par le lien.",
       "Les rappels sont envoyés automatiquement aux candidats."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Commentaires",
+    "text": "Les commentaires de votre équipe sur ce recrutement : ce que vous avez convenu, qui appeler ensuite ou pour qui est l'entretien. Toute votre entreprise les voit ; les candidats, jamais.",
+    "actions": [
+      "Écrivez un commentaire dans le champ en haut et sélectionnez Publier, ou appuyez sur ⌘/Ctrl+Enter. Les liens qu'il contient deviennent cliquables.",
+      "Modifiez ou supprimez vos propres commentaires avec les boutons de leur ligne ; les propriétaires et les admins peuvent supprimer ceux de n'importe qui.",
+      "Épinglez un commentaire avec le marque-page (propriétaires et admins) : il s'affiche en premier ici, et sous le nom de l'entretien sur sa page et dans la liste des entretiens."
+    ],
+    "tips": [
+      "Vous travaillez pour des clients ? Épinglez un commentaire comme « Pour Acme, développeur backend » pour voir d'un coup d'œil pour qui est chaque entretien.",
+      "Un commentaire supprimé l'est définitivement. Le journal des actions enregistre qui a écrit, modifié ou supprimé un commentaire, jamais son texte."
     ]
   },
   "interviewSettings": {

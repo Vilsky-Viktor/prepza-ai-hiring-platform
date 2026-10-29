@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Створені співбесіди, що чекають без кандидатів",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Створені співбесіди, що чекають без кандидатів, у неплатних",
       "PREVIEWS_PER_USER_HOUR": "Попередні перегляди співбесід на користувача за годину",
+      "NOTES_PER_USER_HOUR": "Нотатки до співбесід на користувача за годину",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Оплати, перевірки платежів і рахунки на користувача за годину",
       "TEMPLATE_COPIES_PER_HOUR": "Співбесіди, скопійовані з шаблонів, на компанію за годину",
       "LINK_STARTS_PER_HOUR": "Запуски за посиланням однієї співбесіди за годину",
@@ -1056,6 +1057,20 @@
     "interview": "Співбесіда",
     "topicsTab": "Теми",
     "candidates": "Кандидати",
+    "notes": "Нотатки",
+    "notesEmpty": "Нотаток поки немає. Напишіть першу для своєї команди.",
+    "noteLabel": "Напишіть нотатку для своєї команди",
+    "notePlaceholder": "якась класна нотатка…",
+    "notePost": "Опублікувати",
+    "notePosting": "Публікація…",
+    "noteEdited": "змінено",
+    "notePinned": "Закріплена",
+    "notePin": "Закріпити вгорі",
+    "noteUnpin": "Відкріпити",
+    "noteFormerMember": "Колишній учасник",
+    "noteDeleteTitle": "Видалити цю нотатку?",
+    "noteDeleteText": "Її буде видалено для всієї вашої команди, і повернути її не вийде.",
+    "noteFailed": "Не вдалося зберегти нотатку. Спробуйте ще раз.",
     "new": "Нова співбесіда",
     "createTitle": "Створити співбесіду",
     "try": "Спробувати як кандидат",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Співбесіди",
       "candidates": "Кандидати",
+      "notes": "Нотатки",
       "credits": "Кредити",
       "ai_agents": "ШІ-агенти"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Запрошення",
       "candidates:change": "Зміна",
       "candidates:delete": "Видалення",
+      "notes:read": "Перегляд",
+      "notes:add": "Додавання",
       "credits:read": "Перегляд",
       "mcp": "Використання з ШІ-агентами (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "запрошення",
       "candidates:change": "зміна",
       "candidates:delete": "видалення",
+      "notes:read": "перегляд",
+      "notes:add": "додавання",
       "credits:read": "перегляд",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Задати прохідний бал",
         "set_question_seconds": "Задати середній час на запитання",
         "mark_hired": "Позначити співбесіду як завершену наймом",
-        "keep_questions_private": "Не додавати запитання до спільного банку запитань"
+        "keep_questions_private": "Не додавати запитання до спільного банку запитань",
+        "add_interview_note": "Додати нотатку",
+        "pin_interview_note": "Закріпити або відкріпити нотатку"
       },
       "fields": {
         "company": "Компанія",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "Адреси"
+        },
+        "add_interview_note": {
+          "text": "Нотатка"
+        },
+        "pin_interview_note": {
+          "pinned": "Закріплена"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Позначив ключ відповідей як хибний",
       "topics_approved": "Затвердив теми співбесіди",
       "pass_mark_changed": "Змінив прохідний бал",
+      "note_added": "Написав нотатку до співбесіди",
+      "note_edited": "Змінив нотатку до співбесіди",
+      "note_deleted": "Видалив нотатку до співбесіди",
+      "note_pinned": "Закріпив нотатку до співбесіди",
+      "note_unpinned": "Відкріпив нотатку до співбесіди",
       "candidate_invited": "Запросив кандидата",
       "invite_resent": "Надіслав запрошення повторно",
       "invite_revoked": "Відкликав запрошення",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "запрошення кандидатів",
       "candidates:change": "зміна кандидатів",
       "candidates:delete": "видалення кандидатів",
+      "notes:read": "перегляд нотаток",
+      "notes:add": "додавання нотаток",
       "credits:read": "перегляд кредитів",
       "mcp": "використання з ШІ-агентами (MCP)"
     },

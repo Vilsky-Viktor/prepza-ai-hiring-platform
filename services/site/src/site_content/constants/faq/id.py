@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Bisa, jika kamu pemilik perusahaan. Tab Log tindakan perusahaan itu mencantumkan semua yang dilakukan anggotanya, dari yang terbaru: mengundang atau menghapus kandidat, melihat hasil, serta mengubah wawancara, tim, tagihan, dan integrasi, lengkap dengan siapa yang melakukannya, kapan, dan apakah asisten, aplikasi AI, atau API yang melakukannya atas nama mereka. Kamu bisa memfilternya berdasarkan anggota, jenis tindakan, dan tanggal. Tindakan disimpan selama 12 bulan.",
     },
     {
+        "key": "notes",
+        "question": "Bisakah timku menyimpan catatan tentang wawancara?",
+        "answer": "Bisa. Setiap wawancara punya tab Catatan tempat timmu menulis catatan teks biasa tentang rekrutmennya, misalnya siapa yang dihubungi berikutnya atau, bagi agensi rekrutmen, untuk klien mana wawancara itu. Setiap anggota bisa menulis catatan, termasuk pelihat, dan mengedit catatannya sendiri; penulis, pemilik, dan admin bisa menghapus catatan. Pemilik dan admin bisa menyematkan satu catatan, yang lalu tampil di bawah nama wawancara. Kandidat tidak pernah melihat catatan.",
+    },
+    {
         "key": "integrations",
         "question": "Apakah prepza bisa dipakai dengan ATS atau tools lain yang saya gunakan?",
         "answer": "Bisa, tanpa biaya tambahan. Hubungkan Workable, Greenhouse, Teamtailor, Recruitee, atau Breezy HR di tab Integrasi perusahaanmu: kandidat yang kamu pindahkan ke suatu tahap mendapat wawancara, dan hasilnya dikirim kembali ke ATS ([cara menghubungkan tes keterampilan ke ATS-mu](/guides/ats-integration-skills-tests)). Slack bisa memposting notifikasi perusahaanmu ke sebuah channel, dan API memungkinkan platformmu sendiri membuat wawancara, mengundang dan mengelola kandidat, serta menerima hasil mereka, dengan setiap kunci API terbatas pada yang kamu centang untuknya; lihat [Dokumentasi API](/api-docs).",

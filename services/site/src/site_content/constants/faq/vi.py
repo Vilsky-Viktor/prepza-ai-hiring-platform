@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Có, nếu bạn là chủ sở hữu công ty. Tab Nhật ký thao tác của công ty liệt kê mọi việc các thành viên đã làm, mới nhất trước: mời hoặc xóa ứng viên, xem kết quả, thay đổi buổi phỏng vấn, nhóm, thanh toán và tích hợp, kèm theo ai đã làm, khi nào, và trợ lý, một ứng dụng AI hay API có làm thay họ không. Bạn có thể lọc theo thành viên, loại thao tác và ngày. Các thao tác được lưu trong 12 tháng.",
     },
     {
+        "key": "notes",
+        "question": "Nhóm của tôi có thể ghi chú về một buổi phỏng vấn không?",
+        "answer": "Có. Mỗi buổi phỏng vấn có tab Ghi chú, nơi nhóm của bạn viết ghi chú dạng văn bản thuần về đợt tuyển dụng, chẳng hạn ai cần liên hệ tiếp theo hoặc, với một công ty tuyển dụng, buổi phỏng vấn dành cho khách hàng nào. Mọi thành viên đều có thể viết ghi chú, kể cả người xem, và sửa ghi chú của mình; người viết, chủ sở hữu và quản trị viên có thể xóa ghi chú. Chủ sở hữu và quản trị viên có thể ghim một ghi chú, ghi chú đó sẽ hiện dưới tên buổi phỏng vấn. Ứng viên không bao giờ thấy ghi chú.",
+    },
+    {
         "key": "integrations",
         "question": "prepza có hoạt động với ATS hoặc các công cụ khác của tôi không?",
         "answer": "Có, không mất thêm phí. Kết nối Workable, Greenhouse, Teamtailor, Recruitee hoặc Breezy HR trong tab Tích hợp của công ty bạn: ứng viên bạn chuyển sang một giai đoạn sẽ nhận buổi phỏng vấn, và kết quả được gửi lại ATS ([cách kết nối bài kiểm tra kỹ năng với ATS](/guides/ats-integration-skills-tests)). Slack có thể đăng thông báo của công ty vào một kênh, còn API cho phép nền tảng của riêng bạn tạo buổi phỏng vấn, mời và quản lý ứng viên, và nhận kết quả của họ, mỗi khóa API chỉ làm được những gì bạn đánh dấu cho nó; xem [Tài liệu API](/api-docs).",

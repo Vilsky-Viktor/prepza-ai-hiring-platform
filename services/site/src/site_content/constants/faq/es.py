@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Sí, si eres el propietario de la empresa. Su pestaña Registro de acciones muestra todo lo que hicieron sus miembros, de lo más reciente a lo más antiguo: invitar o quitar candidatos, ver resultados y cambiar las entrevistas, el equipo, la facturación y las integraciones, con quién lo hizo, cuándo y si lo hizo en su nombre el asistente, una app de IA o la API. Puedes filtrarlo por miembro, tipo de acción y fechas. Las acciones se guardan durante 12 meses.",
     },
     {
+        "key": "notes",
+        "question": "¿Puede mi equipo dejar comentarios sobre una entrevista?",
+        "answer": "Sí. Cada entrevista tiene una pestaña Comentarios donde tu equipo escribe comentarios en texto sin formato sobre el proceso de selección, como a quién llamar a continuación o, en una agencia, para qué cliente es la entrevista. Cualquier miembro puede escribir comentarios, también los lectores, y editar los suyos; pueden eliminar uno su autor, los propietarios y los administradores. Los propietarios y administradores pueden fijar un comentario, que entonces aparece bajo el nombre de la entrevista. Los candidatos nunca ven los comentarios.",
+    },
+    {
         "key": "integrations",
         "question": "¿prepza funciona con mi ATS u otras herramientas?",
         "answer": "Sí, sin coste adicional. Conecta Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR en la pestaña Integraciones de tu empresa: los candidatos que muevas a una etapa reciben la entrevista, y sus resultados vuelven al ATS ([cómo conectar las pruebas de habilidades a tu ATS](/guides/ats-integration-skills-tests)). Slack puede publicar las notificaciones de tu empresa en un canal, y la API permite que tu propia plataforma cree entrevistas, invite y gestione candidatos y reciba sus resultados, con cada clave de API limitada a lo que marques para ella; consulta la [Documentación de la API](/api-docs).",

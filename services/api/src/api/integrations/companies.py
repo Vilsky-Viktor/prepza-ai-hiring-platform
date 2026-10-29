@@ -9,8 +9,8 @@ from prepza_common.http.http import bearer, passed_on
 from api.config import settings
 from api.core.security import service_token
 
-# Companies' answers the API passes on as they are: not found, no credits, not ready, over the
-# email limits, paused.
+# Companies' answers the API passes on as they are: no credits, not found, not ready or a
+# suspended company, over the email or notes limits, paused.
 PASSED_ON = {
     status.HTTP_402_PAYMENT_REQUIRED,
     status.HTTP_404_NOT_FOUND,
@@ -168,6 +168,28 @@ async def change_candidate(
 async def resend(company_id: UUID, interview_id: UUID, invite_id: UUID, user_id: str) -> None:
     path = _candidate_path(company_id, interview_id, invite_id)
     await _call("POST", f"{path}/resend", {"user_id": user_id})
+
+
+def _notes_path(company_id: UUID, interview_id: UUID) -> str:
+    return f"/internal/companies/{company_id}/interviews/{interview_id}/notes"
+
+
+async def notes(
+    company_id: UUID, interview_id: UUID, user_id: str, offset: int, limit: int
+) -> list[dict]:
+    """A page of the interview's notes as `user_id`, the key's creator, sees them: the pinned
+    one first, then newest first."""
+    params = {"user_id": user_id, "offset": offset, "limit": limit}
+    found = await _get(_notes_path(company_id, interview_id), params)
+
+    return found
+
+
+async def add_note(company_id: UUID, interview_id: UUID, text: str, user_id: str) -> dict:
+    """Adds a note to the interview as `user_id`, the key's creator."""
+    path = _notes_path(company_id, interview_id)
+
+    return await _call("POST", path, {"user_id": user_id}, {"text": text})
 
 
 async def find_candidates(company_id: UUID, email: str) -> list[dict]:

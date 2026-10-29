@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "Такого ответа нет.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Отправить отчёт по email за пределы компании может только владелец или администратор. Отправьте его одному из участников вашей компании.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "Чтобы начать, подтвердите, что будете отвечать самостоятельно, без ИИ-инструментов и помощи других людей.",
+    "Note not found": "Заметка не найдена",
+    "Only the note's author can edit it.": "Изменить заметку может только её автор.",
+    "Only the note's author, the owner or an admin can delete it.": "Удалить заметку может только её автор, владелец или администратор.",
+    "Only the owner or an admin can pin a note.": "Закрепить заметку может только владелец или администратор.",
+    "Reading the interview's notes…": "Смотрю заметки к собеседованию…",
 }

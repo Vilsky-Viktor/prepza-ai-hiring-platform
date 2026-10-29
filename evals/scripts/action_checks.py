@@ -34,7 +34,14 @@ def matches(expected, given, ids: dict) -> bool:
 # A call refused for a value the user hasn't given yet (the refusal tells the model to ask for
 # it), or because it would change nothing: the check working, not an action (whether it asked
 # is the judge's).
-MISSING_VALUE = (" is required", " is empty", "ask the user for it", "Nothing to change")
+# An empty text is also too short for a schema's minLength of 1, a second part of the same refusal.
+MISSING_VALUE = (
+    " is required",
+    " is empty",
+    "ask the user for it",
+    " must be at least 1 characters",
+    "Nothing to change",
+)
 
 
 def missing_value(detail: str | None) -> bool:

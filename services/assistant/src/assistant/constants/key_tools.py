@@ -11,6 +11,8 @@ CANDIDATES_READ = "candidates:read"
 CANDIDATES_INVITE = "candidates:invite"
 CANDIDATES_CHANGE = "candidates:change"
 CANDIDATES_DELETE = "candidates:delete"
+NOTES_READ = "notes:read"
+NOTES_ADD = "notes:add"
 CREDITS_READ = "credits:read"
 
 KEY_TOOLS = {
@@ -46,6 +48,8 @@ KEY_TOOLS = {
     "rename_candidate": CANDIDATES_CHANGE,
     "set_extra_time": CANDIDATES_CHANGE,
     "revoke_candidate": CANDIDATES_DELETE,
+    "list_interview_notes": NOTES_READ,
+    "add_interview_note": NOTES_ADD,
     "get_credits": CREDITS_READ,
     "list_company_balances": CREDITS_READ,
 }

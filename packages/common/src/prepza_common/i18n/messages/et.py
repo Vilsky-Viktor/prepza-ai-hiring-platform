@@ -270,4 +270,9 @@ MESSAGES = {
     "There's no such answer.": "Sellist vastust pole.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Aruannet saab väljapoole ettevõtet saata ainult omanik või administraator. Saada see mõnele oma ettevõtte liikmele.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "Alustamiseks kinnita, et vastad ise, ilma tehisaru tööriistade ja teiste inimeste abita.",
+    "Note not found": "Märget ei leitud",
+    "Only the note's author can edit it.": "Märget saab muuta ainult selle kirjutaja.",
+    "Only the note's author, the owner or an admin can delete it.": "Märget saab kustutada ainult selle kirjutaja, omanik või administraator.",
+    "Only the owner or an admin can pin a note.": "Märget saab üles kinnitada ainult omanik või administraator.",
+    "Reading the interview's notes…": "Vaatan intervjuu märkmeid…",
 }

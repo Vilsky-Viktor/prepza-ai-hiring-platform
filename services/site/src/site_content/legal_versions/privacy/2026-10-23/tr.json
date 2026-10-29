@@ -12,7 +12,7 @@
       "heading": "Ne topluyoruz",
       "items": [
         "Hesap: giriş yaptığınız Google, LinkedIn veya GitHub hesabından adınız, e-posta adresiniz, profil fotoğrafınız ve hesap kimliğiniz ile bunlardan hangilerinin hesabınıza bağlı olduğu.",
-        "Bize verdikleriniz: yapıştırdığınız iş tanımları ve bunlardan oluşturulan mülakatlar, davet ettiğiniz adayların e-posta adresleri (ve adlarını verir veya düzeltirseniz adları), şirketinizin ekibine davet ettiğiniz kişilerin e-posta adresleri ile rapor gönderdiğiniz kişilerin e-posta adresleri ve sorulara verdiğiniz puanlar ve sorularla ilgili bildirimleriniz.",
+        "Bize verdikleriniz: yapıştırdığınız iş tanımları ve bunlardan oluşturulan mülakatlar, bir şirketin mülakatlarına yazdığınız notlar, davet ettiğiniz adayların e-posta adresleri (ve adlarını verir veya düzeltirseniz adları), şirketinizin ekibine davet ettiğiniz kişilerin e-posta adresleri ile rapor gönderdiğiniz kişilerin e-posta adresleri ve sorulara verdiğiniz puanlar ve sorularla ilgili bildirimleriniz.",
         "Asistan: giriş yapmışken ona yazdıklarınız veya söyledikleriniz (sesli mesaj metne dönüştürülür ve hiçbir zaman saklanmaz) ve onun cevapları; böylece bir sohbete geri dönebilirsiniz. Size cevap vermek için okuduklarını, örneğin adayların sonuçlarını, aşağıdaki yapay zekâ çağrı kayıtları dışında saklamaz: bir sohbeti yeniden açtığınızda bunları mevcut erişiminizle yeniden getirir. Giriş yapmamışsanız sorularınız yalnızca cevaplanmak için kullanılır ve aşağıdaki yapay zekâ çağrı kayıtları dışında saklanmaz. Anahtar, token veya parola içeren bir mesaj hemen kaldırılır: saklanmaz ve başka bir yere gönderilmez.",
         "Şirketler: şirketin adı, logosu ve web sitesi ile şirketin doğrulandığı e-posta alan adı; bir sahip veya yönetici doğrulama istediğinde, onayladığı o alan adındaki e-posta adresi ve incelemeye gönderdiği şirket adı.",
         "Pratik: ücretsiz pratik mülakatlarına girerseniz cevaplarınız, notlarınız ve her cevabın ne kadar sürdüğü. Bunları yalnızca siz görürsünüz.",
@@ -111,6 +111,7 @@
         "Bağladığınız yapay zekâ uygulamaları: bağlantılarını kesene veya hesabınızı silene kadar; 90 gün kullanılmayan bir bağlantı kendiliğinden sona erer.",
         "Asistanla sohbetleriniz: son mesajlarından 90 gün sonrasına kadar. Bir sohbeti istediğiniz zaman silebilirsiniz; sohbetler hesabınızla veya ilgili oldukları şirketle birlikte silinir.",
         "Bir şirketin işlem kaydı: kimin ne yaptığı, 12 ay saklanır.",
+        "Bir şirketin mülakatlarına yazdığınız notlar: notu siz silene ya da şirket mülakatı veya kendini silene kadar. Notlar şirkete aittir; bu nedenle şirketten ayrıldığınızda veya hesabınızı sildiğinizde adınız olmadan şirkette kalır.",
         "Yapay zekâ kullanımı ve ulaşılan sınırlarla ilgili kayıtlar: 13 ay; hesabınızı sildiğinizde hesap kimliğiniz olmadan.",
         "Pratik denemeleri: hesabınızı silene kadar.",
         "prepza'dan e-postayla gönderilen bir rapor: PDF yalnızca e-postayı göndermek için saklanır ve en geç 7 gün sonra silinir.",

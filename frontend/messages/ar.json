@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "المقابلات المُنشأة التي تنتظر دون مرشحين",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "المقابلات المُنشأة التي تنتظر دون مرشحين، لمن لم يدفع",
       "PREVIEWS_PER_USER_HOUR": "معاينات المقابلات لكل مستخدم في الساعة",
+      "NOTES_PER_USER_HOUR": "ملاحظات المقابلات لكل مستخدم في الساعة",
       "CHECKOUT_CALLS_PER_USER_HOUR": "عمليات الدفع والتحقق من المدفوعات والفواتير لكل مستخدم في الساعة",
       "TEMPLATE_COPIES_PER_HOUR": "المقابلات المنسوخة من القوالب لكل شركة في الساعة",
       "LINK_STARTS_PER_HOUR": "مرات البدء عبر رابط مقابلة واحدة في الساعة",
@@ -1056,6 +1057,20 @@
     "interview": "مقابلة",
     "topicsTab": "المواضيع",
     "candidates": "المرشحون",
+    "notes": "الملاحظات",
+    "notesEmpty": "لا توجد ملاحظات بعد. اكتب أول ملاحظة لفريقك.",
+    "noteLabel": "اكتب ملاحظة لفريقك",
+    "notePlaceholder": "ملاحظة رائعة هنا…",
+    "notePost": "نشر",
+    "notePosting": "جارٍ النشر…",
+    "noteEdited": "معدّلة",
+    "notePinned": "مثبّتة",
+    "notePin": "تثبيت في الأعلى",
+    "noteUnpin": "إلغاء التثبيت",
+    "noteFormerMember": "عضو سابق",
+    "noteDeleteTitle": "حذف هذه الملاحظة؟",
+    "noteDeleteText": "ستُحذف لكل أعضاء فريقك ولا يمكن استعادتها.",
+    "noteFailed": "تعذّر حفظ الملاحظة. حاول مرة أخرى.",
     "new": "مقابلة جديدة",
     "createTitle": "إنشاء مقابلة",
     "try": "جرّب كمرشح",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "المقابلات",
       "candidates": "المرشحون",
+      "notes": "الملاحظات",
       "credits": "الأرصدة",
       "ai_agents": "وكلاء الذكاء الاصطناعي"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "دعوة",
       "candidates:change": "تعديل",
       "candidates:delete": "حذف",
+      "notes:read": "قراءة",
+      "notes:add": "إضافة",
       "credits:read": "قراءة",
       "mcp": "الاستخدام مع وكلاء الذكاء الاصطناعي (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "دعوة",
       "candidates:change": "تعديل",
       "candidates:delete": "حذف",
+      "notes:read": "قراءة",
+      "notes:add": "إضافة",
       "credits:read": "قراءة",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "تحديد درجة النجاح",
         "set_question_seconds": "تحديد متوسط الوقت لكل سؤال",
         "mark_hired": "تعليم المقابلة بأنه تم التوظيف",
-        "keep_questions_private": "إبقاء الأسئلة خارج بنك الأسئلة المشترك"
+        "keep_questions_private": "إبقاء الأسئلة خارج بنك الأسئلة المشترك",
+        "add_interview_note": "إضافة ملاحظة",
+        "pin_interview_note": "تثبيت الملاحظة أو إلغاء تثبيتها"
       },
       "fields": {
         "company": "الشركة",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "عناوين البريد"
+        },
+        "add_interview_note": {
+          "text": "الملاحظة"
+        },
+        "pin_interview_note": {
+          "pinned": "مثبّتة"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "أبلغ أن مفتاح إجابة خاطئ",
       "topics_approved": "وافق على مواضيع مقابلة",
       "pass_mark_changed": "غيّر درجة النجاح",
+      "note_added": "كتب ملاحظة على مقابلة",
+      "note_edited": "عدّل ملاحظة على مقابلة",
+      "note_deleted": "حذف ملاحظة على مقابلة",
+      "note_pinned": "ثبّت ملاحظة على مقابلة",
+      "note_unpinned": "ألغى تثبيت ملاحظة على مقابلة",
       "candidate_invited": "دعا مرشحًا",
       "invite_resent": "أعاد إرسال دعوة",
       "invite_revoked": "ألغى دعوة",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "دعوة المرشحين",
       "candidates:change": "تعديل المرشحين",
       "candidates:delete": "حذف المرشحين",
+      "notes:read": "قراءة الملاحظات",
+      "notes:add": "إضافة الملاحظات",
       "credits:read": "قراءة الرصيد",
       "mcp": "الاستخدام مع وكلاء الذكاء الاصطناعي (MCP)"
     },

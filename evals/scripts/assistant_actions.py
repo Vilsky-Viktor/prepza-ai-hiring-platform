@@ -16,11 +16,11 @@ traps (the dataset's `judge_traps`) run every time and must all be caught.
 import argparse
 import asyncio
 import json
-import uuid
 from contextvars import ContextVar
 from typing import Literal
 
 from action_checks import check
+from action_fixture import extras
 from assistant_fixture import OWNER_NAME, Fixture
 from assistant_turns import MODEL, ask
 from common import DATASETS, JUDGE_MODEL, RESULTS, load, prompt, run_record, save
@@ -32,7 +32,6 @@ from assistant.models.tools import ToolResult
 from assistant.services import actions, chat
 from assistant.services.registry import tools
 
-MEMBER_EMAIL = "noor.member@example.com"
 # The case a turn runs (its injection), for the patched tool calls of that turn alone.
 CASE: ContextVar[dict] = ContextVar("case")
 
@@ -101,30 +100,6 @@ def patch_tools() -> None:
         return await real_done(tool, arguments, token, language)
 
     actions.already_done = already_done
-
-
-async def extras(fixture: Fixture, facts: dict) -> dict:
-    """What this test adds to the fixture, and every id the dataset's placeholders name."""
-    owner = fixture.owner_token
-    company = facts["company"]["id"]
-    second = await fixture.api(
-        "POST", "/companies/companies", owner, {"name": f"Eval Two {uuid.uuid4().hex[:6]}"}
-    )
-    body = {"email": MEMBER_EMAIL, "role": "viewer"}
-    member = await fixture.api("POST", f"/companies/members?company_id={company}", owner, body)
-    interviews = facts["interviews"]
-    people = {row["name"]: row["id"] for item in interviews for row in item["candidates"]}
-
-    return {
-        "company": company,
-        "company2": second["id"],
-        "interview0": interviews[0]["id"],
-        "interview1": interviews[1]["id"],
-        "ann": people["Ann Lee"],
-        "ben": people["Ben Ortiz"],
-        "cara": people["Cara Diaz"],
-        "member": member["id"],
-    }
 
 
 def page_of(spec: dict, ids: dict) -> tuple[dict, str | None]:

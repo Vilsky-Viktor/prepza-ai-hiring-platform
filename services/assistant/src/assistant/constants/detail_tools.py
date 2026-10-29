@@ -34,6 +34,29 @@ DETAIL_TOOLS = {
         "params": ["interview_id", "question_id", "offset", "limit"],
         "fields": ["id", "reason", "comment", "created_at"],
     },
+    # What the interview's team wrote about the hiring round; never shown to candidates.
+    "list_interview_notes": {
+        "service": "companies",
+        "method": "GET",
+        "path": "/interviews/{interview_id}/notes",
+        "params": ["interview_id", "offset", "limit"],
+        "fields": [
+            "id",
+            "text",
+            "author",
+            "name",
+            "former",
+            "pinned",
+            "created_at",
+            "edited_at",
+        ],
+        "description": (
+            "The notes an interview's team wrote about its hiring round, by interview_id, in "
+            "pages (offset, limit): the pinned note first, then newest first, each with its id, "
+            "text, author (former when they left the company), whether it's pinned, and when it "
+            "was written and edited. Candidates never see notes."
+        ),
+    },
     # The owner's only: who did what in the company, filtered by member, group and days.
     "list_company_actions": {
         "service": "companies",

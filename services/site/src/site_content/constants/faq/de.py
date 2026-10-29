@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Ja, wenn du Inhaber des Unternehmens bist. Sein Tab Aktionsprotokoll listet alles, was seine Mitglieder getan haben, das Neueste zuerst: Kandidaten einladen oder entfernen, Ergebnisse ansehen und Interviews, das Team, die Abrechnung und Integrationen ändern, jeweils damit, wer es getan hat, wann und ob der Assistent, eine KI-App oder die API es in seinem Namen getan hat. Du kannst es nach Mitglied, Art der Aktion und Datum filtern. Aktionen werden 12 Monate lang aufbewahrt.",
     },
     {
+        "key": "notes",
+        "question": "Kann mein Team Notizen zu einem Interview festhalten?",
+        "answer": "Ja. Jedes Interview hat einen Tab Notizen, in dem dein Team Notizen als reinen Text zum Einstellungsverfahren schreibt, etwa wen ihr als Nächstes anruft oder, bei einer Agentur, für welchen Kunden das Interview ist. Jedes Mitglied kann Notizen schreiben, auch Betrachter, und seine eigenen bearbeiten; löschen können die Person, die sie geschrieben hat, Inhaber und Admins. Inhaber und Admins können eine Notiz oben anheften, die dann unter dem Namen des Interviews erscheint. Kandidaten sehen Notizen nie.",
+    },
+    {
         "key": "integrations",
         "question": "Funktioniert prepza mit meinem ATS oder anderen Tools?",
         "answer": "Ja, ohne Aufpreis. Verbinde Workable, Greenhouse, Teamtailor, Recruitee oder Breezy HR im Tab Integrationen deines Unternehmens: Kandidaten, die du in eine Phase verschiebst, bekommen das Interview, und ihre Ergebnisse gehen zurück an das ATS ([so verbindest du Fachtests mit deinem ATS](/guides/ats-integration-skills-tests)). Slack kann die Benachrichtigungen deines Unternehmens in einem Kanal posten, und über die API kann deine eigene Plattform Interviews erstellen, Kandidaten einladen und verwalten und ihre Ergebnisse empfangen, wobei jeder API-Schlüssel nur darf, was du für ihn ankreuzt; siehe [API-Dokumentation](/api-docs).",

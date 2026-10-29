@@ -6,7 +6,7 @@ from fastapi import Request, Response
 
 from api.config import settings
 from api.constants.api import API_BASE, CANDIDATE_LINK, CHANGELOG_LINK, INVITE_LINK
-from api.schemas.public import Candidate, Interview, Signals
+from api.schemas.public import Candidate, Interview, Note, Signals
 
 
 def interview_of(found: dict) -> Interview:
@@ -58,6 +58,18 @@ def candidate_of(found: dict, company_id, interview_id, site: str) -> Candidate:
         updated_at=found.get("updated_at"),
         started_at=found.get("started_at"),
         finished_at=found.get("finished_at"),
+    )
+
+
+def note_of(found: dict) -> Note:
+    """Companies' note, as the API shows it: its author by name only, null for a former member."""
+    return Note(
+        id=found["id"],
+        text=found["text"],
+        author=found["author"]["name"],
+        pinned=found["pinned"],
+        created_at=found["created_at"],
+        edited_at=found["edited_at"],
     )
 
 

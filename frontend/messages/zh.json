@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "没有候选人而等待中的已生成面试数",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "没有候选人而等待中的已生成面试数，未付费",
       "PREVIEWS_PER_USER_HOUR": "每位用户每小时的面试预览数",
+      "NOTES_PER_USER_HOUR": "每位用户每小时的面试备注数",
       "CHECKOUT_CALLS_PER_USER_HOUR": "每位用户每小时的结账、付款查询和发票次数",
       "TEMPLATE_COPIES_PER_HOUR": "每家公司每小时从模板复制的面试数",
       "LINK_STARTS_PER_HOUR": "每小时通过同一面试链接开始的次数",
@@ -1056,6 +1057,20 @@
     "interview": "面试",
     "topicsTab": "主题",
     "candidates": "候选人",
+    "notes": "备注",
+    "notesEmpty": "还没有备注。为团队写下第一条吧。",
+    "noteLabel": "为团队写一条备注",
+    "notePlaceholder": "在这里写点精彩的备注……",
+    "notePost": "发布",
+    "notePosting": "正在发布…",
+    "noteEdited": "已编辑",
+    "notePinned": "已置顶",
+    "notePin": "置顶",
+    "noteUnpin": "取消置顶",
+    "noteFormerMember": "前成员",
+    "noteDeleteTitle": "删除这条备注？",
+    "noteDeleteText": "团队里的所有人都将看不到它，且无法恢复。",
+    "noteFailed": "无法保存备注，请重试。",
     "new": "新面试",
     "createTitle": "创建面试",
     "try": "以候选人身份试用",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "面试",
       "candidates": "候选人",
+      "notes": "备注",
       "credits": "点数",
       "ai_agents": "AI 智能体"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "邀请",
       "candidates:change": "修改",
       "candidates:delete": "删除",
+      "notes:read": "查看",
+      "notes:add": "添加",
       "credits:read": "查看",
       "mcp": "用于 AI 智能体 (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "邀请",
       "candidates:change": "修改",
       "candidates:delete": "删除",
+      "notes:read": "查看",
+      "notes:add": "添加",
       "credits:read": "查看",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "设置及格线",
         "set_question_seconds": "设置每题平均时间",
         "mark_hired": "将面试标为已录用",
-        "keep_questions_private": "不将题目加入共享题库"
+        "keep_questions_private": "不将题目加入共享题库",
+        "add_interview_note": "添加备注",
+        "pin_interview_note": "置顶或取消置顶备注"
       },
       "fields": {
         "company": "公司",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "邮箱地址"
+        },
+        "add_interview_note": {
+          "text": "备注"
+        },
+        "pin_interview_note": {
+          "pinned": "置顶"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "标记了一个答案有误",
       "topics_approved": "批准了一场面试的主题",
       "pass_mark_changed": "更改了及格线",
+      "note_added": "为面试写了一条备注",
+      "note_edited": "编辑了面试的一条备注",
+      "note_deleted": "删除了面试的一条备注",
+      "note_pinned": "置顶了面试的一条备注",
+      "note_unpinned": "取消置顶了面试的一条备注",
       "candidate_invited": "邀请了一位候选人",
       "invite_resent": "重新发送了一个邀请",
       "invite_revoked": "撤销了一个邀请",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "邀请候选人",
       "candidates:change": "修改候选人",
       "candidates:delete": "删除候选人",
+      "notes:read": "查看备注",
+      "notes:add": "添加备注",
       "credits:read": "查看点数",
       "mcp": "用于 AI 智能体 (MCP)"
     },

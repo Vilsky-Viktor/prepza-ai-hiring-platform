@@ -1,32 +1,57 @@
 "use client"
 
-import { ListChecksIcon, SettingsIcon, UsersIcon } from "lucide-react"
+import {
+  ListChecksIcon,
+  NotebookPenIcon,
+  SettingsIcon,
+  UsersIcon,
+} from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import type { ReactNode } from "react"
 
 import { SideMenuLayout } from "@/components/common/side-menu"
+import type { InterviewTab } from "@/lib/interview-page"
 
-/** The interview's page menu beside its tab's content (`children`); settings only for those who can change them (owners and admins). */
+/** The interview's page menu beside its tab's content (`children`): its topics, candidates and
+ * notes, each with how many there are; settings only for those who can change them (owners and
+ * admins). */
 export function InterviewNav({
   href,
   current,
   canEdit,
+  counts,
   children,
 }: {
   href: string
-  current: "topics" | "candidates" | "settings"
+  current: InterviewTab
   canEdit: boolean
+  // As the API gives them; none shows at 0.
+  counts: { topics: number; candidates: number; notes: number }
   children: ReactNode
 }) {
   const t = useTranslations("interviews")
   const items = [
-    { id: "topics", href, label: t("topicsTab"), icon: ListChecksIcon },
+    {
+      id: "topics",
+      href,
+      label: t("topicsTab"),
+      icon: ListChecksIcon,
+      count: counts.topics,
+    },
     {
       id: "candidates",
       href: `${href}?tab=candidates`,
       label: t("candidates"),
       icon: UsersIcon,
+      count: counts.candidates,
+    },
+    {
+      id: "notes",
+      href: `${href}?tab=notes`,
+      label: t("notes"),
+      icon: NotebookPenIcon,
+      count: counts.notes,
     },
     ...(canEdit
       ? [

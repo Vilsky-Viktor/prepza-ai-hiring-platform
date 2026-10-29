@@ -1,10 +1,12 @@
 import { CANDIDATE_SORTS, type CandidateSort } from "@/config/interviews"
 import { PAGE_SIZE } from "@/config/lists"
+import { notesPath } from "@/lib/interview-notes"
 import { serverFetch } from "@/lib/server-api"
 import type {
   Candidate,
   CandidateFilters,
   InterviewDetail,
+  InterviewNote,
   InviteLimits,
 } from "@/types/company"
 
@@ -38,8 +40,9 @@ export function candidatesPath(
   return `/companies/interviews/${id}/candidates?${query}`
 }
 
-/** Everything an interview's page shows, fetched together, the candidates only for their tab:
- * their first page renders on the server, the rest load as the user scrolls. A sort or status
+/** Everything an interview's page shows, fetched together, the candidates and notes only for
+ * their tabs:
+ * their first pages render on the server, the rest load as the user scrolls. A sort or status
  * the API doesn't offer is ignored. */
 export async function loadInterviewPage(id: string, query: InterviewQuery) {
   const sort =
@@ -48,7 +51,7 @@ export async function loadInterviewPage(id: string, query: InterviewQuery) {
   const search = query.q?.trim() ?? ""
   const shownCandidates = query.tab === "candidates"
   const firstPath = candidatesPath(id, sort, search, query.status ?? null)
-  const [interview, filters, firstPage, limits] = await Promise.all([
+  const [interview, filters, firstPage, limits, notes] = await Promise.all([
     serverFetch<InterviewDetail>(`/companies/interviews/${id}`),
     shownCandidates
       ? serverFetch<CandidateFilters>(
@@ -60,6 +63,9 @@ export async function loadInterviewPage(id: string, query: InterviewQuery) {
       : null,
     // The invite dialog's texts quote the current limit.
     serverFetch<InviteLimits>("/companies/limits"),
+    query.tab === "notes"
+      ? serverFetch<InterviewNote[]>(`${notesPath(id)}?limit=${PAGE_SIZE}`)
+      : null,
   ])
   const status =
     filters?.filters.find((option) => option === query.status) ?? null
@@ -70,20 +76,21 @@ export async function loadInterviewPage(id: string, query: InterviewQuery) {
         )
       : firstPage
 
-  return { interview, filters, candidates, limits, sort, search, status }
+  return { interview, filters, candidates, limits, sort, search, status, notes }
 }
 
 /** An interview page's tab. */
-export type InterviewTab = "topics" | "candidates" | "settings"
+export type InterviewTab = "topics" | "candidates" | "notes" | "settings"
 
 /** The tab shown: the one asked for once the interview is ready (settings only for those who
- * can edit), else its topics. */
+ * can edit; every member reads and writes notes), else its topics. */
 export function interviewTab(
   tab: string | undefined,
   ready: boolean,
   canEdit: boolean
 ): InterviewTab {
-  return ready && (tab === "candidates" || (tab === "settings" && canEdit))
+  return ready &&
+    (tab === "candidates" || tab === "notes" || (tab === "settings" && canEdit))
     ? tab
     : "topics"
 }

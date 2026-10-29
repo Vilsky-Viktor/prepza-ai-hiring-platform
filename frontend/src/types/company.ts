@@ -21,6 +21,8 @@ export type AccountDeletion = Schemas["AccountDeletionOut"]
 export type AdminInvite = Schemas["AdminInviteOut"]
 export type Interview = Schemas["InterviewOut"]
 export type InterviewDetail = Schemas["InterviewDetail"]
+// A note on an interview, with what the signed-in member may do with it.
+export type InterviewNote = Schemas["NoteOut"]
 export type Candidate = Schemas["CandidateOut"]
 export type InterviewReportData = Schemas["InterviewReportOut"]
 export type CandidateFilters = Schemas["CandidateFiltersOut"]

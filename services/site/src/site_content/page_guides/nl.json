@@ -44,7 +44,7 @@
     "text": "Alle interviews van dit bedrijf en zijn credits voor kandidaten. Elk interview is een test met tijdslimiet, gemaakt van een functieomschrijving.",
     "actions": [
       "Maak een interview van een functieomschrijving met “Nieuw interview”.",
-      "Open een interview om de onderwerpen, kandidaten en instellingen te zien.",
+      "Open een interview om de onderwerpen, kandidaten, notities en instellingen te zien; een vastgezette notitie staat onder de naam ervan.",
       "Zoek interviews op hun titel.",
       "Probeer een interview als kandidaat, of verwijder het.",
       "Waardeer credits op via het saldo, of zet automatisch opwaarderen aan op het tabblad Facturering."
@@ -119,6 +119,19 @@
     "tips": [
       "Elke kandidaat die minstens één vraag beantwoordt, gebruikt credits, ook kandidaten via de link.",
       "Herinneringen gaan automatisch naar kandidaten."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Notities",
+    "text": "De notities van je team over deze wervingsronde: wat jullie hebben afgesproken, wie jullie hierna bellen of voor wie het interview is. Iedereen in je bedrijf ziet ze; kandidaten nooit.",
+    "actions": [
+      "Schrijf een notitie in het vak bovenaan en kies Plaatsen, of druk op ⌘/Ctrl+Enter. Links erin worden klikbaar.",
+      "Bewerk of verwijder je eigen notities met de knoppen op hun rij; eigenaren en beheerders kunnen die van iedereen verwijderen.",
+      "Zet een notitie vast met de bladwijzer (eigenaren en beheerders): ze staat hier bovenaan, en onder de naam van het interview op de pagina ervan en in de lijst met interviews."
+    ],
+    "tips": [
+      "Werk je voor klanten? Zet een notitie vast zoals “Voor Acme, backend developer” om in één oogopslag te zien voor wie elk interview is.",
+      "Een verwijderde notitie is voorgoed weg. Het actielog legt vast wie een notitie schreef, wijzigde of verwijderde, nooit de tekst ervan."
     ]
   },
   "interviewSettings": {

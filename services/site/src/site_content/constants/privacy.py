@@ -16,7 +16,7 @@ PRIVACY_SECTIONS = [
         "heading": "What we collect",
         "items": [
             "Account: your name, email address, profile photo and account id, from the Google, LinkedIn or GitHub account you sign in with, and which of them are linked to your account.",
-            "What you give us: job descriptions you paste and the interviews made from them, the emails of the candidates you invite (and their names, if you give them or correct them), of the people you invite to your company's team and of the people you send a report to, and your ratings and reports of questions.",
+            "What you give us: job descriptions you paste and the interviews made from them, the notes you write on a company's interviews, the emails of the candidates you invite (and their names, if you give them or correct them), of the people you invite to your company's team and of the people you send a report to, and your ratings and reports of questions.",
             "The assistant: when you're signed in, what you write or say to it (a voice message is turned into text and never stored) and its answers, so you can come back to a chat. It doesn't keep what it read to answer you, such as candidates' results, apart from the records of AI calls below: when you open a chat again, it fetches them again with your current access. If you aren't signed in, your questions are used only to answer them and aren't stored, apart from the records of AI calls below. A message that contains a key, token or password is removed at once: it isn't stored or sent on.",
             "Companies: the company's name, logo and website, and the email domain it was verified with; when an owner or admin asks for verification, the email address on that domain they confirmed and the company name they sent for review.",
             "Practice: if you take free practice interviews, your answers, grades and how long each answer took. Only you see them.",
@@ -115,6 +115,7 @@ PRIVACY_SECTIONS = [
             "AI apps you connect: until you disconnect them or delete your account; a connection unused for 90 days ends by itself.",
             "Your chats with the assistant: 90 days after their last message. You can delete a chat at any time, and they're deleted with your account or the company they're about.",
             "A company's action log: who did what, kept 12 months.",
+            "Notes you write on a company's interviews: until you delete the note or the company deletes the interview or itself. They belong to the company, so they stay with it, without your name, when you leave it or delete your account.",
             "Records of AI usage and of limits reached: 13 months, without your account id once you delete your account.",
             "Practice rounds: until you delete your account.",
             "A report emailed from prepza: the PDF is kept only to send the email, and deleted at most 7 days later.",

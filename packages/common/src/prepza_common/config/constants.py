@@ -204,6 +204,9 @@ MAX_CANDIDATE_NAME_LENGTH = 200
 # A job description, as pasted to generate a test.
 MAX_GOAL_LENGTH = 10_000
 
+# A note on an interview (companies), its team's plain text; the public API takes the same.
+MAX_NOTE_LENGTH = 2000
+
 # A news post's title and text (library), written in English and translated into each language
 # (generation); a translation must fit them too.
 MAX_NEWS_TITLE_LENGTH = 120

@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Wygenerowane rozmowy czekające bez kandydatów",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Wygenerowane rozmowy czekające bez kandydatów, niepłacące",
       "PREVIEWS_PER_USER_HOUR": "Podglądy rozmów na użytkownika na godzinę",
+      "NOTES_PER_USER_HOUR": "Notatki do rozmów na użytkownika na godzinę",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Płatności, sprawdzenia płatności i faktury na użytkownika na godzinę",
       "TEMPLATE_COPIES_PER_HOUR": "Rozmowy skopiowane z szablonów na firmę na godzinę",
       "LINK_STARTS_PER_HOUR": "Rozpoczęcia przez link jednej rozmowy na godzinę",
@@ -1056,6 +1057,20 @@
     "interview": "Rozmowa",
     "topicsTab": "Tematy",
     "candidates": "Kandydaci",
+    "notes": "Notatki",
+    "notesEmpty": "Nie ma jeszcze notatek. Napisz pierwszą dla swojego zespołu.",
+    "noteLabel": "Napisz notatkę dla swojego zespołu",
+    "notePlaceholder": "jakaś świetna notatka…",
+    "notePost": "Opublikuj",
+    "notePosting": "Publikowanie…",
+    "noteEdited": "edytowano",
+    "notePinned": "Przypięta",
+    "notePin": "Przypnij na górze",
+    "noteUnpin": "Odepnij",
+    "noteFormerMember": "Były członek zespołu",
+    "noteDeleteTitle": "Usunąć tę notatkę?",
+    "noteDeleteText": "Zniknie dla całego Twojego zespołu i nie da się jej przywrócić.",
+    "noteFailed": "Nie udało się zapisać notatki. Spróbuj ponownie.",
     "new": "Nowa rozmowa",
     "createTitle": "Utwórz rozmowę",
     "try": "Wypróbuj jako kandydat",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Rozmowy",
       "candidates": "Kandydaci",
+      "notes": "Notatki",
       "credits": "Kredyty",
       "ai_agents": "Agenci AI"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Zapraszanie",
       "candidates:change": "Zmiana",
       "candidates:delete": "Usuwanie",
+      "notes:read": "Odczyt",
+      "notes:add": "Dodawanie",
       "credits:read": "Odczyt",
       "mcp": "Używanie z agentami AI (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "zapraszanie",
       "candidates:change": "zmiana",
       "candidates:delete": "usuwanie",
+      "notes:read": "odczyt",
+      "notes:add": "dodawanie",
       "credits:read": "odczyt",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Ustaw próg zaliczenia",
         "set_question_seconds": "Ustaw średni czas na pytanie",
         "mark_hired": "Oznacz rozmowę jako zakończoną zatrudnieniem",
-        "keep_questions_private": "Nie dodawaj pytań do wspólnej bazy pytań"
+        "keep_questions_private": "Nie dodawaj pytań do wspólnej bazy pytań",
+        "add_interview_note": "Dodaj notatkę",
+        "pin_interview_note": "Przypnij lub odepnij notatkę"
       },
       "fields": {
         "company": "Firma",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "Adresy e-mail"
+        },
+        "add_interview_note": {
+          "text": "Notatka"
+        },
+        "pin_interview_note": {
+          "pinned": "Przypięta"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Oznaczył(a) klucz odpowiedzi jako błędny",
       "topics_approved": "Zatwierdził(a) tematy rozmowy",
       "pass_mark_changed": "Zmienił(a) próg zaliczenia",
+      "note_added": "Napisał(a) notatkę do rozmowy",
+      "note_edited": "Edytował(a) notatkę do rozmowy",
+      "note_deleted": "Usunął(-ęła) notatkę do rozmowy",
+      "note_pinned": "Przypiął(-ęła) notatkę do rozmowy",
+      "note_unpinned": "Odpiął(-ęła) notatkę do rozmowy",
       "candidate_invited": "Zaprosił(a) kandydata",
       "invite_resent": "Ponownie wysłał(a) zaproszenie",
       "invite_revoked": "Wycofał(a) zaproszenie",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "zapraszanie kandydatów",
       "candidates:change": "zmiana kandydatów",
       "candidates:delete": "usuwanie kandydatów",
+      "notes:read": "odczyt notatek",
+      "notes:add": "dodawanie notatek",
       "credits:read": "odczyt kredytów",
       "mcp": "używanie z agentami AI (MCP)"
     },

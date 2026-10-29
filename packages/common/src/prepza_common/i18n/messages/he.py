@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "אין תשובה כזו.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "רק בעלים או מנהל יכולים לשלוח דוח באימייל אל מחוץ לחברה. שלחו אותו לאחד מחברי הצוות בחברה שלכם.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "כדי להתחיל, יש לאשר שתענו בעצמכם, בלי כלי AI ובלי עזרה מאנשים אחרים.",
+    "Note not found": "ההערה לא נמצאה",
+    "Only the note's author can edit it.": "רק מי שכתב את ההערה יכול לערוך אותה.",
+    "Only the note's author, the owner or an admin can delete it.": "רק מי שכתב את ההערה, הבעלים או מנהל יכולים למחוק אותה.",
+    "Only the owner or an admin can pin a note.": "רק הבעלים או מנהל יכולים להצמיד הערה.",
+    "Reading the interview's notes…": "בודק את ההערות על הראיון…",
 }

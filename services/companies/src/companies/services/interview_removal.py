@@ -2,12 +2,14 @@
 generation cancelled before."""
 
 from fastapi import HTTPException, status
+from prepza_common.db.db import delete_in_batches
 from prepza_common.events.audit_actions import AuditAction
 from prepza_common.http.http import passed_on
 
 from companies.constants.generation import GENERATION_REFUSALS
 from companies.core.db import Session
 from companies.integrations import generation as generation_api
+from companies.models.interview_notes import InterviewNote
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 from companies.repositories import audit, interviews
@@ -17,12 +19,13 @@ from companies.services.interview_views import attach_set
 
 
 async def remove(interview: Interview, user_id: str | None = None) -> list[tuple]:
-    """Deletes the interview, its invites first a batch at a time (cut off midway, it goes on
-    when run again), then the interview with the interview.deleted event and, with `user_id`,
-    its line in the action log, in one save. rounds and library delete its sessions and
+    """Deletes the interview, its invites and notes first a batch at a time (cut off midway, it
+    goes on when run again), then the interview with the interview.deleted event and, with
+    `user_id`, its line in the action log, in one save. rounds and library delete its sessions and
     questions when the event reaches them, so neither has to be up for the deletion. Returns
     (interview id, email, status, hold key) of its invites not finished, deleted with it."""
     removed = await batch_deletion.delete_invites(CandidateInvite.interview_id == interview.id)
+    await delete_in_batches(Session, InterviewNote, InterviewNote.interview_id == interview.id)
 
     async with Session.begin() as session:
         removed += await interviews.remove(session, interview.id)

@@ -115,3 +115,22 @@ def test_a_topics_question_limit_isnt_capped_as_a_page_size():
 
     assert limit.get("maximum", 1000) > 20
     assert "items to return" not in limit.get("description", "")
+
+
+def test_an_interviews_notes_are_read_added_and_pinned_with_the_users_confirmation():
+    built = tools()
+    read, add, pin = (
+        built[name] for name in ("list_interview_notes", "add_interview_note", "pin_interview_note")
+    )
+
+    assert (read.method, read.path, read.confirm) == (
+        "GET",
+        "/interviews/{interview_id}/notes",
+        False,
+    )
+    assert read.query_params == ("offset", "limit")
+    assert (add.method, add.confirm, add.body_params) == ("POST", True, ("text",))
+    assert (pin.method, pin.confirm, pin.body_params) == ("PUT", True, ("pinned",))
+    assert pin.path_params == ("interview_id", "note_id")
+    # The card names the note by its text.
+    assert pin.subject["match"] == "note_id" and pin.subject["field"] == "text"

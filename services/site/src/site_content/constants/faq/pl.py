@@ -78,6 +78,11 @@ FAQ = [
         "answer": "Tak, jeśli jesteś właścicielem firmy. Zakładka Dziennik działań firmy pokazuje wszystko, co zrobili członkowie zespołu, od najnowszych: zapraszanie lub usuwanie kandydatów, przeglądanie wyników oraz zmiany w rozmowach, zespole, rozliczeniach i integracjach, wraz z tym, kto i kiedy to zrobił oraz czy zrobił to w jego imieniu asystent, aplikacja AI czy API. Możesz go filtrować według członka zespołu, rodzaju działania i dat. Działania są przechowywane przez 12 miesięcy.",
     },
     {
+        "key": "notes",
+        "question": "Czy mój zespół może prowadzić notatki do rozmowy?",
+        "answer": "Tak. Każda rozmowa ma zakładkę Notatki, w której Twój zespół pisze notatki zwykłym tekstem o rekrutacji, np. do kogo zadzwonić w następnej kolejności albo, w agencji rekrutacyjnej, dla którego klienta jest rozmowa. Każdy członek zespołu może pisać notatki, także obserwatorzy, i edytować swoje; usunąć notatkę mogą jej autor, właściciele i administratorzy. Właściciele i administratorzy mogą przypiąć jedną notatkę, która wtedy wyświetla się pod nazwą rozmowy. Kandydaci nigdy nie widzą notatek.",
+    },
+    {
         "key": "integrations",
         "question": "Czy prepza działa z moim ATS lub innymi narzędziami?",
         "answer": "Tak, bez dodatkowych opłat. Połącz Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR w zakładce Integracje swojej firmy: kandydaci, których przeniesiesz na etap, dostają rozmowę, a ich wyniki wracają do ATS ([jak połączyć testy umiejętności z ATS](/guides/ats-integration-skills-tests)). Slack może publikować powiadomienia firmy na kanale, a API pozwala Twojej własnej platformie tworzyć rozmowy, zapraszać kandydatów i zarządzać nimi oraz odbierać ich wyniki, a każdy klucz API może tylko to, co dla niego zaznaczysz; zobacz: [Dokumentacja API](/api-docs).",

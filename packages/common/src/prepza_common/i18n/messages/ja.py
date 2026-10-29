@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "そのような回答はありません。",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "会社の外にレポートをメールで送れるのは所有者または管理者だけです。会社のメンバーに送ってください。",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "開始するには、AI ツールや他の人の助けを借りずに自分で回答することを確認してください。",
+    "Note not found": "メモが見つかりません",
+    "Only the note's author can edit it.": "メモを編集できるのは書いた本人だけです。",
+    "Only the note's author, the owner or an admin can delete it.": "メモを削除できるのは、書いた本人、オーナー、管理者だけです。",
+    "Only the owner or an admin can pin a note.": "メモを固定できるのはオーナーまたは管理者だけです。",
+    "Reading the interview's notes…": "面接のメモを確認しています…",
 }

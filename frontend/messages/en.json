@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Generated interviews waiting without candidates",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Generated interviews waiting without candidates, unpaid",
       "PREVIEWS_PER_USER_HOUR": "Interview previews per user an hour",
+      "NOTES_PER_USER_HOUR": "Interview notes per user an hour",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Checkouts, payment checks and invoices per user an hour",
       "TEMPLATE_COPIES_PER_HOUR": "Interviews copied from templates per company an hour",
       "LINK_STARTS_PER_HOUR": "Starts through one interview's link an hour",
@@ -1056,6 +1057,20 @@
     "interview": "Interview",
     "topicsTab": "Topics",
     "candidates": "Candidates",
+    "notes": "Notes",
+    "notesEmpty": "No notes yet. Write the first one for your team.",
+    "noteLabel": "Write a note for your team",
+    "notePlaceholder": "some awesome note here...",
+    "notePost": "Post",
+    "notePosting": "Posting…",
+    "noteEdited": "edited",
+    "notePinned": "Pinned",
+    "notePin": "Pin to the top",
+    "noteUnpin": "Unpin",
+    "noteFormerMember": "Former member",
+    "noteDeleteTitle": "Delete this note?",
+    "noteDeleteText": "It's deleted for everyone on your team and can't be brought back.",
+    "noteFailed": "Couldn't save the note. Please try again.",
     "new": "New interview",
     "createTitle": "Create an interview",
     "try": "Try as a candidate",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Interviews",
       "candidates": "Candidates",
+      "notes": "Notes",
       "credits": "Credits",
       "ai_agents": "AI agents"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Invite",
       "candidates:change": "Change",
       "candidates:delete": "Delete",
+      "notes:read": "Read",
+      "notes:add": "Add",
       "credits:read": "Read",
       "mcp": "Use with AI agents (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "invite",
       "candidates:change": "change",
       "candidates:delete": "delete",
+      "notes:read": "read",
+      "notes:add": "add",
       "credits:read": "read",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Set the pass mark",
         "set_question_seconds": "Set the average time per question",
         "mark_hired": "Mark the interview as hired",
-        "keep_questions_private": "Keep the questions out of the shared question bank"
+        "keep_questions_private": "Keep the questions out of the shared question bank",
+        "add_interview_note": "Add a note",
+        "pin_interview_note": "Pin or unpin the note"
       },
       "fields": {
         "company": "Company",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "Emails"
+        },
+        "add_interview_note": {
+          "text": "Note"
+        },
+        "pin_interview_note": {
+          "pinned": "Pinned"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Marked an answer key wrong",
       "topics_approved": "Approved an interview's topics",
       "pass_mark_changed": "Changed a passing grade",
+      "note_added": "Wrote a note on an interview",
+      "note_edited": "Edited a note on an interview",
+      "note_deleted": "Deleted a note on an interview",
+      "note_pinned": "Pinned a note on an interview",
+      "note_unpinned": "Unpinned a note on an interview",
       "candidate_invited": "Invited a candidate",
       "invite_resent": "Sent an invite again",
       "invite_revoked": "Revoked an invite",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "invite candidates",
       "candidates:change": "change candidates",
       "candidates:delete": "delete candidates",
+      "notes:read": "read notes",
+      "notes:add": "add notes",
       "credits:read": "read credits",
       "mcp": "use with AI agents (MCP)"
     },

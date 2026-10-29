@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "Walang ganoong sagot.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Ang may-ari o admin lang ang puwedeng mag-email ng report sa labas ng kumpanya. Ipadala ito sa isa sa mga miyembro ng iyong kumpanya.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "Para magsimula, kumpirmahin na sasagot ka nang mag-isa, nang walang AI tool o tulong ng ibang tao.",
+    "Note not found": "Hindi nakita ang note",
+    "Only the note's author can edit it.": "Ang sumulat lang ng note ang puwedeng mag-edit nito.",
+    "Only the note's author, the owner or an admin can delete it.": "Ang sumulat lang ng note, ang may-ari o isang admin ang puwedeng magbura nito.",
+    "Only the owner or an admin can pin a note.": "Ang may-ari lang o isang admin ang puwedeng mag-pin ng note.",
+    "Reading the interview's notes…": "Tinitingnan ang mga note sa interview…",
 }

@@ -9,7 +9,8 @@ to do something there's no tool for still needs its group, whose tools lead to t
 it's done. When unsure between two, pick both.
 
 Groups:
-- candidates: inviting candidates, their invites, names, extra time, hiring, reports
+- candidates: inviting candidates, their invites, names, extra time, hiring, reports, an \
+interview's notes (reading, adding or pinning one)
 - interview_setup: creating, renaming or deleting interviews, their settings (pass mark, \
 seconds, topics, questions and candidates' reports on them, the shareable link) and their \
 generation

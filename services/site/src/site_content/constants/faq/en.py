@@ -77,6 +77,11 @@ FAQ = [
         "answer": "Yes, if you own the company. Its Action log tab lists everything its members did, newest first: inviting or removing candidates, viewing results, changing interviews, the team, billing and integrations, with who did it, when, and whether the assistant, an AI app or the API did it for them. You can filter it by member, kind of action and dates. Actions are kept for 12 months.",
     },
     {
+        "key": "notes",
+        "question": "Can my team keep notes on an interview?",
+        "answer": "Yes. Each interview has a Notes tab where your team writes plain-text notes about the hiring round, such as whom to call next or, for an agency, which client the interview is for. Every member can write notes, viewers too, and edit their own; the author, owners and admins can delete one. Owners and admins can pin one note, which then shows under the interview's name. Candidates never see notes.",
+    },
+    {
         "key": "integrations",
         "question": "Does prepza work with my ATS or other tools?",
         "answer": "Yes, at no extra cost. Connect Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR on your company's Integrations tab: candidates you move to a stage get the interview, and their results go back to the ATS ([how to connect skills tests to your ATS](/guides/ats-integration-skills-tests)). Slack can post your company's notifications to a channel, and the API lets your own platform create interviews, invite and manage candidates and receive their results, with each API key limited to what you tick for it; see the [API docs](/api-docs).",

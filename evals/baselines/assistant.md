@@ -133,3 +133,11 @@ or locally), so these are the hand-written sets:
   linked 39/40; general correct 27/30; guide wins/losses against without 37/3. $0.93.
 - Actions, 2 repeats: task success 99.3% (96.0–99.9), arguments 100%, injection safe 100%, judge
   traps 8/8; one miss (e10.1); $0.0014 and 8.0 s a turn. $0.25.
+
+## An interview's notes (2026-10-30, no change)
+
+Run again for the notes tools and the routing line naming them (`assistant-actions.md`).
+`page_context.py`, 3 repeats (`…_notes.json`): general correct with 124/153 (74.1–86.5%), without
+132/153, against 128 / 128; right scope 138 / 140 against 136 / 138; right tools 137 / 133 against
+133 / 130; page checks 23/27 with, 11/27 without, against 22 / 13; `get_page_guide` 15/15; blind
+wins/ties/losses 38/74/41. All within the judge's noise. $1.69.

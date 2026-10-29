@@ -1,7 +1,8 @@
 # companies
 
 Companies and who may do what in them: companies, members, roles and their invites, the
-access checks every company route runs, interviews (tests) and their settings, candidates and
+access checks every company route runs, interviews (tests), their settings and their team's notes,
+candidates and
 their invites (one by one, from lists, through a shareable link, from an ATS or the public
 API), results and reports, the company's brand (logo, colors, style), domain verification, AI
 app and integration settings, the action log, the counts beside the company's menu pages
@@ -48,7 +49,7 @@ Session.begin() as session:`) and pass it to the repositories, so a change and i
 action log, its email or its notification are saved together, and call billing, generation,
 library, rounds and Redis outside it. A plain read may open `async with Session() as session:`
 in the route. `tests/unit/test_layers.py` checks the imports and that no repository commits;
-batched deletions (a company's or an interview's invites, interviews and action log) take a
+batched deletions (a company's or an interview's invites, notes, interviews and action log) take a
 transaction per batch.
 
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,

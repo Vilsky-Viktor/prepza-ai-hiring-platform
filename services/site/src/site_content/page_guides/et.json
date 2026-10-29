@@ -44,7 +44,7 @@
     "text": "Kõik selle ettevõtte intervjuud ja selle krediidid kandidaatide jaoks. Iga intervjuu on töökuulutuse põhjal loodud ajapiiranguga test.",
     "actions": [
       "Loo töökuulutuse põhjal intervjuu nupuga „Uus intervjuu“.",
-      "Ava intervjuu, et näha selle teemasid, kandidaate ja seadeid.",
+      "Ava intervjuu, et näha selle teemasid, kandidaate, märkmeid ja seadeid; üles kinnitatud märge on näha selle nime all.",
       "Otsi intervjuusid pealkirja järgi.",
       "Proovi intervjuud kandidaadina või kustuta see.",
       "Laadi krediiti juurde saldo juures või lülita automaatne juurdelaadimine sisse vahekaardil „Arveldus“."
@@ -119,6 +119,19 @@
     "tips": [
       "Iga kandidaat, kes vastab vähemalt ühele küsimusele, kasutab krediiti, ka lingi kaudu tulnud.",
       "Kandidaadid saavad meeldetuletused automaatselt."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Märkmed",
+    "text": "Sinu meeskonna märkmed selle värbamise kohta: milles kokku leppisite, kellele järgmisena helistada või kelle jaoks intervjuu on. Neid näevad kõik sinu ettevõttes, kandidaadid mitte kunagi.",
+    "actions": [
+      "Kirjuta märge ülal olevasse kasti ja vali Postita või vajuta ⌘/Ctrl+Enter. Selles olevad lingid muutuvad klõpsatavaks.",
+      "Muuda või kustuta oma märkmeid nende real olevate nuppudega; omanikud ja administraatorid saavad kustutada kõigi märkmeid.",
+      "Kinnita märge järjehoidjanupuga üles (omanikud ja administraatorid): see on siin esimesena ning intervjuu nime all selle lehel ja intervjuude loendis."
+    ],
+    "tips": [
+      "Töötad klientidele? Kinnita üles märge nagu „Acme jaoks, backend-arendaja“, et näha kohe, kelle jaoks iga intervjuu on.",
+      "Kustutatud märge kaob jäädavalt. Toimingute logi salvestab, kes märkme kirjutas, muutis või kustutas, kuid mitte kunagi selle teksti."
     ]
   },
   "interviewSettings": {

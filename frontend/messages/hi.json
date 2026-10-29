@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "बिना उम्मीदवार के इंतज़ार कर रहे बनाए गए इंटरव्यू",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "बिना उम्मीदवार के इंतज़ार कर रहे बनाए गए इंटरव्यू, बिना भुगतान",
       "PREVIEWS_PER_USER_HOUR": "प्रति उपयोगकर्ता प्रति घंटा इंटरव्यू प्रीव्यू",
+      "NOTES_PER_USER_HOUR": "प्रति उपयोगकर्ता प्रति घंटा इंटरव्यू नोट",
       "CHECKOUT_CALLS_PER_USER_HOUR": "प्रति उपयोगकर्ता प्रति घंटा भुगतान, भुगतान जाँच और इनवॉइस",
       "TEMPLATE_COPIES_PER_HOUR": "प्रति कंपनी प्रति घंटा टेम्पलेट से कॉपी किए गए इंटरव्यू",
       "LINK_STARTS_PER_HOUR": "एक इंटरव्यू के लिंक से प्रति घंटा शुरुआतें",
@@ -1056,6 +1057,20 @@
     "interview": "इंटरव्यू",
     "topicsTab": "विषय",
     "candidates": "उम्मीदवार",
+    "notes": "नोट",
+    "notesEmpty": "अभी कोई नोट नहीं है। अपनी टीम के लिए पहला नोट लिखें।",
+    "noteLabel": "अपनी टीम के लिए नोट लिखें",
+    "notePlaceholder": "यहाँ कोई शानदार नोट…",
+    "notePost": "पोस्ट करें",
+    "notePosting": "पोस्ट हो रहा है…",
+    "noteEdited": "संपादित",
+    "notePinned": "पिन किया गया",
+    "notePin": "सबसे ऊपर पिन करें",
+    "noteUnpin": "अनपिन करें",
+    "noteFormerMember": "पूर्व सदस्य",
+    "noteDeleteTitle": "यह नोट हटाएँ?",
+    "noteDeleteText": "यह आपकी टीम में सभी के लिए हट जाएगा और वापस नहीं लाया जा सकता।",
+    "noteFailed": "नोट सेव नहीं हो सका। कृपया फिर से कोशिश करें।",
     "new": "नया इंटरव्यू",
     "createTitle": "इंटरव्यू बनाएँ",
     "try": "उम्मीदवार के रूप में आज़माएँ",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "इंटरव्यू",
       "candidates": "उम्मीदवार",
+      "notes": "नोट",
       "credits": "क्रेडिट",
       "ai_agents": "AI एजेंट"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "इनवाइट करना",
       "candidates:change": "बदलना",
       "candidates:delete": "हटाना",
+      "notes:read": "देखना",
+      "notes:add": "जोड़ना",
       "credits:read": "देखना",
       "mcp": "AI एजेंट के साथ इस्तेमाल (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "इनवाइट करना",
       "candidates:change": "बदलना",
       "candidates:delete": "हटाना",
+      "notes:read": "देखना",
+      "notes:add": "जोड़ना",
       "credits:read": "देखना",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "पास मार्क तय करें",
         "set_question_seconds": "हर सवाल का औसत समय तय करें",
         "mark_hired": "इंटरव्यू को नियुक्ति हुई मार्क करें",
-        "keep_questions_private": "सवालों को साझा सवाल बैंक से बाहर रखें"
+        "keep_questions_private": "सवालों को साझा सवाल बैंक से बाहर रखें",
+        "add_interview_note": "नोट जोड़ें",
+        "pin_interview_note": "नोट को पिन या अनपिन करें"
       },
       "fields": {
         "company": "कंपनी",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "ईमेल पते"
+        },
+        "add_interview_note": {
+          "text": "नोट"
+        },
+        "pin_interview_note": {
+          "pinned": "पिन किया गया"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "एक उत्तर कुंजी को गलत बताया",
       "topics_approved": "एक इंटरव्यू के विषय मंज़ूर किए",
       "pass_mark_changed": "एक पासिंग ग्रेड बदला",
+      "note_added": "एक इंटरव्यू पर नोट लिखा",
+      "note_edited": "एक इंटरव्यू का नोट संपादित किया",
+      "note_deleted": "एक इंटरव्यू का नोट हटाया",
+      "note_pinned": "एक इंटरव्यू का नोट पिन किया",
+      "note_unpinned": "एक इंटरव्यू का नोट अनपिन किया",
       "candidate_invited": "एक उम्मीदवार को इनवाइट किया",
       "invite_resent": "एक इनवाइट दोबारा भेजा",
       "invite_revoked": "एक इनवाइट वापस लिया",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "उम्मीदवारों को इनवाइट करना",
       "candidates:change": "उम्मीदवार बदलना",
       "candidates:delete": "उम्मीदवार हटाना",
+      "notes:read": "नोट देखना",
+      "notes:add": "नोट जोड़ना",
       "credits:read": "क्रेडिट देखना",
       "mcp": "AI एजेंट के साथ इस्तेमाल (MCP)"
     },

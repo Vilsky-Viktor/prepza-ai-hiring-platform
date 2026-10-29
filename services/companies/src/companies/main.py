@@ -27,11 +27,13 @@ from companies.api.v1 import (
     internal_accounts,
     internal_api,
     internal_api_changes,
+    internal_api_notes,
     internal_ats,
     internal_events,
     internal_invites,
     internal_reminders,
     interview_generation,
+    interview_notes,
     interview_questions,
     interviews,
     invites,
@@ -85,6 +87,7 @@ app.include_router(audit.router)
 app.include_router(billing.router)
 app.include_router(members.router)
 app.include_router(interviews.router)
+app.include_router(interview_notes.router)
 app.include_router(candidates.router)
 app.include_router(company_candidates.router)
 app.include_router(accommodations.router)
@@ -101,6 +104,7 @@ app.include_router(internal_accounts.router)
 app.include_router(internal_ats.router)
 app.include_router(internal_api.router)
 app.include_router(internal_api_changes.router)
+app.include_router(internal_api_notes.router)
 app.include_router(internal_invites.router)
 app.include_router(internal_reminders.router)
 app.include_router(internal_events.router)

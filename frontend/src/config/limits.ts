@@ -25,6 +25,8 @@ export const MAX_HELP_QUESTION_LENGTH = 1000
 // site MAX_CONTACT_NAME_LENGTH and MAX_CONTACT_MESSAGE_LENGTH: the contact form.
 export const MAX_CONTACT_NAME_LENGTH = 100
 export const MAX_CONTACT_MESSAGE_LENGTH = 5000
+// prepza_common MAX_NOTE_LENGTH: a note on an interview.
+export const MAX_NOTE_LENGTH = 2000
 // A picker's search (languages, currencies): it only filters the list in the browser, and names
 // are short.
 export const MAX_PICKER_SEARCH_LENGTH = 50

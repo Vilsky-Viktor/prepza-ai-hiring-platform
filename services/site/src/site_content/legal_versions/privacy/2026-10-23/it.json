@@ -12,7 +12,7 @@
       "heading": "Cosa raccogliamo",
       "items": [
         "Account: il tuo nome, indirizzo email, foto del profilo e ID dell'account, dall'account Google, LinkedIn o GitHub con cui accedi, e quali di questi sono collegati al tuo account.",
-        "Ciò che ci fornisci: le descrizioni del lavoro che incolli e i colloqui creati a partire da esse, le email dei candidati che inviti (e i loro nomi, se li indichi o li correggi), delle persone che inviti nel team della tua azienda e delle persone a cui invii un report, nonché le tue valutazioni e segnalazioni delle domande.",
+        "Ciò che ci fornisci: le descrizioni del lavoro che incolli e i colloqui creati a partire da esse, le note che scrivi sui colloqui di un'azienda, le email dei candidati che inviti (e i loro nomi, se li indichi o li correggi), delle persone che inviti nel team della tua azienda e delle persone a cui invii un report, nonché le tue valutazioni e segnalazioni delle domande.",
         "L'assistente: quando hai effettuato l'accesso, ciò che gli scrivi o dici (un messaggio vocale viene trasformato in testo e mai conservato) e le sue risposte, così puoi riprendere una chat. Non conserva ciò che ha letto per risponderti, come i risultati dei candidati, salvo nei registri delle chiamate all'IA indicati più avanti: quando riapri una chat, li recupera di nuovo con il tuo accesso attuale. Se non hai effettuato l'accesso, le tue domande sono usate solo per rispondere e non vengono conservate, salvo nei registri delle chiamate all'IA indicati più avanti. Un messaggio che contiene una chiave, un token o una password viene rimosso subito: non viene conservato né inoltrato.",
         "Aziende: il nome, il logo e il sito web dell'azienda, e il dominio email con cui è stata verificata; quando un proprietario o un amministratore chiede la verifica, l'indirizzo email su quel dominio che ha confermato e il nome dell'azienda che ha inviato per la revisione.",
         "Simulazioni: se svolgi simulazioni di colloquio gratuite, le tue risposte, i punteggi e quanto tempo ha richiesto ogni risposta. Solo tu li vedi.",
@@ -111,6 +111,7 @@
         "App di IA che colleghi: finché non le scolleghi o elimini il tuo account; un collegamento non usato per 90 giorni termina da solo.",
         "Le tue chat con l'assistente: 90 giorni dal loro ultimo messaggio. Puoi eliminare una chat in qualsiasi momento, e vengono eliminate insieme al tuo account o all'azienda a cui si riferiscono.",
         "Il registro attività di un'azienda: chi ha fatto cosa, conservato per 12 mesi.",
+        "Le note che scrivi sui colloqui di un'azienda: finché non elimini la nota o l'azienda non elimina il colloquio o sé stessa. Appartengono all'azienda, quindi restano all'azienda, senza il tuo nome, quando la lasci o elimini il tuo account.",
         "I registri dell'utilizzo dell'IA e dei limiti raggiunti: 13 mesi, senza l'ID del tuo account dopo che elimini il tuo account.",
         "Simulazioni: finché non elimini il tuo account.",
         "Un report inviato via email da prepza: il PDF è conservato solo per inviare l'email ed eliminato al più tardi 7 giorni dopo.",

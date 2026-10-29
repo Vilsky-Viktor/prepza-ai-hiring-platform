@@ -488,6 +488,53 @@
     ]
    }
   },
+  "/internal/accounts/profiles": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Get Profiles",
+    "description": "Each account's name and picture, for the notes' authors; ids in the body, as a list.",
+    "operationId": "get_profiles_internal_accounts_profiles_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/ProfilesIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ProfilesOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
   "/internal/users/ids": {
    "get": {
     "tags": [
@@ -1062,6 +1109,77 @@
     ],
     "title": "MeOut",
     "description": "The signed-in user, and whether they may open the superadmin pages."
+   },
+   "ProfileOut": {
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "title": "User Id"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "photo_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Photo Url"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_id",
+     "name",
+     "photo_url"
+    ],
+    "title": "ProfileOut",
+    "description": "How an account shows itself to its team: its name (its email without one) and picture."
+   },
+   "ProfilesIn": {
+    "properties": {
+     "user_ids": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "maxItems": 100,
+      "title": "User Ids"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_ids"
+    ],
+    "title": "ProfilesIn"
+   },
+   "ProfilesOut": {
+    "properties": {
+     "profiles": {
+      "items": {
+       "$ref": "#/components/schemas/ProfileOut"
+      },
+      "type": "array",
+      "title": "Profiles"
+     }
+    },
+    "type": "object",
+    "required": [
+     "profiles"
+    ],
+    "title": "ProfilesOut"
    },
    "PushBody": {
     "properties": {

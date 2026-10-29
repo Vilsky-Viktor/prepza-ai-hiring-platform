@@ -14,6 +14,14 @@ CANDIDATE_SUBJECT = {
     "field": "email",
 }
 INTERVIEW_FIELDS = ["id", "title", "status", "pass_mark", "question_seconds", "hired"]
+NOTES_PAGE = INTERVIEW_PAGE + "?tab=notes"
+# A note, found among the interview's first page of notes (the pinned one, then the newest).
+NOTE_SUBJECT = {
+    "service": "companies",
+    "path": "/interviews/{interview_id}/notes",
+    "match": "note_id",
+    "field": "text",
+}
 
 
 def interview_action(method: str, path: str, description: str, **more) -> dict:
@@ -159,6 +167,25 @@ INTERVIEW_ACTIONS = {
         "Cancel an interview still being generated; it's removed.",
         destructive=True,
         link="/companies/{company_id}/interviews",
+    ),
+    "add_interview_note": interview_action(
+        "POST",
+        "/interviews/{interview_id}/notes",
+        "Add a note to an interview for its team (plain text, the user's own words); candidates "
+        "never see it.",
+        body=["text"],
+        fields=["id", "text", "pinned"],
+        link=NOTES_PAGE,
+    ),
+    "pin_interview_note": interview_action(
+        "PUT",
+        "/interviews/{interview_id}/notes/{note_id}/pinned",
+        "Pin a note of an interview (true), shown first and under the interview's name, which "
+        "unpins any other; or unpin it (false). Only owners and admins can.",
+        params=["note_id"],
+        body=["pinned"],
+        subject=NOTE_SUBJECT,
+        link=NOTES_PAGE,
     ),
     "invite_candidate": interview_action(
         "POST",

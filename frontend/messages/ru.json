@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Созданные собеседования, ждущие без кандидатов",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Созданные собеседования, ждущие без кандидатов, у неплатящих",
       "PREVIEWS_PER_USER_HOUR": "Предпросмотры собеседований на пользователя в час",
+      "NOTES_PER_USER_HOUR": "Заметки к собеседованиям на пользователя в час",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Оплаты, проверки платежей и счета на пользователя в час",
       "TEMPLATE_COPIES_PER_HOUR": "Собеседования, скопированные из шаблонов, на компанию в час",
       "LINK_STARTS_PER_HOUR": "Запуски по ссылке одного собеседования в час",
@@ -1056,6 +1057,20 @@
     "interview": "Собеседование",
     "topicsTab": "Темы",
     "candidates": "Кандидаты",
+    "notes": "Заметки",
+    "notesEmpty": "Заметок пока нет. Напишите первую для своей команды.",
+    "noteLabel": "Напишите заметку для своей команды",
+    "notePlaceholder": "какая-нибудь классная заметка…",
+    "notePost": "Опубликовать",
+    "notePosting": "Публикация…",
+    "noteEdited": "изменено",
+    "notePinned": "Закреплена",
+    "notePin": "Закрепить наверху",
+    "noteUnpin": "Открепить",
+    "noteFormerMember": "Бывший участник",
+    "noteDeleteTitle": "Удалить эту заметку?",
+    "noteDeleteText": "Она удалится для всей вашей команды, и вернуть её будет нельзя.",
+    "noteFailed": "Не удалось сохранить заметку. Попробуйте ещё раз.",
     "new": "Новое собеседование",
     "createTitle": "Создать собеседование",
     "try": "Попробовать как кандидат",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Собеседования",
       "candidates": "Кандидаты",
+      "notes": "Заметки",
       "credits": "Кредиты",
       "ai_agents": "ИИ-агенты"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Приглашение",
       "candidates:change": "Изменение",
       "candidates:delete": "Удаление",
+      "notes:read": "Просмотр",
+      "notes:add": "Добавление",
       "credits:read": "Просмотр",
       "mcp": "Использование с ИИ-агентами (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "приглашение",
       "candidates:change": "изменение",
       "candidates:delete": "удаление",
+      "notes:read": "просмотр",
+      "notes:add": "добавление",
       "credits:read": "просмотр",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Задать проходной балл",
         "set_question_seconds": "Задать среднее время на вопрос",
         "mark_hired": "Отметить собеседование как закрытое наймом",
-        "keep_questions_private": "Не добавлять вопросы в общий банк вопросов"
+        "keep_questions_private": "Не добавлять вопросы в общий банк вопросов",
+        "add_interview_note": "Добавить заметку",
+        "pin_interview_note": "Закрепить или открепить заметку"
       },
       "fields": {
         "company": "Компания",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "Адреса"
+        },
+        "add_interview_note": {
+          "text": "Заметка"
+        },
+        "pin_interview_note": {
+          "pinned": "Закреплена"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Отметил ключ ответа как неверный",
       "topics_approved": "Одобрил темы собеседования",
       "pass_mark_changed": "Изменил проходной балл",
+      "note_added": "Написал заметку к собеседованию",
+      "note_edited": "Изменил заметку к собеседованию",
+      "note_deleted": "Удалил заметку к собеседованию",
+      "note_pinned": "Закрепил заметку к собеседованию",
+      "note_unpinned": "Открепил заметку к собеседованию",
       "candidate_invited": "Пригласил кандидата",
       "invite_resent": "Отправил приглашение повторно",
       "invite_revoked": "Отозвал приглашение",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "приглашение кандидатов",
       "candidates:change": "изменение кандидатов",
       "candidates:delete": "удаление кандидатов",
+      "notes:read": "просмотр заметок",
+      "notes:add": "добавление заметок",
       "credits:read": "просмотр кредитов",
       "mcp": "использование с ИИ-агентами (MCP)"
     },

@@ -185,6 +185,26 @@ class CandidateIn(BaseModel):
     )
 
 
+class Note(BaseModel):
+    """A note your company's team wrote on an interview, never shown to candidates."""
+
+    model_config = ConfigDict(json_schema_extra={"examples": [examples.NOTE]})
+
+    id: UUID = Field(description="The note's id")
+    text: str = Field(description="The note, as plain text with its line breaks")
+    author: str | None = Field(
+        description=(
+            "Who wrote it: their name, or their email without one; null once they're no longer "
+            "a member of your company"
+        )
+    )
+    pinned: bool = Field(
+        description="Whether it's the interview's pinned note (at most one is), listed first"
+    )
+    created_at: datetime = Field(description="When it was written")
+    edited_at: datetime | None = Field(description="When its text last changed; null if never")
+
+
 class CandidateEvent(BaseModel):
     """The `data` object of a candidate's event (`candidate.finished`, `candidate.started`,
     `candidate.undelivered`, `candidate.expired`): the interview and the candidate as they are

@@ -9,6 +9,8 @@ class Permission(StrEnum):
     CANDIDATES_INVITE = "candidates:invite"
     CANDIDATES_CHANGE = "candidates:change"
     CANDIDATES_DELETE = "candidates:delete"
+    NOTES_READ = "notes:read"
+    NOTES_ADD = "notes:add"
     CREDITS_READ = "credits:read"
     # Use the key with AI agents, at the MCP server.
     MCP = "mcp"
@@ -23,6 +25,7 @@ PERMISSION_GROUPS = {
         Permission.CANDIDATES_CHANGE,
         Permission.CANDIDATES_DELETE,
     ],
+    "notes": [Permission.NOTES_READ, Permission.NOTES_ADD],
     "credits": [Permission.CREDITS_READ],
     "ai_agents": [Permission.MCP],
 }
@@ -32,6 +35,7 @@ IMPLIED = {
     Permission.CANDIDATES_INVITE: Permission.CANDIDATES_READ,
     Permission.CANDIDATES_CHANGE: Permission.CANDIDATES_READ,
     Permission.CANDIDATES_DELETE: Permission.CANDIDATES_READ,
+    Permission.NOTES_ADD: Permission.NOTES_READ,
 }
 # What a new key starts with: reading interviews and candidates, nothing that changes or costs.
 DEFAULT_PERMISSIONS = [Permission.INTERVIEWS_READ, Permission.CANDIDATES_READ]

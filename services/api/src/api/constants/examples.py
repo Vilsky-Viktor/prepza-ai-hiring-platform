@@ -30,3 +30,12 @@ CANDIDATE = {
     "finished_at": "2026-10-03T11:05:00Z",
 }
 CANDIDATE_IN = {"email": "anna@example.com", "name": "Anna Nowak"}
+NOTE = {
+    "id": "3c9e1a7b-5d24-4f80-b6e2-8a1d0c4f9e35",
+    "text": "For Acme: Backend Developer, contact Lena.",
+    "author": "Maria Schmidt",
+    "pinned": True,
+    "created_at": "2026-10-02T09:15:00Z",
+    "edited_at": None,
+}
+NOTE_IN = {"text": "Shortlist the top five for a call."}

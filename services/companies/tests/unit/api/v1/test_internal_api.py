@@ -7,7 +7,7 @@ from prepza_common.auth.service_auth import issue_token
 from prepza_common.http.http import bearer
 
 from companies.integrations import rounds
-from companies.repositories import candidates, interviews
+from companies.repositories import candidates, interview_notes, interviews
 from companies.services import candidate_results, interview_views
 
 COMPANY_ID, OTHER_ID = uuid.uuid4(), uuid.uuid4()
@@ -48,7 +48,10 @@ def stored(monkeypatch):
     async def counts(session, ids):
         return {INTERVIEW.id: 1}
 
-    async def interview_out(interview, count=0):
+    async def notes(session, ids):
+        return {INTERVIEW.id: (2, "Strong on SQL")}
+
+    async def interview_out(interview, count=0, notes=(0, None)):
         return {
             "id": interview.id,
             "generation_id": None,
@@ -57,6 +60,8 @@ def stored(monkeypatch):
             "title": "Backend",
             "question_seconds": 60,
             "candidate_count": count,
+            "note_count": notes[0],
+            "pinned_note": notes[1],
             "hired": False,
             "pass_mark": 70,
             "link_token": None,
@@ -90,6 +95,7 @@ def stored(monkeypatch):
     monkeypatch.setattr(interviews, "get", get_interview)
     monkeypatch.setattr(interviews, "list_for_company", list_for_company)
     monkeypatch.setattr(candidates, "counts", counts)
+    monkeypatch.setattr(interview_notes, "summaries", notes)
     monkeypatch.setattr(candidates, "get", get_candidate)
     monkeypatch.setattr(interview_views, "interview_out", interview_out)
     monkeypatch.setattr(rounds, "invite_scores", scores)
@@ -105,6 +111,9 @@ def test_the_api_service_lists_a_companys_interviews_a_page_at_a_time(client, st
 
     assert response.status_code == 200
     assert [item["candidate_count"] for item in response.json()] == [1]
+    assert [(item["note_count"], item["pinned_note"]) for item in response.json()] == [
+        (2, "Strong on SQL")
+    ]
     assert stored == [(COMPANY_ID, 5, 10)]
 
 

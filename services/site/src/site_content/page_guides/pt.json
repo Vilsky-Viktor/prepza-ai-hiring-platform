@@ -44,7 +44,7 @@
     "text": "Todas as entrevistas desta empresa e seus créditos para candidatos. Cada entrevista é um teste cronometrado criado a partir de uma descrição de vaga.",
     "actions": [
       "Crie uma entrevista a partir de uma descrição de vaga com “Nova entrevista”.",
-      "Abra uma entrevista para ver os tópicos, candidatos e configurações.",
+      "Abra uma entrevista para ver os tópicos, candidatos, anotações e configurações; uma anotação fixada aparece abaixo do nome dela.",
       "Busque entrevistas pelo título.",
       "Experimente uma entrevista como candidato ou exclua-a.",
       "Recarregue créditos pelo saldo, ou ative a recarga automática na aba Faturamento."
@@ -119,6 +119,19 @@
     "tips": [
       "Cada candidato que responde pelo menos uma questão usa créditos, inclusive os que vêm pelo link.",
       "Os lembretes são enviados aos candidatos automaticamente."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Anotações",
+    "text": "As anotações da sua equipe sobre este processo seletivo: o que vocês combinaram, quem chamar em seguida ou para quem é a entrevista. Todos na sua empresa as veem; os candidatos, nunca.",
+    "actions": [
+      "Escreva uma anotação na caixa no topo e selecione Publicar, ou pressione ⌘/Ctrl+Enter. Os links nela ficam clicáveis.",
+      "Edite ou exclua suas próprias anotações com os botões na linha delas; proprietários e administradores podem excluir as de qualquer pessoa.",
+      "Fixe uma anotação com o marcador (proprietários e administradores): ela aparece primeiro aqui e abaixo do nome da entrevista, na página dela e na lista de entrevistas."
+    ],
+    "tips": [
+      "Trabalha para clientes? Fixe uma anotação como “Para Acme, desenvolvedor backend” para ver de relance para quem é cada entrevista.",
+      "Uma anotação excluída some para sempre. O registro de ações guarda quem escreveu, alterou ou excluiu uma anotação, nunca o texto dela."
     ]
   },
   "interviewSettings": {

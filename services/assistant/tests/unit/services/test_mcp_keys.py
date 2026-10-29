@@ -91,6 +91,22 @@ def test_a_key_lists_only_what_its_permissions_allow():
     assert not names & {"get_me", "update_language", "list_members", "rename_company"}
 
 
+@pytest.mark.parametrize(
+    ("permission", "notes_tools"),
+    [
+        ("notes:read", {"list_interview_notes"}),
+        ("notes:add", {"list_interview_notes", "add_interview_note"}),
+    ],
+)
+def test_a_keys_notes_permission_lists_the_notes_tools_but_never_pinning(permission, notes_tools):
+    # The api gives a key notes:add with the notes:read it implies.
+    granted = ["notes:read", permission]
+    names = {tool.name for tool in mcp_tools.listed(key(*granted))}
+
+    assert {name for name in names if "note" in name} == notes_tools
+    assert "pin_interview_note" not in KEY_TOOLS
+
+
 def test_a_key_is_refused_a_tool_its_permissions_dont_allow(calls):  # noqa: F811
     access = key("candidates:read")
     missing = KEY_MISSING_PERMISSION.format(permission="candidates:invite")

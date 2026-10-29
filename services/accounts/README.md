@@ -4,7 +4,8 @@ Users' accounts: the account settings (the interface language, kept on the Fireb
 users' email settings with their consent log, the terms each accepted at sign-up, deleting and
 downloading an account across every service, the erasures replayed after a restore, the admin
 zone's account lookups, email settings and sign-up stats, and what other services ask about an
-account (its address, language and email settings, account ids, when it was made). It keeps the
+account (its address, language and email settings, account ids, when it was made, and the names
+and pictures companies shows as notes' authors, `POST /internal/accounts/profiles`). It keeps the
 email settings, the consent log, the accepted terms, the recent erasures and its outbox in its own database;
 the sign-ins are Firebase's. What it does: [notifications](../../docs/features/notifications.md#email-preferences-and-consent)
 (email settings), [the public site](../../docs/features/site.md) (accepted terms) and

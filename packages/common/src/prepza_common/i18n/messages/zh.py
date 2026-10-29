@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "没有这个回答。",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "只有所有者或管理员可以把报告通过邮件发到公司外部。请发送给你公司的成员。",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "开始前，请确认你会独立作答，不借助 AI 工具或他人帮助。",
+    "Note not found": "未找到备注",
+    "Only the note's author can edit it.": "只有备注的作者可以编辑它。",
+    "Only the note's author, the owner or an admin can delete it.": "只有备注的作者、所有者或管理员可以删除它。",
+    "Only the owner or an admin can pin a note.": "只有所有者或管理员可以置顶备注。",
+    "Reading the interview's notes…": "正在查看面试的备注…",
 }

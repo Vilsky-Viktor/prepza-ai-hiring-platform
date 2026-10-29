@@ -23,6 +23,7 @@ from api.api.v1 import (
     manage,
     public,
     public_candidates,
+    public_notes,
     schedules,
     webhook_docs,
 )
@@ -75,9 +76,17 @@ app.add_middleware(RequestLogMiddleware)
 app.add_middleware(BodyLimitMiddleware)
 compress_answers(app)
 # The public routes' docs name the permission each needs.
-name_permissions([*public.router.routes, *public_candidates.router.routes, *company.router.routes])
+name_permissions(
+    [
+        *public.router.routes,
+        *public_candidates.router.routes,
+        *public_notes.router.routes,
+        *company.router.routes,
+    ]
+)
 app.include_router(public.router)
 app.include_router(public_candidates.router)
+app.include_router(public_notes.router)
 app.include_router(company.router)
 app.include_router(manage.router)
 app.include_router(events.router)

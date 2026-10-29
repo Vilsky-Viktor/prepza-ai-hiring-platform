@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Colloqui generati in attesa senza candidati",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Colloqui generati in attesa senza candidati, aziende non paganti",
       "PREVIEWS_PER_USER_HOUR": "Anteprime dei colloqui per utente all'ora",
+      "NOTES_PER_USER_HOUR": "Note sui colloqui per utente all'ora",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Pagamenti, verifiche dei pagamenti e fatture per utente all'ora",
       "TEMPLATE_COPIES_PER_HOUR": "Colloqui copiati da modelli per azienda all'ora",
       "LINK_STARTS_PER_HOUR": "Avvii tramite il link di un colloquio all'ora",
@@ -1056,6 +1057,20 @@
     "interview": "Colloquio",
     "topicsTab": "Argomenti",
     "candidates": "Candidati",
+    "notes": "Note",
+    "notesEmpty": "Ancora nessuna nota. Scrivi la prima per il tuo team.",
+    "noteLabel": "Scrivi una nota per il tuo team",
+    "notePlaceholder": "una nota fantastica qui…",
+    "notePost": "Pubblica",
+    "notePosting": "Pubblicazione…",
+    "noteEdited": "modificata",
+    "notePinned": "Fissata",
+    "notePin": "Fissa in alto",
+    "noteUnpin": "Non fissare più",
+    "noteFormerMember": "Ex membro",
+    "noteDeleteTitle": "Eliminare questa nota?",
+    "noteDeleteText": "Viene eliminata per tutto il tuo team e non si può recuperare.",
+    "noteFailed": "Impossibile salvare la nota. Riprova.",
     "new": "Nuovo colloquio",
     "createTitle": "Crea un colloquio",
     "try": "Prova come candidato",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Colloqui",
       "candidates": "Candidati",
+      "notes": "Note",
       "credits": "Crediti",
       "ai_agents": "Agenti IA"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Invito",
       "candidates:change": "Modifica",
       "candidates:delete": "Eliminazione",
+      "notes:read": "Lettura",
+      "notes:add": "Aggiunta",
       "credits:read": "Lettura",
       "mcp": "Uso con agenti IA (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "invito",
       "candidates:change": "modifica",
       "candidates:delete": "eliminazione",
+      "notes:read": "lettura",
+      "notes:add": "aggiunta",
       "credits:read": "lettura",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Imposta la soglia di superamento",
         "set_question_seconds": "Imposta il tempo medio per domanda",
         "mark_hired": "Segna il colloquio come assunzione fatta",
-        "keep_questions_private": "Escludi le domande dalla banca domande condivisa"
+        "keep_questions_private": "Escludi le domande dalla banca domande condivisa",
+        "add_interview_note": "Aggiungi una nota",
+        "pin_interview_note": "Fissa o togli la nota in alto"
       },
       "fields": {
         "company": "Azienda",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "Email"
+        },
+        "add_interview_note": {
+          "text": "Nota"
+        },
+        "pin_interview_note": {
+          "pinned": "Fissata"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Ha segnalato una chiave di correzione errata",
       "topics_approved": "Ha approvato gli argomenti di un colloquio",
       "pass_mark_changed": "Ha cambiato una soglia di superamento",
+      "note_added": "Ha scritto una nota su un colloquio",
+      "note_edited": "Ha modificato una nota su un colloquio",
+      "note_deleted": "Ha eliminato una nota su un colloquio",
+      "note_pinned": "Ha fissato in alto una nota su un colloquio",
+      "note_unpinned": "Ha tolto dall'alto una nota su un colloquio",
       "candidate_invited": "Ha invitato un candidato",
       "invite_resent": "Ha inviato di nuovo un invito",
       "invite_revoked": "Ha revocato un invito",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "invitare candidati",
       "candidates:change": "modificare i candidati",
       "candidates:delete": "eliminare candidati",
+      "notes:read": "leggere le note",
+      "notes:add": "aggiungere note",
       "credits:read": "leggere i crediti",
       "mcp": "usare con agenti IA (MCP)"
     },

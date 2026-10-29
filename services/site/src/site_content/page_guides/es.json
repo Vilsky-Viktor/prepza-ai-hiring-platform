@@ -44,7 +44,7 @@
     "text": "Todas las entrevistas de esta empresa y sus créditos para candidatos. Cada entrevista es una prueba cronometrada creada a partir de una descripción del puesto.",
     "actions": [
       "Crea una entrevista a partir de una descripción del puesto con «Nueva entrevista».",
-      "Abre una entrevista para ver sus temas, candidatos y ajustes.",
+      "Abre una entrevista para ver sus temas, candidatos, comentarios y ajustes; un comentario fijado aparece bajo su nombre.",
       "Busca entrevistas por su título.",
       "Prueba una entrevista como candidato o elimínala.",
       "Recarga créditos desde el saldo, o activa la recarga automática en la pestaña Facturación."
@@ -119,6 +119,19 @@
     "tips": [
       "Cada candidato que responde al menos una pregunta consume créditos, incluidos los que llegan por el enlace.",
       "Los recordatorios se envían a los candidatos automáticamente."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Comentarios",
+    "text": "Los comentarios de tu equipo sobre este proceso de selección: lo acordado, a quién llamar a continuación o para quién es la entrevista. Todos en tu empresa los ven; los candidatos, nunca.",
+    "actions": [
+      "Escribe un comentario en el cuadro de arriba y selecciona Publicar, o pulsa ⌘/Ctrl+Enter. Los enlaces que contenga se pueden abrir con un clic.",
+      "Edita o elimina tus propios comentarios con los botones de su fila; los propietarios y administradores pueden eliminar los de cualquiera.",
+      "Fija un comentario con el marcador (propietarios y administradores): aparece primero aquí, y bajo el nombre de la entrevista en su página y en la lista de entrevistas."
+    ],
+    "tips": [
+      "¿Trabajas para clientes? Fija un comentario como «Para Acme, desarrollador backend» para ver de un vistazo para quién es cada entrevista.",
+      "Un comentario eliminado desaparece para siempre. El registro de acciones guarda quién escribió, cambió o eliminó un comentario, nunca su texto."
     ]
   },
   "interviewSettings": {

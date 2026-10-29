@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Gegenereerde interviews die zonder kandidaten wachten",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Gegenereerde interviews die zonder kandidaten wachten, niet-betalend",
       "PREVIEWS_PER_USER_HOUR": "Interviewvoorbeelden per gebruiker per uur",
+      "NOTES_PER_USER_HOUR": "Interviewnotities per gebruiker per uur",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Betalingen, betaalcontroles en facturen per gebruiker per uur",
       "TEMPLATE_COPIES_PER_HOUR": "Uit sjablonen gekopieerde interviews per bedrijf per uur",
       "LINK_STARTS_PER_HOUR": "Starts via de link van één interview per uur",
@@ -1056,6 +1057,20 @@
     "interview": "Interview",
     "topicsTab": "Onderwerpen",
     "candidates": "Kandidaten",
+    "notes": "Notities",
+    "notesEmpty": "Nog geen notities. Schrijf de eerste voor je team.",
+    "noteLabel": "Schrijf een notitie voor je team",
+    "notePlaceholder": "een geweldige notitie hier…",
+    "notePost": "Plaatsen",
+    "notePosting": "Plaatsen…",
+    "noteEdited": "bewerkt",
+    "notePinned": "Vastgezet",
+    "notePin": "Bovenaan vastzetten",
+    "noteUnpin": "Losmaken",
+    "noteFormerMember": "Voormalig lid",
+    "noteDeleteTitle": "Deze notitie verwijderen?",
+    "noteDeleteText": "Ze wordt voor iedereen in je team verwijderd en kan niet worden teruggehaald.",
+    "noteFailed": "De notitie kon niet worden opgeslagen. Probeer het opnieuw.",
     "new": "Nieuw interview",
     "createTitle": "Interview maken",
     "try": "Proberen als kandidaat",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Interviews",
       "candidates": "Kandidaten",
+      "notes": "Notities",
       "credits": "Credits",
       "ai_agents": "AI-agents"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Uitnodigen",
       "candidates:change": "Wijzigen",
       "candidates:delete": "Verwijderen",
+      "notes:read": "Lezen",
+      "notes:add": "Toevoegen",
       "credits:read": "Lezen",
       "mcp": "Gebruiken met AI-agents (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "uitnodigen",
       "candidates:change": "wijzigen",
       "candidates:delete": "verwijderen",
+      "notes:read": "lezen",
+      "notes:add": "toevoegen",
       "credits:read": "lezen",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Slaaggrens instellen",
         "set_question_seconds": "Gemiddelde tijd per vraag instellen",
         "mark_hired": "Interview als ingevuld markeren",
-        "keep_questions_private": "De vragen buiten de gedeelde vragenbank houden"
+        "keep_questions_private": "De vragen buiten de gedeelde vragenbank houden",
+        "add_interview_note": "Een notitie toevoegen",
+        "pin_interview_note": "De notitie vastzetten of losmaken"
       },
       "fields": {
         "company": "Bedrijf",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "E-mailadressen"
+        },
+        "add_interview_note": {
+          "text": "Notitie"
+        },
+        "pin_interview_note": {
+          "pinned": "Vastgezet"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Markeerde een antwoordsleutel als fout",
       "topics_approved": "Keurde de onderwerpen van een interview goed",
       "pass_mark_changed": "Wijzigde een slaaggrens",
+      "note_added": "Schreef een notitie bij een interview",
+      "note_edited": "Bewerkte een notitie bij een interview",
+      "note_deleted": "Verwijderde een notitie bij een interview",
+      "note_pinned": "Zette een notitie bij een interview vast",
+      "note_unpinned": "Maakte een notitie bij een interview los",
       "candidate_invited": "Nodigde een kandidaat uit",
       "invite_resent": "Stuurde een uitnodiging opnieuw",
       "invite_revoked": "Trok een uitnodiging in",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "kandidaten uitnodigen",
       "candidates:change": "kandidaten wijzigen",
       "candidates:delete": "kandidaten verwijderen",
+      "notes:read": "notities lezen",
+      "notes:add": "notities toevoegen",
       "credits:read": "credits lezen",
       "mcp": "gebruiken met AI-agents (MCP)"
     },

@@ -20,7 +20,7 @@ from companies.integrations import generation as generation_api
 from companies.integrations import library
 from companies.models.companies import Member
 from companies.models.interviews import Interview
-from companies.repositories import candidates, interview_generations, interviews
+from companies.repositories import candidates, interview_generations, interview_notes, interviews
 from companies.schemas.interviews import InterviewDetail, InterviewOut
 from companies.services import set_cache
 from companies.services.access import can_edit
@@ -85,7 +85,9 @@ async def interview_title(interview: Interview) -> str | None:
     return interview.title
 
 
-async def interview_out(interview: Interview, candidate_count: int = 0) -> InterviewOut:
+async def interview_out(
+    interview: Interview, candidate_count: int = 0, notes: tuple = (0, None)
+) -> InterviewOut:
     title = await interview_title(interview)
 
     return InterviewOut(
@@ -102,15 +104,24 @@ async def interview_out(interview: Interview, candidate_count: int = 0) -> Inter
         status=interview_status(interview.hired, candidate_count),
         created_at=interview.created_at,
         updated_at=interview.updated_at,
+        note_count=notes[0],
+        pinned_note=notes[1],
     )
 
 
 async def counted_out(rows: list[Interview]) -> list[InterviewOut]:
-    """The interviews, each with how many candidates it has, counted in one query."""
-    async with Session() as session:
-        totals = await candidates.counts(session, [item.id for item in rows])
+    """The interviews, each with how many candidates and notes it has and its pinned note,
+    counted in one query each."""
+    ids = [item.id for item in rows]
 
-    return [await interview_out(item, totals.get(item.id, 0)) for item in rows]
+    async with Session() as session:
+        totals = await candidates.counts(session, ids)
+        notes = await interview_notes.summaries(session, ids)
+
+    return [
+        await interview_out(item, totals.get(item.id, 0), notes.get(item.id, (0, None)))
+        for item in rows
+    ]
 
 
 async def interviews_page(company_id, offset: int, limit: int, q: str = "") -> list[InterviewOut]:

@@ -12,7 +12,7 @@
       "heading": "Jakie dane zbieramy",
       "items": [
         "Konto: Twoje imię i nazwisko, adres e-mail, zdjęcie profilowe i identyfikator konta z konta Google, LinkedIn lub GitHub, przez które się logujesz, oraz informacja, które z nich są połączone z Twoim kontem.",
-        "To, co nam przekazujesz: wklejane opisy stanowisk i utworzone na ich podstawie rozmowy, adresy e-mail zapraszanych kandydatów (oraz ich imiona i nazwiska, jeśli je podasz lub poprawisz), osób, które zapraszasz do zespołu swojej firmy, i osób, którym wysyłasz raport, a także Twoje oceny pytań i zgłoszenia pytań.",
+        "To, co nam przekazujesz: wklejane opisy stanowisk i utworzone na ich podstawie rozmowy, notatki, które piszesz do rozmów firmy, adresy e-mail zapraszanych kandydatów (oraz ich imiona i nazwiska, jeśli je podasz lub poprawisz), osób, które zapraszasz do zespołu swojej firmy, i osób, którym wysyłasz raport, a także Twoje oceny pytań i zgłoszenia pytań.",
         "Asystent: gdy jesteś zalogowany, to, co do niego piszesz lub mówisz (wiadomość głosowa jest zamieniana na tekst i nigdy nie jest przechowywana), oraz jego odpowiedzi, abyś mógł wrócić do czatu. Nie przechowuje on tego, co przeczytał, aby Ci odpowiedzieć, na przykład wyników kandydatów, z wyjątkiem opisanych niżej rejestrów wywołań AI: gdy ponownie otworzysz czat, pobiera je jeszcze raz z Twoimi bieżącymi uprawnieniami dostępu. Jeśli nie jesteś zalogowany, Twoje pytania są wykorzystywane wyłącznie do udzielenia na nie odpowiedzi i nie są przechowywane, z wyjątkiem opisanych niżej rejestrów wywołań AI. Wiadomość zawierająca klucz, token lub hasło jest natychmiast usuwana: nie jest przechowywana ani przekazywana dalej.",
         "Firmy: nazwa, logo i strona internetowa firmy oraz domena e-mail, za pomocą której została zweryfikowana; gdy właściciel lub administrator prosi o weryfikację, potwierdzony przez niego adres e-mail w tej domenie i nazwa firmy, którą wysłał do sprawdzenia.",
         "Ćwiczenia: jeśli odbywasz darmowe rozmowy ćwiczeniowe, Twoje odpowiedzi, wyniki i czas trwania każdej odpowiedzi. Widzisz je tylko Ty.",
@@ -111,6 +111,7 @@
         "Podłączane przez Ciebie aplikacje AI: do czasu ich odłączenia lub usunięcia Twojego konta; połączenie nieużywane przez 90 dni wygasa samoczynnie.",
         "Twoje czaty z asystentem: 90 dni od ostatniej wiadomości. Możesz w każdej chwili usunąć czat, a czaty są usuwane wraz z Twoim kontem lub firmą, której dotyczą.",
         "Dziennik działań firmy: kto co zrobił, przechowywany przez 12 miesięcy.",
+        "Notatki, które piszesz do rozmów firmy: do czasu, aż usuniesz notatkę albo firma usunie rozmowę lub zostanie usunięta. Należą do firmy, więc pozostają w niej, bez Twojego imienia i nazwiska, gdy z niej odejdziesz lub usuniesz konto.",
         "Rejestry wykorzystania AI i osiągniętych limitów: 13 miesięcy, bez identyfikatora Twojego konta po usunięciu przez Ciebie konta.",
         "Rundy ćwiczeniowe: do czasu usunięcia przez Ciebie konta.",
         "Raport wysłany e-mailem z prepza: plik PDF jest przechowywany wyłącznie w celu wysłania e-maila i usuwany najpóźniej po 7 dniach.",

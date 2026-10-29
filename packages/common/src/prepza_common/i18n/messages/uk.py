@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "Такої відповіді немає.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Надіслати звіт на email за межі компанії може лише власник або адміністратор. Надішліть його одному з учасників вашої компанії.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "Щоб почати, підтвердьте, що відповідатимете самостійно, без інструментів ШІ та допомоги інших людей.",
+    "Note not found": "Нотатку не знайдено",
+    "Only the note's author can edit it.": "Змінити нотатку може лише її автор.",
+    "Only the note's author, the owner or an admin can delete it.": "Видалити нотатку може лише її автор, власник або адміністратор.",
+    "Only the owner or an admin can pin a note.": "Закріпити нотатку може лише власник або адміністратор.",
+    "Reading the interview's notes…": "Переглядаю нотатки до співбесіди…",
 }

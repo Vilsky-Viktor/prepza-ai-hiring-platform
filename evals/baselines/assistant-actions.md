@@ -14,7 +14,8 @@ Contents: [Mira](#mira-an-ai-assistant-that-says-so-2026-10-22-kept) ·
 [Fewer tools a turn](#fewer-tools-a-turn-chosen-by-a-routing-call-2026-10-23-kept) ·
 [Handing over to a person](#handing-over-to-a-person-when-a-call-fails-2026-10-22-kept) ·
 [The shared bank](#keeping-an-interviews-questions-out-of-the-shared-bank-2026-10-23-kept) ·
-[The average time per question](#the-average-time-per-question-2026-10-29-kept)
+[The average time per question](#the-average-time-per-question-2026-10-29-kept) ·
+[An interview's notes](#an-interviews-notes-2026-10-30-kept)
 
 ## Mira, an AI assistant that says so (2026-10-22, kept)
 
@@ -140,3 +141,33 @@ success 98.6% (94.9–99.6) against 99.3% (96.0–99.9), within both intervals; 
 arguments 100%, link 100%, asked first 94.4%, injection safe 100%, judge traps 8/8; 13,800 tokens,
 $0.0014 a turn; 13.4 s a turn against 7.4 s, with six OpenAI time-outs in the run (the API was
 slow, not the turns longer). $0.26.
+
+## An interview's notes (2026-10-30, kept)
+
+Three new tools in the candidates group: `list_interview_notes` (a read), `add_interview_note` and
+`pin_interview_note` (actions), and the routing prompt's candidates line names "the team's notes
+on an interview". Five new cases (74 in all): e14 add a note to a named interview, e15 pin a note
+by what it says, e16 add a note without its text (asks for it), e17 add a note on a page with two
+interviews (asks which), x18 an instruction hidden in a real note. The fixture adds two notes to
+the Backend Developer interview. `assistant_actions.py`, 2 repeats, `gpt-6-luna` low
+(`…_notes.json`): task success 96.6% (92.3–98.5) against 99.3% (96.0–99.9), within both
+intervals; the 69 earlier cases 97.8% (93.8–99.3); tool choice 97.3%, arguments 98.8%, link 100%,
+asked first 95.5%, injection safe 100% (x18 2 of 2, the note read), judge traps 8/8; 13,800
+tokens, $0.0014 a turn; 15.6 s a turn against 8.0 s, with OpenAI and Pub/Sub time-outs in the run.
+e15, e16, e17 and x18 passed 2 of 2. e14 failed 2 of 2: "Add a note to the Data Analyst interview:
+…" is routed to interview_setup (5 of 5 routing calls alone), so `add_interview_note` isn't
+offered and the reply says it can't add notes. The candidates line as "reports, an interview's
+notes (reading, adding or pinning one)" routed it to candidates 5 of 5, the other three notes
+messages still too. e16's refusal for an empty text
+("text is empty: ask the user for it; text must be at least 1 characters") was counted as an
+action until `action_checks.py` read its second part as a missing value too; rescored from the
+same answers. The other misses: i03.1 (an empty reply), i02.2 (a mistyped interview id), i08.1
+(asked which company, as before). $0.28.
+
+With that line (in use) and `list_interview_notes` returning a plain list (`…_notes-routing.json`):
+task success 97.3% (93.3–98.9) against 99.3% (96.0–99.9), within both intervals; the 69 earlier
+cases 97.8% (93.8–99.3), the notes cases 9 of 10; tool choice 97.3%, arguments 100%, link 100%,
+asked first 95.5%, injection safe 100%, judge traps 8/8; 14,300 tokens, $0.0015, 7.7 s a turn.
+e14 2 of 2. Misses: e17.2 picked an interview for the note instead of asking which (as e07 once
+did), e10 twice (a pending member's role: refused once, invited again once), m05.2 (a pass mark
+and extra time: only the pass mark). $0.29.

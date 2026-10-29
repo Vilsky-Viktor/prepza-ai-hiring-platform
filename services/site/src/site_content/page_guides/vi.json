@@ -44,7 +44,7 @@
     "text": "Tất cả buổi phỏng vấn của công ty này và credit dành cho ứng viên. Mỗi buổi phỏng vấn là một bài kiểm tra có giới hạn thời gian, tạo từ mô tả công việc.",
     "actions": [
       "Tạo buổi phỏng vấn từ mô tả công việc bằng “Buổi phỏng vấn mới”.",
-      "Mở một buổi phỏng vấn để xem chủ đề, ứng viên và cài đặt.",
+      "Mở một buổi phỏng vấn để xem chủ đề, ứng viên, ghi chú và cài đặt; ghi chú đã ghim hiện dưới tên của buổi phỏng vấn.",
       "Tìm buổi phỏng vấn theo tiêu đề.",
       "Thử buổi phỏng vấn với vai trò ứng viên, hoặc xóa nó.",
       "Nạp credit từ số dư, hoặc bật tự động nạp ở thẻ Thanh toán."
@@ -119,6 +119,19 @@
     "tips": [
       "Mỗi ứng viên trả lời ít nhất một câu sẽ dùng credit, kể cả ứng viên đến từ liên kết.",
       "Lời nhắc được gửi tới ứng viên tự động."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Ghi chú",
+    "text": "Ghi chú của nhóm bạn về đợt tuyển dụng này: những gì đã thống nhất, ai cần liên hệ tiếp theo, hoặc buổi phỏng vấn dành cho ai. Mọi người trong công ty bạn đều thấy; ứng viên thì không bao giờ.",
+    "actions": [
+      "Viết ghi chú vào ô ở trên cùng và chọn Đăng, hoặc nhấn ⌘/Ctrl+Enter. Các liên kết trong đó có thể bấm được.",
+      "Sửa hoặc xóa ghi chú của chính bạn bằng các nút trên dòng của nó; chủ sở hữu và quản trị viên có thể xóa ghi chú của bất kỳ ai.",
+      "Ghim một ghi chú bằng nút dấu trang (chủ sở hữu và quản trị viên): ghi chú đó hiện đầu tiên ở đây, và dưới tên buổi phỏng vấn trên trang của nó và trong danh sách phỏng vấn."
+    ],
+    "tips": [
+      "Bạn làm việc cho khách hàng? Ghim một ghi chú như “Cho Acme, Backend Developer” để biết ngay mỗi buổi phỏng vấn dành cho ai.",
+      "Ghi chú đã xóa sẽ mất vĩnh viễn. Nhật ký thao tác ghi lại ai đã viết, sửa hoặc xóa ghi chú, nhưng không bao giờ lưu nội dung của nó."
     ]
   },
   "interviewSettings": {

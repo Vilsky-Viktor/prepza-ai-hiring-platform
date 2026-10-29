@@ -3,8 +3,8 @@ API_TAB = """# API
 
 The prepza API connects prepza to your own platform. Use it to create interviews from job
 descriptions, invite candidates, remind, update or remove them, read their results, find a
-candidate by email and read your credits, and receive a [web hook](/api-docs?tab=webhooks) as
-soon as a candidate finishes.
+candidate by email, read and add your team's notes on an interview and read your credits, and
+receive a [web hook](/api-docs?tab=webhooks) as soon as a candidate finishes.
 
 ## Getting an API key
 
@@ -138,7 +138,7 @@ you don't know by its HTTP status.
 | `candidate_finished` | 409 | The candidate already finished |
 | `candidate_started` | 409 | Extra time only before the candidate starts |
 | `invited_without_sign_in` | 409 | prepza doesn't email a candidate invited with `sign_in` false |
-| `company_suspended` | 409 | The company is suspended |
+| `company_suspended` | 409 | The company is suspended; its notes can be read, not added |
 | `interview_quota_reached` | 409 | As many interviews without candidates as allowed |
 | `request_in_progress` | 409 | The same request is still running |
 | `idempotency_key_reused` | 422 | An `Idempotency-Key` sent before with another request |
@@ -185,6 +185,8 @@ SDK. Company verification only adds the verified badge: the API, the SDK and MCP
 Within `v1`, fields, optional parameters, error codes, enum values and event types are only ever
 added. Anything retired first answers with `Deprecation` and `Sunset` headers and is listed here.
 
+- 2026-10-29: `GET /interviews/{id}/notes` and `POST /interviews/{id}/notes` list and add your
+  team's notes on an interview, with the new `notes:read` and `notes:add` permissions.
 - 2026-10-29: a key can be limited to allowed IPs (`ip_not_allowed`); `return_url` may be any
   https address (http on localhost), refused otherwise with `return_url_invalid`, which replaces
   `return_url_off_domain`; embedding follows the company's allowed domains instead of its

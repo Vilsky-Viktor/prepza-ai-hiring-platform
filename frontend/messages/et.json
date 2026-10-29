@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Ilma kandidaatideta ootavad loodud intervjuud",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Ilma kandidaatideta ootavad loodud intervjuud, mittemaksvad",
       "PREVIEWS_PER_USER_HOUR": "Intervjuude eelvaated kasutaja kohta tunnis",
+      "NOTES_PER_USER_HOUR": "Intervjuude märkmed kasutaja kohta tunnis",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Maksed, maksekontrollid ja arved kasutaja kohta tunnis",
       "TEMPLATE_COPIES_PER_HOUR": "Mallidest kopeeritud intervjuud ettevõtte kohta tunnis",
       "LINK_STARTS_PER_HOUR": "Alustamised ühe intervjuu lingi kaudu tunnis",
@@ -1056,6 +1057,20 @@
     "interview": "Intervjuu",
     "topicsTab": "Teemad",
     "candidates": "Kandidaadid",
+    "notes": "Märkmed",
+    "notesEmpty": "Märkmeid veel pole. Kirjuta oma meeskonnale esimene.",
+    "noteLabel": "Kirjuta oma meeskonnale märge",
+    "notePlaceholder": "mingi äge märge siia…",
+    "notePost": "Postita",
+    "notePosting": "Postitan…",
+    "noteEdited": "muudetud",
+    "notePinned": "Kinnitatud",
+    "notePin": "Kinnita üles",
+    "noteUnpin": "Vabasta",
+    "noteFormerMember": "Endine liige",
+    "noteDeleteTitle": "Kas kustutada see märge?",
+    "noteDeleteText": "See kustutatakse kogu su meeskonna jaoks ja seda ei saa taastada.",
+    "noteFailed": "Märget ei õnnestunud salvestada. Proovi uuesti.",
     "new": "Uus intervjuu",
     "createTitle": "Loo intervjuu",
     "try": "Proovi kandidaadina",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Intervjuud",
       "candidates": "Kandidaadid",
+      "notes": "Märkmed",
       "credits": "Krediidid",
       "ai_agents": "AI-agendid"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Kutsumine",
       "candidates:change": "Muutmine",
       "candidates:delete": "Kustutamine",
+      "notes:read": "Lugemine",
+      "notes:add": "Lisamine",
       "credits:read": "Lugemine",
       "mcp": "Kasutamine AI-agentidega (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "kutsumine",
       "candidates:change": "muutmine",
       "candidates:delete": "kustutamine",
+      "notes:read": "lugemine",
+      "notes:add": "lisamine",
       "credits:read": "lugemine",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Määra läbimise piir",
         "set_question_seconds": "Määra keskmine aeg küsimuse kohta",
         "mark_hired": "Märgi intervjuu täidetuks",
-        "keep_questions_private": "Hoia küsimused ühisest küsimustepangast väljas"
+        "keep_questions_private": "Hoia küsimused ühisest küsimustepangast väljas",
+        "add_interview_note": "Lisa märge",
+        "pin_interview_note": "Kinnita märge üles või vabasta see"
       },
       "fields": {
         "company": "Ettevõte",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "E-posti aadressid"
+        },
+        "add_interview_note": {
+          "text": "Märge"
+        },
+        "pin_interview_note": {
+          "pinned": "Kinnitatud"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Märkis vastusevõtme valeks",
       "topics_approved": "Kiitis intervjuu teemad heaks",
       "pass_mark_changed": "Muutis läbimise läve",
+      "note_added": "Kirjutas intervjuule märkme",
+      "note_edited": "Muutis intervjuu märget",
+      "note_deleted": "Kustutas intervjuu märkme",
+      "note_pinned": "Kinnitas intervjuu märkme üles",
+      "note_unpinned": "Vabastas intervjuu märkme",
       "candidate_invited": "Kutsus kandidaadi",
       "invite_resent": "Saatis kutse uuesti",
       "invite_revoked": "Tühistas kutse",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "kandidaatide kutsumine",
       "candidates:change": "kandidaatide muutmine",
       "candidates:delete": "kandidaatide kustutamine",
+      "notes:read": "märkmete lugemine",
+      "notes:add": "märkmete lisamine",
       "credits:read": "krediidi lugemine",
       "mcp": "kasutamine AI-agentidega (MCP)"
     },

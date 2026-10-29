@@ -3,11 +3,12 @@ import { getTranslations } from "next-intl/server"
 import { InterviewStatus } from "@/components/common/interview-status"
 import { EditableTitle } from "@/components/common/editable-title"
 import { EntityId } from "@/components/common/entity-id"
+import { PinnedNote } from "@/components/common/pinned-note"
 import type { InterviewDetail } from "@/types/company"
 
 /** An interview's title (editable by those who can), or what's happening while it has none
- * (generating, or failed); under it its status once ready and the id to quote when writing to
- * prepza. */
+ * (generating, or failed); under it its pinned note, its status once ready and the id to
+ * quote when writing to prepza. */
 export async function InterviewTitle({
   interview,
   canEdit,
@@ -36,6 +37,9 @@ export async function InterviewTitle({
             ? t("generationFailed")
             : t("generating")}
         </h1>
+      )}
+      {interview.pinned_note && (
+        <PinnedNote text={interview.pinned_note} className="mt-1" />
       )}
       {/* The status under the title, before the buttons on phones, and the id (also while
           generating, or after a failure). */}

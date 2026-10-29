@@ -12,7 +12,7 @@
       "heading": "Mida me kogume",
       "items": [
         "Konto: sinu nimi, e-posti aadress, profiilipilt ja konto ID sellelt Google'i, LinkedIni või GitHubi kontolt, millega sisse logid, ning see, millised neist on sinu kontoga seotud.",
-        "Mida sa meile annad: töökuulutuste kirjeldused, mida kleebid, ja nende põhjal loodud intervjuud, sinu kutsutud kandidaatide e-posti aadressid (ja nende nimed, kui need annad või parandad), nende inimeste e-posti aadressid, keda kutsud oma ettevõtte meeskonda, ning nende inimeste e-posti aadressid, kellele saadad aruande, ning sinu küsimuste hinnangud ja küsimustest teatamised.",
+        "Mida sa meile annad: töökuulutuste kirjeldused, mida kleebid, ja nende põhjal loodud intervjuud, märkmed, mida kirjutad ettevõtte intervjuude juurde, sinu kutsutud kandidaatide e-posti aadressid (ja nende nimed, kui need annad või parandad), nende inimeste e-posti aadressid, keda kutsud oma ettevõtte meeskonda, ning nende inimeste e-posti aadressid, kellele saadad aruande, ning sinu küsimuste hinnangud ja küsimustest teatamised.",
         "Assistent: kui oled sisse logitud, see, mida talle kirjutad või ütled (häälsõnum muudetakse tekstiks ja seda ei salvestata kunagi), ja tema vastused, et saaksid vestluse juurde tagasi tulla. Ta ei säilita seda, mida ta sulle vastamiseks luges, näiteks kandidaatide tulemusi, välja arvatud allpool kirjeldatud AI-päringute kirjed: kui avad vestluse uuesti, toob ta need uuesti sinu praeguse juurdepääsuga. Kui sa pole sisse logitud, kasutatakse sinu küsimusi ainult neile vastamiseks ja neid ei salvestata, välja arvatud allpool kirjeldatud AI-päringute kirjed. Sõnum, mis sisaldab võtit, tokenit või parooli, eemaldatakse kohe: seda ei salvestata ega edastata.",
         "Ettevõtted: ettevõtte nimi, logo ja veebisait ning e-posti domeen, millega see kinnitati; kui omanik või administraator taotleb kinnitamist, selle domeeni e-posti aadress, mille ta kinnitas, ja ettevõtte nimi, mille ta ülevaatusele saatis.",
         "Harjutamine: kui teed tasuta harjutusintervjuusid, sinu vastused, hinded ja see, kui kaua iga vastus aega võttis. Neid näed ainult sina.",
@@ -111,6 +111,7 @@
         "Sinu ühendatud AI-rakendused: kuni need lahti ühendad või oma konto kustutad; ühendus, mida pole 90 päeva kasutatud, lõpeb iseenesest.",
         "Sinu vestlused assistendiga: 90 päeva pärast viimast sõnumit. Saad vestluse igal ajal kustutada ja need kustutatakse koos sinu kontoga või ettevõttega, mille kohta need on.",
         "Ettevõtte toimingute logi: kes mida tegi, säilitatakse 12 kuud.",
+        "Märkmed, mida kirjutad ettevõtte intervjuude juurde: kuni kustutad märkme, ettevõte kustutab intervjuu või ettevõte kustutatakse. Need kuuluvad ettevõttele, seega jäävad need ettevõttele, ilma sinu nimeta, kui sa ettevõttest lahkud või oma konto kustutad.",
         "AI kasutuse ja saavutatud piirangute kirjed: 13 kuud, ilma sinu konto ID-ta pärast seda, kui oled oma konto kustutanud.",
         "Harjutusvoorud: kuni kustutad oma konto.",
         "prepzast e-kirjaga saadetud aruanne: PDF-faili säilitatakse ainult e-kirja saatmiseks ja see kustutatakse hiljemalt 7 päeva pärast.",

@@ -1768,6 +1768,323 @@
     }
    }
   },
+  "/interviews/{interview_id}/notes": {
+   "get": {
+    "tags": [
+     "interviews"
+    ],
+    "summary": "List Notes",
+    "description": "The pinned note first, then newest first, each with what the user may do with it.",
+    "operationId": "list_notes_interviews__interview_id__notes_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 0,
+       "description": "Number of items to skip",
+       "default": 0,
+       "title": "Offset"
+      },
+      "description": "Number of items to skip"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 100,
+       "minimum": 1,
+       "description": "Number of items to return, up to 100",
+       "default": 100,
+       "title": "Limit"
+      },
+      "description": "Number of items to return, up to 100"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/NoteOut"
+         },
+         "title": "Response List Notes Interviews  Interview Id  Notes Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "interviews"
+    ],
+    "summary": "Add Note",
+    "operationId": "add_note_interviews__interview_id__notes_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/NoteIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NoteOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/interviews/{interview_id}/notes/{note_id}": {
+   "patch": {
+    "tags": [
+     "interviews"
+    ],
+    "summary": "Edit Note",
+    "description": "Only the note's author changes its text.",
+    "operationId": "edit_note_interviews__interview_id__notes__note_id__patch",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "note_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Note Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/NoteIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NoteOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "delete": {
+    "tags": [
+     "interviews"
+    ],
+    "summary": "Delete Note",
+    "description": "The note's author, the owner or an admin deletes it, for good.",
+    "operationId": "delete_note_interviews__interview_id__notes__note_id__delete",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "note_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Note Id"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/interviews/{interview_id}/notes/{note_id}/pinned": {
+   "put": {
+    "tags": [
+     "interviews"
+    ],
+    "summary": "Pin Note",
+    "description": "The owner or an admin pins the note (unpinning any other) or unpins it.",
+    "operationId": "pin_note_interviews__interview_id__notes__note_id__pinned_put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "note_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Note Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/PinIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/interviews/{interview_id}/candidates": {
    "post": {
     "tags": [
@@ -4938,6 +5255,179 @@
        "application/json": {
         "schema": {
          "$ref": "#/components/schemas/CompanyCreditsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/companies/{company_id}/interviews/{interview_id}/notes": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "List Notes",
+    "operationId": "list_notes_internal_companies__company_id__interviews__interview_id__notes_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     },
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "user_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 0,
+       "description": "Number of items to skip",
+       "default": 0,
+       "title": "Offset"
+      },
+      "description": "Number of items to skip"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 100,
+       "minimum": 1,
+       "description": "Number of items to return, up to 100",
+       "default": 100,
+       "title": "Limit"
+      },
+      "description": "Number of items to return, up to 100"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/NoteOut"
+         },
+         "title": "Response List Notes Internal Companies  Company Id  Interviews  Interview Id  Notes Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Add Note",
+    "operationId": "add_note_internal_companies__company_id__interviews__interview_id__notes_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     },
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "user_id",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/NoteIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "201": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/NoteOut"
         }
        }
       }
@@ -9489,6 +9979,22 @@
       ],
       "title": "Updated At"
      },
+     "note_count": {
+      "type": "integer",
+      "title": "Note Count",
+      "default": 0
+     },
+     "pinned_note": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Pinned Note"
+     },
      "company_id": {
       "type": "string",
       "format": "uuid",
@@ -9665,6 +10171,22 @@
        }
       ],
       "title": "Updated At"
+     },
+     "note_count": {
+      "type": "integer",
+      "title": "Note Count",
+      "default": 0
+     },
+     "pinned_note": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Pinned Note"
      }
     },
     "type": "object",
@@ -10435,6 +10957,118 @@
     "title": "MenuCountsOut",
     "description": "How many things each of the company's menu pages holds; None for a part another service\ncouldn't give in time, which the menu then shows without."
    },
+   "NoteAuthor": {
+    "properties": {
+     "name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "photo_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Photo Url"
+     },
+     "former": {
+      "type": "boolean",
+      "title": "Former",
+      "default": false
+     }
+    },
+    "type": "object",
+    "title": "NoteAuthor",
+    "description": "Who wrote a note: their name (or email without one) and picture; `former` when they're no\nlonger a member, with neither."
+   },
+   "NoteIn": {
+    "properties": {
+     "text": {
+      "type": "string",
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Text",
+      "description": "The note, as plain text; line breaks are kept."
+     }
+    },
+    "type": "object",
+    "required": [
+     "text"
+    ],
+    "title": "NoteIn"
+   },
+   "NoteOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Id"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "author": {
+      "$ref": "#/components/schemas/NoteAuthor"
+     },
+     "pinned": {
+      "type": "boolean",
+      "title": "Pinned"
+     },
+     "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Created At"
+     },
+     "edited_at": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Edited At"
+     },
+     "can_edit": {
+      "type": "boolean",
+      "title": "Can Edit",
+      "default": false
+     },
+     "can_delete": {
+      "type": "boolean",
+      "title": "Can Delete",
+      "default": false
+     },
+     "can_pin": {
+      "type": "boolean",
+      "title": "Can Pin",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "text",
+     "author",
+     "pinned",
+     "created_at",
+     "edited_at"
+    ],
+    "title": "NoteOut"
+   },
    "OwnedCompany": {
     "properties": {
      "id": {
@@ -10618,6 +11252,20 @@
      "paused"
     ],
     "title": "PauseOut"
+   },
+   "PinIn": {
+    "properties": {
+     "pinned": {
+      "type": "boolean",
+      "title": "Pinned",
+      "description": "True pins the note (unpinning any other); false unpins it."
+     }
+    },
+    "type": "object",
+    "required": [
+     "pinned"
+    ],
+    "title": "PinIn"
    },
    "PrepzaBrand": {
     "properties": {

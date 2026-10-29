@@ -44,7 +44,7 @@
     "text": "Wszystkie rozmowy tej firmy i jej kredyty na kandydatów. Każda rozmowa to test na czas utworzony z opisu stanowiska.",
     "actions": [
       "Utwórz rozmowę z opisu stanowiska przyciskiem „Nowa rozmowa”.",
-      "Otwórz rozmowę, by zobaczyć jej tematy, kandydatów i ustawienia.",
+      "Otwórz rozmowę, by zobaczyć jej tematy, kandydatów, notatki i ustawienia; przypięta notatka wyświetla się pod jej nazwą.",
       "Szukaj rozmów po ich tytule.",
       "Wypróbuj rozmowę jako kandydat albo ją usuń.",
       "Doładuj kredyty przy saldzie albo włącz automatyczne doładowanie na karcie Rozliczenia."
@@ -119,6 +119,19 @@
     "tips": [
       "Każdy kandydat, który odpowie na co najmniej jedno pytanie, zużywa kredyty, także ten z linku.",
       "Przypomnienia trafiają do kandydatów automatycznie."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Notatki",
+    "text": "Notatki Twojego zespołu o tej rekrutacji: co ustaliliście, do kogo zadzwonić w następnej kolejności albo dla kogo jest ta rozmowa. Widzą je wszyscy w Twojej firmie; kandydaci nigdy.",
+    "actions": [
+      "Wpisz notatkę w polu na górze i wybierz Opublikuj albo naciśnij ⌘/Ctrl+Enter. Linki w niej stają się klikalne.",
+      "Edytuj lub usuwaj swoje notatki przyciskami w ich wierszu; właściciele i administratorzy mogą usunąć notatkę każdego.",
+      "Przypnij notatkę ikoną zakładki (właściciele i administratorzy): wyświetla się tu jako pierwsza, a także pod nazwą rozmowy na jej stronie i na liście rozmów."
+    ],
+    "tips": [
+      "Pracujesz dla klientów? Przypnij notatkę w rodzaju „Dla Acme, backend developer”, aby od razu widzieć, dla kogo jest każda rozmowa.",
+      "Usuniętej notatki nie da się przywrócić. Dziennik działań zapisuje, kto napisał, zmienił lub usunął notatkę, ale nigdy jej treści."
     ]
   },
   "interviewSettings": {

@@ -43,16 +43,17 @@ When a generated interview is ready, the generation page opens it marked as just
 
 ## The interviews list
 
-A company's **interviews** tab lists its interviews, newest first, with a search above it: it finds the interviews whose title contains the text, in any case, with `%` and `_` matched as typed (`GET /companies/interviews?q=`). The address keeps the search (`?q=`), so a reload and the pages loaded as you scroll keep it too.
+A company's **interviews** tab lists its interviews, newest first, with a search above it: it finds the interviews whose title contains the text, in any case, with `%` and `_` matched as typed (`GET /companies/interviews?q=`). The address keeps the search (`?q=`), so a reload and the pages loaded as you scroll keep it too. An interview with a [pinned note](#notes) shows it as one muted line under its name.
 
 ## The interview page
 
-An interview's page has three tabs, in its side menu as on a company's pages ([Companies](companies.md)):
+An interview's page has four tabs, in its side menu as on a company's pages ([Companies](companies.md)). Topics, candidates and notes show how many they hold in a badge after their name (none at 0). A [pinned note](#notes) shows as one muted line under the interview's title.
 
 | Tab | Who sees it | What it holds |
 |---|---|---|
 | **topics** | Every member | What the interview adds up to for each candidate (total questions, average time per question and the whole interview's minutes, questions × average, as companies counts them, which follow each change), then the interview's topics and questions, each with its number of questions for each candidate |
 | **candidates** | Every member | The candidate list (see [Candidates](candidates.md#the-candidate-list)) |
+| **notes** | Every member | The team's [notes](#notes) on the hiring round (`?tab=notes`) |
 | **settings** | Owners and admins | The [shareable link](candidates.md#shareable-link) in a card at the top, then average time per question, pass mark, "Mark as hired" and keeping its questions out of the shared question bank, each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
 
 ### Settings
@@ -62,6 +63,21 @@ An interview's page has three tabs, in its side menu as on a company's pages ([C
 - **Pass mark:** 70% by default, from 1 to 100. Grades show green or red against it.
 - **Mark as hired:** marks the interview as hired and stops its shareable link at once.
 - **Keep these questions out of prepza's shared question bank:** off by default, as the terms (2026-10-23) say: an interview's generated questions may be reused in other companies' interviews, without anything that identifies the company or anyone else. Checking it keeps the interview's questions out from then on (`keep_private` on the interview in companies); questions already reused in other interviews stay there. A change is in the action log (`interview_settings_changed`), and Mira and AI apps can set it (`keep_questions_private`). Today the bank holds only the templates' questions ([Generation](../generation.md)), so the setting records the company's choice ahead of companies' questions joining it.
+
+### Notes
+
+The **notes** tab is where the company's team writes about the hiring round and reads each other's: what they agreed ("shortlist the top 5 for a call") or, for an agency, whom the interview is for ("for Acme, Backend Developer, contact Lena"). Candidates never see notes.
+
+- **The list:** the pinned note first, then newest first, each with its author's picture and name ("Former member" once they've left the company or deleted their account), when it was written and "edited" once its text changed. Notes are plain text: line breaks are kept and links are clickable; nothing is shown as HTML.
+- **Writing:** a text box at the top with **Post** inside it; Enter adds a line, ⌘/Ctrl+Enter posts. A note is at most 2,000 characters (`MAX_NOTE_LENGTH`). Every member writes, viewers too, at most 60 notes an hour each (`NOTES_PER_USER_HOUR`, a value in the admin zone's Controls; `429` past it).
+- **Editing and deleting:** each member edits only their own notes. The author, the owner or an admin deletes a note, for good (it isn't hidden).
+- **Pinning:** the owner or an admin pins one note (the bookmark icon); pinning another unpins it. The pinned note shows first on the tab, and as one muted line under the interview's title and under its name in the interviews list.
+- **Suspended company:** its notes can be read but not written, edited, deleted or pinned (409, `company_suspended`).
+- **Action log:** writing, editing, deleting, pinning and unpinning a note are recorded (`note_added`, `note_edited`, `note_deleted`, `note_pinned`, `note_unpinned`: who, when and which interview), never the note's text ([Action log](companies.md#action-log)). No notifications are sent.
+- **Elsewhere:** Mira and AI apps list notes, add one and pin or unpin one (`list_interview_notes`, `add_interview_note`, `pin_interview_note`; [Assistant](assistant.md), [MCP](mcp.md)); the public API lists and adds them ([Public API](api.md)).
+- **Data:** notes are the company's data and go with the interview and with the company when either is deleted. A member who leaves the company or deletes their account takes none with them: their notes stay as a former member's. Each member's own notes, with the company and interview, are in their "Download my data".
+
+Routes (companies): `GET /companies/interviews/{id}/notes` (a page, with what the signed-in member may do with each: `can_edit`, `can_delete`, `can_pin`), `POST` to add, `PATCH /…/notes/{note_id}` to edit, `DELETE /…/notes/{note_id}`, and `PUT /…/notes/{note_id}/pinned` with `{"pinned": true|false}`. An interview in a list carries `note_count` and `pinned_note`. Stored in `interview_notes` (a unique partial index allows one pinned note an interview).
 
 ### Status
 
@@ -95,5 +111,6 @@ Any company member can preview an interview as a candidate, with the play button
 | Company name | 45, and at least 2 (`MIN_COMPANY_NAME_LENGTH`: EY and 3M are companies) |
 | Topic name | 50 |
 | Job description | 10,000 |
+| A note on an interview | 2,000 (`MAX_NOTE_LENGTH`) |
 | Email | 254 |
 | A pasted or uploaded list of emails | 50,000 |

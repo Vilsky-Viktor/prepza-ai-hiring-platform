@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "لا توجد إجابة كهذه.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "يمكن للمالك أو المسؤول فقط إرسال تقرير بالبريد إلى خارج الشركة. أرسله إلى أحد أعضاء شركتك.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "أكّد أنك ستجيب بنفسك، دون أدوات ذكاء اصطناعي أو مساعدة من أشخاص آخرين، لتبدأ.",
+    "Note not found": "لم يتم العثور على الملاحظة",
+    "Only the note's author can edit it.": "لا يمكن تعديل الملاحظة إلا لكاتبها.",
+    "Only the note's author, the owner or an admin can delete it.": "لا يمكن حذف الملاحظة إلا لكاتبها أو للمالك أو لمشرف.",
+    "Only the owner or an admin can pin a note.": "لا يمكن تثبيت ملاحظة إلا للمالك أو لمشرف.",
+    "Reading the interview's notes…": "جارٍ الاطلاع على ملاحظات المقابلة…",
 }

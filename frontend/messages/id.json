@@ -610,6 +610,7 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Wawancara yang dibuat dan menunggu tanpa kandidat",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Wawancara yang dibuat dan menunggu tanpa kandidat, belum membayar",
       "PREVIEWS_PER_USER_HOUR": "Pratinjau wawancara per pengguna per jam",
+      "NOTES_PER_USER_HOUR": "Catatan wawancara per pengguna per jam",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Pembayaran, pengecekan pembayaran, dan faktur per pengguna per jam",
       "TEMPLATE_COPIES_PER_HOUR": "Wawancara yang disalin dari templat per perusahaan per jam",
       "LINK_STARTS_PER_HOUR": "Mulai lewat tautan satu wawancara per jam",
@@ -1056,6 +1057,20 @@
     "interview": "Wawancara",
     "topicsTab": "Topik",
     "candidates": "Kandidat",
+    "notes": "Catatan",
+    "notesEmpty": "Belum ada catatan. Tulis yang pertama untuk timmu.",
+    "noteLabel": "Tulis catatan untuk timmu",
+    "notePlaceholder": "catatan keren di sini…",
+    "notePost": "Kirim",
+    "notePosting": "Mengirim…",
+    "noteEdited": "diedit",
+    "notePinned": "Disematkan",
+    "notePin": "Sematkan di atas",
+    "noteUnpin": "Lepas sematan",
+    "noteFormerMember": "Mantan anggota",
+    "noteDeleteTitle": "Hapus catatan ini?",
+    "noteDeleteText": "Catatan ini terhapus untuk semua orang di timmu dan tidak bisa dikembalikan.",
+    "noteFailed": "Catatan tidak bisa disimpan. Coba lagi.",
     "new": "Wawancara baru",
     "createTitle": "Buat wawancara",
     "try": "Coba sebagai kandidat",
@@ -1907,6 +1922,7 @@
     "permissionGroups": {
       "interviews": "Wawancara",
       "candidates": "Kandidat",
+      "notes": "Catatan",
       "credits": "Kredit",
       "ai_agents": "Agen AI"
     },
@@ -1917,6 +1933,8 @@
       "candidates:invite": "Undang",
       "candidates:change": "Ubah",
       "candidates:delete": "Hapus",
+      "notes:read": "Lihat",
+      "notes:add": "Tambah",
       "credits:read": "Lihat",
       "mcp": "Pakai dengan agen AI (MCP)"
     },
@@ -1927,6 +1945,8 @@
       "candidates:invite": "undang",
       "candidates:change": "ubah",
       "candidates:delete": "hapus",
+      "notes:read": "lihat",
+      "notes:add": "tambah",
       "credits:read": "lihat",
       "mcp": "MCP"
     },
@@ -2227,7 +2247,9 @@
         "set_pass_mark": "Atur nilai lulus",
         "set_question_seconds": "Atur rata-rata waktu per pertanyaan",
         "mark_hired": "Tandai wawancara sudah merekrut",
-        "keep_questions_private": "Jangan masukkan pertanyaan ke bank soal bersama"
+        "keep_questions_private": "Jangan masukkan pertanyaan ke bank soal bersama",
+        "add_interview_note": "Tambahkan catatan",
+        "pin_interview_note": "Sematkan atau lepas sematan catatan"
       },
       "fields": {
         "company": "Perusahaan",
@@ -2261,6 +2283,12 @@
       "fieldsOf": {
         "invite_candidates": {
           "text": "Alamat email"
+        },
+        "add_interview_note": {
+          "text": "Catatan"
+        },
+        "pin_interview_note": {
+          "pinned": "Disematkan"
         }
       }
     },
@@ -2414,6 +2442,11 @@
       "answer_key_reported": "Menandai kunci jawaban salah",
       "topics_approved": "Menyetujui topik wawancara",
       "pass_mark_changed": "Mengubah nilai lulus",
+      "note_added": "Menulis catatan di wawancara",
+      "note_edited": "Mengedit catatan di wawancara",
+      "note_deleted": "Menghapus catatan di wawancara",
+      "note_pinned": "Menyematkan catatan di wawancara",
+      "note_unpinned": "Melepas sematan catatan di wawancara",
       "candidate_invited": "Mengundang kandidat",
       "invite_resent": "Mengirim ulang undangan",
       "invite_revoked": "Mencabut undangan",
@@ -2464,6 +2497,8 @@
       "candidates:invite": "undang kandidat",
       "candidates:change": "ubah kandidat",
       "candidates:delete": "hapus kandidat",
+      "notes:read": "lihat catatan",
+      "notes:add": "tambah catatan",
       "credits:read": "lihat kredit",
       "mcp": "pakai dengan agen AI (MCP)"
     },

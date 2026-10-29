@@ -1,7 +1,10 @@
+from prepza_common.db.db import delete_in_batches
+
 from companies.constants.reports import READ_BATCH
 from companies.core.db import Session
 from companies.integrations import billing
 from companies.integrations import generation as generation_api
+from companies.models.interview_notes import InterviewNote
 from companies.models.invites import CandidateInvite
 from companies.repositories import audit, companies, interviews
 from companies.services import batch_deletion, outbox
@@ -30,11 +33,12 @@ async def delete_company(company_id) -> None:
 
 
 async def delete_rows(company_id) -> None:
-    """The company's own rows: its invites, action log and interviews (each with
+    """The company's own rows: its invites, action log, notes and interviews (each with
     interview.deleted) a batch at a time, then the company with its members and the
     company.deleted event."""
     await batch_deletion.delete_invites(CandidateInvite.company_id == company_id)
     await audit.delete_company(Session, company_id)
+    await delete_in_batches(Session, InterviewNote, InterviewNote.company_id == company_id)
     await batch_deletion.delete_interviews(company_id)
 
     async with Session.begin() as session:

@@ -12,7 +12,7 @@
       "heading": "Apa yang kami kumpulkan",
       "items": [
         "Akun: nama, alamat email, foto profil, dan ID akunmu, dari akun Google, LinkedIn, atau GitHub yang kamu gunakan untuk masuk, serta akun mana saja di antaranya yang terhubung ke akunmu.",
-        "Yang kamu berikan kepada kami: deskripsi pekerjaan yang kamu tempel dan wawancara yang dibuat darinya, email kandidat yang kamu undang (dan nama mereka, jika kamu memberikan atau mengoreksinya), email orang yang kamu undang ke tim perusahaanmu, dan email orang yang kamu kirimi laporan, serta penilaian dan laporanmu tentang soal.",
+        "Yang kamu berikan kepada kami: deskripsi pekerjaan yang kamu tempel dan wawancara yang dibuat darinya, catatan yang kamu tulis di wawancara sebuah perusahaan, email kandidat yang kamu undang (dan nama mereka, jika kamu memberikan atau mengoreksinya), email orang yang kamu undang ke tim perusahaanmu, dan email orang yang kamu kirimi laporan, serta penilaian dan laporanmu tentang soal.",
         "Asisten: saat kamu masuk, apa yang kamu tulis atau ucapkan kepadanya (pesan suara diubah menjadi teks dan tidak pernah disimpan) dan jawabannya, agar kamu bisa kembali ke percakapan. Asisten tidak menyimpan apa yang dibacanya untuk menjawabmu, seperti hasil kandidat, kecuali dalam catatan panggilan AI di bawah: saat kamu membuka percakapan lagi, asisten mengambilnya kembali dengan hak aksesmu saat itu. Jika kamu tidak masuk, pertanyaanmu hanya digunakan untuk menjawabnya dan tidak disimpan, kecuali dalam catatan panggilan AI di bawah. Pesan yang berisi kunci, token, atau kata sandi segera dihapus: pesan itu tidak disimpan atau diteruskan.",
         "Perusahaan: nama, logo, dan situs web perusahaan, serta domain email yang digunakan untuk memverifikasinya; saat pemilik atau admin meminta verifikasi, alamat email di domain tersebut yang dikonfirmasinya dan nama perusahaan yang dikirimkannya untuk ditinjau.",
         "Latihan: jika kamu mengikuti wawancara latihan gratis, jawabanmu, nilaimu, dan berapa lama setiap jawaban. Hanya kamu yang melihatnya.",
@@ -111,6 +111,7 @@
         "Aplikasi AI yang kamu hubungkan: sampai kamu memutuskan sambungannya atau menghapus akunmu; sambungan yang tidak digunakan selama 90 hari berakhir dengan sendirinya.",
         "Percakapanmu dengan asisten: 90 hari setelah pesan terakhirnya. Kamu bisa menghapus percakapan kapan saja, dan percakapan dihapus bersama akunmu atau perusahaan yang dibahasnya.",
         "Log tindakan perusahaan: siapa melakukan apa, disimpan selama 12 bulan.",
+        "Catatan yang kamu tulis di wawancara sebuah perusahaan: sampai kamu menghapus catatan itu atau perusahaan menghapus wawancaranya atau dirinya sendiri. Catatan itu milik perusahaan, jadi tetap ada di perusahaan, tanpa namamu, saat kamu keluar dari perusahaan itu atau menghapus akunmu.",
         "Catatan penggunaan AI dan batasan yang tercapai: 13 bulan, tanpa ID akunmu setelah kamu menghapus akunmu.",
         "Sesi latihan: sampai kamu menghapus akunmu.",
         "Laporan yang dikirim lewat email dari prepza: PDF-nya hanya disimpan untuk mengirim email, dan dihapus paling lambat 7 hari kemudian.",

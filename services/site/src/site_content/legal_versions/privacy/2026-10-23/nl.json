@@ -12,7 +12,7 @@
       "heading": "Wat we verzamelen",
       "items": [
         "Account: je naam, e-mailadres, profielfoto en account-id, uit het Google-, LinkedIn- of GitHub-account waarmee je inlogt, en welke daarvan aan je account zijn gekoppeld.",
-        "Wat je ons geeft: functieomschrijvingen die je plakt en de interviews die ervan worden gemaakt, de e-mailadressen van de kandidaten die je uitnodigt (en hun namen, als je die opgeeft of corrigeert), van de personen die je uitnodigt voor het team van je bedrijf en van de personen naar wie je een rapport stuurt, en je beoordelingen en meldingen van vragen.",
+        "Wat je ons geeft: functieomschrijvingen die je plakt en de interviews die ervan worden gemaakt, de notities die je bij de interviews van een bedrijf schrijft, de e-mailadressen van de kandidaten die je uitnodigt (en hun namen, als je die opgeeft of corrigeert), van de personen die je uitnodigt voor het team van je bedrijf en van de personen naar wie je een rapport stuurt, en je beoordelingen en meldingen van vragen.",
         "De assistent: wanneer je bent ingelogd, wat je ertegen schrijft of zegt (een spraakbericht wordt omgezet in tekst en nooit opgeslagen) en de antwoorden ervan, zodat je naar een chat kunt terugkeren. Wat de assistent heeft gelezen om je te antwoorden, zoals resultaten van kandidaten, bewaart hij niet, afgezien van de registraties van AI-aanroepen hieronder: wanneer je een chat opnieuw opent, haalt hij die opnieuw op met je huidige toegang. Als je niet bent ingelogd, worden je vragen alleen gebruikt om ze te beantwoorden en niet opgeslagen, afgezien van de registraties van AI-aanroepen hieronder. Een bericht dat een sleutel, token of wachtwoord bevat, wordt meteen verwijderd: het wordt niet opgeslagen of doorgestuurd.",
         "Bedrijven: de naam, het logo en de website van het bedrijf, en het e-maildomein waarmee het is geverifieerd; wanneer een eigenaar of beheerder om verificatie vraagt, het e-mailadres op dat domein dat die heeft bevestigd en de bedrijfsnaam die die ter beoordeling heeft gestuurd.",
         "Oefenen: als je gratis oefeninterviews doet, je antwoorden, scores en hoe lang elk antwoord duurde. Alleen jij ziet ze.",
@@ -111,6 +111,7 @@
         "AI-apps die je koppelt: totdat je ze ontkoppelt of je account verwijdert; een koppeling die 90 dagen niet wordt gebruikt, eindigt vanzelf.",
         "Je chats met de assistent: 90 dagen na hun laatste bericht. Je kunt een chat op elk moment verwijderen, en ze worden verwijderd met je account of met het bedrijf waarover ze gaan.",
         "Het actielog van een bedrijf: wie wat heeft gedaan, 12 maanden bewaard.",
+        "Notities die je bij de interviews van een bedrijf schrijft: totdat je de notitie verwijdert of het bedrijf het interview of zichzelf verwijdert. Ze zijn van het bedrijf, dus ze blijven bij het bedrijf, zonder je naam, wanneer je het verlaat of je account verwijdert.",
         "Registraties van AI-gebruik en van bereikte limieten: 13 maanden, zonder je account-id zodra je je account verwijdert.",
         "Oefenrondes: totdat je je account verwijdert.",
         "Een rapport dat vanuit prepza wordt gemaild: de pdf wordt alleen bewaard om de e-mail te versturen en uiterlijk 7 dagen later verwijderd.",

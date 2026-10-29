@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 
 import { InterviewCandidatesTab } from "@/features/company/components/interview-candidates-tab"
 import { InterviewHeader } from "@/features/company/components/interview-header"
+import { InterviewNotesTab } from "@/features/company/components/interview-notes-tab"
 import { InterviewSettings } from "@/features/company/components/interview-settings"
 import { ShareLink } from "@/features/company/components/share-link"
 import { InterviewTopics } from "@/features/company/components/interview-topics"
@@ -33,8 +34,16 @@ export default async function InterviewPage({
   const { companyId, id } = await params
   const query = await searchParams
   const t = await getTranslations("interviews")
-  const { interview, filters, candidates, limits, sort, search, status } =
-    await loadInterviewPage(id, query)
+  const {
+    interview,
+    filters,
+    candidates,
+    limits,
+    sort,
+    search,
+    status,
+    notes,
+  } = await loadInterviewPage(id, query)
 
   if (!interview) {
     notFound()
@@ -89,6 +98,8 @@ export default async function InterviewPage({
             filters={filters}
             candidates={candidates}
           />
+        ) : current === "notes" ? (
+          <InterviewNotesTab interviewId={interview.id} initial={notes ?? []} />
         ) : (
           <InterviewTopics
             interviewId={id}

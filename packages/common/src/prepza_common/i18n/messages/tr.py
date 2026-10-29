@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "Böyle bir yanıt yok.",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "Şirket dışına e-postayla rapor gönderebilen yalnızca sahip veya yöneticidir. Raporu şirketinizin üyelerinden birine gönderin.",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "Başlamak için soruları yapay zekâ araçları veya başkalarının yardımı olmadan kendiniz yanıtlayacağınızı onaylayın.",
+    "Note not found": "Yorum bulunamadı",
+    "Only the note's author can edit it.": "Yorumu yalnızca yazan kişi düzenleyebilir.",
+    "Only the note's author, the owner or an admin can delete it.": "Yorumu yalnızca yazan kişi, sahip veya bir yönetici silebilir.",
+    "Only the owner or an admin can pin a note.": "Yorumu yalnızca sahip veya bir yönetici sabitleyebilir.",
+    "Reading the interview's notes…": "Mülakatın yorumlarına bakılıyor…",
 }

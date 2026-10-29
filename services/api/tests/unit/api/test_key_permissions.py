@@ -11,6 +11,7 @@ from api.constants.permissions import Permission
 from api.helpers.keys import with_implied
 from api.integrations import companies
 from tests.unit.api.v1.test_api_changes import changes  # noqa: F401 (fixture)
+from tests.unit.api.v1.test_public_notes import notes_api  # noqa: F401 (fixture)
 from tests.unit.api_keys import call
 from tests.unit.conftest import CANDIDATE, COMPANY, INTERVIEW, sign_in
 
@@ -34,6 +35,8 @@ ROUTES = [
     ("POST", f"{CANDIDATE_PATH}/resend", None, Permission.CANDIDATES_INVITE),
     ("PATCH", CANDIDATE_PATH, {"name": "Anna"}, Permission.CANDIDATES_CHANGE),
     ("DELETE", CANDIDATE_PATH, None, Permission.CANDIDATES_DELETE),
+    ("GET", f"/interviews/{INTERVIEW}/notes", None, Permission.NOTES_READ),
+    ("POST", f"/interviews/{INTERVIEW}/notes", {"text": "Call Lena"}, Permission.NOTES_ADD),
     ("GET", "/credits", None, Permission.CREDITS_READ),
 ]
 
@@ -52,7 +55,7 @@ def company_reads(monkeypatch):
 
 @pytest.mark.parametrize(("method", "path", "body", "permission"), ROUTES)
 def test_a_route_refuses_a_key_without_its_permission(
-    client, key, changes, company_reads, method, path, body, permission
+    client, key, changes, company_reads, notes_api, method, path, body, permission
 ):
     key.permissions = [item for item in Permission if item != permission]
 
@@ -63,12 +66,12 @@ def test_a_route_refuses_a_key_without_its_permission(
         "detail": f"This API key doesn't have the {permission} permission.",
         "code": "missing_permission",
     }
-    assert changes == []
+    assert changes == notes_api["added"] == []
 
 
 @pytest.mark.parametrize(("method", "path", "body", "permission"), ROUTES)
 def test_a_route_takes_a_key_with_only_its_permission(
-    client, key, changes, company_reads, method, path, body, permission
+    client, key, changes, company_reads, notes_api, method, path, body, permission
 ):
     key.permissions = with_implied([permission])
 
@@ -95,6 +98,7 @@ def test_a_change_comes_with_reading_what_it_changes():
         Permission.CANDIDATES_READ,
         Permission.CANDIDATES_INVITE,
     ]
+    assert with_implied([Permission.NOTES_ADD]) == [Permission.NOTES_READ, Permission.NOTES_ADD]
     assert with_implied([Permission.CREDITS_READ, Permission.MCP]) == [
         Permission.CREDITS_READ,
         Permission.MCP,
@@ -109,6 +113,8 @@ def test_a_new_key_starts_with_the_two_reads(client, companies_api, stored):
     assert made["permissions"] == ["interviews:read", "candidates:read"]
     assert page["default_permissions"] == ["interviews:read", "candidates:read"]
     assert page["implied"]["candidates:invite"] == "candidates:read"
+    assert page["implied"]["notes:add"] == "notes:read"
+    assert page["permission_groups"]["notes"] == ["notes:read", "notes:add"]
     assert page["keys"][0]["permissions"] == ["interviews:read", "candidates:read"]
 
 
@@ -217,11 +223,13 @@ def test_another_companys_key_is_not_found(client, companies_api, stored):
     assert stored["changed"] == []
 
 
-def test_keys_made_before_permissions_keep_every_api_permission_but_mcp():
+def test_keys_made_before_permissions_keep_the_api_permissions_there_were_but_mcp():
     path = Path(__file__).resolve().parents[3] / "migrations/versions/0005_key_permissions.py"
     spec = importlib.util.spec_from_file_location("migration", path)
     migration = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(migration)
 
-    assert migration.EXISTING == [item for item in Permission if item != Permission.MCP]
+    # The notes permissions came later: a key gets them only when they're ticked.
+    later = {Permission.MCP, Permission.NOTES_READ, Permission.NOTES_ADD}
+    assert migration.EXISTING == [item for item in Permission if item not in later]
     assert migration.DEFAULT == ["interviews:read", "candidates:read"]

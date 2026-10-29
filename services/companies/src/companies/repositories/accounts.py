@@ -11,7 +11,7 @@ from companies.models.audit import AuditEvent
 from companies.models.companies import Company, Member
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
-from companies.repositories import guests
+from companies.repositories import guests, interview_notes
 
 
 async def memberships(session: AsyncSession, user_id: str) -> list[tuple[Member, Company, int]]:
@@ -159,6 +159,7 @@ async def export(session: AsyncSession, user_id: str, email: str) -> dict:
         .where(AuditEvent.user_id == user_id)
         .order_by(AuditEvent.created_at)
     )
+    notes = await interview_notes.authored(session, user_id)
 
     return {
         "company_memberships": [
@@ -191,6 +192,17 @@ async def export(session: AsyncSession, user_id: str, email: str) -> dict:
         "company_decisions": [
             {"company": name, "action": action, "target_id": target_id, "via": via, "at": at}
             for name, action, target_id, via, at in decisions
+        ],
+        # The notes they wrote on their companies' interviews.
+        "interview_notes": [
+            {
+                "company": name,
+                "interview": title,
+                "text": text,
+                "written_at": at,
+                "edited_at": edited,
+            }
+            for name, title, text, at, edited in notes
         ],
     }
 

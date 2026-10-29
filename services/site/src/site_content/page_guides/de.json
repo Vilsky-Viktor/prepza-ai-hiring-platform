@@ -44,7 +44,7 @@
     "text": "Alle Interviews dieses Unternehmens und seine Credits für Kandidaten. Jedes Interview ist ein Test mit Zeitlimit, erstellt aus einer Stellenbeschreibung.",
     "actions": [
       "Erstelle mit „Neues Interview“ ein Interview aus einer Stellenbeschreibung.",
-      "Öffne ein Interview, um seine Themen, Kandidaten und Einstellungen zu sehen.",
+      "Öffne ein Interview, um seine Themen, Kandidaten, Notizen und Einstellungen zu sehen; eine angeheftete Notiz steht unter seinem Namen.",
       "Suche Interviews nach ihrem Titel.",
       "Probiere ein Interview als Kandidat aus oder lösche es.",
       "Lade Credits direkt beim Guthaben auf, oder schalte automatisches Aufladen im Tab „Abrechnung“ ein."
@@ -119,6 +119,19 @@
     "tips": [
       "Jeder Kandidat, der mindestens eine Frage beantwortet, verbraucht Credits, auch über den Link.",
       "Erinnerungen gehen automatisch an die Kandidaten."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Notizen",
+    "text": "Die Notizen deines Teams zu diesem Einstellungsverfahren: was ihr vereinbart habt, wen ihr als Nächstes anruft oder für wen das Interview ist. Alle in deinem Unternehmen sehen sie, Kandidaten nie.",
+    "actions": [
+      "Schreib eine Notiz in das Feld oben und klicke auf Posten oder drücke ⌘/Ctrl+Enter. Links darin werden anklickbar.",
+      "Bearbeite oder lösche deine eigenen Notizen mit den Schaltflächen in ihrer Zeile; Inhaber und Admins können jede Notiz löschen.",
+      "Hefte eine Notiz mit dem Lesezeichen oben an (Inhaber und Admins): Sie steht hier an erster Stelle sowie unter dem Namen des Interviews auf seiner Seite und in der Liste der Interviews."
+    ],
+    "tips": [
+      "Du arbeitest für Kunden? Hefte eine Notiz wie „Für Acme, Backend-Entwickler“ an, um auf einen Blick zu sehen, für wen jedes Interview ist.",
+      "Eine gelöschte Notiz ist endgültig weg. Das Aktionsprotokoll hält fest, wer eine Notiz geschrieben, geändert oder gelöscht hat, aber nie ihren Text."
     ]
   },
   "interviewSettings": {

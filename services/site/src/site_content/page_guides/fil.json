@@ -44,7 +44,7 @@
     "text": "Lahat ng interview ng kumpanyang ito at ang credits nito para sa mga aplikante. Bawat interview ay pagsusulit na may oras, ginawa mula sa job description.",
     "actions": [
       "Gumawa ng interview mula sa job description gamit ang “bagong interview”.",
-      "Buksan ang isang interview para makita ang mga topic, aplikante at setting nito.",
+      "Buksan ang isang interview para makita ang mga topic, aplikante, note at setting nito; lumalabas sa ilalim ng pangalan nito ang naka-pin na note.",
       "Maghanap ng interview ayon sa pamagat nito.",
       "Subukan ang interview bilang aplikante, o burahin ito.",
       "Mag-top up ng credits mula sa balanse, o i-on ang awtomatikong top-up sa tab na Billing."
@@ -119,6 +119,19 @@
     "tips": [
       "Gumagamit ng credits ang bawat aplikanteng sumagot ng kahit isang tanong, kasama ang mga galing sa link.",
       "Awtomatikong napapadalhan ng paalala ang mga aplikante."
+    ]
+  },
+  "interviewNotes": {
+    "title": "Mga note",
+    "text": "Mga note ng team mo tungkol sa hiring na ito: ang napagkasunduan ninyo, sino ang susunod na tatawagan, o para kanino ang interview. Nakikita ito ng lahat sa kumpanya mo; hindi kailanman ng mga aplikante.",
+    "actions": [
+      "Magsulat ng note sa box sa itaas at piliin ang I-post, o pindutin ang ⌘/Ctrl+Enter. Nagiging clickable ang mga link dito.",
+      "I-edit o i-delete ang sarili mong mga note gamit ang mga button sa row nila; puwedeng mag-delete ng note ng kahit sino ang mga may-ari at admin.",
+      "I-pin ang isang note gamit ang bookmark (mga may-ari at admin): una itong lalabas dito, at sa ilalim ng pangalan ng interview sa page nito at sa listahan ng mga interview."
+    ],
+    "tips": [
+      "Nagtatrabaho para sa mga kliyente? Mag-pin ng note gaya ng “Para sa Acme, Backend Developer” para makita agad kung para kanino ang bawat interview.",
+      "Tuluyan nang nawawala ang na-delete na note. Itinatala ng log ng aksyon kung sino ang sumulat, nagbago o nag-delete ng note, pero hindi kailanman ang text nito."
     ]
   },
   "interviewSettings": {

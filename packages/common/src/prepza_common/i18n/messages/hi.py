@@ -260,4 +260,9 @@ MESSAGES = {
     "There's no such answer.": "ऐसा कोई जवाब नहीं है।",
     "Only an owner or admin can email a report outside the company. Send it to one of your company's members.": "सिर्फ़ ओनर या एडमिन ही कंपनी से बाहर रिपोर्ट ईमेल कर सकते हैं। इसे अपनी कंपनी के किसी सदस्य को भेजें।",
     "Confirm you'll answer on your own, without AI tools or other people, to start.": "शुरू करने के लिए पुष्टि करें कि आप खुद जवाब देंगे, बिना AI टूल या दूसरे लोगों की मदद के।",
+    "Note not found": "नोट नहीं मिला",
+    "Only the note's author can edit it.": "सिर्फ़ नोट लिखने वाला ही इसे संपादित कर सकता है।",
+    "Only the note's author, the owner or an admin can delete it.": "सिर्फ़ नोट लिखने वाला, ओनर या कोई एडमिन ही इसे हटा सकता है।",
+    "Only the owner or an admin can pin a note.": "सिर्फ़ ओनर या कोई एडमिन ही नोट पिन कर सकता है।",
+    "Reading the interview's notes…": "इंटरव्यू के नोट देख रहा है…",
 }

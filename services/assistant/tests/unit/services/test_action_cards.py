@@ -1,6 +1,7 @@
 import asyncio
 
 import httpx
+import pytest
 
 from assistant.integrations import services
 from assistant.services import actions
@@ -37,6 +38,30 @@ def test_a_list_subject_is_the_matching_item(monkeypatch):
     found = asyncio.run(actions.subject_of(tools()["remove_member"], arguments, "t", "en"))
 
     assert found == members[1]
+
+
+def test_a_notes_subject_is_the_note_among_the_interviews_notes(monkeypatch):
+    interview = "11111111-1111-4111-8111-111111111111"
+    notes = [{"id": "n1", "text": "Call Lena"}, {"id": "n2", "text": "Shortlist five"}]
+    asked = []
+
+    async def get(service, path, query, token, language, via=None):
+        asked.append((service, path))
+
+        return httpx.Response(200, json=notes, request=httpx.Request("GET", "http://x"))
+
+    monkeypatch.setattr(services, "get", get)
+    tool = tools()["pin_interview_note"]
+    arguments = {"interview_id": interview, "note_id": "n2", "pinned": True}
+
+    found = asyncio.run(actions.subject_of(tool, arguments, "t", "en"))
+
+    assert found == notes[1]
+    assert asked == [("companies", f"/interviews/{interview}/notes")]
+
+    # A note that's gone (or not among them) is no card.
+    with pytest.raises(LookupError):
+        asyncio.run(actions.subject_of(tool, {**arguments, "note_id": "n3"}, "t", "en"))
 
 
 def test_a_change_sends_only_what_differs_from_now(redis, monkeypatch):

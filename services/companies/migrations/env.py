@@ -6,6 +6,7 @@ from prepza_common.db.db import migration_engine
 import companies.models.audit
 import companies.models.companies
 import companies.models.events
+import companies.models.interview_notes
 import companies.models.interview_results
 import companies.models.interviews
 import companies.models.invites
