@@ -1390,7 +1390,12 @@
       "title": "Voyez qui est le meilleur\nPartagez-le en quelques secondes",
       "text": "Les réponses et la note de chaque candidat, partagées par e-mail ou par chat.",
       "chatQuestion": "Salut, quelqu'un a déjà réussi ?",
-      "samples": "Exemples de rapports"
+      "samples": "Exemples de rapports",
+      "notes": {
+        "notes": "rédigez des commentaires d'entretien",
+        "pdf": "envoyez des rapports PDF",
+        "messengers": "partagez des résumés par messagerie"
+      }
     },
     "justAsk": {
       "title": "Demandez simplement à Mira",

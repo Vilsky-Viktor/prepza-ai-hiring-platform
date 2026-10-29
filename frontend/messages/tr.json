@@ -1390,7 +1390,12 @@
       "title": "En iyisini görün\nSaniyeler içinde paylaşın",
       "text": "Her adayın cevapları ve notu, e-postayla ya da sohbette paylaşılır.",
       "chatQuestion": "Selam, geçen oldu mu?",
-      "samples": "Örnek raporlar"
+      "samples": "Örnek raporlar",
+      "notes": {
+        "notes": "mülakat yorumları yazın",
+        "pdf": "PDF raporlar gönderin",
+        "messengers": "özetleri mesajlaşma uygulamalarıyla paylaşın"
+      }
     },
     "justAsk": {
       "title": "Mira'ya sormanız yeterli",

@@ -1390,7 +1390,12 @@
       "title": "Tingnan kung sino ang pinakamagaling\nI-share sa loob ng ilang segundo",
       "text": "Ang mga sagot at grade ng bawat aplikante, ishine-share sa email o chat.",
       "chatQuestion": "Uy, may pumasa na ba?",
-      "samples": "Mga halimbawang ulat"
+      "samples": "Mga halimbawang ulat",
+      "notes": {
+        "notes": "magsulat ng mga note sa interview",
+        "pdf": "magpadala ng mga PDF report",
+        "messengers": "i-share ang mga buod sa messaging app"
+      }
     },
     "justAsk": {
       "title": "Itanong lang kay Mira",

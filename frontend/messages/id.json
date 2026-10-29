@@ -1390,7 +1390,12 @@
       "title": "Lihat siapa yang terbaik\nBagikan dalam hitungan detik",
       "text": "Jawaban dan nilai setiap kandidat, dibagikan lewat email atau chat.",
       "chatQuestion": "Hai, sudah ada yang lulus belum?",
-      "samples": "Contoh laporan"
+      "samples": "Contoh laporan",
+      "notes": {
+        "notes": "tulis catatan wawancara",
+        "pdf": "kirim laporan PDF",
+        "messengers": "bagikan ringkasan lewat aplikasi pesan"
+      }
     },
     "justAsk": {
       "title": "Tanya saja Mira",

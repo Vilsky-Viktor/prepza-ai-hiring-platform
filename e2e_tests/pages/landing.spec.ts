@@ -229,6 +229,17 @@ test("the pricing section shows the catalog's top-ups and free candidates", asyn
   );
 });
 
+test("the reports section lists three facts under its picture", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.goto("/");
+  const section = page.locator("#reports");
+  await section.scrollIntoViewIfNeeded();
+
+  const notes = section.getByTestId("notes");
+  await expect(notes).toBeVisible();
+  await expect(notes.locator("li")).toHaveCount(3);
+});
+
 test("the comparison shows prepza's price range from the catalog", async ({ page }) => {
   test.setTimeout(120_000);
   const prices = await catalog(page);

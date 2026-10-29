@@ -1390,7 +1390,12 @@
       "title": "Zobacz, kto jest najlepszy\nUdostępnij w kilka sekund",
       "text": "Odpowiedzi i wynik każdego kandydata, udostępniane e-mailem lub na czacie.",
       "chatQuestion": "Hej, czy ktoś już zdał?",
-      "samples": "Przykładowe raporty"
+      "samples": "Przykładowe raporty",
+      "notes": {
+        "notes": "pisz notatki z rozmowy",
+        "pdf": "wysyłaj raporty PDF",
+        "messengers": "udostępniaj podsumowania przez komunikatory"
+      }
     },
     "justAsk": {
       "title": "Po prostu zapytaj Mirę",

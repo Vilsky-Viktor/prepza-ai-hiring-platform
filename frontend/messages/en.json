@@ -1390,7 +1390,12 @@
       "title": "See who's best\nShare it in seconds",
       "text": "Every candidate's answers and grade, shared by email or chat.",
       "chatQuestion": "Hey, has anyone passed yet?",
-      "samples": "Report samples"
+      "samples": "Report samples",
+      "notes": {
+        "notes": "write interview notes",
+        "pdf": "send PDF reports",
+        "messengers": "share summaries via messengers"
+      }
     },
     "justAsk": {
       "title": "Just ask Mira",

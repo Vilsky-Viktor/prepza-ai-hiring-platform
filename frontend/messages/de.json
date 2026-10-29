@@ -1390,7 +1390,12 @@
       "title": "Sieh, wer am besten ist\nTeile es in Sekunden",
       "text": "Die Antworten und das Ergebnis jedes Kandidaten, geteilt per E-Mail oder Chat.",
       "chatQuestion": "Hey, hat schon jemand bestanden?",
-      "samples": "Beispielberichte"
+      "samples": "Beispielberichte",
+      "notes": {
+        "notes": "Interview-Notizen schreiben",
+        "pdf": "PDF-Berichte senden",
+        "messengers": "Zusammenfassungen per Messenger teilen"
+      }
     },
     "justAsk": {
       "title": "Frag einfach Mira",

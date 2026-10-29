@@ -3,6 +3,7 @@ import { DownloadIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
 import { DEMO_GROUP } from "@/features/landing/components/demo-panel"
+import { NotesLine } from "@/features/landing/components/notes-line"
 import { ReportsDemo } from "@/features/landing/components/reports-demo"
 import {
   LandingSection,
@@ -14,7 +15,7 @@ import { BAND } from "@/config/landing-backgrounds"
 import { REPORT_SAMPLES_URL } from "@/config/report-samples"
 
 /** Detailed reports and quick sharing: the candidates list and a candidate's report, each
- * shared, played in one panel; then the button to create an interview and, beside it, the
+ * shared, played in one panel, with short facts under it; then the button to create an interview and, beside it, the
  * sample reports to download. On phones they stack, as wide as each other. */
 export async function ShareReportsSection() {
   const t = await getTranslations("landing")
@@ -26,8 +27,17 @@ export async function ShareReportsSection() {
       text={t("shareReports.text")}
       background={BAND}
     >
-      <div className={DEMO_GROUP}>
-        <ReportsDemo />
+      <div className="flex flex-col gap-8">
+        <div className={DEMO_GROUP}>
+          <ReportsDemo />
+        </div>
+        <NotesLine
+          notes={[
+            t("shareReports.notes.notes"),
+            t("shareReports.notes.pdf"),
+            t("shareReports.notes.messengers"),
+          ]}
+        />
       </div>
       <div className="flex justify-center gap-3 max-sm:mx-auto max-sm:w-fit max-sm:flex-col max-sm:items-stretch">
         <StartButton label={t("closing.start")} />

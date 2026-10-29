@@ -1390,7 +1390,12 @@
       "title": "Zie wie de beste is\nDeel het in seconden",
       "text": "De antwoorden en score van elke kandidaat, gedeeld per e-mail of chat.",
       "chatQuestion": "Hé, is er al iemand geslaagd?",
-      "samples": "Voorbeeldrapporten"
+      "samples": "Voorbeeldrapporten",
+      "notes": {
+        "notes": "interviewnotities schrijven",
+        "pdf": "PDF-rapporten versturen",
+        "messengers": "samenvattingen delen via berichtenapps"
+      }
     },
     "justAsk": {
       "title": "Vraag het gewoon Mira",

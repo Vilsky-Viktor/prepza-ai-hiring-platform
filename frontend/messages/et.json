@@ -1390,7 +1390,12 @@
       "title": "Vaata, kes on parim\nJaga sekunditega",
       "text": "Iga kandidaadi vastused ja hinne, jagatud e-kirja või vestluse kaudu.",
       "chatQuestion": "Hei, kas keegi juba läbis?",
-      "samples": "Näidisaruanded"
+      "samples": "Näidisaruanded",
+      "notes": {
+        "notes": "kirjuta intervjuu märkmeid",
+        "pdf": "saada PDF-aruandeid",
+        "messengers": "jaga kokkuvõtteid sõnumirakendustes"
+      }
     },
     "justAsk": {
       "title": "Lihtsalt küsi Miralt",

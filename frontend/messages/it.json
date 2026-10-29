@@ -1390,7 +1390,12 @@
       "title": "Scopri chi è il migliore\nCondividilo in pochi secondi",
       "text": "Le risposte e il punteggio di ogni candidato, condivisi via email o in chat.",
       "chatQuestion": "Ehi, qualcuno l'ha già superato?",
-      "samples": "Report di esempio"
+      "samples": "Report di esempio",
+      "notes": {
+        "notes": "scrivi note sul colloquio",
+        "pdf": "invia report in PDF",
+        "messengers": "condividi riepiloghi via app di messaggistica"
+      }
     },
     "justAsk": {
       "title": "Chiedi a Mira",

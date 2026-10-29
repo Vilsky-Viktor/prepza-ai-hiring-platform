@@ -1390,7 +1390,12 @@
       "title": "看清谁最优秀\n几秒内即可分享",
       "text": "每位候选人的答案和成绩，通过邮件或聊天分享。",
       "chatQuestion": "嘿，有人通过了吗？",
-      "samples": "报告示例"
+      "samples": "报告示例",
+      "notes": {
+        "notes": "撰写面试备注",
+        "pdf": "发送 PDF 报告",
+        "messengers": "通过聊天应用分享摘要"
+      }
     },
     "justAsk": {
       "title": "问问米拉就行",

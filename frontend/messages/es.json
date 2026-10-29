@@ -1390,7 +1390,12 @@
       "title": "Mira quién es el mejor\nCompártelo en segundos",
       "text": "Las respuestas y la nota de cada candidato, compartidas por correo o chat.",
       "chatQuestion": "Oye, ¿ya aprobó alguien?",
-      "samples": "Informes de ejemplo"
+      "samples": "Informes de ejemplo",
+      "notes": {
+        "notes": "escribir comentarios de la entrevista",
+        "pdf": "enviar informes en PDF",
+        "messengers": "compartir resúmenes por mensajería"
+      }
     },
     "justAsk": {
       "title": "Solo pregunta a Mira",

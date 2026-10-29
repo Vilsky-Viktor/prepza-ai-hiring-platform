@@ -1390,7 +1390,12 @@
       "title": "Biết ngay ai giỏi nhất\nChia sẻ trong vài giây",
       "text": "Câu trả lời và điểm của mọi ứng viên, chia sẻ qua email hoặc chat.",
       "chatQuestion": "Này, đã có ai đạt chưa?",
-      "samples": "Báo cáo mẫu"
+      "samples": "Báo cáo mẫu",
+      "notes": {
+        "notes": "viết ghi chú phỏng vấn",
+        "pdf": "gửi báo cáo PDF",
+        "messengers": "chia sẻ tóm tắt qua ứng dụng nhắn tin"
+      }
     },
     "justAsk": {
       "title": "Chỉ cần hỏi Mira",
