@@ -449,8 +449,10 @@ export interface paths {
     put?: never
     /**
      * Translate News
-     * @description The library saved a news post; the worker translates it into the languages it lacks.
-     *     While paused the call is refused, and the library sends the post again later.
+     * @description Site saved a news post, sending its English title and text and the languages it lacks;
+     *     each language is queued for the next batch, and the translations go back as
+     *     `news.translated`. While paused the call is refused, and site's daily run sends the post
+     *     again.
      */
     post: operations["translate_news_internal_news__news_id__translate_post"]
     delete?: never
@@ -763,6 +765,18 @@ export interface components {
       paid: boolean
     }
     /**
+     * NewsSource
+     * @description A post to translate, sent by site: its English title and text and the languages it lacks.
+     */
+    NewsSource: {
+      /** Title */
+      title: string
+      /** Text */
+      text: string
+      /** Missing */
+      missing: string[]
+    }
+    /**
      * PatternOut
      * @description A pattern on the admin zone's patterns tab.
      */
@@ -792,6 +806,8 @@ export interface components {
       status: string
       /** Reviewed At */
       reviewed_at: string | null
+      /** Eval Run */
+      eval_run: string | null
     }
     /**
      * PatternStatus
@@ -1676,7 +1692,11 @@ export interface operations {
       }
       cookie?: never
     }
-    requestBody?: never
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["NewsSource"]
+      }
+    }
     responses: {
       /** @description Successful Response */
       202: {

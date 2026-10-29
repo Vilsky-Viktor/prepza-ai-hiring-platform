@@ -356,27 +356,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/news/{news_id}/translations": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    /**
-     * Save News Translations
-     * @description Safe to repeat; translations of an older version of the post, or of a deleted one, are
-     *     dropped.
-     */
-    put: operations["save_news_translations_internal_news__news_id__translations_put"]
-    post?: never
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
 }
 export type webhooks = Record<string, never>
 export interface components {
@@ -565,7 +544,7 @@ export interface components {
     }
     /**
      * NewsSourceOut
-     * @description A post to translate (generation): its English text and the languages it lacks.
+     * @description A post's English title and text and the languages it lacks (notifications reads it).
      */
     NewsSourceOut: {
       /** Title */
@@ -616,28 +595,6 @@ export interface components {
       /** Titles */
       titles: {
         [key: string]: string
-      }
-    }
-    /** NewsTranslationIn */
-    NewsTranslationIn: {
-      /** Title */
-      title: string
-      /** Text */
-      text: string
-    }
-    /**
-     * NewsTranslationsIn
-     * @description Translations of the post's English `title` and `text`: saved only while the post still
-     *     reads so, since an edit made during translation starts a new one.
-     */
-    NewsTranslationsIn: {
-      /** Title */
-      title: string
-      /** Text */
-      text: string
-      /** Translations */
-      translations: {
-        [key: string]: components["schemas"]["NewsTranslationIn"]
       }
     }
     /**
@@ -1291,39 +1248,6 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["NewsSourceOut"]
         }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  save_news_translations_internal_news__news_id__translations_put: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        news_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["NewsTranslationsIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
       }
       /** @description Validation Error */
       422: {

@@ -33,7 +33,7 @@ src/generation/
 ├── models/, schemas/       # SQLAlchemy tables; request, response and model-output schemas
 ├── prompts/                # The model prompts, one module per task
 ├── helpers/, constants/    # Pure functions (payloads, progress, questions); fixed values
-├── integrations/           # library, site, Cloud Tasks, OpenAI (chat, batch), Redis,
+├── integrations/           # library, Cloud Tasks, OpenAI (chat, batch), Redis,
 │                           # AI usage
 └── jobs/                   # One-off and maintenance runs (`python -m generation.jobs.<name>`)
 tests/unit/, tests/integration/   # Mirror src/

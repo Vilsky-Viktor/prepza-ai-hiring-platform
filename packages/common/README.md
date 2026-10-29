@@ -192,6 +192,8 @@ out or listed under another area):
 - `deletions`: the payloads of `interview.deleted`, `company.deleted` and `user.deleted`
   (`InterviewDeleted`, `CompanyDeleted`, `UserDeleted`), which the holders of that data consume.
 - `event_models`: the outbox's and processed events' columns every service's tables share.
+- `news`: the payload of `news.translated` (`NewsTranslated`), a news post's translations from
+  generation to site.
 - `notifications`: the bell's notifications other services ask for.
 - `outbox`: events saved with their change and published once committed.
 - `processed_events`: events a consumer handled, to handle each once (`claim`).

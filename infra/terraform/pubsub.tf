@@ -33,12 +33,13 @@ resource "google_pubsub_subscription" "dead_letter" {
 # "candidate." events that way, as listing them one by one outgrew the cap, and ignore the ones
 # they don't handle; ats takes the "interview." family that way; notifications takes the
 # "notification." family too (notification.requested, and site's notification.news_withdrawn). A
-# family of one type today (company, contact, member, report, credits, user) is taken whole to save
+# family of one type today (company, contact, member, report, credits, user, news) is taken whole to save
 # bytes; a consumer ignores any type of it it doesn't handle. Every holder of a user's data but
 # companies (which accounts calls first, as it may refuse) takes `user.deleted`, accounts' deletion
 # of an account. Companies takes `audit.recorded`, members' actions in billing, ats, notifications
 # and api, for the company's action log. Notifications and ats take their own families too (email,
-# ats): a web hook received is recorded as an event, and its work runs from it. A new consumer's
+# ats): a web hook received is recorded as an event, and its work runs from it. Site takes
+# generation's `news.translated`, a news post's translations. A new consumer's
 # subscription is created on apply and gets only the events published after that.
 locals {
   consumes = {
@@ -51,7 +52,7 @@ locals {
     assistant     = ["company.deleted", "candidate.removed", "candidate.interview_deleted", "user.*"]
     accounts      = ["guests.deleted"]
     generation    = ["user.*"]
-    site          = ["user.*"]
+    site          = ["user.*", "news.*"]
     # Every AI call and limit hit, stored for the admin zone's AI costs tab.
     billing = ["ai.used", "limit.hit", "user.*"]
   }

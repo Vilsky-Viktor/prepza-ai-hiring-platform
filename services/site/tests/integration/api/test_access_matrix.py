@@ -45,7 +45,7 @@ async def side(kind: str) -> Side:
 def world(run, monkeypatch):
     """Generation isn't asked to translate."""
 
-    async def translate_news(news_id):
+    async def translate_news(news_id, source):
         return None
 
     monkeypatch.setattr(generation, "translate_news", translate_news)

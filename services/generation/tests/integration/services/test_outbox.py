@@ -4,10 +4,14 @@ from datetime import UTC, datetime, timedelta
 from prepza_common.events import outbox, pubsub
 from sqlalchemy import select
 
+from generation.constants.batch_work import BatchKind
 from generation.constants.statuses import Status
 from generation.core.db import Session
+from generation.models.batch_work import BatchWork
 from generation.models.outbox import OutboxEvent
 from generation.repositories import generations
+from generation.schemas.news import TranslatedNews
+from generation.services import batch_work
 from generation.services import outbox as outbox_service
 from generation.services import schedules
 from tests.integration.transactions import transaction
@@ -74,3 +78,32 @@ def test_a_stuck_interview_generation_saves_its_failed_event_and_a_template_none
 
     assert ("generation.failed", {"generation_id": str(interview_id)}) in saved
     assert ("generation.failed", {"generation_id": str(template_id)}) not in saved
+
+
+def test_a_news_posts_translation_is_saved_as_its_event_and_the_flush_publishes_it(run, published):
+    """Generation never calls site: the translation leaves through the outbox, with the English
+    it was made from, published at once (or by the next flush, were Pub/Sub down)."""
+    news_id = uuid.uuid4()
+    source = {"title": "Practice", "text": "One.", "missing": ["de"]}
+    work = BatchWork(kind=BatchKind.NEWS, subject_id=news_id, key="de", payload={"source": source})
+
+    async def scenario():
+        await batch_work.save(work, TranslatedNews(title="Üben", text="Eins."))
+
+        async with Session() as session:
+            rows = await session.scalars(
+                select(OutboxEvent).where(OutboxEvent.data["news_id"].astext == str(news_id))
+            )
+
+            return [(row.event_type, row.published_at is not None) for row in rows]
+
+    saved = run(scenario())
+
+    expected = {
+        "news_id": str(news_id),
+        "title": "Practice",
+        "text": "One.",
+        "translations": {"de": {"title": "Üben", "text": "Eins."}},
+    }
+    assert saved == [("news.translated", True)]
+    assert published == [("news.translated", expected)]

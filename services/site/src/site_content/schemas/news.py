@@ -39,7 +39,7 @@ class AdminNewsOut(NewsOut):
 
 
 class NewsSourceOut(BaseModel):
-    """A post to translate (generation): its English text and the languages it lacks."""
+    """A post's English title and text and the languages it lacks (notifications reads it)."""
 
     title: str
     text: str
@@ -56,17 +56,3 @@ class NewsTitlesIn(BaseModel):
 class NewsTitlesOut(BaseModel):
     # By post id; deleted posts are left out.
     titles: dict[str, str]
-
-
-class NewsTranslationIn(BaseModel):
-    title: NewsTitle
-    text: NewsText
-
-
-class NewsTranslationsIn(BaseModel):
-    """Translations of the post's English `title` and `text`: saved only while the post still
-    reads so, since an edit made during translation starts a new one."""
-
-    title: str
-    text: str
-    translations: dict[Language, NewsTranslationIn]

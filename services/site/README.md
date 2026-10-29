@@ -8,8 +8,10 @@ site shows, the knowledge the assistant's help chat answers from
 (accounts' `user.deleted`, at `/internal/events`) and are in its export (`/internal/users/{id}/export`), with Turnstile and per-address limits (`CONTACT_*`) on the form. It
 also keeps the news posts and their translations (`news`, `news_translations`): the news page,
 the admin zone's news tab, the bell's notification for each post (`notification.requested`, taken
-back with `notification.news_withdrawn`), generation's translations
-(`/internal/news/{id}`, `/translations`) and the bell's titles (`/internal/news/titles`); a
+back with `notification.news_withdrawn`), the post's English and missing
+languages sent to generation, whose translations come back as `news.translated` events (at
+`/internal/events`), the post's English for notifications (`/internal/news/{id}`) and the bell's
+titles (`/internal/news/titles`); a
 daily schedule (`/internal/schedules/news`) sends posts still missing a language again. A
 one-off job copied library's news rows (`python -m site_content.jobs.copy_from_library`, safe to
 repeat). What it does:
@@ -26,7 +28,8 @@ src/site_content/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
-├── handlers/               # Pub/Sub events (accounts' `user.deleted`); dispatch.py picks one
+├── handlers/               # Pub/Sub events (accounts' `user.deleted`, generation's
+│                           # `news.translated`); dispatch.py picks one
 ├── services/               # The help knowledge, contact, news, deletion and export, the outbox;
 │                           # each opens its transaction
 ├── repositories/           # Database queries (news, the outbox); take the session, never commit

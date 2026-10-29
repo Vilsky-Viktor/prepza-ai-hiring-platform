@@ -1,7 +1,7 @@
 """News posts and campaigns translated through OpenAI's Batch API (services/translation_jobs.py,
 batch_work.py, batch_steps.py): one piece per missing language, sent in a batch, each reply
-checked against the limits and saved (a campaign's sent to notifications as an event), or asked
-for again. OpenAI and storage are fakes."""
+checked against the limits and sent back as an event (a post's to site, a campaign's to
+notifications), or asked for again. OpenAI and storage are fakes."""
 
 import asyncio
 import json
@@ -11,10 +11,10 @@ import pytest
 from prepza_common.ai.ai_constants import AI_USED
 from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH
 from prepza_common.events.campaigns import CAMPAIGN_TRANSLATED, CampaignTranslated
+from prepza_common.events.news import NEWS_TRANSLATED, NewsTranslated
 
 from generation.constants.actions import NEWS_TRANSLATION
 from generation.constants.batch_work import BATCH_WORK_ATTEMPTS, BatchKind
-from generation.integrations import site
 from generation.schemas.campaigns import CampaignSource
 from generation.schemas.news import NewsSource
 from generation.services import batch_work
@@ -40,17 +40,9 @@ def store(batch_store):
 def saved(monkeypatch):
     calls = []
 
-    async def news_source(news_id):
-        return POST
-
-    async def save_news(news_id, source, translations):
-        calls.append(("news", news_id, {k: v.model_dump() for k, v in translations.items()}))
-
     async def flushed():
         calls.append("published")
 
-    monkeypatch.setattr(site, "get_news_source", news_source)
-    monkeypatch.setattr(site, "save_news_translations", save_news)
     monkeypatch.setattr(batch_work.outbox, "add", lambda session, event: calls.append(event))
     monkeypatch.setattr(batch_work.outbox_service, "flush_quietly", flushed)
 
@@ -58,8 +50,8 @@ def saved(monkeypatch):
 
 
 def test_each_missing_language_is_one_piece_queued_once(store, saved):
-    asyncio.run(translate_news(NEWS_ID))
-    asyncio.run(translate_news(NEWS_ID))
+    asyncio.run(translate_news(NEWS_ID, POST))
+    asyncio.run(translate_news(NEWS_ID, POST))
 
     rows = sorted(store.rows.values(), key=lambda row: row.key)
     assert [(row.kind, row.key) for row in rows] == [(BatchKind.NEWS, "de"), (BatchKind.NEWS, "fr")]
@@ -72,10 +64,12 @@ def test_each_missing_language_is_one_piece_queued_once(store, saved):
     assert body["response_format"]["json_schema"]["strict"] is True
 
 
-def test_a_reply_within_the_limits_is_saved_and_priced_at_batch_price(
+def test_a_reply_within_the_limits_goes_to_site_as_an_event_priced_at_batch_price(
     store, saved, monkeypatch, published
 ):
-    asyncio.run(translate_news(NEWS_ID))
+    """Each translation goes back as `news.translated`, with the English it's of, and no call
+    to site."""
+    asyncio.run(translate_news(NEWS_ID, POST))
 
     def answer(body):
         language = language_of(body)
@@ -84,10 +78,18 @@ def test_a_reply_within_the_limits_is_saved_and_priced_at_batch_price(
 
     run_batches(monkeypatch, answer)
 
-    assert sorted(saved, key=lambda call: list(call[2])) == [
-        ("news", NEWS_ID, {"de": {"title": "German title", "text": "German text"}}),
-        ("news", NEWS_ID, {"fr": {"title": "French title", "text": "French text"}}),
+    events = [call for call in saved if call != "published"]
+    assert {kind for kind, _ in events} == {NEWS_TRANSLATED}
+    assert sorted((data["translations"] for _, data in events), key=list) == [
+        {"de": {"title": "German title", "text": "German text"}},
+        {"fr": {"title": "French title", "text": "French text"}},
     ]
+    assert {(data["news_id"], data["title"], data["text"]) for _, data in events} == {
+        (str(NEWS_ID), POST.title, POST.text)
+    }
+    assert saved.count("published") == 2
+    # What site reads it as.
+    assert NewsTranslated.model_validate(events[0][1]).news_id == NEWS_ID
     assert store.rows == {}
     used = [data for kind, data in published if kind == AI_USED]
     assert {data["action"] for data in used} == {NEWS_TRANSLATION}
@@ -95,7 +97,7 @@ def test_a_reply_within_the_limits_is_saved_and_priced_at_batch_price(
 
 
 def test_a_reply_past_the_limits_is_asked_for_again_then_given_up(store, saved, monkeypatch):
-    asyncio.run(translate_news(NEWS_ID))
+    asyncio.run(translate_news(NEWS_ID, POST))
     too_long = json.dumps({"title": "T", "text": "x" * (MAX_NEWS_TEXT_LENGTH + 1)})
 
     run_batches(monkeypatch, lambda body: too_long, rounds=BATCH_WORK_ATTEMPTS)

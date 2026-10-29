@@ -885,58 +885,6 @@
      }
     }
    }
-  },
-  "/internal/news/{news_id}/translations": {
-   "put": {
-    "tags": [
-     "internal"
-    ],
-    "summary": "Save News Translations",
-    "description": "Safe to repeat; translations of an older version of the post, or of a deleted one, are\ndropped.",
-    "operationId": "save_news_translations_internal_news__news_id__translations_put",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "news_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "format": "uuid",
-       "title": "News Id"
-      }
-     }
-    ],
-    "requestBody": {
-     "required": true,
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/NewsTranslationsIn"
-       }
-      }
-     }
-    },
-    "responses": {
-     "204": {
-      "description": "Successful Response"
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
   }
  },
  "components": {
@@ -1342,7 +1290,7 @@
      "missing"
     ],
     "title": "NewsSourceOut",
-    "description": "A post to translate (generation): its English text and the languages it lacks."
+    "description": "A post's English title and text and the languages it lacks (notifications reads it)."
    },
    "NewsTitlesIn": {
     "properties": {
@@ -1407,82 +1355,6 @@
      "titles"
     ],
     "title": "NewsTitlesOut"
-   },
-   "NewsTranslationIn": {
-    "properties": {
-     "title": {
-      "type": "string",
-      "maxLength": 120,
-      "minLength": 1,
-      "title": "Title"
-     },
-     "text": {
-      "type": "string",
-      "maxLength": 500,
-      "minLength": 1,
-      "title": "Text"
-     }
-    },
-    "type": "object",
-    "required": [
-     "title",
-     "text"
-    ],
-    "title": "NewsTranslationIn"
-   },
-   "NewsTranslationsIn": {
-    "properties": {
-     "title": {
-      "type": "string",
-      "title": "Title"
-     },
-     "text": {
-      "type": "string",
-      "title": "Text"
-     },
-     "translations": {
-      "additionalProperties": {
-       "$ref": "#/components/schemas/NewsTranslationIn"
-      },
-      "propertyNames": {
-       "enum": [
-        "en",
-        "ru",
-        "uk",
-        "es",
-        "pt",
-        "de",
-        "fr",
-        "it",
-        "pl",
-        "nl",
-        "tr",
-        "ar",
-        "he",
-        "fa",
-        "ja",
-        "zh",
-        "ko",
-        "hi",
-        "id",
-        "th",
-        "vi",
-        "fil",
-        "et"
-       ]
-      },
-      "type": "object",
-      "title": "Translations"
-     }
-    },
-    "type": "object",
-    "required": [
-     "title",
-     "text",
-     "translations"
-    ],
-    "title": "NewsTranslationsIn",
-    "description": "Translations of the post's English `title` and `text`: saved only while the post still\nreads so, since an edit made during translation starts a new one."
    },
    "PageGuideOut": {
     "properties": {

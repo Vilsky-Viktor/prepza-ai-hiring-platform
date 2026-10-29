@@ -1,6 +1,7 @@
 import uuid
 
 from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
+from prepza_common.events.news import NewsTranslation as NewsTranslationIn
 from prepza_common.events.notifications import NEWS_WITHDRAWN
 from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
@@ -9,7 +10,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from site_content.constants.news import NEWS_RESEND_BATCH
 from site_content.models.news import News, NewsTranslation
 from site_content.repositories import outbox
-from site_content.schemas.news import NewsIn, NewsTranslationIn
+from site_content.schemas.news import NewsIn
 
 # Newest first; posts of one day by when they were written.
 NEWEST_FIRST = (News.published_on.desc(), News.created_at.desc(), News.id.desc())

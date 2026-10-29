@@ -81,9 +81,9 @@ locals {
   calls = {
     frontend = []
     library  = ["generation"]
-    # site: the news posts it translates (campaigns' translations go to notifications as an event).
-    generation        = ["library", "site"]
-    generation-worker = ["library", "site"]
+    # News posts' and campaigns' translations go back to site and notifications as events.
+    generation        = ["library"]
+    generation-worker = ["library"]
     rounds            = ["library"]
     companies         = ["generation", "library", "rounds", "billing", "accounts"]
     # companies' names and accounts' emails, for the AI costs tab.
@@ -102,7 +102,7 @@ locals {
     # Every service holding part of a user's data, for downloading an account (deleting one is
     # companies' call, then the user.deleted event); billing also sets a new account's currency.
     accounts = ["companies", "rounds", "generation", "billing", "notifications", "ats", "api", "assistant", "library", "site"]
-    # generation: translating news posts.
+    # generation: translating news posts (it sends them back as news.translated events).
     site = ["generation"]
   }
 

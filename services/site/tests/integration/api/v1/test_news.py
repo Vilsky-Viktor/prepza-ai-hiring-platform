@@ -4,6 +4,7 @@ import httpx
 import pytest
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
+from prepza_common.events.news import NewsTranslation as NewsTranslationIn
 from sqlalchemy import select
 
 from site_content.core.db import Session
@@ -11,7 +12,7 @@ from site_content.integrations import generation
 from site_content.main import app
 from site_content.models.outbox import OutboxEvent
 from site_content.repositories import news
-from site_content.schemas.news import NewsIn, NewsTranslationIn
+from site_content.schemas.news import NewsIn
 from site_content.services import news as news_service
 from tests.integration.transactions import transaction
 
@@ -61,7 +62,7 @@ def translator(monkeypatch):
     """The posts sent to be translated; generation isn't asked."""
     sent = []
 
-    async def translate_news(news_id):
+    async def translate_news(news_id, source):
         sent.append(news_id)
 
     monkeypatch.setattr(generation, "translate_news", translate_news)
@@ -116,8 +117,8 @@ def test_the_admin_tab_and_the_public_page_end_to_end(run, monkeypatch):
     monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
     sent = []
 
-    async def translate_news(news_id):
-        sent.append(news_id)
+    async def translate_news(news_id, source):
+        sent.append((news_id, source))
 
     monkeypatch.setattr(generation, "translate_news", translate_news)
     app.dependency_overrides[current_user] = lambda: User(
@@ -153,7 +154,13 @@ def test_the_admin_tab_and_the_public_page_end_to_end(run, monkeypatch):
     finally:
         app.dependency_overrides.clear()
 
-    assert [str(item) for item in sent] == [created["id"]]
+    # Generation gets the post's English and every other language, so it never calls site.
+    assert [(str(news_id), source) for news_id, source in sent] == [
+        (
+            created["id"],
+            {"title": "Hello", "text": body["text"], "missing": news.OTHER_LANGUAGES},
+        )
+    ]
     assert created["translated"] is False
     assert [(row["title"], row["text"]) for row in before] == [("Hello", body["text"])]
     assert [row["title"] for row in after] == ["Hello ja"]

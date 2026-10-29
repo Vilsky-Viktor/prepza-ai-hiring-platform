@@ -56,8 +56,7 @@ flowchart LR
     billing -- accounts' emails --> accounts
     accounts -- a new account's currency --> billing
     worker -- saves sets, reuses questions --> library
-    worker -- news posts, their translations --> site
-    site -- translate a news post --> generation
+    site -- news posts to translate --> generation
     notifications -- news titles --> site
     library -- re-generate, verify --> generation
     rounds -- questions --> library
@@ -77,7 +76,7 @@ flowchart LR
     billing -- credits.added --> pubsub
     library & companies & billing & ats & site -- notification.requested --> pubsub
     site -- notification.news_withdrawn --> pubsub
-    worker -- notification.campaign_translated --> pubsub
+    worker -- notification.campaign_translated, news.translated --> pubsub
     accounts -- user.deleted --> pubsub
     pubsub -- push --> library
     pubsub -- push --> rounds
@@ -86,6 +85,7 @@ flowchart LR
     pubsub -- push --> api
     pubsub -- push --> assistant
     pubsub -- user.deleted --> generation & site
+    pubsub -- news.translated --> site
     pubsub -- guests.deleted --> accounts
     pubsub -- ai.used / limit.hit, from every service --> billing
     billing & ats & notifications & api -- audit.recorded --> pubsub
@@ -109,7 +109,7 @@ flowchart LR
 | `api` | The public API at `/api/v1/`: companies' API keys (as hashes, with their expiry), their web hooks (secrets encrypted) and deliveries; reads interviews and candidates and invites through companies, and sends a signed web hook when a candidate finishes |
 | `assistant` | The in-app AI assistant ([feature page](features/assistant.md)): signed-in users' conversations, streamed over server-sent events (`POST /chat`), and tools made from the other services' user-facing GET routes, called with the user's own token. The tools are an allow-list (`src/assistant/constants/tools.py`) over committed OpenAPI snapshots of those services (`src/assistant/openapi/`, written by `scripts/assistant-openapi.sh`); a tool's data is trimmed for the model, and the panel's links are built only from the tool's link template and ids. Calls to companies carry a signed `X-Assistant` header, so companies audits those reads as the assistant's. It also serves those tools to the user's own AI apps over MCP at the site's root (`/mcp`, with its OAuth authorization server; [feature page](features/mcp.md)). It also runs the help chat that answers signed-out visitors in the same panel (`POST /help/chat`, [Public site](features/site.md#faq-and-help-chat)), from the knowledge site sends it |
 | `accounts` | Users' accounts: the account settings (the interface language, on the Firebase sign-in), users' email settings with their consent log, the terms each accepted at sign-up, deleting and downloading an account across every service (deleting: companies first, by a call, as it may refuse; then, in one save, its own rows, the erasure note and the `user.deleted` event every other holder deletes its part by; then the sign-in; downloading: a call to each) and running those deletions again after a restore (`erasures`, 14 days: companies' call and the event again), the admin zone's account lookups, email settings and sign-up stats, and the lookups other services make (addresses, languages and email settings for notifications' emails, account ids for its bulk sends, accounts for companies' support tab and billing's AI costs tab). Public under `/api/accounts/` |
-| `site` | The public site's content (`src/site_content`, its own database `site`): the FAQ, the knowledge the help chat answers from (sent to the assistant at `/internal/help/knowledge`; the same knowledge as text at `/help/guide`, for signed-in users' assistant), each page's guide (`/help/pages/{key}`, for the info buttons and the assistant), the guide articles (read from `frontend/content`), the legal texts with every version (`/help/legal/...`), the contact form (`/help/contact`, its messages kept as `contact.sent` events in its outbox until published, and a week after; deleted with the account by `user.deleted`, exported when accounts asks), and the news posts with their translations (`/news`, the admin zone's `/superadmin/news`; generation translates each post, and the bell names it through `/internal/news/titles`; a daily schedule sends posts still missing a language again). Public under `/api/site/` |
+| `site` | The public site's content (`src/site_content`, its own database `site`): the FAQ, the knowledge the help chat answers from (sent to the assistant at `/internal/help/knowledge`; the same knowledge as text at `/help/guide`, for signed-in users' assistant), each page's guide (`/help/pages/{key}`, for the info buttons and the assistant), the guide articles (read from `frontend/content`), the legal texts with every version (`/help/legal/...`), the contact form (`/help/contact`, its messages kept as `contact.sent` events in its outbox until published, and a week after; deleted with the account by `user.deleted`, exported when accounts asks), and the news posts with their translations (`/news`, the admin zone's `/superadmin/news`; site sends each post's English and missing languages to generation, whose translations come back as `news.translated` events, and the bell names it through `/internal/news/titles`; a daily schedule sends posts still missing a language again). Public under `/api/site/` |
 | `frontend` | Next.js app; server-rendered pages call the API through the gateway. Its code is in `frontend/src/` (pages in `app/`, laid out as `.claude/rules/nextjs.md` says); `messages/`, `content/` and `public/` stay beside it |
 
 What each service does for users is described in the feature pages, linked from the [README](../README.md#documentation). Generation is described in [Generation and question quality](generation.md).
@@ -180,7 +180,7 @@ Delivery:
 | assistant | `company.deleted` (deletes the company's conversations), `candidate.removed` and `candidate.interview_deleted` (deletes the company's conversations that mention the erased candidate's email or invite, or the deleted interview), `user.deleted` (their conversations, connected AI apps and pending actions); deleting again deletes nothing more |
 | billing | `ai.used`, `limit.hit` (stored once by their id), `user.deleted` (the automatic top-ups paid with their card cancelled and off; their purchases, AI costs and limit hits stay without them) |
 | generation | `user.deleted` (their generations stay with their company without them) |
-| site | `user.deleted` (the contact messages sent from their email) |
+| site | `user.deleted` (the contact messages sent from their email), and generation's `news.translated` (a news post's translations, saved while its English still reads so; a translation saved again replaces itself) |
 
 - `user.deleted` (accounts, `prepza_common.events.deletions.UserDeleted`: the user's id and verified email, empty when unverified) goes to every holder of a user's data but companies, which accounts calls first, as it may refuse while the user owns a company others have joined. Each holder deletes by the user's id and email, safe to repeat; the daily `erasures` job publishes it again for the deletions of the last 14 days, so rows a backup brought back, or a write that raced the deletion, go too. A holder failing for hours dead-letters it (alerted); the next day's replay sends it again.
 - Locally, each consumer ignores events that aren't its own.

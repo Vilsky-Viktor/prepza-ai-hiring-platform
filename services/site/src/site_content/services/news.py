@@ -1,21 +1,32 @@
 import logging
 import uuid
 
+from prepza_common.events.news import NewsTranslated
+
 from site_content.core.db import Session
 from site_content.helpers.notifications import news_notification
 from site_content.integrations import generation
 from site_content.models.news import News
 from site_content.repositories import news, outbox
-from site_content.schemas.news import NewsIn, NewsTranslationIn
+from site_content.schemas.news import NewsIn
 from site_content.services import outbox as outbox_service
 
 logger = logging.getLogger(__name__)
 
 
 async def send_to_translator(news_id: uuid.UUID) -> None:
-    """Never raises: the post is saved first, and resend_untranslated sends it again later."""
+    """Sends the post's English title and text and the languages it lacks to generation; nothing
+    once it's deleted. Never raises: the post is saved first, and resend_untranslated sends it
+    again later."""
     try:
-        await generation.translate_news(news_id)
+        found = await source(news_id)
+
+        if found is None:
+            return
+
+        post, missing = found
+        body = {"title": post.title, "text": post.text, "missing": missing}
+        await generation.translate_news(news_id, body)
     except Exception:
         logger.exception("Couldn't send news post %s to be translated", news_id)
 
@@ -77,11 +88,13 @@ async def remove(news_id: uuid.UUID) -> None:
     await outbox_service.flush_quietly()
 
 
-async def save_translations(
-    news_id: uuid.UUID, title: str, text: str, translations: dict[str, NewsTranslationIn]
-) -> None:
+async def save_translations(event: NewsTranslated) -> None:
+    """Generation's translations of the post as it read `event.title` and `event.text`; dropped
+    when it changed since or is gone, and saved again they replace themselves."""
     async with Session.begin() as session:
-        await news.save_translations(session, news_id, title, text, translations)
+        await news.save_translations(
+            session, event.news_id, event.title, event.text, event.translations
+        )
 
 
 async def source(news_id: uuid.UUID) -> tuple[News, list[str]] | None:

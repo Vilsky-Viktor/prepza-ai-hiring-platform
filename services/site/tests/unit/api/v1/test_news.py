@@ -33,13 +33,16 @@ def post_row(**changes):
 @pytest.fixture
 def admin(monkeypatch):
     """Signed in as the superadmin Sam (or as `email`); storage keeps nothing, and every post
-    sent to be translated is recorded."""
+    sent to be translated is recorded with what generation gets."""
     monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
     sent = []
     saved = []
 
-    async def translate_news(news_id):
-        sent.append(news_id)
+    async def translate_news(news_id, source):
+        sent.append((news_id, source))
+
+    async def get(session, news_id):
+        return post_row()
 
     async def create(session, body):
         saved.append(body)
@@ -67,6 +70,7 @@ def admin(monkeypatch):
         saved.append(("deleted", news_id))
 
     monkeypatch.setattr(generation, "translate_news", translate_news)
+    monkeypatch.setattr(news, "get", get)
     monkeypatch.setattr(news, "create", create)
     monkeypatch.setattr(news, "lock", lock)
     monkeypatch.setattr(news, "clear_translations", clear_translations)
@@ -125,11 +129,14 @@ def test_a_new_post_at_the_limits_is_saved_trimmed_and_sent_to_be_translated(cli
     assert response.json()["title"] == "t" * MAX_NEWS_TITLE_LENGTH
     assert response.json()["translated"] is False
     assert admin.saved[1:] == [("notice", "news")]
-    assert admin.sent == [POST_ID]
+    # Generation gets the post's English and the languages it lacks, so it never calls site.
+    assert admin.sent == [
+        (POST_ID, {"title": BODY["title"], "text": BODY["text"], "missing": ["de"]})
+    ]
 
 
 def test_a_post_is_saved_even_when_generation_cant_take_it(client, admin, monkeypatch):
-    async def down(news_id):
+    async def down(news_id, source):
         raise RuntimeError("generation is down")
 
     monkeypatch.setattr(generation, "translate_news", down)
@@ -151,7 +158,7 @@ def test_a_new_text_is_translated_again(client, admin):
 
     assert response.status_code == 200
     assert admin.saved[0] == ("cleared", POST_ID)
-    assert admin.sent == [POST_ID]
+    assert [news_id for news_id, _ in admin.sent] == [POST_ID]
 
 
 def test_editing_a_deleted_post_is_not_found(client, admin, monkeypatch):
@@ -203,8 +210,8 @@ def service_token(lifetime=60):
     )
 
 
-def test_a_service_reads_and_translates_a_post(client, monkeypatch):
-    saved = []
+def test_a_service_reads_a_post_and_none_writes_its_translations(client, monkeypatch):
+    """Notifications reads a post's English; translations arrive only as `news.translated`."""
 
     async def get(session, news_id):
         return post_row()
@@ -212,40 +219,42 @@ def test_a_service_reads_and_translates_a_post(client, monkeypatch):
     async def missing_languages(session, news_id):
         return ["de", "fr"]
 
-    async def save_translations(session, news_id, title, text, translations):
-        saved.append((title, text, {code: item.title for code, item in translations.items()}))
-
     monkeypatch.setattr(news, "get", get)
     monkeypatch.setattr(news, "missing_languages", missing_languages)
-    monkeypatch.setattr(news, "save_translations", save_translations)
     body = {"title": "T", "text": "X", "translations": {"de": {"title": "D", "text": "Y"}}}
 
     headers = bearer(service_token())
     found = client.get(f"/internal/news/{POST_ID}", headers=headers)
     put = client.put(f"/internal/news/{POST_ID}/translations", json=body, headers=headers)
-    too_long = body | {"translations": {"de": {"title": "D", "text": "x" * 501}}}
-    refused = client.put(f"/internal/news/{POST_ID}/translations", json=too_long, headers=headers)
 
     assert found.json() == {"title": BODY["title"], "text": BODY["text"], "missing": ["de", "fr"]}
-    assert put.status_code == 204
-    assert refused.status_code == 422
-    assert saved == [("T", "X", {"de": "D"})]
+    assert put.status_code == 404
 
 
 def test_posts_still_missing_a_translation_are_sent_again(monkeypatch):
     sent = []
 
     async def untranslated(session):
-        return [POST_ID]
+        return [POST_ID, gone_id]
 
-    async def translate_news(news_id):
-        sent.append(news_id)
+    async def get(session, news_id):
+        return post_row() if news_id == POST_ID else None
 
+    async def missing_languages(session, news_id):
+        return ["fr"]
+
+    async def translate_news(news_id, source):
+        sent.append((news_id, source["missing"]))
+
+    gone_id = uuid.uuid4()
     monkeypatch.setattr(news, "untranslated", untranslated)
+    monkeypatch.setattr(news, "get", get)
+    monkeypatch.setattr(news, "missing_languages", missing_languages)
     monkeypatch.setattr(generation, "translate_news", translate_news)
 
-    assert asyncio.run(news_service.resend_untranslated()) == 1
-    assert sent == [POST_ID]
+    # A post deleted meanwhile isn't sent.
+    assert asyncio.run(news_service.resend_untranslated()) == 2
+    assert sent == [(POST_ID, ["fr"])]
 
 
 def test_a_new_post_is_one_notification_for_everyone_naming_it():

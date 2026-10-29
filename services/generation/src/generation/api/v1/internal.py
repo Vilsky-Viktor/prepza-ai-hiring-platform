@@ -12,10 +12,7 @@ from generation.constants.actions import (
     QUESTION_REGENERATION,
     QUESTION_VERIFY,
 )
-from generation.constants.generation import (
-    TRANSLATE_NEWS,
-    VERIFY_QUESTION,
-)
+from generation.constants.generation import VERIFY_QUESTION
 from generation.core.db import Session
 from generation.helpers.questions import set_company
 from generation.integrations import library, tasks
@@ -25,6 +22,7 @@ from generation.models.generation import Generation
 from generation.repositories import generations
 from generation.schemas.campaigns import CampaignSource
 from generation.schemas.generation import GenerationOut, InterviewGenerationCreate, ReviewRequest
+from generation.schemas.news import NewsSource
 from generation.schemas.regenerate import RegeneratedOut, RegenerateIn
 from generation.schemas.statuses import GenerationIdsIn, GenerationStatusesOut, GenerationStatusOut
 from generation.schemas.verify import VerifyIn
@@ -159,11 +157,13 @@ async def verify_question(
 
 
 @router.post("/news/{news_id}/translate", status_code=status.HTTP_202_ACCEPTED)
-async def translate_news(news_id: UUID, caller: ServiceCaller) -> None:
-    """The library saved a news post; the worker translates it into the languages it lacks.
-    While paused the call is refused, and the library sends the post again later."""
+async def translate_news(news_id: UUID, body: NewsSource, caller: ServiceCaller) -> None:
+    """Site saved a news post, sending its English title and text and the languages it lacks;
+    each language is queued for the next batch, and the translations go back as
+    `news.translated`. While paused the call is refused, and site's daily run sends the post
+    again."""
     await refuse_if_paused(get_redis(), NEWS_TRANSLATION)
-    await tasks.enqueue(TRANSLATE_NEWS, {"news_id": str(news_id)})
+    await translation_jobs.translate_news(news_id, body)
 
 
 @router.post("/campaigns/{campaign_id}/translate", status_code=status.HTTP_202_ACCEPTED)
