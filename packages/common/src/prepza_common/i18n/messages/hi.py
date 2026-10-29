@@ -218,7 +218,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "सूचना नए संस्करण के लागू होने से कम से कम 14 दिन पहले भेजी जाती है: इसे बाद की तारीख दें।",
     "This version's notice was already sent.": "इस संस्करण की सूचना पहले ही भेजी जा चुकी है।",
     "Prices aren't available right now. Please try again in a minute.": "कीमतें अभी उपलब्ध नहीं हैं। कृपया एक मिनट बाद फिर से कोशिश करें।",
-    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url कंपनी के अनुमत डोमेन में से किसी एक पर https पता होना चाहिए; पहले prepza में कंपनी के API पेज पर डोमेन जोड़ें।",
+    "return_url must be an https address (http only on localhost, for testing).": "return_url एक https पता होना चाहिए (http केवल localhost पर, टेस्टिंग के लिए)।",
     "The same request is still running. Try again shortly.": "यही अनुरोध अभी चल रहा है। कृपया थोड़ी देर बाद फिर से कोशिश करें।",
     "This Idempotency-Key was already used for a different request.": "यह Idempotency-Key पहले ही किसी दूसरे अनुरोध के लिए इस्तेमाल हो चुकी है।",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza इस उम्मीदवार को ईमेल नहीं भेजता: उन्हें उनका इनवाइट लिंक खुद भेजें।",

@@ -37,7 +37,8 @@ def test_an_entry_that_isnt_a_domain_is_refused(entry):
         ("https://acme.com", False),
         ("https://eu.careers.acme.com", True),
         ("https://careers.acme.com", False),
-        ("http://jobs.acme.com", False),
+        # The frame's sources hold the page to HTTPS; the claim only refuses sooner.
+        ("http://jobs.acme.com", True),
         ("https://jobs.acme.com:8443", False),
         ("https://jobs.acme.com.evil.com", False),
         ("https://evilacme.com", False),

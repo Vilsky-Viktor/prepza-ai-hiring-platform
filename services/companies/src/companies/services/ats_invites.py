@@ -9,10 +9,10 @@ from prepza_common.i18n.i18n import CodedError
 from prepza_common.limits.pause import refuse_if_paused
 
 from companies.constants import error_codes
-from companies.constants.allowed_domains import RETURN_URL_OFF_DOMAIN
 from companies.constants.invites import OPEN, InviteStatus
+from companies.constants.return_urls import RETURN_URL_INVALID
 from companies.core.db import Session
-from companies.helpers.allowed_domains import allows
+from companies.helpers.return_urls import is_return_url
 from companies.integrations.redis import get_redis
 from companies.repositories import companies, interviews, invites
 from companies.schemas.internal_ats import AtsInviteIn
@@ -25,8 +25,8 @@ async def invite(interview_id: UUID, body: AtsInviteIn, via: str) -> tuple[UUID,
     """The invite's id, and whether it was made or sent now: a candidate who already finished is
     returned as they are, and so is one still invited when `resend` is false. Refused with 503
     during the emergency pause, 404 when the interview is gone, 409 while it has no questions
-    yet, 403 when the sender is no longer an owner or admin, 422 for a return address off the
-    company's verified domain (and as candidate_invites.invite refuses)."""
+    yet, 403 when the sender is no longer an owner or admin, 422 for a return address that
+    isn't https (http only on localhost) (and as candidate_invites.invite refuses)."""
     async with Session() as session:
         interview = await interviews.get(session, interview_id)
 
@@ -51,13 +51,11 @@ async def invite(interview_id: UUID, body: AtsInviteIn, via: str) -> tuple[UUID,
     if sender is None or not can_edit(sender):
         raise HTTPException(status.HTTP_403_FORBIDDEN, "Only an owner or admin can invite")
 
-    if body.return_url and not allows(
-        company.allowed_domains, company.allow_localhost, body.return_url
-    ):
+    if body.return_url and not is_return_url(body.return_url):
         raise CodedError(
             status.HTTP_422_UNPROCESSABLE_CONTENT,
-            RETURN_URL_OFF_DOMAIN,
-            error_codes.RETURN_URL_OFF_DOMAIN,
+            RETURN_URL_INVALID,
+            error_codes.RETURN_URL_INVALID,
         )
 
     # A candidate who already finished keeps their results, and isn't emailed again; nor is one

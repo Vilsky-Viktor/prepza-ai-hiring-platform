@@ -703,7 +703,7 @@
       }
      },
      "422": {
-      "description": "The body is invalid (`validation_failed`), or `return_url` isn't an https address on one of the company's allowed domains (`return_url_off_domain`)",
+      "description": "The body is invalid (`validation_failed`), or `return_url` isn't an https address (http only on localhost) (`return_url_invalid`)",
       "content": {
        "application/json": {
         "schema": {
@@ -2411,7 +2411,7 @@
        }
       ],
       "title": "Return Url",
-      "description": "Where to take the candidate once they've finished, optional: an https address on one of the company's allowed domains; see Allowed domains. The finished page shows a button to it, with `prepza_invite=<candidate id>` added to its query"
+      "description": "Where to take the candidate once they've finished, optional: any https address (http only on `localhost` or `127.0.0.1`, while you test). The finished page shows a button to it, with `prepza_invite=<candidate id>` added to its query"
      },
      "theme": {
       "type": "string",

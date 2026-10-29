@@ -151,10 +151,9 @@ class CandidateIn(BaseModel):
         default=None,
         max_length=2048,
         description=(
-            "Where to take the candidate once they've finished, optional: an https address on "
-            "one of the company's allowed domains; see Allowed domains. The finished page shows "
-            "a button to it, with "
-            "`prepza_invite=<candidate id>` added to its query"
+            "Where to take the candidate once they've finished, optional: any https address "
+            "(http only on `localhost` or `127.0.0.1`, while you test). The finished page shows "
+            "a button to it, with `prepza_invite=<candidate id>` added to its query"
         ),
     )
     theme: Literal["light", "dark", "default"] = Field(

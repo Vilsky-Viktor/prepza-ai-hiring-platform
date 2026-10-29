@@ -220,7 +220,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "Thông báo được gửi ít nhất 14 ngày trước khi phiên bản mới áp dụng: hãy đặt ngày muộn hơn.",
     "This version's notice was already sent.": "Thông báo của phiên bản này đã được gửi.",
     "Prices aren't available right now. Please try again in a minute.": "Hiện chưa xem được giá. Vui lòng thử lại sau một phút.",
-    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url phải là địa chỉ https trên một trong các tên miền được phép của công ty; hãy thêm tên miền trên trang API của công ty trên prepza trước.",
+    "return_url must be an https address (http only on localhost, for testing).": "return_url phải là địa chỉ https (http chỉ dùng trên localhost, để thử nghiệm).",
     "The same request is still running. Try again shortly.": "Yêu cầu giống hệt vẫn đang được xử lý. Vui lòng thử lại sau ít phút.",
     "This Idempotency-Key was already used for a different request.": "Idempotency-Key này đã được dùng cho một yêu cầu khác.",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza không gửi email cho ứng viên này: bạn hãy tự gửi liên kết lời mời cho họ.",

@@ -174,8 +174,10 @@ is yours to give.
   candidate only (anyone with the link can use it). The invite can also set a `return_url`, a
   **Back to** your company button on the finished page, and a `theme` (light, dark, or the
   candidate's own). prepza's SDK (prepza.ai/embed/v1.js) shows the interview inside your own page.
-  The return button and the embedded interview work only on the domains your company allows on its
-  API page (localhost only when you allow it, to try it on your own computer); verification isn't
+  The return button may lead to any https address. The embedded interview works only on the domains
+  your company allows on its API page's SDK tab (localhost only when you allow it, to try it on your
+  own computer); the API and web hooks don't depend on those domains: each key can be limited to
+  your servers' IP addresses instead. Verification isn't
   needed for them, nor for the API or AI apps: it only adds the verified badge. The candidate still sees prepza's invite page, in your company's logo and
   colors if you set them, before they start. Leaving the embedded interview, also for the rest of your page, counts
   as a page leave. The developer docs (prepza.ai/api-docs) give the details.

@@ -1,7 +1,7 @@
 import { expect, test } from "../fixtures"
 import { API_URL } from "../constants"
 import { api, createCompany, createInterview } from "../helpers/api"
-import { inviteToken, verifyCompany } from "../helpers/db"
+import { inviteToken } from "../helpers/db"
 import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { ownerEmail, throwawayEmail } from "../helpers/users"
@@ -15,7 +15,6 @@ test("a candidate invited through the API goes back to the company's platform", 
   const owner = await signInAs(ownerEmail())
   const company = await createCompany(owner)
   const interviewId = await createInterview(owner, company.id)
-  await api(owner, "PUT", `/companies/companies/${company.id}/website`, { website: "acme-e2e.com" })
   const { key } = await api<{ key: string }>(
     owner,
     "POST",
@@ -26,26 +25,15 @@ test("a candidate invited through the API goes back to the company's platform", 
   const path = `${API_URL}/v1/interviews/${interviewId}/candidates`
   const email = throwawayEmail("returning")
 
-  // Verified but with no allowed domains: refused, and no one invited. Verification only gives
-  // the badge.
-  await verifyCompany(company.id, "acme-e2e.com")
-  const notAllowed = await owner.request.post(path, {
+  // http off localhost: refused, and no one invited.
+  const refused = await owner.request.post(path, {
     headers,
-    data: { email, return_url: "https://jobs.acme-e2e.com/done", sign_in: false },
+    data: { email, return_url: "http://jobs.acme-e2e.com/done", sign_in: false },
   })
-  expect(notAllowed.status()).toBe(422)
-  expect((await notAllowed.json()).code).toBe("return_url_off_domain")
-  await api(owner, "PUT", `/companies/companies/${company.id}/allowed-domains`, {
-    domains: ["jobs.acme-e2e.com"],
-  })
+  expect(refused.status()).toBe(422)
+  expect((await refused.json()).code).toBe("return_url_invalid")
 
-  // Off the company's allowed domains: refused too.
-  const off = await owner.request.post(path, {
-    headers,
-    data: { email, return_url: "https://elsewhere.com/done", sign_in: false },
-  })
-  expect(off.status()).toBe(422)
-
+  // Any https address, with no allowed domains at all: those are only for embedding.
   const invited = await owner.request.post(path, {
     headers,
     data: { email, return_url: "https://jobs.acme-e2e.com/done?step=2", sign_in: false },

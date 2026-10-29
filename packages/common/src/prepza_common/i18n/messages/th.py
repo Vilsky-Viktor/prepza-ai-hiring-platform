@@ -220,7 +220,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "ประกาศจะส่งออกอย่างน้อย 14 วันก่อนเวอร์ชันใหม่มีผล โปรดกำหนดวันที่ให้ช้ากว่านี้",
     "This version's notice was already sent.": "ส่งประกาศของเวอร์ชันนี้ไปแล้ว",
     "Prices aren't available right now. Please try again in a minute.": "ยังแสดงราคาไม่ได้ในขณะนี้ โปรดลองอีกครั้งในอีกหนึ่งนาที",
-    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url ต้องเป็นที่อยู่ https บนโดเมนที่อนุญาตโดเมนใดโดเมนหนึ่งของบริษัท ให้เพิ่มโดเมนในหน้า API ของบริษัทใน prepza ก่อน",
+    "return_url must be an https address (http only on localhost, for testing).": "return_url ต้องเป็นที่อยู่ https (ใช้ http ได้เฉพาะบน localhost สำหรับการทดสอบ)",
     "The same request is still running. Try again shortly.": "คำขอเดียวกันยังดำเนินการอยู่ โปรดลองอีกครั้งในอีกสักครู่",
     "This Idempotency-Key was already used for a different request.": "Idempotency-Key นี้ถูกใช้กับคำขออื่นไปแล้ว",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza ไม่ส่งอีเมลถึงผู้สมัครรายนี้ โปรดส่งลิงก์คำเชิญให้ผู้สมัครด้วยตัวเอง",

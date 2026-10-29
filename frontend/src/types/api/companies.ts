@@ -2174,9 +2174,9 @@ export interface paths {
     get?: never
     /**
      * Set Allowed Domains
-     * @description Owners and admins set the sites that may embed the company's interviews and that the
-     *     API's return_url may lead to, and whether localhost may too; the saved list. Never through
-     *     an AI app or the assistant: a person decides, in prepza itself.
+     * @description Owners and admins set the sites that may embed the company's interviews with the SDK,
+     *     and whether localhost may too; the saved list. Never through an AI app or the assistant: a
+     *     person decides, in prepza itself.
      */
     put: operations["set_allowed_domains_companies__company_id__allowed_domains_put"]
     post?: never
@@ -2329,9 +2329,9 @@ export interface components {
     }
     /**
      * AllowedDomains
-     * @description The sites that may embed the company's interviews and that the API's return_url may lead
-     *     to, kept lowercase without a scheme, each once (422 naming a bad one); and whether the
-     *     developer's own computer (localhost, any port) may too.
+     * @description The sites that may embed the company's interviews with the SDK, kept lowercase without a
+     *     scheme, each once (422 naming a bad one); and whether the developer's own computer
+     *     (localhost, any port) may too.
      */
     AllowedDomains: {
       /** Domains */

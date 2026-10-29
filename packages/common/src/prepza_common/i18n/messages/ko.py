@@ -218,7 +218,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "알림은 새 버전이 적용되기 최소 14일 전에 발송됩니다. 더 늦은 날짜를 지정하세요.",
     "This version's notice was already sent.": "이 버전의 알림은 이미 발송되었습니다.",
     "Prices aren't available right now. Please try again in a minute.": "지금은 가격을 확인할 수 없습니다. 1분 후에 다시 시도해 주세요.",
-    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url은 회사의 허용 도메인 중 하나에 있는 https 주소여야 합니다. 먼저 prepza의 회사 API 페이지에서 도메인을 추가하세요.",
+    "return_url must be an https address (http only on localhost, for testing).": "return_url은 https 주소여야 합니다(http는 테스트용으로 localhost에서만 가능합니다).",
     "The same request is still running. Try again shortly.": "같은 요청이 아직 처리 중입니다. 잠시 후 다시 시도해 주세요.",
     "This Idempotency-Key was already used for a different request.": "이 Idempotency-Key는 이미 다른 요청에 사용되었습니다.",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza는 이 지원자에게 이메일을 보내지 않습니다. 초대 링크를 직접 보내 주세요.",

@@ -73,9 +73,9 @@ class Company(Base):
     decline_reason: Mapped[str | None] = mapped_column(String(MAX_DECLINE_REASON_LENGTH))
     verification_decided_by: Mapped[str | None] = mapped_column(String(128))
     verification_decided_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
-    # The sites that may embed its interviews and that the API's return_url may lead to
-    # (constants/allowed_domains.py), and whether the developer's own computer (localhost) may
-    # too. Nothing to do with verification, which only gives the badge.
+    # The sites that may embed its interviews with the SDK (constants/allowed_domains.py), and
+    # whether the developer's own computer (localhost) may too. Nothing to do with verification,
+    # which only gives the badge, nor with the API (limited by IP per key).
     allowed_domains: Mapped[list[str]] = mapped_column(
         ARRAY(String(MAX_DOMAIN_LENGTH)), default=list, server_default="{}"
     )

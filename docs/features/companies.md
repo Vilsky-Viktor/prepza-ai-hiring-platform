@@ -84,7 +84,7 @@ Later changes:
 - Renaming a verified, pending or declined company sends the new name for review, taking any check away.
 - Changing the website starts over.
 
-Until a company is verified, its invite pages and its invite and reminder emails say, in a small gray line, that prepza hasn't verified it. Verification only gives the badge: the API, the SDK, the return button and AI apps don't depend on it (embedding and `return_url` follow the company's [allowed domains](api.md#allowed-domains)).
+Until a company is verified, its invite pages and its invite and reminder emails say, in a small gray line, that prepza hasn't verified it. Verification only gives the badge: the API, the SDK, the return button and AI apps don't depend on it (embedding follows the company's [allowed domains](api.md#allowed-domains)).
 
 ## Suspension
 

@@ -79,8 +79,8 @@ async def set_ai_apps(company_id, user: CurrentUser, allowed: bool, via: str | N
 async def set_allowed_domains(
     company_id, user: CurrentUser, allowed: AllowedDomains, via: str | None
 ) -> AllowedDomains:
-    """Owners and admins set the sites that may embed the company's interviews and that the
-    API's return_url may lead to. Never through an AI app or the assistant (403, before anything
+    """Owners and admins set the sites that may embed the company's interviews with the SDK.
+    Never through an AI app or the assistant (403, before anything
     else): a security setting a person decides, in prepza itself."""
     if via is not None:
         raise HTTPException(status.HTTP_403_FORBIDDEN, AI_APPS_CHANGED_BY_APP)

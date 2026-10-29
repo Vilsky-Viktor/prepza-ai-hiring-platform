@@ -135,9 +135,9 @@ After changing one, rebuild the files in `frontend/public/documents` and commit 
 
 The `/api-docs` page ("developer docs" in the footer) is the public API's reference, in English only, like the legal pages. It reads the API's OpenAPI description on each request (`lib/openapi.ts`, `features/api-docs/components/`) and shows it in five tabs in a side menu, as on a company's pages (`?tab=`, `config/api-docs.ts`), the description split at its `# ` titles, except MCP's:
 
-- **API** (the page's own address): getting a key, authentication, limits, errors, sending candidates from your own platform and allowed domains, allowed IPs, then the base URL and each route with its parameters, body, result and errors;
+- **API** (the page's own address): getting a key, authentication, limits, errors, sending candidates from your own platform (any https `return_url`), allowed IPs, then the base URL and each route with its parameters, body, result and errors;
 - **web hooks**: signatures and delivery, then the `candidate.finished` event;
-- **SDK**: embedding the interview with the hosted script, with a code example;
+- **SDK**: embedding the interview with the hosted script, with a code example, and the allowed domains that may embed it;
 - **MCP**: connecting AI apps and one's own agents to prepza's MCP server, in pages of its own listed under it in the menu (`?tab=mcp&page=<id>`): an overview, a page per AI app, the server's tools, and agent frameworks with example agents in Python and TypeScript (its own English text in `config/mcp-docs.ts` and `content/mcp/`; see [AI apps over MCP](mcp.md#connecting));
 - **objects**: what the routes and the web hook return; a type anywhere links to its object here.
 

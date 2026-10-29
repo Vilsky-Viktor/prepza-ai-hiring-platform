@@ -218,7 +218,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "Повідомлення надсилається щонайменше за 14 днів до того, як нова версія почне застосовуватися: призначте їй пізнішу дату.",
     "This version's notice was already sent.": "Повідомлення про цю версію вже надіслано.",
     "Prices aren't available right now. Please try again in a minute.": "Ціни зараз недоступні. Спробуйте ще раз за хвилину.",
-    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url має бути https-адресою на одному з дозволених доменів компанії; спершу додайте домен на її сторінці API в prepza.",
+    "return_url must be an https address (http only on localhost, for testing).": "return_url має бути https-адресою (http — лише на localhost, для тестування).",
     "The same request is still running. Try again shortly.": "Такий самий запит ще виконується. Спробуйте трохи згодом.",
     "This Idempotency-Key was already used for a different request.": "Цей Idempotency-Key уже використано для іншого запиту.",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza не надсилає листів цьому кандидату: надішліть йому посилання-запрошення самі.",

@@ -142,7 +142,7 @@ you don't know by its HTTP status.
 | `interview_quota_reached` | 409 | As many interviews without candidates as allowed |
 | `request_in_progress` | 409 | The same request is still running |
 | `idempotency_key_reused` | 422 | An `Idempotency-Key` sent before with another request |
-| `return_url_off_domain` | 422 | `return_url` isn't on one of your allowed domains |
+| `return_url_invalid` | 422 | `return_url` isn't https (http only on localhost) |
 | `validation_failed` | 422 | The request is invalid; `detail` names each field |
 | `body_too_large` | 413 | The request body is too large |
 | `rate_limited` | 429 | A rate or email limit; wait `Retry-After` seconds |
@@ -171,28 +171,24 @@ or the invite has expired.
 
 When your platform already knows who the candidate is, invite them with `sign_in` false: prepza
 sends no emails, and the `invite_url` opens the interview without signing in to prepza. Anyone
-with that link can take the interview, so give it only to the candidate. Add a `return_url` on
-one of your company's allowed domains to bring them back once they've finished, or [embed the
+with that link can take the interview, so give it only to the candidate. Add a `return_url` to
+bring them back once they've finished: any https address (http only on `localhost` or
+`127.0.0.1`, while you test); anything else returns `422` (`return_url_invalid`). Or [embed the
 interview](/api-docs?tab=sdk) in your own page instead.
 
-## Allowed domains
-
-Bringing candidates back to your site and [embedding the interview](/api-docs?tab=sdk) work only
-on your company's allowed domains, which an owner or admin lists on the API page: a domain like
-`jobs.acme.com` allows that site, `*.acme.com` every subdomain of `acme.com` (add `acme.com` too
-for the domain itself). Pages must be served over HTTPS. Elsewhere, a `return_url` returns `422`
-(`return_url_off_domain`) and an embedded interview isn't shown. To try it on your own computer,
-allow localhost on the same page, or add `localhost` (any port) or `localhost:3000` to the list;
-localhost is refused until you do. Company verification only adds the verified badge: the API,
-the SDK and MCP work without it.
+The API and web hooks don't depend on any domain: limit a key to your servers with its allowed
+IPs. Your company's allowed domains only decide which sites may embed the interview with the
+SDK. Company verification only adds the verified badge: the API, the SDK and MCP work without it.
 
 ## Changelog
 
 Within `v1`, fields, optional parameters, error codes, enum values and event types are only ever
 added. Anything retired first answers with `Deprecation` and `Sunset` headers and is listed here.
 
-- 2026-10-29: a key can be limited to allowed IPs (`ip_not_allowed`); `return_url` and embedding
-  follow the company's allowed domains instead of its verified website domain.
+- 2026-10-29: a key can be limited to allowed IPs (`ip_not_allowed`); `return_url` may be any
+  https address (http on localhost), refused otherwise with `return_url_invalid`, which replaces
+  `return_url_off_domain`; embedding follows the company's allowed domains instead of its
+  verified website domain.
 - 2026-10-22: every error carries a machine-readable `code` beside its `detail` (see Errors).
 - 2026-10-22: a full page of a list sends a `Link` header to the next one; candidates carry
   their `interview_id`.

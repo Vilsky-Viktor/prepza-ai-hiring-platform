@@ -113,7 +113,7 @@ async def get_candidate(
         ),
         422: refusal(
             "The body is invalid (`validation_failed`), or `return_url` isn't an https address "
-            "on one of the company's allowed domains (`return_url_off_domain`)"
+            "(http only on localhost) (`return_url_invalid`)"
         ),
         429: {
             **refusal(

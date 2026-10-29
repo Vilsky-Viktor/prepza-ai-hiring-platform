@@ -4,8 +4,7 @@ SDK_TAB = """# SDK
 Your page can show the interview itself, for a candidate invited with `sign_in` false. Your
 server invites them and passes the `invite_url` to your page, which embeds it with prepza's
 script; never put your API key in a page. The page must be on one of your company's allowed
-domains (see Allowed domains on the API tab) and served over HTTPS: anywhere else the interview
-isn't shown. To try it on your own computer, allow localhost there first.
+domains (below) and served over HTTPS: anywhere else the interview isn't shown.
 
 ```html
 <div id="interview"></div>
@@ -45,6 +44,16 @@ If your site sends a Content-Security-Policy, allow `script-src https://prepza.a
 (cached for 5 minutes), so a pinned hash would stop it loading; it is served over HTTPS and may
 be loaded with `crossorigin="anonymous"`. Within `v1`, options, callbacks and `onError` codes are
 only ever added; a change that isn't compatible would come as `v2.js`, with `v1.js` kept working.
+
+## Allowed domains
+
+The sites that may embed your interviews, which an owner or admin lists on the API page's SDK
+tab: a domain like `jobs.acme.com` allows that site, `*.acme.com` every subdomain of `acme.com`
+(add `acme.com` too for the domain itself). Pages must be served over HTTPS. To try it on your
+own computer, allow localhost on the same tab, or add `localhost` (any port) or `localhost:3000`
+to the list; localhost is refused until you do. The domains are only for embedding: the API and
+web hooks don't use them (a key is limited by its allowed IPs), and a `return_url` may be any
+https address.
 
 ## Changes to v1
 

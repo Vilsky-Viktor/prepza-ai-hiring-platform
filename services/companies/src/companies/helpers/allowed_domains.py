@@ -79,13 +79,11 @@ def sources(domains: list[str], allow_localhost: bool) -> list[str]:
     return found
 
 
-def allows(
-    domains: list[str], allow_localhost: bool, url: str | None, https_only: bool = True
-) -> bool:
-    """Whether a page at `url` (an address or an origin) is on an allowed domain: HTTPS (any
-    scheme without `https_only`) on a domain the list names, or on a subdomain a "*." entry
-    names; HTTP or HTTPS on the developer's own computer when it's allowed (the switch, or its
-    entry, with its port)."""
+def allows(domains: list[str], allow_localhost: bool, url: str | None) -> bool:
+    """Whether a page at `url` (an address or an origin) is on an allowed domain: one the list
+    names, or a subdomain a "*." entry names; the developer's own computer when it's allowed
+    (the switch, or its entry, with its port). Any web scheme: the frame's sources (`sources`)
+    hold the page to HTTPS, and the browser enforces them."""
     parts = urlsplit((url or "").strip().lower())
 
     if parts.scheme not in ("http", "https") or not parts.hostname:
@@ -96,13 +94,8 @@ def allows(
     if host in LOOPBACK_HOSTS:
         return allow_localhost or host in domains or f"{host}:{port}" in domains
 
-    return (
-        (parts.scheme == "https" or not https_only)
-        and port is None
-        and any(
-            host == entry or (entry.startswith("*.") and host.endswith(entry[1:]))
-            for entry in domains
-        )
+    return port is None and any(
+        host == entry or (entry.startswith("*.") and host.endswith(entry[1:])) for entry in domains
     )
 
 
@@ -114,7 +107,7 @@ def frame_sources(
     is given and isn't on an allowed domain; the allowed domains otherwise. The browser enforces
     the sources, and their scheme, whatever a page claims; the claims only refuse sooner."""
     for claimed in (origin, referrer):
-        if claimed and not allows(domains, allow_localhost, claimed, https_only=False):
+        if claimed and not allows(domains, allow_localhost, claimed):
             return []
 
     return sources(domains, allow_localhost)

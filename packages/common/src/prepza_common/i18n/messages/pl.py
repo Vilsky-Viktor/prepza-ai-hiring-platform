@@ -218,7 +218,7 @@ MESSAGES = {
     "A notice goes out at least 14 days before the new version applies: give it a later date.": "Powiadomienie wysyłamy co najmniej 14 dni przed wejściem nowej wersji w życie: nadaj jej późniejszą datę.",
     "This version's notice was already sent.": "Powiadomienie o tej wersji zostało już wysłane.",
     "Prices aren't available right now. Please try again in a minute.": "Ceny są teraz niedostępne. Spróbuj ponownie za minutę.",
-    "return_url must be an https address on one of the company's allowed domains; add the domain on its API page in prepza first.": "return_url musi być adresem https w jednej z dozwolonych domen firmy; najpierw dodaj domenę na stronie API firmy w prepza.",
+    "return_url must be an https address (http only on localhost, for testing).": "return_url musi być adresem https (http tylko na localhost, do testów).",
     "The same request is still running. Try again shortly.": "To samo żądanie jest wciąż przetwarzane. Spróbuj ponownie za chwilę.",
     "This Idempotency-Key was already used for a different request.": "Ten Idempotency-Key został już użyty w innym żądaniu.",
     "prepza doesn't email this candidate: send them their invite link yourself.": "prepza nie wysyła e-maili do tej osoby kandydującej: wyślij jej link z zaproszeniem samodzielnie.",

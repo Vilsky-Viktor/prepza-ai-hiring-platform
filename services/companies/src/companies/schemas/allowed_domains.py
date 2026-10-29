@@ -7,9 +7,9 @@ from companies.helpers.allowed_domains import normalized
 
 
 class AllowedDomains(BaseModel):
-    """The sites that may embed the company's interviews and that the API's return_url may lead
-    to, kept lowercase without a scheme, each once (422 naming a bad one); and whether the
-    developer's own computer (localhost, any port) may too."""
+    """The sites that may embed the company's interviews with the SDK, kept lowercase without a
+    scheme, each once (422 naming a bad one); and whether the developer's own computer
+    (localhost, any port) may too."""
 
     domains: Annotated[
         list[Annotated[str, StringConstraints(max_length=MAX_DOMAIN_LENGTH)]],
