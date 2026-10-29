@@ -261,8 +261,10 @@
     "text": "Koppel je eigen platform, zoals je vacaturesite, aan prepza.",
     "actions": [
       "Maak een API-sleutel aan en vink alleen aan wat hij nodig heeft: interviews lezen of maken; kandidaten lezen, uitnodigen, wijzigen of verwijderen; je credits lezen; of gebruiken met AI-agents (MCP). Hij handelt namens jou.",
+      "Open een sleutel om te wijzigen wat hij mag, waarbij elke wijziging meteen wordt opgeslagen, en vanaf welke IP-adressen hij gebruikt mag worden.",
       "Voeg een webhook toe: prepza laat je HTTPS-adres ondertekend weten wanneer een kandidaat begint of klaar is (met de resultaten), wanneer de uitnodiging een kandidaat niet bereikt of verloopt, wanneer een kandidaat wordt verwijderd en wanneer een interview klaarstaat.",
       "Stuur een webhook een testgebeurtenis en zie in het afleverlogboek hoe elke verzending is verlopen.",
+      "Zet op het tabblad SDK de sites die je interviews mogen tonen en kandidaten terugkrijgen, en sta localhost toe zolang je test.",
       "Verwijder de sleutels en webhooks die je niet meer gebruikt.",
       "Open de ontwikkelaarsdocumentatie voor elk endpoint en elke gebeurtenis, en de SDK."
     ],

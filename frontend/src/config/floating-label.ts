@@ -28,6 +28,11 @@ export const FLOAT_LABEL_REST_TOP =
 export const FLOAT_LABEL_UP =
   "top-0 -translate-y-1/2 bg-(--pill) px-3 py-0.5 text-xs text-muted-foreground"
 
+// Resting at the field's start, where typing begins (a field with a button at its end), and
+// moving to the centre as it rises: lined up with the value's padding, mirrored right to left.
+export const FLOAT_LABEL_REST_START =
+  "left-4 translate-x-0 rtl:right-4 rtl:left-auto peer-focus:left-1/2 peer-focus:-translate-x-1/2 peer-focus:rtl:right-auto peer-not-placeholder-shown:left-1/2 peer-not-placeholder-shown:-translate-x-1/2 peer-not-placeholder-shown:rtl:right-auto peer-autofill:left-1/2 peer-autofill:-translate-x-1/2 peer-autofill:rtl:right-auto"
+
 // Raised while the field before it (its `peer`) is focused, has a value or was autofilled.
 export const FLOAT_LABEL_PEER_UP =
   "peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:bg-(--pill) peer-focus:px-3 peer-focus:py-0.5 peer-focus:text-xs peer-focus:text-muted-foreground peer-not-placeholder-shown:top-0 peer-not-placeholder-shown:-translate-y-1/2 peer-not-placeholder-shown:bg-(--pill) peer-not-placeholder-shown:px-3 peer-not-placeholder-shown:py-0.5 peer-not-placeholder-shown:text-xs peer-not-placeholder-shown:text-muted-foreground peer-autofill:top-0 peer-autofill:-translate-y-1/2 peer-autofill:bg-(--pill) peer-autofill:px-3 peer-autofill:py-0.5 peer-autofill:text-xs peer-autofill:text-muted-foreground"

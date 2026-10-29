@@ -10,8 +10,10 @@ export type ApiKey = {
   expires_at: string | null
   expired: boolean
   last_used_at: string | null
-  // What it may do, such as "candidates:read"; only ever narrowed after it's made.
+  // What it may do, such as "candidates:read"; owners and admins change it any time.
   permissions: string[]
+  // The addresses it may be used from (IPv4, IPv6, CIDR ranges); empty: any.
+  allowed_ips: string[]
 }
 
 export type ApiWebhook = {

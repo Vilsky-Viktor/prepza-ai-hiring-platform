@@ -5,7 +5,8 @@ import { redirect } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { BackLink } from "@/components/common/back-link"
-import { ApiNav } from "@/features/company/components/api-nav"
+import { AllowedDomains } from "@/features/company/components/allowed-domains"
+import { ApiNav, type ApiTab } from "@/features/company/components/api-nav"
 import {
   AddWebhook,
   ApiKeys,
@@ -26,7 +27,8 @@ export const generateMetadata = async () => ({
 })
 
 /** The API's own page, laid out like an interview's: back to the integrations tab, its name, the
- * docs and the open tab's action; then two tabs, the company's keys and its web hooks. */
+ * docs and the open tab's action; then three tabs, the company's keys, its web hooks and its
+ * allowed domains. */
 export default async function ApiPage({
   params,
   searchParams,
@@ -35,7 +37,8 @@ export default async function ApiPage({
   searchParams: Promise<{ tab?: string }>
 }) {
   const { companyId } = await params
-  const current = (await searchParams).tab === "webhooks" ? "webhooks" : "keys"
+  const tab = (await searchParams).tab
+  const current: ApiTab = tab === "webhooks" || tab === "domains" ? tab : "keys"
   const href = `/companies/${companyId}/integrations/api`
   const signedIn = (await cookies()).has(TOKEN_COOKIE)
   const t = await getTranslations("company")
@@ -104,7 +107,9 @@ export default async function ApiPage({
                       defaults={settings.default_permissions}
                     />
                   ) : (
-                    <AddWebhook companyId={companyId} />
+                    current === "webhooks" && (
+                      <AddWebhook companyId={companyId} />
+                    )
                   ))}
               </div>
             </div>
@@ -118,10 +123,17 @@ export default async function ApiPage({
               options={settings}
               canEdit={company.can_edit}
             />
-          ) : (
+          ) : current === "webhooks" ? (
             <ApiWebhooks
               companyId={companyId}
               webhooks={settings.webhooks}
+              canEdit={company.can_edit}
+            />
+          ) : (
+            <AllowedDomains
+              companyId={companyId}
+              domains={company.allowed_domains ?? []}
+              allowLocalhost={company.allow_localhost ?? false}
               canEdit={company.can_edit}
             />
           )}

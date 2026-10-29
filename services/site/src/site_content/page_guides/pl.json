@@ -261,8 +261,10 @@
     "text": "Połącz z prepza własną platformę, np. stronę kariery.",
     "actions": [
       "Utwórz klucz API i zaznacz tylko to, czego potrzebuje: odczyt lub tworzenie rozmów; odczyt, zapraszanie, zmianę lub usuwanie kandydatów; odczyt Twoich kredytów; albo używanie z agentami AI (MCP). Działa w Twoim imieniu.",
+      "Otwórz klucz, aby zmienić, co może robić – każda zmiana zapisuje się od razu – i z jakich adresów IP można go używać.",
       "Dodaj webhook: prepza powiadamia Twój adres HTTPS, z podpisem, gdy kandydat zaczyna lub kończy (wraz z wynikami), gdy zaproszenie do niego nie dotrze lub wygaśnie, gdy kandydat zostanie usunięty i gdy rozmowa jest gotowa.",
       "Wyślij do webhooka zdarzenie testowe i sprawdź w dzienniku dostarczeń, jak poszła każda wysyłka.",
+      "Na karcie SDK wpisz witryny, które mogą wyświetlać Twoje rozmowy i przyjmować powracających kandydatów, a na czas testów zezwól na localhost.",
       "Usuń klucze i webhooki, których już nie używasz.",
       "Otwórz dokumentację dla deweloperów ze wszystkimi endpointami i zdarzeniami oraz SDK."
     ],

@@ -261,8 +261,10 @@
     "text": "Verbinde deine eigene Plattform, etwa deine Karriereseite, mit prepza.",
     "actions": [
       "Erstelle einen API-Schlüssel und setze nur die Häkchen, die er braucht: Interviews lesen oder erstellen; Kandidaten lesen, einladen, ändern oder entfernen; deine Credits lesen; oder mit KI-Agenten nutzen (MCP). Er handelt in deinem Namen.",
+      "Öffne einen Schlüssel, um zu ändern, was er darf – jede Änderung wird sofort gespeichert –, und von welchen IP-Adressen er genutzt werden darf.",
       "Füge einen Webhook hinzu: prepza benachrichtigt deine HTTPS-Adresse signiert, wenn ein Kandidat beginnt, fertig ist (mit seinen Ergebnissen), seine Einladung nicht zugestellt werden kann oder abläuft oder er entfernt wird, und wenn ein Interview bereit ist.",
       "Sende einem Webhook ein Testereignis und sieh im Zustellprotokoll, was aus jeder Sendung wurde.",
+      "Trage im Tab SDK die Websites ein, die deine Interviews anzeigen und Kandidaten zurückführen dürfen, und erlaube localhost, solange du testest.",
       "Lösche Schlüssel und Webhooks, die du nicht mehr nutzt.",
       "Öffne die Entwicklerdokumentation mit jedem Endpunkt und jedem Ereignis sowie das SDK."
     ],

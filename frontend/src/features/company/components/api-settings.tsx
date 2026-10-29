@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import { useTranslations } from "next-intl"
 
 import { useLocalTime } from "@/hooks/use-local-time"
@@ -8,15 +9,15 @@ import {
   RemoveButton,
 } from "@/features/company/components/api-dialogs"
 import {
-  EditPermissions,
   PermissionTags,
   PermissionTicks,
 } from "@/features/company/components/api-permissions"
 import { Dot } from "@/components/common/dot"
 import { WebhookActions } from "@/features/company/components/webhook-actions"
+import { KeyDetails } from "@/features/company/components/key-details"
 import { MAX_KEY_NAME, MAX_WEBHOOK_URL } from "@/config/api"
 import type { ApiKey, ApiWebhook, PermissionOptions } from "@/types/api-access"
-import { LIST_BOX } from "@/config/lists"
+import { LIST_BOX, ROW_HOVER } from "@/config/lists"
 import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
 import { CARD } from "@/config/cards"
@@ -103,9 +104,9 @@ export function AddWebhook({ companyId }: { companyId: string }) {
   )
 }
 
-/** The company's API keys, in one list like the team's: each with its name, first characters,
- * when it was made, when it expires and when it was last used, and a line of its permissions.
- * Owners and admins narrow their permissions and delete them. */
+/** The company's API keys, in one list like the team's: each with its name, when it was made,
+ * when it expires, when it was last used and where from, and a line of its permissions. A row
+ * opens the key's page, with its settings; owners and admins also delete it here. */
 export function ApiKeys({
   companyId,
   keys,
@@ -118,7 +119,6 @@ export function ApiKeys({
   canEdit: boolean
 }) {
   const t = useTranslations("api")
-  const localTime = useLocalTime()
   const manage = `/v1/manage/keys`
 
   return (
@@ -129,23 +129,8 @@ export function ApiKeys({
         <Row
           key={key.id}
           title={key.name}
-          details={
-            <>
-              {t.rich("created", localTime.dateValues(key.created_at))}
-              <Dot />
-              {key.expired ? (
-                <span className="text-destructive">{t("expired")}</span>
-              ) : key.expires_at ? (
-                t.rich("expires", localTime.dateValues(key.expires_at))
-              ) : (
-                t("neverExpires")
-              )}
-              <Dot />
-              {key.last_used_at
-                ? t.rich("lastUsed", localTime.dateValues(key.last_used_at))
-                : t("neverUsed")}
-            </>
-          }
+          href={`/companies/${companyId}/integrations/api/keys/${key.id}`}
+          details={<KeyDetails apiKey={key} />}
           more={
             <PermissionTags
               permissions={key.permissions}
@@ -154,12 +139,7 @@ export function ApiKeys({
           }
           remove={
             canEdit && (
-              <span className="flex shrink-0 items-center">
-                <EditPermissions
-                  companyId={companyId}
-                  apiKey={key}
-                  options={options}
-                />
+              <span className="relative flex shrink-0 items-center">
                 <RemoveButton
                   path={`${manage}/${key.id}?company_id=${companyId}`}
                   label={t("removeKey")}
@@ -260,11 +240,14 @@ function Section({
 
 function Row({
   title,
+  href,
   details,
   more,
   remove,
 }: {
   title: string
+  // Its own page, if it has one: the whole row opens it.
+  href?: string
   details: React.ReactNode
   // A column centred between the title and the actions, if any (a key's permissions); under the
   // title on phones.
@@ -272,11 +255,22 @@ function Row({
   remove: React.ReactNode
 }) {
   return (
-    <li className="flex flex-wrap items-center gap-4 p-6 sm:flex-nowrap">
+    <li
+      className={`flex flex-wrap items-center gap-4 p-6 sm:flex-nowrap ${href ? `relative ${ROW_HOVER}` : ""}`}
+    >
       <span
         className={`min-w-0 space-y-1 ${more ? "max-sm:flex-1" : "flex-1"}`}
       >
-        <span className="block text-lg font-medium break-all">{title}</span>
+        {href ? (
+          <Link
+            href={href}
+            className="block text-lg font-medium break-all outline-none after:absolute after:inset-0 focus-visible:after:rounded-xl focus-visible:after:ring-3 focus-visible:after:ring-ring/50"
+          >
+            {title}
+          </Link>
+        ) : (
+          <span className="block text-lg font-medium break-all">{title}</span>
+        )}
         <span className="block text-sm text-muted-foreground">{details}</span>
       </span>
       {/* Centred in the room between the title and the actions. */}

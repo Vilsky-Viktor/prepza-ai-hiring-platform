@@ -25,7 +25,7 @@ export function ApiRow({
     <IntegrationRow
       href={`/companies/${companyId}/integrations/api`}
       logo={<CodeXmlIcon className="size-10 max-sm:size-6" />}
-      name={t("name")}
+      name={t("rowName")}
       text={
         inUse ? (
           <DottedText

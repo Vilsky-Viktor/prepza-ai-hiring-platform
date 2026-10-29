@@ -261,8 +261,10 @@
     "text": "Kariyer siteniz gibi kendi platformunuzu prepza'ya bağlayın.",
     "actions": [
       "Bir API anahtarı oluşturun ve yalnızca ihtiyaç duyduklarını işaretleyin: mülakatları okuma veya oluşturma; adayları okuma, davet etme, değiştirme veya kaldırma; kredilerinizi okuma; ya da yapay zekâ ajanlarıyla kullanma (MCP). Sizin adınıza çalışır.",
+      "Bir anahtarı açıp neler yapabileceğini (her değişiklik hemen kaydedilir) ve hangi IP adreslerinden kullanılabileceğini değiştirin.",
       "Bir webhook ekleyin: prepza, bir aday başladığında, bitirdiğinde (sonuçlarıyla birlikte), daveti kendisine ulaşamadığında, davetinin süresi dolduğunda veya kaldırıldığında ve bir mülakat hazır olduğunda HTTPS adresinize imzalı olarak haber verir.",
       "Bir webhook'a test olayı gönderin ve her gönderimin sonucunu teslim günlüğünde görün.",
+      "SDK sekmesinde mülakatlarınızı gösterebilecek ve adayları geri alabilecek siteleri listeleyin, test ederken de localhost'a izin verin.",
       "Artık kullanmadığınız anahtarları ve webhook'ları silin.",
       "Tüm uç noktalar ve olaylar için geliştirici belgelerini ve SDK'yı açın."
     ],

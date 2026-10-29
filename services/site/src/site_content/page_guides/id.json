@@ -261,8 +261,10 @@
     "text": "Hubungkan platformmu sendiri, seperti situs karier, ke prepza.",
     "actions": [
       "Buat kunci API dan centang hanya yang dibutuhkannya: melihat atau membuat wawancara; melihat, mengundang, mengubah, atau menghapus kandidat; melihat kreditmu; atau pakai dengan agen AI (MCP). Kunci ini bertindak atas namamu.",
+      "Buka kunci untuk mengubah apa yang boleh dilakukannya, setiap perubahan langsung tersimpan, dan alamat IP tempat kunci itu boleh dipakai.",
       "Tambahkan webhook: prepza memberi tahu alamat HTTPS-mu, dengan tanda tangan, saat kandidat mulai, selesai (beserta hasilnya), atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap.",
       "Kirim event uji ke webhook, dan lihat hasil setiap pengiriman di log pengirimannya.",
+      "Di tab SDK, daftarkan situs yang boleh menampilkan wawancaramu dan menerima kandidat kembali, dan izinkan localhost selama kamu menguji.",
       "Hapus kunci dan webhook yang tidak lagi kamu pakai.",
       "Buka dokumentasi pengembang untuk setiap endpoint dan event, serta SDK."
     ],

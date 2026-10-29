@@ -261,8 +261,10 @@
     "text": "Kết nối nền tảng của riêng bạn, chẳng hạn trang tuyển dụng, với prepza.",
     "actions": [
       "Tạo khóa API và chỉ đánh dấu những gì nó cần: xem hoặc tạo buổi phỏng vấn; xem, mời, thay đổi hoặc xóa ứng viên; xem số credit của bạn; hoặc dùng với agent AI (MCP). Khóa thay mặt bạn.",
+      "Mở một khóa để thay đổi những gì khóa được làm, mỗi thay đổi được lưu ngay, và các địa chỉ IP được dùng khóa đó.",
       "Thêm webhook: prepza báo tới địa chỉ HTTPS của bạn, có chữ ký, khi ứng viên bắt đầu, làm xong (kèm kết quả), không nhận được lời mời, hết hạn lời mời hoặc bị xóa khỏi buổi phỏng vấn, và khi một buổi phỏng vấn sẵn sàng.",
       "Gửi sự kiện thử nghiệm tới một webhook và xem kết quả của từng lần gửi trong nhật ký gửi.",
+      "Trong thẻ SDK, liệt kê các trang web được hiển thị buổi phỏng vấn của bạn và đưa ứng viên quay lại, và cho phép localhost khi bạn đang thử nghiệm.",
       "Xóa các khóa và webhook bạn không dùng nữa.",
       "Mở tài liệu cho nhà phát triển để xem mọi endpoint, sự kiện và SDK."
     ],

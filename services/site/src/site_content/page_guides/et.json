@@ -261,8 +261,10 @@
     "text": "Ühenda prepzaga oma platvorm, näiteks karjäärileht.",
     "actions": [
       "Loo API-võti ja märgi ainult see, mida see vajab: intervjuude lugemine või loomine; kandidaatide lugemine, kutsumine, muutmine või eemaldamine; sinu krediitide lugemine; või kasutamine AI-agentidega (MCP). See tegutseb sinu nimel.",
+      "Ava võti, et muuta, mida see teha tohib (iga muudatus salvestub kohe), ja IP-aadresse, kust seda kasutada saab.",
       "Lisa webhook: prepza teavitab allkirjastatult sinu HTTPS-aadressi, kui kandidaat alustab, lõpetab (koos tulemustega), kutse ei jõua temani, tema kutse aegub või ta eemaldatakse, ning kui intervjuu on valmis.",
       "Saada webhookile testsündmus ja vaata saatmislogist, kuidas iga saatmine läks.",
+      "Lisa vahekaardil SDK saidid, mis võivad sinu intervjuusid näidata ja kandidaate tagasi võtta, ning luba testimise ajaks localhost.",
       "Kustuta võtmed ja webhookid, mida enam ei kasuta.",
       "Ava arendajate dokumentatsioon kõigi otspunktide ja sündmustega ning SDK."
     ],

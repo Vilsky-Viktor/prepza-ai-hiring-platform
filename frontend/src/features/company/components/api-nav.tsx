@@ -1,20 +1,23 @@
 "use client"
 
-import { KeyRoundIcon, WebhookIcon } from "lucide-react"
+import { GlobeIcon, KeyRoundIcon, WebhookIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
 import type { ReactNode } from "react"
 
 import { SideMenuLayout } from "@/components/common/side-menu"
 
-/** The API page's menu beside its content (`children`): its keys, and its web hooks. */
+export type ApiTab = "keys" | "webhooks" | "domains"
+
+/** The API page's menu beside its content (`children`): its keys, its web hooks and the SDK's
+ * allowed domains. */
 export function ApiNav({
   href,
   current,
   children,
 }: {
   href: string
-  current: "keys" | "webhooks"
+  current: ApiTab
   children: ReactNode
 }) {
   const t = useTranslations("api")
@@ -31,6 +34,13 @@ export function ApiNav({
       href: `${href}?tab=webhooks`,
       label: t("webhooksTitle"),
       icon: WebhookIcon,
+    },
+    {
+      id: "domains",
+      href: `${href}?tab=domains`,
+      label: t("sdkTitle"),
+      keepCase: true,
+      icon: GlobeIcon,
     },
   ]
 

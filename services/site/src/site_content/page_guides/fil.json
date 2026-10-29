@@ -261,8 +261,10 @@
     "text": "Ikonekta ang sarili mong platform, gaya ng iyong careers site, sa prepza.",
     "actions": [
       "Gumawa ng API key at i-check lang ang kailangan nito: basahin o gumawa ng mga interview; basahin, imbitahin, baguhin o alisin ang mga aplikante; basahin ang iyong credits; o gamitin sa mga AI agent (MCP). Kumikilos ito bilang ikaw.",
+      "Buksan ang isang key para baguhin ang puwede nitong gawin, na agad nase-save ang bawat pagbabago, at ang mga IP address na puwedeng gumamit nito.",
       "Magdagdag ng webhook: sinasabihan ng prepza ang iyong HTTPS address, may pirma, kapag nagsimula, natapos (kasama ang resulta), hindi naabot ng imbitasyon, nag-expire ang imbitasyon, o tinanggal ang isang aplikante, at kapag handa na ang isang interview.",
       "Padalhan ng test event ang isang webhook, at tingnan sa delivery log nito kung ano ang nangyari sa bawat padala.",
+      "Sa tab na SDK, ilista ang mga site na puwedeng magpakita ng mga interview mo at magbalik ng mga aplikante, at payagan ang localhost habang nagte-test ka.",
       "Burahin ang mga key at webhook na hindi mo na ginagamit.",
       "Buksan ang dokumentasyon para sa mga developer para sa bawat endpoint at event, at ang SDK."
     ],

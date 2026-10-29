@@ -1,27 +1,14 @@
 "use client"
 
-import { ListChecksIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { Fragment, useState } from "react"
 import { toast } from "sonner"
 
-import { IconButton } from "@/components/common/icon-button"
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { lockedReads, permissionsByGroup, tick } from "@/lib/api-permissions"
-import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
 import type { ApiKey, PermissionOptions } from "@/types/api-access"
 import { CARD } from "@/config/cards"
@@ -45,24 +32,21 @@ function named(
 }
 
 /** A key's permissions as checkboxes, laid out like the email preferences' digest: "Select all"
- * (a dash when only some are ticked; a new key only), then each group's permissions under its name. A read that
- * a ticked permission comes with stays ticked. With `allowed`, only those can be ticked (a key's
- * permissions are only ever narrowed). */
+ * (a dash when only some are ticked), then each group's permissions under its name. A read that
+ * a ticked permission comes with stays ticked. */
 export function PermissionTicks({
   options,
   ticked,
   onChange,
-  allowed,
   disabled = false,
 }: {
   options: PermissionOptions
   ticked: string[]
   onChange: (ticked: string[]) => void
-  allowed?: string[]
   disabled?: boolean
 }) {
   const t = useTranslations("api")
-  const all = allowed ?? Object.values(options.permission_groups).flat()
+  const all = Object.values(options.permission_groups).flat()
   const locked = lockedReads(ticked, options.implied)
   const on = all.filter((item) => ticked.includes(item)).length
 
@@ -76,21 +60,18 @@ export function PermissionTicks({
 
   return (
     <div className={`space-y-4 ${CARD}`}>
-      {/* Only for a new key: narrowing a key has nothing to select. */}
-      {!allowed && (
-        <label className={`${LABEL} gap-4`}>
-          <Checkbox
-            className={BIG}
-            checked={on === all.length}
-            indeterminate={on > 0 && on < all.length}
-            disabled={disabled}
-            onCheckedChange={(checked) => onChange(checked ? all : [])}
-          />
-          <span className="text-lg font-light">{t("selectAll")}</span>
-        </label>
-      )}
-      {/* Lined up with "Select all"'s text. */}
-      <div className={allowed ? "space-y-4" : "space-y-4 ps-11"}>
+      {/* Set apart from the groups by a line. */}
+      <label className={`${LABEL} gap-4 border-b pb-4`}>
+        <Checkbox
+          className={BIG}
+          checked={on === all.length}
+          indeterminate={on > 0 && on < all.length}
+          disabled={disabled}
+          onCheckedChange={(checked) => onChange(checked ? all : [])}
+        />
+        <span className="text-lg font-light">{t("selectAll")}</span>
+      </label>
+      <div className="space-y-4">
         {Object.entries(options.permission_groups).map(([group, items]) => (
           <fieldset key={group} className="space-y-2">
             <legend className="text-base">
@@ -114,11 +95,7 @@ export function PermissionTicks({
                     checked={
                       ticked.includes(permission) || locked.has(permission)
                     }
-                    disabled={
-                      disabled ||
-                      locked.has(permission) ||
-                      !all.includes(permission)
-                    }
+                    disabled={disabled || locked.has(permission)}
                     onCheckedChange={(checked) => change(permission, checked)}
                   />
                   {named(t, "permissions", permission)}
@@ -170,9 +147,9 @@ export function PermissionTags({
   )
 }
 
-/** "Edit permissions" on a key's row, an icon like the web hooks' actions: its checkboxes, of
- * which only the ticked ones can be unticked; adding one means making a new key. */
-export function EditPermissions({
+/** A key's permissions on its page: its checkboxes, any of which can be ticked or unticked. Each
+ * change saves at once, confirmed by a toast; one the API refuses (unticking the last) is undone. */
+export function KeyPermissions({
   companyId,
   apiKey,
   options,
@@ -182,33 +159,24 @@ export function EditPermissions({
   options: PermissionOptions
 }) {
   const t = useTranslations("api")
-  const common = useTranslations("common")
   const router = useRouter()
-  const [open, setOpen] = useState(false)
   const [ticked, setTicked] = useState(apiKey.permissions)
   const [saving, setSaving] = useState(false)
-  const changed = ticked.length !== apiKey.permissions.length
 
-  function changeOpen(next: boolean) {
-    if (saving) {
-      return
-    }
-
-    setOpen(next)
-    setTicked(apiKey.permissions)
-  }
-
-  async function save() {
+  async function change(next: string[]) {
+    const before = ticked
+    setTicked(next)
     setSaving(true)
 
     try {
       await apiFetch(`/v1/manage/keys/${apiKey.id}?company_id=${companyId}`, {
         method: "PATCH",
-        body: JSON.stringify({ permissions: ticked }),
+        body: JSON.stringify({ permissions: next }),
       })
-      setOpen(false)
+      toast.success(t("permissionsSaved"))
       router.refresh()
     } catch (error) {
+      setTicked(before)
       toast.error(
         serviceRefusal(error, [409]) ??
           apiErrorMessage(error, t("permissionsFailed"))
@@ -219,47 +187,11 @@ export function EditPermissions({
   }
 
   return (
-    <>
-      <IconButton label={t("editPermissions")} onClick={() => changeOpen(true)}>
-        <ListChecksIcon className="size-6" />
-      </IconButton>
-      <Dialog open={open} onOpenChange={changeOpen}>
-        <DialogContent showCloseButton={false} className="sm:max-w-xl">
-          <DialogHeader>
-            <DialogTitle>{t("editPermissions")}</DialogTitle>
-            <DialogDescription>
-              {t.rich("editPermissionsText", { name: apiKey.name, ...bdi })}
-            </DialogDescription>
-          </DialogHeader>
-          <PermissionTicks
-            options={options}
-            ticked={ticked}
-            onChange={setTicked}
-            allowed={apiKey.permissions}
-            disabled={saving}
-          />
-          <DialogFooter>
-            <DialogClose
-              render={
-                <Button
-                  variant="outline"
-                  className="h-10 px-5 text-base"
-                  disabled={saving}
-                />
-              }
-            >
-              {common("cancel")}
-            </DialogClose>
-            <Button
-              className="h-10 px-5 text-base"
-              disabled={saving || !changed || !ticked.length}
-              onClick={save}
-            >
-              {common("save")}
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-    </>
+    <PermissionTicks
+      options={options}
+      ticked={ticked}
+      onChange={change}
+      disabled={saving}
+    />
   )
 }

@@ -171,8 +171,8 @@ after a top-up they're invited by themselves.
 once; they expire in 1, 3, 6 or 12 months, or never), ticking what each may do (read or create \
 interviews; read, invite, change or remove candidates; read credits; use with AI agents), and \
 web hooks. A new key starts with reading interviews and candidates; owners and admins can \
-later change a key's permissions, adding or taking away any, and a call it may not make \
-gets a 403 naming the missing permission. A key creates tests from \
+later change a key's permissions, adding or taking away any, on the key's own page (opened from \
+its row in the list), and a call it may not make gets a 403 naming the missing permission. A key creates tests from \
 job descriptions, lists the company's tests and candidates with their results, invites \
 candidates (an Idempotency-Key makes a retry safe), reminds, renames, gives extra time to or \
 removes them, finds a candidate by email and reads the credits, and syncs its lists by what \
@@ -184,9 +184,10 @@ events reach it) until a test event goes through. An invite can skip prepza's em
 (the platform sends the candidate the link itself), bring the candidate back to the \
 company's site when they finish, and ask for the light or dark theme. With prepza's SDK (a \
 script), the company's own page shows the interview itself. Bringing candidates back and \
-embedding work only on the domains the company allows on its API page (localhost only when it \
-allows it); verification isn't needed for the API, the SDK or AI apps, it only adds the \
-verified badge. An API key can be limited to allowed IP addresses. The reference is the \
+embedding work only on the domains the company allows on its API page's SDK tab (localhost \
+only when it allows it); verification isn't needed for the API, the SDK or AI apps, it only adds \
+the verified badge. An API key can be limited to allowed IP addresses, also on the key's own \
+page. The reference is the \
 "developer docs" page, linked in the footer.
 - AI apps: Claude, ChatGPT and other apps that support MCP connect to prepza; any member can \
 connect one (Integrations → AI apps → Instructions has the address and the steps). Connected, an app acts as the person who \

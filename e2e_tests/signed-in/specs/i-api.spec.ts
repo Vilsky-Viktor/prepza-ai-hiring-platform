@@ -95,30 +95,11 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   await expect(tags).toHaveCount(3)
   await shot(owner, "keys-tab")
 
-  // Narrowed: Invite unticked and saved, the key can't invite any more, and Invite can't be
-  // ticked again (adding one means a new key).
-  const editKey = owner.getByRole("main").getByRole("listitem").first().getByRole("button").first()
-  await openDialog(owner, editKey)
-  const keyTicks = owner.getByRole("dialog").getByRole("checkbox")
-  await expect(keyTicks).toHaveCount(8)
-  await keyTicks.nth(3).click()
-  await expect(keyTicks.nth(3)).not.toBeChecked()
-  await shot(owner, "narrow-key")
-  await owner.getByRole("dialog").getByRole("button").last().click()
-  await expect(owner.getByRole("dialog")).toHaveCount(0)
-  await expect(tags).toHaveCount(2)
-  const uninvited = await owner.request.post(
-    `${API_URL}/v1/interviews/${interviewId}/candidates`,
-    { headers, data: { email: "delivered+e2e-api-narrowed@resend.dev" } }
-  )
-  expect(uninvited.status()).toBe(403)
-  expect((await uninvited.json()).detail).toBe(
-    "This API key doesn't have the candidates:invite permission."
-  )
-  await openDialog(owner, editKey)
-  await expect(keyTicks.nth(3)).toBeDisabled()
-  await expect(keyTicks.nth(3)).not.toBeChecked()
-  await owner.keyboard.press("Escape")
+  // The row opens the key's own page, where its permissions and allowed IPs change
+  // (i-api-key.spec.ts); deleting stays on the row.
+  await owner.getByRole("main").getByRole("link", { name: "Careers site" }).click()
+  await expect(owner).toHaveURL(/\/integrations\/api\/keys\/[0-9a-f-]+$/)
+  await visit(owner, `${tab}/api`)
 
   // The web hooks have a tab of their own, with its own button: a dialog with no expiry.
   await owner.locator('main nav a[href$="?tab=webhooks"]:visible').click()
