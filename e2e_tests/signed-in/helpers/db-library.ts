@@ -153,3 +153,15 @@ export async function multiAnswerTemplate(
     return id;
   });
 }
+
+/** Adds `extra` to the end of every question of a template addTemplate made, before a company
+ * copies it, so its questions run long. */
+export async function lengthenQuestions(templateId: string, extra: string) {
+  await withDatabase("library", (client) =>
+    client.query(
+      `UPDATE questions q SET text = q.text || ' ' || $2
+       FROM topics t WHERE t.id = q.topic_id AND t.set_id = $1`,
+      [templateId, extra],
+    ),
+  );
+}

@@ -886,6 +886,7 @@
     "continueFailed": "Tidak bisa melanjutkan. Coba lagi.",
     "timeUp": "Waktu untuk soal ini sudah habis.",
     "selectAll": "Pilih semua jawaban yang benar",
+    "question": "Soal",
     "finish": "Selesaikan wawancara",
     "finishTitle": "Selesaikan seluruh wawancara?",
     "endsAll": "Ini menyelesaikan semua {count, number} bagian, bukan hanya yang ini.",

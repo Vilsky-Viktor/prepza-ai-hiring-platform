@@ -886,6 +886,7 @@
     "continueFailed": "Não foi possível continuar. Tente novamente.",
     "timeUp": "O tempo desta questão acabou.",
     "selectAll": "Marque todas as opções corretas",
+    "question": "Questão",
     "finish": "Concluir entrevista",
     "finishTitle": "Concluir a entrevista inteira?",
     "endsAll": "Isso encerra todas as {count, plural, one {# seção} other {# seções}}, não só esta.",

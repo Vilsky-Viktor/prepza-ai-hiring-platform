@@ -886,6 +886,7 @@
     "continueFailed": "Impossible de continuer. Veuillez réessayer.",
     "timeUp": "Le temps imparti pour cette question est écoulé.",
     "selectAll": "Cochez toutes les bonnes réponses",
+    "question": "Question",
     "finish": "Terminer l'entretien",
     "finishTitle": "Terminer tout l'entretien ?",
     "endsAll": "Cela termine les {count, plural, one {# section} other {# sections}}, pas seulement celle-ci.",

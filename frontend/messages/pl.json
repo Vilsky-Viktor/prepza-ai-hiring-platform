@@ -886,6 +886,7 @@
     "continueFailed": "Nie udało się kontynuować. Spróbuj ponownie.",
     "timeUp": "Czas na to pytanie minął.",
     "selectAll": "Zaznacz wszystkie poprawne odpowiedzi",
+    "question": "Pytanie",
     "finish": "Zakończ rozmowę",
     "finishTitle": "Zakończyć całą rozmowę?",
     "endsAll": "To zakończy wszystkie sekcje ({count, number}), nie tylko tę.",

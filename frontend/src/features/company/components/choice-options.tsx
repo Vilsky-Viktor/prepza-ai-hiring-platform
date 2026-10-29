@@ -10,20 +10,23 @@ type ChoiceOptionsProps = {
   // Multi-answer ("select all that apply"): each option is ticked on its own, with a check box.
   multi?: boolean
   disabled: boolean
+  bleed?: boolean
   onChoose: (optionIndex: number) => void
 }
 
 /** A question's options. The ones picked stay marked and can be changed until they're sent;
- * candidates never see which are right. */
+ * candidates never see which are right. With `bleed`, on phones they span the screen with square
+ * corners and no side borders, like the interview's question above them. */
 export function ChoiceOptions({
   options,
   chosen,
   multi = false,
   disabled,
+  bleed = false,
   onChoose,
 }: ChoiceOptionsProps) {
   return (
-    <ul className="space-y-2">
+    <ul className={cn("space-y-2", bleed && "max-sm:-mx-6")}>
       {options.map((option, index) => {
         const picked = chosen.includes(index)
 
@@ -37,6 +40,7 @@ export function ChoiceOptions({
               onClick={() => onChoose(index)}
               className={cn(
                 "flex w-full items-start gap-3 rounded-xl border p-4 text-start text-lg leading-7 font-light normal-case transition-colors outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:cursor-default",
+                bleed && "max-sm:rounded-none max-sm:border-x-0 max-sm:px-6",
                 picked
                   ? "border-ring bg-surface"
                   : "hover:border-ring hover:bg-surface active:bg-surface"

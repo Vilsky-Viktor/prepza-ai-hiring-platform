@@ -886,6 +886,7 @@
     "continueFailed": "Hindi makapagpatuloy. Pakisubukang muli.",
     "timeUp": "Ubos na ang oras para sa tanong na ito.",
     "selectAll": "Piliin ang lahat ng tamang opsyon",
+    "question": "Tanong",
     "finish": "Tapusin ang interview",
     "finishTitle": "Tapusin ang buong interview?",
     "endsAll": "Matatapos nito ang lahat ng {count, number} seksyon, hindi lang ito.",

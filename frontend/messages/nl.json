@@ -886,6 +886,7 @@
     "continueFailed": "Doorgaan lukte niet. Probeer het opnieuw.",
     "timeUp": "De tijd voor deze vraag is om.",
     "selectAll": "Kies alle juiste opties",
+    "question": "Vraag",
     "finish": "Interview afronden",
     "finishTitle": "Het hele interview afronden?",
     "endsAll": "Dit beëindigt alle {count, plural, one {# onderdeel} other {# onderdelen}}, niet alleen dit onderdeel.",

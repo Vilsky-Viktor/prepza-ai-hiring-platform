@@ -886,6 +886,7 @@
     "continueFailed": "无法继续，请重试。",
     "timeUp": "本题时间已到。",
     "selectAll": "选择所有正确选项",
+    "question": "题目",
     "finish": "结束面试",
     "finishTitle": "结束整场面试？",
     "endsAll": "这将结束全部 {count, number} 个部分，而不仅是当前部分。",

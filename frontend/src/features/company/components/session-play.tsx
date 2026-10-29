@@ -1,3 +1,4 @@
+import { cn } from "cn"
 import { CornerRightDownIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 import { type ReactNode, useEffect, useRef, useState } from "react"
@@ -11,7 +12,9 @@ import { QuestionActions } from "@/components/common/question-actions"
 import { MultiChoiceTag } from "@/components/common/multi-choice-tag"
 import { QuestionText } from "@/components/common/question-text"
 import { ChoiceOptions } from "@/features/company/components/choice-options"
+import { CARD_PADDING } from "@/config/cards"
 import { useIntegritySignals } from "@/hooks/use-integrity-signals"
+import { useScrolls } from "@/hooks/use-scrolls"
 import { languageOf } from "@/lib/locale"
 import type { InterviewSession } from "@/types/company"
 import type { AnswerInput, NextQuestion } from "@/types/round"
@@ -59,6 +62,8 @@ export function SessionPlay({
   useIntegritySignals(session.id, session.status === "in_progress")
   const questionRef = useRef<HTMLDivElement>(null)
   const questionId = question?.question_id
+  // A long question scrolls in its own box, which then takes keyboard focus to scroll by keys.
+  const { ref: cardRef, scrolls } = useScrolls<HTMLDivElement>(questionId)
   const chosen = pick.question === questionId ? pick.options : []
   const multi = Boolean(question?.multi)
   const answered = progress.answered + (chosen.length ? 1 : 0)
@@ -128,12 +133,34 @@ export function SessionPlay({
         {timedOut && <span key={timedOut}>{t("timeUp")}</span>}
       </p>
       {question && (
-        <div key={question.question_id} ref={questionRef} className="space-y-6">
-          {/* In the interview's own language, so screen readers read it with the right voice. */}
-          <div {...languageOf(session.language)} className="space-y-6">
-            {/* Multi-answer questions are tagged just above their text, so they can't be taken
-                for single-answer ones. */}
-            <div className="space-y-3">
+        // The question at the start of the line (on the left, on the right in a right-to-left
+        // interface), its options beside it; on phones stacked, the question first. A long
+        // question scrolls in its own column, which stays in view while the options scroll.
+        <div
+          key={question.question_id}
+          ref={questionRef}
+          className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-start lg:gap-8"
+        >
+          {/* The question and its rating stay in view together; on phones the
+              rating moves under the options. */}
+          <div className="contents lg:sticky lg:top-6 lg:block lg:space-y-6">
+            {/* Both columns in the interview's own language, so screen readers read them with the
+                right voice. Multi-answer questions are tagged just above their text, so they can't
+                be taken for single-answer ones. */}
+            <div
+              {...languageOf(session.language)}
+              ref={cardRef}
+              data-testid="question-card"
+              {...(scrolls && {
+                tabIndex: 0,
+                role: "region",
+                "aria-label": t("question"),
+              })}
+              className={cn(
+                "space-y-3 rounded-xl bg-surface outline-none focus-visible:ring-3 focus-visible:ring-ring/50 max-sm:-mx-6 max-sm:rounded-none lg:max-h-[calc(100dvh-26rem)] lg:overflow-y-auto",
+                CARD_PADDING
+              )}
+            >
               {/* The tag and the hint are the site's, so read in its language. */}
               {multi && (
                 <div {...languageOf(locale)}>
@@ -146,6 +173,17 @@ export function SessionPlay({
                 className="text-2xl leading-snug font-medium"
               />
             </div>
+            <div
+              {...languageOf(locale)}
+              data-testid="question-rating"
+              className="max-lg:order-last"
+            >
+              <QuestionActions
+                basePath={`/rounds/sessions/${session.id}/questions/${question.question_id}`}
+              />
+            </div>
+          </div>
+          <div {...languageOf(session.language)} className="space-y-6">
             {multi && (
               <p
                 {...languageOf(locale)}
@@ -166,15 +204,10 @@ export function SessionPlay({
               chosen={chosen}
               multi={multi}
               disabled={sending}
+              bleed
               onChoose={(option) => choose(question.question_id, option)}
             />
           </div>
-          {/* Judged once picked, not before. */}
-          {chosen.length > 0 && (
-            <QuestionActions
-              basePath={`/rounds/sessions/${session.id}/questions/${question.question_id}`}
-            />
-          )}
         </div>
       )}
       <SessionFooter

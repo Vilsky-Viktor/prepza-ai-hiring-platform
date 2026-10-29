@@ -886,6 +886,7 @@
     "continueFailed": "Jätkata ei õnnestunud. Proovi uuesti.",
     "timeUp": "Selle küsimuse aeg sai otsa.",
     "selectAll": "Vali kõik sobivad variandid",
+    "question": "Küsimus",
     "finish": "Lõpeta intervjuu",
     "finishTitle": "Lõpetada kogu intervjuu?",
     "endsAll": "See lõpetab kõik {count, number} osa, mitte ainult selle.",

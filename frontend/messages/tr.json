@@ -886,6 +886,7 @@
     "continueFailed": "Devam edilemedi. Lütfen tekrar deneyin.",
     "timeUp": "Bu sorunun süresi doldu.",
     "selectAll": "Doğru olanların tümünü seçin",
+    "question": "Soru",
     "finish": "Mülakatı bitir",
     "finishTitle": "Mülakatın tamamı bitirilsin mi?",
     "endsAll": "Bu, yalnızca bunu değil {count, number} bölümün tamamını bitirir.",

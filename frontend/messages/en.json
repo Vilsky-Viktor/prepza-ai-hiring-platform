@@ -886,6 +886,7 @@
     "continueFailed": "Couldn't continue. Please try again.",
     "timeUp": "Time is up for this question.",
     "selectAll": "Select all that apply",
+    "question": "Question",
     "finish": "Finish interview",
     "finishTitle": "Finish the whole interview?",
     "endsAll": "This ends all {count, plural, one {# section} other {# sections}}, not only this one.",

@@ -886,6 +886,7 @@
     "continueFailed": "Es konnte nicht fortgesetzt werden. Bitte versuche es erneut.",
     "timeUp": "Die Zeit für diese Frage ist abgelaufen.",
     "selectAll": "Alle zutreffenden Optionen auswählen",
+    "question": "Frage",
     "finish": "Interview beenden",
     "finishTitle": "Das ganze Interview beenden?",
     "endsAll": "Damit enden alle {count, plural, one {# Abschnitt} other {# Abschnitte}}, nicht nur dieser.",

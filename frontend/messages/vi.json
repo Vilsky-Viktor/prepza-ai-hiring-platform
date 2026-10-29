@@ -886,6 +886,7 @@
     "continueFailed": "Không thể tiếp tục. Vui lòng thử lại.",
     "timeUp": "Đã hết thời gian cho câu này.",
     "selectAll": "Chọn tất cả phương án đúng",
+    "question": "Câu hỏi",
     "finish": "Kết thúc phỏng vấn",
     "finishTitle": "Kết thúc toàn bộ buổi phỏng vấn?",
     "endsAll": "Thao tác này kết thúc cả {count, number} phần, không chỉ phần này.",

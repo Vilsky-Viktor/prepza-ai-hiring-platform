@@ -886,6 +886,7 @@
     "continueFailed": "Impossibile continuare. Riprova.",
     "timeUp": "Il tempo per questa domanda è scaduto.",
     "selectAll": "Seleziona tutte le opzioni corrette",
+    "question": "Domanda",
     "finish": "Termina il colloquio",
     "finishTitle": "Terminare l'intero colloquio?",
     "endsAll": "In questo modo terminano tutte le {count, plural, one {# sezione} other {# sezioni}}, non solo questa.",
