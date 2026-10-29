@@ -1,14 +1,12 @@
 """What every offline test shares: where the datasets live, model prices, the judge prompts, and
-one format for a question wherever it comes from."""
+one format for a question wherever it comes from. The model clients are imported where they're
+used, so a script that calls no model runs in any service's container (rounds' has no LangChain)."""
 
 import hashlib
 import json
 import os
 from datetime import UTC, datetime
 from pathlib import Path
-
-from langchain_openai import ChatOpenAI
-from prepza_common.ai.llm import call_cost
 
 EVALS = Path(__file__).resolve().parents[1]
 DATASETS = EVALS / "datasets"
@@ -78,8 +76,10 @@ def prompt(name: str) -> str:
     return (JUDGES / f"{name}.md").read_text()
 
 
-def model(name: str, effort: str, timeout: int = 300) -> ChatOpenAI:
+def model(name: str, effort: str, timeout: int = 300):
     """A reasoning model takes no temperature; one with reasoning off gets a little."""
+    from langchain_openai import ChatOpenAI
+
     if effort == "none":
         return ChatOpenAI(
             model=name, reasoning_effort="none", temperature=0.3, max_retries=3, timeout=timeout
@@ -106,12 +106,14 @@ def generation_models(settings, names: tuple[str, ...] = ("interview",)) -> str:
     )
 
 
-def judge() -> ChatOpenAI:
+def judge():
     return model(JUDGE_MODEL, JUDGE_EFFORT)
 
 
 def cost(model_name: str, usage: dict) -> float:
     """USD for one call's usage metadata; a model without a price fails the run."""
+    from prepza_common.ai.llm import call_cost
+
     spent = call_cost(model_name, usage)
 
     if spent is None:

@@ -1,5 +1,5 @@
 """Checks by code of the small utility prompts' datasets (code-language tags, translations,
-quality patterns, titles), for check_datasets.py: each says what it is, has unique ids, and
+quality patterns, titles) and of the judge's question times, for check_datasets.py: each says what it is, has unique ids, and
 its expectations fit its own text. Each returns the texts to check against prompts' examples."""
 
 import json
@@ -177,6 +177,32 @@ def check_voice(problems: list[str]) -> list[str]:
     ]
 
     return [item["text"] for item in data["items"]]
+
+
+def check_question_times(problems: list[str]) -> list[str]:
+    """The judge's seconds: each for a question of its set, once, a whole number above 0."""
+    data = load("question_times.json")
+    check_described("question_times.json", data, problems)
+    known = {
+        (name, item["id"])
+        for name in ("questions.json", "multi_questions.json", "language_questions.json")
+        for item in load(name)["items"]
+    }
+    seen = Counter((item["set"], item["id"]) for item in data["items"])
+    problems += [
+        f"question_times.json: {key} appears {n} times" for key, n in seen.items() if n > 1
+    ]
+    problems += [f"question_times.json: no question {key}" for key in seen if key not in known]
+    problems += [
+        f"question_times.json: {item['id']} has no whole seconds above 0"
+        for item in data["items"]
+        if not all(
+            isinstance(item.get(k, 1), int) and item.get(k, 1) > 0 for k in ("seconds", "retest")
+        )
+        or "seconds" not in item
+    ]
+
+    return []
 
 
 def check_screen(problems: list[str]) -> list[str]:

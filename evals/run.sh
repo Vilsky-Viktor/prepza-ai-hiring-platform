@@ -2,7 +2,7 @@
 # Runs an offline test script inside a service container of the local stack, which has the
 # service's code, packages and OpenAI key, then copies new datasets and results back.
 #
-#   evals/run.sh <generation|generation-worker|library|assistant> <script.py> [arguments]
+#   evals/run.sh <generation|generation-worker|library|assistant|rounds> <script.py> [arguments]
 #
 # generation-worker has generation's code too: a second container, so two tests can run at once.
 # MODEL, EFFORT, JUDGE_MODEL, JUDGE_EFFORT and OVERSAMPLE are passed through when set.
@@ -23,7 +23,9 @@ docker cp "$here" "$container:$copy"
 trap 'docker exec "$container" rm -rf "$copy"' EXIT
 # What this run writes is copied back alone: copying all of datasets/ and results/ would undo
 # changes made here while it ran (a concurrent run's results, a dataset edited meanwhile).
-docker exec "$container" touch "$copy/.started"
+# Dated a second back: the container's clock can stamp files written in the same moment alike,
+# so a script that ends within it would otherwise bring nothing back.
+docker exec "$container" sh -c 'touch -d "@$(($(date +%s) - 1))" "$1"' _ "$copy/.started"
 
 # The commit a result was made on; "+changes" when the service or evals/ differ from it.
 commit="$(git -C "$here" rev-parse --short HEAD)"

@@ -20,6 +20,7 @@ from small_datasets import (
     check_duplicates,
     check_patterns,
     check_postings,
+    check_question_times,
     check_screen,
     check_titles,
     check_translations,
@@ -210,6 +211,7 @@ def main() -> None:
     texts += [("duplicates", text) for text in check_duplicates(problems)]
     texts += [("voice", text) for text in check_voice(problems)]
     texts += [("screen", text) for text in check_screen(problems)]
+    check_question_times(problems)
 
     for where, text in texts:
         for example in examples:

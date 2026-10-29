@@ -7,7 +7,8 @@ generation's prompts in `generation.md`, and for the small utility prompts (tran
 in `utility.md` (CLAUDE.md rule 20).
 
 Contents: [Baselines (2026-10-04)](#baselines-2026-10-04) ·
-[Eval changes (2026-10-20)](#eval-changes-2026-10-20)
+[Eval changes (2026-10-20)](#eval-changes-2026-10-20) ·
+[Fitted question times (2026-10-29)](#fitted-question-times-2026-10-29)
 
 ## Baselines (2026-10-04)
 
@@ -172,3 +173,35 @@ page's guide; both fixed before this baseline.
 `gpt-6.1-sol` low, judged at high): 40 of 40 written, all of their kind; keys 100% (91.2–100),
 clarity 5.00, relevance 4.58 ± 0.20, distractors 3.38 ± 0.27; $0.49 for 40 (a new question, its
 options, and a retry when one came out ambiguous), 121 s.
+
+## Fitted question times (2026-10-29)
+
+`question_times.py` (new, free) on `question_times.json` (452 questions, judged by `gpt-6.1-sol`
+high; the new judge runs cost $0.79): rounds' estimate of each question's time (reading at 200
+words a minute, an example at 120, plus 30 s to answer) against the judge's seconds. Over 3,000
+draws of 10 questions of one level and language at an average of 60 s, each question's distance
+from the time the judge's estimates would give it, as a share of the average:
+
+| Kind | Questions | Spearman | Fitted | Equal |
+|---|---|---|---|---|
+| All | 452 | 0.49 (English) | 0.158 ± 0.002 | 0.167 ± 0.002 |
+| English basic, single | 68 | 0.65 | 0.116 ± 0.003 | 0.147 ± 0.004 |
+| English basic, multi | 13 | 0.70 | 0.222 ± 0.018 | 0.217 ± 0.019 |
+| English medium, single, example | 29 | 0.65 | 0.181 ± 0.010 | 0.209 ± 0.011 |
+| English medium, single, text | 111 | 0.25 | 0.193 ± 0.007 | 0.186 ± 0.006 |
+| English medium, multi, text | 33 | 0.16 | 0.189 ± 0.014 | 0.186 ± 0.013 |
+| English hard, single | 69 | 0.33 | 0.251 ± 0.007 | 0.256 ± 0.008 |
+| English hard, multi | 14 | -0.13 | 0.212 ± 0.015 | 0.244 ± 0.014 |
+| German / Hindi | 12 / 12 | 0.47 / 0.57 | 0.147 / 0.133 | 0.156 / 0.173 |
+| Arabic / Russian (weight 1) | 12 / 12 | 0.16 / 0.10 | 0.183 / 0.261 | 0.183 / 0.261 |
+| Japanese / Thai (weight 1) | 12 / 12 | -0.17 / 0.28 | 0.086 / 0.041 | 0.086 / 0.041 |
+
+The judge is consistent with itself (40 questions twice: Spearman 0.95, 2.1 ± 0.8 s apart), so
+its estimates carry a question's working time, which length alone doesn't: within medium and hard
+text-only questions the estimate follows it only weakly (0.25–0.33). Fitted times still come
+closer overall, most for basic questions and those with an example. Tried: 15, 30 and 45 s to
+answer, with 0, 5 and 10 s more for a multi-answer question; 30 and none came closest (15 with 5:
+0.168, no better than equal). Arabic and Russian came out further than equal (0.199 and 0.277)
+and Japanese and Thai can't be counted in words, so those scripts get weight 1; each rests on 12
+questions only.
+

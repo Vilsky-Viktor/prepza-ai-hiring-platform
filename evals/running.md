@@ -60,6 +60,11 @@ evals/run.sh generation build_questions.py --inputs language_inputs.json --per-s
     --multi 2 --label x
 evals/run.sh generation review_questions.py datasets/language_questions.json
 
+# Fitted question times: rounds' estimate against the judge's seconds (free, code only); the
+# dataset rebuilt from review files (dataset=reviews pairs; a dataset given twice is the retest)
+evals/run.sh rounds question_times.py
+evals/run.sh rounds question_times.py --build datasets/questions.json=results/reviews_x.json ...
+
 # The datasets' shape, duplicates, prompt-example overlap and coverage (free, on the host)
 python3 evals/scripts/check_datasets.py
 

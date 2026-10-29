@@ -86,6 +86,15 @@ with 3 a right one unmarked), so 2 or 3 stay marked.
 each item tagged with its `language`. Shows whether quality holds in the languages tests are
 written in; small, so it flags large drops only.
 
+## `question_times.json` (`question_times.py --build`, `gpt-6.1-sol` high, 2026-10-29)
+
+The judge's estimate (`judges/question_review.md`, `seconds`) of how long a capable candidate
+needs to read and answer each question: all 240 of `questions.json` (2026-10-20), 100 of
+`multi_questions.json` (seed 7) and all 72 of `language_questions.json` (2026-10-29), and 40 of
+`questions.json` again (`retest`) to show the judge's own noise. The reference for rounds' fitted
+question times: no measured answer times exist (local answers come from browser tests). The new
+reviews cost $0.79.
+
 ## `assistant_questions.json` (by hand, 2026-10-17)
 
 The assistant's page-context test: 8 pages (key, path, the ids the panel sends), 51 general
