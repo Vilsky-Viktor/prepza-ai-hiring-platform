@@ -46,7 +46,9 @@ export function contentSecurityPolicy(
     "base-uri 'self'",
     "form-action 'self'",
     `frame-ancestors ${frameAncestors}`,
-    ...(isDev ? [] : ["upgrade-insecure-requests"]),
+    // Not on the local stack (the sign-in emulator, never set in production), served over plain
+    // http: Safari would upgrade the site's own files to https there, which nothing serves.
+    ...(isDev || emulator ? [] : ["upgrade-insecure-requests"]),
   ]
     .map((directive) => directive.trim())
     .join("; ")

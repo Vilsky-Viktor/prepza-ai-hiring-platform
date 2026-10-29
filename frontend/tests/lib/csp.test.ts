@@ -23,6 +23,23 @@ it("has no emulator without one", () => {
   expect(policy).not.toContain("9199")
 })
 
+// Production's pages ask for https everywhere; the local stack, plain http with the sign-in
+// emulator (a production build too, as the browser tests run), doesn't.
+it("upgrades insecure requests in production only", () => {
+  vi.stubEnv("NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL", "")
+  expect(contentSecurityPolicy("nonce", false)).toContain(
+    "upgrade-insecure-requests"
+  )
+  expect(contentSecurityPolicy("nonce", true)).not.toContain(
+    "upgrade-insecure-requests"
+  )
+
+  vi.stubEnv("NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL", "http://localhost:9199")
+  expect(contentSecurityPolicy("nonce", false)).not.toContain(
+    "upgrade-insecure-requests"
+  )
+})
+
 it("lets no one frame a page, but a company's own site its embedded interview", () => {
   expect(contentSecurityPolicy("nonce", false)).toContain(
     "frame-ancestors 'none'"

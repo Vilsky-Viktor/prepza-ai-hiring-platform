@@ -31,7 +31,8 @@ paths:
   Components or experimental SRI. Public API data is cached with `revalidate` (300 s) per
   instance and given up on after a few seconds, so the page shows without it; no shared cache
   handler (rule 4).
-- The proxy skips `_next/*`, link prefetches and static files.
+- The proxy skips `_next/*`, link prefetches (but those of a language's address, which only its
+  rewrite finds) and static files.
 
 ## Images and fonts
 

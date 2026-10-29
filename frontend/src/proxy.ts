@@ -105,7 +105,9 @@ export async function proxy(request: NextRequest) {
 // Pages only: not the API (/api/..., but /api-docs is a page), Next's files, link prefetches or
 // the files in public/ (each folder and file, tests/lib/proxy-matcher.test.ts). Nor the hosted
 // embed script (/embed/v1.js): companies' sites load it as it is, also during maintenance, when
-// the frame it makes shows the maintenance screen.
+// the frame it makes shows the maintenance screen. A link to a language's address (/de/pricing)
+// is prefetched through the proxy too: only its rewrite finds the page (every language but
+// English, as LOCALES lists them).
 export const config = {
   matcher: [
     {
@@ -115,6 +117,10 @@ export const config = {
         { type: "header", key: "next-router-prefetch" },
         { type: "header", key: "purpose", value: "prefetch" },
       ],
+    },
+    {
+      source:
+        "/(ru|uk|es|pt|de|fr|it|pl|nl|tr|ar|he|fa|ja|zh|ko|hi|id|th|vi|fil|et)(/.*)?",
     },
   ],
 }
