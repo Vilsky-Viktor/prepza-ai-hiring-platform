@@ -35,7 +35,9 @@ migrations/                       # Alembic
 ```
 
 Every route that reaches a company's data resolves it and checks the caller's role on it
-(`services/access.py`); `tests/unit/test_route_guards.py` fails on a route without a guard.
+(`services/access.py`); `tests/unit/test_route_guards.py` fails on a route without a guard, and
+`tests/integration/api/test_access_matrix.py` on one that lets another company, a viewer's change
+or anyone signed out through.
 
 Routes and handlers call services; services open the transaction (`async with
 Session.begin() as session:`) and pass it to the repositories, so a change and its line in the
