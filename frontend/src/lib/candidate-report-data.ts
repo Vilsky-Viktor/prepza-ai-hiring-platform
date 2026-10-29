@@ -13,6 +13,7 @@ export function candidateReportData(card: Scorecard): CandidateReportData {
     passed: card.passed,
     passMark: card.pass_mark,
     language: card.language,
+    answerSignals: card.answer_patterns.signals,
     sections: card.sessions.map((session) => ({
       id: session.id,
       topic_title: session.topic_title,

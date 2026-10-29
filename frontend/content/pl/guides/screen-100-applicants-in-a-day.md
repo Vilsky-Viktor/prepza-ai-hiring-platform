@@ -81,7 +81,7 @@ Teraz zaczyna się uważna lektura, ale w mniejszej, uszeregowanej grupie.
 
 1. **Posortuj według wyniku,** od najlepszych, w menu sortowania listy: lista otwiera się od najnowszych kandydatów.
 2. **Otwórz kartę wyników** każdej osoby z czołówki. Patrz na odpowiedzi, nie tylko na liczbę: które tematy wypadły mocno, które słabo, ile trwała każda odpowiedź.
-3. **Sprawdź oznaczenia dotyczące rzetelności.** prepza oznacza odpowiedzi udzielone zbyt szybko, by zdążyć przeczytać pytanie, sytuacje, w których kandydat opuścił stronę, oraz próby kopiowania. Oznaczenie to powód, by przyjrzeć się bliżej, a nie dowód oszustwa. Ktoś, kto raz opuścił stronę, mógł dostać wyskakujące powiadomienie.
+3. **Sprawdź oznaczenia dotyczące rzetelności.** prepza oznacza odpowiedzi udzielone zbyt szybko, by zdążyć przeczytać pytanie, sytuacje, w których kandydat opuścił stronę, oraz próby kopiowania. Gdy kandydat skończy, jego strona wskazuje też nietypowe wzorce odpowiedzi (mniej więcej tyle samo czasu przy każdym pytaniu albo poprawne odpowiedzi na trudne pytania przy błędnych na łatwe) i podsuwa pytania do zadania na kolejnej rozmowie. Oznaczenie to powód, by przyjrzeć się bliżej, a nie dowód oszustwa. Ktoś, kto raz opuścił stronę, mógł dostać wyskakujące powiadomienie.
 4. **Spójrz tuż poniżej progu zaliczenia.** Wyniki z różnych losowych zestawów pytań nie są w pełni porównywalne, więc kilka punktów może wynikać z losowania. Ktoś z wynikiem 65% i mocnymi odpowiedziami w najważniejszych tematach może zasługiwać na rozmowę kwalifikacyjną.
 5. **Teraz przeczytaj CV** osób, które bierzesz pod uwagę. Uważnie czytasz 15 CV zamiast pobieżnie przeglądać 100.
 

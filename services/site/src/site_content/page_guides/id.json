@@ -153,6 +153,7 @@
     "text": "Hasil satu kandidat: nilainya, apakah lulus, dan skor tiap topik dengan setiap jawaban.",
     "actions": [
       "Baca setiap jawaban, dengan tanda integritas: meninggalkan halaman, upaya menyalin, dan jawaban cepat.",
+      "Setelah kandidat selesai, lihat pola tidak biasa dalam jawaban dan waktunya, serta soal yang dijawab benar untuk ditanyakan dalam wawancara langsung.",
       "Unduh laporan sebagai PDF, atau bagikan lewat email.",
       "Beri waktu ekstra sebelum kandidat mulai, misalnya karena disabilitas.",
       "Tambah atau ubah nama kandidat.",

@@ -116,6 +116,13 @@ Results:
 that apply" question, the options ticked, which were right, and its points, such as "2 of 3 right \
 options · 0.67 of 1 point"), and flag answers too fast to have read the question, leaving the \
 page, and copy attempts.
+- Once a candidate finishes, their page also shows answer patterns, read only from their answers \
+and times (no camera, microphone or screen recording): answer times about the same on every \
+question whatever its length or difficulty, and hard questions right while easy ones were wrong \
+(with the counts). Each is set to show for at most 1% of honest candidates; a pattern can have \
+innocent causes, so it's a reason to ask, not proof, and nothing rejects a candidate. The page \
+also suggests up to 3 questions the candidate got right to talk through in a live interview. \
+The PDF report and the API show the patterns, not the questions.
 - Questions improve on their own: answers, votes and reports flag weak questions, and a \
 verifier fixes or replaces them in the background. A company can also re-generate single \
 questions. A fixed question applies to candidates who start after the fix; results already \

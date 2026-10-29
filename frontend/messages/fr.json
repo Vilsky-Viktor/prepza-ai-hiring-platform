@@ -1155,7 +1155,7 @@
     "extraTime": "Besoin de plus de temps, par exemple en raison d'un handicap ? Contactez <bdi>{company}</bdi> avant de commencer.",
     "extraTimeLink": "Besoin de plus de temps, par exemple en raison d'un handicap ? Demandez à <bdi>{company}</bdi> une invitation personnelle avant de commencer : aucun temps ne peut être ajouté ici.",
     "people": "Les questions sont rédigées par une IA. Chez <bdi>{company}</bdi>, des personnes examinent les résultats et prennent la décision ; vous pouvez leur demander de réexaminer le vôtre.",
-    "stay": "Restez sur cette page : les sorties de la page, les copies et les réponses trop rapides pour avoir lu la question sont enregistrées (<link>confidentialité</link>).",
+    "stay": "Restez sur cette page : les sorties de la page, les copies et les réponses trop rapides pour avoir lu la question sont enregistrées, et l'entreprise voit quand vos temps de réponse ou vos réponses ne suivent pas la difficulté des questions (<link>confidentialité</link>).",
     "finished": "Cet entretien est déjà terminé.",
     "continue": "Continuer",
     "start": "Accepter et commencer",
@@ -1623,6 +1623,15 @@
     "humanReview": "Le score appuie votre décision, il ne la prend pas. Lisez les réponses et, si le candidat le demande, faites examiner son résultat par une personne.",
     "humanReviewSignals": "Le score appuie votre décision, il ne la prend pas. Lisez les réponses et, si le candidat le demande, faites examiner son résultat par une personne. Les sorties de page, les copies et les réponses rapides sont signalées par le navigateur du candidat : une raison de regarder de plus près, pas une preuve.",
     "pledged": "A confirmé répondre sans aide extérieure."
+  },
+  "answerPatterns": {
+    "title": "schémas de réponse",
+    "timing": "Les temps de réponse ne suivaient pas les questions : à peu près le même temps pour chacune, quelles que soient sa longueur ou sa difficulté.",
+    "personFit": "Schéma inhabituel : bonne réponse à {hardRight, number} sur {hard, plural, one {# question difficile} many {# de questions difficiles} other {# questions difficiles}}, mauvaise réponse à {easyWrong, number} sur {easy, plural, one {# question facile} many {# de questions faciles} other {# questions faciles}}.",
+    "note": "Ce type de schéma peut avoir des causes innocentes : une raison de poser des questions, pas une preuve.",
+    "askTitle": "À demander en entretien",
+    "askIntro": "Des questions auxquelles le candidat a bien répondu, à reprendre lors d'un entretien en direct, où aucune IA ne peut répondre à sa place.",
+    "ask": "Pourquoi choisir <b>{answer}</b> et pas <b>{other}</b> ?"
   },
   "practice": {
     "title": "Simulation d'entretien d'embauche gratuite",

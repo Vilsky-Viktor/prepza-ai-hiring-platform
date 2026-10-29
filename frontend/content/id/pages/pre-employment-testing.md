@@ -2,7 +2,7 @@
 title: "Tes seleksi karyawan: panduan praktis untuk tim kecil dan menengah"
 seoTitle: "Tes Seleksi Karyawan: Jenis, Keadilan, dan Cara Memilih Alat"
 description: "Apa itu tes seleksi karyawan, jenisnya, kapan dipakai, dasar keadilan dan hukumnya, serta cara memilih alat tes rekrutmen. Panduan ringkas untuk tim HR."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Tes seleksi karyawan: panduan praktis untuk tim kecil dan menengah
@@ -97,7 +97,7 @@ prepza mengubah deskripsi pekerjaan menjadi wawancara keterampilan pilihan ganda
 4. **Baca hasilnya.** Skor masuk dalam urutan peringkat, dengan scorecard untuk setiap kandidat.
 
 - **Setiap kandidat mendapat set acaknya sendiri** dari bank soal tiap topik, dengan hitung mundur yang ditegakkan server di setiap soal. Kamu bisa memberi tambahan waktu kepada siapa pun yang memintanya.
-- **Scorecard** menampilkan setiap jawaban, apakah benar, dan berapa lama waktunya, dengan tanda untuk jawaban yang terlalu cepat, meninggalkan halaman, dan percobaan menyalin. Tanda-tanda ini tidak mengubah skor.
+- **Scorecard** menampilkan setiap jawaban, apakah benar, dan berapa lama waktunya, dengan tanda untuk jawaban yang terlalu cepat, meninggalkan halaman, percobaan menyalin, dan pola jawaban yang tidak biasa, plus soal untuk ditanyakan dalam wawancara langsung. Tanda-tanda ini tidak mengubah skor.
 - **Jawaban dinilai berdasarkan kunci jawaban** yang ditulis AI; sebagian kunci di tiap topik diperiksa sebelum dirilis, sisanya saat soalnya ditandai. Tidak ada AI yang membaca atau menilai jawaban kandidat. Laporan PDF mencakup satu kandidat atau seluruh daftar.
 - **Bekerja dengan alat yang kamu pakai:** kandidat yang kamu pindahkan ke suatu tahap di Workable, Greenhouse, Teamtailor, Recruitee, atau Breezy HR menerima wawancaranya, dan hasilnya kembali ke ATS. Slack diberi tahu saat kandidat selesai, dan [API](/api-docs) menghubungkan platformmu sendiri. Lihat [cara menghubungkan tes keterampilan ke ATS-mu](/guides/ats-integration-skills-tests).
 

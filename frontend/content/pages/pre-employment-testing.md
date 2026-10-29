@@ -2,7 +2,7 @@
 title: "Pre-employment testing: a practical guide for small and mid-size teams"
 seoTitle: "Pre-Employment Testing: Types, Fairness and Tools"
 description: "What pre-employment tests are, which types exist, when to use them, the fairness and legal basics, and how to choose a tool. Plain guide for hiring teams."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Pre-employment testing: a practical guide for small and mid-size teams
@@ -97,7 +97,7 @@ prepza turns a job description into a timed multiple-choice skills interview.
 4. **Read the results.** Scores come in ranked, with a scorecard for each candidate.
 
 - **Each candidate gets their own random set** from each topic's bank, with a server-enforced countdown on every question. You can give extra time to anyone who asks.
-- **Scorecards** show every answer, whether it was right and how long it took, with flags for too-fast answers, leaving the page and copy attempts. Flags don't change the score.
+- **Scorecards** show every answer, whether it was right and how long it took, with flags for too-fast answers, leaving the page, copy attempts and unusual answer patterns, plus questions to ask about in a live interview. Flags don't change the score.
 - **Answers are marked against an answer key** that AI writes; a sample of each topic's keys is checked before release, the rest when a question is flagged. No AI reads or judges a candidate's answer. A PDF report covers one candidate or the whole list.
 - **Works with your tools:** candidates you move to a stage in Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR get the interview, and their results go back to the ATS. Slack hears when a candidate finishes, and the [API](/api-docs) connects your own platform. See [how to connect skills tests to your ATS](/guides/ats-integration-skills-tests).
 

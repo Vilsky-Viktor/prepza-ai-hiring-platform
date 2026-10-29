@@ -153,6 +153,7 @@
     "text": "Kết quả của một ứng viên: điểm, có đạt hay không, và điểm từng chủ đề kèm mọi câu trả lời.",
     "actions": [
       "Đọc từng câu trả lời, kèm cảnh báo hành vi bất thường: rời trang, thử sao chép và trả lời quá nhanh.",
+      "Khi họ làm xong, xem những điểm bất thường trong câu trả lời và thời gian trả lời của họ, cùng những câu họ đã trả lời đúng để hỏi lại trong buổi phỏng vấn trực tiếp.",
       "Tải báo cáo xuống dưới dạng PDF, hoặc chia sẻ qua email.",
       "Cho thêm thời gian trước khi họ bắt đầu, ví dụ vì khuyết tật.",
       "Thêm hoặc sửa họ tên ứng viên.",

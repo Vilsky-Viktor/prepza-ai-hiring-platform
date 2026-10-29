@@ -2,7 +2,7 @@
 title: "Teste de seleção: guia prático para pequenas e médias empresas"
 seoTitle: "Testes de recrutamento e seleção: tipos e ferramentas"
 description: "O que são testes de recrutamento e seleção, quais tipos existem, quando usar, imparcialidade e legislação, e como escolher uma ferramenta para o seu RH."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Teste de seleção: guia prático para pequenas e médias empresas
@@ -97,7 +97,7 @@ A prepza transforma uma descrição da vaga em uma entrevista de habilidades de 
 4. **Leia os resultados.** As pontuações chegam em ordem, com uma ficha de avaliação para cada candidato.
 
 - **Cada candidato recebe seu próprio conjunto aleatório** do banco de cada tópico, com contagem regressiva controlada pelo servidor em cada pergunta. Você pode dar tempo extra a quem pedir.
-- **As fichas de avaliação** mostram cada resposta, se estava certa e quanto tempo levou, com alertas para respostas rápidas demais, saídas da página e tentativas de cópia. Os alertas não mudam a pontuação.
+- **As fichas de avaliação** mostram cada resposta, se estava certa e quanto tempo levou, com alertas para respostas rápidas demais, saídas da página, tentativas de cópia e padrões de resposta incomuns, além de perguntas para explorar em uma entrevista ao vivo. Os alertas não mudam a pontuação.
 - **As respostas são corrigidas com base em um gabarito** que a IA escreve; uma amostra dos gabaritos de cada tópico é verificada antes da liberação, e os demais quando uma pergunta é sinalizada. Nenhuma IA lê ou julga a resposta de um candidato. Um relatório em PDF cobre um candidato ou a lista inteira.
 - **Funciona com as suas ferramentas:** os candidatos que você move para uma etapa no Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR recebem a entrevista, e os resultados deles voltam para o ATS. O Slack avisa quando um candidato termina, e a [API](/api-docs) conecta a sua própria plataforma. Veja [Como integrar testes de habilidades ao seu ATS](/guides/ats-integration-skills-tests).
 

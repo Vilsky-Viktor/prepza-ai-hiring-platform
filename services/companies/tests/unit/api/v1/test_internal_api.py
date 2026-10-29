@@ -77,6 +77,9 @@ def stored(monkeypatch):
             {"topic_title": "APIs", "final_score": None},
         ]
 
+    async def answer_patterns(invite_id):
+        return {"signals": [{"kind": "timing"}], "follow_ups": [{"question_id": "q"}]}
+
     async def page(
         interview, offset, limit, by_grade, q="", filter_by=None, with_link=False, **synced
     ):
@@ -91,6 +94,7 @@ def stored(monkeypatch):
     monkeypatch.setattr(interview_views, "interview_out", interview_out)
     monkeypatch.setattr(rounds, "invite_scores", scores)
     monkeypatch.setattr(rounds, "scorecard", scorecard)
+    monkeypatch.setattr(rounds, "answer_patterns", answer_patterns)
     monkeypatch.setattr(candidate_results, "page", page)
 
     return asked
@@ -125,6 +129,11 @@ def test_a_candidate_comes_with_their_results(client):
     ]
     # Finished: no invite link.
     assert found["invite_token"] is None
+    # The signals its answers and times show, never the questions to ask about; they don't make
+    # the candidate flagged (what ATSs and web hooks are told), only the browser's signals do.
+    assert [signal["kind"] for signal in found["answer_signals"]] == ["timing"]
+    assert "follow_ups" not in found
+    assert found["flagged"] is False
 
 
 def test_a_candidate_who_hasnt_finished_comes_with_their_invite_link(client, monkeypatch):

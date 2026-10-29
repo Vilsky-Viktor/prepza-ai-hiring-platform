@@ -1015,6 +1015,20 @@ export interface components {
       /** Language */
       language: string
     }
+    /** ContentQuestion */
+    ContentQuestion: {
+      /**
+       * Id
+       * Format: uuid
+       */
+      id: string
+      /** Text */
+      text: string
+      /** Options */
+      options: components["schemas"]["OptionIn"][]
+      /** Difficulty */
+      difficulty?: number | null
+    }
     /** CreatedOut */
     CreatedOut: {
       /**
@@ -1285,18 +1299,6 @@ export interface components {
       options: components["schemas"]["OptionIn"][]
       /** Source Id */
       source_id?: string | null
-    }
-    /** QuestionOut */
-    QuestionOut: {
-      /**
-       * Id
-       * Format: uuid
-       */
-      id: string
-      /** Text */
-      text: string
-      /** Options */
-      options: components["schemas"]["OptionIn"][]
     }
     /**
      * QuestionQuality
@@ -1576,7 +1578,7 @@ export interface components {
       /** Title */
       title: string
       /** Questions */
-      questions: components["schemas"]["QuestionOut"][]
+      questions: components["schemas"]["ContentQuestion"][]
     }
     /** TemplateCopyIn */
     TemplateCopyIn: {

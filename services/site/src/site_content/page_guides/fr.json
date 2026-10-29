@@ -153,6 +153,7 @@
     "text": "Les résultats d'un candidat : sa note, s'il a réussi, et le score de chaque thème avec chaque réponse.",
     "actions": [
       "Lisez chaque réponse, avec les alertes d'intégrité : sorties de la page, tentatives de copie et réponses trop rapides.",
+      "Une fois qu'il a terminé, voyez les éventuels schémas inhabituels dans ses réponses et ses temps, et les questions auxquelles il a bien répondu, à aborder lors d'un entretien en direct.",
       "Téléchargez le rapport en PDF, ou partagez-le par e-mail.",
       "Accordez du temps supplémentaire avant le début, par exemple en cas de handicap.",
       "Ajoutez ou modifiez le nom du candidat.",

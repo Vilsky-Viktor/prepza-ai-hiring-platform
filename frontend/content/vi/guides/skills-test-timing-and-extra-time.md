@@ -108,6 +108,7 @@ Trong prepza, một buổi phỏng vấn là một bài kiểm tra kỹ năng tr
 - **Khi hết giờ,** phương án đang chọn trên màn hình được tính và câu tiếp theo mở ra; nếu chưa chọn gì, câu đó tính là sai. Câu chưa trả lời tính là sai, và một buổi phỏng vấn mà ứng viên bỏ dở sẽ tự kết thúc khi đã qua tổng thời gian cộng thêm 10%.
 - **Câu hỏi được viết cho vừa đồng hồ:** trả lời được trong khoảng một phút (đến một phút rưỡi với câu khó nhất), kể cả bằng ngôn ngữ thứ hai. Một câu hỏi tối đa 40 từ (50 với câu khó), một phương án tối đa 10 từ, và một ví dụ tối đa 8 dòng ngắn.
 - **Câu hỏi hết giờ quá thường xuyên sẽ bị đánh dấu** và được viết lại trong nền. Câu viết lại áp dụng cho ứng viên bắt đầu sau khi sửa; kết quả đã đưa ra không thay đổi.
+- **Thời gian trả lời cũng là một tín hiệu cảnh báo.** Khi thời gian trả lời của một ứng viên đã làm xong gần như như nhau ở mọi câu, bất kể độ dài hay độ khó, báo cáo của họ sẽ chỉ ra điều đó: chuyển câu hỏi cho AI rồi chép lại đáp án thường trông như vậy. Đó là lý do để hỏi, không phải bằng chứng, và thời gian cộng thêm không kích hoạt tín hiệu này.
 
 Trong buổi phỏng vấn bằng tiếng Ả Rập, Trung, Nhật, Ba Tư, Nga, Thái hoặc Ukraina, mọi câu hỏi nhận mức trung bình, vì ở những ngôn ngữ này độ dài câu hỏi chưa dự đoán đủ chính xác thời gian cần cho nó. Khoảng 1 trong 10 câu là dạng "chọn tất cả phương án đúng", có 2 hoặc 3 phương án đúng, mỗi phương án đúng được đánh dấu mang lại một phần điểm của câu, và không được điểm nào nếu đánh dấu một phương án sai.
 

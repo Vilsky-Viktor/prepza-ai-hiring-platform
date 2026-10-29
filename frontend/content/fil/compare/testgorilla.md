@@ -2,7 +2,7 @@
 title: "prepza at TestGorilla: kung saan bagay ang bawat isa, at paggamit sa dalawa"
 seoTitle: "prepza vs TestGorilla: Paghahambing at Paggamit sa Dalawa"
 description: "Paano nagkakaiba ang prepza at TestGorilla sa paggawa ng test, sa tine-test at sa presyo, kung saan mas bagay ang bawat isa, at paano gamitin ang dalawa."
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza at TestGorilla: kung saan bagay ang bawat isa, at paggamit sa dalawa
@@ -27,7 +27,7 @@ Ipinapaliwanag ng pahinang ito kung paano sila nagkakaiba, kung saan mas bagay a
 | AI interviews | Walang conversational AI; nagmumungkahi ang AI ng mga topic at sumusulat ng mga tanong, at chine-check ang ilan sa mga answer key ng mga ito | Tingnan ang mga plan nito ([pricing page](https://www.testgorilla.com/pricing/)) |
 | Code sa test | Code-reading questions (ano ang ginagawa o inilalabas ng code); walang pagsulat o pagpapatakbo ng code | Programming tests sa library; para sa custom coding challenges, tingnan ang mga plan nito ([pricing page](https://www.testgorilla.com/pricing/)) |
 | Mga tanong bawat aplikante | Sariling random na set ang bawat aplikante, sa sarili nitong pagkakasunod-sunod | Hindi ikinumpara rito |
-| Integrity features | Timer sa bawat tanong (ipinapatupad ng server), flag para sa sobrang bilis na sagot, pag-alis sa pahina at pagtatangkang mag-copy | Webcam snapshots, naka-disable na copy/paste at full-screen mode sa mas mataas nitong plan |
+| Integrity features | Timer sa bawat tanong (ipinapatupad ng server), flag para sa sobrang bilis na sagot, pag-alis sa pahina, pagtatangkang mag-copy at hindi karaniwang pattern ng sagot | Webcam snapshots, naka-disable na copy/paste at full-screen mode sa mas mataas nitong plan |
 | Mga integration | Workable, Greenhouse, Teamtailor, Recruitee at Breezy HR; Slack; isang public API na may signed webhooks ([dokumentasyon para sa mga developer](/api-docs)). Lahat nang walang dagdag na bayad | ATS/API integrations sa mas mataas nitong plan |
 | Reports | Scorecards na may mga sagot at oras; PDF para sa isa o lahat ng aplikante | Hindi ikinumpara rito |
 | Mga wika | 23 wika para sa interface, interviews at emails | Hindi ikinumpara rito; may language-proficiency tests ang library |

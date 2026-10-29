@@ -2,7 +2,7 @@
 title: "Entwickler interviewen im KI-Zeitalter: was du jetzt testen solltest"
 seoTitle: "Technische Interviews im KI-Zeitalter: was jetzt zählt"
 description: "KI-Assistenten gehören zum Entwickleralltag. Was das für technische Interviews bedeutet, wie Unternehmen reagieren und wo Wissenstests ihren Platz haben."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Entwickler interviewen im KI-Zeitalter: was du jetzt testen solltest
@@ -73,7 +73,8 @@ prepza eignet sich gut für Schritt 2. Es macht aus deiner Stellenbeschreibung e
 - **Konzepte und Theorie aus der Stellenbeschreibung:** Datenbanken, APIs, Architektur, das Verhalten eines Frameworks, Sicherheitspraktiken.
 - **Fragen zum Lesen von Code:** ein kurzes Stück Code mit Fragen dazu, was es ausgibt oder zurückgibt, was es tut, warum es fehlschlägt oder welche Änderung es behebt. Das ist dieselbe Review-Fähigkeit, von der KI-gestützte Arbeit abhängt.
 - **Ein Timer bei jeder Frage:** Jede Frage hat ihren eigenen Countdown, serverseitig erzwungen, und jeder Kandidat erhält einen eigenen zufälligen Fragensatz. Das erschwert das Nachschlagen von Antworten, auch das Fragen eines KI-Assistenten. Unmöglich macht es das nicht.
-- **Hinweise auf Auffälligkeiten:** Auswertungen markieren Antworten, die zu schnell kamen, um die Frage gelesen zu haben, Momente, in denen der Kandidat die Seite verlassen hat, und Kopierversuche. Ein Hinweis ist ein Grund, genauer hinzusehen, kein Beweis für Schummeln.
+- **Hinweise auf Auffälligkeiten:** Auswertungen markieren Antworten, die zu schnell kamen, um die Frage gelesen zu haben, Momente, in denen der Kandidat die Seite verlassen hat, und Kopierversuche. Sobald ein Kandidat fertig ist, weist sein Bericht außerdem auf Antwortmuster hin, die das Weitergeben von Fragen an eine KI oft hinterlässt: ungefähr gleich viel Zeit bei jeder Frage, egal wie lang oder schwierig sie ist, oder schwere Fragen richtig, während leichte falsch waren. Ein Hinweis oder ein Muster ist ein Grund, genauer hinzusehen, kein Beweis für Schummeln.
+- **Fragen für das Live-Gespräch:** Der Bericht schlägt bis zu 3 Fragen vor, die der Kandidat richtig beantwortet hat, aus seinen stärksten Themen, um sie in einem Live-Gespräch durchzugehen, wo keine KI für ihn antworten kann.
 
 Was prepza nicht tut: Kandidaten schreiben, starten oder debuggen in prepza keinen Code, und prepza beobachtet nicht, wie sie einen KI-Assistenten nutzen. Das gehört in die praktische Phase, intern oder auf einer Entwicklerplattform durchgeführt, die den Wissenstest ergänzt. Unter [Fachtests nach Stelle](/tests) findest du fertige Tests als Ausgangspunkt, und unter [KI-Interviews](/ai-interviews), wie prepza KI nutzt und was es Menschen überlässt.
 

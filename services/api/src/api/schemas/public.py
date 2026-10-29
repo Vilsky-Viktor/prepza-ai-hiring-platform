@@ -42,6 +42,15 @@ class Signals(BaseModel):
     tab_leaves: int = Field(description="How many times the candidate left the page")
     copies: int = Field(description="How many times the candidate tried to copy text")
     fast_answers: int = Field(description="Answers given too quickly to have read the question")
+    answer_patterns: list[Literal["timing", "person_fit"]] | None = Field(
+        default=None,
+        description=(
+            "Patterns in the finished candidate's answers: `timing`, answer times that didn't "
+            "follow the questions' length and difficulty; `person_fit`, hard questions right "
+            "while easy ones were wrong. Only when one candidate is read (null in lists and web "
+            "hook events); empty when none showed"
+        ),
+    )
 
 
 class Section(BaseModel):

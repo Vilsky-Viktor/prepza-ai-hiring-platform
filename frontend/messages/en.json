@@ -1155,7 +1155,7 @@
     "extraTime": "Need more time, for example because of a disability? Ask <bdi>{company}</bdi> before you start.",
     "extraTimeLink": "Need more time, for example because of a disability? Ask <bdi>{company}</bdi> for a personal invite before you start: extra time can't be added here.",
     "people": "The questions are written by AI. People at <bdi>{company}</bdi> review the results and decide; you can ask them to review yours.",
-    "stay": "Stay on this page: leaving it, copying and answering too fast to have read the question are recorded (<link>privacy</link>).",
+    "stay": "Stay on this page: leaving it, copying and answering too fast to have read the question are recorded, and the company sees when your answer times or answers don't follow the questions' difficulty (<link>privacy</link>).",
     "finished": "This interview is already finished.",
     "continue": "Continue",
     "start": "Accept & Start",
@@ -1623,6 +1623,15 @@
     "humanReview": "The score supports your decision; it doesn't make it. Read the answers, and if the candidate asks, have a person review their result.",
     "humanReviewSignals": "The score supports your decision; it doesn't make it. Read the answers, and if the candidate asks, have a person review their result. Page leaves, copies and fast answers are reported by the candidate's browser: a reason to look closer, not proof.",
     "pledged": "Confirmed answering on their own."
+  },
+  "answerPatterns": {
+    "title": "answer patterns",
+    "timing": "Answer times didn't follow the questions: about the same time on each, whatever its length or difficulty.",
+    "personFit": "Unusual pattern: {hardRight, number} of {hard, plural, one {# hard question} other {# hard questions}} right, {easyWrong, number} of {easy, plural, one {# easy one} other {# easy ones}} wrong.",
+    "note": "Patterns like these can have innocent causes: a reason to ask, not proof.",
+    "askTitle": "Ask in the interview",
+    "askIntro": "Questions they got right, to talk through in a live interview, where no AI can answer for them.",
+    "ask": "Why is <b>{answer}</b> right and <b>{other}</b> not?"
   },
   "practice": {
     "title": "Free mock interviews by role",

@@ -2,7 +2,7 @@
 title: "prepza und TestGorilla: wofür sich welches Tool eignet, und beide zusammen"
 seoTitle: "prepza vs. TestGorilla: Unterschiede und Kombination"
 description: "Wie sich prepza und TestGorilla bei Testerstellung, Testinhalten und Preisen unterscheiden, wofür welches Tool besser passt und wie du beide kombinierst."
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza und TestGorilla: wofür sich welches Tool eignet, und beide zusammen
@@ -27,7 +27,7 @@ Diese Seite erklärt, wie sie sich unterscheiden, wofür sich welches Tool besse
 | KI-Interviews | Keine Gesprächs-KI; die KI schlägt Themen vor und schreibt Fragen, eine Stichprobe ihrer Lösungsschlüssel wird geprüft | Siehe die Tarife ([Preisseite](https://www.testgorilla.com/pricing/)) |
 | Code im Test | Fragen zum Lesen von Code (was Code tut oder ausgibt); kein Schreiben oder Ausführen von Code | Programmiertests in der Bibliothek; zu eigenen Coding-Challenges siehe die Tarife ([Preisseite](https://www.testgorilla.com/pricing/)) |
 | Fragen pro Kandidat | Eigener zufälliger Fragensatz für jeden Kandidaten, in eigener Reihenfolge | Hier nicht verglichen |
-| Schutz vor Schummeln | Timer bei jeder Frage (serverseitig erzwungen), Hinweise auf zu schnelle Antworten, das Verlassen der Seite und Kopierversuche | Webcam-Schnappschüsse, deaktiviertes Kopieren/Einfügen und Vollbildmodus im höheren Tarif |
+| Schutz vor Schummeln | Timer bei jeder Frage (serverseitig erzwungen), Hinweise auf zu schnelle Antworten, das Verlassen der Seite, Kopierversuche und ungewöhnliche Antwortmuster | Webcam-Schnappschüsse, deaktiviertes Kopieren/Einfügen und Vollbildmodus im höheren Tarif |
 | Integrationen | Workable, Greenhouse, Teamtailor, Recruitee und Breezy HR; Slack; eine öffentliche API mit signierten Webhooks ([Entwicklerdokumentation](/api-docs)). Alles ohne Aufpreis | ATS-/API-Integrationen im höheren Tarif |
 | Berichte | Auswertungen mit Antworten und Zeiten; PDF für einen oder alle Kandidaten | Hier nicht verglichen |
 | Sprachen | 23 Sprachen für Oberfläche, Interviews und E-Mails | Hier nicht verglichen; die Bibliothek enthält Sprachtests |

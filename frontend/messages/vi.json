@@ -1155,7 +1155,7 @@
     "extraTime": "Bạn cần thêm thời gian, ví dụ vì khuyết tật? Hãy hỏi <bdi>{company}</bdi> trước khi bắt đầu.",
     "extraTimeLink": "Bạn cần thêm thời gian, ví dụ vì khuyết tật? Hãy xin <bdi>{company}</bdi> một lời mời riêng trước khi bắt đầu: không thể thêm thời gian ở đây.",
     "people": "Các câu hỏi do AI viết. Người của <bdi>{company}</bdi> sẽ xem xét kết quả và đưa ra quyết định; bạn có thể yêu cầu họ xem xét kết quả của bạn.",
-    "stay": "Hãy ở lại trang này: việc rời trang, sao chép và trả lời quá nhanh để kịp đọc câu hỏi sẽ được ghi nhận (<link>quyền riêng tư</link>).",
+    "stay": "Hãy ở lại trang này: việc rời trang, sao chép và trả lời quá nhanh để kịp đọc câu hỏi sẽ được ghi nhận, và công ty sẽ thấy khi thời gian trả lời hoặc câu trả lời của bạn không tương ứng với độ khó của câu hỏi (<link>quyền riêng tư</link>).",
     "finished": "Buổi phỏng vấn này đã kết thúc.",
     "continue": "Tiếp tục",
     "start": "Chấp nhận và bắt đầu",
@@ -1623,6 +1623,15 @@
     "humanReview": "Điểm số hỗ trợ quyết định của bạn, chứ không thay bạn quyết định. Hãy đọc các câu trả lời, và nếu ứng viên yêu cầu, hãy để một người xem xét kết quả của họ.",
     "humanReviewSignals": "Điểm số hỗ trợ quyết định của bạn, chứ không thay bạn quyết định. Hãy đọc các câu trả lời, và nếu ứng viên yêu cầu, hãy để một người xem xét kết quả của họ. Việc rời trang, sao chép và trả lời quá nhanh do trình duyệt của ứng viên báo cáo: là lý do để xem xét kỹ hơn, không phải bằng chứng.",
     "pledged": "Đã xác nhận tự trả lời."
+  },
+  "answerPatterns": {
+    "title": "mẫu trả lời",
+    "timing": "Thời gian trả lời không tương ứng với câu hỏi: mỗi câu gần như cùng một khoảng thời gian, bất kể độ dài hay độ khó.",
+    "personFit": "Mẫu bất thường: đúng {hardRight, number} trên {hard, plural, other {# câu khó}}, sai {easyWrong, number} trên {easy, plural, other {# câu dễ}}.",
+    "note": "Những mẫu như vậy có thể có nguyên nhân vô hại: là lý do để hỏi, không phải bằng chứng.",
+    "askTitle": "Hỏi trong buổi phỏng vấn",
+    "askIntro": "Những câu hỏi ứng viên đã trả lời đúng, để trao đổi trong buổi phỏng vấn trực tiếp, nơi không AI nào có thể trả lời thay họ.",
+    "ask": "Vì sao đáp án là <b>{answer}</b> mà không phải <b>{other}</b>?"
   },
   "practice": {
     "title": "Luyện phỏng vấn miễn phí theo vị trí",

@@ -1155,7 +1155,7 @@
     "extraTime": "Heb je meer tijd nodig, bijvoorbeeld door een beperking? Vraag het aan <bdi>{company}</bdi> voordat je begint.",
     "extraTimeLink": "Heb je meer tijd nodig, bijvoorbeeld door een beperking? Vraag <bdi>{company}</bdi> om een persoonlijke uitnodiging voordat je begint: hier kan geen tijd worden toegevoegd.",
     "people": "De vragen zijn door AI geschreven. Mensen bij <bdi>{company}</bdi> bekijken de resultaten en beslissen; je kunt hen vragen jouw resultaat te beoordelen.",
-    "stay": "Blijf op deze pagina: weggaan, kopiëren en antwoorden die te snel komen om de vraag gelezen te hebben, worden vastgelegd (<link>privacy</link>).",
+    "stay": "Blijf op deze pagina: weggaan, kopiëren en antwoorden die te snel komen om de vraag gelezen te hebben, worden vastgelegd, en het bedrijf ziet wanneer je antwoordtijden of antwoorden niet passen bij de moeilijkheid van de vragen (<link>privacy</link>).",
     "finished": "Dit interview is al afgerond.",
     "continue": "Doorgaan",
     "start": "Accepteren en starten",
@@ -1623,6 +1623,15 @@
     "humanReview": "De score ondersteunt je beslissing, maar neemt die niet. Lees de antwoorden, en laat een mens het resultaat beoordelen als de kandidaat daarom vraagt.",
     "humanReviewSignals": "De score ondersteunt je beslissing, maar neemt die niet. Lees de antwoorden, en laat een mens het resultaat beoordelen als de kandidaat daarom vraagt. Pagina verlaten, kopiëren en snelle antwoorden meldt de browser van de kandidaat: een reden om beter te kijken, geen bewijs.",
     "pledged": "Heeft bevestigd zelf te antwoorden."
+  },
+  "answerPatterns": {
+    "title": "antwoordpatronen",
+    "timing": "De antwoordtijden pasten niet bij de vragen: ongeveer even lang bij elke vraag, ongeacht de lengte of moeilijkheid.",
+    "personFit": "Ongebruikelijk patroon: {hardRight, number} van {hard, plural, one {# moeilijke vraag} other {# moeilijke vragen}} goed, {easyWrong, number} van {easy, plural, one {# makkelijke vraag} other {# makkelijke vragen}} fout.",
+    "note": "Zulke patronen kunnen een onschuldige oorzaak hebben: een reden om door te vragen, geen bewijs.",
+    "askTitle": "Navragen in het gesprek",
+    "askIntro": "Vragen die de kandidaat goed had, om door te nemen in een live gesprek, waar geen AI het antwoord kan geven.",
+    "ask": "Waarom is het antwoord <b>{answer}</b> en niet <b>{other}</b>?"
   },
   "practice": {
     "title": "Sollicitatiegesprek gratis oefenen",

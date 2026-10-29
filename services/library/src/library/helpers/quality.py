@@ -63,6 +63,15 @@ def too_slow(stats) -> bool:
     return shown >= MIN_ANSWERS and stats.timeouts >= shown * TOO_SLOW_SHARE
 
 
+def difficulty(stats) -> float | None:
+    """The share of candidates who answer it right (its difficulty for the integrity signals in
+    rounds); None before MIN_ANSWERS answers, when it says nothing yet."""
+    if stats is None or stats.answers < MIN_ANSWERS:
+        return None
+
+    return round(stats.correct / stats.answers, 3)
+
+
 def flag_for(
     options: list[dict],
     answers: int,

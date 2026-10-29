@@ -2,7 +2,7 @@
 title: "Softwareentwickler einstellen: ein strukturierter Prozess von der Stellenbeschreibung bis zum Angebot"
 seoTitle: "Entwickler einstellen: strukturierter Recruiting-Prozess"
 description: "Schritt für Schritt Softwareentwickler einstellen: Anforderungsprofil, Vorauswahl, Wissenstest, Coding, Systemdesign, strukturierte Interviews und Angebot."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Softwareentwickler einstellen: ein strukturierter Prozess von der Stellenbeschreibung bis zum Angebot
@@ -78,7 +78,7 @@ Hier passt prepza. Es macht aus deiner Stellenbeschreibung ein zeitlich begrenzt
 - **SQL:** eine kleine Tabelle und eine Abfrage, mit der Frage, welche Zeilen zurückkommen.
 - **Architektur- und Framework-Wissen:** Zielkonflikte, wie sich ein Framework verhält, was unter Last schiefgeht.
 
-Jeder Kandidat erhält einen eigenen zufälligen Fragensatz mit einem Countdown bei jeder Frage. Du siehst eine Auswertung mit jeder Antwort und ihrer Dauer sowie Hinweisen auf zu schnelle Antworten, das Verlassen der Seite und Kopierversuche. Ein Hinweis ist ein Grund, genauer hinzusehen, kein Beweis für irgendetwas.
+Jeder Kandidat erhält einen eigenen zufälligen Fragensatz mit einem Countdown bei jeder Frage. Du siehst eine Auswertung mit jeder Antwort und ihrer Dauer sowie Hinweisen auf zu schnelle Antworten, das Verlassen der Seite, Kopierversuche und ungewöhnliche Muster in den Antworten und Antwortzeiten. Ein Hinweis ist ein Grund, genauer hinzusehen, kein Beweis für irgendetwas. Der Bericht schlägt außerdem richtig beantwortete Fragen vor, nach denen du im nächsten Gespräch fragen kannst.
 
 Was prepza nicht tut: Kandidaten schreiben, starten oder debuggen in prepza keinen Code. Code lesen und Code schreiben sind unterschiedliche Fähigkeiten, deshalb bleibt der nächste Schritt wichtig. Unter [Fachtests nach Stelle](/tests) findest du fertige Tests als Ausgangspunkt.
 

@@ -2,7 +2,7 @@
 title: "Comment recruter des développeurs : un processus structuré, de la fiche de poste à l'offre"
 seoTitle: "Recruter des développeurs : un processus structuré"
 description: "Recruter des développeurs étape par étape : profil de poste, présélection, test de connaissances, code, conception de systèmes, entretiens et offre."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Comment recruter des développeurs : un processus structuré, de la fiche de poste à l'offre
@@ -78,7 +78,7 @@ C'est là que se place prepza. Il transforme votre fiche de poste en entretien d
 - **Du SQL :** une petite table et une requête, avec la question de savoir quelles lignes sont renvoyées.
 - **Des connaissances d'architecture et de frameworks :** compromis, comportement d'un framework, ce qui casse sous la charge.
 
-Chaque candidat reçoit sa propre série aléatoire de questions avec un compte à rebours pour chacune. Vous voyez une fiche d'évaluation avec chaque réponse et le temps qu'elle a pris, ainsi que des alertes pour les réponses trop rapides, les sorties de la page et les tentatives de copie. Une alerte est une raison de regarder de plus près, pas une preuve.
+Chaque candidat reçoit sa propre série aléatoire de questions avec un compte à rebours pour chacune. Vous voyez une fiche d'évaluation avec chaque réponse et le temps qu'elle a pris, ainsi que des alertes pour les réponses trop rapides, les sorties de la page, les tentatives de copie et les schémas inhabituels dans ses réponses et ses temps. Une alerte est une raison de regarder de plus près, pas une preuve. Le rapport suggère aussi des questions auxquelles il a bien répondu, à aborder lors de l'entretien suivant.
 
 Ce que prepza ne fait pas : les candidats n'écrivent, n'exécutent ni ne déboguent de code dans prepza. Lire du code et en écrire sont des compétences différentes, l'étape suivante reste donc importante. Voir les [tests de compétences par poste](/tests) pour des tests prêts à l'emploi.
 

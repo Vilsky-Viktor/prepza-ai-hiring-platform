@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Les candidats peuvent-ils utiliser une IA ou chercher les réponses ?",
-        "answer": "Chaque candidat reçoit ses propres questions aléatoires, dans son propre ordre, avec [un minuteur sur chaque question](/guides/skills-test-timing-and-extra-time) contrôlé par notre serveur, il a donc peu de temps pour chercher les réponses ou demander à une IA. Les résultats montrent aussi quand un candidat a quitté la page, copié du texte ou répondu trop vite pour avoir lu la question. Avant de commencer, chaque candidat confirme aussi qu'il répondra par lui-même, sans outils d'IA ni l'aide d'autres personnes, et ses résultats l'indiquent.",
+        "answer": "Chaque candidat reçoit ses propres questions aléatoires, dans son propre ordre, avec [un minuteur sur chaque question](/guides/skills-test-timing-and-extra-time) contrôlé par notre serveur, il a donc peu de temps pour chercher les réponses ou demander à une IA. Les résultats montrent aussi quand un candidat a quitté la page, copié du texte ou répondu trop vite pour avoir lu la question. Une fois qu'il a terminé, sa page relève aussi les schémas de réponse que laisse souvent le fait de soumettre les questions à une IA, comme à peu près le même temps sur chaque question ou des questions difficiles réussies alors que des faciles sont ratées, et suggère des questions auxquelles il a bien répondu, à aborder lors d'un entretien en direct. Un schéma est une raison de poser des questions, pas une preuve. Avant de commencer, chaque candidat confirme aussi qu'il répondra par lui-même, sans outils d'IA ni l'aide d'autres personnes, et ses résultats l'indiquent.",
     },
     {
         "key": "cost",

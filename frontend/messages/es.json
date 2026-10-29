@@ -1155,7 +1155,7 @@
     "extraTime": "¿Necesitas más tiempo, por ejemplo por una discapacidad? Pídeselo a <bdi>{company}</bdi> antes de empezar.",
     "extraTimeLink": "¿Necesitas más tiempo, por ejemplo por una discapacidad? Pide a <bdi>{company}</bdi> una invitación personal antes de empezar: aquí no se puede añadir tiempo.",
     "people": "Las preguntas las escribe una IA. Personas de <bdi>{company}</bdi> revisan los resultados y deciden; puedes pedirles que revisen el tuyo.",
-    "stay": "Quédate en esta página: se registra si sales de ella, si copias y si respondes demasiado rápido para haber leído la pregunta (<link>privacidad</link>).",
+    "stay": "Quédate en esta página: se registra si sales de ella, si copias y si respondes demasiado rápido para haber leído la pregunta, y la empresa ve cuándo tus tiempos de respuesta o tus respuestas no se corresponden con la dificultad de las preguntas (<link>privacidad</link>).",
     "finished": "Esta entrevista ya terminó.",
     "continue": "Continuar",
     "start": "Aceptar y empezar",
@@ -1623,6 +1623,15 @@
     "humanReview": "La puntuación apoya tu decisión, no la toma por ti. Lee las respuestas y, si el candidato lo pide, haz que una persona revise su resultado.",
     "humanReviewSignals": "La puntuación apoya tu decisión, no la toma por ti. Lee las respuestas y, si el candidato lo pide, haz que una persona revise su resultado. Las salidas de la página, las copias y las respuestas rápidas las informa el navegador del candidato: un motivo para mirar con más atención, no una prueba.",
     "pledged": "Confirmó que respondería por su cuenta."
+  },
+  "answerPatterns": {
+    "title": "patrones de respuesta",
+    "timing": "Los tiempos de respuesta no se ajustaron a las preguntas: más o menos el mismo tiempo en cada una, sin importar su extensión o dificultad.",
+    "personFit": "Patrón inusual: acertó {hardRight, number} de {hard, plural, one {# pregunta difícil} many {# de preguntas difíciles} other {# preguntas difíciles}} y falló {easyWrong, number} de {easy, plural, one {# pregunta fácil} many {# de preguntas fáciles} other {# preguntas fáciles}}.",
+    "note": "Patrones como estos pueden tener causas inocentes: un motivo para preguntar, no una prueba.",
+    "askTitle": "Para preguntar en la entrevista",
+    "askIntro": "Preguntas que el candidato acertó, para comentar en una entrevista en vivo, donde ninguna IA puede responder por él.",
+    "ask": "¿Por qué la respuesta es <b>{answer}</b> y no <b>{other}</b>?"
   },
   "practice": {
     "title": "Simulador de entrevista de trabajo gratis",

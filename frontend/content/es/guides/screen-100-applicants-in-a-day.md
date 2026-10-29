@@ -81,7 +81,7 @@ Ahora empieza la lectura atenta, pero sobre un grupo más pequeño y ordenado.
 
 1. **Ordena por nota,** de mejor a peor, desde el menú de orden de la lista: la lista se abre con los candidatos más recientes primero.
 2. **Abre cada ficha de evaluación** del grupo de cabeza. Mira las respuestas, no solo el número: qué temas fueron fuertes, cuáles débiles, cuánto tardó cada respuesta.
-3. **Revisa las alertas de integridad.** prepza marca las respuestas demasiado rápidas como para haber leído la pregunta, las veces que el candidato salió de la página y los intentos de copiar. Una alerta es un motivo para mirar con más atención, no una prueba de trampa. Alguien que salió de la página una vez puede haber recibido una notificación.
+3. **Revisa las alertas de integridad.** prepza marca las respuestas demasiado rápidas como para haber leído la pregunta, las veces que el candidato salió de la página y los intentos de copiar. Cuando un candidato termina, su página también señala patrones de respuesta inusuales (más o menos el mismo tiempo en cada pregunta, o preguntas difíciles acertadas mientras fallaba las fáciles) y sugiere preguntas para la siguiente entrevista. Una alerta es un motivo para mirar con más atención, no una prueba de trampa. Alguien que salió de la página una vez puede haber recibido una notificación.
 4. **Mira justo por debajo de la nota de aprobado.** Las puntuaciones de distintos conjuntos aleatorios de preguntas no son exactamente comparables, así que unos pocos puntos pueden deberse al azar. Alguien con un 65 % y respuestas sólidas en los temas que más importan puede merecer una entrevista.
 5. **Ahora lee los CV** de las personas que estás considerando. Lees 15 CV con atención en lugar de ojear 100.
 

@@ -81,7 +81,7 @@ Dikkatli okuma şimdi başlıyor, ama daha küçük ve sıralı bir grup üzerin
 
 1. **Nota göre sıralayın,** en iyisi en üstte, listenin sıralama menüsünden: liste en yeni adaylarla açılır.
 2. **En üstteki gruptaki her değerlendirme kartını açın.** Yalnızca sayıya değil, yanıtlara bakın: hangi konular güçlü, hangileri zayıf, her yanıt ne kadar sürdü.
-3. **Güvenilirlik işaretlerini kontrol edin.** prepza, soruyu okumaya yetmeyecek kadar hızlı verilen yanıtları, adayın sayfadan ayrıldığı anları ve kopyalama girişimlerini işaretler. İşaret, daha yakından bakmak için bir nedendir, kopya çekildiğinin kanıtı değildir. Sayfadan bir kez ayrılan birinin ekranına bir bildirim düşmüş olabilir.
+3. **Güvenilirlik işaretlerini kontrol edin.** prepza, soruyu okumaya yetmeyecek kadar hızlı verilen yanıtları, adayın sayfadan ayrıldığı anları ve kopyalama girişimlerini işaretler. Aday bitirdiğinde sayfası olağan dışı yanıt örüntülerini de gösterir (her soruda yaklaşık aynı süre veya kolay sorular yanlışken zor soruların doğru olması) ve bir sonraki mülakatta sorulacak sorular önerir. İşaret, daha yakından bakmak için bir nedendir, kopya çekildiğinin kanıtı değildir. Sayfadan bir kez ayrılan birinin ekranına bir bildirim düşmüş olabilir.
 4. **Geçme notunun hemen altına bakın.** Farklı rastgele soru setlerinden gelen puanlar tam olarak karşılaştırılabilir değildir; birkaç puanlık fark çekilen sorulardan kaynaklanabilir. En önemli konularda güçlü yanıtlar vermiş %65'lik biri mülakata değer olabilir.
 5. **Şimdi değerlendirdiğiniz kişilerin CV'lerini okuyun.** 100 CV'ye göz gezdirmek yerine 15 CV'yi dikkatle okuyorsunuz.
 

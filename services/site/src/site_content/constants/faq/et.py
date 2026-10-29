@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Kas kandidaadid saavad kasutada tehisaru või vastuseid otsida?",
-        "answer": "Iga kandidaat saab oma juhuslikud küsimused oma järjekorras ja igal küsimusel on [ajapiirang](/guides/skills-test-timing-and-extra-time), mida jälgib meie server, nii et vastuste otsimiseks või tehisarult küsimiseks jääb vähe aega. Kandidaadi tulemused näitavad ka, millal kandidaat lehelt lahkus, teksti kopeeris või vastas liiga kiiresti, et küsimust lugeda. Enne alustamist kinnitab iga kandidaat ka, et vastab ise, ilma tehisaru tööriistade ja teiste inimeste abita, ning tema tulemused näitavad seda.",
+        "answer": "Iga kandidaat saab oma juhuslikud küsimused oma järjekorras ja igal küsimusel on [ajapiirang](/guides/skills-test-timing-and-extra-time), mida jälgib meie server, nii et vastuste otsimiseks või tehisarult küsimiseks jääb vähe aega. Kandidaadi tulemused näitavad ka, millal kandidaat lehelt lahkus, teksti kopeeris või vastas liiga kiiresti, et küsimust lugeda. Kui kandidaat on lõpetanud, toob tema leht välja ka vastuste mustrid, mis jäävad sageli maha, kui küsimusi tehisarule edasi antakse, näiteks igale küsimusele umbes sama palju aega või rasked küsimused õigesti, samal ajal kui lihtsad valesti, ning soovitab küsimusi, millele ta vastas õigesti, et neist otsevestlusel küsida. Muster on põhjus küsida, mitte tõend. Enne alustamist kinnitab iga kandidaat ka, et vastab ise, ilma tehisaru tööriistade ja teiste inimeste abita, ning tema tulemused näitavad seda.",
     },
     {
         "key": "cost",

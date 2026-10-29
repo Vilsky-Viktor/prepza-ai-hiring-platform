@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "I candidati possono usare l'IA o cercare le risposte?",
-        "answer": "Ogni candidato riceve domande casuali tutte sue, in un ordine tutto suo, con [un timer su ogni domanda](/guides/skills-test-timing-and-extra-time) gestito dal nostro server, quindi c'è poco tempo per cercare le risposte o chiedere a un'IA. Le schede di valutazione mostrano anche quando un candidato ha lasciato la pagina, copiato del testo o risposto troppo in fretta per aver letto la domanda. Prima di iniziare, ogni candidato conferma anche che risponderà in autonomia, senza strumenti di IA né l'aiuto di altre persone, e la sua scheda di valutazione lo mostra.",
+        "answer": "Ogni candidato riceve domande casuali tutte sue, in un ordine tutto suo, con [un timer su ogni domanda](/guides/skills-test-timing-and-extra-time) gestito dal nostro server, quindi c'è poco tempo per cercare le risposte o chiedere a un'IA. Le schede di valutazione mostrano anche quando un candidato ha lasciato la pagina, copiato del testo o risposto troppo in fretta per aver letto la domanda. Quando ha finito, la sua pagina indica anche gli andamenti delle risposte che di solito lascia chi passa le domande a un'IA, come più o meno lo stesso tempo per ogni domanda o domande difficili giuste e facili sbagliate, e suggerisce domande a cui ha risposto correttamente da approfondire in un colloquio dal vivo. Un andamento è un motivo per fare domande, non una prova. Prima di iniziare, ogni candidato conferma anche che risponderà in autonomia, senza strumenti di IA né l'aiuto di altre persone, e la sua scheda di valutazione lo mostra.",
     },
     {
         "key": "cost",

@@ -3074,6 +3074,44 @@
     ],
     "title": "CodeLanguageIn"
    },
+   "ContentQuestion": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Id"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "options": {
+      "items": {
+       "$ref": "#/components/schemas/OptionIn"
+      },
+      "type": "array",
+      "title": "Options"
+     },
+     "difficulty": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Difficulty"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "text",
+     "options"
+    ],
+    "title": "ContentQuestion"
+   },
    "CreatedOut": {
     "properties": {
      "id": {
@@ -3663,33 +3701,6 @@
     ],
     "title": "QuestionIn"
    },
-   "QuestionOut": {
-    "properties": {
-     "id": {
-      "type": "string",
-      "format": "uuid",
-      "title": "Id"
-     },
-     "text": {
-      "type": "string",
-      "title": "Text"
-     },
-     "options": {
-      "items": {
-       "$ref": "#/components/schemas/OptionIn"
-      },
-      "type": "array",
-      "title": "Options"
-     }
-    },
-    "type": "object",
-    "required": [
-     "id",
-     "text",
-     "options"
-    ],
-    "title": "QuestionOut"
-   },
    "QuestionQuality": {
     "properties": {
      "text": {
@@ -4253,7 +4264,7 @@
      },
      "questions": {
       "items": {
-       "$ref": "#/components/schemas/QuestionOut"
+       "$ref": "#/components/schemas/ContentQuestion"
       },
       "type": "array",
       "title": "Questions"

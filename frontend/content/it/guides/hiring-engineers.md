@@ -2,7 +2,7 @@
 title: "Come assumere sviluppatori: un processo di selezione strutturato, dall'annuncio all'offerta"
 seoTitle: "Come assumere sviluppatori: processo di selezione"
 description: "Come assumere sviluppatori software, passo per passo: profilo del ruolo, screening, test tecnico, coding, system design, colloqui strutturati e offerta."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Come assumere sviluppatori: un processo di selezione strutturato, dall'annuncio all'offerta
@@ -78,7 +78,7 @@ Qui entra in gioco prepza. Trasforma la tua descrizione del ruolo in un colloqui
 - **SQL:** una piccola tabella e una query, con la domanda su quali righe vengono restituite.
 - **Conoscenze di architettura e framework:** compromessi, come si comporta un framework, cosa va storto sotto carico.
 
-Ogni candidato riceve il proprio set casuale di domande, con un conto alla rovescia su ognuna. Vedi una scheda di valutazione con ogni risposta e il tempo impiegato, più segnalazioni per risposte troppo rapide, uscite dalla pagina e tentativi di copia. Una segnalazione è un motivo per guardare meglio, non la prova di qualcosa.
+Ogni candidato riceve il proprio set casuale di domande, con un conto alla rovescia su ognuna. Vedi una scheda di valutazione con ogni risposta e il tempo impiegato, più segnalazioni per risposte troppo rapide, uscite dalla pagina, tentativi di copia e andamenti insoliti nelle risposte e nei tempi. Una segnalazione è un motivo per guardare meglio, non la prova di qualcosa. Il report suggerisce anche domande a cui il candidato ha risposto correttamente, da approfondire nel colloquio successivo.
 
 Cosa non fa prepza: in prepza i candidati non scrivono, non eseguono e non fanno debug del codice. Leggere codice e scriverlo sono competenze diverse, quindi il passo successivo resta importante. Vedi i [test di selezione per ruolo](/tests) per test pronti da cui partire.
 

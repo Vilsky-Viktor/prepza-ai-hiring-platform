@@ -2,7 +2,7 @@
 title: "Yapay zekâ çağında mühendislerle mülakat: artık neyi test etmeli"
 seoTitle: "Yapay Zekâ Çağında Teknik Mülakat: Artık Neyi Test Etmeli"
 description: "Yapay zekâ asistanları günlük yazılım işinin parçası. Bu, mülakatta neyin test edileceğini nasıl değiştiriyor, bilgi testleri nerede devreye giriyor."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Yapay zekâ çağında mühendislerle mülakat: artık neyi test etmeli
@@ -73,7 +73,8 @@ prepza 2. adım için çok uygundur. İş tanımınızı süreli, çoktan seçme
 - **İş tanımından kavramlar ve teori:** veritabanları, API'ler, mimari, bir framework'ün davranışı, güvenlik uygulamaları.
 - **Kod okuma soruları:** kısa bir kod parçası ve bunun ne yazdırdığı veya döndürdüğü, ne yaptığı, neden hata verdiği ya da hangi değişikliğin sorunu düzelttiği üzerine sorular. Bu, yapay zekâ destekli işin dayandığı inceleme becerisinin ta kendisidir.
 - **Her soruda bir zamanlayıcı:** her sorunun sunucu tarafından uygulanan kendi geri sayımı vardır ve her aday kendine ait rastgele bir soru seti alır. Bu, yanıtları araştırmayı, bir yapay zekâ asistanına sormak da dahil, zorlaştırır. İmkânsız kılmaz.
-- **Güvenilirlik sinyalleri:** değerlendirme kartları, soruyu okumaya yetmeyecek kadar hızlı verilen yanıtları, adayın sayfadan ayrıldığı anları ve kopyalama girişimlerini işaretler. İşaret, daha yakından bakmak için bir nedendir, kopya çekildiğinin kanıtı değildir.
+- **Güvenilirlik sinyalleri:** değerlendirme kartları, soruyu okumaya yetmeyecek kadar hızlı verilen yanıtları, adayın sayfadan ayrıldığı anları ve kopyalama girişimlerini işaretler. Aday bitirdiğinde raporu, soruları bir yapay zekâya aktarıp onun yanıtlarını kopyalamanın genellikle bıraktığı yanıt örüntülerini de gösterir: uzunluğu ya da zorluğu ne olursa olsun her soruda yaklaşık aynı süre veya kolay sorular yanlışken zor soruların doğru olması. İşaret ya da örüntü, daha yakından bakmak için bir nedendir, kopya çekildiğinin kanıtı değildir.
+- **Canlı mülakat için sorular:** rapor, adayın en güçlü konularından doğru yanıtladığı en fazla 3 soruyu, hiçbir yapay zekânın onun yerine yanıt veremeyeceği canlı bir mülakatta konuşmak için önerir.
 
 prepza'nın yapmadıkları: adaylar prepza'da kod yazmaz, çalıştırmaz veya hata ayıklamaz ve prepza onların bir yapay zekâ asistanını kullanmasını izlemez. Bunun yeri, şirket içinde veya bir geliştirici platformunda yürütülen ve bilgi elemesini tamamlayan uygulamalı aşamadır. Başlangıç için hazır testler için [pozisyona göre beceri testleri](/tests) sayfasına, prepza'nın yapay zekâyı nasıl kullandığı ve neyi insanlara bıraktığı için [Yapay zekâ mülakatları](/ai-interviews) sayfasına bakın.
 

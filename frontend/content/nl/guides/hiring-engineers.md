@@ -2,7 +2,7 @@
 title: "Developers werven: een gestructureerd selectieproces van vacaturetekst tot aanbod"
 seoTitle: "Developers werven: een gestructureerd selectieproces"
 description: "Stap voor stap developers werven: functieprofiel, preselectie, een kennistest, coding, system design, gestructureerde sollicitatiegesprekken en het aanbod."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Developers werven: een gestructureerd selectieproces van vacaturetekst tot aanbod
@@ -78,7 +78,7 @@ Hier past prepza. Het maakt van je functieomschrijving een getimede meerkeuze-ke
 - **SQL:** een kleine tabel en een query, met de vraag welke rijen terugkomen.
 - **Kennis van architectuur en frameworks:** afwegingen, hoe een framework zich gedraagt, wat er misgaat onder belasting.
 
-Elke kandidaat krijgt een eigen willekeurige set vragen, met een aftelklok bij elke vraag. Je ziet een scorekaart met elk antwoord en hoe lang het duurde, plus signalen bij te snelle antwoorden, het verlaten van de pagina en kopieerpogingen. Een signaal is een reden om beter te kijken, geen bewijs van iets.
+Elke kandidaat krijgt een eigen willekeurige set vragen, met een aftelklok bij elke vraag. Je ziet een scorekaart met elk antwoord en hoe lang het duurde, plus signalen bij te snelle antwoorden, het verlaten van de pagina, kopieerpogingen en ongebruikelijke patronen in de antwoorden en antwoordtijden. Een signaal is een reden om beter te kijken, geen bewijs van iets. Het rapport stelt ook vragen voor die de kandidaat goed had, om in het volgende gesprek op door te vragen.
 
 Wat prepza niet doet: kandidaten schrijven, draaien of debuggen geen code in prepza. Code lezen en code schrijven zijn verschillende vaardigheden, dus de volgende stap blijft belangrijk. Zie [vaardigheidstests per functie](/tests) voor kant-en-klare tests om mee te beginnen.
 

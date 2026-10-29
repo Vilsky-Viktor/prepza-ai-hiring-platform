@@ -10,6 +10,7 @@ from companies.constants.invites import (
     MAX_BULK_TEXT_LENGTH,
     MAX_CANDIDATE_NAME_LENGTH,
 )
+from companies.schemas.answer_patterns import PatternSignal
 from companies.schemas.logos import BrandColorSets, BrandStyle
 
 
@@ -57,6 +58,9 @@ class CandidateOut(BaseModel):
     revokable: bool = False
     # Each section's grade, only for one candidate through the public API.
     sections: list[SectionGrade] | None = None
+    # The integrity signals their answers and times show (never the questions), only for one
+    # candidate through the public API; empty until they finish, and when none fired.
+    answer_signals: list[PatternSignal] | None = None
 
 
 class CompanyCandidateOut(CandidateOut):

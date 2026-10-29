@@ -8,17 +8,16 @@ from prepza_common.db.paging import PageParams
 
 from library.api.dependencies import ServiceCaller
 from library.core.db import Session
-from library.repositories import preparations
+from library.repositories import difficulty, preparations
 from library.schemas.feedback import ReportOut
 from library.schemas.preparations import (
     CreatedOut,
-    QuestionOut,
     QuestionText,
     TitleIn,
     TopicOut,
 )
 from library.schemas.regenerate import QuestionContext, QuestionReplace
-from library.schemas.sets import SetContent, SetOut, SetTopicOut
+from library.schemas.sets import ContentQuestion, SetContent, SetOut, SetTopicOut
 from library.schemas.templates import TemplateCopyIn, TemplateCopyOut
 from library.services import questions, sets, templates
 
@@ -91,6 +90,10 @@ async def get_set(set_id: UUID, caller: ServiceCaller) -> SetOut:
 async def get_set_content(set_id: UUID, caller: ServiceCaller) -> SetContent:
     async with Session() as session:
         question_set = await preparations.get_content(session, set_id)
+        topics = question_set.topics if question_set else []
+        difficulties = await difficulty.for_questions(
+            session, [question for topic in topics for question in topic.questions]
+        )
 
     if question_set is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Set not found")
@@ -104,10 +107,11 @@ async def get_set_content(set_id: UUID, caller: ServiceCaller) -> SetContent:
                 id=topic.id,
                 title=topic.title,
                 questions=[
-                    QuestionOut(
+                    ContentQuestion(
                         id=question.id,
                         text=question.text,
                         options=question.options,
+                        difficulty=difficulties[question.id],
                     )
                     for question in topic.questions
                 ],

@@ -2,12 +2,14 @@ import { getLocale, getTranslations } from "next-intl/server"
 import { cn } from "cn"
 
 import { CompanyLogo } from "@/components/common/company-logo"
+import { AnswerSignalLines } from "@/features/company/components/answer-patterns"
 import { IntegrityLine } from "@/features/company/components/integrity-line"
 import { PassStatus } from "@/components/common/pass-status"
 import { VerifiedBadge } from "@/components/common/verified-badge"
 import { Wordmark } from "@/components/common/wordmark"
 import { Dot } from "@/components/common/dot"
 import { REPORT_ID } from "@/config/report"
+import { WARNING_TONE } from "@/config/tones"
 import { gradeTone } from "@/lib/grade-tone"
 import type { CandidateReportData } from "@/types/company"
 import { formatPercent } from "@/lib/format"
@@ -24,6 +26,7 @@ export async function CandidateReport({
   const { company, logoUrl, title, email, grade, passed, passMark, sections } =
     report
   const t = await getTranslations("report")
+  const patternsT = await getTranslations("answerPatterns")
   const locale = await getLocale()
 
   return (
@@ -111,6 +114,18 @@ export async function CandidateReport({
           </li>
         ))}
       </ul>
+      {report.answerSignals && report.answerSignals.length > 0 && (
+        <div
+          data-testid="report-answer-patterns"
+          className="break-inside-avoid space-y-1 rounded-xl border px-4 py-2.5 text-sm"
+        >
+          <h2 className="font-medium">{patternsT("title")}</h2>
+          <AnswerSignalLines
+            signals={report.answerSignals}
+            className={cn("space-y-0.5", WARNING_TONE)}
+          />
+        </div>
+      )}
       <p className="text-xs text-muted-foreground">
         {sections.some(
           (section) =>

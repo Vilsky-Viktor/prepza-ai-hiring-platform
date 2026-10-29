@@ -2,7 +2,7 @@
 title: "prepza e TestGorilla: onde cada uma se encaixa e como usar as duas"
 seoTitle: "prepza vs TestGorilla: diferenças e como usar as duas"
 description: "Como prepza e TestGorilla diferem na criação dos testes, no que avaliam e no preço, onde cada uma se encaixa melhor e como usá-las juntas."
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza e TestGorilla: onde cada uma se encaixa e como usar as duas
@@ -27,7 +27,7 @@ Esta página explica como elas diferem, onde cada uma se encaixa melhor e como c
 | Entrevistas com IA | Sem IA conversacional; a IA propõe tópicos e escreve as perguntas, e uma amostra dos gabaritos é verificada | Veja os planos ([página de preços](https://www.testgorilla.com/pricing/)) |
 | Código no teste | Perguntas de leitura de código (o que o código faz ou imprime); sem escrever ou executar código | Testes de programação no catálogo; para desafios de programação personalizados, veja os planos ([página de preços](https://www.testgorilla.com/pricing/)) |
 | Perguntas por candidato | Conjunto aleatório próprio para cada candidato, em ordem própria | Não comparado aqui |
-| Recursos de integridade | Cronômetro em cada pergunta (controlado pelo servidor), alertas para respostas rápidas demais, saídas da página e tentativas de cópia | Fotos pela webcam, copiar/colar desativado e modo de tela cheia no plano mais alto |
+| Recursos de integridade | Cronômetro em cada pergunta (controlado pelo servidor), alertas para respostas rápidas demais, saídas da página, tentativas de cópia e padrões de resposta incomuns | Fotos pela webcam, copiar/colar desativado e modo de tela cheia no plano mais alto |
 | Integrações | Workable, Greenhouse, Teamtailor, Recruitee e Breezy HR; Slack; uma API pública com webhooks assinados ([documentação para desenvolvedores](/api-docs)). Tudo sem custo adicional | Integrações com ATS/API no plano mais alto |
 | Relatórios | Fichas de avaliação com respostas e tempos; PDF de um candidato ou de todos | Não comparado aqui |
 | Idiomas | 23 idiomas para a interface, as entrevistas e os e-mails | Não comparado aqui; o catálogo inclui testes de proficiência em idiomas |

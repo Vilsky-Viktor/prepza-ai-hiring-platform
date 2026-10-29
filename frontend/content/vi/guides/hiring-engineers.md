@@ -2,7 +2,7 @@
 title: "Cách tuyển kỹ sư phần mềm: quy trình bài bản từ mô tả công việc đến offer"
 seoTitle: "Cách tuyển kỹ sư phần mềm: quy trình tuyển dụng bài bản"
 description: "Quy trình từng bước tuyển kỹ sư phần mềm: hồ sơ vị trí, sàng lọc CV, bài kiểm tra kiến thức, lập trình, thiết kế hệ thống, phỏng vấn có cấu trúc và offer."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Cách tuyển kỹ sư phần mềm: quy trình bài bản từ mô tả công việc đến offer
@@ -78,7 +78,7 @@ Một bài kiểm tra kiến thức tốt cần:
 - **SQL:** một bảng nhỏ và một truy vấn, kèm câu hỏi những dòng nào được trả về.
 - **Kiến thức kiến trúc và framework:** các đánh đổi, cách một framework hoạt động, điều gì hỏng khi tải cao.
 
-Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên của riêng mình, mỗi câu có đồng hồ đếm ngược. Bạn xem một bảng điểm với từng câu trả lời và thời gian trả lời, cùng các cảnh báo về trả lời quá nhanh, rời khỏi trang và cố sao chép. Một cảnh báo là lý do để xem kỹ hơn, không phải bằng chứng cho điều gì.
+Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên của riêng mình, mỗi câu có đồng hồ đếm ngược. Bạn xem một bảng điểm với từng câu trả lời và thời gian trả lời, cùng các cảnh báo về trả lời quá nhanh, rời khỏi trang, cố sao chép và những điểm bất thường trong câu trả lời và thời gian trả lời. Một cảnh báo là lý do để xem kỹ hơn, không phải bằng chứng cho điều gì. Báo cáo cũng gợi ý những câu ứng viên đã trả lời đúng để hỏi lại trong buổi phỏng vấn tiếp theo.
 
 Những gì prepza không làm: ứng viên không viết, chạy hay debug code trong prepza. Đọc code và viết code là hai kỹ năng khác nhau, nên bước tiếp theo vẫn quan trọng. Xem [bài kiểm tra kỹ năng theo vị trí](/tests) để có sẵn bài kiểm tra làm điểm xuất phát.
 

@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Adaylar yapay zekâ kullanabilir ya da cevapları arayabilir mi?",
-        "answer": "Her aday kendi sırasında kendi rastgele sorularını alır ve her sorunun sunucumuzun tuttuğu [bir süre sınırı](/guides/skills-test-timing-and-extra-time) vardır, bu yüzden cevapları aramaya ya da yapay zekâya sormaya pek zaman kalmaz. Değerlendirme kartı ayrıca adayın sayfadan ne zaman ayrıldığını, metin kopyaladığını ya da soruyu okumuş olamayacak kadar hızlı cevap verdiğini gösterir. Başlamadan önce her aday ayrıca soruları yapay zekâ araçları veya başkalarının yardımı olmadan kendisinin yanıtlayacağını onaylar ve değerlendirme kartı bunu gösterir.",
+        "answer": "Her aday kendi sırasında kendi rastgele sorularını alır ve her sorunun sunucumuzun tuttuğu [bir süre sınırı](/guides/skills-test-timing-and-extra-time) vardır, bu yüzden cevapları aramaya ya da yapay zekâya sormaya pek zaman kalmaz. Değerlendirme kartı ayrıca adayın sayfadan ne zaman ayrıldığını, metin kopyaladığını ya da soruyu okumuş olamayacak kadar hızlı cevap verdiğini gösterir. Aday bitirdiğinde sayfası, soruları bir yapay zekâya aktarmanın genellikle bıraktığı cevap örüntülerini de gösterir, örneğin her soruda yaklaşık aynı süre veya kolay sorular yanlışken zor soruların doğru olması; ayrıca canlı bir mülakatta sormak için adayın doğru cevapladığı soruları önerir. Örüntü, sormak için bir nedendir, kanıt değildir. Başlamadan önce her aday ayrıca soruları yapay zekâ araçları veya başkalarının yardımı olmadan kendisinin yanıtlayacağını onaylar ve değerlendirme kartı bunu gösterir.",
     },
     {
         "key": "cost",

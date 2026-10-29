@@ -2,7 +2,7 @@
 title: "Testy rekrutacyjne: praktyczny przewodnik dla małych i średnich zespołów"
 seoTitle: "Testy rekrutacyjne: rodzaje, uczciwość i wybór narzędzia"
 description: "Czym są testy rekrutacyjne i testy kompetencji, jakie są ich rodzaje, kiedy ich używać, jak zadbać o uczciwość i zgodność z prawem i jak wybrać narzędzie."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Testy rekrutacyjne: praktyczny przewodnik dla małych i średnich zespołów
@@ -97,7 +97,7 @@ prepza zamienia opis stanowiska w rozmowę sprawdzającą umiejętności z pytan
 4. **Przeczytaj wyniki.** Wyniki pojawiają się w rankingu, z kartą wyników dla każdego kandydata.
 
 - **Każdy kandydat dostaje własny losowy zestaw** z puli każdego tematu, z odliczaniem czasu kontrolowanym po stronie serwera przy każdym pytaniu. Każdemu, kto o to poprosi, możesz dać dodatkowy czas.
-- **Karty wyników** pokazują każdą odpowiedź, to, czy była poprawna, i ile czasu zajęła, z oznaczeniami zbyt szybkich odpowiedzi, opuszczenia strony i prób kopiowania. Oznaczenia nie zmieniają wyniku.
+- **Karty wyników** pokazują każdą odpowiedź, to, czy była poprawna, i ile czasu zajęła, z oznaczeniami zbyt szybkich odpowiedzi, opuszczenia strony, prób kopiowania i nietypowych wzorców odpowiedzi, a także pytania, o które warto dopytać na rozmowie na żywo. Oznaczenia nie zmieniają wyniku.
 - **Odpowiedzi są oceniane według klucza odpowiedzi**, który pisze AI; próbka kluczy z każdego tematu jest sprawdzana przed udostępnieniem, a pozostałe, gdy pytanie zostanie oznaczone. Żadna AI nie czyta ani nie ocenia odpowiedzi kandydata. Raport PDF obejmuje jednego kandydata lub całą listę.
 - **Współpracuje z Twoimi narzędziami:** kandydaci, których przenosisz na etap w Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR, dostają rozmowę, a ich wyniki wracają do ATS. Slack powiadamia, gdy kandydat skończy test, a [API](/api-docs) łączy prepza z Twoją własną platformą. Zobacz [Jak połączyć testy umiejętności z ATS](/guides/ats-integration-skills-tests).
 

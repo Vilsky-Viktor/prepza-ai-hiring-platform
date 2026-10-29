@@ -68,6 +68,22 @@ async def scorecard(invite_id: UUID) -> list[dict] | None:
     return response.json()
 
 
+async def answer_patterns(invite_id: UUID) -> dict | None:
+    """The integrity signals the candidate's answers and times show, and follow-up questions;
+    None for a candidate without sections."""
+    response = await http.get_client().get(
+        f"{settings.rounds_url}/internal/invites/{invite_id}/answer-patterns",
+        headers=bearer(service_token("rounds")),
+    )
+
+    if response.status_code == httpx.codes.NOT_FOUND:
+        return None
+
+    response.raise_for_status()
+
+    return response.json()
+
+
 async def delete_invite_sessions(invite_ids: list[UUID]) -> None:
     """Deletes these candidates' sessions, answers and signals; raises if rounds can't."""
     response = await http.get_client().post(

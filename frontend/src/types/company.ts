@@ -8,6 +8,9 @@ type RoundSchemas = rounds["schemas"]
 type AtsSchemas = ats["schemas"]
 
 export type Company = Schemas["CompanyOut"]
+// What a finished candidate's answers and times show: the signals that fired (none when none
+// did) and questions to ask in a live interview; both empty until they finish.
+export type AnswerPatterns = Schemas["AnswerPatterns"]
 export type CompanyBalance = Schemas["CompanyBalanceOut"]
 export type CompanyMember = Schemas["MemberOut"]
 // A row of a company's action log: what a member did, about what, when and through what.
@@ -59,6 +62,8 @@ export type CandidateReportData = {
   passMark: number
   // The interview's language, which its topics' titles are in; none: the page's (samples).
   language?: string
+  // The answer-pattern signals that fired; none in samples.
+  answerSignals?: AnswerPatterns["signals"]
   sections: {
     id: string
     topic_title: string
@@ -110,6 +115,7 @@ export type Scorecard = {
   // When the candidate confirmed they'd answer on their own; null before they start (and for
   // candidates from before it was asked).
   pledged_at: string | null
+  answer_patterns: AnswerPatterns
   sessions: {
     id: string
     topic_title: string

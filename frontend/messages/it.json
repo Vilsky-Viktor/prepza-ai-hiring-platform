@@ -1155,7 +1155,7 @@
     "extraTime": "Ti serve più tempo, ad esempio a causa di una disabilità? Contatta <bdi>{company}</bdi> prima di iniziare.",
     "extraTimeLink": "Ti serve più tempo, ad esempio a causa di una disabilità? Chiedi a <bdi>{company}</bdi> un invito personale prima di iniziare: qui non si può aggiungere tempo.",
     "people": "Le domande sono scritte dall'IA. I risultati vengono esaminati da persone e decide <bdi>{company}</bdi>; puoi chiedere che il tuo venga riesaminato.",
-    "stay": "Resta su questa pagina: uscire, copiare e rispondere troppo in fretta per aver letto la domanda viene registrato (<link>privacy</link>).",
+    "stay": "Resta su questa pagina: uscire, copiare e rispondere troppo in fretta per aver letto la domanda viene registrato, e l'azienda vede quando i tuoi tempi di risposta o le tue risposte non seguono la difficoltà delle domande (<link>privacy</link>).",
     "finished": "Questo colloquio è già terminato.",
     "continue": "Continua",
     "start": "Accetta e inizia",
@@ -1623,6 +1623,15 @@
     "humanReview": "Il punteggio supporta la tua decisione, non la prende al posto tuo. Leggi le risposte e, se il candidato lo chiede, fai esaminare il suo risultato da una persona.",
     "humanReviewSignals": "Il punteggio supporta la tua decisione, non la prende al posto tuo. Leggi le risposte e, se il candidato lo chiede, fai esaminare il suo risultato da una persona. Le uscite dalla pagina, le copie e le risposte rapide sono segnalate dal browser del candidato: un motivo per guardare meglio, non una prova.",
     "pledged": "Ha confermato di rispondere in autonomia."
+  },
+  "answerPatterns": {
+    "title": "andamento delle risposte",
+    "timing": "I tempi di risposta non seguivano le domande: più o meno lo stesso tempo per ciascuna, a prescindere da lunghezza e difficoltà.",
+    "personFit": "Andamento insolito: risposta giusta a {hardRight, number} su {hard, plural, one {# domanda difficile} many {# di domande difficili} other {# domande difficili}}, sbagliata a {easyWrong, number} su {easy, plural, one {# domanda facile} many {# di domande facili} other {# domande facili}}.",
+    "note": "Andamenti come questi possono avere cause innocenti: un motivo per fare domande, non una prova.",
+    "askTitle": "Da chiedere al colloquio",
+    "askIntro": "Domande a cui il candidato ha risposto correttamente, da approfondire in un colloquio dal vivo, dove nessuna IA può rispondere al suo posto.",
+    "ask": "Perché la risposta è <b>{answer}</b> e non <b>{other}</b>?"
   },
   "practice": {
     "title": "Simulazione colloquio di lavoro per ruolo",

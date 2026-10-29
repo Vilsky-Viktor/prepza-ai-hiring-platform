@@ -1155,7 +1155,7 @@
     "extraTime": "Butuh waktu lebih, misalnya karena disabilitas? Tanyakan ke <bdi>{company}</bdi> sebelum kamu mulai.",
     "extraTimeLink": "Butuh waktu lebih, misalnya karena disabilitas? Minta undangan pribadi ke <bdi>{company}</bdi> sebelum kamu mulai: waktu tidak bisa ditambah di sini.",
     "people": "Soal-soalnya ditulis oleh AI. Orang-orang di <bdi>{company}</bdi> meninjau hasilnya dan memutuskan; kamu bisa meminta mereka meninjau hasilmu.",
-    "stay": "Tetap di halaman ini: meninggalkannya, menyalin, dan menjawab terlalu cepat untuk sempat membaca soal akan dicatat (<link>privasi</link>).",
+    "stay": "Tetap di halaman ini: meninggalkannya, menyalin, dan menjawab terlalu cepat untuk sempat membaca soal akan dicatat, dan perusahaan dapat melihat jika waktu menjawab atau jawabanmu tidak sesuai dengan tingkat kesulitan soal (<link>privasi</link>).",
     "finished": "Wawancara ini sudah selesai.",
     "continue": "Lanjutkan",
     "start": "Terima dan mulai",
@@ -1623,6 +1623,15 @@
     "humanReview": "Skor mendukung keputusanmu, bukan menggantikannya. Baca jawabannya, dan jika kandidat meminta, minta seseorang meninjau hasilnya.",
     "humanReviewSignals": "Skor mendukung keputusanmu, bukan menggantikannya. Baca jawabannya, dan jika kandidat meminta, minta seseorang meninjau hasilnya. Keluar halaman, menyalin, dan jawaban cepat dilaporkan oleh browser kandidat: alasan untuk melihat lebih teliti, bukan bukti.",
     "pledged": "Sudah mengonfirmasi akan menjawab sendiri."
+  },
+  "answerPatterns": {
+    "title": "pola jawaban",
+    "timing": "Waktu menjawab tidak mengikuti soal: kira-kira sama untuk setiap soal, berapa pun panjang atau tingkat kesulitannya.",
+    "personFit": "Pola tidak biasa: {hardRight, number} dari {hard, plural, other {# soal sulit}} benar, {easyWrong, number} dari {easy, plural, other {# soal mudah}} salah.",
+    "note": "Pola seperti ini bisa punya penyebab yang wajar: alasan untuk bertanya, bukan bukti.",
+    "askTitle": "Tanyakan saat wawancara",
+    "askIntro": "Soal yang dijawab benar oleh kandidat, untuk dibahas dalam wawancara langsung, tempat tidak ada AI yang bisa menjawab untuknya.",
+    "ask": "Mengapa jawabannya <b>{answer}</b>, bukan <b>{other}</b>?"
   },
   "practice": {
     "title": "Latihan interview kerja gratis per posisi",

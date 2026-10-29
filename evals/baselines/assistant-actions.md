@@ -128,3 +128,15 @@ per question) 2 of 2 with the right arguments; 13,600 tokens, $0.0014, 7.4 s a t
 failure, i08.1, asked which of two companies held the interview instead of looking in both (its
 repeat passed). The run's fixture read invite tokens with the companies service's database user:
 the assistant's own user no longer has CONNECT on the companies database. $0.26.
+
+## Answer patterns in a candidate's results (2026-10-29, kept)
+
+`get_scorecard` now has its own description (one candidate's grade, topic scores, the browser's
+integrity signals and, once they finished, `answer_patterns.signals`: timing and person-fit with
+their counts, never the follow-up questions) and reads those fields; the interview report tool's
+description says `get_scorecard` gives one candidate's results and the patterns in their answers.
+`assistant_actions.py`, 2 repeats, 69 cases, `gpt-6-luna` low (`…_answer-patterns.json`): task
+success 98.6% (94.9–99.6) against 99.3% (96.0–99.9), within both intervals; tool choice 98.6%,
+arguments 100%, link 100%, asked first 94.4%, injection safe 100%, judge traps 8/8; 13,800 tokens,
+$0.0014 a turn; 13.4 s a turn against 7.4 s, with six OpenAI time-outs in the run (the API was
+slow, not the turns longer). $0.26.

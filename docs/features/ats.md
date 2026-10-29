@@ -139,7 +139,7 @@ When such a candidate finishes, companies publishes `candidate.finished` (grade,
 
 - their grade,
 - whether they passed,
-- any integrity flags,
+- any integrity flags (page leaves, copy attempts, fast answers; not the [answer patterns](candidates.md#answer-patterns)),
 - a link to their scorecard.
 
 | ATS | Where it's written |

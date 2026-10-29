@@ -2,7 +2,7 @@
 title: "Como contratar engenheiros: um processo estruturado da descrição da vaga à proposta"
 seoTitle: "Como contratar engenheiros: processo seletivo estruturado"
 description: "Passo a passo para contratar engenheiros de software: perfil da vaga, triagem, teste de conhecimentos, código, design de sistemas, entrevistas e proposta."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Como contratar engenheiros: um processo estruturado da descrição da vaga à proposta
@@ -78,7 +78,7 @@ Uma boa triagem de conhecimentos é:
 - **SQL:** uma tabela pequena e uma consulta, com a pergunta de quais linhas voltam.
 - **Conhecimento de arquitetura e frameworks:** trade-offs, como um framework se comporta, o que dá errado sob carga.
 
-Cada candidato recebe seu próprio conjunto aleatório de perguntas, com contagem regressiva em cada uma. Você vê uma ficha de avaliação com cada resposta e quanto tempo levou, além de alertas para respostas rápidas demais, saídas da página e tentativas de cópia. Um alerta é um motivo para olhar com mais atenção, não prova de nada.
+Cada candidato recebe seu próprio conjunto aleatório de perguntas, com contagem regressiva em cada uma. Você vê uma ficha de avaliação com cada resposta e quanto tempo levou, além de alertas para respostas rápidas demais, saídas da página, tentativas de cópia e padrões incomuns nas respostas e nos tempos. Um alerta é um motivo para olhar com mais atenção, não prova de nada. O relatório também sugere perguntas que o candidato acertou, para explorar na próxima entrevista.
 
 O que a prepza não faz: os candidatos não escrevem, executam nem depuram código na prepza. Ler código e escrever código são habilidades diferentes, então a próxima etapa continua importante. Veja os [testes de habilidades por cargo](/tests) para começar com testes prontos.
 

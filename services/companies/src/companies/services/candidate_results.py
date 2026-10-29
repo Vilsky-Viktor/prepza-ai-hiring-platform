@@ -127,14 +127,17 @@ async def one(interview, invite_id: UUID) -> CandidateOut:
     if invite is None:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
 
-    # Both from rounds, asked at once.
-    totals, card = await asyncio.gather(
-        rounds.invite_scores([invite.id]), rounds.scorecard(invite.id)
+    # All from rounds, asked at once.
+    totals, card, patterns = await asyncio.gather(
+        rounds.invite_scores([invite.id]),
+        rounds.scorecard(invite.id),
+        rounds.answer_patterns(invite.id),
     )
     found = candidate_out(invite, totals.get(str(invite.id)) or {}, interview, with_link=True)
     found.sections = [
         SectionGrade(title=section["topic_title"], grade=section["final_score"])
         for section in card or []
     ]
+    found.answer_signals = (patterns or {}).get("signals", [])
 
     return found

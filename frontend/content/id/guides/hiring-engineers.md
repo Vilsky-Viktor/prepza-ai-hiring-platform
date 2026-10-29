@@ -2,7 +2,7 @@
 title: "Cara merekrut engineer: proses terstruktur dari deskripsi pekerjaan hingga penawaran"
 seoTitle: "Cara Rekrut Software Engineer: Proses Rekrutmen Terstruktur"
 description: "Langkah merekrut software engineer: profil jabatan, penyaringan, tes pengetahuan, coding, system design, wawancara terstruktur, dan penawaran kerja."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Cara merekrut engineer: proses terstruktur dari deskripsi pekerjaan hingga penawaran
@@ -78,7 +78,7 @@ Di sinilah prepza berperan. prepza mengubah deskripsi pekerjaanmu menjadi wawanc
 - **SQL:** tabel kecil dan sebuah query, dengan pertanyaan baris mana yang dikembalikan.
 - **Pengetahuan arsitektur dan framework:** trade-off, perilaku sebuah framework, apa yang bermasalah saat beban tinggi.
 
-Setiap kandidat mendapat set soal acaknya sendiri dengan hitung mundur di setiap soal. Kamu melihat scorecard dengan setiap jawaban dan berapa lama waktunya, plus tanda untuk jawaban yang terlalu cepat, meninggalkan halaman, dan percobaan menyalin. Tanda adalah alasan untuk melihat lebih teliti, bukan bukti apa pun.
+Setiap kandidat mendapat set soal acaknya sendiri dengan hitung mundur di setiap soal. Kamu melihat scorecard dengan setiap jawaban dan berapa lama waktunya, plus tanda untuk jawaban yang terlalu cepat, meninggalkan halaman, percobaan menyalin, dan pola yang tidak biasa dalam jawaban serta waktunya. Tanda adalah alasan untuk melihat lebih teliti, bukan bukti apa pun. Laporannya juga menyarankan soal yang dijawab benar oleh kandidat untuk ditanyakan di wawancara berikutnya.
 
 Yang tidak dilakukan prepza: kandidat tidak menulis, menjalankan, atau men-debug kode di prepza. Membaca kode dan menulisnya adalah keterampilan yang berbeda, jadi langkah berikutnya tetap penting. Lihat [tes keterampilan per posisi](/tests) untuk tes siap pakai sebagai titik awal.
 

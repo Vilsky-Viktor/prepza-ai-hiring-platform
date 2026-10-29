@@ -31,7 +31,7 @@ MCP_DESCRIPTIONS = {
         "An interview's results by interview_id: every candidate with status, progress, grade, "
         "whether they passed the pass mark, and integrity signals (tab leaves, copies, fast "
         "answers). Use it to compare, rank or summarise candidates of one interview; "
-        "get_scorecard gives one candidate's answers."
+        "get_scorecard gives one candidate's results and the patterns in their answers."
     ),
     "list_topic_questions": (
         "The questions of one topic of an interview, by interview_id and topic_id (from "

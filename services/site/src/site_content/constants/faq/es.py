@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "¿Pueden los candidatos usar IA o buscar las respuestas?",
-        "answer": "Cada candidato recibe sus propias preguntas aleatorias en su propio orden, con [un temporizador en cada pregunta](/guides/skills-test-timing-and-extra-time) que controla nuestro servidor, así que hay poco tiempo para buscar las respuestas o preguntar a una IA. Las fichas de evaluación también muestran cuándo un candidato salió de la página, copió texto o respondió demasiado rápido para haber leído la pregunta. Antes de empezar, cada candidato también confirma que responderá por su cuenta, sin herramientas de IA ni ayuda de otras personas, y su ficha de evaluación lo muestra.",
+        "answer": "Cada candidato recibe sus propias preguntas aleatorias en su propio orden, con [un temporizador en cada pregunta](/guides/skills-test-timing-and-extra-time) que controla nuestro servidor, así que hay poco tiempo para buscar las respuestas o preguntar a una IA. Las fichas de evaluación también muestran cuándo un candidato salió de la página, copió texto o respondió demasiado rápido para haber leído la pregunta. Cuando termina, su página también señala patrones de respuesta que suele dejar pasarle las preguntas a una IA, como más o menos el mismo tiempo en cada pregunta o preguntas difíciles acertadas mientras fallaba las fáciles, y sugiere preguntas que acertó para tratar en una entrevista en vivo. Un patrón es un motivo para preguntar, no una prueba. Antes de empezar, cada candidato también confirma que responderá por su cuenta, sin herramientas de IA ni ayuda de otras personas, y su ficha de evaluación lo muestra.",
     },
     {
         "key": "cost",

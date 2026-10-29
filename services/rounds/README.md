@@ -1,6 +1,6 @@
 # rounds
 
-Candidates' interview sessions and their answers, and free practice rounds. It keeps sessions, answers and integrity signals in its own database; questions come from library, and scores go out as
+Candidates' interview sessions and their answers, and free practice rounds. It keeps sessions, answers and integrity signals in its own database, and reads a finished candidate's answer patterns from them when asked (`/internal/invites/{id}/answer-patterns`, never stored); questions come from library, and scores go out as
 events; a deleted interview's or company's sessions go when its `interview.deleted` or
 `company.deleted` arrives. What it does and its settings:
 [candidates](../../docs/features/candidates.md) and
@@ -22,7 +22,7 @@ src/rounds/
 ├── repositories/           # Database queries (sessions, answers, signals, ...);
 │                           # take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
-├── helpers/, constants/    # Pure functions (scores, exports); fixed values
+├── helpers/, constants/    # Pure functions (scores, exports, answer patterns); fixed values
 └── integrations/           # library, Redis
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic

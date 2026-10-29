@@ -2,7 +2,7 @@
 title: "prepza và TestGorilla: mỗi công cụ phù hợp ở đâu và cách dùng cả hai"
 seoTitle: "prepza vs TestGorilla: so sánh và cách dùng kết hợp"
 description: "prepza và TestGorilla khác nhau ra sao về cách xây dựng bài kiểm tra, nội dung và giá, mỗi bên hợp với trường hợp nào, và cách dùng cùng nhau."
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza và TestGorilla: mỗi công cụ phù hợp ở đâu và cách dùng cả hai
@@ -27,7 +27,7 @@ Trang này giải thích hai công cụ khác nhau thế nào, mỗi công cụ 
 | Phỏng vấn AI | Không có AI hội thoại; AI đề xuất chủ đề và viết câu hỏi, một phần đáp án được kiểm tra | Xem các gói ([trang bảng giá](https://www.testgorilla.com/pricing/)) |
 | Code trong bài kiểm tra | Câu hỏi đọc code (code làm gì hoặc in ra gì); không viết hay chạy code | Bài kiểm tra lập trình trong thư viện; về thử thách lập trình tùy chỉnh, xem các gói ([trang bảng giá](https://www.testgorilla.com/pricing/)) |
 | Câu hỏi cho mỗi ứng viên | Bộ câu hỏi ngẫu nhiên riêng cho mỗi ứng viên, theo thứ tự riêng | Không so sánh ở đây |
-| Tính năng chống gian lận | Đồng hồ cho mọi câu hỏi (do máy chủ áp dụng), cảnh báo về trả lời quá nhanh, rời khỏi trang và cố sao chép | Chụp ảnh qua webcam, chặn sao chép/dán và chế độ toàn màn hình ở gói cao hơn |
+| Tính năng chống gian lận | Đồng hồ cho mọi câu hỏi (do máy chủ áp dụng), cảnh báo về trả lời quá nhanh, rời khỏi trang, cố sao chép và mẫu trả lời bất thường | Chụp ảnh qua webcam, chặn sao chép/dán và chế độ toàn màn hình ở gói cao hơn |
 | Tích hợp | Workable, Greenhouse, Teamtailor, Recruitee và Breezy HR; Slack; API công khai với webhook có chữ ký ([Tài liệu cho nhà phát triển](/api-docs)). Tất cả đều không tốn thêm phí | Tích hợp ATS/API ở gói cao hơn |
 | Báo cáo | Bảng điểm với câu trả lời và thời gian; PDF cho một hoặc tất cả ứng viên | Không so sánh ở đây |
 | Ngôn ngữ | 23 ngôn ngữ cho giao diện, buổi phỏng vấn và email | Không so sánh ở đây; thư viện có bài kiểm tra trình độ ngoại ngữ |

@@ -2,7 +2,7 @@
 title: "Cómo contratar ingenieros: un proceso estructurado de la descripción del puesto a la oferta"
 seoTitle: "Cómo contratar ingenieros: proceso de selección estructurado"
 description: "Proceso paso a paso para contratar ingenieros de software: perfil del puesto, filtrado, prueba de conocimientos, código, diseño, entrevistas y oferta."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Cómo contratar ingenieros: un proceso estructurado de la descripción del puesto a la oferta
@@ -78,7 +78,7 @@ Aquí es donde encaja prepza. Convierte tu descripción del puesto en una entrev
 - **SQL:** una tabla pequeña y una consulta, con la pregunta de qué filas devuelve.
 - **Conocimientos de arquitectura y frameworks:** compromisos de diseño, cómo se comporta un framework, qué falla bajo carga.
 
-Cada candidato recibe su propio conjunto aleatorio de preguntas con una cuenta atrás en cada una. Ves una ficha de evaluación con cada respuesta y cuánto tardó, además de alertas de respuestas demasiado rápidas, salidas de la página e intentos de copiar. Una alerta es un motivo para mirar con más atención, no una prueba de nada.
+Cada candidato recibe su propio conjunto aleatorio de preguntas con una cuenta atrás en cada una. Ves una ficha de evaluación con cada respuesta y cuánto tardó, además de alertas de respuestas demasiado rápidas, salidas de la página, intentos de copiar y patrones inusuales en sus respuestas y tiempos. Una alerta es un motivo para mirar con más atención, no una prueba de nada. El informe también sugiere preguntas que acertó para tratar en la siguiente entrevista.
 
 Lo que prepza no hace: los candidatos no escriben, ejecutan ni depuran código en prepza. Leer código y escribirlo son habilidades distintas, así que el siguiente paso sigue siendo importante. Consulta las [pruebas de habilidades por puesto](/tests) para empezar desde pruebas ya preparadas.
 

@@ -153,6 +153,7 @@
     "text": "Ühe kandidaadi tulemused: hinne, kas ta läbis, ja iga teema punktid koos kõigi vastustega.",
     "actions": [
       "Loe iga vastust koos märgetega kahtlase käitumise kohta: lehelt lahkumised, kopeerimiskatsed ja kiired vastused.",
+      "Kui ta on lõpetanud, vaata ebatavalisi mustreid tema vastustes ja vastamisaegades ning küsimusi, millele ta vastas õigesti, et neist otsevestlusel küsida.",
       "Laadi aruanne alla PDF-ina või jaga seda e-kirjaga.",
       "Anna enne alustamist lisaaega, näiteks puude tõttu.",
       "Lisa või muuda kandidaadi nime.",

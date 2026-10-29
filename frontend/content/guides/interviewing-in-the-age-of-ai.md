@@ -2,7 +2,7 @@
 title: "Interviewing engineers in the age of AI: what to test now"
 seoTitle: "Interviewing in the Age of AI: What to Test Now"
 description: "AI assistants are part of everyday engineering work. How that changes what interviews should test, how companies adapt, and where knowledge tests fit."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Interviewing engineers in the age of AI: what to test now
@@ -73,7 +73,8 @@ prepza is well suited to step 2. It turns your job description into a timed mult
 - **Concepts and theory from the job description:** databases, APIs, architecture, a framework's behavior, security practices.
 - **Code-reading questions:** a short piece of code with questions about what it prints or returns, what it does, why it fails or which change fixes it. That's the same reviewing skill AI-assisted work depends on.
 - **A timer on every question:** each question has its own countdown, enforced by the server, and each candidate gets their own random set of questions. That makes looking answers up, including asking an AI assistant, harder. It doesn't make it impossible.
-- **Integrity signals:** scorecards flag answers too fast to have read the question, times the candidate left the page, and copy attempts. A flag is a reason to look closer, not proof of cheating.
+- **Integrity signals:** scorecards flag answers too fast to have read the question, times the candidate left the page, and copy attempts. Once a candidate finishes, their report also points out answer patterns that relaying questions to an AI tends to leave: about the same time on every question whatever its length or difficulty, or hard questions right while easy ones were wrong. A flag or a pattern is a reason to look closer, not proof of cheating.
+- **Questions for the live interview:** the report suggests up to 3 questions the candidate got right, from their strongest topics, to talk through in a live interview, where no AI can answer for them.
 
 What prepza doesn't do: candidates don't write, run or debug code in prepza, and it doesn't watch them use an AI assistant. That belongs in the hands-on stage, run in-house or on a developer platform, which complements the knowledge screen. See [skills tests by role](/tests) for ready-made tests to start from, and [AI interviews](/ai-interviews) for how prepza uses AI and what it leaves to people.
 

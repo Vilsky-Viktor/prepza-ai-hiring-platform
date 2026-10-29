@@ -2,7 +2,7 @@
 title: "Fachtests vs. Lebenslauf-Screening: was Berufserfolg vorhersagt"
 seoTitle: "Fachtests oder Lebenslauf: was Berufserfolg vorhersagt"
 description: "Was die Forschung zur Personalauswahl über Fachwissenstests, Arbeitsproben, Interviews und Berufsjahre sagt, und wie du das bei der Vorauswahl nutzt."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Fachtests vs. Lebenslauf-Screening: was Berufserfolg vorhersagt
@@ -84,7 +84,7 @@ prepza deckt Schritt 2 ab: einen zeitlich begrenzten Multiple-Choice-Test zum Fa
 - **Stellenspezifisch von Grund auf.** prepza schlägt Themen aus deiner Stellenbeschreibung vor, und du prüfst und bearbeitest sie, bevor eine Frage geschrieben wird. Entferne alles, was keine echte Anforderung ist. Für technische Stellen können Fragen kurze Codebeispiele zum Lesen enthalten.
 - **Gleiche Bedingungen für alle.** Gleiche Themen und gleiche Anzahl Fragen sowie ein Countdown bei jeder Frage. Kandidaten, die darum bitten, kannst du zusätzliche Zeit geben.
 - **Jeder Kandidat erhält eigene Fragen,** einen zufälligen Satz aus dem Pool jedes Themas, sodass Antworten schwerer weiterzugeben sind.
-- **Lesbare Ergebnisse.** Eine Auswertung pro Kandidat mit jeder Antwort und ihrer Dauer, nach Punktzahl sortiert, mit Hinweisen auf zu schnelle Antworten, das Verlassen der Seite und Kopierversuche.
+- **Lesbare Ergebnisse.** Eine Auswertung pro Kandidat mit jeder Antwort und ihrer Dauer, nach Punktzahl sortiert, mit Hinweisen auf zu schnelle Antworten, das Verlassen der Seite, Kopierversuche und ungewöhnliche Antwortmuster.
 - **Antworten werden anhand eines Lösungsschlüssels bewertet,** den KI schreibt; eine Stichprobe der Schlüssel jedes Themas wird vor der Freigabe geprüft, die übrigen, sobald eine Frage markiert wird. Keine KI liest oder beurteilt die Antwort eines Kandidaten.
 
 prepza führt keine strukturierten Interviews, Arbeitsproben oder kognitiven Tests durch. Nutze es daneben. Mehr zu Testarten und Fairness liest du unter [Einstellungstests](/pre-employment-testing).

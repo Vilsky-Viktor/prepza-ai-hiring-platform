@@ -165,6 +165,14 @@ COMPANY_TOOLS = {
         "method": "GET",
         "path": "/interviews/{interview_id}/candidates/{invite_id}",
         "params": ["interview_id", "invite_id"],
+        "description": (
+            "One candidate's results by interview_id and invite_id: their grade, whether they "
+            "passed, each topic's score with its integrity signals (page leaves, copies, fast "
+            "answers), and, once they finished, answer_patterns.signals: patterns in their "
+            "answers and times (timing: times that didn't follow the questions' length and "
+            "difficulty; person_fit: hard questions right while easy ones were wrong, with the "
+            "counts). Signals can have innocent causes: they are reasons to ask, never a verdict."
+        ),
         # Totals per topic; never the questions, the answers or their keys.
         "fields": [
             "id",
@@ -181,6 +189,15 @@ COMPANY_TOOLS = {
             "tab_leaves",
             "copies",
             "fast_answers",
+            # Patterns in the answers and times: the signals that fired, with their counts; not
+            # the follow-up questions, which hold the questions and their keys.
+            "answer_patterns",
+            "signals",
+            "kind",
+            "hard",
+            "hard_right",
+            "easy",
+            "easy_wrong",
             # Extra seconds per question, for a candidate who asked for more time.
             "extra_time",
             # Until the candidate finishes, for owners and admins: to send it themselves.

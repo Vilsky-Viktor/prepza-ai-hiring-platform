@@ -41,6 +41,11 @@ def candidate_of(found: dict, company_id, interview_id, site: str) -> Candidate:
             tab_leaves=found["tab_leaves"],
             copies=found["copies"],
             fast_answers=found["fast_answers"],
+            answer_patterns=(
+                None
+                if found.get("answer_signals") is None
+                else [signal["kind"] for signal in found["answer_signals"]]
+            ),
         ),
         flagged=found.get("flagged", False),
         extra_time=found.get("extra_time", 0),

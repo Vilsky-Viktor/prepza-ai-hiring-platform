@@ -2,7 +2,7 @@
 title: "Testy umiejętności a selekcja CV: co przewiduje efektywność w pracy"
 seoTitle: "Testy umiejętności a selekcja CV: co przewiduje wyniki"
 description: "Co dekady badań nad rekrutacją mówią o testach wiedzy, próbkach pracy, rozmowach i stażu pracy oraz jak wykorzystać to w selekcji kandydatów."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Testy umiejętności a selekcja CV: co przewiduje efektywność w pracy
@@ -84,7 +84,7 @@ prepza obejmuje krok 2: test wiedzy zawodowej w formie testu wyboru z limitem cz
 - **Specyficzny dla stanowiska z założenia.** prepza proponuje tematy na podstawie Twojego opisu stanowiska, a Ty je przeglądasz i edytujesz, zanim powstanie jakiekolwiek pytanie. Usuń wszystko, co nie jest prawdziwym wymaganiem. Przy stanowiskach technicznych pytania mogą zawierać krótkie przykłady kodu do przeczytania.
 - **Te same warunki dla wszystkich.** Te same tematy i liczba pytań oraz odliczanie przy każdym pytaniu. Kandydatom, którzy o to poproszą, możesz dać dodatkowy czas.
 - **Każdy kandydat dostaje własne pytania,** losowy zestaw z puli każdego tematu, więc trudniej dzielić się odpowiedziami.
-- **Czytelne wyniki.** Karta wyników dla każdego kandydata z każdą odpowiedzią i czasem jej udzielenia, ranking według punktacji, z oznaczeniami zbyt szybkich odpowiedzi, opuszczenia strony i prób kopiowania.
+- **Czytelne wyniki.** Karta wyników dla każdego kandydata z każdą odpowiedzią i czasem jej udzielenia, ranking według punktacji, z oznaczeniami zbyt szybkich odpowiedzi, opuszczenia strony, prób kopiowania i nietypowych wzorców odpowiedzi.
 - **Odpowiedzi oceniane według klucza odpowiedzi,** który pisze AI; próbka kluczy z każdego tematu jest sprawdzana przed udostępnieniem, a pozostałe, gdy pytanie zostanie oznaczone. Żadna AI nie czyta ani nie ocenia odpowiedzi kandydata.
 
 prepza nie prowadzi ustrukturyzowanych rozmów kwalifikacyjnych, próbek pracy ani testów poznawczych. Używaj jej razem z nimi. Więcej o rodzajach testów i uczciwości przeczytasz w poradniku [Testy rekrutacyjne](/pre-employment-testing).

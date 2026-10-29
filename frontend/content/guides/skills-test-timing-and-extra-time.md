@@ -108,6 +108,7 @@ In prepza, an interview is a timed multiple-choice skills test created from your
 - **When time runs out,** the pick on screen counts and the next question opens; with no pick, the question counts as wrong. Unanswered questions count as wrong, and an interview a candidate leaves finishes by itself once its total time, plus 10%, has passed.
 - **Questions are written to fit the timer:** answered in about a minute (up to a minute and a half for the hardest), also in a second language. A question is at most 40 words (50 for a hard one), an option at most 10, and an example at most 8 short lines.
 - **Questions that run out of time too often are flagged** and rewritten in the background. A rewritten question applies to candidates who start after the fix; results already given don't change.
+- **Answer times are also an integrity signal.** When a finished candidate's times stay about the same on every question, whatever its length or difficulty, their report points it out: relaying questions to an AI tends to look like that. It's a reason to ask, not proof, and extra time doesn't trigger it.
 
 In an interview in Arabic, Chinese, Japanese, Persian, Russian, Thai or Ukrainian, every question gets the average, as a question's length in these languages doesn't yet predict its time well enough. About 1 in 10 are "select all that apply", with 2 or 3 right options, earning part of the point for each right option ticked and nothing if a wrong one is ticked.
 

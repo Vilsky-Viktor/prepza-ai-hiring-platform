@@ -1155,7 +1155,7 @@
     "extraTime": "Örneğin bir engel nedeniyle daha fazla süreye mi ihtiyacınız var? Başlamadan önce <bdi>{company}</bdi> ekibinden isteyin.",
     "extraTimeLink": "Örneğin bir engel nedeniyle daha fazla süreye mi ihtiyacınız var? Başlamadan önce <bdi>{company}</bdi> ekibinden kişisel bir davet isteyin: burada süre eklenemez.",
     "people": "Sorular yapay zekâ tarafından yazılır. Sonuçları <bdi>{company}</bdi> ekibindeki kişiler inceler ve karar verir; sizinkini incelemelerini isteyebilirsiniz.",
-    "stay": "Bu sayfada kalın: sayfadan ayrılmak, kopyalamak ve soruyu okuyamayacak kadar hızlı cevap vermek kaydedilir (<link>gizlilik</link>).",
+    "stay": "Bu sayfada kalın: sayfadan ayrılmak, kopyalamak ve soruyu okuyamayacak kadar hızlı cevap vermek kaydedilir; şirket de cevap süreleriniz veya cevaplarınız soruların zorluğuyla uyuşmadığında bunu görür (<link>gizlilik</link>).",
     "finished": "Bu mülakat zaten bitti.",
     "continue": "Devam et",
     "start": "Kabul et ve başla",
@@ -1623,6 +1623,15 @@
     "humanReview": "Puan kararınızı destekler, kararı sizin yerinize vermez. Cevapları okuyun ve aday isterse sonucunu bir kişiye inceletin.",
     "humanReviewSignals": "Puan kararınızı destekler, kararı sizin yerinize vermez. Cevapları okuyun ve aday isterse sonucunu bir kişiye inceletin. Sayfadan ayrılmalar, kopyalamalar ve hızlı yanıtlar adayın tarayıcısı tarafından bildirilir: daha yakından bakmak için bir neden, kanıt değil.",
     "pledged": "Soruları kendisinin yanıtlayacağını onayladı."
+  },
+  "answerPatterns": {
+    "title": "cevap örüntüleri",
+    "timing": "Cevap süreleri sorulara göre değişmedi: uzunluğu ya da zorluğu ne olursa olsun her soruda yaklaşık aynı süre.",
+    "personFit": "Olağan dışı örüntü: {hard, plural, one {# zor sorudan} other {# zor sorudan}} {hardRight, number} tanesi doğru, {easy, plural, one {# kolay sorudan} other {# kolay sorudan}} {easyWrong, number} tanesi yanlış.",
+    "note": "Bu tür örüntülerin masum nedenleri olabilir: sormak için bir neden, kanıt değil.",
+    "askTitle": "Mülakatta sorun",
+    "askIntro": "Adayın doğru cevapladığı sorular; hiçbir yapay zekânın onun yerine cevap veremeyeceği canlı bir mülakatta konuşmak için.",
+    "ask": "Doğru cevap neden <b>{answer}</b>, neden <b>{other}</b> değil?"
   },
   "practice": {
     "title": "Pozisyona göre ücretsiz mülakat simülasyonu",

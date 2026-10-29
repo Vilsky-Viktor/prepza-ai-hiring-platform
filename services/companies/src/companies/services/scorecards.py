@@ -34,9 +34,11 @@ async def scorecard(
     """A candidate's results as their page shows them. A finished candidate's view is recorded
     in the action log; through the in-app assistant or an AI app it's recorded as via it and
     isn't the funnel's "results viewed"."""
-    # Both from rounds, asked at once.
-    card, scores = await asyncio.gather(
-        rounds.scorecard(invite.id), rounds.invite_scores([invite.id])
+    # All from rounds, asked at once.
+    card, scores, patterns = await asyncio.gather(
+        rounds.scorecard(invite.id),
+        rounds.invite_scores([invite.id]),
+        rounds.answer_patterns(invite.id),
     )
     card = card or []
     totals = scores.get(str(invite.id)) or {}
@@ -79,4 +81,5 @@ async def scorecard(
         sessions=[
             {**section, "passed": section_passed(section, interview.pass_mark)} for section in card
         ],
+        answer_patterns=patterns or {},
     )

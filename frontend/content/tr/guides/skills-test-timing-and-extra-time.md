@@ -108,6 +108,7 @@ prepza'da mülakat, iş tanımınızdan oluşturulan süreli, çoktan seçmeli b
 - **Süre dolduğunda** ekranda seçili cevap sayılır ve sonraki soru açılır; seçim yoksa soru yanlış sayılır. Cevapsız sorular yanlış sayılır ve adayın yarıda bıraktığı bir mülakat, toplam süresi artı %10 geçtiğinde kendiliğinden biter.
 - **Sorular sayaca uygun yazılır:** yaklaşık bir dakikada cevaplanır (en zorlar için bir buçuk dakikaya kadar), ikinci bir dilde de. Bir soru en fazla 40 kelimedir (zor bir soru için 50), bir seçenek en fazla 10, bir örnek de en fazla 8 kısa satır.
 - **Süresi çok sık dolan sorular işaretlenir** ve arka planda yeniden yazılır. Yeniden yazılan soru, düzeltmeden sonra başlayan adaylar için geçerli olur; daha önce verilmiş sonuçlar değişmez.
+- **Cevap süreleri de bir güvenilirlik sinyalidir.** Bitirmiş bir adayın süreleri, uzunluğu ya da zorluğu ne olursa olsun her soruda yaklaşık aynı kalırsa raporu bunu belirtir: soruları bir yapay zekâya aktarmak genellikle böyle görünür. Bu, kanıt değil sormak için bir nedendir ve ek süre bunu tetiklemez.
 
 Arapça, Çince, Japonca, Farsça, Rusça, Tayca veya Ukraynaca bir mülakatta her soru ortalama süreyi alır; çünkü bu dillerde bir sorunun uzunluğu, süresini henüz yeterince iyi öngörmez. Yaklaşık 10 sorudan 1'i, 2 ya da 3 doğru seçeneği olan "doğru olanların tümünü seçin" sorusudur: işaretlenen her doğru seçenek puanın bir kısmını kazandırır, yanlış bir seçenek işaretlenirse hiç puan verilmez.
 

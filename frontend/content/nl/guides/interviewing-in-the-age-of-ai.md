@@ -2,7 +2,7 @@
 title: "Developers interviewen in het tijdperk van AI: wat je nu moet toetsen"
 seoTitle: "Sollicitatiegesprekken in het AI-tijdperk: wat toets je?"
 description: "AI-assistenten horen bij het dagelijkse werk van developers. Wat dat verandert aan wat je in sollicitatiegesprekken toetst, en waar kennistests passen."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Developers interviewen in het tijdperk van AI: wat je nu moet toetsen
@@ -73,7 +73,8 @@ prepza past goed bij stap 2. Het maakt van je functieomschrijving een getimede m
 - **Concepten en theorie uit de functieomschrijving:** databases, API's, architectuur, het gedrag van een framework, securitypraktijken.
 - **Vragen over code lezen:** een kort stuk code met vragen over wat het print of teruggeeft, wat het doet, waarom het faalt of welke wijziging het oplost. Dat is dezelfde reviewvaardigheid waar AI-ondersteund werk op leunt.
 - **Een timer bij elke vraag:** elke vraag heeft een eigen aftelklok, afgedwongen door de server, en elke kandidaat krijgt een eigen willekeurige set vragen. Dat maakt antwoorden opzoeken, ook via een AI-assistent, lastiger. Het maakt het niet onmogelijk.
-- **Integriteitssignalen:** scorekaarten markeren antwoorden die te snel waren om de vraag te hebben gelezen, momenten waarop de kandidaat de pagina verliet, en kopieerpogingen. Een signaal is een reden om beter te kijken, geen bewijs van valsspelen.
+- **Integriteitssignalen:** scorekaarten markeren antwoorden die te snel waren om de vraag te hebben gelezen, momenten waarop de kandidaat de pagina verliet, en kopieerpogingen. Zodra een kandidaat klaar is, wijst het rapport ook op antwoordpatronen die vaak ontstaan als iemand de vragen aan een AI doorgeeft en de antwoorden overneemt: ongeveer even lang bij elke vraag, ongeacht de lengte of moeilijkheid, of moeilijke vragen goed terwijl makkelijke fout waren. Een signaal of patroon is een reden om beter te kijken, geen bewijs van valsspelen.
+- **Vragen voor het live gesprek:** het rapport stelt tot 3 vragen voor die de kandidaat goed had, uit de sterkste onderwerpen, om door te nemen in een live gesprek, waar geen AI het antwoord kan geven.
 
 Wat prepza niet doet: kandidaten schrijven, draaien of debuggen geen code in prepza, en prepza kijkt niet mee terwijl ze een AI-assistent gebruiken. Dat hoort in de praktijkfase, intern of op een developerplatform, die de kennistest aanvult. Zie [vaardigheidstests per functie](/tests) voor kant-en-klare tests om mee te beginnen, en [AI-interviews](/ai-interviews) voor hoe prepza AI gebruikt en wat het aan mensen overlaat.
 

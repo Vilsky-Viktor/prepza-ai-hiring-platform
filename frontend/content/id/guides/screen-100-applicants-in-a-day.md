@@ -81,7 +81,7 @@ Sekarang pembacaan yang teliti dimulai, tetapi pada kelompok yang lebih kecil da
 
 1. **Urutkan berdasarkan nilai,** yang terbaik lebih dulu, dari menu urutan daftar: daftar dibuka dengan kandidat terbaru di atas.
 2. **Buka setiap scorecard** di kelompok teratas. Lihat jawabannya, bukan hanya angkanya: topik mana yang kuat, mana yang lemah, berapa lama setiap jawaban.
-3. **Periksa tanda peringatannya.** prepza menandai jawaban yang terlalu cepat untuk sempat membaca soalnya, saat kandidat meninggalkan halaman, dan percobaan menyalin. Tanda adalah alasan untuk melihat lebih teliti, bukan bukti kecurangan. Orang yang meninggalkan halaman sekali mungkin saja terganggu notifikasi yang muncul.
+3. **Periksa tanda peringatannya.** prepza menandai jawaban yang terlalu cepat untuk sempat membaca soalnya, saat kandidat meninggalkan halaman, dan percobaan menyalin. Setelah kandidat selesai, halamannya juga menunjukkan pola jawaban yang tidak biasa (waktu yang kira-kira sama di setiap soal, atau soal sulit benar sementara soal mudah salah) dan menyarankan soal untuk ditanyakan di wawancara berikutnya. Tanda adalah alasan untuk melihat lebih teliti, bukan bukti kecurangan. Orang yang meninggalkan halaman sekali mungkin saja terganggu notifikasi yang muncul.
 4. **Lihat yang sedikit di bawah nilai lulus.** Skor dari set soal acak yang berbeda tidak bisa dibandingkan secara persis, jadi selisih beberapa poin bisa berasal dari soal yang terambil. Seseorang dengan skor 65% yang jawabannya kuat di topik yang paling penting mungkin layak diwawancarai.
 5. **Sekarang baca CV** orang-orang yang sedang kamu pertimbangkan. Kamu membaca 15 CV dengan teliti, bukan membaca sekilas 100 CV.
 

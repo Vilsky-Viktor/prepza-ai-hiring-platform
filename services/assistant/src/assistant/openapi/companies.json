@@ -7356,6 +7356,29 @@
     "title": "AllowedDomains",
     "description": "The sites that may embed the company's interviews with the SDK, kept lowercase without a\nscheme, each once (422 naming a bad one); and whether the developer's own computer\n(localhost, any port) may too."
    },
+   "AnswerPatterns": {
+    "properties": {
+     "signals": {
+      "items": {
+       "$ref": "#/components/schemas/PatternSignal"
+      },
+      "type": "array",
+      "title": "Signals",
+      "default": []
+     },
+     "follow_ups": {
+      "items": {
+       "$ref": "#/components/schemas/FollowUp"
+      },
+      "type": "array",
+      "title": "Follow Ups",
+      "default": []
+     }
+    },
+    "type": "object",
+    "title": "AnswerPatterns",
+    "description": "The signals that fired (empty when none did) and questions to ask in a live interview;\nboth empty until the candidate finishes."
+   },
    "ApproveIn": {
     "properties": {
      "name": {
@@ -8085,6 +8108,20 @@
        }
       ],
       "title": "Sections"
+     },
+     "answer_signals": {
+      "anyOf": [
+       {
+        "items": {
+         "$ref": "#/components/schemas/PatternSignal"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Answer Signals"
      }
     },
     "type": "object",
@@ -8467,6 +8504,20 @@
        }
       ],
       "title": "Sections"
+     },
+     "answer_signals": {
+      "anyOf": [
+       {
+        "items": {
+         "$ref": "#/components/schemas/PatternSignal"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Answer Signals"
      },
      "interview_id": {
       "type": "string",
@@ -8895,6 +8946,44 @@
     ],
     "title": "ExtraTimeIn",
     "description": "Extra time for a candidate who needs it, in percent of each question's time."
+   },
+   "FollowUp": {
+    "properties": {
+     "question_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Question Id"
+     },
+     "topic_title": {
+      "type": "string",
+      "title": "Topic Title"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "right": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Right"
+     },
+     "wrong": {
+      "type": "string",
+      "title": "Wrong"
+     }
+    },
+    "type": "object",
+    "required": [
+     "question_id",
+     "topic_title",
+     "text",
+     "right",
+     "wrong"
+    ],
+    "title": "FollowUp",
+    "description": "A question the candidate answered right, to ask about in a live interview: why the right\noption is right and another isn't."
    },
    "GenerationOut": {
     "properties": {
@@ -10345,6 +10434,68 @@
     ],
     "title": "PassRateSort"
    },
+   "PatternSignal": {
+    "properties": {
+     "kind": {
+      "type": "string",
+      "enum": [
+       "timing",
+       "person_fit"
+      ],
+      "title": "Kind"
+     },
+     "hard": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Hard"
+     },
+     "hard_right": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Hard Right"
+     },
+     "easy": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Easy"
+     },
+     "easy_wrong": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Easy Wrong"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind"
+    ],
+    "title": "PatternSignal",
+    "description": "A signal that fired: `timing`, answer times that didn't follow the questions' length and\ndifficulty; `person_fit`, right and wrong answers that didn't follow difficulty, with its\ncounts (of the harder half of the questions, how many right; of the easier half, how many\nwrong)."
+   },
    "PauseIn": {
     "properties": {
      "paused": {
@@ -10951,6 +11102,13 @@
       },
       "type": "array",
       "title": "Sessions"
+     },
+     "answer_patterns": {
+      "$ref": "#/components/schemas/AnswerPatterns",
+      "default": {
+       "signals": [],
+       "follow_ups": []
+      }
      }
     },
     "type": "object",

@@ -81,7 +81,7 @@ Nu begint het zorgvuldige lezen, maar bij een kleinere, gerangschikte groep.
 
 1. **Sorteer op score,** de beste eerst, via het sorteermenu van de lijst: de lijst opent met de nieuwste kandidaten bovenaan.
 2. **Open elke scorekaart** in de topgroep. Kijk naar de antwoorden, niet alleen naar het getal: welke onderwerpen sterk waren, welke zwak, hoe lang elk antwoord duurde.
-3. **Controleer de integriteitssignalen.** prepza markeert antwoorden die te snel waren om de vraag te hebben gelezen, momenten waarop de kandidaat de pagina verliet, en kopieerpogingen. Een signaal is een reden om beter te kijken, geen bewijs van valsspelen. Iemand die één keer de pagina verliet, kreeg misschien een melding.
+3. **Controleer de integriteitssignalen.** prepza markeert antwoorden die te snel waren om de vraag te hebben gelezen, momenten waarop de kandidaat de pagina verliet, en kopieerpogingen. Zodra een kandidaat klaar is, toont de pagina van die kandidaat ook ongebruikelijke antwoordpatronen (ongeveer even lang bij elke vraag, of moeilijke vragen goed terwijl makkelijke fout waren) en vragen om in het volgende gesprek te stellen. Een signaal is een reden om beter te kijken, geen bewijs van valsspelen. Iemand die één keer de pagina verliet, kreeg misschien een melding.
 4. **Kijk net onder de slaaggrens.** Scores van verschillende willekeurige vragensets zijn niet precies vergelijkbaar, dus een paar punten kunnen van de trekking komen. Iemand met 65% en sterke antwoorden op de belangrijkste onderwerpen kan een gesprek waard zijn.
 5. **Lees nu de cv's** van de mensen die je overweegt. Je leest 15 cv's zorgvuldig in plaats van er 100 door te bladeren.
 

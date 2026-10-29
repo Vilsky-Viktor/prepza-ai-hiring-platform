@@ -18,7 +18,7 @@ CANDIDATE = {
     "progress": 100,
     "grade": 86,
     "passed": True,
-    "signals": {"tab_leaves": 0, "copies": 1, "fast_answers": 0},
+    "signals": {"tab_leaves": 0, "copies": 1, "fast_answers": 0, "answer_patterns": None},
     "flagged": False,
     "extra_time": 0,
     "sections": None,

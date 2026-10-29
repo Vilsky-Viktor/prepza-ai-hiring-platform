@@ -6,6 +6,8 @@ from uuid import UUID
 
 from pydantic import BaseModel
 
+from companies.schemas.answer_patterns import AnswerPatterns
+
 
 class ScorecardAnswer(BaseModel):
     answer_id: UUID
@@ -93,3 +95,6 @@ class ScorecardOut(BaseModel):
     # None before they start (and for candidates from before it was asked).
     pledged_at: datetime | None = None
     sessions: list[ScorecardSection]
+    # The integrity signals the answers and times show over every section (empty when none
+    # fired) and questions to ask in a live interview; both empty until the candidate finishes.
+    answer_patterns: AnswerPatterns = AnswerPatterns()

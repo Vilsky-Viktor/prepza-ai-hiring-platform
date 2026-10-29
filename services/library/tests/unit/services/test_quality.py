@@ -244,6 +244,14 @@ def test_a_question_time_runs_out_on_too_often_is_too_slow():
     assert not too_slow(stats_of(answers=5, timeouts=5))
 
 
+def test_a_questions_difficulty_is_its_share_right_once_it_has_enough_answers():
+    from library.helpers.quality import difficulty
+
+    assert difficulty(stats_of(answers=30, correct=12)) == 0.4
+    assert difficulty(stats_of(answers=29, correct=12)) is None
+    assert difficulty(None) is None
+
+
 def test_a_candidates_group_follows_their_topic_score():
     from library.helpers.quality import score_group
 

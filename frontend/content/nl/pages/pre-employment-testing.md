@@ -2,7 +2,7 @@
 title: "Selectietests: een praktische gids voor kleine en middelgrote teams"
 seoTitle: "Selectietesten en assessments: soorten, eerlijkheid en tools"
 description: "Wat een selectietest of assessment is, welke soorten er zijn, wanneer je ze inzet bij werving en selectie, eerlijkheid, wetgeving en hoe je een tool kiest."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Selectietests: een praktische gids voor kleine en middelgrote teams
@@ -97,7 +97,7 @@ prepza maakt van een functieomschrijving een interview over vaardigheden, met ti
 4. **Lees de resultaten.** Scores komen gerangschikt binnen, met een scorekaart voor elke kandidaat.
 
 - **Elke kandidaat krijgt een eigen willekeurige set** uit de vragenbank van elk onderwerp, met een aftelklok bij elke vraag die de server afdwingt. Je kunt iedereen die erom vraagt extra tijd geven.
-- **Scorekaarten** tonen elk antwoord, of het goed was en hoe lang het duurde, met signalen bij te snelle antwoorden, het verlaten van de pagina en kopieerpogingen. Signalen veranderen de score niet.
+- **Scorekaarten** tonen elk antwoord, of het goed was en hoe lang het duurde, met signalen bij te snelle antwoorden, het verlaten van de pagina, kopieerpogingen en ongebruikelijke antwoordpatronen, plus vragen om in een live gesprek op door te vragen. Signalen veranderen de score niet.
 - **Antwoorden worden nagekeken met een antwoordsleutel** die AI schrijft; een steekproef van de sleutels van elk onderwerp wordt vóór vrijgave gecontroleerd, de rest zodra een vraag wordt gemarkeerd. Geen AI leest of beoordeelt het antwoord van een kandidaat. Een pdf-rapport behandelt één kandidaat of de hele lijst.
 - **Werkt met je tools:** kandidaten die je in Workable, Greenhouse, Teamtailor, Recruitee of Breezy HR naar een fase verplaatst, krijgen het interview, en hun resultaten gaan terug naar het ATS. Slack laat weten wanneer een kandidaat klaar is, en de [API](/api-docs) koppelt je eigen platform. Zie [Zo koppel je vaardigheidstests aan je ATS](/guides/ats-integration-skills-tests).
 

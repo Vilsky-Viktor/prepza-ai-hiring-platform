@@ -2,7 +2,7 @@
 title: "prepza ve TestGorilla: hangisi nerede uygun, ikisini birlikte kullanmak"
 seoTitle: "prepza ve TestGorilla Karşılaştırması: Farklar ve Kullanım"
 description: "prepza ve TestGorilla'nın test oluşturma, ölçtüğü beceriler ve fiyatlandırma açısından farkları, hangisinin nerede daha uygun olduğu ve birlikte kullanımı."
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza ve TestGorilla: hangisi nerede uygun, ikisini birlikte kullanmak
@@ -27,7 +27,7 @@ Bu sayfa ikisinin nasıl farklılaştığını, hangisinin nerede daha uygun old
 | Yapay zekâ mülakatları | Sohbet tabanlı yapay zekâ yok; yapay zekâ konu önerir ve soruları yazar; cevap anahtarlarından bir örneklem kontrol edilir | Planlarına bakın ([fiyat sayfası](https://www.testgorilla.com/pricing/)) |
 | Testte kod | Kod okuma soruları (kodun ne yaptığı veya ne çıktı verdiği); kod yazma veya çalıştırma yok | Kütüphanede programlama testleri; özel kodlama görevleri için planlarına bakın ([fiyat sayfası](https://www.testgorilla.com/pricing/)) |
 | Aday başına sorular | Her adaya kendi sırasıyla, kendine ait rastgele bir soru seti | Burada karşılaştırılmadı |
-| Güvenilirlik özellikleri | Her soruda süre sınırı (sunucu tarafından uygulanır), çok hızlı yanıtlar, sayfadan ayrılma ve kopyalama girişimleri için işaretler | Üst planında web kamerası fotoğrafları, kopyala/yapıştır engeli ve tam ekran modu |
+| Güvenilirlik özellikleri | Her soruda süre sınırı (sunucu tarafından uygulanır), çok hızlı yanıtlar, sayfadan ayrılma, kopyalama girişimleri ve olağan dışı yanıt örüntüleri için işaretler | Üst planında web kamerası fotoğrafları, kopyala/yapıştır engeli ve tam ekran modu |
 | Entegrasyonlar | Workable, Greenhouse, Teamtailor, Recruitee ve Breezy HR; Slack; imzalı webhook'larla herkese açık bir API ([geliştirici belgeleri](/api-docs)). Hepsi ek ücret olmadan | Üst planında ATS/API entegrasyonları |
 | Raporlar | Yanıtlar ve sürelerle değerlendirme kartları; tek aday veya tüm adaylar için PDF | Burada karşılaştırılmadı |
 | Diller | Arayüz, mülakatlar ve e-postalar için 23 dil | Burada karşılaştırılmadı; kütüphanede dil yeterlilik testleri bulunur |

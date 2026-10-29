@@ -108,6 +108,7 @@ prepzas on intervjuu ajapiiranguga valikvastustega oskustest, mis luuakse sinu t
 - **Kui aeg saab otsa,** läheb arvesse ekraanil valitud variant ja avaneb järgmine küsimus; kui midagi pole valitud, loetakse küsimus valeks. Vastamata küsimused loetakse valeks ja intervjuu, millest kandidaat lahkub, lõpeb ise, kui selle koguaeg pluss 10% on möödas.
 - **Küsimused kirjutatakse taimerile sobivaks:** neile saab vastata umbes minutiga (kõige raskematele kuni poolteist minutit), ka teises keeles. Küsimus on kuni 40 sõna (raske puhul 50), variant kuni 10 ja näide kuni 8 lühikest rida.
 - **Küsimused, millel aeg liiga sageli otsa saab, märgitakse** ja kirjutatakse taustal ümber. Ümberkirjutatud küsimus kehtib kandidaatidele, kes alustavad pärast parandust; juba antud tulemused ei muutu.
+- **Vastamisajad on ka aususe signaal.** Kui lõpetanud kandidaadi vastamisajad püsivad igal küsimusel umbes samad, olenemata selle pikkusest või raskusest, toob tema aruanne selle välja: nii näeb see sageli välja, kui küsimusi tehisarule edasi antakse. See on põhjus küsida, mitte tõend, ja lisaaeg seda märget ei tekita.
 
 Araabia-, hiina-, jaapani-, pärsia-, vene-, tai- või ukrainakeelses intervjuus saab iga küsimus keskmise aja, sest nendes keeltes ei ennusta küsimuse pikkus veel selle aega piisavalt täpselt. Umbes 1 küsimus 10-st on tüüpi „vali kõik sobivad variandid“, millel on 2 või 3 õiget varianti: iga märgitud õige variandi eest saab osa punktist ja kui märgitud on vale variant, ei saa midagi.
 

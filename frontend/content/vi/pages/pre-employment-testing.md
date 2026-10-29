@@ -2,7 +2,7 @@
 title: "Bài kiểm tra trước tuyển dụng: hướng dẫn thực tế cho doanh nghiệp vừa và nhỏ"
 seoTitle: "Bài kiểm tra tuyển dụng: các loại, tính công bằng và công cụ"
 description: "Bài kiểm tra tuyển dụng là gì, có những loại nào, khi nào nên dùng, cơ bản về công bằng và pháp lý, và cách chọn công cụ đánh giá năng lực ứng viên."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Bài kiểm tra trước tuyển dụng: hướng dẫn thực tế cho doanh nghiệp vừa và nhỏ
@@ -97,7 +97,7 @@ prepza biến mô tả công việc thành một buổi phỏng vấn kỹ năng
 4. **Đọc kết quả.** Điểm số được xếp hạng, kèm bảng điểm cho từng ứng viên.
 
 - **Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên của riêng mình** từ ngân hàng của mỗi chủ đề, với đồng hồ đếm ngược do máy chủ áp dụng cho mọi câu hỏi. Bạn có thể cho thêm thời gian với bất kỳ ai yêu cầu.
-- **Bảng điểm** hiển thị mọi câu trả lời, đúng hay sai và mất bao lâu, kèm cảnh báo về trả lời quá nhanh, rời khỏi trang và cố sao chép. Cảnh báo không làm thay đổi điểm số.
+- **Bảng điểm** hiển thị mọi câu trả lời, đúng hay sai và mất bao lâu, kèm cảnh báo về trả lời quá nhanh, rời khỏi trang, cố sao chép và mẫu trả lời bất thường, cùng những câu nên hỏi trong buổi phỏng vấn trực tiếp. Cảnh báo không làm thay đổi điểm số.
 - **Câu trả lời được chấm theo đáp án** do AI viết; một phần đáp án của mỗi chủ đề được kiểm tra trước khi phát hành, phần còn lại khi câu hỏi bị đánh dấu. Không có AI nào đọc hay đánh giá câu trả lời của ứng viên. Báo cáo PDF bao gồm một ứng viên hoặc cả danh sách.
 - **Hoạt động với các công cụ của bạn:** ứng viên bạn chuyển sang một giai đoạn trong Workable, Greenhouse, Teamtailor, Recruitee hoặc Breezy HR sẽ được mời làm buổi phỏng vấn, và kết quả của họ được gửi về ATS. Slack được báo khi một ứng viên làm xong, và [API](/api-docs) kết nối nền tảng riêng của bạn. Xem [cách kết nối bài kiểm tra kỹ năng với ATS](/guides/ats-integration-skills-tests).
 

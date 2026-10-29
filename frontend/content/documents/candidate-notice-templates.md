@@ -35,7 +35,10 @@ your audit summary is published (see prepza's instructions for companies).
 > of points earned: each question is worth one point, and on a "select all that apply" question
 > you earn part of it for each right option ticked, and nothing if you tick a wrong one. The tool
 > also records how long each answer took, when you left the test page or copied text during it,
-> and answers given too fast to have read the question. Before you start, you confirm that you'll
+> and answers given too fast to have read the question. It also shows [Company] when your answer
+> times or your right and wrong answers don't follow the questions' length and difficulty as other
+> candidates' do (for example, about the same time on every question), with questions to ask you
+> about in an interview; it never decides on its own. Before you start, you confirm that you'll
 > answer on your own, without AI tools or other people, and when you did is recorded. [Company]
 > may give you extra time, which is recorded without a reason.
 >
@@ -81,7 +84,10 @@ your audit summary is published (see prepza's instructions for companies).
 > **What is recorded.** Your answers (every option ticked), whether each was right or the points
 > it earned, how long each took, when you left the test page or copied text, and answers given
 > too fast to have read the question, and when you confirmed, before starting, that you'd answer
-> on your own. If we give you extra time, that is recorded too, without a reason. You won't see your score.
+> on your own. If we give you extra time, that is recorded too, without a reason. We're also shown
+> when your answer times or your right and wrong answers don't follow the questions' length and
+> difficulty as other candidates' do, with questions to ask you about; it's a reason to ask, never
+> a decision. You won't see your score.
 >
 > **How we use it.** Your result is one part of our assessment, alongside [your CV / interviews].
 > A person at [Company] reviews it; no decision is made automatically. You can ask us for a human

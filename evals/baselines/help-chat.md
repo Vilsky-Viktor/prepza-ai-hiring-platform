@@ -155,3 +155,14 @@ at none, judged by `gpt-6.1-sol` high, against the fitted-times run just before
 (90.8–99.3) → 96.0% (88.9–98.6); made up 1.3% → 4.0%; sign-in marker 100% both; every miss is
 h17's known invented retake limit (3 of 3), not about brands. Within the noise; kept so the guide
 says what is true. $1.62.
+
+## Help chat: answer patterns (2026-10-29, kept)
+
+The candidate page's guide, the FAQ and the help chat's guide now say that a finished candidate's
+report shows two answer-pattern signals (times about the same on every question; hard questions
+right while easy ones were wrong) and questions to ask in a live interview. `help_chat.py`,
+25 × 3, `gpt-6-luna` at none, judged by `gpt-6.1-sol` high, against the two-fonts run just before
+(`results/help_chat_two-fonts.json`) → after (`…_answer-patterns.json`): passed 96.0%
+(88.9–98.6) → 97.3% (90.8–99.3); made up 4.0% → 2.7%; sign-in marker 100% both; who-are-you
+18 of 18; the misses are h17's known invented retake limit (2 of 3), not about integrity. Within
+the noise; kept so the guides say what is true. $1.75.

@@ -1155,7 +1155,7 @@
     "extraTime": "Vajad rohkem aega, näiteks puude tõttu? Küsi seda enne alustamist: lisaaega saab anda <bdi>{company}</bdi>.",
     "extraTimeLink": "Vajad rohkem aega, näiteks puude tõttu? Küsi enne alustamist isiklikku kutset, mille saab saata <bdi>{company}</bdi>: siin lisaaega anda ei saa.",
     "people": "Küsimused kirjutab tehisaru, kuid tulemused vaatavad üle ja otsuse teevad inimesed. Võid paluda, et <bdi>{company}</bdi> laseks sinu tulemuse inimesel üle vaadata.",
-    "stay": "Jää sellele lehele: lehelt lahkumine, kopeerimine ja liiga kiire vastamine, enne kui küsimuse jõuab läbi lugeda, registreeritakse (<link>privaatsus</link>).",
+    "stay": "Jää sellele lehele: lehelt lahkumine, kopeerimine ja liiga kiire vastamine, enne kui küsimuse jõuab läbi lugeda, registreeritakse ning ettevõte näeb, kui sinu vastamisajad või vastused ei vasta küsimuste raskusele (<link>privaatsus</link>).",
     "finished": "See intervjuu on juba lõppenud.",
     "continue": "Jätka",
     "start": "Nõustu ja alusta",
@@ -1623,6 +1623,15 @@
     "humanReview": "Tulemus toetab sinu otsust, aga ei tee seda sinu eest. Loe vastused läbi ja kui kandidaat palub, lase tema tulemus inimesel üle vaadata.",
     "humanReviewSignals": "Tulemus toetab sinu otsust, aga ei tee seda sinu eest. Loe vastused läbi ja kui kandidaat palub, lase tema tulemus inimesel üle vaadata. Lehelt lahkumisi, kopeerimisi ja kiireid vastuseid teatab kandidaadi brauser: põhjus lähemalt vaadata, mitte tõend.",
     "pledged": "Kinnitas, et vastab ise."
+  },
+  "answerPatterns": {
+    "title": "vastuste mustrid",
+    "timing": "Vastamisajad ei sõltunud küsimustest: igaühele kulus umbes sama palju aega, olenemata selle pikkusest või raskusest.",
+    "personFit": "Ebatavaline muster: {hard, plural, one {# raskest küsimusest} other {# raskest küsimusest}} {hardRight, number} õigesti, {easy, plural, one {# lihtsast küsimusest} other {# lihtsast küsimusest}} {easyWrong, number} valesti.",
+    "note": "Sellistel mustritel võib olla süütu põhjus: põhjus küsida, mitte tõend.",
+    "askTitle": "Küsi vestlusel",
+    "askIntro": "Küsimused, millele kandidaat vastas õigesti, et neid arutada otsevestlusel, kus ükski tehisaru ei saa tema eest vastata.",
+    "ask": "Miks on vastus <b>{answer}</b>, mitte <b>{other}</b>?"
   },
   "practice": {
     "title": "Tasuta harjutustestid tööintervjuuks",

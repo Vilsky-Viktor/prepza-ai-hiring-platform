@@ -2,7 +2,7 @@
 title: "Recruter des développeurs à l'ère de l'IA : ce qu'il faut évaluer aujourd'hui"
 seoTitle: "Entretien technique à l'ère de l'IA : quoi évaluer"
 description: "L'IA fait partie du quotidien des développeurs. Ce que cela change aux entretiens techniques, comment les entreprises s'adaptent et la place des QCM."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Recruter des développeurs à l'ère de l'IA : ce qu'il faut évaluer aujourd'hui
@@ -73,7 +73,8 @@ prepza est bien adapté à l'étape 2. Il transforme votre fiche de poste en ent
 - **Concepts et théorie tirés de la fiche de poste :** bases de données, API, architecture, comportement d'un framework, pratiques de sécurité.
 - **Questions de lecture de code :** un court extrait de code, avec des questions sur ce qu'il affiche ou renvoie, ce qu'il fait, pourquoi il échoue ou quelle modification le corrige. C'est la même compétence de relecture dont dépend le travail assisté par IA.
 - **Un minuteur sur chaque question :** chaque question a son propre compte à rebours, imposé par le serveur, et chaque candidat reçoit sa propre série aléatoire de questions. Chercher les réponses, y compris en interrogeant un assistant IA, devient plus difficile. Pas impossible pour autant.
-- **Signaux d'intégrité :** les fiches d'évaluation signalent les réponses trop rapides pour que la question ait été lue, les moments où le candidat a quitté la page et les tentatives de copie. Une alerte est une raison de regarder de plus près, pas une preuve de triche.
+- **Signaux d'intégrité :** les fiches d'évaluation signalent les réponses trop rapides pour que la question ait été lue, les moments où le candidat a quitté la page et les tentatives de copie. Une fois qu'un candidat a terminé, son rapport relève aussi les schémas de réponse que laisse souvent le fait de soumettre les questions à une IA et d'en recopier les réponses : à peu près le même temps sur chaque question, quelles que soient sa longueur ou sa difficulté, ou des questions difficiles réussies alors que des faciles sont ratées. Une alerte ou un schéma est une raison de regarder de plus près, pas une preuve de triche.
+- **Des questions pour l'entretien en direct :** le rapport suggère jusqu'à 3 questions auxquelles le candidat a bien répondu, dans ses thèmes les plus solides, à reprendre lors d'un entretien en direct, où aucune IA ne peut répondre à sa place.
 
 Ce que prepza ne fait pas : les candidats n'écrivent, n'exécutent ni ne déboguent de code dans prepza, et prepza n'observe pas leur usage d'un assistant IA. Cela relève de l'étape pratique, menée en interne ou sur une plateforme pour développeurs, qui complète le test de connaissances. Voir les [tests de compétences par poste](/tests) pour des tests prêts à l'emploi, et [Entretiens IA](/ai-interviews) pour savoir comment prepza utilise l'IA et ce qu'il laisse aux personnes.
 

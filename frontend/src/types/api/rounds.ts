@@ -349,6 +349,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/invites/{invite_id}/answer-patterns": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Invite Answer Patterns
+     * @description The integrity signals the candidate's answers and times show over every section, and
+     *     questions to ask about in a live interview; empty until every section is finished.
+     */
+    get: operations["invite_answer_patterns_internal_invites__invite_id__answer_patterns_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/events": {
     parameters: {
       query?: never
@@ -575,6 +596,24 @@ export interface components {
       /** Picks */
       picks?: number[] | null
     }
+    /**
+     * AnswerPatternsOut
+     * @description What the candidate's answers and times show once they've finished: the signals that
+     *     fired (empty when none did), and questions to ask about in a live interview. Both empty
+     *     before they finish.
+     */
+    AnswerPatternsOut: {
+      /**
+       * Signals
+       * @default []
+       */
+      signals: components["schemas"]["PatternSignalOut"][]
+      /**
+       * Follow Ups
+       * @default []
+       */
+      follow_ups: components["schemas"]["FollowUp"][]
+    }
     /** AnswerView */
     AnswerView: {
       /**
@@ -609,6 +648,26 @@ export interface components {
        * @default false
        */
       fast: boolean
+    }
+    /**
+     * FollowUp
+     * @description A question the candidate answered right, to ask about in a live interview: why the right
+     *     option is right and another isn't.
+     */
+    FollowUp: {
+      /**
+       * Question Id
+       * Format: uuid
+       */
+      question_id: string
+      /** Topic Title */
+      topic_title: string
+      /** Text */
+      text: string
+      /** Right */
+      right: string[]
+      /** Wrong */
+      wrong: string
     }
     /** HTTPValidationError */
     HTTPValidationError: {
@@ -676,6 +735,26 @@ export interface components {
       answer: string
       /** Correct */
       correct: boolean
+    }
+    /**
+     * PatternSignal
+     * @enum {string}
+     */
+    PatternSignal: "timing" | "person_fit"
+    /**
+     * PatternSignalOut
+     * @description A signal that fired, with the numbers its sentence shows.
+     */
+    PatternSignalOut: {
+      kind: components["schemas"]["PatternSignal"]
+      /** Hard */
+      hard?: number | null
+      /** Hard Right */
+      hard_right?: number | null
+      /** Easy */
+      easy?: number | null
+      /** Easy Wrong */
+      easy_wrong?: number | null
     }
     /**
      * PracticeRoundOut
@@ -872,6 +951,8 @@ export interface components {
       text: string
       /** Options */
       options: components["schemas"]["Option"][]
+      /** Difficulty */
+      difficulty?: number | null
     }
     /** RatingIn */
     RatingIn: {
@@ -1744,6 +1825,37 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["ScorecardSession"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  invite_answer_patterns_internal_invites__invite_id__answer_patterns_get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        invite_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["AnswerPatternsOut"]
         }
       }
       /** @description Validation Error */

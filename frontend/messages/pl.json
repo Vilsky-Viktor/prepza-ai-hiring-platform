@@ -1155,7 +1155,7 @@
     "extraTime": "Potrzebujesz więcej czasu, np. z powodu niepełnosprawności? Przed startem zapytaj, czy <bdi>{company}</bdi> może go przyznać.",
     "extraTimeLink": "Potrzebujesz więcej czasu, np. z powodu niepełnosprawności? Przed startem poproś o osobiste zaproszenie, które może wysłać <bdi>{company}</bdi>: tutaj nie można dodać czasu.",
     "people": "Pytania pisze AI. Wyniki sprawdzają ludzie, a decyzję podejmuje <bdi>{company}</bdi>; możesz poprosić o sprawdzenie swojego wyniku.",
-    "stay": "Zostań na tej stronie: opuszczenie jej, kopiowanie i odpowiedzi zbyt szybkie, by przeczytać pytanie, są rejestrowane (<link>prywatność</link>).",
+    "stay": "Zostań na tej stronie: opuszczenie jej, kopiowanie i odpowiedzi zbyt szybkie, by przeczytać pytanie, są rejestrowane, a firma widzi, gdy czas Twoich odpowiedzi lub same odpowiedzi nie pasują do trudności pytań (<link>prywatność</link>).",
     "finished": "Ta rozmowa jest już zakończona.",
     "continue": "Kontynuuj",
     "start": "Akceptuj i rozpocznij",
@@ -1623,6 +1623,15 @@
     "humanReview": "Wynik wspiera Twoją decyzję, ale jej nie podejmuje. Przeczytaj odpowiedzi, a jeśli kandydat poprosi, zleć sprawdzenie jego wyniku człowiekowi.",
     "humanReviewSignals": "Wynik wspiera Twoją decyzję, ale jej nie podejmuje. Przeczytaj odpowiedzi, a jeśli kandydat poprosi, zleć sprawdzenie jego wyniku człowiekowi. Opuszczenia strony, kopiowania i szybkie odpowiedzi zgłasza przeglądarka kandydata: to powód, by przyjrzeć się bliżej, a nie dowód.",
     "pledged": "Potwierdzono samodzielne odpowiadanie."
+  },
+  "answerPatterns": {
+    "title": "wzorce odpowiedzi",
+    "timing": "Czas odpowiedzi nie zależał od pytań: mniej więcej tyle samo przy każdym, bez względu na jego długość czy trudność.",
+    "personFit": "Nietypowy wzorzec: poprawne odpowiedzi na {hardRight, number} z {hard, plural, one {# trudnego pytania} few {# trudnych pytań} many {# trudnych pytań} other {# trudnego pytania}}, błędne na {easyWrong, number} z {easy, plural, one {# łatwego} few {# łatwych} many {# łatwych} other {# łatwego}}.",
+    "note": "Takie wzorce mogą mieć niewinne przyczyny: to powód, by zapytać, a nie dowód.",
+    "askTitle": "Zapytaj na rozmowie",
+    "askIntro": "Pytania, na które kandydat odpowiedział poprawnie, do omówienia na rozmowie na żywo, gdzie AI nie odpowie za niego.",
+    "ask": "Dlaczego poprawna odpowiedź to <b>{answer}</b>, a nie <b>{other}</b>?"
   },
   "practice": {
     "title": "Darmowa symulacja rozmowy kwalifikacyjnej",

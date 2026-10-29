@@ -2343,6 +2343,23 @@ export interface components {
       allow_localhost: boolean
     }
     /**
+     * AnswerPatterns
+     * @description The signals that fired (empty when none did) and questions to ask in a live interview;
+     *     both empty until the candidate finishes.
+     */
+    AnswerPatterns: {
+      /**
+       * Signals
+       * @default []
+       */
+      signals: components["schemas"]["PatternSignal"][]
+      /**
+       * Follow Ups
+       * @default []
+       */
+      follow_ups: components["schemas"]["FollowUp"][]
+    }
+    /**
      * ApproveIn
      * @description The name and domain the superadmin reviewed; approved only if the request still has them.
      */
@@ -2668,6 +2685,8 @@ export interface components {
       revokable: boolean
       /** Sections */
       sections?: components["schemas"]["SectionGrade"][] | null
+      /** Answer Signals */
+      answer_signals?: components["schemas"]["PatternSignal"][] | null
     }
     /**
      * CandidateSearchIn
@@ -2851,6 +2870,8 @@ export interface components {
       revokable: boolean
       /** Sections */
       sections?: components["schemas"]["SectionGrade"][] | null
+      /** Answer Signals */
+      answer_signals?: components["schemas"]["PatternSignal"][] | null
       /**
        * Interview Id
        * Format: uuid
@@ -3035,6 +3056,26 @@ export interface components {
     ExtraTimeIn: {
       /** Extra Time */
       extra_time: number
+    }
+    /**
+     * FollowUp
+     * @description A question the candidate answered right, to ask about in a live interview: why the right
+     *     option is right and another isn't.
+     */
+    FollowUp: {
+      /**
+       * Question Id
+       * Format: uuid
+       */
+      question_id: string
+      /** Topic Title */
+      topic_title: string
+      /** Text */
+      text: string
+      /** Right */
+      right: string[]
+      /** Wrong */
+      wrong: string
     }
     /** GenerationOut */
     GenerationOut: {
@@ -3572,6 +3613,28 @@ export interface components {
      * @enum {string}
      */
     PassRateSort: "pass_rate" | "finished"
+    /**
+     * PatternSignal
+     * @description A signal that fired: `timing`, answer times that didn't follow the questions' length and
+     *     difficulty; `person_fit`, right and wrong answers that didn't follow difficulty, with its
+     *     counts (of the harder half of the questions, how many right; of the easier half, how many
+     *     wrong).
+     */
+    PatternSignal: {
+      /**
+       * Kind
+       * @enum {string}
+       */
+      kind: "timing" | "person_fit"
+      /** Hard */
+      hard?: number | null
+      /** Hard Right */
+      hard_right?: number | null
+      /** Easy */
+      easy?: number | null
+      /** Easy Wrong */
+      easy_wrong?: number | null
+    }
     /** PauseIn */
     PauseIn: {
       /** Paused */
@@ -3832,6 +3895,13 @@ export interface components {
       pledged_at?: string | null
       /** Sessions */
       sessions: components["schemas"]["ScorecardSection"][]
+      /**
+       * @default {
+       *       "signals": [],
+       *       "follow_ups": []
+       *     }
+       */
+      answer_patterns: components["schemas"]["AnswerPatterns"]
     }
     /** ScorecardQuestion */
     ScorecardQuestion: {

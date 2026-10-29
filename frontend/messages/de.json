@@ -1155,7 +1155,7 @@
     "extraTime": "Brauchst du mehr Zeit, zum Beispiel wegen einer Behinderung? Frag <bdi>{company}</bdi>, bevor du beginnst.",
     "extraTimeLink": "Brauchst du mehr Zeit, zum Beispiel wegen einer Behinderung? Bitte <bdi>{company}</bdi> vor dem Start um eine persönliche Einladung: Hier kann keine Zeit hinzugefügt werden.",
     "people": "Die Fragen werden von KI geschrieben. Mitarbeitende von <bdi>{company}</bdi> prüfen die Ergebnisse und entscheiden; du kannst sie bitten, deines zu prüfen.",
-    "stay": "Bleib auf dieser Seite: Verlassen, Kopieren und Antworten, die zu schnell kommen, um die Frage gelesen zu haben, werden erfasst (<link>Datenschutz</link>).",
+    "stay": "Bleib auf dieser Seite: Verlassen, Kopieren und Antworten, die zu schnell kommen, um die Frage gelesen zu haben, werden erfasst, und das Unternehmen sieht, wenn deine Antwortzeiten oder Antworten nicht zur Schwierigkeit der Fragen passen (<link>Datenschutz</link>).",
     "finished": "Dieses Interview ist bereits beendet.",
     "continue": "Fortsetzen",
     "start": "Annehmen und starten",
@@ -1623,6 +1623,15 @@
     "humanReview": "Das Ergebnis unterstützt deine Entscheidung, es trifft sie nicht. Lies die Antworten, und wenn der Kandidat darum bittet, lass sein Ergebnis von einem Menschen prüfen.",
     "humanReviewSignals": "Das Ergebnis unterstützt deine Entscheidung, es trifft sie nicht. Lies die Antworten, und wenn der Kandidat darum bittet, lass sein Ergebnis von einem Menschen prüfen. Seitenwechsel, Kopiervorgänge und schnelle Antworten meldet der Browser des Kandidaten: ein Grund, genauer hinzusehen, kein Beweis.",
     "pledged": "Hat bestätigt, selbst zu antworten."
+  },
+  "answerPatterns": {
+    "title": "antwortmuster",
+    "timing": "Die Antwortzeiten passten nicht zu den Fragen: ungefähr gleich lang bei jeder, egal wie lang oder schwierig sie war.",
+    "personFit": "Ungewöhnliches Muster: {hardRight, number} von {hard, plural, one {# schweren Frage} other {# schweren Fragen}} richtig, {easyWrong, number} von {easy, plural, one {# leichten Frage} other {# leichten Fragen}} falsch.",
+    "note": "Solche Muster können harmlose Ursachen haben: ein Grund nachzufragen, kein Beweis.",
+    "askTitle": "Im Gespräch nachfragen",
+    "askIntro": "Richtig beantwortete Fragen, die du in einem Live-Gespräch durchgehen kannst, wo keine KI für den Kandidaten antworten kann.",
+    "ask": "Warum lautet die Antwort <b>{answer}</b> und nicht <b>{other}</b>?"
   },
   "practice": {
     "title": "Vorstellungsgespräch kostenlos üben",

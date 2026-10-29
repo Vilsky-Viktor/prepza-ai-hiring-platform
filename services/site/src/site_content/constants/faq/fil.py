@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Puwede bang gumamit ng AI ang mga aplikante o hanapin ang mga sagot?",
-        "answer": "Bawat aplikante ay may sariling random na mga tanong sa sarili nilang pagkakasunod-sunod, may [timer sa bawat tanong](/guides/skills-test-timing-and-extra-time) na binabantayan ng aming server, kaya kaunti lang ang oras para maghanap ng sagot o magtanong sa AI. Ipinapakita rin ng scorecard ng aplikante kung kailan siya umalis sa page, kumopya ng text, o sumagot nang masyadong mabilis para nabasa ang tanong. Bago magsimula, kinukumpirma rin ng bawat aplikante na sasagot siya nang mag-isa, nang walang AI tool o tulong ng ibang tao, at ipinapakita ito ng kanyang scorecard.",
+        "answer": "Bawat aplikante ay may sariling random na mga tanong sa sarili nilang pagkakasunod-sunod, may [timer sa bawat tanong](/guides/skills-test-timing-and-extra-time) na binabantayan ng aming server, kaya kaunti lang ang oras para maghanap ng sagot o magtanong sa AI. Ipinapakita rin ng scorecard ng aplikante kung kailan siya umalis sa page, kumopya ng text, o sumagot nang masyadong mabilis para nabasa ang tanong. Kapag tapos na siya, itinuturo rin ng kanyang page ang mga pattern ng sagot na kadalasang naiiwan kapag ipinapasa ang mga tanong sa AI, gaya ng halos parehong oras sa bawat tanong o tama ang mahihirap na tanong habang mali ang madadali, at nagmumungkahi ng mga tanong na tama ang sagot niya para itanong sa isang live na interview. Ang pattern ay dahilan para magtanong, hindi patunay. Bago magsimula, kinukumpirma rin ng bawat aplikante na sasagot siya nang mag-isa, nang walang AI tool o tulong ng ibang tao, at ipinapakita ito ng kanyang scorecard.",
     },
     {
         "key": "cost",

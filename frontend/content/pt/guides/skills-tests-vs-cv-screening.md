@@ -2,7 +2,7 @@
 title: "Testes de habilidades x triagem de currículos: o que prevê o desempenho no trabalho"
 seoTitle: "Teste de habilidades x triagem de currículos: o que funciona"
 description: "O que décadas de pesquisa dizem sobre testes de conhecimentos, amostras de trabalho, entrevistas e anos de experiência, e como usar isso na sua triagem."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Testes de habilidades x triagem de currículos: o que prevê o desempenho no trabalho
@@ -84,7 +84,7 @@ A prepza cobre o passo 2: um teste de conhecimentos da função, de múltipla es
 - **Específico da função por concepção.** A prepza propõe tópicos a partir da sua descrição da vaga, e você os revisa e edita antes de qualquer pergunta ser escrita. Remova o que não for um requisito real. Para vagas técnicas, as perguntas podem incluir pequenos exemplos de código para ler.
 - **As mesmas condições para todos.** Os mesmos tópicos e número de perguntas, e uma contagem regressiva em cada pergunta. Você pode dar tempo extra aos candidatos que pedirem.
 - **Cada candidato recebe suas próprias perguntas,** um conjunto aleatório do banco de cada tópico, o que dificulta compartilhar respostas.
-- **Resultados fáceis de ler.** Uma ficha de avaliação por candidato com cada resposta e seu tempo, ordenada por pontuação, com alertas para respostas rápidas demais, saídas da página e tentativas de cópia.
+- **Resultados fáceis de ler.** Uma ficha de avaliação por candidato com cada resposta e seu tempo, ordenada por pontuação, com alertas para respostas rápidas demais, saídas da página, tentativas de cópia e padrões de resposta incomuns.
 - **Respostas corrigidas com base em um gabarito** que a IA escreve; uma amostra dos gabaritos de cada tópico é verificada antes da liberação, e os demais quando uma pergunta é sinalizada. Nenhuma IA lê ou julga a resposta de um candidato.
 
 A prepza não faz entrevistas estruturadas, amostras de trabalho nem testes cognitivos. Use-a junto com eles. Para saber mais sobre tipos de teste e imparcialidade, leia [Testes de seleção](/pre-employment-testing).

@@ -15,10 +15,16 @@ class SetOut(BaseModel):
     topics: list[TopicOut]
 
 
+class ContentQuestion(QuestionOut):
+    # The share of candidates who answer it right, for rounds' integrity signals; None before
+    # it has MIN_ANSWERS answers.
+    difficulty: float | None = None
+
+
 class SetTopicOut(BaseModel):
     id: UUID
     title: str
-    questions: list[QuestionOut]
+    questions: list[ContentQuestion]
 
 
 class SetContent(BaseModel):

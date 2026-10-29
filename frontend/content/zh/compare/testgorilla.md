@@ -2,7 +2,7 @@
 title: "prepza 与 TestGorilla：各自的定位与搭配使用"
 seoTitle: "prepza 与 TestGorilla 对比：定位与搭配使用"
 description: "prepza 和 TestGorilla 在测试构建方式、考察内容和定价上有何不同，各自更适合什么场景，以及如何搭配使用。"
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza 与 TestGorilla：各自的定位与搭配使用
@@ -27,7 +27,7 @@ updated: "2026-10-15"
 | AI 面试 | 没有对话式 AI；AI 提出主题并编写题目，抽查其中一部分标准答案 | 见其套餐（[价格页](https://www.testgorilla.com/pricing/)） |
 | 测试中的代码 | 读代码题（代码做什么或输出什么）；不编写或运行代码 | 测试库中有编程测试；自定义编程挑战见其套餐（[价格页](https://www.testgorilla.com/pricing/)） |
 | 每位候选人的题目 | 每位候选人有自己的一套随机题目，顺序也各不相同 | 本页不作比较 |
-| 诚信功能 | 每道题都有计时（由服务器强制执行），标记作答过快、离开页面和复制尝试 | 高级套餐提供摄像头快照、禁用复制粘贴和全屏模式 |
+| 诚信功能 | 每道题都有计时（由服务器强制执行），标记作答过快、离开页面、复制尝试和异常作答模式 | 高级套餐提供摄像头快照、禁用复制粘贴和全屏模式 |
 | 集成 | Workable、Greenhouse、Teamtailor、Recruitee 和 Breezy HR；Slack；带签名 Webhook 的公开 API（[开发者文档](/api-docs)）。均无额外费用 | 高级套餐提供 ATS/API 集成 |
 | 报告 | 包含答案和用时的评分卡；单个或全部候选人的 PDF | 本页不作比较 |
 | 语言 | 界面、面试和邮件支持 23 种语言 | 本页不作比较；测试库包含语言能力测试 |

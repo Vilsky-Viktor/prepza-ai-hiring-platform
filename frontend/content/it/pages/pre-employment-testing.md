@@ -2,7 +2,7 @@
 title: "Test pre-assunzione: guida pratica per piccole e medie aziende"
 seoTitle: "Test di selezione del personale: tipi, regole e strumenti"
 description: "Test di selezione del personale e test per assunzione: tipi, quando usarli, equità e basi di legge, come scegliere uno strumento. Guida per i recruiter."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Test pre-assunzione: guida pratica per piccole e medie aziende
@@ -97,7 +97,7 @@ prepza trasforma una descrizione del ruolo in un colloquio sulle competenze a sc
 4. **Leggi i risultati.** I punteggi arrivano in classifica, con una scheda di valutazione per ogni candidato.
 
 - **Ogni candidato riceve un proprio set casuale** dalla serie di domande di ciascun argomento, con un conto alla rovescia gestito dal server su ogni domanda. Puoi dare tempo extra a chiunque lo chieda.
-- **Le schede di valutazione** mostrano ogni risposta, se era giusta e quanto tempo ha richiesto, con segnalazioni per risposte troppo rapide, uscite dalla pagina e tentativi di copia. Le segnalazioni non cambiano il punteggio.
+- **Le schede di valutazione** mostrano ogni risposta, se era giusta e quanto tempo ha richiesto, con segnalazioni per risposte troppo rapide, uscite dalla pagina, tentativi di copia e andamenti insoliti delle risposte, più domande da approfondire in un colloquio dal vivo. Le segnalazioni non cambiano il punteggio.
 - **Le risposte vengono corrette in base a una chiave di correzione** che l'IA scrive; un campione delle chiavi di ogni argomento viene controllato prima della pubblicazione, le altre quando una domanda viene segnalata. Nessuna IA legge o giudica la risposta di un candidato. Un report PDF copre un singolo candidato o l'intero elenco.
 - **Funziona con i tuoi strumenti:** i candidati che sposti in una fase su Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR ricevono il colloquio, e i loro risultati tornano nell'ATS. Slack ti avvisa quando un candidato finisce, e l'[API](/api-docs) collega la tua piattaforma. Vedi [Come collegare i test di competenze al tuo ATS](/guides/ats-integration-skills-tests).
 

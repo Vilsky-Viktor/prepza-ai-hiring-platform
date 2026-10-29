@@ -29,7 +29,7 @@ FAQ = [
     {
         "key": "cheating",
         "question": "Can candidates use AI or look up the answers?",
-        "answer": "Every candidate gets their own random questions in their own order, with [a timer on each question](/guides/skills-test-timing-and-extra-time) that our server keeps, so there's little time to look answers up or ask an AI. The scorecard also shows when a candidate left the page, copied text, or answered too fast to have read the question. Before starting, each candidate also confirms they'll answer on their own, without AI tools or other people, and their scorecard shows it.",
+        "answer": "Every candidate gets their own random questions in their own order, with [a timer on each question](/guides/skills-test-timing-and-extra-time) that our server keeps, so there's little time to look answers up or ask an AI. The scorecard also shows when a candidate left the page, copied text, or answered too fast to have read the question. Once they finish, their page also points out answer patterns that relaying questions to an AI tends to leave, such as about the same time on every question or hard questions right while easy ones were wrong, and suggests questions they got right to ask about in a live interview. A pattern is a reason to ask, not proof. Before starting, each candidate also confirms they'll answer on their own, without AI tools or other people, and their scorecard shows it.",
     },
     {
         "key": "cost",

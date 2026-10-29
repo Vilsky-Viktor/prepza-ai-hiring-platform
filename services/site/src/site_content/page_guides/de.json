@@ -153,6 +153,7 @@
     "text": "Die Ergebnisse eines Kandidaten: sein Ergebnis, ob er bestanden hat, und die Punktzahl jedes Themas mit jeder Antwort.",
     "actions": [
       "Lies jede Antwort mit Integritätshinweisen: Verlassen der Seite, Kopierversuche und zu schnelle Antworten.",
+      "Sieh dir nach Abschluss ungewöhnliche Muster in seinen Antworten und Antwortzeiten an, dazu richtig beantwortete Fragen, nach denen du in einem Live-Gespräch fragen kannst.",
       "Lade den Bericht als PDF herunter oder teile ihn per E-Mail.",
       "Gib vor dem Start zusätzliche Zeit, zum Beispiel bei einer Behinderung.",
       "Füge den Namen des Kandidaten hinzu oder bearbeite ihn.",

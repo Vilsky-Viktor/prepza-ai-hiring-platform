@@ -2,7 +2,7 @@
 title: "prepza i TestGorilla: do czego pasuje każde z nich i jak używać obu"
 seoTitle: "prepza vs TestGorilla: porównanie i wspólne użycie"
 description: "Czym różnią się prepza i TestGorilla: jak powstają testy, co sprawdzają i ile kosztują, gdzie każde narzędzie sprawdza się lepiej i jak używać ich razem."
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza i TestGorilla: do czego pasuje każde z nich i jak używać obu
@@ -27,7 +27,7 @@ Ta strona wyjaśnia, czym się różnią, gdzie każde z nich sprawdza się lepi
 | Rozmowy z AI | Bez konwersacyjnej AI; AI proponuje tematy i pisze pytania, a próbka kluczy odpowiedzi jest sprawdzana | Zobacz plany ([strona z cenami](https://www.testgorilla.com/pricing/)) |
 | Kod w teście | Pytania o czytanie kodu (co kod robi lub wypisuje); bez pisania ani uruchamiania kodu | Testy programistyczne w bibliotece; własne zadania programistyczne: zobacz plany ([strona z cenami](https://www.testgorilla.com/pricing/)) |
 | Pytania na kandydata | Własny losowy zestaw każdego kandydata, we własnej kolejności | Nie porównujemy tutaj |
-| Funkcje rzetelności | Limit czasu przy każdym pytaniu (kontrolowany po stronie serwera), oznaczenia zbyt szybkich odpowiedzi, opuszczenia strony i prób kopiowania | Zdjęcia z kamery internetowej, wyłączone kopiowanie/wklejanie i tryb pełnoekranowy w wyższym planie |
+| Funkcje rzetelności | Limit czasu przy każdym pytaniu (kontrolowany po stronie serwera), oznaczenia zbyt szybkich odpowiedzi, opuszczenia strony, prób kopiowania i nietypowych wzorców odpowiedzi | Zdjęcia z kamery internetowej, wyłączone kopiowanie/wklejanie i tryb pełnoekranowy w wyższym planie |
 | Integracje | Workable, Greenhouse, Teamtailor, Recruitee i Breezy HR; Slack; publiczne API z podpisanymi webhookami ([dokumentacja dla deweloperów](/api-docs)). Wszystko bez dodatkowych opłat | Integracje z ATS/API w wyższym planie |
 | Raporty | Karty wyników z odpowiedziami i czasami; PDF dla jednego lub wszystkich kandydatów | Nie porównujemy tutaj |
 | Języki | 23 języki interfejsu, rozmów i e-maili | Nie porównujemy tutaj; biblioteka zawiera testy biegłości językowej |

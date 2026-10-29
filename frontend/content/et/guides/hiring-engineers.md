@@ -2,7 +2,7 @@
 title: "Kuidas värvata insenere: struktureeritud protsess töökuulutusest tööpakkumiseni"
 seoTitle: "Kuidas värvata arendajaid: inseneride värbamisprotsess"
 description: "Samm-sammuline protsess tarkvaraarendajate värbamiseks: rolliprofiil, eelvalik, teadmiste test, programmeerimine, süsteemidisain, intervjuud ja pakkumine."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Kuidas värvata insenere: struktureeritud protsess töökuulutusest tööpakkumiseni
@@ -78,7 +78,7 @@ Siia sobib prepza. See muudab sinu töökuulutuse ajapiiranguga valikvastustega 
 - **SQL-i:** väike tabel ja päring koos küsimusega, millised read tagastatakse.
 - **Arhitektuuri ja raamistike tundmist:** kompromissid, kuidas raamistik käitub, mis koormuse all valesti läheb.
 
-Iga kandidaat saab oma juhusliku küsimuste komplekti ja igal küsimusel on taimer. Näed hindamislehte iga vastuse ja selle ajakuluga ning märkeid liiga kiirete vastuste, lehelt lahkumise ja kopeerimiskatsete kohta. Märge on põhjus lähemalt vaadata, mitte tõend.
+Iga kandidaat saab oma juhusliku küsimuste komplekti ja igal küsimusel on taimer. Näed hindamislehte iga vastuse ja selle ajakuluga ning märkeid liiga kiirete vastuste, lehelt lahkumise, kopeerimiskatsete ning vastuste ja ajakulu ebatavaliste mustrite kohta. Märge on põhjus lähemalt vaadata, mitte tõend. Aruanne soovitab ka küsimusi, millele kandidaat vastas õigesti, et neist järgmisel vestlusel küsida.
 
 Mida prepza ei tee: kandidaadid ei kirjuta, käivita ega siluta prepzas koodi. Koodi lugemine ja kirjutamine on erinevad oskused, nii et järgmine samm on endiselt oluline. Valmis teste, millest alustada, leiad lehelt [oskustestid rollide kaupa](/tests).
 

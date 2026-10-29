@@ -153,6 +153,7 @@
     "text": "One candidate's results: their grade, whether they passed, and each topic's score with every answer.",
     "actions": [
       "Read each answer, with integrity flags: page leaves, copy attempts and fast answers.",
+      "Once they finish, see any unusual patterns in their answers and times, and questions they got right to ask about in a live interview.",
       "Download the report as a PDF, or share it by email.",
       "Give extra time before they start, for example for a disability.",
       "Add or edit the candidate's name.",

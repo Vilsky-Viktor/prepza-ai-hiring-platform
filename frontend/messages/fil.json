@@ -1155,7 +1155,7 @@
     "extraTime": "Kailangan mo ba ng mas maraming oras, halimbawa dahil sa kapansanan? Magtanong sa <bdi>{company}</bdi> bago ka magsimula.",
     "extraTimeLink": "Kailangan mo ba ng mas maraming oras, halimbawa dahil sa kapansanan? Humingi sa <bdi>{company}</bdi> ng personal na imbitasyon bago ka magsimula: hindi madadagdagan ang oras dito.",
     "people": "AI ang sumusulat ng mga tanong. Mga tao sa <bdi>{company}</bdi> ang nagre-review ng mga resulta at nagpapasya; puwede mo silang hilingin na i-review ang sa iyo.",
-    "stay": "Manatili sa page na ito: nire-record ang pag-alis dito, pagkopya, at pagsagot nang masyadong mabilis para mabasa ang tanong (<link>privacy</link>).",
+    "stay": "Manatili sa page na ito: nire-record ang pag-alis dito, pagkopya, at pagsagot nang masyadong mabilis para mabasa ang tanong, at nakikita ng kumpanya kapag hindi tugma ang oras ng pagsagot o mga sagot mo sa hirap ng mga tanong (<link>privacy</link>).",
     "finished": "Tapos na ang interview na ito.",
     "continue": "Magpatuloy",
     "start": "Tanggapin at simulan",
@@ -1623,6 +1623,15 @@
     "humanReview": "Tumutulong ang score sa iyong desisyon; hindi ito ang nagpapasya. Basahin ang mga sagot, at kung hihilingin ng aplikante, ipa-review sa isang tao ang kanyang resulta.",
     "humanReviewSignals": "Tumutulong ang score sa iyong desisyon; hindi ito ang nagpapasya. Basahin ang mga sagot, at kung hihilingin ng aplikante, ipa-review sa isang tao ang kanyang resulta. Ang pag-alis sa page, pagkopya at mabibilis na sagot ay iniuulat ng browser ng aplikante: dahilan para tingnan nang mas mabuti, hindi patunay.",
     "pledged": "Kinumpirmang sasagot nang mag-isa."
+  },
+  "answerPatterns": {
+    "title": "mga pattern ng sagot",
+    "timing": "Hindi sumunod sa mga tanong ang oras ng pagsagot: halos pareho ang oras sa bawat isa, gaano man ito kahaba o kahirap.",
+    "personFit": "Hindi karaniwang pattern: tama ang {hardRight, number} sa {hard, plural, one {# mahirap na tanong} other {# mahihirap na tanong}}, mali ang {easyWrong, number} sa {easy, plural, one {# madaling tanong} other {# madadaling tanong}}.",
+    "note": "Puwedeng may inosenteng dahilan ang ganitong mga pattern: dahilan para magtanong, hindi patunay.",
+    "askTitle": "Itanong sa interview",
+    "askIntro": "Mga tanong na tama ang sagot ng aplikante, para pag-usapan sa isang live na interview, kung saan walang AI na makakasagot para sa kanya.",
+    "ask": "Bakit <b>{answer}</b> ang tamang sagot at hindi <b>{other}</b>?"
   },
   "practice": {
     "title": "Libreng mock interview practice ayon sa role",

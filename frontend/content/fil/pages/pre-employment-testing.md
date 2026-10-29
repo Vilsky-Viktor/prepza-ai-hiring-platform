@@ -2,7 +2,7 @@
 title: "Pre-employment testing: praktikal na gabay para sa maliliit at katamtamang team"
 seoTitle: "Pre-Employment Assessment Test: Mga Uri, Pagkapatas at Tools"
 description: "Ano ang pre-employment assessment test, mga uri nito, kailan gagamitin, basics ng pagkapatas at batas, at paano pumili ng tool para sa hiring team."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Pre-employment testing: praktikal na gabay para sa maliliit at katamtamang team
@@ -97,7 +97,7 @@ Ginagawang timed multiple-choice skills interview ng prepza ang isang job descri
 4. **Basahin ang mga resulta.** Dumarating ang mga score nang naka-rank, may scorecard para sa bawat aplikante.
 
 - **Sariling random na set ang bawat aplikante** mula sa bank ng bawat topic, na may countdown na ipinapatupad ng server sa bawat tanong. Puwede kang magbigay ng dagdag na oras sa sinumang humingi.
-- **Ipinapakita ng scorecards** ang bawat sagot, kung tama ito at gaano katagal ito, na may flag para sa sobrang bilis na sagot, pag-alis sa pahina at pagtatangkang mag-copy. Hindi binabago ng mga flag ang score.
+- **Ipinapakita ng scorecards** ang bawat sagot, kung tama ito at gaano katagal ito, na may flag para sa sobrang bilis na sagot, pag-alis sa pahina, pagtatangkang mag-copy at hindi karaniwang pattern ng sagot, kasama ang mga tanong na itatanong sa isang live na interview. Hindi binabago ng mga flag ang score.
 - **Mina-mark ang mga sagot ayon sa answer key** na isinusulat ng AI; chine-check ang ilan sa bawat topic bago i-release, at ang iba kapag na-flag ang tanong. Walang AI na bumabasa o humuhusga sa sagot ng aplikante. Sinasaklaw ng isang PDF report ang isang aplikante o ang buong listahan.
 - **Gumagana sa mga tool mo:** natatanggap ang interview ng mga aplikanteng inililipat mo sa isang stage sa Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR, at bumabalik sa ATS ang kanilang mga resulta. Nalalaman ng Slack kapag may aplikanteng natapos, at ikinokonekta ng [API](/api-docs) ang sarili mong platform. Tingnan ang [paano ikonekta ang skills tests sa iyong ATS](/guides/ats-integration-skills-tests).
 

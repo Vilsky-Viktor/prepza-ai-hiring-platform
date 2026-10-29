@@ -153,6 +153,7 @@
     "text": "Os resultados de um candidato: a nota, se foi aprovado e a pontuação de cada tópico com cada resposta.",
     "actions": [
       "Leia cada resposta, com alertas de integridade: saídas da página, tentativas de cópia e respostas rápidas demais.",
+      "Quando ele terminar, veja padrões incomuns nas respostas e nos tempos, e perguntas que ele acertou para explorar em uma entrevista ao vivo.",
       "Baixe o relatório em PDF ou compartilhe-o por e-mail.",
       "Dê tempo extra antes de começar, por exemplo por uma deficiência.",
       "Adicione ou edite o nome do candidato.",

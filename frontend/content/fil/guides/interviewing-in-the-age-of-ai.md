@@ -2,7 +2,7 @@
 title: "Pag-interview ng mga engineer sa panahon ng AI: ano ang dapat i-test ngayon"
 seoTitle: "Technical Interview sa Panahon ng AI: Ano ang Dapat I-test"
 description: "Bahagi na ng engineering work ang AI. Paano nito binabago ang dapat i-test sa interview, paano nag-a-adjust ang kumpanya, at saan bagay ang knowledge test."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Pag-interview ng mga engineer sa panahon ng AI: ano ang dapat i-test ngayon
@@ -73,7 +73,8 @@ Bagay na bagay ang prepza sa hakbang 2. Ginagawa nitong timed multiple-choice na
 - **Concepts at theory mula sa job description:** databases, APIs, architecture, kung paano kumikilos ang isang framework, security practices.
 - **Code-reading questions:** maikling piraso ng code na may mga tanong tungkol sa ipi-print o ibabalik nito, ano ang ginagawa nito, bakit ito pumapalya o aling pagbabago ang aayos dito. Iyan din ang reviewing skill na inaasahan sa AI-assisted na trabaho.
 - **Timer sa bawat tanong:** may sariling countdown ang bawat tanong, na ipinapatupad ng server, at may sariling random na set ng tanong ang bawat aplikante. Pinapahirap nito ang paghahanap ng sagot, kasama ang pagtatanong sa AI assistant. Hindi nito ginagawang imposible.
-- **Integrity signals:** fina-flag ng scorecards ang mga sagot na masyadong mabilis para mabasa pa ang tanong, ang mga pagkakataong umalis ang aplikante sa pahina, at ang mga pagtatangkang mag-copy. Ang flag ay dahilan para tumingin nang mas mabuti, hindi patunay ng pandaraya.
+- **Integrity signals:** fina-flag ng scorecards ang mga sagot na masyadong mabilis para mabasa pa ang tanong, ang mga pagkakataong umalis ang aplikante sa pahina, at ang mga pagtatangkang mag-copy. Kapag tapos na ang aplikante, itinuturo rin ng kanyang report ang mga pattern ng sagot na kadalasang naiiwan kapag ipinapasa ang mga tanong sa AI at kinokopya ang mga sagot nito: halos parehong oras sa bawat tanong gaano man ito kahaba o kahirap, o tama ang mahihirap na tanong habang mali ang madadali. Ang flag o pattern ay dahilan para tumingin nang mas mabuti, hindi patunay ng pandaraya.
+- **Mga tanong para sa live na interview:** nagmumungkahi ang report ng hanggang 3 tanong na tama ang sagot ng aplikante, mula sa pinakamalalakas niyang topic, para pag-usapan sa isang live na interview, kung saan walang AI na makakasagot para sa kanya.
 
 Ang hindi ginagawa ng prepza: hindi sumusulat, nagpapatakbo o nagde-debug ng code ang mga aplikante sa prepza, at hindi nito pinapanood kung paano sila gumagamit ng AI assistant. Bahagi iyon ng hands-on stage, na pinapatakbo in-house o sa isang developer platform, at kumukumpleto sa knowledge screen. Tingnan ang [skills tests ayon sa role](/tests) para sa mga handang test na puwedeng simulan, at ang [AI interviews](/ai-interviews) para malaman kung paano gumagamit ng AI ang prepza at ano ang iniiwan nito sa mga tao.
 

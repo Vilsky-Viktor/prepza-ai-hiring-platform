@@ -135,6 +135,19 @@ Only a company's interview records page leaves and copies: a talent's practice r
 
 A page leave is reported when the page loses focus, and how long it lasted when it gets focus back (`tab_return`, stored as the leave's `away_seconds`). Rounds counts a leave only when it lasted at least 2 seconds (`MIN_TAB_LEAVE_SECONDS`), so a notification or a permission prompt taking focus for a moment is kept but not counted; a leave the candidate never came back from counts. Any counted signal flags the candidate, so a company trying an interview itself sees exactly what a candidate's would show. Signals are what the candidate's browser reports: the scorecard and the PDF report say so when there are any (a reason to look closer, not proof), and so does the result comment in the ATS.
 
+### Answer patterns
+
+Once a candidate has finished every section, rounds reads two more integrity signals from their answers and times alone (`GET /internal/invites/{id}/answer-patterns`, `helpers/integrity_report.py`; constants in `constants/answer_patterns.py`). They're computed each time the report is read and never stored:
+
+- **Timing:** the answer times stay about the same on every question instead of following each question's own fitted time and its difficulty (the spread of the log times at most 0.25 and Spearman's rho against what each question predicts at most 0; it needs at least 8 answers given in time). That's what relaying the questions to an AI looks like.
+- **Person-fit:** hard questions right while easy ones were wrong (the lz index at most -4), shown with its counts ("Unusual pattern: 9 of 10 hard questions right, 4 of 8 easy ones wrong"). It needs at least 8 questions with a known difficulty. A question's difficulty is its share of right answers once it has 30 answers (library, `repositories/difficulty.py`; a question copied from the shared bank uses its original's), and it's kept with the candidate's questions when they start.
+
+The thresholds come from an offline eval of made-up honest candidates and candidates relaying every question to an AI ([evals](../../evals/README.md), "Integrity signals"): at most 1% of honest candidates are flagged (0.2–0.7% measured), and about a third of those relaying every question are caught. No camera, microphone, screen recording, device fingerprint or IP address is used, and nothing rejects a candidate: a person decides. These two signals don't count towards the candidate's "flagged" status, the list's filter, the ATS comment or web hooks.
+
+For every finished candidate, the report also suggests up to 3 questions they got right to talk through in a live interview ("Why is X right and Y not?"): from their strongest topics, the hardest right answers first, one per topic before a second from any; when the person-fit signal fired, the hard questions behind it come first. Only the candidate's page shows them, never the PDF, the API, the assistant or AI apps.
+
+The candidate's page shows the card: with no signal, only the follow-up questions; with signals, an amber card with each signal's sentence, a note that such patterns can have innocent causes, then the follow-up questions. The PDF report has a small "answer patterns" box with the signals that fired, without questions. The [API](api.md) gives one candidate's signals as `signals.answer_patterns`, and the [assistant](assistant.md) and [AI apps](mcp.md) read the signals and their counts.
+
 ## The candidate list
 
 - Sorted by invite date by default: newest first.

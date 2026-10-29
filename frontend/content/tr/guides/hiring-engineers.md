@@ -2,7 +2,7 @@
 title: "Mühendis işe alımı nasıl yapılır: iş tanımından teklife yapılandırılmış süreç"
 seoTitle: "Yazılım Mühendisi İşe Alımı: Yapılandırılmış Süreç Rehberi"
 description: "Yazılım mühendisi işe alımı için adım adım süreç: pozisyon profili, ön eleme, bilgi testi, kodlama, sistem tasarımı, yapılandırılmış mülakatlar ve teklif."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Mühendis işe alımı nasıl yapılır: iş tanımından teklife yapılandırılmış süreç
@@ -78,7 +78,7 @@ prepza burada devreye girer. İş tanımınızı süreli, çoktan seçmeli bir b
 - **SQL:** küçük bir tablo ve bir sorgu; hangi satırların döneceği sorusuyla.
 - **Mimari ve framework bilgisi:** ödünleşimler, bir framework'ün nasıl davrandığı, yük altında neyin ters gittiği.
 
-Her aday, her sorusunda geri sayım olan kendine ait rastgele bir soru seti alır. Her yanıtı ve ne kadar sürdüğünü gösteren bir değerlendirme kartı görürsünüz; ayrıca çok hızlı yanıtlar, sayfadan ayrılma ve kopyalama girişimleri için işaretler. İşaret, daha yakından bakmak için bir nedendir, hiçbir şeyin kanıtı değildir.
+Her aday, her sorusunda geri sayım olan kendine ait rastgele bir soru seti alır. Her yanıtı ve ne kadar sürdüğünü gösteren bir değerlendirme kartı görürsünüz; ayrıca çok hızlı yanıtlar, sayfadan ayrılma, kopyalama girişimleri ve yanıtlarla sürelerdeki olağan dışı örüntüler için işaretler. İşaret, daha yakından bakmak için bir nedendir, hiçbir şeyin kanıtı değildir. Rapor ayrıca bir sonraki mülakatta üzerine konuşmak için adayın doğru yanıtladığı soruları önerir.
 
 prepza'nın yapmadıkları: adaylar prepza'da kod yazmaz, çalıştırmaz veya hata ayıklamaz. Kod okumak ve yazmak farklı becerilerdir, bu nedenle sonraki adım hâlâ önemlidir. Başlangıç için hazır testler için [pozisyona göre beceri testleri](/tests) sayfasına bakın.
 

@@ -56,13 +56,30 @@ def test_a_key_lists_its_companys_interviews_and_notes_its_use(client, companies
 def test_a_candidate_comes_with_signals_and_a_link_to_their_results(client, companies_api, key):
     found = call(client, "GET", f"/interviews/{INTERVIEW}/candidates/{CANDIDATE}").json()
 
-    assert found["signals"] == {"tab_leaves": 0, "copies": 1, "fast_answers": 0}
+    assert found["signals"] == {
+        "tab_leaves": 0,
+        "copies": 1,
+        "fast_answers": 0,
+        # Patterns come only with one candidate that companies read with them.
+        "answer_patterns": None,
+    }
     assert found["results_url"] == (
         f"http://localhost:8090/companies/{COMPANY}/interviews/{INTERVIEW}/candidates/{CANDIDATE}"
     )
     assert "tab_leaves" not in found
     # Finished: the invite link no longer leads anywhere.
     assert found["invite_url"] is None
+
+
+def test_one_candidate_comes_with_the_patterns_in_their_answers_by_name():
+    found = candidate_of(
+        candidate(answer_signals=[{"kind": "timing"}, {"kind": "person_fit", "hard": 4}]),
+        COMPANY,
+        INTERVIEW,
+        "https://prepza.ai",
+    )
+
+    assert found.signals.answer_patterns == ["timing", "person_fit"]
 
 
 def test_a_candidate_who_hasnt_finished_comes_with_their_invite_link():

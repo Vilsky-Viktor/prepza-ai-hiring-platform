@@ -153,6 +153,7 @@
     "text": "Wyniki jednego kandydata: jego wynik, czy zaliczył, oraz wynik z każdego tematu z każdą odpowiedzią.",
     "actions": [
       "Przeczytaj każdą odpowiedź z ostrzeżeniami o podejrzanych zachowaniach: opuszczeniami strony, próbami kopiowania i szybkimi odpowiedziami.",
+      "Gdy kandydat skończy, zobacz nietypowe wzorce w jego odpowiedziach i czasach oraz pytania, na które odpowiedział poprawnie, by dopytać o nie na rozmowie na żywo.",
       "Pobierz raport jako PDF albo udostępnij go e-mailem.",
       "Daj dodatkowy czas, zanim kandydat zacznie, np. z powodu niepełnosprawności.",
       "Dodaj lub edytuj imię i nazwisko kandydata.",

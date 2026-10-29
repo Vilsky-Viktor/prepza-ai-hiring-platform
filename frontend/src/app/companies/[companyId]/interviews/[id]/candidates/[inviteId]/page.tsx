@@ -7,6 +7,7 @@ import type { ComponentProps } from "react"
 import { BackLink } from "@/components/common/back-link"
 import { CopyField } from "@/components/common/copy-field"
 import { CornerSign } from "@/components/common/corner-sign"
+import { AnswerPatternsCard } from "@/features/company/components/answer-patterns"
 import { CandidateActions } from "@/features/company/components/candidate-actions"
 import { CandidateReport } from "@/features/company/components/candidate-report"
 import { ExtraTime } from "@/features/company/components/extra-time"
@@ -136,6 +137,11 @@ export default async function ScorecardPage({
       <InviteLink token={card.invite_token} />
 
       {card.sessions.length > 0 && <ScorecardSummary card={card} />}
+
+      <AnswerPatternsCard
+        patterns={card.answer_patterns}
+        language={card.language}
+      />
 
       {card.sessions.length === 0 && (
         <p className="py-16 text-center text-muted-foreground">

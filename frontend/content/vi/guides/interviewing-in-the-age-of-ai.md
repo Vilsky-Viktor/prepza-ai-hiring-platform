@@ -2,7 +2,7 @@
 title: "Phỏng vấn kỹ sư trong thời đại AI: nên kiểm tra gì bây giờ"
 seoTitle: "Phỏng vấn kỹ thuật thời AI: nên đánh giá ứng viên ra sao"
 description: "Trợ lý AI đã là một phần công việc hằng ngày của kỹ sư. Điều đó thay đổi nội dung phỏng vấn, cách công ty thích ứng và vai trò của bài kiểm tra kiến thức."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Phỏng vấn kỹ sư trong thời đại AI: nên kiểm tra gì bây giờ
@@ -73,7 +73,8 @@ prepza rất phù hợp với bước 2. prepza biến mô tả công việc c�
 - **Khái niệm và lý thuyết từ mô tả công việc:** cơ sở dữ liệu, API, kiến trúc, cách một framework hoạt động, các thực hành bảo mật.
 - **Câu hỏi đọc code:** một đoạn code ngắn kèm câu hỏi nó in ra hoặc trả về gì, nó làm gì, vì sao nó lỗi, hoặc thay đổi nào sửa được nó. Đó chính là kỹ năng review mà công việc có AI hỗ trợ phụ thuộc vào.
 - **Đồng hồ cho từng câu hỏi:** mỗi câu có đồng hồ đếm ngược riêng, do máy chủ áp dụng, và mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên của riêng mình. Điều đó khiến việc tra cứu đáp án, kể cả hỏi trợ lý AI, khó hơn. Nó không khiến việc đó trở nên bất khả thi.
-- **Tín hiệu cảnh báo:** bảng điểm đánh dấu các câu trả lời quá nhanh để kịp đọc câu hỏi, số lần ứng viên rời khỏi trang và các lần cố sao chép. Một cảnh báo là lý do để xem kỹ hơn, không phải bằng chứng gian lận.
+- **Tín hiệu cảnh báo:** bảng điểm đánh dấu các câu trả lời quá nhanh để kịp đọc câu hỏi, số lần ứng viên rời khỏi trang và các lần cố sao chép. Khi ứng viên làm xong, báo cáo của họ còn chỉ ra những mẫu trả lời thường xuất hiện khi ai đó chuyển câu hỏi cho AI rồi chép lại đáp án: mọi câu hỏi tốn gần như cùng một khoảng thời gian bất kể độ dài hay độ khó, hoặc câu khó thì đúng trong khi câu dễ lại sai. Một cảnh báo hay một mẫu trả lời là lý do để xem kỹ hơn, không phải bằng chứng gian lận.
+- **Câu hỏi cho buổi phỏng vấn trực tiếp:** báo cáo gợi ý tối đa 3 câu ứng viên đã trả lời đúng, thuộc những chủ đề họ mạnh nhất, để trao đổi trong buổi phỏng vấn trực tiếp, nơi không AI nào có thể trả lời thay họ.
 
 Những gì prepza không làm: ứng viên không viết, chạy hay debug code trong prepza, và prepza không quan sát họ dùng trợ lý AI. Phần đó thuộc giai đoạn thực hành, tổ chức nội bộ hoặc trên một nền tảng dành cho lập trình viên, bổ sung cho bài kiểm tra kiến thức. Xem [bài kiểm tra kỹ năng theo vị trí](/tests) để có sẵn bài kiểm tra làm điểm xuất phát, và [phỏng vấn AI](/ai-interviews) để biết prepza dùng AI thế nào và để lại những gì cho con người.
 

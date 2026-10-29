@@ -2,7 +2,7 @@
 title: "Vaardigheidstests vs. cv-screening: wat voorspelt werkprestaties?"
 seoTitle: "Vaardigheidstest of cv-screening: wat voorspelt beter?"
 description: "Wat decennia aan selectieonderzoek zeggen over vakkennistests, werkproeven, interviews en jaren ervaring, en hoe je dat gebruikt bij het screenen."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Vaardigheidstests vs. cv-screening: wat voorspelt werkprestaties?
@@ -84,7 +84,7 @@ prepza dekt stap 2: een getimede meerkeuze-vakkennistest, geschreven op basis va
 - **Functiespecifiek door het ontwerp.** prepza stelt onderwerpen voor uit je functieomschrijving, en jij bekijkt en bewerkt ze voordat er ook maar één vraag wordt geschreven. Haal alles weg wat geen echte eis is. Voor technische functies kunnen vragen korte codevoorbeelden bevatten om te lezen.
 - **Dezelfde omstandigheden voor iedereen.** Dezelfde onderwerpen en hetzelfde aantal vragen, en een aftelklok bij elke vraag. Je kunt extra tijd geven aan kandidaten die erom vragen.
 - **Elke kandidaat krijgt eigen vragen,** een willekeurige set uit de vragenbank van elk onderwerp, zodat antwoorden lastiger te delen zijn.
-- **Leesbare resultaten.** Een scorekaart per kandidaat met elk antwoord en de tijd ervan, gerangschikt op score, met signalen bij te snelle antwoorden, het verlaten van de pagina en kopieerpogingen.
+- **Leesbare resultaten.** Een scorekaart per kandidaat met elk antwoord en de tijd ervan, gerangschikt op score, met signalen bij te snelle antwoorden, het verlaten van de pagina, kopieerpogingen en ongebruikelijke antwoordpatronen.
 - **Antwoorden nagekeken met een antwoordsleutel** die AI schrijft; een steekproef van de sleutels van elk onderwerp wordt vóór vrijgave gecontroleerd, de rest zodra een vraag wordt gemarkeerd. Geen AI leest of beoordeelt het antwoord van een kandidaat.
 
 prepza neemt geen gestructureerde interviews, werkproeven of cognitieve tests af. Gebruik het daarnaast. Lees [Selectietests](/pre-employment-testing) voor meer over soorten tests en eerlijkheid.

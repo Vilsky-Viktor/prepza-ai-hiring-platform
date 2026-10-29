@@ -2,7 +2,7 @@
 title: "Tes keterampilan vs penyaringan CV: apa yang memprediksi kinerja kerja"
 seoTitle: "Tes Keterampilan vs Seleksi CV: Mana yang Lebih Akurat"
 description: "Kata riset rekrutmen selama puluhan tahun tentang tes pengetahuan kerja, sampel kerja, wawancara, dan lama pengalaman, serta cara memakainya saat seleksi."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Tes keterampilan vs penyaringan CV: apa yang memprediksi kinerja kerja
@@ -84,7 +84,7 @@ prepza menangani langkah 2: tes pengetahuan kerja pilihan ganda berbatas waktu, 
 - **Spesifik untuk pekerjaan sejak awal.** prepza mengusulkan topik dari deskripsi pekerjaanmu, dan kamu meninjau serta mengubahnya sebelum ada soal yang ditulis. Hapus apa pun yang bukan persyaratan sebenarnya. Untuk posisi teknis, soal bisa berisi contoh kode singkat untuk dibaca.
 - **Kondisi yang sama untuk semua orang.** Topik dan jumlah soal yang sama, serta hitung mundur di setiap soal. Kamu bisa memberi tambahan waktu kepada kandidat yang memintanya.
 - **Setiap kandidat mendapat soalnya sendiri,** set acak dari bank soal tiap topik, sehingga jawaban lebih sulit dibagikan.
-- **Hasil yang mudah dibaca.** Scorecard per kandidat dengan setiap jawaban dan waktunya, diurutkan berdasarkan skor, dengan tanda untuk jawaban yang terlalu cepat, meninggalkan halaman, dan percobaan menyalin.
+- **Hasil yang mudah dibaca.** Scorecard per kandidat dengan setiap jawaban dan waktunya, diurutkan berdasarkan skor, dengan tanda untuk jawaban yang terlalu cepat, meninggalkan halaman, percobaan menyalin, dan pola jawaban yang tidak biasa.
 - **Jawaban dinilai berdasarkan kunci jawaban** yang ditulis AI; sebagian kunci di tiap topik diperiksa sebelum dirilis, sisanya saat soalnya ditandai. Tidak ada AI yang membaca atau menilai jawaban kandidat.
 
 prepza tidak menjalankan wawancara terstruktur, sampel kerja, atau tes kognitif. Pakai prepza berdampingan dengan semua itu. Untuk informasi lebih lanjut tentang jenis-jenis tes dan keadilan, baca [Tes seleksi karyawan](/pre-employment-testing).

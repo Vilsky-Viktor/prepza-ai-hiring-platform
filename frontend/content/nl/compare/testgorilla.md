@@ -2,7 +2,7 @@
 title: "prepza en TestGorilla: waar elk past, en ze allebei gebruiken"
 seoTitle: "prepza vs TestGorilla: assessments vergeleken"
 description: "Hoe prepza en TestGorilla verschillen in hoe tests worden gemaakt, wat ze toetsen en hoe ze geprijsd zijn, waar elk beter past en hoe je ze samen gebruikt."
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza en TestGorilla: waar elk past, en ze allebei gebruiken
@@ -27,7 +27,7 @@ Deze pagina legt uit hoe ze verschillen, waar elk beter past en hoe je ze combin
 | AI-interviews | Geen conversationele AI; AI stelt onderwerpen voor en schrijft vragen, waarvan een steekproef van de antwoordsleutels wordt gecontroleerd | Zie de abonnementen ([prijspagina](https://www.testgorilla.com/pricing/)) |
 | Code in de test | Vragen over code lezen (wat code doet of uitvoert); geen code schrijven of draaien | Programmeertests in de bibliotheek; voor eigen programmeeropdrachten, zie de abonnementen ([prijspagina](https://www.testgorilla.com/pricing/)) |
 | Vragen per kandidaat | Een eigen willekeurige set per kandidaat, in een eigen volgorde | Hier niet vergeleken |
-| Integriteitsfuncties | Timer bij elke vraag (door de server afgedwongen), signalen bij te snelle antwoorden, het verlaten van de pagina en kopieerpogingen | Webcamfoto's, uitgeschakeld kopiëren/plakken en volledig scherm in het duurdere plan |
+| Integriteitsfuncties | Timer bij elke vraag (door de server afgedwongen), signalen bij te snelle antwoorden, het verlaten van de pagina, kopieerpogingen en ongebruikelijke antwoordpatronen | Webcamfoto's, uitgeschakeld kopiëren/plakken en volledig scherm in het duurdere plan |
 | Integraties | Workable, Greenhouse, Teamtailor, Recruitee en Breezy HR; Slack; een openbare API met ondertekende webhooks ([ontwikkelaarsdocumentatie](/api-docs)). Alles zonder meerkosten | ATS-/API-koppelingen in het duurdere plan |
 | Rapporten | Scorekaarten met antwoorden en tijden; pdf voor één of alle kandidaten | Hier niet vergeleken |
 | Talen | 23 talen voor de interface, interviews en e-mails | Hier niet vergeleken; de bibliotheek bevat taalvaardigheidstests |

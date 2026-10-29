@@ -2,7 +2,7 @@
 title: "Paano mag-hire ng mga engineer: isang structured na proseso mula job description hanggang job offer"
 seoTitle: "Paano Mag-hire ng Software Engineer: Structured na Proseso"
 description: "Hakbang-hakbang na proseso sa pag-hire ng software engineer: role profile, screening, knowledge test, coding, system design, structured interview, offer."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Paano mag-hire ng mga engineer: isang structured na proseso mula job description hanggang job offer
@@ -78,7 +78,7 @@ Dito pumapasok ang prepza. Ginagawa nitong timed multiple-choice na knowledge in
 - **SQL:** isang maliit na table at isang query, na may tanong kung aling mga row ang lalabas.
 - **Kaalaman sa architecture at framework:** trade-offs, kung paano kumikilos ang isang framework, ano ang pumapalya kapag mabigat ang load.
 
-Bawat aplikante ay may sariling random na set ng tanong na may countdown sa bawat isa. Makikita mo ang scorecard na may bawat sagot at kung gaano ito katagal, kasama ang mga flag para sa sobrang bilis na sagot, pag-alis sa pahina at pagtatangkang mag-copy. Ang flag ay dahilan para tumingin nang mas mabuti, hindi patunay ng kahit ano.
+Bawat aplikante ay may sariling random na set ng tanong na may countdown sa bawat isa. Makikita mo ang scorecard na may bawat sagot at kung gaano ito katagal, kasama ang mga flag para sa sobrang bilis na sagot, pag-alis sa pahina, pagtatangkang mag-copy at hindi karaniwang pattern sa mga sagot at oras nila. Ang flag ay dahilan para tumingin nang mas mabuti, hindi patunay ng kahit ano. Nagmumungkahi rin ang report ng mga tanong na tama ang sagot nila para itanong sa susunod na interview.
 
 Ang hindi ginagawa ng prepza: hindi sumusulat, nagpapatakbo o nagde-debug ng code ang mga aplikante sa prepza. Magkaibang skill ang pagbasa at pagsulat ng code, kaya mahalaga pa rin ang susunod na hakbang. Tingnan ang [skills tests ayon sa role](/tests) para sa mga handang test na puwedeng simulan.
 

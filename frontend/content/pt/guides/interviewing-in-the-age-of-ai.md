@@ -2,7 +2,7 @@
 title: "Entrevistando engenheiros na era da IA: o que avaliar agora"
 seoTitle: "Entrevista técnica na era da IA: o que avaliar agora"
 description: "Assistentes de IA já fazem parte do dia a dia da engenharia. Como isso muda o que as entrevistas devem avaliar e onde entram os testes de conhecimentos."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Entrevistando engenheiros na era da IA: o que avaliar agora
@@ -73,7 +73,8 @@ A prepza é bem adequada para o passo 2. Ela transforma a sua descrição da vag
 - **Conceitos e teoria a partir da descrição da vaga:** bancos de dados, APIs, arquitetura, o comportamento de um framework, práticas de segurança.
 - **Perguntas de leitura de código:** um pequeno trecho de código com perguntas sobre o que ele imprime ou retorna, o que faz, por que falha ou qual mudança o corrige. É a mesma habilidade de revisão de que depende o trabalho assistido por IA.
 - **Um cronômetro em cada pergunta:** cada pergunta tem sua própria contagem regressiva, controlada pelo servidor, e cada candidato recebe seu próprio conjunto aleatório de perguntas. Isso dificulta pesquisar as respostas, inclusive perguntando a um assistente de IA. Não torna impossível.
-- **Sinais de integridade:** as fichas de avaliação sinalizam respostas rápidas demais para a pergunta ter sido lida, as vezes em que o candidato saiu da página e as tentativas de cópia. Um alerta é um motivo para olhar com mais atenção, não prova de cola.
+- **Sinais de integridade:** as fichas de avaliação sinalizam respostas rápidas demais para a pergunta ter sido lida, as vezes em que o candidato saiu da página e as tentativas de cópia. Quando o candidato termina, o relatório também aponta padrões de resposta que costumam aparecer quando alguém repassa as perguntas a uma IA e copia as respostas dela: mais ou menos o mesmo tempo em cada pergunta, independentemente da extensão ou da dificuldade, ou perguntas difíceis certas enquanto as fáceis estavam erradas. Um alerta ou padrão é um motivo para olhar com mais atenção, não prova de cola.
+- **Perguntas para a entrevista ao vivo:** o relatório sugere até 3 perguntas que o candidato acertou, dos seus temas mais fortes, para discutir em uma entrevista ao vivo, onde nenhuma IA pode responder por ele.
 
 O que a prepza não faz: os candidatos não escrevem, executam nem depuram código na prepza, e ela não observa como eles usam um assistente de IA. Isso fica para a etapa prática, feita internamente ou numa plataforma para desenvolvedores, que complementa a triagem de conhecimentos. Veja os [testes de habilidades por cargo](/tests) para começar com testes prontos, e [Entrevistas com IA](/ai-interviews) para ver como a prepza usa a IA e o que deixa para as pessoas.
 

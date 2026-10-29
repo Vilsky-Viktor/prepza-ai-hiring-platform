@@ -2,7 +2,7 @@
 title: "prepza and TestGorilla: where each fits, and using both"
 seoTitle: "prepza vs TestGorilla: Where Each Fits and Using Both"
 description: "How prepza and TestGorilla differ in how tests are built, what they test and how they're priced, where each one fits better, and how to use them together."
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza and TestGorilla: where each fits, and using both
@@ -27,7 +27,7 @@ This page explains how they differ, where each one fits better, and how to combi
 | AI interviews | No conversational AI; AI proposes topics and writes questions, and a sample of their answer keys is checked | See its plans ([pricing page](https://www.testgorilla.com/pricing/)) |
 | Code in the test | Code-reading questions (what code does or outputs); no writing or running code | Programming tests in the library; for custom coding challenges, see its plans ([pricing page](https://www.testgorilla.com/pricing/)) |
 | Questions per candidate | Each candidate's own random set, in its own order | Not compared here |
-| Integrity features | Timer on every question (server-enforced), flags for too-fast answers, leaving the page and copy attempts | Webcam snapshots, disabled copy/paste and full-screen mode on its higher plan |
+| Integrity features | Timer on every question (server-enforced), flags for too-fast answers, leaving the page, copy attempts and unusual answer patterns | Webcam snapshots, disabled copy/paste and full-screen mode on its higher plan |
 | Integrations | Workable, Greenhouse, Teamtailor, Recruitee and Breezy HR; Slack; a public API with signed web hooks ([developer docs](/api-docs)). All at no extra cost | ATS/API integrations on its higher plan |
 | Reports | Scorecards with answers and timings; PDF for one or all candidates | Not compared here |
 | Languages | 23 languages for the interface, interviews and emails | Not compared here; the library includes language-proficiency tests |

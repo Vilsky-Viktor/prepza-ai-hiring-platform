@@ -2,7 +2,7 @@
 title: "Mewawancarai engineer di era AI: apa yang perlu diuji sekarang"
 seoTitle: "Wawancara Teknis di Era AI: Apa yang Perlu Diuji"
 description: "Asisten AI kini bagian dari kerja engineering sehari-hari. Dampaknya pada isi wawancara teknis, cara perusahaan beradaptasi, dan peran tes pengetahuan."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Mewawancarai engineer di era AI: apa yang perlu diuji sekarang
@@ -73,7 +73,8 @@ prepza sangat cocok untuk langkah 2. prepza mengubah deskripsi pekerjaanmu menja
 - **Konsep dan teori dari deskripsi pekerjaan:** database, API, arsitektur, perilaku framework, praktik keamanan.
 - **Soal membaca kode:** potongan kode singkat dengan pertanyaan tentang apa yang dicetak atau dikembalikannya, apa fungsinya, kenapa gagal, atau perubahan mana yang memperbaikinya. Itu adalah keterampilan meninjau yang sama yang diandalkan kerja berbantuan AI.
 - **Timer di setiap soal:** setiap soal punya hitung mundurnya sendiri, ditegakkan oleh server, dan setiap kandidat mendapat set soal acaknya sendiri. Itu membuat mencari jawaban, termasuk bertanya kepada asisten AI, lebih sulit. Tetapi tidak membuatnya mustahil.
-- **Tanda peringatan:** scorecard menandai jawaban yang terlalu cepat untuk sempat membaca soalnya, saat kandidat meninggalkan halaman, dan percobaan menyalin. Tanda adalah alasan untuk melihat lebih teliti, bukan bukti kecurangan.
+- **Tanda peringatan:** scorecard menandai jawaban yang terlalu cepat untuk sempat membaca soalnya, saat kandidat meninggalkan halaman, dan percobaan menyalin. Setelah kandidat selesai, laporannya juga menunjukkan pola jawaban yang biasanya muncul saat soal diteruskan ke AI dan jawabannya disalin: waktu yang kira-kira sama di setiap soal, berapa pun panjang atau tingkat kesulitannya, atau soal sulit dijawab benar sementara soal mudah salah. Tanda atau pola adalah alasan untuk melihat lebih teliti, bukan bukti kecurangan.
+- **Soal untuk wawancara langsung:** laporannya menyarankan hingga 3 soal yang dijawab benar oleh kandidat, dari topik terkuatnya, untuk dibahas dalam wawancara langsung, tempat tidak ada AI yang bisa menjawab untuknya.
 
 Yang tidak dilakukan prepza: kandidat tidak menulis, menjalankan, atau men-debug kode di prepza, dan prepza tidak mengamati mereka memakai asisten AI. Itu masuk ke tahap praktik langsung, yang dijalankan sendiri oleh timmu atau di platform developer, dan melengkapi tes pengetahuan. Lihat [tes keterampilan per posisi](/tests) untuk tes siap pakai sebagai titik awal, dan [Wawancara AI](/ai-interviews) untuk cara prepza memakai AI dan apa yang diserahkannya kepada manusia.
 

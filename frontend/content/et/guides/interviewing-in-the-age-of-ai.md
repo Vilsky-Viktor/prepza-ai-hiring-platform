@@ -2,7 +2,7 @@
 title: "Inseneride intervjueerimine AI ajastul: mida nüüd testida"
 seoTitle: "Tehniline intervjuu AI ajastul: mida nüüd testida"
 description: "AI-assistendid on igapäevase arendustöö osa. Kuidas see muudab seda, mida intervjuud peaksid testima, ja kuhu sobivad teadmiste testid."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Inseneride intervjueerimine AI ajastul: mida nüüd testida
@@ -73,7 +73,8 @@ prepza sobib hästi 2. sammu jaoks. See muudab sinu töökuulutuse ajapiiranguga
 - **Kontseptsioonid ja teooria töökuulutusest:** andmebaasid, API-d, arhitektuur, raamistiku käitumine, turvapraktikad.
 - **Koodi lugemise küsimused:** lühike koodilõik ja küsimused selle kohta, mida see prindib või tagastab, mida see teeb, miks see ebaõnnestub või milline muudatus selle parandab. See on sama ülevaatamise oskus, millest AI-toega töö sõltub.
 - **Taimer igal küsimusel:** igal küsimusel on oma taimer, mille jõustab server, ja iga kandidaat saab oma juhusliku küsimuste komplekti. See muudab vastuste otsimise, sh AI-assistendilt küsimise, raskemaks. Võimatuks see seda ei tee.
-- **Aususe signaalid:** hindamislehed märgivad vastused, mis on liiga kiired, et küsimust lugeda jõuaks, korrad, kui kandidaat lehelt lahkus, ja kopeerimiskatsed. Märge on põhjus lähemalt vaadata, mitte spikerdamise tõend.
+- **Aususe signaalid:** hindamislehed märgivad vastused, mis on liiga kiired, et küsimust lugeda jõuaks, korrad, kui kandidaat lehelt lahkus, ja kopeerimiskatsed. Kui kandidaat on lõpetanud, toob tema aruanne välja ka vastuste mustrid, mis jäävad sageli maha, kui küsimusi tehisarule edasi antakse: igale küsimusele kulub umbes sama palju aega, olenemata selle pikkusest või raskusest, või rasked küsimused on õigesti, samal ajal kui lihtsad on valesti. Märge või muster on põhjus lähemalt vaadata, mitte spikerdamise tõend.
+- **Küsimused otsevestluseks:** aruanne soovitab kuni 3 küsimust, millele kandidaat vastas õigesti, tema tugevaimatest teemadest, et neid arutada otsevestlusel, kus ükski tehisaru ei saa tema eest vastata.
 
 Mida prepza ei tee: kandidaadid ei kirjuta, käivita ega siluta prepzas koodi ja prepza ei jälgi, kuidas nad AI-assistenti kasutavad. See kuulub praktilisse etappi, mis tehakse ise või arendajate platvormil ja mis täiendab teadmiste kontrolli. Valmis teste, millest alustada, leiad lehelt [oskustestid rollide kaupa](/tests) ning seda, kuidas prepza AI-d kasutab ja mida inimestele jätab, lehelt [AI-intervjuud](/ai-interviews).
 

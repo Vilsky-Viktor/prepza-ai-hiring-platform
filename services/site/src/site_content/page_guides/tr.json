@@ -153,6 +153,7 @@
     "text": "Bir adayın sonuçları: notu, geçip geçmediği ve her cevabıyla birlikte her konudaki puanı.",
     "actions": [
       "Her cevabı dürüstlük uyarılarıyla okuyun: sayfadan ayrılmalar, kopyalama girişimleri ve hızlı cevaplar.",
+      "Aday bitirdiğinde cevaplarındaki ve sürelerindeki olağan dışı örüntüleri ve canlı bir mülakatta sormak için doğru cevapladığı soruları görün.",
       "Raporu PDF olarak indirin veya e-postayla paylaşın.",
       "Başlamadan önce ek süre verin, örneğin bir engel durumu için.",
       "Adayın adını ekleyin veya düzenleyin.",

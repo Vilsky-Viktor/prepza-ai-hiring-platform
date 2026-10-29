@@ -2,7 +2,7 @@
 title: "Oskustestid vs CV-de sõelumine: mis ennustab töösooritust"
 seoTitle: "Oskustestid vs CV-de sõelumine: mis ennustab paremini"
 description: "Mida ütlevad aastakümnete värbamisuuringud erialaste teadmiste testide, proovitööde, intervjuude ja töökogemuse kohta ning kuidas seda eelvalikus kasutada."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Oskustestid vs CV-de sõelumine: mis ennustab töösooritust
@@ -84,7 +84,7 @@ prepza katab 2. sammu: ajapiiranguga valikvastustega erialaste teadmiste test, m
 - **Olemuselt tööspetsiifiline.** prepza pakub teemad sinu töökuulutuse põhjal ning sina vaatad need üle ja muudad neid enne, kui ühtegi küsimust kirjutatakse. Eemalda kõik, mis pole tegelik nõue. Tehniliste rollide puhul võivad küsimused sisaldada lühikesi loetavaid koodinäiteid.
 - **Kõigile samad tingimused.** Samad teemad ja küsimuste arv ning igal küsimusel taimer. Kandidaatidele, kes seda paluvad, saad anda lisaaega.
 - **Iga kandidaat saab oma küsimused,** juhusliku komplekti iga teema pangast, nii et vastuseid on raskem jagada.
-- **Loetavad tulemused.** Iga kandidaadi hindamisleht kõigi vastuste ja nende ajakuluga, järjestatud tulemuse järgi, märgetega liiga kiirete vastuste, lehelt lahkumise ja kopeerimiskatsete kohta.
+- **Loetavad tulemused.** Iga kandidaadi hindamisleht kõigi vastuste ja nende ajakuluga, järjestatud tulemuse järgi, märgetega liiga kiirete vastuste, lehelt lahkumise, kopeerimiskatsete ja ebatavaliste vastuste mustrite kohta.
 - **Vastuseid kontrollitakse vastusevõtme järgi,** mille AI kirjutab; igast teemast kontrollitakse enne avaldamist valim võtmeid, ülejäänuid siis, kui küsimusest teatatakse; ükski AI ei loe ega hinda kandidaadi vastust.
 
 prepza ei korralda struktureeritud intervjuusid, proovitöid ega kognitiivseid teste. Kasuta seda nende kõrval. Testiliikide ja õigluse kohta loe lähemalt lehelt [Kandidaatide testimine värbamisel](/pre-employment-testing).

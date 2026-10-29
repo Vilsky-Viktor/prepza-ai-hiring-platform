@@ -148,6 +148,8 @@ What waits on nobody goes through OpenAI's Batch API at half price (`services/ba
 
 For a multi-answer question, "correct" is the share of the question's point the answers earned (2 of 3 right options ticked and no wrong one: 0.67), so "too hard", "too easy" and the strong/weak separation read its average points as a single-answer question's share right. Each ticked option counts as a pick.
 
+A question's difficulty is its share right once it has 30 answers (`difficulty` in `src/library/helpers/quality.py`; a question copied from the shared bank uses its original's, as answers add up there). Library sends it with the questions a candidate draws, and rounds keeps it with their session for the [answer patterns](features/candidates.md#answer-patterns) on the candidate's report.
+
 ### Fixes
 
 - Fixes happen in place, so a topic's size never changes.

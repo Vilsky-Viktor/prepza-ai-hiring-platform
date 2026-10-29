@@ -23,6 +23,18 @@ const card = {
   pass_mark: 70,
   language: "ar",
   pledged_at: null,
+  answer_patterns: {
+    signals: [{ kind: "timing" }],
+    follow_ups: [
+      {
+        question_id: "q1",
+        topic_title: "SQL",
+        text: "Which join keeps every left row?",
+        right: ["LEFT JOIN"],
+        wrong: "INNER JOIN",
+      },
+    ],
+  },
   sessions: [
     {
       id: "s1",
@@ -55,5 +67,8 @@ describe("candidateReportData", () => {
         fast_answers: 2,
       },
     ])
+    // The answer-pattern signals, but not the questions to ask about.
+    expect(report.answerSignals).toEqual([{ kind: "timing" }])
+    expect(JSON.stringify(report)).not.toContain("LEFT JOIN")
   })
 })

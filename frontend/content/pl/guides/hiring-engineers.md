@@ -2,7 +2,7 @@
 title: "Jak rekrutować programistów: ustrukturyzowany proces od opisu stanowiska do oferty"
 seoTitle: "Rekrutacja programistów: proces krok po kroku"
 description: "Rekrutacja programistów krok po kroku: profil stanowiska, selekcja CV, test wiedzy, zadanie programistyczne, projektowanie systemów, rozmowy i oferta."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # Jak rekrutować programistów: ustrukturyzowany proces od opisu stanowiska do oferty
@@ -78,7 +78,7 @@ Tu pasuje prepza. Zamienia Twój opis stanowiska w rozmowę na czas sprawdzając
 - **SQL:** mała tabela i zapytanie oraz pytanie, które wiersze zostaną zwrócone.
 - **Wiedzę o architekturze i frameworkach:** kompromisy, zachowanie frameworka, co psuje się pod obciążeniem.
 
-Każdy kandydat dostaje własny, losowy zestaw pytań z odliczaniem czasu przy każdym z nich. Widzisz kartę wyników z każdą odpowiedzią i czasem, jaki zajęła, oraz oznaczenia zbyt szybkich odpowiedzi, opuszczania strony i prób kopiowania. Oznaczenie to powód, by przyjrzeć się bliżej, a nie dowód czegokolwiek.
+Każdy kandydat dostaje własny, losowy zestaw pytań z odliczaniem czasu przy każdym z nich. Widzisz kartę wyników z każdą odpowiedzią i czasem, jaki zajęła, oraz oznaczenia zbyt szybkich odpowiedzi, opuszczania strony, prób kopiowania i nietypowych wzorców w odpowiedziach i czasach. Oznaczenie to powód, by przyjrzeć się bliżej, a nie dowód czegokolwiek. Raport podsuwa też pytania, na które kandydat odpowiedział poprawnie, by dopytać o nie na kolejnej rozmowie.
 
 Czego prepza nie robi: kandydaci nie piszą, nie uruchamiają ani nie debugują kodu w prepza. Czytanie kodu i pisanie go to różne umiejętności, więc kolejny krok wciąż ma znaczenie. Gotowe testy na start znajdziesz w [testach umiejętności według roli](/tests).
 

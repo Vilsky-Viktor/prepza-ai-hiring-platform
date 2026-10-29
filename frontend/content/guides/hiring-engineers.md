@@ -2,7 +2,7 @@
 title: "How to hire engineers: a structured process from job description to offer"
 seoTitle: "How to Hire Engineers: A Structured Hiring Process"
 description: "A step-by-step process for hiring software engineers: role profile, screening, a knowledge screen, coding, system design, structured interviews and offers."
-updated: "2026-10-07"
+updated: "2026-10-29"
 ---
 
 # How to hire engineers: a structured process from job description to offer
@@ -78,7 +78,7 @@ This is where prepza fits. It turns your job description into a timed multiple-c
 - **SQL:** a small table and a query, with the question of which rows come back.
 - **Architecture and framework knowledge:** trade-offs, how a framework behaves, what goes wrong under load.
 
-Each candidate gets their own random set of questions with a countdown on every one. You see a scorecard with every answer and how long it took, plus flags for too-fast answers, leaving the page and copy attempts. A flag is a reason to look closer, not proof of anything.
+Each candidate gets their own random set of questions with a countdown on every one. You see a scorecard with every answer and how long it took, plus flags for too-fast answers, leaving the page, copy attempts and unusual patterns in their answers and times. A flag is a reason to look closer, not proof of anything. The report also suggests questions they got right to ask about in the next interview.
 
 What prepza doesn't do: candidates don't write, run or debug code in prepza. Reading code and writing it are different skills, so the next step still matters. See [skills tests by role](/tests) for ready-made tests to start from.
 

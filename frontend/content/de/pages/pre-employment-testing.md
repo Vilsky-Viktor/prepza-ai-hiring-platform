@@ -2,7 +2,7 @@
 title: "Einstellungstests: ein Praxisleitfaden für kleine und mittlere Teams"
 seoTitle: "Einstellungstests für Unternehmen: Arten, Recht und Software"
 description: "Eignungstests für Bewerber: welche Arten es gibt, wann sie sinnvoll sind, was rechtlich gilt und wie du eine Einstellungstest-Software wählst."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Einstellungstests: ein Praxisleitfaden für kleine und mittlere Teams
@@ -97,7 +97,7 @@ prepza macht aus einer Stellenbeschreibung ein zeitlich begrenztes Multiple-Choi
 4. **Ergebnisse lesen.** Die Punktzahlen kommen als Rangliste, mit einer Auswertung (Scorecard) für jeden Kandidaten.
 
 - **Jeder Kandidat erhält einen eigenen zufälligen Fragensatz** aus dem Fragenpool jedes Themas, mit einem serverseitig erzwungenen Countdown bei jeder Frage. Allen, die darum bitten, kannst du zusätzliche Zeit geben.
-- **Auswertungen** zeigen jede Antwort, ob sie richtig war und wie lange sie gedauert hat, mit Hinweisen auf zu schnelle Antworten, das Verlassen der Seite und Kopierversuche. Die Hinweise ändern die Punktzahl nicht.
+- **Auswertungen** zeigen jede Antwort, ob sie richtig war und wie lange sie gedauert hat, mit Hinweisen auf zu schnelle Antworten, das Verlassen der Seite, Kopierversuche und ungewöhnliche Antwortmuster, dazu Fragen, nach denen du in einem Live-Gespräch fragen kannst. Die Hinweise ändern die Punktzahl nicht.
 - **Antworten werden anhand eines Lösungsschlüssels bewertet**, den KI schreibt; eine Stichprobe der Schlüssel jedes Themas wird vor der Freigabe geprüft, die übrigen, sobald eine Frage markiert wird. Keine KI liest oder beurteilt die Antwort eines Kandidaten. Ein PDF-Bericht deckt einen Kandidaten oder die ganze Liste ab.
 - **Funktioniert mit deinen Tools:** Kandidaten, die du in Workable, Greenhouse, Teamtailor, Recruitee oder Breezy HR in eine Phase verschieben, erhalten das Interview, und ihre Ergebnisse gehen zurück ins ATS. Slack meldet, wenn ein Kandidat fertig ist, und die [API](/api-docs) bindet deine eigene Plattform an. Siehe [So verbindest du Fachtests mit deinem ATS](/guides/ats-integration-skills-tests).
 

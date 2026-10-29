@@ -17,7 +17,7 @@
         "Companies: the company's name, logo and website, and the email domain it was verified with; when an owner or admin asks for verification, the email address on that domain they confirmed and the company name they sent for review.",
         "Practice: if you take free practice interviews, your answers, grades and how long each answer took. Only you see them.",
         "Contact messages: the name, email address and message you send through the contact page.",
-        "Interviews, if a company invites you: the email you were invited with, your answers, how long each answer took, when you left the interview page, copied text or answered too fast to have read the question, when you confirmed before starting that you'd answer on your own, any extra time the company gave you (no reason is recorded), and your ratings and reports of questions. You are told about this before you start.",
+        "Interviews, if a company invites you: the email you were invited with, your answers, how long each answer took, when you left the interview page, copied text or answered too fast to have read the question, whether your answer times and your right and wrong answers follow the questions' length and difficulty as other candidates' do, when you confirmed before starting that you'd answer on your own, any extra time the company gave you (no reason is recorded), and your ratings and reports of questions. You are told about this before you start.",
         "Technical: error reports without your IP address or email, and short-lived server logs needed to run and secure the service.",
         "The \"I'm not a robot\" check: when you send the contact form, ask the help chat a first question, start an interview through a job ad's link, create your first company, or approve the topics of a company that hasn't paid yet, Cloudflare Turnstile looks at your browser (such as its type, how it behaves and the address it connects from) to tell a person from a script. We receive only whether the check passed.",
         "AI apps you connect: the app's name and the site it returns to, and when you connected it and last used it. Its access is kept only as a one-way hash.",
@@ -55,7 +55,7 @@
         "Usage statistics show which parts of prepza help people and which prices and limits work, so we can improve them (our legitimate interest).",
         "Purchase records, kept for bookkeeping as Estonian accounting law requires (legal obligation).",
         "Showing a company as verified, by checking its website against the email domains of its owners and admins (our legitimate interest).",
-        "Interview results, timings and integrity signals help the hiring company assess your answers fairly (the company's legitimate interest). People at the company make the hiring decision; prepza makes no decision about you on its own. You can ask the company for a person to review your result, and for an accommodation such as extra time before you start."
+        "Interview results, timings and integrity signals help the hiring company assess your answers fairly (the company's legitimate interest). The signals include patterns in your answers: times about the same on every question, or hard questions right while easy ones were wrong; with them, the company is shown questions to ask you about in a live interview. People at the company make the hiring decision; prepza makes no decision about you on its own. You can ask the company for a person to review your result, and for an accommodation such as extra time before you start."
       ]
     },
     {

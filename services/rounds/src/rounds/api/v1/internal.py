@@ -6,9 +6,11 @@ from rounds.api.dependencies import ServiceCaller
 from rounds.constants.integrity import IntegritySignal
 from rounds.core.db import Session
 from rounds.helpers.integrity import counted_leave
+from rounds.helpers.integrity_report import answer_patterns
 from rounds.helpers.review import add_signals, build_review
 from rounds.helpers.sessions import session_out
 from rounds.repositories import answer_counts, sessions
+from rounds.schemas.integrity import AnswerPatternsOut
 from rounds.schemas.sessions import (
     InviteScoresIn,
     ScorecardSession,
@@ -83,3 +85,16 @@ async def invite_scorecard(invite_id: UUID, caller: ServiceCaller) -> list[Score
         )
 
     return cards
+
+
+@router.get("/invites/{invite_id}/answer-patterns")
+async def invite_answer_patterns(invite_id: UUID, caller: ServiceCaller) -> AnswerPatternsOut:
+    """The integrity signals the candidate's answers and times show over every section, and
+    questions to ask about in a live interview; empty until every section is finished."""
+    async with Session() as session:
+        rows = await sessions.list_for_invite(session, invite_id)
+
+    if not rows:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "No sessions for this invite")
+
+    return answer_patterns(rows)

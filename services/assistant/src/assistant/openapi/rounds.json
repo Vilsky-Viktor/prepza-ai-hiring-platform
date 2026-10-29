@@ -1039,6 +1039,55 @@
     }
    }
   },
+  "/internal/invites/{invite_id}/answer-patterns": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Invite Answer Patterns",
+    "description": "The integrity signals the candidate's answers and times show over every section, and\nquestions to ask about in a live interview; empty until every section is finished.",
+    "operationId": "invite_answer_patterns_internal_invites__invite_id__answer_patterns_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "invite_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Invite Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AnswerPatternsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/events": {
    "post": {
     "tags": [
@@ -1480,6 +1529,29 @@
     "title": "AnswerCreate",
     "description": "The option picked on a single-answer question, or the options ticked on a multi-answer\none (\"select all that apply\")."
    },
+   "AnswerPatternsOut": {
+    "properties": {
+     "signals": {
+      "items": {
+       "$ref": "#/components/schemas/PatternSignalOut"
+      },
+      "type": "array",
+      "title": "Signals",
+      "default": []
+     },
+     "follow_ups": {
+      "items": {
+       "$ref": "#/components/schemas/FollowUp"
+      },
+      "type": "array",
+      "title": "Follow Ups",
+      "default": []
+     }
+    },
+    "type": "object",
+    "title": "AnswerPatternsOut",
+    "description": "What the candidate's answers and times show once they've finished: the signals that\nfired (empty when none did), and questions to ask about in a live interview. Both empty\nbefore they finish."
+   },
    "AnswerView": {
     "properties": {
      "answer_id": {
@@ -1579,6 +1651,44 @@
      "correct"
     ],
     "title": "AnswerView"
+   },
+   "FollowUp": {
+    "properties": {
+     "question_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Question Id"
+     },
+     "topic_title": {
+      "type": "string",
+      "title": "Topic Title"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "right": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Right"
+     },
+     "wrong": {
+      "type": "string",
+      "title": "Wrong"
+     }
+    },
+    "type": "object",
+    "required": [
+     "question_id",
+     "topic_title",
+     "text",
+     "right",
+     "wrong"
+    ],
+    "title": "FollowUp",
+    "description": "A question the candidate answered right, to ask about in a live interview: why the right\noption is right and another isn't."
    },
    "HTTPValidationError": {
     "properties": {
@@ -1751,6 +1861,71 @@
      "correct"
     ],
     "title": "Option"
+   },
+   "PatternSignal": {
+    "type": "string",
+    "enum": [
+     "timing",
+     "person_fit"
+    ],
+    "title": "PatternSignal"
+   },
+   "PatternSignalOut": {
+    "properties": {
+     "kind": {
+      "$ref": "#/components/schemas/PatternSignal"
+     },
+     "hard": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Hard"
+     },
+     "hard_right": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Hard Right"
+     },
+     "easy": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Easy"
+     },
+     "easy_wrong": {
+      "anyOf": [
+       {
+        "type": "integer"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Easy Wrong"
+     }
+    },
+    "type": "object",
+    "required": [
+     "kind"
+    ],
+    "title": "PatternSignalOut",
+    "description": "A signal that fired, with the numbers its sentence shows."
    },
    "PracticeRoundOut": {
     "properties": {
@@ -2149,6 +2324,19 @@
       },
       "type": "array",
       "title": "Options"
+     },
+     "difficulty": {
+      "anyOf": [
+       {
+        "type": "number",
+        "maximum": 1.0,
+        "minimum": 0.0
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Difficulty"
      }
     },
     "type": "object",

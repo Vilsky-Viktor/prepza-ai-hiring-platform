@@ -1,6 +1,6 @@
 # Using prepza responsibly: instructions for companies
 
-Version of 2026-10-17. Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Estonia; hello@prepza.ai.
+Version of 2026-10-29. Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Estonia; hello@prepza.ai.
 
 For owners and admins of a company on prepza. These are prepza's instructions for use under the
 EU AI Act (Art. 13). Your own duties as an employer, under the employment and data protection law
@@ -135,6 +135,27 @@ candidate's browser, and a page leave counts only when it lasts 2 seconds or mor
 such as a notification or a permission prompt taking focus, is kept but not counted). Never reject
 on signals alone; follow up in a conversation, and let the candidate explain.
 
+Once a candidate has finished every section, their page can also show **answer patterns**, read
+from their answers and times alone (no camera, microphone, screen recording, device fingerprint or
+IP address):
+
+- **Timing:** answer times about the same on every question, instead of following each question's
+  own time and its difficulty. It needs at least 8 answers given in time.
+- **Unusual pattern:** hard questions right while easy ones were wrong, shown with the counts. It
+  needs at least 8 questions whose difficulty is known (a question's share of right answers once
+  30 candidates have answered it).
+
+Both are set so that at most 1% of honest candidates show them in prepza's tests on made-up
+candidates; they catch about a third of candidates who relay every question to an AI. A pattern
+can have innocent causes (a steady pace, gaps in what someone has learned, a lucky guess), so it's
+a reason to ask, never proof. Patterns don't make the candidate "flagged" in the list, the ATS or
+web hooks; the PDF report and the API show which patterns appeared.
+
+For every finished candidate, the page also suggests up to 3 questions they got right to talk
+through in a live interview ("Why is X right and Y not?"), from their strongest topics, and first
+the hard ones behind an unusual pattern. Use them to hear the candidate's reasoning in their own
+words; they appear only on the candidate's page.
+
 ## 8. Accommodations and extra time
 
 - Tell candidates, before they start, how to ask for an accommodation (the candidate notice
@@ -187,7 +208,8 @@ is yours to give.
 
 **Records (logs).** For each candidate prepza records every question shown and when, the picks,
 right or wrong (or the points of a "select all that apply" question), the time taken, timeouts, page leaves and copy attempts, start and finish: the
-scorecard and its PDF report show them, and the API returns the results. It also records when the
+scorecard and its PDF report show them, and the API returns the results. Answer patterns aren't
+stored: they're read from these records each time the results are opened. It also records when the
 candidate confirmed, before starting, that they'd answer on their own, which the scorecard shows. Your company's action
 log records every action your members take: on interviews (created, renamed, settings, shareable
 link, topics approved, passing grade), on candidates (invited, revoked, deleted, renamed, extra
@@ -219,7 +241,7 @@ under the data processing agreement at prepza.ai/dpa, which is part of the terms
 
 - **Access:** open the candidate's **scorecard page** and download their **PDF report**. Together
   they hold everything prepza keeps about the interview: each question, their answer (every option ticked), right or
-  wrong or the points it earned, time taken, page leaves and copy attempts, and the grade. Send the PDF, with your own explanation of
+  wrong or the points it earned, time taken, page leaves and copy attempts, any answer patterns, and the grade. Send the PDF, with your own explanation of
   how it was used.
 - **Erasure or objection:** on the candidate's page, revoke an unused invite, or use **Delete
   candidate** for one who started or finished: their answers and results are deleted for good, also

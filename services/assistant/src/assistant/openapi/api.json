@@ -3296,6 +3296,25 @@
       "type": "integer",
       "title": "Fast Answers",
       "description": "Answers given too quickly to have read the question"
+     },
+     "answer_patterns": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "string",
+         "enum": [
+          "timing",
+          "person_fit"
+         ]
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Answer Patterns",
+      "description": "Patterns in the finished candidate's answers: `timing`, answer times that didn't follow the questions' length and difficulty; `person_fit`, hard questions right while easy ones were wrong. Only when one candidate is read (null in lists and web hook events); empty when none showed"
      }
     },
     "type": "object",

@@ -2,7 +2,7 @@
 title: "Pruebas de selección de personal: guía práctica para pymes"
 seoTitle: "Pruebas de selección de personal: tipos, equidad y legalidad"
 description: "Qué son las pruebas de selección de personal, sus tipos (técnicas, psicotécnicas, de habilidades), equidad, legalidad y cómo elegir una herramienta."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Pruebas de selección de personal: guía práctica para pymes
@@ -97,7 +97,7 @@ prepza convierte una descripción del puesto en una entrevista de habilidades de
 4. **Lee los resultados.** Las puntuaciones llegan ordenadas, con una ficha de evaluación para cada candidato.
 
 - **Cada candidato recibe su propio conjunto aleatorio** del banco de cada tema, con una cuenta atrás controlada por el servidor en cada pregunta. Puedes dar tiempo extra a quien lo pida.
-- **Las fichas de evaluación** muestran cada respuesta, si fue correcta y cuánto tardó, con alertas de respuestas demasiado rápidas, salidas de la página e intentos de copiar. Las alertas no cambian la puntuación.
+- **Las fichas de evaluación** muestran cada respuesta, si fue correcta y cuánto tardó, con alertas de respuestas demasiado rápidas, salidas de la página, intentos de copiar y patrones de respuesta inusuales, además de preguntas para tratar en una entrevista en vivo. Las alertas no cambian la puntuación.
 - **Las respuestas se corrigen con una clave de respuestas** que redacta la IA; una muestra de las claves de cada tema se revisa antes de publicarse, y el resto cuando se marca una pregunta. Ninguna IA lee ni juzga la respuesta de un candidato. Un informe en PDF cubre a un candidato o a toda la lista.
 - **Funciona con tus herramientas:** los candidatos que mueves a una etapa en Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR reciben la entrevista, y sus resultados vuelven al ATS. Slack te avisa cuando un candidato termina, y la [API](/api-docs) conecta tu propia plataforma. Consulta [Cómo conectar las pruebas de habilidades a tu ATS](/guides/ats-integration-skills-tests).
 

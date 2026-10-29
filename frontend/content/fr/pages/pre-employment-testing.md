@@ -2,7 +2,7 @@
 title: "Tests de recrutement : guide pratique pour les PME"
 seoTitle: "Test de recrutement : types, équité et choix d'un outil"
 description: "Test de recrutement et test d'aptitude : types, usages, équité, cadre légal et choix d'un logiciel d'évaluation des candidats. Guide pour recruteurs."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # Tests de recrutement : guide pratique pour les PME
@@ -97,7 +97,7 @@ prepza transforme une fiche de poste en entretien de compétences chronométré 
 4. **Lisez les résultats.** Les scores arrivent classés, avec une fiche d'évaluation pour chaque candidat.
 
 - **Chaque candidat reçoit sa propre série aléatoire** tirée de la banque de questions de chaque thème, avec un compte à rebours imposé par le serveur pour chaque question. Vous pouvez accorder du temps supplémentaire à quiconque le demande.
-- **Les fiches d'évaluation** montrent chaque réponse, si elle était juste et le temps qu'elle a pris, avec des alertes pour les réponses trop rapides, les sorties de la page et les tentatives de copie. Les alertes ne modifient pas le score.
+- **Les fiches d'évaluation** montrent chaque réponse, si elle était juste et le temps qu'elle a pris, avec des alertes pour les réponses trop rapides, les sorties de la page, les tentatives de copie et les schémas de réponse inhabituels, ainsi que des questions à aborder lors d'un entretien en direct. Les alertes ne modifient pas le score.
 - **Les réponses sont notées d'après un corrigé** que l'IA rédige ; un échantillon des corrigés de chaque thème est vérifié avant la mise en ligne, les autres dès qu'une question est signalée. Aucune IA ne lit ni ne juge la réponse d'un candidat. Un rapport PDF couvre un candidat ou toute la liste.
 - **Fonctionne avec vos outils :** les candidats que vous déplacez vers une étape dans Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR reçoivent l'entretien, et leurs résultats reviennent dans l'ATS. Slack vous prévient quand un candidat termine, et l'[API](/api-docs) connecte votre propre plateforme. Voir [Comment connecter vos tests de compétences à votre ATS](/guides/ats-integration-skills-tests).
 

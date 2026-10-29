@@ -77,6 +77,19 @@ def tracked(monkeypatch):
 
 
 PLEDGED_AT = datetime(2026, 10, 21, 9, 30, tzinfo=UTC)
+# What rounds finds in the answers and times: a signal, and a question to ask about.
+PATTERNS = {
+    "signals": [{"kind": "person_fit", "hard": 5, "hard_right": 5, "easy": 5, "easy_wrong": 3}],
+    "follow_ups": [
+        {
+            "question_id": SECTION["review"][0]["question_id"],
+            "topic_title": "Python",
+            "text": "What does len([]) return?",
+            "right": ["0"],
+            "wrong": "None",
+        }
+    ],
+}
 
 
 def open_scorecard(client, monkeypatch, headers=None, status=InviteStatus.FINISHED, role="owner"):
@@ -122,10 +135,14 @@ def open_scorecard(client, monkeypatch, headers=None, status=InviteStatus.FINISH
     async def fake_scores(_invite_ids):
         return {str(INVITE_ID): {"progress": 100, "grade": 80, "finished": True}} if started else {}
 
+    async def fake_patterns(_invite_id):
+        return PATTERNS if started else {"signals": [], "follow_ups": []}
+
     monkeypatch.setattr(interviews, "get", fake_interview)
     monkeypatch.setattr(companies, "get", fake_company)
     monkeypatch.setattr(rounds, "scorecard", fake_scorecard)
     monkeypatch.setattr(rounds, "invite_scores", fake_scores)
+    monkeypatch.setattr(rounds, "answer_patterns", fake_patterns)
 
     return client.get(URL, headers=headers or {})
 
@@ -147,6 +164,8 @@ def test_the_scorecard_carries_the_overall_result_for_the_pdf(client, monkeypatc
     assert datetime.fromisoformat(card["pledged_at"]) == PLEDGED_AT
     # The questions' language, which the page marks them with (lang, dir).
     assert card["language"] == "ar"
+    # What the answers and times show, as rounds found it.
+    assert card["answer_patterns"] == PATTERNS
 
 
 @pytest.mark.parametrize(

@@ -2,7 +2,7 @@
 title: "İşe alım öncesi testler: küçük ve orta ölçekli ekipler için pratik rehber"
 seoTitle: "İşe Alım Testleri: Türleri, Adillik ve Araç Seçimi"
 description: "İşe alım testleri nedir, hangi türleri vardır, ne zaman kullanılır, adillik ve yasal esaslar, araç nasıl seçilir. İşe alım ekipleri için kısa rehber."
-updated: "2026-10-21"
+updated: "2026-10-29"
 ---
 
 # İşe alım öncesi testler: küçük ve orta ölçekli ekipler için pratik rehber
@@ -97,7 +97,7 @@ prepza bir iş tanımını süreli, çoktan seçmeli bir beceri mülakatına dö
 4. **Sonuçları okuyun.** Puanlar, her aday için bir değerlendirme kartıyla birlikte sıralı olarak gelir.
 
 - **Her aday, her konunun havuzundan kendine ait rastgele bir set alır;** her soruda sunucu tarafından uygulanan bir geri sayım vardır. İsteyen herkese ek süre verebilirsiniz.
-- **Değerlendirme kartları** her yanıtı, doğru olup olmadığını ve ne kadar sürdüğünü; çok hızlı yanıtlar, sayfadan ayrılma ve kopyalama girişimleri için işaretlerle birlikte gösterir. İşaretler puanı değiştirmez.
+- **Değerlendirme kartları** her yanıtı, doğru olup olmadığını ve ne kadar sürdüğünü; çok hızlı yanıtlar, sayfadan ayrılma, kopyalama girişimleri ve olağan dışı yanıt örüntüleri için işaretlerle birlikte gösterir; ayrıca canlı bir mülakatta sorulacak sorular önerir. İşaretler puanı değiştirmez.
 - **Yanıtlar, yapay zekânın yazdığı bir cevap anahtarına göre değerlendirilir;** her konudaki anahtarlardan bir örneklem yayından önce kontrol edilir, diğerleri bir soru bildirildiğinde; hiçbir yapay zekâ adayın yanıtını okumaz veya yargılamaz. PDF rapor tek bir adayı veya tüm listeyi kapsar.
 - **Araçlarınızla çalışır:** Workable, Greenhouse, Teamtailor, Recruitee veya Breezy HR'da bir aşamaya taşıdığınız adaylar mülakatı alır ve sonuçları ATS'ye geri döner. Bir aday bitirdiğinde Slack haberdar olur ve [API](/api-docs) kendi platformunuzu bağlar. Bkz. [Beceri testleri ATS'nize nasıl bağlanır](/guides/ats-integration-skills-tests).
 

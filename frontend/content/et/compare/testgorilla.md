@@ -2,7 +2,7 @@
 title: "prepza ja TestGorilla: kuhu kumbki sobib ja kuidas kasutada mõlemat"
 seoTitle: "prepza vs TestGorilla: võrdlus ja koos kasutamine"
 description: "Kuidas prepza ja TestGorilla erinevad testide koostamise, testitava sisu ja hinna poolest, kuhu kumbki paremini sobib ja kuidas neid koos kasutada."
-updated: "2026-10-15"
+updated: "2026-10-29"
 ---
 
 # prepza ja TestGorilla: kuhu kumbki sobib ja kuidas kasutada mõlemat
@@ -27,7 +27,7 @@ See leht selgitab, mille poolest need erinevad, kuhu kumbki paremini sobib ja ku
 | AI-intervjuud | Vestlevat AI-d pole; AI pakub teemad ja kirjutab küsimused ning valim nende vastusevõtmetest kontrollitakse | Vaata pakette ([hinnaleht](https://www.testgorilla.com/pricing/)) |
 | Kood testis | Koodi lugemise küsimused (mida kood teeb või väljastab); koodi ei kirjutata ega käivitata | Programmeerimistestid testikogus; kohandatud programmeerimisülesannete kohta vaata pakette ([hinnaleht](https://www.testgorilla.com/pricing/)) |
 | Küsimused kandidaadi kohta | Igal kandidaadil oma juhuslik komplekt, oma järjekorras | Siin ei võrrelda |
-| Aususe tagamise funktsioonid | Taimer igal küsimusel (serveri jõustatud), märked liiga kiirete vastuste, lehelt lahkumise ja kopeerimiskatsete kohta | Veebikaamera hetktõmmised, keelatud kopeerimine/kleepimine ja täisekraanirežiim kõrgemas paketis |
+| Aususe tagamise funktsioonid | Taimer igal küsimusel (serveri jõustatud), märked liiga kiirete vastuste, lehelt lahkumise, kopeerimiskatsete ja ebatavaliste vastuste mustrite kohta | Veebikaamera hetktõmmised, keelatud kopeerimine/kleepimine ja täisekraanirežiim kõrgemas paketis |
 | Integratsioonid | Workable, Greenhouse, Teamtailor, Recruitee ja Breezy HR; Slack; avalik API allkirjastatud webhookidega ([arendajate dokumentatsioon](/api-docs)). Kõik ilma lisatasuta | ATS/API-integratsioonid kõrgemas paketis |
 | Aruanded | Hindamislehed vastuste ja ajakuluga; PDF ühe või kõigi kandidaatide kohta | Siin ei võrrelda |
 | Keeled | 23 keelt liidese, intervjuude ja e-kirjade jaoks | Siin ei võrrelda; testikogus on keeleoskuse testid |

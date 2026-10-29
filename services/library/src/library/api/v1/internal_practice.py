@@ -6,8 +6,8 @@ from library.api.dependencies import ServiceCaller
 from library.constants.sets import Pool, SetKind
 from library.core.db import Session
 from library.repositories import preparations
-from library.schemas.preparations import QuestionOut
-from library.schemas.sets import SetContent, SetTopicOut
+
+from library.schemas.sets import ContentQuestion, SetContent, SetTopicOut
 
 # Free practice for talents: only a template's practice questions, never its company ones.
 router = APIRouter(prefix="/internal", tags=["internal"])
@@ -28,7 +28,7 @@ async def practice_content(template_id: UUID, caller: ServiceCaller) -> SetConte
             id=topic.id,
             title=topic.title,
             questions=[
-                QuestionOut(id=question.id, text=question.text, options=question.options)
+                ContentQuestion(id=question.id, text=question.text, options=question.options)
                 for question in topic.questions
                 if question.pool == Pool.PRACTICE
             ],
