@@ -361,27 +361,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/users/{user_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    post?: never
-    /**
-     * Delete User
-     * @description The user's purchases for their companies stay for bookkeeping, without their id, and so
-     *     do their AI costs and limit hits; any automatic top-up paid with their card goes off.
-     */
-    delete: operations["delete_user_internal_users__user_id__delete"]
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/users/{user_id}/export": {
     parameters: {
       query?: never
@@ -2116,35 +2095,6 @@ export interface operations {
       header?: never
       path: {
         company_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  delete_user_internal_users__user_id__delete: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
       }
       cookie?: never
     }

@@ -6,16 +6,14 @@ from api.core.db import Session
 from api.repositories import keys, webhook_retries, webhooks
 
 
-async def remove_user(user_id: str, email: str | None) -> None:
-    """An account deleted in library: the keys and web hooks it made go, and, with its `email`,
-    its results as a candidate waiting to be sent again to companies' web hooks. All at once or
-    nothing, so a retry finds everything still to delete."""
+async def remove_user(user_id: str, email: str) -> None:
+    """A deleted account: the keys and web hooks it made go, and, by its `email` (empty when it
+    wasn't verified, matching no one), its results as a candidate waiting to be sent again to
+    companies' web hooks. All at once or nothing, so a retry finds everything still to delete."""
     async with Session.begin() as session:
         await keys.remove_user(session, user_id)
         await webhooks.remove_user(session, user_id)
-
-        if email is not None:
-            await webhook_retries.remove_email(session, email)
+        await webhook_retries.remove_email(session, email)
 
 
 async def export_user(user_id: str) -> dict:

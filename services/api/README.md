@@ -13,7 +13,8 @@ src/api/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # The API key and its permissions, calls from other services
 ├── core/                   # db.py (engine, Session), exceptions.py, security.py (service tokens)
-├── handlers/               # Companies' Pub/Sub events, one module per event; dispatch.py picks it
+├── handlers/               # Companies' and accounts' Pub/Sub events, one module per event;
+│                           # dispatch.py picks it
 ├── services/               # Key checks, management, web hook sends and retries, account
 │                           # deletions, idempotency; each opens its transaction
 ├── repositories/           # Database queries: keys, web hooks, deliveries, retries, the log;

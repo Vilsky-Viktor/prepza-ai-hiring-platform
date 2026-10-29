@@ -36,7 +36,7 @@ def address() -> str:
 
 def test_an_account_deletion_whose_last_step_fails_keeps_the_users_notifications(run, monkeypatch):
     """The user's notifications, sent log, bulk rows and the Slack channels they made go
-    together: a failure leaves everything for library's retry."""
+    together: a failure leaves everything for the event's redelivery."""
     user = f"u-{uuid.uuid4()}"
     monkeypatch.setattr(slack, "forget_maker", broken)
 

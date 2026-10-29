@@ -1,5 +1,6 @@
-"""The payloads of companies' deletion events, which the holders of a company's or an
-interview's data (rounds, library, ats) consume to delete their own copies. Consumers ignore
+"""The payloads of the deletion events, which the holders of a company's, an interview's or a
+user's data consume to delete their own copies: companies' (rounds, library, ats and others) and
+accounts' `user.deleted`. Consumers ignore
 fields they don't know (tolerant reader); a payload that fails validation can never be handled
 (a ValueError: handle_or_drop drops it)."""
 
@@ -9,6 +10,7 @@ from pydantic import BaseModel, ConfigDict
 
 INTERVIEW_DELETED = "interview.deleted"
 COMPANY_DELETED = "company.deleted"
+USER_DELETED = "user.deleted"
 
 
 class InterviewDeleted(BaseModel):
@@ -29,3 +31,15 @@ class CompanyDeleted(BaseModel):
     model_config = ConfigDict(extra="ignore")
 
     company_id: UUID
+
+
+class UserDeleted(BaseModel):
+    """A user deleted their account: each holder deletes what it keeps under their id, and
+    under their email what it keeps about them as a candidate. Companies has already deleted its
+    part (it may refuse, so accounts calls it first); accounts sends it again after a restore
+    (its erasures), so a holder deletes whatever a backup brought back."""
+
+    model_config = ConfigDict(extra="ignore")
+
+    user_id: str
+    email: str

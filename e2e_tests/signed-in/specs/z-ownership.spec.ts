@@ -17,7 +17,8 @@ async function openDeleteAccount(page: Page) {
 
 // The owner hands the company to an admin who joined: the admin becomes its owner (told in the
 // bell), the owner an admin. Deleting an account waits while it owns a company others joined,
-// and names the companies (with their credits) deleted with it.
+// and names the companies (with their credits) deleted with it; once deleted, what it made in
+// other services goes too (accounts' user.deleted: here the API key it made in the company).
 test("the owner makes an admin the owner, and an account owning a shared company waits", async ({
   signInAs,
 }) => {
@@ -75,4 +76,22 @@ test("the owner makes an admin the owner, and an account owning a shared company
   await expect(annDialog.getByText(company.name)).toHaveCount(0)
   await expect(annDialog.getByRole("button").last()).toBeEnabled()
   await shot(ann, "delete-named")
+
+  // Ann, now an admin of Bob's company, made an API key there; deleting her account takes it.
+  const keysPath = `/v1/manage/keys?company_id=${company.id}`
+  const { id: keyId } = await api<{ id: string }>(ann, "POST", keysPath, {
+    name: "Careers site",
+    expiry: "1",
+    permissions: ["interviews:read"],
+  })
+  const deleted = ann.waitForResponse(
+    (response) => response.url().endsWith("/accounts/me") && response.request().method() === "DELETE",
+  )
+  await annDialog.getByRole("button").last().click()
+  expect((await deleted).status()).toBe(204)
+  const keyIds = async () =>
+    (await api<{ keys: { id: string }[] }>(bob, "GET", `/v1/manage?company_id=${company.id}`)).keys.map(
+      (key) => key.id,
+    )
+  await expect.poll(keyIds, { timeout: 60_000 }).not.toContain(keyId)
 })

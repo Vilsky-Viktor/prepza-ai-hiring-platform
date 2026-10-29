@@ -14,8 +14,8 @@ src/rounds/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
-├── handlers/               # Pub/Sub events (deleted interviews and companies); dispatch.py
-│                           # picks one
+├── handlers/               # Pub/Sub events (deleted interviews, companies and accounts);
+│                           # dispatch.py picks one
 ├── services/               # Interview steps, answers, timed sessions, practice, signals,
 │                           # deletions; each opens its
 │                           # transaction

@@ -6,9 +6,9 @@ from sqlalchemy import select
 
 from ats.constants.ats import AtsProvider
 from ats.core.db import Session
+from ats.handlers.dispatch import handle
 from ats.models.outbox import OutboxEvent
 from ats.repositories import ats
-from ats.services import accounts
 from ats.services import ats as integrations
 from ats.services import outbox as outbox_service
 from tests.integration.transactions import transaction
@@ -72,7 +72,10 @@ def test_deleting_an_account_tells_each_company_whose_connection_it_stops(run):
         await integrations.mark_broken(
             await transaction(ats.connection, already, AtsProvider.BREEZY)
         )
-        await accounts.remove_user(maker, f"{maker}@x.com")
+        # Accounts' event, delivered twice: each company is told once.
+        for _ in range(2):
+            await handle("user.deleted", {"user_id": maker, "email": f"{maker}@x.com"})
+
         found = (len(await broken_notices(working)), len(await broken_notices(already)))
         kept = await transaction(ats.connection, already, AtsProvider.BREEZY)
         await transaction(ats.delete_company, working)

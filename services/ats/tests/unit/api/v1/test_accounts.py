@@ -1,6 +1,7 @@
 import uuid
 from datetime import UTC, datetime
 
+from event_pushes import push
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.http.http import bearer
 
@@ -29,8 +30,8 @@ def test_deleting_an_account_deletes_its_candidates_and_forgets_its_connections(
 
     monkeypatch.setattr(ats_candidates, "delete_email", delete_email)
     monkeypatch.setattr(ats, "forget_maker", forget_maker)
-    body = {"email": "ann@example.com"}
-    response = client.request("DELETE", "/internal/users/u-1", json=body, headers=headers())
+    gone = push("user.deleted", {"user_id": "u-1", "email": "ann@example.com"})
+    response = client.post("/internal/events", json=gone)
 
     assert response.status_code == 204
     assert done == [("candidates", "ann@example.com"), ("connections", "u-1")]

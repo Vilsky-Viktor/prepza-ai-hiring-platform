@@ -16,7 +16,6 @@ from accounts.api.v1 import (
     internal_accounts,
     internal_emails,
     internal_events,
-    internal_users,
     me,
     schedules,
     superadmin_emails,
@@ -55,7 +54,6 @@ app.include_router(superadmin_emails.router)
 app.include_router(superadmin_stats.router)
 app.include_router(internal_accounts.router)
 app.include_router(internal_emails.router)
-app.include_router(internal_users.router)
 app.include_router(internal_events.router)
 app.include_router(schedules.router)
 

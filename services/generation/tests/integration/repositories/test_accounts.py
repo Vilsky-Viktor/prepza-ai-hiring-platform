@@ -1,21 +1,29 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
+import httpx
+from event_pushes import push
 from prepza_common.config.constants import DELETED_USER
 
 from generation.constants.statuses import Status
+from generation.main import app
 from generation.repositories import accounts, generations
 from generation.services import schedules
 from tests.integration.transactions import transaction
 
 
-def test_deleting_a_user_keeps_company_tests_without_their_id(run):
+def test_a_deleted_account_keeps_company_tests_without_their_id(run):
     async def scenario():
         mine = await transaction(generations.create, "gone", "company job", uuid.uuid4())
         other = await transaction(generations.create, "stays", "someone else", uuid.uuid4())
         exported = await transaction(accounts.export, "gone")
+        gone = push("user.deleted", {"user_id": "gone", "email": ""}, f"e-{uuid.uuid4()}")
+        transport = httpx.ASGITransport(app=app)
 
-        await transaction(accounts.delete_user, "gone")
+        # Accounts' event, delivered twice: the second changes nothing more.
+        async with httpx.AsyncClient(transport=transport, base_url="http://generation") as api:
+            for _ in range(2):
+                assert (await api.post("/internal/events", json=gone)).status_code == 204
 
         return (
             exported,

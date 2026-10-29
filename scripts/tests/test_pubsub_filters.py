@@ -16,9 +16,9 @@ def filters() -> dict[str, str]:
 
     for name, types in re.findall(r"^\s+(\w+)\s*=\s*\[(.*?)\]", block.group(1), re.MULTILINE):
         clauses = [
-            f'attributes.family = "{kind[:-2]}"'
+            f'attributes.family="{kind[:-2]}"'
             if kind.endswith(".*")
-            else f'attributes.type = "{kind}"'
+            else f'attributes.type="{kind}"'
             for kind in re.findall(r'"([^"]+)"', types)
         ]
         found[name] = " OR ".join(clauses)

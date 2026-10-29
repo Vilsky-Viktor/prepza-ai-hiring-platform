@@ -480,26 +480,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/users/{user_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    post?: never
-    /**
-     * Delete User
-     * @description Part of deleting an account (accounts coordinates it); safe to repeat.
-     */
-    delete: operations["delete_user_internal_users__user_id__delete"]
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/users/{user_id}/export": {
     parameters: {
       query?: never
@@ -511,6 +491,28 @@ export interface paths {
     put?: never
     /** Export User */
     post: operations["export_user_internal_users__user_id__export_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/events": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Receive Event
+     * @description Pub/Sub pushes every event here. A failure answers with an error, so Pub/Sub retries it,
+     *     and moves it to the dead-letter topic after the subscription's maximum attempts. An event no
+     *     retry can handle is logged and acknowledged (handle_or_drop).
+     */
+    post: operations["receive_event_internal_events_post"]
     delete?: never
     options?: never
     head?: never
@@ -781,6 +783,34 @@ export interface components {
      * @enum {string}
      */
     PatternStatus: "proposed" | "approved" | "dismissed" | "in_use"
+    /**
+     * PushBody
+     * @description What Pub/Sub sends to a push endpoint.
+     */
+    PushBody: {
+      message: components["schemas"]["PushMessage"]
+      /** Subscription */
+      subscription: string
+    }
+    /** PushMessage */
+    PushMessage: {
+      /**
+       * Data
+       * @default
+       */
+      data: string
+      /**
+       * Attributes
+       * @default {}
+       */
+      attributes: {
+        [key: string]: string
+      }
+      /** Messageid */
+      messageId: string
+      /** Publishtime */
+      publishTime?: string | null
+    }
     /**
      * QualityFlag
      * @description Why the library sent a question to the verifier; mirrors the library's flags.
@@ -1682,35 +1712,6 @@ export interface operations {
       }
     }
   }
-  delete_user_internal_users__user_id__delete: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
-      }
-      cookie?: never
-    }
-    requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
   export_user_internal_users__user_id__export_post: {
     parameters: {
       query?: never
@@ -1732,6 +1733,37 @@ export interface operations {
             [key: string]: unknown
           }
         }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  receive_event_internal_events_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["PushBody"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
       }
       /** @description Validation Error */
       422: {

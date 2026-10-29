@@ -1,3 +1,4 @@
+from event_pushes import push
 from prepza_common.auth.service_auth import issue_token
 
 from api.repositories import keys, webhook_retries, webhooks
@@ -12,7 +13,7 @@ async def nothing(session, user_id):
     return []
 
 
-def test_accounts_deletes_and_exports_a_users_keys_web_hooks_and_waiting_results(
+def test_a_deleted_account_takes_its_keys_web_hooks_and_waiting_results_and_exports_them(
     client, monkeypatch
 ):
     removed = []
@@ -30,8 +31,9 @@ def test_accounts_deletes_and_exports_a_users_keys_web_hooks_and_waiting_results
 
     monkeypatch.setattr(webhook_retries, "remove_email", remove_email)
 
-    deleted = client.request(
-        "DELETE", "/internal/users/ann", json={"email": "ann@example.com"}, headers=HEADERS
+    deleted = client.post(
+        "/internal/events",
+        json=push("user.deleted", {"user_id": "ann", "email": "ann@example.com"}),
     )
     exported = client.post(
         "/internal/users/ann/export", json={"email": "ann@example.com"}, headers=HEADERS

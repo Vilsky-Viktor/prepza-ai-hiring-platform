@@ -74,7 +74,10 @@ def test_an_erased_candidate_leaves_only_that_companys_bell_and_a_deleted_accoun
 
         after_erasure = (await latest(company_id), await latest(other_id))
         # The candidate deletes their prepza account: every company forgets them.
-        await transaction(notifications.remove_candidate, "Gone@x.com")
+        gone = push("user.deleted", {"user_id": f"gone-{uuid.uuid4()}", "email": "Gone@x.com"})
+
+        async with api() as client:
+            await client.post("/internal/events", json=gone)
 
         return code, after_erasure, await latest(other_id)
 
@@ -104,7 +107,13 @@ def test_a_deleted_account_takes_the_owners_notice_that_it_joined(run):
     async def scenario():
         await notices.store(str(uuid.uuid4()), joined("gone@x.com"))
         await notices.store(str(uuid.uuid4()), joined("stays@x.com"))
-        await transaction(notifications.remove_member, "Gone@x.com")
+        gone = push("user.deleted", {"user_id": f"gone-{uuid.uuid4()}", "email": "Gone@x.com"})
+
+        # Accounts' event, delivered twice: the second deletes nothing more.
+        async with api() as client:
+            for _ in range(2):
+                assert (await client.post("/internal/events", json=gone)).status_code == 204
+
         left = await transaction(notifications.latest, [(Recipient.USER, owner)], limit=None)
 
         return [item.data["email"] for item in left]

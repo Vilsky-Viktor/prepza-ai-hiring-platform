@@ -31,6 +31,7 @@
 * * * * * curl -s -X POST http://generation-worker:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://ats:8000/internal/schedules/outbox
 * * * * * curl -s -X POST http://billing:8000/internal/schedules/outbox
+* * * * * curl -s -X POST http://accounts:8000/internal/schedules/outbox
 # Paddle's payments and refunds of the last week that its web hooks never delivered (billing),
 # daily.
 15 5 * * * curl -s -X POST http://billing:8000/internal/schedules/reconcile

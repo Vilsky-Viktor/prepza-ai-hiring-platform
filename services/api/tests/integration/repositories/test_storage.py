@@ -168,8 +168,12 @@ def test_a_deleted_account_loses_the_keys_and_web_hooks_it_made(run):
             webhooks.add, company, "https://example.com/x", "sealed", "gone", MAX_WEBHOOKS
         )
         exported = [key.name for key in await transaction(keys.of_user, "gone")]
-        await transaction(keys.remove_user, "gone")
-        await transaction(webhooks.remove_user, "gone")
+        deleted = push("user.deleted", {"user_id": "gone", "email": ""}, f"e-{uuid.uuid4()}")
+
+        # Accounts' event, delivered twice: the second deletes nothing more.
+        async with api() as client:
+            for _ in range(2):
+                assert (await client.post("/internal/events", json=deleted)).status_code == 204
 
         return (
             exported,

@@ -1,6 +1,8 @@
-"""Accounts deletes and exports a user's data here: the contact messages sent from their email,
-in the body so request logs don't record it. Only accounts, with site's key, may ask."""
+"""Accounts' `user.deleted` deletes, and accounts' export call reads, a user's data here: the
+contact messages sent from their email (in the body, so request logs don't record it). Only
+accounts, with site's key, may ask for an export."""
 
+from event_pushes import push
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.http.http import bearer
 
@@ -9,7 +11,7 @@ from site_content.services import accounts
 FROM_ACCOUNTS = bearer(issue_token("accounts", "site", "test-secret-that-is-at-least-32-bytes"))
 
 
-def test_deleting_a_user_deletes_their_contact_messages_by_email(client, monkeypatch):
+def test_a_deleted_account_takes_its_contact_messages_by_email(client, monkeypatch):
     deleted = []
 
     async def remove(email):
@@ -17,11 +19,12 @@ def test_deleting_a_user_deletes_their_contact_messages_by_email(client, monkeyp
 
     monkeypatch.setattr(accounts, "remove_user", remove)
 
-    response = client.request(
-        "DELETE", "/internal/users/u1", json={"email": "Ann@Example.com"}, headers=FROM_ACCOUNTS
-    )
+    gone = push("user.deleted", {"user_id": "u1", "email": "Ann@Example.com"})
+    response = client.post("/internal/events", json=gone)
+    ignored = client.post("/internal/events", json=push("company.deleted", {}))
+    malformed = client.post("/internal/events", json=push("user.deleted", {}))
 
-    assert response.status_code == 204
+    assert (response.status_code, ignored.status_code, malformed.status_code) == (204, 204, 204)
     assert deleted == ["Ann@Example.com"]
 
 

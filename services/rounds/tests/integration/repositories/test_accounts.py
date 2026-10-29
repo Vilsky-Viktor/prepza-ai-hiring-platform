@@ -3,6 +3,7 @@ import uuid
 from sqlalchemy import update
 
 from rounds.core.db import Session as Db
+from rounds.handlers.dispatch import handle
 from rounds.models.answers import Answer
 from rounds.models.sessions import Session
 from rounds.repositories import accounts, sessions
@@ -11,7 +12,7 @@ from tests.integration.factories import created, option_index, topic
 from tests.integration.transactions import transaction
 
 
-def test_deleting_a_user_removes_their_interview_sessions(run):
+def test_a_deleted_account_takes_their_interview_sessions(run):
     async def scenario():
         [session] = await created("gone", uuid.uuid4(), [topic()], 60, company_id=uuid.uuid4())
         question = session.questions[0]
@@ -34,9 +35,9 @@ def test_deleting_a_user_removes_their_interview_sessions(run):
 
         exported = await accounts_service.export_user("gone")
 
-        await accounts.delete_user(Db, "gone")
-        # Safe to repeat: a retried deletion finds nothing left.
-        await accounts.delete_user(Db, "gone")
+        # Accounts' event, delivered twice: the second finds nothing left.
+        for _ in range(2):
+            await handle("user.deleted", {"user_id": "gone", "email": "gone@example.com"})
 
         return (
             exported,

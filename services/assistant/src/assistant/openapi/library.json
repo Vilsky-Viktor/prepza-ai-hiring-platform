@@ -1878,57 +1878,6 @@
     }
    }
   },
-  "/internal/users/{user_id}": {
-   "delete": {
-    "tags": [
-     "internal"
-    ],
-    "summary": "Delete User",
-    "description": "Accounts, deleting an account: the votes and reports the user gave on questions as a\ncandidate go; safe to repeat.",
-    "operationId": "delete_user_internal_users__user_id__delete",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "user_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "title": "User Id"
-      }
-     }
-    ],
-    "requestBody": {
-     "required": true,
-     "content": {
-      "application/json": {
-       "schema": {
-        "$ref": "#/components/schemas/UserEmailIn"
-       }
-      }
-     }
-    },
-    "responses": {
-     "204": {
-      "description": "Successful Response"
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
   "/internal/users/{user_id}/export": {
    "post": {
     "tags": [

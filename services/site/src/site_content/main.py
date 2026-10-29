@@ -13,6 +13,7 @@ from prepza_common.observability.logging import RequestLogMiddleware, configure_
 from prepza_common.observability.sentry import init_sentry
 
 from site_content.api.v1 import (
+    events,
     help,
     internal_accounts,
     internal_help,
@@ -52,6 +53,7 @@ compress_answers(app)
 app.include_router(help.router)
 app.include_router(internal_help.router)
 app.include_router(internal_accounts.router)
+app.include_router(events.router)
 app.include_router(schedules.router)
 app.include_router(news.router)
 app.include_router(superadmin_news.router)

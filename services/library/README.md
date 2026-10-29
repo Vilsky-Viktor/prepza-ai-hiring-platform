@@ -5,8 +5,8 @@ the public templates), question reuse across tests, practice content, the questi
 statistics (with each question's difficulty, for rounds' answer patterns) and quality checks (ratings, reports, flags, revisions and the patterns behind them).
 It keeps all of it in its own database. Users' accounts (email settings, accepted
 terms, deleting and downloading an account, the erasures replayed after a restore) are the
-accounts service's, which asks library for a user's votes and reports
-(`/internal/users/{id}`); news posts are the site service's. What it does and its settings:
+accounts service's: library deletes a user's votes and reports on its `user.deleted` event and
+exports them when it asks (`/internal/users/{id}/export`); news posts are the site service's. What it does and its settings:
 [templates and practice](../../docs/features/templates-and-practice.md) and
 [the admin zone](../../docs/features/admin-zone.md).
 
@@ -19,8 +19,8 @@ src/library/
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
 ├── handlers/               # Pub/Sub events (answers, scored topics, deleted guests, fixed
-│                           # bank questions, deleted interviews and companies); dispatch.py
-│                           # picks one
+│                           # bank questions, deleted interviews, companies and accounts);
+│                           # dispatch.py picks one
 ├── services/               # Sets and templates, quality reviews and fixes, feedback, a
 │                           # user's votes and reports; each opens its transaction
 ├── repositories/           # Database queries: sets, templates, pools, statistics, quality,

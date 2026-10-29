@@ -95,15 +95,6 @@ async def delete_invite_sessions(invite_ids: list[UUID]) -> None:
     response.raise_for_status()
 
 
-async def delete_user(user_id: str) -> None:
-    response = await http.get_client().delete(
-        f"{settings.rounds_url}/internal/users/{user_id}",
-        headers=bearer(service_token("rounds")),
-    )
-
-    response.raise_for_status()
-
-
 async def running_interviews() -> int:
     response = await http.get_client().get(
         f"{settings.rounds_url}/internal/maintenance/running",

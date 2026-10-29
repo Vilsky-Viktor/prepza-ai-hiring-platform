@@ -9,8 +9,8 @@ class Settings(ServiceSettings):
     redis_url: str
     # Signs calls from other services (their users' addresses, settings and accounts).
     service_secret: str
-    # Every service holding part of a user's data, for deleting and downloading an account;
-    # billing also sets a new account's currency.
+    # Every service holding part of a user's data, for downloading an account (deleting one is
+    # companies' call, then the user.deleted event); billing also sets a new account's currency.
     companies_url: str
     rounds_url: str
     generation_url: str

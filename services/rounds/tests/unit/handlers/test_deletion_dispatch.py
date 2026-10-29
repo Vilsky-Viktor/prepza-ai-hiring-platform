@@ -8,6 +8,7 @@ from event_pushes import failing_handler, push
 from fastapi.testclient import TestClient
 
 from rounds.api.v1 import events
+from rounds.handlers import user_deleted
 from rounds.main import app
 from rounds.services import session_removal
 
@@ -22,8 +23,12 @@ def removed(monkeypatch):
     async def remove_company(company_id):
         calls.append(("company", company_id))
 
+    async def remove_user(user_id):
+        calls.append(("user", user_id))
+
     monkeypatch.setattr(session_removal, "remove_interview", remove_interview)
     monkeypatch.setattr(session_removal, "remove_company", remove_company)
+    monkeypatch.setattr(user_deleted.accounts, "remove_user", remove_user)
 
     return calls
 
@@ -35,11 +40,12 @@ def test_deletions_reach_their_handlers_and_other_events_are_ignored(client, rem
     for event_type, data in [
         ("interview.deleted", {**interview, "set_id": str(set_id), "extra": 1}),
         ("company.deleted", {"company_id": str(company_id)}),
+        ("user.deleted", {"user_id": "ann", "email": "ann@example.com"}),
         ("answer.recorded", {"question_id": "q"}),
     ]:
         assert client.post("/internal/events", json=push(event_type, data)).status_code == 204
 
-    assert removed == [("interview", set_id), ("company", company_id)]
+    assert removed == [("interview", set_id), ("company", company_id), ("user", "ann")]
 
 
 @pytest.mark.parametrize("data", [{}, {"company_id": "not-a-uuid"}, {"company_id": None}])

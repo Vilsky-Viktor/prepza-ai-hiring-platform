@@ -16,7 +16,8 @@ src/billing/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # Calls from other services; the visitor's country
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
-├── handlers/               # Pub/Sub events (AI calls, limit hits); dispatch.py picks one
+├── handlers/               # Pub/Sub events (AI calls, limit hits, deleted accounts); dispatch.py
+│                           # picks one
 ├── services/               # Holds, top-ups, Paddle's web hooks, refunds, automatic top-ups,
 │                           # reconciliation, referrals, currencies, account deletions, AI
 │                           # costs, limits; each opens its transaction

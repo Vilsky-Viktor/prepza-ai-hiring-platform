@@ -1,5 +1,7 @@
 from datetime import UTC, datetime
 
+from prepza_common.events.deletions import USER_DELETED
+
 from api.constants.events import (
     CANDIDATE_EVENTS,
     CANDIDATE_INTERVIEW_DELETED,
@@ -13,13 +15,14 @@ from api.handlers import (
     candidate_removed,
     company_deleted,
     interview_ready,
+    user_deleted,
 )
 
 
 async def handle(
     event_type: str, data: dict, event_id: str, occurred_at: datetime | None = None
 ) -> None:
-    """Companies' events, each to its handler, with when they happened (`occurred_at`, now when
+    """Companies' and accounts' events, each to its handler, with when they happened (`occurred_at`, now when
     unknown). Each is safe to run again on a redelivery: a web hook gets an event once (its
     deliveries), and deleting twice deletes nothing more. Other events are ignored."""
     when = occurred_at or datetime.now(UTC)
@@ -34,3 +37,5 @@ async def handle(
         await interview_ready.handle(data, event_id, when)
     elif event_type == COMPANY_DELETED:
         await company_deleted.handle(data)
+    elif event_type == USER_DELETED:
+        await user_deleted.handle(data)

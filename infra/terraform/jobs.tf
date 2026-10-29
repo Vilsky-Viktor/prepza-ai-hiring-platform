@@ -70,6 +70,7 @@ locals {
     billing-outbox       = { service = "billing", path = "/internal/schedules/outbox", cron = "* * * * *" }
     notifications-outbox = { service = "notifications", path = "/internal/schedules/outbox", cron = "* * * * *" }
     api-outbox           = { service = "api", path = "/internal/schedules/outbox", cron = "* * * * *" }
+    accounts-outbox      = { service = "accounts", path = "/internal/schedules/outbox", cron = "* * * * *" }
     # The edited limits written to Redis again, so a Redis wipe heals itself; AI usage and limit
     # hits past 13 months, and limit changes past 24.
     billing-limits    = { service = "billing", path = "/internal/schedules/limits", cron = "*/5 * * * *" }

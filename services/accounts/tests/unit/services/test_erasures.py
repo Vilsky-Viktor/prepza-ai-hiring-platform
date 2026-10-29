@@ -1,5 +1,5 @@
-"""Accounts deleted in the backups' life are deleted again everywhere, so a restore brings
-nobody back (services/erasures.py)."""
+"""Accounts deleted in the backups' life are deleted again everywhere (companies by a call, the
+others by `user.deleted`), so a restore brings nobody back (services/erasures.py)."""
 
 import asyncio
 from datetime import UTC, datetime
@@ -8,9 +8,13 @@ from types import SimpleNamespace
 import httpx
 import pytest
 
+from prepza_common.events.deletions import USER_DELETED
+
 from accounts.integrations import services
-from accounts.repositories import erasures, user_data
+from accounts.repositories import erasures, outbox, user_data
 from accounts.services import erasures as replays
+from accounts.services import outbox as outbox_service
+from tests.unit.sessions import FakeSessions
 
 NOW = datetime.now(UTC)
 
@@ -45,29 +49,47 @@ def done(monkeypatch):
     async def forget(session, before):
         calls.append("forget")
 
-    async def delete_user(service, user_id, email):
-        calls.append((service, user_id, email))
+    async def delete_in_companies(user_id, email):
+        calls.append(("companies", user_id, email))
 
     async def delete_own(session, user_id):
         calls.append(("own", user_id))
 
+    async def record(session, user_id, email):
+        calls.append(("erasure", user_id))
+
+    async def flushed():
+        calls.append("published")
+
     monkeypatch.setattr(erasures, "page", page)
     monkeypatch.setattr(erasures, "forget", forget)
-    monkeypatch.setattr(services, "delete_user", delete_user)
+    monkeypatch.setattr(erasures, "record", record)
+    monkeypatch.setattr(services, "delete_in_companies", delete_in_companies)
     monkeypatch.setattr(user_data, "delete_user", delete_own)
+    monkeypatch.setattr(
+        outbox, "add", lambda session, kind, data: calls.append(("event", kind, data))
+    )
+    monkeypatch.setattr(outbox_service, "flush_quietly", flushed)
+    monkeypatch.setattr(replays, "Session", FakeSessions())
     calls.kept = kept
 
     return calls
 
 
-def test_every_recent_erasure_is_run_again_in_every_service_after_older_ones_go(done):
+def test_every_recent_erasure_is_run_again_in_companies_and_by_event_after_older_ones_go(done):
     assert asyncio.run(replays.replay()) == 1
 
-    assert done[:2] == ["forget", ("page", True, None)]
-    assert sorted(done[2:-1]) == sorted(
-        (service, "u0", "u0@example.com") for service in services.services()
-    )
-    assert done[-1] == ("own", "u0")
+    assert done == [
+        "forget",
+        ("page", True, None),
+        ("companies", "u0", "u0@example.com"),
+        ("own", "u0"),
+        # Kept from the first time (once per account).
+        ("erasure", "u0"),
+        # Every other holder deletes again what a restore brought back.
+        ("event", USER_DELETED, {"user_id": "u0", "email": "u0@example.com"}),
+        "published",
+    ]
 
 
 def test_erasures_are_read_a_batch_at_a_time_by_key(done, monkeypatch):
@@ -90,28 +112,24 @@ def test_a_run_past_its_time_leaves_the_rest_to_the_next(done, monkeypatch):
     assert ("own", "u2") not in done
 
 
-def test_a_service_refusing_a_shared_company_doesnt_stop_the_others(done, monkeypatch):
-    async def refuse(service, user_id, email):
-        if service == "companies":
-            response = httpx.Response(409, request=httpx.Request("DELETE", "http://companies"))
-            raise httpx.HTTPStatusError("refused", request=response.request, response=response)
+def test_companies_refusing_a_shared_company_doesnt_stop_the_others(done, monkeypatch):
+    async def refuse(user_id, email):
+        response = httpx.Response(409, request=httpx.Request("DELETE", "http://companies"))
+        raise httpx.HTTPStatusError("refused", request=response.request, response=response)
 
-        done.append(service)
-
-    monkeypatch.setattr(services, "delete_user", refuse)
+    monkeypatch.setattr(services, "delete_in_companies", refuse)
 
     assert asyncio.run(replays.replay()) == 1
-    assert "rounds" in done and ("own", "u0") in done
+    assert ("own", "u0") in done and "published" in done
 
 
-def test_a_service_failing_fails_the_run_to_be_retried(done, monkeypatch):
-    async def down(service, user_id, email):
-        if service == "rounds":
-            raise httpx.ConnectError("rounds is down")
+def test_companies_failing_fails_the_run_to_be_retried(done, monkeypatch):
+    async def down(user_id, email):
+        raise httpx.ConnectError("companies is down")
 
-    monkeypatch.setattr(services, "delete_user", down)
+    monkeypatch.setattr(services, "delete_in_companies", down)
 
     with pytest.raises(httpx.ConnectError):
         asyncio.run(replays.replay())
 
-    assert ("own", "u0") not in done
+    assert ("own", "u0") not in done and "published" not in done

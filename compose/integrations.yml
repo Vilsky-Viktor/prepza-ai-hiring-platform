@@ -105,8 +105,8 @@ x-accounts-env: &accounts-env
   DATABASE_URL: postgresql://accounts:${POSTGRES_PASSWORD}@postgres:5432/accounts
   REDIS_URL: redis://redis:6379
   SERVICE_SECRET: ${SERVICE_SECRET}
-  # Every service holding part of a user's data, for deleting and downloading an account;
-  # billing also sets a new account's currency.
+  # Every service holding part of a user's data, for downloading an account (deleting one is
+  # companies' call, then the user.deleted event); billing also sets a new account's currency.
   COMPANIES_URL: http://companies:8000
   ROUNDS_URL: http://rounds:8000
   GENERATION_URL: http://generation:8000

@@ -5,7 +5,7 @@ users' email settings with their consent log, the terms each accepted at sign-up
 downloading an account across every service, the erasures replayed after a restore, the admin
 zone's account lookups, email settings and sign-up stats, and what other services ask about an
 account (its address, language and email settings, account ids, when it was made). It keeps the
-email settings, the consent log, the accepted terms and the recent erasures in its own database;
+email settings, the consent log, the accepted terms, the recent erasures and its outbox in its own database;
 the sign-ins are Firebase's. What it does: [notifications](../../docs/features/notifications.md#email-preferences-and-consent)
 (email settings), [the public site](../../docs/features/site.md) (accepted terms) and
 [support](../../docs/features/admin-support.md).
@@ -15,14 +15,17 @@ Its public routes are under `/api/accounts/` (`/api/accounts/me`, the admin zone
 
 ## Deleting and downloading an account
 
-`DELETE /me` asks companies first (it refuses, 409, while the user owns a company others joined,
-before anything is deleted), then every other service at once (rounds, generation, billing,
-notifications, ats, api, assistant, library, site: `DELETE /internal/users/{id}`, the verified email in
-the body), then deletes its own rows with a note in `erasures` in one save, and the sign-in last,
-so a failed step leaves the user able to retry; every step is safe to repeat. `GET /me/export`
-asks every service (`POST /internal/users/{id}/export`) and adds its own part. The daily
-`erasures` job (`/internal/schedules/erasures`; by hand after a restore) runs the last 14 days'
-deletions again everywhere.
+`DELETE /me` asks companies first, by a call (`DELETE /internal/users/{id}`, the verified email in
+the body): it refuses, 409, while the user owns a company others joined, before anything is
+deleted. Then, in one save, it deletes its own rows with a note in `erasures` and saves the
+`user.deleted` event (the user's id and verified email) in its outbox, which every other holder
+(rounds, generation, billing, notifications, ats, api, assistant, library, site) consumes to delete
+its part, safe to repeat; then the sign-in last, so a failed step leaves the user able to retry.
+The event is published at once, or by the outbox's flush (`/internal/schedules/outbox`, every
+minute), which also deletes events published a week ago. `GET /me/export` asks every service
+(`POST /internal/users/{id}/export`) and adds its own part. The daily `erasures` job
+(`/internal/schedules/erasures`; by hand after a restore) runs the last 14 days' deletions again:
+companies' call and the event.
 
 ## Layout
 
@@ -34,14 +37,14 @@ src/accounts/
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
 ├── handlers/               # Pub/Sub events (deleted guests); dispatch.py picks one
 ├── services/               # Sign-ins and language, email settings, recipients, stats,
-│                           # deletion and export, erasures, deleted guests; each opens its
-│                           # transaction
+│                           # deletion and export, erasures, deleted guests, the outbox; each
+│                           # opens its transaction
 ├── repositories/           # Database queries: email settings and consents, terms, erasures,
-│                           # an account's data; take the session, never commit
+│                           # the outbox, an account's data; take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (consent changes); fixed values
-├── integrations/           # Every service's account routes, billing (a new account's
-│                           # currency), Redis
+├── integrations/           # Companies' deletion and every service's export, billing (a
+│                           # new account's currency), Redis
 └── jobs/copy_from_library.py   # one-off: library's rows of these tables copied here
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic

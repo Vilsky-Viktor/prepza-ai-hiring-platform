@@ -25,7 +25,8 @@ src/assistant/
 │                           # the help chat and its votes
 ├── api/dependencies.py     # The signed-in user with their token; calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
-├── handlers/               # Pub/Sub events (a company, a candidate or an interview deleted);
+├── handlers/               # Pub/Sub events (a company, a candidate, an interview or an account
+│                           # deleted);
 │                           # dispatch.py picks one
 ├── services/               # A turn and its tools, actions, titles, limits, MCP, OAuth,
 │                           # updates, transcription, the help chat and its votes

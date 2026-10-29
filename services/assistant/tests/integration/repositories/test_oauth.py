@@ -6,6 +6,7 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 import httpx
+from event_pushes import push
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.auth.tokens import hashed
 from prepza_common.http.http import bearer
@@ -20,7 +21,8 @@ from tests.integration.transactions import transaction
 
 
 def internal() -> httpx.AsyncClient:
-    """The assistant's internal routes, called as library (deleting or exporting an account)."""
+    """The assistant's internal routes, called with a service token (exporting an account) or
+    as Pub/Sub's push (accounts' `user.deleted`)."""
     token = issue_token("library", "assistant", os.environ["SERVICE_SECRET"])
 
     return httpx.AsyncClient(
@@ -109,8 +111,12 @@ def test_a_user_disconnects_only_their_own_and_deleting_the_account_removes_the_
         removed = await transaction(oauth.remove, first.id, ann)
         left = len(await transaction(oauth.of_user, ann))
 
+        deleted = push("user.deleted", {"user_id": ann, "email": "a@example.com"}, ann)
+
+        # Accounts' event, delivered twice: the second deletes nothing more.
         async with internal() as api:
-            await api.request("DELETE", f"/internal/users/{ann}", json={"email": "a@example.com"})
+            for _ in range(2):
+                assert (await api.post("/internal/events", json=deleted)).status_code == 204
 
         return (
             not_hers,

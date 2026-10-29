@@ -99,8 +99,8 @@ locals {
     # invited, questions flagged or fixed); rounds, a user's practice rounds; site, what the help
     # chat answers from and the FAQ, guides and news its tools read.
     assistant = ["companies", "billing", "api", "notifications", "ats", "library", "rounds", "accounts", "site"]
-    # Every service holding part of a user's data, for deleting and downloading an account;
-    # billing also sets a new account's currency.
+    # Every service holding part of a user's data, for downloading an account (deleting one is
+    # companies' call, then the user.deleted event); billing also sets a new account's currency.
     accounts = ["companies", "rounds", "generation", "billing", "notifications", "ats", "api", "assistant", "library", "site"]
     # generation: translating news posts.
     site = ["generation"]

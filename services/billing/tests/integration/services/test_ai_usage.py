@@ -220,7 +220,10 @@ def test_a_deleted_user_or_company_is_forgotten_and_its_costs_stay(run):
         await transaction(
             usage.store_hit, uuid.uuid4().hex, NOW, {**hit, "company_id": acme, "user_id": ann}
         )
-        await internal.delete_user(ann, None)
+        # Accounts' event, delivered twice: the second forgets nothing more.
+        for _ in range(2):
+            await dispatch.handle("user.deleted", {"user_id": ann, "email": ""}, "e-1", NOW)
+
         await internal.delete_company(acme, None)
 
         async with Session() as session:

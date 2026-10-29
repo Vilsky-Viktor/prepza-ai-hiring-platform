@@ -1,8 +1,9 @@
 """Library's events: answers and scored topics for the questions' statistics, deleted guests,
-fixed bank questions, and companies' deleted interviews and companies (rule 11: each is safe to
+fixed bank questions, companies' deleted interviews and companies, and accounts' deleted
+accounts (rule 11: each is safe to
 repeat and in any order; an error answers 5xx and Pub/Sub delivers it again)."""
 
-from prepza_common.events.deletions import COMPANY_DELETED, INTERVIEW_DELETED
+from prepza_common.events.deletions import COMPANY_DELETED, INTERVIEW_DELETED, USER_DELETED
 
 from library.constants.events import ANSWER_RECORDED, GUESTS_DELETED, QUESTION_FIXED, SESSION_SCORED
 from library.handlers import (
@@ -12,6 +13,7 @@ from library.handlers import (
     interview_deleted,
     question_fixed,
     session_scored,
+    user_deleted,
 )
 
 HANDLERS = {
@@ -21,6 +23,7 @@ HANDLERS = {
     QUESTION_FIXED: question_fixed.handle,
     INTERVIEW_DELETED: interview_deleted.handle,
     COMPANY_DELETED: company_deleted.handle,
+    USER_DELETED: user_deleted.handle,
 }
 
 

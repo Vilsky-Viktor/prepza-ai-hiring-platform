@@ -23,6 +23,8 @@ src/generation/
 │                           # schedules.py are the worker's
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
+├── handlers/               # Pub/Sub events (accounts' `user.deleted`), pushed to the API;
+│                           # dispatch.py picks one
 ├── services/               # The pipeline, its jobs, re-generation, the verifier, additions,
 │                           # budgets, batches, translations, patterns, schedules
 ├── services/nodes/         # The graph's nodes, one per module

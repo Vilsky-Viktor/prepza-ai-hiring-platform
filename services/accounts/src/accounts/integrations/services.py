@@ -7,8 +7,8 @@ from accounts.core.security import service_token
 
 
 def services() -> dict[str, str]:
-    """The services that hold their own part of a user's data, by name; companies first, as it
-    may refuse a deletion (services/deletion.py)."""
+    """The services that hold their own part of a user's data, by name, for "Download my data".
+    Deleting it is companies' call (delete_in_companies), then the others' `user.deleted` event."""
     return {
         "companies": settings.companies_url,
         "rounds": settings.rounds_url,
@@ -23,14 +23,15 @@ def services() -> dict[str, str]:
     }
 
 
-async def delete_user(service: str, user_id: str, email: str) -> None:
-    """Deletes the user's data in one service; raises if it can't, so deletion can be retried."""
+async def delete_in_companies(user_id: str, email: str) -> None:
+    """Deletes the user's data in companies, which refuses (409) while they own a company others
+    have joined; raises if it can't, so the deletion can be retried."""
     # The email goes in the body, never the query string, which request logs record.
     response = await http.get_client().request(
         "DELETE",
-        f"{services()[service]}/internal/users/{user_id}",
+        f"{settings.companies_url}/internal/users/{user_id}",
         json={"email": email},
-        headers=bearer(service_token(service)),
+        headers=bearer(service_token("companies")),
         timeout=ACCOUNT_CALL_TIMEOUT_SECONDS,
     )
 

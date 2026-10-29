@@ -1209,47 +1209,6 @@
     }
    }
   },
-  "/internal/users/{user_id}": {
-   "delete": {
-    "tags": [
-     "internal"
-    ],
-    "summary": "Delete User",
-    "description": "Part of deleting an account (accounts coordinates it); safe to repeat.",
-    "operationId": "delete_user_internal_users__user_id__delete",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "user_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "title": "User Id"
-      }
-     }
-    ],
-    "responses": {
-     "204": {
-      "description": "Successful Response"
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
   "/internal/users/{user_id}/export": {
    "post": {
     "tags": [

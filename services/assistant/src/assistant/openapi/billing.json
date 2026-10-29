@@ -1017,47 +1017,6 @@
     }
    }
   },
-  "/internal/users/{user_id}": {
-   "delete": {
-    "tags": [
-     "internal"
-    ],
-    "summary": "Delete User",
-    "description": "The user's purchases for their companies stay for bookkeeping, without their id, and so\ndo their AI costs and limit hits; any automatic top-up paid with their card goes off.",
-    "operationId": "delete_user_internal_users__user_id__delete",
-    "security": [
-     {
-      "HTTPBearer": []
-     }
-    ],
-    "parameters": [
-     {
-      "name": "user_id",
-      "in": "path",
-      "required": true,
-      "schema": {
-       "type": "string",
-       "title": "User Id"
-      }
-     }
-    ],
-    "responses": {
-     "204": {
-      "description": "Successful Response"
-     },
-     "422": {
-      "description": "Validation Error",
-      "content": {
-       "application/json": {
-        "schema": {
-         "$ref": "#/components/schemas/HTTPValidationError"
-        }
-       }
-      }
-     }
-    }
-   }
-  },
   "/internal/users/{user_id}/export": {
    "post": {
     "tags": [

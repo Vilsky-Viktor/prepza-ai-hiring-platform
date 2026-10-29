@@ -27,29 +27,33 @@ resource "google_pubsub_subscription" "dead_letter" {
 # subscription, dropping the messages it still holds: apply when its backlog is empty. Funnel
 # events go only to BigQuery (analytics.tf).
 # Pub/Sub caps a filter at 256 bytes (scripts/tests/test_pubsub_filters.py checks each): a type
-# adds 24 bytes plus its name. An entry ending in ".*" is a whole family, every type up to its
-# first dot, matched on the event's `family` attribute (prepza_common.events.pubsub) in 25 bytes plus the
-# family's name: notifications and api take all "candidate." events that way, as listing them one
-# by one outgrew the cap, and ignore the ones they don't handle; notifications takes the
-# "notification." family too (notification.requested, and site's notification.news_withdrawn). A family of one type today
-# (company, contact, member, report, credits) is taken whole to save bytes; a consumer ignores any
-# type of it it doesn't handle. Companies takes `audit.recorded`, members' actions in billing,
-# ats, notifications and api, for the company's action log. Notifications and ats take their own
-# families too (email, ats): a web hook received is recorded as an event, and its work runs from
-# it. A new consumer's subscription is created on apply and gets only the events published after
-# that.
+# adds 22 bytes plus its name (no spaces around "=", to save bytes). An entry ending in ".*" is a
+# whole family, every type up to its first dot, matched on the event's `family` attribute
+# (prepza_common.events.pubsub) in 23 bytes plus the family's name: notifications and api take all
+# "candidate." events that way, as listing them one by one outgrew the cap, and ignore the ones
+# they don't handle; ats takes the "interview." family that way; notifications takes the
+# "notification." family too (notification.requested, and site's notification.news_withdrawn). A
+# family of one type today (company, contact, member, report, credits, user) is taken whole to save
+# bytes; a consumer ignores any type of it it doesn't handle. Every holder of a user's data but
+# companies (which accounts calls first, as it may refuse) takes `user.deleted`, accounts' deletion
+# of an account. Companies takes `audit.recorded`, members' actions in billing, ats, notifications
+# and api, for the company's action log. Notifications and ats take their own families too (email,
+# ats): a web hook received is recorded as an event, and its work runs from it. A new consumer's
+# subscription is created on apply and gets only the events published after that.
 locals {
   consumes = {
-    library       = ["answer.recorded", "session.scored", "guests.deleted", "question.fixed", "interview.deleted", "company.deleted"]
-    rounds        = ["interview.deleted", "company.deleted"]
+    library       = ["answer.recorded", "session.scored", "guests.deleted", "question.fixed", "interview.deleted", "company.deleted", "user.*"]
+    rounds        = ["interview.deleted", "company.deleted", "user.*"]
     companies     = ["generation.completed", "generation.failed", "generation.cancelled", "interview.finished", "audit.recorded"]
-    notifications = ["notification.*", "candidate.*", "member.*", "report.*", "contact.*", "company.*", "email.*"]
-    ats           = ["candidate.finished", "candidate.removed", "interview.ready", "interview.deleted", "company.*", "credits.*", "ats.*"]
-    api           = ["candidate.*", "interview.ready", "company.deleted"]
-    assistant     = ["company.deleted", "candidate.removed", "candidate.interview_deleted"]
+    notifications = ["notification.*", "candidate.*", "member.*", "report.*", "contact.*", "company.*", "email.*", "user.*"]
+    ats           = ["candidate.finished", "candidate.removed", "interview.*", "company.*", "credits.*", "ats.*", "user.*"]
+    api           = ["candidate.*", "interview.ready", "company.deleted", "user.*"]
+    assistant     = ["company.deleted", "candidate.removed", "candidate.interview_deleted", "user.*"]
     accounts      = ["guests.deleted"]
+    generation    = ["user.*"]
+    site          = ["user.*"]
     # Every AI call and limit hit, stored for the admin zone's AI costs tab.
-    billing = ["ai.used", "limit.hit"]
+    billing = ["ai.used", "limit.hit", "user.*"]
   }
 }
 
@@ -60,8 +64,8 @@ resource "google_pubsub_subscription" "push" {
   topic    = google_pubsub_topic.events.id
   filter = join(" OR ", [
     for type in each.value : endswith(type, ".*")
-    ? "attributes.family = \"${trimsuffix(type, ".*")}\""
-    : "attributes.type = \"${type}\""
+    ? "attributes.family=\"${trimsuffix(type, ".*")}\""
+    : "attributes.type=\"${type}\""
   ])
 
   ack_deadline_seconds = 60

@@ -70,7 +70,7 @@ def test_a_deleted_account_keeps_everything_when_a_later_step_fails(run, monkeyp
         await new_hook(company, user)
 
         with pytest.raises(RuntimeError):
-            await accounts.remove_user(user, None)
+            await accounts.remove_user(user, "")
 
         return await transaction(keys.of_user, user)
 

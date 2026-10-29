@@ -1,9 +1,17 @@
 import uuid
 
+import httpx
+from event_pushes import push
+
 from site_content.constants.events import CONTACT_SENT
 from site_content.core.db import Session
+from site_content.main import app
 from site_content.repositories import outbox
 from site_content.services import accounts
+
+
+def api() -> httpx.AsyncClient:
+    return httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://site")
 
 
 async def send(email: str, message: str) -> None:
@@ -25,8 +33,12 @@ def test_a_users_contact_messages_are_exported_and_deleted_by_their_email(run):
         await send(ann.upper(), "Do you offer invoices?")
         await send(bob, "Hello")
         exported = await accounts.export_user(ann)
-        await accounts.remove_user(ann)
-        await accounts.remove_user(ann)
+        gone = push("user.deleted", {"user_id": "ann", "email": ann}, f"e-{uuid.uuid4()}")
+
+        # Accounts' event, delivered twice: the second deletes nothing more.
+        async with api() as client:
+            for _ in range(2):
+                assert (await client.post("/internal/events", json=gone)).status_code == 204
 
         return exported, await accounts.export_user(ann), await accounts.export_user(bob)
 

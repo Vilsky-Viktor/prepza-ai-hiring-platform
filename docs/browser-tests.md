@@ -116,7 +116,7 @@ project), as candidates on iPhones take it in Safari.
 - signing in through each provider's popup (Google, LinkedIn, GitHub) under the site's `Cross-Origin-Opener-Policy`, which the pages send (`y-sign-in-providers.spec.ts`),
 - the team and a viewer, and a join link opened while signed in with another email (a warning, no Join),
 - a company's action log: the owner sees their own and another member's actions, with who did what, and filters them by member, kind of action and days; an admin and a viewer have no tab, and its page sends them to the company,
-- handing a company to an admin, who's told in the bell, and deleting an account that owns a company others joined, which waits, then names the companies deleted with it and their credits,
+- handing a company to an admin, who's told in the bell, and deleting an account that owns a company others joined, which waits, then names the companies deleted with it and their credits; once deleted, the API key it made in another company goes too (accounts' `user.deleted`),
 - removing a company: the dialog says how many credits are lost, and nothing about credits when there are none,
 - the companies page's cards (`zw-companies-cards`): three to a row on a laptop with their names level, one link per card named by the company that opens it from anywhere on the card, a logo covering its whole area, wide or tall, the first letter without one, and Remove opening its confirmation without leaving the page,
 - verification,

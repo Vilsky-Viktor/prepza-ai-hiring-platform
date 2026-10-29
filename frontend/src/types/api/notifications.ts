@@ -136,31 +136,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/users/{user_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    post?: never
-    /**
-     * Delete User
-     * @description Accounts, deleting an account: the user's own notifications go, and companies'
-     *     notifications about them as a candidate (their email and grade), and owners' notifications
-     *     that they joined a company (their email); the Slack channels they
-     *     connected stay with their companies, without their id, and each company is told they need
-     *     reconnecting. The log of digests and reminders
-     *     sent to them goes too, and their rows in bulk sends (legal notices, campaigns).
-     */
-    delete: operations["delete_user_internal_users__user_id__delete"]
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/users/{user_id}/export": {
     parameters: {
       query?: never
@@ -1441,39 +1416,6 @@ export interface operations {
       cookie?: never
     }
     requestBody?: never
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  delete_user_internal_users__user_id__delete: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UserEmailIn"]
-      }
-    }
     responses: {
       /** @description Successful Response */
       204: {

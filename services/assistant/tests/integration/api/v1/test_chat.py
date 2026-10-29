@@ -6,6 +6,7 @@ import os
 import uuid
 
 import httpx
+from event_pushes import push
 from langchain_core.messages import ToolMessage
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.http.http import bearer
@@ -32,7 +33,7 @@ def client() -> httpx.AsyncClient:
 
 
 def library() -> dict:
-    """Library's signed token, as it calls to delete or export a user's data."""
+    """A signed service token, as accounts calls to export a user's data."""
     token = issue_token("library", "assistant", os.environ["SERVICE_SECRET"])
 
     return bearer(token)
@@ -59,9 +60,8 @@ def test_a_conversation_is_streamed_saved_listed_exported_and_deleted(run, user,
             calls = await tool_calls_of(stored[1].id)
             body = {"email": "ann@example.com"}
             exported = await api.post(f"/internal/users/{uid}/export", json=body, headers=library())
-            deleted = await api.request(
-                "DELETE", f"/internal/users/{uid}", json=body, headers=library()
-            )
+            gone = push("user.deleted", {"user_id": uid, "email": body["email"]}, uid)
+            deleted = await api.post("/internal/events", json=gone)
             after = (await api.get("/conversations", headers=headers)).json()
 
             return first, second, listed, opened, stored, calls, exported.json(), deleted, after

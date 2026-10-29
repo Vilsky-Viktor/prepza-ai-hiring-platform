@@ -36,7 +36,7 @@ flowchart LR
     scheduler[Cloud Scheduler] -- sweeps, key checks, retention, outbox --> worker
     scheduler -- retention, invite reminders and expiry, outbox --> companies
     scheduler -- question bank, outbox --> library
-    scheduler -- erasures after a restore --> accounts
+    scheduler -- erasures after a restore, outbox --> accounts
     scheduler -- expired interviews, outbox --> rounds
     scheduler -- outbox --> site
     scheduler -- recovery, outbox --> ats
@@ -46,7 +46,8 @@ flowchart LR
     assistant -- user's own GET routes, as the user --> companies
     assistant -- help chat's knowledge --> site
     assistant -- AI apps' users signed in with a custom token --> firebase[Firebase Auth]
-    accounts -- delete, export a user --> companies & rounds & generation & billing & notifications & ats & api & assistant & library & site
+    accounts -- delete a user --> companies
+    accounts -- export a user --> companies & rounds & generation & billing & notifications & ats & api & assistant & library & site
     notifications -- members, waiting interviews --> companies
     notifications -- low credits --> billing
     notifications -- topic review statuses --> generation
@@ -76,12 +77,14 @@ flowchart LR
     billing -- credits.added --> pubsub
     library & companies & billing & ats & site -- notification.requested --> pubsub
     site -- notification.news_withdrawn --> pubsub
+    accounts -- user.deleted --> pubsub
     pubsub -- push --> library
     pubsub -- push --> rounds
     pubsub -- push --> companies
     pubsub -- push --> ats
     pubsub -- push --> api
     pubsub -- push --> assistant
+    pubsub -- user.deleted --> generation & site
     pubsub -- guests.deleted --> accounts
     pubsub -- ai.used / limit.hit, from every service --> billing
     billing & ats & notifications & api -- audit.recorded --> pubsub
@@ -95,7 +98,7 @@ flowchart LR
 
 | Service | Responsibility |
 |---|---|
-| `library` | Question sets (topics and questions) of interviews and templates: the template catalog, the question bank's pools (company questions for interviews and reuse, practice questions for free practice); candidates' votes and reports (deleted and exported with the account when accounts asks), question quality flags and reuse. |
+| `library` | Question sets (topics and questions) of interviews and templates: the template catalog, the question bank's pools (company questions for interviews and reuse, practice questions for free practice); candidates' votes and reports (deleted with the account by `user.deleted`, exported when accounts asks), question quality flags and reuse. |
 | `generation` | The generation pipeline (a LangGraph graph, [diagram](generation.md#generation-pipeline)), run by its worker (`src/generation/worker_main.py`) as Cloud Tasks jobs; topic review, re-generating single questions, the question verifier, and scheduled sweeps |
 | `rounds` | Candidates' interview sessions and their answers, free practice rounds. |
 | `companies` | Companies (unique names, logos, verification), members (owner, admins, viewers), interviews, candidate invites (one by one, in bulk, through a shareable link, with reminders), reports |
@@ -104,8 +107,8 @@ flowchart LR
 | `ats` | ATS integrations (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): companies' encrypted ATS keys, linked jobs and the candidates the ATSs send (their webhooks); invites them through companies and writes their results back to the ATS |
 | `api` | The public API at `/api/v1/`: companies' API keys (as hashes, with their expiry), their web hooks (secrets encrypted) and deliveries; reads interviews and candidates and invites through companies, and sends a signed web hook when a candidate finishes |
 | `assistant` | The in-app AI assistant ([feature page](features/assistant.md)): signed-in users' conversations, streamed over server-sent events (`POST /chat`), and tools made from the other services' user-facing GET routes, called with the user's own token. The tools are an allow-list (`src/assistant/constants/tools.py`) over committed OpenAPI snapshots of those services (`src/assistant/openapi/`, written by `scripts/assistant-openapi.sh`); a tool's data is trimmed for the model, and the panel's links are built only from the tool's link template and ids. Calls to companies carry a signed `X-Assistant` header, so companies audits those reads as the assistant's. It also serves those tools to the user's own AI apps over MCP at the site's root (`/mcp`, with its OAuth authorization server; [feature page](features/mcp.md)). It also runs the help chat that answers signed-out visitors in the same panel (`POST /help/chat`, [Public site](features/site.md#faq-and-help-chat)), from the knowledge site sends it |
-| `accounts` | Users' accounts: the account settings (the interface language, on the Firebase sign-in), users' email settings with their consent log, the terms each accepted at sign-up, deleting and downloading an account across every service (companies first, as it may refuse; then the others at once; then its own rows with the erasure note, then the sign-in) and running those deletions again after a restore (`erasures`, 14 days), the admin zone's account lookups, email settings and sign-up stats, and the lookups other services make (addresses, languages and email settings for notifications' emails, account ids for its bulk sends, accounts for companies' support tab and billing's AI costs tab). Public under `/api/accounts/` |
-| `site` | The public site's content (`src/site_content`, its own database `site`): the FAQ, the knowledge the help chat answers from (sent to the assistant at `/internal/help/knowledge`; the same knowledge as text at `/help/guide`, for signed-in users' assistant), each page's guide (`/help/pages/{key}`, for the info buttons and the assistant), the guide articles (read from `frontend/content`), the legal texts with every version (`/help/legal/...`), the contact form (`/help/contact`, its messages kept as `contact.sent` events in its outbox until published, and a week after; deleted and exported with the account when accounts asks), and the news posts with their translations (`/news`, the admin zone's `/superadmin/news`; generation translates each post, and the bell names it through `/internal/news/titles`; a daily schedule sends posts still missing a language again). Public under `/api/site/` |
+| `accounts` | Users' accounts: the account settings (the interface language, on the Firebase sign-in), users' email settings with their consent log, the terms each accepted at sign-up, deleting and downloading an account across every service (deleting: companies first, by a call, as it may refuse; then, in one save, its own rows, the erasure note and the `user.deleted` event every other holder deletes its part by; then the sign-in; downloading: a call to each) and running those deletions again after a restore (`erasures`, 14 days: companies' call and the event again), the admin zone's account lookups, email settings and sign-up stats, and the lookups other services make (addresses, languages and email settings for notifications' emails, account ids for its bulk sends, accounts for companies' support tab and billing's AI costs tab). Public under `/api/accounts/` |
+| `site` | The public site's content (`src/site_content`, its own database `site`): the FAQ, the knowledge the help chat answers from (sent to the assistant at `/internal/help/knowledge`; the same knowledge as text at `/help/guide`, for signed-in users' assistant), each page's guide (`/help/pages/{key}`, for the info buttons and the assistant), the guide articles (read from `frontend/content`), the legal texts with every version (`/help/legal/...`), the contact form (`/help/contact`, its messages kept as `contact.sent` events in its outbox until published, and a week after; deleted with the account by `user.deleted`, exported when accounts asks), and the news posts with their translations (`/news`, the admin zone's `/superadmin/news`; generation translates each post, and the bell names it through `/internal/news/titles`; a daily schedule sends posts still missing a language again). Public under `/api/site/` |
 | `frontend` | Next.js app; server-rendered pages call the API through the gateway. Its code is in `frontend/src/` (pages in `app/`, laid out as `.claude/rules/nextjs.md` says); `messages/`, `content/` and `public/` stay beside it |
 
 What each service does for users is described in the feature pages, linked from the [README](../README.md#documentation). Generation is described in [Generation and question quality](generation.md).
@@ -136,7 +139,7 @@ Where a script could spend a company's credits or prepza's AI capacity, the brow
 | Kind | In Google Cloud | Examples |
 |---|---|---|
 | Long jobs | Cloud Tasks that call the generation worker's `/internal/jobs/...` | A generation, a question check |
-| Periodic work | Cloud Scheduler calling `/internal/schedules/...` ([`infra/terraform/jobs.tf`](../infra/terraform/jobs.tf)) | Every minute: outbox flushes (library, companies, rounds, site, generation worker, ats, billing, notifications, api) and interviews whose time ran out (rounds). Every 5 minutes: stuck-generation sweeps, web hook retries (api) and the edited limits written to Redis again (billing). Every 10 minutes: key-check batches and ATS recovery (waiting and stalled ATS invites, kept ATS results, ATS candidates past retention). Daily: retention of generations, of candidates and the company action log (12 months), of the assistant's idle conversations, AI apps' expired connections and apps idle for 30 days, and of billing's AI usage and limit hits (13 months) and limit changes (24 months); invite expiry and reminders; the question bank's stages; news posts still missing a translation sent again (site); the last 14 days' account deletions run again (accounts), so a restored backup brings nobody back. Every minute for an hour each morning: the activity digest (from 7:00 UTC) and member reminders (from 8:00), each run going on where the last stopped. Every minute from 8:00 to 18:59 UTC: the bulk sender (legal notices and campaigns), each run sending the next pending recipients for 40 seconds |
+| Periodic work | Cloud Scheduler calling `/internal/schedules/...` ([`infra/terraform/jobs.tf`](../infra/terraform/jobs.tf)) | Every minute: outbox flushes (library, companies, rounds, site, generation worker, ats, billing, notifications, api, accounts) and interviews whose time ran out (rounds). Every 5 minutes: stuck-generation sweeps, web hook retries (api) and the edited limits written to Redis again (billing). Every 10 minutes: key-check batches and ATS recovery (waiting and stalled ATS invites, kept ATS results, ATS candidates past retention). Daily: retention of generations, of candidates and the company action log (12 months), of the assistant's idle conversations, AI apps' expired connections and apps idle for 30 days, and of billing's AI usage and limit hits (13 months) and limit changes (24 months); invite expiry and reminders; the question bank's stages; news posts still missing a translation sent again (site); the last 14 days' account deletions run again (accounts), so a restored backup brings nobody back. Every minute for an hour each morning: the activity digest (from 7:00 UTC) and member reminders (from 8:00), each run going on where the last stopped. Every minute from 8:00 to 18:59 UTC: the bulk sender (legal notices and campaigns), each run sending the next pending recipients for 40 seconds |
 
 - Google signs those calls, and Pub/Sub pushes, as one invoker service account, which each service checks.
 - Locally there is no queue: the API calls the worker directly.
@@ -144,7 +147,7 @@ Where a script could spend a company's credits or prepza's AI capacity, the brow
 
 ## Events
 
-Domain events go through an outbox in library, generation, rounds, site, companies and ats, and members' actions for a company's action log (`audit.recorded`) through one in billing, notifications and api too (ats sends its own through its outbox), so a change never loses its event:
+Domain events go through an outbox in library, generation, rounds, site, companies, ats and accounts, and members' actions for a company's action log (`audit.recorded`) through one in billing, notifications and api too (ats sends its own through its outbox), so a change never loses its event:
 
 1. An event is saved in an `outbox` table, in the same transaction as the change it announces.
 2. It is published right after. A request publishes only the events it saved, in one batch, with a 5-second timeout.
@@ -161,20 +164,24 @@ Refusals and duplicates:
 Delivery:
 
 - All events go to one Pub/Sub topic, `events`.
-- It pushes each event to the `/internal/events` endpoint of library, rounds, companies, notifications, ats, api, assistant, billing and accounts.
+- It pushes each event to the `/internal/events` endpoint of library, rounds, companies, notifications, ats, api, assistant, billing, accounts, generation and site.
 - In Google Cloud, each subscription carries only the types its consumer handles ([`infra/terraform/pubsub.tf`](../infra/terraform/pubsub.tf), `locals.consumes`):
 
 | Consumer | Event types |
 |---|---|
-| library | `answer.recorded`, `session.scored`, `guests.deleted` (companies deleted guest invites, by removal, retention or with their interview or company: library deletes each guest's ratings and reports; deleting again deletes nothing more), `question.fixed` (its own: a fixed bank question's copies in companies' tests that still hold its old content get the new one, 50 at a time; a push that runs out of time answers 503 and Pub/Sub brings it back for the rest; a copy already fixed no longer matches, so a repeat fixes nothing twice), `interview.deleted` (the interview's question set, found by its id or by the generation that saved it, of that company only), `company.deleted` (every set of the company, 20 at a time); deleting again deletes nothing more |
-| rounds | `interview.deleted` (by its set: every candidate's and preview's sessions with their answers and signals), `company.deleted` (every session of the company); deleting again deletes nothing more, so a redelivery or a repeat is safe in any order |
+| library | `answer.recorded`, `session.scored`, `guests.deleted` (companies deleted guest invites, by removal, retention or with their interview or company: library deletes each guest's ratings and reports; deleting again deletes nothing more), `question.fixed` (its own: a fixed bank question's copies in companies' tests that still hold its old content get the new one, 50 at a time; a push that runs out of time answers 503 and Pub/Sub brings it back for the rest; a copy already fixed no longer matches, so a repeat fixes nothing twice), `interview.deleted` (the interview's question set, found by its id or by the generation that saved it, of that company only), `company.deleted` (every set of the company, 20 at a time), `user.deleted` (the user's votes and reports on questions); deleting again deletes nothing more |
+| rounds | `interview.deleted` (by its set: every candidate's and preview's sessions with their answers and signals), `company.deleted` (every session of the company), `user.deleted` (every session the user had, with its answers, a batch at a time); deleting again deletes nothing more, so a redelivery or a repeat is safe in any order |
 | companies | `generation.completed`, `generation.failed`, `generation.cancelled`, `interview.finished` |
-| notifications | the `notification.` family (`notification.requested`, and `notification.news_withdrawn`: a deleted news post's notification goes), every `candidate.*` (it handles `candidate.invited`, `candidate.joined`, `candidate.reminded`, `candidate.removed` and `candidate.interview_deleted`, which companies sends with `interview.deleted` so the bell forgets a deleted interview's candidates), `member.invited`, `report.shared`, `contact.sent`, `company.deleted`, and its own `email.webhook_received` (a Resend web hook recorded by its delivery id before the answer; its work runs from the event) |
-| ats | `candidate.finished`, `candidate.removed`, `interview.ready`, `interview.deleted`, `company.deleted`, `credits.added`, and its own `ats.candidate_arrived` (a candidate an ATS's web hook sent, saved before the answer: invited from the event, once, as the invite claims them) |
-| api | `candidate.finished`, `candidate.removed`, `candidate.interview_deleted` (its candidates' results waiting to be sent again go), `company.deleted` |
+| notifications | the `notification.` family (`notification.requested`, and `notification.news_withdrawn`: a deleted news post's notification goes), every `candidate.*` (it handles `candidate.invited`, `candidate.joined`, `candidate.reminded`, `candidate.removed` and `candidate.interview_deleted`, which companies sends with `interview.deleted` so the bell forgets a deleted interview's candidates), `member.invited`, `report.shared`, `contact.sent`, `company.deleted`, `user.deleted` (the user's notifications, sent log and bulk-send rows, companies' notifications about them; the Slack channels they connected stay without them, each company told once), and its own `email.webhook_received` (a Resend web hook recorded by its delivery id before the answer; its work runs from the event) |
+| ats | `candidate.finished`, `candidate.removed`, `interview.ready`, `interview.deleted` (the `interview.` family), `company.deleted`, `credits.added`, `user.deleted` (an ATS's records of them as a candidate; the connections they made stay without them, each company told once), and its own `ats.candidate_arrived` (a candidate an ATS's web hook sent, saved before the answer: invited from the event, once, as the invite claims them) |
+| api | `candidate.finished`, `candidate.removed`, `candidate.interview_deleted` (its candidates' results waiting to be sent again go), `company.deleted`, `user.deleted` (the keys and web hooks they made, their results waiting to be sent again) |
 | accounts | `guests.deleted` (deletes each guest's sign-in and accepted terms; deleting again deletes nothing more) |
-| assistant | `company.deleted` (deletes the company's conversations), `candidate.removed` and `candidate.interview_deleted` (deletes the company's conversations that mention the erased candidate's email or invite, or the deleted interview); deleting again deletes nothing more |
+| assistant | `company.deleted` (deletes the company's conversations), `candidate.removed` and `candidate.interview_deleted` (deletes the company's conversations that mention the erased candidate's email or invite, or the deleted interview), `user.deleted` (their conversations, connected AI apps and pending actions); deleting again deletes nothing more |
+| billing | `ai.used`, `limit.hit` (stored once by their id), `user.deleted` (the automatic top-ups paid with their card cancelled and off; their purchases, AI costs and limit hits stay without them) |
+| generation | `user.deleted` (their generations stay with their company without them) |
+| site | `user.deleted` (the contact messages sent from their email) |
 
+- `user.deleted` (accounts, `prepza_common.events.deletions.UserDeleted`: the user's id and verified email, empty when unverified) goes to every holder of a user's data but companies, which accounts calls first, as it may refuse while the user owns a company others have joined. Each holder deletes by the user's id and email, safe to repeat; the daily `erasures` job publishes it again for the deletions of the last 14 days, so rows a backup brought back, or a write that raced the deletion, go too. A holder failing for hours dead-letters it (alerted); the next day's replay sends it again.
 - Locally, each consumer ignores events that aren't its own.
 - Locally, Google's Pub/Sub emulator runs in docker-compose, and [`scripts/local/pubsub-setup.sh`](../scripts/local/pubsub-setup.sh) creates the topic and subscriptions at every start of the emulator, which keeps nothing over a restart.
 

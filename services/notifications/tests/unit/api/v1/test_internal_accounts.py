@@ -1,3 +1,4 @@
+from event_pushes import push
 from prepza_common.auth.service_auth import issue_token
 
 from notifications.models.slack import SlackConnection
@@ -8,7 +9,7 @@ HEADERS = {
 }
 
 
-def test_deleting_an_account_reads_the_email_from_the_body_and_forgets_their_channels_and_sent_log(
+def test_a_deleted_account_takes_their_notifications_and_sent_log_and_forgets_their_channels(
     client, monkeypatch
 ):
     done = []
@@ -42,8 +43,9 @@ def test_deleting_an_account_reads_the_email_from_the_body_and_forgets_their_cha
     monkeypatch.setattr(sent_emails, "remove_user", forget_sent)
     monkeypatch.setattr(bulk_recipients, "remove_user", forget_bulk)
 
-    response = client.request(
-        "DELETE", "/internal/users/u1", json={"email": "ann@example.com"}, headers=HEADERS
+    response = client.post(
+        "/internal/events",
+        json=push("user.deleted", {"user_id": "u1", "email": "ann@example.com"}),
     )
 
     assert response.status_code == 204

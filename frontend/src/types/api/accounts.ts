@@ -294,48 +294,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/users/{user_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    post?: never
-    /**
-     * Delete User
-     * @description Deleting an account: its email settings with their consent log and its accepted terms
-     *     go; safe to repeat.
-     */
-    delete: operations["delete_user_internal_users__user_id__delete"]
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
-  "/internal/users/{user_id}/export": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    /**
-     * Export User
-     * @description For "Download my data": the account's email settings, their consent log and the terms
-     *     it accepted.
-     */
-    post: operations["export_user_internal_users__user_id__export_post"]
-    delete?: never
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/events": {
     parameters: {
       query?: never
@@ -352,6 +310,27 @@ export interface paths {
      *     retry can handle is logged and acknowledged (handle_or_drop).
      */
     post: operations["receive_event_internal_events_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/schedules/outbox": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Flush Outbox
+     * @description Every minute, from Cloud Scheduler: publishes events that weren't published right after
+     *     their change (an account's deletion), and deletes those published a week ago.
+     */
+    post: operations["flush_outbox_internal_schedules_outbox_post"]
     delete?: never
     options?: never
     head?: never
@@ -1136,76 +1115,6 @@ export interface operations {
       }
     }
   }
-  delete_user_internal_users__user_id__delete: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UserEmailIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  export_user_internal_users__user_id__export_post: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UserEmailIn"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      200: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": {
-            [key: string]: unknown
-          }
-        }
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
   receive_event_internal_events_post: {
     parameters: {
       query?: never
@@ -1234,6 +1143,24 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["HTTPValidationError"]
         }
+      }
+    }
+  }
+  flush_outbox_internal_schedules_outbox_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
       }
     }
   }

@@ -45,7 +45,7 @@ async def delete_user(user_id: str, email: str) -> None:
     The user's candidate invites and their decisions in the audit log stay with the companies,
     without their email or id; team invites to their email not yet accepted go. Safe to repeat.
     Refused (409), before anything is deleted, while the user owns a company others have
-    joined: it would go with their access and its credits. Library asks companies first, so no
+    joined: it would go with their access and its credits. Accounts asks companies first, so no
     other service has deleted anything then. The memberships that end, the candidate invites,
     the team invites and the verification proof go in one save, so a failure keeps them all for
     the retry."""

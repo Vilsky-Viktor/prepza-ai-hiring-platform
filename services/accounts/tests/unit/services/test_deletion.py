@@ -9,14 +9,19 @@ from fastapi import HTTPException
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.config.constants import ACCOUNT_OWNS_SHARED, GOOGLE_TIMEOUT_SECONDS
+from prepza_common.config.event_constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
+from prepza_common.events.deletions import USER_DELETED
 from prepza_common.http import http
 
 from accounts.api.v1 import me as me_routes
 from accounts.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
 from accounts.integrations import services as account_services
 from accounts.main import app
-from accounts.repositories import erasures, user_data
+from accounts.repositories import erasures, outbox, user_data
 from accounts.services import deletion as account_service
+from accounts.services import erasures as replays
+from accounts.services import outbox as outbox_service
+from tests.unit.sessions import FakeSessions
 
 USER = User(uid="ann", email="Ann@Example.com", email_verified=True, name="Ann")
 
@@ -26,8 +31,8 @@ def steps(monkeypatch):
     """Records every deletion step, in order."""
     done = []
 
-    async def delete_in(service, user_id, email):
-        done.append(("service", service))
+    async def delete_in_companies(user_id, email):
+        done.append(("companies", user_id, email))
 
     async def delete_own(session, user_id):
         done.append(("own", user_id))
@@ -35,9 +40,17 @@ def steps(monkeypatch):
     async def remember(session, user_id, email):
         done.append(("erasure", user_id, email))
 
-    monkeypatch.setattr(account_services, "delete_user", delete_in)
+    async def flushed():
+        done.append("published")
+
+    monkeypatch.setattr(account_services, "delete_in_companies", delete_in_companies)
     monkeypatch.setattr(user_data, "delete_user", delete_own)
     monkeypatch.setattr(erasures, "record", remember)
+    monkeypatch.setattr(
+        outbox, "add", lambda session, kind, data: done.append(("event", kind, data))
+    )
+    monkeypatch.setattr(outbox_service, "flush_quietly", flushed)
+    monkeypatch.setattr(replays, "Session", FakeSessions())
     monkeypatch.setattr(
         account_service, "delete_sign_in", lambda uid: done.append(("sign-in", uid))
     )
@@ -45,73 +58,50 @@ def steps(monkeypatch):
     return done
 
 
-def test_every_service_is_cleaned_before_the_sign_in_goes(steps):
+def test_companies_deletes_first_then_one_save_tells_every_other_holder_then_the_sign_in_goes(
+    steps,
+):
     asyncio.run(account_service.delete_account(USER))
 
-    # Companies first (it may refuse), then the others together.
-    assert steps[0] == ("service", "companies")
-    assert sorted(steps[1:10]) == [
-        ("service", "api"),
-        ("service", "assistant"),
-        ("service", "ats"),
-        ("service", "billing"),
-        ("service", "generation"),
-        ("service", "library"),
-        ("service", "notifications"),
-        ("service", "rounds"),
-        ("service", "site"),
-    ]
-    assert steps[10:] == [
+    assert steps == [
+        # Companies first, by a call: it may refuse.
+        ("companies", "ann", "Ann@Example.com"),
+        # One save: accounts' rows, the note kept for the backups' life to run again after a
+        # restore, and the event every other holder deletes its part by.
         ("own", "ann"),
-        # Kept for the backups' life, to run again after a restore.
         ("erasure", "ann", "Ann@Example.com"),
+        ("event", USER_DELETED, {"user_id": "ann", "email": "Ann@Example.com"}),
+        "published",
         ("sign-in", "ann"),
     ]
 
 
-def test_after_companies_the_other_services_delete_at_once(steps, monkeypatch):
-    running, most = [0], [0]
+def test_companies_failing_keeps_the_sign_in_and_tells_no_one_so_the_user_can_retry(
+    steps, monkeypatch
+):
+    async def companies_down(user_id, email):
+        raise httpx.ConnectError("companies is down")
 
-    async def delete_in(service, user_id, email):
-        running[0] += 1
-        most[0] = max(most[0], running[0])
-        await asyncio.sleep(0)
-        running[0] -= 1
-
-    monkeypatch.setattr(account_services, "delete_user", delete_in)
-
-    asyncio.run(account_service.delete_account(USER))
-
-    assert most[0] == len(account_services.services()) - 1
-
-
-def test_a_failing_service_keeps_the_sign_in_so_the_user_can_retry(steps, monkeypatch):
-    async def rounds_down(service, user_id, email):
-        if service == "rounds":
-            raise httpx.ConnectError("rounds is down")
-
-        steps.append(("service", service))
-
-    monkeypatch.setattr(account_services, "delete_user", rounds_down)
+    monkeypatch.setattr(account_services, "delete_in_companies", companies_down)
 
     with pytest.raises(httpx.ConnectError):
         asyncio.run(account_service.delete_account(USER))
 
-    assert ("sign-in", "ann") not in steps
+    assert steps == []
 
 
 def test_an_owner_of_a_shared_company_is_told_to_hand_it_on_and_nothing_is_deleted(
     steps, monkeypatch
 ):
-    """Companies goes first and refuses: no other service deletes anything, the sign-in stays."""
+    """Companies goes first and refuses: nothing is deleted, no event, the sign-in stays."""
 
-    async def refused(service, user_id, email):
-        request = httpx.Request("DELETE", f"http://{service}/internal/users/{user_id}")
+    async def refused(user_id, email):
+        request = httpx.Request("DELETE", f"http://companies/internal/users/{user_id}")
         response = httpx.Response(409, request=request)
 
         raise httpx.HTTPStatusError("refused", request=request, response=response)
 
-    monkeypatch.setattr(account_services, "delete_user", refused)
+    monkeypatch.setattr(account_services, "delete_in_companies", refused)
 
     with pytest.raises(HTTPException) as error:
         asyncio.run(account_service.delete_account(USER))
@@ -121,10 +111,10 @@ def test_an_owner_of_a_shared_company_is_told_to_hand_it_on_and_nothing_is_delet
 
 
 @pytest.mark.parametrize("verified, sent", [(True, "Ann@Example.com"), (False, "")])
-def test_candidate_data_is_matched_by_a_verified_email_only(monkeypatch, verified, sent):
+def test_candidate_data_is_matched_by_a_verified_email_only(steps, monkeypatch, verified, sent):
     emails = set()
 
-    async def delete_in(service, user_id, email):
+    async def delete_in(user_id, email):
         emails.add(email)
 
     async def export_from(service, user_id, email):
@@ -135,20 +125,14 @@ def test_candidate_data_is_matched_by_a_verified_email_only(monkeypatch, verifie
     async def nothing(session, user_id):
         return {}
 
-    monkeypatch.setattr(account_services, "delete_user", delete_in)
+    monkeypatch.setattr(account_services, "delete_in_companies", delete_in)
     monkeypatch.setattr(account_services, "export_user", export_from)
-    monkeypatch.setattr(user_data, "delete_user", nothing)
     monkeypatch.setattr(user_data, "export", nothing)
-
-    async def remember(session, user_id, email):
-        pass
-
-    monkeypatch.setattr(erasures, "record", remember)
-    monkeypatch.setattr(account_service, "delete_sign_in", lambda uid: None)
     user = USER.model_copy(update={"email_verified": verified})
 
     asyncio.run(account_service.export_account(user))
     asyncio.run(account_service.delete_account(user))
+    emails |= {step[2]["email"] for step in steps if step[0] == "event"}
 
     assert emails == {sent}
 
@@ -206,15 +190,16 @@ def test_deletion_and_export_send_the_email_in_the_body_not_the_url(monkeypatch)
     monkeypatch.setattr(http, "get_client", lambda: client)
     monkeypatch.setattr(account_services, "service_token", lambda callee: "token")
 
-    asyncio.run(account_services.delete_user("ats", "ann", "ann@example.com"))
+    asyncio.run(account_services.delete_in_companies("ann", "ann@example.com"))
     asyncio.run(account_services.export_user("ats", "ann", "ann@example.com"))
 
-    url = account_services.services()["ats"]
+    companies = account_services.services()["companies"]
+    ats = account_services.services()["ats"]
     body = b'{"email":"ann@example.com"}'
 
     assert sent == [
-        ("DELETE", f"{url}/internal/users/ann", body),
-        ("POST", f"{url}/internal/users/ann/export", body),
+        ("DELETE", f"{companies}/internal/users/ann", body),
+        ("POST", f"{ats}/internal/users/ann/export", body),
     ]
 
 
@@ -234,7 +219,7 @@ def test_deleting_and_exporting_in_a_service_waits_longer_than_an_ordinary_call(
     monkeypatch.setattr(http, "get_client", lambda: client)
     monkeypatch.setattr(account_services, "service_token", lambda service: "token")
 
-    asyncio.run(account_services.delete_user("companies", "ann", "ann@example.com"))
+    asyncio.run(account_services.delete_in_companies("ann", "ann@example.com"))
     asyncio.run(account_services.export_user("rounds", "ann", "ann@example.com"))
 
     assert waits == [ACCOUNT_CALL_TIMEOUT_SECONDS] * 2
@@ -270,10 +255,15 @@ def test_data_downloads_past_the_hourly_limit_are_refused_before_asking_anyone(c
 
 
 def test_a_deletion_fits_accounts_own_request_timeout():
-    """Companies, then the others together, then the sign-in's revocation and deletion."""
+    """Companies' call, the event's quick publish, then the sign-in's revocation and deletion."""
     services_tf = (Path(__file__).resolve().parents[5] / "infra/terraform/locals.tf").read_text()
     accounts = int(
         re.search(r"^\s+accounts\s+= \{.*?timeout = (\d+)", services_tf, re.MULTILINE).group(1)
     )
 
-    assert 2 * ACCOUNT_CALL_TIMEOUT_SECONDS + 2 * GOOGLE_TIMEOUT_SECONDS < accounts
+    assert (
+        ACCOUNT_CALL_TIMEOUT_SECONDS
+        + PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
+        + 2 * GOOGLE_TIMEOUT_SECONDS
+        < accounts
+    )

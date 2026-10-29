@@ -5,6 +5,7 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 from fastapi import status
+from prepza_common.events.deletions import USER_DELETED, UserDeleted
 
 from accounts.constants.accounts import (
     ERASURE_BATCH,
@@ -14,14 +15,14 @@ from accounts.constants.accounts import (
 from accounts.core.db import Session
 from accounts.integrations import services
 from accounts.models.erasures import Erasure
-from accounts.repositories import erasures
-from accounts.services.user_data import delete_data
+from accounts.repositories import erasures, outbox, user_data
+from accounts.services import outbox as outbox_service
 
 logger = logging.getLogger(__name__)
 
 
 async def replay() -> int:
-    """Runs the deletions of the last ERASURE_KEEP_DAYS again in every service, safe to repeat:
+    """Runs the deletions of the last ERASURE_KEEP_DAYS again everywhere, safe to repeat:
     after a database is restored or cloned from a backup, nobody deleted since comes back. Then
     forgets older ones. Newest first, a batch at once, until ERASURE_RUN_SECONDS into the run;
     a run stopped for time leaves the rest to the next. Returns how many it ran. The sign-ins
@@ -58,28 +59,28 @@ async def replay() -> int:
         below = (batch[-1].erased_at, batch[-1].user_id)
 
 
-async def erase_again(erasure: Erasure) -> None:
-    """One account's deletion run again in every service at once, then here."""
-    results = await asyncio.gather(
-        *(
-            services.delete_user(service, erasure.user_id, erasure.email)
-            for service in services.services()
-        ),
-        return_exceptions=True,
-    )
+async def erase(user_id: str, email: str) -> None:
+    """In one save: what accounts keeps under the user goes, with the note that runs the
+    deletion again after a restore (kept from the first time) and the `user.deleted` event every
+    other holder deletes its part by. Neither is kept without the others. The event is published
+    at once; when that fails, the outbox's flush sends it within a minute."""
+    async with Session.begin() as session:
+        await user_data.delete_user(session, user_id)
+        await erasures.record(session, user_id, email)
+        outbox.add(session, USER_DELETED, UserDeleted(user_id=user_id, email=email).model_dump())
 
-    for service, result in zip(services.services(), results, strict=True):
-        if not isinstance(result, BaseException):
-            continue
+    await outbox_service.flush_quietly()
+
+
+async def erase_again(erasure: Erasure) -> None:
+    """One account's deletion run again: in companies, then everywhere else by the event."""
+    try:
+        await services.delete_in_companies(erasure.user_id, erasure.email)
+    except httpx.HTTPStatusError as error:
+        if error.response.status_code != status.HTTP_409_CONFLICT:
+            raise
 
         # A company the restore gave back others' members: left to support, logged.
-        refused = isinstance(result, httpx.HTTPStatusError) and (
-            result.response.status_code == status.HTTP_409_CONFLICT
-        )
+        logger.error("Erasure of account %s refused by companies", erasure.user_id)
 
-        if not refused:
-            raise result
-
-        logger.error("Erasure of account %s refused by %s", erasure.user_id, service)
-
-    await delete_data(erasure.user_id)
+    await erase(erasure.user_id, erasure.email)

@@ -14,6 +14,7 @@ from prepza_common.observability.logging import RequestLogMiddleware, configure_
 from prepza_common.observability.sentry import init_sentry
 
 from generation.api.v1 import (
+    events,
     internal,
     internal_accounts,
     languages,
@@ -58,6 +59,7 @@ app.include_router(superadmin_additions.router)
 app.include_router(superadmin_patterns.router)
 app.include_router(internal.router)
 app.include_router(internal_accounts.router)
+app.include_router(events.router)
 
 
 app.include_router(health_router(engine))

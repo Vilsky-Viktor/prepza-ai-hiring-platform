@@ -193,13 +193,6 @@ async def delete_company(company_id: str, caller: ServiceCaller) -> None:
     await accounts.delete_company(company_id)
 
 
-@router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_user(user_id: str, caller: ServiceCaller) -> None:
-    """The user's purchases for their companies stay for bookkeeping, without their id, and so
-    do their AI costs and limit hits; any automatic top-up paid with their card goes off."""
-    await accounts.delete_user(user_id)
-
-
 @router.post("/users/{user_id}/export")
 async def export_user(user_id: str, caller: ServiceCaller) -> dict:
     """What the user bought for their companies, the automatic top-ups they turned on (charged

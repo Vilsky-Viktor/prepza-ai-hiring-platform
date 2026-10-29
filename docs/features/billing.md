@@ -176,7 +176,7 @@ The services record each AI call (`prepza_common.ai.ai_usage.record`) and each r
 Who a call was for is decided as it's stored: a call for a company is **paid** if the company had a purchase by the call's time, **unpaid** otherwise; a call without a company is **prepza**'s when its action is prepza's own work (`PREPZA_ACTIONS`: templates, quality checks, batches, embeddings, news and campaign translations) and **no company** otherwise (the help chat's visitors, candidates, people without a company). Billing then adds an unpaid or no-company call's cost to the day's unpaid AI spend in Redis (`spend:ai:unpaid:<date>`), which the services check against the `AI_SPEND_UNPAID_DAY` cap before their AI calls for those users (`prepza_common.ai.ai_cap`); it logs once when the day passes 80% of the cap and once when it reaches it.
 
 - **Kept:** `ai_usage` and `limit_hits` 13 months, for year-on-year comparison, and `limit_changes` 24 months, by the daily `/internal/schedules/retention`.
-- **Deleted accounts and companies:** deleting an account (`DELETE /internal/users/{id}`) or a company (`DELETE /internal/companies/{id}`) empties its id in both tables, a batch at a time; the costs and hits stay.
+- **Deleted accounts and companies:** deleting an account (accounts' `user.deleted` event) or a company (`DELETE /internal/companies/{id}`) empties its id in both tables, a batch at a time; the costs and hits stay.
 
 ```
 GET    /superadmin/ai-costs?period=         # the AI costs page

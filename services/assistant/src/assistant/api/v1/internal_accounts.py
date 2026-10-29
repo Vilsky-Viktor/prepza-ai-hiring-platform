@@ -1,4 +1,4 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter
 from fastapi.encoders import jsonable_encoder
 from prepza_common.auth.user import UserEmailIn
 
@@ -6,14 +6,6 @@ from assistant.api.dependencies import ServiceCaller
 from assistant.services import accounts
 
 router = APIRouter(prefix="/internal", tags=["internal"])
-
-
-@router.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
-async def delete_user(user_id: str, body: UserEmailIn, caller: ServiceCaller) -> None:
-    """Accounts, deleting an account: their conversations go, with every message and tool call,
-    the actions they hadn't confirmed yet, and their connected AI apps (whose access stops).
-    Safe to repeat."""
-    await accounts.delete_user(user_id)
 
 
 @router.post("/users/{user_id}/export")

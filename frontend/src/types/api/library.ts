@@ -535,27 +535,6 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/internal/users/{user_id}": {
-    parameters: {
-      query?: never
-      header?: never
-      path?: never
-      cookie?: never
-    }
-    get?: never
-    put?: never
-    post?: never
-    /**
-     * Delete User
-     * @description Accounts, deleting an account: the votes and reports the user gave on questions as a
-     *     candidate go; safe to repeat.
-     */
-    delete: operations["delete_user_internal_users__user_id__delete"]
-    options?: never
-    head?: never
-    patch?: never
-    trace?: never
-  }
   "/internal/users/{user_id}/export": {
     parameters: {
       query?: never
@@ -2792,39 +2771,6 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["QuestionReplace"]
-      }
-    }
-    responses: {
-      /** @description Successful Response */
-      204: {
-        headers: {
-          [name: string]: unknown
-        }
-        content?: never
-      }
-      /** @description Validation Error */
-      422: {
-        headers: {
-          [name: string]: unknown
-        }
-        content: {
-          "application/json": components["schemas"]["HTTPValidationError"]
-        }
-      }
-    }
-  }
-  delete_user_internal_users__user_id__delete: {
-    parameters: {
-      query?: never
-      header?: never
-      path: {
-        user_id: string
-      }
-      cookie?: never
-    }
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UserEmailIn"]
       }
     }
     responses: {

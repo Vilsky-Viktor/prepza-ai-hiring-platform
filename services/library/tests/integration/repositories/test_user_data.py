@@ -1,9 +1,12 @@
+import uuid
+
+from library.handlers.dispatch import handle
 from library.repositories import feedback, user_data
 from tests.integration.factories import interview, question_ids
 from tests.integration.transactions import transaction
 
 
-def test_deleting_a_user_removes_their_votes_and_reports_and_the_export_has_them(run):
+def test_a_deleted_account_takes_their_votes_and_reports_and_the_export_has_them(run):
     async def scenario():
         set_id = await interview("Ledgers")
         first, second, _ = await question_ids(set_id)
@@ -12,9 +15,9 @@ def test_deleting_a_user_removes_their_votes_and_reports_and_the_export_has_them
         await transaction(feedback.rate_question, first, "stays", 1)
         exported = await transaction(user_data.export, "gone")
 
-        await transaction(user_data.delete_user, "gone")
-        # Safe to repeat: a retried deletion finds nothing left.
-        await transaction(user_data.delete_user, "gone")
+        # Accounts' event, delivered twice: the second finds nothing left.
+        for _ in range(2):
+            await handle(f"e-{uuid.uuid4()}", "user.deleted", {"user_id": "gone", "email": ""})
 
         return (
             exported,

@@ -4,8 +4,8 @@ The public site's content: the FAQ, each page's guide, the guide articles and th
 site shows, the knowledge the assistant's help chat answers from
 (`GET /internal/help/knowledge`), the contact form and the news. It keeps the contact page's messages as
 `contact.sent` events in its own database's outbox until they're published, and a week after
-(notifications emails them); accounts deletes and exports the ones sent from a user's email
-(`/internal/users/{id}`), with Turnstile and per-address limits (`CONTACT_*`) on the form. It
+(notifications emails them); the ones sent from a user's email go with the account
+(accounts' `user.deleted`, at `/internal/events`) and are in its export (`/internal/users/{id}/export`), with Turnstile and per-address limits (`CONTACT_*`) on the form. It
 also keeps the news posts and their translations (`news`, `news_translations`): the news page,
 the admin zone's news tab, the bell's notification for each post (`notification.requested`, taken
 back with `notification.news_withdrawn`), generation's translations
@@ -26,6 +26,7 @@ src/site_content/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
+├── handlers/               # Pub/Sub events (accounts' `user.deleted`); dispatch.py picks one
 ├── services/               # The help knowledge, contact, news, deletion and export, the outbox;
 │                           # each opens its transaction
 ├── repositories/           # Database queries (news, the outbox); take the session, never commit
