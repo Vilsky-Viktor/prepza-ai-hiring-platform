@@ -97,7 +97,7 @@ prepza muudab töökuulutuse ajapiiranguga valikvastustega oskuste intervjuuks.
 4. **Loe tulemusi.** Tulemused saabuvad järjestatuna, iga kandidaadi kohta on hindamisleht.
 
 - **Iga kandidaat saab oma juhusliku komplekti** iga teema pangast ja iga küsimuse juures on serveri jõustatud taimer. Igaühele, kes palub, saad anda lisaaega.
-- **Hindamislehed** näitavad iga vastust, kas see oli õige ja kui kaua see aega võttis, koos märgetega liiga kiirete vastuste, lehelt lahkumise, kopeerimiskatsete ja ebatavaliste vastuste mustrite kohta ning küsimustega, mida otsevestlusel küsida. Märked tulemust ei muuda.
+- **Hindamislehed** näitavad iga vastust, kas see oli õige ja kui kaua see aega võttis, koos märgetega liiga kiirete vastuste, lehelt lahkumise, kopeerimiskatsete ja ebatavaliste vastuste mustrite kohta ning küsimustega, mida reaalajas intervjuul küsida. Märked tulemust ei muuda.
 - **Vastuseid kontrollitakse vastusevõtme järgi**, mille AI kirjutab; igast teemast kontrollitakse enne avaldamist valim võtmeid, ülejäänuid siis, kui küsimusest teatatakse; ükski AI ei loe ega hinda kandidaadi vastust. PDF-aruanne hõlmab ühte kandidaati või kogu nimekirja.
 - **Töötab sinu tööriistadega:** kandidaadid, keda viid Workable'is, Greenhouse'is, Teamtailoris, Recruitee's või Breezy HR-is mõnda etappi, saavad intervjuu ja nende tulemused jõuavad tagasi ATS-i. Slack annab teada, kui kandidaat lõpetab, ja [API](/api-docs) ühendab sinu enda platvormi. Vaata [Kuidas ühendada oskustestid oma ATS-süsteemiga](/guides/ats-integration-skills-tests).
 
