@@ -79,7 +79,7 @@ Este es un resumen a fecha de octubre de 2026, no asesoramiento jurídico. Cons�
 
 ### Reglamento de IA de la UE
 
-Los sistemas de IA «destinados a ser utilizados para la contratación o la selección de personas físicas, en particular para publicar anuncios de empleo específicos, analizar y filtrar las solicitudes de empleo y evaluar a los candidatos» son de alto riesgo según el [anexo III, punto 4, letra a)](https://artificialintelligenceact.eu/annex/3/) del Reglamento de IA. Es muy probable que las herramientas que puntúan o clasifican candidatos estén incluidas. El análisis propio de prepza concluye que prepza muy probablemente es de alto riesgo, con obligaciones aplicables desde el 2 de diciembre de 2027; un abogado debe confirmarlo.
+Los sistemas de IA «destinados a ser utilizados para la contratación o la selección de personas físicas, en particular para publicar anuncios de empleo específicos, analizar y filtrar las solicitudes de empleo y evaluar a los candidatos» son de alto riesgo según el [anexo III, punto 4, letra a)](https://artificialintelligenceact.eu/annex/3/) del Reglamento de IA. Es muy probable que las herramientas que puntúan o clasifican candidatos estén incluidas. El análisis propio de prepza concluye que prepza muy probablemente es de alto riesgo, con obligaciones aplicables desde el 2 de diciembre de 2027.
 
 La condición de alto riesgo implica obligaciones para ambas partes:
 

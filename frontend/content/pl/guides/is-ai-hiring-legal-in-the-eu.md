@@ -113,7 +113,7 @@ Dane kandydatów są danymi osobowymi, a AI nie zmienia RODO. Najważniejsze kwe
 
 ## Podejście prepza
 
-prepza prowadzi rozmowy rekrutacyjne sprawdzające umiejętności w formie testów wyboru z limitem czasu, napisanych przez AI na podstawie opisu stanowiska. Ponieważ prepza punktuje kandydatów i tworzy ich ranking, z jej własnej analizy wynika, że jest bardzo prawdopodobnie systemem wysokiego ryzyka w rozumieniu załącznika III pkt 4 lit. a), z obowiązkami stosowanymi od 2 grudnia 2027. Na tej podstawie się przygotowuje, a klasyfikację ma potwierdzić prawnik. prepza nie twierdzi, że spełnia wymogi ani że posiada certyfikację.
+prepza prowadzi rozmowy rekrutacyjne sprawdzające umiejętności w formie testów wyboru z limitem czasu, napisanych przez AI na podstawie opisu stanowiska. Ponieważ prepza punktuje kandydatów i tworzy ich ranking, z jej własnej analizy wynika, że jest bardzo prawdopodobnie systemem wysokiego ryzyka w rozumieniu załącznika III pkt 4 lit. a), z obowiązkami stosowanymi od 2 grudnia 2027. Na tej podstawie się przygotowuje. prepza nie twierdzi, że spełnia wymogi ani że posiada certyfikację.
 
 Jak to dziś wygląda w produkcie:
 

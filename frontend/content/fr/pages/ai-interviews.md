@@ -79,7 +79,7 @@ Ceci est un résumé à jour en octobre 2026, et ne constitue pas un conseil jur
 
 ### Règlement européen sur l'IA
 
-Les systèmes d'IA "destinés à être utilisés pour le recrutement ou la sélection de personnes physiques, en particulier pour publier des offres d'emploi ciblées, analyser et filtrer les candidatures et évaluer les candidats" sont à haut risque selon l'[annexe III, point 4 a)](https://artificialintelligenceact.eu/annex/3/) du Règlement sur l'IA. Les outils qui notent ou classent des candidats sont très probablement concernés. L'analyse menée par prepza conclut que prepza est très probablement à haut risque, avec des obligations applicables à partir du 2 décembre 2027 ; la confirmation d'un avocat est attendue.
+Les systèmes d'IA "destinés à être utilisés pour le recrutement ou la sélection de personnes physiques, en particulier pour publier des offres d'emploi ciblées, analyser et filtrer les candidatures et évaluer les candidats" sont à haut risque selon l'[annexe III, point 4 a)](https://artificialintelligenceact.eu/annex/3/) du Règlement sur l'IA. Les outils qui notent ou classent des candidats sont très probablement concernés. L'analyse menée par prepza conclut que prepza est très probablement à haut risque, avec des obligations applicables à partir du 2 décembre 2027.
 
 Le statut de système à haut risque entraîne des obligations des deux côtés :
 

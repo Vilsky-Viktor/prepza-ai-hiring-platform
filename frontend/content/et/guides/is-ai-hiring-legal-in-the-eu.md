@@ -113,7 +113,7 @@ Kandidaatide andmed on isikuandmed ja AI ei muuda isikuandmete kaitse üldmäär
 
 ## Kuidas prepza sellele läheneb
 
-prepza viib läbi ajapiiranguga valikvastustega oskuste intervjuusid, mille AI kirjutab töökuulutuse põhjal. Kuna prepza hindab ja järjestab kandidaate, on prepza enda analüüsi järeldus, et see on III lisa punkti 4 alapunkti a järgi väga tõenäoliselt suure riskiga süsteem, mille kohustused kehtivad alates 2. detsembrist 2027. prepza valmistub selle põhjal ja klassifikatsiooni peab kinnitama jurist. prepza ei väida, et ta vastab nõuetele või on sertifitseeritud.
+prepza viib läbi ajapiiranguga valikvastustega oskuste intervjuusid, mille AI kirjutab töökuulutuse põhjal. Kuna prepza hindab ja järjestab kandidaate, on prepza enda analüüsi järeldus, et see on III lisa punkti 4 alapunkti a järgi väga tõenäoliselt suure riskiga süsteem, mille kohustused kehtivad alates 2. detsembrist 2027. prepza valmistub selle põhjal. prepza ei väida, et ta vastab nõuetele või on sertifitseeritud.
 
 Kuidas see tootes täna välja näeb:
 

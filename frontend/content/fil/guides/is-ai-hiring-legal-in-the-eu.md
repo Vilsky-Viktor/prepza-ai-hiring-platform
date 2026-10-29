@@ -115,7 +115,7 @@ Personal data ang data ng aplikante, at hindi binabago ng AI ang GDPR. Ang mga m
 
 ## Ang paraan ng prepza
 
-Nagpapatakbo ang prepza ng timed multiple-choice skills interviews na isinulat ng AI mula sa isang job description. Dahil nag-i-score at nagra-rank ito ng mga aplikante, ayon sa sariling analysis ng prepza, malamang na high-risk ito sa ilalim ng Annex III, point 4(a), at ipinapatupad ang mga obligasyon simula 2 Disyembre 2027. Naghahanda ito batay roon, at kukumpirmahin pa ng isang abogado ang classification. Hindi sinasabi ng prepza na compliant o certified na ito.
+Nagpapatakbo ang prepza ng timed multiple-choice skills interviews na isinulat ng AI mula sa isang job description. Dahil nag-i-score at nagra-rank ito ng mga aplikante, ayon sa sariling analysis ng prepza, malamang na high-risk ito sa ilalim ng Annex III, point 4(a), at ipinapatupad ang mga obligasyon simula 2 Disyembre 2027. Naghahanda ito batay roon. Hindi sinasabi ng prepza na compliant o certified na ito.
 
 Ang hitsura nito sa produkto ngayon:
 

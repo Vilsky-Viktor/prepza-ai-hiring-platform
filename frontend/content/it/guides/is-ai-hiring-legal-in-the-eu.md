@@ -113,7 +113,7 @@ I dati dei candidati sono dati personali, e l'IA non cambia il GDPR. L'essenzial
 
 ## Come se ne occupa prepza
 
-prepza svolge colloqui di competenze a scelta multipla e a tempo, scritti dall'IA a partire da una descrizione del ruolo. Poiché assegna punteggi e classifica i candidati, l'analisi di prepza conclude che è molto probabilmente ad alto rischio ai sensi dell'allegato III, punto 4, lettera a), con obblighi applicabili dal 2 dicembre 2027. Si sta preparando su questa base, e un avvocato deve confermare la classificazione. prepza non dichiara di essere conforme o certificato.
+prepza svolge colloqui di competenze a scelta multipla e a tempo, scritti dall'IA a partire da una descrizione del ruolo. Poiché assegna punteggi e classifica i candidati, l'analisi di prepza conclude che è molto probabilmente ad alto rischio ai sensi dell'allegato III, punto 4, lettera a), con obblighi applicabili dal 2 dicembre 2027. Si sta preparando su questa base. prepza non dichiara di essere conforme o certificato.
 
 Ecco cosa significa oggi nel prodotto:
 

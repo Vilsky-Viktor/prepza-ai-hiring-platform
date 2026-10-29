@@ -79,7 +79,7 @@ AI के लिखे सवाल गलत या अस्पष्ट ह�
 
 ### EU AI Act
 
-ऐसे AI सिस्टम जो "intended to be used for the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates" (यानी भर्ती या चयन के लिए, ख़ासकर टारगेटेड जॉब विज्ञापन देने, आवेदनों का विश्लेषण और फ़िल्टर करने, और उम्मीदवारों का मूल्यांकन करने के लिए) हैं, वे AI Act के [Annex III, point 4(a)](https://artificialintelligenceact.eu/annex/3/) के तहत हाई-रिस्क हैं। जो टूल उम्मीदवारों को स्कोर या रैंक करते हैं, वे लगभग निश्चित रूप से इसके दायरे में आते हैं। prepza के अपने विश्लेषण का निष्कर्ष है कि prepza बहुत संभवतः हाई-रिस्क है, और दायित्व 2 दिसंबर 2027 से लागू होंगे; इसकी पुष्टि एक वकील को करनी है। यहाँ EU क़ानून के उद्धरणों के अनुवाद अनौपचारिक हैं।
+ऐसे AI सिस्टम जो "intended to be used for the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates" (यानी भर्ती या चयन के लिए, ख़ासकर टारगेटेड जॉब विज्ञापन देने, आवेदनों का विश्लेषण और फ़िल्टर करने, और उम्मीदवारों का मूल्यांकन करने के लिए) हैं, वे AI Act के [Annex III, point 4(a)](https://artificialintelligenceact.eu/annex/3/) के तहत हाई-रिस्क हैं। जो टूल उम्मीदवारों को स्कोर या रैंक करते हैं, वे लगभग निश्चित रूप से इसके दायरे में आते हैं। prepza के अपने विश्लेषण का निष्कर्ष है कि prepza बहुत संभवतः हाई-रिस्क है, और दायित्व 2 दिसंबर 2027 से लागू होंगे। यहाँ EU क़ानून के उद्धरणों के अनुवाद अनौपचारिक हैं।
 
 हाई-रिस्क दर्जे का मतलब है दोनों पक्षों पर ज़िम्मेदारियाँ:
 

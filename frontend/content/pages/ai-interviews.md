@@ -79,7 +79,7 @@ This is a summary as of October 2026, not legal advice. Check with your own coun
 
 ### EU AI Act
 
-AI systems "intended to be used for the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates" are high-risk under [Annex III, point 4(a)](https://artificialintelligenceact.eu/annex/3/) of the AI Act. Tools that score or rank candidates are very likely covered. prepza's own analysis concludes that prepza very likely is high-risk, with the obligations applying from 2 December 2027; a lawyer is to confirm.
+AI systems "intended to be used for the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates" are high-risk under [Annex III, point 4(a)](https://artificialintelligenceact.eu/annex/3/) of the AI Act. Tools that score or rank candidates are very likely covered. prepza's own analysis concludes that prepza very likely is high-risk, with the obligations applying from 2 December 2027.
 
 High-risk status means duties on both sides:
 

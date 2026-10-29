@@ -79,7 +79,7 @@ See on kokkuvõte 2026. aasta oktoobri seisuga, mitte õigusnõuanne. Konsulteer
 
 ### ELi tehisintellekti määrus (AI Act)
 
-AI-süsteemid, mis on „ette nähtud kasutamiseks füüsiliste isikute töölevõtmiseks või valimiseks, eelkõige sihipäraste töökuulutuste avaldamiseks, tööle kandideerimise taotluste analüüsimiseks ja filtreerimiseks ning kandidaatide hindamiseks“, on määruse [III lisa punkti 4 alapunkti a](https://artificialintelligenceact.eu/annex/3/) kohaselt suure riskiga. Tööriistad, mis hindavad või järjestavad kandidaate, kuuluvad sinna väga tõenäoliselt. prepza enda analüüsi järeldus on, et prepza on väga tõenäoliselt suure riskiga süsteem ja kohustused kehtivad alates 2. detsembrist 2027; seda peab kinnitama jurist.
+AI-süsteemid, mis on „ette nähtud kasutamiseks füüsiliste isikute töölevõtmiseks või valimiseks, eelkõige sihipäraste töökuulutuste avaldamiseks, tööle kandideerimise taotluste analüüsimiseks ja filtreerimiseks ning kandidaatide hindamiseks“, on määruse [III lisa punkti 4 alapunkti a](https://artificialintelligenceact.eu/annex/3/) kohaselt suure riskiga. Tööriistad, mis hindavad või järjestavad kandidaate, kuuluvad sinna väga tõenäoliselt. prepza enda analüüsi järeldus on, et prepza on väga tõenäoliselt suure riskiga süsteem ja kohustused kehtivad alates 2. detsembrist 2027.
 
 Suure riskiga staatus tähendab kohustusi mõlemale poolele:
 

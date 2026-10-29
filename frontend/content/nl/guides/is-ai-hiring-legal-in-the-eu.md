@@ -113,7 +113,7 @@ Kandidaatgegevens zijn persoonsgegevens, en AI verandert niets aan de AVG. De ke
 
 ## Hoe prepza hiermee omgaat
 
-prepza neemt getimede meerkeuze-vaardigheidstests af die door AI worden geschreven op basis van een functieomschrijving. Omdat het kandidaten scoort en rangschikt, concludeert prepza in zijn eigen analyse dat het zeer waarschijnlijk hoog risico is onder bijlage III, punt 4, onder a), met verplichtingen vanaf 2 december 2027. Het bereidt zich op die basis voor, en een advocaat moet de indeling nog bevestigen. prepza claimt niet dat het compliant of gecertificeerd is.
+prepza neemt getimede meerkeuze-vaardigheidstests af die door AI worden geschreven op basis van een functieomschrijving. Omdat het kandidaten scoort en rangschikt, concludeert prepza in zijn eigen analyse dat het zeer waarschijnlijk hoog risico is onder bijlage III, punt 4, onder a), met verplichtingen vanaf 2 december 2027. Het bereidt zich op die basis voor. prepza claimt niet dat het compliant of gecertificeerd is.
 
 Zo ziet dat er vandaag in het product uit:
 

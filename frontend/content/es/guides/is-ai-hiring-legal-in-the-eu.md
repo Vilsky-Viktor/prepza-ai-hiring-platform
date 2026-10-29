@@ -113,7 +113,7 @@ Los datos de los candidatos son datos personales, y la IA no cambia el RGPD. Lo 
 
 ## Cómo lo aborda prepza
 
-prepza ofrece entrevistas de habilidades de opción múltiple con tiempo límite redactadas por IA a partir de una descripción del puesto. Como puntúa y clasifica a los candidatos, el análisis propio de prepza concluye que muy probablemente es de alto riesgo según el anexo III, punto 4, letra a), con obligaciones aplicables desde el 2 de diciembre de 2027. Se está preparando sobre esa base, y un abogado debe confirmar la clasificación. prepza no afirma cumplir la normativa ni estar certificado.
+prepza ofrece entrevistas de habilidades de opción múltiple con tiempo límite redactadas por IA a partir de una descripción del puesto. Como puntúa y clasifica a los candidatos, el análisis propio de prepza concluye que muy probablemente es de alto riesgo según el anexo III, punto 4, letra a), con obligaciones aplicables desde el 2 de diciembre de 2027. Se está preparando sobre esa base. prepza no afirma cumplir la normativa ni estar certificado.
 
 Cómo se refleja hoy en el producto:
 

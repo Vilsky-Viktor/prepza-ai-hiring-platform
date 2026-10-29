@@ -79,7 +79,7 @@ Bu, Ekim 2026 itibarıyla bir özettir, hukuki tavsiye değildir. Kendi hukuk da
 
 ### AB Yapay Zekâ Yasası (EU AI Act)
 
-“Gerçek kişilerin işe alımı veya seçimi için, özellikle hedefli iş ilanları yayınlamak, iş başvurularını analiz etmek ve filtrelemek ve adayları değerlendirmek amacıyla kullanılması öngörülen” yapay zekâ sistemleri, Yapay Zekâ Yasası'nın [Ek III, madde 4(a)](https://artificialintelligenceact.eu/annex/3/) hükmüne göre yüksek risklidir. Adayları puanlayan veya sıralayan araçlar büyük olasılıkla bu kapsamdadır. prepza'nın kendi analizi, prepza'nın büyük olasılıkla yüksek riskli olduğu ve yükümlülüklerin 2 Aralık 2027'den itibaren uygulanacağı sonucuna varıyor; bunun bir avukat tarafından teyit edilmesi gerekiyor. Buradaki AB mevzuatından alıntılar resmi olmayan çevirilerdir.
+“Gerçek kişilerin işe alımı veya seçimi için, özellikle hedefli iş ilanları yayınlamak, iş başvurularını analiz etmek ve filtrelemek ve adayları değerlendirmek amacıyla kullanılması öngörülen” yapay zekâ sistemleri, Yapay Zekâ Yasası'nın [Ek III, madde 4(a)](https://artificialintelligenceact.eu/annex/3/) hükmüne göre yüksek risklidir. Adayları puanlayan veya sıralayan araçlar büyük olasılıkla bu kapsamdadır. prepza'nın kendi analizi, prepza'nın büyük olasılıkla yüksek riskli olduğu ve yükümlülüklerin 2 Aralık 2027'den itibaren uygulanacağı sonucuna varıyor. Buradaki AB mevzuatından alıntılar resmi olmayan çevirilerdir.
 
 Yüksek riskli statü, iki taraf için de yükümlülükler anlamına gelir:
 

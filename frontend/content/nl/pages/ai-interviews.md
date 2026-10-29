@@ -79,7 +79,7 @@ Dit is een samenvatting per oktober 2026, geen juridisch advies. Overleg met je 
 
 ### AI-verordening
 
-AI-systemen "die bedoeld zijn om te worden gebruikt voor het werven of selecteren van natuurlijke personen, met name voor het plaatsen van gerichte vacatures, het analyseren en filteren van sollicitaties, en het beoordelen van kandidaten" zijn hoog risico volgens [bijlage III, punt 4, onder a)](https://artificialintelligenceact.eu/annex/3/) van de AI-verordening. Tools die kandidaten scoren of rangschikken vallen daar zeer waarschijnlijk onder. De eigen analyse van prepza concludeert dat prepza zeer waarschijnlijk hoog risico is, met verplichtingen vanaf 2 december 2027; een jurist moet dat nog bevestigen.
+AI-systemen "die bedoeld zijn om te worden gebruikt voor het werven of selecteren van natuurlijke personen, met name voor het plaatsen van gerichte vacatures, het analyseren en filteren van sollicitaties, en het beoordelen van kandidaten" zijn hoog risico volgens [bijlage III, punt 4, onder a)](https://artificialintelligenceact.eu/annex/3/) van de AI-verordening. Tools die kandidaten scoren of rangschikken vallen daar zeer waarschijnlijk onder. De eigen analyse van prepza concludeert dat prepza zeer waarschijnlijk hoog risico is, met verplichtingen vanaf 2 december 2027.
 
 Hoog risico betekent verplichtingen aan beide kanten:
 

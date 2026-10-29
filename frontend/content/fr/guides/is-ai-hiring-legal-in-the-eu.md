@@ -113,7 +113,7 @@ Les données des candidats sont des données personnelles, et l'IA ne change rie
 
 ## L'approche de prepza
 
-prepza fait passer des entretiens de compétences chronométrés à choix multiples, rédigés par l'IA à partir d'une fiche de poste. Comme il note et classe les candidats, l'analyse menée par prepza conclut qu'il est très probablement à haut risque au sens de l'annexe III, point 4 a), avec des obligations applicables à partir du 2 décembre 2027. prepza se prépare sur cette base, et la confirmation de cette classification par un avocat est attendue. prepza ne prétend être ni conforme ni certifié.
+prepza fait passer des entretiens de compétences chronométrés à choix multiples, rédigés par l'IA à partir d'une fiche de poste. Comme il note et classe les candidats, l'analyse menée par prepza conclut qu'il est très probablement à haut risque au sens de l'annexe III, point 4 a), avec des obligations applicables à partir du 2 décembre 2027. prepza se prépare sur cette base. prepza ne prétend être ni conforme ni certifié.
 
 Ce que cela donne aujourd'hui dans le produit :
 

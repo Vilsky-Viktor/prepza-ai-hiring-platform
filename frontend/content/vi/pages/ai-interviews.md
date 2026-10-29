@@ -79,7 +79,7 @@ Hãy rõ ràng về các giới hạn. Một bài kiểm tra trắc nghiệm ki�
 
 ### Đạo luật AI của EU
 
-Các hệ thống AI "dự định được sử dụng để tuyển dụng hoặc tuyển chọn thể nhân, đặc biệt là để đăng quảng cáo việc làm có mục tiêu, phân tích và lọc hồ sơ ứng tuyển, và đánh giá ứng viên" thuộc nhóm rủi ro cao theo [Phụ lục III, điểm 4(a)](https://artificialintelligenceact.eu/annex/3/) của Đạo luật AI. Các công cụ chấm điểm hoặc xếp hạng ứng viên rất có thể thuộc phạm vi này. Phân tích của chính prepza kết luận rằng prepza rất có thể thuộc nhóm rủi ro cao, với các nghĩa vụ áp dụng từ ngày 2/12/2027; một luật sư sẽ xác nhận. Các trích dẫn luật EU ở đây là bản dịch không chính thức.
+Các hệ thống AI "dự định được sử dụng để tuyển dụng hoặc tuyển chọn thể nhân, đặc biệt là để đăng quảng cáo việc làm có mục tiêu, phân tích và lọc hồ sơ ứng tuyển, và đánh giá ứng viên" thuộc nhóm rủi ro cao theo [Phụ lục III, điểm 4(a)](https://artificialintelligenceact.eu/annex/3/) của Đạo luật AI. Các công cụ chấm điểm hoặc xếp hạng ứng viên rất có thể thuộc phạm vi này. Phân tích của chính prepza kết luận rằng prepza rất có thể thuộc nhóm rủi ro cao, với các nghĩa vụ áp dụng từ ngày 2/12/2027. Các trích dẫn luật EU ở đây là bản dịch không chính thức.
 
 Nhóm rủi ro cao kéo theo nghĩa vụ cho cả hai bên:
 

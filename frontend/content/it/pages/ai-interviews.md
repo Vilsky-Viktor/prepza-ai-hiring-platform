@@ -79,7 +79,7 @@ Questo è un riepilogo aggiornato a ottobre 2026, non una consulenza legale. Ver
 
 ### AI Act dell'UE
 
-I sistemi di IA "destinati a essere utilizzati per l'assunzione o la selezione di persone fisiche, in particolare per pubblicare annunci di lavoro mirati, analizzare o filtrare le candidature e valutare i candidati" sono ad alto rischio ai sensi dell'[allegato III, punto 4, lettera a)](https://artificialintelligenceact.eu/annex/3/) dell'AI Act. Gli strumenti che assegnano punteggi o classificano i candidati vi rientrano molto probabilmente. L'analisi interna di prepza conclude che prepza è molto probabilmente ad alto rischio, con obblighi applicabili dal 2 dicembre 2027; un avvocato deve confermarlo.
+I sistemi di IA "destinati a essere utilizzati per l'assunzione o la selezione di persone fisiche, in particolare per pubblicare annunci di lavoro mirati, analizzare o filtrare le candidature e valutare i candidati" sono ad alto rischio ai sensi dell'[allegato III, punto 4, lettera a)](https://artificialintelligenceact.eu/annex/3/) dell'AI Act. Gli strumenti che assegnano punteggi o classificano i candidati vi rientrano molto probabilmente. L'analisi interna di prepza conclude che prepza è molto probabilmente ad alto rischio, con obblighi applicabili dal 2 dicembre 2027.
 
 Lo status di alto rischio comporta obblighi per entrambe le parti:
 

@@ -115,7 +115,7 @@ Dữ liệu ứng viên là dữ liệu cá nhân, và AI không thay đổi GDP
 
 ## Cách prepza tiếp cận vấn đề này
 
-prepza tổ chức các buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ, do AI viết từ mô tả công việc. Vì prepza chấm điểm và xếp hạng ứng viên, phân tích của chính prepza kết luận rằng prepza rất có thể thuộc nhóm rủi ro cao theo Phụ lục III, điểm 4(a), với các nghĩa vụ áp dụng từ ngày 2/12/2027. prepza đang chuẩn bị trên cơ sở đó, và một luật sư sẽ xác nhận việc phân loại. prepza không tuyên bố đã tuân thủ hay được chứng nhận.
+prepza tổ chức các buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ, do AI viết từ mô tả công việc. Vì prepza chấm điểm và xếp hạng ứng viên, phân tích của chính prepza kết luận rằng prepza rất có thể thuộc nhóm rủi ro cao theo Phụ lục III, điểm 4(a), với các nghĩa vụ áp dụng từ ngày 2/12/2027. prepza đang chuẩn bị trên cơ sở đó. prepza không tuyên bố đã tuân thủ hay được chứng nhận.
 
 Hiện nay điều đó thể hiện trong sản phẩm như sau:
 

@@ -115,7 +115,7 @@ Data kandidat adalah data pribadi, dan AI tidak mengubah GDPR. Pokok-pokoknya:
 
 ## Pendekatan prepza
 
-prepza menjalankan wawancara keterampilan pilihan ganda berbatas waktu yang ditulis AI dari deskripsi pekerjaan. Karena prepza memberi skor dan memeringkat kandidat, analisis prepza sendiri menyimpulkan bahwa prepza sangat mungkin tergolong berisiko tinggi menurut Lampiran III, poin 4(a), dengan kewajiban yang berlaku mulai 2 Desember 2027. prepza bersiap atas dasar itu, dan klasifikasinya masih perlu dikonfirmasi oleh pengacara. prepza tidak mengklaim sudah patuh atau tersertifikasi.
+prepza menjalankan wawancara keterampilan pilihan ganda berbatas waktu yang ditulis AI dari deskripsi pekerjaan. Karena prepza memberi skor dan memeringkat kandidat, analisis prepza sendiri menyimpulkan bahwa prepza sangat mungkin tergolong berisiko tinggi menurut Lampiran III, poin 4(a), dengan kewajiban yang berlaku mulai 2 Desember 2027. prepza bersiap atas dasar itu. prepza tidak mengklaim sudah patuh atau tersertifikasi.
 
 Seperti apa wujudnya di produk saat ini:
 

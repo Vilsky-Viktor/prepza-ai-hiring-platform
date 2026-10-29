@@ -79,7 +79,7 @@ Dies ist eine Zusammenfassung mit Stand Oktober 2026, keine Rechtsberatung. Klä
 
 ### KI-Verordnung der EU
 
-KI-Systeme, die „bestimmungsgemäß für die Einstellung oder Auswahl natürlicher Personen verwendet werden sollen, insbesondere um gezielte Stellenanzeigen zu schalten, Bewerbungen zu sichten oder zu filtern und Bewerber zu bewerten“, sind nach [Anhang III, Nummer 4 Buchstabe a](https://artificialintelligenceact.eu/annex/3/) der KI-Verordnung Hochrisiko-Systeme. Tools, die Kandidaten bewerten oder in eine Rangfolge bringen, fallen sehr wahrscheinlich darunter. prepzas eigene Analyse kommt zu dem Schluss, dass prepza sehr wahrscheinlich ein Hochrisiko-System ist und die Pflichten ab dem 2. Dezember 2027 gelten; eine Bestätigung durch einen Anwalt steht noch aus.
+KI-Systeme, die „bestimmungsgemäß für die Einstellung oder Auswahl natürlicher Personen verwendet werden sollen, insbesondere um gezielte Stellenanzeigen zu schalten, Bewerbungen zu sichten oder zu filtern und Bewerber zu bewerten“, sind nach [Anhang III, Nummer 4 Buchstabe a](https://artificialintelligenceact.eu/annex/3/) der KI-Verordnung Hochrisiko-Systeme. Tools, die Kandidaten bewerten oder in eine Rangfolge bringen, fallen sehr wahrscheinlich darunter. prepzas eigene Analyse kommt zu dem Schluss, dass prepza sehr wahrscheinlich ein Hochrisiko-System ist und die Pflichten ab dem 2. Dezember 2027 gelten.
 
 Der Hochrisiko-Status bringt Pflichten auf beiden Seiten mit sich:
 

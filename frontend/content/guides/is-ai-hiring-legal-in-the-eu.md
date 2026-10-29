@@ -113,7 +113,7 @@ Candidate data is personal data, and AI doesn't change the GDPR. The essentials:
 
 ## How prepza approaches this
 
-prepza runs timed multiple-choice skills interviews written by AI from a job description. Because it scores and ranks candidates, prepza's own analysis concludes that it is very likely high-risk under Annex III, point 4(a), with obligations applying from 2 December 2027. It is preparing on that basis, and a lawyer is to confirm the classification. prepza does not claim to be compliant or certified.
+prepza runs timed multiple-choice skills interviews written by AI from a job description. Because it scores and ranks candidates, prepza's own analysis concludes that it is very likely high-risk under Annex III, point 4(a), with obligations applying from 2 December 2027. It is preparing on that basis. prepza does not claim to be compliant or certified.
 
 What that looks like in the product today:
 

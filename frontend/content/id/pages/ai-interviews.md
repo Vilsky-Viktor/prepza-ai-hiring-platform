@@ -79,7 +79,7 @@ Ini adalah ringkasan per Oktober 2026, bukan nasihat hukum. Konsultasikan dengan
 
 ### AI Act UE
 
-Sistem AI yang "dimaksudkan untuk digunakan dalam rekrutmen atau seleksi orang perseorangan, khususnya untuk menempatkan iklan lowongan yang ditargetkan, menganalisis dan menyaring lamaran kerja, serta mengevaluasi kandidat" tergolong berisiko tinggi menurut [Lampiran III, poin 4(a)](https://artificialintelligenceact.eu/annex/3/) AI Act. Alat yang menilai atau memeringkat kandidat sangat mungkin tercakup. Analisis prepza sendiri menyimpulkan bahwa prepza sangat mungkin tergolong berisiko tinggi, dengan kewajiban yang berlaku mulai 2 Desember 2027; hal ini masih perlu dikonfirmasi oleh pengacara. Kutipan dari hukum UE di sini adalah terjemahan tidak resmi.
+Sistem AI yang "dimaksudkan untuk digunakan dalam rekrutmen atau seleksi orang perseorangan, khususnya untuk menempatkan iklan lowongan yang ditargetkan, menganalisis dan menyaring lamaran kerja, serta mengevaluasi kandidat" tergolong berisiko tinggi menurut [Lampiran III, poin 4(a)](https://artificialintelligenceact.eu/annex/3/) AI Act. Alat yang menilai atau memeringkat kandidat sangat mungkin tercakup. Analisis prepza sendiri menyimpulkan bahwa prepza sangat mungkin tergolong berisiko tinggi, dengan kewajiban yang berlaku mulai 2 Desember 2027. Kutipan dari hukum UE di sini adalah terjemahan tidak resmi.
 
 Status berisiko tinggi berarti ada kewajiban di kedua pihak:
 

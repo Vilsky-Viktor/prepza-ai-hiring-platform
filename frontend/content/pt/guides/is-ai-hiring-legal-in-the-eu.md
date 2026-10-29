@@ -113,7 +113,7 @@ Os dados dos candidatos são dados pessoais, e a IA não muda o GDPR. O essencia
 
 ## Como a prepza lida com isso
 
-A prepza aplica entrevistas de habilidades de múltipla escolha cronometradas, escritas por IA a partir de uma descrição da vaga. Como ela pontua e ranqueia candidatos, a análise própria da prepza conclui que ela muito provavelmente é de alto risco pelo Anexo III, ponto 4, alínea a), com obrigações aplicáveis a partir de 2 de dezembro de 2027. Ela está se preparando com base nisso, e um advogado ainda vai confirmar a classificação. A prepza não afirma estar em conformidade nem ser certificada.
+A prepza aplica entrevistas de habilidades de múltipla escolha cronometradas, escritas por IA a partir de uma descrição da vaga. Como ela pontua e ranqueia candidatos, a análise própria da prepza conclui que ela muito provavelmente é de alto risco pelo Anexo III, ponto 4, alínea a), com obrigações aplicáveis a partir de 2 de dezembro de 2027. Ela está se preparando com base nisso. A prepza não afirma estar em conformidade nem ser certificada.
 
 Como isso aparece no produto hoje:
 

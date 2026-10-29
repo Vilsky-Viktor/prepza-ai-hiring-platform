@@ -79,7 +79,7 @@ Ito ay buod noong Oktubre 2026, hindi legal advice. Kumonsulta sa sarili mong ab
 
 ### EU AI Act
 
-Ang mga AI system na "nilalayong gamitin sa recruitment o selection ng mga natural na tao, lalo na para maglagay ng targeted job advertisements, mag-analyze at mag-filter ng job applications, at mag-evaluate ng mga aplikante" ay high-risk sa ilalim ng [Annex III, point 4(a)](https://artificialintelligenceact.eu/annex/3/) ng AI Act. Malamang na saklaw ang mga tool na nag-i-score o nagra-rank ng mga aplikante. Ayon sa sariling analysis ng prepza, malamang na high-risk ang prepza, at ipinapatupad ang mga obligasyon simula 2 Disyembre 2027; kukumpirmahin pa ito ng isang abogado. Hindi opisyal na salin ang mga sipi mula sa batas ng EU dito.
+Ang mga AI system na "nilalayong gamitin sa recruitment o selection ng mga natural na tao, lalo na para maglagay ng targeted job advertisements, mag-analyze at mag-filter ng job applications, at mag-evaluate ng mga aplikante" ay high-risk sa ilalim ng [Annex III, point 4(a)](https://artificialintelligenceact.eu/annex/3/) ng AI Act. Malamang na saklaw ang mga tool na nag-i-score o nagra-rank ng mga aplikante. Ayon sa sariling analysis ng prepza, malamang na high-risk ang prepza, at ipinapatupad ang mga obligasyon simula 2 Disyembre 2027. Hindi opisyal na salin ang mga sipi mula sa batas ng EU dito.
 
 Ang pagiging high-risk ay nangangahulugang may mga obligasyon ang magkabilang panig:
 

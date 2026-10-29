@@ -115,7 +115,7 @@ Aday verileri kişisel veridir ve yapay zekâ GDPR'ı değiştirmez. Temel nokta
 
 ## prepza'nın yaklaşımı
 
-prepza, bir iş tanımından yapay zekâ tarafından yazılmış süreli, çoktan seçmeli beceri mülakatları yürütür. Adayları puanlayıp sıraladığı için prepza'nın kendi analizi, Ek III, madde 4(a) kapsamında büyük olasılıkla yüksek riskli olduğu ve yükümlülüklerin 2 Aralık 2027'den itibaren uygulanacağı sonucuna varıyor. prepza buna göre hazırlanıyor ve sınıflandırmanın bir avukat tarafından teyit edilmesi gerekiyor. prepza uyumlu veya sertifikalı olduğunu iddia etmiyor.
+prepza, bir iş tanımından yapay zekâ tarafından yazılmış süreli, çoktan seçmeli beceri mülakatları yürütür. Adayları puanlayıp sıraladığı için prepza'nın kendi analizi, Ek III, madde 4(a) kapsamında büyük olasılıkla yüksek riskli olduğu ve yükümlülüklerin 2 Aralık 2027'den itibaren uygulanacağı sonucuna varıyor. prepza buna göre hazırlanıyor. prepza uyumlu veya sertifikalı olduğunu iddia etmiyor.
 
 Bunun bugün üründeki karşılığı:
 

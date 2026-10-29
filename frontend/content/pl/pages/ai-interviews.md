@@ -79,7 +79,7 @@ To podsumowanie według stanu na październik 2026. To nie jest porada prawna. S
 
 ### Akt w sprawie sztucznej inteligencji (UE)
 
-Systemy AI „przeznaczone do wykorzystywania do celów rekrutacji lub wyboru osób fizycznych, w szczególności do celów umieszczania ukierunkowanych ogłoszeń o pracę, analizowania i filtrowania podań o pracę oraz do oceny kandydatów” są systemami wysokiego ryzyka zgodnie z [załącznikiem III pkt 4 lit. a](https://artificialintelligenceact.eu/annex/3/) aktu w sprawie sztucznej inteligencji. Narzędzia, które oceniają kandydatów lub tworzą ich ranking, są bardzo prawdopodobnie objęte tym przepisem. Własna analiza prepza prowadzi do wniosku, że prepza bardzo prawdopodobnie jest systemem wysokiego ryzyka, a obowiązki mają zastosowanie od 2 grudnia 2027 r.; musi to jeszcze potwierdzić prawnik.
+Systemy AI „przeznaczone do wykorzystywania do celów rekrutacji lub wyboru osób fizycznych, w szczególności do celów umieszczania ukierunkowanych ogłoszeń o pracę, analizowania i filtrowania podań o pracę oraz do oceny kandydatów” są systemami wysokiego ryzyka zgodnie z [załącznikiem III pkt 4 lit. a](https://artificialintelligenceact.eu/annex/3/) aktu w sprawie sztucznej inteligencji. Narzędzia, które oceniają kandydatów lub tworzą ich ranking, są bardzo prawdopodobnie objęte tym przepisem. Własna analiza prepza prowadzi do wniosku, że prepza bardzo prawdopodobnie jest systemem wysokiego ryzyka, a obowiązki mają zastosowanie od 2 grudnia 2027 r.
 
 Status wysokiego ryzyka oznacza obowiązki po obu stronach:
 

@@ -113,7 +113,7 @@ Kandidatendaten sind personenbezogene Daten, und KI ändert nichts an der DSGVO.
 
 ## Wie prepza damit umgeht
 
-prepza führt zeitlich begrenzte Multiple-Choice-Interviews zu Fachkenntnissen durch, die KI aus einer Stellenbeschreibung schreibt. Weil prepza Kandidaten bewertet und in eine Rangfolge bringt, kommt prepzas eigene Analyse zu dem Schluss, dass es sehr wahrscheinlich ein Hochrisiko-System nach Anhang III Nummer 4 Buchstabe a ist, mit Pflichten ab dem 2. Dezember 2027. prepza bereitet sich auf dieser Grundlage vor, und eine Bestätigung der Einstufung durch einen Anwalt steht noch aus. prepza behauptet nicht, konform oder zertifiziert zu sein.
+prepza führt zeitlich begrenzte Multiple-Choice-Interviews zu Fachkenntnissen durch, die KI aus einer Stellenbeschreibung schreibt. Weil prepza Kandidaten bewertet und in eine Rangfolge bringt, kommt prepzas eigene Analyse zu dem Schluss, dass es sehr wahrscheinlich ein Hochrisiko-System nach Anhang III Nummer 4 Buchstabe a ist, mit Pflichten ab dem 2. Dezember 2027. prepza bereitet sich auf dieser Grundlage vor. prepza behauptet nicht, konform oder zertifiziert zu sein.
 
 So sieht das heute im Produkt aus:
 

@@ -79,7 +79,7 @@ prepza ใช้ AI เขียนการสัมภาษณ์วัดท
 
 ### EU AI Act
 
-ระบบ AI ที่ "intended to be used for the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates" (มุ่งใช้เพื่อการสรรหาหรือคัดเลือกบุคคล โดยเฉพาะการลงโฆษณางานแบบเจาะกลุ่ม การวิเคราะห์และคัดกรองใบสมัคร และการประเมินผู้สมัคร) จัดเป็นความเสี่ยงสูงตาม [Annex III, point 4(a)](https://artificialintelligenceact.eu/annex/3/) ของ AI Act เครื่องมือที่ให้คะแนนหรือจัดอันดับผู้สมัครน่าจะอยู่ในขอบเขตนี้อย่างมาก การวิเคราะห์ของ prepza เองสรุปว่า prepza น่าจะเป็นระบบความเสี่ยงสูงอย่างมาก โดยหน้าที่ต่าง ๆ จะมีผลตั้งแต่วันที่ 2 ธันวาคม 2027 ซึ่งต้องให้ทนายความยืนยัน คำแปลข้อความที่อ้างอิงจากกฎหมาย EU ในที่นี้เป็นคำแปลที่ไม่เป็นทางการ
+ระบบ AI ที่ "intended to be used for the recruitment or selection of natural persons, in particular to place targeted job advertisements, to analyse and filter job applications, and to evaluate candidates" (มุ่งใช้เพื่อการสรรหาหรือคัดเลือกบุคคล โดยเฉพาะการลงโฆษณางานแบบเจาะกลุ่ม การวิเคราะห์และคัดกรองใบสมัคร และการประเมินผู้สมัคร) จัดเป็นความเสี่ยงสูงตาม [Annex III, point 4(a)](https://artificialintelligenceact.eu/annex/3/) ของ AI Act เครื่องมือที่ให้คะแนนหรือจัดอันดับผู้สมัครน่าจะอยู่ในขอบเขตนี้อย่างมาก การวิเคราะห์ของ prepza เองสรุปว่า prepza น่าจะเป็นระบบความเสี่ยงสูงอย่างมาก โดยหน้าที่ต่าง ๆ จะมีผลตั้งแต่วันที่ 2 ธันวาคม 2027 คำแปลข้อความที่อ้างอิงจากกฎหมาย EU ในที่นี้เป็นคำแปลที่ไม่เป็นทางการ
 
 สถานะความเสี่ยงสูงหมายถึงหน้าที่ทั้งสองฝ่าย:
 
