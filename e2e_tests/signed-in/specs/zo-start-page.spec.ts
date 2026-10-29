@@ -40,10 +40,10 @@ test("the start page shows the whole interview and runs its rules down the scree
     ]) {
       await user.setViewportSize(size)
       await visit(user, `/companies/${company.id}/interviews/${interview}/try`)
-      const start = user.getByTestId("accept-start")
+      const start = user.getByTestId("accept-start").filter({ visible: true })
       await expect(start).toBeVisible()
 
-      await expect(user.getByTestId("total-minutes")).toContainText(String(minutes))
+      await expect(user.getByTestId("total-minutes").filter({ visible: true })).toContainText(String(minutes))
       expect((await box(start)).height).toBe(START_HEIGHT)
 
       const rules = await box(user.getByTestId("invite-rules"))
@@ -59,6 +59,7 @@ test("the start page shows the whole interview and runs its rules down the scree
     // On the short screen the rules don't fit: they scroll inside the card.
     const scrolls = await user
       .getByTestId("invite-rules")
+      .filter({ visible: true })
       .evaluate((card) => card.scrollHeight > card.clientHeight)
     expect(scrolls).toBe(true)
   } finally {

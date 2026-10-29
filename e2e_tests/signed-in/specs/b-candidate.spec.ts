@@ -28,7 +28,7 @@ test("candidate takes the interview from the invite link", async ({
   await expect(candidate.getByText(company.name).first()).toBeVisible();
   await shot(candidate, "invite");
   // The invitation's one button starts it, once the candidate pledges to answer on their own.
-  await candidate.getByTestId("start-pledge").click();
+  await candidate.getByTestId("start-pledge").filter({ visible: true }).click();
   await candidate.getByRole("main").getByRole("button").click();
   await expect(candidate).toHaveURL(/\/sessions\//);
 

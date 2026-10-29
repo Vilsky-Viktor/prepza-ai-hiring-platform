@@ -22,7 +22,7 @@ test("only a real page leave counts", async ({
   // The page's clock is Playwright's, so time away passes at once.
   await candidate.clock.install()
   await visit(candidate, `/invite/${await inviteToken(email)}`)
-  await candidate.getByTestId("start-pledge").click()
+  await candidate.getByTestId("start-pledge").filter({ visible: true }).click()
   await candidate.getByRole("main").getByRole("button").click()
   await expect(candidate).toHaveURL(/\/sessions\//)
   await expect(candidate.getByRole("main").locator("button[aria-pressed]").first()).toBeVisible()

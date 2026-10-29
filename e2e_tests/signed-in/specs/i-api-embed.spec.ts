@@ -124,7 +124,7 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   await expect.poll(frameHeight).toBeLessThan(1600)
   const settled = await frameHeight()
   // The candidate's pledge, inside the company's site too.
-  await frame.getByTestId("start-pledge").click()
+  await frame.getByTestId("start-pledge").filter({ visible: true }).click()
   await expect(start).toBeEnabled()
   expect(await frameHeight()).toBe(settled)
   await start.click()

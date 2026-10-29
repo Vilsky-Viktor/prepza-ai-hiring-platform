@@ -3,9 +3,12 @@ import { expect, type Locator } from "@playwright/test"
 // A phone's screen, for the phone layouts.
 export const PHONE = { width: 390, height: 844 }
 
-/** Where `locator` is on the page, in whole pixels. */
+/** Where `locator` is on the page, in whole pixels: the visible one, once it shows, as a page
+ * that just loaded can hold a hidden copy of its parts while they stream in. */
 export async function box(locator: Locator) {
-  const found = (await locator.boundingBox({ timeout: 15_000 }))!
+  const visible = locator.filter({ visible: true })
+  await expect(visible).toBeVisible()
+  const found = (await visible.boundingBox({ timeout: 15_000 }))!
 
   return {
     left: Math.round(found.x),

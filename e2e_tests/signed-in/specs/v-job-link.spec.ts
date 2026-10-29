@@ -27,7 +27,7 @@ test("a candidate starts from the job link and continues from their own link", a
   await visit(candidate, `/apply/${token}`);
   await expect(start).toBeVisible();
   await shot(candidate, "job-link");
-  await candidate.getByTestId("start-pledge").click();
+  await candidate.getByTestId("start-pledge").filter({ visible: true }).click();
   await start.click();
   await expect(candidate).toHaveURL(/\/sessions\//);
   await expect.poll(() => joinedEmails(email)).toBe(1);
