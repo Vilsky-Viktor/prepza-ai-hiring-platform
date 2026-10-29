@@ -166,3 +166,11 @@ right while easy ones were wrong) and questions to ask in a live interview. `hel
 (88.9–98.6) → 97.3% (90.8–99.3); made up 4.0% → 2.7%; sign-in marker 100% both; who-are-you
 18 of 18; the misses are h17's known invented retake limit (2 of 3), not about integrity. Within
 the noise; kept so the guides say what is true. $1.75.
+
+## Help chat: run again for the feedback cases (2026-10-29, no change)
+
+Run again when thumbs-down answers became a source of feedback cases (`disliked_answers.py`,
+`--dataset help_feedback.json`); none exist yet (no thumbs down in Langfuse or locally), so this
+is the hand-written set, 3 repeats: passed 98.7% (92.8–99.8), made up 4.0% (1.4–11.1), sign-in
+marker 100%; identity 18/18. Misses: h04 twice (says viewers see billing), h17 once (invents a
+one-attempt limit). Within the noise of the last run. $1.75 (the judge $1.72).

@@ -63,3 +63,21 @@ def test_the_table_holds_no_text_and_no_voter(run):
             )
 
     assert sorted(run(columns())) == ["answer_id", "created_at", "trace_id", "updated_at", "vote"]
+
+
+def test_answers_voted_down_are_found_by_their_id_and_trace_only(run):
+    down, up = uuid.uuid4(), uuid.uuid4()
+
+    async def scenario():
+        await transaction(help_votes.save, down, "c" * 32, -1)
+        await transaction(help_votes.save, up, "d" * 32, 1)
+        found = await transaction(help_votes.voted_down)
+
+        for answer_id in (down, up):
+            await transaction(help_votes.save, answer_id, None, None)
+
+        return found
+
+    mine = [(v.answer_id, v.trace_id) for v in run(scenario()) if v.answer_id in (down, up)]
+
+    assert mine == [(down, "c" * 32)]

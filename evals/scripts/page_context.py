@@ -9,8 +9,10 @@ it (as before it), then has the judge compare them: general questions blind, in 
     evals/run.sh assistant page_context.py --label base
     evals/run.sh library assistant_templates.py remove
 
-Each question is asked `--repeat` times (3) in each variant; `--only g01,p06` asks only those. The assistant's model is the service's own (ASSISTANT_MODEL): about $0.25 a repeat for its
-turns, and about $0.30 a repeat for the judge (Sol at high).
+Each question is asked `--repeat` times (3) in each variant; `--only g01,p06` asks only those;
+`--dataset assistant_feedback.json` asks the feedback cases instead. The assistant's model is the
+service's own (ASSISTANT_MODEL): about $0.25 a repeat for its turns, and about $0.30 a repeat for
+the judge (Sol at high).
 """
 
 import argparse
@@ -205,8 +207,12 @@ def summary(data: dict, general: dict, pages: dict) -> dict:
     return found
 
 
-async def main(label: str, only: str, repeat: int) -> None:
+async def main(label: str, only: str, repeat: int, dataset: str | None) -> None:
     data = load(DATASETS / "assistant_questions.json")
+
+    if dataset:
+        # The feedback cases, apart from the hand-written ones, on the same pages.
+        data |= {part: load(DATASETS / dataset).get(part, []) for part in ("general", "page")}
 
     for part in ("general", "page"):
         chosen = [item for item in data[part] if not only or item["id"] in only.split(",")]
@@ -286,5 +292,6 @@ if __name__ == "__main__":
     # Some ids only ("g01,p06"), to try the script.
     parser.add_argument("--only", default="")
     parser.add_argument("--repeat", type=int, default=3)
+    parser.add_argument("--dataset", help="assistant_feedback.json: the feedback cases instead")
     args = parser.parse_args()
-    asyncio.run(main(args.label, args.only, args.repeat))
+    asyncio.run(main(args.label, args.only, args.repeat, args.dataset))

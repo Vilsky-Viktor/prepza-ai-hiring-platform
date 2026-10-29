@@ -5,6 +5,7 @@ by code (the sign-in marker) and judged by judges/help_answer.md against the sam
 The help chat is the assistant's; what it answers from comes from site, as in the service.
 
     evals/run.sh assistant help_chat.py --label base            # --repeat 3, --only h01,h10
+    evals/run.sh assistant help_chat.py --dataset help_feedback.json --label feedback
 
 The help model runs at effort "none" with a little temperature, so each message is asked
 `--repeat` times. Costs about $0.01 for the answers and $0.30-0.60 for the judge (the
@@ -85,8 +86,8 @@ async def review(item: dict, info: str, found: dict) -> dict:
     }
 
 
-async def main(label: str, only: str, repeat: int) -> None:
-    items = load(DATASETS / "help_questions.json")["questions"]
+async def main(label: str, only: str, repeat: int, dataset: str) -> None:
+    items = load(DATASETS / dataset)["questions"]
     items = [item for item in items if not only or item["id"] in only.split(",")]
     # The judge reads what the chat reads, in English (the FAQ in the page's language aside).
     info = (await help_knowledge(None, None)).knowledge
@@ -117,7 +118,9 @@ async def main(label: str, only: str, repeat: int) -> None:
         "judge": round(sum(r["judge_cost"] for r in rows), 4),
     }
     model = f"{settings.help_model} ({settings.help_reasoning_effort})"
-    run = run_record(model=model, repeat=repeat, only=only, scores=scores, cost=spent)
+    run = run_record(
+        model=model, dataset=dataset, repeat=repeat, only=only, scores=scores, cost=spent
+    )
     save(RESULTS / f"help_chat_{label}.json", {"run": run, "answers": rows})
     print(json.dumps({"scores": scores, "cost": spent}, indent=1, ensure_ascii=False))
 
@@ -131,5 +134,7 @@ if __name__ == "__main__":
     parser.add_argument("--label", default="run")
     parser.add_argument("--only", default="")
     parser.add_argument("--repeat", type=int, default=3)
+    # The feedback cases (help_feedback.json) are kept apart from the hand-written ones.
+    parser.add_argument("--dataset", default="help_questions.json")
     args = parser.parse_args()
-    asyncio.run(main(args.label, args.only, args.repeat))
+    asyncio.run(main(args.label, args.only, args.repeat, args.dataset))

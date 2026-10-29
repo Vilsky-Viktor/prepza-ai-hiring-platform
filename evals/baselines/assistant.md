@@ -119,3 +119,17 @@ guide, the conversation, the answers), read as data, and ran again on the same t
 | With a role and tagged data (in use, `…_role.json`) | **8/8 / 8/8 / 1.0** | **8/8 / 8/8 / 1.0** | **8/8 / 8/8 / 1.0** | $0.16 |
 
 Runs from here on use the judges with a role; their verdicts on the traps didn't change.
+
+## Run again for the feedback cases (2026-10-29, no change)
+
+Run again when thumbs-down answers became a source of feedback cases (`disliked_answers.py`,
+`page_context.py --dataset assistant_feedback.json`); none exist yet (no thumbs down in Langfuse
+or locally), so these are the hand-written sets:
+
+- Page context, 3 repeats: general correct with 128/153, without 128/153; right scope 136 / 138;
+  right tools 133 / 130; page checks 22/27 with, 13/27 without; `get_page_guide` 15/15; blind
+  wins/ties/losses 38/67/48. $1.71.
+- Guides, 2 repeats: guide questions correct 40/40, complete 23/40, right guide read 39/40,
+  linked 39/40; general correct 27/30; guide wins/losses against without 37/3. $0.93.
+- Actions, 2 repeats: task success 99.3% (96.0–99.9), arguments 100%, injection safe 100%, judge
+  traps 8/8; one miss (e10.1); $0.0014 and 8.0 s a turn. $0.25.

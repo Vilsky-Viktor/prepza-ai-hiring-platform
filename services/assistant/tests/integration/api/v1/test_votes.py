@@ -2,6 +2,8 @@
 throwaway Auth emulator user: one vote an answer, changed or cleared, shown when the
 conversation is opened, and only on the user's own answers."""
 
+import uuid
+
 from prepza_common.http.http import bearer
 
 from assistant.constants.chat import Status
@@ -101,3 +103,21 @@ def test_no_vote_on_someone_elses_answer_or_on_a_question(run, user, monkeypatch
         assert refused.json()["detail"] == "Not found"
 
     assert kept is None
+
+
+def test_answers_voted_down_are_found_with_the_question_they_answered(run):
+    user_id = f"down-{uuid.uuid4().hex[:8]}"
+
+    async def scenario():
+        first, _, down = await answered(user_id)
+        second, _, up = await answered(user_id)
+
+        for conversation_id, answer_id, vote in ((first, down, -1), (second, up, 1)):
+            await transaction(messages.set_vote, conversation_id, user_id, answer_id, vote)
+
+        return down, up, await transaction(messages.voted_down)
+
+    down, up, found = run(scenario())
+
+    mine = {message.id: question for message, question in found if message.id in (down, up)}
+    assert mine == {down: "Who passed?"}

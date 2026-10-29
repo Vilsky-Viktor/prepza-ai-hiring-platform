@@ -18,9 +18,10 @@ when they were last built, one section each. Best practices behind them:
 - **Every real AI failure adds a case**, rewritten as a made-up one that fails the same way
   (a reported wrong key, a thumbs-down answer in Langfuse, a support complaint): never the
   real text. The one exception is platform templates' own flagged questions, which are ours
-  and go in word for word (`flagged_traps.json`). Hand-made assistant cases go into `assistant_questions.json` or
-  `assistant_guides.json` with what a right answer does, help chat cases into
-  `help_questions.json`; a question failure (a wrong key, an arguable one) becomes a made-up
+  and go in word for word (`flagged_traps.json`). Hand-written assistant cases go into
+  `assistant_questions.json` or `assistant_guides.json` with what a right answer does, help chat
+  cases into `help_questions.json`; cases made from a thumbs down stay apart from them, in
+  `assistant_feedback.json` and `help_feedback.json` (Feedback cases below); a question failure (a wrong key, an arguable one) becomes a made-up
   question that fails the same way, with its right key, in the `key_traps.json` format, in a
   `regression_questions.json` started with the first such case.
 - **No overlap with the prompts' examples**: a dataset that repeats an example a prompt shows
@@ -266,6 +267,21 @@ JavaScript, C and C++, Kotlin and Java, Bash and PowerShell, JSON and YAML, XML 
 plain-text traps (a table's rows, a spreadsheet formula, prose, CSV rows, an equation, an
 instruction to tag everything "python") and examples of several files. Graded by code
 (`code_languages_test.py`); a regression set, near 100%.
+
+## Feedback cases: `assistant_feedback.json` and `help_feedback.json` (by hand; none yet)
+
+Made-up cases that fail the way an answer people voted down failed, each with the answer an
+expert would give as its `expect`, never the disliked answer or anyone's text; kept apart from the
+hand-written requirement cases. `../scripts/disliked_answers.py` finds the answers voted down
+(`READ_LANGFUSE=1 evals/run.sh assistant disliked_answers.py`): from Langfuse's `user_vote`
+scores (0 is a thumbs down) and their traces when Langfuse is set up, otherwise from the local
+votes tables (the assistant's `messages.vote`, the help chat's `help_votes`, which keeps no text),
+in the same shape, to `results/disliked_answers.json` (git-ignored). Read a sample first: feedback
+leans negative. A help chat case has `help_questions.json`'s shape and runs with
+`help_chat.py --dataset help_feedback.json`; an assistant case has `assistant_questions.json`'s
+`general` or `page` shape on its pages and runs with `page_context.py --dataset
+assistant_feedback.json`. On 2026-10-29 neither Langfuse nor the local tables had a thumbs down
+(Langfuse had 2 votes, both up), so neither file exists yet.
 
 ## `help_questions.json` (by hand, 2026-10-20)
 

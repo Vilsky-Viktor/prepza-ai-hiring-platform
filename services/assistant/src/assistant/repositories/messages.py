@@ -1,8 +1,10 @@
 from datetime import timedelta
 from uuid import UUID
 
+from prepza_common.ai.answer_votes import DOWN
 from sqlalchemy import func, literal, select, tuple_, update
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.orm import aliased
 
 from assistant.constants.chat import Role, Source, Status, ToolState
 from assistant.models.answers import Answer
@@ -200,3 +202,28 @@ async def set_vote(
 
 async def vote_of(session: AsyncSession, message_id: UUID) -> int | None:
     return await session.scalar(select(Message.vote).where(Message.id == message_id))
+
+
+async def voted_down(session: AsyncSession) -> list[tuple[Message, str | None]]:
+    """Answers voted down, newest first, each with the user's message it answered (the latest
+    before it in its conversation), for the evals' feedback cases
+    (evals/scripts/disliked_answers.py)."""
+    asked = aliased(Message)
+    question = (
+        select(asked.content)
+        .where(
+            asked.conversation_id == Message.conversation_id,
+            asked.role == Role.USER,
+            asked.created_at < Message.created_at,
+        )
+        .order_by(asked.created_at.desc())
+        .limit(1)
+        .scalar_subquery()
+    )
+    query = (
+        select(Message, question)
+        .where(Message.role == Role.ASSISTANT, Message.vote == DOWN)
+        .order_by(Message.created_at.desc(), Message.id)
+    )
+
+    return [tuple(row) for row in await session.execute(query)]

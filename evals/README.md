@@ -107,7 +107,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Verifier: traps fixed / real keys kept | 60/60, 60/60 (with the flagged traps, none exported yet: 60/60, 60/60, $0.0010 a check, 2026-10-29); multi 263/263, 263/263 | `key_traps.json`, `multi_key_traps.json`, `flagged_traps.json` (none yet) | 2026-10-22 |
 | Blind confirmation before a key moves: real key named | 60/60; multi 263/263; $0.0009–0.0010 a check | the same questions | 2026-10-22 |
 | Judge: traps caught / reference agreement | 60/60 (again 2026-10-29, $0.28; flagged traps none yet), multi 60/60 (sample) / 239 of 240, kappa 0.86 | `key_traps.json`, `reviews.json` | 2026-10-20 |
-| Assistant page context: general correct with / without; page checks; who-are-you answers | 123/153 / 134/153; 25/27; 24/24 | `assistant_questions.json`, 3 repeats | 2026-10-22 |
+| Assistant page context: general correct with / without; page checks; who-are-you answers | 123/153 / 134/153; 25/27; 24/24 (2026-10-29: 128/153 / 128/153; 22/27; feedback cases none yet) | `assistant_questions.json`, 3 repeats | 2026-10-22 |
 | Assistant guides: guide questions correct; read and linked | 39/40; 40/40, 38/40 | `assistant_guides.json`, 2 repeats | 2026-10-22 |
 | Assistant handover when a call fails: contact page linked after a failure / without one / no link in the text | 100% (75.7–100) / 0 of 4 / 100%; $0.0023 a turn | `assistant_handover.json`, 2 repeats | 2026-10-22 |
 | Assistant judges (pair, page, guide): traps caught / answers kept / kappa | 8/8 / 8/8 / 1.0 each (`assistant_judge_traps.py`) | traps from `…_page_context_p1.json`, `…_guides_g1.json` | 2026-10-22 |
@@ -125,7 +125,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Fitted question times: distance from the judge's times, fitted / equal; judge's own repeat | 0.158 ± 0.002 / 0.167 ± 0.002 of the average (basic 0.116 / 0.147; with an example 0.181 / 0.209; text-only medium 0.193 / 0.186, within the noise); repeat Spearman 0.95, 2.1 s apart | `question_times.json` (452 questions, 40 twice), `gpt-6.1-sol` high; free | 2026-10-29 |
 | Integrity signals: honest flagged / relays caught (all questions to an AI / half / the hard ones), either signal | ≤ 0.7% (each population, 10–30 questions) / 33–35% / 7–9% / 15–19%; timing alone 0.6–0.7% / 33–34%; person-fit alone ≤ 0.5% / 0–3% (2–10% of half and hard-only relays) | 4,000 made-up candidates a population on the eval's questions, `ai_picks.json`; free | 2026-10-29 |
 | AI-trap questions: traps / relays giving the trap's answer | 0.0% (0.0–0.5) the planned way (both models agree); the cheap model's mistakes the main model gets right: 14.5% of questions, given again by `gpt-6-luna` none 44.6%, medium 3.6%, `gpt-6.1-sol` 0% | `ai_picks.json` (772 questions); $1.07 | 2026-10-29 |
-| Help chat: passed / made up / sign-in marker; who-are-you answers | 97.3% (90.8–99.3) / 2.7% / 100%; 18/18; with the answer patterns in the guides (96.0% / 4.0% just before, within the noise; the misses h17's known retake limit) | `help_questions.json` (25), 3 repeats | 2026-10-29 |
+| Help chat: passed / made up / sign-in marker; who-are-you answers | 97.3% (90.8–99.3) / 2.7% / 100%; 18/18 (again the same day: 98.7% / 4.0% / 100%; 18/18; feedback cases none yet); with the answer patterns in the guides (96.0% / 4.0% just before, within the noise; the misses h17's known retake limit) | `help_questions.json` (25), 3 repeats | 2026-10-29 |
 
 ## Datasets
 

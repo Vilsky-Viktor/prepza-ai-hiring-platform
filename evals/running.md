@@ -4,7 +4,7 @@ How to run each test of [README.md](README.md), what it needs and what it costs.
 
 Contents: [Generation and the verifier](#generation-and-the-verifier) ·
 [The assistant](#the-assistant) · [Planning a test](#planning-a-test) ·
-[Small utility prompts](#small-utility-prompts) · [The help chat](#the-help-chat) ·
+[Small utility prompts](#small-utility-prompts) · [The help chat](#the-help-chat) · [Thumbs-down answers](#thumbs-down-answers) ·
 [What each costs](#what-each-costs) · [Lessons](README.md#lessons-so-far)
 
 The scripts run inside the local stack's service containers, which have the service code,
@@ -170,6 +170,18 @@ reading the platform guide, FAQ, prices and page guides from site as the service
 
 ```bash
 evals/run.sh assistant help_chat.py --label new-prompt       # --repeat 3, --only h01,h10
+```
+
+## Thumbs-down answers
+
+The answers people voted down, to turn into made-up feedback cases (`datasets/README.md`,
+Feedback cases), free; `READ_LANGFUSE=1` keeps Langfuse's keys, which `run.sh` otherwise empties.
+The cases run apart from the hand-written ones:
+
+```bash
+READ_LANGFUSE=1 evals/run.sh assistant disliked_answers.py   # results/disliked_answers.json
+evals/run.sh assistant help_chat.py --dataset help_feedback.json --label feedback
+evals/run.sh assistant page_context.py --dataset assistant_feedback.json --label feedback
 ```
 
 ## What each costs

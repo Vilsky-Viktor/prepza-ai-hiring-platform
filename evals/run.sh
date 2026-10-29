@@ -42,10 +42,14 @@ for name in MODEL EFFORT JUDGE_MODEL JUDGE_EFFORT OVERSAMPLE; do
   fi
 done
 
-# Langfuse tracing off (its keys emptied): test runs would fill it with eval traffic. The service's
-# code imports from src/ (as `assistant.…`).
+# Langfuse tracing off (its keys emptied): test runs would fill it with eval traffic. READ_LANGFUSE=1
+# keeps the keys for a script that only reads it (disliked_answers.py). The service's code imports
+# from src/ (as `assistant.…`).
+if [[ -z "${READ_LANGFUSE:-}" ]]; then
+  env_args+=(-e LANGFUSE_PUBLIC_KEY= -e LANGFUSE_SECRET_KEY=)
+fi
+
 docker exec -w "/services/$code" -e "PYTHONPATH=/services/$code/src:$copy/scripts" \
-  -e LANGFUSE_PUBLIC_KEY= -e LANGFUSE_SECRET_KEY= \
   "${env_args[@]+"${env_args[@]}"}" "$container" \
   uv run --no-sync python "$copy/scripts/$script" "$@"
 
