@@ -20,10 +20,8 @@ for (const scheme of ["light", "dark"] as const) {
       await expect(html(page)).not.toHaveClass(/\bdark\b/);
     }
 
-    // The header's system button shows as picked (the buttons are hidden on phones).
-    if (test.info().project.name !== "phone") {
-      await expect(modes(page).first()).toHaveAttribute("aria-pressed", "true");
-    }
+    // The header's system button shows as picked.
+    await expect(modes(page).first()).toHaveAttribute("aria-pressed", "true");
   });
 }
 
@@ -38,7 +36,6 @@ test("a new visitor's theme follows the device when it changes", async ({ page }
 });
 
 test("a visitor who picks dark keeps it on a light device", async ({ page }) => {
-  test.skip(test.info().project.name === "phone", "the theme buttons are hidden on phones");
   await page.emulateMedia({ colorScheme: "light" });
   await page.goto("/");
   await loaded(page);
@@ -53,7 +50,6 @@ test("a visitor who picks dark keeps it on a light device", async ({ page }) => 
 });
 
 test("a visitor who picks light keeps it on a dark device", async ({ page }) => {
-  test.skip(test.info().project.name === "phone", "the theme buttons are hidden on phones");
   await page.emulateMedia({ colorScheme: "dark" });
   await page.goto("/");
   await loaded(page);

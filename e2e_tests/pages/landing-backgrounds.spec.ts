@@ -41,7 +41,7 @@ test("the sections' backgrounds run across the whole page, top to bottom", async
   expect(widths.scrollWidth).toBeLessThanOrEqual(widths.clientWidth);
 });
 
-test("nothing on the home page reaches past the page's edges, so it never scrolls sideways", async ({
+test("nothing on the home page reaches past the page's edges, so it never scrolls sideways", { tag: "@phone" }, async ({
   page,
 }) => {
   test.setTimeout(120_000);

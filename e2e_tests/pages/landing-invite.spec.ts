@@ -16,7 +16,7 @@ async function openPicture(page: Page) {
   return section;
 }
 
-test("every way in and Slack are joined to the interview by a wire", async ({ page }) => {
+test("every way in and Slack are joined to the interview by a wire", { tag: "@phone" }, async ({ page }) => {
   // The local dev server compiles the home page on first open.
   test.setTimeout(120_000);
   const section = await openPicture(page);
@@ -65,7 +65,7 @@ test("every way in and Slack are joined to the interview by a wire", async ({ pa
   ]);
 });
 
-test("no wire runs over the interview's card", async ({ page }) => {
+test("no wire runs over the interview's card", { tag: "@phone" }, async ({ page }) => {
   test.setTimeout(120_000);
   const section = await openPicture(page);
   const wires = section.locator("svg > g > path");

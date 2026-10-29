@@ -1,23 +1,17 @@
 import { expect, test, type Page } from "@playwright/test";
 
+import { shot } from "./helpers/screenshots";
 import { setScheme } from "./helpers/theme";
 
-// A signed-out visitor sees prices in their country's currency (a local one in Canada,
-// Australia, Israel, Poland, Switzerland, Japan and other countries billing names, euros in the
-// rest of the EU, pounds in the UK, US dollars elsewhere): the hero's price per candidate and the
-// pricing page's list alike, as English writes them. Locally the gateway takes the country from a
-// cookie, as the load balancer does from the address.
+// A signed-out visitor sees prices in their country's currency, the hero's price per candidate and
+// the pricing page's list alike, as English writes them. Locally the gateway takes the country
+// from a cookie, as the load balancer does from the address. Two countries here, one with a
+// symbol and one written with its code; billing's unit tests (test_credits.py) map every country
+// to its currency and frontend/tests/lib/format.test.ts writes each currency.
 
 const COUNTRIES = [
   { country: "DE", symbol: "€" },
-  { country: "GB", symbol: "£" },
-  { country: "US", symbol: "$" },
-  { country: "CA", symbol: "CA$" },
-  { country: "AU", symbol: "A$" },
-  { country: "IL", symbol: "₪" },
   { country: "PL", symbol: "PLN" },
-  { country: "CH", symbol: "CHF" },
-  { country: "JP", symbol: "¥" },
 ];
 
 async function fromCountry(page: Page, country: string) {
@@ -28,17 +22,13 @@ async function fromCountry(page: Page, country: string) {
 
 for (const { country, symbol } of COUNTRIES) {
   test(`a visitor from ${country} sees prices in ${symbol}`, async ({ page }) => {
-    test.setTimeout(120_000);
     await fromCountry(page, country);
     await page.goto("/");
     await expect(page.getByTestId("hero-price")).toContainText(symbol);
 
     for (const scheme of ["light", "dark"] as const) {
       await setScheme(page, scheme);
-      await page.screenshot({
-        path: test.info().outputPath(`home-${country}-${scheme}.png`),
-        animations: "disabled",
-      });
+      await shot(page, `home-${country}-${scheme}`);
     }
 
     await page.goto("/pricing");
@@ -46,11 +36,7 @@ for (const { country, symbol } of COUNTRIES) {
 
     for (const scheme of ["light", "dark"] as const) {
       await setScheme(page, scheme);
-      await page.screenshot({
-        path: test.info().outputPath(`pricing-${country}-${scheme}.png`),
-        fullPage: true,
-        animations: "disabled",
-      });
+      await shot(page, `pricing-${country}-${scheme}`, true);
     }
   });
 }

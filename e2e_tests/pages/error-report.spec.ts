@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { shot } from "./helpers/screenshots";
+
 // The error page's "Report": a dialog with a text field, sent to Sentry with the error.
 test("the error page reports what the user was doing", async ({ page }) => {
   // An invite whose company isn't text: the page can't render it.
@@ -14,7 +16,7 @@ test("the error page reports what the user was doing", async ({ page }) => {
   await page.goto("/invite/e2e-error-report");
   // The error page shows (its fixed wording isn't the test's).
   await expect(page.getByTestId("error-page")).toBeVisible();
-  await page.screenshot({ path: test.info().outputPath("error-page.png") });
+  await shot(page, "error-page");
 
   await page.getByTestId("report-problem").click();
   const dialog = page.getByRole("dialog");
@@ -22,10 +24,7 @@ test("the error page reports what the user was doing", async ({ page }) => {
   const send = dialog.locator('button[type="submit"]');
   await expect(send).toBeDisabled();
   await dialog.getByRole("textbox").fill("Opened my invite from the email.");
-  await page.screenshot({
-    path: test.info().outputPath("report-dialog.png"),
-    animations: "disabled",
-  });
+  await shot(page, "report-dialog");
   await send.click();
   // Sent: a success notice, and the dialog closes.
   await expect(page.locator('[data-sonner-toast][data-type="success"]')).toBeVisible();
@@ -65,7 +64,7 @@ test("Retry on the error page shows the page once it can be shown", async ({ pag
 
 // "Report" sits in the row of the other two buttons on a computer, and on its own line under them
 // on a phone.
-test("the error page's report sits beside its buttons, under them on a phone", async ({ page }) => {
+test("the error page's report sits beside its buttons, under them on a phone", { tag: "@phone" }, async ({ page }) => {
   await page.route("**/api/companies/invites/e2e-error-layout", (route) =>
     route.fulfill({
       status: 200,

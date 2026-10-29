@@ -48,7 +48,7 @@ function price(cents: number, currency: string) {
   }).format(cents / 100);
 }
 
-test("every section shows, in order, within the window", async ({ page }) => {
+test("every section shows, in order, within the window", { tag: "@phone" }, async ({ page }) => {
   // The local dev server compiles the home page on first open.
   test.setTimeout(120_000);
   await page.goto("/");
@@ -83,14 +83,16 @@ test("every section shows, in order, within the window", async ({ page }) => {
 });
 
 // In every language the texts fit the window: no word or line runs past its edges (the hero's
-// wires, drawn out to the window's edges, aside).
+// wires, drawn out to the window's edges, aside). On a phone, the narrowest screen, where a text
+// runs out first; the example's code too, which keeps its own size in Japanese, Chinese and
+// Korean and scrolls inside its block.
 const LOCALES = [
   "ru", "uk", "es", "pt", "de", "fr", "it", "pl", "nl", "tr", "ar", "he", "fa", "ja", "zh", "ko",
   "hi", "id", "th", "vi", "fil", "et",
 ];
 
 for (const locale of LOCALES) {
-  test(`the home page fits the window in ${locale}`, async ({ page }) => {
+  test(`the home page fits the window in ${locale}`, { tag: "@phone-only" }, async ({ page }) => {
     test.setTimeout(120_000);
     await page.goto(`/${locale}`);
     const outside = await page.locator("main").evaluate((element, right) => {

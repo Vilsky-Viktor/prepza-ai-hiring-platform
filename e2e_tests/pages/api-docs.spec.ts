@@ -1,5 +1,7 @@
 import { expect, type Page, test } from "@playwright/test";
 
+import { shot } from "./helpers/screenshots";
+
 // The footer's developer docs open the reference, read from the API itself, in five tabs: the
 // API (how to get a key, every route with what it returns), its web hooks, the SDK that embeds
 // the interview, the MCP server (with pages of its own) and the objects. Names the API defines (routes, events, headers, fields) are
@@ -54,7 +56,7 @@ test("the developer docs show the API with its routes", async ({ page }) => {
   await expect(
     routes.locator("header code").filter({ hasText: /^\/interviews\/\{interview_id\}\/candidates$/ }).first(),
   ).toBeVisible();
-  await page.screenshot({ path: test.info().outputPath("api.png"), fullPage: true });
+  await shot(page, "api", true);
 
   // Links are checked, then opened directly (in the tests below), so a click before the page is
   // ready can't miss: a mention of the web hook, in the API's text, opens its tab, and a type
@@ -77,7 +79,7 @@ test("the developer docs show the web hooks and their events", async ({ page }) 
   await expect(code.filter({ hasText: /^candidate\.rescored$/ })).toHaveCount(0);
   // Each event's body is shown as it's sent: its id, type and time around the data.
   await expect(page.locator("main").getByText("occurred_at", { exact: true }).first()).toBeVisible();
-  await page.screenshot({ path: test.info().outputPath("webhooks.png"), fullPage: true });
+  await shot(page, "webhooks", true);
 });
 
 // The script and how to embed the interview.
@@ -89,7 +91,7 @@ test("the developer docs show the SDK", async ({ page }) => {
 test("the developer docs show the objects", async ({ page }) => {
   await page.goto("/api-docs?tab=objects#Candidate");
   await expect(page.locator("#Candidate")).toContainText("results_url");
-  await page.screenshot({ path: test.info().outputPath("objects.png"), fullPage: true });
+  await shot(page, "objects", true);
 });
 
 // The MCP tab's own pages, in the docs' side menu (in the page on a phone too, where it's hidden):
@@ -132,12 +134,11 @@ test("the MCP tab opens on its overview with its own pages in the menu", async (
   await expect(rules).toContainText(String(limits.writes_per_hour));
   await expect(page.getByTestId("mcp-tool")).toHaveCount(0);
   await expect(page.locator("main pre")).toHaveCount(0);
-  await page.screenshot({ path: test.info().outputPath("mcp.png"), fullPage: true });
+  await shot(page, "mcp", true);
 });
 
 // On a wide screen the menu's pages open from it, each at its own address.
-test("the MCP tab's pages open from the side menu", async ({ page }, info) => {
-  test.skip(info.project.name === "phone", "the side menu shows on wide screens only");
+test("the MCP tab's pages open from the side menu", async ({ page }) => {
   await page.goto("/api-docs?tab=mcp");
   for (const href of [MCP_PAGES[3], MCP_PAGES[7], MCP_PAGES[0]]) {
     // The last link to it: the overview's address is the MCP tab's too.
@@ -203,7 +204,7 @@ test("the MCP agent frameworks page shows the example agents", async ({ page }) 
   await expect(editors.first()).toContainText("@modelcontextprotocol/sdk");
   const languages = await menus.evaluateAll((items) => items.map((item) => item.textContent?.trim()));
   expect(new Set(languages)).toEqual(new Set(["typescript"]));
-  await page.screenshot({ path: test.info().outputPath("mcp-frameworks.png"), fullPage: true });
+  await shot(page, "mcp-frameworks", true);
 });
 
 // Code that scrolls sideways is reached from the keyboard: Tab from the editor's copy button

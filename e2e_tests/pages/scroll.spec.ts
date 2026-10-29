@@ -4,8 +4,7 @@ import { loaded, scrollAtRest } from "./helpers/waits";
 
 // The home page's "how it works" link scrolls smoothly to its section, not in one jump.
 
-test("how it works scrolls smoothly", async ({ page }, info) => {
-  test.skip(info.project.name === "phone")
+test("how it works scrolls smoothly", async ({ page }) => {
   await page.goto("/")
   await loaded(page)
   expect(await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior)).toBe("smooth")

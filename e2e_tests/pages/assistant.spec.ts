@@ -36,7 +36,7 @@ function welcomeQuestions(panel: Locator) {
   return panel.getByRole("list").getByRole("button");
 }
 
-test("a visitor asks the assistant about prepza", async ({ page }) => {
+test("a visitor asks the assistant about prepza", { tag: "@phone" }, async ({ page }) => {
   await helpAnswers(page, [{ delta: "Each candidate costs " }, { delta: "**$1–3**." }]);
   const panel = await openPanel(page);
 
@@ -176,7 +176,11 @@ test("a failed answer shows its error and Try again asks again", async ({ page }
   await expect(panel.getByRole("list").getByText("Paused for now.")).toHaveCount(0);
 });
 
-test("a reload in the middle of a visitor's chat brings it back", async ({ page }) => {
+// A reload in the middle of a visitor's chat brings it back; a chat older than the service's
+// window (GET /config) isn't: opened, it's a new chat, and closed, it stays closed after a reload.
+test("a reload brings a visitor's chat back, but not an old one, and a closed panel stays closed", async ({
+  page,
+}) => {
   await helpAnswers(page, [{ delta: "A hiring test." }]);
   const panel = await openPanel(page);
   const question = (await welcomeQuestions(panel).first().textContent())!;
@@ -187,17 +191,7 @@ test("a reload in the middle of a visitor's chat brings it back", async ({ page 
   const again = page.getByRole("dialog");
   await expect(again.getByRole("list").getByText(question)).toBeVisible();
   await expect(again.getByRole("list").getByText("A hiring test.")).toBeVisible();
-});
 
-// A chat older than the service's window (GET /config) isn't brought back; opened, it's a new
-// chat, and closed, it stays closed after a reload.
-test("an old visitor's chat isn't brought back, and a closed panel stays closed", async ({ page }) => {
-  await helpAnswers(page, [{ delta: "A hiring test." }]);
-  const panel = await openPanel(page);
-  await welcomeQuestions(panel).first().click();
-  await expect(panel.getByRole("list").getByText("A hiring test.")).toBeVisible();
-
-  const again = page.getByRole("dialog");
   await page.evaluate(() => {
     const kept = JSON.parse(sessionStorage.getItem("prepza:assistant:visitor") ?? "{}");
     kept.lastAt = new Date(Date.now() - 31 * 60_000).toISOString();
@@ -251,35 +245,28 @@ for (const reducedMotion of ["no-preference", "reduce"] as const) {
 }
 
 // Titles and buttons are lowercase, the "ask mira" buttons whole, but the welcome keeps the
-// assistant's name's capital, in every case form a language gives it (Russian "Мира").
-for (const path of ["/", "/ru"]) {
-  test(`the assistant's name keeps its capital in the welcome only at ${path}`, async ({ page }) => {
-    await page.goto(path);
-    await loaded(page);
-    const name = (place: Locator) => place.locator(".normal-case").first();
-    const kept = (place: Locator) =>
-      name(place).evaluate((element) => getComputedStyle(element).textTransform);
+// assistant's name's capital, in every case form a language gives it (Russian "Мира" here; every
+// language's messages: frontend/tests/messages/landing-texts.test.ts).
+test("the assistant's name keeps its capital in the welcome only", async ({ page }) => {
+  await page.goto("/ru");
+  await loaded(page);
+  const name = (place: Locator) => place.locator(".normal-case").first();
 
-    // The footer's button shows its label on every screen; the header's only on wide ones.
-    const places = test.info().project.name === "phone" ? ["contentinfo"] : ["contentinfo", "banner"];
+  for (const place of ["contentinfo", "banner"] as const) {
+    const button = page.getByRole(place).locator("[data-assistant-toggle]");
+    await expect(button).toBeVisible();
+    await expect(button).toHaveCSS("text-transform", "lowercase");
+    await expect(button.locator(".normal-case")).toHaveCount(0);
+  }
 
-    for (const place of places as ("contentinfo" | "banner")[]) {
-      const button = page.getByRole(place).locator("[data-assistant-toggle]");
-      await expect(button).toBeVisible();
-      await expect(button).toHaveCSS("text-transform", "lowercase");
-      await expect(button.locator(".normal-case")).toHaveCount(0);
-    }
-
-    const panel = await openPanel(page);
-    const welcome = panel.getByTestId("welcome-signed_out").getByRole("heading");
-    await expect(name(welcome)).toBeVisible();
-    expect(await kept(welcome)).toBe("none");
-  });
-}
+  const panel = await openPanel(page);
+  const welcome = panel.getByTestId("welcome-signed_out").getByRole("heading");
+  await expect(name(welcome)).toBeVisible();
+  await expect(name(welcome)).toHaveCSS("text-transform", "none");
+});
 
 // On a phone the header's button is the icon alone: its name is the footer button's label.
-test("the header's icon-only assistant button is named like the footer's", async ({ page }) => {
-  test.skip(test.info().project.name !== "phone", "the label shows on wider screens");
+test("the header's icon-only assistant button is named like the footer's", { tag: "@phone-only" }, async ({ page }) => {
   await page.goto("/");
   await loaded(page);
   // Its text as written, not as shown: the button shows it in lowercase.

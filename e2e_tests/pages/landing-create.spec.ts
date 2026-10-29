@@ -14,18 +14,7 @@ async function questionsPerTopic(page: Page) {
   return ((await response.json()) as { questions_per_topic: number }).questions_per_topic;
 }
 
-test("the create section shows three panels and the questions per topic", async ({ page }) => {
-  test.setTimeout(120_000);
-  const count = await questionsPerTopic(page);
-  await page.goto("/");
-  const section = page.locator("#how");
-  await section.scrollIntoViewIfNeeded();
-
-  await expect(section.getByTestId("demo-panel")).toHaveCount(3);
-  await expect(section.getByTestId("notes")).toContainText(String(count));
-});
-
-test("with reduced motion the create section rests on the finished interview", async ({
+test("with reduced motion the create section rests on the finished interview and its counts", async ({
   page,
 }) => {
   test.setTimeout(120_000);
@@ -36,14 +25,27 @@ test("with reduced motion the create section rests on the finished interview", a
 
   await expect(section.getByTestId("demo-interview")).toBeVisible();
   await expect(section.getByTestId("demo-writing")).toBeHidden();
+
+  // Its topic rows each show how many questions were written for the topic:
+  // DEMO_INTERVIEW.topicQuestions (frontend/src/config/create-demo.ts), not what one candidate
+  // gets. The topics are the interview's last list, after its estimate (the demo is hidden from
+  // screen readers, so it has no roles to find it by).
+  const rows = section.getByTestId("demo-interview").locator("ul").last().locator("li");
+  await expect(rows).not.toHaveCount(0);
+
+  for (const row of await rows.all()) {
+    await expect(row.locator("span").last()).toHaveText(/^70\D/);
+  }
 });
 
-// Once the section comes into view, the topics and the interview panels wait for the steps
-// before them: the topics' panel until its first topic shows, the interview's until the
-// questions are being written. The clock runs a second at a time: the steps between the two
-// take far longer, and a busy page still gets through the demo in time.
-test("the create demo's later panels wait for the earlier steps", async ({ page }) => {
+// Three panels, and under them the questions each topic gets. Once the section comes into view,
+// the topics and the interview panels wait for the steps before them: the topics' panel until its
+// first topic shows, the interview's until the questions are being written. The clock runs a
+// second at a time: the steps between the two take far longer, and a busy page still gets
+// through the demo in time.
+test("the create demo's three panels wait for the earlier steps", async ({ page }) => {
   test.setTimeout(120_000);
+  const count = await questionsPerTopic(page);
   await page.clock.install();
   await page.goto("/");
   await loaded(page);
@@ -52,6 +54,8 @@ test("the create demo's later panels wait for the earlier steps", async ({ page 
   const section = page.locator("#how");
   await section.scrollIntoViewIfNeeded();
   const panels = section.getByTestId("demo-panel");
+  await expect(panels).toHaveCount(3);
+  await expect(section.getByTestId("notes")).toContainText(String(count));
   const [describe, topics, ready] = [panels.nth(0), panels.nth(1), panels.nth(2)];
 
   await expect(topics.getByTestId("demo-waiting")).toBeVisible();
@@ -85,26 +89,7 @@ test("the create demo's later panels wait for the earlier steps", async ({ page 
   await expect(ready.getByTestId("demo-writing")).toBeVisible();
 });
 
-// The finished interview's topic rows each show how many questions were written for the topic:
-// DEMO_INTERVIEW.topicQuestions (frontend/src/config/create-demo.ts), not what one candidate gets.
-test("the create demo's topics show each topic's question count", async ({ page }) => {
-  test.setTimeout(120_000);
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.goto("/");
-  const interview = page.locator("#how").getByTestId("demo-interview");
-  await interview.scrollIntoViewIfNeeded();
-
-  // The topics are the interview's last list, after its estimate (the demo is hidden from
-  // screen readers, so it has no roles to find it by).
-  const rows = interview.locator("ul").last().locator("li");
-  await expect(rows).not.toHaveCount(0);
-
-  for (const row of await rows.all()) {
-    await expect(row.locator("span").last()).toHaveText(/^70\D/);
-  }
-});
-
-test("on a 375 px phone the notes are one a row, and nothing scrolls sideways", async ({
+test("on a 375 px phone the notes are one a row, and nothing scrolls sideways", { tag: "@phone-only" }, async ({
   page,
 }) => {
   test.setTimeout(120_000);

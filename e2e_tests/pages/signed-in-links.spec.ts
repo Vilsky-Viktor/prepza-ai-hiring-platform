@@ -1,5 +1,7 @@
 import { expect, test } from "@playwright/test";
 
+import { shot } from "./helpers/screenshots";
+
 const company = "8d0f3c1e-1111-4222-8333-944455556666";
 const interview = "1b4e28ba-2fa1-11d2-883f-0016d3cca427";
 
@@ -16,14 +18,15 @@ const pages = [
 
 for (const path of pages) {
   test(`signed out, ${path.split("?")[0]} asks to sign in`, async ({ page }) => {
-    await page.goto(path);
+    const response = await page.goto(path);
     await expect(page.getByRole("main").getByTestId("sign-in-google")).toBeVisible();
-    await expect(page.getByText("Page not found")).toHaveCount(0);
+    // The page itself, not the not-found page.
+    expect(response?.status()).not.toBe(404);
   });
 }
 
 test("a scorecard link opened signed out", async ({ page }) => {
   await page.goto(pages[0]);
   await expect(page.getByRole("main").getByTestId("sign-in-google")).toBeVisible();
-  await page.screenshot({ path: test.info().outputPath("scorecard-signed-out.png") });
+  await shot(page, "scorecard-signed-out");
 });

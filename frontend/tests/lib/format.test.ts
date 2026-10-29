@@ -101,6 +101,22 @@ describe("formatPriceRange", () => {
   })
 })
 
+// The symbol English writes for each currency a visitor's country can bring (billing's
+// country table, test_credits.py): the browser checks two countries, these check the rest.
+it.each([
+  ["USD", "$"],
+  ["EUR", "€"],
+  ["GBP", "£"],
+  ["CAD", "CA$"],
+  ["AUD", "A$"],
+  ["ILS", "₪"],
+  ["PLN", "PLN"],
+  ["CHF", "CHF"],
+  ["JPY", "¥"],
+])("formatPrice writes %s with %s in English", (currency, symbol) => {
+  expect(plain(formatPrice(400, currency, "en"))).toContain(symbol)
+})
+
 describe("moneyAmount", () => {
   it("reads billing's amounts in each currency's smallest unit, whole yen and won", () => {
     expect(moneyAmount(2400, "USD")).toBe(24)

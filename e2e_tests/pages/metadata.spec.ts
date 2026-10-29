@@ -4,8 +4,9 @@ import { REQUEST_URL } from "./helpers/env";
 import { expect, test } from "./helpers/templates";
 
 // What search engines and link previews read beyond seo.spec.ts: each page's own description,
-// template pages' breadcrumbs and text direction (on the test's own throwaway templates),
-// articles' data, and the preview picture.
+// private pages kept out, template pages' breadcrumbs and text direction (on the test's own
+// throwaway templates), articles' data, and the preview picture. Each page's own title, naming
+// the site once, is in public-heads.spec.ts.
 
 
 // Written right to left: their lists of topics and questions mirror.
@@ -41,23 +42,6 @@ test("the FAQ, pricing, about and contact pages have their own descriptions", as
     expect(text.length, path).toBeLessThanOrEqual(170);
     expect(text, path).not.toBe(intro);
   }
-});
-
-// Each page's title is its own, followed by the site's name once (the compare hub's own title
-// doesn't repeat it).
-test("pages have their own titles, naming the site once", async ({ page }) => {
-  const titles: string[] = [];
-
-  for (const path of ["/compare", "/documents", "/api-docs", "/pricing"]) {
-    await page.goto(path);
-    const title = await page.title();
-
-    expect(title, path).toMatch(/^.+ · prepza\.$/);
-    expect(title.match(/prepza/g), path).toHaveLength(1);
-    titles.push(title);
-  }
-
-  expect(new Set(titles).size).toBe(titles.length);
 });
 
 // English only, like the legal pages: one address, no language versions, its own description,
@@ -109,13 +93,17 @@ test("the legal pages are dated in the sitemap by their last update", async ({
   }
 });
 
-// Personal links, even when shared in a job ad, stay out of search results.
-test("personal links say noindex", async ({ page }) => {
-  for (const path of ["/apply/abc", "/invite/abc", "/join/abc", "/unsubscribe"]) {
+// Private pages and personal links, even when shared in a job ad, stay out of search results;
+// a public page doesn't.
+test("private pages and personal links say noindex; public ones don't", async ({ page }) => {
+  for (const path of ["/companies", "/apply/abc", "/invite/abc", "/join/abc", "/unsubscribe"]) {
     const response = await page.request.get(`${REQUEST_URL}${path}`);
 
     expect(response.headers()["x-robots-tag"], path).toBe("noindex");
   }
+
+  const publicPage = await page.request.get(`${REQUEST_URL}/pricing`);
+  expect(publicPage.headers()["x-robots-tag"]).toBeUndefined();
 });
 
 test("the FAQ page's structured data lists its questions", async ({ page }) => {
@@ -214,15 +202,4 @@ test("the preview picture draws only signed titles, and is kept out of image sea
   expect(image.headers()["x-robots-tag"]).toBe("noindex");
   expect(forged.status()).toBe(404);
   expect(robots).not.toContain("Disallow: /preview");
-});
-
-test("the footer's menu is named for screen readers, and its icons aren't links", async ({
-  page,
-}) => {
-  await page.goto("/pricing");
-  const footer = page.locator("footer");
-
-  await expect(footer.getByRole("navigation")).toHaveAccessibleName(/.+/);
-  await expect(footer.locator('[role="img"]')).toHaveCount(4);
-  await expect(footer.locator('a [role="img"]')).toHaveCount(0);
 });

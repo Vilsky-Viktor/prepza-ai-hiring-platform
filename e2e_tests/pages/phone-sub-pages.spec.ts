@@ -1,5 +1,6 @@
 import { expect, type Page, test } from "@playwright/test";
 
+import { shot } from "./helpers/screenshots";
 import { settled } from "./helpers/waits";
 
 // On a phone, a page with pages of its own (the developer docs' MCP tab) names the open one in a
@@ -35,10 +36,7 @@ async function openSubPages(page: Page) {
   return menu;
 }
 
-const PHONE_ONLY = "the bar shows on phones only";
-
-test("the sub-pages bar spans the window, square, right under the tabs", async ({ page }, info) => {
-  test.skip(info.project.name !== "phone", PHONE_ONLY);
+test("the sub-pages bar spans the window, square, right under the tabs", { tag: "@phone-only" }, async ({ page }) => {
   await page.goto(OPEN);
   const bar = subPagesBar(page);
   await expect(bar).toBeVisible();
@@ -66,8 +64,7 @@ test("the sub-pages bar spans the window, square, right under the tabs", async (
   await expect(page.locator("main select")).toHaveCount(0);
 });
 
-test("the sub-pages bar lists every page, marks the open one and opens another", async ({ page }, info) => {
-  test.skip(info.project.name !== "phone", PHONE_ONLY);
+test("the sub-pages bar lists every page, marks the open one and opens another", { tag: "@phone-only" }, async ({ page }) => {
   await page.goto(OPEN);
   const pages = await mcpPages(page);
   expect(pages.length).toBeGreaterThan(1);
@@ -79,7 +76,7 @@ test("the sub-pages bar lists every page, marks the open one and opens another",
   expect(hrefs).toEqual(pages);
   await expect(menu.locator('[aria-current="page"]')).toHaveCount(1);
   await expect(menu.locator('[aria-current="page"]')).toHaveAttribute("href", OPEN);
-  await page.screenshot({ path: test.info().outputPath("phone-sub-pages.png"), animations: "disabled" });
+  await shot(page, "phone-sub-pages");
 
   // Another page from the menu opens at its address and is the marked one next time.
   const other = pages[1];

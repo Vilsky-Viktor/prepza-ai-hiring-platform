@@ -3,9 +3,11 @@ import { expect, test } from "@playwright/test";
 import { loaded } from "./helpers/waits";
 
 // The home page's candidates section plays a question as a candidate sees it. Its counter
-// ("3 / 10") keeps its numbers in order on right-to-left pages too, never mirrored to "10 / 3".
+// ("3 / 10") keeps its numbers in order on right-to-left pages too, never mirrored to "10 / 3":
+// Hebrew writes Western digits and Arabic its own, which bidi orders differently (Persian's
+// digits order as Western ones do).
 
-for (const locale of ["he", "ar", "fa"]) {
+for (const locale of ["he", "ar"]) {
   test(`the demo question's counter reads answered, then total, in ${locale}`, async ({
     page,
   }) => {

@@ -50,7 +50,7 @@ async function expectOneBlock(page: Page) {
   expect(field.css.topColor).toBe(under.css.bottomColor);
 }
 
-test("a search and its results read as one block", async ({ page, addTemplate }) => {
+test("a search and its results read as one block", { tag: "@phone" }, async ({ page, addTemplate }) => {
   const template = await addTemplate();
   await page.goto(`/practice?q=${encodeURIComponent(template.title)}`);
   await expect(page.locator(`a[href*="${template.slug}"]`).first()).toBeVisible();
@@ -58,7 +58,7 @@ test("a search and its results read as one block", async ({ page, addTemplate })
   await expectOneBlock(page);
 });
 
-test("a search with no results reads as one block with its empty state", async ({ page }) => {
+test("a search with no results reads as one block with its empty state", { tag: "@phone" }, async ({ page }) => {
   await page.goto(`/practice?q=no-match-${Date.now()}`);
   await expect(page.locator('[data-slot="searched-list"] form + p')).toBeVisible();
 

@@ -14,7 +14,7 @@ async function hrefs(links: import("@playwright/test").Locator) {
 }
 
 // The footer's links in three columns: the product, resources to read, and the company.
-test("the footer groups its links by product, resources and company", async ({ page }) => {
+test("the footer groups its links by product, resources and company", { tag: "@phone" }, async ({ page }) => {
   await page.goto("/faq");
   const columns = page.getByRole("contentinfo").getByRole("navigation").getByRole("list");
   await expect(columns).toHaveCount(3);
@@ -39,6 +39,17 @@ test("the footer groups its links by product, resources and company", async ({ p
     "/terms",
     "/accessibility",
   ]);
+
+  // The menu is named for screen readers, and so is each social icon; the icons aren't links.
+  const footer = page.getByRole("contentinfo");
+  await expect(footer.getByRole("navigation")).toHaveAccessibleName(/.+/);
+
+  for (const name of ["LinkedIn", "X", "YouTube", "Facebook"]) {
+    await expect(footer.getByRole("img", { name, exact: true })).toBeVisible();
+  }
+
+  await expect(footer.locator('[role="img"]')).toHaveCount(4);
+  await expect(footer.locator('a [role="img"]')).toHaveCount(0);
 });
 
 // The legal operator is within reach of every page: the footer names it, and the contact page

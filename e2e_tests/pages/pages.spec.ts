@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 import { loaded } from "./helpers/waits";
 
-// The signed-out pages. Signed-in ones are checked by hand: sign-in isn't automated.
+// The signed-out pages (the signed-in ones: e2e_tests/signed-in), on a desktop and a phone.
 const PAGES = [
   "/",
   "/companies",
@@ -35,7 +35,7 @@ const ARTICLES = [
 const MAIN_MAX_WIDTH = 1280;
 
 for (const path of PAGES) {
-  test(`${path} loads cleanly and follows the layout rules`, async ({
+  test(`${path} loads cleanly and follows the layout rules`, { tag: "@phone" }, async ({
     page,
   }) => {
     const errors: string[] = [];

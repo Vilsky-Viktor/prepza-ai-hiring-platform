@@ -44,7 +44,9 @@ async function litStep(page: Page, steps: Locator, other?: number) {
   return lit;
 }
 
-test("the steps light up one at a time, in order round the ring", async ({
+// The ring: five steps of one size, mirrored round the middle, lighting one at a time in order
+// round it, the lit one keeping its size.
+test("the steps are one size round the ring and light up one at a time, in order", async ({
   page,
 }) => {
   test.setTimeout(120_000);
@@ -53,22 +55,6 @@ test("the steps light up one at a time, in order round the ring", async ({
   await pauseClock(page);
   const steps = section.getByTestId("quality-step");
   await expect(steps).toHaveCount(5);
-
-  const first = await litStep(page, steps);
-  const next = await litStep(page, steps, first);
-  expect(next).toBe((first + 1) % 5);
-  await expect(section.getByTestId("ai-chip")).toBeVisible();
-  await expect(section.getByTestId("net-wave")).toHaveCount(1);
-});
-
-test("the steps are one size, mirrored round the middle, and lighting keeps the size", async ({
-  page,
-}) => {
-  test.setTimeout(120_000);
-  await page.clock.install();
-  const section = await openTrust(page);
-  await pauseClock(page);
-  const steps = section.getByTestId("quality-step");
   const before = await Promise.all((await steps.all()).map(centre));
   const [top, right, lowerRight, lowerLeft, left] = before;
   const middle = (left.x + right.x) / 2;
@@ -83,21 +69,29 @@ test("the steps are one size, mirrored round the middle, and lighting keeps the 
   expect(lowerLeft.y).toBeCloseTo(lowerRight.y, 0);
   expect(middle - lowerLeft.x).toBeCloseTo(lowerRight.x - middle, 0);
 
-  const lit = await litStep(page, steps);
-  const shown = await centre(steps.nth(lit));
-  expect([shown.width, shown.height]).toEqual([
-    before[lit].width,
-    before[lit].height,
-  ]);
+  const first = await litStep(page, steps);
+  const shown = await centre(steps.nth(first));
+  expect([shown.width, shown.height]).toEqual([before[first].width, before[first].height]);
+  const next = await litStep(page, steps, first);
+  expect(next).toBe((first + 1) % 5);
+  await expect(section.getByTestId("ai-chip")).toBeVisible();
+  await expect(section.getByTestId("net-wave")).toHaveCount(1);
 });
 
-test("only one question travels the ring at a time", async ({ page }) => {
+// The net in the middle: one question at a time travels it; the light spreads from the chip as
+// an oval whose glow is never cut off square, through the whole net, left of the chip as well as
+// right; and the net runs on outside the ellipse, fading out. The page's own clock: its SMIL
+// animations run on their own, not on Playwright's.
+test("one question travels the net at a time, and the light runs through all of it", async ({
+  page,
+}) => {
   test.setTimeout(120_000);
   const section = await openTrust(page);
   await expect(section.getByTestId("quality-step")).toHaveCount(5);
+  await expect(section.getByTestId("net-wave")).toHaveCount(1);
 
   // The most travellers shown at once over a few seconds of the loop playing, sampled in the
-  // page (its SMIL animations run on their own clock, not Playwright's).
+  // page.
   const most = await section.evaluate(
     (element) =>
       new Promise<number>((resolve) => {
@@ -114,114 +108,89 @@ test("only one question travels the ring at a time", async ({ page }) => {
         }, 6_000);
       }),
   );
-
   expect(most).toBeLessThanOrEqual(1);
-});
 
-test("the light runs through the whole net, left of the chip as well as right", async ({
-  page,
-}) => {
-  test.setTimeout(120_000);
-  const section = await openTrust(page);
-  await expect(section.getByTestId("net-wave")).toHaveCount(1);
+  // Every ring, at every size up to the net's edge, against the box its blur may draw in: the
+  // ring's band plus three of the blur's deviations must fit, or its glow is cut off straight.
+  const waves = section.locator('svg:has([data-testid="net-wave"])');
+  const cut = await waves.evaluate((svg: SVGSVGElement) => {
+    const edge = svg.querySelector<SVGEllipseElement>('[data-testid="net-wave"] > ellipse')!;
+    const [cx, cy, rx, ry] = ["cx", "cy", "rx", "ry"].map((part) =>
+      Number(edge.getAttribute(part)),
+    );
+
+    return [...svg.querySelectorAll<SVGEllipseElement>('[data-testid="net-wave"] mask ellipse')]
+      .flatMap((ring) => {
+        const filter = svg.querySelector<SVGFilterElement>(
+          ring.getAttribute("filter")!.slice(4, -1),
+        )!;
+        const blur = Number(filter.querySelector("feGaussianBlur")!.getAttribute("stdDeviation"));
+        const reach = Number(ring.getAttribute("stroke-width")) / 2 + 3 * blur;
+        // The region in the drawing's units; relative to each ring's box otherwise (by default,
+        // 10% round it), checked at the ring's largest.
+        const user = filter.getAttribute("filterUnits") === "userSpaceOnUse";
+        const at = (part: string, start: number, size: number, fallback: number) => {
+          const value = filter.getAttribute(part);
+          const share = value === null ? fallback : parseFloat(value) / 100;
+
+          return user && value !== null ? Number(value) : start + share * size;
+        };
+        const left = at("x", cx - rx, 2 * rx, -0.1);
+        const top = at("y", cy - ry, 2 * ry, -0.1);
+        const right = left + at("width", 0, 2 * rx, 1.2);
+        const bottom = top + at("height", 0, 2 * ry, 1.2);
+
+        return [
+          left > cx - rx - reach,
+          top > cy - ry - reach,
+          right < cx + rx + reach,
+          bottom < cy + ry + reach,
+        ].filter(Boolean);
+      });
+  });
+  expect(cut).toEqual([]);
+
+  // The net between the chip and the steps on each side, at the chip's height, with the waves'
+  // clock held still: at the start no ring shows; two seconds in, the first ring has spread past
+  // the chip on every side.
   const chip = await centre(section.getByTestId("ai-chip"));
   const step = await centre(section.getByTestId("quality-step").first());
-
-  // The net between the chip and the steps on each side, at the chip's height.
-  const patch = (side: -1 | 1) => ({
-    x: chip.x + side * (chip.width / 2 + step.width / 4) - step.width / 8,
+  const side = (direction: -1 | 1) => ({
+    x: chip.x + direction * (chip.width / 2 + step.width / 4) - step.width / 8,
     y: chip.y - step.height / 4,
     width: step.width / 4,
     height: step.height / 2,
   });
-
-  // The waves' SMIL clock held still: at the start no ring shows; two seconds in, the first ring
-  // has spread past the chip on every side.
   const at = async (seconds: number) => {
-    await section.locator('svg:has([data-testid="net-wave"])').evaluate((svg: SVGSVGElement, time) => {
+    await waves.evaluate((svg: SVGSVGElement, time) => {
       svg.pauseAnimations();
       svg.setCurrentTime(time);
     }, seconds);
 
     return Promise.all(
-      ([-1, 1] as const).map((side) =>
-        page.screenshot({ clip: patch(side), animations: "disabled" }),
+      ([-1, 1] as const).map((direction) =>
+        page.screenshot({ clip: side(direction), animations: "disabled" }),
       ),
     );
   };
   const dark = await at(0);
   const lit = await at(2);
-
   expect(lit[0].equals(dark[0])).toBe(false);
   expect(lit[1].equals(dark[1])).toBe(false);
-});
-
-test("the light spreads as an oval, its glow never cut off square", async ({ page }) => {
-  test.setTimeout(120_000);
-  const section = await openTrust(page);
-  await expect(section.getByTestId("net-wave")).toHaveCount(1);
-
-  // Every ring, at every size up to the net's edge, against the box its blur may draw in: the
-  // ring's band plus three of the blur's deviations must fit, or its glow is cut off straight.
-  const cut = await section
-    .locator('svg:has([data-testid="net-wave"])')
-    .evaluate((svg: SVGSVGElement) => {
-      const edge = svg.querySelector<SVGEllipseElement>('[data-testid="net-wave"] > ellipse')!;
-      const [cx, cy, rx, ry] = ["cx", "cy", "rx", "ry"].map((part) =>
-        Number(edge.getAttribute(part)),
-      );
-
-      return [...svg.querySelectorAll<SVGEllipseElement>('[data-testid="net-wave"] mask ellipse')]
-        .flatMap((ring) => {
-          const filter = svg.querySelector<SVGFilterElement>(
-            ring.getAttribute("filter")!.slice(4, -1),
-          )!;
-          const blur = Number(filter.querySelector("feGaussianBlur")!.getAttribute("stdDeviation"));
-          const reach = Number(ring.getAttribute("stroke-width")) / 2 + 3 * blur;
-          // The region in the drawing's units; relative to each ring's box otherwise (by default,
-          // 10% round it), checked at the ring's largest.
-          const user = filter.getAttribute("filterUnits") === "userSpaceOnUse";
-          const at = (part: string, start: number, size: number, fallback: number) => {
-            const value = filter.getAttribute(part);
-            const share = value === null ? fallback : parseFloat(value) / 100;
-
-            return user && value !== null ? Number(value) : start + share * size;
-          };
-          const left = at("x", cx - rx, 2 * rx, -0.1);
-          const top = at("y", cy - ry, 2 * ry, -0.1);
-          const right = left + at("width", 0, 2 * rx, 1.2);
-          const bottom = top + at("height", 0, 2 * ry, 1.2);
-
-          return [
-            left > cx - rx - reach,
-            top > cy - ry - reach,
-            right < cx + rx + reach,
-            bottom < cy + ry + reach,
-          ].filter(Boolean);
-        });
-    });
-  expect(cut).toEqual([]);
-});
-
-test("the net runs on outside the ellipse, fading out", async ({ page }) => {
-  test.setTimeout(120_000);
-  const section = await openTrust(page);
-  const svg = section.locator('svg:has(ellipse[fill^="url(#net-"])');
-  await expect(section.getByTestId("quality-step")).toHaveCount(5);
 
   // The travellers held still and hidden, then just under the ellipse's bottom (between the two
   // lower steps) against the same patch at the window's edge, far from it.
-  const { x, bottom } = await svg.evaluate((element: SVGSVGElement) => {
+  const net = section.locator('svg:has(ellipse[fill^="url(#net-"])');
+  const { x, bottom } = await net.evaluate((element: SVGSVGElement) => {
     element.pauseAnimations();
     element.setCurrentTime(0);
     const box = element.querySelector('ellipse[fill^="url(#net-"]')!.getBoundingClientRect();
 
     return { x: box.left + box.width / 2, bottom: box.bottom };
   });
-  const patch = (left: number) => ({ x: left, y: bottom + 30, width: 40, height: 20 });
-  const near = await page.screenshot({ clip: patch(x - 20), animations: "disabled" });
-  const far = await page.screenshot({ clip: patch(4), animations: "disabled" });
-
+  const below = (left: number) => ({ x: left, y: bottom + 30, width: 40, height: 20 });
+  const near = await page.screenshot({ clip: below(x - 20), animations: "disabled" });
+  const far = await page.screenshot({ clip: below(4), animations: "disabled" });
   expect(near.equals(far)).toBe(false);
 });
 
@@ -239,7 +208,7 @@ test("with reduced motion, no step lights up", async ({
   await expect(section.getByTestId("net-wave")).toHaveCount(0);
 });
 
-test("the four columns show, one linking to the documents", async ({
+test("the four columns show, one linking to the documents", { tag: "@phone" }, async ({
   page,
 }) => {
   test.setTimeout(120_000);

@@ -28,6 +28,10 @@ const LOCALIZED = [
 ];
 // Pages with one address.
 const SINGLE = ["/privacy", "/terms", "/dpa", "/api-docs"];
+// Pages whose own title names prepza, so their head names it twice: a comparison, by design
+// ("prepza vs TestGorilla"); and a known issue, the news page, whose title is its heading,
+// "prepza news" ("prepza news · prepza."), a change of wording waiting for the user's approval.
+const NAMES_SITE_TWICE = /^(\/[a-z]{2,3})?\/(news|compare\/[^/]+)$/;
 // hreflang codes: two letters, a script where one is named, and the default.
 const HREFLANG = /^([a-z]{2}(-[A-Z][a-z]{3})?|x-default)$/;
 
@@ -81,6 +85,12 @@ function checkHead(head: Head, address: string) {
   const one = (key: string) => head.meta[key]?.[0];
 
   expect(head.title, address).toMatch(/^.+ · prepza\.$/);
+
+  // The page's own title, then the site's name once.
+  if (!NAMES_SITE_TWICE.test(new URL(address).pathname)) {
+    expect(head.title.match(/prepza/g), address).toHaveLength(1);
+  }
+
   expect(one("description"), address).toBeTruthy();
   // Compared as URLs: the home page's "https://site" is "https://site/".
   expect(new URL(head.canonical ?? "").href, address).toBe(address);

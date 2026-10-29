@@ -3,30 +3,13 @@ import { expect, type Page, test } from "@playwright/test";
 import { REQUEST_URL } from "./helpers/env";
 
 // What search engines see on the public pages: addresses in every language, titles and
-// structured data, redirects, and private pages kept out. The template pages, the sitemap and
-// robots.txt are in seo-templates.spec.ts.
+// structured data, and redirects. Every page's head, canonical and hreflang sets are in
+// public-heads.spec.ts; private pages kept out in metadata.spec.ts; the template pages, the
+// sitemap and robots.txt in seo-templates.spec.ts.
 
 function head(page: Page, selector: string, attribute: string) {
   return page.locator(`head ${selector}`).first().getAttribute(attribute);
 }
-
-test("a page in another language has its own address, language and alternates", async ({
-  page,
-}) => {
-  await page.goto("/de/pricing");
-
-  await expect(page.locator("html")).toHaveAttribute("lang", "de");
-  expect(await head(page, 'link[rel="canonical"]', "href")).toMatch(
-    /\/de\/pricing$/,
-  );
-  // Every language and the default.
-  await expect(page.locator('head link[rel="alternate"][hreflang]')).toHaveCount(
-    24,
-  );
-  expect(
-    await head(page, 'link[rel="alternate"][hreflang="x-default"]', "href"),
-  ).toMatch(/\/pricing$/);
-});
 
 // A plain address is the English page whatever the browser's language, as its canonical and
 // hreflang say; the language's own address has its version.
@@ -106,29 +89,6 @@ test("each page's preview image shows its own title", async ({ page }) => {
     (await head(page, 'meta[property="og:image"]', "content")) ?? "",
   );
   expect(fallback.pathname).toBe("/opengraph-image");
-});
-
-test("private pages say noindex; public ones don't", async ({ page }) => {
-  const privatePage = await page.request.get(`${REQUEST_URL}/companies`);
-  const publicPage = await page.request.get(`${REQUEST_URL}/pricing`);
-
-  expect(privatePage.headers()["x-robots-tag"]).toBe("noindex");
-  expect(publicPage.headers()["x-robots-tag"]).toBeUndefined();
-});
-
-test("the footer has three columns of links and the social icons", async ({
-  page,
-}) => {
-  await page.goto("/pricing");
-  const footer = page.locator("footer");
-
-  await expect(footer.locator("nav ul")).toHaveCount(3);
-  await expect(footer.locator("nav ul").first().locator("a")).toHaveCount(5);
-
-  // Each icon is named for screen readers.
-  for (const name of ["LinkedIn", "X", "YouTube", "Facebook"]) {
-    await expect(footer.getByRole("img", { name, exact: true })).toBeVisible();
-  }
 });
 
 test("a translated article has its own address, language, direction and alternates", async ({

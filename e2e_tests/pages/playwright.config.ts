@@ -30,10 +30,14 @@ export default defineConfig({
     },
   },
   projects: [
+    // Every test but those of a phone's layout alone (@phone-only).
     {
       name: "desktop",
+      grepInvert: /@phone-only/,
       use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 800 } },
     },
-    { name: "phone", use: { ...devices["Pixel 7"] } },
+    // Only the tests tagged @phone or @phone-only, where a phone's layout differs (or is the
+    // narrowest check): the rest would check the same thing twice.
+    { name: "phone", grep: /@phone/, use: { ...devices["Pixel 7"] } },
   ],
 })

@@ -7,7 +7,7 @@ import { loaded, settled } from "./helpers/waits";
 const isPhone = (name: string) => name === "phone";
 
 // The home page's title: its two lines close together, as on desktop.
-test("the home page's title lines sit close together", async ({ page }) => {
+test("the home page's title lines sit close together", { tag: "@phone" }, async ({ page }) => {
   test.setTimeout(120_000);
   await page.goto("/");
   const title = page.locator("h1");
@@ -20,7 +20,7 @@ test("the home page's title lines sit close together", async ({ page }) => {
 });
 
 // On phones the footer is one centered column; on desktop its links stand in three columns.
-test("the footer is one centered column on phones", async ({ page }, info) => {
+test("the footer is one centered column on phones", { tag: "@phone" }, async ({ page }, info) => {
   await page.goto("/faq");
   const footer = page.getByRole("contentinfo");
   const links = footer.getByRole("navigation").getByRole("link");
@@ -57,7 +57,7 @@ test("the footer is one centered column on phones", async ({ page }, info) => {
 });
 
 // On phones a dialog spans the screen's width, with square corners.
-test("a dialog spans a phone's width", async ({ page }, info) => {
+test("a dialog spans a phone's width", { tag: "@phone" }, async ({ page }, info) => {
   test.setTimeout(120_000);
   await page.goto("/");
   await page.getByTestId("page-help").filter({ visible: true }).click();
@@ -84,7 +84,7 @@ test("a dialog spans a phone's width", async ({ page }, info) => {
 });
 
 // "⌘/Ctrl + Enter to send" only where there's a keyboard: not on a touch screen.
-test("the send shortcut hint shows only without a touch screen", async ({
+test("the send shortcut hint shows only without a touch screen", { tag: "@phone" }, async ({
   page,
 }, info) => {
   await page.goto("/contact");
@@ -99,10 +99,9 @@ test("the send shortcut hint shows only without a touch screen", async ({
 });
 
 // On phones the home page's box to start in and the price lists reach the screen's edges.
-test("the home page's box and the prices span a phone's width", async ({
+test("the home page's box and the prices span a phone's width", { tag: "@phone-only" }, async ({
   page,
-}, info) => {
-  test.skip(!isPhone(info.project.name), "phones only");
+}) => {
   test.setTimeout(120_000);
   const width = page.viewportSize()!.width;
 
@@ -120,7 +119,7 @@ test("the home page's box and the prices span a phone's width", async ({
 
 // Opening the home page doesn't put the cursor in its box: on a phone the keyboard would cover
 // the page.
-test("the home page's box isn't focused on load", async ({ page }) => {
+test("the home page's box isn't focused on load", { tag: "@phone" }, async ({ page }) => {
   test.setTimeout(120_000);
   await page.goto("/");
   await loaded(page);
@@ -128,11 +127,10 @@ test("the home page's box isn't focused on load", async ({ page }) => {
 });
 
 // On phones a test's practice page has its level and language under the title, then its start.
-test("a practice page starts under its tags on a phone", async ({
+test("a practice page starts under its tags on a phone", { tag: "@phone-only" }, async ({
   page,
   addTemplate,
-}, info) => {
-  test.skip(!isPhone(info.project.name), "phones only");
+}) => {
   test.setTimeout(120_000);
   const template = await addTemplate();
   await page.goto(`/practice/${template.slug}`);
@@ -146,7 +144,7 @@ test("a practice page starts under its tags on a phone", async ({
 
 // The header's logo link is named by what it shows ("p." on a phone, the whole logo on a wider
 // screen) and then where it leads, so a voice user can say what they see (WCAG 2.5.3).
-test("the header's logo link is named by its visible text", async ({ page }) => {
+test("the header's logo link is named by its visible text", { tag: "@phone" }, async ({ page }) => {
   await page.goto("/");
   const logo = page.getByRole("banner").getByRole("link").first();
   // The logo itself, as drawn: letters hidden on a phone aren't in its text.

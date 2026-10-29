@@ -3,12 +3,12 @@ import { expect, test, type Page } from "@playwright/test";
 // The home page's hero: the page's info button and the video's play icon sit beside the title
 // on the start side on wide screens and above it on narrower ones; the play icon is named in its
 // tooltip, and its ring holds still with reduced motion; the sentence under the title has each
-// of its sentences on a line of its own, in every language.
+// of its sentences on a line of its own, here in English and Arabic (every language's two
+// messages: frontend/tests/messages/landing-texts.test.ts).
 
-const LOCALES = [
-  "en", "ru", "uk", "es", "pt", "de", "fr", "it", "pl", "nl", "tr", "ar", "he", "fa", "ja", "zh",
-  "ko", "hi", "id", "th", "vi", "fil", "et",
-];
+const LOCALES = ["en", "ar"];
+// The site's languages, which the facts under the start box count.
+const LANGUAGE_COUNT = 23;
 
 /** The hero's title, info button and play icon, as boxes on the page. */
 async function heroBoxes(page: Page) {
@@ -27,7 +27,6 @@ async function heroBoxes(page: Page) {
 test("on a wide screen the icons sit on the title's start side, the video under the info", async ({
   page,
 }) => {
-  test.skip(test.info().project.name !== "desktop", "a wide screen");
   test.setTimeout(120_000);
   await page.goto("/");
   const { title, help, video } = await heroBoxes(page);
@@ -38,7 +37,6 @@ test("on a wide screen the icons sit on the title's start side, the video under 
 });
 
 test("in a right-to-left language the icons sit on the title's right", async ({ page }) => {
-  test.skip(test.info().project.name !== "desktop", "a wide screen");
   test.setTimeout(120_000);
   await page.goto("/ar");
   const { title, help, video } = await heroBoxes(page);
@@ -47,8 +45,7 @@ test("in a right-to-left language the icons sit on the title's right", async ({ 
   expect(video.x).toBeGreaterThanOrEqual(title.x + title.width);
 });
 
-test("on a phone the icons sit side by side above the title", async ({ page }) => {
-  test.skip(test.info().project.name !== "phone", "a phone");
+test("on a phone the icons sit side by side above the title", { tag: "@phone-only" }, async ({ page }) => {
   test.setTimeout(120_000);
   await page.goto("/");
   const { title, help, video } = await heroBoxes(page);
@@ -61,7 +58,6 @@ test("on a phone the icons sit side by side above the title", async ({ page }) =
 test("the play icon is named in its tooltip and its ring holds still with reduced motion", async ({
   page,
 }) => {
-  test.skip(test.info().project.name !== "desktop", "hovered with a mouse");
   test.setTimeout(120_000);
   await page.goto("/");
   const video = page.getByTestId("video-button");
@@ -88,7 +84,6 @@ test("the play icon is named in its tooltip and its ring holds still with reduce
 // The facts under the start box, a dot between each two: first the any-job fact, then the
 // languages (as many as prepza speaks), the time to ready and no subscription.
 test("the facts under the start box start with the any-job fact", async ({ page }) => {
-  test.skip(test.info().project.name !== "desktop", "once");
   test.setTimeout(120_000);
   await page.goto("/");
   const proof = page.getByTestId("hero-proof");
@@ -111,13 +106,11 @@ test("the facts under the start box start with the any-job fact", async ({ page 
 
   expect(facts).toHaveLength(4);
   expect(facts[0]).not.toBe("");
-  expect(facts[1]).toContain(String(LOCALES.length));
+  expect(facts[1]).toContain(String(LANGUAGE_COUNT));
 });
 
 for (const locale of LOCALES) {
   test(`the hero's sentences are each on a line of their own in ${locale}`, async ({ page }) => {
-    test.skip(test.info().project.name !== "desktop", "once per language");
-    test.setTimeout(120_000);
     // English is the plain address; /en is not a page (one URL per language).
     await page.goto(locale === "en" ? "/" : `/${locale}`);
     const lines = page.getByTestId("hero-text").locator("span");
