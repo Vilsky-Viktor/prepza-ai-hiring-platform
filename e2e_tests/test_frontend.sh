@@ -17,9 +17,12 @@ cd "$(dirname "$0")/.."
 
 if [[ "${1:-}" == "--source" ]]; then
   # The files the image is built from (frontend/tests aren't, .dockerignore) and the build's
-  # NEXT_PUBLIC_* settings; values go into the hash only, never printed.
+  # NEXT_PUBLIC_* settings; values go into the hash only, never printed. A tracked file deleted
+  # but not yet committed is left out (it's in neither the image nor the folder).
   {
-    git ls-files -co --exclude-standard -z frontend | grep -zv '^frontend/tests/' | xargs -0 shasum
+    git ls-files -co --exclude-standard -z frontend | grep -zv '^frontend/tests/' |
+      xargs -0 sh -c 'for file; do [ -e "$file" ] && printf "%s\0" "$file"; done; true' _ |
+      xargs -0 shasum
     grep -E '^(NEXT_PUBLIC_[A-Z_]*|ENVIRONMENT)=' .env 2>/dev/null || true
   } | shasum | cut -c1-16
   exit 0
