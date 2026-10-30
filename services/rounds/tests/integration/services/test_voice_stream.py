@@ -3,6 +3,7 @@ candidate's own voice question is streamed, counted and its arrival noted for th
 another user, a stale token and an interview not taken by voice are refused. The route itself is
 a WebSocket, which the access matrix (httpx) can't call: this is its matrix. OpenAI faked."""
 
+import asyncio
 import json
 import uuid
 from contextlib import asynccontextmanager
@@ -13,6 +14,7 @@ from sqlalchemy import update
 
 from rounds.constants.voice import IN_TIME_KEY
 from rounds.core.db import Session as Db
+from rounds.core.db import engine
 from rounds.integrations import library
 from rounds.integrations.redis import get_redis
 from rounds.models.sessions import Session
@@ -149,3 +151,48 @@ def test_only_the_candidates_own_voice_question_is_streamed(run, caller, voice, 
     else:
         assert socket.got == []
         assert noted is None
+
+
+class HeldSocket(FakeSocket):
+    """A browser that says `start` and some audio, then holds the stream open until `go`."""
+
+    def __init__(self, token, go):
+        super().__init__([{"token": token}, {"type": "start"}, FRAME])
+        self.go = go
+        self.waiting = asyncio.Event()
+
+    async def receive(self):
+        if not self.inbox:
+            self.waiting.set()
+            await self.go.wait()
+            self.inbox = [{"type": "end", "waiting": []}]
+
+        return await super().receive()
+
+
+def test_an_open_stream_holds_no_database_connection(run):
+    """Streams last as long as the candidate speaks, and the pool is a few connections: more
+    streams than it has, all open at once, hold none of them, and each still answers."""
+    streams = engine.pool.size() + 3
+
+    async def scenario():
+        go = asyncio.Event()
+        sockets = []
+
+        for _ in range(streams):
+            owner = f"cand-{uuid.uuid4()}"
+            sockets.append((HeldSocket(owner, go), await voice_question(owner)))
+
+        tasks = [asyncio.create_task(voice_stream.stream(s, row.id)) for s, row in sockets]
+        await asyncio.wait_for(asyncio.gather(*(s.waiting.wait() for s, _ in sockets)), 10)
+        held = engine.pool.checkedout()
+        go.set()
+        await asyncio.wait_for(asyncio.gather(*tasks), 10)
+
+        return held, [s for s, _ in sockets]
+
+    held, sockets = run(scenario())
+
+    assert held == 0
+    assert all(socket.code == 1000 for socket in sockets)
+    assert all(socket.got[-1]["answer"]["heard"] == "B" for socket in sockets)
