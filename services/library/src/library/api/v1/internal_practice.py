@@ -5,8 +5,8 @@ from fastapi import APIRouter, HTTPException, status
 from library.api.dependencies import ServiceCaller
 from library.constants.sets import Pool, SetKind
 from library.core.db import Session
-from library.repositories import preparations
-from library.schemas.sets import ContentQuestion, SetContent, SetTopicOut
+from library.repositories import practice_matches, preparations
+from library.schemas.sets import ContentQuestion, PracticeTopicsOut, SetContent, SetTopicOut
 
 # Free practice for talents: only a template's practice questions, never its company ones.
 router = APIRouter(prefix="/internal", tags=["internal"])
@@ -41,3 +41,13 @@ async def practice_content(template_id: UUID, caller: ServiceCaller) -> SetConte
         level=template.level,
         topics=[topic for topic in topics if topic.questions],
     )
+
+
+@router.get("/sets/{set_id}/practice-topics")
+async def practice_topics(set_id: UUID, caller: ServiceCaller) -> PracticeTopicsOut:
+    """Companies, for an interview's Discover tab: the template topics of the interview's level
+    on the same subjects as its topics, whose practice results count there."""
+    async with Session() as session:
+        found = await practice_matches.practice_topics(session, set_id)
+
+    return PracticeTopicsOut(topic_ids=found)

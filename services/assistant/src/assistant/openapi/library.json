@@ -2506,6 +2506,55 @@
     }
    }
   },
+  "/internal/sets/{set_id}/practice-topics": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Practice Topics",
+    "description": "Companies, for an interview's Discover tab: the template topics of the interview's level\non the same subjects as its topics, whose practice results count there.",
+    "operationId": "practice_topics_internal_sets__set_id__practice_topics_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "set_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Set Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/PracticeTopicsOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/internal/questions/signals": {
    "get": {
     "tags": [
@@ -3521,6 +3570,24 @@
      "short"
     ],
     "title": "PooledTemplateOut"
+   },
+   "PracticeTopicsOut": {
+    "properties": {
+     "topic_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "title": "Topic Ids"
+     }
+    },
+    "type": "object",
+    "required": [
+     "topic_ids"
+    ],
+    "title": "PracticeTopicsOut",
+    "description": "The template topics a company's interview matches, for its Discover tab."
    },
    "PreparationIn": {
     "properties": {

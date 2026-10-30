@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 from prepza_common.http.http import bearer
 
-from library.repositories import preparations
+from library.repositories import practice_matches, preparations
 from tests.unit.api.v1.test_internal import token
 
 TEMPLATE_ID = uuid.uuid4()
@@ -48,3 +48,16 @@ def test_practice_gets_only_practice_questions_and_skips_empty_topics(client, mo
     assert [topic["title"] for topic in found["topics"]] == ["Python"]
     assert [q["text"] for q in found["topics"][0]["questions"]] == ["Open?"]
     assert missing.status_code == 404
+
+
+def test_companies_gets_an_interviews_matching_practice_topics(client, monkeypatch):
+    topic_id = uuid.uuid4()
+
+    async def practice_topics(session, set_id):
+        return [topic_id] if set_id == TEMPLATE_ID else []
+
+    monkeypatch.setattr(practice_matches, "practice_topics", practice_topics)
+
+    found = client.get(f"/internal/sets/{TEMPLATE_ID}/practice-topics", headers=bearer(token()))
+
+    assert found.json() == {"topic_ids": [str(topic_id)]}

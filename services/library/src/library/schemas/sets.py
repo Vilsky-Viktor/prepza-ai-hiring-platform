@@ -35,3 +35,9 @@ class SetContent(BaseModel):
     # basic, medium or hard: a practice round's seconds a question come from it.
     level: str
     topics: list[SetTopicOut]
+
+
+class PracticeTopicsOut(BaseModel):
+    """The template topics a company's interview matches, for its Discover tab."""
+
+    topic_ids: list[UUID]
