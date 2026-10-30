@@ -131,7 +131,7 @@ export function SessionPlay({
                 <QuestionText
                   heading
                   text={prose}
-                  className="text-2xl leading-snug font-medium max-sm:text-xl"
+                  className="text-2xl leading-snug font-normal max-sm:text-xl"
                 />
               </div>
               {code && <QuestionCode code={code} />}

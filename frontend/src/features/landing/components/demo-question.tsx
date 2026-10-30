@@ -36,7 +36,7 @@ export function DemoQuestionCard({
       <div className="space-y-3">
         <div className={cn("space-y-3 rounded-xl bg-surface", CARD_PADDING)}>
           {question.multi && <MultiChoiceTag />}
-          <p className="text-xl leading-snug font-medium">{question.text}</p>
+          <p className="text-xl leading-snug font-normal">{question.text}</p>
         </div>
         {question.example && (
           <CodeEditor
