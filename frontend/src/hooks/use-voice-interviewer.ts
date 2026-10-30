@@ -12,6 +12,7 @@ import {
 } from "@/lib/voice-clips"
 import { type Meter, meters, soundAllowed } from "@/lib/voice-meters"
 import { type Listener, listen, openMicrophone } from "@/lib/voice-listening"
+import { micDetector } from "@/lib/voice-vad"
 import { recordingType } from "@/lib/voice"
 import type {
   VoiceAnnouncement,
@@ -204,13 +205,24 @@ export function useVoiceInterviewer(
 
       stream.current = mic
       meter.current = meters(ctx, player, mic)
-      listener.current = listen(ctx, mic, type, {
+      // The speech detector loads while Mira reads the first question.
+      const listening = listen(mic, type, micDetector(ctx, mic), {
         onSpeechStart,
         onSpeech: (recording, voicedMs) => void onSpeech(recording, voicedMs),
       })
+      listening.catch(() => undefined)
       void gotIt.current.load(sessionId).catch(() => undefined)
       prepareNextQuestion(sessionId)
-      await say(`${sessionId}/voice/question`)
+      await say(`${sessionId}/voice/question`, true)
+      const ready = await listening
+
+      // Stopped meanwhile: the detector goes too.
+      if (context.current !== ctx) {
+        return ready.stop()
+      }
+
+      listener.current = ready
+      heardAll()
     } catch {
       if (context.current === ctx) {
         stop()

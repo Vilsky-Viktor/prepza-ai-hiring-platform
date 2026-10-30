@@ -8,8 +8,8 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/copy-vad.mjs && next dev",
+    "build": "node scripts/copy-vad.mjs && next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@base-ui/react": "^1.9.0",
     "@paddle/paddle-js": "^1.6.5",
+    "@ricky0123/vad-web": "0.0.31",
     "@sentry/nextjs": "^11.8.0",
     "@tanstack/react-virtual": "^3.14.21",
     "@tiptap/extensions": "3.32.0",
@@ -37,6 +38,7 @@
     "next": "16.4.2",
     "next-intl": "^4.14.9",
     "next-themes": "^0.4.6",
+    "onnxruntime-web": "1.30.0",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-markdown": "^10.1.0",

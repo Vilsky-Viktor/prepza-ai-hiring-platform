@@ -14,3 +14,9 @@ export const DOCUMENT_HEADERS = [
     value: "public, max-age=3600, stale-while-revalidate=86400",
   },
 ]
+
+// Voice mode's speech detector (public/vad/<versions>/): a new version is a new folder, so a
+// file never changes under its address: a year.
+export const VAD_HEADERS = [
+  { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+]

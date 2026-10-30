@@ -4,7 +4,11 @@ import createNextIntlPlugin from "next-intl/plugin"
 
 import { EMBED_SCRIPT_HEADERS } from "./src/config/embed"
 import { REPORT_SAMPLES_HEADERS } from "./src/config/report-samples"
-import { DOCUMENT_HEADERS, PICTURE_HEADERS } from "./src/config/static-files"
+import {
+  DOCUMENT_HEADERS,
+  PICTURE_HEADERS,
+  VAD_HEADERS,
+} from "./src/config/static-files"
 
 const nextConfig: NextConfig = {
   output: "standalone",
@@ -65,6 +69,7 @@ const nextConfig: NextConfig = {
       { source: "/icon.png", headers: PICTURE_HEADERS },
       { source: "/documents/:file+", headers: DOCUMENT_HEADERS },
       { source: "/examples/:file+", headers: DOCUMENT_HEADERS },
+      { source: "/vad/:file+", headers: VAD_HEADERS },
     ]
   },
   // In `pnpm dev` there is no gateway in front of Next, so proxy the API to it.

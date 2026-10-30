@@ -28,6 +28,16 @@ it("lets the page play audio from blob addresses", () => {
   expect(contentSecurityPolicy("nonce", false)).toMatch(/media-src [^;]*blob:/)
 })
 
+// Voice mode's speech detector runs on WebAssembly; the policy allows compiling it, never eval.
+it("lets WebAssembly compile but keeps eval out of production", () => {
+  const scripts = contentSecurityPolicy("nonce", false).match(
+    /script-src [^;]*/
+  )?.[0]
+
+  expect(scripts).toContain("'wasm-unsafe-eval'")
+  expect(scripts).not.toContain("'unsafe-eval'")
+})
+
 // Production's pages ask for https everywhere; the local stack, plain http with the sign-in
 // emulator (a production build too, as the browser tests run), doesn't.
 it("upgrades insecure requests in production only", () => {

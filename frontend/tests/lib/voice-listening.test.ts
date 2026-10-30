@@ -1,12 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
 import {
+  FRAME_MS,
   IDLE_RESTART_MS,
-  LEVEL_EVERY_MS,
-  SPEECH_END_MS,
-  SPEECH_START_MS,
+  MAX_ANSWER_MS,
+  MIN_VOICED_MS,
+  SPEECH_LEVEL,
 } from "@/config/voice"
-import { level, listen } from "@/lib/voice-listening"
+import { type DetectorEvents, level, listen } from "@/lib/voice-listening"
 
 describe("level", () => {
   it("is the sound's root mean square", () => {
@@ -16,8 +17,6 @@ describe("level", () => {
 })
 
 describe("listen", () => {
-  // The microphone's level now, as the fake analyser reads it.
-  let loudness: number
   let recorders: FakeRecorder[]
 
   class FakeRecorder {
@@ -40,111 +39,164 @@ describe("listen", () => {
     }
   }
 
-  const context = {
-    createAnalyser: () => ({
-      fftSize: 0,
-      getFloatTimeDomainData: (samples: Float32Array) => samples.fill(loudness),
-      disconnect: () => undefined,
-    }),
-    createMediaStreamSource: () => ({ connect: () => undefined }),
-  } as unknown as AudioContext
+  const LOUD = SPEECH_LEVEL * 3
+  const QUIET = SPEECH_LEVEL / 3
 
-  function start() {
+  async function start() {
     const heard: { audio: Blob; voicedMs: number }[] = []
     const onSpeechStart = vi.fn()
-    const listener = listen(
-      context,
+    const detector = {
+      start: vi.fn(async () => undefined),
+      pause: vi.fn(async () => undefined),
+      destroy: vi.fn(async () => undefined),
+    }
+    let events = {} as DetectorEvents
+    const listener = await listen(
       {} as MediaStream,
       "audio/webm;codecs=opus",
+      async (given) => {
+        events = given
+
+        return detector
+      },
       {
         onSpeechStart,
         onSpeech: (audio, voicedMs) => heard.push({ audio, voicedMs }),
       }
     )
 
-    return { listener, heard, onSpeechStart }
+    // `ms` of frames, each with the detector's probability and the sound's level.
+    function frames(ms: number, speech: number, loudness: number) {
+      for (let at = 0; at < ms; at += FRAME_MS) {
+        events.onFrame(speech, new Float32Array(512).fill(loudness))
+      }
+    }
+
+    // A stretch the detector takes for speech, from its start to its end.
+    function stretch(ms: number, speech: number, loudness: number) {
+      events.onSpeechStart()
+      frames(ms, speech, loudness)
+      events.onSpeechEnd()
+    }
+
+    return { listener, detector, events, heard, onSpeechStart, frames, stretch }
   }
 
   beforeEach(() => {
-    vi.useFakeTimers()
-    vi.stubGlobal("window", globalThis)
     vi.stubGlobal("MediaRecorder", FakeRecorder)
-    loudness = 0
     recorders = []
   })
 
   afterEach(() => {
-    vi.useRealTimers()
+    vi.unstubAllGlobals()
   })
 
-  it("sends a stretch of speech once it ends, with how long it was voiced", () => {
-    const { listener, heard, onSpeechStart } = start()
-    loudness = 0.1
-    vi.advanceTimersByTime(SPEECH_START_MS + 1000)
-
-    expect(onSpeechStart).toHaveBeenCalledOnce()
-    expect(heard).toEqual([])
-
-    loudness = 0
-    vi.advanceTimersByTime(SPEECH_END_MS)
-
-    expect(heard).toHaveLength(1)
-    expect(heard[0].audio.type).toBe("audio/webm")
-    expect(heard[0].voicedMs).toBe(SPEECH_START_MS + 1000)
-    listener.stop()
-  })
-
-  it("never sends silence, recording afresh while nobody speaks", () => {
-    const { listener, heard, onSpeechStart } = start()
-    vi.advanceTimersByTime(IDLE_RESTART_MS * 3)
+  it("starts paused and sends a stretch of speech once it ends, with how long it was voiced", async () => {
+    const { listener, detector, heard, onSpeechStart, stretch } = await start()
+    stretch(1000, 0.9, LOUD)
 
     expect(heard).toEqual([])
-    expect(onSpeechStart).not.toHaveBeenCalled()
-    expect(recorders.length).toBeGreaterThan(2)
-    listener.stop()
-  })
-
-  it("ignores a sound too short to be speech", () => {
-    const { listener, onSpeechStart } = start()
-    loudness = 0.1
-    vi.advanceTimersByTime(SPEECH_START_MS - LEVEL_EVERY_MS)
-    loudness = 0
-    vi.advanceTimersByTime(SPEECH_END_MS * 2)
-
-    expect(onSpeechStart).not.toHaveBeenCalled()
-    listener.stop()
-  })
-
-  it("hears nothing while paused and starts afresh on resume", () => {
-    const { listener, heard, onSpeechStart } = start()
-    listener.pause()
-    loudness = 0.1
-    vi.advanceTimersByTime(SPEECH_START_MS * 4)
-
-    expect(onSpeechStart).not.toHaveBeenCalled()
+    expect(detector.start).not.toHaveBeenCalled()
 
     listener.resume()
-    vi.advanceTimersByTime(SPEECH_START_MS)
-    loudness = 0
-    vi.advanceTimersByTime(SPEECH_END_MS)
+    stretch(30 * FRAME_MS, 0.9, LOUD)
 
+    expect(detector.start).toHaveBeenCalledOnce()
     expect(onSpeechStart).toHaveBeenCalledOnce()
     expect(heard).toHaveLength(1)
-    listener.stop()
+    expect(heard[0].audio.type).toBe("audio/webm")
+    expect(heard[0].voicedMs).toBe(30 * FRAME_MS)
+    // One answer at a time: the detector waits for the next resume.
+    expect(detector.pause).toHaveBeenCalledOnce()
   })
 
-  it("waits for a resume after sending, so one answer is sent at a time", () => {
-    const { listener, heard } = start()
-    loudness = 0.1
-    vi.advanceTimersByTime(SPEECH_START_MS)
-    loudness = 0
-    vi.advanceTimersByTime(SPEECH_END_MS)
-    loudness = 0.1
-    vi.advanceTimersByTime(SPEECH_START_MS * 4)
-    loudness = 0
-    vi.advanceTimersByTime(SPEECH_END_MS)
+  it("takes a short answer, like a single letter", async () => {
+    const { listener, heard, stretch } = await start()
+    listener.resume()
+    stretch(MIN_VOICED_MS + FRAME_MS, 0.9, LOUD)
 
     expect(heard).toHaveLength(1)
+  })
+
+  it.each([
+    ["too short to be words", MIN_VOICED_MS - FRAME_MS, 0.9, LOUD],
+    ["not speech (a cough, thunder)", 2000, 0.3, LOUD],
+    ["speech too quiet to be the candidate's (a television)", 2000, 0.9, QUIET],
+  ])(
+    "drops a stretch %s and records afresh",
+    async (_, ms, speech, loudness) => {
+      const { listener, heard, onSpeechStart, stretch } = await start()
+      listener.resume()
+      stretch(ms, speech, loudness)
+
+      expect(onSpeechStart).not.toHaveBeenCalled()
+      expect(heard).toEqual([])
+      expect(recorders.at(-1)?.state).toBe("recording")
+      expect(recorders).toHaveLength(2)
+    }
+  )
+
+  it("drops a stretch the detector gave up on", async () => {
+    const { listener, events, heard, frames } = await start()
+    listener.resume()
+    events.onSpeechStart()
+    frames(FRAME_MS, 0.9, LOUD)
+    events.onMisfire()
+
+    expect(heard).toEqual([])
+    expect(recorders).toHaveLength(2)
+  })
+
+  it("never sends silence, recording afresh while nobody speaks", async () => {
+    const { listener, heard, frames } = await start()
+    listener.resume()
+    frames(IDLE_RESTART_MS * 3, 0.05, 0)
+
+    expect(heard).toEqual([])
+    expect(recorders.length).toBeGreaterThan(2)
+  })
+
+  it("sends an answer that reaches the longest an answer may be", async () => {
+    const { listener, events, heard, frames } = await start()
+    listener.resume()
+    events.onSpeechStart()
+    frames(MAX_ANSWER_MS, 0.9, LOUD)
+
+    expect(heard).toHaveLength(1)
+  })
+
+  it("hears nothing while paused and starts afresh on resume", async () => {
+    const { listener, detector, heard, stretch } = await start()
+    listener.resume()
+    listener.pause()
+    stretch(1000, 0.9, LOUD)
+
+    expect(heard).toEqual([])
+    expect(detector.pause).toHaveBeenCalledOnce()
+
+    listener.resume()
+    stretch(1000, 0.9, LOUD)
+
+    expect(heard).toHaveLength(1)
+  })
+
+  it("waits for a resume after sending, so one answer is sent at a time", async () => {
+    const { listener, heard, stretch } = await start()
+    listener.resume()
+    stretch(1000, 0.9, LOUD)
+    stretch(1000, 0.9, LOUD)
+
+    expect(heard).toHaveLength(1)
+  })
+
+  it("lets the detector go when it stops", async () => {
+    const { listener, detector, heard, events, frames } = await start()
+    listener.resume()
+    events.onSpeechStart()
+    frames(1000, 0.9, LOUD)
     listener.stop()
+
+    expect(heard).toEqual([])
+    expect(detector.destroy).toHaveBeenCalledOnce()
   })
 })

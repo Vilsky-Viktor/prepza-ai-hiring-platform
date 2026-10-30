@@ -38,3 +38,6 @@ next-env.d.ts
 
 # pnpm's local package store (created when installing inside the container)
 /.pnpm-store/
+
+# Voice mode's speech detector files, copied from node_modules (scripts/copy-vad.mjs)
+/public/vad/

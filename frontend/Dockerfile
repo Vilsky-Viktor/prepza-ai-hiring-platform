@@ -43,7 +43,8 @@ ENV NODE_ENV=development HOSTNAME=0.0.0.0 PORT=3000 WATCHPACK_POLLING=true
 
 EXPOSE 3000
 
-CMD ["pnpm", "exec", "next", "dev", "--hostname", "0.0.0.0", "--port", "3000"]
+# The speech detector's files are copied into the mounted public/ first (scripts/copy-vad.mjs).
+CMD ["sh", "-c", "node scripts/copy-vad.mjs && exec pnpm exec next dev --hostname 0.0.0.0 --port 3000"]
 
 # Production: the standalone server from the build stage. NEXT_PUBLIC_* values are baked in at
 # build time, so pass them as build arguments.

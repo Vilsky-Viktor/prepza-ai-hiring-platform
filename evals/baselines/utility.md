@@ -161,6 +161,30 @@ Subversion" heard as "It is subversion", matched to Subversion alone: a fair rea
 heard); the stricter check rebuilt it. Misses left are the hearing ("Hit e Subash", "E A C",
 "Ach nein" without its letter): each unclear, so the candidate says it again or taps.
 
+## Voice mode reacting only to speech (2026-10-30, kept)
+
+Mira reacted to every loud sound (a cough, a chair, thunder): the browser took anything loud for
+150 ms as speech, sent it, said "Got it." and then "Sorry, I didn't catch that". Now Silero VAD v5
+(vad-web on ONNX Runtime's WebAssembly, in the page) decides what is speech, a frame counting as
+voiced from probability 0.6 and level 0.015, and a stretch is sent after three voiced frames
+(96 ms); rounds answers `noise` by code for a transcript without words, and the page ignores it.
+`voice_sounds.json` (23 synthesised sounds) beside `voice_answers.json`'s 35 spoken answers.
+
+| Run | Sounds sent by the browser | Answers sent (short ones) | Sounds the service reacted to | Answers taken for noise |
+|---|---|---|---|---|
+| Before: loudness alone (150 ms over 0.02) | 65.2% (44.9–81.2), 15 of 23 | 100% (100%) | 100% (92.3–100), all "unclear" | — |
+| VAD with the first thresholds (5 voiced frames at 0.02) | 0% | 88.6% (69.2%: "B", "sí", "oui", "sì" missed) | — | — |
+| VAD, 3 voiced frames at 0.015 (kept) | 0.0% (0.0–14.3) | 100% (90.1–100) (100%, 77.2–100) | 8.7% (3.4–20.3): only the television's real words | 0 of 70 |
+
+The browser's thresholds were set on these clips: three voiced frames is one more than the
+loudest non-speech (a creaking chair) gives and about half of what a single letter does; the
+television's voice stays under 0.015. Not measured: the browser's own noise suppression and
+automatic gain, which run before the detector (a television nearby, raised by the gain, could
+pass). Spoken matching otherwise unchanged (88.6% (79.0–94.1) against 91.4% (82.5–96.0) right,
+within the noise; the misses are the clips' transcripts). The detector costs nothing to run; it
+downloads once, about 4 MB compressed (the WebAssembly runtime 2.3 MB, the model 1.8 MB), only
+when voice mode starts.
+
 ## Voice mode's reading aloud: first eval (2026-10-30)
 
 OpenAI shuts its text-to-speech models (`gpt-4o-mini-tts`, `tts-1`, `tts-1-hd`) down on

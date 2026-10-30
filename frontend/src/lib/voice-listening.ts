@@ -1,10 +1,10 @@
 import {
+  FRAME_MS,
   IDLE_RESTART_MS,
-  LEVEL_EVERY_MS,
   MAX_ANSWER_MS,
-  SPEECH_END_MS,
+  MIN_VOICED_MS,
   SPEECH_LEVEL,
-  SPEECH_START_MS,
+  SPEECH_PROBABILITY,
 } from "@/config/voice"
 
 export type Listener = {
@@ -13,6 +13,21 @@ export type Listener = {
   resume: () => void
   stop: () => void
 }
+
+/** A voice-activity detector on the microphone (lib/voice-vad.ts): each frame's probability of
+ * being speech, and where a stretch of speech starts and ends (or turns out too short). */
+export type Detector = {
+  start: () => Promise<void>
+  pause: () => Promise<void>
+  destroy: () => Promise<void>
+}
+export type DetectorEvents = {
+  onFrame: (speech: number, samples: Float32Array) => void
+  onSpeechStart: () => void
+  onSpeechEnd: () => void
+  onMisfire: () => void
+}
+export type OpenDetector = (events: DetectorEvents) => Promise<Detector>
 
 /** The microphone, opened once for the whole interview with the browser's voice processing (echo
  * cancellation, noise suppression, automatic gain). Throws the browser's error when it isn't
@@ -38,31 +53,31 @@ export function level(samples: Float32Array) {
   return Math.sqrt(sum / samples.length)
 }
 
-/** Listens all the time: notices when someone starts and stops speaking (from the microphone's
- * level) and gives that stretch alone, recorded in `type`; silence is never sent. */
-export function listen(
-  context: AudioContext,
+/** Listens all the time once resumed, and gives each stretch of the candidate's speech alone,
+ * recorded in `type`: the detector says where speech starts and ends, and a stretch counts once
+ * MIN_VOICED_MS of it is speech loud enough to be theirs. A cough, a knock or thunder is no
+ * speech, and silence is never sent. Time is counted in the detector's frames. Starts paused;
+ * the detector loads meanwhile (its failure rejects). */
+export async function listen(
   stream: MediaStream,
   type: string,
+  openDetector: OpenDetector,
   handlers: {
     onSpeechStart: () => void
-    // The speech and how long it was voiced (above the speech level), in milliseconds.
+    // The speech and how long of it was voiced, in milliseconds.
     onSpeech: (audio: Blob, voicedMs: number) => void
   }
-): Listener {
-  const analyser = context.createAnalyser()
-  analyser.fftSize = 1024
-  context.createMediaStreamSource(stream).connect(analyser)
-  const samples = new Float32Array(analyser.fftSize)
+): Promise<Listener> {
   const format = type.split(";")[0]
   let recorder: MediaRecorder | null = null
   let chunks: Blob[] = []
-  let recordingSince = 0
-  let above = 0
-  let below = 0
-  let speaking = false
+  // Since the recording started, and of it, voiced; whether the detector is in a stretch of
+  // speech, and whether it counts as the candidate's.
+  let elapsed = 0
   let voiced = 0
-  let paused = false
+  let inSpeech = false
+  let heard = false
+  let paused = true
 
   function record() {
     chunks = []
@@ -73,11 +88,10 @@ export function listen(
       }
     }
     recorder.start()
-    recordingSince = Date.now()
-    above = 0
-    below = 0
-    speaking = false
+    elapsed = 0
     voiced = 0
+    inSpeech = false
+    heard = false
   }
 
   // Ends the recording; `keep` gives it to onSpeech.
@@ -89,65 +103,97 @@ export function listen(
       return
     }
 
+    const voicedMs = voiced
     done.onstop = () => {
       if (keep) {
-        handlers.onSpeech(new Blob(chunks, { type: format }), voiced)
+        handlers.onSpeech(new Blob(chunks, { type: format }), voicedMs)
       }
     }
     done.stop()
   }
 
-  function tick() {
+  // One answer at a time: listening waits for a resume after sending.
+  function send() {
+    finish(true)
+    paused = true
+    void detector.pause()
+  }
+
+  // Not the candidate speaking: dropped, and the recording starts afresh.
+  function drop() {
+    finish(false)
+    record()
+  }
+
+  function onFrame(speech: number, samples: Float32Array) {
     if (paused || !recorder) {
       return
     }
 
-    analyser.getFloatTimeDomainData(samples)
-    const threshold = SPEECH_LEVEL
-    const now = level(samples)
+    elapsed += FRAME_MS
 
-    if (!speaking) {
-      above = now > threshold ? above + LEVEL_EVERY_MS : 0
-
-      if (above >= SPEECH_START_MS) {
-        speaking = true
-        voiced = above
-        handlers.onSpeechStart()
-      } else if (Date.now() - recordingSince > IDLE_RESTART_MS) {
-        // Silence so far: dropped, and the recording starts again.
-        finish(false)
-        record()
-      }
-
-      return
+    if (
+      inSpeech &&
+      speech >= SPEECH_PROBABILITY &&
+      level(samples) >= SPEECH_LEVEL
+    ) {
+      voiced += FRAME_MS
     }
 
-    below = now < threshold * 0.6 ? below + LEVEL_EVERY_MS : 0
-    voiced += now > threshold ? LEVEL_EVERY_MS : 0
+    if (inSpeech && !heard && voiced >= MIN_VOICED_MS) {
+      heard = true
+      handlers.onSpeechStart()
+    }
 
-    if (below >= SPEECH_END_MS || Date.now() - recordingSince > MAX_ANSWER_MS) {
-      finish(true)
-      paused = true
+    if (elapsed >= MAX_ANSWER_MS) {
+      // As long as an answer may be: sent, or dropped when it was never the candidate.
+      if (heard) {
+        send()
+      } else {
+        drop()
+      }
+    } else if (!inSpeech && elapsed >= IDLE_RESTART_MS) {
+      drop()
     }
   }
 
-  const timer = window.setInterval(tick, LEVEL_EVERY_MS)
-  record()
+  function onSpeechEnd() {
+    if (paused || !recorder) {
+      return
+    }
+
+    if (heard) {
+      send()
+    } else {
+      drop()
+    }
+  }
+
+  const detector = await openDetector({
+    onFrame,
+    onSpeechStart: () => {
+      inSpeech = !paused
+    },
+    onSpeechEnd,
+    onMisfire: onSpeechEnd,
+  })
 
   return {
     pause: () => {
       paused = true
       finish(false)
+      void detector.pause()
     },
     resume: () => {
-      paused = false
       finish(false)
       record()
+      paused = false
+      void detector.start()
     },
     stop: () => {
-      window.clearInterval(timer)
+      paused = true
       finish(false)
-      analyser.disconnect()
+      void detector.destroy()
     },
   }
 }

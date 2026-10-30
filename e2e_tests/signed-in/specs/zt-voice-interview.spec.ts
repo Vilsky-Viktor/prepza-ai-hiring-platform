@@ -12,7 +12,7 @@ import { ownerEmail, randomId, throwawayEmail } from "../helpers/users"
 import { fakeMicrophone, fakeMira, noReadingAloud } from "../helpers/voice"
 
 type Step = {
-  session: { id: string }
+  session: { id: string; answered: number; total: number }
   question: { question_id: string; multi: boolean } | null
 }
 
@@ -98,14 +98,15 @@ test("a candidate allows the microphone before a voice interview starts", async 
 })
 
 // A candidate answers a multi-answer question by voice: its options carry check boxes as in
-// click mode; Mira says "Got it." as they stop speaking and thinks while the answer is
+// click mode; a cough or a sound without words gets no reaction; Mira says "Got it." as they stop speaking and thinks while the answer is
 // understood, the options they named are picked and she asks to confirm; a spoken yes sends
 // them, and she says she's moving on and reads the next question.
 test("a candidate answers a voice interview's question by speaking", async ({ signInAs }) => {
   // Stepping through the draw to its multi-answer question takes a while on a busy stack.
   test.setTimeout(300_000)
   await voiceInterview(signInAs, async ({ candidate, token, microphone, mira }) => {
-    // Started, and on to the draw's multi-answer question, as the player does.
+    // Started, and on to a multi-answer question of the draw that isn't its last, as the player
+    // does.
     const { sessions } = await api<{ sessions: { id: string }[] }>(
       candidate,
       "POST",
@@ -117,7 +118,8 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
       const step = await api<Step>(candidate, "POST", `/rounds/sessions/${sessions[0].id}/step`)
       expect(step.question, "the draw holds a multi-answer question").not.toBeNull()
 
-      if (step.question!.multi) {
+      // One with a question after it: confirming it moves on to the next.
+      if (step.question!.multi && step.session.answered + 1 < step.session.total) {
         break
       }
 
@@ -139,6 +141,15 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
     await expect(candidate.getByTestId("option-check")).toHaveCount(4)
     const before = Number(await answered(candidate))
 
+    // A cough is no speech: nothing is sent until the candidate speaks. What the service hears
+    // as no words at all is ignored: no "didn't catch that", and Mira listens on.
+    await microphone.say(true)
+    expect(await mira.sent()).toEqual([])
+    expect(await microphone.sentDuring()).not.toContain("cough")
+    await mira.answer({ heard: "", intent: "noise", picks: [] })
+    await expect(turn).toHaveAttribute("data-turn", "candidate")
+    expect(mira.asked.filter((path) => path.startsWith("phrases/unclear"))).toEqual([])
+
     // Spoken: "Got it.", Mira thinking while it's understood, then two options picked.
     await microphone.say()
     expect(await mira.sent()).toEqual([])
@@ -148,7 +159,6 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
     await mira.answer({ heard: "A and B", intent: "choose", picks: [0, 1] })
     const options = main.getByRole("button", { pressed: true })
     await expect(options).toHaveCount(2)
-    await expect(candidate.getByTestId("voice-heard")).toContainText("A and B")
     await expect(turn).toHaveAttribute("data-turn", "candidate")
     expect(mira.asked).toContain("confirmations?picks=0&picks=1")
     await shot(candidate, "picked")

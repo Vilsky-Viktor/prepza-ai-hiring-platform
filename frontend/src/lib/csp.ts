@@ -36,7 +36,8 @@ export function contentSecurityPolicy(
 
   return [
     "default-src 'self'",
-    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic'${devScript}`,
+    // WebAssembly may compile: voice mode's speech detector runs on it (lib/voice-vad.ts).
+    `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' 'wasm-unsafe-eval'${devScript}`,
     "style-src 'self' 'unsafe-inline'",
     `img-src 'self' blob: data: ${[...ACCOUNT_IMAGE_ORIGINS, ...PADDLE_ORIGINS].join(" ")}`,
     "font-src 'self'",

@@ -1,19 +1,43 @@
-// Voice mode's listening in the browser: how loud and how long counts as speech. The rules of
-// what an answer means live in rounds; these only decide when a stretch of speech is sent.
+// Voice mode's listening in the browser: what counts as speech. A speech-trained detector (Silero
+// VAD, run in the page: lib/voice-vad.ts) gives each 32 ms frame of the microphone a probability
+// of being speech; the rules of what an answer means live in rounds, these only decide when a
+// stretch of speech is sent.
 
-// The microphone's level (root mean square, 0 to 1) that counts as speech.
-export const SPEECH_LEVEL = 0.02
-// Speech starts after this long above the level, and ends after this long below it.
-export const SPEECH_START_MS = 150
+// The detector's model and its files, copied from its packages into public/ when the site is
+// built or started (scripts/copy-vad.mjs), under their versions, so a cached file is never
+// another version's.
+export const VAD_MODEL = "v5"
+export const VAD_FILES = "/vad/0.0.31-1.30.0/"
+// One frame: 512 samples at 16 kHz.
+export const FRAME_MS = 32
+// A frame is speech from this probability, and silence under the lower one; the speech ends after
+// SPEECH_END_MS of silence. In between, a frame changes nothing.
+export const SPEECH_PROBABILITY = 0.6
+export const SILENCE_PROBABILITY = 0.45
 export const SPEECH_END_MS = 650
-// "Got it." only after at least this much voiced sound: a cough or a click is shorter.
+// A frame of speech counts as voiced only this loud too (root mean square, 0 to 1): a voice on a
+// television in the next room is speech, but not the candidate's.
+export const SPEECH_LEVEL = 0.015
+// A stretch is the candidate speaking (and is sent) after this much voiced: a short "B" or "yes"
+// has about five such frames, a cough or a creaking chair at most two (evals:
+// voice_listening_test.mjs).
+export const MIN_VOICED_MS = 3 * FRAME_MS
+// The detector's options (vad-web's FrameProcessorOptions); its own minimum is the frame, so
+// MIN_VOICED_MS decides.
+export const VAD_OPTIONS = {
+  positiveSpeechThreshold: SPEECH_PROBABILITY,
+  negativeSpeechThreshold: SILENCE_PROBABILITY,
+  redemptionMs: SPEECH_END_MS,
+  preSpeechPadMs: 0,
+  minSpeechMs: FRAME_MS,
+  submitUserSpeechOnPause: false,
+}
+// "Got it." only after at least this much voiced sound: a short word gets no acknowledgement.
 export const ACK_MIN_VOICED_MS = 500
 // A spoken answer is sent at most this long (the service's limit is 30 seconds).
 export const MAX_ANSWER_MS = 25_000
 // Without speech, the recording starts afresh this often, so little silence is ever sent.
 export const IDLE_RESTART_MS = 4_000
-// How often the level is read.
-export const LEVEL_EVERY_MS = 50
 // A moment of silence played on the start button's press, which lets the page play sound
 // afterwards (browsers allow audio only after a tap).
 export const SILENT_WAV =
