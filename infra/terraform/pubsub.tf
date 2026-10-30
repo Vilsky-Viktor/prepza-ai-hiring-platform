@@ -33,8 +33,10 @@ resource "google_pubsub_subscription" "dead_letter" {
 # "candidate." events that way, as listing them one by one outgrew the cap, and ignore the ones
 # they don't handle; ats takes the "interview." family that way; notifications takes the
 # "notification." family too (notification.requested, and site's notification.news_withdrawn). A
-# family of one type today (company, contact, member, report, credits, user, news) is taken whole to save
-# bytes; a consumer ignores any type of it it doesn't handle. Every holder of a user's data but
+# family of one type today (contact, member, report, credits, user, news) is taken whole to save
+# bytes; a consumer ignores any type of it it doesn't handle. The "company." family holds
+# company.deleted and the team's notes (company.note_created, _edited, _deleted, for
+# notifications), which a family of their own would push notifications' filter past the cap. Every holder of a user's data but
 # companies (which accounts calls first, as it may refuse) takes `user.deleted`, accounts' deletion
 # of an account. Companies takes `audit.recorded`, members' actions in billing, ats, notifications
 # and api, for the company's action log. Notifications and ats take their own families too (email,

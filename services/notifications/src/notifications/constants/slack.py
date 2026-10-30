@@ -32,7 +32,7 @@ SLACK_GONE = {
 }
 
 # The company's notifications a channel can get, in the order the page lists them, and the ones
-# on by default.
+# on by default. Notes (note_added) are posted one by one, each with its text.
 SLACK_KINDS = [
     NotificationKind.CANDIDATE_FINISHED,
     NotificationKind.ATS_NOT_INVITED,
@@ -40,12 +40,14 @@ SLACK_KINDS = [
     NotificationKind.INTERVIEW_READY,
     NotificationKind.AUTO_TOP_UP_CHARGED,
     NotificationKind.AUTO_TOP_UP_FAILED,
+    NotificationKind.NOTE_ADDED,
 ]
 SLACK_DEFAULT_KINDS = [
     NotificationKind.CANDIDATE_FINISHED,
     NotificationKind.ATS_NOT_INVITED,
     NotificationKind.INVITE_UNDELIVERED,
     NotificationKind.AUTO_TOP_UP_FAILED,
+    NotificationKind.NOTE_ADDED,
 ]
 
 

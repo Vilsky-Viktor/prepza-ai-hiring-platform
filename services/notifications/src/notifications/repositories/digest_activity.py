@@ -1,11 +1,13 @@
-# What the activity digest tells: companies' notifications of the digest's kinds in its window.
+# What the activity digest tells: companies' notifications of the digest's kinds in its window,
+# and the notes written in it (pending_notes).
 from datetime import datetime
 
 from prepza_common.events.notifications import Recipient
-from sqlalchemy import select
+from sqlalchemy import select, union
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from notifications.models.notifications import Notification
+from notifications.repositories import pending_notes
 
 
 def in_window(kinds: list[str], since: datetime, until: datetime) -> tuple:
@@ -27,14 +29,14 @@ async def active_companies(
     after: str,
     limit: int,
 ) -> list[str]:
-    """A page of the companies that had such notifications: up to `limit` ids after `after`, in
-    order."""
+    """A page of the companies that had such notifications or new notes: up to `limit` ids after
+    `after`, in order."""
+    notified = select(Notification.recipient_id.label("company_id")).where(
+        *in_window(kinds, since, until), Notification.recipient_id > after
+    )
+    found = union(notified, pending_notes.company_ids(since, until, after)).subquery()
     rows = await session.scalars(
-        select(Notification.recipient_id)
-        .where(*in_window(kinds, since, until), Notification.recipient_id > after)
-        .distinct()
-        .order_by(Notification.recipient_id)
-        .limit(limit)
+        select(found.c.company_id).order_by(found.c.company_id).limit(limit)
     )
 
     return list(rows)

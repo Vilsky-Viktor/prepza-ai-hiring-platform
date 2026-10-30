@@ -19,6 +19,12 @@ class Notification(Base):
         Index("ix_notifications_recipient", "recipient", "recipient_id", "created_at"),
         # The notifications about a person, found by their email when they're erased.
         Index("ix_notifications_email", text("(data ->> 'email')")),
+        # A member's grouped notes about an interview, found when a note or the interview goes.
+        Index(
+            "ix_notifications_note_interview",
+            text("(data ->> 'interview_id')"),
+            postgresql_where=text("kind = 'note_added'"),
+        ),
         CheckConstraint(one_of("recipient", Recipient), name="ck_notifications_recipient"),
         CheckConstraint(one_of("kind", NotificationKind), name="ck_notifications_kind"),
     )

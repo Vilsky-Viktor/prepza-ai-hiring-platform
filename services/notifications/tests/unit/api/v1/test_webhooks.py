@@ -172,7 +172,13 @@ def test_a_spam_complaint_on_the_digest_turns_the_users_digest_off(client, repor
         (
             "library",
             "ann",
-            ["candidate_finished", "invite_undelivered", "ats_not_invited", "interview_ready"],
+            [
+                "candidate_finished",
+                "invite_undelivered",
+                "ats_not_invited",
+                "interview_ready",
+                "note_added",
+            ],
         )
     ]
 

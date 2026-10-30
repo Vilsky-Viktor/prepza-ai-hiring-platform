@@ -159,6 +159,7 @@ def test_a_users_one_click_unsubscribe_turns_accounts_settings_off(run, outside)
             "invite_undelivered",
             "ats_not_invited",
             "interview_ready",
+            "note_added",
         ]
     }
 

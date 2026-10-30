@@ -12,6 +12,7 @@ class UnsubscribeType(StrEnum):
     INVITE_UNDELIVERED = NotificationKind.INVITE_UNDELIVERED.value
     ATS_NOT_INVITED = NotificationKind.ATS_NOT_INVITED.value
     INTERVIEW_READY = NotificationKind.INTERVIEW_READY.value
+    NOTE_ADDED = NotificationKind.NOTE_ADDED.value
     DIGEST = "digest"
     REMINDERS = "reminders"
     UPDATES = "updates"
@@ -25,6 +26,7 @@ DIGEST_KINDS = [
     UnsubscribeType.INVITE_UNDELIVERED,
     UnsubscribeType.ATS_NOT_INVITED,
     UnsubscribeType.INTERVIEW_READY,
+    UnsubscribeType.NOTE_ADDED,
 ]
 
 # The email settings (accounts) each of a user's types turns off; the digest is all its kinds.

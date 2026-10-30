@@ -17,7 +17,7 @@ src/notifications/
 ├── api/v1/                 # Routes (the folder name only: URLs have no extra /v1)
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
-├── handlers/               # Pub/Sub events (requested notifications, invites, reminders,
+├── handlers/               # Pub/Sub events (requested notifications, the team's notes, invites, reminders,
 │                           # reports, contact messages, Resend's web hooks, campaigns'
 │                           # translations, deletions);
 │                           # dispatch.py picks one

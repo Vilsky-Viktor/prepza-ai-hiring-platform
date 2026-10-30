@@ -8,6 +8,7 @@ import notifications.models.campaigns
 import notifications.models.notifications
 import notifications.models.opt_outs
 import notifications.models.outbox
+import notifications.models.pending_notes
 import notifications.models.sent_emails
 import notifications.models.slack
 import notifications.models.soft_bounces

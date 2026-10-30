@@ -182,38 +182,49 @@ async def disconnect(company_id: str, user_id: str | None = None) -> None:
 async def deliver(event: dict, key: str) -> None:
     """A company's notification goes to its Slack channel too, if it chose that kind and whoever
     connected it is still an owner or admin; once per `key` (the bell's), however often its event
-    comes. Every one is posted, also one the bell groups with others ("3 candidates finished"). A
-    gone web hook, or a connector no longer an editor, marks the channel for
-    reconnecting, and a message Slack refuses is logged: neither is retried. Slack (or the
-    companies service) busy or down raises, so Pub/Sub retries the event, backing off, and the
-    retry posts it."""
+    comes. Every one is posted, also one the bell groups with others ("3 candidates finished")."""
     if event.get("recipient") != Recipient.COMPANY or not available():
         return
 
-    company_id = event["recipient_id"]
+    text = message(event, settings.site_url)
 
+    if text is None:
+        return
+
+    webhook = await channel(event["recipient_id"], event.get("kind"))
+
+    if webhook is not None:
+        await post_once(event["recipient_id"], webhook, key, text, event["kind"])
+
+
+async def channel(company_id: str, kind: str) -> str | None:
+    """The web hook of the company's working channel, if it takes `kind` and whoever connected
+    it is still an owner or admin, like an API key; otherwise an editor reconnects it (a gone
+    connector or a web hook that can't be unsealed marks it for reconnecting)."""
     async with Session() as session:
         found = await storage.connected(session, company_id)
 
-    text = message(event, settings.site_url)
+    if found is None or kind not in found.kinds:
+        return None
 
-    if found is None or event.get("kind") not in found.kinds or text is None:
-        return
-
-    # The channel works while whoever connected it is still an owner or admin, like an API key;
-    # otherwise an editor reconnects it.
     if not (await companies.access(company_id, found.created_by))["editor"]:
         await stop(company_id)
 
-        return
+        return None
 
     webhook = decrypt(settings.slack_encryption_key, found.webhook)
 
     if webhook is None:
         await stop(company_id)
 
-        return
+    return webhook
 
+
+async def post_once(company_id: str, webhook: str, key: str, text: dict, kind: str) -> None:
+    """Posts the message once per `key`, however often its event comes. A gone web hook marks the
+    channel for reconnecting, and a message Slack refuses is logged: neither is retried. Slack
+    busy or down (rate limited, a server error, a timeout) raises, so Pub/Sub retries the event,
+    backing off, and the retry posts it."""
     # Claimed before posting, so two deliveries of one event at once post it once.
     async with Session.begin() as session:
         claimed = await storage.claim(session, key, datetime.now(UTC))
@@ -227,7 +238,7 @@ async def deliver(event: dict, key: str) -> None:
         await stop(company_id)
     except slack.SlackRefused as refused:
         logger.warning(
-            "Slack refused a %s notification for %s: %s", event["kind"], company_id, refused.error
+            "Slack refused a %s notification for %s: %s", kind, company_id, refused.error
         )
     except Exception:
         async with Session.begin() as session:

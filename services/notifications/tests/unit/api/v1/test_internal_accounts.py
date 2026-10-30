@@ -2,7 +2,14 @@ from event_pushes import push
 from prepza_common.auth.service_auth import issue_token
 
 from notifications.models.slack import SlackConnection
-from notifications.repositories import bulk_recipients, notifications, sent_emails, slack
+from notifications.repositories import (
+    bulk_recipients,
+    note_notices,
+    notifications,
+    pending_notes,
+    sent_emails,
+    slack,
+)
 
 HEADERS = {
     "Authorization": f"Bearer {issue_token('library', 'notifications', 'test-secret-that-is-at-least-32-bytes')}"
@@ -43,6 +50,17 @@ def test_a_deleted_account_takes_their_notifications_and_sent_log_and_forgets_th
     monkeypatch.setattr(sent_emails, "remove_user", forget_sent)
     monkeypatch.setattr(bulk_recipients, "remove_user", forget_bulk)
 
+    async def by_author(session, user_id):
+        done.append(("note items", user_id))
+
+        return []
+
+    async def forget_author(session, user_id):
+        done.append(("pending notes", user_id))
+
+    monkeypatch.setattr(note_notices, "by_author", by_author)
+    monkeypatch.setattr(pending_notes, "forget_author", forget_author)
+
     response = client.post(
         "/internal/events",
         json=push("user.deleted", {"user_id": "u1", "email": "ann@example.com"}),
@@ -51,6 +69,8 @@ def test_a_deleted_account_takes_their_notifications_and_sent_log_and_forgets_th
     assert response.status_code == 204
     assert done == [
         ("own", "u1"),
+        ("note items", "u1"),
+        ("pending notes", "u1"),
         ("sent", "u1"),
         ("bulk", "u1"),
         ("candidate", "ann@example.com"),

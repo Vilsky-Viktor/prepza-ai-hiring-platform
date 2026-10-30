@@ -12,14 +12,14 @@ from notifications.core.db import Session
 from notifications.helpers.member_emails import digest_email
 from notifications.helpers.member_selection import digest_sections
 from notifications.integrations import accounts, companies
-from notifications.repositories import digest_activity
+from notifications.repositories import digest_activity, pending_notes
 from notifications.services.member_pages import each_page, their_companies
 from notifications.services.member_sends import deadline, send_once
 
 
 async def send_digests(now: datetime) -> int:
     """The activity digest: one email a day to each member of a company that had activity of a
-    kind they get, in the 24 hours before the day's DIGEST_HOUR (the same for every run that day,
+    kind they get (new notes others wrote included), in the 24 hours before the day's DIGEST_HOUR (the same for every run that day,
     the catch-up hour's too), covering all their companies. A page of active companies at a
     time (services/member_pages.py): each page's members get theirs, every company of theirs
     included. Returns how many were sent."""
@@ -45,13 +45,14 @@ async def send_digests(now: datetime) -> int:
             activity = await digest_activity.companies_activity(
                 session, DIGEST_KINDS, since, until, theirs
             )
+            notes = await pending_notes.of_companies(session, theirs, since, until)
 
         site = settings.site_url.rstrip("/")
         jobs = []
 
         for recipient in await accounts.recipients(user_ids):
             sections = digest_sections(
-                recipient["user_id"], recipient["preferences"], everywhere, activity, site
+                recipient["user_id"], recipient["preferences"], everywhere, activity, site, notes
             )
 
             if sections:

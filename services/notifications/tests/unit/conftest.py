@@ -2,7 +2,7 @@ import pytest
 
 from notifications.integrations import accounts, billing, companies, generation
 from notifications.integrations.resend import ResendBusy
-from notifications.repositories import digest_activity, suppressed
+from notifications.repositories import digest_activity, pending_notes, suppressed
 from notifications.services import delivery, member_pages, member_sends
 from tests.unit.member_world import COMPANY, finished, person
 
@@ -41,6 +41,8 @@ def world(monkeypatch):
         "busy": False,
         "companies": [COMPANY],
         "activity": [finished("c1")],
+        # The notes waiting for the digest (pending_notes rows).
+        "notes": [],
         "asked_companies": [],
         "pages": [],
         "waiting_pages": [],
@@ -111,6 +113,9 @@ def world(monkeypatch):
     async def companies_activity(session, kinds, since, until, company_ids):
         return [item for item in state["activity"] if item.recipient_id in company_ids]
 
+    async def of_companies(session, company_ids, since, until):
+        return [note for note in state["notes"] if note.company_id in company_ids]
+
     async def cursor(job, day):
         return state["cursors"].get((job, day), "")
 
@@ -132,6 +137,7 @@ def world(monkeypatch):
     monkeypatch.setattr(companies, "company_ids", company_ids)
     monkeypatch.setattr(digest_activity, "active_companies", active_companies)
     monkeypatch.setattr(digest_activity, "companies_activity", companies_activity)
+    monkeypatch.setattr(pending_notes, "of_companies", of_companies)
     monkeypatch.setattr(member_pages, "cursor", cursor)
     monkeypatch.setattr(member_pages, "move_cursor", move_cursor)
     monkeypatch.setattr("notifications.services.member_sends.asyncio.sleep", no_wait)

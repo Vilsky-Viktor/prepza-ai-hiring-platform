@@ -8,16 +8,24 @@ from notifications.constants.member_emails import (
     REVIEW_WAITING_DAYS,
     TOP_UP_LINK,
 )
-from notifications.constants.unsubscribe import DIGEST_KINDS
+from notifications.constants.unsubscribe import DIGEST_KINDS, UnsubscribeType
+from notifications.helpers.note_digest import note_rows
 
 
 def digest_sections(
-    user_id: str, preferences: dict, companies: list[dict], activity: list, site: str
+    user_id: str,
+    preferences: dict,
+    companies: list[dict],
+    activity: list,
+    site: str,
+    notes: list = (),
 ) -> list:
     """The digest's lists for one user: each company they're a member of that had activity of a
     kind they get, by name, with a line per kind and page (an interview, the ATS tab) saying how
-    many. None of them, nothing to send."""
+    many, then its interviews' new notes others wrote (`notes`, pending_notes rows newest
+    first). None of them, nothing to send."""
     kinds = [kind for kind in DIGEST_KINDS if preferences.get(kind)]
+    with_notes = UnsubscribeType.NOTE_ADDED in kinds
     sections = []
 
     for company in sorted(companies, key=lambda found: found["name"].lower()):
@@ -46,6 +54,10 @@ def digest_sections(
                 lines.items(), key=lambda pair: (kinds.index(pair[0][0]), pair[1]["title"].lower())
             )
         ]
+
+        if with_notes:
+            company_notes = [note for note in notes if note.company_id == company["id"]]
+            rows += note_rows(user_id, company_notes, site)
 
         if rows:
             sections.append((company["name"], rows))

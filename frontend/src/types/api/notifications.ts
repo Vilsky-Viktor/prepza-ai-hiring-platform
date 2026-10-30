@@ -1134,6 +1134,7 @@ export interface components {
       | "invite_undelivered"
       | "ats_not_invited"
       | "interview_ready"
+      | "note_added"
       | "digest"
       | "reminders"
       | "updates"

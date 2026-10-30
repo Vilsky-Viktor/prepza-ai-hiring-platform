@@ -71,3 +71,30 @@ def run():
 def locally(monkeypatch):
     """A demo- project: Pub/Sub's pushes aren't token-checked, as with the emulator."""
     monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "demo-test")
+
+
+@pytest.fixture
+def teams(monkeypatch):
+    """Each company's members by id ({company id: [user ids]}), as companies would answer."""
+    found = {}
+
+    async def members(company_ids):
+        return [
+            {"id": cid, "name": "Acme", "members": [{"user_id": u, "editor": False} for u in ids]}
+            for cid, ids in found.items()
+            if cid in company_ids
+        ]
+
+    async def company_ids(user_id):
+        return [cid for cid, ids in found.items() if user_id in ids]
+
+    async def account_created(user_id):
+        return None
+
+    from notifications.integrations import accounts, companies
+
+    monkeypatch.setattr(companies, "members", members)
+    monkeypatch.setattr(companies, "company_ids", company_ids)
+    monkeypatch.setattr(accounts, "account_created", account_created)
+
+    return found

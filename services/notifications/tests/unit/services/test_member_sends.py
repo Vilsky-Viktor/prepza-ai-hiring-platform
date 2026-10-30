@@ -9,7 +9,7 @@ from prepza_common.events.notifications import NotificationKind, Recipient, noti
 from notifications.constants.email import AUTOMATED_HEADERS
 from notifications.constants.member_emails import CLEANUP_SECONDS
 from notifications.integrations.resend import ResendBusy
-from notifications.repositories import sent_emails, soft_bounces
+from notifications.repositories import pending_notes, sent_emails, soft_bounces
 from notifications.services import digest, events, member_sends, notices, reminders
 from tests.unit.member_world import NOW, person
 
@@ -122,10 +122,11 @@ def test_the_reminders_run_deletes_old_rows_only_until_its_cleanup_deadline(
 
     monkeypatch.setattr(sent_emails, "forget", forget)
     monkeypatch.setattr(soft_bounces, "forget", forget)
+    monkeypatch.setattr(pending_notes, "forget", forget)
     started = time.monotonic()
 
     assert client.post("/internal/schedules/reminders").status_code == 204
-    assert len(deadlines) == 2
+    assert len(deadlines) == 3
     assert all(
         started + CLEANUP_SECONDS <= until <= time.monotonic() + CLEANUP_SECONDS
         for until in deadlines

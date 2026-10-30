@@ -75,7 +75,13 @@ def test_a_forged_link_is_not_found(client, applied):
             (
                 "library",
                 "ann",
-                ["candidate_finished", "invite_undelivered", "ats_not_invited", "interview_ready"],
+                [
+                    "candidate_finished",
+                    "invite_undelivered",
+                    "ats_not_invited",
+                    "interview_ready",
+                    "note_added",
+                ],
             ),
         ),
         (UnsubscribeType.INTERVIEW_READY, ("library", "ann", ["interview_ready"])),

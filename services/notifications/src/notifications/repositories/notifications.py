@@ -20,8 +20,16 @@ Recipients = list[tuple[str, str]]
 
 def for_recipients(recipients: Recipients, since: datetime | None = None):
     """The recipients' notifications, and with `since` (when the user's account was made) the
-    notifications for everyone that came after it."""
-    own = tuple_(Notification.recipient, Notification.recipient_id).in_(recipients)
+    notifications for everyone that came after it. A user's items about a company's notes show
+    only while they're a member of it (among the recipients)."""
+    company_ids = [id_ for kind, id_ in recipients if kind == Recipient.COMPANY]
+    own = and_(
+        tuple_(Notification.recipient, Notification.recipient_id).in_(recipients),
+        or_(
+            Notification.kind != NotificationKind.NOTE_ADDED,
+            Notification.data["company_id"].astext.in_(company_ids),
+        ),
+    )
 
     if since is None:
         return own
@@ -38,7 +46,12 @@ async def lock_recipient(session: AsyncSession, recipient: str) -> None:
 
 async def is_deleted(session: AsyncSession, recipient: str) -> bool:
     """Whether the recipient is a deleted company (remove_company)."""
-    return await session.get(Received, deleted_key(recipient)) is not None
+    return await has_received(session, deleted_key(recipient))
+
+
+async def has_received(session: AsyncSession, event_id: str) -> bool:
+    """Whether `event_id` (an event's, a producer's key or a mark) came."""
+    return await session.get(Received, event_id) is not None
 
 
 async def claim(session: AsyncSession, event_id: str, now: datetime) -> bool:

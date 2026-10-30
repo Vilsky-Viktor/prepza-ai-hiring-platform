@@ -1,9 +1,10 @@
-"""Notifications' events: emails to send, notifications to store, a Resend web hook's work,
-campaigns' translations and deletions (rule 11: each is safe to repeat; an email carries the event's id as its idempotency
+"""Notifications' events: emails to send, notifications to store, the team's notes, a Resend web
+hook's work, campaigns' translations and deletions (rule 11: each is safe to repeat; an email carries the event's id as its idempotency
 key, a notification its key, and deleting twice deletes nothing more)."""
 
 from prepza_common.events.campaigns import CAMPAIGN_TRANSLATED
 from prepza_common.events.deletions import USER_DELETED
+from prepza_common.events.notes import NOTE_CREATED, NOTE_DELETED, NOTE_EDITED
 from prepza_common.events.notifications import NEWS_WITHDRAWN
 
 from notifications.constants.events import (
@@ -31,6 +32,9 @@ from notifications.handlers import (
     email_webhook,
     member_invited,
     news_withdrawn,
+    note_created,
+    note_deleted,
+    note_edited,
     notification_requested,
     report_shared,
     user_deleted,
@@ -51,6 +55,9 @@ HANDLERS = {
     CONTACT_SENT: contact_sent.handle,
     CAMPAIGN_TRANSLATED: campaign_translated.handle,
     USER_DELETED: user_deleted.handle,
+    NOTE_CREATED: note_created.handle,
+    NOTE_EDITED: note_edited.handle,
+    NOTE_DELETED: note_deleted.handle,
 }
 
 

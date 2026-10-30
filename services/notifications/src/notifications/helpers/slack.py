@@ -6,6 +6,7 @@ import re
 from prepza_common.auth.tokens import same_secret
 from prepza_common.events.notifications import NotificationKind
 
+from notifications.constants.notes import NOTES_LINK, SLACK_TEXT_CHARS
 from notifications.constants.slack import LINKABLE_DOT, ZERO_WIDTH_SPACE
 
 # Why an ATS candidate wasn't invited, as the message says it.
@@ -97,21 +98,74 @@ def message(event: dict, site: str) -> dict | None:
 
     shown = escaped(text)
 
-    # Plain text, which Slack formats in no way (no *bold*, _italics_ or links in what people
-    # wrote), and our own link as a button.
+    return payload(shown, [shown], f"{site}{link}")
+
+
+def plain(text: str) -> dict:
+    return {"type": "section", "text": {"type": "plain_text", "text": text, "emoji": False}}
+
+
+def payload(summary: str, texts: list[str], url: str) -> dict:
+    """Plain-text blocks, which Slack formats in no way (no *bold*, _italics_ or links in what
+    people wrote), and our own link as a button; `summary` is what Slack's own notifications
+    show."""
     return {
-        "text": shown,
+        "text": summary,
         "blocks": [
-            {"type": "section", "text": {"type": "plain_text", "text": shown, "emoji": False}},
+            *(plain(text) for text in texts),
             {
                 "type": "actions",
                 "elements": [
                     {
                         "type": "button",
                         "text": {"type": "plain_text", "text": "Open in prepza"},
-                        "url": f"{site}{link}",
+                        "url": url,
                     }
                 ],
             },
         ],
     }
+
+
+def escaped_within(text: str, limit: int) -> str:
+    """`text` escaped, cut short (with an ellipsis) to the longest start whose escaped text fits
+    in `limit`."""
+    shown = escaped(text)
+
+    if len(shown) <= limit:
+        return shown
+
+    low, high = 0, len(text)
+
+    # The longest start that fits, ellipsis included.
+    while low < high:
+        middle = (low + high + 1) // 2
+
+        if len(escaped(text[:middle] + "…")) <= limit:
+            low = middle
+        else:
+            high = middle - 1
+
+    return escaped(text[:low] + "…")
+
+
+def author_of(note: dict) -> str:
+    """Who wrote the note: their name as the team sees it, or what they were."""
+    if note.get("author_name"):
+        return note["author_name"]
+
+    if str(note.get("author_id") or "").startswith("key:"):
+        return "A deleted API key"
+
+    return "A former member"
+
+
+def note_message(note: dict, site: str) -> dict:
+    """A note as a Slack message (in English): who wrote it on which interview, then the note
+    itself in a block of its own, as its author wrote it (never a mention, a link or formatting),
+    within Slack's limit, and a button to the interview's notes."""
+    named = f"“{note['title']}”" if note.get("title") else "an interview"
+    summary = escaped(f"{author_of(note)} added a note on {named}:")
+    link = NOTES_LINK.format(company_id=note["company_id"], interview_id=note["interview_id"])
+
+    return payload(summary, [summary, escaped_within(note["text"], SLACK_TEXT_CHARS)], site + link)

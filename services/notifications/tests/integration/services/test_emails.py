@@ -259,5 +259,6 @@ def test_a_spam_complaint_on_a_sent_digest_turns_the_digest_off_in_accounts(
             "invite_undelivered",
             "ats_not_invited",
             "interview_ready",
+            "note_added",
         ]
     }
