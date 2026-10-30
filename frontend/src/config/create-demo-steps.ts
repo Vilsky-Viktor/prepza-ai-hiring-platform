@@ -36,15 +36,22 @@ export const STEPS: DemoStep[] = [
   { name: "aimPaste", ms: 700, point: "paste" },
   { name: "paste", ms: 400, click: true },
   { name: "pasted", ms: 900 },
-  { name: "aim", ms: 800, point: "send" },
+  { name: "aim", ms: 1000, point: "send" },
   { name: "send", ms: 500, click: true },
-  { name: "company", ms: 1200, point: "none" },
-  { name: "aimNew", ms: 800, point: "newCompany" },
-  { name: "chooseNew", ms: 400, click: true },
-  { name: "naming", ms: 80, repeat: DEMO_COMPANY.length },
-  { name: "aimContinue", ms: 800, point: "continue" },
+  // The window opens while the pointer rests on send; each move then glides (700 ms) and rests
+  // a moment before its click.
+  { name: "company", ms: 1200 },
+  { name: "aimNew", ms: 1000, point: "newCompany" },
+  { name: "chooseNew", ms: 500, click: true },
+  { name: "aimName", ms: 1000, point: "name" },
+  { name: "focusName", ms: 300, click: true },
+  { name: "naming", ms: 180, repeat: DEMO_COMPANY.length },
+  { name: "named", ms: 500 },
+  { name: "aimContinue", ms: 1000, point: "continue" },
   { name: "continue", ms: 500, click: true },
-  { name: "sent", ms: 400, point: "none" },
+  // The window fades out, then the topics come.
+  { name: "closing", ms: 500, point: "none" },
+  { name: "sent", ms: 400 },
   { name: "topics", ms: 400, repeat: DEMO_TOPICS.length },
   { name: "review", ms: 900, point: "edit" },
   { name: "open", ms: 400, click: true },
@@ -99,6 +106,7 @@ export const TARGETS = [
   "paste",
   "send",
   "newCompany",
+  "name",
   "continue",
   "edit",
   "subtopic",
@@ -119,5 +127,6 @@ export const READY = stepIndex(STEPS, "ready")
 export const PASTED = stepIndex(STEPS, "pasted")
 export const CHOOSING = stepIndex(STEPS, "company")
 export const ADDING = stepIndex(STEPS, "chooseNew")
+export const CLOSING = stepIndex(STEPS, "closing")
 export const TOPICS = stepIndex(STEPS, "sent")
 export const ADDED = stepIndex(STEPS, "aimDone")

@@ -8,9 +8,9 @@ import { DEMO_COMPANY, DEMO_DESCRIPTION } from "@/config/create-demo"
 import {
   ADDING,
   CHOOSING,
+  CLOSING,
   PASTED,
   STEPS,
-  TOPICS,
 } from "@/config/create-demo-steps"
 import { countedAt } from "@/hooks/use-demo-steps"
 
@@ -44,13 +44,13 @@ export function CreateDescribe({ at }: { at: { index: number; n: number } }) {
         />
       </div>
       <DemoCompanyDialog
-        open={at.index >= CHOOSING && at.index < TOPICS}
+        open={at.index >= CHOOSING && at.index < CLOSING}
         adding={at.index >= ADDING}
         name={DEMO_COMPANY.slice(
           0,
           countedAt(STEPS, at, "naming", DEMO_COMPANY.length)
         )}
-        typing={step === "naming"}
+        typing={["focusName", "naming"].includes(step)}
         pressed={step === "continue"}
       />
     </div>

@@ -7,7 +7,8 @@ import { type RefObject, useEffect, useRef, useState } from "react"
  * glides to the middle of `target` and, while `clicking`, presses with a soft glow spreading in
  * the primary colour; hidden while there's no target, and with reduced motion. Each click is keyed
  * by `click`, so the ring plays again for the next one. Measured from the page, so it finds its
- * target at any width. */
+ * target at any width, and again whenever a transition in the panel ends, so a target that was
+ * still moving into place (a window opening) is reached where it settles. */
 export function DemoPointer({
   target,
   clicking,
@@ -27,7 +28,7 @@ export function DemoPointer({
 
   useEffect(() => {
     const pointer = ref.current
-    const panel = pointer?.offsetParent
+    const panel = pointer?.offsetParent as HTMLElement | null | undefined
 
     if (!pointer || !panel) {
       return
@@ -37,15 +38,33 @@ export function DemoPointer({
       const goal = target?.current?.getBoundingClientRect()
       const box = panel!.getBoundingClientRect()
 
-      setSpot((current) =>
-        goal
-          ? {
-              x: goal.left + goal.width / 2 - box.left,
-              y: goal.top + goal.height / 2 - box.top,
-              glide: glide && current !== null,
-            }
-          : null
-      )
+      setSpot((current) => {
+        if (!goal) {
+          return null
+        }
+
+        const x = goal.left + goal.width / 2 - box.left
+        const y = goal.top + goal.height / 2 - box.top
+
+        // Unmoved, it stays as it is (a transition elsewhere ending re-measures it).
+        if (
+          current &&
+          Math.abs(current.x - x) < 1 &&
+          Math.abs(current.y - y) < 1
+        ) {
+          return current
+        }
+
+        return { x, y, glide: glide && current !== null }
+      })
+    }
+
+    // A window opening or a screen fading in moves its targets as it animates: once a
+    // transition in the panel ends, the pointer glides to where its target has settled.
+    function settled(event: TransitionEvent) {
+      if (event.target !== pointer) {
+        place(true)
+      }
     }
 
     const frame = requestAnimationFrame(() => place(true))
@@ -60,10 +79,12 @@ export function DemoPointer({
       started = true
     })
     observer.observe(panel)
+    panel.addEventListener("transitionend", settled)
 
     return () => {
       cancelAnimationFrame(frame)
       observer.disconnect()
+      panel.removeEventListener("transitionend", settled)
     }
   }, [target])
 

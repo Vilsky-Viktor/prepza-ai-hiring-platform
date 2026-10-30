@@ -17,8 +17,9 @@ const CARD =
 /** The window the home page's box opens once the description is sent
  * (components/common/start-company-dialog.tsx), small, over the dimmed box while `open`: which
  * company the interview is for, the user's company chosen at first and a new one (the
- * pointer's "newCompany"); once `adding`, the new one chosen and its name field under them
- * (`name` as typed so far, ringed while `typing`); then cancel and continue (the pointer's
+ * pointer's "newCompany"); once `adding`, the new one chosen and its name field fading in under
+ * them, its room kept from the start so the window never changes size (`name` as typed so far,
+ * ringed while `typing`; the pointer's "name"); then cancel and continue (the pointer's
  * "continue"), pressed in while `pressed`. */
 export function DemoCompanyDialog({
   open,
@@ -61,14 +62,20 @@ export function DemoCompanyDialog({
             <span className="min-w-0 truncate">{t("newCompany")}</span>
           </span>
         </div>
-        {adding && (
+        <span
+          data-demo-target="name"
+          className={cn(
+            "block transition-opacity duration-300",
+            !adding && "invisible opacity-0"
+          )}
+        >
           <FloatingInput
             label={t("companyName")}
             value={name}
             readOnly
             className={cn(typing && "border-ring")}
           />
-        )}
+        </span>
       </div>
       <div className="flex justify-end gap-2">
         <span
