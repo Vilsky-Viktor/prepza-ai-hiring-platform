@@ -22,7 +22,8 @@ async function detail(page: Page, interviewId: string) {
 
 /** The estimate's three numbers as the page shows them, the total against the cap. */
 async function expectEstimate(page: Page, found: Detail) {
-  const estimate = page.getByTestId("interview-estimate")
+  // The visible one: a streamed page keeps a hidden copy for a moment.
+  const estimate = page.getByTestId("interview-estimate").filter({ visible: true })
   await expect(estimate.getByTestId("total-questions")).toContainText(String(found.total_questions))
   await expect(estimate.getByTestId("total-questions")).toContainText(String(found.max_questions))
   await expect(estimate.getByTestId("question-seconds")).toContainText(
