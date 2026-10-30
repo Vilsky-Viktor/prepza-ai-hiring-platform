@@ -3,7 +3,7 @@ from prepza_common.ai.tracing import traced_call
 
 from rounds.config import settings
 from rounds.constants.voice import MATCH_ACTION, Intent
-from rounds.helpers.voice_match import match_prompt, understood
+from rounds.helpers.voice_match import match_prompt, obvious, understood
 from rounds.integrations import llm
 from rounds.schemas.rounds import NextQuestion
 from rounds.schemas.voice import VoiceMatch
@@ -24,10 +24,16 @@ async def read_match(
 
 async def match(
     question: NextQuestion, said: str, waiting: list[int], language: str, session_id: str
-) -> tuple[Intent, list[int], dict]:
+) -> tuple[Intent, list[int], dict | None]:
     """What the candidate meant and the options it picks (helpers/voice_match.py understood), with
-    the call's usage. The trace gets the call's tokens, cost and reading under the session's id,
-    never the candidate's words or the question."""
+    the call's usage. A plain yes or a letter alone is read by code, without a call (usage
+    None). The trace gets the call's tokens, cost and reading under the session's id, never the
+    candidate's words or the question."""
+    plain = obvious(said, question, waiting, language)
+
+    if plain is not None:
+        return *plain, None
+
     parsed, usage = await read_match(question, said, waiting, language)
     model = settings.voice_match_model
     reading = parsed.model_dump(mode="json") if parsed else None

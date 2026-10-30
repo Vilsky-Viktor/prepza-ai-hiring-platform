@@ -124,6 +124,9 @@ and Italian; 35 also spoken, with accents and noise, heard by `gpt-transcribe` f
 | Other examples in the prompt, 2 repeats (reverted) | 99.3% | 0% | 92.9% | 1.4% (1 of 70) | $0.045 a run, 2.3 s |
 | The rule as "every part must be related", 3 repeats (kept) | 99.6% (98.4–99.9) | 0% (0.0–0.8) | 94.3% (88.1–97.4) | 0% (0.0–3.5) | $0.068 a run, 2.0 s median, 3.2 s p90 |
 
+| Baseline again before the fast path, 3 repeats | 99.8% (98.8–100) | 0% (0.0–0.8) | 92.4% (85.7–96.1) | 1.0% (0.2–5.2) | $0.068 a run, 1.9 s median, 2.7 s p90 |
+| Plain yes and a letter alone read by code, 3 repeats (kept) | 100% (99.2–100) | 0% (0.0–0.8) | 92.4% (85.7–96.1) | 0% (0.0–3.5) | $0.061 a run, 1.8 s median, 2.6 s p90 |
+
 The one wrong match of the first run was fr19 spoken: "Git et Subversion" heard as "Dub and
 subversion", matched to Subversion alone; the rule added after it ("a part that seems to name an
 option but can't be related to one: unclear") turned it unclear, but not every time: with other
@@ -135,6 +138,15 @@ hearing, not the matching: a one-word "oui" or "sim" heard as nothing, and "é a
 A, C"; each is unclear, so the candidate says it again or taps. About $0.0002 a spoken answer
 (hearing $0.00015, matching $0.00004), so about $0.01 for a 40-question interview with its
 confirmations. Not measured: real candidates' microphones and rooms.
+
+A fast path (2026-10-30, kept): a reply made only of a plain yes in the interview's language
+(`constants/voice_confirmations.py`, each part apart: "Yeah, that's right") while a choice waits,
+or an option's letter alone ("B."), is read by code without the matching call
+(`helpers/voice_match.py` `obvious`); everything else still goes to the model. It took 17.6% of
+the text answers and 15.2% of the spoken ones, every one right; nothing moved beyond the noise
+(the one spoken wrong match of the new baseline, fr19's "Dubbed and sub version", went unclear
+in the next run: the model's, not the code's). Those answers skip the model's ~2 s and its
+$0.00008. The `by_code` share is now in the script's scores.
 
 The reading aloud (`gpt-4o-mini-tts`, the speech endpoint, which reads the text and nothing
 else) has no eval: the code builds the script. OpenAI shuts the model down on 2027-01-06 and names

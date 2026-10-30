@@ -80,6 +80,8 @@ async def answer(row: Session, request: Request, waiting: list[int]) -> VoiceAns
         usage = {"input_tokens": estimated_tokens(said + question.text)}
         raise await failed(error, MATCH_ACTION, model, who, usage=usage)
 
-    await ai_usage.record(MATCH_ACTION, model, usage, **who)
+    # A plain yes or a letter alone was read without a call: nothing to record.
+    if usage is not None:
+        await ai_usage.record(MATCH_ACTION, model, usage, **who)
 
     return VoiceAnswerOut(heard=said, intent=intent, picks=picks)

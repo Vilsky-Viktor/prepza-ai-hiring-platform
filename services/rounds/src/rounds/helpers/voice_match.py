@@ -1,10 +1,16 @@
+import re
+
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from prepza_common.config.constants import LANGUAGES
 
 from rounds.constants.voice import LETTERS, Intent
+from rounds.constants.voice_confirmations import CONFIRMATIONS
 from rounds.prompts.voice_match import MULTI, NOTHING_WAITING, SINGLE, SYSTEM, USER
 from rounds.schemas.rounds import NextQuestion
 from rounds.schemas.voice import VoiceMatch
+
+# Where speech recognition breaks a reply into parts ("Yeah, that's right.").
+PART_BREAKS = re.compile(r"[,.!?;:¡¿…]+")
 
 
 def letters_of(picks: list[int]) -> str:
@@ -51,3 +57,24 @@ def understood(match: VoiceMatch, multi: bool, waiting: list[int]) -> tuple[Inte
         return match.intent, sorted(waiting) if match.intent == Intent.CONFIRM else []
 
     return unclear
+
+
+def obvious(
+    said: str, question: NextQuestion, waiting: list[int], language: str
+) -> tuple[Intent, list[int]] | None:
+    """A reply plain enough to understand without the model: only a yes (CONFIRMATIONS, each
+    part) while a choice is waiting, or a single option's letter alone ("B."), a new choice even
+    while one waits. None for anything else, which the model reads."""
+    parts = [" ".join(part.split()) for part in PART_BREAKS.split(said.lower().replace("’", "'"))]
+    parts = [part for part in parts if part]
+    yes = CONFIRMATIONS.get(language, frozenset())
+
+    if waiting and parts and all(part in yes for part in parts):
+        return Intent.CONFIRM, sorted(waiting)
+
+    letter = parts[0].upper() if len(parts) == 1 else ""
+
+    if letter in LETTERS[: len(question.options)]:
+        return Intent.CHOOSE, [LETTERS.index(letter)]
+
+    return None

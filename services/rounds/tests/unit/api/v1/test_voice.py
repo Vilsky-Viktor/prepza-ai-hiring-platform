@@ -214,3 +214,17 @@ def test_the_candidates_words_reach_no_log_trace_or_event(
     assert "Mediane" not in repr(arguments)
     assert "Mediane" not in repr(published)
     assert "Mediane" not in caplog.text
+
+
+def test_a_plain_yes_confirms_without_a_matching_call(client, voice, published):
+    voice.heard = "Ja, genau."
+
+    response = client.post(
+        f"/sessions/{voice.row.id}/voice/answers?waiting=1", content=SPOKEN, headers=OGG
+    )
+
+    assert response.json() == {"heard": "Ja, genau.", "intent": "confirm", "picks": [1]}
+    assert voice.matched == []
+    # Only the hearing is paid for.
+    assert [d["action"] for kind, d in published if kind == "ai.used"] == ["voice_transcription"]
+

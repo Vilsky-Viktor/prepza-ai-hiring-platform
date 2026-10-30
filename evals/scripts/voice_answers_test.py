@@ -81,7 +81,9 @@ async def one(data: dict, item: dict, spoken: bool, slots: asyncio.Semaphore) ->
         "right": right,
         # Options recorded that the candidate didn't choose (or a choice where they chose none).
         "wrong_match": intent in PICKING and not right,
-        "cost": cost(settings.voice_match_model, usage) + heard_cost,
+        # Read by code, without a matching call (a plain yes, a letter alone).
+        "by_code": usage is None,
+        "cost": (cost(settings.voice_match_model, usage) if usage else 0.0) + heard_cost,
         "seconds": time.monotonic() - started,
     }
 
@@ -96,6 +98,7 @@ def scores_of(rows: list[dict]) -> dict:
     return {
         "right": share(sum(r["right"] for r in rows), n),
         "wrong_matches": share(sum(r["wrong_match"] for r in rows), n),
+        "by_code": share(sum(r["by_code"] for r in rows), n),
         "unclear_when_chosen": share(
             sum(r["intent"] == Intent.UNCLEAR and not r["right"] for r in rows), n
         ),

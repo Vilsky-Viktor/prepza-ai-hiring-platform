@@ -60,9 +60,12 @@ points to the screen (`helpers/voice_speech.py`). The browser plays the clip
 (`GET .../voice/question`), the interviewer's phrases (`.../voice/phrases/{phrase}`,
 `.../voice/confirmations?picks=`), and sends each spoken answer (`POST .../voice/answers`, at most
 2 MB): it's turned into text (`TRANSCRIBE_MODEL`) and matched to options, or to a yes or no for
-the choice waiting (`VOICE_MATCH_MODEL`, `prompts/voice_match.py`, never the answer key; its eval
-is `evals/scripts/voice_answers_test.py`). Nothing of it is saved: a confirmed choice is sent to
-`.../answers` as a tapped one is, and the audio and the words are never stored, logged or traced.
+the choice waiting; a plain yes while a choice waits (`constants/voice_confirmations.py`) or
+an option's letter alone is read by code, without the model (`helpers/voice_match.py` `obvious`);
+anything else by the model (`VOICE_MATCH_MODEL`, `prompts/voice_match.py`, never the answer
+key; its eval is `evals/scripts/voice_answers_test.py`). Nothing of it is saved: a confirmed
+choice is sent to `.../answers` as a tapped one is, and the audio and the words are never
+stored, logged or traced.
 Limits: `VOICE_ANSWERS_PER_USER_HOUR`, `VOICE_ANSWERS_PER_COMPANY_DAY`,
 `VOICE_CLIPS_PER_COMPANY_DAY`, `VOICE_CLIPS_PER_DAY`, and a preview also the unpaid AI cap.
 A voice interview's whole time adds `VOICE_READING_SECONDS` a question. Clips go with their
