@@ -131,6 +131,8 @@ prepza は、求人票から AI が作成する、時間制限付きの選択式
 
 ## 関連記事
 
+- [英国で AI を使った採用は合法か？](/guides/is-ai-hiring-legal-in-the-uk)
+- [米国で AI を使った採用は合法か？](/guides/is-ai-hiring-legal-in-the-us)
 - [AI 面接とは：種類と公正な使い方](/ai-interviews)
 - [採用前テスト：実践ガイド](/pre-employment-testing)
 - [スキルテストと書類選考の比較](/guides/skills-tests-vs-cv-screening)

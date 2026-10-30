@@ -129,6 +129,8 @@ Er bestaan concepten van de technische documentatie, het risicoregister, de inst
 
 ## Verder lezen
 
+- [Is AI bij werving en selectie legaal in het VK?](/guides/is-ai-hiring-legal-in-the-uk)
+- [Is AI bij werving en selectie legaal in de VS?](/guides/is-ai-hiring-legal-in-the-us)
 - [AI-interviews: wat ze zijn en hoe je ze eerlijk inzet](/ai-interviews)
 - [Selectietests: een praktische gids](/pre-employment-testing)
 - [Vaardigheidstests vs. cv-screening](/guides/skills-tests-vs-cv-screening)

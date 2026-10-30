@@ -129,6 +129,8 @@ Esistono bozze della documentazione tecnica, del registro dei rischi, delle istr
 
 ## Letture correlate
 
+- [Usare l'IA nella selezione del personale è legale nel Regno Unito?](/guides/is-ai-hiring-legal-in-the-uk)
+- [Usare l'IA nella selezione del personale è legale negli Stati Uniti?](/guides/is-ai-hiring-legal-in-the-us)
 - [Colloqui con IA: cosa sono e come usarli in modo equo](/ai-interviews)
 - [Test pre-assunzione: una guida pratica](/pre-employment-testing)
 - [Test attitudinali e di competenze o screening dei CV](/guides/skills-tests-vs-cv-screening)

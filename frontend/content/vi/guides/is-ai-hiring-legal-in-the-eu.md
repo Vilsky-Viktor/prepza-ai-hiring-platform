@@ -131,6 +131,8 @@ Bản nháp tài liệu kỹ thuật, sổ đăng ký rủi ro, hướng dẫn c
 
 ## Đọc thêm
 
+- [Dùng AI trong tuyển dụng có hợp pháp ở Vương quốc Anh không?](/guides/is-ai-hiring-legal-in-the-uk)
+- [Dùng AI trong tuyển dụng có hợp pháp ở Mỹ không?](/guides/is-ai-hiring-legal-in-the-us)
 - [Phỏng vấn AI: là gì và cách dùng công bằng](/ai-interviews)
 - [Kiểm tra trước tuyển dụng: hướng dẫn thực tế](/pre-employment-testing)
 - [Bài kiểm tra kỹ năng và sàng lọc CV](/guides/skills-tests-vs-cv-screening)

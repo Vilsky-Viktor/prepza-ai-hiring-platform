@@ -129,6 +129,8 @@ Tehnilise dokumentatsiooni, riskiregistri, ettevõtetele mõeldud juhiste, kvali
 
 ## Loe ka
 
+- [Kas AI kasutamine värbamisel on Ühendkuningriigis seaduslik?](/guides/is-ai-hiring-legal-in-the-uk)
+- [Kas AI kasutamine värbamisel on USAs seaduslik?](/guides/is-ai-hiring-legal-in-the-us)
 - [AI-intervjuud: mis need on ja kuidas neid õiglaselt kasutada](/ai-interviews)
 - [Kandidaatide testimine värbamisel: praktiline juhend](/pre-employment-testing)
 - [Oskustestid vs CV-de sõelumine](/guides/skills-tests-vs-cv-screening)

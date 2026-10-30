@@ -131,6 +131,8 @@ prepza 提供限时选择题技能面试，题目由 AI 根据职位描述编写
 
 ## 延伸阅读
 
+- [在英国用 AI 招聘合法吗？](/guides/is-ai-hiring-legal-in-the-uk)
+- [在美国用 AI 招聘合法吗？](/guides/is-ai-hiring-legal-in-the-us)
 - [AI 面试：是什么，以及如何公平地使用](/ai-interviews)
 - [招聘前测评：实用指南](/pre-employment-testing)
 - [技能测试与简历筛选对比](/guides/skills-tests-vs-cv-screening)

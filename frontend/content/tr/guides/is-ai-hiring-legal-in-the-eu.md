@@ -131,6 +131,8 @@ Teknik dokümantasyon, risk kaydı, şirketler için talimatlar, kalite yönetim
 
 ## İlgili yazılar
 
+- [Birleşik Krallık'ta yapay zekâ ile işe alım yasal mı?](/guides/is-ai-hiring-legal-in-the-uk)
+- [ABD'de yapay zekâ ile işe alım yasal mı?](/guides/is-ai-hiring-legal-in-the-us)
 - [Yapay zekâ mülakatları: nedir ve adil şekilde nasıl kullanılır](/ai-interviews)
 - [İşe alım öncesi testler: pratik bir rehber](/pre-employment-testing)
 - [Beceri testleri ve CV taraması](/guides/skills-tests-vs-cv-screening)

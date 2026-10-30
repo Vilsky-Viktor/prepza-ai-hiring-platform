@@ -129,6 +129,8 @@ Existen borradores de la documentación técnica, el registro de riesgos, las in
 
 ## Lecturas relacionadas
 
+- [¿Es legal usar IA en la selección de personal en el Reino Unido?](/guides/is-ai-hiring-legal-in-the-uk)
+- [¿Es legal usar IA en la selección de personal en EE. UU.?](/guides/is-ai-hiring-legal-in-the-us)
 - [Entrevistas con IA: qué son y cómo usarlas de forma justa](/ai-interviews)
 - [Pruebas de selección de personal: guía práctica](/pre-employment-testing)
 - [Pruebas de habilidades frente a filtrado de CV](/guides/skills-tests-vs-cv-screening)

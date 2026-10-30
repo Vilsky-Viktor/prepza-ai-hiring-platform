@@ -131,6 +131,8 @@ May mga draft na ng technical documentation, risk register, instructions para sa
 
 ## Kaugnay na babasahin
 
+- [Legal ba ang AI hiring sa UK?](/guides/is-ai-hiring-legal-in-the-uk)
+- [Legal ba ang AI hiring sa US?](/guides/is-ai-hiring-legal-in-the-us)
 - [AI interviews: ano ang mga ito at paano gamitin nang patas](/ai-interviews)
 - [Pre-employment testing: isang praktikal na gabay](/pre-employment-testing)
 - [Skills tests vs CV screening](/guides/skills-tests-vs-cv-screening)

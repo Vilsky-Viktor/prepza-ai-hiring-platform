@@ -129,6 +129,8 @@ Drafts of the technical documentation, risk register, instructions for companies
 
 ## Related reading
 
+- [Is AI hiring legal in the UK?](/guides/is-ai-hiring-legal-in-the-uk)
+- [Is AI hiring legal in the US?](/guides/is-ai-hiring-legal-in-the-us)
 - [AI interviews: what they are and how to use them fairly](/ai-interviews)
 - [Pre-employment testing: a practical guide](/pre-employment-testing)
 - [Skills tests vs CV screening](/guides/skills-tests-vs-cv-screening)

@@ -129,6 +129,8 @@ Entwürfe der technischen Dokumentation, des Risikoregisters, der Anleitung für
 
 ## Weiterlesen
 
+- [Ist KI im Recruiting im Vereinigten Königreich erlaubt?](/guides/is-ai-hiring-legal-in-the-uk)
+- [Ist KI im Recruiting in den USA erlaubt?](/guides/is-ai-hiring-legal-in-the-us)
 - [KI-Interviews: was sie sind und wie du sie fair einsetzt](/ai-interviews)
 - [Einstellungstests: ein Praxisleitfaden](/pre-employment-testing)
 - [Fachtests vs. Lebenslauf-Screening](/guides/skills-tests-vs-cv-screening)

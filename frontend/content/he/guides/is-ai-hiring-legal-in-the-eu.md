@@ -131,6 +131,8 @@ prepza מריצה ראיונות מיומנויות בזמן מוגבל עם ש�
 
 ## קריאה נוספת
 
+- [האם גיוס עובדים בעזרת AI חוקי בבריטניה?](/guides/is-ai-hiring-legal-in-the-uk)
+- [האם גיוס עובדים בעזרת AI חוקי בארה״ב?](/guides/is-ai-hiring-legal-in-the-us)
 - [ראיונות AI: מה הם ואיך להשתמש בהם בהוגנות](/ai-interviews)
 - [מבחני מיון לעבודה: מדריך מעשי](/pre-employment-testing)
 - [מבחני מיומנויות מול סינון קורות חיים](/guides/skills-tests-vs-cv-screening)
