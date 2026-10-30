@@ -6,7 +6,7 @@ the Discover tab (people open to offers, for companies that have topped up),
 candidates and
 their invites (one by one, from lists, through a shareable link, from an ATS or the public
 API), results and reports, the company's brand (logo, colors, style), domain verification, AI
-app and integration settings, the action log, the counts beside the company's menu pages
+app and integration settings, the action log, the owner's bias-audit export, the counts beside the company's menu pages
 (integrations and referrals asked of ats, notifications, api, assistant and billing), and the
 admin zone's company pages and support search. Credits are held and charged through billing. It keeps all of it in its own database.
 What it does and its settings: [companies](../../docs/features/companies.md),

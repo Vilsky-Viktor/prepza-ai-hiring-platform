@@ -754,6 +754,99 @@
     }
    }
   },
+  "/companies/{company_id}/bias-audit": {
+   "get": {
+    "tags": [
+     "companies"
+    ],
+    "summary": "Export Bias Audit",
+    "description": "A CSV for an independent bias audit (NYC Local Law 144, the EEOC's four-fifths rule): a\nrow for each candidate who finished with a grade, with their id, the email the company joins\nits own self-reported categories on, the interview, the day they finished, their grade, the\npass mark, whether they passed and whether they scored above the interview's median. Only\none interview's (`interview_id`), or those finished from `from` and before `to`. prepza holds\nno protected characteristics; for the owner only, counted per company a day, and recorded in\nthe action log.",
+    "operationId": "export_bias_audit_companies__company_id__bias_audit_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "company_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Company Id"
+      }
+     },
+     {
+      "name": "interview_id",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "uuid"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "from",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "From"
+      }
+     },
+     {
+      "name": "to",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "date-time"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "To"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/companies/{company_id}/billing/history": {
    "get": {
     "tags": [

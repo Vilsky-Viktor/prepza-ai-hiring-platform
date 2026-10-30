@@ -104,7 +104,7 @@ Every action a company's members take on it is logged: who took it, what it was 
 | Group | Actions |
 |---|---|
 | Interviews | created (from a description or a template), deleted, renamed, settings changed (average time per question, a topic's question count, hired), shareable link on or off, a question regenerated, an answer key marked wrong, topics approved, passing grade changed, a note added, edited, deleted, pinned or unpinned (never its text) |
-| Candidates | invited, invite sent again, revoked, deleted, name changed, extra time given, results viewed, report emailed |
+| Candidates | invited, invite sent again, revoked, deleted, name changed, extra time given, results viewed, report emailed, data exported for a bias audit (the interview, or the whole company) |
 | Team | member invited, joined, removed, role changed, ownership handed on |
 | Company | renamed, logo, brand colors or style, website sent for verification, AI apps allowed or stopped |
 | Billing | a member's top-up paid, automatic top-up set up, changed or stopped |
@@ -119,6 +119,12 @@ Every action a company's members take on it is logged: who took it, what it was 
 **API keys.** An API key is its own author, never a person: an action it takes, over the API or by an AI agent over MCP ([API keys](mcp.md#api-keys)), is recorded with the key's id (`key_id`, and `user_id` `key:<id>`) and its way (`api` or `mcp`). The row reads "through the API key <name>" or "through MCP with the API key <name>", the name looked up from the api service when the log is read (`key_name`), so a renamed key shows its current name and a deleted one reads "a deleted API key".
 
 **Reading it.** `GET /companies/{id}/actions?member_id&group&from&to&offset&limit` for the page; `GET /companies/{id}/audit` (the same actions, without who and what, also with an API key) stays for AI agents. Both are for the owner only: admins and viewers get 403, others 404. Actions are kept for 12 months, then the daily retention job deletes them, and they go with the company when it's removed. When a member deletes their account, their actions stay with the company without their id (`deleted-user`, set a batch at a time); their data export lists them.
+
+## Bias-audit export
+
+For an independent bias audit (New York City's Local Law 144, DCWP rules 6 RCNY §5-300 to §5-304) or the owner's own adverse-impact check (the EEOC's four-fifths rule, 29 CFR §1607.4(D)), the owner downloads a CSV: `GET /companies/{id}/bias-audit?interview_id&from&to` (`src/companies/services/bias_audit.py`). It has a row for each candidate who finished with a grade, in the whole company or one interview, finished from `from` and before `to` when given: `candidate_id`, `candidate_email`, `interview_id`, `interview_title`, `finished_on` (UTC day), `grade`, `pass_mark` (the interview's current one), `passed`, and `above_median` (the grade is above the median of that interview's rows in the file: DCWP's scoring rate). A cell starting with `=`, `+`, `-`, `@` or a tab gets a leading `'`, so a spreadsheet doesn't run it.
+
+prepza never asks for, infers or stores candidates' protected characteristics (DCWP's FAQ: "Imputed or inferred data cannot be used to conduct a bias audit"). The company joins its own self-reported categories (an ATS's voluntary self-identification, for example) on the email, the one identifier it already holds, drops the email before the file goes to its auditor, and the auditor works out the selection or scoring rates and impact ratios. Only the owner exports (admins and viewers get 403, others 404; another company's interview is 404); a company makes up to 20 exports a day (`BIAS_AUDIT_EXPORTS_PER_DAY`, a `429` with `Retry-After` after that); each is recorded in the action log as `bias_audit_exported`, about the interview or the company. The file is made on request and never kept (`Cache-Control: no-store`).
 
 ## Page guides
 

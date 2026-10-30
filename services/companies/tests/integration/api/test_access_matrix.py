@@ -81,6 +81,7 @@ EXCEPTIONS = {
     # The audit and action logs are the owner's; credits' history, owners' and admins'.
     "GET /companies/{company_id}/audit": OWNER_ONLY,
     "GET /companies/{company_id}/actions": OWNER_ONLY,
+    "GET /companies/{company_id}/bias-audit": OWNER_ONLY,
     "GET /companies/{company_id}/billing/history": OWNER_ONLY,
     "GET /companies/{company_id}/billing/reserved": OWNER_ONLY,
     # Reports on a question are read where it's fixed: owners and admins.

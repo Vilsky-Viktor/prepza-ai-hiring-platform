@@ -215,6 +215,32 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/companies/{company_id}/bias-audit": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Export Bias Audit
+     * @description A CSV for an independent bias audit (NYC Local Law 144, the EEOC's four-fifths rule): a
+     *     row for each candidate who finished with a grade, with their id, the email the company joins
+     *     its own self-reported categories on, the interview, the day they finished, their grade, the
+     *     pass mark, whether they passed and whether they scored above the interview's median. Only
+     *     one interview's (`interview_id`), or those finished from `from` and before `to`. prepza holds
+     *     no protected characteristics; for the owner only, counted per company a day, and recorded in
+     *     the action log.
+     */
+    get: operations["export_bias_audit_companies__company_id__bias_audit_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/companies/{company_id}/billing/history": {
     parameters: {
       query?: never
@@ -5280,6 +5306,39 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["ActionOut"][]
         }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  export_bias_audit_companies__company_id__bias_audit_get: {
+    parameters: {
+      query?: {
+        interview_id?: string | null
+        from?: string | null
+        to?: string | null
+      }
+      header?: never
+      path: {
+        company_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
       }
       /** @description Validation Error */
       422: {

@@ -7,24 +7,15 @@ from prepza_common.auth.auth import CurrentUser
 from prepza_common.db.paging import PageParams
 from prepza_common.events.audit_actions import AuditGroup
 
+from companies.constants.audit import LOG_NOT_OWNER
 from companies.core.db import Session
 from companies.helpers.audit import audit_event_out
-from companies.models.companies import Company
 from companies.repositories import audit
 from companies.schemas.audit import ActionOut, AuditEventOut
 from companies.services import action_log
-from companies.services.access import is_owner, require_company
+from companies.services.access import require_owner
 
 router = APIRouter(prefix="/companies", tags=["companies"])
-
-
-async def owned_company(user: CurrentUser, company_id: UUID) -> Company:
-    company, caller = await require_company(user, company_id)
-
-    if not is_owner(caller):
-        raise HTTPException(status.HTTP_403_FORBIDDEN, "Only the owner can see the audit log")
-
-    return company
 
 
 @router.get("/{company_id}/audit")
@@ -32,7 +23,7 @@ async def list_audit_events(
     company_id: UUID, user: CurrentUser, page: PageParams
 ) -> list[AuditEventOut]:
     """Every action the company's members took, newest first; for the owner only."""
-    company = await owned_company(user, company_id)
+    company = await require_owner(user, company_id, LOG_NOT_OWNER)
 
     async with Session() as session:
         rows = await audit.list_for_company(session, company.id, page.offset, page.limit)
@@ -53,7 +44,7 @@ async def list_actions(
     """The company's action log, newest first, each action with who took it and what it was
     about; for the owner only. Only one member's (`member_id`, a joined member), one group's, or
     those from `from` and before `to`."""
-    company = await owned_company(user, company_id)
+    company = await require_owner(user, company_id, LOG_NOT_OWNER)
     user_id = None
 
     if member_id is not None:

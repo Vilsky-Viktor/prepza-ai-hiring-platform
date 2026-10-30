@@ -19,6 +19,7 @@ from companies.api.v1 import (
     ai_apps,
     allowed_domains,
     audit,
+    bias_audit,
     billing,
     bulk_invites,
     candidates,
@@ -85,6 +86,7 @@ compress_answers(app)
 app.include_router(companies.router)
 app.include_router(account.router)
 app.include_router(audit.router)
+app.include_router(bias_audit.router)
 app.include_router(billing.router)
 app.include_router(members.router)
 app.include_router(interviews.router)

@@ -48,6 +48,12 @@ async def backfill(interview_id) -> None:
     async with Session() as session:
         missing = await candidates.unscored(session, interview_id)
 
+    await store_missing(missing)
+
+
+async def store_missing(missing: list) -> None:
+    """Stores these finished candidates' results from rounds; those it doesn't know stay
+    without."""
     if not missing:
         return
 

@@ -10,3 +10,6 @@ VIAS = (VIA_ASSISTANT, VIA_MCP)
 VIA_API = "api"
 # A candidate an ATS sent, invited as the member who connected it.
 VIA_ATS = "ats"
+
+# Why anyone but the owner is refused the audit and action logs.
+LOG_NOT_OWNER = "Only the owner can see the audit log"

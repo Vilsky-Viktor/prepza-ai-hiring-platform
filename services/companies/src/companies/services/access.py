@@ -117,6 +117,17 @@ def is_owner(member: Member) -> bool:
     return member.role == Role.OWNER
 
 
+async def require_owner(user: CurrentUser, company_id: UUID, refusal: str) -> Company:
+    """The owner only (the action log, the bias-audit export): anyone else is refused with
+    `refusal`."""
+    company, member = await require_company(user, company_id)
+
+    if not is_owner(member):
+        raise HTTPException(status.HTTP_403_FORBIDDEN, refusal)
+
+    return company
+
+
 async def require_editor(user: CurrentUser, company_id: UUID) -> tuple[Company, Member]:
     """An owner or admin: everything that changes the company or spends its credits."""
     company, member = await require_company(user, company_id)

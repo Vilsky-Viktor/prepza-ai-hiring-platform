@@ -59,6 +59,8 @@ class AuditAction(StrEnum):
     CANDIDATE_MODE_SET = "candidate_mode_set"
     RESULTS_VIEWED = "results_viewed"
     REPORT_EMAILED = "report_emailed"
+    # The owner exported candidates' outcome rows for a bias audit (who, when, which interview).
+    BIAS_AUDIT_EXPORTED = "bias_audit_exported"
     # Team.
     MEMBER_INVITED = "member_invited"
     MEMBER_JOINED = "member_joined"
@@ -126,6 +128,7 @@ _GROUPS = {
         AuditAction.CANDIDATE_MODE_SET,
         AuditAction.RESULTS_VIEWED,
         AuditAction.REPORT_EMAILED,
+        AuditAction.BIAS_AUDIT_EXPORTED,
     ),
     AuditGroup.TEAM: (
         AuditAction.MEMBER_INVITED,
