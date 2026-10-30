@@ -4214,16 +4214,11 @@
      "reason": {
       "type": "string",
       "title": "Reason"
-     },
-     "comment": {
-      "type": "string",
-      "title": "Comment"
      }
     },
     "type": "object",
     "required": [
-     "reason",
-     "comment"
+     "reason"
     ],
     "title": "ReportNote"
    },

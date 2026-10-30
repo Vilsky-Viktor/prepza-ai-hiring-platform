@@ -781,6 +781,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/sets/{set_id}/practice-topics": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Practice Topics
+     * @description Companies, for an interview's Discover tab: the template topics of the interview's level
+     *     on the same subjects as its topics, whose practice results count there.
+     */
+    get: operations["practice_topics_internal_sets__set_id__practice_topics_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/questions/signals": {
     parameters: {
       query?: never
@@ -1219,6 +1240,14 @@ export interface components {
       short: boolean
     }
     /**
+     * PracticeTopicsOut
+     * @description The template topics a company's interview matches, for its Discover tab.
+     */
+    PracticeTopicsOut: {
+      /** Topic Ids */
+      topic_ids: string[]
+    }
+    /**
      * PreparationIn
      * @description A generated test, as generation saves it in library.
      */
@@ -1512,8 +1541,6 @@ export interface components {
     ReportNote: {
       /** Reason */
       reason: string
-      /** Comment */
-      comment: string
     }
     /**
      * ReportOut
@@ -3253,6 +3280,37 @@ export interface operations {
         }
         content: {
           "application/json": components["schemas"]["SetContent"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  practice_topics_internal_sets__set_id__practice_topics_get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        set_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["PracticeTopicsOut"]
         }
       }
       /** @description Validation Error */

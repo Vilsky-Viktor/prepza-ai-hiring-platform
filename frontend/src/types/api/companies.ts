@@ -571,6 +571,46 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/interviews/{interview_id}/discover": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * List People
+     * @description Every member reads it; whoever practised last first, never ranked.
+     */
+    get: operations["list_people_interviews__interview_id__discover_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/interviews/{interview_id}/discover/{person_id}/invite": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Invite Person
+     * @description An owner or admin invites them to the interview, as any candidate.
+     */
+    post: operations["invite_person_interviews__interview_id__discover__person_id__invite_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/interviews/{interview_id}/candidates": {
     parameters: {
       query?: never
@@ -662,6 +702,27 @@ export interface paths {
     patch: operations["rename_candidate_interviews__interview_id__candidates__invite_id__name_patch"]
     trace?: never
   }
+  "/interviews/{interview_id}/candidates/{invite_id}/voice": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    /**
+     * Set Candidate Mode
+     * @description Owners and admins choose how one candidate takes the interview, by voice or click, apart
+     *     from the interview's mode, until they start (candidate_changes).
+     */
+    put: operations["set_candidate_mode_interviews__interview_id__candidates__invite_id__voice_put"]
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/companies/{company_id}/candidates": {
     parameters: {
       query?: never
@@ -714,7 +775,7 @@ export interface paths {
      * Invite Many
      * @description Invites every email in a pasted or uploaded list, one by one as a single invite would,
      *     with the names the list gives ("Name <email>", "email, Name", or a CSV's name columns), and
-     *     says who was invited and why the others weren't.
+     *     says who was invited and why the others weren't. `voice` chooses how they all take it.
      */
     post: operations["invite_many_interviews__interview_id__candidates_bulk_post"]
     delete?: never
@@ -2497,6 +2558,8 @@ export interface components {
        * @default true
        */
       sign_in: boolean
+      /** Voice */
+      voice?: boolean | null
       /**
        * Resend
        * @default true
@@ -2663,6 +2726,8 @@ export interface components {
       name?: string | null
       /** Filename */
       filename?: string | null
+      /** Voice */
+      voice?: boolean | null
     }
     /** BulkInviteOut */
     BulkInviteOut: {
@@ -2715,6 +2780,16 @@ export interface components {
       email: string
       /** Name */
       name?: string | null
+      /** Voice */
+      voice?: boolean | null
+    }
+    /**
+     * CandidateModeIn
+     * @description How one candidate takes the interview: by voice (true) or click (false).
+     */
+    CandidateModeIn: {
+      /** Voice */
+      voice: boolean
     }
     /**
      * CandidateNameIn
@@ -2771,6 +2846,11 @@ export interface components {
        * @default 0
        */
       extra_time: number
+      /**
+       * Voice
+       * @default false
+       */
+      voice: boolean
       /**
        * Created At
        * Format: date-time
@@ -2956,6 +3036,11 @@ export interface components {
        * @default 0
        */
       extra_time: number
+      /**
+       * Voice
+       * @default false
+       */
+      voice: boolean
       /**
        * Created At
        * Format: date-time
@@ -3157,6 +3242,22 @@ export interface components {
        * @default
        */
       reason: string
+    }
+    /**
+     * DiscoverPersonOut
+     * @description What a person open to offers shares with a paying company: their name, LinkedIn profile
+     *     and practice results on the interview's subjects. Listed whoever practised last first, never
+     *     ranked.
+     */
+    DiscoverPersonOut: {
+      /** Id */
+      id: string
+      /** Name */
+      name: string | null
+      /** Linkedin Url */
+      linkedin_url: string
+      /** Results */
+      results: components["schemas"]["PracticeResultOut"][]
     }
     /** DraftTopic */
     DraftTopic: {
@@ -3900,6 +4001,21 @@ export interface components {
        */
       pinned: boolean
     }
+    /**
+     * PracticeResultOut
+     * @description One practice topic's latest timed result: practice, never a company's interview.
+     */
+    PracticeResultOut: {
+      /** Topic Title */
+      topic_title: string
+      /** Score */
+      score: number
+      /**
+       * Finished At
+       * Format: date-time
+       */
+      finished_at: string
+    }
     /** PrepzaBrand */
     PrepzaBrand: {
       colors: components["schemas"]["BrandColorSets"]
@@ -4128,6 +4244,16 @@ export interface components {
       revokable: boolean
       /** Extra Time Options */
       extra_time_options: number[]
+      /**
+       * Voice
+       * @default false
+       */
+      voice: boolean
+      /**
+       * Mode Editable
+       * @default false
+       */
+      mode_editable: boolean
       /** Invite Token */
       invite_token?: string | null
       /** Title */
@@ -5896,6 +6022,72 @@ export interface operations {
       }
     }
   }
+  list_people_interviews__interview_id__discover_get: {
+    parameters: {
+      query?: {
+        /** @description Number of items to skip */
+        offset?: number
+        /** @description Number of items to return, up to 100 */
+        limit?: number
+      }
+      header?: never
+      path: {
+        interview_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["DiscoverPersonOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  invite_person_interviews__interview_id__discover__person_id__invite_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        interview_id: string
+        person_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
   list_candidates_interviews__interview_id__candidates_get: {
     parameters: {
       query?: {
@@ -6074,6 +6266,40 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["CandidateNameIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  set_candidate_mode_interviews__interview_id__candidates__invite_id__voice_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        interview_id: string
+        invite_id: string
+      }
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["CandidateModeIn"]
       }
     }
     responses: {
