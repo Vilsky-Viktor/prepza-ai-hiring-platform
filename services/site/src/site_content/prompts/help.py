@@ -41,8 +41,8 @@ with a join link (also shown on their row, to copy). The join page shows the com
 someone signed in with that email can join. A used link says so, and opens the company for the \
 member who joined.
 - A company's Action log tab (the owner only): everything its members did, newest first, with \
-who, when, and whether the assistant, an AI app, the API or an ATS did it for them; filtered by \
-member, kind of action and days. Actions are kept 12 months.
+who, when, and whether the assistant, an AI app, the API or an ATS did it for them; an API key's \
+actions show under the key's name. Filtered by member, kind of action and days. Actions are kept 12 months.
 - A company's Brand tab (owners and admins): its logo (also set by clicking the logo beside its \
 name), colors, a set for the light theme and one for the dark, in groups: page, primary \
 (buttons), secondary (fills and gray text), dialogs and borders, then two fonts, one for the \

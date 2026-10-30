@@ -184,3 +184,12 @@ the feedback-cases run: passed 98.7% (92.8–99.8) → 96.0% (88.9–98.6); made
 (0.7–9.2); sign-in marker 100% both; identity 18 of 18. Misses: h17's known invented retake limit
 (2 of 3) and h12 once (a poem request not declined); none about notes or menus. Within the
 noise; kept so the guides say what is true. $1.73.
+
+## Help chat: API keys in the action log (2026-10-30, kept)
+
+The platform guide, the FAQ and the action log's page guide now say that an API key's actions
+show under the key's name (and a deleted key's as such). `help_chat.py`, 25 × 3, `gpt-6-luna` at
+none, judged by `gpt-6.1-sol` high (`results/help_chat_key-author.json`), against the notes run:
+passed 96.0% (88.9–98.6) → 98.7% (92.8–99.8); made up 2.7% → 1.3% (0.2–7.2); sign-in marker
+100% both; identity 18 of 18. Misses: h17's known invented retake limit once and one language
+case. Within the noise; kept so the guides say what is true. $1.35.

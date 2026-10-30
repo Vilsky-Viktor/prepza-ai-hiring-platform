@@ -111,7 +111,7 @@ Mula noon, magtanong sa chat mo gaya ng pagtatanong mo sa isang katrabaho: "Sa p
 
 **Para mag-disconnect,** alisin ang connector sa AI app mo, o piliin ang **I-disconnect** sa tabi nito sa ilalim ng **Mga AI app** sa tab na Mga integration. Agad itong titigil sa paggana.
 
-**Ibang app at sarili mong mga agent.** Nasa [tab na MCP](/api-docs?tab=mcp) ng dokumentasyon para sa mga developer ang mga hakbang para sa Gemini CLI, Cursor, VS Code at Le Chat, at kumpletong mga halimbawang agent sa Python at TypeScript. Ang agent na tumatakbo sa server, na walang taong mag-a-approve ng sign-in, ay gumagamit ng API key ng kumpanya na may pahintulot na **Gamitin sa mga AI agent (MCP)**: gumagana lang ito sa kumpanyang iyon, at sa mga tool lang na pinapayagan ng iba pang pahintulot ng key.
+**Ibang app at sarili mong mga agent.** Nasa [tab na MCP](/api-docs?tab=mcp) ng dokumentasyon para sa mga developer ang mga hakbang para sa Gemini CLI, Cursor, VS Code at Le Chat, at kumpletong mga halimbawang agent sa Python at TypeScript. Ang agent na tumatakbo sa server, na walang taong mag-a-approve ng sign-in, ay gumagamit ng API key ng kumpanya na may pahintulot na **Gamitin sa mga AI agent (MCP)**: gumagana lang ito sa kumpanyang iyon, at sa mga tool lang na pinapayagan ng iba pang pahintulot ng key. Ang lahat ng ginagawa nito ay ipinapakita sa log ng aksyon ng kumpanya sa pangalan ng key.
 
 ### 3. Ang sarili mong platform, gamit ang API
 

@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Posso vedere chi ha fatto cosa nella mia azienda?",
-        "answer": "Sì, se sei il proprietario dell'azienda. La sua scheda Registro attività elenca tutto ciò che hanno fatto i membri, dal più recente: invitare o rimuovere candidati, vedere i risultati, modificare colloqui, team, fatturazione e integrazioni, con chi l'ha fatto, quando e se l'ha fatto per suo conto l'assistente, un'app di IA o l'API. Puoi filtrarlo per membro, tipo di azione e date. Le attività vengono conservate per 12 mesi.",
+        "answer": "Sì, se sei il proprietario dell'azienda. La sua scheda Registro attività elenca tutto ciò che hanno fatto i membri, dal più recente: invitare o rimuovere candidati, vedere i risultati, modificare colloqui, team, fatturazione e integrazioni, con chi l'ha fatto, quando e se l'ha fatto per suo conto l'assistente, un'app di IA o l'API. Puoi filtrarlo per membro, tipo di azione e date. Le attività vengono conservate per 12 mesi. Le azioni di una chiave API compaiono con il nome della chiave.",
     },
     {
         "key": "notes",

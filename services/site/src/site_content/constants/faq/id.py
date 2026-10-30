@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Bisakah aku melihat siapa melakukan apa di perusahaanku?",
-        "answer": "Bisa, jika kamu pemilik perusahaan. Tab Log tindakan perusahaan itu mencantumkan semua yang dilakukan anggotanya, dari yang terbaru: mengundang atau menghapus kandidat, melihat hasil, serta mengubah wawancara, tim, tagihan, dan integrasi, lengkap dengan siapa yang melakukannya, kapan, dan apakah asisten, aplikasi AI, atau API yang melakukannya atas nama mereka. Kamu bisa memfilternya berdasarkan anggota, jenis tindakan, dan tanggal. Tindakan disimpan selama 12 bulan.",
+        "answer": "Bisa, jika kamu pemilik perusahaan. Tab Log tindakan perusahaan itu mencantumkan semua yang dilakukan anggotanya, dari yang terbaru: mengundang atau menghapus kandidat, melihat hasil, serta mengubah wawancara, tim, tagihan, dan integrasi, lengkap dengan siapa yang melakukannya, kapan, dan apakah asisten, aplikasi AI, atau API yang melakukannya atas nama mereka. Kamu bisa memfilternya berdasarkan anggota, jenis tindakan, dan tanggal. Tindakan disimpan selama 12 bulan. Tindakan kunci API tampil dengan nama kunci.",
     },
     {
         "key": "notes",

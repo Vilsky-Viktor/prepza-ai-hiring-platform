@@ -227,6 +227,7 @@
     "tips": [
       "Aktionen werden 12 Monate lang aufbewahrt.",
       "Personen werden nicht im Protokoll gespeichert: Ein gelöschter Kandidat erscheint als solcher und ein Mitglied, das gegangen ist, als ehemaliges Mitglied.",
+      "Die Aktionen eines API-Schlüssels stehen unter dem Namen des Schlüssels, die eines gelöschten Schlüssels als die eines gelöschten Schlüssels.",
       "Wenn ein Mitglied die Ergebnisse eines Kandidaten ansieht, erscheint das einmal pro Tag, mit dem letzten Aufruf."
     ]
   },

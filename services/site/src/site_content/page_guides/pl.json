@@ -227,6 +227,7 @@
     "tips": [
       "Działania są przechowywane przez 12 miesięcy.",
       "Dziennik nie przechowuje osób: usunięty kandydat jest pokazany jako usunięty kandydat, a członek, który odszedł, jako były członek zespołu.",
+      "Działania klucza API są widoczne pod nazwą klucza, a działania usuniętego klucza jako działania usuniętego klucza.",
       "Wyświetlenia wyników jednego kandydata przez członka zespołu pojawiają się raz dziennie, z czasem ostatniego wyświetlenia."
     ]
   },

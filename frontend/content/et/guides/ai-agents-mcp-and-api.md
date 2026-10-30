@@ -111,7 +111,7 @@ Edaspidi küsi oma vestluses nii, nagu küsiksid kolleegilt: „Kes on prepzas k
 
 **Ühenduse katkestamiseks** eemalda konnektor oma AI-rakenduses või vali selle kõrval **Katkesta ühendus** vahekaardi Integratsioonid jaotises **AI-rakendused**. See lakkab kohe töötamast.
 
-**Muud rakendused ja sinu oma agendid.** Arendajate dokumentatsiooni [MCP-vahekaardil](/api-docs?tab=mcp) on sammud rakenduste Gemini CLI, Cursor, VS Code ja Le Chat jaoks ning täielikud näidisagendid keeltes Python ja TypeScript. Serveris töötav agent, mille sisselogimist pole kellelgi kinnitada, kasutab ettevõtte API-võtit õigusega **Kasutamine AI-agentidega (MCP)**: see töötab ainult selles ettevõttes ja ainult nende tööriistadega, mida võtme ülejäänud õigused lubavad.
+**Muud rakendused ja sinu oma agendid.** Arendajate dokumentatsiooni [MCP-vahekaardil](/api-docs?tab=mcp) on sammud rakenduste Gemini CLI, Cursor, VS Code ja Le Chat jaoks ning täielikud näidisagendid keeltes Python ja TypeScript. Serveris töötav agent, mille sisselogimist pole kellelgi kinnitada, kasutab ettevõtte API-võtit õigusega **Kasutamine AI-agentidega (MCP)**: see töötab ainult selles ettevõttes ja ainult nende tööriistadega, mida võtme ülejäänud õigused lubavad. Kõik, mida see teeb, on ettevõtte toimingute logis näidatud võtme nime all.
 
 ### 3. Sinu oma platvorm, API kaudu
 

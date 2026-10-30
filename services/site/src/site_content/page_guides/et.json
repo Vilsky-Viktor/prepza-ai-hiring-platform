@@ -227,6 +227,7 @@
     "tips": [
       "Toiminguid hoitakse 12 kuud.",
       "Inimesi logis ei hoita: kustutatud kandidaat on näidatud kustutatud kandidaadina ja lahkunud liige endise liikmena.",
+      "API-võtme toimingud on näidatud võtme nime all ja kustutatud võtme omad kustutatud võtme omadena.",
       "Kui liige vaatab ühe kandidaadi tulemusi, näidatakse seda kord päevas, viimase vaatamise ajaga."
     ]
   },

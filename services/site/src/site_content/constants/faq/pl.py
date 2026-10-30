@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Czy mogę zobaczyć, kto co zrobił w mojej firmie?",
-        "answer": "Tak, jeśli jesteś właścicielem firmy. Zakładka Dziennik działań firmy pokazuje wszystko, co zrobili członkowie zespołu, od najnowszych: zapraszanie lub usuwanie kandydatów, przeglądanie wyników oraz zmiany w rozmowach, zespole, rozliczeniach i integracjach, wraz z tym, kto i kiedy to zrobił oraz czy zrobił to w jego imieniu asystent, aplikacja AI czy API. Możesz go filtrować według członka zespołu, rodzaju działania i dat. Działania są przechowywane przez 12 miesięcy.",
+        "answer": "Tak, jeśli jesteś właścicielem firmy. Zakładka Dziennik działań firmy pokazuje wszystko, co zrobili członkowie zespołu, od najnowszych: zapraszanie lub usuwanie kandydatów, przeglądanie wyników oraz zmiany w rozmowach, zespole, rozliczeniach i integracjach, wraz z tym, kto i kiedy to zrobił oraz czy zrobił to w jego imieniu asystent, aplikacja AI czy API. Możesz go filtrować według członka zespołu, rodzaju działania i dat. Działania są przechowywane przez 12 miesięcy. Działania klucza API są widoczne pod nazwą klucza.",
     },
     {
         "key": "notes",

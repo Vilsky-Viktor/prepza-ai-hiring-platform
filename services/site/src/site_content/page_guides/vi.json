@@ -227,6 +227,7 @@
     "tips": [
       "Thao tác được lưu trong 12 tháng.",
       "Nhật ký không lưu người: ứng viên đã bị xóa hiện là ứng viên đã bị xóa, còn thành viên đã rời đi hiện là cựu thành viên.",
+      "Thao tác của một khóa API hiện dưới tên của khóa, còn thao tác của khóa đã bị xóa hiện là của khóa đã bị xóa.",
       "Lượt xem kết quả của một ứng viên bởi một thành viên hiện một lần mỗi ngày, theo lần xem gần nhất."
     ]
   },

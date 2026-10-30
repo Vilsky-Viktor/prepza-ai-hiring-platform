@@ -111,7 +111,7 @@ A partir daí, pergunte no seu chat como perguntaria a um colega: "Na prepza, qu
 
 **Para desconectar,** remova o conector no seu app de IA ou selecione **Desconectar** ao lado dele em **Apps de IA**, na aba Integrações. Ele para de funcionar na hora.
 
-**Outros apps e seus próprios agentes.** A [aba MCP](/api-docs?tab=mcp) da documentação para desenvolvedores traz os passos para Gemini CLI, Cursor, VS Code e Le Chat, e agentes de exemplo completos em Python e TypeScript. Um agente que roda em um servidor, sem ninguém para aprovar um login, usa uma chave de API da empresa com a permissão **Usar com agentes de IA (MCP)**: ele funciona só nessa empresa, e só com as ferramentas que as outras permissões da chave permitem.
+**Outros apps e seus próprios agentes.** A [aba MCP](/api-docs?tab=mcp) da documentação para desenvolvedores traz os passos para Gemini CLI, Cursor, VS Code e Le Chat, e agentes de exemplo completos em Python e TypeScript. Um agente que roda em um servidor, sem ninguém para aprovar um login, usa uma chave de API da empresa com a permissão **Usar com agentes de IA (MCP)**: ele funciona só nessa empresa, e só com as ferramentas que as outras permissões da chave permitem. O que ele faz aparece no registro de ações da empresa com o nome da chave.
 
 ### 3. A sua própria plataforma, via API
 

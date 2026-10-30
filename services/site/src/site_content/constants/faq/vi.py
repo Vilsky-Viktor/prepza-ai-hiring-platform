@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Tôi có thể xem ai đã làm gì trong công ty mình không?",
-        "answer": "Có, nếu bạn là chủ sở hữu công ty. Tab Nhật ký thao tác của công ty liệt kê mọi việc các thành viên đã làm, mới nhất trước: mời hoặc xóa ứng viên, xem kết quả, thay đổi buổi phỏng vấn, nhóm, thanh toán và tích hợp, kèm theo ai đã làm, khi nào, và trợ lý, một ứng dụng AI hay API có làm thay họ không. Bạn có thể lọc theo thành viên, loại thao tác và ngày. Các thao tác được lưu trong 12 tháng.",
+        "answer": "Có, nếu bạn là chủ sở hữu công ty. Tab Nhật ký thao tác của công ty liệt kê mọi việc các thành viên đã làm, mới nhất trước: mời hoặc xóa ứng viên, xem kết quả, thay đổi buổi phỏng vấn, nhóm, thanh toán và tích hợp, kèm theo ai đã làm, khi nào, và trợ lý, một ứng dụng AI hay API có làm thay họ không. Bạn có thể lọc theo thành viên, loại thao tác và ngày. Các thao tác được lưu trong 12 tháng. Thao tác của một khóa API hiện dưới tên của khóa.",
     },
     {
         "key": "notes",

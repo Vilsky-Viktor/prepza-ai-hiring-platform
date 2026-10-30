@@ -111,7 +111,7 @@ Od tej chwili pytaj w czacie tak, jak pytasz współpracownika: „Kto w prepza 
 
 **Aby odłączyć,** usuń konektor w swojej aplikacji AI albo wybierz **Odłącz** obok niego w sekcji **Aplikacje AI** w zakładce Integracje. Przestaje działać od razu.
 
-**Inne aplikacje i Twoi własni agenci.** [Zakładka MCP](/api-docs?tab=mcp) w dokumentacji dla deweloperów zawiera kroki dla Gemini CLI, Cursor, VS Code i Le Chat oraz kompletne przykłady agentów w językach Python i TypeScript. Agent działający na serwerze, gdzie nie ma nikogo, kto zatwierdziłby logowanie, używa klucza API firmy z uprawnieniem **Używanie z agentami AI (MCP)**: działa tylko w tej firmie i tylko z narzędziami, na które pozwalają pozostałe uprawnienia klucza.
+**Inne aplikacje i Twoi własni agenci.** [Zakładka MCP](/api-docs?tab=mcp) w dokumentacji dla deweloperów zawiera kroki dla Gemini CLI, Cursor, VS Code i Le Chat oraz kompletne przykłady agentów w językach Python i TypeScript. Agent działający na serwerze, gdzie nie ma nikogo, kto zatwierdziłby logowanie, używa klucza API firmy z uprawnieniem **Używanie z agentami AI (MCP)**: działa tylko w tej firmie i tylko z narzędziami, na które pozwalają pozostałe uprawnienia klucza. To, co robi, widać w dzienniku działań firmy pod nazwą klucza.
 
 ### 3. Twoja własna platforma, przez API
 

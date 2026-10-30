@@ -227,6 +227,7 @@
     "tips": [
       "İşlemler 12 ay saklanır.",
       "Kayıtta kişiler saklanmaz: silinen bir aday silinmiş aday olarak, ayrılan bir üye eski üye olarak görünür.",
+      "Bir API anahtarının işlemleri anahtarın adıyla, silinmiş bir anahtarınkiler ise silinmiş anahtarın işlemleri olarak görünür.",
       "Bir üyenin bir adayın sonuçlarını görüntülemesi günde bir kez, son görüntüleme zamanıyla görünür."
     ]
   },

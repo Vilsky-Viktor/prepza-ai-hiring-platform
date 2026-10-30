@@ -227,6 +227,7 @@
     "tips": [
       "Actions are kept for 12 months.",
       "People aren't kept in the log: a deleted candidate shows as such, and a member who left as a former member.",
+      "An API key's actions show under the key's name, and a deleted key's as a deleted key's.",
       "A member's views of one candidate's results show once a day, at the latest view."
     ]
   },

@@ -227,6 +227,7 @@
     "tips": [
       "Itinatago ang mga aksyon nang 12 buwan.",
       "Hindi itinatago sa log ang mga tao: ang na-delete na aplikante ay ipinapakitang ganoon, at ang miyembrong umalis ay bilang dating miyembro.",
+      "Ang mga aksyon ng isang API key ay ipinapakita sa pangalan ng key, at ang sa na-delete na key ay bilang sa na-delete na key.",
       "Ang pagtingin ng isang miyembro sa mga resulta ng isang aplikante ay lumalabas isang beses bawat araw, sa pinakahuling pagtingin."
     ]
   },

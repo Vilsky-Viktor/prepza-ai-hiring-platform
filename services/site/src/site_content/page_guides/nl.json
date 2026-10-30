@@ -227,6 +227,7 @@
     "tips": [
       "Acties worden 12 maanden bewaard.",
       "Personen worden niet in de log bewaard: een verwijderde kandidaat staat er als zodanig, en een lid dat vertrok als voormalig lid.",
+      "De acties van een API-sleutel staan onder de naam van de sleutel, die van een verwijderde sleutel als die van een verwijderde sleutel.",
       "Als een lid de resultaten van één kandidaat bekijkt, staat dat er één keer per dag, met de laatste keer."
     ]
   },

@@ -227,6 +227,7 @@
     "tips": [
       "Tindakan disimpan selama 12 bulan.",
       "Log tidak menyimpan orang: kandidat yang dihapus tampil sebagai kandidat yang sudah dihapus, dan anggota yang keluar sebagai mantan anggota.",
+      "Tindakan kunci API tampil dengan nama kunci, dan tindakan kunci yang sudah dihapus tampil sebagai tindakan kunci yang sudah dihapus.",
       "Saat anggota melihat hasil satu kandidat, itu tampil sekali sehari, dengan waktu terakhir dilihat."
     ]
   },

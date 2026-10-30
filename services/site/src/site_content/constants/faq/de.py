@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Kann ich sehen, wer in meinem Unternehmen was gemacht hat?",
-        "answer": "Ja, wenn du Inhaber des Unternehmens bist. Sein Tab Aktionsprotokoll listet alles, was seine Mitglieder getan haben, das Neueste zuerst: Kandidaten einladen oder entfernen, Ergebnisse ansehen und Interviews, das Team, die Abrechnung und Integrationen ändern, jeweils damit, wer es getan hat, wann und ob der Assistent, eine KI-App oder die API es in seinem Namen getan hat. Du kannst es nach Mitglied, Art der Aktion und Datum filtern. Aktionen werden 12 Monate lang aufbewahrt.",
+        "answer": "Ja, wenn du Inhaber des Unternehmens bist. Sein Tab Aktionsprotokoll listet alles, was seine Mitglieder getan haben, das Neueste zuerst: Kandidaten einladen oder entfernen, Ergebnisse ansehen und Interviews, das Team, die Abrechnung und Integrationen ändern, jeweils damit, wer es getan hat, wann und ob der Assistent, eine KI-App oder die API es in seinem Namen getan hat. Du kannst es nach Mitglied, Art der Aktion und Datum filtern. Aktionen werden 12 Monate lang aufbewahrt. Die Aktionen eines API-Schlüssels stehen unter dem Namen des Schlüssels.",
     },
     {
         "key": "notes",

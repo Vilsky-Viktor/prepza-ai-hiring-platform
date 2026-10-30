@@ -111,7 +111,7 @@ Bundan sonra sohbetinizde bir iş arkadaşınıza sorar gibi sorun: "prepza'da �
 
 **Bağlantıyı kaldırmak için** yapay zekâ uygulamanızda bağlayıcıyı silin ya da Entegrasyonlar sekmesindeki **Yapay zekâ uygulamaları** altında yanındaki **Bağlantıyı kes**'i seçin. Hemen çalışmayı bırakır.
 
-**Diğer uygulamalar ve kendi ajanlarınız.** Geliştirici belgelerindeki [MCP sekmesi](/api-docs?tab=mcp), Gemini CLI, Cursor, VS Code ve Le Chat için adımları ve Python ile TypeScript'te eksiksiz örnek ajanları içerir. Bir sunucuda çalışan ve oturum açmayı onaylayacak kimsenin olmadığı bir ajan, **Yapay zekâ ajanlarıyla kullanma (MCP)** yetkisine sahip bir şirket API anahtarı kullanır: yalnızca o şirkette ve yalnızca anahtarın diğer yetkilerinin izin verdiği araçlarla çalışır.
+**Diğer uygulamalar ve kendi ajanlarınız.** Geliştirici belgelerindeki [MCP sekmesi](/api-docs?tab=mcp), Gemini CLI, Cursor, VS Code ve Le Chat için adımları ve Python ile TypeScript'te eksiksiz örnek ajanları içerir. Bir sunucuda çalışan ve oturum açmayı onaylayacak kimsenin olmadığı bir ajan, **Yapay zekâ ajanlarıyla kullanma (MCP)** yetkisine sahip bir şirket API anahtarı kullanır: yalnızca o şirkette ve yalnızca anahtarın diğer yetkilerinin izin verdiği araçlarla çalışır. Yaptığı her şey şirketin işlem kaydında anahtarın adıyla görünür.
 
 ### 3. API ile kendi platformunuz
 

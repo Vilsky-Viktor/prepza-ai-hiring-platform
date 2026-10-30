@@ -227,6 +227,7 @@
     "tips": [
       "As ações ficam guardadas por 12 meses.",
       "O registro não guarda pessoas: um candidato excluído aparece como tal, e um membro que saiu, como ex-membro.",
+      "As ações de uma chave de API aparecem com o nome da chave, e as de uma chave excluída, como de uma chave excluída.",
       "As visualizações dos resultados de um candidato por um membro aparecem uma vez por dia, com a última visualização."
     ]
   },

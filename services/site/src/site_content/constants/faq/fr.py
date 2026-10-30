@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Puis-je voir qui a fait quoi dans mon entreprise ?",
-        "answer": "Oui, si vous êtes propriétaire de l'entreprise. Son onglet Journal des actions liste tout ce que ses membres ont fait, du plus récent au plus ancien : inviter ou retirer des candidats, consulter des résultats, modifier les entretiens, l'équipe, la facturation et les intégrations, avec qui l'a fait, quand, et si l'assistant, une application d'IA ou l'API l'a fait en son nom. Vous pouvez le filtrer par membre, type d'action et dates. Les actions sont conservées 12 mois.",
+        "answer": "Oui, si vous êtes propriétaire de l'entreprise. Son onglet Journal des actions liste tout ce que ses membres ont fait, du plus récent au plus ancien : inviter ou retirer des candidats, consulter des résultats, modifier les entretiens, l'équipe, la facturation et les intégrations, avec qui l'a fait, quand, et si l'assistant, une application d'IA ou l'API l'a fait en son nom. Vous pouvez le filtrer par membre, type d'action et dates. Les actions sont conservées 12 mois. Les actions d'une clé API apparaissent sous le nom de la clé.",
     },
     {
         "key": "notes",

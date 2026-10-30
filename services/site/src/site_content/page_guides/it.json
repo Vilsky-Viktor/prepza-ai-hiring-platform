@@ -227,6 +227,7 @@
     "tips": [
       "Le azioni vengono conservate per 12 mesi.",
       "Il registro non conserva le persone: un candidato eliminato appare come tale e un membro che è uscito come ex membro.",
+      "Le azioni di una chiave API compaiono con il nome della chiave, quelle di una chiave eliminata come di una chiave eliminata.",
       "Quando un membro guarda i risultati di un candidato, compare una volta al giorno, con l'ultima visualizzazione."
     ]
   },

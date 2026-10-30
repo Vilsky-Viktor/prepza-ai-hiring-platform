@@ -74,7 +74,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Can I see who did what in my company?",
-        "answer": "Yes, if you own the company. Its Action log tab lists everything its members did, newest first: inviting or removing candidates, viewing results, changing interviews, the team, billing and integrations, with who did it, when, and whether the assistant, an AI app or the API did it for them. You can filter it by member, kind of action and dates. Actions are kept for 12 months.",
+        "answer": "Yes, if you own the company. Its Action log tab lists everything its members did, newest first: inviting or removing candidates, viewing results, changing interviews, the team, billing and integrations, with who did it, when, and whether the assistant, an AI app or the API did it for them. You can filter it by member, kind of action and dates. Actions are kept for 12 months. An API key's actions show under the key's name.",
     },
     {
         "key": "notes",

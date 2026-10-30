@@ -227,6 +227,7 @@
     "tips": [
       "Las acciones se guardan durante 12 meses.",
       "El registro no guarda a las personas: un candidato eliminado aparece como tal, y un miembro que se fue, como antiguo miembro.",
+      "Las acciones de una clave de API aparecen con el nombre de la clave, y las de una clave eliminada, como de una clave eliminada.",
       "Las veces que un miembro ve los resultados de un candidato aparecen una vez al día, con la última visita."
     ]
   },

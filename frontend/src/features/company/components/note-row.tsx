@@ -3,6 +3,7 @@
 import {
   BookmarkIcon,
   BookmarkXIcon,
+  KeyRoundIcon,
   PencilIcon,
   Trash2Icon,
   UserIcon,
@@ -20,8 +21,25 @@ import { TEXT_LINK } from "@/config/links"
 import { ROW_HOVER } from "@/config/lists"
 import { apiErrorMessage, apiFetch, serviceRefusal } from "@/lib/api"
 import { firstGrapheme } from "@/lib/graphemes"
+import { noteAuthorName } from "@/lib/interview-notes"
 import { linkParts } from "@/lib/linkify"
 import type { InterviewNote } from "@/types/company"
+
+/** The avatar's mark without a picture: a key for an API key, the name's first letter, or a
+ * person's outline. */
+function AuthorMark({
+  apiKey,
+  name,
+}: {
+  apiKey?: boolean
+  name: string | null
+}) {
+  if (apiKey) {
+    return <KeyRoundIcon className="size-5" />
+  }
+
+  return name ? firstGrapheme(name) : <UserIcon className="size-5" />
+}
 
 /** One note in an interview's notes: its author's picture and name ("former member" once
  * they've left), when it was written and whether it was edited, its text with its addresses as
@@ -45,7 +63,10 @@ export function NoteRow({
   const [editing, setEditing] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [confirming, setConfirming] = useState(false)
-  const name = note.author.former ? t("noteFormerMember") : note.author.name
+  const name = noteAuthorName(note.author, {
+    former: t("noteFormerMember"),
+    deletedKey: t("noteDeletedKey"),
+  })
 
   async function save(text: string) {
     const saved = await apiFetch<InterviewNote>(path, {
@@ -99,7 +120,7 @@ export function NoteRow({
           <AvatarImage src={note.author.photo_url} alt="" />
         )}
         <AvatarFallback>
-          {name ? firstGrapheme(name) : <UserIcon className="size-5" />}
+          <AuthorMark apiKey={note.author.api_key} name={name} />
         </AvatarFallback>
       </Avatar>
       <div className="min-w-0 flex-1 space-y-4">

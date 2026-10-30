@@ -45,7 +45,7 @@ An agent on a server, with no browser, signs in with a company's API key (`Autho
 - Kept to its company where membership is checked, not only in the assistant: the signed `X-Assistant` header carries the key's company and id, and companies refuses any other company with a `403` ("This API key works only in its own company.", `services/access.py`); the companies list answers only the key's.
 - A key limited to allowed IPs works only from them here too: the endpoint keeps the caller's address (`core/caller.py`, from the load balancer's `X-Forwarded-For`) for the check, which passes it to the api service; another address gets the api's `403` (`ip_not_allowed`).
 - Its calls count against the company's API limit (60 a minute across its keys, shared with the API), and the key's own 30 writes an hour apply too. A company that turned AI apps off refuses keys too.
-- Its actions are the key's own in the action log: audited `via: "mcp"` with the key's id (`audit_events.key_id`) as their author, shown as "through MCP with the API key <name>" by the key's name now; the funnel records `client: "api_key"`.
+- Its actions are the key's own in the action log: audited `via: "mcp"` with the key's id (`audit_events.key_id`) as their author, shown as "Through MCP with key "<name>"" by the key's name now ("Through MCP with a deleted key" once it's deleted); the funnel records `client: "api_key"`.
 
 ## Tools
 

@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Posso ver quem fez o quê na minha empresa?",
-        "answer": "Sim, se você for o proprietário da empresa. A aba Registro de ações dela lista tudo o que os membros fizeram, do mais recente ao mais antigo: convidar ou remover candidatos, ver resultados e alterar as entrevistas, a equipe, o faturamento e as integrações, com quem fez, quando e se o assistente, um app de IA ou a API fez isso em nome da pessoa. Você pode filtrar por membro, tipo de ação e datas. As ações ficam guardadas por 12 meses.",
+        "answer": "Sim, se você for o proprietário da empresa. A aba Registro de ações dela lista tudo o que os membros fizeram, do mais recente ao mais antigo: convidar ou remover candidatos, ver resultados e alterar as entrevistas, a equipe, o faturamento e as integrações, com quem fez, quando e se o assistente, um app de IA ou a API fez isso em nome da pessoa. Você pode filtrar por membro, tipo de ação e datas. As ações ficam guardadas por 12 meses. As ações de uma chave de API aparecem com o nome da chave.",
     },
     {
         "key": "notes",

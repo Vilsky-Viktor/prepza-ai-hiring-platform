@@ -7,15 +7,18 @@ import { VirtualList } from "@/components/common/virtual-list"
 import { LIST_BOX } from "@/config/lists"
 import { useLocalTime } from "@/hooks/use-local-time"
 import { usePagedList } from "@/hooks/use-paged-list"
-import { byId } from "@/lib/paged-list"
+import { actionAuthor } from "@/lib/action-log"
+import { bdi } from "@/lib/bidi"
 import { hasMessage } from "@/lib/messages"
+import { byId } from "@/lib/paged-list"
 import type { CompanyAction } from "@/types/company"
 
 /** A company's action log from `path` (the API list with its filters), newest first, loading
  * more as it scrolls; `initial` is the server's first page, if it rendered one. Each row: what a
- * member did and about what, then who, when to the minute, and through what (the assistant, an
- * AI app, the API or an ATS). The owner's tab and the admin zone's support page show the same
- * rows. `narrowed` when a filter is on. */
+ * member did and about what, then when to the minute, who, and through what (the assistant, an
+ * AI app, the API or an ATS). An API key is its own author: its row names the key (by its name
+ * now) and the way it came, instead of a member. The owner's tab and the admin zone's support
+ * page show the same rows. `narrowed` when a filter is on. */
 export function ActionList({
   path,
   initial,
@@ -41,6 +44,25 @@ export function ActionList({
     }
 
     return action.target_kind === "member" ? t("formerMember") : null
+  }
+
+  // Who took it: a member (or a former one), or an API key with the way it came.
+  function author(action: CompanyAction) {
+    const who = actionAuthor(action)
+
+    if (who.kind === "member") {
+      return who.email
+    }
+
+    if (who.kind === "former") {
+      return t("formerMember")
+    }
+
+    if (who.kind === "key") {
+      return t.rich("apiKey", { via: who.via, name: who.name, ...bdi })
+    }
+
+    return t("deletedApiKey", { via: who.via })
   }
 
   // A value from the API by its name in `group`, or as it is when the log has no name for it.
@@ -70,7 +92,7 @@ export function ActionList({
       onEndReached={loadMore}
       className={LIST_BOX}
       renderItem={(action) => (
-        <div className="space-y-1 p-6">
+        <div className="space-y-1 p-6" data-via={action.via ?? undefined}>
           <p className="text-lg font-medium">
             {named("actions", action.action)}
             {target(action) && (
@@ -93,11 +115,11 @@ export function ActionList({
           <p className="text-sm break-words text-muted-foreground">
             <Dotted
               items={[
-                action.user_email ?? t("formerMember"),
                 <time key="created" dateTime={action.created_at}>
                   {localTime.dateTime(action.created_at)}
                 </time>,
-                action.via && named("via", action.via),
+                author(action),
+                !action.key_id && action.via && named("via", action.via),
               ]}
             />
           </p>

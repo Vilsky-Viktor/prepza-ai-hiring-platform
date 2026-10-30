@@ -111,7 +111,7 @@ Setelah itu, bertanyalah di chat seperti kamu bertanya kepada rekan kerja: "Di p
 
 **Untuk memutuskan,** hapus konektornya di aplikasi AI-mu, atau pilih **Putuskan** di sebelahnya di bagian **Aplikasi AI** pada tab Integrasi. Koneksinya langsung berhenti.
 
-**Aplikasi lain dan agenmu sendiri.** [Tab MCP](/api-docs?tab=mcp) di dokumentasi pengembang berisi langkah-langkah untuk Gemini CLI, Cursor, VS Code, dan Le Chat, serta contoh agen lengkap dalam Python dan TypeScript. Agen yang berjalan di server, tanpa ada orang yang menyetujui proses masuk, memakai kunci API perusahaan dengan hak akses **Pakai dengan agen AI (MCP)**: agen itu hanya bekerja di perusahaan tersebut, dan hanya dengan alat yang diizinkan oleh hak akses lain pada kunci itu.
+**Aplikasi lain dan agenmu sendiri.** [Tab MCP](/api-docs?tab=mcp) di dokumentasi pengembang berisi langkah-langkah untuk Gemini CLI, Cursor, VS Code, dan Le Chat, serta contoh agen lengkap dalam Python dan TypeScript. Agen yang berjalan di server, tanpa ada orang yang menyetujui proses masuk, memakai kunci API perusahaan dengan hak akses **Pakai dengan agen AI (MCP)**: agen itu hanya bekerja di perusahaan tersebut, dan hanya dengan alat yang diizinkan oleh hak akses lain pada kunci itu. Semua yang dilakukannya tampil di log tindakan perusahaan dengan nama kunci.
 
 ### 3. Platformmu sendiri, lewat API
 

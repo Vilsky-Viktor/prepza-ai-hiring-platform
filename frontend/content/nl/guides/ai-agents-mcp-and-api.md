@@ -111,7 +111,7 @@ Vanaf dan vraag je in je chat wat je ook een collega zou vragen: "Wie zijn in pr
 
 **Om te ontkoppelen** verwijder je de connector in je AI-app, of kies je **Ontkoppelen** ernaast onder **AI-apps** op het tabblad Integraties. Hij werkt dan meteen niet meer.
 
-**Andere apps en je eigen agents.** Het [MCP-tabblad](/api-docs?tab=mcp) van de ontwikkelaarsdocumentatie heeft de stappen voor Gemini CLI, Cursor, VS Code en Le Chat, en complete voorbeeldagents in Python en TypeScript. Een agent die op een server draait, zonder iemand die een aanmelding kan goedkeuren, gebruikt een API-sleutel van het bedrijf met het recht **Gebruiken met AI-agents (MCP)**: hij werkt alleen in dat bedrijf, en alleen met de tools die de andere rechten van de sleutel toestaan.
+**Andere apps en je eigen agents.** Het [MCP-tabblad](/api-docs?tab=mcp) van de ontwikkelaarsdocumentatie heeft de stappen voor Gemini CLI, Cursor, VS Code en Le Chat, en complete voorbeeldagents in Python en TypeScript. Een agent die op een server draait, zonder iemand die een aanmelding kan goedkeuren, gebruikt een API-sleutel van het bedrijf met het recht **Gebruiken met AI-agents (MCP)**: hij werkt alleen in dat bedrijf, en alleen met de tools die de andere rechten van de sleutel toestaan. Wat hij doet, staat in de actielog van het bedrijf onder de naam van de sleutel.
 
 ### 3. Je eigen platform, via de API
 

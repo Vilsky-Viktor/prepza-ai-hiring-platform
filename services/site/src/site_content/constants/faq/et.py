@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Kas saan näha, kes minu ettevõttes mida tegi?",
-        "answer": "Jah, kui oled ettevõtte omanik. Selle vahekaardil Toimingute logi on kõik, mida liikmed tegid, uuemad eespool: kandidaatide kutsumine või eemaldamine, tulemuste vaatamine ning intervjuude, meeskonna, arvelduse ja integratsioonide muutmine, koos sellega, kes ja millal seda tegi ning kas assistent, AI-rakendus või API tegi seda tema nimel. Saad seda filtreerida liikme, toimingu liigi ja kuupäevade järgi. Toiminguid hoitakse 12 kuud.",
+        "answer": "Jah, kui oled ettevõtte omanik. Selle vahekaardil Toimingute logi on kõik, mida liikmed tegid, uuemad eespool: kandidaatide kutsumine või eemaldamine, tulemuste vaatamine ning intervjuude, meeskonna, arvelduse ja integratsioonide muutmine, koos sellega, kes ja millal seda tegi ning kas assistent, AI-rakendus või API tegi seda tema nimel. Saad seda filtreerida liikme, toimingu liigi ja kuupäevade järgi. Toiminguid hoitakse 12 kuud. API-võtme toimingud on näidatud võtme nime all.",
     },
     {
         "key": "notes",

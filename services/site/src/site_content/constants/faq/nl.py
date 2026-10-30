@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Kan ik zien wie wat heeft gedaan in mijn bedrijf?",
-        "answer": "Ja, als je eigenaar van het bedrijf bent. Het tabblad Actielog toont alles wat de leden hebben gedaan, nieuwste eerst: kandidaten uitnodigen of verwijderen, resultaten bekijken, en interviews, het team, de facturering en integraties wijzigen, met wie het deed, wanneer en of de assistent, een AI-app of de API het namens diegene deed. Je kunt filteren op lid, soort actie en datums. Acties worden 12 maanden bewaard.",
+        "answer": "Ja, als je eigenaar van het bedrijf bent. Het tabblad Actielog toont alles wat de leden hebben gedaan, nieuwste eerst: kandidaten uitnodigen of verwijderen, resultaten bekijken, en interviews, het team, de facturering en integraties wijzigen, met wie het deed, wanneer en of de assistent, een AI-app of de API het namens diegene deed. Je kunt filteren op lid, soort actie en datums. Acties worden 12 maanden bewaard. De acties van een API-sleutel staan onder de naam van de sleutel.",
     },
     {
         "key": "notes",

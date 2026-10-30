@@ -1,7 +1,8 @@
 import type { Page } from "@playwright/test"
 
 import { expect, test } from "../fixtures"
-import { api, createCompany } from "../helpers/api"
+import { api, createCompany, createInterview } from "../helpers/api"
+import { createKey, deleteKey, keyNote, mcpTool } from "../helpers/api-keys"
 import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { randomId, throwawayEmail } from "../helpers/users"
@@ -106,4 +107,41 @@ test("the owner reads and filters the company's action log; admins and viewers h
     await visit(member, path)
     await expect(member).toHaveURL((url) => url.pathname.endsWith(`/companies/${company.id}/interviews`))
   }
+})
+
+// An API key is the author of what it does: a key adds a note through the API and another
+// through MCP, and a second key adds one and is then deleted. The log names the live key in the
+// rows of what it did, each marked with the way it came; the deleted key's row names neither the
+// key nor the member who made it.
+test("the action log names the API key that acted, through the API or MCP", async ({
+  signInAs,
+}) => {
+  const ownerAddress = throwawayEmail("log-keys")
+  const owner = await signInAs(ownerAddress)
+  const company = await createCompany(owner)
+  const interviewId = await createInterview(owner, company.id)
+  const permissions = ["notes:add", "mcp"]
+  const live = `Careers site ${randomId()}`
+  const gone = `Old agent ${randomId()}`
+  const { key } = await createKey(owner, company.id, live, permissions)
+  const old = await createKey(owner, company.id, gone, permissions)
+  await keyNote(owner, key, interviewId, `Through the API ${randomId()}`)
+  await mcpTool(owner, key, "add_interview_note", {
+    interview_id: interviewId,
+    text: `Through MCP ${randomId()}`,
+  })
+  await keyNote(owner, old.key, interviewId, `From a key deleted later ${randomId()}`)
+  await deleteKey(owner, company.id, old.id)
+
+  await visit(owner, `/companies/${company.id}/actions`)
+  const rows = owner.getByRole("main").getByRole("listitem")
+  const through = (via: string) => rows.filter({ has: owner.locator(`[data-via="${via}"]`) })
+  await expect(through("mcp").filter({ hasText: live })).toHaveCount(1)
+  await expect(through("api").filter({ hasText: live })).toHaveCount(1)
+  // The deleted key's note: by the API, named by neither its key nor its maker.
+  const deleted = through("api").filter({ hasNotText: live })
+  await expect(deleted).toHaveCount(1)
+  await expect(deleted).not.toContainText(ownerAddress)
+  await expect(deleted).not.toContainText(gone)
+  await shot(owner, "action-log-keys")
 })

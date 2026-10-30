@@ -111,7 +111,7 @@ Từ đó trở đi, hãy hỏi trong chat như khi hỏi một đồng nghiệp
 
 **Để ngắt kết nối,** hãy gỡ connector trong ứng dụng AI của bạn, hoặc chọn **Ngắt kết nối** bên cạnh nó trong mục **Ứng dụng AI** ở tab Tích hợp. Kết nối dừng ngay lập tức.
 
-**Ứng dụng khác và agent của riêng bạn.** [Tab MCP](/api-docs?tab=mcp) trong tài liệu cho nhà phát triển có các bước cho Gemini CLI, Cursor, VS Code và Le Chat, cùng các agent mẫu hoàn chỉnh bằng Python và TypeScript. Agent chạy trên máy chủ, không có ai để duyệt đăng nhập, sẽ dùng khóa API của công ty có quyền **Dùng với agent AI (MCP)**: agent chỉ hoạt động trong công ty đó, và chỉ với những công cụ mà các quyền khác của khóa cho phép.
+**Ứng dụng khác và agent của riêng bạn.** [Tab MCP](/api-docs?tab=mcp) trong tài liệu cho nhà phát triển có các bước cho Gemini CLI, Cursor, VS Code và Le Chat, cùng các agent mẫu hoàn chỉnh bằng Python và TypeScript. Agent chạy trên máy chủ, không có ai để duyệt đăng nhập, sẽ dùng khóa API của công ty có quyền **Dùng với agent AI (MCP)**: agent chỉ hoạt động trong công ty đó, và chỉ với những công cụ mà các quyền khác của khóa cho phép. Mọi việc nó làm đều hiện trong nhật ký thao tác của công ty dưới tên của khóa.
 
 ### 3. Nền tảng riêng của bạn, qua API
 

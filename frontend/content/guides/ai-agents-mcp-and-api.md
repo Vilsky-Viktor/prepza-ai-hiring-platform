@@ -111,7 +111,7 @@ From then on, ask in your chat as you would ask a colleague: "In prepza, who are
 
 **To disconnect,** remove the connector in your AI app, or select **Disconnect** next to it under **AI apps** on the Integrations tab. It stops working at once.
 
-**Other apps and your own agents.** The developer docs' [MCP tab](/api-docs?tab=mcp) has the steps for Gemini CLI, Cursor, VS Code and Le Chat, and complete example agents in Python and TypeScript. An agent that runs on a server, with no one there to approve a sign-in, uses a company API key with the **Use with AI agents (MCP)** permission: it works only in that company, and only with the tools the key's other permissions allow.
+**Other apps and your own agents.** The developer docs' [MCP tab](/api-docs?tab=mcp) has the steps for Gemini CLI, Cursor, VS Code and Le Chat, and complete example agents in Python and TypeScript. An agent that runs on a server, with no one there to approve a sign-in, uses a company API key with the **Use with AI agents (MCP)** permission: it works only in that company, and only with the tools the key's other permissions allow. What it does shows in the company's action log under the key's name.
 
 ### 3. Your own platform, through the API
 

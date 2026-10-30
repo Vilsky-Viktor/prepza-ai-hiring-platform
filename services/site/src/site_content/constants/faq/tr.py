@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Şirketimde kimin ne yaptığını görebilir miyim?",
-        "answer": "Evet, şirketin sahibiyseniz. Şirketin İşlem kaydı sekmesi, üyelerinin yaptığı her şeyi en yeniden başlayarak listeler: aday davet etme veya kaldırma, sonuçları görüntüleme ve mülakatlarda, ekipte, faturalandırmada ve entegrasyonlarda yapılan değişiklikler; bunu kimin, ne zaman yaptığı ve asistanın, bir yapay zekâ uygulamasının veya API'nin onun adına yapıp yapmadığıyla birlikte. Kaydı üyeye, işlem türüne ve tarihlere göre filtreleyebilirsiniz. İşlemler 12 ay saklanır.",
+        "answer": "Evet, şirketin sahibiyseniz. Şirketin İşlem kaydı sekmesi, üyelerinin yaptığı her şeyi en yeniden başlayarak listeler: aday davet etme veya kaldırma, sonuçları görüntüleme ve mülakatlarda, ekipte, faturalandırmada ve entegrasyonlarda yapılan değişiklikler; bunu kimin, ne zaman yaptığı ve asistanın, bir yapay zekâ uygulamasının veya API'nin onun adına yapıp yapmadığıyla birlikte. Kaydı üyeye, işlem türüne ve tarihlere göre filtreleyebilirsiniz. İşlemler 12 ay saklanır. Bir API anahtarının işlemleri anahtarın adıyla görünür.",
     },
     {
         "key": "notes",

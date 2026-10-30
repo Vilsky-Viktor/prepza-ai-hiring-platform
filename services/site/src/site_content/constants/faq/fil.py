@@ -75,7 +75,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Puwede ko bang makita kung sino ang gumawa ng ano sa kumpanya ko?",
-        "answer": "Oo, kung ikaw ang may-ari ng kumpanya. Nakalista sa tab na Log ng aksyon nito ang lahat ng ginawa ng mga miyembro nito, simula sa pinakabago: pag-imbita o pag-alis ng mga aplikante, pagtingin sa mga resulta, at pagbabago sa mga interview, sa team, sa billing at sa mga integration, kasama kung sino ang gumawa, kailan, at kung ang assistant, isang AI app o ang API ang gumawa nito para sa kanila. Puwede mo itong i-filter ayon sa miyembro, uri ng aksyon at petsa. Itinatago ang mga aksyon nang 12 buwan.",
+        "answer": "Oo, kung ikaw ang may-ari ng kumpanya. Nakalista sa tab na Log ng aksyon nito ang lahat ng ginawa ng mga miyembro nito, simula sa pinakabago: pag-imbita o pag-alis ng mga aplikante, pagtingin sa mga resulta, at pagbabago sa mga interview, sa team, sa billing at sa mga integration, kasama kung sino ang gumawa, kailan, at kung ang assistant, isang AI app o ang API ang gumawa nito para sa kanila. Puwede mo itong i-filter ayon sa miyembro, uri ng aksyon at petsa. Itinatago ang mga aksyon nang 12 buwan. Ang mga aksyon ng isang API key ay ipinapakita sa pangalan ng key.",
     },
     {
         "key": "notes",

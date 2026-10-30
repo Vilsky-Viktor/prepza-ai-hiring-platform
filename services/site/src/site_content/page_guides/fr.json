@@ -227,6 +227,7 @@
     "tips": [
       "Les actions sont conservées 12 mois.",
       "Le journal ne conserve pas les personnes : un candidat supprimé apparaît comme tel, et un membre parti comme ancien membre.",
+      "Les actions d'une clé API apparaissent sous le nom de la clé, et celles d'une clé supprimée comme celles d'une clé supprimée.",
       "Les consultations des résultats d'un même candidat par un membre apparaissent une fois par jour, à la dernière consultation."
     ]
   },

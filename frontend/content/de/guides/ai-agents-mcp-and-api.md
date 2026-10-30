@@ -111,7 +111,7 @@ Ab dann fragst du in deinem Chat so, wie du einen Kollegen fragen würdest: „W
 
 **Zum Trennen** entferne den Konnektor in deiner KI-App oder wähle **Trennen** daneben unter **KI-Apps** im Tab Integrationen. Er funktioniert sofort nicht mehr.
 
-**Andere Apps und deine eigenen Agenten.** Der [MCP-Tab](/api-docs?tab=mcp) der Entwicklerdokumentation enthält die Schritte für Gemini CLI, Cursor, VS Code und Le Chat sowie vollständige Beispiel-Agenten in Python und TypeScript. Ein Agent, der auf einem Server läuft, wo niemand eine Anmeldung bestätigen kann, nutzt einen API-Schlüssel des Unternehmens mit der Berechtigung **Mit KI-Agenten nutzen (MCP)**: Er funktioniert nur in diesem Unternehmen und nur mit den Tools, die die übrigen Berechtigungen des Schlüssels erlauben.
+**Andere Apps und deine eigenen Agenten.** Der [MCP-Tab](/api-docs?tab=mcp) der Entwicklerdokumentation enthält die Schritte für Gemini CLI, Cursor, VS Code und Le Chat sowie vollständige Beispiel-Agenten in Python und TypeScript. Ein Agent, der auf einem Server läuft, wo niemand eine Anmeldung bestätigen kann, nutzt einen API-Schlüssel des Unternehmens mit der Berechtigung **Mit KI-Agenten nutzen (MCP)**: Er funktioniert nur in diesem Unternehmen und nur mit den Tools, die die übrigen Berechtigungen des Schlüssels erlauben. Was er tut, steht im Aktionsprotokoll des Unternehmens unter dem Namen des Schlüssels.
 
 ### 3. Deine eigene Plattform, über die API
 
