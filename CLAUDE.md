@@ -11,7 +11,8 @@
    a seam: one responsibility per file (rule 3), in the simplest way (rule 4), never at an
    arbitrary line; the pieces stay in the folder their layout rule gives them.
    - Exempt: generated files (lockfiles, OpenAPI snapshots, `frontend/src/types/api/`), data
-     (`frontend/messages/`, page guides, the email texts in `templates/languages/`,
+     (`frontend/messages/`, the services' translated messages in
+     `prepza_common/i18n/messages/`, page guides, the email texts in `templates/languages/`,
      `evals/datasets/`, fixtures), binary files and articles in `frontend/content/`. Tests
      are not exempt; they split by area.
    - Functions: complexity at most 15 (Ruff `C901`, ESLint `complexity`), at most 12 branches
