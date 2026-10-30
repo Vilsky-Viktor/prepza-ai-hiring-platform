@@ -608,7 +608,8 @@ export interface paths {
     /**
      * Question Audio
      * @description Voice mode: the question on screen and its options read aloud (Ogg Opus), once its clock
-     *     started. Made when the question opened and kept for every candidate who gets it.
+     *     started (its reading counts in its time). Made on the first request, or ahead while the
+     *     question before it was on screen, and kept for every candidate who gets it.
      */
     get: operations["question_audio_sessions__session_id__voice_question_get"]
     put?: never
@@ -961,8 +962,6 @@ export interface components {
       seconds?: number | null
       /** Seconds Left */
       seconds_left?: number | null
-      /** Reading Left */
-      reading_left?: number | null
     }
     /** OpenProfileOut */
     OpenProfileOut: {

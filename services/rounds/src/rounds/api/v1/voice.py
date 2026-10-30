@@ -22,7 +22,8 @@ OGG = "audio/ogg"
 @router.get("/{session_id}/voice/question", response_class=Response)
 async def question_audio(session_id: UUID, user: CurrentUser) -> Response:
     """Voice mode: the question on screen and its options read aloud (Ogg Opus), once its clock
-    started. Made when the question opened and kept for every candidate who gets it."""
+    started (its reading counts in its time). Made on the first request, or ahead while the
+    question before it was on screen, and kept for every candidate who gets it."""
     row = await get_own_session(session_id, user)
     voice_session.voice_only(row)
     clip = await voice_session.question_clip(row, voice_session.shown_question(row))

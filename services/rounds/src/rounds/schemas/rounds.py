@@ -46,6 +46,3 @@ class NextQuestion(BaseModel):
     # Timed interviews only: seconds until the question counts as wrong. Relative, so the
     # candidate's clock being off doesn't matter.
     seconds_left: float | None = None
-    # Voice mode: seconds of reading aloud left before the question's own time starts counting;
-    # seconds_left includes them.
-    reading_left: float | None = None

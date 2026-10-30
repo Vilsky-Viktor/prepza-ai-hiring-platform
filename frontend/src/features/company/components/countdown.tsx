@@ -16,10 +16,9 @@ function secondsUntil(end: number) {
 stops being `paused` after that.
 
 `seconds` comes from the server as time left, not a moment, so a wrong device clock doesn't
-matter. `questionSeconds` is the question's whole time, which sets when it turns red; in voice
-mode `seconds` also holds the reading aloud, during which the clock shows the whole time and
-starts once the reading ends. Render it with a key per question, so each question starts its own
-clock. */
+matter. `questionSeconds` is the question's whole time, which sets when it turns red. In voice
+mode the clock runs from the moment the question opens, while it's read aloud too. Render it with
+a key per question, so each question starts its own clock. */
 export function Countdown({
   seconds,
   questionSeconds,
@@ -33,8 +32,7 @@ export function Countdown({
 }) {
   const t = useTranslations("company")
   const [end] = useState(() => Date.now() + seconds * 1000)
-  const [untilEnd, setLeft] = useState(() => secondsUntil(end))
-  const left = Math.min(untilEnd, questionSeconds)
+  const [left, setLeft] = useState(() => secondsUntil(end))
   const expired = useRef(false)
 
   useEffect(() => {

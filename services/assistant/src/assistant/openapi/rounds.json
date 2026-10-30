@@ -1477,7 +1477,7 @@
      "voice"
     ],
     "summary": "Question Audio",
-    "description": "Voice mode: the question on screen and its options read aloud (Ogg Opus), once its clock\nstarted. Made when the question opened and kept for every candidate who gets it.",
+    "description": "Voice mode: the question on screen and its options read aloud (Ogg Opus), once its clock\nstarted (its reading counts in its time). Made on the first request, or ahead while the\nquestion before it was on screen, and kept for every candidate who gets it.",
     "operationId": "question_audio_sessions__session_id__voice_question_get",
     "security": [
      {
@@ -2354,17 +2354,6 @@
        }
       ],
       "title": "Seconds Left"
-     },
-     "reading_left": {
-      "anyOf": [
-       {
-        "type": "number"
-       },
-       {
-        "type": "null"
-       }
-      ],
-      "title": "Reading Left"
      }
     },
     "type": "object",

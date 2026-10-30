@@ -153,9 +153,7 @@ async def detail(interview: Interview, member: Member) -> InterviewDetail:
         company_id=interview.company_id,
         language=interview.language,
         topics=topics,
-        total_minutes=interview_minutes(
-            found, interview.topic_limits, interview.question_seconds, bool(interview.voice)
-        ),
+        total_minutes=interview_minutes(found, interview.topic_limits, interview.question_seconds),
         total_questions=interview_questions(found, interview.topic_limits),
         can_edit=can_edit(member),
         keep_private=interview.keep_private,

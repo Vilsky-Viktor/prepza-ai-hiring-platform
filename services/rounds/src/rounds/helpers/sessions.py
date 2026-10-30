@@ -69,9 +69,7 @@ def question_deadline(row: Session) -> datetime | None:
     if question is None or question.seconds is None:
         return None
 
-    reading = row.question_reading_seconds or 0
-
-    return row.question_shown_at + timedelta(seconds=reading + question.seconds)
+    return row.question_shown_at + timedelta(seconds=question.seconds)
 
 
 def time_is_up(row: Session, now: datetime, grace_seconds: int = 0) -> bool:
@@ -84,16 +82,6 @@ def seconds_left(row: Session, now: datetime) -> float | None:
     deadline = question_deadline(row)
 
     return None if deadline is None else max(0.0, (deadline - now).total_seconds())
-
-
-def reading_left(row: Session, now: datetime) -> float | None:
-    """Voice mode: seconds of the question's reading aloud still to go; None when it isn't read."""
-    if row.question_shown_at is None or not row.question_reading_seconds:
-        return None
-
-    ends = row.question_shown_at + timedelta(seconds=row.question_reading_seconds)
-
-    return max(0.0, (ends - now).total_seconds())
 
 
 def topic_out(row: Session) -> SessionTopicOut:

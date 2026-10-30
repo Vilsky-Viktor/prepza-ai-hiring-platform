@@ -10,12 +10,9 @@ from rounds.config import settings
 from rounds.core.db import Session as Db
 from rounds.core.exceptions import SpeechFailed
 from rounds.helpers.voice_speech import clip_key
-from rounds.models.answers import Answer
 from rounds.models.voice_clips import VoiceClip
-from rounds.repositories import sessions
 from rounds.services import session_removal, voice_clips
-from tests.integration.factories import answered, created, topic
-from tests.integration.transactions import transaction
+from tests.integration.factories import created, topic
 
 # What OpenAI's reading gives: an Ogg Opus clip (its length isn't read here), and the seconds of
 # speech made for it.
@@ -241,23 +238,3 @@ def test_clips_nobody_played_for_their_days_go_and_a_played_one_stays(run, monke
     left, played = run(scenario())
 
     assert left == {played}
-
-
-def test_a_question_read_aloud_keeps_its_reading_until_answered(run):
-    async def scenario():
-        row = await voice_section()
-        first = await transaction(sessions.mark_shown, row.id, 12)
-        # A reload asks again: the same start and reading.
-        again = await transaction(sessions.mark_shown, row.id, 40)
-        question_id = uuid.UUID(row.questions[0]["id"])
-        answer = Answer(
-            session_id=row.id, question_id=question_id, option_index=0, correct=True, score=100
-        )
-        await answered(answer)
-
-        return first, again, await transaction(sessions.get, row.id)
-
-    first, again, row = run(scenario())
-
-    assert first == again and first[1] == 12
-    assert (row.question_shown_at, row.question_reading_seconds) == (None, None)

@@ -17,8 +17,7 @@ from tests.integration.transactions import transaction
 
 async def interview(started_minutes_ago: float, voice: bool = False):
     """A candidate's interview of two sections, 3 questions each at 60 seconds: 6 minutes in
-    all, 6.6 with the margin; taken by voice, 30 seconds more a question for its reading (9.9
-    minutes with the margin)."""
+    all, 6.6 with the margin, taken by click or by voice."""
     invite_id = uuid.uuid4()
     rows = await created("cand", invite_id, [topic(), topic()], 60, company_id=uuid.uuid4())
 
@@ -35,20 +34,21 @@ async def interview(started_minutes_ago: float, voice: bool = False):
     return invite_id, rows
 
 
-def test_a_voice_interview_has_its_reading_time_too(run):
+def test_a_voice_interview_has_the_same_time_as_a_click_one(run):
     async def scenario():
-        reading_invite, _ = await interview(started_minutes_ago=7, voice=True)
-        over_invite, _ = await interview(started_minutes_ago=10, voice=True)
+        running_invite, _ = await interview(started_minutes_ago=6, voice=True)
+        over_invite, _ = await interview(started_minutes_ago=7, voice=True)
         now = datetime.now(UTC)
 
         return (
-            await session_expiry.expired(now, 10, reading_invite),
+            await session_expiry.expired(now, 10, running_invite),
             await session_expiry.expired(now, 10, over_invite),
         )
 
-    reading, over = run(scenario())
+    running, over = run(scenario())
 
-    assert reading == []
+    # Its questions' reading aloud counts in their own time: no extra time for it.
+    assert running == []
     assert len(over) == 1
 
 

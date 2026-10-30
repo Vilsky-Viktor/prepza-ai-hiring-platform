@@ -1,7 +1,6 @@
 import math
 
 from prepza_common.ai.multi_answer import draw
-from prepza_common.config.constants import VOICE_READING_SECONDS
 
 from companies.constants.interviews import DEFAULT_TOPIC_QUESTIONS, InterviewStatus
 from companies.models.interviews import Interview
@@ -42,18 +41,16 @@ def interview_questions(found: dict | None, limits: dict[str, int]) -> int | Non
     return sum(topic.question_limit for topic in topics_out(found, limits))
 
 
-def interview_minutes(
-    found: dict | None, limits: dict[str, int], seconds: int, voice: bool = False
-) -> int | None:
+def interview_minutes(found: dict | None, limits: dict[str, int], seconds: int) -> int | None:
     """The whole interview's time, in minutes rounded up: every question a candidate gets at
-    `seconds` each, and taken by voice, VOICE_READING_SECONDS more each for its reading. None
-    while the interview's questions aren't known."""
+    `seconds` each, in click and voice mode alike (a question's reading aloud counts in its
+    time). None while the interview's questions aren't known."""
     questions = interview_questions(found, limits)
 
     if questions is None:
         return None
 
-    return math.ceil(questions * (seconds + (VOICE_READING_SECONDS if voice else 0)) / 60)
+    return math.ceil(questions * seconds / 60)
 
 
 def pick_questions(questions: list, limit: int, share: float) -> list:

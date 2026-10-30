@@ -174,8 +174,8 @@ async function expectSoon(ready: () => boolean) {
 }
 
 /** Keeps OpenAI out of a voice interview's server side: the company's daily count of questions
- * read aloud for the first time is set past any limit, so rounds refuses to read a question when
- * it opens and the question goes on unread (its clips are mocked in the browser). The key is
+ * read aloud for the first time is set past any limit, so rounds refuses to read a question and
+ * the question goes on unread (its clips are mocked in the browser). The key is
  * rounds' (services/voice_limits.py), the company's own, so no other test is touched. */
 export async function noReadingAloud(companyId: string) {
   await redis("SET", `rate:voice:clips:company:${companyId}`, "1000000000", "EX", "86400")

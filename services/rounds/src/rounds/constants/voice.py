@@ -33,9 +33,6 @@ MAX_ANSWER_SECONDS = 30
 # A request's body may be this large on the answer route: a spoken answer, with room for its
 # headers (prepza_common.ai.speech.MAX_AUDIO_BYTES).
 MAX_ANSWER_BODY_BYTES = 3_000_000
-# The most a question's reading adds to its time: a longer clip still plays, but the clock
-# starts after this many seconds.
-MAX_READING_SECONDS = 90
 # Spoken text is cut to this many characters: the rest is on screen.
 MAX_SPOKEN_CHARACTERS = 1_500
 # Clips nobody has played for this many days are deleted (jobs: voice_clips); a question still

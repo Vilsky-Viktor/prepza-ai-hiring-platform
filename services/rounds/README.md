@@ -50,16 +50,16 @@ transaction.
 
 ## Voice mode
 
-A section started with `voice` (the interview's setting in companies) is read aloud: when its
-next question opens (`POST /sessions/{id}/step`), the question and its options are read by
-OpenAI's realtime voice model (`SPEECH_MODEL`, voice `SPEECH_VOICE`; `prompts/voice_speech.py`
+A section started with `voice` (the interview's setting in companies) is read aloud: its next
+question opens (`POST /sessions/{id}/step`) and starts its clock as in click mode, the reading
+counting in its time, and the question and its options are read by OpenAI's realtime voice
+model (`SPEECH_MODEL`, voice `SPEECH_VOICE`; `prompts/voice_speech.py`
 tells it to say the text exactly; a reading whose own transcript strays from the text, such as
 an answer added, is made again once, then the question stays unread; kept as Ogg Opus, its eval
 `evals/scripts/voice_reading_test.py`) once per text and voice and kept in
 `voice_clips` for every candidate who gets it (one reading a text: a Redis lock per clip, and a
-request needing a clip being read waits for it), and the question's own time starts after the
-reading (`question_reading_seconds`, at most `MAX_READING_SECONDS`); a reading that fails leaves
-the question unread, never stopped. As a question opens, the browser asks for the section's
+request needing a clip being read waits for it); a reading that fails leaves the question
+unread, never stopped. As a question opens, the browser asks for the section's
 next question to be read ahead (`POST .../voice/next-question/prepare`, 204: only the clip cache
 gets it, nothing is sent), so moving on finds it kept. Code blocks and long options aren't read: the interviewer
 points to the screen (`helpers/voice_speech.py`). The browser plays the clip
@@ -73,9 +73,14 @@ anything else by the model (`VOICE_MATCH_MODEL`, `prompts/voice_match.py`, never
 key; its eval is `evals/scripts/voice_answers_test.py`). Nothing of it is saved: a confirmed
 choice is sent to `.../answers` as a tapped one is, and the audio and the words are never
 stored, logged or traced.
+A spoken answer received by its question's deadline plus `VOICE_UPLOAD_SECONDS` is noted in
+Redis (`services/voice_deadline.py`, the service's own time), and the answers route then takes
+its result until `VOICE_ANSWER_GRACE_SECONDS` past the deadline instead of the usual
+`TIME_GRACE_SECONDS`; one answer per question still wins (the section's lock and the unique
+constraint), so a time-out racing it saves nothing twice.
 Limits: `VOICE_ANSWERS_PER_USER_HOUR`, `VOICE_ANSWERS_PER_COMPANY_DAY`,
 `VOICE_CLIPS_PER_COMPANY_DAY`, `VOICE_CLIPS_PER_DAY`, and a preview also the unpaid AI cap.
-A voice interview's whole time adds `VOICE_READING_SECONDS` a question. Clips go with their
+A voice interview's whole time is the same as in click mode. Clips go with their
 company (`company.deleted`) and after 30 days unplayed (`/internal/schedules/voice-clips`, daily).
 
 ## Commands

@@ -162,13 +162,13 @@ def test_a_visitor_sees_the_invitation_without_the_candidates_email(client, invi
 
 
 def test_the_invitation_says_the_candidates_own_mode(client, invite_page):
-    """Voice for this candidate alone: the start page asks for the microphone, and each question
-    has its reading time."""
+    """Voice for this candidate alone: the start page asks for the microphone; the whole time is
+    the same as by click, the reading aloud counting in each question's time."""
     invite_page.voice = True
     response = client.get("/invites/token-1")
 
     assert response.json()["voice"] is True
-    assert response.json()["total_minutes"] > 4
+    assert response.json()["total_minutes"] == 4
 
 
 @pytest.mark.parametrize(

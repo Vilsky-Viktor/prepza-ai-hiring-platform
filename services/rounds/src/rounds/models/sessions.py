@@ -63,14 +63,12 @@ class Session(Base):
     # A talent's free practice round on a template: candidate_invite_id is the round's id, it
     # belongs to no company, and every right answer is shown after it.
     practice: Mapped[bool] = mapped_column(default=False)
-    # When the question now waiting for an answer was first shown; cleared by the answer.
+    # When the question now waiting for an answer was first shown (in voice mode, as its reading
+    # aloud starts: the reading counts in its time); cleared by the answer.
     question_shown_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     # Voice mode: the interviewer reads each question and its options aloud, and the candidate
     # may answer by voice (the interview's setting in companies).
     voice: Mapped[bool] = mapped_column(default=False, server_default="false")
-    # Voice mode: the seconds the question now waiting is read aloud; its own time starts after
-    # them. Cleared by the answer, with question_shown_at.
-    question_reading_seconds: Mapped[int | None]
 
     answers: Mapped[list["Answer"]] = relationship(order_by="Answer.created_at")
     signals: Mapped[list[Signal]] = relationship(order_by=Signal.created_at)

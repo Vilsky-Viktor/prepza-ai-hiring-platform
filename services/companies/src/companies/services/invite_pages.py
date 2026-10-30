@@ -60,7 +60,7 @@ async def invite_view(
         matches=matches,
         status=invite.status,
         question_seconds=seconds,
-        total_minutes=interview_minutes(found, interview.topic_limits, seconds, voice),
+        total_minutes=interview_minutes(found, interview.topic_limits, seconds),
         voice=voice,
         guest=invite.guest,
         brand_colors=BrandColorSets(**color_sets(company.brand_colors if company else None)),
@@ -110,9 +110,7 @@ async def link_view(token: str, user: User | None) -> LinkView:
         brand_colors=BrandColorSets(**color_sets(company.brand_colors if company else None)),
         brand_style=BrandStyle(**style_of(company)),
         question_seconds=interview.question_seconds,
-        total_minutes=interview_minutes(
-            found, interview.topic_limits, interview.question_seconds, bool(interview.voice)
-        ),
+        total_minutes=interview_minutes(found, interview.topic_limits, interview.question_seconds),
         voice=bool(interview.voice),
         status=status_now,
     )
