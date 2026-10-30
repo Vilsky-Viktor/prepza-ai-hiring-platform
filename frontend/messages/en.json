@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Generated interviews waiting without candidates",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Generated interviews waiting without candidates, unpaid",
       "PREVIEWS_PER_USER_HOUR": "Interview previews per user an hour",
+      "PREVIEWS_PER_COMPANY_DAY": "Interview previews per company a day, click mode",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "Interview previews per company a day, voice mode",
       "NOTES_PER_USER_HOUR": "Interview notes per user an hour",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Checkouts, payment checks and invoices per user an hour",
       "TEMPLATE_COPIES_PER_HOUR": "Interviews copied from templates per company an hour",

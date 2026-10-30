@@ -39,3 +39,10 @@ VOICE_NOT_IN_LANGUAGE = "Voice mode isn't available in this interview's language
 # instance for the test's page: a count that changes (a question revealed in practice is no
 # longer served) shows within it. Candidates starting always read the questions afresh.
 SET_CACHE_SECONDS = 30
+# A company's previews used up for the day; voice mode's have their own, smaller limit.
+PREVIEWS_USED_UP = (
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h."
+)
+VOICE_PREVIEWS_USED_UP = (
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h."
+)

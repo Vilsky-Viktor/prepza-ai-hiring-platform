@@ -100,6 +100,12 @@ LIMITS = {
         "MAX_INTERVIEWS_WITHOUT_CANDIDATES",
     ),
     "PREVIEWS_PER_USER_HOUR": Limit(COMPANIES, 20, "calls", HOUR_SECONDS, 1, 1_000, "user"),
+    # A company's members' previews a day, voice mode's apart: each reads aloud, hears and
+    # matches answers at our cost.
+    "PREVIEWS_PER_COMPANY_DAY": Limit(COMPANIES, 20, "calls", DAY_SECONDS, 1, 1_000, "company"),
+    "VOICE_PREVIEWS_PER_COMPANY_DAY": Limit(
+        COMPANIES, 5, "calls", DAY_SECONDS, 1, 1_000, "company"
+    ),
     # Notes a member writes on interviews (the notes tab, the assistant, AI apps and the API).
     "NOTES_PER_USER_HOUR": Limit(COMPANIES, 60, "calls", HOUR_SECONDS, 1, 1_000, "user"),
     # Checkouts made and failed payments looked up, each a call to Paddle's API.

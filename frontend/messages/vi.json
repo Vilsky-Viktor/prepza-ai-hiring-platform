@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Buổi phỏng vấn đã tạo đang chờ mà chưa có ứng viên",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Buổi phỏng vấn đã tạo đang chờ mà chưa có ứng viên, chưa thanh toán",
       "PREVIEWS_PER_USER_HOUR": "Lượt xem trước phỏng vấn mỗi người dùng mỗi giờ",
+      "PREVIEWS_PER_COMPANY_DAY": "Lượt xem trước phỏng vấn mỗi công ty mỗi ngày, chế độ nhấp",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "Lượt xem trước phỏng vấn mỗi công ty mỗi ngày, chế độ giọng nói",
       "NOTES_PER_USER_HOUR": "Ghi chú phỏng vấn mỗi người dùng mỗi giờ",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Lượt thanh toán, kiểm tra thanh toán và hóa đơn mỗi người dùng mỗi giờ",
       "TEMPLATE_COPIES_PER_HOUR": "Bài phỏng vấn sao chép từ mẫu mỗi công ty mỗi giờ",

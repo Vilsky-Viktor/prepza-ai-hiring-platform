@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Wawancara yang dibuat dan menunggu tanpa kandidat",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Wawancara yang dibuat dan menunggu tanpa kandidat, belum membayar",
       "PREVIEWS_PER_USER_HOUR": "Pratinjau wawancara per pengguna per jam",
+      "PREVIEWS_PER_COMPANY_DAY": "Pratinjau wawancara per perusahaan per hari, mode klik",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "Pratinjau wawancara per perusahaan per hari, mode suara",
       "NOTES_PER_USER_HOUR": "Catatan wawancara per pengguna per jam",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Pembayaran, pengecekan pembayaran, dan faktur per pengguna per jam",
       "TEMPLATE_COPIES_PER_HOUR": "Wawancara yang disalin dari templat per perusahaan per jam",

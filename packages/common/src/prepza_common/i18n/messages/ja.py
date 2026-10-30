@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedInプロフィールのアドレスを入力してください（例: linkedin.com/in/your-name）。",
     "The text you agreed to has changed. Reload the page and try again.": "同意した文面が変更されました。ページを再読み込みして、もう一度お試しください。",
     "Only companies that have topped up can see people open to offers.": "求人のオファーを受け付けている人を見られるのは、チャージしたことのある企業だけです。",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "本日のクリックモードのプレビュー（{limit} 回）をすべて使用しました。{hours} 時間後にもう一度お試しください。",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "本日の音声モードのプレビュー（{limit} 回）をすべて使用しました。{hours} 時間後にもう一度お試しください。",
 }

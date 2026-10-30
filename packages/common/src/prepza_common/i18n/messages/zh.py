@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "请输入你的 LinkedIn 个人主页地址，例如 linkedin.com/in/your-name。",
     "The text you agreed to has changed. Reload the page and try again.": "你同意的文本已更改。请刷新页面后重试。",
     "Only companies that have topped up can see people open to offers.": "只有充值过的公司才能看到愿意接受工作邀约的人。",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "你的公司今天的点选模式预览（{limit} 次）已用完，请在 {hours} 小时后再试。",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "你的公司今天的语音模式预览（{limit} 次）已用完，请在 {hours} 小时后再试。",
 }

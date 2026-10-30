@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "ใส่ที่อยู่โปรไฟล์ LinkedIn ของคุณ เช่น linkedin.com/in/your-name",
     "The text you agreed to has changed. Reload the page and try again.": "ข้อความที่คุณยอมรับมีการเปลี่ยนแปลง โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง",
     "Only companies that have topped up can see people open to offers.": "เฉพาะบริษัทที่เคยเติมเครดิตแล้วเท่านั้นที่จะเห็นผู้ที่เปิดรับข้อเสนองาน",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "บริษัทของคุณใช้การดูตัวอย่างโหมดคลิกของวันนี้ครบแล้ว ({limit}) โปรดลองอีกครั้งในอีก {hours} ชั่วโมง",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "บริษัทของคุณใช้การดูตัวอย่างโหมดเสียงของวันนี้ครบแล้ว ({limit}) โปรดลองอีกครั้งในอีก {hours} ชั่วโมง",
 }

@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "הזינו את כתובת פרופיל ה-LinkedIn שלכם, למשל linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "הנוסח שהסכמתם לו השתנה. טענו מחדש את הדף ונסו שוב.",
     "Only companies that have topped up can see people open to offers.": "רק חברות שכבר טענו קרדיטים יכולות לראות אנשים הפתוחים להצעות עבודה.",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "החברה ניצלה את כל התצוגות המקדימות במצב לחיצה להיום ({limit}). נסו שוב בעוד {hours} שע'.",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "החברה ניצלה את כל התצוגות המקדימות במצב קולי להיום ({limit}). נסו שוב בעוד {hours} שע'.",
 }

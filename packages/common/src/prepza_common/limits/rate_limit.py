@@ -1,12 +1,14 @@
 """Counting uses and costs against our limits (limit_list.LIMITS), by name: each one's value is
 the current one (limits.limit) and its window the list's. A refusal is recorded
-(limits.record_hit) and answers 429 with its message, in which "{limit}" is the limit's value."""
+(limits.record_hit) and answers 429 with its message, in which "{limit}" is the limit's value and
+"{hours}" the whole hours, rounded up, until its window ends."""
 
 import logging
+import math
 from datetime import UTC, datetime, timedelta
 
 from fastapi import HTTPException, status
-from prepza_common.config.constants import RATE_LIMITED, RETRY_AFTER
+from prepza_common.config.constants import HOUR_SECONDS, RATE_LIMITED, RETRY_AFTER
 from prepza_common.i18n import error_codes
 from prepza_common.i18n.i18n import TemplateError
 from prepza_common.limits.limit_list import LIMITS
@@ -40,14 +42,15 @@ async def refuse(name: str, value: float, message: str, seconds: int, company_id
     """Records the refusal and answers 429, with Retry-After saying when the window ends."""
     await record_hit(name, company_id=company_id, user_id=user_id)
 
-    retry_after = {RETRY_AFTER: str(max(seconds, 1))}
+    seconds = max(seconds, 1)
 
     raise TemplateError(
         status.HTTP_429_TOO_MANY_REQUESTS,
         message,
-        headers=retry_after,
+        headers={RETRY_AFTER: str(seconds)},
         code=error_codes.RATE_LIMITED,
         limit=value,
+        hours=math.ceil(seconds / HOUR_SECONDS),
     )
 
 

@@ -84,9 +84,11 @@ def test_a_refusal_says_when_to_try_again(published):
     redis.expiries["key"] = 1200
 
     with pytest.raises(HTTPException) as refused:
-        asyncio.run(hit(redis, "key", HOURLY))
+        asyncio.run(hit(redis, "key", HOURLY, "Try again in {hours} h."))
 
     assert refused.value.headers == {"Retry-After": "1200"}
+    # The message may name the hours left, rounded up.
+    assert refused.value.detail == "Try again in 1 h."
 
 
 def test_a_spent_budget_says_when_to_try_again(published):

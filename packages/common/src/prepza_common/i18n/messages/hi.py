@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "अपनी LinkedIn प्रोफ़ाइल का पता डालें, जैसे linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "जिस टेक्स्ट पर आपने सहमति दी थी, वह बदल गया है। पेज दोबारा लोड करें और फिर से कोशिश करें।",
     "Only companies that have topped up can see people open to offers.": "जॉब ऑफ़र के लिए उपलब्ध लोगों को सिर्फ़ वही कंपनियाँ देख सकती हैं जिन्होंने टॉप-अप किया है।",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "आपकी कंपनी आज के सभी क्लिक मोड प्रीव्यू ({limit}) इस्तेमाल कर चुकी है। {hours} घंटे बाद फिर से कोशिश करें।",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "आपकी कंपनी आज के सभी वॉइस मोड प्रीव्यू ({limit}) इस्तेमाल कर चुकी है। {hours} घंटे बाद फिर से कोशिश करें।",
 }

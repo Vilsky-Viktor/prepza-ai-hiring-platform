@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "没有候选人而等待中的已生成面试数",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "没有候选人而等待中的已生成面试数，未付费",
       "PREVIEWS_PER_USER_HOUR": "每位用户每小时的面试预览数",
+      "PREVIEWS_PER_COMPANY_DAY": "每家公司每天的面试预览数（点选模式）",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "每家公司每天的面试预览数（语音模式）",
       "NOTES_PER_USER_HOUR": "每位用户每小时的面试备注数",
       "CHECKOUT_CALLS_PER_USER_HOUR": "每位用户每小时的结账、付款查询和发票次数",
       "TEMPLATE_COPIES_PER_HOUR": "每家公司每小时从模板复制的面试数",

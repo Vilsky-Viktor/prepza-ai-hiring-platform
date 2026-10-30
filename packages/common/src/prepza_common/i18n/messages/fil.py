@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Ilagay ang address ng iyong LinkedIn profile, gaya ng linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "Nagbago ang tekstong sinang-ayunan mo. I-reload ang page at subukan muli.",
     "Only companies that have topped up can see people open to offers.": "Ang mga kumpanyang nakapag-top up lang ang makakakita sa mga taong open to offers.",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Nagamit na ng kumpanya mo ang lahat ng click mode preview ngayong araw ({limit}). Subukang muli pagkalipas ng {hours} oras.",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Nagamit na ng kumpanya mo ang lahat ng voice mode preview ngayong araw ({limit}). Subukang muli pagkalipas ng {hours} oras.",
 }

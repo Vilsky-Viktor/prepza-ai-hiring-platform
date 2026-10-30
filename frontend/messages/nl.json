@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Gegenereerde interviews die zonder kandidaten wachten",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Gegenereerde interviews die zonder kandidaten wachten, niet-betalend",
       "PREVIEWS_PER_USER_HOUR": "Interviewvoorbeelden per gebruiker per uur",
+      "PREVIEWS_PER_COMPANY_DAY": "Interviewvoorbeelden per bedrijf per dag, klikmodus",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "Interviewvoorbeelden per bedrijf per dag, spraakmodus",
       "NOTES_PER_USER_HOUR": "Interviewnotities per gebruiker per uur",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Betalingen, betaalcontroles en facturen per gebruiker per uur",
       "TEMPLATE_COPIES_PER_HOUR": "Uit sjablonen gekopieerde interviews per bedrijf per uur",

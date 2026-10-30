@@ -113,6 +113,9 @@ Any company member can preview an interview as a candidate, with the play button
 - It is kept out of the candidate list.
 - Its answers are kept out of the questions' statistics.
 - A person starts at most 20 previews an hour, as many as practice rounds (`PREVIEWS_PER_USER_HOUR`, by default).
+- A company starts at most 20 previews a day in click mode (`PREVIEWS_PER_COMPANY_DAY`) and 5 in voice mode (`VOICE_PREVIEWS_PER_COMPANY_DAY`), counted apart, by default; both are in the admin zone's [Limits](admin-zone.md#limits). A voice preview reads aloud, hears and matches answers at prepza's cost, so its limit is refused while Redis is down; the click mode one is skipped then. Each day counts from the company's first preview (a fixed 24-hour window).
+- A preview is counted when it starts: after the access, the pledge and the interview's readiness are checked, and once only (opening a preview already running, or its next section, isn't a new start). A preview that fails to start gives its place back.
+- Over a limit, starting is refused with `429`, `Retry-After` until the window ends and the code `rate_limited`; the try page shows the reason, such as "Your company has used all of today's voice mode previews (5). Try again in 3 h.", in the user's language.
 
 ## Lists and text fields
 

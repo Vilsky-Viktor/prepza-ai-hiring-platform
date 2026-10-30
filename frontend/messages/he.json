@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "ראיונות שנוצרו וממתינים בלי מועמדים",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "ראיונות שנוצרו וממתינים בלי מועמדים, בלי תשלום",
       "PREVIEWS_PER_USER_HOUR": "תצוגות מקדימות של ראיונות למשתמש בשעה",
+      "PREVIEWS_PER_COMPANY_DAY": "תצוגות מקדימות של ראיונות לחברה ביום, מצב לחיצה",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "תצוגות מקדימות של ראיונות לחברה ביום, מצב קולי",
       "NOTES_PER_USER_HOUR": "הערות על ראיונות למשתמש בשעה",
       "CHECKOUT_CALLS_PER_USER_HOUR": "תשלומים, בדיקות תשלום וחשבוניות למשתמש בשעה",
       "TEMPLATE_COPIES_PER_HOUR": "ראיונות שהועתקו מתבניות לחברה בשעה",

@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Masukkan alamat profil LinkedIn Anda, misalnya linkedin.com/in/nama-anda.",
     "The text you agreed to has changed. Reload the page and try again.": "Teks yang Anda setujui telah berubah. Muat ulang halaman dan coba lagi.",
     "Only companies that have topped up can see people open to offers.": "Hanya perusahaan yang sudah melakukan top-up yang dapat melihat orang yang terbuka untuk tawaran kerja.",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Perusahaanmu sudah memakai semua pratinjau mode klik hari ini ({limit}). Coba lagi dalam {hours} jam.",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Perusahaanmu sudah memakai semua pratinjau mode suara hari ini ({limit}). Coba lagi dalam {hours} jam.",
 }

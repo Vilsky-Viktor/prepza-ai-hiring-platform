@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "Adaysız bekleyen oluşturulmuş mülakatlar",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "Adaysız bekleyen oluşturulmuş mülakatlar, ödeme yapmayan",
       "PREVIEWS_PER_USER_HOUR": "Kullanıcı başına saatlik mülakat önizlemesi",
+      "PREVIEWS_PER_COMPANY_DAY": "Şirket başına günlük mülakat önizlemesi, tıklama modu",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "Şirket başına günlük mülakat önizlemesi, sesli mod",
       "NOTES_PER_USER_HOUR": "Kullanıcı başına saatlik mülakat yorumu",
       "CHECKOUT_CALLS_PER_USER_HOUR": "Kullanıcı başına saatlik ödeme, ödeme kontrolü ve fatura",
       "TEMPLATE_COPIES_PER_HOUR": "Şirket başına saatlik şablondan kopyalanan mülakat",

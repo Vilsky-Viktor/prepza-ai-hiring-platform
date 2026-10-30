@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Введіть адресу свого профілю LinkedIn, наприклад linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "Текст, на який ви погодилися, змінився. Оновіть сторінку й спробуйте ще раз.",
     "Only companies that have topped up can see people open to offers.": "Людей, відкритих до пропозицій роботи, бачать лише компанії, які вже поповнювали баланс.",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Ваша компанія використала всі попередні перегляди в режимі «Клік» на сьогодні ({limit}). Спробуйте знову через {hours} год.",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Ваша компанія використала всі попередні перегляди в режимі «Голос» на сьогодні ({limit}). Спробуйте знову через {hours} год.",
 }

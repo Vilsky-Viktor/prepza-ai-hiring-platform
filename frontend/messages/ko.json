@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "지원자 없이 대기 중인 생성된 면접",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "지원자 없이 대기 중인 생성된 면접, 무료",
       "PREVIEWS_PER_USER_HOUR": "사용자별 시간당 면접 미리보기",
+      "PREVIEWS_PER_COMPANY_DAY": "회사별 하루 면접 미리보기, 클릭 모드",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "회사별 하루 면접 미리보기, 음성 모드",
       "NOTES_PER_USER_HOUR": "사용자별 시간당 면접 메모",
       "CHECKOUT_CALLS_PER_USER_HOUR": "사용자별 시간당 결제, 결제 확인 및 인보이스 횟수",
       "TEMPLATE_COPIES_PER_HOUR": "회사별 시간당 템플릿에서 복사한 면접",

@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "المقابلات المُنشأة التي تنتظر دون مرشحين",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "المقابلات المُنشأة التي تنتظر دون مرشحين، لمن لم يدفع",
       "PREVIEWS_PER_USER_HOUR": "معاينات المقابلات لكل مستخدم في الساعة",
+      "PREVIEWS_PER_COMPANY_DAY": "معاينات المقابلات لكل شركة في اليوم، نمط النقر",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "معاينات المقابلات لكل شركة في اليوم، النمط الصوتي",
       "NOTES_PER_USER_HOUR": "ملاحظات المقابلات لكل مستخدم في الساعة",
       "CHECKOUT_CALLS_PER_USER_HOUR": "عمليات الدفع والتحقق من المدفوعات والفواتير لكل مستخدم في الساعة",
       "TEMPLATE_COPIES_PER_HOUR": "المقابلات المنسوخة من القوالب لكل شركة في الساعة",

@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedIn profilinin adresini gir, örneğin linkedin.com/in/adin.",
     "The text you agreed to has changed. Reload the page and try again.": "Onay verdiğin metin değişti. Sayfayı yenile ve tekrar dene.",
     "Only companies that have topped up can see people open to offers.": "İş tekliflerine açık kişileri yalnızca bakiye yüklemiş şirketler görebilir.",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Şirketiniz bugünkü tüm tıklama modu önizlemelerini kullandı ({limit}). {hours} saat sonra tekrar deneyin.",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Şirketiniz bugünkü tüm sesli mod önizlemelerini kullandı ({limit}). {hours} saat sonra tekrar deneyin.",
 }

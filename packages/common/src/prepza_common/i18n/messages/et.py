@@ -295,4 +295,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Sisesta oma LinkedIni profiili aadress, nt linkedin.com/in/sinu-nimi.",
     "The text you agreed to has changed. Reload the page and try again.": "Tekst, millega nõustusid, on muutunud. Laadi leht uuesti ja proovi veel kord.",
     "Only companies that have topped up can see people open to offers.": "Tööpakkumistele avatud inimesi näevad ainult ettevõtted, kes on krediiti juba ostnud.",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Sinu ettevõte on tänased klõpsurežiimi eelvaated ära kasutanud ({limit}). Proovi uuesti {hours} t pärast.",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Sinu ettevõte on tänased häälerežiimi eelvaated ära kasutanud ({limit}). Proovi uuesti {hours} t pärast.",
 }

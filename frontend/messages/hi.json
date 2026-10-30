@@ -618,6 +618,8 @@
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES": "बिना उम्मीदवार के इंतज़ार कर रहे बनाए गए इंटरव्यू",
       "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID": "बिना उम्मीदवार के इंतज़ार कर रहे बनाए गए इंटरव्यू, बिना भुगतान",
       "PREVIEWS_PER_USER_HOUR": "प्रति उपयोगकर्ता प्रति घंटा इंटरव्यू प्रीव्यू",
+      "PREVIEWS_PER_COMPANY_DAY": "प्रति कंपनी प्रति दिन इंटरव्यू प्रीव्यू, क्लिक मोड",
+      "VOICE_PREVIEWS_PER_COMPANY_DAY": "प्रति कंपनी प्रति दिन इंटरव्यू प्रीव्यू, वॉइस मोड",
       "NOTES_PER_USER_HOUR": "प्रति उपयोगकर्ता प्रति घंटा इंटरव्यू नोट",
       "CHECKOUT_CALLS_PER_USER_HOUR": "प्रति उपयोगकर्ता प्रति घंटा भुगतान, भुगतान जाँच और इनवॉइस",
       "TEMPLATE_COPIES_PER_HOUR": "प्रति कंपनी प्रति घंटा टेम्पलेट से कॉपी किए गए इंटरव्यू",

@@ -285,4 +285,6 @@ MESSAGES = {
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Gib die Adresse deines LinkedIn-Profils ein, z. B. linkedin.com/in/dein-name.",
     "The text you agreed to has changed. Reload the page and try again.": "Der Text, dem du zugestimmt hast, hat sich geändert. Lade die Seite neu und versuche es noch einmal.",
     "Only companies that have topped up can see people open to offers.": "Nur Unternehmen, die schon aufgeladen haben, sehen Personen, die offen für Jobangebote sind.",
+    "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Dein Unternehmen hat alle heutigen Vorschauen im Klickmodus genutzt ({limit}). Versuche es in {hours} Std. erneut.",
+    "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Dein Unternehmen hat alle heutigen Vorschauen im Sprachmodus genutzt ({limit}). Versuche es in {hours} Std. erneut.",
 }
