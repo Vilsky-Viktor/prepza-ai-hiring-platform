@@ -1,11 +1,16 @@
+import math
 import struct
 
+from rounds.constants.voice import SPEECH_RATE
 from rounds.helpers.voice_speech import (
     clip_key,
     confirmation,
     letters_said,
+    ogg_opus,
     ogg_seconds,
+    pcm_seconds,
     question_script,
+    strays,
 )
 from rounds.schemas.rounds import NextQuestion
 
@@ -59,3 +64,28 @@ def test_a_clip_plays_for_its_last_sample_less_the_pre_skip():
 
     assert ogg_seconds(audio) == 3.0
     assert ogg_seconds(b"not audio") == 0.0
+
+
+def test_the_speech_models_audio_is_kept_as_ogg_opus_of_the_same_length():
+    # Two seconds of a tone, as the model sends it: 16-bit mono PCM.
+    samples = [
+        int(8000 * math.sin(2 * math.pi * 440 * i / SPEECH_RATE)) for i in range(2 * SPEECH_RATE)
+    ]
+    pcm = struct.pack(f"<{len(samples)}h", *samples)
+
+    audio = ogg_opus(pcm)
+
+    assert pcm_seconds(pcm) == 2.0
+    assert audio.startswith(b"OggS") and b"OpusHead" in audio
+    assert abs(ogg_seconds(audio) - 2.0) < 0.05
+    assert len(audio) < len(pcm) / 4
+
+
+def test_a_reading_strays_when_it_adds_words_or_misses_too_many():
+    script = "Which index suits range queries? A: B-tree. B: Hash. C: GIN. D: BRIN."
+
+    assert not strays(
+        script, "Which index suits range queries? A: B tree. B: Hash. C: GIN. D: BRIN."
+    )
+    assert strays(script, script + " The correct answer is D.")
+    assert strays(script, "Which index suits range queries? A: B-tree. B: Hash.")

@@ -11,11 +11,13 @@ MODEL_PRICES = {
     "gpt-6-astra": (10.00, 1.00, 50.00),
     "text-embedding-3-small": (0.02, 0.02, 0.0),
 }
-# USD per minute of audio turned into text, or of speech made from text (OpenAI's estimate per
-# minute for its text-to-speech model).
+# USD per minute of audio turned into text, or of speech made from text. The realtime voice
+# model's: its audio output (20 tokens a second at $20 per million) and about $0.002 a minute of
+# text in and out (the instructions, its transcript and reasoning), measured on voice mode's
+# readings.
 AUDIO_PRICES = {
     "gpt-transcribe": 0.0045,
-    "gpt-4o-mini-tts": 0.015,
+    "gpt-realtime-2.1-mini": 0.026,
 }
 # The Batch API charges this share of the usual price.
 BATCH_SHARE = 0.5

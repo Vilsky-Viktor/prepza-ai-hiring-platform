@@ -6,6 +6,7 @@ from fastapi import HTTPException, status
 from openai import OpenAIError
 from prepza_common.ai import ai_usage
 from prepza_common.ai.ai_constants import Outcome
+from prepza_common.config.constants import LANGUAGES
 from prepza_common.redis import redis_lock
 
 from rounds.config import settings
@@ -14,12 +15,14 @@ from rounds.constants.voice import (
     CLIP_TOUCH_HOURS,
     CLIP_WAIT_SECONDS,
     SPEECH_ACTION,
+    SPEECH_ATTEMPTS,
     SPEECH_FAILED,
 )
 from rounds.core.db import Session as Db
-from rounds.helpers.voice_speech import clip_key, ogg_seconds
-from rounds.integrations.llm import get_speech_client
+from rounds.core.exceptions import SpeechFailed
+from rounds.helpers.voice_speech import clip_key, ogg_opus, ogg_seconds, pcm_seconds, strays
 from rounds.integrations.redis import get_redis
+from rounds.integrations.speech import say
 from rounds.models.sessions import Session
 from rounds.models.voice_clips import VoiceClip
 from rounds.prompts.voice_speech import READING
@@ -29,18 +32,30 @@ from rounds.services import voice_limits
 logger = logging.getLogger(__name__)
 
 
-async def speak(text: str) -> bytes:
-    """OpenAI's reading of `text`, as Ogg Opus. The text is in the interview's language, which
-    the model reads it in."""
-    result = await get_speech_client().audio.speech.create(
-        model=settings.speech_model,
-        voice=settings.speech_voice,
-        input=text,
-        instructions=READING,
-        response_format="opus",
-    )
+async def speak(text: str, language: str) -> tuple[bytes, float]:
+    """OpenAI's reading of `text` in the interview's language, as Ogg Opus, and the seconds of
+    speech made for it. A reading that fails or strays from the text (by the model's own
+    transcript: an answer added, words left out) is made again, SPEECH_ATTEMPTS times at most;
+    then SpeechFailed, with the seconds spent."""
+    instructions = READING.format(language=LANGUAGES[language], text=text)
+    spent = 0.0
+    reason = ""
 
-    return result.content
+    for _ in range(SPEECH_ATTEMPTS):
+        try:
+            pcm, transcript = await say(instructions)
+        except (SpeechFailed, OpenAIError, TimeoutError, OSError) as error:
+            reason = type(error).__name__
+            continue
+
+        spent += pcm_seconds(pcm)
+
+        if not strays(text, transcript):
+            return await asyncio.to_thread(ogg_opus, pcm), spent
+
+        reason = "strayed"
+
+    raise SpeechFailed(reason, spent)
 
 
 async def cached(key: str) -> VoiceClip | None:
@@ -90,9 +105,9 @@ async def clip_for(row: Session, text: str, language: str, company_text: bool) -
     if token is None:
         await made_elsewhere(key)
 
-        return await cached(key) or await made(row, key, text, company_text)
+        return await cached(key) or await made(row, key, text, language, company_text)
 
-    return await made_once(row, key, text, company_text, token)
+    return await made_once(row, key, text, language, company_text, token)
 
 
 async def made_ahead(row: Session, text: str, language: str, company_text: bool) -> None:
@@ -106,32 +121,36 @@ async def made_ahead(row: Session, text: str, language: str, company_text: bool)
     token = await redis_lock.acquire(get_redis(), lock_of(key), CLIP_LOCK_SECONDS)
 
     if token is not None:
-        await made_once(row, key, text, company_text, token)
+        await made_once(row, key, text, language, company_text, token)
 
 
-async def made_once(row: Session, key: str, text: str, company_text: bool, token: str) -> VoiceClip:
+async def made_once(
+    row: Session, key: str, text: str, language: str, company_text: bool, token: str
+) -> VoiceClip:
     """Under the clip's lock (`token`): the clip, unless another request kept it just before."""
     try:
-        return await cached(key) or await made(row, key, text, company_text)
+        return await cached(key) or await made(row, key, text, language, company_text)
     finally:
         await redis_lock.release(get_redis(), lock_of(key), token)
 
 
-async def made(row: Session, key: str, text: str, company_text: bool) -> VoiceClip:
+async def made(row: Session, key: str, text: str, language: str, company_text: bool) -> VoiceClip:
     """`text` read aloud now, counted against the limits, priced and kept."""
     await voice_limits.check_clip(row)
     who = {"company_id": row.company_id, "user_id": row.user_id, "subject_id": row.id}
+    model = settings.speech_model
 
     try:
-        audio = await speak(text)
-    except OpenAIError as error:
-        logger.warning("Reading a clip aloud failed: %s", type(error).__name__)
-        await ai_usage.provider_refused(error, SPEECH_ACTION, row.company_id, row.user_id)
-        await ai_usage.record(SPEECH_ACTION, settings.speech_model, outcome=Outcome.FAILED, **who)
+        audio, spent = await speak(text, language)
+    except SpeechFailed as error:
+        logger.warning("Reading a clip aloud failed: %s", error)
+        await ai_usage.record(
+            SPEECH_ACTION, model, audio_seconds=error.seconds, outcome=Outcome.FAILED, **who
+        )
         raise HTTPException(status.HTTP_502_BAD_GATEWAY, SPEECH_FAILED)
 
+    await ai_usage.record(SPEECH_ACTION, model, audio_seconds=spent, **who)
     seconds = ogg_seconds(audio)
-    await ai_usage.record(SPEECH_ACTION, settings.speech_model, audio_seconds=seconds, **who)
     clip = VoiceClip(
         key=key,
         company_id=row.company_id if company_text else None,

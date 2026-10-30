@@ -1,10 +1,20 @@
 import hashlib
+import io
 import re
 import struct
 
+import av
+from prepza_common.ai.spoken_words import word_errors
 from prepza_common.i18n.i18n import translate
 
-from rounds.constants.voice import LETTERS, MAX_SPOKEN_CHARACTERS
+from rounds.constants.voice import (
+    LETTERS,
+    MAX_ADDED_WORDS,
+    MAX_READING_WORD_ERRORS,
+    MAX_SPOKEN_CHARACTERS,
+    OPUS_BIT_RATE,
+    SPEECH_RATE,
+)
 from rounds.constants.voice_phrases import (
     CHOOSE_ALL,
     CONFIRM,
@@ -89,3 +99,32 @@ def ogg_seconds(audio: bytes) -> float:
     (pre_skip,) = struct.unpack_from("<H", audio, head + 10)
 
     return max(0.0, (position - pre_skip) / OPUS_RATE)
+
+
+def pcm_seconds(pcm: bytes) -> float:
+    """How long the speech model's audio (16-bit mono PCM at SPEECH_RATE) plays."""
+    return len(pcm) / 2 / SPEECH_RATE
+
+
+def ogg_opus(pcm: bytes) -> bytes:
+    """The speech model's audio as Ogg Opus, as clips are kept and played."""
+    out = io.BytesIO()
+
+    with av.open(out, "w", format="ogg") as container:
+        stream = container.add_stream("libopus", rate=SPEECH_RATE, layout="mono")
+        stream.bit_rate = OPUS_BIT_RATE
+        frame = av.AudioFrame(format="s16", layout="mono", samples=len(pcm) // 2)
+        frame.sample_rate = SPEECH_RATE
+        frame.planes[0].update(pcm)
+        container.mux(stream.encode(frame))
+        container.mux(stream.encode(None))
+
+    return out.getvalue()
+
+
+def strays(text: str, transcript: str) -> bool:
+    """The reading, by the model's own transcript, isn't the text: too many words wrong, or words
+    added in one place (an answer, a comment)."""
+    rate, added = word_errors(text, transcript)
+
+    return rate > MAX_READING_WORD_ERRORS or added >= MAX_ADDED_WORDS

@@ -5,6 +5,8 @@ requires-python = ">=3.14"
 dependencies = [
     "prepza-common[llm,langfuse]",
     "openai>=3.26.1",
+    "av>=19.0.2",
+    "websockets>=17.3",
     "alembic>=1.20.0",
     "fastapi>=0.141.1",
     "firebase-admin>=7.7.0",

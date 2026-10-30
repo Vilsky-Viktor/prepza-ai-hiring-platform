@@ -9,7 +9,6 @@ from rounds.constants.voice import (
     MATCH_MAX_TOKENS,
     MATCH_RETRIES,
     MATCH_TIMEOUT_SECONDS,
-    SPEECH_RETRIES,
     SPEECH_TIMEOUT_SECONDS,
     TRANSCRIBE_RETRIES,
     TRANSCRIBE_TIMEOUT_SECONDS,
@@ -30,11 +29,10 @@ def get_match_model() -> ChatOpenAI:
 
 @cache
 def get_speech_client() -> AsyncOpenAI:
-    """OpenAI's own client, for reading text aloud."""
+    """OpenAI's own client, for reading text aloud through its realtime connection: bounded by
+    integrations/speech.py, tried again by services/voice_clips.py (SPEECH_ATTEMPTS)."""
     return AsyncOpenAI(
-        api_key=settings.openai_api_key or None,
-        timeout=SPEECH_TIMEOUT_SECONDS,
-        max_retries=SPEECH_RETRIES,
+        api_key=settings.openai_api_key or None, timeout=SPEECH_TIMEOUT_SECONDS, max_retries=0
     )
 
 

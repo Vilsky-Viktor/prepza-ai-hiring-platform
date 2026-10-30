@@ -16,7 +16,15 @@ MATCH_TIMEOUT_SECONDS = 15
 MATCH_RETRIES = 1
 MATCH_MAX_TOKENS = 100
 SPEECH_TIMEOUT_SECONDS = 30
-SPEECH_RETRIES = 1
+# A reading is made at most this many times: again when it fails or strays from its text.
+SPEECH_ATTEMPTS = 2
+# The speech model's audio: 16-bit mono PCM at this rate, kept as Ogg Opus at this bit rate.
+SPEECH_RATE = 24_000
+OPUS_BIT_RATE = 32_000
+# A reading strays when the model's own transcript of it has more word errors than this share of
+# the text's words, or this many words in a row the text hasn't (an answer, a comment).
+MAX_READING_WORD_ERRORS = 0.1
+MAX_ADDED_WORDS = 3
 TRANSCRIBE_TIMEOUT_SECONDS = 20
 TRANSCRIBE_RETRIES = 1
 

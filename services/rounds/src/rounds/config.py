@@ -15,8 +15,9 @@ class Settings(ServiceSettings):
     # Turns what a candidate said into the options they meant (services/voice_match.py).
     voice_match_model: str = "gpt-6-luna"
     voice_match_reasoning_effort: str = "none"
-    # Reads questions and the interviewer's phrases aloud, once each (cached in voice_clips).
-    speech_model: str = "gpt-4o-mini-tts"
+    # Reads questions and the interviewer's phrases aloud, once each (cached in voice_clips): a
+    # realtime voice model told to say the text exactly (OpenAI's text-to-speech models shut down).
+    speech_model: str = "gpt-realtime-2.1-mini"
     speech_voice: str = "marin"
     # Turns a candidate's spoken answer into text.
     transcribe_model: str = "gpt-transcribe"

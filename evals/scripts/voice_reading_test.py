@@ -52,8 +52,7 @@ async def one(item: dict, slots: asyncio.Semaphore) -> dict:
 
     async with slots:
         started = time.monotonic()
-        audio = await speak(script)
-        spoken = ogg_seconds(audio)
+        audio, spoken = await speak(script, item["language"])
         took = time.monotonic() - started
         model = settings.transcribe_model
         result = await speech_to_text(
