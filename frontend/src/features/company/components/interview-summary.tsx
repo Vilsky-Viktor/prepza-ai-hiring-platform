@@ -32,9 +32,10 @@ export function InterviewSummary({
   return (
     <>
       <span className="min-w-0 space-y-1">
-        {/* How it's answered, after the title's last word, wrapping with it. */}
+        {/* How it's answered, after the title's last word, wrapping with it. The title in its
+            own element, so its text is the title alone. */}
         <span className="block text-lg font-medium">
-          {title}
+          <span>{title}</span>
           {"\u2060"}
           <AnswerModeIcon voice={voice} className="ms-2" />
         </span>
