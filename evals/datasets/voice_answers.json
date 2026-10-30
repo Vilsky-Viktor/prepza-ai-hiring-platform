@@ -1,7 +1,7 @@
 {
  "about": "Made-up spoken answers to multiple-choice questions in voice mode's six languages (English, Spanish, German, French, Portuguese, Italian), for the matching that turns what a candidate said into options (rounds' services/voice_match.py): letters (also as heard or spelled), read options, paraphrases, positions, several options on select-all-that-apply questions, changes of mind, confirmations and refusals of a waiting choice, and traps that must stay unclear (undecided, a question back, several options on a single-answer question, words fitting no option, recognition noise on silence, instructions to the model). `spoken` items are also read aloud with a voice, a way of speaking and sometimes noise into audio/answer_<id>.ogg (build_voice_answers.py) and heard by speech-to-text first. Graded by code: the intent and the options. Hand-written.",
  "built": "2026-10-30",
- "model": "by hand; audio gpt-4o-mini-tts",
+ "model": "by hand; audio gpt-realtime-2.1-mini",
  "questions": {
   "en1": {
    "language": "en",

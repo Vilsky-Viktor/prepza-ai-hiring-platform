@@ -150,6 +150,17 @@ $0.00008. The `by_code` share is now in the script's scores.
 
 The reading aloud has its own eval since (below).
 
+Spoken answers rebuilt by `gpt-realtime-2.1-mini` (2026-10-30, kept): the 35 recordings were
+made by `gpt-4o-mini-tts`, which is no longer used; `build_voice_answers.py` now speaks them
+with the realtime model (`realtime_speech.py`, shared with `build_audio.py`: the same voices and
+ways of speaking in the instructions, a clip spoken again when its own transcript is over 10%
+off), 3 repeats: right as text unchanged (100%, 0 wrong); right spoken 92.4% (85.7–96.1) →
+90.5% (83.4–94.7), wrong matches 0% → 0% (0.0–3.5): within the noise and above the 90% target.
+A first build that kept clips up to 20% off gave 89.5% and 3 wrong matches (es20 "Git y
+Subversion" heard as "It is subversion", matched to Subversion alone: a fair reading of what was
+heard); the stricter check rebuilt it. Misses left are the hearing ("Hit e Subash", "E A C",
+"Ach nein" without its letter): each unclear, so the candidate says it again or taps.
+
 ## Voice mode's reading aloud: first eval (2026-10-30)
 
 OpenAI shuts its text-to-speech models (`gpt-4o-mini-tts`, `tts-1`, `tts-1-hd`) down on

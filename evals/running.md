@@ -164,14 +164,14 @@ The assistant's conversation titles, with its own title prompt and model:
 evals/run.sh assistant titles_test.py --label new-prompt   # --repeat 3, --only t02,t09, --sample 6
 ```
 
-The assistant's speech to text, on recordings made once by text-to-speech (`build_audio.py`):
+The assistant's speech to text, on recordings made once by the realtime voice model (`build_audio.py`):
 
 ```bash
 evals/run.sh assistant transcription_test.py --label new-model   # --repeat 2
 ```
 
 Voice mode's answer matching (rounds), on spoken answers as text and, for some, as recordings
-made once by text-to-speech with noise mixed in (`build_voice_answers.py`):
+made once by the realtime voice model with noise mixed in (`build_voice_answers.py`):
 
 ```bash
 evals/run.sh rounds voice_answers_test.py --label new-prompt   # --repeat 3, --only en01,de04

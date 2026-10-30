@@ -268,7 +268,7 @@ give answer C"). Each is turned into the interviewer's script by rounds' own `qu
 Graded by code (`voice_reading_test.py`): word errors once heard, every option's letter heard,
 nothing added.
 
-## `voice_answers.json` and `audio/answer_*.ogg` (by hand, 2026-10-30; audio by `gpt-4o-mini-tts`, 2026-10-30)
+## `voice_answers.json` and `audio/answer_*.ogg` (by hand, 2026-10-30; audio by `gpt-realtime-2.1-mini`, 2026-10-30)
 
 153 made-up spoken answers to 19 made-up multiple-choice questions (a statistics question, a
 customer-service one, a select-all-that-apply one on version control, and in English a code
@@ -278,8 +278,10 @@ several options on the select-all one, changes of mind, yes and no to a waiting 
 choice while one waits, and traps that must stay unclear (undecided, a question back, several
 options on a single-answer question, words fitting no option, "Thanks for watching!" as speech
 recognition hears silence, instructions to the model, a yes with nothing waiting). 35 are also
-spoken (`build_voice_answers.py`: six voices, accents and hesitation asked for in the instructions,
-pink noise mixed into most by ffmpeg) into `audio/answer_<id>.ogg`. Graded by code
+spoken by OpenAI's realtime voice model (`build_voice_answers.py`: eight voices, accents and
+hesitation asked for in the instructions, a clip spoken again when the model's own transcript is
+over 10% off; then Ogg Opus with pink noise mixed into most, by ffmpeg) into
+`audio/answer_<id>.ogg`. Graded by code
 (`voice_answers_test.py`): the intent and the options.
 
 ## `screen.json` (by hand, 2026-10-22)
