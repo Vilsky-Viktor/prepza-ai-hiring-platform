@@ -15,8 +15,6 @@ MODEL_PRICES = {
 # minute for its text-to-speech model).
 AUDIO_PRICES = {
     "gpt-transcribe": 0.0045,
-    "gpt-4o-mini-transcribe": 0.003,
-    "gpt-4o-transcribe": 0.006,
     "gpt-4o-mini-tts": 0.015,
 }
 # The Batch API charges this share of the usual price.

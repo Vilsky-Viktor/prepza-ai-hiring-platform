@@ -62,12 +62,10 @@ def test_a_batch_call_is_recorded_at_half_price(published):
 
 
 def test_transcription_is_recorded_by_its_seconds(published):
-    asyncio.run(
-        ai_usage.record("transcription", "gpt-4o-mini-transcribe", audio_seconds=60, user_id="u1")
-    )
+    asyncio.run(ai_usage.record("transcription", "gpt-transcribe", audio_seconds=60, user_id="u1"))
 
     data = published[0][1]
-    assert (data["audio_seconds"], data["cost_usd"]) == (60, pytest.approx(0.003))
+    assert (data["audio_seconds"], data["cost_usd"]) == (60, pytest.approx(0.0045))
     assert (data["input_tokens"], data["output_tokens"]) == (0, 0)
 
 

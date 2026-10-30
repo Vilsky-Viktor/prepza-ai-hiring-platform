@@ -96,6 +96,5 @@ def test_embeddings_cost_their_input_only():
 
 def test_audio_costs_by_the_minute():
     assert audio_cost("gpt-transcribe", 120) == pytest.approx(0.009)
-    assert audio_cost("gpt-4o-mini-transcribe", 90) == pytest.approx(0.0045)
     assert audio_cost("gpt-4o-mini-tts", 60) == pytest.approx(0.015)
     assert audio_cost("unknown-model", 90) is None

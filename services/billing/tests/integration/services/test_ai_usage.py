@@ -126,16 +126,16 @@ def test_the_ai_costs_tab_sums_a_month(run, redis, monkeypatch):
                 action="interview_generation", company_id=acme, subject_id=generation, cost_usd=0.5
             ),
         ),
-        # Two assistant messages, unpaid, and a minute and a half of transcription.
+        # Two assistant messages, unpaid, and a minute of transcription.
         (Category.UNPAID, call(company_id=beta, user_id=ann, subject_id="m1", cost_usd=0.2)),
         (Category.UNPAID, call(company_id=beta, user_id=ann, subject_id="m2", cost_usd=0.1)),
         (
             Category.NO_COMPANY,
             call(
                 action="transcription",
-                model="gpt-4o-mini-transcribe",
+                model="gpt-transcribe",
                 user_id=ann,
-                audio_seconds=90.0,
+                audio_seconds=60.0,
                 input_tokens=0,
                 output_tokens=0,
                 cost_usd=0.0045,
@@ -178,8 +178,8 @@ def test_the_ai_costs_tab_sums_a_month(run, redis, monkeypatch):
     assert (message.units, message.unit_cost) == (2, pytest.approx(0.15))
     assert message.unpaid_spend == pytest.approx(0.3)
     # Transcription is priced by the minute.
-    assert actions["transcription"].units == pytest.approx(1.5)
-    assert actions["transcription"].unit_cost == pytest.approx(0.003)
+    assert actions["transcription"].units == pytest.approx(1.0)
+    assert actions["transcription"].unit_cost == pytest.approx(0.0045)
     models = {part.model: part for part in found.models}
     assert models["gpt-6.1-sol"].cached_share == pytest.approx(500 / 6_000)
     assert [(part.id, part.name, part.calls) for part in found.companies] == [

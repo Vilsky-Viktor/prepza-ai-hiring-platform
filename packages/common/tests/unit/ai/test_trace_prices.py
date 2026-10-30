@@ -49,7 +49,7 @@ def langfuse(monkeypatch):
 
 
 def test_each_model_gets_its_prices_per_token_with_cached_input_and_reasoning(langfuse):
-    managed = [SimpleNamespace(model_name="gpt-4o", is_langfuse_managed=True)] * 150
+    managed = [SimpleNamespace(model_name="gpt-5", is_langfuse_managed=True)] * 150
     models = langfuse(managed)
 
     asyncio.run(trace_prices.sync_model_prices())
