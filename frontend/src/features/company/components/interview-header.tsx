@@ -105,6 +105,7 @@ export async function InterviewHeader({
             interview.total_minutes != null && (
               <InterviewEstimate
                 questions={interview.total_questions}
+                maxQuestions={interview.max_questions}
                 questionSeconds={interview.question_seconds}
                 minutes={interview.total_minutes}
               />

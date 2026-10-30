@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "Chỉ những công ty đã nạp tiền mới xem được những người sẵn sàng nhận lời mời làm việc.",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Công ty bạn đã dùng hết lượt xem trước ở chế độ nhấp của hôm nay ({limit}). Vui lòng thử lại sau {hours} giờ.",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Công ty bạn đã dùng hết lượt xem trước ở chế độ giọng nói của hôm nay ({limit}). Vui lòng thử lại sau {hours} giờ.",
+    "At most {most} questions per candidate; {left} left.": "Mỗi ứng viên tối đa {most} câu hỏi; còn lại {left} câu.",
 }

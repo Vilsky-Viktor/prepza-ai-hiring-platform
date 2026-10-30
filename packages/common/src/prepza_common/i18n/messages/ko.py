@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "채용 제안에 열려 있는 사람은 충전한 적이 있는 회사만 볼 수 있습니다.",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "회사가 오늘의 클릭 모드 미리보기({limit}회)를 모두 사용했습니다. {hours}시간 후에 다시 시도해 주세요.",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "회사가 오늘의 음성 모드 미리보기({limit}회)를 모두 사용했습니다. {hours}시간 후에 다시 시도해 주세요.",
+    "At most {most} questions per candidate; {left} left.": "지원자 1명당 문제는 최대 {most}개입니다. 남은 문제 수: {left}개.",
 }

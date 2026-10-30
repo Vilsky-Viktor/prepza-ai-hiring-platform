@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "İş tekliflerine açık kişileri yalnızca bakiye yüklemiş şirketler görebilir.",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Şirketiniz bugünkü tüm tıklama modu önizlemelerini kullandı ({limit}). {hours} saat sonra tekrar deneyin.",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Şirketiniz bugünkü tüm sesli mod önizlemelerini kullandı ({limit}). {hours} saat sonra tekrar deneyin.",
+    "At most {most} questions per candidate; {left} left.": "Aday başına en fazla {most} soru; kalan: {left}.",
 }

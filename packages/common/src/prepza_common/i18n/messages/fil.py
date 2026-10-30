@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "Ang mga kumpanyang nakapag-top up lang ang makakakita sa mga taong open to offers.",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Nagamit na ng kumpanya mo ang lahat ng click mode preview ngayong araw ({limit}). Subukang muli pagkalipas ng {hours} oras.",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Nagamit na ng kumpanya mo ang lahat ng voice mode preview ngayong araw ({limit}). Subukang muli pagkalipas ng {hours} oras.",
+    "At most {most} questions per candidate; {left} left.": "Hanggang {most} tanong lang bawat kandidato; {left} pa ang natitira.",
 }

@@ -9,7 +9,7 @@ import httpx
 from fastapi import HTTPException, status
 from prepza_common.config.constants import VOICE_LANGUAGES
 
-from companies.constants.interviews import GENERATION_FAILED_STATUS
+from companies.constants.interviews import GENERATION_FAILED_STATUS, MAX_INTERVIEW_QUESTIONS
 from companies.core.db import Session
 from companies.helpers.interviews import (
     interview_minutes,
@@ -155,6 +155,7 @@ async def detail(interview: Interview, member: Member) -> InterviewDetail:
         topics=topics,
         total_minutes=interview_minutes(found, interview.topic_limits, interview.question_seconds),
         total_questions=interview_questions(found, interview.topic_limits),
+        max_questions=MAX_INTERVIEW_QUESTIONS,
         can_edit=can_edit(member),
         keep_private=interview.keep_private,
         voice_available=interview.language in VOICE_LANGUAGES,

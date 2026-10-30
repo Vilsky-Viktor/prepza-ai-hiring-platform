@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "只有充值过的公司才能看到愿意接受工作邀约的人。",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "你的公司今天的点选模式预览（{limit} 次）已用完，请在 {hours} 小时后再试。",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "你的公司今天的语音模式预览（{limit} 次）已用完，请在 {hours} 小时后再试。",
+    "At most {most} questions per candidate; {left} left.": "每位候选人最多 {most} 道题；还剩 {left} 道。",
 }

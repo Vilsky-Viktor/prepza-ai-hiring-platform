@@ -42,6 +42,9 @@ async def list_topic_questions(
 async def set_topic_limit(
     interview_id: UUID, topic_id: UUID, body: TopicLimitIn, user: CurrentUser
 ) -> None:
+    """How many of the topic's questions each candidate gets; 0 leaves the topic out. 422 over
+    the topic's number of questions, for the last topic with questions, and over 60 questions
+    per candidate over all topics (`too_many_questions`): lower another topic first."""
     interview = await generated_interview(user, interview_id, editor=True)
     await interview_changes.set_topic_limit(interview, topic_id, body.limit, user.uid)
 

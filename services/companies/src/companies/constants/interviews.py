@@ -1,6 +1,7 @@
 from enum import StrEnum
 
 from prepza_common.config.constants import (  # noqa: F401 (re-exported)
+    MAX_INTERVIEW_QUESTIONS,
     MAX_QUESTION_SECONDS,
     MIN_QUESTION_SECONDS,
 )
@@ -28,9 +29,12 @@ MAX_PASS_MARK = 100
 # The settings whose change the action log records as interview_settings_changed (the pass mark
 # has an action of its own).
 SETTINGS_LOGGED = {"question_seconds", "hired", "keep_private", "voice"}
-# Questions each candidate gets from a topic until a manager sets another number: a short
-# interview, drawn at random from the topic's whole bank.
+# Questions each candidate gets from a topic until a manager sets another number, drawn at random
+# from the topic's whole bank: a new interview's topics share MAX_INTERVIEW_QUESTIONS evenly, this
+# many each at most (helpers/interviews.py topic_limits).
 DEFAULT_TOPIC_QUESTIONS = 10
+# A topic's number of questions that would take the interview over MAX_INTERVIEW_QUESTIONS.
+TOO_MANY_QUESTIONS = "At most {most} questions per candidate; {left} left."
 # Setting the last topic with questions to 0 (a topic at 0 is left out of the interview).
 NO_QUESTIONS_LEFT = "An interview needs at least one topic with questions."
 # Turning voice mode on for an interview in a language speech isn't reliable in.

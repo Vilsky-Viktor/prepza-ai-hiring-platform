@@ -195,26 +195,17 @@ async def update_settings(session: AsyncSession, interview_id, settings: Intervi
     await session.execute(update(Interview).where(Interview.id == interview_id).values(**values))
 
 
-async def set_topic_limit(
+async def set_topic_limits(
     session: AsyncSession,
     interview_id,
-    topic_id: uuid.UUID,
-    limit: int,
-    allowed: Callable[[dict[str, int]], bool],
-) -> bool:
-    """Sets the topic's number of questions, when `allowed` takes the new numbers; False, with
-    nothing changed, when it doesn't. Locked, so two changes at once both see the other."""
+    change: Callable[[dict[str, int]], dict[str, int]],
+) -> None:
+    """Stores the topics' numbers of questions `change` makes of the stored ones; it raises to
+    refuse, with nothing changed. Locked, so two changes at once each see the other's."""
     interview = await session.scalar(
         select(Interview).where(Interview.id == interview_id).with_for_update()
     )
-    limits = {**interview.topic_limits, str(topic_id): limit}
-
-    if not allowed(limits):
-        return False
-
-    interview.topic_limits = limits
-
-    return True
+    interview.topic_limits = change(interview.topic_limits)
 
 
 async def remove(session: AsyncSession, interview_id) -> list[tuple]:

@@ -101,6 +101,9 @@ class InterviewDetail(InterviewOut):
     total_minutes: int | None = None
     # Every question a candidate gets, over all topics; None while its questions aren't known.
     total_questions: int | None = None
+    # The most questions a candidate may get over all topics (the topics tab shows the total
+    # against it).
+    max_questions: int
     # Whether the user may change the test and its candidates: owners and admins, not viewers.
     can_edit: bool = False
     # Its questions are kept out of prepza's shared question bank (the terms' opt-out).

@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "求人のオファーを受け付けている人を見られるのは、チャージしたことのある企業だけです。",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "本日のクリックモードのプレビュー（{limit} 回）をすべて使用しました。{hours} 時間後にもう一度お試しください。",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "本日の音声モードのプレビュー（{limit} 回）をすべて使用しました。{hours} 時間後にもう一度お試しください。",
+    "At most {most} questions per candidate; {left} left.": "候補者 1 人あたりの問題は最大 {most} 問です。残りは {left} 問です。",
 }

@@ -8,11 +8,18 @@ from uuid import UUID
 from fastapi import HTTPException, status
 from prepza_common.events.audit_actions import AuditAction
 from prepza_common.events.interviews import INTERVIEW_PRIVACY_CHANGED, InterviewPrivacyChanged
+from prepza_common.i18n.i18n import TemplateError
 
-from companies.constants.interviews import NO_QUESTIONS_LEFT, SETTINGS_LOGGED
+from companies.constants import error_codes
+from companies.constants.interviews import (
+    MAX_INTERVIEW_QUESTIONS,
+    NO_QUESTIONS_LEFT,
+    SETTINGS_LOGGED,
+    TOO_MANY_QUESTIONS,
+)
 from companies.constants.invites import INTERVIEW_NOT_READY, LINK_TOKEN_BYTES
 from companies.core.db import Session
-from companies.helpers.interviews import interview_questions
+from companies.helpers.interviews import set_sizes, topic_limits
 from companies.integrations import library
 from companies.models.interviews import Interview
 from companies.repositories import audit, interviews, outbox
@@ -80,8 +87,10 @@ async def rename(interview: Interview, title: str, user_id: str) -> None:
 
 
 async def set_topic_limit(interview: Interview, topic_id: UUID, limit: int, user_id: str) -> None:
-    """How many of the topic's questions each candidate gets: at most the topic has (422), and
-    every candidate gets at least one question (422)."""
+    """How many of the topic's questions each candidate gets: at most the topic has (422), every
+    candidate gets at least one question (422), and at most MAX_INTERVIEW_QUESTIONS over all
+    topics (422, too_many_questions). Every topic's number is stored with it, so the others keep
+    theirs."""
     found = await library.get_set(interview.set_id) or {}
     topic = next(
         (item for item in found.get("topics", []) if str(item["id"]) == str(topic_id)), None
@@ -96,22 +105,38 @@ async def set_topic_limit(interview: Interview, topic_id: UUID, limit: int, user
             f"The topic has only {topic['question_count']} questions",
         )
 
-    # Every candidate gets at least one question.
-    def keeps_questions(limits: dict[str, int]) -> bool:
-        return bool(interview_questions(found, limits))
+    sizes = set_sizes(found)
+
+    def change(stored: dict[str, int]) -> dict[str, int]:
+        before = topic_limits(sizes, stored)
+
+        return checked_limits(before, {**before, str(topic_id): limit})
 
     async with Session.begin() as session:
-        saved = await interviews.set_topic_limit(
-            session, interview.id, topic_id, limit, keeps_questions
+        await interviews.set_topic_limits(session, interview.id, change)
+        await audit.record_interview(
+            session, interview, user_id, AuditAction.INTERVIEW_SETTINGS_CHANGED
         )
 
-        if saved:
-            await audit.record_interview(
-                session, interview, user_id, AuditAction.INTERVIEW_SETTINGS_CHANGED
-            )
 
-    if not saved:
+def checked_limits(before: dict[str, int], after: dict[str, int]) -> dict[str, int]:
+    """`after`, unless it leaves no question (422) or goes over MAX_INTERVIEW_QUESTIONS (422):
+    an interview already over it (made before the cap) may only come down."""
+    total, was = sum(after.values()), sum(before.values())
+
+    if not total:
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, NO_QUESTIONS_LEFT)
+
+    if total > MAX_INTERVIEW_QUESTIONS and total > was:
+        raise TemplateError(
+            status.HTTP_422_UNPROCESSABLE_CONTENT,
+            TOO_MANY_QUESTIONS,
+            code=error_codes.TOO_MANY_QUESTIONS,
+            most=MAX_INTERVIEW_QUESTIONS,
+            left=max(0, MAX_INTERVIEW_QUESTIONS - was),
+        )
+
+    return after
 
 
 async def set_link(interview: Interview, on: bool, user_id: str) -> str | None:

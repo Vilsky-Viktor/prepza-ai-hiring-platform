@@ -891,7 +891,12 @@ export interface paths {
       cookie?: never
     }
     get?: never
-    /** Set Topic Limit */
+    /**
+     * Set Topic Limit
+     * @description How many of the topic's questions each candidate gets; 0 leaves the topic out. 422 over
+     *     the topic's number of questions, for the last topic with questions, and over 60 questions
+     *     per candidate over all topics (`too_many_questions`): lower another topic first.
+     */
     put: operations["set_topic_limit_interviews__interview_id__topics__topic_id__limit_put"]
     post?: never
     delete?: never
@@ -3488,6 +3493,8 @@ export interface components {
       total_minutes?: number | null
       /** Total Questions */
       total_questions?: number | null
+      /** Max Questions */
+      max_questions: number
       /**
        * Can Edit
        * @default false

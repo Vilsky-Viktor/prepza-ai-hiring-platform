@@ -1,5 +1,7 @@
 # Actions on interviews, their questions and candidates (see actions.py for the entries' keys).
 
+from prepza_common.config.constants import MAX_INTERVIEW_QUESTIONS
+
 INTERVIEW_PAGE = "/companies/{company_id}/interviews/{interview_id}"
 CANDIDATES_PAGE = INTERVIEW_PAGE + "?tab=candidates"
 INTERVIEW_SUBJECT = {
@@ -133,7 +135,9 @@ INTERVIEW_ACTIONS = {
     "set_topic_limit": interview_action(
         "PUT",
         "/interviews/{interview_id}/topics/{topic_id}/limit",
-        "Set how many questions of a topic each candidate gets; 0 leaves the topic out.",
+        "Set how many questions of a topic each candidate gets; 0 leaves the topic out. A "
+        f"candidate gets at most {MAX_INTERVIEW_QUESTIONS} over all topics: lower another topic "
+        "first to go past it.",
         params=["topic_id"],
         body=["limit"],
     ),

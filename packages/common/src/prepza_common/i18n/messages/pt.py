@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "Só as empresas que já carregaram créditos podem ver pessoas abertas a ofertas de emprego.",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Sua empresa já usou todas as prévias no modo clique de hoje ({limit}). Tente novamente em {hours} h.",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Sua empresa já usou todas as prévias no modo de voz de hoje ({limit}). Tente novamente em {hours} h.",
+    "At most {most} questions per candidate; {left} left.": "No máximo {most} questões por candidato; restam {left}.",
 }

@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "เฉพาะบริษัทที่เคยเติมเครดิตแล้วเท่านั้นที่จะเห็นผู้ที่เปิดรับข้อเสนองาน",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "บริษัทของคุณใช้การดูตัวอย่างโหมดคลิกของวันนี้ครบแล้ว ({limit}) โปรดลองอีกครั้งในอีก {hours} ชั่วโมง",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "บริษัทของคุณใช้การดูตัวอย่างโหมดเสียงของวันนี้ครบแล้ว ({limit}) โปรดลองอีกครั้งในอีก {hours} ชั่วโมง",
+    "At most {most} questions per candidate; {left} left.": "ผู้สมัครแต่ละคนได้คำถามไม่เกิน {most} ข้อ เหลืออีก {left} ข้อ",
 }

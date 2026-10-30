@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "Alleen bedrijven die al hebben opgewaardeerd, zien mensen die openstaan voor vacatures.",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Je bedrijf heeft alle voorbeelden in klikmodus van vandaag gebruikt ({limit}). Probeer het over {hours} uur opnieuw.",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Je bedrijf heeft alle voorbeelden in spraakmodus van vandaag gebruikt ({limit}). Probeer het over {hours} uur opnieuw.",
+    "At most {most} questions per candidate; {left} left.": "Maximaal {most} vragen per kandidaat; nog {left} over.",
 }

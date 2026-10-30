@@ -287,4 +287,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "जॉब ऑफ़र के लिए उपलब्ध लोगों को सिर्फ़ वही कंपनियाँ देख सकती हैं जिन्होंने टॉप-अप किया है।",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "आपकी कंपनी आज के सभी क्लिक मोड प्रीव्यू ({limit}) इस्तेमाल कर चुकी है। {hours} घंटे बाद फिर से कोशिश करें।",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "आपकी कंपनी आज के सभी वॉइस मोड प्रीव्यू ({limit}) इस्तेमाल कर चुकी है। {hours} घंटे बाद फिर से कोशिश करें।",
+    "At most {most} questions per candidate; {left} left.": "हर उम्मीदवार के लिए ज़्यादा से ज़्यादा {most} सवाल; {left} बाकी हैं।",
 }

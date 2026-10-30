@@ -194,6 +194,9 @@ CREDITS_PER_DOLLAR = 100
 # starts with its level's (the QUESTION_SECONDS_* values in limit_list).
 MIN_QUESTION_SECONDS = 10
 MAX_QUESTION_SECONDS = 600
+# The most questions a candidate gets over all of an interview's topics (companies refuses more;
+# the help chat names it).
+MAX_INTERVIEW_QUESTIONS = 60
 
 # Funnel events for analytics go on the events topic with this type prefix; only they reach
 # BigQuery, and the services' push subscriptions leave them out.

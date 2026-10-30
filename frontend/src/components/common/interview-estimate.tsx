@@ -2,24 +2,35 @@ import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
 /** What the interview adds up to for each candidate, as the API counts it: every question they
- * get, the time each has, and the whole interview's time; three outlined cards in a row, each
- * with its title beside its number (stacked on phones). `small`, for the landing's picture: the
+ * get (against `maxQuestions`, the most the API allows, when given), the time each has, and the
+ * whole interview's time; three outlined cards in a row, each with its title beside its number
+ * (stacked on phones). `small`, for the landing's picture: the
  * cards stay in a row at every width, each with its title above its number. */
 export function InterviewEstimate({
   questions,
+  maxQuestions,
   questionSeconds,
   minutes,
   small = false,
 }: {
   questions: number
+  maxQuestions?: number
   questionSeconds: number
   minutes: number
   small?: boolean
 }) {
   const t = useTranslations("interviews")
   const tInvite = useTranslations("invite")
+  const tQuestions = useTranslations("questions")
   const facts = [
-    { key: "total-questions", label: t("totalQuestions"), value: questions },
+    {
+      key: "total-questions",
+      label: t("totalQuestions"),
+      value: questions,
+      unit: maxQuestions
+        ? tQuestions("ofCount", { count: maxQuestions })
+        : undefined,
+    },
     {
       key: "question-seconds",
       label: tInvite("timePerQuestion"),

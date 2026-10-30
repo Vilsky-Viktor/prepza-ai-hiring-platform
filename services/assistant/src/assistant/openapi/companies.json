@@ -3146,6 +3146,7 @@
      "interviews"
     ],
     "summary": "Set Topic Limit",
+    "description": "How many of the topic's questions each candidate gets; 0 leaves the topic out. 422 over\nthe topic's number of questions, for the last topic with questions, and over 60 questions\nper candidate over all topics (`too_many_questions`): lower another topic first.",
     "operationId": "set_topic_limit_interviews__interview_id__topics__topic_id__limit_put",
     "security": [
      {
@@ -10363,6 +10364,10 @@
       ],
       "title": "Total Questions"
      },
+     "max_questions": {
+      "type": "integer",
+      "title": "Max Questions"
+     },
      "can_edit": {
       "type": "boolean",
       "title": "Can Edit",
@@ -10408,7 +10413,8 @@
      "created_at",
      "company_id",
      "language",
-     "topics"
+     "topics",
+     "max_questions"
     ],
     "title": "InterviewDetail"
    },

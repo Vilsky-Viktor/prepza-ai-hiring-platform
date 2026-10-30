@@ -297,4 +297,5 @@ MESSAGES = {
     "Only companies that have topped up can see people open to offers.": "Tööpakkumistele avatud inimesi näevad ainult ettevõtted, kes on krediiti juba ostnud.",
     "Your company has used all of today's click mode previews ({limit}). Try again in {hours} h.": "Sinu ettevõte on tänased klõpsurežiimi eelvaated ära kasutanud ({limit}). Proovi uuesti {hours} t pärast.",
     "Your company has used all of today's voice mode previews ({limit}). Try again in {hours} h.": "Sinu ettevõte on tänased häälerežiimi eelvaated ära kasutanud ({limit}). Proovi uuesti {hours} t pärast.",
+    "At most {most} questions per candidate; {left} left.": "Kandidaadi kohta kuni {most} küsimust; alles on {left}.",
 }
