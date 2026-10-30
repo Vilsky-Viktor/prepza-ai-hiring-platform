@@ -51,6 +51,17 @@ async function failedAttemptCode(page: Page, transactionId: string): Promise<str
   return code!;
 }
 
+/** How many payment attempts Paddle's sandbox API has on a transaction. */
+export async function paymentAttempts(page: Page, transactionId: string): Promise<number> {
+  const response = await page.request.get(
+    `https://sandbox-api.paddle.com/transactions/${transactionId}`,
+    { headers: { Authorization: `Bearer ${env("PADDLE_API_KEY")}` } },
+  );
+  expect(response.ok()).toBe(true);
+
+  return ((await response.json()).data.payments ?? []).length;
+}
+
 /** Pays the open checkout of `transactionId` with the paying card. When the failure dialog
  * shows instead, only an error of Paddle's sandbox processor is tried once more (Try again
  * opens the same checkout); any other code fails the test, named. */
