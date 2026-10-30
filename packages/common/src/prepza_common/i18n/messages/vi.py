@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "Chỉ người viết ghi chú, chủ sở hữu hoặc quản trị viên mới có thể xóa nó.",
     "Only the owner or an admin can pin a note.": "Chỉ chủ sở hữu hoặc quản trị viên mới có thể ghim ghi chú.",
     "Reading the interview's notes…": "Đang xem ghi chú của buổi phỏng vấn…",
+    "Couldn't hear the answer. Please try again or tap an option.": "Không nghe được câu trả lời. Hãy thử lại hoặc chạm vào một lựa chọn.",
+    "Couldn't read the question aloud.": "Không thể đọc to câu hỏi.",
+    "This interview isn't taken by voice.": "Buổi phỏng vấn này không trả lời bằng giọng nói.",
+    "No question is waiting for an answer.": "Không có câu hỏi nào đang chờ trả lời.",
+    "Voice mode isn't available in this interview's language.": "Chế độ giọng nói không khả dụng bằng ngôn ngữ của buổi phỏng vấn này.",
 }

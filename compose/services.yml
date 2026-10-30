@@ -31,6 +31,11 @@ x-rounds-env: &rounds-env
   REDIS_URL: redis://redis:6379
   LIBRARY_URL: http://library:8000
   SERVICE_SECRET: ${SERVICE_SECRET}
+  # Voice mode: questions read aloud, spoken answers heard and matched.
+  OPENAI_API_KEY: ${OPENAI_API_KEY}
+  LANGFUSE_PUBLIC_KEY: ${LANGFUSE_PUBLIC_KEY:-}
+  LANGFUSE_SECRET_KEY: ${LANGFUSE_SECRET_KEY:-}
+  LANGFUSE_HOST: ${LANGFUSE_HOST:-https://cloud.langfuse.com}
 
 x-companies-env: &companies-env
   TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:-}

@@ -37,8 +37,8 @@ class Outcome(StrEnum):
 
 
 # Every kind of AI call, by the service that makes it. Services that made AI calls before but no
-# longer do, whose recorded calls billing keeps (rounds made the help chat's until 2026-10-29).
-PAST_AI_SERVICES = {"rounds"}
+# longer do, whose recorded calls billing keeps.
+PAST_AI_SERVICES: set[str] = set()
 ACTIONS = {
     "interview_generation": "generation",
     "template_generation": "generation",
@@ -57,6 +57,9 @@ ACTIONS = {
     "assistant_title": "assistant",
     "transcription": "assistant",
     "help_chat": "assistant",
+    "voice_speech": "rounds",
+    "voice_transcription": "rounds",
+    "voice_match": "rounds",
 }
 # Work prepza does for itself: billing counts a call without a company as prepza's when it's one
 # of these, and as someone's without a company otherwise. A call made for a company is always the

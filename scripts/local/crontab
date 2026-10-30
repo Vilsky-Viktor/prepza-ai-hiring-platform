@@ -47,3 +47,5 @@
 30 4 * * * curl -s -X POST http://billing:8000/internal/schedules/retention
 # Interviews whose time ran out after the candidate left, every minute.
 * * * * * curl -s -X POST http://rounds:8000/internal/schedules/expire-interviews
+# Questions and phrases read aloud in voice mode that nobody has played for 30 days, daily.
+15 4 * * * curl -s -X POST http://rounds:8000/internal/schedules/voice-clips

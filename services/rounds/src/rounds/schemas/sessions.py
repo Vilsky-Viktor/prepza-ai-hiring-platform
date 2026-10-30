@@ -42,6 +42,8 @@ class SessionsCreate(BaseModel):
     preview: bool = False
     # The interview's company, kept on each section.
     company_id: UUID
+    # Taken by voice (the interview's setting in companies): questions are read aloud.
+    voice: bool = False
 
 
 class SessionTopicOut(BaseModel):
@@ -63,6 +65,8 @@ class SessionOut(BaseModel):
     language: str | None = None
     # A talent's practice round: its results page shows every answer.
     practice: bool = False
+    # Voice mode: the interviewer reads each question aloud and the candidate may answer by voice.
+    voice: bool = False
     status: RoundStatus
     total: int
     answered: int

@@ -252,6 +252,20 @@ Opus, as browsers record; `build_audio.py`, then ffmpeg; rebuilt only on purpose
 other right ways to write a message (digits for a number). Graded by code
 (`transcription_test.py`).
 
+## `voice_answers.json` and `audio/answer_*.ogg` (by hand, 2026-10-30; audio by `gpt-4o-mini-tts`, 2026-10-30)
+
+153 made-up spoken answers to 19 made-up multiple-choice questions (a statistics question, a
+customer-service one, a select-all-that-apply one on version control, and in English a code
+example) in voice mode's six languages: letters as said, heard or spelled ("bee", "la be", "letra
+bê"), read options, paraphrases (one of a wrong option, which must still be matched), positions,
+several options on the select-all one, changes of mind, yes and no to a waiting choice, a new
+choice while one waits, and traps that must stay unclear (undecided, a question back, several
+options on a single-answer question, words fitting no option, "Thanks for watching!" as speech
+recognition hears silence, instructions to the model, a yes with nothing waiting). 35 are also
+spoken (`build_voice_answers.py`: six voices, accents and hesitation asked for in the instructions,
+pink noise mixed into most by ffmpeg) into `audio/answer_<id>.ogg`. Graded by code
+(`voice_answers_test.py`): the intent and the options.
+
 ## `screen.json` (by hand, 2026-10-22)
 
 42 made-up texts a user may paste to start a test, for the check that refuses text naming

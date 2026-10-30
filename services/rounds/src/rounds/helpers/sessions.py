@@ -18,6 +18,7 @@ def new_sections(
     preview: bool = False,
     practice: bool = False,
     company_id: uuid.UUID | None = None,
+    voice: bool = False,
 ) -> list[Session]:
     """One running section a topic, with its questions in the candidate's own order, each with its
     own time fitted to `question_seconds`, the average (helpers/question_times.py). Each starts
@@ -44,6 +45,7 @@ def new_sections(
             question_seconds=question_seconds,
             preview=preview,
             practice=practice,
+            voice=voice,
             started_at=now + timedelta(microseconds=position),
             answers=[],
         )
@@ -67,7 +69,9 @@ def question_deadline(row: Session) -> datetime | None:
     if question is None or question.seconds is None:
         return None
 
-    return row.question_shown_at + timedelta(seconds=question.seconds)
+    reading = row.question_reading_seconds or 0
+
+    return row.question_shown_at + timedelta(seconds=reading + question.seconds)
 
 
 def time_is_up(row: Session, now: datetime, grace_seconds: int = 0) -> bool:
@@ -80,6 +84,16 @@ def seconds_left(row: Session, now: datetime) -> float | None:
     deadline = question_deadline(row)
 
     return None if deadline is None else max(0.0, (deadline - now).total_seconds())
+
+
+def reading_left(row: Session, now: datetime) -> float | None:
+    """Voice mode: seconds of the question's reading aloud still to go; None when it isn't read."""
+    if row.question_shown_at is None or not row.question_reading_seconds:
+        return None
+
+    ends = row.question_shown_at + timedelta(seconds=row.question_reading_seconds)
+
+    return max(0.0, (ends - now).total_seconds())
 
 
 def topic_out(row: Session) -> SessionTopicOut:
@@ -109,6 +123,7 @@ def session_out(
         started_at=row.started_at,
         finished_at=row.finished_at,
         question_seconds=row.question_seconds,
+        voice=bool(row.voice),
     )
 
 

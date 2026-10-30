@@ -131,7 +131,7 @@ locals {
     library              = { redis-url = "REDIS_URL" }
     generation           = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY" }
     generation-worker    = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY" }
-    rounds               = { redis-url = "REDIS_URL" }
+    rounds               = { redis-url = "REDIS_URL", openai-api-key = "OPENAI_API_KEY" }
     companies            = { redis-url = "REDIS_URL", person-hash-key = "PERSON_HASH_KEY", turnstile-secret-key = "TURNSTILE_SECRET_KEY" }
     billing              = { redis-url = "REDIS_URL", person-hash-key = "PERSON_HASH_KEY", paddle-webhook-secret = "PADDLE_WEBHOOK_SECRET", paddle-api-key = "PADDLE_API_KEY" }
     notifications        = { redis-url = "REDIS_URL", email-link-secret = "EMAIL_LINK_SECRET", person-hash-key = "PERSON_HASH_KEY", resend-api-key = "RESEND_API_KEY", resend-webhook-secret = "RESEND_WEBHOOK_SECRET", slack-client-id = "SLACK_CLIENT_ID", slack-client-secret = "SLACK_CLIENT_SECRET", slack-encryption-key = "SLACK_ENCRYPTION_KEY" }

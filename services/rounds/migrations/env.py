@@ -6,7 +6,8 @@ from prepza_common.db.db import migration_engine
 import rounds.models.answers  # registers the tables on Base.metadata
 import rounds.models.outbox
 import rounds.models.sessions
-import rounds.models.signals  # noqa: F401
+import rounds.models.signals
+import rounds.models.voice_clips  # noqa: F401
 from rounds.config import settings
 from rounds.models.base import Base
 

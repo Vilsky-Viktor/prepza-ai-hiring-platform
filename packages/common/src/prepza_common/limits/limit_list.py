@@ -196,6 +196,16 @@ LIMITS = {
     "PRACTICE_ROUNDS_PER_HOUR": Limit(ROUNDS, 20, "calls", HOUR_SECONDS, 1, 1_000, "user"),
     "SIGNALS_PER_MINUTE": Limit(ROUNDS, 60, "calls", SIGNALS_WINDOW, 1, 1_000, "user"),
     "MAX_SIGNALS_PER_QUESTION": Limit(ROUNDS, 50, "items", None, 1, 1_000, "user"),
+    # Voice mode: spoken answers heard and matched (a 40-question interview takes about 100 with
+    # confirmations and retries), and questions and phrases read aloud for the first time.
+    "VOICE_ANSWERS_PER_USER_HOUR": Limit(ROUNDS, 600, "calls", HOUR_SECONDS, 1, 10_000, "user"),
+    "VOICE_ANSWERS_PER_COMPANY_DAY": Limit(
+        ROUNDS, 20_000, "calls", DAY_SECONDS, 1, 1_000_000, "company"
+    ),
+    "VOICE_CLIPS_PER_COMPANY_DAY": Limit(
+        ROUNDS, 3_000, "calls", DAY_SECONDS, 1, 100_000, "company"
+    ),
+    "VOICE_CLIPS_PER_DAY": Limit(ROUNDS, 30_000, "calls", DAY_SECONDS, 100, 1_000_000, "everyone"),
     "CONTACT_IP_LIMIT": Limit(SITE, 5, "calls", DAY_SECONDS, 1, 100, "ip"),
     "CONTACT_DAILY_LIMIT": Limit(SITE, 200, "calls", DAY_SECONDS, 1, 10_000, "everyone"),
     # Accounts: "Download my data", each asking every service for the account's data.

@@ -20,6 +20,8 @@ def a_set(python_questions: int, sql_questions: int) -> dict:
 def test_the_whole_interview_counts_the_questions_each_topic_gives():
     # 4 questions from Python and 6 from SQL, at 60 seconds each.
     assert interview_minutes(a_set(20, 20), {PYTHON: 4, SQL: 6}, 60) == 10
+    # Taken by voice, each question's reading adds 30 seconds.
+    assert interview_minutes(a_set(20, 20), {PYTHON: 4, SQL: 6}, 60, voice=True) == 15
 
 
 def test_a_topic_with_fewer_questions_than_its_limit_gives_all_it_has():

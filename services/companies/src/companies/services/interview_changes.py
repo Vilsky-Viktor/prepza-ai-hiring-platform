@@ -6,10 +6,11 @@ from datetime import UTC, datetime
 from uuid import UUID
 
 from fastapi import HTTPException, status
+from prepza_common.config.constants import VOICE_LANGUAGES
 from prepza_common.events.audit_actions import AuditAction
 from prepza_common.events.interviews import INTERVIEW_PRIVACY_CHANGED, InterviewPrivacyChanged
 
-from companies.constants.interviews import NO_QUESTIONS_LEFT, SETTINGS_LOGGED
+from companies.constants.interviews import NO_QUESTIONS_LEFT, SETTINGS_LOGGED, VOICE_NOT_IN_LANGUAGE
 from companies.constants.invites import INTERVIEW_NOT_READY, LINK_TOKEN_BYTES
 from companies.core.db import Session
 from companies.helpers.interviews import interview_questions
@@ -25,7 +26,11 @@ async def update_settings(
     interview: Interview, settings: InterviewSettings, user_id: str, via: str | None
 ) -> None:
     """Saves the settings that were sent, with a line in the log for a changed setting and one
-    for a changed pass mark, and library told of the bank opt-out when it's sent."""
+    for a changed pass mark, and library told of the bank opt-out when it's sent. Voice mode
+    only in VOICE_LANGUAGES (422)."""
+    if settings.voice and interview.language not in VOICE_LANGUAGES:
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, VOICE_NOT_IN_LANGUAGE)
+
     sent = settings.model_dump(include=SETTINGS_LOGGED, exclude_none=True)
 
     async with Session.begin() as session:

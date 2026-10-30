@@ -55,6 +55,9 @@ class Interview(Base):
     # The company keeps the test's questions out of prepza's shared question bank (the terms'
     # opt-out); off by default, as the terms say. Turning it on stops future reuse only.
     keep_private: Mapped[bool] = mapped_column(default=False, server_default="false")
+    # Taken by voice: an interviewer reads each question aloud and candidates may answer by voice
+    # (rounds' voice mode); only in VOICE_LANGUAGES. Off by default.
+    voice: Mapped[bool] = mapped_column(default=False, server_default="false")
     # The grade, in percent, a finished candidate needs to pass.
     pass_mark: Mapped[int] = mapped_column(
         default=DEFAULT_PASS_MARK, server_default=str(DEFAULT_PASS_MARK)

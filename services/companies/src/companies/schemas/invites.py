@@ -84,8 +84,12 @@ class InviteView(BaseModel):
     status: str
     # Shown before the candidate starts: the timer begins at start.
     question_seconds: int
-    # The whole interview at that pace, in minutes; None while its questions aren't known.
+    # The whole interview at that pace, in minutes (with each question's reading when it's taken
+    # by voice); None while its questions aren't known.
     total_minutes: int | None = None
+    # Taken by voice: the start page says the questions are read aloud and answers may be
+    # spoken, and that the voice is only turned into text, never kept.
+    voice: bool = False
     # Sent by the company's own platform: the link signs the candidate in, no account needed.
     guest: bool = False
     # The interview's colors by theme, and the theme the invite asked for (None: the
@@ -130,8 +134,11 @@ class LinkView(BaseModel):
     brand_colors: BrandColorSets | None = None
     brand_style: BrandStyle | None = None
     question_seconds: int
-    # The whole test at that pace, in minutes; None while its questions aren't known.
+    # The whole test at that pace, in minutes (with reading by voice); None while its questions
+    # aren't known.
     total_minutes: int | None = None
+    # Taken by voice, as InviteView's.
+    voice: bool = False
     # The signed-in person's invite status for this test; None before they start it.
     status: str | None = None
 

@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "มีเพียงผู้เขียนโน้ต เจ้าของ หรือผู้ดูแลเท่านั้นที่ลบได้",
     "Only the owner or an admin can pin a note.": "มีเพียงเจ้าของหรือผู้ดูแลเท่านั้นที่ปักหมุดโน้ตได้",
     "Reading the interview's notes…": "กำลังดูโน้ตของการสัมภาษณ์…",
+    "Couldn't hear the answer. Please try again or tap an option.": "ไม่ได้ยินคำตอบ โปรดลองอีกครั้งหรือแตะตัวเลือก",
+    "Couldn't read the question aloud.": "อ่านคำถามออกเสียงไม่ได้",
+    "This interview isn't taken by voice.": "การสัมภาษณ์นี้ไม่ได้ตอบด้วยเสียง",
+    "No question is waiting for an answer.": "ไม่มีคำถามที่รอคำตอบ",
+    "Voice mode isn't available in this interview's language.": "โหมดเสียงไม่พร้อมใช้งานในภาษาของการสัมภาษณ์นี้",
 }

@@ -170,6 +170,14 @@ The assistant's speech to text, on recordings made once by text-to-speech (`buil
 evals/run.sh assistant transcription_test.py --label new-model   # --repeat 2
 ```
 
+Voice mode's answer matching (rounds), on spoken answers as text and, for some, as recordings
+made once by text-to-speech with noise mixed in (`build_voice_answers.py`):
+
+```bash
+evals/run.sh rounds voice_answers_test.py --label new-prompt   # --repeat 3, --only en01,de04
+MODEL=gpt-6.1-sol EFFORT=low evals/run.sh rounds voice_answers_test.py --label sol
+```
+
 ## The help chat
 
 The help chat's test runs in the assistant's container, with the service's own prompt and model,

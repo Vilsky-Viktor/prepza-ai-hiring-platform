@@ -53,6 +53,8 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | **Dropping repeated questions** (embeddings, `DUPLICATE_DISTANCE`) | Pairs that ask something else both kept / pairs that ask the same, the second dropped | Code | 100% (regression) / report (capability: the threshold sits below the closest trap, so only near-verbatim repeats go) |
 | **Assistant: voice messages** (speech to text) | Messages heard right (at most 10% of characters wrong, case and punctuation aside) / in the language's script | Code | ≥ 95% / 100% |
 | | Price and time per message | Measured | ≤ $0.001, ≤ 5 s |
+| **Voice mode: answer matching** (`voice_answers.py`'s rounds call) | Spoken answers matched to the options the candidate meant, or to their yes or no (`voice_answers.json`, as text and, for the `spoken` ones, as audio heard first) / wrong matches (options recorded that the candidate didn't choose) | Code | ≥ 95% as text, ≥ 90% spoken / 0% (a wrong match records an answer the candidate never gave; unclear only asks again) |
+| | Price and time per spoken answer (hearing and matching) | Measured | ≤ $0.001, ≤ 4 s |
 | **Refusing text that names nothing to test** | Postings, roles and short skill lists accepted (any refusal fails) / recipes, stories, gibberish, instructions to an AI refused | Code | 0 false refusals / ≥ 90% |
 | | Price and time per check | Measured | ≤ $0.0001, ≤ 3 s |
 | **Shared question bank filter** | Private questions (an employer, its clients, staff, tools, sites or figures, a private person, contact details) kept out / general ones passed (`bank_filter.json`) | Code | 0 leaks / ≥ 90% |
@@ -121,6 +123,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Eval gate: rules in use; dry run (a rule that isn't a pattern) mistake without / with, keys single / multi, clarity, level fit, distractors, seconds; failure judge traps | none in use (`QUALITY_RULES` empty); 0.0% (0.0–3.9) / 0.0% (0.0–3.9), 95.3% → 98.4% / 100% → 100%, 4.92 → 4.97, 4.36 → 4.26, 2.95 → 2.98, 28.3 → 28.0 s, nothing beyond the noise: doesn't ship; 12 of 12; $1.48 and 538 s | 16 subtopics of `inputs.json` × 6 each way (2 multi) | 2026-10-29 |
 | Assistant titles: code checks / sums up / right language / natural; judge traps | 97.6% (87.7–99.6) / 88.1% (75.0–94.8) / 100% / 100%; 11 of 11; $0.00003 and 2.8 s a title | `titles.json`, 14 × 3 | 2026-10-22 |
 | Repeated questions: distinct kept / repeats dropped | 100% (74.1–100) / 18.2% (5.1–47.7); the closest distinct pair at 0.084, the threshold 0.08 | `duplicates.json`, 22 pairs | 2026-10-22 |
+| Voice mode's answer matching (`gpt-6-luna` none, hearing `gpt-transcribe`): right as text / wrong matches; right spoken / wrong matches | 99.6% (98.4–99.9) / 0% (0.0–0.8); 94.3% (88.1–97.4) / 0% (0.0–3.5); $0.0002 and 2.0 s a spoken answer | `voice_answers.json` (153, 35 spoken), 3 repeats | 2026-10-30 |
 | Voice messages (`gpt-transcribe`): heard right / character errors / script | 98.7% (93.1–99.8) / 0.7% ± 0.4 / 100%; $0.00035 and 2.9 s a message | `voice.json`, 26 × 3 (all 23 languages; audio by `gpt-realtime-2.1-mini`) | 2026-10-29 |
 | Text check: false refusals / accepted / refused | 0 / 100% (95.9–100) / 100% (90.4–100); $0.00003 and 1.9 s a check | `screen.json`, 42 × 3 | 2026-10-22 |
 | Bank filter (`gpt-6.1-sol` low): leaks / private kept out / general passed | 0 / 100% (95.1–100) / 96.7% (90.7–98.9); $0.001 and 2.4 s a question | `bank_filter.json`, 55 × 3 | 2026-10-30 |
@@ -163,6 +166,8 @@ it; `scripts/tests/test_ai_rules.py` fails when an action has none.
 | `assistant_title` | `titles_test.py` |
 | `transcription` | `transcription_test.py` |
 | `help_chat` | `help_chat.py` |
+| `voice_transcription`, `voice_match` | `voice_answers_test.py` (spoken answers built by `build_voice_answers.py`) |
+| `voice_speech` | none: the code builds what is read, and the speech endpoint reads only that (`baselines/utility.md`) |
 
 ## Lessons so far
 

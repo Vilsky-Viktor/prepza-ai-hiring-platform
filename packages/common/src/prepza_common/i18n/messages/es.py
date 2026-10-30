@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "Solo el autor del comentario, el propietario o un administrador puede eliminarlo.",
     "Only the owner or an admin can pin a note.": "Solo el propietario o un administrador puede fijar un comentario.",
     "Reading the interview's notes…": "Consultando los comentarios de la entrevista…",
+    "Couldn't hear the answer. Please try again or tap an option.": "No se pudo oír la respuesta. Inténtalo de nuevo o toca una opción.",
+    "Couldn't read the question aloud.": "No se pudo leer la pregunta en voz alta.",
+    "This interview isn't taken by voice.": "Esta entrevista no se hace por voz.",
+    "No question is waiting for an answer.": "No hay ninguna pregunta esperando respuesta.",
+    "Voice mode isn't available in this interview's language.": "El modo de voz no está disponible en el idioma de esta entrevista.",
 }

@@ -166,20 +166,6 @@ def check_duplicates(problems: list[str]) -> list[str]:
     return [text for item in data["items"] for text in (item["a"], item["b"])]
 
 
-def check_voice(problems: list[str]) -> list[str]:
-    """Every message has its recording."""
-    data = load("voice.json")
-    check_described("voice.json", data, problems)
-    unique_ids("voice.json", data["items"], problems)
-    problems += [
-        f"voice.json: {item['id']} has no audio/{item['id']}.ogg (build_audio.py)"
-        for item in data["items"]
-        if not (DATASETS / "audio" / f"{item['id']}.ogg").exists()
-    ]
-
-    return [item["text"] for item in data["items"]]
-
-
 def check_question_times(problems: list[str]) -> list[str]:
     """The judge's seconds: each for a question of its set, once, a whole number above 0."""
     data = load("question_times.json")

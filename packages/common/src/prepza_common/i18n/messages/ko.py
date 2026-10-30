@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "메모는 작성자, 소유자 또는 관리자만 삭제할 수 있습니다.",
     "Only the owner or an admin can pin a note.": "메모는 소유자나 관리자만 고정할 수 있습니다.",
     "Reading the interview's notes…": "면접 메모를 확인하는 중…",
+    "Couldn't hear the answer. Please try again or tap an option.": "답변을 알아듣지 못했습니다. 다시 시도하거나 선택지를 탭하세요.",
+    "Couldn't read the question aloud.": "질문을 소리 내어 읽지 못했습니다.",
+    "This interview isn't taken by voice.": "이 면접은 음성으로 진행되지 않습니다.",
+    "No question is waiting for an answer.": "답변을 기다리는 질문이 없습니다.",
+    "Voice mode isn't available in this interview's language.": "이 면접의 언어에서는 음성 모드를 사용할 수 없습니다.",
 }

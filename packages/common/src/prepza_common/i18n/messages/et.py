@@ -274,4 +274,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "Märget saab kustutada ainult selle kirjutaja, omanik või administraator.",
     "Only the owner or an admin can pin a note.": "Märget saab üles kinnitada ainult omanik või administraator.",
     "Reading the interview's notes…": "Vaatan intervjuu märkmeid…",
+    "Couldn't hear the answer. Please try again or tap an option.": "Vastust ei õnnestunud kuulda. Proovi uuesti või puuduta valikut.",
+    "Couldn't read the question aloud.": "Küsimust ei õnnestunud ette lugeda.",
+    "This interview isn't taken by voice.": "Seda intervjuud ei tehta häälega.",
+    "No question is waiting for an answer.": "Ükski küsimus ei oota vastust.",
+    "Voice mode isn't available in this interview's language.": "Häälerežiim pole selle intervjuu keeles saadaval.",
 }

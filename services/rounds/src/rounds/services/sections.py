@@ -65,6 +65,7 @@ async def start_interview(body: SessionsCreate) -> list[RoundSession]:
         datetime.now(UTC),
         body.preview,
         company_id=body.company_id,
+        voice=body.voice,
     )
 
     try:

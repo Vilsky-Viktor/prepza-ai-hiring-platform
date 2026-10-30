@@ -26,8 +26,8 @@ from small_datasets import (
     check_screen,
     check_titles,
     check_translations,
-    check_voice,
 )
+from voice_datasets import check_voice, check_voice_answers
 
 EVALS = Path(__file__).resolve().parents[1]
 DATASETS = EVALS / "datasets"
@@ -213,6 +213,7 @@ def main() -> None:
     texts += [("postings", text) for text in check_postings(problems)]
     texts += [("duplicates", text) for text in check_duplicates(problems)]
     texts += [("voice", text) for text in check_voice(problems)]
+    texts += [("voice answers", text) for text in check_voice_answers(problems)]
     texts += [("screen", text) for text in check_screen(problems)]
     check_question_times(problems)
     check_ai_picks(problems)

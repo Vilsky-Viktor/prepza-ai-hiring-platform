@@ -1,7 +1,7 @@
 import uuid
 
 from rounds.core.db import Session
-from rounds.repositories import sessions
+from rounds.repositories import sessions, voice_clips
 
 
 async def remove_invites(candidate_invite_ids: list[uuid.UUID]) -> None:
@@ -21,5 +21,7 @@ async def remove_interview(interview_set_id: uuid.UUID) -> None:
 
 async def remove_company(company_id: uuid.UUID) -> None:
     """A deleted company's sessions (company.deleted), as remove_interview; also those of an
-    interview whose own event came first or never named its set."""
+    interview whose own event came first or never named its set; and its questions read aloud
+    in voice mode."""
     await sessions.remove_for_company(Session, company_id)
+    await voice_clips.remove_for_company(Session, company_id)

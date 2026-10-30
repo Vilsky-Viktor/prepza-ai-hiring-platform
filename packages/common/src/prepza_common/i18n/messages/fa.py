@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "فقط نویسنده یادداشت، مالک یا یکی از مدیران می‌تواند آن را حذف کند.",
     "Only the owner or an admin can pin a note.": "فقط مالک یا یکی از مدیران می‌تواند یادداشتی را سنجاق کند.",
     "Reading the interview's notes…": "در حال بررسی یادداشت‌های مصاحبه…",
+    "Couldn't hear the answer. Please try again or tap an option.": "پاسخ شنیده نشد. دوباره تلاش کنید یا روی یکی از گزینه‌ها بزنید.",
+    "Couldn't read the question aloud.": "خواندن سؤال با صدا ممکن نشد.",
+    "This interview isn't taken by voice.": "این مصاحبه با صدا انجام نمی‌شود.",
+    "No question is waiting for an answer.": "هیچ سؤالی منتظر پاسخ نیست.",
+    "Voice mode isn't available in this interview's language.": "حالت صوتی به زبان این مصاحبه در دسترس نیست.",
 }

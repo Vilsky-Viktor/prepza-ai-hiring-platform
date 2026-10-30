@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "Hanya penulis catatan, pemilik, atau admin yang bisa menghapusnya.",
     "Only the owner or an admin can pin a note.": "Hanya pemilik atau admin yang bisa menyematkan catatan.",
     "Reading the interview's notes…": "Melihat catatan wawancara…",
+    "Couldn't hear the answer. Please try again or tap an option.": "Jawaban tidak terdengar. Coba lagi atau ketuk salah satu opsi.",
+    "Couldn't read the question aloud.": "Pertanyaan tidak dapat dibacakan.",
+    "This interview isn't taken by voice.": "Wawancara ini tidak dijawab dengan suara.",
+    "No question is waiting for an answer.": "Tidak ada pertanyaan yang menunggu jawaban.",
+    "Voice mode isn't available in this interview's language.": "Mode suara tidak tersedia dalam bahasa wawancara ini.",
 }

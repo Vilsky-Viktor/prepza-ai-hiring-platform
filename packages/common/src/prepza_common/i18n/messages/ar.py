@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "لا يمكن حذف الملاحظة إلا لكاتبها أو للمالك أو لمشرف.",
     "Only the owner or an admin can pin a note.": "لا يمكن تثبيت ملاحظة إلا للمالك أو لمشرف.",
     "Reading the interview's notes…": "جارٍ الاطلاع على ملاحظات المقابلة…",
+    "Couldn't hear the answer. Please try again or tap an option.": "تعذّر سماع الإجابة. حاول مرة أخرى أو اضغط على أحد الخيارات.",
+    "Couldn't read the question aloud.": "تعذّرت قراءة السؤال بصوت عالٍ.",
+    "This interview isn't taken by voice.": "لا تُجرى هذه المقابلة بالصوت.",
+    "No question is waiting for an answer.": "لا يوجد سؤال بانتظار إجابة.",
+    "Voice mode isn't available in this interview's language.": "وضع الصوت غير متاح بلغة هذه المقابلة.",
 }

@@ -3,7 +3,8 @@ name = "rounds"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
-    "prepza-common",
+    "prepza-common[llm,langfuse]",
+    "openai>=3.26.1",
     "alembic>=1.20.0",
     "fastapi>=0.141.1",
     "firebase-admin>=7.7.0",

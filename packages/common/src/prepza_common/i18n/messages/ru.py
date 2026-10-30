@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "Удалить заметку может только её автор, владелец или администратор.",
     "Only the owner or an admin can pin a note.": "Закрепить заметку может только владелец или администратор.",
     "Reading the interview's notes…": "Смотрю заметки к собеседованию…",
+    "Couldn't hear the answer. Please try again or tap an option.": "Не удалось расслышать ответ. Попробуйте ещё раз или нажмите на вариант.",
+    "Couldn't read the question aloud.": "Не удалось прочитать вопрос вслух.",
+    "This interview isn't taken by voice.": "Это интервью не проходит голосом.",
+    "No question is waiting for an answer.": "Нет вопроса, который ждёт ответа.",
+    "Voice mode isn't available in this interview's language.": "Голосовой режим недоступен на языке этого интервью.",
 }

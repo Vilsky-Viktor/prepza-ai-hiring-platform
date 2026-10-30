@@ -1,15 +1,17 @@
 import asyncio
 from datetime import UTC, datetime, timedelta
+from types import SimpleNamespace
 from uuid import uuid4
 
 import pytest
+from fastapi import HTTPException
 from prepza_common.auth.user import User
 
 from rounds.integrations import library
 from rounds.models.answers import Answer
 from rounds.models.sessions import Session
 from rounds.repositories import sessions
-from rounds.services import interview_flow, sections
+from rounds.services import interview_flow, sections, voice_session
 
 CANDIDATE = User(uid="cand", email="cand@example.com", email_verified=True)
 INVITE_ID = uuid4()
@@ -60,8 +62,8 @@ def interview(monkeypatch):
         finished.append(session_id)
         (await fake_get(session, session_id)).status = "finished"
 
-    async def fake_shown(session, session_id):
-        return datetime.now(UTC)
+    async def fake_shown(session, session_id, reading=None):
+        return datetime.now(UTC), reading
 
     async def no_library(set_id):
         return None
@@ -90,6 +92,29 @@ def test_a_section_with_no_question_left_finishes_and_the_next_opens(interview):
     assert step.session.id == second.id
     assert step.question is not None and step.question.seconds_left == pytest.approx(30, abs=1)
     assert step.done is False
+
+
+@pytest.mark.parametrize(("clip", "time_left", "reading_left"), [(12.3, 43, 13), (None, 30, None)])
+def test_a_voice_question_is_read_aloud_before_its_time_starts(
+    interview, monkeypatch, clip, time_left, reading_left
+):
+    rows, _ = interview
+    rows.append(section())
+    rows[0].voice = True
+
+    async def question_clip(row, question):
+        if clip is None:
+            raise HTTPException(502, "OpenAI is down")
+
+        return SimpleNamespace(seconds=clip)
+
+    monkeypatch.setattr(voice_session, "question_clip", question_clip)
+
+    step = asyncio.run(interview_flow.interview_step(rows[0], CANDIDATE))
+
+    # The question's own 30 seconds start once it's read; a reading that failed adds nothing.
+    assert step.question.seconds_left == pytest.approx(time_left, abs=1)
+    assert step.question.reading_left == (reading_left and pytest.approx(reading_left, abs=1))
 
 
 def test_the_last_answer_finishes_the_interview(interview):

@@ -24,7 +24,7 @@ def candidate():
     app.dependency_overrides.clear()
 
 
-def start(client, monkeypatch):
+def start(client, monkeypatch, voice=None):
     invite = CandidateInvite(
         id=uuid.uuid4(),
         interview_id=uuid.uuid4(),
@@ -40,6 +40,7 @@ def start(client, monkeypatch):
         set_id=uuid.uuid4(),
         question_seconds=45,
         topic_limits={},
+        voice=voice,
     )
     sent = {}
 
@@ -78,5 +79,10 @@ def test_every_interview_limits_each_question(client, monkeypatch):
     sent = start(client, monkeypatch)
 
     assert sent["question_seconds"] == 45
+    assert sent["voice"] is False
     # Candidates never see their scores, so there's nothing to share.
     assert "share_results" not in sent
+
+
+def test_an_interview_taken_by_voice_starts_its_sessions_by_voice(client, monkeypatch):
+    assert start(client, monkeypatch, voice=True)["voice"] is True

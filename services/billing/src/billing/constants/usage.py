@@ -11,8 +11,8 @@ SPEND_DAYS = 30
 HITS_DAYS = 7
 # Limit changes listed in Controls, newest first.
 CHANGES_SHOWN = 50
-# Transcription is priced and counted by the minute; every other action by what it was for (a
-# generation, a conversation's message, a question).
-TRANSCRIPTION = "transcription"
+# Audio (speech to text, text to speech) is priced and counted by the minute; every other action
+# by what it was for (a generation, a conversation's message, a question).
+MINUTE_ACTIONS = {"transcription", "voice_transcription", "voice_speech"}
 UNKNOWN_LIMIT = "No such limit."
 OUT_OF_BOUNDS = "Use a value from {lowest} to {highest}."

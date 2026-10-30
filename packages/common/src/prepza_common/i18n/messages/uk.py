@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "Видалити нотатку може лише її автор, власник або адміністратор.",
     "Only the owner or an admin can pin a note.": "Закріпити нотатку може лише власник або адміністратор.",
     "Reading the interview's notes…": "Переглядаю нотатки до співбесіди…",
+    "Couldn't hear the answer. Please try again or tap an option.": "Не вдалося розчути відповідь. Спробуйте ще раз або натисніть на варіант.",
+    "Couldn't read the question aloud.": "Не вдалося прочитати запитання вголос.",
+    "This interview isn't taken by voice.": "Це інтерв'ю не проходить голосом.",
+    "No question is waiting for an answer.": "Немає запитання, яке чекає на відповідь.",
+    "Voice mode isn't available in this interview's language.": "Голосовий режим недоступний мовою цього інтерв'ю.",
 }

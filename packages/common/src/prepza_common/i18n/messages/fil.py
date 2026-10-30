@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "Ang sumulat lang ng note, ang may-ari o isang admin ang puwedeng magbura nito.",
     "Only the owner or an admin can pin a note.": "Ang may-ari lang o isang admin ang puwedeng mag-pin ng note.",
     "Reading the interview's notes…": "Tinitingnan ang mga note sa interview…",
+    "Couldn't hear the answer. Please try again or tap an option.": "Hindi narinig ang sagot. Subukang muli o i-tap ang isang opsyon.",
+    "Couldn't read the question aloud.": "Hindi nabasa nang malakas ang tanong.",
+    "This interview isn't taken by voice.": "Hindi sinasagot sa boses ang interview na ito.",
+    "No question is waiting for an answer.": "Walang tanong na naghihintay ng sagot.",
+    "Voice mode isn't available in this interview's language.": "Hindi available ang voice mode sa wika ng interview na ito.",
 }

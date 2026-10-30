@@ -9,6 +9,17 @@ class Settings(ServiceSettings):
     redis_url: str
     library_url: str
     service_secret: str
+    # OpenAI: voice mode's speech, its hearing and its matching. Empty in CI, where nothing calls
+    # OpenAI.
+    openai_api_key: str = ""
+    # Turns what a candidate said into the options they meant (services/voice_match.py).
+    voice_match_model: str = "gpt-6-luna"
+    voice_match_reasoning_effort: str = "none"
+    # Reads questions and the interviewer's phrases aloud, once each (cached in voice_clips).
+    speech_model: str = "gpt-4o-mini-tts"
+    speech_voice: str = "marin"
+    # Turns a candidate's spoken answer into text.
+    transcribe_model: str = "gpt-transcribe"
 
 
 settings = Settings()

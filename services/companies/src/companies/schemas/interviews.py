@@ -103,6 +103,11 @@ class InterviewDetail(InterviewOut):
     can_edit: bool = False
     # Its questions are kept out of prepza's shared question bank (the terms' opt-out).
     keep_private: bool = False
+    # Taken by voice, and whether its language allows it (VOICE_LANGUAGES, listed for the
+    # setting's note).
+    voice: bool = False
+    voice_available: bool = False
+    voice_languages: list[str] = []
 
 
 class ReviewIn(BaseModel):
@@ -128,6 +133,7 @@ class InterviewSettings(BaseModel):
     hired: bool | None = None
     pass_mark: int | None = Field(default=None, ge=MIN_PASS_MARK, le=MAX_PASS_MARK)
     keep_private: bool | None = None
+    voice: bool | None = None
 
 
 class TitleIn(BaseModel):

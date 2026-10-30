@@ -2,7 +2,8 @@
 
 Candidates' interview sessions and their answers, and free practice rounds. It keeps sessions, answers and integrity signals in its own database, and reads a finished candidate's answer patterns from them when asked (`/internal/invites/{id}/answer-patterns`, never stored); questions come from library, and scores go out as
 events; a deleted interview's or company's sessions go when its `interview.deleted` or
-`company.deleted` arrives. What it does and its settings:
+`company.deleted` arrives. An interview taken by voice is read aloud and answered by voice here too
+(voice mode, below). What it does and its settings:
 [candidates](../../docs/features/candidates.md) and
 [templates and practice](../../docs/features/templates-and-practice.md).
 
@@ -23,7 +24,8 @@ src/rounds/
 │                           # take the session, never commit
 ├── models/, schemas/       # SQLAlchemy tables; request and response models
 ├── helpers/, constants/    # Pure functions (scores, exports, answer patterns); fixed values
-└── integrations/           # library, Redis
+├── prompts/                # Voice mode's matching and reading instructions
+└── integrations/           # library, Redis, OpenAI
 tests/unit/, tests/integration/   # Mirror src/
 migrations/                       # Alembic
 ```
@@ -42,6 +44,26 @@ transaction.
 `src/` is on the path (`PYTHONPATH` in the Dockerfile, `pythonpath` for pytest,
 `prepend_sys_path` for Alembic, `evals/run.sh`), so the package imports as `rounds`
 (`rounds.api.v1.sessions`).
+
+## Voice mode
+
+A section started with `voice` (the interview's setting in companies) is read aloud: when its
+next question opens (`POST /sessions/{id}/step`), the question and its options are read by
+OpenAI's text-to-speech (`SPEECH_MODEL`, Ogg Opus) once per text and voice and kept in
+`voice_clips` for every candidate who gets it, and the question's own time starts after the
+reading (`question_reading_seconds`, at most `MAX_READING_SECONDS`); a reading that fails leaves
+the question unread, never stopped. Code blocks and long options aren't read: the interviewer
+points to the screen (`helpers/voice_speech.py`). The browser plays the clip
+(`GET .../voice/question`), the interviewer's phrases (`.../voice/phrases/{phrase}`,
+`.../voice/confirmations?picks=`), and sends each spoken answer (`POST .../voice/answers`, at most
+2 MB): it's turned into text (`TRANSCRIBE_MODEL`) and matched to options, or to a yes or no for
+the choice waiting (`VOICE_MATCH_MODEL`, `prompts/voice_match.py`, never the answer key; its eval
+is `evals/scripts/voice_answers_test.py`). Nothing of it is saved: a confirmed choice is sent to
+`.../answers` as a tapped one is, and the audio and the words are never stored, logged or traced.
+Limits: `VOICE_ANSWERS_PER_USER_HOUR`, `VOICE_ANSWERS_PER_COMPANY_DAY`,
+`VOICE_CLIPS_PER_COMPANY_DAY`, `VOICE_CLIPS_PER_DAY`, and a preview also the unpaid AI cap.
+A voice interview's whole time adds `VOICE_READING_SECONDS` a question. Clips go with their
+company (`company.deleted`) and after 30 days unplayed (`/internal/schedules/voice-clips`, daily).
 
 ## Commands
 

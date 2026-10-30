@@ -7,7 +7,7 @@ from prepza_common.db.stats import period_range
 from sqlalchemy import ColumnElement, Float, String, cast, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from billing.constants.usage import TRANSCRIPTION
+from billing.constants.usage import MINUTE_ACTIONS
 from billing.models.usage import AiUsage
 
 # Summed exactly (numeric), then read as a float.
@@ -55,7 +55,7 @@ async def by_category(session: AsyncSession, where: list[ColumnElement]) -> list
 
 
 async def by_action(session: AsyncSession, where: list[ColumnElement]) -> list:
-    """Each action's spend, calls and units: minutes for transcription, otherwise what each was
+    """Each action's spend, calls and units: minutes for audio, otherwise what each was
     for (a generation, a message), or the call itself when it names none."""
     subject = func.coalesce(AiUsage.subject_id, cast(AiUsage.id, String))
     units = func.count(func.distinct(subject))
@@ -76,7 +76,7 @@ async def by_action(session: AsyncSession, where: list[ColumnElement]) -> list:
     )
 
     return [
-        (action, spend, calls, used_minutes if action == TRANSCRIPTION else count, paid, unpaid)
+        (action, spend, calls, used_minutes if action in MINUTE_ACTIONS else count, paid, unpaid)
         for action, spend, calls, count, used_minutes, paid, unpaid in await rows(session, query)
     ]
 

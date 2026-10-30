@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "メモを削除できるのは、書いた本人、オーナー、管理者だけです。",
     "Only the owner or an admin can pin a note.": "メモを固定できるのはオーナーまたは管理者だけです。",
     "Reading the interview's notes…": "面接のメモを確認しています…",
+    "Couldn't hear the answer. Please try again or tap an option.": "回答を聞き取れませんでした。もう一度お試しいただくか、選択肢をタップしてください。",
+    "Couldn't read the question aloud.": "質問を読み上げられませんでした。",
+    "This interview isn't taken by voice.": "この面接は音声では受けられません。",
+    "No question is waiting for an answer.": "回答を待っている質問はありません。",
+    "Voice mode isn't available in this interview's language.": "この面接の言語では音声モードを利用できません。",
 }

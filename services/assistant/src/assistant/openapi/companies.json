@@ -10077,6 +10077,24 @@
       "type": "boolean",
       "title": "Keep Private",
       "default": false
+     },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
+     },
+     "voice_available": {
+      "type": "boolean",
+      "title": "Voice Available",
+      "default": false
+     },
+     "voice_languages": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Voice Languages",
+      "default": []
      }
     },
     "type": "object",
@@ -10353,6 +10371,17 @@
        }
       ],
       "title": "Keep Private"
+     },
+     "voice": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Voice"
      }
     },
     "type": "object",
@@ -10453,6 +10482,11 @@
        }
       ],
       "title": "Total Minutes"
+     },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
      },
      "guest": {
       "type": "boolean",
@@ -10690,6 +10724,11 @@
        }
       ],
       "title": "Total Minutes"
+     },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
      },
      "status": {
       "anyOf": [

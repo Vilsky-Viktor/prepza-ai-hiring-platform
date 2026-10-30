@@ -32,6 +32,9 @@ BODIES = {
     "POST /sessions/{session_id}/questions/{question_id}/reports": {"reason": "wrong_answer"},
 }
 
+# Path values that aren't ids: voice mode's phrase.
+VALUES = {"phrase": "end"}
+
 
 async def side(kind: str) -> Side:
     """A user with an interview session running and a practice round."""
@@ -68,6 +71,6 @@ def test_no_internal_route_takes_an_id_with_another_that_scopes_it():
 
 @pytest.mark.parametrize("route", access_matrix.routes(app, OWNED, NOT_OWNED), ids=str)
 def test_only_whoever_may_gets_through(route, world, run):
-    found, statuses = run(access_matrix.outcomes(app, route, world, BODIES, {}))
+    found, statuses = run(access_matrix.outcomes(app, route, world, BODIES, VALUES))
 
     assert found == access_matrix.expected(route, world, {}), str(statuses)

@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "只有备注的作者、所有者或管理员可以删除它。",
     "Only the owner or an admin can pin a note.": "只有所有者或管理员可以置顶备注。",
     "Reading the interview's notes…": "正在查看面试的备注…",
+    "Couldn't hear the answer. Please try again or tap an option.": "没能听清回答，请重试或点按一个选项。",
+    "Couldn't read the question aloud.": "无法朗读该问题。",
+    "This interview isn't taken by voice.": "此面试不通过语音进行。",
+    "No question is waiting for an answer.": "没有等待回答的问题。",
+    "Voice mode isn't available in this interview's language.": "此面试的语言不支持语音模式。",
 }

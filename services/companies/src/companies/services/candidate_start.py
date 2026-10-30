@@ -45,6 +45,7 @@ async def start_sessions(
             "candidate_invite_id": str(invite.id),
             "question_seconds": candidate_seconds(interview.question_seconds, invite.extra_time),
             "topics": session_topics(interview, content, await multi_share(get_redis())),
+            "voice": bool(interview.voice),
         }
     )
 

@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "רק מי שכתב את ההערה, הבעלים או מנהל יכולים למחוק אותה.",
     "Only the owner or an admin can pin a note.": "רק הבעלים או מנהל יכולים להצמיד הערה.",
     "Reading the interview's notes…": "בודק את ההערות על הראיון…",
+    "Couldn't hear the answer. Please try again or tap an option.": "לא הצלחנו לשמוע את התשובה. אפשר לנסות שוב או להקיש על אחת האפשרויות.",
+    "Couldn't read the question aloud.": "לא הצלחנו להקריא את השאלה.",
+    "This interview isn't taken by voice.": "הריאיון הזה לא מתקיים בקול.",
+    "No question is waiting for an answer.": "אין שאלה שממתינה לתשובה.",
+    "Voice mode isn't available in this interview's language.": "מצב קולי לא זמין בשפה של הריאיון הזה.",
 }

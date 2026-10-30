@@ -23,8 +23,10 @@ from rounds.api.v1 import (
     session_feedback,
     sessions,
     superadmin,
+    voice,
 )
 from rounds.config import settings
+from rounds.constants.voice import MAX_ANSWER_BODY_BYTES
 from rounds.core.db import engine
 from rounds.integrations.redis import get_redis
 
@@ -50,7 +52,7 @@ add_localized_errors(app)
 app.add_middleware(MaintenanceMiddleware, get_redis=get_redis)
 app.add_middleware(NoStoreMiddleware)
 app.add_middleware(RequestLogMiddleware)
-app.add_middleware(BodyLimitMiddleware)
+app.add_middleware(BodyLimitMiddleware, max_bytes=MAX_ANSWER_BODY_BYTES)
 compress_answers(app)
 app.include_router(sessions.router)
 app.include_router(interview_flow.router)
@@ -62,6 +64,7 @@ app.include_router(schedules.router)
 app.include_router(superadmin.router)
 app.include_router(internal_accounts.router)
 app.include_router(internal_maintenance.router)
+app.include_router(voice.router)
 
 
 app.include_router(health_router(engine))

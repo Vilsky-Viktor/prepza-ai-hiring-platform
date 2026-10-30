@@ -156,8 +156,9 @@ def test_a_visitor_sees_the_invitation_without_the_candidates_email(client, invi
     assert response.status_code == 200
     assert response.json()["title"] == "Backend"
     assert response.json()["email"] is None
-    # The set's 4 questions at 60 seconds each.
+    # The set's 4 questions at 60 seconds each, answered by clicks.
     assert response.json()["total_minutes"] == 4
+    assert response.json()["voice"] is False
 
 
 @pytest.mark.parametrize(

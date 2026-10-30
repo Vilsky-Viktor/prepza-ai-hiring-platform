@@ -3,7 +3,7 @@ from datetime import UTC, datetime
 
 from prepza_common.db.db import delete_in_batches
 from prepza_common.events import outbox
-from sqlalchemy import delete, func, or_, select, update
+from sqlalchemy import case, delete, func, or_, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -113,15 +113,26 @@ async def invite_counts(
     return counts
 
 
-async def mark_shown(session: AsyncSession, session_id: uuid.UUID) -> datetime:
-    """Starts the clock on the waiting question and returns when it started; reloading the
-    page, or a second tab asking at the same moment, gets the same time."""
-    return await session.scalar(
+async def mark_shown(
+    session: AsyncSession, session_id: uuid.UUID, reading_seconds: int | None = None
+) -> tuple[datetime, int | None]:
+    """Starts the clock on the waiting question and returns when it started, with the seconds it
+    is read aloud first (voice mode); reloading the page, or a second tab asking at the same
+    moment, gets the same time."""
+    shown = RoundSession.question_shown_at
+    result = await session.execute(
         update(RoundSession)
         .where(RoundSession.id == session_id)
-        .values(question_shown_at=func.coalesce(RoundSession.question_shown_at, datetime.now(UTC)))
-        .returning(RoundSession.question_shown_at)
+        .values(
+            question_shown_at=func.coalesce(shown, datetime.now(UTC)),
+            question_reading_seconds=case(
+                (shown.is_(None), reading_seconds), else_=RoundSession.question_reading_seconds
+            ),
+        )
+        .returning(shown, RoundSession.question_reading_seconds)
     )
+
+    return tuple(result.one())
 
 
 async def add_answer(
@@ -139,7 +150,7 @@ async def add_answer(
     running = await session.scalar(
         update(RoundSession)
         .where(RoundSession.id == answer.session_id, RoundSession.status == RoundStatus.IN_PROGRESS)
-        .values(question_shown_at=None)
+        .values(question_shown_at=None, question_reading_seconds=None)
         .returning(RoundSession.id)
     )
 

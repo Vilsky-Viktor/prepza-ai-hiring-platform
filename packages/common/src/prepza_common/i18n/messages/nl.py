@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "Alleen wie de notitie schreef, de eigenaar of een beheerder kan haar verwijderen.",
     "Only the owner or an admin can pin a note.": "Alleen de eigenaar of een beheerder kan een notitie vastzetten.",
     "Reading the interview's notes…": "De notities bij het interview bekijken…",
+    "Couldn't hear the answer. Please try again or tap an option.": "Het antwoord was niet te verstaan. Probeer het opnieuw of tik op een optie.",
+    "Couldn't read the question aloud.": "De vraag kon niet worden voorgelezen.",
+    "This interview isn't taken by voice.": "Dit interview wordt niet met spraak afgenomen.",
+    "No question is waiting for an answer.": "Er wacht geen vraag op een antwoord.",
+    "Voice mode isn't available in this interview's language.": "Spraakmodus is niet beschikbaar in de taal van dit interview.",
 }

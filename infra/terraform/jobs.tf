@@ -84,6 +84,8 @@ locals {
     billing-auto-top-up-prices = { service = "billing", path = "/internal/schedules/auto-top-up-prices", cron = "45 5 * * *" }
     # Interviews whose time ran out after the candidate left.
     interview-expiry = { service = "rounds", path = "/internal/schedules/expire-interviews", cron = "* * * * *" }
+    # Questions and phrases read aloud in voice mode that nobody has played for 30 days.
+    voice-clips = { service = "rounds", path = "/internal/schedules/voice-clips", cron = "15 4 * * *" }
   }
 }
 

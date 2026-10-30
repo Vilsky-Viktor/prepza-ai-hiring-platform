@@ -65,6 +65,12 @@ class Session(Base):
     practice: Mapped[bool] = mapped_column(default=False)
     # When the question now waiting for an answer was first shown; cleared by the answer.
     question_shown_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # Voice mode: the interviewer reads each question and its options aloud, and the candidate
+    # may answer by voice (the interview's setting in companies).
+    voice: Mapped[bool] = mapped_column(default=False, server_default="false")
+    # Voice mode: the seconds the question now waiting is read aloud; its own time starts after
+    # them. Cleared by the answer, with question_shown_at.
+    question_reading_seconds: Mapped[int | None]
 
     answers: Mapped[list["Answer"]] = relationship(order_by="Answer.created_at")
     signals: Mapped[list[Signal]] = relationship(order_by=Signal.created_at)

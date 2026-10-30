@@ -44,6 +44,7 @@ async def preview(interview: Interview, user_id: str) -> str:
             "question_seconds": interview.question_seconds,
             "topics": session_topics(interview, content, await multi_share(get_redis())),
             "preview": True,
+            "voice": bool(interview.voice),
         }
     )
     await gone_meanwhile(interview.id, preview_id)

@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "सिर्फ़ नोट लिखने वाला, ओनर या कोई एडमिन ही इसे हटा सकता है।",
     "Only the owner or an admin can pin a note.": "सिर्फ़ ओनर या कोई एडमिन ही नोट पिन कर सकता है।",
     "Reading the interview's notes…": "इंटरव्यू के नोट देख रहा है…",
+    "Couldn't hear the answer. Please try again or tap an option.": "जवाब सुनाई नहीं दिया। फिर से कोशिश करें या किसी विकल्प पर टैप करें।",
+    "Couldn't read the question aloud.": "सवाल पढ़कर नहीं सुनाया जा सका।",
+    "This interview isn't taken by voice.": "यह इंटरव्यू आवाज़ से नहीं दिया जाता।",
+    "No question is waiting for an answer.": "कोई सवाल जवाब का इंतज़ार नहीं कर रहा।",
+    "Voice mode isn't available in this interview's language.": "इस इंटरव्यू की भाषा में वॉइस मोड उपलब्ध नहीं है।",
 }

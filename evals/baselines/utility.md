@@ -1,7 +1,8 @@
 # Baselines of the small utility prompts
 
 The runs behind the README's numbers for translations, code-language tags, the weekly quality
-patterns, the assistant's conversation titles, voice messages and the shared bank's filter, by
+patterns, the assistant's conversation titles, voice messages, voice mode's answer matching and the
+shared bank's filter, by
 date; the rest are in
 `README.md`.
 
@@ -106,3 +107,38 @@ warehouse counts stock every Friday", kept out: the cautious side). Kept on `gpt
 checker runs on a strong model (`.claude/rules/ai.md`), a leak costs far more than the call, and
 each question is checked once. On 150 local companies' questions (`--local`, not committed) it
 passed all 150 (97.5–100): generated from job texts, they named no organisation or person.
+
+## Voice mode's answer matching: first prompt (2026-10-30, kept)
+
+A new prompt (rounds' `prompts/voice_match.py`: a listener's role, the four intents, the question
+and the reply tagged as data, unclear when in doubt; never the answer key) with code checks after
+it (`helpers/voice_match.py`: one option on a single-answer question, a yes or no only while a
+choice waits). `voice_answers.json` (153 answers in English, Spanish, German, French, Portuguese
+and Italian; 35 also spoken, with accents and noise, heard by `gpt-transcribe` first),
+`voice_answers_test.py`, `gpt-6-luna` at effort none:
+
+| Run | Right as text | Wrong matches (text) | Right spoken | Wrong matches (spoken) | Price, time |
+|---|---|---|---|---|---|
+| First prompt, 1 repeat | 100% (97.6–100) | 0% | 91.4% (77.6–97.0) | 2.9% (1 of 35) | $0.022 a run, 2.0 s median |
+| With the unclear-part rule, 2 repeats | 100% (98.8–100) | 0% (0.0–1.2) | 92.9% (84.3–96.9) | 0% (0.0–5.2) | $0.045 a run, 2.4 s median, 3.6 s p90 |
+| Other examples in the prompt, 2 repeats (reverted) | 99.3% | 0% | 92.9% | 1.4% (1 of 70) | $0.045 a run, 2.3 s |
+| The rule as "every part must be related", 3 repeats (kept) | 99.6% (98.4–99.9) | 0% (0.0–0.8) | 94.3% (88.1–97.4) | 0% (0.0–3.5) | $0.068 a run, 2.0 s median, 3.2 s p90 |
+
+The one wrong match of the first run was fr19 spoken: "Git et Subversion" heard as "Dub and
+subversion", matched to Subversion alone; the rule added after it ("a part that seems to name an
+option but can't be related to one: unclear") turned it unclear, but not every time: with other
+examples in the prompt the same miss came back once, and "see" alone went unclear without its
+example. The rule now says every part that names an option must be related to one, or the whole
+reply is unclear; the examples are the first ones again. Text misses left: "dee" and "sure" (1 of
+3 each), unclear. Every spoken miss left is the
+hearing, not the matching: a one-word "oui" or "sim" heard as nothing, and "é a C" heard as "E,
+A, C"; each is unclear, so the candidate says it again or taps. About $0.0002 a spoken answer
+(hearing $0.00015, matching $0.00004), so about $0.01 for a 40-question interview with its
+confirmations. Not measured: real candidates' microphones and rooms.
+
+The reading aloud (`gpt-4o-mini-tts`, the speech endpoint, which reads the text and nothing
+else) has no eval: the code builds the script. OpenAI shuts the model down on 2027-01-06 and names
+the Realtime API as the replacement; a conversational audio model tried as a stand-in
+(`gpt-audio-mini`, asked to read a question word for word) answered it instead ("La risposta
+corretta è B"), so the switch needs an eval that compares what is said with the script before it
+ships.

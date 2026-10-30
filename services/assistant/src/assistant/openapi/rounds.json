@@ -1153,6 +1153,21 @@
     }
    }
   },
+  "/internal/schedules/voice-clips": {
+   "post": {
+    "tags": [
+     "schedules"
+    ],
+    "summary": "Remove Unused Clips",
+    "description": "Daily, from Cloud Scheduler: deletes the questions and phrases read aloud that nobody has\nplayed for CLIP_UNUSED_DAYS; a question still asked is read again when it next opens.",
+    "operationId": "remove_unused_clips_internal_schedules_voice_clips_post",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     }
+    }
+   }
+  },
   "/superadmin/stats": {
    "get": {
     "tags": [
@@ -1440,6 +1455,227 @@
      }
     ]
    }
+  },
+  "/sessions/{session_id}/voice/question": {
+   "get": {
+    "tags": [
+     "voice"
+    ],
+    "summary": "Question Audio",
+    "description": "Voice mode: the question on screen and its options read aloud (Ogg Opus), once its clock\nstarted. Made when the question opened and kept for every candidate who gets it.",
+    "operationId": "question_audio_sessions__session_id__voice_question_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "session_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Session Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/sessions/{session_id}/voice/phrases/{phrase}": {
+   "get": {
+    "tags": [
+     "voice"
+    ],
+    "summary": "Phrase Audio",
+    "description": "Voice mode: one of the interviewer's phrases read aloud (Ogg Opus) in the interview's\nlanguage.",
+    "operationId": "phrase_audio_sessions__session_id__voice_phrases__phrase__get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "session_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Session Id"
+      }
+     },
+     {
+      "name": "phrase",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "$ref": "#/components/schemas/Phrase"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/sessions/{session_id}/voice/confirmations": {
+   "get": {
+    "tags": [
+     "voice"
+    ],
+    "summary": "Confirmation Audio",
+    "description": "Voice mode: the interviewer naming the options in `picks` (indices) and asking whether\nthat's the candidate's answer, read aloud (Ogg Opus).",
+    "operationId": "confirmation_audio_sessions__session_id__voice_confirmations_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "session_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Session Id"
+      }
+     },
+     {
+      "name": "picks",
+      "in": "query",
+      "required": true,
+      "schema": {
+       "type": "array",
+       "items": {
+        "type": "integer",
+        "minimum": 0,
+        "exclusiveMaximum": 4
+       },
+       "minItems": 1,
+       "maxItems": 4,
+       "title": "Picks"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/sessions/{session_id}/voice/answers": {
+   "post": {
+    "tags": [
+     "voice"
+    ],
+    "summary": "Voice Answer",
+    "description": "Voice mode: a spoken answer to the question on screen, understood. The body is the\nrecording (audio/webm, audio/mp4 or audio/ogg, at most 2 MB); `waiting` is the choice (option\nindices) waiting for the candidate's yes or no. Nothing is saved: a confirmed choice is\nsent to the answers route as a tapped one is. The audio and the words are never kept.",
+    "operationId": "voice_answer_sessions__session_id__voice_answers_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "session_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Session Id"
+      }
+     },
+     {
+      "name": "waiting",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "array",
+         "items": {
+          "type": "integer",
+          "minimum": 0,
+          "exclusiveMaximum": 4
+         },
+         "maxItems": 4
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Waiting"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/VoiceAnswerOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
   }
  },
  "components": {
@@ -1672,6 +1908,17 @@
     "title": "IntegritySignal",
     "description": "What the candidate's browser reports during an interview."
    },
+   "Intent": {
+    "type": "string",
+    "enum": [
+     "choose",
+     "confirm",
+     "reject",
+     "unclear"
+    ],
+    "title": "Intent",
+    "description": "What a spoken answer meant (schemas/voice.py)."
+   },
    "InterviewStep": {
     "properties": {
      "session": {
@@ -1791,6 +2038,17 @@
        }
       ],
       "title": "Seconds Left"
+     },
+     "reading_left": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reading Left"
      }
     },
     "type": "object",
@@ -1885,6 +2143,17 @@
     ],
     "title": "PatternSignalOut",
     "description": "A signal that fired, with the numbers its sentence shows."
+   },
+   "Phrase": {
+    "type": "string",
+    "enum": [
+     "unclear",
+     "reminder",
+     "again",
+     "end"
+    ],
+    "title": "Phrase",
+    "description": "The interviewer's fixed phrases the browser asks for by name."
    },
    "PracticeRoundOut": {
     "properties": {
@@ -2602,6 +2871,11 @@
       "title": "Practice",
       "default": false
      },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
+     },
      "status": {
       "$ref": "#/components/schemas/RoundStatus"
      },
@@ -2722,6 +2996,11 @@
       "type": "string",
       "format": "uuid",
       "title": "Company Id"
+     },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
      }
     },
     "type": "object",
@@ -2916,6 +3195,32 @@
      "type"
     ],
     "title": "ValidationError"
+   },
+   "VoiceAnswerOut": {
+    "properties": {
+     "heard": {
+      "type": "string",
+      "title": "Heard"
+     },
+     "intent": {
+      "$ref": "#/components/schemas/Intent"
+     },
+     "picks": {
+      "items": {
+       "type": "integer"
+      },
+      "type": "array",
+      "title": "Picks"
+     }
+    },
+    "type": "object",
+    "required": [
+     "heard",
+     "intent",
+     "picks"
+    ],
+    "title": "VoiceAnswerOut",
+    "description": "A spoken answer, understood: what was heard (the candidate's own words, shown back to\nthem and kept nowhere), what it meant, and the options it picks (indices, as a click sends\nthem) for `choose` and `confirm`."
    }
   },
   "securitySchemes": {

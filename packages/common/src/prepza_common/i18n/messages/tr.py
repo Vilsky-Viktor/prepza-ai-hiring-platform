@@ -264,4 +264,9 @@ MESSAGES = {
     "Only the note's author, the owner or an admin can delete it.": "Yorumu yalnızca yazan kişi, sahip veya bir yönetici silebilir.",
     "Only the owner or an admin can pin a note.": "Yorumu yalnızca sahip veya bir yönetici sabitleyebilir.",
     "Reading the interview's notes…": "Mülakatın yorumlarına bakılıyor…",
+    "Couldn't hear the answer. Please try again or tap an option.": "Cevap duyulamadı. Tekrar dene veya bir seçeneğe dokun.",
+    "Couldn't read the question aloud.": "Soru sesli okunamadı.",
+    "This interview isn't taken by voice.": "Bu mülakat sesle yapılmıyor.",
+    "No question is waiting for an answer.": "Cevap bekleyen bir soru yok.",
+    "Voice mode isn't available in this interview's language.": "Sesli mod bu mülakatın dilinde kullanılamıyor.",
 }
