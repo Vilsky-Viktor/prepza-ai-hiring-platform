@@ -2,7 +2,9 @@
 from uuid import uuid4
 
 import pytest
+from prepza_common.i18n.i18n import translate
 
+from rounds.constants.voice_phrases import SAVED
 from rounds.models.sessions import Session
 from rounds.services import voice_session
 from tests.unit.api.v1 import test_voice
@@ -27,6 +29,11 @@ def with_next_question(row: Session) -> Session:
     ]
 
     return row
+
+
+def read(made: list) -> list:
+    """The questions read ahead, the interviewer's phrases left out."""
+    return [clip for clip in made if clip[2]]
 
 
 @pytest.fixture
@@ -63,7 +70,7 @@ def test_the_next_question_is_read_aloud_ahead_and_nothing_of_it_is_sent(client,
 
     assert response.status_code == 204
     assert response.content == b""
-    assert ahead == [("Which chart shows a distribution? A: Histogram. B: Pie.", "de", True)]
+    assert read(ahead) == [("Which chart shows a distribution? A: Histogram. B: Pie.", "de", True)]
 
 
 @pytest.mark.parametrize(
@@ -83,7 +90,7 @@ def test_nothing_is_read_ahead_without_a_next_question_on_the_candidates_clock(
     voice.row = row
 
     assert client.post(f"/sessions/{row.id}/voice/next-question/prepare").status_code == status
-    assert ahead == []
+    assert read(ahead) == []
 
 
 def test_after_a_sections_last_question_the_next_sections_first_is_read_ahead(
@@ -96,7 +103,7 @@ def test_after_a_sections_last_question_the_next_sections_first_is_read_ahead(
 
     assert client.post(f"/sessions/{voice.row.id}/voice/next-question/prepare").status_code == 204
     # The running section's first question, never a finished one's.
-    assert ahead == [
+    assert read(ahead) == [
         ("Which measure ignores outliers best? A: Mean. B: Median. C: Range. D: Mode.", "de", True)
     ]
 
@@ -104,6 +111,25 @@ def test_after_a_sections_last_question_the_next_sections_first_is_read_ahead(
 def test_a_finished_section_reads_nothing_ahead(client, voice, ahead):
     voice.row = with_next_question(section())
     voice.row.status = "finished"
+
+    assert client.post(f"/sessions/{voice.row.id}/voice/next-question/prepare").status_code == 204
+    assert ahead == []
+
+
+def test_a_single_answer_questions_saved_answers_are_made_ahead(client, voice, ahead, others):
+    """Each option's "B, saved." in the interview's language, so a clear answer is told at once;
+    none for a select-all-that-apply question, which is always confirmed."""
+    voice.row = section()
+
+    assert client.post(f"/sessions/{voice.row.id}/voice/next-question/prepare").status_code == 204
+    assert [clip for clip in ahead if not clip[2]] == [
+        (translate(SAVED, "de").format(letter=letter), "de", False) for letter in "ABCD"
+    ]
+
+    ahead.clear()
+    voice.row = section()
+    for option in voice.row.questions[0]["options"][:2]:
+        option["correct"] = True
 
     assert client.post(f"/sessions/{voice.row.id}/voice/next-question/prepare").status_code == 204
     assert ahead == []

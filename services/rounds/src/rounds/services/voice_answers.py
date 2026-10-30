@@ -1,4 +1,5 @@
 import logging
+import time
 
 from fastapi import HTTPException, Request, status
 from openai import OpenAIError
@@ -13,7 +14,10 @@ from rounds.constants.voice import (
     MAX_ANSWER_SECONDS,
     TRANSCRIPTION_ACTION,
     VOICE_FAILED,
+    Intent,
 )
+from rounds.helpers.voice_match import hearing_keywords
+from rounds.helpers.voice_timing import server_timing
 from rounds.integrations.llm import get_transcribe_client
 from rounds.models.sessions import Session
 from rounds.schemas.voice import VoiceAnswerOut
@@ -34,14 +38,15 @@ async def failed(error: Exception, action: str, model: str, who: dict, **usage) 
     return HTTPException(status.HTTP_502_BAD_GATEWAY, VOICE_FAILED)
 
 
-async def hear(request: Request, language: str, who: dict) -> str:
-    """The spoken answer as text, in the interview's language; its cost recorded."""
+async def hear(request: Request, language: str, who: dict, keywords: list[str]) -> str:
+    """The spoken answer as text, in the interview's language, told the words it's likely to
+    hear (helpers/voice_match.py hearing_keywords); its cost recorded."""
     content_type, file_name, audio = await received_audio(request)
     model = settings.transcribe_model
 
     try:
         result = await speech_to_text(
-            get_transcribe_client(), model, file_name, audio, content_type, language
+            get_transcribe_client(), model, file_name, audio, content_type, language, keywords
         )
     except OpenAIError as error:
         seconds = audio_seconds(None, len(audio), MAX_ANSWER_SECONDS)
@@ -53,12 +58,17 @@ async def hear(request: Request, language: str, who: dict) -> str:
     return result.text.strip()
 
 
-async def answer(row: Session, request: Request, waiting: list[int]) -> VoiceAnswerOut:
+async def answer(
+    row: Session, request: Request, waiting: list[int]
+) -> tuple[VoiceAnswerOut, dict[str, float]]:
     """A spoken answer to the question on screen, understood: heard, then matched to its options
     (or to a yes or no for the choice `waiting` for confirmation); a sound without words is
-    noise, which the browser ignores. Nothing is saved: the candidate confirms a choice and it's
-    sent as a tapped one is. The audio and the words are never kept or logged. Over the limits a
-    429 (or 503); a failed call a 502."""
+    noise, which the browser ignores. Nothing is saved here: a clear choice (one option on a
+    single-answer question) is sent at once, any other once the candidate confirms it, as a
+    tapped one is. With it, each stage's seconds (transcribe, match, total), also logged with
+    the session's id and the intent: never the words. The audio and the words are never kept or
+    logged. Over the limits a 429 (or 503); a failed call a 502."""
+    started = time.monotonic()
     voice_only(row)
     question = shown_question(row)
     # Noted as it arrives, before the upload is read: in time, its answer may come after the
@@ -67,8 +77,9 @@ async def answer(row: Session, request: Request, waiting: list[int]) -> VoiceAns
     await voice_limits.check_answer(row)
     language = await interview_language(row)
     who = {"company_id": row.company_id, "user_id": row.user_id, "subject_id": row.id}
-    said = await hear(request, language, who)
-
+    heard_at = time.monotonic()
+    said = await hear(request, language, who, hearing_keywords(question))
+    matched_at = time.monotonic()
     model = settings.voice_match_model
 
     try:
@@ -79,8 +90,23 @@ async def answer(row: Session, request: Request, waiting: list[int]) -> VoiceAns
         usage = {"input_tokens": estimated_tokens(said + question.text)}
         raise await failed(error, MATCH_ACTION, model, who, usage=usage)
 
-    # Noise, a plain yes or a letter alone was read without a call: nothing to record.
+    # Noise, a plain yes or only letters were read without a call: nothing to record.
     if usage is not None:
         await ai_usage.record(MATCH_ACTION, model, usage, **who)
 
-    return VoiceAnswerOut(heard=said, intent=intent, picks=picks)
+    clear = intent == Intent.CHOOSE and not question.multi
+    now = time.monotonic()
+    stages = {
+        "transcribe": matched_at - heard_at,
+        "match": now - matched_at,
+        "total": now - started,
+    }
+    logger.info(
+        "Voice answer %s: %s by %s, %s",
+        row.id,
+        intent,
+        "model" if usage is not None else "code",
+        server_timing(stages),
+    )
+
+    return VoiceAnswerOut(heard=said, intent=intent, picks=picks, clear=clear), stages

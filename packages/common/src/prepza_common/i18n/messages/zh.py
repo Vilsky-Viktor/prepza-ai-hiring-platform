@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "下面进入下一题。",
     "Time's up. No answer. Moving on to the next question.": "时间到。没有作答。下面进入下一题。",
     "Time's up. Your answer is saved. Moving on to the next question.": "时间到。你的回答已保存。下面进入下一题。",
+    "{letter}, saved.": "{letter}，已保存。",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "谢谢。你的回答已记录，公司会就结果与你联系。",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "请输入你的 LinkedIn 个人主页地址，例如 linkedin.com/in/your-name。",
     "The text you agreed to has changed. Reload the page and try again.": "你同意的文本已更改。请刷新页面后重试。",

@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "Lilipat na tayo sa susunod na tanong.",
     "Time's up. No answer. Moving on to the next question.": "Ubos na ang oras. Walang sagot. Lilipat na tayo sa susunod na tanong.",
     "Time's up. Your answer is saved. Moving on to the next question.": "Ubos na ang oras. Naitala na ang sagot mo. Lilipat na tayo sa susunod na tanong.",
+    "{letter}, saved.": "{letter}, naitala na.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "Salamat. Naitala na ang mga sagot mo, at makikipag-ugnayan sa iyo ang kumpanya tungkol sa resulta.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Ilagay ang address ng iyong LinkedIn profile, gaya ng linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "Nagbago ang tekstong sinang-ayunan mo. I-reload ang page at subukan muli.",

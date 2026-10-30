@@ -1,46 +1,62 @@
-import { ACK_MIN_VOICED_MS } from "@/config/voice"
-import { clipUrl, playUrl } from "@/lib/voice-clips"
+import { ACK_DELAY_MS, ACK_MIN_VOICED_MS, GOT_IT_CLIP } from "@/config/voice"
+import { playUrl } from "@/lib/voice-clips"
+import type { KeptClips } from "@/lib/voice-kept-clips"
 
-/** Mira's "Got it.", said the moment a stretch of speech is sent, unless it was too short to be
- * words (a cough): fetched once and kept for the interview (the same clip in every section), so
- * it starts at once. */
-export function acknowledgement() {
-  let url: Promise<string> | null = null
-
-  function load(sessionId: string) {
-    url ??= clipUrl(`${sessionId}/voice/phrases/got-it`)
-    // Fetched again next time if this one failed.
-    url.catch(() => {
-      url = null
-    })
-
-    return url
-  }
+/** Mira's "Got it.", only to fill a wait: said when no answer is back ACK_DELAY_MS after a
+ * stretch of speech was sent (not after one too short to be words, a cough), and cut off the
+ * moment the answer is back, so her reaction never waits for it and two of her clips never play
+ * at once (both play on the one player). */
+export function acknowledgement(clips: KeptClips) {
+  let timer: ReturnType<typeof setTimeout> | undefined
+  // The turn it's for: a cancelled turn's clip never starts.
+  let turn = 0
+  // Its address while it plays, so only it is ever stopped.
+  let playing: string | null = null
 
   return {
-    load,
-    /** Plays it to its end on `player` after `voicedMs` of sound; never throws, as the answer
+    /** Plays it on `player` after ACK_DELAY_MS, unless cancelled; never throws, as the answer
      * goes on without it. */
-    play: async (
+    schedule: (
       player: HTMLAudioElement,
       sessionId: string,
       voicedMs: number
     ) => {
+      const mine = ++turn
+
       if (voicedMs < ACK_MIN_VOICED_MS) {
         return
       }
 
-      try {
-        await playUrl(player, await load(sessionId))
-      } catch (error) {
-        console.warn("Mira's acknowledgement didn't play", error)
-      }
+      timer = setTimeout(async () => {
+        try {
+          const url = await clips.load(sessionId, GOT_IT_CLIP)
+
+          if (mine !== turn) {
+            return
+          }
+
+          playing = url
+          await playUrl(player, url)
+        } catch (error) {
+          console.warn("Mira's acknowledgement didn't play", error)
+        } finally {
+          if (mine === turn) {
+            playing = null
+          }
+        }
+      }, ACK_DELAY_MS)
     },
-    release: () => {
-      void url
-        ?.then((address) => URL.revokeObjectURL(address))
-        .catch(() => undefined)
-      url = null
+    /** The answer is back, or Mira says something else: it doesn't start, or stops where it
+     * is (never another clip on the player). */
+    cancel: (player: HTMLAudioElement | null) => {
+      turn++
+      clearTimeout(timer)
+
+      if (playing && player?.src === playing) {
+        player.pause()
+      }
+
+      playing = null
     },
   }
 }

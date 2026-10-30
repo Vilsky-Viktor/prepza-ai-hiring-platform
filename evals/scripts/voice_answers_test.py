@@ -25,6 +25,7 @@ from stats import share
 
 from rounds.config import settings
 from rounds.constants.voice import MAX_ANSWER_SECONDS, Intent
+from rounds.helpers.voice_match import hearing_keywords
 from rounds.integrations.llm import get_transcribe_client
 from rounds.schemas.rounds import NextQuestion
 from rounds.services.voice_match import match
@@ -60,12 +61,18 @@ def question_of(data: dict, item: dict) -> NextQuestion:
     )
 
 
-async def hear(item: dict) -> tuple[str, float]:
+async def hear(data: dict, item: dict) -> tuple[str, float]:
     name = f"sound_{item['id']}" if "sound" in item else f"answer_{item['id']}"
     audio = (DATASETS / "audio" / f"{name}.ogg").read_bytes()
     model = settings.transcribe_model
     result = await speech_to_text(
-        get_transcribe_client(), model, "audio.ogg", audio, "audio/ogg", item["language"]
+        get_transcribe_client(),
+        model,
+        "audio.ogg",
+        audio,
+        "audio/ogg",
+        item["language"],
+        hearing_keywords(question_of(data, item)),
     )
     seconds = audio_seconds(getattr(result, "usage", None), len(audio), MAX_ANSWER_SECONDS)
 
@@ -75,7 +82,7 @@ async def hear(item: dict) -> tuple[str, float]:
 async def one(data: dict, item: dict, spoken: bool, slots: asyncio.Semaphore) -> dict:
     async with slots:
         started = time.monotonic()
-        said, heard_cost = await hear(item) if spoken else (item["said"], 0.0)
+        said, heard_cost = await hear(data, item) if spoken else (item["said"], 0.0)
         intent, picks, usage = await match(
             question_of(data, item), said, item["waiting"], item["language"], item["id"]
         )
@@ -117,6 +124,8 @@ def scores_of(rows: list[dict]) -> dict:
         "right": share(sum(r["right"] for r in rows), n),
         "wrong_matches": share(sum(r["wrong_match"] for r in rows), n),
         "by_code": share(sum(r["by_code"] for r in rows), n),
+        # Read by code and not what the candidate meant: the target is none.
+        "by_code_wrong": share(sum(r["by_code"] and not r["right"] for r in rows), n),
         "unclear_when_chosen": share(
             sum(r["intent"] == Intent.UNCLEAR and not r["right"] for r in rows), n
         ),
@@ -174,7 +183,7 @@ async def main(args) -> None:
 
     for r in rows:
         if not r["right"]:
-            mark = "WRONG" if r["wrong_match"] else "miss"
+            mark = ("WRONG" if r["wrong_match"] else "miss") + (" by code" if r["by_code"] else "")
             print(
                 f"- {mark} {r['id']}{' spoken' if r['spoken'] else ''} [{r['kind']}]: "
                 f"{r['said']!r} -> {r['intent']} {r['picks']}"

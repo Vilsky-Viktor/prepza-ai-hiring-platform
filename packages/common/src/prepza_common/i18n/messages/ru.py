@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "Переходим к следующему вопросу.",
     "Time's up. No answer. Moving on to the next question.": "Время вышло. Ответа нет. Переходим к следующему вопросу.",
     "Time's up. Your answer is saved. Moving on to the next question.": "Время вышло. Ваш ответ сохранён. Переходим к следующему вопросу.",
+    "{letter}, saved.": "{letter}, сохранено.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "Спасибо. Ваши ответы сохранены, и компания свяжется с вами по поводу результатов.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Введите адрес своего профиля LinkedIn, например linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "Текст, на который вы согласились, изменился. Обновите страницу и попробуйте ещё раз.",

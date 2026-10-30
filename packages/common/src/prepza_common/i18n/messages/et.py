@@ -293,6 +293,7 @@ MESSAGES = {
     "Moving on to the next question.": "Liigume järgmise küsimuse juurde.",
     "Time's up. No answer. Moving on to the next question.": "Aeg sai otsa. Vastust ei ole. Liigume järgmise küsimuse juurde.",
     "Time's up. Your answer is saved. Moving on to the next question.": "Aeg sai otsa. Sinu vastus on salvestatud. Liigume järgmise küsimuse juurde.",
+    "{letter}, saved.": "{letter}, salvestatud.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "Aitäh. Sinu vastused on salvestatud ja ettevõte võtab tulemuste osas sinuga ühendust.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Sisesta oma LinkedIni profiili aadress, nt linkedin.com/in/sinu-nimi.",
     "The text you agreed to has changed. Reload the page and try again.": "Tekst, millega nõustusid, on muutunud. Laadi leht uuesti ja proovi veel kord.",

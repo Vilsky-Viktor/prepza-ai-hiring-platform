@@ -91,10 +91,21 @@ def test_a_spoken_answer_is_heard_in_the_interviews_language_and_matched(
     )
 
     assert response.status_code == 200
-    assert response.json() == {"heard": "die Mediane", "intent": "choose", "picks": [1]}
+    # One option on a single-answer question: clear, saved without asking.
+    assert response.json() == {
+        "heard": "die Mediane",
+        "intent": "choose",
+        "picks": [1],
+        "clear": True,
+    }
+    # Each stage's milliseconds, for the browser's timings.
+    stages = [entry.split(";")[0] for entry in response.headers["server-timing"].split(", ")]
+    assert stages == ["transcribe", "match", "total"]
     [heard] = voice.heard_calls
     assert heard["file"] == ("audio.ogg", SPOKEN, "audio/ogg")
     assert heard["languages"] == ["de"]
+    # Recognition is told the options' letters and texts.
+    assert heard["keywords"] == ["A", "B", "C", "D", "Mean", "Median", "Range", "Mode"]
     [(question, said, waiting, language)] = voice.matched
     # The matching never sees which option is right.
     assert question.options == ["Mean", "Median", "Range", "Mode"]
@@ -116,7 +127,12 @@ def test_a_sound_without_words_is_noise_without_a_matching_call(client, voice, p
 
     response = client.post(f"/sessions/{voice.row.id}/voice/answers", content=SPOKEN, headers=OGG)
 
-    assert response.json() == {"heard": heard.strip(), "intent": "noise", "picks": []}
+    assert response.json() == {
+        "heard": heard.strip(),
+        "intent": "noise",
+        "picks": [],
+        "clear": False,
+    }
     assert voice.matched == []
     used = [data["action"] for kind, data in published if kind == "ai.used"]
     assert used == ["voice_transcription"]
@@ -244,7 +260,12 @@ def test_a_plain_yes_confirms_without_a_matching_call(client, voice, published):
         f"/sessions/{voice.row.id}/voice/answers?waiting=1", content=SPOKEN, headers=OGG
     )
 
-    assert response.json() == {"heard": "Ja, genau.", "intent": "confirm", "picks": [1]}
+    assert response.json() == {
+        "heard": "Ja, genau.",
+        "intent": "confirm",
+        "picks": [1],
+        "clear": False,
+    }
     assert voice.matched == []
     # Only the hearing is paid for.
     assert [d["action"] for kind, d in published if kind == "ai.used"] == ["voice_transcription"]

@@ -34,6 +34,21 @@ export const VAD_OPTIONS = {
 }
 // "Got it." only after at least this much voiced sound: a short word gets no acknowledgement.
 export const ACK_MIN_VOICED_MS = 500
+// ... and only when no answer is back this long after the speech was sent: a quick answer goes
+// straight to Mira's reaction.
+export const ACK_DELAY_MS = 450
+// Mira's short clips, by their path after the session: fetched into the page as voice mode
+// starts (lib/voice-kept-clips.ts), so none waits for the network when it's said. Her
+// "{letter}, saved." clips are fetched per question, for its options' letters.
+export const GOT_IT_CLIP = "phrases/got-it"
+export const KEPT_PHRASES = [
+  GOT_IT_CLIP,
+  "phrases/unclear",
+  "phrases/again",
+  "phrases/next",
+  "phrases/time-up",
+  "phrases/time-up-saved",
+]
 // A spoken answer is sent at most this long (the service's limit is 30 seconds).
 export const MAX_ANSWER_MS = 25_000
 // When the question's time runs out while the candidate is speaking or their answer is being

@@ -96,14 +96,19 @@ describe("playClip", () => {
 })
 
 describe("sendSpokenAnswer", () => {
-  it("sends the recording with the choice on screen, and gives what it meant", async () => {
+  it("sends the recording with the choice on screen, and gives what it meant and the service's stages", async () => {
     const answer = { heard: "the median", intent: "choose", picks: [1] }
-    replying(() => Response.json(answer))
+    replying(() =>
+      Response.json(answer, {
+        headers: { "Server-Timing": "transcribe;dur=812, match;dur=3" },
+      })
+    )
     const audio = new Blob(["sound"], { type: "audio/webm" })
 
-    await expect(sendSpokenAnswer("s-1", audio, [0, 2])).resolves.toEqual(
-      answer
-    )
+    await expect(sendSpokenAnswer("s-1", audio, [0, 2])).resolves.toEqual({
+      answer,
+      stages: { transcribe: 812, match: 3 },
+    })
     expect(calls[0][0]).toBe(
       "/api/rounds/sessions/s-1/voice/answers?waiting=0&waiting=2"
     )

@@ -40,7 +40,7 @@ FAQ = [
     {
         "key": "voice",
         "question": "Os candidatos podem responder por voz?",
-        "answer": "Sim, se a empresa definir uma entrevista no modo de voz (em inglês, espanhol, alemão, francês, português ou italiano). As questões são lidas em voz alta e os candidatos respondem falando; o que eles dizem é convertido em texto e associado a uma opção que eles confirmam, e nunca é armazenado. As vozes não são analisadas quanto a tom ou emoção, e os candidatos sempre podem tocar em uma opção.",
+        "answer": "Sim, se a empresa definir uma entrevista no modo de voz (em inglês, espanhol, alemão, francês, português ou italiano). As questões são lidas em voz alta e os candidatos respondem falando; o que eles dizem é convertido em texto e associado a uma opção, e nunca é armazenado. As vozes não são analisadas quanto a tom ou emoção, e os candidatos sempre podem tocar em uma opção.",
     },
     {
         "key": "cost",

@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "Chuyển sang câu hỏi tiếp theo.",
     "Time's up. No answer. Moving on to the next question.": "Hết giờ. Không có câu trả lời. Chuyển sang câu hỏi tiếp theo.",
     "Time's up. Your answer is saved. Moving on to the next question.": "Hết giờ. Câu trả lời của bạn đã được lưu. Chuyển sang câu hỏi tiếp theo.",
+    "{letter}, saved.": "{letter}, đã lưu.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "Cảm ơn bạn. Câu trả lời của bạn đã được ghi nhận, và công ty sẽ liên hệ với bạn về kết quả.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Nhập địa chỉ hồ sơ LinkedIn của bạn, ví dụ linkedin.com/in/ten-ban.",
     "The text you agreed to has changed. Reload the page and try again.": "Nội dung bạn đã đồng ý đã thay đổi. Hãy tải lại trang và thử lại.",

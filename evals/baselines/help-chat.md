@@ -241,3 +241,10 @@ the daily limit from `BIAS_AUDIT_EXPORTS_PER_DAY`) in the guide, page guides and
 (`results/help_chat_trust-bias-audit.json`). Misses: h17's known invented retake limit (3 of 3)
 and h04 once (billing for viewers); none about the trust page or the export. Within the noise;
 kept so the guides say what is true. $1.90.
+
+2026-10-30, voice mode's faster answers in the guide (a single clear spoken choice saved at once,
+a choice of several options confirmed with a yes first) and the FAQ (no longer "an option they
+confirm"): passed 96.0% (88.9–98.6), made up 2.7% (0.7–9.2), sign-in marker 100%, identity 18 of
+18 (`results/help_chat_voice-clear.json`). Misses: h17's known invented retake limit, h04 once
+(viewers and the balance), h12 once (two sentences), h15 once (stray Thai in an English answer);
+none about voice mode. Within the noise; kept so the guide says what is true. $1.94.

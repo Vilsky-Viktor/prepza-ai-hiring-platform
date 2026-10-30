@@ -26,7 +26,7 @@ const CLIP = (() => {
 })()
 
 // What the service understood from a spoken answer (rounds' VoiceAnswerOut).
-export type Understood = { heard: string; intent: string; picks: number[] }
+export type Understood = { heard: string; intent: string; picks: number[]; clear?: boolean }
 
 // A sentence of made-up speech (the evals' voice message v01, spoken by a speech model): the fake
 // microphone's voice. Voice mode listens for speech only, so a tone wouldn't do.
@@ -126,10 +126,51 @@ export async function fakeMicrophone(page: Page) {
 /** Mira's side mocked at the network edge on `page`: every clip she says (the question, her
  * phrases, a confirmation) is a moment of silence, reading ahead does nothing, and each spoken
  * answer waits for the test to `answer` it with what the service understood. `asked` lists the
- * voice requests made, as paths with their queries. */
+ * voice requests made, as paths with their queries (her short clips are fetched ahead, said or
+ * not); `said` lists the clips she played, the same way. */
 export async function fakeMira(page: Page) {
   const asked: string[] = []
   const waiting: { route: Route; url: URL }[] = []
+
+  // Each clip's address is traced back to the path it was fetched from, and each play recorded.
+  await page.addInitScript(() => {
+    const page = window as unknown as { miraSaid: string[] }
+    page.miraSaid = []
+    const paths = new Map<string, string>()
+    const blob = Response.prototype.blob
+    Response.prototype.blob = async function () {
+      const found = await blob.call(this)
+      const url = new URL(this.url, location.href)
+
+      if (url.pathname.includes("/voice/")) {
+        const path = url.pathname.replace(/^.*\/voice\//, "") + url.search
+        ;(found as Blob & { voicePath?: string }).voicePath = path
+      }
+
+      return found
+    }
+    const create = URL.createObjectURL.bind(URL)
+    URL.createObjectURL = (object: Blob | MediaSource) => {
+      const address = create(object)
+      const path = (object as Blob & { voicePath?: string }).voicePath
+
+      if (path) {
+        paths.set(address, path)
+      }
+
+      return address
+    }
+    const play = HTMLMediaElement.prototype.play
+    HTMLMediaElement.prototype.play = function () {
+      const path = paths.get(this.src)
+
+      if (path) {
+        page.miraSaid.push(path)
+      }
+
+      return play.call(this)
+    }
+  })
 
   await page.route("**/api/rounds/sessions/*/voice/**", async (route) => {
     const url = new URL(route.request().url())
@@ -153,6 +194,7 @@ export async function fakeMira(page: Page) {
 
   return {
     asked,
+    said: () => page.evaluate(() => (window as unknown as { miraSaid: string[] }).miraSaid),
     /** The spoken answer waiting, once sent: the choice on screen it carried (`waiting`). */
     sent: async () => {
       await expectSoon(() => waiting.length > 0)

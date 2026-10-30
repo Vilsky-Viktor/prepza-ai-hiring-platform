@@ -16,7 +16,7 @@ afterEach(() => {
 })
 
 function answer(intent: VoiceAnswer["intent"], picks: number[] = []) {
-  return { heard: "", intent, picks }
+  return { heard: "", intent, picks, clear: false }
 }
 
 it.each([

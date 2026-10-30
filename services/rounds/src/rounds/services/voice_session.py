@@ -1,3 +1,4 @@
+import asyncio
 import logging
 
 from fastapi import HTTPException, status
@@ -6,7 +7,7 @@ from prepza_common.i18n.i18n import translate
 from rounds.constants.rounds import RoundStatus
 from rounds.constants.voice import NO_QUESTION, NOT_VOICE
 from rounds.helpers.sessions import following_question, next_session_question
-from rounds.helpers.voice_speech import confirmation, question_script
+from rounds.helpers.voice_speech import confirmation, question_script, saved_answer
 from rounds.models.sessions import Session
 from rounds.models.voice_clips import VoiceClip
 from rounds.schemas.rounds import NextQuestion
@@ -55,24 +56,39 @@ async def clip_ready(row: Session, question: NextQuestion) -> None:
 
 
 async def prepare_next(row: Session) -> None:
-    """Voice mode, while a question is on the clock: the question after it read aloud ahead (the
-    section's next, or after its last the next section's first), so the step that opens it finds
-    its clip kept. Only the clip cache gets it: nothing of that question reaches the candidate
-    before it opens. Nothing after the interview's last."""
-    shown_question(row)
+    """Voice mode, while a question is on the clock: what may be said next made ahead, so it's
+    found kept: for a single-answer question each option's "B, saved." (said the moment an answer
+    is clear), and the question after it (the section's next, or after its last the next
+    section's first), read aloud. Only the clip cache gets them: nothing of the next question
+    reaches the candidate before it opens. No next question after the interview's last, and
+    nothing in a section that's over."""
+    question = shown_question(row)
 
     if row.status != RoundStatus.IN_PROGRESS:
         return
 
+    language = await interview_language(row)
+    ahead = [
+        made_ahead(row, saved_answer(pick, language), language, company_text=False)
+        for pick in ([] if question.multi else range(len(question.options)))
+    ]
     following = next_session_question(row, after=1) or following_question(
         row, await own_sections(row)
     )
 
-    if following is None:
-        return
+    if following is not None:
+        script = question_script(following, language)
+        ahead.append(made_ahead(row, script, language, company_text=True))
 
-    language = await interview_language(row)
-    await made_ahead(row, question_script(following, language), language, company_text=True)
+    # All end before the response (no work after it); then the first failure, as one alone gave.
+    failures = [
+        result
+        for result in await asyncio.gather(*ahead, return_exceptions=True)
+        if isinstance(result, BaseException)
+    ]
+
+    if failures:
+        raise failures[0]
 
 
 async def phrase_clip(row: Session, phrase: str) -> VoiceClip:
@@ -81,6 +97,13 @@ async def phrase_clip(row: Session, phrase: str) -> VoiceClip:
     language = await interview_language(row)
 
     return await clip_for(row, translate(phrase, language), language, company_text=False)
+
+
+async def saved_clip(row: Session, pick: int) -> VoiceClip:
+    """The interviewer saying the option `pick` was saved: "B, saved."."""
+    language = await interview_language(row)
+
+    return await clip_for(row, saved_answer(pick, language), language, company_text=False)
 
 
 async def confirmation_clip(row: Session, picks: list[int]) -> VoiceClip:

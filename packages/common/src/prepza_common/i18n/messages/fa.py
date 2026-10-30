@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "می‌رویم سراغ پرسش بعدی.",
     "Time's up. No answer. Moving on to the next question.": "وقت تمام شد. پاسخی ثبت نشد. می‌رویم سراغ پرسش بعدی.",
     "Time's up. Your answer is saved. Moving on to the next question.": "وقت تمام شد. پاسخ شما ثبت شد. می‌رویم سراغ پرسش بعدی.",
+    "{letter}, saved.": "{letter}، ثبت شد.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "سپاسگزارم. پاسخ‌های شما ثبت شد و شرکت دربارهٔ نتایج با شما تماس خواهد گرفت.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "نشانی پروفایل LinkedIn خود را وارد کنید، مانند linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "متنی که با آن موافقت کردید تغییر کرده است. صفحه را دوباره بارگذاری کنید و دوباره امتحان کنید.",

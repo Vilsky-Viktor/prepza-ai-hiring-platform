@@ -40,7 +40,7 @@ FAQ = [
     {
         "key": "voice",
         "question": "Können Kandidaten per Sprache antworten?",
-        "answer": "Ja, wenn das Unternehmen ein Interview auf den Sprachmodus stellt (auf Englisch, Spanisch, Deutsch, Französisch, Portugiesisch oder Italienisch). Die Fragen werden vorgelesen und Kandidaten antworten laut; was sie sagen, wird in Text umgewandelt und einer Option zugeordnet, die sie bestätigen, und nie gespeichert. Stimmen werden nicht auf Tonfall oder Emotionen analysiert, und Kandidaten können jederzeit stattdessen antippen.",
+        "answer": "Ja, wenn das Unternehmen ein Interview auf den Sprachmodus stellt (auf Englisch, Spanisch, Deutsch, Französisch, Portugiesisch oder Italienisch). Die Fragen werden vorgelesen und Kandidaten antworten laut; was sie sagen, wird in Text umgewandelt und einer Option zugeordnet und nie gespeichert. Stimmen werden nicht auf Tonfall oder Emotionen analysiert, und Kandidaten können jederzeit stattdessen antippen.",
     },
     {
         "key": "cost",

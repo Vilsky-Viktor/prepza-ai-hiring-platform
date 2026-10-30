@@ -270,14 +270,18 @@ nothing added.
 
 ## `voice_answers.json` and `audio/answer_*.ogg` (by hand, 2026-10-30; audio by `gpt-realtime-2.1-mini`, 2026-10-30)
 
-153 made-up spoken answers to 19 made-up multiple-choice questions (a statistics question, a
+195 made-up spoken answers to 19 made-up multiple-choice questions (a statistics question, a
 customer-service one, a select-all-that-apply one on version control, and in English a code
-example) in voice mode's six languages: letters as said, heard or spelled ("bee", "la be", "letra
-bê"), read options, paraphrases (one of a wrong option, which must still be matched), positions,
+example) in voice mode's six languages: letters as said (alone, after "option", "answer" and the
+like, several joined by "and"), heard or spelled ("bee", "la be", "letra bê"), read options,
+paraphrases and descriptions (one of a wrong option, which must still be matched), positions and
+ordinals,
 several options on the select-all one, changes of mind, yes and no to a waiting choice, a new
 choice while one waits, and traps that must stay unclear (undecided, a question back, several
 options on a single-answer question, words fitting no option, "Thanks for watching!" as speech
-recognition hears silence, instructions to the model, a yes with nothing waiting). 35 are also
+recognition hears silence, instructions to the model, a yes with nothing waiting, letters inside a
+sentence that code alone must not read: "not A", "B is wrong, I mean C"). 42 were added on
+2026-10-30 for the letters read by code. 35 are also
 spoken by OpenAI's realtime voice model (`build_voice_answers.py`: eight voices, accents and
 hesitation asked for in the instructions, a clip spoken again when the model's own transcript is
 over 10% off; then Ogg Opus with pink noise mixed into most, by ffmpeg) into

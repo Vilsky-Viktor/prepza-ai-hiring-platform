@@ -40,7 +40,7 @@ FAQ = [
     {
         "key": "voice",
         "question": "Puwede bang sumagot gamit ang boses ang mga aplikante?",
-        "answer": "Oo, kung itinakda ng kumpanya ang interview sa voice mode (sa Ingles, Espanyol, Aleman, Pranses, Portuges o Italyano). Binabasa nang malakas ang mga tanong at sumasagot nang pasalita ang mga aplikante; ginagawang text ang sinasabi nila at itinutugma sa opsyong kinukumpirma nila, at hindi ito kailanman sine-save. Hindi sinusuri ang boses para sa tono o emosyon, at puwedeng mag-tap na lang palagi ang mga aplikante.",
+        "answer": "Oo, kung itinakda ng kumpanya ang interview sa voice mode (sa Ingles, Espanyol, Aleman, Pranses, Portuges o Italyano). Binabasa nang malakas ang mga tanong at sumasagot nang pasalita ang mga aplikante; ginagawang text ang sinasabi nila at itinutugma sa isang opsyon, at hindi ito kailanman sine-save. Hindi sinusuri ang boses para sa tono o emosyon, at puwedeng mag-tap na lang palagi ang mga aplikante.",
     },
     {
         "key": "cost",

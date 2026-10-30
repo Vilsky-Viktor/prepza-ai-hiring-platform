@@ -32,8 +32,8 @@ BODIES = {
     "POST /sessions/{session_id}/questions/{question_id}/reports": {"reason": "wrong_answer"},
 }
 
-# Path values that aren't ids: voice mode's phrase.
-VALUES = {"phrase": "end"}
+# Path values that aren't ids: voice mode's phrase and a saved answer's option.
+VALUES = {"phrase": "end", "pick": "1"}
 
 
 async def side(kind: str) -> Side:

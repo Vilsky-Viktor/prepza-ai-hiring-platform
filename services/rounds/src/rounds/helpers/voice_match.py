@@ -5,6 +5,8 @@ from prepza_common.config.constants import LANGUAGES
 
 from rounds.constants.voice import LETTERS, Intent
 from rounds.constants.voice_confirmations import CONFIRMATIONS
+from rounds.helpers.voice_letters import plain_letters
+from rounds.helpers.voice_speech import read_aloud
 from rounds.prompts.voice_match import MULTI, NOTHING_WAITING, SINGLE, SYSTEM, USER
 from rounds.schemas.rounds import NextQuestion
 from rounds.schemas.voice import VoiceMatch
@@ -48,6 +50,14 @@ def match_prompt(
     return [SystemMessage(content=SYSTEM), HumanMessage(content=user)]
 
 
+def hearing_keywords(question: NextQuestion) -> list[str]:
+    """What speech recognition is told it's likely to hear: the options' letters and the texts of
+    those read aloud."""
+    letters = list(LETTERS[: len(question.options)])
+
+    return letters + [option.strip() for option in question.options if read_aloud(option)]
+
+
 def understood(match: VoiceMatch, multi: bool, waiting: list[int]) -> tuple[Intent, list[int]]:
     """What the code accepts of the model's reading, and the options it picks: a choice of
     options that exist (one for a single-answer question); a confirmation or a no only while a
@@ -72,8 +82,9 @@ def obvious(
     said: str, question: NextQuestion, waiting: list[int], language: str
 ) -> tuple[Intent, list[int]] | None:
     """A reply plain enough to understand without the model: only a yes (CONFIRMATIONS, each
-    part) while a choice is waiting, or a single option's letter alone ("B."), a new choice even
-    while one waits. None for anything else, which the model reads."""
+    part) while a choice is waiting, or only options' letters (helpers/voice_letters.py: "B.",
+    "option B", several on a select-all-that-apply question), a new choice even while one
+    waits. None for anything else, which the model reads."""
     parts = [" ".join(part.split()) for part in PART_BREAKS.split(said.lower().replace("’", "'"))]
     parts = [part for part in parts if part]
     yes = CONFIRMATIONS.get(language, frozenset())
@@ -81,9 +92,9 @@ def obvious(
     if waiting and parts and all(part in yes for part in parts):
         return Intent.CONFIRM, sorted(waiting)
 
-    letter = parts[0].upper() if len(parts) == 1 else ""
+    picks = plain_letters(said, len(question.options), language)
 
-    if letter in LETTERS[: len(question.options)]:
-        return Intent.CHOOSE, [LETTERS.index(letter)]
+    if picks and (question.multi or len(picks) == 1):
+        return Intent.CHOOSE, picks
 
     return None

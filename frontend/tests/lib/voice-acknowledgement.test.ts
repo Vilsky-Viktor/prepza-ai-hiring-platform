@@ -1,13 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest"
 
+import { ACK_DELAY_MS } from "@/config/voice"
 import { acknowledgement } from "@/lib/voice-acknowledgement"
+import { keptClips } from "@/lib/voice-kept-clips"
 
 vi.mock("@/lib/api", async (original) => ({
   ...(await original<typeof import("@/lib/api")>()),
   authHeaders: async () => ({ Authorization: "Bearer token" }),
 }))
 
-/** An audio element that ends each clip at once and records what it played. */
+/** An audio element that records what it played and keeps playing until paused. */
 function player() {
   const played: string[] = []
   const element = {
@@ -17,17 +19,18 @@ function player() {
     onerror: null as (() => void) | null,
     play: vi.fn(async () => {
       played.push(element.src)
-      queueMicrotask(() => element.onended?.())
     }),
+    pause: vi.fn(),
   }
 
-  return { element: element as unknown as HTMLAudioElement, played }
+  return { element, audio: element as unknown as HTMLAudioElement, played }
 }
 
 describe("Mira's acknowledgement", () => {
   let fetches: string[]
 
   beforeEach(() => {
+    vi.useFakeTimers()
     fetches = []
     let made = 0
     vi.stubGlobal(
@@ -43,46 +46,44 @@ describe("Mira's acknowledgement", () => {
   })
 
   afterEach(() => {
+    vi.useRealTimers()
     vi.unstubAllGlobals()
     vi.restoreAllMocks()
   })
 
-  it("is fetched once and replayed from the same address in every section", async () => {
-    const said = acknowledgement()
-    const { element, played } = player()
+  it("isn't said when the answer is back in time", async () => {
+    const said = acknowledgement(keptClips())
+    const { audio, played } = player()
 
-    await said.play(element, "section-1", 800)
-    await said.play(element, "section-2", 800)
+    said.schedule(audio, "s", 800)
+    said.cancel(audio)
+    await vi.advanceTimersByTimeAsync(ACK_DELAY_MS * 2)
+
+    expect(played).toEqual([])
+  })
+
+  it("fills a slow answer's wait and stops the moment it's back", async () => {
+    const clips = keptClips()
+    const said = acknowledgement(clips)
+    const { element, audio, played } = player()
+
+    said.schedule(audio, "section-1", 800)
+    await vi.advanceTimersByTimeAsync(ACK_DELAY_MS)
+    said.cancel(audio)
 
     expect(fetches).toEqual([
       "/api/rounds/sessions/section-1/voice/phrases/got-it",
     ])
-    expect(played).toEqual(["blob:1", "blob:1"])
-
-    said.release()
-    await Promise.resolve()
-
-    expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:1")
-  })
-
-  it("never fails the answer, and is fetched again after a failed fetch", async () => {
-    vi.spyOn(console, "warn").mockImplementation(() => undefined)
-    vi.mocked(fetch).mockResolvedValueOnce(new Response("{}", { status: 502 }))
-    const said = acknowledgement()
-    const { element, played } = player()
-
-    await expect(said.play(element, "s", 800)).resolves.toBeUndefined()
-    await said.play(element, "s", 800)
-
-    expect(vi.mocked(fetch).mock.calls).toHaveLength(2)
     expect(played).toEqual(["blob:1"])
+    expect(element.pause).toHaveBeenCalledOnce()
   })
 
   it("isn't said after a sound too short to be words, such as a cough", async () => {
-    const said = acknowledgement()
-    const { element, played } = player()
+    const said = acknowledgement(keptClips())
+    const { audio, played } = player()
 
-    await said.play(element, "s", 200)
+    said.schedule(audio, "s", 200)
+    await vi.advanceTimersByTimeAsync(ACK_DELAY_MS * 2)
 
     expect(fetches).toEqual([])
     expect(played).toEqual([])

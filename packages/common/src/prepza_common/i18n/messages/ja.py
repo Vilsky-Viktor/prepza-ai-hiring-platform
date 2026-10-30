@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "次の問題に進みます。",
     "Time's up. No answer. Moving on to the next question.": "時間になりました。回答はありません。次の問題に進みます。",
     "Time's up. Your answer is saved. Moving on to the next question.": "時間になりました。回答は保存されました。次の問題に進みます。",
+    "{letter}, saved.": "{letter}、保存しました。",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "ありがとうございました。回答は記録されました。結果については、企業からご連絡があります。",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedInプロフィールのアドレスを入力してください（例: linkedin.com/in/your-name）。",
     "The text you agreed to has changed. Reload the page and try again.": "同意した文面が変更されました。ページを再読み込みして、もう一度お試しください。",

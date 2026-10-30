@@ -39,7 +39,7 @@ FAQ = [
     {
         "key": "voice",
         "question": "Can candidates answer by voice?",
-        "answer": "Yes, if the company sets an interview to voice mode (in English, Spanish, German, French, Portuguese or Italian). The questions are read aloud and candidates answer aloud; what they say is turned into text and matched to an option they confirm, and it's never stored. Voices aren't analysed for tone or emotion, and candidates can always tap instead.",
+        "answer": "Yes, if the company sets an interview to voice mode (in English, Spanish, German, French, Portuguese or Italian). The questions are read aloud and candidates answer aloud; what they say is turned into text and matched to an option, and it's never stored. Voices aren't analysed for tone or emotion, and candidates can always tap instead.",
     },
     {
         "key": "cost",

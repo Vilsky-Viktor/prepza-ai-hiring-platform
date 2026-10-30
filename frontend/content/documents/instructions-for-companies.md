@@ -176,8 +176,10 @@ words; they appear only on the candidate's page.
 - **Voice mode** (an interview's setting, in English, Spanish, German, French, Portuguese or
   Italian) reads each question and its options aloud and lets candidates answer aloud. It can help
   some candidates (some visual or motor impairments, a phone), but speech recognition can mishear
-  an accent, a speech impairment or a noisy room: the interviewer says the option it heard and the
-  candidate confirms it before it counts, and tapping an option always works. Tell candidates
+  an accent, a speech impairment or a noisy room: the interviewer says the option it heard and
+  shows it on screen ("B, saved." for a single answer; a choice of several options is confirmed
+  first), only a reply that clearly names one option is saved without asking, and tapping an
+  option always works. Tell candidates
   before they start, and set an interview to click mode for anyone who prefers it. prepza turns
   the speech into text and options only, never stores it and never analyses the voice (no tone,
   emotion or confidence, which the EU AI Act forbids in hiring).

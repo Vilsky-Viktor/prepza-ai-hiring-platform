@@ -26,9 +26,10 @@ async def match(
     question: NextQuestion, said: str, waiting: list[int], language: str, session_id: str
 ) -> tuple[Intent, list[int], dict | None]:
     """What the candidate meant and the options it picks (helpers/voice_match.py understood), with
-    the call's usage. No words at all (a cough, a knock) is noise, and a plain yes or a letter
-    alone is read by code, both without a call (usage None). The trace gets the call's tokens,
-    cost and reading under the session's id, never the candidate's words or the question."""
+    the call's usage. No words at all (a cough, a knock) is noise, and a plain yes or only
+    options' letters are read by code, both without a call (usage None). The trace gets the
+    call's tokens, cost and reading under the session's id, never the candidate's words or the
+    question."""
     if is_noise(said):
         return Intent.NOISE, [], None
 

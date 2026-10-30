@@ -34,6 +34,9 @@ export type VoiceHandlers = {
   onPick: (question: string, picks: number[]) => void
   // A yes to the choice on screen: it's sent, as Next question does; whether it moved on.
   onConfirm: () => Promise<boolean>
+  // A clear answer (the service's `clear`): its options sent at once, as Next question does,
+  // and Mira says it was saved; whether it moved on.
+  onSave: (picks: number[]) => Promise<boolean>
   // The service's refusal (a limit, a failure), for the screen.
   failedMessage: string
 }

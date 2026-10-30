@@ -40,7 +40,7 @@ FAQ = [
     {
         "key": "voice",
         "question": "Kas kandidaadid saavad vastata häälega?",
-        "answer": "Jah, kui ettevõte seab intervjuu häälerežiimile (inglise, hispaania, saksa, prantsuse, portugali või itaalia keeles). Küsimused loetakse ette ja kandidaadid vastavad suuliselt; nende öeldu muudetakse tekstiks ja seotakse variandiga, mille nad kinnitavad, ning seda ei salvestata kunagi. Hääli ei analüüsita tooni ega emotsioonide suhtes ning kandidaadid saavad alati selle asemel varianti puudutada.",
+        "answer": "Jah, kui ettevõte seab intervjuu häälerežiimile (inglise, hispaania, saksa, prantsuse, portugali või itaalia keeles). Küsimused loetakse ette ja kandidaadid vastavad suuliselt; nende öeldu muudetakse tekstiks ja seotakse variandiga ning seda ei salvestata kunagi. Hääli ei analüüsita tooni ega emotsioonide suhtes ning kandidaadid saavad alati selle asemel varianti puudutada.",
     },
     {
         "key": "cost",

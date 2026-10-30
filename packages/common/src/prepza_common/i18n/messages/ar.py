@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "ننتقل إلى السؤال التالي.",
     "Time's up. No answer. Moving on to the next question.": "انتهى الوقت. لا توجد إجابة. ننتقل إلى السؤال التالي.",
     "Time's up. Your answer is saved. Moving on to the next question.": "انتهى الوقت. حُفظت إجابتك. ننتقل إلى السؤال التالي.",
+    "{letter}, saved.": "{letter}، تم الحفظ.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "شكرًا لك. سُجّلت إجاباتك، وستتواصل معك الشركة بشأن النتائج.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "أدخل عنوان ملفك الشخصي على LinkedIn، مثل linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "تغيّر النص الذي وافقت عليه. أعد تحميل الصفحة وحاول مرة أخرى.",

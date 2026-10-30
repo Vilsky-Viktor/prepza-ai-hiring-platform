@@ -1663,13 +1663,66 @@
     }
    }
   },
+  "/sessions/{session_id}/voice/saved/{pick}": {
+   "get": {
+    "tags": [
+     "voice"
+    ],
+    "summary": "Saved Audio",
+    "description": "Voice mode: the interviewer saying a clear answer's option (`pick`, its index) was saved,\nread aloud (Ogg Opus).",
+    "operationId": "saved_audio_sessions__session_id__voice_saved__pick__get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "session_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Session Id"
+      }
+     },
+     {
+      "name": "pick",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "integer",
+       "minimum": 0,
+       "exclusiveMaximum": 4,
+       "title": "Pick"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/sessions/{session_id}/voice/answers": {
    "post": {
     "tags": [
      "voice"
     ],
     "summary": "Voice Answer",
-    "description": "Voice mode: a spoken answer to the question on screen, understood. The body is the\nrecording (audio/webm, audio/mp4 or audio/ogg, at most 2 MB); `waiting` is the choice (option\nindices) waiting for the candidate's yes or no. Nothing is saved: a confirmed choice is\nsent to the answers route as a tapped one is. The audio and the words are never kept.",
+    "description": "Voice mode: a spoken answer to the question on screen, understood. The body is the\nrecording (audio/webm, audio/mp4 or audio/ogg, at most 2 MB); `waiting` is the choice (option\nindices) waiting for the candidate's yes or no. Nothing is saved: a clear choice, or a\nconfirmed one, is sent to the answers route as a tapped one is. The audio and the words are\nnever kept. The `Server-Timing` header gives the stages' milliseconds: transcribe, match,\ntotal.",
     "operationId": "voice_answer_sessions__session_id__voice_answers_post",
     "security": [
      {
@@ -2565,6 +2618,7 @@
      "got-it",
      "next",
      "time-up",
+     "time-up-saved",
      "end"
     ],
     "title": "Phrase",
@@ -3659,16 +3713,21 @@
       },
       "type": "array",
       "title": "Picks"
+     },
+     "clear": {
+      "type": "boolean",
+      "title": "Clear"
      }
     },
     "type": "object",
     "required": [
      "heard",
      "intent",
-     "picks"
+     "picks",
+     "clear"
     ],
     "title": "VoiceAnswerOut",
-    "description": "A spoken answer, understood: what was heard (the candidate's own words, shown back to\nthem and kept nowhere), what it meant, and the options it picks (indices, as a click sends\nthem) for `choose` and `confirm`. `noise` (no words: a cough, a knock) is ignored."
+    "description": "A spoken answer, understood: what was heard (the candidate's own words, shown back to\nthem and kept nowhere), what it meant, and the options it picks (indices, as a click sends\nthem) for `choose` and `confirm`. `noise` (no words: a cough, a knock) is ignored. `clear`: a\nchoice of one option on a single-answer question, saved at once without asking to confirm\nit; any other choice is confirmed first."
    }
   },
   "securitySchemes": {

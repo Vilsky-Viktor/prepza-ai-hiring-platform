@@ -22,6 +22,7 @@ from rounds.constants.voice_phrases import (
     LOOK_AT_EXAMPLE,
     OPTION,
     OPTION_ON_SCREEN,
+    SAVED,
 )
 from rounds.schemas.rounds import NextQuestion
 
@@ -43,6 +44,11 @@ def spoken_text(text: str) -> tuple[str, bool]:
     return " ".join(prose.split()), has_code
 
 
+def read_aloud(option: str) -> bool:
+    """Whether an option is read as it is: not code, a long example or several lines."""
+    return "`" not in option and "\n" not in option and len(option) <= MAX_SPOKEN_OPTION
+
+
 def question_script(question: NextQuestion, language: str) -> str:
     """What the interviewer reads for a question: its text (a code block replaced by a pointer to
     the screen), a select-all-that-apply note, then each option with its letter; an option with
@@ -57,10 +63,10 @@ def question_script(question: NextQuestion, language: str) -> str:
         parts.append(translate(CHOOSE_ALL, language))
 
     for letter, option in zip(LETTERS, question.options, strict=False):
-        if "`" in option or "\n" in option or len(option) > MAX_SPOKEN_OPTION:
-            parts.append(translate(OPTION_ON_SCREEN, language).format(letter=letter))
-        else:
+        if read_aloud(option):
             parts.append(translate(OPTION, language).format(letter=letter, text=option.strip()))
+        else:
+            parts.append(translate(OPTION_ON_SCREEN, language).format(letter=letter))
 
     return " ".join(parts)[:MAX_SPOKEN_CHARACTERS]
 
@@ -79,6 +85,10 @@ def letters_said(picks: list[int], language: str) -> str:
 
 def confirmation(picks: list[int], language: str) -> str:
     return translate(CONFIRM, language).format(letters=letters_said(picks, language))
+
+
+def saved_answer(pick: int, language: str) -> str:
+    return translate(SAVED, language).format(letter=LETTERS[pick])
 
 
 def clip_key(model: str, voice: str, language: str, text: str) -> str:

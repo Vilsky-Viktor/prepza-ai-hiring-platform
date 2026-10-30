@@ -68,15 +68,21 @@ finds it kept. The step's question says whether it's the interview's `last`: the
 "Moving on…" or "Time's up…" before asking for the next step, never after the last. Code blocks and long options aren't read: the interviewer
 points to the screen (`helpers/voice_speech.py`). The browser plays the clip
 (`GET .../voice/question`), the interviewer's phrases (`.../voice/phrases/{phrase}`,
-`.../voice/confirmations?picks=`), and sends each spoken answer (`POST .../voice/answers`, at most
-2 MB): it's turned into text (`TRANSCRIBE_MODEL`) and matched to options, or to a yes or no for
-the choice waiting; a transcript without words (empty, or only a sound such as "[cough]") is
+`.../voice/confirmations?picks=`, `.../voice/saved/{pick}`: "B, saved.", made ahead with the next
+question for each option of a single-answer question), and sends each spoken answer (`POST
+.../voice/answers`, at most 2 MB): it's turned into text (`TRANSCRIBE_MODEL`, told the options'
+letters and texts as keywords) and matched to options, or to a yes or no for the choice waiting; a transcript without words (empty, or only a sound such as "[cough]") is
 `noise`, which the browser ignores (`helpers/voice_match.py` `is_noise`); a plain yes while a choice waits (`constants/voice_confirmations.py`) or
-an option's letter alone is read by code, without the model (`helpers/voice_match.py` `obvious`);
+a reply of only options' letters ("B", "option B", "B and D": `helpers/voice_letters.py`,
+`constants/voice_letters.py`) is read by code, without the model (`helpers/voice_match.py` `obvious`);
 anything else by the model (`VOICE_MATCH_MODEL`, `prompts/voice_match.py`, never the answer
-key; its eval is `evals/scripts/voice_answers_test.py`). Nothing of it is saved: a confirmed
-choice is sent to `.../answers` as a tapped one is, and the audio and the words are never
-stored, logged or traced.
+key; its eval is `evals/scripts/voice_answers_test.py`). The answer says whether the choice is
+`clear` (one option on a single-answer question): the browser saves it at once; any other is
+confirmed first. Nothing of it is saved here: the choice is sent to `.../answers` as a tapped one
+is, and the audio and the words are never stored, logged or traced. Each answer's stages
+(transcribe, match, total) come back in a `Server-Timing` header and are logged with the
+session's id only (`Voice answer <id>: <intent> by code|model, transcribe;dur=…`); the browser
+reports its own (speech end to answer, to Mira's reaction) to Sentry.
 A spoken answer received by its question's deadline plus `VOICE_UPLOAD_SECONDS` is noted in
 Redis (`services/voice_deadline.py`, the service's own time), and the answers route then takes
 its result until `VOICE_ANSWER_GRACE_SECONDS` past the deadline instead of the usual

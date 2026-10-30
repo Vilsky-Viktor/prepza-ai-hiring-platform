@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 
-import { TIME_UP_HOLD_MS } from "@/config/voice"
+import { KEPT_PHRASES, TIME_UP_HOLD_MS } from "@/config/voice"
 
 import { apiErrorMessage } from "@/lib/api"
 import { acknowledgement } from "@/lib/voice-acknowledgement"
@@ -10,12 +10,13 @@ import { answerInProgress } from "@/lib/voice-answering"
 import { react } from "@/lib/voice-reaction"
 import {
   clipUrl,
-  playClip,
   prepareNextQuestion,
   sendSpokenAnswer,
 } from "@/lib/voice-clips"
+import { keptClips, savedClips } from "@/lib/voice-kept-clips"
 import { type Meter, meters, soundAllowed } from "@/lib/voice-meters"
 import { type Listener, listen, openMicrophone } from "@/lib/voice-listening"
+import { turnTiming } from "@/lib/voice-timing"
 import { micDetector } from "@/lib/voice-vad"
 import { recordingType } from "@/lib/voice"
 import type {
@@ -26,13 +27,16 @@ import type {
 } from "@/types/round"
 
 /** Voice mode for the question on screen: Mira, the AI interviewer, reads each question aloud,
- * listens all the time, sends each stretch of speech to be understood, and says what it heard
- * ("You chose B. Is that right?"); a yes sends the choice. Tapping always works too. `chosen`:
- * the options picked on screen. */
+ * listens all the time, sends each stretch of speech to be understood, and says what it heard: a
+ * clear answer is sent at once ("B, saved."), any other is confirmed first ("You chose B. Is
+ * that right?"), a yes sending it. Tapping always works too. `chosen`:
+ * the options picked on screen; `letters`: how many options' "{letter}, saved." Mira may say
+ * (none on a multi-answer question), fetched ahead. */
 export function useVoiceInterviewer(
   sessionId: string,
   questionId: string | undefined,
   chosen: number[],
+  letters: number,
   handlers: VoiceHandlers
 ) {
   const [status, setStatus] = useState<VoiceStatus>("off")
@@ -52,11 +56,14 @@ export function useVoiceInterviewer(
     questionId,
     status,
   })
-  // Mira asked again for this question's answer: she asks once, then just listens.
-  const askedAgain = useRef(false)
-  // The last answer was confirmed by voice: if the interview ends with it, Mira says goodbye.
+  // The last answer was saved by voice (confirmed, or clear): if the interview ends with it, Mira
+  // says goodbye.
   const confirmed = useRef(false)
-  const gotIt = useRef(acknowledgement())
+  // Her short clips, kept in the page.
+  const clips = useRef(keptClips())
+  const gotIt = useRef(acknowledgement(clips.current))
+  // How long each answer's turn took, for Sentry.
+  const timing = useRef(turnTiming())
   // The answer being heard or understood, the question's own.
   const inProgress = useRef(answerInProgress())
 
@@ -76,12 +83,17 @@ export function useVoiceInterviewer(
 
     setStatus("speaking")
     listener.current?.pause()
+    gotIt.current.cancel(player)
+    // The first clip after an answer is her reaction to it.
+    player.onplaying = () => timing.current.reacted()
 
     try {
-      await playClip(player, path)
+      await clips.current.play(player, path)
     } catch (error) {
       // Unread: the question is on screen, and listening goes on.
       console.warn("Mira's clip didn't play", error)
+    } finally {
+      player.onplaying = null
     }
 
     if (!more) {
@@ -89,8 +101,9 @@ export function useVoiceInterviewer(
     }
   }
 
-  /** Listening starts afresh. */
+  /** Listening starts afresh; an answer Mira said nothing to isn't timed. */
   function heardAll() {
+    timing.current.dropped()
     setStatus("listening")
     listener.current?.resume()
   }
@@ -102,30 +115,37 @@ export function useVoiceInterviewer(
       sessionId: id,
       questionId: question ?? "",
       handlers,
-      askedAgain,
       confirmed,
       say: (path) => say(path),
       listen: heardAll,
     })
   }
 
-  /** Sends the speech and, at once, says "Got it." (not after a cough; still thinking, the
-   * microphone paused); what follows the answer waits for it to end. */
+  /** Sends the speech (still thinking, the microphone paused); "Got it." fills the wait only
+   * when the answer is slow, and stops the moment it's back. */
   async function onSpeech(recording: Blob, voicedMs: number) {
     const { sessionId: id, chosen: waiting } = latest.current
     setStatus("thinking")
+    timing.current.ended()
     const sent = sendSpokenAnswer(id, recording, waiting)
-    const said =
-      audio.current && gotIt.current.play(audio.current, id, voicedMs)
+
+    if (audio.current) {
+      gotIt.current.schedule(audio.current, id, voicedMs)
+    }
 
     // After the time ran out, the screen alone acts on the answer (timeUp).
     try {
-      const answer = await sent
-      await said
+      const { answer, stages } = await sent
+      gotIt.current.cancel(audio.current)
+      timing.current.answered(answer, stages)
       inProgress.current.end(answer)
-      await (inProgress.current.timedOut() || understood(answer))
+
+      await (inProgress.current.timedOut()
+        ? timing.current.dropped()
+        : understood(answer))
     } catch (error) {
-      await said
+      gotIt.current.cancel(audio.current)
+      timing.current.dropped()
       inProgress.current.end(null)
       setProblem(apiErrorMessage(error, latest.current.handlers.failedMessage))
       await (inProgress.current.timedOut() || heardAll())
@@ -183,7 +203,10 @@ export function useVoiceInterviewer(
         onSpeech: (recording, voicedMs) => void onSpeech(recording, voicedMs),
       })
       listening.catch(() => undefined)
-      void gotIt.current.load(sessionId).catch(() => undefined)
+      clips.current.preload(sessionId, [
+        ...KEPT_PHRASES,
+        ...savedClips(letters),
+      ])
       prepareNextQuestion(sessionId)
       await say(`${sessionId}/voice/question`, true)
       const ready = await listening
@@ -223,8 +246,8 @@ export function useVoiceInterviewer(
     }
 
     prepareNextQuestion(sessionId)
+    clips.current.preload(sessionId, savedClips(letters))
     inProgress.current = answerInProgress()
-    askedAgain.current = false
     confirmed.current = false
     setProblem(null)
     void say(`${sessionId}/voice/question`)
@@ -241,7 +264,7 @@ export function useVoiceInterviewer(
       }
 
       stop()
-      gotIt.current.release()
+      clips.current.release()
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
@@ -257,6 +280,9 @@ export function useVoiceInterviewer(
     // server starts as it opens, starts as she reads it.
     announce: (said: VoiceAnnouncement) =>
       say(`${latest.current.sessionId}/voice/phrases/${said}`, true),
+    // A clear answer was saved: Mira says so ("B, saved."), resolving once she has, as announce.
+    announceSaved: (pick: number) =>
+      say(`${latest.current.sessionId}/voice/saved/${pick}`, true),
     // The question's time ran out: speech begun in time is sent and waited for; the options it
     // picked (saved without a confirmation), or null.
     timeUp: () => {

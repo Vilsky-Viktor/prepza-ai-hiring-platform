@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "अब अगले सवाल पर चलते हैं।",
     "Time's up. No answer. Moving on to the next question.": "समय खत्म हो गया। कोई जवाब नहीं मिला। अब अगले सवाल पर चलते हैं।",
     "Time's up. Your answer is saved. Moving on to the next question.": "समय खत्म हो गया। आपका जवाब दर्ज हो गया है। अब अगले सवाल पर चलते हैं।",
+    "{letter}, saved.": "{letter}, दर्ज हो गया।",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "धन्यवाद। आपके जवाब दर्ज हो गए हैं, और कंपनी नतीजों के बारे में आपसे संपर्क करेगी।",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "अपनी LinkedIn प्रोफ़ाइल का पता डालें, जैसे linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "जिस टेक्स्ट पर आपने सहमति दी थी, वह बदल गया है। पेज दोबारा लोड करें और फिर से कोशिश करें।",

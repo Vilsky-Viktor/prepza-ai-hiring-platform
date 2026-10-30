@@ -684,6 +684,27 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/sessions/{session_id}/voice/saved/{pick}": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Saved Audio
+     * @description Voice mode: the interviewer saying a clear answer's option (`pick`, its index) was saved,
+     *     read aloud (Ogg Opus).
+     */
+    get: operations["saved_audio_sessions__session_id__voice_saved__pick__get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/sessions/{session_id}/voice/answers": {
     parameters: {
       query?: never
@@ -697,8 +718,10 @@ export interface paths {
      * Voice Answer
      * @description Voice mode: a spoken answer to the question on screen, understood. The body is the
      *     recording (audio/webm, audio/mp4 or audio/ogg, at most 2 MB); `waiting` is the choice (option
-     *     indices) waiting for the candidate's yes or no. Nothing is saved: a confirmed choice is
-     *     sent to the answers route as a tapped one is. The audio and the words are never kept.
+     *     indices) waiting for the candidate's yes or no. Nothing is saved: a clear choice, or a
+     *     confirmed one, is sent to the answers route as a tapped one is. The audio and the words are
+     *     never kept. The `Server-Timing` header gives the stages' milliseconds: transcribe, match,
+     *     total.
      */
     post: operations["voice_answer_sessions__session_id__voice_answers_post"]
     delete?: never
@@ -1033,7 +1056,14 @@ export interface components {
      * @description The interviewer's fixed phrases the browser asks for by name.
      * @enum {string}
      */
-    Phrase: "unclear" | "again" | "got-it" | "next" | "time-up" | "end"
+    Phrase:
+      | "unclear"
+      | "again"
+      | "got-it"
+      | "next"
+      | "time-up"
+      | "time-up-saved"
+      | "end"
     /**
      * PracticeResultOut
      * @description A practice topic's latest timed result: practice, never a company's interview.
@@ -1519,7 +1549,9 @@ export interface components {
      * VoiceAnswerOut
      * @description A spoken answer, understood: what was heard (the candidate's own words, shown back to
      *     them and kept nowhere), what it meant, and the options it picks (indices, as a click sends
-     *     them) for `choose` and `confirm`. `noise` (no words: a cough, a knock) is ignored.
+     *     them) for `choose` and `confirm`. `noise` (no words: a cough, a knock) is ignored. `clear`: a
+     *     choice of one option on a single-answer question, saved at once without asking to confirm
+     *     it; any other choice is confirmed first.
      */
     VoiceAnswerOut: {
       /** Heard */
@@ -1527,6 +1559,8 @@ export interface components {
       intent: components["schemas"]["Intent"]
       /** Picks */
       picks: number[]
+      /** Clear */
+      clear: boolean
     }
   }
   responses: never
@@ -2568,6 +2602,36 @@ export interface operations {
       header?: never
       path: {
         session_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  saved_audio_sessions__session_id__voice_saved__pick__get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        session_id: string
+        pick: number
       }
       cookie?: never
     }

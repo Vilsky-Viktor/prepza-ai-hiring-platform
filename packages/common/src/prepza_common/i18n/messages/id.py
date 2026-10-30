@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "Lanjut ke soal berikutnya.",
     "Time's up. No answer. Moving on to the next question.": "Waktu habis. Tidak ada jawaban. Lanjut ke soal berikutnya.",
     "Time's up. Your answer is saved. Moving on to the next question.": "Waktu habis. Jawabanmu sudah tersimpan. Lanjut ke soal berikutnya.",
+    "{letter}, saved.": "{letter}, tersimpan.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "Terima kasih. Jawabanmu sudah tercatat, dan perusahaan akan menghubungimu soal hasilnya.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Masukkan alamat profil LinkedIn Anda, misalnya linkedin.com/in/nama-anda.",
     "The text you agreed to has changed. Reload the page and try again.": "Teks yang Anda setujui telah berubah. Muat ulang halaman dan coba lagi.",

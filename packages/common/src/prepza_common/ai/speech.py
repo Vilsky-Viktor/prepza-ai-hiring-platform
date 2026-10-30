@@ -91,12 +91,21 @@ def audio_seconds(usage, size: int, max_seconds: float) -> float:
 
 
 async def speech_to_text(
-    client, model: str, file_name: str, audio: bytes, content_type: str, language: str
+    client,
+    model: str,
+    file_name: str,
+    audio: bytes,
+    content_type: str,
+    language: str,
+    keywords: list[str] | None = None,
 ):
-    """OpenAI's transcription of a recording (`client` is an AsyncOpenAI), told its language."""
+    """OpenAI's transcription of a recording (`client` is an AsyncOpenAI), told its language and,
+    when given, words it's likely to hear (`keywords`)."""
+    hints = {"keywords": keywords} if keywords else {}
 
     return await client.audio.transcriptions.create(
         model=model,
         file=(file_name, audio, content_type),
         languages=[TRANSCRIBE_LANGUAGES.get(language, language)],
+        **hints,
     )

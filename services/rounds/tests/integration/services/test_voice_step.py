@@ -10,7 +10,7 @@ from sqlalchemy import update
 from rounds.config import settings
 from rounds.core.db import Session as Db
 from rounds.core.exceptions import SpeechFailed
-from rounds.helpers.voice_speech import clip_key, question_script
+from rounds.helpers.voice_speech import clip_key, question_script, saved_answer
 from rounds.integrations import library
 from rounds.models.answers import Answer
 from rounds.models.sessions import Session
@@ -23,6 +23,7 @@ from tests.integration.transactions import transaction
 
 CANDIDATE = User(uid="cand", email="cand@example.com", email_verified=True)
 AUDIO = b"OggS a question read aloud"
+SAVED_TEXTS = {saved_answer(pick, "en") for pick in range(4)}
 
 
 @pytest.fixture(autouse=True)
@@ -138,10 +139,43 @@ def test_a_sections_last_question_reads_the_next_sections_first_ahead(run, monke
         return opened, following, second, read_before
 
     opened, following, second, read_before = run(scenario())
+    # The interviewer's "B, saved." clips are made ahead too, once for every interview.
+    questions = [text for text in read if text not in SAVED_TEXTS]
 
     assert opened.question.last is False
     assert following.session.id == second.id
     assert following.question.last is True
     # One reading of each question: the second's made ahead, not again when it opened.
-    assert len(read) == read_before == 2
-    assert following.question.text in read[1]
+    assert len(read) == read_before
+    assert len(questions) == 2
+    assert following.question.text in questions[1]
+
+
+def test_a_questions_saved_answers_are_kept_ahead_for_every_interview(run, monkeypatch):
+    """Each option's "{letter}, saved." is kept as the question opens, the interviewer's own
+    (no company's), so a clear answer is told without waiting."""
+
+    async def speak(text, language):
+        return AUDIO, 1.0
+
+    monkeypatch.setattr(voice_clips, "speak", speak)
+
+    async def scenario():
+        [row] = await voice_interview()
+        opened = await interview_flow.interview_step(row, CANDIDATE)
+        await voice_session.prepare_next(await transaction(sessions.get, row.id))
+        found = []
+
+        for pick in range(len(opened.question.options)):
+            key = clip_key(
+                settings.speech_model, settings.speech_voice, "en", saved_answer(pick, "en")
+            )
+
+            async with Db() as db:
+                found.append(await clip_rows.get(db, key))
+
+        return found
+
+    found = run(scenario())
+
+    assert found and all(clip is not None and clip.company_id is None for clip in found)

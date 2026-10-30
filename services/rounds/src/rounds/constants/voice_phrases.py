@@ -14,6 +14,8 @@ OPTION_ON_SCREEN = "{letter}: shown on screen."
 # The last two letters of a choice of several: "A, C and D".
 LAST_TWO = "{first} and {last}"
 CONFIRM = "You chose {letters}. Is that right?"
+# A clear answer (one option on a single-answer question), saved without asking to confirm it.
+SAVED = "{letter}, saved."
 UNCLEAR = "Sorry, I didn't catch that. Say your answer again, or tap an option."
 AGAIN = "All right. Which option do you choose?"
 # At once when the candidate stops speaking, while their answer is understood.

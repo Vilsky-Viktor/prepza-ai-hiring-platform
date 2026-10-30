@@ -150,6 +150,59 @@ $0.00008. The `by_code` share is now in the script's scores.
 
 The reading aloud has its own eval since (below).
 
+Letters with a word and several letters read by code (2026-10-30, kept): `plain_letters`
+(`helpers/voice_letters.py`, words in `constants/voice_letters.py`) reads a reply made only of
+options' letters, each alone or after a word that can't change which option is meant ("option
+B", "la respuesta D", "alternativa C"), joined by commas or "and" ("B and D", "la B y la D", on a
+select-all question only); any other word, a question mark ("B?" too, now the model's), a pause or
+a letter past the options goes to the model. `voice_answers.json` grew to 195 (42 added: letters
+with a word, several letters, more ordinals and descriptions, and traps with letters inside a
+sentence: "not A", "B is wrong, I mean C", "between B and C... C", "A? No."). `by_code_wrong`
+(answers read by code that aren't what was meant) is now in the scores. 3 repeats, both on the
+195:
+
+| Run | Right as text | Wrong matches (text) | By code (text) / wrong by code | Right spoken | Wrong matches (spoken) | Price, time |
+|---|---|---|---|---|---|---|
+| Before (a letter alone by code) | 98.8% (97.6–99.4) | 1.0% (0.5–2.2) | 13.8% (11.3–16.9) / 0% (0.0–0.7) | 86.7% (78.9–91.9) | 1.0% (0.2–5.2) | $0.078 a run, 1.8 s median, 2.7 s p90 |
+| Letters with a word and several letters by code (kept) | 99.1% (98.0–99.6) | 0.9% (0.4–2.0) | 26.7% (23.2–30.4) / 0% (0.0–0.7) | 90.5% (83.4–94.7) | 0% (0.0–3.5) | $0.071 a run, 1.6 s median, 2.4 s p90 |
+
+Nothing moved beyond the noise but the share read by code, which doubled with none wrong; the
+positions, ordinals, read options and descriptions (180 graded each run) stayed with the model:
+179 and 180 right. The wrong matches left are the model's, on the new traps: "A, maybe D" on the
+select-all question chosen as A and D (3 of 3), "la A? no" as A (2 of 3), and once before "não é
+a A" as B; each is a prompt change to measure on its own. An answer read by code takes no time
+against the model's ~1.8 s.
+
+Where the matching call's ~2 s goes (2026-10-30, nothing switched): 16 answers in turn from the
+rounds container, `gpt-6-luna` at effort none. LangChain's structured output 1.75–2.05 s median;
+OpenAI's Responses API directly 2.5–2.6 s (streamed: first token 2.0 s); Chat Completions
+directly 2.0–2.1 s (first token 1.9–2.0 s), with a two-key schema 2.07 s, with no schema at all
+1.7 s. The time is the model's first token, not LangChain or the schema: no change kept (output
+without a strict schema would break `.claude/rules/ai.md`).
+
+Hedged matching call (2026-10-30, reverted): a second identical call after 2.0 s without an
+answer (about the 75th percentile), the first answer winning. Interleaved with single calls on
+the same 60 answers, two rounds, one at a time: single p50 1.98 s, p90 2.99 s, p95 4.77 s, p99
+8.6 s; hedged 2.02 s, 3.30 s, 5.93 s, 8.62 s, with a second call on 61 of 120. The slow calls
+were slow on both requests (slowness at OpenAI's end comes in stretches, not per request), so
+the tail didn't shrink and the calls doubled: reverted. The full eval with it (43.6% hedged) was
+no better either.
+
+Options as hints to speech recognition (2026-10-30, kept): `gpt-transcribe` gets the options'
+letters and the texts of those read aloud as `keywords` (`helpers/voice_match.py`
+`hearing_keywords`, through `prepza_common.ai.speech.speech_to_text`). 3 repeats, the same 195
+answers and 23 sounds:
+
+| Run | Right spoken | Unclear when chosen (spoken) | Wrong matches (spoken) | Sounds reacted to | Price, time |
+|---|---|---|---|---|---|
+| Without hints (letters run above) | 90.5% (83.4–94.7) | 9.5% (5.3–16.6) | 0% (0.0–3.5) | 8.7% | $0.071 a run, 1.6 s median |
+| With the options as keywords (kept) | 94.3% (88.1–97.4) | 5.7% (2.6–11.9) | 0% (0.0–3.5) | 8.7% (unchanged) | $0.071 a run, 1.7 s median |
+
+The intervals overlap, but paired by answer it's 3 better and none worse, each in all 3 repeats:
+fr03 ("la réponse C", heard as "La réponse, c'est." before), fr19 and it18 ("Git et
+Subversion", "Git e Subversion", heard as "Hit ..."). Text answers aren't affected (99.1%). Left:
+de09 ("A, ach nein, D", the D not heard) and pt03 ("é a C" heard as "A, A, C"), both unclear.
+
 Spoken answers rebuilt by `gpt-realtime-2.1-mini` (2026-10-30, kept): the 35 recordings were
 made by `gpt-4o-mini-tts`, which is no longer used; `build_voice_answers.py` now speaks them
 with the realtime model (`realtime_speech.py`, shared with `build_audio.py`: the same voices and

@@ -2,6 +2,7 @@ import pytest
 
 from rounds.constants.voice import Intent
 from rounds.helpers.voice_match import (
+    hearing_keywords,
     is_noise,
     letters_of,
     match_prompt,
@@ -81,7 +82,9 @@ def test_letters_name_options_in_order():
         ("Yes, but C", [1], "en", None),
         ("yes I think so", [1], "en", None),
         ("No.", [1], "en", None),
-        ("Letter B", [], "en", None),
+        # Letters after a word that can't change them, several on a multi-answer question only.
+        ("Letter B", [], "en", (Intent.CHOOSE, [1])),
+        ("la respuesta D.", [], "es", (Intent.CHOOSE, [3])),
         ("A and B", [], "en", None),
         ("", [1], "en", None),
     ],
@@ -114,3 +117,15 @@ def test_a_letter_with_no_option_behind_it_goes_to_the_model():
 )
 def test_only_a_transcript_without_words_is_noise(said, noise):
     assert is_noise(said) is noise
+
+
+def test_recognition_is_told_the_letters_and_the_options_read_aloud():
+    found = QUESTION.model_copy(update={"options": [" Mean ", "`mean(xs)`", "x" * 200, "Mode"]})
+
+    assert hearing_keywords(found) == ["A", "B", "C", "D", "Mean", "Mode"]
+    assert hearing_keywords(QUESTION.model_copy(update={"options": ["Yes", "No"]})) == [
+        "A",
+        "B",
+        "Yes",
+        "No",
+    ]

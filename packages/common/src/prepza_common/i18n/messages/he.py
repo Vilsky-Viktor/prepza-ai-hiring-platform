@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "עוברים לשאלה הבאה.",
     "Time's up. No answer. Moving on to the next question.": "הזמן נגמר. אין תשובה. עוברים לשאלה הבאה.",
     "Time's up. Your answer is saved. Moving on to the next question.": "הזמן נגמר. התשובה שלכם נשמרה. עוברים לשאלה הבאה.",
+    "{letter}, saved.": "{letter}, נשמרה.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "תודה. התשובות שלכם נשמרו, והחברה תיצור איתכם קשר לגבי התוצאות.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "הזינו את כתובת פרופיל ה-LinkedIn שלכם, למשל linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "הנוסח שהסכמתם לו השתנה. טענו מחדש את הדף ונסו שוב.",

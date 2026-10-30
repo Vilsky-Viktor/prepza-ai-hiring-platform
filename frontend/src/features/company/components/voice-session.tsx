@@ -67,10 +67,24 @@ export function VoiceSession({
     await onAdvance()
   }
   const sendAndAdvance = () => sendThen(() => moveOn("next"))
+  // A clear spoken answer is saved at once: Mira says so ("B, saved.", the last question's too),
+  // then the next question opens without "Moving on".
+  const saveAndAdvance = (picks: number[]) =>
+    sendThen(
+      async () => {
+        await voice.announceSaved(picks[0])
+        await onAdvance()
+      },
+      false,
+      picks
+    )
   // Spoken answers pick options as taps do, and a spoken yes sends them as Next does.
-  const voice = useVoiceInterviewer(session.id, questionId, chosen, {
+  // Mira's "{letter}, saved." is said only on a single-answer question.
+  const letters = multi ? 0 : (question?.options.length ?? 0)
+  const voice = useVoiceInterviewer(session.id, questionId, chosen, letters, {
     onPick: (question, options) => setPick({ question, options }),
     onConfirm: sendAndAdvance,
+    onSave: saveAndAdvance,
     failedMessage: t("voiceFailed"),
   })
   // The candidate's wave stays flat while Mira speaks: the microphone hears her from the speakers

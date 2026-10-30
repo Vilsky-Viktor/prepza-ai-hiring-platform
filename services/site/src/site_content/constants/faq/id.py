@@ -40,7 +40,7 @@ FAQ = [
     {
         "key": "voice",
         "question": "Bisakah kandidat menjawab dengan suara?",
-        "answer": "Bisa, jika perusahaan mengatur wawancara ke mode suara (dalam bahasa Inggris, Spanyol, Jerman, Prancis, Portugis, atau Italia). Soal dibacakan dan kandidat menjawab secara lisan; ucapan mereka diubah menjadi teks dan dicocokkan dengan opsi yang mereka konfirmasi, dan tidak pernah disimpan. Suara tidak dianalisis untuk nada atau emosi, dan kandidat selalu bisa mengetuk opsi sebagai gantinya.",
+        "answer": "Bisa, jika perusahaan mengatur wawancara ke mode suara (dalam bahasa Inggris, Spanyol, Jerman, Prancis, Portugis, atau Italia). Soal dibacakan dan kandidat menjawab secara lisan; ucapan mereka diubah menjadi teks dan dicocokkan dengan salah satu opsi, dan tidak pernah disimpan. Suara tidak dianalisis untuk nada atau emosi, dan kandidat selalu bisa mengetuk opsi sebagai gantinya.",
     },
     {
         "key": "cost",

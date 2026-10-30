@@ -1,4 +1,5 @@
 import { authHeaders, checkedResponse } from "@/lib/api"
+import { serverStages } from "@/lib/voice-timing"
 import type { VoiceAnswer } from "@/types/round"
 
 /** A clip the interviewer says (the question, a phrase), as an address the page can play; the
@@ -52,12 +53,13 @@ export function prepareNextQuestion(sessionId: string) {
 }
 
 /** A spoken answer to the question on screen, understood by the service: what it heard, what it
- * meant and the options it picks. `waiting` is the choice on screen, which a yes confirms. */
+ * meant and the options it picks, with the service's stages' milliseconds (its Server-Timing).
+ * `waiting` is the choice on screen, which a yes confirms. */
 export async function sendSpokenAnswer(
   sessionId: string,
   audio: Blob,
   waiting: number[]
-): Promise<VoiceAnswer> {
+): Promise<{ answer: VoiceAnswer; stages: Record<string, number> }> {
   const query = new URLSearchParams(
     waiting.map((pick) => ["waiting", String(pick)])
   )
@@ -69,5 +71,8 @@ export async function sendSpokenAnswer(
     })
   )
 
-  return response.json()
+  return {
+    answer: await response.json(),
+    stages: serverStages(response.headers.get("Server-Timing")),
+  }
 }

@@ -1,67 +1,12 @@
-import type { Page } from "@playwright/test"
-
 import { expect, test } from "../fixtures"
-import { api, createCompany, inviteCandidate } from "../helpers/api"
-import { inviteToken } from "../helpers/db"
-import { deleteTemplate, multiAnswerTemplate } from "../helpers/db-library"
 import { PHONE } from "../helpers/layout"
 import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { answered } from "../helpers/session"
-import { ownerEmail, randomId, throwawayEmail } from "../helpers/users"
-import { fakeMicrophone, fakeMira, noReadingAloud } from "../helpers/voice"
+import { continued, LISTENING_MS, onQuestion, voiceInterview } from "../helpers/voice-interview"
 
-// How long the screen may take to start listening.
-const LISTENING_MS = 45_000
 // A question's time in the test of its last moment: long enough to start listening and speak.
 const ANSWER_SECONDS = 40
-
-type Step = {
-  session: { id: string; answered: number; total: number }
-  question: { question_id: string; multi: boolean } | null
-}
-
-/** A voice interview of a throwaway template (German, one of the voice languages) of 10 company
- * questions, so every draw holds all of them, its 4 multi-answer ones among them, with a
- * candidate invited, signed in on a page with a fake microphone and Mira mocked at the network
- * edge; nothing is read aloud by OpenAI. Deletes the template afterwards. */
-async function voiceInterview(
-  signInAs: (email: string) => Promise<Page>,
-  run: (setup: {
-    candidate: Page
-    token: string
-    microphone: Awaited<ReturnType<typeof fakeMicrophone>>
-    mira: Awaited<ReturnType<typeof fakeMira>>
-  }) => Promise<void>,
-  // Each question's time.
-  seconds = 300
-) {
-  const template = await multiAnswerTemplate(`E2E voice ${randomId()}`, 10)
-
-  try {
-    const owner = await signInAs(ownerEmail())
-    const company = await createCompany(owner)
-    await noReadingAloud(company.id)
-    const interview = await api<{ id: string }>(
-      owner,
-      "POST",
-      `/companies/interviews/from-template?company_id=${company.id}`,
-      { template_id: template }
-    )
-    await api(owner, "PATCH", `/companies/interviews/${interview.id}/settings`, {
-      question_seconds: seconds,
-      voice: true,
-    })
-    const email = throwawayEmail("voice-candidate")
-    await inviteCandidate(owner, interview.id, email)
-    const candidate = await signInAs(email)
-    const microphone = await fakeMicrophone(candidate)
-    const mira = await fakeMira(candidate)
-    await run({ candidate, token: await inviteToken(email), microphone, mira })
-  } finally {
-    await deleteTemplate(template)
-  }
-}
 
 // A voice interview's start page asks for the microphone and sound first: the start works only
 // once they're allowed. Refused, the step says so and offers to try again; allowed, the
@@ -107,46 +52,17 @@ test("a candidate allows the microphone before a voice interview starts", async 
 })
 
 // A candidate answers a multi-answer question by voice: its options carry check boxes as in
-// click mode; a cough or a sound without words gets no reaction; Mira says "Got it." as they stop speaking and thinks while the answer is
-// understood, the options they named are picked and she asks to confirm; a spoken yes sends
-// them, and she says she's moving on and reads the next question.
+// click mode; a cough or a sound without words gets no reaction; while a slow answer is
+// understood Mira thinks and says "Got it.", the options they named are picked and she asks to
+// confirm; a spoken yes sends them, and she says she's moving on and reads the next question.
 test("a candidate answers a voice interview's question by speaking", async ({ signInAs }) => {
   // Stepping through the draw to its multi-answer question takes a while on a busy stack.
   test.setTimeout(300_000)
   await voiceInterview(signInAs, async ({ candidate, token, microphone, mira }) => {
-    // Started, and on to a multi-answer question of the draw that isn't its last, as the player
-    // does: of its 4, at least 3 aren't.
-    const { sessions } = await api<{ sessions: { id: string }[] }>(
-      candidate,
-      "POST",
-      `/companies/invites/${token}/start`,
-      { pledged: true }
-    )
-
-    for (;;) {
-      const step = await api<Step>(candidate, "POST", `/rounds/sessions/${sessions[0].id}/step`)
-      expect(step.question, "the draw holds a multi-answer question").not.toBeNull()
-
-      // One with a question after it: confirming it moves on to the next.
-      if (step.question!.multi && step.session.answered + 1 < step.session.total) {
-        break
-      }
-
-      await api(candidate, "POST", `/rounds/sessions/${step.session.id}/answers`, {
-        question_id: step.question!.question_id,
-        option_index: 0,
-      })
-    }
-
-    // Continued from the invite, the microphone allowed first.
-    await visit(candidate, `/invite/${token}`)
-    await candidate.getByTestId("voice-access").getByRole("button").click()
-    await candidate.getByRole("main").getByRole("button").last().click()
-    await expect(candidate).toHaveURL(/\/sessions\//)
+    // On a multi-answer question with one after it: confirming it moves on to the next.
+    await onQuestion(candidate, token, true)
+    const turn = await continued(candidate, token)
     const main = candidate.getByRole("main")
-    const turn = candidate.getByTestId("voice-turn")
-    // Listening starts once the speech detector's WebAssembly is compiled: slow on a busy stack.
-    await expect(turn).toHaveAttribute("data-turn", "candidate", { timeout: LISTENING_MS })
     await expect(candidate.getByTestId("multi-choice").filter({ visible: true })).toBeVisible()
     await expect(candidate.getByTestId("option-check")).toHaveCount(4)
     const before = Number(await answered(candidate))
@@ -158,19 +74,20 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
     expect(await microphone.sentDuring()).not.toContain("cough")
     await mira.answer({ heard: "", intent: "noise", picks: [] })
     await expect(turn).toHaveAttribute("data-turn", "candidate")
-    expect(mira.asked.filter((path) => path.startsWith("phrases/unclear"))).toEqual([])
+    expect(await mira.said()).not.toContain("phrases/unclear")
 
-    // Spoken: "Got it.", Mira thinking while it's understood, then two options picked.
+    // Spoken: Mira thinking while it's understood, "Got it." as the answer is slow, then two
+    // options picked.
     await microphone.say()
     expect(await mira.sent()).toEqual([])
     await expect(turn).toHaveAttribute("data-turn", "thinking")
-    expect(mira.asked).toContain("phrases/got-it")
+    await expect.poll(() => mira.said()).toContain("phrases/got-it")
     await shot(candidate, "thinking")
     await mira.answer({ heard: "A and B", intent: "choose", picks: [0, 1] })
     const options = main.getByRole("button", { pressed: true })
     await expect(options).toHaveCount(2)
     await expect(turn).toHaveAttribute("data-turn", "candidate")
-    expect(mira.asked).toContain("confirmations?picks=0&picks=1")
+    await expect.poll(() => mira.said()).toContain("confirmations?picks=0&picks=1")
     await shot(candidate, "picked")
     await candidate.setViewportSize(PHONE)
     await shot(candidate, "picked-phone")
@@ -184,8 +101,54 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
     await expect(options).toHaveCount(0)
     await expect.poll(async () => Number(await answered(candidate))).toBe(before + 1)
     await expect(turn).toHaveAttribute("data-turn", "candidate")
-    expect(mira.asked).toContain("phrases/next")
+    expect(await mira.said()).toContain("phrases/next")
     expect(mira.asked.filter((path) => path === "question")).toHaveLength(2)
+  })
+})
+
+// A clear answer, one option on a single-answer question as the service decides, is saved at
+// once: the option is picked, Mira says "B, saved." (fetched ahead with her other short clips),
+// and the next question opens without a confirmation or "Moving on". Words she can't catch get
+// "say that again" every time, not only once.
+test("a clear spoken answer is saved at once", async ({ signInAs }) => {
+  test.setTimeout(300_000)
+  await voiceInterview(signInAs, async ({ candidate, token, microphone, mira }) => {
+    await onQuestion(candidate, token, false)
+    const turn = await continued(candidate, token)
+    const before = Number(await answered(candidate))
+    // Her short clips are in the page before she needs them.
+    expect(mira.asked).toEqual(expect.arrayContaining(["phrases/unclear", "saved/1"]))
+
+    for (let time = 0; time < 2; time++) {
+      await microphone.say()
+      await mira.sent()
+      await mira.answer({ heard: "hmm", intent: "unclear", picks: [], clear: false })
+      await expect(turn).toHaveAttribute("data-turn", "candidate")
+    }
+
+    const unclear = (await mira.said()).filter((path) => path === "phrases/unclear")
+    expect(unclear).toHaveLength(2)
+
+    await microphone.say()
+    await mira.sent()
+    const saved = candidate.waitForResponse(
+      (response) =>
+        response.request().method() === "POST" && /\/sessions\/[^/]+\/answers$/.test(response.url())
+    )
+    await mira.answer({ heard: "B", intent: "choose", picks: [1], clear: true })
+
+    const answer = await saved
+    expect(answer.status()).toBe(201)
+    expect(answer.request().postDataJSON().option_index).toBe(1)
+    await expect.poll(async () => Number(await answered(candidate))).toBe(before + 1)
+    await expect.poll(() => mira.asked.filter((path) => path === "question")).toHaveLength(2)
+    await expect(turn).toHaveAttribute("data-turn", "candidate")
+    const said = await mira.said()
+    expect(said).toContain("saved/1")
+    expect(said.filter((path) => path.startsWith("confirmations"))).toEqual([])
+    expect(said).not.toContain("phrases/next")
+    // Nothing picked on the new question.
+    await expect(candidate.getByRole("main").getByRole("button", { pressed: true })).toHaveCount(0)
   })
 })
 
@@ -215,7 +178,7 @@ test("an answer spoken before the time runs out still counts", async ({ signInAs
       await expect(candidate.getByRole("timer")).toHaveText("0:00", {
         timeout: ANSWER_SECONDS * 1000,
       })
-      expect(mira.asked).not.toContain("phrases/time-up")
+      expect(await mira.said()).not.toContain("phrases/time-up")
       const saved = candidate.waitForResponse(
         (response) =>
           response.request().method() === "POST" && /\/sessions\/[^/]+\/answers$/.test(response.url())
@@ -228,8 +191,8 @@ test("an answer spoken before the time runs out still counts", async ({ signInAs
       const sent = answer.request().postDataJSON()
       expect(sent.option_index ?? sent.picks).toEqual(sent.picks ? [0] : 0)
       await expect.poll(async () => Number(await answered(candidate))).toBe(before + 1)
-      await expect.poll(() => mira.asked).toContain("phrases/time-up-saved")
-      expect(mira.asked).not.toContain("phrases/time-up")
+      await expect.poll(() => mira.said()).toContain("phrases/time-up-saved")
+      expect(await mira.said()).not.toContain("phrases/time-up")
       expect(mira.asked.filter((path) => path.startsWith("confirmations"))).toEqual([])
 
       // Silence until the next question's time runs out: no answer.
@@ -240,8 +203,8 @@ test("an answer spoken before the time runs out still counts", async ({ signInAs
       await expect(candidate.getByRole("timer")).toHaveText("0:00", {
         timeout: ANSWER_SECONDS * 1000 + LISTENING_MS,
       })
-      await expect.poll(() => mira.asked).toContain("phrases/time-up")
-      expect(mira.asked.filter((path) => path === "phrases/time-up-saved")).toHaveLength(1)
+      await expect.poll(() => mira.said()).toContain("phrases/time-up")
+      expect((await mira.said()).filter((path) => path === "phrases/time-up-saved")).toHaveLength(1)
       expect(mira.asked.filter((path) => path.startsWith("answers"))).toHaveLength(1)
     },
     ANSWER_SECONDS

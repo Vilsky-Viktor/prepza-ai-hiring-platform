@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "We gaan door naar de volgende vraag.",
     "Time's up. No answer. Moving on to the next question.": "De tijd is om. Geen antwoord. We gaan door naar de volgende vraag.",
     "Time's up. Your answer is saved. Moving on to the next question.": "De tijd is om. Je antwoord is opgeslagen. We gaan door naar de volgende vraag.",
+    "{letter}, saved.": "{letter}, opgeslagen.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "Bedankt. Je antwoorden zijn opgeslagen en het bedrijf neemt contact met je op over de resultaten.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Vul het adres van je LinkedIn-profiel in, zoals linkedin.com/in/jouw-naam.",
     "The text you agreed to has changed. Reload the page and try again.": "De tekst waarmee je akkoord ging, is gewijzigd. Laad de pagina opnieuw en probeer het nog eens.",

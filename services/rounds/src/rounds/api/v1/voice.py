@@ -1,12 +1,13 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Query, Request, Response, status
+from fastapi import APIRouter, Path, Query, Request, Response, status
 from prepza_common.auth.auth import CurrentUser
 from pydantic import Field
 
 from rounds.constants.rounds import OPTIONS_PER_QUESTION
 from rounds.constants.voice_phrases import FIXED_PHRASES, Phrase
+from rounds.helpers.voice_timing import server_timing
 from rounds.schemas.voice import VoiceAnswerOut
 from rounds.services import voice_answers, voice_session
 from rounds.services.session_access import get_own_session
@@ -69,14 +70,31 @@ async def confirmation_audio(session_id: UUID, picks: Chosen, user: CurrentUser)
     return Response(clip.audio, media_type=OGG)
 
 
+@router.get("/{session_id}/voice/saved/{pick}", response_class=Response)
+async def saved_audio(
+    session_id: UUID, pick: Annotated[int, Path(ge=0, lt=OPTIONS_PER_QUESTION)], user: CurrentUser
+) -> Response:
+    """Voice mode: the interviewer saying a clear answer's option (`pick`, its index) was saved,
+    read aloud (Ogg Opus)."""
+    row = await get_own_session(session_id, user)
+    voice_session.voice_only(row)
+    clip = await voice_session.saved_clip(row, pick)
+
+    return Response(clip.audio, media_type=OGG)
+
+
 @router.post("/{session_id}/voice/answers")
 async def voice_answer(
-    session_id: UUID, request: Request, user: CurrentUser, waiting: Picks = None
+    session_id: UUID, request: Request, response: Response, user: CurrentUser, waiting: Picks = None
 ) -> VoiceAnswerOut:
     """Voice mode: a spoken answer to the question on screen, understood. The body is the
     recording (audio/webm, audio/mp4 or audio/ogg, at most 2 MB); `waiting` is the choice (option
-    indices) waiting for the candidate's yes or no. Nothing is saved: a confirmed choice is
-    sent to the answers route as a tapped one is. The audio and the words are never kept."""
+    indices) waiting for the candidate's yes or no. Nothing is saved: a clear choice, or a
+    confirmed one, is sent to the answers route as a tapped one is. The audio and the words are
+    never kept. The `Server-Timing` header gives the stages' milliseconds: transcribe, match,
+    total."""
     row = await get_own_session(session_id, user)
+    understood, stages = await voice_answers.answer(row, request, sorted(set(waiting or [])))
+    response.headers["Server-Timing"] = server_timing(stages)
 
-    return await voice_answers.answer(row, request, sorted(set(waiting or [])))
+    return understood

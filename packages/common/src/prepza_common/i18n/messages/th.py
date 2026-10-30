@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "ไปที่คำถามถัดไปค่ะ",
     "Time's up. No answer. Moving on to the next question.": "หมดเวลาแล้ว ไม่มีคำตอบ ไปที่คำถามถัดไปค่ะ",
     "Time's up. Your answer is saved. Moving on to the next question.": "หมดเวลาแล้ว บันทึกคำตอบของคุณแล้ว ไปที่คำถามถัดไปค่ะ",
+    "{letter}, saved.": "{letter} บันทึกแล้วค่ะ",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "ขอบคุณค่ะ บันทึกคำตอบของคุณแล้ว และบริษัทจะติดต่อคุณเรื่องผลการสัมภาษณ์",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "ใส่ที่อยู่โปรไฟล์ LinkedIn ของคุณ เช่น linkedin.com/in/your-name",
     "The text you agreed to has changed. Reload the page and try again.": "ข้อความที่คุณยอมรับมีการเปลี่ยนแปลง โปรดโหลดหน้านี้ใหม่แล้วลองอีกครั้ง",

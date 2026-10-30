@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "Sonraki soruya geçiyoruz.",
     "Time's up. No answer. Moving on to the next question.": "Süre doldu. Cevap verilmedi. Sonraki soruya geçiyoruz.",
     "Time's up. Your answer is saved. Moving on to the next question.": "Süre doldu. Cevabınız kaydedildi. Sonraki soruya geçiyoruz.",
+    "{letter}, saved.": "{letter}, kaydedildi.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "Teşekkürler. Cevaplarınız kaydedildi; şirket sonuçlarla ilgili sizinle iletişime geçecek.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedIn profilinin adresini gir, örneğin linkedin.com/in/adin.",
     "The text you agreed to has changed. Reload the page and try again.": "Onay verdiğin metin değişti. Sayfayı yenile ve tekrar dene.",

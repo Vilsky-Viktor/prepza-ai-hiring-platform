@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "Pasamos a la siguiente pregunta.",
     "Time's up. No answer. Moving on to the next question.": "Se acabó el tiempo. Sin respuesta. Pasamos a la siguiente pregunta.",
     "Time's up. Your answer is saved. Moving on to the next question.": "Se acabó el tiempo. Tu respuesta quedó guardada. Pasamos a la siguiente pregunta.",
+    "{letter}, saved.": "{letter}, guardada.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "Gracias. Tus respuestas quedaron registradas y la empresa se pondrá en contacto contigo sobre los resultados.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Introduce la dirección de tu perfil de LinkedIn, como linkedin.com/in/tu-nombre.",
     "The text you agreed to has changed. Reload the page and try again.": "El texto que aceptaste ha cambiado. Recarga la página e inténtalo de nuevo.",

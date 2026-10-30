@@ -45,7 +45,8 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
    If you set an interview to **voice mode** (English, Spanish, German, French, Portuguese or
    Italian), prepza reads each question and its options aloud and the candidate answers aloud:
    what the microphone picks up while they answer is turned into text by AI and matched to the
-   options, the candidate confirms the choice, and it's recorded as a tapped answer is. The audio
+   options; a clear choice of one option is recorded at once as a tapped answer is, with the
+   interviewer saying which ("B, saved."), and a choice of several options is confirmed first. The audio
    and its text are never stored, voices are never analysed (no tone, emotion or confidence), and
    the candidate can always tap an option instead. Marking is the same in both modes.
 5. You review results and decide. prepza sends candidates no decision. If you connect them, prepza
@@ -172,7 +173,7 @@ Likelihood and severity: **[COMPANY]** to rate. Starting points from prepza:
 | Discrimination (age, disability, language, origin) | Time pressure, language, content | Knowledge questions only; questions flagged when too slow or not discriminating; extra time | |
 | Over-reliance on the grade or signals | Ranked list, green/red | All answers visible; signals as counts; no automatic decisions | |
 | Wrongful cheating suspicion | Page-leave and fast-answer signals; answer patterns | Shown as hints with the question on screen; each answer pattern set on an offline test to flag at most 1% of honest candidates, not counted as "flagged", and shown with follow-up questions to ask rather than a verdict | |
-| A spoken answer misheard (accent, speech impairment, noise) | Voice mode's speech-to-text and matching | The interviewer says the option it heard and the candidate confirms it before it counts; tapping an option is always possible; voice mode only in languages where speech recognition is reliable | |
+| A spoken answer misheard (accent, speech impairment, noise) | Voice mode's speech-to-text and matching | The interviewer says and shows the option it heard: a single clear option is saved as it says so ("B, saved."), anything unclear is asked again and a choice of several options is confirmed before it counts; matching is told to answer unclear when in doubt, measured at 0 wrong matches in its eval; tapping an option is always possible; voice mode only in languages where speech recognition is reliable | |
 | Other people's voices sent for transcription | A room with others talking while the candidate answers | Speech is sent only while the interview listens for an answer, turned into text in memory and never stored | |
 | Candidates found through Discover treated as applicants without being told | Open to offers | Listed only with their own consent, which they can withdraw at once; no ranking or recommendation; no email until you invite | |
 | Over-reliance on the assistant's summaries or comparisons | AI-written answers about candidates | It answers only from the data its tools read, says the AI can be wrong, makes no decision, and asks before every action in the app; action log marks results read through it | |

@@ -1,7 +1,10 @@
 import math
 import struct
 
+from prepza_common.i18n.i18n import translate
+
 from rounds.constants.voice import SPEECH_RATE
+from rounds.constants.voice_phrases import SAVED
 from rounds.helpers.voice_speech import (
     clip_key,
     confirmation,
@@ -10,6 +13,7 @@ from rounds.helpers.voice_speech import (
     ogg_seconds,
     pcm_seconds,
     question_script,
+    saved_answer,
     strays,
 )
 from rounds.schemas.rounds import NextQuestion
@@ -47,6 +51,11 @@ def test_a_confirmation_names_the_options_chosen():
     assert letters_said([1], "en") == "B"
     assert letters_said([3, 0, 2], "en") == "A, C and D"
     assert confirmation([0, 2], "en") == "You chose A and C. Is that right?"
+
+
+def test_a_saved_answer_names_its_options_letter_in_the_language():
+    assert saved_answer(2, "de") == translate(SAVED, "de").format(letter="C")
+    assert saved_answer(2, "de").startswith("C")
 
 
 def test_the_same_text_in_the_same_voice_is_one_clip():

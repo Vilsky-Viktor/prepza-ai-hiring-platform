@@ -40,7 +40,7 @@ FAQ = [
     {
         "key": "voice",
         "question": "Adaylar sesle cevap verebilir mi?",
-        "answer": "Evet, şirket bir mülakatı sesli moda ayarlarsa (İngilizce, İspanyolca, Almanca, Fransızca, Portekizce veya İtalyanca). Sorular sesli okunur ve adaylar sesli cevap verir; söyledikleri metne dönüştürülüp onayladıkları bir seçenekle eşleştirilir ve hiçbir zaman saklanmaz. Sesler ton veya duygu açısından analiz edilmez ve adaylar her zaman bunun yerine dokunarak cevap verebilir.",
+        "answer": "Evet, şirket bir mülakatı sesli moda ayarlarsa (İngilizce, İspanyolca, Almanca, Fransızca, Portekizce veya İtalyanca). Sorular sesli okunur ve adaylar sesli cevap verir; söyledikleri metne dönüştürülüp bir seçenekle eşleştirilir ve hiçbir zaman saklanmaz. Sesler ton veya duygu açısından analiz edilmez ve adaylar her zaman bunun yerine dokunarak cevap verebilir.",
     },
     {
         "key": "cost",

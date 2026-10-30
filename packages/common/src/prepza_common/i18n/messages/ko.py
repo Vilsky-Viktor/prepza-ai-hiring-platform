@@ -283,6 +283,7 @@ MESSAGES = {
     "Moving on to the next question.": "다음 문제로 넘어가겠습니다.",
     "Time's up. No answer. Moving on to the next question.": "시간이 다 되었습니다. 답변이 없습니다. 다음 문제로 넘어가겠습니다.",
     "Time's up. Your answer is saved. Moving on to the next question.": "시간이 다 되었습니다. 답변이 저장되었습니다. 다음 문제로 넘어가겠습니다.",
+    "{letter}, saved.": "{letter}, 저장되었습니다.",
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "감사합니다. 답변이 기록되었으며, 결과는 회사에서 연락드릴 예정입니다.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedIn 프로필 주소를 입력하세요(예: linkedin.com/in/your-name).",
     "The text you agreed to has changed. Reload the page and try again.": "동의하신 문구가 변경되었습니다. 페이지를 새로고침한 뒤 다시 시도하세요.",
