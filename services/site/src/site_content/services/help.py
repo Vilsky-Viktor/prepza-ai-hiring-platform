@@ -20,6 +20,7 @@ async def guide_limits(redis) -> dict:
         "waiting_interviews_unpaid": await limit(redis, "MAX_INTERVIEWS_WITHOUT_CANDIDATES_UNPAID"),
         "previews_per_day": await limit(redis, "PREVIEWS_PER_COMPANY_DAY"),
         "voice_previews_per_day": await limit(redis, "VOICE_PREVIEWS_PER_COMPANY_DAY"),
+        "bias_audit_exports_per_day": await limit(redis, "BIAS_AUDIT_EXPORTS_PER_DAY"),
         "seconds_basic": await question_seconds(redis, "basic"),
         "seconds_medium": await question_seconds(redis, "medium"),
         "seconds_hard": await question_seconds(redis, "hard"),

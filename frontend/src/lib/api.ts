@@ -42,6 +42,21 @@ export async function authHeaders(): Promise<Record<string, string>> {
   return token ? { ...language, Authorization: `Bearer ${token}` } : language
 }
 
+/** The response when it's a success; otherwise its refusal, as an ApiError. */
+export async function checkedResponse(response: Response) {
+  if (!response.ok) {
+    const detail = errorDetail(await response.json().catch(() => null))
+
+    throw new ApiError(
+      response.status,
+      detail ?? `Request failed with status ${response.status}`,
+      detail !== null
+    )
+  }
+
+  return response
+}
+
 export async function apiFetch<T>(
   path: string,
   init?: RequestInit
@@ -54,16 +69,7 @@ export async function apiFetch<T>(
       ...(await authHeaders()),
     },
   })
-
-  if (!response.ok) {
-    const detail = errorDetail(await response.json().catch(() => null))
-
-    throw new ApiError(
-      response.status,
-      detail ?? `Request failed with status ${response.status}`,
-      detail !== null
-    )
-  }
+  await checkedResponse(response)
 
   if (response.status === 204) {
     return undefined as T

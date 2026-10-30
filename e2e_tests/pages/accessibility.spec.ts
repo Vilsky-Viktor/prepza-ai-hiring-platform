@@ -16,6 +16,7 @@ const PAGES = [
   "/tests",
   "/guides/hiring-engineers",
   "/accessibility",
+  "/trust",
   "/api-docs?tab=mcp",
   "/ar",
   "/he/pricing",

@@ -35,6 +35,7 @@ test("the footer groups its links by product, resources and company", { tag: "@p
   expect(await hrefs(columns.nth(2).getByRole("link"))).toEqual([
     "/about",
     "/contact",
+    "/trust",
     "/privacy",
     "/terms",
     "/accessibility",

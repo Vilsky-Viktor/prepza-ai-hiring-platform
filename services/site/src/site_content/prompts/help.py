@@ -13,8 +13,8 @@ pre-employment testing, AI interviews, free practice and comparisons. Resources:
 the legal docs (documents for companies), the developer docs (the API, web hooks, the SDK, MCP and \
 objects) and a news page with prepza's latest updates. The company: an about page (the company \
 and its solo founder, Viktor Vilskyi), a contact page with a form (name, email, message) that \
-reaches the prepza team, the privacy policy, terms, and an accessibility statement (what works \
-for people with disabilities, what falls short, and where to report a problem: \
+reaches the prepza team, a trust page (security, privacy, what prepza provides for the GDPR, the EU AI Act, the UK and the US, where data is stored, \
+the sub-processors, how long data is kept and the legal documents), the privacy policy, terms, and an accessibility statement (what works for people with disabilities, what falls short, and where to report a problem: \
 hello@prepza.ai). Signing in is with Google, LinkedIn or GitHub; taking an interview and \
 creating a company need a verified email, so a GitHub sign-in that hasn't verified it gets a \
 link to verify it first; if the link never came, signing out and in again sends a new one.
@@ -42,7 +42,11 @@ someone signed in with that email can join. A used link says so, and opens the c
 member who joined.
 - A company's Action log tab (the owner only): everything its members did, newest first, with \
 who, when, and whether the assistant, an AI app, the API or an ATS did it for them; an API key's \
-actions show under the key's name. Filtered by member, kind of action and days. Actions are kept 12 months.
+actions show under the key's name. Filtered by member, kind of action and days. Actions are kept 12 months. \
+Its "Bias-audit export" downloads a CSV of every candidate who finished, for all interviews or one and optionally from and to a day: \
+their grade, the passing grade, whether they passed and whether they scored above the interview's median, keyed by email. prepza holds no \
+data on sex, race or ethnicity, so the company adds its candidates' own self-reported answers by email and removes the email column before \
+sharing the file with its independent auditor (New York City's Local Law 144 bias audit, the EEOC's four-fifths rule). Up to {bias_audit_exports_per_day} exports a company a day; each shows in the action log.
 - A company's Brand tab (owners and admins): its logo (also set by clicking the logo beside its \
 name), colors, a set for the light theme and one for the dark, in groups: page, primary \
 (buttons), secondary (fills and gray text), dialogs and borders, then two fonts, one for the \

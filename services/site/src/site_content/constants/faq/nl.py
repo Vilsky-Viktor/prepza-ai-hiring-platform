@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Kan ik zien wie wat heeft gedaan in mijn bedrijf?",
-        "answer": "Ja, als je eigenaar van het bedrijf bent. Het tabblad Actielog toont alles wat de leden hebben gedaan, nieuwste eerst: kandidaten uitnodigen of verwijderen, resultaten bekijken, en interviews, het team, de facturering en integraties wijzigen, met wie het deed, wanneer en of de assistent, een AI-app of de API het namens diegene deed. Je kunt filteren op lid, soort actie en datums. Acties worden 12 maanden bewaard. De acties van een API-sleutel staan onder de naam van de sleutel.",
+        "answer": "Ja, als je eigenaar van het bedrijf bent. Het tabblad Actielog toont alles wat de leden hebben gedaan, nieuwste eerst: kandidaten uitnodigen of verwijderen, resultaten bekijken, en interviews, het team, de facturering en integraties wijzigen, met wie het deed, wanneer en of de assistent, een AI-app of de API het namens diegene deed. Je kunt filteren op lid, soort actie en datums. Acties worden 12 maanden bewaard. De acties van een API-sleutel staan onder de naam van de sleutel. De eigenaar kan daar ook een export voor een bias-audit downloaden: een CSV-bestand met elke kandidaat die klaar is, met hun score en of ze geslaagd zijn, voor een onafhankelijke bias-audit.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Kunnen we prepza gebruiken voor kandidaten in het Verenigd Koninkrijk en de VS?",
-        "answer": "Ja. De verwerkersovereenkomst dekt het Britse en Amerikaanse recht, en de instructies voor bedrijven en de sjablonen voor kandidaatinformatie (met versies voor New York City, Illinois en Colorado) dekken wat je kandidaten moet vertellen. Voor vacatures in New York City gebruik je het pas als je hebt gedaan wat Local Law 144 van je vraagt: een onafhankelijke bias-audit binnen het jaar vóór het gebruik, de publicatie van een samenvatting daarvan, en een kennisgeving aan kandidaten 10 werkdagen vooraf.",
+        "answer": "Ja. De verwerkersovereenkomst dekt het Britse en Amerikaanse recht, en de instructies voor bedrijven en de sjablonen voor kandidaatinformatie (met versies voor New York City, Illinois en Colorado) dekken wat je kandidaten moet vertellen. Voor vacatures in New York City gebruik je het pas als je hebt gedaan wat Local Law 144 van je vraagt: een onafhankelijke bias-audit binnen het jaar vóór het gebruik, de publicatie van een samenvatting daarvan, en een kennisgeving aan kandidaten 10 werkdagen vooraf. De export voor een bias-audit in de Actielog geeft je auditor de score en de uitslag van elke kandidaat die klaar is, om te koppelen aan de antwoorden die je kandidaten zelf gaven.",
     },
     {
         "key": "emails",

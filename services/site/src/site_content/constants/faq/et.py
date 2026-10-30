@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Kas saan näha, kes minu ettevõttes mida tegi?",
-        "answer": "Jah, kui oled ettevõtte omanik. Selle vahekaardil Toimingute logi on kõik, mida liikmed tegid, uuemad eespool: kandidaatide kutsumine või eemaldamine, tulemuste vaatamine ning intervjuude, meeskonna, arvelduse ja integratsioonide muutmine, koos sellega, kes ja millal seda tegi ning kas assistent, AI-rakendus või API tegi seda tema nimel. Saad seda filtreerida liikme, toimingu liigi ja kuupäevade järgi. Toiminguid hoitakse 12 kuud. API-võtme toimingud on näidatud võtme nime all.",
+        "answer": "Jah, kui oled ettevõtte omanik. Selle vahekaardil Toimingute logi on kõik, mida liikmed tegid, uuemad eespool: kandidaatide kutsumine või eemaldamine, tulemuste vaatamine ning intervjuude, meeskonna, arvelduse ja integratsioonide muutmine, koos sellega, kes ja millal seda tegi ning kas assistent, AI-rakendus või API tegi seda tema nimel. Saad seda filtreerida liikme, toimingu liigi ja kuupäevade järgi. Toiminguid hoitakse 12 kuud. API-võtme toimingud on näidatud võtme nime all. Seal saab omanik alla laadida ka kallutatuse auditi ekspordi: CSV-faili igast kandidaadist, kes lõpetas, koos tema hinde ja sellega, kas ta läbis, sõltumatu kallutatuse auditi jaoks.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Kas saame kasutada prepzat Ühendkuningriigi ja USA kandidaatidega?",
-        "answer": "Jah. Andmetöötlusleping hõlmab Ühendkuningriigi ja USA õigust ning ettevõtetele mõeldud juhised ja kandidaatide teavituste mallid (New Yorgi linna, Illinoisi ja Colorado versioonidega) katavad selle, mida pead kandidaatidele ütlema. New Yorgi linna töökohtade jaoks kasuta seda alles siis, kui oled täitnud, mida Local Law 144 sinult nõuab: sõltumatu kallutatuse audit aasta jooksul enne kasutamist, selle kokkuvõtte avaldamine ja kandidaatide teavitamine 10 tööpäeva ette.",
+        "answer": "Jah. Andmetöötlusleping hõlmab Ühendkuningriigi ja USA õigust ning ettevõtetele mõeldud juhised ja kandidaatide teavituste mallid (New Yorgi linna, Illinoisi ja Colorado versioonidega) katavad selle, mida pead kandidaatidele ütlema. New Yorgi linna töökohtade jaoks kasuta seda alles siis, kui oled täitnud, mida Local Law 144 sinult nõuab: sõltumatu kallutatuse audit aasta jooksul enne kasutamist, selle kokkuvõtte avaldamine ja kandidaatide teavitamine 10 tööpäeva ette. Toimingute logi kallutatuse auditi eksport annab sinu audiitorile iga lõpetanud kandidaadi hinde ja tulemuse, et siduda need kandidaatide endi antud vastustega.",
     },
     {
         "key": "emails",

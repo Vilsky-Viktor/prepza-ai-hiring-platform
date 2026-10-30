@@ -240,13 +240,15 @@
     "text": "Semua yang dilakukan anggota perusahaan, yang terbaru di atas: apa yang mereka lakukan dan pada apa, siapa yang melakukannya, kapan, dan apakah asisten, aplikasi AI, API, atau ATS yang melakukannya untuk mereka. Hanya pemilik yang bisa melihatnya.",
     "actions": [
       "Tampilkan tindakan satu anggota, atau satu jenis: wawancara, kandidat, tim, perusahaan, tagihan, atau integrasi.",
-      "Tampilkan tindakan di antara dua tanggal."
+      "Tampilkan tindakan di antara dua tanggal.",
+      "Unduh ekspor audit bias: file CSV berisi setiap kandidat yang sudah selesai, untuk semua wawancara atau satu wawancara dan, jika kamu mau, di antara dua tanggal, dengan nilai mereka, nilai lulus, apakah mereka lulus, dan apakah nilai mereka di atas median wawancara, berdasarkan email."
     ],
     "tips": [
       "Tindakan disimpan selama 12 bulan.",
       "Log tidak menyimpan orang: kandidat yang dihapus tampil sebagai kandidat yang sudah dihapus, dan anggota yang keluar sebagai mantan anggota.",
       "Tindakan kunci API tampil dengan nama kunci, dan tindakan kunci yang sudah dihapus tampil sebagai tindakan kunci yang sudah dihapus.",
-      "Saat anggota melihat hasil satu kandidat, itu tampil sekali sehari, dengan waktu terakhir dilihat."
+      "Saat anggota melihat hasil satu kandidat, itu tampil sekali sehari, dengan waktu terakhir dilihat.",
+      "prepza tidak menyimpan data jenis kelamin, ras, atau etnis: tambahkan jawaban yang diisi sendiri oleh kandidatmu berdasarkan email, lalu hapus kolom email sebelum kamu membagikan file ke auditor independenmu, untuk audit bias New York City (Local Law 144) atau aturan empat per lima EEOC. Hingga 20 ekspor per perusahaan sehari, dan setiap ekspor tampil di log."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "Dokumen ini hanya tersedia dalam bahasa Inggris."
+    ]
+  },
+  "trust": {
+    "title": "Kepercayaan dan keamanan",
+    "text": "Cara prepza menjaga data kamu dan data kandidatmu: keamanan, privasi, kepatuhan pada hukum rekrutmen, tempat data disimpan, siapa yang memprosesnya, dan berapa lama data disimpan.",
+    "actions": [
+      "Lihat cara prepza melindungi data: login, enkripsi, pemeriksaan akses, batas permintaan, dan cadangan.",
+      "Lihat apa yang disediakan prepza untuk GDPR, EU AI Act, Inggris, dan AS, termasuk undang-undang audit bias New York City.",
+      "Lihat tempat data disimpan, subprosesor yang menanganinya, dan berapa lama setiap jenis data disimpan.",
+      "Buka ketentuan, kebijakan privasi, perjanjian pemrosesan data, dan dokumen untuk perusahaan."
+    ],
+    "tips": [
+      "Untuk pertanyaan tentang keamanan, privasi, atau kepatuhan, atau untuk melaporkan masalah keamanan, kirim email ke alamat di bagian akhir halaman."
     ]
   },
   "terms": {

@@ -10,6 +10,7 @@ import { formatDay } from "@/lib/format"
 import { pageMetadata } from "@/lib/site"
 import { timeTag } from "@/lib/time-tag"
 import { BackLink } from "@/components/common/back-link"
+import { BulletSection } from "@/components/common/bullet-section"
 import { PageKey } from "@/components/common/page-key"
 
 export async function generateMetadata() {
@@ -37,11 +38,11 @@ export default async function AccessibilityPage() {
         </div>
         <p className="text-lg text-muted-foreground">{t("intro")}</p>
       </header>
-      <Section
+      <BulletSection
         title={t("done.title")}
         items={ACCESSIBILITY_DONE.map((key) => t(`done.${key}`))}
       />
-      <Section
+      <BulletSection
         title={t("limits.title")}
         items={ACCESSIBILITY_LIMITS.map((key) => t(`limits.${key}`))}
       />
@@ -72,20 +73,5 @@ export default async function AccessibilityPage() {
         })}
       </p>
     </main>
-  )
-}
-
-function Section({ title, items }: { title: string; items: string[] }) {
-  return (
-    <section className="mx-auto max-w-5xl space-y-4">
-      <h2 className="font-heading text-2xl font-medium tracking-tight">
-        {title}
-      </h2>
-      <ul className="list-disc space-y-2 ps-6 text-base leading-relaxed text-muted-foreground">
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    </section>
   )
 }

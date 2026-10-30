@@ -240,13 +240,15 @@
     "text": "Lahat ng ginawa ng mga miyembro ng kumpanya, pinakabago muna: ano ang ginawa nila at saan, sino ang gumawa, kailan, at kung ang assistant, isang AI app, ang API o isang ATS ang gumawa nito para sa kanila. Ang may-ari lang ang nakakakita nito.",
     "actions": [
       "Ipakita ang mga aksyon ng isang miyembro, o ng isang uri: mga interview, mga aplikante, team, kumpanya, billing o mga integration.",
-      "Ipakita ang mga aksyon sa pagitan ng dalawang araw."
+      "Ipakita ang mga aksyon sa pagitan ng dalawang araw.",
+      "I-download ang bias-audit export: isang CSV file ng bawat aplikanteng natapos, para sa lahat ng interview o sa isa at, kung gusto mo, sa pagitan ng dalawang araw, kasama ang grade nila, ang passing grade, kung pumasa sila at kung lumampas sila sa median ng interview, ayon sa email."
     ],
     "tips": [
       "Itinatago ang mga aksyon nang 12 buwan.",
       "Hindi itinatago sa log ang mga tao: ang na-delete na aplikante ay ipinapakitang ganoon, at ang miyembrong umalis ay bilang dating miyembro.",
       "Ang mga aksyon ng isang API key ay ipinapakita sa pangalan ng key, at ang sa na-delete na key ay bilang sa na-delete na key.",
-      "Ang pagtingin ng isang miyembro sa mga resulta ng isang aplikante ay lumalabas isang beses bawat araw, sa pinakahuling pagtingin."
+      "Ang pagtingin ng isang miyembro sa mga resulta ng isang aplikante ay lumalabas isang beses bawat araw, sa pinakahuling pagtingin.",
+      "Walang data ang prepza tungkol sa kasarian, lahi o etnisidad: idagdag ang sariling sagot ng mga aplikante mo ayon sa email, saka alisin ang column ng email bago mo ibigay ang file sa independiyenteng auditor mo, para sa bias audit ng New York City (Local Law 144) o sa four-fifths rule ng EEOC. Hanggang 20 export bawat kumpanya kada araw, at lumalabas sa log ang bawat isa."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "Nasa Ingles lang ang mga dokumento."
+    ]
+  },
+  "trust": {
+    "title": "Tiwala at seguridad",
+    "text": "Paano pinapanatiling ligtas ng prepza ang data mo at ng mga aplikante mo: seguridad, privacy, pagsunod sa mga batas sa pag-hire, kung saan naka-store ang data, sino ang nagpo-process nito at gaano katagal ito itinatago.",
+    "actions": [
+      "Tingnan kung paano pinoprotektahan ng prepza ang data: pag-sign in, encryption, pagsusuri ng access, rate limit at backup.",
+      "Tingnan kung ano ang ibinibigay ng prepza para sa GDPR, sa EU AI Act, sa UK at sa US, kasama ang batas ng New York City sa bias audit.",
+      "Tingnan kung saan naka-store ang data, aling mga sub-processor ang humahawak nito at gaano katagal itinatago ang bawat uri ng data.",
+      "Buksan ang terms, ang privacy policy, ang data processing agreement at ang mga dokumento para sa mga kumpanya."
+    ],
+    "tips": [
+      "Para sa tanong tungkol sa seguridad, privacy o compliance, o para mag-ulat ng problema sa seguridad, sumulat sa email sa dulo ng page."
     ]
   },
   "terms": {

@@ -1,24 +1,10 @@
-import { ApiError, authHeaders, errorDetail } from "@/lib/api"
+import { authHeaders, checkedResponse } from "@/lib/api"
 import type { VoiceAnswer } from "@/types/round"
-
-async function checked(response: Response) {
-  if (!response.ok) {
-    const detail = errorDetail(await response.json().catch(() => null))
-
-    throw new ApiError(
-      response.status,
-      detail ?? `Request failed with status ${response.status}`,
-      detail !== null
-    )
-  }
-
-  return response
-}
 
 /** A clip the interviewer says (the question, a phrase), as an address the page can play; the
  * caller revokes it once played. */
 export async function clipUrl(path: string): Promise<string> {
-  const response = await checked(
+  const response = await checkedResponse(
     await fetch(`/api/rounds/sessions/${path}`, {
       headers: await authHeaders(),
     })
@@ -75,7 +61,7 @@ export async function sendSpokenAnswer(
   const query = new URLSearchParams(
     waiting.map((pick) => ["waiting", String(pick)])
   )
-  const response = await checked(
+  const response = await checkedResponse(
     await fetch(`/api/rounds/sessions/${sessionId}/voice/answers?${query}`, {
       method: "POST",
       headers: { ...(await authHeaders()), "Content-Type": audio.type },

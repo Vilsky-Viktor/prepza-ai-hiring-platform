@@ -74,6 +74,7 @@
     "apiDocs": "Dokumentasyon para sa mga developer",
     "news": "Balita",
     "accessibility": "Accessibility",
+    "trust": "Tiwala",
     "language": "Wika"
   },
   "signIn": {
@@ -625,6 +626,7 @@
       "TEMPLATE_COPIES_PER_HOUR": "Mga interview na kinopya mula sa template bawat kumpanya kada oras",
       "LINK_STARTS_PER_HOUR": "Mga pagsisimula sa link ng isang interview kada oras",
       "LINK_STARTS_PER_IP_HOUR": "Mga pagsisimula sa link bawat address kada oras",
+      "BIAS_AUDIT_EXPORTS_PER_DAY": "Mga bias audit export bawat kumpanya kada araw",
       "MAX_BULK_INVITES": "Mga aplikante sa isang listahan o file",
       "MAX_PENDING_INVITES": "Mga nakabinbing team invite bawat kumpanya",
       "MEMBER_INVITES_PER_UNPAID_DAY": "Mga team invite bawat hindi bayad na kumpanya kada araw",
@@ -1326,7 +1328,7 @@
       },
       "notices": {
         "title": "Mga template ng abiso sa aplikante",
-        "description": "Mga abisong mae-edit na ipapadala sa mga aplikante bago sila imbitahan, kasama ang isa para sa New York City."
+        "description": "Mga abisong mae-edit na ipapadala sa mga aplikante bago sila imbitahan, kasama ang para sa New York City, Illinois at Colorado."
       },
       "dpia": {
         "title": "Template ng DPIA",
@@ -2552,6 +2554,86 @@
     },
     "reviewed": "Huling sinuri: <time>{date}</time>."
   },
+  "trust": {
+    "title": "Tiwala at seguridad",
+    "description": "Kung paano pinananatiling ligtas at pribado ng prepza ang data sa hiring: hosting sa EU, mga sub-processor, retention, at ang ibinibigay namin para sa GDPR, EU AI Act, UK at US.",
+    "intro": "Ang ginagawa ng prepza para panatilihing ligtas ang data mo at ng iyong mga aplikante, kung saan ito naka-store, sino ang nagpoproseso nito, gaano katagal ito iniingatan, at ang ibinibigay namin sa mga kumpanya para sa mga batas sa hiring na sinusunod nila.",
+    "security": {
+      "title": "Seguridad",
+      "signIn": "Nagsa-sign in ka gamit ang Google, LinkedIn o GitHub sa pamamagitan ng Firebase Authentication, kaya walang password na sine-save ang prepza. Sinusuri sa server ang sign-in ng bawat request.",
+      "encryption": "Naka-encrypt ang data habang ipinapadala (TLS 1.2 o mas bago) at habang naka-store. Naka-encrypt na sine-save ang mga key at token na ikinokonekta ng isang kumpanya (ang applicant tracking system nito, Slack, mga webhook), at ang mga prepza API key ay bilang one-way hash lang.",
+      "access": "Sinusuri ang bawat request batay sa kumpanya at sa role ng taong gumagawa nito. Sariling database lang ang naaabot ng bawat serbisyo, at naka-sign ang mga tawag sa pagitan ng mga serbisyo.",
+      "limits": "Pinoprotektahan ng mga rate limit ang bawat aksyong may gastos o puwedeng abusuhin, at binabantayan ng “Hindi ako robot” na check ang mga pampublikong form, mga link ng job ad at ang paggawa ng unang kumpanya.",
+      "logs": "Walang email address sa mga error report, at sandali lang iniingatan ang mga server log.",
+      "actionLog": "Nakikita ng may-ari ng kumpanya ang log ng aksyon kung sino ang gumawa ng ano sa kumpanya, at kailan.",
+      "backups": "Bina-back up ang database araw-araw, na may point-in-time recovery para sa huling 7 araw.",
+      "breaches": "Kung sakaling ma-breach ang data ng isang kumpanya, sasabihan namin ang kumpanya nang walang hindi makatwirang pagkaantala, sa loob ng 48 oras kung kaya."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "roles": "Ang prepza ang controller ng mga account ng mga taong gumagamit nito, at processor ng data ng mga aplikante, na pag-aari ng kumpanyang nag-iimbita sa kanila.",
+      "noSelling": "Hindi kami nagbebenta ng personal na data o nagbabahagi nito para sa advertising. Walang advertising o analytics cookie.",
+      "noInference": "Walang kinokolektang data ang prepza tungkol sa kasarian, edad, pinagmulan o kapansanan ng mga aplikante, at wala itong hinihinuha na ganoon.",
+      "voice": "Sa voice mode, ginagawang text ang binigkas na sagot ng aplikante at itinutugma sa isang opsyong kinukumpirma niya. Hindi ito nire-record o sine-save, at hindi sinusuri ang boses sa anumang ibang paraan.",
+      "ai": "Ang OpenAI, na sumusulat ng mga tanong, ay sinabihang huwag i-store ang natatanggap nito; iniingatan nito ang data nang hanggang 30 araw lang, para lang tingnan kung may pang-aabuso, at hindi ito ginagamit para i-train ang mga model nito.",
+      "rights": "Kahit sino ay puwedeng mag-download o magbura ng sarili niyang data sa Mga setting, nang hindi na sumusulat sa amin."
+    },
+    "compliance": {
+      "title": "Compliance",
+      "aiAct": "Sa ilalim ng EU AI Act, itinuturing ang prepza na high-risk AI system, na ang mga tungkulin ay nalalapat mula <time>{date}</time>. Ang aming mga tagubilin para sa mga kumpanya ang mga instructions for use nito.",
+      "humanReview": "Walang desisyong ginagawa ang prepza tungkol sa isang aplikante: ang mga tao sa kumpanya ang nagsusuri ng mga resulta at nagpapasya, at puwedeng humiling ang mga aplikante na suriin ng isang tao ang kanilang resulta.",
+      "dpa": "Bahagi ng mga tuntunin ang data processing agreement, at walang kailangang pirmahan. Saklaw nito ang GDPR, ang UK GDPR at ang mga batas sa privacy ng mga estado ng US gaya ng sa California, kung saan ang prepza ang service provider ng kumpanya.",
+      "documents": "Nakakatanggap ang mga kumpanya ng <link>mga instructions for use, template ng DPIA at mga template ng abiso sa aplikante</link>, na may mga bersyon para sa New York City, Illinois at Colorado.",
+      "nyc": "New York City: bago gamitin ang prepza para sa isang posisyon doon, ginagawa ng employer ang hinihingi sa kanya ng Local Law 144: isang independiyenteng bias audit sa loob ng isang taon bago ang paggamit, ang paglalathala ng buod nito, at abiso sa mga aplikante nang hindi bababa sa 10 business day bago sila i-assess. Ang sariling independiyenteng bias audit ng prepza ay gagawin bago ang <time>{date}</time>, at taon-taon pagkatapos noon."
+    },
+    "residency": {
+      "title": "Kung saan naka-store ang data",
+      "storage": "Tumatakbo ang prepza sa Google Cloud sa EU, sa Belgium, kung saan naka-store ang database nito. Ang mga rate-limit counter ay nasa Upstash, sa Belgium din, at ipinapadala ang mga email sa pamamagitan ng Resend sa Ireland.",
+      "transfers": "Tatlong provider ang humahawak ng data sa United States: ang Google para sa sign-in, ang OpenAI, at ang Cloudflare para sa “Hindi ako robot” na check. Saklaw ang mga paglilipat na ito ng EU-US Data Privacy Framework o ng standard contractual clauses ng European Commission, at para sa UK, ng UK Extension at ng UK International Data Transfer Addendum."
+    },
+    "subprocessors": {
+      "title": "Mga sub-processor",
+      "intro": "Ang mga provider na nagpoproseso ng data para sa prepza, ayon sa listahan ng <link>data processing agreement</link>:",
+      "changes": "Ine-email namin ang mga may-ari at admin ng mga kumpanya nang hindi bababa sa 14 na araw bago magdagdag ng bagong sub-processor."
+    },
+    "retention": {
+      "title": "Gaano katagal iniingatan ang data",
+      "account": "Ang isang account at lahat ng nasa loob nito: hanggang ito ay burahin.",
+      "results": "Mga resulta ng interview ng mga aplikante, mga oras ng pagsagot at integrity signals: 12 buwan pagkatapos huling ipadala ang imbitasyon, saka awtomatikong binubura.",
+      "actionLog": "Ang log ng aksyon ng isang kumpanya: 12 buwan.",
+      "chats": "Mga chat sa assistant: 90 araw pagkatapos ng huling mensahe ng mga ito.",
+      "aiRecords": "Mga record ng mga AI call: 30 araw.",
+      "errors": "Mga error report: hanggang 90 araw.",
+      "backups": "Mga backup ng database: 14 na araw, saka pinapalitan; pagsapit niyon, wala na sa mga ito ang anumang binura.",
+      "statistics": "Mga usage statistic, gamit ang mga code sa halip na mga account id: 25 buwan.",
+      "purchases": "Mga record ng pagbili: 7 taon, ayon sa hinihingi ng batas sa accounting ng Estonia."
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "text": "Layunin ng prepza na maabot ang level AA ng Web Content Accessibility Guidelines (WCAG) 2.2. Sinasabi ng aming <link>accessibility statement</link> kung ano ang gumagana, ano ang kulang pa, at kung paano kami sasabihan."
+    },
+    "links": {
+      "title": "Mga legal na dokumento",
+      "terms": "Ang <link>mga tuntunin</link>, na sinasang-ayunan ng bawat kumpanya.",
+      "privacy": "Ang <link>patakaran sa privacy</link>, kasama ang lahat ng kinokolekta namin, kung bakit, at gaano katagal.",
+      "dpa": "Ang <link>data processing agreement</link>, para sa data ng mga aplikante.",
+      "documents": "Ang <link>mga dokumento para sa mga kumpanya</link> na mada-download: ang mga tagubilin, ang mga template ng abiso at ng DPIA, at ang kasunduan bilang PDF."
+    },
+    "contact": {
+      "title": "Mga tanong",
+      "text": "Para sa mga tanong tungkol sa seguridad, privacy o compliance, o para mag-ulat ng problema sa seguridad, sumulat sa <email></email>."
+    }
+  },
+  "biasAudit": {
+    "open": "Bias audit export",
+    "title": "Mag-export para sa bias audit",
+    "description": "Isang CSV file ng bawat aplikanteng natapos: ang kanilang grade, ang passing grade, kung pumasa sila at kung lampas sa median ang score nila. Mula rito kinukuwenta ng iyong independiyenteng auditor ang mga rate at impact ratio.",
+    "privacy": "Walang data ang prepza tungkol sa kasarian, lahi o etnisidad. Idagdag ang mga sariling sagot ng iyong mga aplikante batay sa kanilang email, saka alisin ang column ng email bago mo ibahagi ang file.",
+    "interview": "Interview",
+    "allInterviews": "Lahat ng interview",
+    "download": "I-download ang CSV",
+    "failed": "Hindi ma-export ang file. Subukang muli."
+  },
   "actionLog": {
     "empty": "Wala pang aksyon.",
     "noMatches": "Walang aksyong tugma sa mga filter na ito.",
@@ -2599,6 +2681,7 @@
       "candidate_mode_set": "Binago ang mode ng interview ng isang aplikante",
       "results_viewed": "Tiningnan ang mga resulta ng isang aplikante",
       "report_emailed": "Nag-email ng report",
+      "bias_audit_exported": "Nag-export ng data para sa bias audit",
       "member_invited": "Nag-imbita ng miyembro",
       "member_joined": "Sumali sa kumpanya",
       "member_removed": "Nag-alis ng miyembro",

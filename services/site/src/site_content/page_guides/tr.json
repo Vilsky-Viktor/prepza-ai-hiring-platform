@@ -240,13 +240,15 @@
     "text": "Şirket üyelerinin yaptığı her şey, en yenisi önce: ne yaptıkları ve neye yaptıkları, kimin yaptığı, ne zaman ve bunu onlar adına asistanın, bir yapay zekâ uygulamasının, API'nin veya bir ATS'nin yapıp yapmadığı. Yalnızca şirket sahibi görür.",
     "actions": [
       "Bir üyenin ya da bir türün işlemlerini gösterin: mülakatlar, adaylar, ekip, şirket, faturalandırma veya entegrasyonlar.",
-      "İki gün arasındaki işlemleri gösterin."
+      "İki gün arasındaki işlemleri gösterin.",
+      "Yanlılık denetimi dışa aktarımını indirin: tüm mülakatlar veya bir mülakat için ve isterseniz iki gün arasında, mülakatı bitiren her adayın notunu, geçme notunu, geçip geçmediğini ve mülakatın medyanının üzerinde not alıp almadığını e-postaya göre içeren bir CSV dosyası."
     ],
     "tips": [
       "İşlemler 12 ay saklanır.",
       "Kayıtta kişiler saklanmaz: silinen bir aday silinmiş aday olarak, ayrılan bir üye eski üye olarak görünür.",
       "Bir API anahtarının işlemleri anahtarın adıyla, silinmiş bir anahtarınkiler ise silinmiş anahtarın işlemleri olarak görünür.",
-      "Bir üyenin bir adayın sonuçlarını görüntülemesi günde bir kez, son görüntüleme zamanıyla görünür."
+      "Bir üyenin bir adayın sonuçlarını görüntülemesi günde bir kez, son görüntüleme zamanıyla görünür.",
+      "prepza'da cinsiyet, ırk veya etnik kökenle ilgili hiçbir veri yoktur: adaylarınızın kendi beyan ettiği yanıtları e-postaya göre ekleyin, ardından dosyayı bağımsız denetçinizle paylaşmadan önce e-posta sütununu kaldırın; New York City yanlılık denetimi (Local Law 144) veya EEOC'nin beşte dört kuralı için. Şirket başına günde en fazla 20 dışa aktarım yapılır ve her biri kayıtta görünür."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "Belgeler yalnızca İngilizcedir."
+    ]
+  },
+  "trust": {
+    "title": "Güven ve güvenlik",
+    "text": "prepza'nın sizin ve adaylarınızın verilerini nasıl güvende tuttuğu: güvenlik, gizlilik, işe alım yasalarına uyum, verilerin nerede saklandığı, kimin işlediği ve ne kadar süre tutulduğu.",
+    "actions": [
+      "prepza'nın verileri nasıl koruduğunu görün: oturum açma, şifreleme, erişim denetimleri, istek sınırları ve yedekler.",
+      "prepza'nın GDPR, AB Yapay Zekâ Yasası, Birleşik Krallık ve ABD için sağladıklarını görün; New York City'nin yanlılık denetimi yasası da dahil.",
+      "Verilerin nerede saklandığını, hangi alt işleyenlerin onları işlediğini ve her tür verinin ne kadar süre tutulduğunu görün.",
+      "Koşulları, gizlilik politikasını, veri işleme sözleşmesini ve şirketlere yönelik belgeleri açın."
+    ],
+    "tips": [
+      "Güvenlik, gizlilik veya uyumla ilgili bir sorunuz varsa ya da bir güvenlik sorunu bildirmek istiyorsanız sayfanın sonundaki e-posta adresine yazın."
     ]
   },
   "terms": {

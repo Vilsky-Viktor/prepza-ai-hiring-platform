@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Puwede ko bang makita kung sino ang gumawa ng ano sa kumpanya ko?",
-        "answer": "Oo, kung ikaw ang may-ari ng kumpanya. Nakalista sa tab na Log ng aksyon nito ang lahat ng ginawa ng mga miyembro nito, simula sa pinakabago: pag-imbita o pag-alis ng mga aplikante, pagtingin sa mga resulta, at pagbabago sa mga interview, sa team, sa billing at sa mga integration, kasama kung sino ang gumawa, kailan, at kung ang assistant, isang AI app o ang API ang gumawa nito para sa kanila. Puwede mo itong i-filter ayon sa miyembro, uri ng aksyon at petsa. Itinatago ang mga aksyon nang 12 buwan. Ang mga aksyon ng isang API key ay ipinapakita sa pangalan ng key.",
+        "answer": "Oo, kung ikaw ang may-ari ng kumpanya. Nakalista sa tab na Log ng aksyon nito ang lahat ng ginawa ng mga miyembro nito, simula sa pinakabago: pag-imbita o pag-alis ng mga aplikante, pagtingin sa mga resulta, at pagbabago sa mga interview, sa team, sa billing at sa mga integration, kasama kung sino ang gumawa, kailan, at kung ang assistant, isang AI app o ang API ang gumawa nito para sa kanila. Puwede mo itong i-filter ayon sa miyembro, uri ng aksyon at petsa. Itinatago ang mga aksyon nang 12 buwan. Ang mga aksyon ng isang API key ay ipinapakita sa pangalan ng key. Doon din puwedeng mag-download ang may-ari ng bias-audit export: isang CSV file ng bawat aplikanteng natapos, kasama ang grade nila at kung pumasa sila, para sa isang independiyenteng bias audit.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Puwede ba naming gamitin ang prepza para sa mga aplikante sa UK at US?",
-        "answer": "Oo. Sakop ng data processing agreement ang batas ng UK at US, at sakop ng mga tagubilin para sa mga kumpanya at ng mga template ng abiso sa aplikante (may bersyon para sa New York City, Illinois at Colorado) ang dapat mong sabihin sa mga aplikante. Para sa mga trabaho sa New York City, gamitin lang ito kapag nagawa mo na ang hinihingi sa iyo ng Local Law 144: isang independiyenteng bias audit sa loob ng isang taon bago ang paggamit, ang paglalathala ng buod nito, at abiso sa mga aplikante 10 business day bago nito.",
+        "answer": "Oo. Sakop ng data processing agreement ang batas ng UK at US, at sakop ng mga tagubilin para sa mga kumpanya at ng mga template ng abiso sa aplikante (may bersyon para sa New York City, Illinois at Colorado) ang dapat mong sabihin sa mga aplikante. Para sa mga trabaho sa New York City, gamitin lang ito kapag nagawa mo na ang hinihingi sa iyo ng Local Law 144: isang independiyenteng bias audit sa loob ng isang taon bago ang paggamit, ang paglalathala ng buod nito, at abiso sa mga aplikante 10 business day bago nito. Ibinibigay ng bias-audit export sa Log ng aksyon sa auditor mo ang grade at resulta ng bawat aplikanteng natapos, para itugma sa sariling sagot ng mga aplikante mo.",
     },
     {
         "key": "emails",

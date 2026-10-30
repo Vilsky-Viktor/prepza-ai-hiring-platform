@@ -8,6 +8,7 @@ const BACK = [
   { path: "/compare/testgorilla", back: "/compare" },
   { path: "/about", back: "/" },
   { path: "/accessibility", back: "/" },
+  { path: "/trust", back: "/" },
   { path: "/terms", back: "/" },
 ];
 

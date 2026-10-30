@@ -74,6 +74,7 @@
     "apiDocs": "Arendajate dokumentatsioon",
     "news": "Uudised",
     "accessibility": "Ligipääsetavus",
+    "trust": "Usaldus",
     "language": "Keel"
   },
   "signIn": {
@@ -625,6 +626,7 @@
       "TEMPLATE_COPIES_PER_HOUR": "Mallidest kopeeritud intervjuud ettevõtte kohta tunnis",
       "LINK_STARTS_PER_HOUR": "Alustamised ühe intervjuu lingi kaudu tunnis",
       "LINK_STARTS_PER_IP_HOUR": "Lingi kaudu alustamised aadressi kohta tunnis",
+      "BIAS_AUDIT_EXPORTS_PER_DAY": "Kallutatuse auditi ekspordid ettevõtte kohta päevas",
       "MAX_BULK_INVITES": "Kandidaadid ühes loendis või failis",
       "MAX_PENDING_INVITES": "Ootel meeskonnakutsed ettevõtte kohta",
       "MEMBER_INVITES_PER_UNPAID_DAY": "Meeskonnakutsed mittemaksva ettevõtte kohta päevas",
@@ -1326,7 +1328,7 @@
       },
       "notices": {
         "title": "Kandidaaditeate mallid",
-        "description": "Muudetavad teated, mille saadad kandidaatidele enne kutsumist, sh üks New Yorgi jaoks."
+        "description": "Muudetavad teated, mille saadad kandidaatidele enne kutsumist, sh New Yorgi, Illinoisi ja Colorado jaoks."
       },
       "dpia": {
         "title": "Andmekaitsealase mõjuhinnangu mall",
@@ -2552,6 +2554,86 @@
     },
     "reviewed": "Viimati üle vaadatud: <time>{date}</time>."
   },
+  "trust": {
+    "title": "Usaldus ja turvalisus",
+    "description": "Kuidas prepza hoiab värbamisandmed turvaliste ja privaatsetena: majutus ELis, alamtöötlejad, säilitamine ning mida pakume GDPR-i, ELi tehisintellekti määruse (AI Act), Ühendkuningriigi ja USA nõuete täitmiseks.",
+    "intro": "Mida prepza teeb, et hoida sinu ja sinu kandidaatide andmeid turvaliselt, kus neid hoitakse, kes neid töötleb, kui kaua neid säilitatakse ja mida anname ettevõtetele nende värbamisseaduste täitmiseks, mida nad järgivad.",
+    "security": {
+      "title": "Turvalisus",
+      "signIn": "Logid sisse Google'i, LinkedIni või GitHubiga Firebase Authenticationi kaudu, seega prepza ei hoia ühtegi parooli. Iga päringu sisselogimist kontrollitakse serveris.",
+      "encryption": "Andmed on krüpteeritud nii edastamisel (TLS 1.2 või uuem) kui ka salvestatuna. Ettevõtte ühendatud võtmeid ja tokeneid (värbamissüsteem, Slack, webhookid) hoitakse krüpteeritult ja prepza API-võtmeid ainult ühesuunalise räsina.",
+      "access": "Iga päringut kontrollitakse ettevõtte ja päringu tegija rolli järgi. Iga teenus pääseb ligi ainult oma andmebaasile ja teenustevahelised päringud on allkirjastatud.",
+      "limits": "Kasutuspiirangud kaitsevad iga toimingut, mis maksab raha või mida saab kuritarvitada, ning kontroll „Ma ei ole robot” kaitseb avalikke vorme, töökuulutuste linke ja esimese ettevõtte loomist.",
+      "logs": "Vearaportites ei ole e-posti aadresse ja serveri logisid hoitakse lühikest aega.",
+      "actionLog": "Ettevõtte omanik näeb toimingute logist, kes ettevõttes mida tegi ja millal.",
+      "backups": "Andmebaasist tehakse iga päev varukoopia ning selle saab taastada mis tahes ajahetke seisuga viimase 7 päeva jooksul.",
+      "breaches": "Kui ettevõtte andmetega peaks kunagi juhtuma rikkumine, teatame sellest ettevõttele põhjendamatu viivituseta, võimaluse korral 48 tunni jooksul."
+    },
+    "privacy": {
+      "title": "Privaatsus",
+      "roles": "prepza on vastutav töötleja nende inimeste kontode puhul, kes seda kasutavad, ning volitatud töötleja kandidaatide andmete puhul, mis kuuluvad neid kutsunud ettevõttele.",
+      "noSelling": "Me ei müü isikuandmeid ega jaga neid reklaami jaoks. Reklaami- ega analüütikaküpsiseid ei ole.",
+      "noInference": "prepza ei kogu andmeid kandidaatide soo, vanuse, päritolu ega puude kohta ega tuleta midagi sellist.",
+      "voice": "Häälerežiimis muudetakse kandidaadi suuline vastus tekstiks ja sobitatakse valikuga, mille ta kinnitab. Seda ei salvestata ega säilitata ning häält ei analüüsita muul viisil.",
+      "ai": "OpenAI-l, mis küsimused kirjutab, on palutud saadud andmeid mitte säilitada; ta hoiab neid kõige rohkem 30 päeva, ainult kuritarvituste kontrollimiseks, ega kasuta neid oma mudelite treenimiseks.",
+      "rights": "Igaüks saab oma andmed seadetes alla laadida või kustutada, ilma meile kirjutamata."
+    },
+    "compliance": {
+      "title": "Vastavus",
+      "aiAct": "ELi tehisintellekti määruse (AI Act) järgi käsitletakse prepzat suure riskiga tehisintellektisüsteemina, mille kohustused kehtivad alates <time>{date}</time>. Meie juhend ettevõtetele on selle kasutusjuhend.",
+      "humanReview": "prepza ei tee kandidaadi kohta ühtegi otsust: ettevõtte inimesed vaatavad tulemused üle ja otsustavad ning kandidaadid võivad paluda, et inimene nende tulemuse üle vaataks.",
+      "dpa": "Andmetöötlusleping on osa tingimustest ja midagi ei pea allkirjastama. See hõlmab GDPR-i, UK GDPR-i ja USA osariikide privaatsusseadusi, näiteks California oma, mille järgi on prepza ettevõtte teenusepakkuja (service provider).",
+      "documents": "Ettevõtted saavad <link>kasutusjuhendi, andmekaitsealase mõjuhinnangu malli ja kandidaaditeate mallid</link>, sh versioonid New Yorgi, Illinoisi ja Colorado jaoks.",
+      "nyc": "New York: enne prepza kasutamist seal asuva ametikoha jaoks teeb tööandja, mida Local Law 144 temalt nõuab: sõltumatu kallutatuse auditi kasutusele eelneva aasta jooksul, selle kokkuvõtte avaldamise ja teate kandidaatidele vähemalt 10 tööpäeva enne nende hindamist. prepza enda sõltumatu kallutatuse audit tehakse enne <time>{date}</time> ja seejärel igal aastal."
+    },
+    "residency": {
+      "title": "Kus andmeid hoitakse",
+      "storage": "prepza töötab Google Cloudis ELis, Belgias, kus asub ka selle andmebaas. Kasutuspiirangute loendureid hoitakse Upstashis, samuti Belgias, ja e-kirjad saadetakse Resendi kaudu Iirimaal.",
+      "transfers": "Kolm teenusepakkujat töötlevad andmeid Ameerika Ühendriikides: Google sisselogimiseks, OpenAI ning Cloudflare kontrolli „Ma ei ole robot” jaoks. Need edastamised põhinevad ELi–USA andmekaitseraamistikul (EU-US Data Privacy Framework) või Euroopa Komisjoni lepingu tüüptingimustel ning Ühendkuningriigi puhul Ühendkuningriigi laiendusel (UK Extension) ja Ühendkuningriigi rahvusvahelise andmeedastuse lisal (UK International Data Transfer Addendum)."
+    },
+    "subprocessors": {
+      "title": "Alamtöötlejad",
+      "intro": "Teenusepakkujad, kes töötlevad andmeid prepza jaoks, nii nagu need on loetletud <link>andmetöötluslepingus</link>:",
+      "changes": "Teavitame ettevõtete omanikke ja administraatoreid e-kirjaga vähemalt 14 päeva enne uue alamtöötleja lisamist."
+    },
+    "retention": {
+      "title": "Kui kaua andmeid säilitatakse",
+      "account": "Konto ja kõik selles: kuni see kustutatakse.",
+      "results": "Kandidaatide intervjuutulemused, ajad ja märked kahtlase käitumise kohta: 12 kuud pärast kutse viimast saatmist, seejärel kustutatakse automaatselt.",
+      "actionLog": "Ettevõtte toimingute logi: 12 kuud.",
+      "chats": "Vestlused assistendiga: 90 päeva pärast viimast sõnumit.",
+      "aiRecords": "Tehisintellekti päringute kirjed: 30 päeva.",
+      "errors": "Vearaportid: kuni 90 päeva.",
+      "backups": "Andmebaasi varukoopiad: 14 päeva, seejärel kirjutatakse üle; selleks ajaks on kõik kustutatu ka neist kadunud.",
+      "statistics": "Kasutusstatistika, kontotunnuste asemel koodidega: 25 kuud.",
+      "purchases": "Ostudokumendid: 7 aastat, nagu nõuab Eesti raamatupidamisseadus."
+    },
+    "accessibility": {
+      "title": "Ligipääsetavus",
+      "text": "prepza püüab vastata veebisisu ligipääsetavuse suuniste (WCAG) 2.2 AA-tasemele. Meie <link>ligipääsetavuse teatis</link> ütleb, mis töötab, mis veel ei tööta ja kuidas meile sellest teada anda."
+    },
+    "links": {
+      "title": "Juriidilised dokumendid",
+      "terms": "<link>Tingimused</link>, millega iga ettevõte nõustub.",
+      "privacy": "<link>Privaatsuspoliitika</link>, kus on kirjas kõik, mida kogume, miks ja kui kauaks.",
+      "dpa": "<link>Andmetöötlusleping</link> kandidaatide andmete kohta.",
+      "documents": "Allalaaditavad <link>dokumendid ettevõtetele</link>: juhend, teate- ja mõjuhinnangu mallid ning leping PDF-ina."
+    },
+    "contact": {
+      "title": "Küsimused",
+      "text": "Kui sul on küsimusi turvalisuse, privaatsuse või vastavuse kohta või soovid teatada turvaprobleemist, kirjuta aadressile <email></email>."
+    }
+  },
+  "biasAudit": {
+    "open": "Kallutatuse auditi eksport",
+    "title": "Eksport kallutatuse auditi jaoks",
+    "description": "CSV-fail kõigist kandidaatidest, kes lõpetasid: nende hinne, läbimise lävi, kas nad läbisid ja kas nende tulemus oli üle mediaani. Sinu sõltumatu audiitor arvutab selle põhjal määrad ja mõjusuhted (impact ratio).",
+    "privacy": "prepzal pole andmeid soo, rassi ega etnilise kuuluvuse kohta. Lisa kandidaatide endi antud vastused nende e-posti aadressi järgi ja eemalda enne faili jagamist e-posti veerg.",
+    "interview": "Intervjuu",
+    "allInterviews": "Kõik intervjuud",
+    "download": "Laadi CSV alla",
+    "failed": "Faili ei õnnestunud eksportida. Proovi uuesti."
+  },
   "actionLog": {
     "empty": "Toiminguid veel pole.",
     "noMatches": "Ükski toiming ei vasta nendele filtritele.",
@@ -2599,6 +2681,7 @@
       "candidate_mode_set": "Muutis kandidaadi intervjuu režiimi",
       "results_viewed": "Vaatas kandidaadi tulemusi",
       "report_emailed": "Saatis aruande e-postiga",
+      "bias_audit_exported": "Eksportis andmed kallutatuse auditi jaoks",
       "member_invited": "Kutsus liikme",
       "member_joined": "Liitus ettevõttega",
       "member_removed": "Eemaldas liikme",

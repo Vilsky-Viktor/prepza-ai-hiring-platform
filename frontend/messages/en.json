@@ -74,6 +74,7 @@
     "apiDocs": "Developer docs",
     "news": "News",
     "accessibility": "Accessibility",
+    "trust": "Trust",
     "language": "Language"
   },
   "signIn": {
@@ -625,6 +626,7 @@
       "TEMPLATE_COPIES_PER_HOUR": "Interviews copied from templates per company an hour",
       "LINK_STARTS_PER_HOUR": "Starts through one interview's link an hour",
       "LINK_STARTS_PER_IP_HOUR": "Link starts per address an hour",
+      "BIAS_AUDIT_EXPORTS_PER_DAY": "Bias-audit exports per company a day",
       "MAX_BULK_INVITES": "Candidates in one list or file",
       "MAX_PENDING_INVITES": "Pending team invites per company",
       "MEMBER_INVITES_PER_UNPAID_DAY": "Team invites per unpaid company a day",
@@ -1326,7 +1328,7 @@
       },
       "notices": {
         "title": "Candidate notice templates",
-        "description": "Editable notices to send candidates before you invite them, including one for New York City."
+        "description": "Editable notices to send candidates before you invite them, including ones for New York City, Illinois and Colorado."
       },
       "dpia": {
         "title": "DPIA template",
@@ -2552,6 +2554,86 @@
     },
     "reviewed": "Last reviewed <time>{date}</time>."
   },
+  "trust": {
+    "title": "Trust and security",
+    "description": "How prepza keeps hiring data secure and private: EU hosting, sub-processors, retention, and what we provide for the GDPR, the EU AI Act, the UK and the US.",
+    "intro": "What prepza does to keep your data and your candidates' data safe, where it is stored, who processes it, how long it is kept, and what we give companies for the hiring laws they follow.",
+    "security": {
+      "title": "Security",
+      "signIn": "You sign in with Google, LinkedIn or GitHub through Firebase Authentication, so prepza stores no passwords. Every request's sign-in is checked on the server.",
+      "encryption": "Data is encrypted in transit (TLS 1.2 or later) and at rest. Keys and tokens a company connects (its applicant tracking system, Slack, web hooks) are stored encrypted, and prepza API keys only as a one-way hash.",
+      "access": "Every request is checked against the company and the role of the person making it. Each service reaches only its own database, and calls between services are signed.",
+      "limits": "Rate limits protect every action that costs money or can be abused, and an \"I'm not a robot\" check guards public forms, job ad links and creating a first company.",
+      "logs": "Error reports leave out email addresses, and server logs are kept briefly.",
+      "actionLog": "A company's owner sees an action log of who did what in the company, and when.",
+      "backups": "The database is backed up every day, with point-in-time recovery for the last 7 days.",
+      "breaches": "If a company's data is ever breached, we tell the company without undue delay, within 48 hours where we can."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "roles": "prepza is the controller of the accounts of the people who use it, and a processor of candidates' data, which belongs to the company that invites them.",
+      "noSelling": "We don't sell personal data or share it for advertising. There are no advertising or analytics cookies.",
+      "noInference": "prepza collects no data about candidates' sex, age, origin or disability, and infers nothing of the kind.",
+      "voice": "In voice mode, a candidate's spoken answer is turned into text and matched to an option they confirm. It isn't recorded or stored, and the voice isn't analysed in any other way.",
+      "ai": "OpenAI, which writes the questions, is told not to store what it receives; it keeps the data at most 30 days, only to check for abuse, and doesn't use it to train its models.",
+      "rights": "Anyone can download or delete their own data in Settings, without writing to us."
+    },
+    "compliance": {
+      "title": "Compliance",
+      "aiAct": "Under the EU AI Act, prepza is treated as a high-risk AI system, whose duties apply from <time>{date}</time>. Our instructions for companies are its instructions for use.",
+      "humanReview": "prepza makes no decision about a candidate: people at the company review the results and decide, and candidates can ask for a person to review their result.",
+      "dpa": "The data processing agreement is part of the terms, with nothing to sign. It covers the GDPR, the UK GDPR, and US state privacy laws such as California's, where prepza is the company's service provider.",
+      "documents": "Companies get <link>instructions for use, a DPIA template and candidate notice templates</link>, with versions for New York City, Illinois and Colorado.",
+      "nyc": "New York City: before using prepza for a role there, the employer does what Local Law 144 asks of it: an independent bias audit within the year before use, its summary published, and a notice to candidates at least 10 business days before they are assessed. prepza's own independent bias audit is done before <time>{date}</time>, and every year after."
+    },
+    "residency": {
+      "title": "Where data is stored",
+      "storage": "prepza runs on Google Cloud in the EU, in Belgium, where its database is stored. Rate-limit counters are kept at Upstash, also in Belgium, and emails are sent through Resend in Ireland.",
+      "transfers": "Three providers handle data in the United States: Google for sign-in, OpenAI, and Cloudflare for the \"I'm not a robot\" check. These transfers are covered by the EU-US Data Privacy Framework or the European Commission's standard contractual clauses, and for the UK by the UK Extension and the UK International Data Transfer Addendum."
+    },
+    "subprocessors": {
+      "title": "Sub-processors",
+      "intro": "The providers that process data for prepza, as the <link>data processing agreement</link> lists them:",
+      "changes": "We email companies' owners and admins at least 14 days before adding a new sub-processor."
+    },
+    "retention": {
+      "title": "How long data is kept",
+      "account": "An account and everything in it: until it is deleted.",
+      "results": "Candidates' interview results, timings and integrity signals: 12 months after the invitation was last sent, then deleted automatically.",
+      "actionLog": "A company's action log: 12 months.",
+      "chats": "Chats with the assistant: 90 days after their last message.",
+      "aiRecords": "Records of AI calls: 30 days.",
+      "errors": "Error reports: up to 90 days.",
+      "backups": "Database backups: 14 days, then overwritten; anything deleted is gone from them by then.",
+      "statistics": "Usage statistics, under codes instead of account ids: 25 months.",
+      "purchases": "Purchase records: 7 years, as Estonian accounting law requires."
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "text": "prepza aims to meet level AA of the Web Content Accessibility Guidelines (WCAG) 2.2. Our <link>accessibility statement</link> says what works, what falls short, and how to tell us."
+    },
+    "links": {
+      "title": "Legal documents",
+      "terms": "The <link>terms</link>, which every company agrees to.",
+      "privacy": "The <link>privacy policy</link>, with everything we collect, why, and for how long.",
+      "dpa": "The <link>data processing agreement</link>, for candidates' data.",
+      "documents": "The <link>documents for companies</link> to download: the instructions, the notice and DPIA templates, and the agreement as a PDF."
+    },
+    "contact": {
+      "title": "Questions",
+      "text": "For questions about security, privacy or compliance, or to report a security problem, write to <email></email>."
+    }
+  },
+  "biasAudit": {
+    "open": "Bias-audit export",
+    "title": "Export for a bias audit",
+    "description": "A CSV file of every candidate who finished: their grade, the passing grade, whether they passed and whether they scored above the median. Your independent auditor works out the rates and impact ratios from it.",
+    "privacy": "prepza holds no data on sex, race or ethnicity. Add your candidates' own self-reported answers by their email, then remove the email column before you share the file.",
+    "interview": "Interview",
+    "allInterviews": "All interviews",
+    "download": "Download CSV",
+    "failed": "Couldn't export the file. Try again."
+  },
   "actionLog": {
     "empty": "No actions yet.",
     "noMatches": "No actions match these filters.",
@@ -2598,6 +2680,7 @@
       "extra_time_set": "Gave a candidate extra time",
       "results_viewed": "Viewed a candidate's results",
       "report_emailed": "Emailed a report",
+      "bias_audit_exported": "Exported data for a bias audit",
       "member_invited": "Invited a member",
       "member_joined": "Joined the company",
       "member_removed": "Removed a member",

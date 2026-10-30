@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Czy mogę zobaczyć, kto co zrobił w mojej firmie?",
-        "answer": "Tak, jeśli jesteś właścicielem firmy. Zakładka Dziennik działań firmy pokazuje wszystko, co zrobili członkowie zespołu, od najnowszych: zapraszanie lub usuwanie kandydatów, przeglądanie wyników oraz zmiany w rozmowach, zespole, rozliczeniach i integracjach, wraz z tym, kto i kiedy to zrobił oraz czy zrobił to w jego imieniu asystent, aplikacja AI czy API. Możesz go filtrować według członka zespołu, rodzaju działania i dat. Działania są przechowywane przez 12 miesięcy. Działania klucza API są widoczne pod nazwą klucza.",
+        "answer": "Tak, jeśli jesteś właścicielem firmy. Zakładka Dziennik działań firmy pokazuje wszystko, co zrobili członkowie zespołu, od najnowszych: zapraszanie lub usuwanie kandydatów, przeglądanie wyników oraz zmiany w rozmowach, zespole, rozliczeniach i integracjach, wraz z tym, kto i kiedy to zrobił oraz czy zrobił to w jego imieniu asystent, aplikacja AI czy API. Możesz go filtrować według członka zespołu, rodzaju działania i dat. Działania są przechowywane przez 12 miesięcy. Działania klucza API są widoczne pod nazwą klucza. Właściciel może tam też pobrać eksport do audytu stronniczości: plik CSV z każdym kandydatem, który skończył, z jego wynikiem i informacją, czy zaliczył, na potrzeby niezależnego audytu stronniczości.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Czy możemy używać prepza do kandydatów z Wielkiej Brytanii i USA?",
-        "answer": "Tak. Umowa powierzenia przetwarzania danych obejmuje prawo Wielkiej Brytanii i USA, a instrukcje dla firm i wzory informacji dla kandydatów (z wersjami dla Nowego Jorku, Illinois i Kolorado) opisują, co musisz przekazać kandydatom. Do rekrutacji na stanowiska w Nowym Jorku używaj jej dopiero wtedy, gdy wykonasz to, czego wymaga od Ciebie Local Law 144: niezależny audyt pod kątem stronniczości w ciągu roku przed użyciem, opublikowanie jego podsumowania i powiadomienie kandydatów 10 dni roboczych wcześniej.",
+        "answer": "Tak. Umowa powierzenia przetwarzania danych obejmuje prawo Wielkiej Brytanii i USA, a instrukcje dla firm i wzory informacji dla kandydatów (z wersjami dla Nowego Jorku, Illinois i Kolorado) opisują, co musisz przekazać kandydatom. Do rekrutacji na stanowiska w Nowym Jorku używaj jej dopiero wtedy, gdy wykonasz to, czego wymaga od Ciebie Local Law 144: niezależny audyt pod kątem stronniczości w ciągu roku przed użyciem, opublikowanie jego podsumowania i powiadomienie kandydatów 10 dni roboczych wcześniej. Eksport do audytu stronniczości w Dzienniku działań daje Twojemu audytorowi wynik i rezultat każdego kandydata, który skończył, do połączenia z odpowiedziami, które Twoi kandydaci podali sami.",
     },
     {
         "key": "emails",

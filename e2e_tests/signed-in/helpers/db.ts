@@ -145,3 +145,14 @@ export async function addTopUp(companyId: string, credits: number, totalCents: n
     );
   });
 }
+
+/** Marks a throwaway candidate's invite finished with `grade`, as the interview.finished event
+ * stores it, so a test needn't take the interview first. */
+export async function finishInvite(email: string, grade: number) {
+  await withDatabase("companies", (client) =>
+    client.query(
+      "UPDATE candidate_invites SET status = 'finished', grade = $2, started_at = now(), finished_at = now() WHERE email = $1",
+      [email, grade],
+    ),
+  );
+}

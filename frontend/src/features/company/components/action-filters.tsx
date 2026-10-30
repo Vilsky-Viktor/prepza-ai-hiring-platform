@@ -79,7 +79,8 @@ export function ActionFilters({ members }: { members: CompanyMember[] }) {
   )
 }
 
-function DayField({
+/** A day picked in a floating-label date field. */
+export function DayField({
   label,
   value,
   onChange,

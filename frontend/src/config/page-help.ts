@@ -52,6 +52,7 @@ export const PAGE_HELP_KEYS = [
   "apiDocs",
   "accessibility",
   "documents",
+  "trust",
   "terms",
   "privacy",
   "dpa",

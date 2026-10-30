@@ -240,13 +240,15 @@
     "text": "Tout ce que les membres de l'entreprise ont fait, du plus récent au plus ancien : ce qu'ils ont fait et sur quoi, qui l'a fait, quand, et si l'assistant, une app d'IA, l'API ou un ATS l'a fait pour eux. Seul le propriétaire le voit.",
     "actions": [
       "Affichez les actions d'un membre, ou d'un type : entretiens, candidats, équipe, entreprise, facturation ou intégrations.",
-      "Affichez les actions entre deux dates."
+      "Affichez les actions entre deux dates.",
+      "Téléchargez un export pour audit de biais : un fichier CSV de chaque candidat qui a terminé, pour tous les entretiens ou un seul et, si vous le souhaitez, entre deux dates, avec sa note, le seuil de réussite, s'il a réussi et s'il a obtenu plus que la médiane de l'entretien, identifié par son e-mail."
     ],
     "tips": [
       "Les actions sont conservées 12 mois.",
       "Le journal ne conserve pas les personnes : un candidat supprimé apparaît comme tel, et un membre parti comme ancien membre.",
       "Les actions d'une clé API apparaissent sous le nom de la clé, et celles d'une clé supprimée comme celles d'une clé supprimée.",
-      "Les consultations des résultats d'un même candidat par un membre apparaissent une fois par jour, à la dernière consultation."
+      "Les consultations des résultats d'un même candidat par un membre apparaissent une fois par jour, à la dernière consultation.",
+      "prepza ne détient aucune donnée sur le sexe, la race ou l'origine ethnique : ajoutez les réponses que vos candidats ont eux-mêmes déclarées grâce à leur e-mail, puis retirez la colonne e-mail avant de transmettre le fichier à votre auditeur indépendant, pour un audit de biais de la ville de New York (Local Law 144) ou la règle des quatre cinquièmes de l'EEOC. Jusqu'à 20 exports par entreprise et par jour, et chacun apparaît dans le journal."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "Les documents sont uniquement en anglais."
+    ]
+  },
+  "trust": {
+    "title": "Confiance et sécurité",
+    "text": "Comment prepza protège vos données et celles de vos candidats : sécurité, confidentialité, respect des lois sur le recrutement, lieu de stockage des données, qui les traite et combien de temps elles sont conservées.",
+    "actions": [
+      "Voyez comment prepza protège les données : connexion, chiffrement, contrôles d'accès, limites de requêtes et sauvegardes.",
+      "Voyez ce que prepza fournit pour le RGPD, le règlement européen sur l'IA, le Royaume-Uni et les États-Unis, y compris la loi de la ville de New York sur les audits de biais.",
+      "Voyez où les données sont stockées, quels sous-traitants les traitent et combien de temps chaque type de données est conservé.",
+      "Ouvrez les conditions, la politique de confidentialité, l'accord de traitement des données et les documents pour les entreprises."
+    ],
+    "tips": [
+      "Pour une question sur la sécurité, la confidentialité ou la conformité, ou pour signaler un problème de sécurité, écrivez à l'adresse e-mail en bas de la page."
     ]
   },
   "terms": {

@@ -74,6 +74,7 @@
     "apiDocs": "Tài liệu cho nhà phát triển",
     "news": "Tin tức",
     "accessibility": "Khả năng tiếp cận",
+    "trust": "Tin cậy",
     "language": "Ngôn ngữ"
   },
   "signIn": {
@@ -625,6 +626,7 @@
       "TEMPLATE_COPIES_PER_HOUR": "Bài phỏng vấn sao chép từ mẫu mỗi công ty mỗi giờ",
       "LINK_STARTS_PER_HOUR": "Lượt bắt đầu qua liên kết của một buổi phỏng vấn mỗi giờ",
       "LINK_STARTS_PER_IP_HOUR": "Lượt bắt đầu qua liên kết mỗi địa chỉ mỗi giờ",
+      "BIAS_AUDIT_EXPORTS_PER_DAY": "Lượt xuất dữ liệu cho kiểm toán thiên lệch mỗi công ty mỗi ngày",
       "MAX_BULK_INVITES": "Ứng viên trong một danh sách hoặc tệp",
       "MAX_PENDING_INVITES": "Lời mời vào nhóm đang chờ mỗi công ty",
       "MEMBER_INVITES_PER_UNPAID_DAY": "Lời mời vào nhóm mỗi công ty chưa thanh toán mỗi ngày",
@@ -1326,7 +1328,7 @@
       },
       "notices": {
         "title": "Mẫu thông báo cho ứng viên",
-        "description": "Các thông báo có thể chỉnh sửa để gửi ứng viên trước khi mời, gồm cả một mẫu cho Thành phố New York."
+        "description": "Các thông báo có thể chỉnh sửa để gửi ứng viên trước khi mời, gồm cả các mẫu cho Thành phố New York, Illinois và Colorado."
       },
       "dpia": {
         "title": "Mẫu DPIA",
@@ -2552,6 +2554,86 @@
     },
     "reviewed": "Xem xét lần cuối: <time>{date}</time>."
   },
+  "trust": {
+    "title": "Tin cậy và bảo mật",
+    "description": "Cách prepza giữ dữ liệu tuyển dụng an toàn và riêng tư: lưu trữ tại EU, bên xử lý phụ, thời gian lưu giữ và những gì chúng tôi cung cấp cho GDPR, Đạo luật AI của EU, Vương quốc Anh và Hoa Kỳ.",
+    "intro": "Những gì prepza làm để giữ an toàn dữ liệu của bạn và của ứng viên, dữ liệu được lưu ở đâu, ai xử lý, được giữ bao lâu và những gì chúng tôi cung cấp cho các công ty theo luật tuyển dụng mà họ tuân thủ.",
+    "security": {
+      "title": "Bảo mật",
+      "signIn": "Bạn đăng nhập bằng Google, LinkedIn hoặc GitHub thông qua Firebase Authentication, nên prepza không lưu mật khẩu nào. Việc đăng nhập của mọi yêu cầu đều được kiểm tra trên máy chủ.",
+      "encryption": "Dữ liệu được mã hóa khi truyền (TLS 1.2 trở lên) và khi lưu trữ. Khóa và token mà công ty kết nối (hệ thống theo dõi ứng viên, Slack, webhook) được lưu ở dạng mã hóa, còn khóa API của prepza chỉ được lưu dưới dạng hàm băm một chiều.",
+      "access": "Mọi yêu cầu đều được kiểm tra theo công ty và vai trò của người gửi. Mỗi dịch vụ chỉ truy cập cơ sở dữ liệu của riêng mình, và các lệnh gọi giữa các dịch vụ đều được ký.",
+      "limits": "Giới hạn tần suất bảo vệ mọi thao tác tốn tiền hoặc có thể bị lạm dụng, và bước kiểm tra “Tôi không phải là người máy” bảo vệ các biểu mẫu công khai, liên kết trong tin tuyển dụng và việc tạo công ty đầu tiên.",
+      "logs": "Báo cáo lỗi không chứa địa chỉ email, và nhật ký máy chủ chỉ được giữ trong thời gian ngắn.",
+      "actionLog": "Chủ sở hữu công ty xem được nhật ký thao tác cho biết ai đã làm gì trong công ty, và khi nào.",
+      "backups": "Cơ sở dữ liệu được sao lưu mỗi ngày, có thể khôi phục về bất kỳ thời điểm nào trong 7 ngày gần nhất.",
+      "breaches": "Nếu dữ liệu của một công ty bị xâm phạm, chúng tôi sẽ báo cho công ty đó không chậm trễ quá mức, trong vòng 48 giờ khi có thể."
+    },
+    "privacy": {
+      "title": "Quyền riêng tư",
+      "roles": "prepza là bên kiểm soát dữ liệu đối với tài khoản của những người sử dụng nó, và là bên xử lý dữ liệu của ứng viên, vốn thuộc về công ty mời họ.",
+      "noSelling": "Chúng tôi không bán dữ liệu cá nhân hay chia sẻ nó cho quảng cáo. Không có cookie quảng cáo hay phân tích.",
+      "noInference": "prepza không thu thập dữ liệu về giới tính, tuổi, nguồn gốc hay khuyết tật của ứng viên, và không suy đoán bất kỳ điều gì như vậy.",
+      "voice": "Ở chế độ giọng nói, câu trả lời bằng lời của ứng viên được chuyển thành văn bản và khớp với một lựa chọn mà ứng viên xác nhận. Câu trả lời không được ghi âm hay lưu trữ, và giọng nói không được phân tích theo bất kỳ cách nào khác.",
+      "ai": "OpenAI, bên viết câu hỏi, được yêu cầu không lưu những gì nhận được; OpenAI giữ dữ liệu tối đa 30 ngày, chỉ để kiểm tra hành vi lạm dụng, và không dùng nó để huấn luyện mô hình.",
+      "rights": "Bất kỳ ai cũng có thể tải về hoặc xóa dữ liệu của chính mình trong Cài đặt mà không cần viết thư cho chúng tôi."
+    },
+    "compliance": {
+      "title": "Tuân thủ",
+      "aiAct": "Theo Đạo luật AI của EU, prepza được xem là một hệ thống AI rủi ro cao, với các nghĩa vụ áp dụng từ <time>{date}</time>. Hướng dẫn cho công ty của chúng tôi chính là hướng dẫn sử dụng của hệ thống này.",
+      "humanReview": "prepza không đưa ra quyết định nào về ứng viên: những người ở công ty xem xét kết quả và quyết định, và ứng viên có thể yêu cầu một người xem xét lại kết quả của mình.",
+      "dpa": "Thỏa thuận xử lý dữ liệu là một phần của các điều khoản, không cần ký gì. Thỏa thuận bao gồm GDPR, UK GDPR và các luật về quyền riêng tư của các bang tại Hoa Kỳ như luật của California, theo đó prepza là nhà cung cấp dịch vụ của công ty.",
+      "documents": "Các công ty nhận được <link>hướng dẫn sử dụng, mẫu DPIA và các mẫu thông báo cho ứng viên</link>, có phiên bản cho Thành phố New York, Illinois và Colorado.",
+      "nyc": "Thành phố New York: trước khi dùng prepza cho một vị trí tại đó, nhà tuyển dụng thực hiện những gì Local Law 144 yêu cầu: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt của nó và thông báo cho ứng viên ít nhất 10 ngày làm việc trước khi họ được đánh giá. Cuộc kiểm toán thiên lệch độc lập của chính prepza được thực hiện trước <time>{date}</time>, và sau đó hằng năm."
+    },
+    "residency": {
+      "title": "Dữ liệu được lưu ở đâu",
+      "storage": "prepza chạy trên Google Cloud tại EU, ở Bỉ, nơi lưu cơ sở dữ liệu. Bộ đếm giới hạn tần suất được giữ tại Upstash, cũng ở Bỉ, và email được gửi qua Resend tại Ireland.",
+      "transfers": "Ba nhà cung cấp xử lý dữ liệu tại Hoa Kỳ: Google cho việc đăng nhập, OpenAI và Cloudflare cho bước kiểm tra “Tôi không phải là người máy”. Các hoạt động chuyển dữ liệu này được bảo đảm bởi EU-US Data Privacy Framework hoặc các điều khoản hợp đồng tiêu chuẩn của Ủy ban châu Âu, và đối với Vương quốc Anh là UK Extension và UK International Data Transfer Addendum."
+    },
+    "subprocessors": {
+      "title": "Bên xử lý phụ",
+      "intro": "Các nhà cung cấp xử lý dữ liệu cho prepza, như được liệt kê trong <link>thỏa thuận xử lý dữ liệu</link>:",
+      "changes": "Chúng tôi gửi email cho chủ sở hữu và quản trị viên của các công ty ít nhất 14 ngày trước khi thêm một bên xử lý phụ mới."
+    },
+    "retention": {
+      "title": "Dữ liệu được giữ bao lâu",
+      "account": "Tài khoản và mọi thứ trong đó: cho đến khi bị xóa.",
+      "results": "Kết quả phỏng vấn, thời gian làm bài và cảnh báo hành vi bất thường của ứng viên: 12 tháng sau lần gửi lời mời cuối cùng, sau đó tự động bị xóa.",
+      "actionLog": "Nhật ký thao tác của công ty: 12 tháng.",
+      "chats": "Cuộc trò chuyện với trợ lý: 90 ngày sau tin nhắn cuối cùng.",
+      "aiRecords": "Bản ghi các lệnh gọi AI: 30 ngày.",
+      "errors": "Báo cáo lỗi: tối đa 90 ngày.",
+      "backups": "Bản sao lưu cơ sở dữ liệu: 14 ngày, sau đó bị ghi đè; đến lúc đó, mọi thứ đã xóa cũng không còn trong bản sao lưu.",
+      "statistics": "Thống kê sử dụng, dùng mã thay cho ID tài khoản: 25 tháng.",
+      "purchases": "Hồ sơ mua hàng: 7 năm, theo yêu cầu của luật kế toán Estonia."
+    },
+    "accessibility": {
+      "title": "Khả năng tiếp cận",
+      "text": "prepza hướng tới đáp ứng mức AA của Hướng dẫn về khả năng tiếp cận nội dung web (WCAG) 2.2. <link>Tuyên bố về khả năng tiếp cận</link> của chúng tôi cho biết điều gì hoạt động tốt, điều gì còn thiếu sót và cách báo cho chúng tôi."
+    },
+    "links": {
+      "title": "Tài liệu pháp lý",
+      "terms": "<link>Điều khoản</link> mà mọi công ty đồng ý.",
+      "privacy": "<link>Chính sách quyền riêng tư</link>, với mọi thứ chúng tôi thu thập, lý do và thời gian lưu giữ.",
+      "dpa": "<link>Thỏa thuận xử lý dữ liệu</link> cho dữ liệu của ứng viên.",
+      "documents": "<link>Tài liệu cho công ty</link> để tải về: hướng dẫn, các mẫu thông báo và DPIA, cùng thỏa thuận dưới dạng PDF."
+    },
+    "contact": {
+      "title": "Câu hỏi",
+      "text": "Nếu có câu hỏi về bảo mật, quyền riêng tư hoặc tuân thủ, hoặc để báo cáo một vấn đề bảo mật, hãy viết thư đến <email></email>."
+    }
+  },
+  "biasAudit": {
+    "open": "Xuất dữ liệu kiểm toán thiên lệch",
+    "title": "Xuất dữ liệu cho kiểm toán thiên lệch",
+    "description": "Một tệp CSV gồm mọi ứng viên đã hoàn thành: điểm, điểm đạt, việc họ có đạt hay không và có điểm cao hơn trung vị hay không. Kiểm toán viên độc lập của bạn sẽ tính tỷ lệ chọn và tỷ số tác động từ tệp này.",
+    "privacy": "prepza không lưu dữ liệu về giới tính, chủng tộc hay dân tộc. Hãy thêm các câu trả lời do chính ứng viên tự khai theo email của họ, rồi xóa cột email trước khi chia sẻ tệp.",
+    "interview": "Buổi phỏng vấn",
+    "allInterviews": "Tất cả buổi phỏng vấn",
+    "download": "Tải CSV",
+    "failed": "Không thể xuất tệp. Vui lòng thử lại."
+  },
   "actionLog": {
     "empty": "Chưa có thao tác nào.",
     "noMatches": "Không có thao tác nào khớp với các bộ lọc này.",
@@ -2599,6 +2681,7 @@
       "candidate_mode_set": "Đã đổi chế độ phỏng vấn của một ứng viên",
       "results_viewed": "Đã xem kết quả của một ứng viên",
       "report_emailed": "Đã gửi báo cáo qua email",
+      "bias_audit_exported": "Đã xuất dữ liệu cho kiểm toán thiên lệch",
       "member_invited": "Đã mời một thành viên",
       "member_joined": "Đã tham gia công ty",
       "member_removed": "Đã xóa một thành viên",

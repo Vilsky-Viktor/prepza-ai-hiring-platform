@@ -233,3 +233,11 @@ in the guide and the topics page guide, one run for both: passed 96.0% (88.9–9
 Misses: h17's known invented retake limit (1 of 3), h12 twice (two sentences where one was
 asked) and h06 once (deletion without "once the candidate started"); none about previews or the
 cap. Within the noise; kept so the guides say what is true. $1.79.
+
+2026-10-30, the trust page (the footer's company column and its page guide) and the owner's
+bias-audit export on the Action log page (what the CSV holds, no data on sex, race or ethnicity,
+the daily limit from `BIAS_AUDIT_EXPORTS_PER_DAY`) in the guide, page guides and FAQ: passed 96.0%
+(88.9–98.6), made up 5.3% (2.1–12.9), sign-in marker 100%, identity 18 of 18
+(`results/help_chat_trust-bias-audit.json`). Misses: h17's known invented retake limit (3 of 3)
+and h04 once (billing for viewers); none about the trust page or the export. Within the noise;
+kept so the guides say what is true. $1.90.

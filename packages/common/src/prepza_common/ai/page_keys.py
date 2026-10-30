@@ -55,6 +55,7 @@ PAGE_KEYS = (
     "apiDocs",
     "accessibility",
     "documents",
+    "trust",
     "terms",
     "privacy",
     "dpa",

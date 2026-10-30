@@ -74,6 +74,7 @@
     "apiDocs": "Ontwikkelaarsdocumentatie",
     "news": "Nieuws",
     "accessibility": "Toegankelijkheid",
+    "trust": "Vertrouwen",
     "language": "Taal"
   },
   "signIn": {
@@ -625,6 +626,7 @@
       "TEMPLATE_COPIES_PER_HOUR": "Uit sjablonen gekopieerde interviews per bedrijf per uur",
       "LINK_STARTS_PER_HOUR": "Starts via de link van één interview per uur",
       "LINK_STARTS_PER_IP_HOUR": "Starts via een link per adres per uur",
+      "BIAS_AUDIT_EXPORTS_PER_DAY": "Exports voor een bias-audit per bedrijf per dag",
       "MAX_BULK_INVITES": "Kandidaten in één lijst of bestand",
       "MAX_PENDING_INVITES": "Openstaande teamuitnodigingen per bedrijf",
       "MEMBER_INVITES_PER_UNPAID_DAY": "Teamuitnodigingen per niet-betalend bedrijf per dag",
@@ -1326,7 +1328,7 @@
       },
       "notices": {
         "title": "Sjablonen voor kandidaatberichten",
-        "description": "Bewerkbare berichten om kandidaten te sturen voordat je ze uitnodigt, waaronder een voor New York City."
+        "description": "Bewerkbare berichten om kandidaten te sturen voordat je ze uitnodigt, waaronder versies voor New York City, Illinois en Colorado."
       },
       "dpia": {
         "title": "DPIA-sjabloon",
@@ -2552,6 +2554,86 @@
     },
     "reviewed": "Laatst herzien: <time>{date}</time>."
   },
+  "trust": {
+    "title": "Vertrouwen en beveiliging",
+    "description": "Hoe prepza wervingsgegevens veilig en privé houdt: hosting in de EU, subverwerkers, bewaartermijnen en wat we bieden voor de GDPR, de EU AI Act, het VK en de VS.",
+    "intro": "Wat prepza doet om jouw gegevens en die van je kandidaten veilig te houden, waar ze worden opgeslagen, wie ze verwerkt, hoe lang ze worden bewaard en wat we bedrijven bieden voor de wervingswetten die ze volgen.",
+    "security": {
+      "title": "Beveiliging",
+      "signIn": "Je logt in met Google, LinkedIn of GitHub via Firebase Authentication, dus prepza slaat geen wachtwoorden op. Bij elk verzoek wordt de login op de server gecontroleerd.",
+      "encryption": "Gegevens zijn versleuteld tijdens verzending (TLS 1.2 of hoger) en in opslag. Sleutels en tokens die een bedrijf koppelt (zijn sollicitantvolgsysteem, Slack, webhooks) worden versleuteld opgeslagen, en prepza-API-sleutels alleen als eenrichtingshash.",
+      "access": "Elk verzoek wordt gecontroleerd aan de hand van het bedrijf en de rol van degene die het doet. Elke dienst kan alleen bij zijn eigen database, en aanroepen tussen diensten zijn ondertekend.",
+      "limits": "Snelheidslimieten beschermen elke actie die geld kost of misbruikt kan worden, en een controle “Ik ben geen robot” beveiligt openbare formulieren, links in vacatures en het aanmaken van een eerste bedrijf.",
+      "logs": "Foutrapporten bevatten geen e-mailadressen, en serverlogs worden kort bewaard.",
+      "actionLog": "De eigenaar van een bedrijf ziet in een actielog wie wat deed in het bedrijf, en wanneer.",
+      "backups": "Van de database wordt elke dag een back-up gemaakt, met herstel naar elk moment in de afgelopen 7 dagen.",
+      "breaches": "Als er ooit een datalek is bij de gegevens van een bedrijf, laten we dat het bedrijf zonder onnodige vertraging weten, waar mogelijk binnen 48 uur."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "roles": "prepza is verwerkingsverantwoordelijke voor de accounts van de mensen die het gebruiken, en verwerker van de gegevens van kandidaten, die toebehoren aan het bedrijf dat hen uitnodigt.",
+      "noSelling": "We verkopen geen persoonsgegevens en delen ze niet voor advertenties. Er zijn geen advertentie- of analysecookies.",
+      "noInference": "prepza verzamelt geen gegevens over geslacht, leeftijd, afkomst of beperking van kandidaten, en leidt daar ook niets over af.",
+      "voice": "In de spraakmodus wordt het gesproken antwoord van een kandidaat omgezet in tekst en gekoppeld aan een optie die de kandidaat bevestigt. Het wordt niet opgenomen of opgeslagen, en de stem wordt op geen enkele andere manier geanalyseerd.",
+      "ai": "OpenAI, dat de vragen schrijft, krijgt de opdracht niets op te slaan van wat het ontvangt; het bewaart de gegevens hooguit 30 dagen, alleen om op misbruik te controleren, en gebruikt ze niet om zijn modellen te trainen.",
+      "rights": "Iedereen kan zijn eigen gegevens downloaden of verwijderen in Instellingen, zonder ons te hoeven schrijven."
+    },
+    "compliance": {
+      "title": "Naleving",
+      "aiAct": "Onder de EU AI Act geldt prepza als een AI-systeem met een hoog risico, waarvan de verplichtingen gelden vanaf <time>{date}</time>. Onze instructies voor bedrijven zijn de gebruiksaanwijzing ervan.",
+      "humanReview": "prepza neemt geen besluit over een kandidaat: mensen bij het bedrijf beoordelen de resultaten en beslissen, en kandidaten kunnen vragen om een beoordeling van hun resultaat door een mens.",
+      "dpa": "De verwerkersovereenkomst maakt deel uit van de voorwaarden; je hoeft niets te ondertekenen. Ze dekt de GDPR, de UK GDPR en privacywetten van Amerikaanse staten zoals die van Californië, waaronder prepza de dienstverlener van het bedrijf is.",
+      "documents": "Bedrijven krijgen <link>instructies voor gebruik, een DPIA-sjabloon en sjablonen voor kandidaatberichten</link>, met versies voor New York City, Illinois en Colorado.",
+      "nyc": "New York City: voordat de werkgever prepza gebruikt voor een functie daar, doet hij wat Local Law 144 van hem vraagt: een onafhankelijke bias-audit binnen het jaar voor gebruik, de publicatie van de samenvatting ervan en een bericht aan kandidaten minstens 10 werkdagen voordat ze worden beoordeeld. De eigen onafhankelijke bias-audit van prepza wordt uitgevoerd vóór <time>{date}</time>, en daarna elk jaar."
+    },
+    "residency": {
+      "title": "Waar gegevens worden opgeslagen",
+      "storage": "prepza draait op Google Cloud in de EU, in België, waar ook de database staat. Tellers voor snelheidslimieten staan bij Upstash, ook in België, en e-mails worden verstuurd via Resend in Ierland.",
+      "transfers": "Drie aanbieders verwerken gegevens in de Verenigde Staten: Google voor het inloggen, OpenAI en Cloudflare voor de controle “Ik ben geen robot”. Deze doorgiften vallen onder het EU-VS-kader voor gegevensbescherming (EU-US Data Privacy Framework) of de standaardcontractbepalingen van de Europese Commissie, en voor het VK onder de UK Extension en het Britse addendum voor internationale gegevensdoorgifte (UK International Data Transfer Addendum)."
+    },
+    "subprocessors": {
+      "title": "Subverwerkers",
+      "intro": "De aanbieders die gegevens verwerken voor prepza, zoals de <link>verwerkersovereenkomst</link> ze noemt:",
+      "changes": "We mailen de eigenaren en beheerders van bedrijven minstens 14 dagen voordat we een nieuwe subverwerker toevoegen."
+    },
+    "retention": {
+      "title": "Hoe lang gegevens worden bewaard",
+      "account": "Een account en alles erin: tot het wordt verwijderd.",
+      "results": "Interviewresultaten, tijden en integriteitssignalen van kandidaten: 12 maanden nadat de uitnodiging voor het laatst is verstuurd, daarna automatisch verwijderd.",
+      "actionLog": "De actielog van een bedrijf: 12 maanden.",
+      "chats": "Chats met de assistent: 90 dagen na het laatste bericht.",
+      "aiRecords": "Registraties van AI-aanroepen: 30 dagen.",
+      "errors": "Foutrapporten: hooguit 90 dagen.",
+      "backups": "Databaseback-ups: 14 dagen, daarna overschreven; alles wat verwijderd is, is er dan uit verdwenen.",
+      "statistics": "Gebruiksstatistieken, onder codes in plaats van account-id's: 25 maanden.",
+      "purchases": "Aankoopgegevens: 7 jaar, zoals de Estse boekhoudwet vereist."
+    },
+    "accessibility": {
+      "title": "Toegankelijkheid",
+      "text": "prepza streeft naar niveau AA van de Web Content Accessibility Guidelines (WCAG) 2.2. Onze <link>toegankelijkheidsverklaring</link> vertelt wat werkt, wat tekortschiet en hoe je het ons laat weten."
+    },
+    "links": {
+      "title": "Juridische documenten",
+      "terms": "De <link>voorwaarden</link>, waarmee elk bedrijf akkoord gaat.",
+      "privacy": "Het <link>privacybeleid</link>, met alles wat we verzamelen, waarom en hoe lang.",
+      "dpa": "De <link>verwerkersovereenkomst</link>, voor de gegevens van kandidaten.",
+      "documents": "De <link>documenten voor bedrijven</link> om te downloaden: de instructies, de sjablonen voor berichten en de DPIA, en de overeenkomst als pdf."
+    },
+    "contact": {
+      "title": "Vragen",
+      "text": "Voor vragen over beveiliging, privacy of naleving, of om een beveiligingsprobleem te melden, schrijf naar <email></email>."
+    }
+  },
+  "biasAudit": {
+    "open": "Export voor bias-audit",
+    "title": "Exporteren voor een bias-audit",
+    "description": "Een CSV-bestand met elke kandidaat die klaar is: de score, de slaaggrens, of de kandidaat geslaagd is en of de score boven de mediaan ligt. Je onafhankelijke auditor berekent daaruit de selectiepercentages en impactratio's.",
+    "privacy": "prepza heeft geen gegevens over geslacht, ras of etniciteit. Voeg de antwoorden toe die je kandidaten zelf hebben opgegeven, op basis van hun e-mailadres, en verwijder daarna de kolom met e-mailadressen voordat je het bestand deelt.",
+    "interview": "Interview",
+    "allInterviews": "Alle interviews",
+    "download": "CSV downloaden",
+    "failed": "Het bestand kon niet worden geëxporteerd. Probeer het opnieuw."
+  },
   "actionLog": {
     "empty": "Nog geen acties.",
     "noMatches": "Geen acties komen overeen met deze filters.",
@@ -2599,6 +2681,7 @@
       "candidate_mode_set": "Wijzigde de interviewmodus van een kandidaat",
       "results_viewed": "Bekeek de resultaten van een kandidaat",
       "report_emailed": "Mailde een rapport",
+      "bias_audit_exported": "Exporteerde gegevens voor een bias-audit",
       "member_invited": "Nodigde een lid uit",
       "member_joined": "Werd lid van het bedrijf",
       "member_removed": "Verwijderde een lid",

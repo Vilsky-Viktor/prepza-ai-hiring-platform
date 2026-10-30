@@ -240,13 +240,15 @@
     "text": "Tudo o que os membros da empresa fizeram, do mais recente ao mais antigo: o que fizeram e em quê, quem fez, quando e se o assistente, um app de IA, a API ou um ATS fez por eles. Só o proprietário vê.",
     "actions": [
       "Mostre as ações de um membro ou de um tipo: entrevistas, candidatos, equipe, empresa, faturamento ou integrações.",
-      "Mostre as ações entre dois dias."
+      "Mostre as ações entre dois dias.",
+      "Baixe uma exportação para auditoria de viés: um arquivo CSV com cada candidato que terminou, de todas as entrevistas ou de uma e, se quiser, entre dois dias, com a nota, a nota de aprovação, se foi aprovado e se ficou acima da mediana da entrevista, identificado pelo e-mail."
     ],
     "tips": [
       "As ações ficam guardadas por 12 meses.",
       "O registro não guarda pessoas: um candidato excluído aparece como tal, e um membro que saiu, como ex-membro.",
       "As ações de uma chave de API aparecem com o nome da chave, e as de uma chave excluída, como de uma chave excluída.",
-      "As visualizações dos resultados de um candidato por um membro aparecem uma vez por dia, com a última visualização."
+      "As visualizações dos resultados de um candidato por um membro aparecem uma vez por dia, com a última visualização.",
+      "A prepza não tem dados sobre sexo, raça ou etnia: adicione as respostas que seus candidatos declararam eles mesmos pelo e-mail e depois remova a coluna de e-mail antes de compartilhar o arquivo com seu auditor independente, para uma auditoria de viés da cidade de Nova York (Local Law 144) ou a regra dos quatro quintos da EEOC. Até 20 exportações por empresa ao dia, e cada uma aparece no registro."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "Os documentos estão só em inglês."
+    ]
+  },
+  "trust": {
+    "title": "Confiança e segurança",
+    "text": "Como a prepza mantém seus dados e os dos seus candidatos seguros: segurança, privacidade, cumprimento das leis de contratação, onde os dados ficam armazenados, quem os trata e por quanto tempo são guardados.",
+    "actions": [
+      "Veja como a prepza protege os dados: login, criptografia, verificações de acesso, limites de requisições e backups.",
+      "Veja o que a prepza oferece para o RGPD, a Lei de IA da UE, o Reino Unido e os EUA, incluindo a lei de auditoria de viés da cidade de Nova York.",
+      "Veja onde os dados ficam armazenados, quais suboperadores os tratam e por quanto tempo cada tipo de dado é guardado.",
+      "Abra os termos, a política de privacidade, o acordo de tratamento de dados e os documentos para empresas."
+    ],
+    "tips": [
+      "Para dúvidas sobre segurança, privacidade ou conformidade, ou para relatar um problema de segurança, escreva para o e-mail no fim da página."
     ]
   },
   "terms": {

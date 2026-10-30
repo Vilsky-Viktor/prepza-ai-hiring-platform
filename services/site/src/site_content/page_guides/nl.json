@@ -240,13 +240,15 @@
     "text": "Alles wat de leden van het bedrijf deden, nieuwste eerst: wat ze deden en waaraan, wie het deed, wanneer, en of de assistent, een AI-app, de API of een ATS het voor hen deed. Alleen de eigenaar ziet het.",
     "actions": [
       "Toon de acties van één lid, of van één soort: interviews, kandidaten, team, bedrijf, facturering of integraties.",
-      "Toon de acties tussen twee dagen."
+      "Toon de acties tussen twee dagen.",
+      "Download een export voor een bias-audit: een CSV-bestand met elke kandidaat die klaar is, voor alle interviews of één en, als je wilt, tussen twee dagen, met hun score, de slaaggrens, of ze geslaagd zijn en of ze boven de mediaan van het interview scoorden, per e-mailadres."
     ],
     "tips": [
       "Acties worden 12 maanden bewaard.",
       "Personen worden niet in de log bewaard: een verwijderde kandidaat staat er als zodanig, en een lid dat vertrok als voormalig lid.",
       "De acties van een API-sleutel staan onder de naam van de sleutel, die van een verwijderde sleutel als die van een verwijderde sleutel.",
-      "Als een lid de resultaten van één kandidaat bekijkt, staat dat er één keer per dag, met de laatste keer."
+      "Als een lid de resultaten van één kandidaat bekijkt, staat dat er één keer per dag, met de laatste keer.",
+      "prepza heeft geen gegevens over geslacht, ras of etniciteit: voeg de antwoorden die je kandidaten zelf gaven toe via hun e-mailadres en verwijder daarna de e-mailkolom voordat je het bestand deelt met je onafhankelijke auditor, voor een bias-audit in New York City (Local Law 144) of de vier-vijfdenregel van de EEOC. Tot 20 exports per bedrijf per dag, en elke export staat in de log."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "De documenten zijn alleen in het Engels."
+    ]
+  },
+  "trust": {
+    "title": "Vertrouwen en beveiliging",
+    "text": "Hoe prepza jouw gegevens en die van je kandidaten veilig houdt: beveiliging, privacy, naleving van de wetten rond werving, waar gegevens worden opgeslagen, wie ze verwerkt en hoe lang ze worden bewaard.",
+    "actions": [
+      "Bekijk hoe prepza gegevens beschermt: inloggen, versleuteling, toegangscontroles, limieten op verzoeken en back-ups.",
+      "Bekijk wat prepza biedt voor de AVG, de Europese AI-verordening, het Verenigd Koninkrijk en de VS, inclusief de wet van New York City over bias-audits.",
+      "Bekijk waar gegevens worden opgeslagen, welke subverwerkers ze verwerken en hoe lang elke soort gegevens wordt bewaard.",
+      "Open de voorwaarden, het privacybeleid, de verwerkersovereenkomst en de documenten voor bedrijven."
+    ],
+    "tips": [
+      "Voor een vraag over beveiliging, privacy of naleving, of om een beveiligingsprobleem te melden, mail je naar het adres onderaan de pagina."
     ]
   },
   "terms": {

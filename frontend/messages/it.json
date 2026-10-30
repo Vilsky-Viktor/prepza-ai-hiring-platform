@@ -74,6 +74,7 @@
     "apiDocs": "Documentazione per sviluppatori",
     "news": "Novità",
     "accessibility": "Accessibilità",
+    "trust": "Fiducia",
     "language": "Lingua"
   },
   "signIn": {
@@ -625,6 +626,7 @@
       "TEMPLATE_COPIES_PER_HOUR": "Colloqui copiati da modelli per azienda all'ora",
       "LINK_STARTS_PER_HOUR": "Avvii tramite il link di un colloquio all'ora",
       "LINK_STARTS_PER_IP_HOUR": "Avvii tramite link per indirizzo all'ora",
+      "BIAS_AUDIT_EXPORTS_PER_DAY": "Esportazioni per audit sui bias per azienda al giorno",
       "MAX_BULK_INVITES": "Candidati in una lista o in un file",
       "MAX_PENDING_INVITES": "Inviti al team in sospeso per azienda",
       "MEMBER_INVITES_PER_UNPAID_DAY": "Inviti al team per azienda non pagante al giorno",
@@ -1326,7 +1328,7 @@
       },
       "notices": {
         "title": "Modelli di informativa per i candidati",
-        "description": "Informative modificabili da inviare ai candidati prima di invitarli, inclusa una per New York City."
+        "description": "Informative modificabili da inviare ai candidati prima di invitarli, incluse quelle per New York City, l'Illinois e il Colorado."
       },
       "dpia": {
         "title": "Modello di DPIA",
@@ -2552,6 +2554,86 @@
     },
     "reviewed": "Ultima revisione: <time>{date}</time>."
   },
+  "trust": {
+    "title": "Fiducia e sicurezza",
+    "description": "Come prepza mantiene sicuri e riservati i dati di selezione: hosting nell'UE, sub-responsabili del trattamento, conservazione e cosa forniamo per il GDPR, l'EU AI Act, il Regno Unito e gli Stati Uniti.",
+    "intro": "Cosa fa prepza per proteggere i tuoi dati e quelli dei tuoi candidati, dove sono conservati, chi li tratta, per quanto tempo vengono tenuti e cosa diamo alle aziende per le leggi sulle assunzioni che devono rispettare.",
+    "security": {
+      "title": "Sicurezza",
+      "signIn": "Accedi con Google, LinkedIn o GitHub tramite Firebase Authentication, quindi prepza non conserva password. L'accesso viene verificato sul server a ogni richiesta.",
+      "encryption": "I dati sono cifrati in transito (TLS 1.2 o successivo) e a riposo. Le chiavi e i token che un'azienda collega (il suo ATS, Slack, i webhook) sono conservati cifrati, e le chiavi API di prepza solo come hash unidirezionale.",
+      "access": "Ogni richiesta viene verificata rispetto all'azienda e al ruolo di chi la fa. Ogni servizio accede solo al proprio database, e le chiamate tra servizi sono firmate.",
+      "limits": "I limiti di utilizzo proteggono ogni azione che costa denaro o di cui si può abusare, e una verifica «Non sono un robot» protegge i moduli pubblici, i link degli annunci di lavoro e la creazione della prima azienda.",
+      "logs": "Le segnalazioni di errore non contengono indirizzi email, e i log del server sono conservati per poco tempo.",
+      "actionLog": "Il proprietario di un'azienda vede un registro attività con chi ha fatto cosa nell'azienda, e quando.",
+      "backups": "Il database viene salvato ogni giorno, con ripristino a un momento qualsiasi degli ultimi 7 giorni.",
+      "breaches": "Se i dati di un'azienda dovessero mai subire una violazione, lo comunichiamo all'azienda senza ingiustificato ritardo, entro 48 ore quando possibile."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "roles": "prepza è titolare del trattamento degli account delle persone che lo usano, e responsabile del trattamento dei dati dei candidati, che appartengono all'azienda che li invita.",
+      "noSelling": "Non vendiamo dati personali né li condividiamo per pubblicità. Non ci sono cookie pubblicitari o di analisi.",
+      "noInference": "prepza non raccoglie dati su sesso, età, origine o disabilità dei candidati, e non deduce nulla del genere.",
+      "voice": "In modalità vocale, la risposta parlata di un candidato viene trascritta e abbinata a un'opzione che il candidato conferma. Non viene registrata né conservata, e la voce non viene analizzata in nessun altro modo.",
+      "ai": "OpenAI, che scrive le domande, ha l'istruzione di non conservare ciò che riceve; tiene i dati al massimo 30 giorni, solo per individuare abusi, e non li usa per addestrare i suoi modelli.",
+      "rights": "Chiunque può scaricare o eliminare i propri dati nelle Impostazioni, senza doverci scrivere."
+    },
+    "compliance": {
+      "title": "Conformità",
+      "aiAct": "Ai sensi dell'EU AI Act, prepza è considerato un sistema di IA ad alto rischio, i cui obblighi si applicano dal <time>{date}</time>. Le nostre istruzioni per le aziende ne sono le istruzioni per l'uso.",
+      "humanReview": "prepza non prende alcuna decisione su un candidato: sono le persone dell'azienda a esaminare i risultati e decidere, e i candidati possono chiedere che una persona riesamini il loro risultato.",
+      "dpa": "L'accordo sul trattamento dei dati fa parte dei termini, senza nulla da firmare. Copre il GDPR, lo UK GDPR e le leggi statali statunitensi sulla privacy come quella della California, per le quali prepza è il fornitore di servizi (service provider) dell'azienda.",
+      "documents": "Le aziende ricevono <link>istruzioni per l'uso, un modello di DPIA e modelli di informativa per i candidati</link>, con versioni per New York City, l'Illinois e il Colorado.",
+      "nyc": "New York City: prima di usare prepza per un ruolo in città, il datore di lavoro fa ciò che la Local Law 144 gli richiede: un audit sui bias indipendente nell'anno precedente all'uso, la pubblicazione della sua sintesi e un avviso ai candidati almeno 10 giorni lavorativi prima della valutazione. L'audit sui bias indipendente di prepza viene svolto prima del <time>{date}</time>, e poi ogni anno."
+    },
+    "residency": {
+      "title": "Dove sono conservati i dati",
+      "storage": "prepza funziona su Google Cloud nell'UE, in Belgio, dove è conservato il suo database. I contatori dei limiti di utilizzo sono tenuti da Upstash, sempre in Belgio, e le email vengono inviate tramite Resend in Irlanda.",
+      "transfers": "Tre fornitori trattano dati negli Stati Uniti: Google per l'accesso, OpenAI e Cloudflare per la verifica «Non sono un robot». Questi trasferimenti si basano sul quadro UE-USA per la protezione dei dati personali (EU-US Data Privacy Framework) o sulle clausole contrattuali tipo della Commissione europea e, per il Regno Unito, sull'estensione britannica (UK Extension) e sull'addendum britannico sui trasferimenti internazionali di dati (UK International Data Transfer Addendum)."
+    },
+    "subprocessors": {
+      "title": "Sub-responsabili del trattamento",
+      "intro": "I fornitori che trattano dati per prepza, come li elenca l’<link>accordo sul trattamento dei dati</link>:",
+      "changes": "Avvisiamo via email i proprietari e gli amministratori delle aziende almeno 14 giorni prima di aggiungere un nuovo sub-responsabile del trattamento."
+    },
+    "retention": {
+      "title": "Per quanto tempo conserviamo i dati",
+      "account": "Un account e tutto ciò che contiene: finché non viene eliminato.",
+      "results": "I risultati dei colloqui dei candidati, i tempi e le segnalazioni di integrità: 12 mesi dall'ultimo invio dell'invito, poi eliminati automaticamente.",
+      "actionLog": "Il registro attività di un'azienda: 12 mesi.",
+      "chats": "Le chat con l'assistente: 90 giorni dall'ultimo messaggio.",
+      "aiRecords": "I registri delle chiamate all'IA: 30 giorni.",
+      "errors": "Le segnalazioni di errore: fino a 90 giorni.",
+      "backups": "I backup del database: 14 giorni, poi sovrascritti; entro allora tutto ciò che è stato eliminato è sparito anche da lì.",
+      "statistics": "Le statistiche di utilizzo, con codici al posto degli ID degli account: 25 mesi.",
+      "purchases": "I documenti di acquisto: 7 anni, come richiede la legge contabile estone."
+    },
+    "accessibility": {
+      "title": "Accessibilità",
+      "text": "prepza punta a rispettare il livello AA delle Linee guida per l'accessibilità dei contenuti web (WCAG) 2.2. La nostra <link>dichiarazione di accessibilità</link> spiega cosa funziona, cosa non ancora e come segnalarcelo."
+    },
+    "links": {
+      "title": "Documenti legali",
+      "terms": "I <link>termini</link>, che ogni azienda accetta.",
+      "privacy": "L’<link>informativa sulla privacy</link>, con tutto ciò che raccogliamo, perché e per quanto tempo.",
+      "dpa": "L’<link>accordo sul trattamento dei dati</link>, per i dati dei candidati.",
+      "documents": "I <link>documenti per le aziende</link> da scaricare: le istruzioni, i modelli di informativa e di DPIA, e l'accordo in PDF."
+    },
+    "contact": {
+      "title": "Domande",
+      "text": "Per domande su sicurezza, privacy o conformità, o per segnalare un problema di sicurezza, scrivi a <email></email>."
+    }
+  },
+  "biasAudit": {
+    "open": "Esportazione per audit sui bias",
+    "title": "Esporta per un audit sui bias",
+    "description": "Un file CSV con ogni candidato che ha finito: il punteggio, la soglia di superamento, se l'ha superata e se ha ottenuto più della mediana. Il tuo auditor indipendente ne ricava i tassi e gli impact ratio.",
+    "privacy": "prepza non ha dati su sesso, razza o etnia. Aggiungi le risposte che i tuoi candidati hanno fornito su sé stessi in base alla loro email, poi elimina la colonna dell'email prima di condividere il file.",
+    "interview": "Colloquio",
+    "allInterviews": "Tutti i colloqui",
+    "download": "Scarica CSV",
+    "failed": "Impossibile esportare il file. Riprova."
+  },
   "actionLog": {
     "empty": "Ancora nessuna azione.",
     "noMatches": "Nessuna azione corrisponde a questi filtri.",
@@ -2599,6 +2681,7 @@
       "candidate_mode_set": "Ha cambiato la modalità del colloquio di un candidato",
       "results_viewed": "Ha visto i risultati di un candidato",
       "report_emailed": "Ha inviato un report via email",
+      "bias_audit_exported": "Ha esportato i dati per un audit sui bias",
       "member_invited": "Ha invitato un membro",
       "member_joined": "Si è unito all'azienda",
       "member_removed": "Ha rimosso un membro",

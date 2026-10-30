@@ -240,13 +240,15 @@
     "text": "Everything the company's members did, newest first: what they did and to what, who did it, when, and whether the assistant, an AI app, the API or an ATS did it for them. Only the owner sees it.",
     "actions": [
       "Show one member's actions, or one kind: interviews, candidates, team, company, billing or integrations.",
-      "Show the actions between two days."
+      "Show the actions between two days.",
+      "Download a bias-audit export: a CSV file of every candidate who finished, for all interviews or one and, if you like, between two days, with their grade, the passing grade, whether they passed and whether they scored above the interview's median, keyed by email."
     ],
     "tips": [
       "Actions are kept for 12 months.",
       "People aren't kept in the log: a deleted candidate shows as such, and a member who left as a former member.",
       "An API key's actions show under the key's name, and a deleted key's as a deleted key's.",
-      "A member's views of one candidate's results show once a day, at the latest view."
+      "A member's views of one candidate's results show once a day, at the latest view.",
+      "prepza holds no data on sex, race or ethnicity: add your candidates' own self-reported answers by email, then remove the email column before you share the file with your independent auditor, for a New York City bias audit (Local Law 144) or the EEOC's four-fifths rule. Up to 20 exports a company a day, and each shows in the log."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "The documents are in English only."
+    ]
+  },
+  "trust": {
+    "title": "Trust and security",
+    "text": "How prepza keeps your data and your candidates' data safe: security, privacy, compliance with the hiring laws, where data is stored, who processes it and how long it is kept.",
+    "actions": [
+      "See how prepza protects data: sign-in, encryption, access checks, rate limits and backups.",
+      "See what prepza provides for the GDPR, the EU AI Act, the UK and the US, New York City's bias-audit law included.",
+      "See where data is stored, the sub-processors that handle it and how long each kind of data is kept.",
+      "Open the terms, the privacy policy, the data processing agreement and the documents for companies."
+    ],
+    "tips": [
+      "For a question about security, privacy or compliance, or to report a security problem, write to the email at the end of the page."
     ]
   },
   "terms": {

@@ -74,6 +74,7 @@
     "apiDocs": "Dokumentasi pengembang",
     "news": "Berita",
     "accessibility": "Aksesibilitas",
+    "trust": "Kepercayaan",
     "language": "Bahasa"
   },
   "signIn": {
@@ -625,6 +626,7 @@
       "TEMPLATE_COPIES_PER_HOUR": "Wawancara yang disalin dari templat per perusahaan per jam",
       "LINK_STARTS_PER_HOUR": "Mulai lewat tautan satu wawancara per jam",
       "LINK_STARTS_PER_IP_HOUR": "Mulai lewat tautan per alamat per jam",
+      "BIAS_AUDIT_EXPORTS_PER_DAY": "Ekspor audit bias per perusahaan per hari",
       "MAX_BULK_INVITES": "Kandidat dalam satu daftar atau file",
       "MAX_PENDING_INVITES": "Undangan tim yang tertunda per perusahaan",
       "MEMBER_INVITES_PER_UNPAID_DAY": "Undangan tim per perusahaan yang belum membayar per hari",
@@ -1326,7 +1328,7 @@
       },
       "notices": {
         "title": "Templat pemberitahuan kandidat",
-        "description": "Pemberitahuan yang bisa diedit untuk dikirim ke kandidat sebelum kamu mengundang mereka, termasuk satu untuk New York City."
+        "description": "Pemberitahuan yang bisa diedit untuk dikirim ke kandidat sebelum kamu mengundang mereka, termasuk untuk New York City, Illinois, dan Colorado."
       },
       "dpia": {
         "title": "Templat DPIA",
@@ -2552,6 +2554,86 @@
     },
     "reviewed": "Terakhir ditinjau: <time>{date}</time>."
   },
+  "trust": {
+    "title": "Kepercayaan dan keamanan",
+    "description": "Cara prepza menjaga data rekrutmen tetap aman dan privat: hosting di UE, subprosesor, retensi, serta apa yang kami sediakan untuk GDPR, EU AI Act, Inggris, dan AS.",
+    "intro": "Apa yang dilakukan prepza untuk menjaga keamanan datamu dan data kandidatmu, di mana data disimpan, siapa yang memprosesnya, berapa lama disimpan, dan apa yang kami berikan kepada perusahaan untuk hukum rekrutmen yang mereka ikuti.",
+    "security": {
+      "title": "Keamanan",
+      "signIn": "Kamu masuk dengan Google, LinkedIn, atau GitHub melalui Firebase Authentication, jadi prepza tidak menyimpan kata sandi. Status masuk diperiksa di server pada setiap permintaan.",
+      "encryption": "Data dienkripsi saat dikirim (TLS 1.2 atau lebih baru) dan saat disimpan. Kunci dan token yang dihubungkan perusahaan (ATS-nya, Slack, webhook) disimpan dalam bentuk terenkripsi, dan kunci API prepza hanya sebagai hash satu arah.",
+      "access": "Setiap permintaan diperiksa terhadap perusahaan dan peran orang yang mengirimnya. Setiap layanan hanya bisa mengakses databasenya sendiri, dan panggilan antarlayanan ditandatangani.",
+      "limits": "Batas penggunaan melindungi setiap tindakan yang memakan biaya atau bisa disalahgunakan, dan pemeriksaan “Saya bukan robot” menjaga formulir publik, tautan iklan lowongan, dan pembuatan perusahaan pertama.",
+      "logs": "Laporan error tidak memuat alamat email, dan log server hanya disimpan sebentar.",
+      "actionLog": "Pemilik perusahaan bisa melihat log tindakan tentang siapa melakukan apa di perusahaan, dan kapan.",
+      "backups": "Database dicadangkan setiap hari, dengan pemulihan ke titik waktu mana pun dalam 7 hari terakhir.",
+      "breaches": "Jika data perusahaan suatu saat dibobol, kami memberi tahu perusahaan tanpa penundaan yang tidak semestinya, dalam 48 jam bila memungkinkan."
+    },
+    "privacy": {
+      "title": "Privasi",
+      "roles": "prepza adalah pengendali data untuk akun orang yang menggunakannya, dan pemroses data kandidat, yang menjadi milik perusahaan yang mengundang mereka.",
+      "noSelling": "Kami tidak menjual data pribadi atau membagikannya untuk iklan. Tidak ada cookie iklan atau analitik.",
+      "noInference": "prepza tidak mengumpulkan data tentang jenis kelamin, usia, asal, atau disabilitas kandidat, dan tidak menyimpulkan hal semacam itu.",
+      "voice": "Dalam mode suara, jawaban lisan kandidat diubah menjadi teks dan dicocokkan dengan pilihan yang dia konfirmasi. Jawaban itu tidak direkam atau disimpan, dan suaranya tidak dianalisis dengan cara lain apa pun.",
+      "ai": "OpenAI, yang menulis soal-soalnya, diminta untuk tidak menyimpan apa yang diterimanya; OpenAI menyimpan data paling lama 30 hari, hanya untuk memeriksa penyalahgunaan, dan tidak memakainya untuk melatih modelnya.",
+      "rights": "Siapa pun bisa mengunduh atau menghapus datanya sendiri di Pengaturan, tanpa perlu menulis kepada kami."
+    },
+    "compliance": {
+      "title": "Kepatuhan",
+      "aiAct": "Berdasarkan EU AI Act, prepza diperlakukan sebagai sistem AI berisiko tinggi, yang kewajibannya berlaku mulai <time>{date}</time>. Petunjuk kami untuk perusahaan adalah petunjuk penggunaannya.",
+      "humanReview": "prepza tidak membuat keputusan apa pun tentang kandidat: orang-orang di perusahaan meninjau hasilnya dan memutuskan, dan kandidat bisa meminta seseorang untuk meninjau hasil mereka.",
+      "dpa": "Perjanjian pemrosesan data adalah bagian dari ketentuan, tanpa perlu ditandatangani. Perjanjian ini mencakup GDPR, UK GDPR, dan undang-undang privasi negara bagian AS seperti milik California, dengan prepza sebagai penyedia layanan (service provider) perusahaan.",
+      "documents": "Perusahaan mendapatkan <link>petunjuk penggunaan, templat DPIA, dan templat pemberitahuan kandidat</link>, dengan versi untuk New York City, Illinois, dan Colorado.",
+      "nyc": "New York City: sebelum memakai prepza untuk posisi di sana, pemberi kerja memenuhi apa yang diwajibkan Local Law 144: audit bias independen dalam satu tahun sebelum penggunaan, ringkasannya dipublikasikan, dan pemberitahuan kepada kandidat paling lambat 10 hari kerja sebelum mereka dinilai. Audit bias independen milik prepza sendiri dilakukan sebelum <time>{date}</time>, lalu setiap tahun setelahnya."
+    },
+    "residency": {
+      "title": "Tempat data disimpan",
+      "storage": "prepza berjalan di Google Cloud di UE, di Belgia, tempat databasenya disimpan. Penghitung batas penggunaan disimpan di Upstash, juga di Belgia, dan email dikirim melalui Resend di Irlandia.",
+      "transfers": "Tiga penyedia menangani data di Amerika Serikat: Google untuk proses masuk, OpenAI, dan Cloudflare untuk pemeriksaan “Saya bukan robot”. Transfer ini dilindungi oleh EU-US Data Privacy Framework atau klausul kontrak standar Komisi Eropa, dan untuk Inggris oleh UK Extension serta UK International Data Transfer Addendum."
+    },
+    "subprocessors": {
+      "title": "Subprosesor",
+      "intro": "Penyedia yang memproses data untuk prepza, sebagaimana tercantum dalam <link>perjanjian pemrosesan data</link>:",
+      "changes": "Kami mengirim email kepada pemilik dan admin perusahaan paling lambat 14 hari sebelum menambahkan subprosesor baru."
+    },
+    "retention": {
+      "title": "Berapa lama data disimpan",
+      "account": "Akun dan semua isinya: sampai akun dihapus.",
+      "results": "Hasil wawancara kandidat, waktu pengerjaan, dan tanda integritas: 12 bulan setelah undangan terakhir kali dikirim, lalu dihapus otomatis.",
+      "actionLog": "Log tindakan perusahaan: 12 bulan.",
+      "chats": "Chat dengan asisten: 90 hari setelah pesan terakhirnya.",
+      "aiRecords": "Catatan panggilan AI: 30 hari.",
+      "errors": "Laporan error: hingga 90 hari.",
+      "backups": "Cadangan database: 14 hari, lalu ditimpa; apa pun yang dihapus sudah hilang darinya pada saat itu.",
+      "statistics": "Statistik penggunaan, dengan kode sebagai pengganti ID akun: 25 bulan.",
+      "purchases": "Catatan pembelian: 7 tahun, sesuai ketentuan hukum akuntansi Estonia."
+    },
+    "accessibility": {
+      "title": "Aksesibilitas",
+      "text": "prepza berupaya memenuhi level AA dari Web Content Accessibility Guidelines (WCAG) 2.2. <link>Pernyataan aksesibilitas</link> kami menjelaskan apa yang sudah berfungsi, apa yang belum, dan cara memberi tahu kami."
+    },
+    "links": {
+      "title": "Dokumen hukum",
+      "terms": "<link>Ketentuan</link>, yang disetujui setiap perusahaan.",
+      "privacy": "<link>Kebijakan privasi</link>, berisi semua yang kami kumpulkan, alasannya, dan berapa lama.",
+      "dpa": "<link>Perjanjian pemrosesan data</link>, untuk data kandidat.",
+      "documents": "<link>Dokumen untuk perusahaan</link> yang bisa diunduh: petunjuk, templat pemberitahuan dan DPIA, serta perjanjian dalam bentuk PDF."
+    },
+    "contact": {
+      "title": "Pertanyaan",
+      "text": "Untuk pertanyaan tentang keamanan, privasi, atau kepatuhan, atau untuk melaporkan masalah keamanan, tulis ke <email></email>."
+    }
+  },
+  "biasAudit": {
+    "open": "Ekspor audit bias",
+    "title": "Ekspor untuk audit bias",
+    "description": "File CSV berisi setiap kandidat yang telah selesai: nilainya, nilai lulus, apakah dia lulus, dan apakah skornya di atas median. Auditor independenmu menghitung tingkat dan rasio dampak (impact ratio) dari file ini.",
+    "privacy": "prepza tidak menyimpan data jenis kelamin, ras, atau etnis. Tambahkan jawaban yang diisi sendiri oleh kandidatmu berdasarkan email mereka, lalu hapus kolom email sebelum kamu membagikan file tersebut.",
+    "interview": "Wawancara",
+    "allInterviews": "Semua wawancara",
+    "download": "Unduh CSV",
+    "failed": "File tidak bisa diekspor. Coba lagi."
+  },
   "actionLog": {
     "empty": "Belum ada tindakan.",
     "noMatches": "Tidak ada tindakan yang cocok dengan filter ini.",
@@ -2599,6 +2681,7 @@
       "candidate_mode_set": "Mengubah mode wawancara kandidat",
       "results_viewed": "Melihat hasil kandidat",
       "report_emailed": "Mengirim laporan lewat email",
+      "bias_audit_exported": "Mengekspor data untuk audit bias",
       "member_invited": "Mengundang anggota",
       "member_joined": "Bergabung dengan perusahaan",
       "member_removed": "Menghapus anggota",

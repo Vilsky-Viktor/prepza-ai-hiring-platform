@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Tôi có thể xem ai đã làm gì trong công ty mình không?",
-        "answer": "Có, nếu bạn là chủ sở hữu công ty. Tab Nhật ký thao tác của công ty liệt kê mọi việc các thành viên đã làm, mới nhất trước: mời hoặc xóa ứng viên, xem kết quả, thay đổi buổi phỏng vấn, nhóm, thanh toán và tích hợp, kèm theo ai đã làm, khi nào, và trợ lý, một ứng dụng AI hay API có làm thay họ không. Bạn có thể lọc theo thành viên, loại thao tác và ngày. Các thao tác được lưu trong 12 tháng. Thao tác của một khóa API hiện dưới tên của khóa.",
+        "answer": "Có, nếu bạn là chủ sở hữu công ty. Tab Nhật ký thao tác của công ty liệt kê mọi việc các thành viên đã làm, mới nhất trước: mời hoặc xóa ứng viên, xem kết quả, thay đổi buổi phỏng vấn, nhóm, thanh toán và tích hợp, kèm theo ai đã làm, khi nào, và trợ lý, một ứng dụng AI hay API có làm thay họ không. Bạn có thể lọc theo thành viên, loại thao tác và ngày. Các thao tác được lưu trong 12 tháng. Thao tác của một khóa API hiện dưới tên của khóa. Chủ sở hữu cũng có thể tải bản xuất cho kiểm toán thiên lệch ở đó: một tệp CSV gồm mọi ứng viên đã hoàn thành, kèm điểm của họ và họ có đạt không, cho một cuộc kiểm toán thiên lệch độc lập.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Chúng tôi có thể dùng prepza cho ứng viên ở Vương quốc Anh và Hoa Kỳ không?",
-        "answer": "Có. Thỏa thuận xử lý dữ liệu bao quát luật của Vương quốc Anh và Hoa Kỳ, còn hướng dẫn cho các công ty và các mẫu thông báo cho ứng viên (có phiên bản cho Thành phố New York, Illinois và Colorado) bao quát những gì bạn phải cho ứng viên biết. Với các công việc tại Thành phố New York, chỉ dùng prepza sau khi bạn đã làm những gì Local Law 144 yêu cầu: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt của cuộc kiểm toán đó và thông báo cho ứng viên trước 10 ngày làm việc.",
+        "answer": "Có. Thỏa thuận xử lý dữ liệu bao quát luật của Vương quốc Anh và Hoa Kỳ, còn hướng dẫn cho các công ty và các mẫu thông báo cho ứng viên (có phiên bản cho Thành phố New York, Illinois và Colorado) bao quát những gì bạn phải cho ứng viên biết. Với các công việc tại Thành phố New York, chỉ dùng prepza sau khi bạn đã làm những gì Local Law 144 yêu cầu: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt của cuộc kiểm toán đó và thông báo cho ứng viên trước 10 ngày làm việc. Bản xuất cho kiểm toán thiên lệch trong Nhật ký thao tác cung cấp cho kiểm toán viên của bạn điểm và kết quả của từng ứng viên đã hoàn thành, để đối chiếu với câu trả lời do chính ứng viên tự khai.",
     },
     {
         "key": "emails",

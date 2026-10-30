@@ -281,8 +281,11 @@ under the data processing agreement at prepza.ai/dpa, which is part of the terms
 - For **New York City** roles, before you have done what Local Law 144 asks of you as the employer:
   a bias audit by an independent auditor within the year before use, its summary published, and a
   notice to candidates at least 10 business days before they are assessed. prepza gives you the
-  candidates' results (API, PDF reports) for the audit, the summary of its own bias audit, and a
-  notice template.
+  bias-audit export for your auditor (the owner downloads it from the Action log page: each
+  finished candidate's grade, passing grade, whether they passed and whether they scored above
+  the interview's median, by email, for you to add your candidates' own self-reported categories
+  and remove the email before you share it), the summary of its own bias audit, and a notice
+  template.
 - Where your local law requires a works council agreement, a regulator approval or a bias audit you
   haven't done.
 
@@ -295,14 +298,16 @@ it may not be one, but count on the duties above.
 
 - **UK:** the UK GDPR and the Data Protection Act 2018 apply as the GDPR does: a lawful basis,
   a DPIA (the ICO treats AI in recruitment as high risk), the candidate notice, human review on
-  request and a way to challenge a decision (Art. 22 UK GDPR). The ICO's recommendations for AI
+  request and a way to challenge a decision (Arts. 22A to 22D UK GDPR, as the Data (Use and
+  Access) Act 2025 made them from 2026-02-05). The ICO's recommendations for AI
   recruitment tools (2024) also ask you to check the tool's accuracy and bias with its provider,
   to collect no more than needed, and to keep candidates' data no longer than needed. Avoid
   indirect discrimination under the Equality Act 2010: choose topics and a passing grade the job
   really needs (sections 4 and 6), and watch pass rates.
 - **US federal:** Title VII and the ADA apply to tests used in hiring. Check adverse impact on
   your own outcomes (the EEOC's four-fifths rule of thumb: a group's pass rate under 80% of the
-  highest group's is a warning sign), and give reasonable accommodation.
+  highest group's is a warning sign; the bias-audit export in section 11 gives the outcomes to
+  join with your own data), and give reasonable accommodation.
 - **New York City:** section 11.
 - **Illinois** (Human Rights Act, from 2026-01-01): tell candidates when AI is used in
   recruitment or hiring decisions, and never use AI that discriminates by a protected class, or

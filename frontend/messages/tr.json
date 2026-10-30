@@ -74,6 +74,7 @@
     "apiDocs": "Geliştirici belgeleri",
     "news": "Haberler",
     "accessibility": "Erişilebilirlik",
+    "trust": "Güven",
     "language": "Dil"
   },
   "signIn": {
@@ -625,6 +626,7 @@
       "TEMPLATE_COPIES_PER_HOUR": "Şirket başına saatlik şablondan kopyalanan mülakat",
       "LINK_STARTS_PER_HOUR": "Bir mülakatın bağlantısıyla saatlik başlatma",
       "LINK_STARTS_PER_IP_HOUR": "Adres başına saatlik bağlantıyla başlatma",
+      "BIAS_AUDIT_EXPORTS_PER_DAY": "Şirket başına günlük yanlılık denetimi dışa aktarımı",
       "MAX_BULK_INVITES": "Tek liste veya dosyadaki aday sayısı",
       "MAX_PENDING_INVITES": "Şirket başına bekleyen ekip davetleri",
       "MEMBER_INVITES_PER_UNPAID_DAY": "Ödeme yapmayan şirket başına günlük ekip daveti",
@@ -1326,7 +1328,7 @@
       },
       "notices": {
         "title": "Aday bilgilendirme şablonları",
-        "description": "Adayları davet etmeden önce göndereceğiniz düzenlenebilir bildirimler; biri New York City için."
+        "description": "Adayları davet etmeden önce göndereceğiniz düzenlenebilir bildirimler; New York City, Illinois ve Colorado için olanlar dahil."
       },
       "dpia": {
         "title": "DPIA şablonu",
@@ -2552,6 +2554,86 @@
     },
     "reviewed": "Son gözden geçirme: <time>{date}</time>."
   },
+  "trust": {
+    "title": "Güven ve güvenlik",
+    "description": "prepza'nın işe alım verilerini nasıl güvende ve gizli tuttuğu: AB'de barındırma, alt veri işleyenler, saklama süreleri ve GDPR, AB Yapay Zekâ Yasası, Birleşik Krallık ve ABD için sağladıklarımız.",
+    "intro": "prepza'nın sizin ve adaylarınızın verilerini güvende tutmak için yaptıkları, verilerin nerede saklandığı, kimin işlediği, ne kadar süre tutulduğu ve şirketlere uydukları işe alım yasaları için neler sağladığımız.",
+    "security": {
+      "title": "Güvenlik",
+      "signIn": "Firebase Authentication aracılığıyla Google, LinkedIn veya GitHub ile giriş yaparsınız; bu yüzden prepza hiçbir parola saklamaz. Her isteğin oturumu sunucuda doğrulanır.",
+      "encryption": "Veriler aktarım sırasında (TLS 1.2 veya üstü) ve depolanırken şifrelenir. Bir şirketin bağladığı anahtarlar ve token'lar (aday takip sistemi, Slack, webhook'lar) şifreli olarak, prepza API anahtarları ise yalnızca tek yönlü bir hash olarak saklanır.",
+      "access": "Her istek, şirkete ve isteği yapan kişinin rolüne göre denetlenir. Her hizmet yalnızca kendi veritabanına erişir ve hizmetler arasındaki çağrılar imzalanır.",
+      "limits": "Hız sınırları, para harcatan veya kötüye kullanılabilecek her işlemi korur; “Ben robot değilim” doğrulaması da herkese açık formları, iş ilanı bağlantılarını ve ilk şirketin oluşturulmasını korur.",
+      "logs": "Hata raporlarında e-posta adresleri yer almaz ve sunucu kayıtları kısa süre tutulur.",
+      "actionLog": "Şirket sahibi, şirkette kimin ne zaman ne yaptığını bir işlem kaydında görür.",
+      "backups": "Veritabanı her gün yedeklenir ve son 7 gün içindeki herhangi bir ana geri döndürülebilir.",
+      "breaches": "Bir şirketin verileri ihlal edilirse, şirkete gecikmeksizin, mümkün olduğunda 48 saat içinde haber veririz."
+    },
+    "privacy": {
+      "title": "Gizlilik",
+      "roles": "prepza, onu kullanan kişilerin hesapları için veri sorumlusu, adayların verileri için ise veri işleyendir; bu veriler adayları davet eden şirkete aittir.",
+      "noSelling": "Kişisel verileri satmayız ve reklam için paylaşmayız. Reklam veya analiz çerezleri yoktur.",
+      "noInference": "prepza adayların cinsiyeti, yaşı, kökeni veya engelliliği hakkında veri toplamaz ve bu türden hiçbir çıkarım yapmaz.",
+      "voice": "Sesli modda adayın sözlü cevabı metne dönüştürülür ve adayın onayladığı bir seçenekle eşleştirilir. Kaydedilmez veya saklanmaz, ses başka hiçbir şekilde analiz edilmez.",
+      "ai": "Soruları yazan OpenAI'a aldıklarını saklamaması söylenir; verileri yalnızca kötüye kullanımı denetlemek için en fazla 30 gün tutar ve modellerini eğitmek için kullanmaz.",
+      "rights": "Herkes, bize yazmadan, Ayarlar'dan kendi verilerini indirebilir veya silebilir."
+    },
+    "compliance": {
+      "title": "Uyumluluk",
+      "aiAct": "AB Yapay Zekâ Yasası kapsamında prepza, yükümlülükleri <time>{date}</time> tarihinden itibaren geçerli olan yüksek riskli bir yapay zekâ sistemi olarak kabul edilir. Şirketler için talimatlarımız, sistemin kullanım talimatlarıdır.",
+      "humanReview": "prepza bir aday hakkında karar vermez: şirketteki kişiler sonuçları inceler ve karar verir, adaylar da sonuçlarının bir insan tarafından incelenmesini isteyebilir.",
+      "dpa": "Veri işleme sözleşmesi koşulların bir parçasıdır, imzalanacak bir şey yoktur. GDPR'ı, UK GDPR'ı ve prepza'nın şirketin hizmet sağlayıcısı olduğu, Kaliforniya'nınki gibi ABD eyalet gizlilik yasalarını kapsar.",
+      "documents": "Şirketler <link>kullanım talimatlarını, bir DPIA şablonunu ve aday bilgilendirme şablonlarını</link> alır; New York City, Illinois ve Colorado için sürümler de vardır.",
+      "nyc": "New York City: işveren, oradaki bir pozisyon için prepza'yı kullanmadan önce Local Law 144'ün kendisinden istediklerini yapar: kullanımdan önceki bir yıl içinde bağımsız bir yanlılık denetimi, bu denetimin özetinin yayımlanması ve adaylar değerlendirilmeden en az 10 iş günü önce onlara bildirim. prepza'nın kendi bağımsız yanlılık denetimi <time>{date}</time> tarihinden önce yapılır ve sonrasında her yıl tekrarlanır."
+    },
+    "residency": {
+      "title": "Veriler nerede saklanır",
+      "storage": "prepza, AB'de, Belçika'da Google Cloud üzerinde çalışır ve veritabanı orada saklanır. Hız sınırı sayaçları yine Belçika'da Upstash'te tutulur, e-postalar ise İrlanda'daki Resend üzerinden gönderilir.",
+      "transfers": "Üç sağlayıcı verileri Amerika Birleşik Devletleri'nde işler: giriş için Google, OpenAI ve “Ben robot değilim” doğrulaması için Cloudflare. Bu aktarımlar AB-ABD Veri Gizliliği Çerçevesi'ne (EU-US Data Privacy Framework) veya Avrupa Komisyonu'nun standart sözleşme hükümlerine, Birleşik Krallık için ise Birleşik Krallık Uzantısı'na (UK Extension) ve Birleşik Krallık Uluslararası Veri Aktarımı Eki'ne (UK International Data Transfer Addendum) dayanır."
+    },
+    "subprocessors": {
+      "title": "Alt veri işleyenler",
+      "intro": "<link>Veri işleme sözleşmesinde</link> listelendiği şekliyle, prepza için veri işleyen sağlayıcılar:",
+      "changes": "Yeni bir alt veri işleyen eklemeden en az 14 gün önce şirketlerin sahiplerine ve yöneticilerine e-posta göndeririz."
+    },
+    "retention": {
+      "title": "Veriler ne kadar süre saklanır",
+      "account": "Bir hesap ve içindeki her şey: silinene kadar.",
+      "results": "Adayların mülakat sonuçları, süreleri ve dürüstlük uyarıları: davetin son gönderilmesinden 12 ay sonra, ardından otomatik olarak silinir.",
+      "actionLog": "Bir şirketin işlem kaydı: 12 ay.",
+      "chats": "Asistanla sohbetler: son mesajdan sonra 90 gün.",
+      "aiRecords": "Yapay zekâ çağrılarının kayıtları: 30 gün.",
+      "errors": "Hata raporları: en fazla 90 gün.",
+      "backups": "Veritabanı yedekleri: 14 gün, sonra üzerine yazılır; silinen her şey o zamana kadar yedeklerden de çıkar.",
+      "statistics": "Hesap kimlikleri yerine kodlarla tutulan kullanım istatistikleri: 25 ay.",
+      "purchases": "Satın alma kayıtları: Estonya muhasebe yasasının gerektirdiği gibi 7 yıl."
+    },
+    "accessibility": {
+      "title": "Erişilebilirlik",
+      "text": "prepza, Web İçeriği Erişilebilirlik Yönergeleri'nin (WCAG) 2.2 AA düzeyini karşılamayı hedefler. <link>Erişilebilirlik beyanımız</link> neyin çalıştığını, nerede yetersiz kaldığını ve bunu bize nasıl bildirebileceğinizi anlatır."
+    },
+    "links": {
+      "title": "Yasal belgeler",
+      "terms": "Her şirketin kabul ettiği <link>koşullar</link>.",
+      "privacy": "Topladığımız her şeyi, nedenini ve ne kadar süre tuttuğumuzu içeren <link>gizlilik politikası</link>.",
+      "dpa": "Adayların verileri için <link>veri işleme sözleşmesi</link>.",
+      "documents": "İndirilebilir <link>şirketler için belgeler</link>: talimatlar, bildirim ve DPIA şablonları ve PDF olarak sözleşme."
+    },
+    "contact": {
+      "title": "Sorular",
+      "text": "Güvenlik, gizlilik veya uyumlulukla ilgili sorularınız için ya da bir güvenlik sorununu bildirmek için <email></email> adresine yazın."
+    }
+  },
+  "biasAudit": {
+    "open": "Yanlılık denetimi dışa aktarımı",
+    "title": "Yanlılık denetimi için dışa aktar",
+    "description": "Mülakatı bitiren her adayın yer aldığı bir CSV dosyası: notu, geçme notu, geçip geçmediği ve medyanın üzerinde puan alıp almadığı. Bağımsız denetçiniz seçilme oranlarını ve etki oranlarını bu dosyadan hesaplar.",
+    "privacy": "prepza cinsiyet, ırk veya etnik kökenle ilgili veri tutmaz. Adaylarınızın kendi beyan ettiği cevapları e-posta adreslerine göre ekleyin, ardından dosyayı paylaşmadan önce e-posta sütununu kaldırın.",
+    "interview": "Mülakat",
+    "allInterviews": "Tüm mülakatlar",
+    "download": "CSV'yi indir",
+    "failed": "Dosya dışa aktarılamadı. Lütfen tekrar deneyin."
+  },
   "actionLog": {
     "empty": "Henüz işlem yok.",
     "noMatches": "Bu filtrelere uyan işlem yok.",
@@ -2599,6 +2681,7 @@
       "candidate_mode_set": "Bir adayın mülakat modunu değiştirdi",
       "results_viewed": "Bir adayın sonuçlarını görüntüledi",
       "report_emailed": "Bir raporu e-postayla gönderdi",
+      "bias_audit_exported": "Yanlılık denetimi için veri dışa aktardı",
       "member_invited": "Bir üyeyi davet etti",
       "member_joined": "Şirkete katıldı",
       "member_removed": "Bir üyeyi kaldırdı",

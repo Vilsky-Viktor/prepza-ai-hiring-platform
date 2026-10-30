@@ -34,6 +34,7 @@ export const FOOTER_COLUMNS = [
   [
     { href: "/about", label: "about" },
     { href: "/contact", label: "contact" },
+    { href: "/trust", label: "trust" },
     { href: "/privacy", label: "privacy" },
     { href: "/terms", label: "terms" },
     { href: "/accessibility", label: "accessibility" },

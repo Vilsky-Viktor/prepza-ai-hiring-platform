@@ -14,4 +14,5 @@ export const MAINTENANCE_OPEN_PAGES = [
   "/dpa",
   "/documents",
   "/accessibility",
+  "/trust",
 ]

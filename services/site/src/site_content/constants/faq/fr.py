@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Puis-je voir qui a fait quoi dans mon entreprise ?",
-        "answer": "Oui, si vous êtes propriétaire de l'entreprise. Son onglet Journal des actions liste tout ce que ses membres ont fait, du plus récent au plus ancien : inviter ou retirer des candidats, consulter des résultats, modifier les entretiens, l'équipe, la facturation et les intégrations, avec qui l'a fait, quand, et si l'assistant, une application d'IA ou l'API l'a fait en son nom. Vous pouvez le filtrer par membre, type d'action et dates. Les actions sont conservées 12 mois. Les actions d'une clé API apparaissent sous le nom de la clé.",
+        "answer": "Oui, si vous êtes propriétaire de l'entreprise. Son onglet Journal des actions liste tout ce que ses membres ont fait, du plus récent au plus ancien : inviter ou retirer des candidats, consulter des résultats, modifier les entretiens, l'équipe, la facturation et les intégrations, avec qui l'a fait, quand, et si l'assistant, une application d'IA ou l'API l'a fait en son nom. Vous pouvez le filtrer par membre, type d'action et dates. Les actions sont conservées 12 mois. Les actions d'une clé API apparaissent sous le nom de la clé. Le propriétaire peut aussi y télécharger un export pour audit de biais : un fichier CSV de chaque candidat qui a terminé, avec sa note et s'il a réussi, pour un audit de biais indépendant.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Pouvons-nous utiliser prepza pour des candidats au Royaume-Uni et aux États-Unis ?",
-        "answer": "Oui. L'accord de traitement des données couvre le droit britannique et américain, et les instructions pour les entreprises ainsi que les modèles d'information des candidats (avec des versions pour la ville de New York, l'Illinois et le Colorado) couvrent ce que vous devez dire aux candidats. Pour des postes dans la ville de New York, ne l'utilisez qu'une fois que vous avez fait ce que la Local Law 144 exige de vous : un audit de biais indépendant dans l'année précédant l'utilisation, la publication de son résumé et une information des candidats 10 jours ouvrables avant.",
+        "answer": "Oui. L'accord de traitement des données couvre le droit britannique et américain, et les instructions pour les entreprises ainsi que les modèles d'information des candidats (avec des versions pour la ville de New York, l'Illinois et le Colorado) couvrent ce que vous devez dire aux candidats. Pour des postes dans la ville de New York, ne l'utilisez qu'une fois que vous avez fait ce que la Local Law 144 exige de vous : un audit de biais indépendant dans l'année précédant l'utilisation, la publication de son résumé et une information des candidats 10 jours ouvrables avant. L'export pour audit de biais du Journal des actions donne à votre auditeur la note et le résultat de chaque candidat qui a terminé, à rapprocher des réponses que vos candidats ont eux-mêmes déclarées.",
     },
     {
         "key": "emails",

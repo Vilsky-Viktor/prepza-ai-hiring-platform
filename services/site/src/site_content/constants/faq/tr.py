@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Şirketimde kimin ne yaptığını görebilir miyim?",
-        "answer": "Evet, şirketin sahibiyseniz. Şirketin İşlem kaydı sekmesi, üyelerinin yaptığı her şeyi en yeniden başlayarak listeler: aday davet etme veya kaldırma, sonuçları görüntüleme ve mülakatlarda, ekipte, faturalandırmada ve entegrasyonlarda yapılan değişiklikler; bunu kimin, ne zaman yaptığı ve asistanın, bir yapay zekâ uygulamasının veya API'nin onun adına yapıp yapmadığıyla birlikte. Kaydı üyeye, işlem türüne ve tarihlere göre filtreleyebilirsiniz. İşlemler 12 ay saklanır. Bir API anahtarının işlemleri anahtarın adıyla görünür.",
+        "answer": "Evet, şirketin sahibiyseniz. Şirketin İşlem kaydı sekmesi, üyelerinin yaptığı her şeyi en yeniden başlayarak listeler: aday davet etme veya kaldırma, sonuçları görüntüleme ve mülakatlarda, ekipte, faturalandırmada ve entegrasyonlarda yapılan değişiklikler; bunu kimin, ne zaman yaptığı ve asistanın, bir yapay zekâ uygulamasının veya API'nin onun adına yapıp yapmadığıyla birlikte. Kaydı üyeye, işlem türüne ve tarihlere göre filtreleyebilirsiniz. İşlemler 12 ay saklanır. Bir API anahtarının işlemleri anahtarın adıyla görünür. Şirket sahibi oradan bir yanlılık denetimi dışa aktarımı da indirebilir: mülakatı bitiren her adayın notunu ve geçip geçmediğini içeren, bağımsız bir yanlılık denetimi için bir CSV dosyası.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "prepza'yı Birleşik Krallık ve ABD'deki adaylar için kullanabilir miyiz?",
-        "answer": "Evet. Veri işleme sözleşmesi Birleşik Krallık ve ABD hukukunu kapsar; şirketlere yönelik talimatlar ve aday bilgilendirme şablonları (New York City, Illinois ve Colorado sürümleriyle) adaylara neleri söylemeniz gerektiğini açıklar. New York City'deki işler için onu ancak Local Law 144'ün sizden istediklerini yerine getirdikten sonra kullanın: kullanımdan önceki bir yıl içinde bağımsız bir yanlılık denetimi, özetinin yayımlanması ve adayların 10 iş günü önceden bilgilendirilmesi.",
+        "answer": "Evet. Veri işleme sözleşmesi Birleşik Krallık ve ABD hukukunu kapsar; şirketlere yönelik talimatlar ve aday bilgilendirme şablonları (New York City, Illinois ve Colorado sürümleriyle) adaylara neleri söylemeniz gerektiğini açıklar. New York City'deki işler için onu ancak Local Law 144'ün sizden istediklerini yerine getirdikten sonra kullanın: kullanımdan önceki bir yıl içinde bağımsız bir yanlılık denetimi, özetinin yayımlanması ve adayların 10 iş günü önceden bilgilendirilmesi. İşlem kaydındaki yanlılık denetimi dışa aktarımı, denetçinize mülakatı bitiren her adayın notunu ve sonucunu verir; bunlar adaylarınızın kendi beyan ettiği yanıtlarla eşleştirilir.",
     },
     {
         "key": "emails",

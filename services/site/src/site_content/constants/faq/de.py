@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Kann ich sehen, wer in meinem Unternehmen was gemacht hat?",
-        "answer": "Ja, wenn du Inhaber des Unternehmens bist. Sein Tab Aktionsprotokoll listet alles, was seine Mitglieder getan haben, das Neueste zuerst: Kandidaten einladen oder entfernen, Ergebnisse ansehen und Interviews, das Team, die Abrechnung und Integrationen ändern, jeweils damit, wer es getan hat, wann und ob der Assistent, eine KI-App oder die API es in seinem Namen getan hat. Du kannst es nach Mitglied, Art der Aktion und Datum filtern. Aktionen werden 12 Monate lang aufbewahrt. Die Aktionen eines API-Schlüssels stehen unter dem Namen des Schlüssels.",
+        "answer": "Ja, wenn du Inhaber des Unternehmens bist. Sein Tab Aktionsprotokoll listet alles, was seine Mitglieder getan haben, das Neueste zuerst: Kandidaten einladen oder entfernen, Ergebnisse ansehen und Interviews, das Team, die Abrechnung und Integrationen ändern, jeweils damit, wer es getan hat, wann und ob der Assistent, eine KI-App oder die API es in seinem Namen getan hat. Du kannst es nach Mitglied, Art der Aktion und Datum filtern. Aktionen werden 12 Monate lang aufbewahrt. Die Aktionen eines API-Schlüssels stehen unter dem Namen des Schlüssels. Dort kann der Inhaber auch einen Export für ein Bias-Audit herunterladen: eine CSV-Datei mit jedem Kandidaten, der fertig ist, mit seinem Ergebnis und ob er bestanden hat, für ein unabhängiges Bias-Audit.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Können wir prepza für Kandidaten in Großbritannien und den USA nutzen?",
-        "answer": "Ja. Der Auftragsverarbeitungsvertrag deckt britisches und US-amerikanisches Recht ab, und die Hinweise für Unternehmen sowie die Vorlagen für die Kandidateninformation (mit Fassungen für New York City, Illinois und Colorado) decken ab, was du Kandidaten mitteilen musst. Für Stellen in New York City nutze es erst, wenn du erfüllt hast, was Local Law 144 von dir verlangt: ein unabhängiges Bias-Audit innerhalb des Jahres vor der Nutzung, die Veröffentlichung seiner Zusammenfassung und eine Information der Kandidaten 10 Arbeitstage vorher.",
+        "answer": "Ja. Der Auftragsverarbeitungsvertrag deckt britisches und US-amerikanisches Recht ab, und die Hinweise für Unternehmen sowie die Vorlagen für die Kandidateninformation (mit Fassungen für New York City, Illinois und Colorado) decken ab, was du Kandidaten mitteilen musst. Für Stellen in New York City nutze es erst, wenn du erfüllt hast, was Local Law 144 von dir verlangt: ein unabhängiges Bias-Audit innerhalb des Jahres vor der Nutzung, die Veröffentlichung seiner Zusammenfassung und eine Information der Kandidaten 10 Arbeitstage vorher. Der Export für ein Bias-Audit im Aktionsprotokoll gibt deinem Auditor das Ergebnis jedes Kandidaten, der fertig ist, und ob er bestanden hat, zum Abgleich mit den selbst angegebenen Antworten deiner Kandidaten.",
     },
     {
         "key": "emails",

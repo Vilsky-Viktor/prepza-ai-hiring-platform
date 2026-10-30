@@ -240,13 +240,15 @@
     "text": "Kõik, mida ettevõtte liikmed tegid, uusimad eespool: mida nad tegid ja millega, kes seda tegi, millal ning kas seda tegi nende eest assistent, AI-rakendus, API või ATS. Seda näeb ainult omanik.",
     "actions": [
       "Näita ühe liikme toiminguid või ühte liiki toiminguid: intervjuud, kandidaadid, meeskond, ettevõte, arveldus või integratsioonid.",
-      "Näita toiminguid kahe päeva vahel."
+      "Näita toiminguid kahe päeva vahel.",
+      "Laadi alla kallutatuse auditi eksport: CSV-fail igast kandidaadist, kes lõpetas, kõigi intervjuude või ühe kohta ja soovi korral kahe päeva vahel, koos tema hinde, läbimise läve, selle, kas ta läbis, ja selle, kas ta sai intervjuu mediaanist rohkem, e-posti aadressi järgi."
     ],
     "tips": [
       "Toiminguid hoitakse 12 kuud.",
       "Inimesi logis ei hoita: kustutatud kandidaat on näidatud kustutatud kandidaadina ja lahkunud liige endise liikmena.",
       "API-võtme toimingud on näidatud võtme nime all ja kustutatud võtme omad kustutatud võtme omadena.",
-      "Kui liige vaatab ühe kandidaadi tulemusi, näidatakse seda kord päevas, viimase vaatamise ajaga."
+      "Kui liige vaatab ühe kandidaadi tulemusi, näidatakse seda kord päevas, viimase vaatamise ajaga.",
+      "prepzal pole andmeid soo, rassi ega etnilise päritolu kohta: lisa kandidaatide endi antud vastused e-posti aadressi järgi ja eemalda siis e-posti veerg, enne kui jagad faili oma sõltumatu audiitoriga, New Yorgi linna kallutatuse auditi (Local Law 144) või EEOC neljaviiendiku reegli jaoks. Kuni 20 eksporti ettevõtte kohta päevas ja iga eksport on logis näha."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "Dokumendid on ainult inglise keeles."
+    ]
+  },
+  "trust": {
+    "title": "Usaldus ja turvalisus",
+    "text": "Kuidas prepza hoiab sinu ja sinu kandidaatide andmeid: turvalisus, privaatsus, värbamisseaduste järgimine, kus andmeid hoitakse, kes neid töötleb ja kui kaua neid säilitatakse.",
+    "actions": [
+      "Vaata, kuidas prepza andmeid kaitseb: sisselogimine, krüpteerimine, juurdepääsu kontroll, päringupiirangud ja varukoopiad.",
+      "Vaata, mida prepza pakub isikuandmete kaitse üldmääruse, ELi tehisintellekti määruse, Ühendkuningriigi ja USA jaoks, sealhulgas New Yorgi linna kallutatuse auditi seaduse jaoks.",
+      "Vaata, kus andmeid hoitakse, millised volitatud töötlejad neid töötlevad ja kui kaua iga liiki andmeid säilitatakse.",
+      "Ava tingimused, privaatsuspoliitika, andmetöötlusleping ja dokumendid ettevõtetele."
+    ],
+    "tips": [
+      "Kui sul on küsimus turvalisuse, privaatsuse või nõuetele vastavuse kohta või tahad teatada turvaprobleemist, kirjuta lehe lõpus olevale e-posti aadressile."
     ]
   },
   "terms": {

@@ -240,13 +240,15 @@
     "text": "Wszystko, co zrobili członkowie zespołu firmy, od najnowszych: co zrobili i z czym, kto to zrobił, kiedy oraz czy zrobił to za nich asystent, aplikacja AI, API lub ATS. Widzi go tylko właściciel.",
     "actions": [
       "Pokaż działania jednego członka zespołu lub jednego rodzaju: rozmowy, kandydaci, zespół, firma, rozliczenia lub integracje.",
-      "Pokaż działania z okresu między dwoma dniami."
+      "Pokaż działania z okresu między dwoma dniami.",
+      "Pobierz eksport do audytu stronniczości: plik CSV z każdym kandydatem, który skończył, ze wszystkich rozmów lub jednej i, jeśli chcesz, z okresu między dwoma dniami, z jego wynikiem, progiem zaliczenia, informacją, czy zaliczył, i czy uzyskał wynik powyżej mediany rozmowy, według adresu e-mail."
     ],
     "tips": [
       "Działania są przechowywane przez 12 miesięcy.",
       "Dziennik nie przechowuje osób: usunięty kandydat jest pokazany jako usunięty kandydat, a członek, który odszedł, jako były członek zespołu.",
       "Działania klucza API są widoczne pod nazwą klucza, a działania usuniętego klucza jako działania usuniętego klucza.",
-      "Wyświetlenia wyników jednego kandydata przez członka zespołu pojawiają się raz dziennie, z czasem ostatniego wyświetlenia."
+      "Wyświetlenia wyników jednego kandydata przez członka zespołu pojawiają się raz dziennie, z czasem ostatniego wyświetlenia.",
+      "prepza nie ma żadnych danych o płci, rasie ani pochodzeniu etnicznym: dodaj odpowiedzi, które kandydaci podali sami, według adresu e-mail, a potem usuń kolumnę z e-mailem, zanim przekażesz plik niezależnemu audytorowi, na potrzeby audytu stronniczości w Nowym Jorku (Local Law 144) lub zasady czterech piątych EEOC. Do 20 eksportów na firmę dziennie, a każdy jest widoczny w dzienniku."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "Dokumenty są dostępne tylko po angielsku."
+    ]
+  },
+  "trust": {
+    "title": "Zaufanie i bezpieczeństwo",
+    "text": "Jak prepza chroni Twoje dane i dane Twoich kandydatów: bezpieczeństwo, prywatność, zgodność z przepisami o rekrutacji, gdzie przechowywane są dane, kto je przetwarza i jak długo są przechowywane.",
+    "actions": [
+      "Zobacz, jak prepza chroni dane: logowanie, szyfrowanie, kontrola dostępu, limity zapytań i kopie zapasowe.",
+      "Zobacz, co prepza zapewnia na potrzeby RODO, unijnego aktu o AI, Wielkiej Brytanii i USA, w tym nowojorskiej ustawy o audytach stronniczości.",
+      "Zobacz, gdzie przechowywane są dane, którzy podprzetwarzający je obsługują i jak długo przechowywany jest każdy rodzaj danych.",
+      "Otwórz regulamin, politykę prywatności, umowę powierzenia przetwarzania danych i dokumenty dla firm."
+    ],
+    "tips": [
+      "Jeśli masz pytanie o bezpieczeństwo, prywatność lub zgodność z przepisami albo chcesz zgłosić problem z bezpieczeństwem, napisz na adres e-mail na końcu strony."
     ]
   },
   "terms": {

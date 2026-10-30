@@ -15,6 +15,7 @@ const LOCALIZED = [
   "/about",
   "/contact",
   "/accessibility",
+  "/trust",
   "/documents",
   "/practice",
   "/tests",

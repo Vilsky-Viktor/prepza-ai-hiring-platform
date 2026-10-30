@@ -40,6 +40,7 @@ export const PUBLIC_PATHS = [
   "/about",
   "/contact",
   "/accessibility",
+  "/trust",
   "/news",
   "/practice",
 ]
@@ -53,6 +54,7 @@ export const LOCALIZED_PATHS = [
   "/about",
   "/contact",
   "/accessibility",
+  "/trust",
   "/documents",
   "/practice",
   "/tests",

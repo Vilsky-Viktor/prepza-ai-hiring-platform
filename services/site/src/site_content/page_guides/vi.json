@@ -240,13 +240,15 @@
     "text": "Mọi việc các thành viên của công ty đã làm, mới nhất ở trên: họ đã làm gì và với cái gì, ai làm, khi nào, và việc đó có do trợ lý, một ứng dụng AI, API hay một ATS làm thay họ hay không. Chỉ chủ sở hữu thấy được.",
     "actions": [
       "Hiện thao tác của một thành viên, hoặc của một loại: phỏng vấn, ứng viên, nhóm, công ty, thanh toán hoặc tích hợp.",
-      "Hiện thao tác giữa hai ngày."
+      "Hiện thao tác giữa hai ngày.",
+      "Tải bản xuất cho kiểm toán thiên lệch: một tệp CSV gồm mọi ứng viên đã hoàn thành, cho tất cả buổi phỏng vấn hoặc một buổi và, nếu muốn, giữa hai ngày, kèm điểm của họ, điểm đạt, họ có đạt không và họ có đạt điểm trên trung vị của buổi phỏng vấn không, theo email."
     ],
     "tips": [
       "Thao tác được lưu trong 12 tháng.",
       "Nhật ký không lưu người: ứng viên đã bị xóa hiện là ứng viên đã bị xóa, còn thành viên đã rời đi hiện là cựu thành viên.",
       "Thao tác của một khóa API hiện dưới tên của khóa, còn thao tác của khóa đã bị xóa hiện là của khóa đã bị xóa.",
-      "Lượt xem kết quả của một ứng viên bởi một thành viên hiện một lần mỗi ngày, theo lần xem gần nhất."
+      "Lượt xem kết quả của một ứng viên bởi một thành viên hiện một lần mỗi ngày, theo lần xem gần nhất.",
+      "prepza không có dữ liệu về giới tính, chủng tộc hay sắc tộc: hãy thêm câu trả lời do chính ứng viên tự khai theo email, rồi xóa cột email trước khi gửi tệp cho kiểm toán viên độc lập của bạn, cho cuộc kiểm toán thiên lệch của Thành phố New York (Local Law 144) hoặc quy tắc bốn phần năm của EEOC. Mỗi công ty xuất tối đa 20 lần một ngày, và mỗi lần xuất đều hiện trong nhật ký."
     ]
   },
   "integrations": {
@@ -658,6 +660,19 @@
     ],
     "tips": [
       "Các tài liệu này chỉ có bằng tiếng Anh."
+    ]
+  },
+  "trust": {
+    "title": "Tin cậy và bảo mật",
+    "text": "Cách prepza giữ an toàn cho dữ liệu của bạn và của ứng viên: bảo mật, quyền riêng tư, tuân thủ luật tuyển dụng, nơi lưu trữ dữ liệu, ai xử lý dữ liệu và dữ liệu được giữ trong bao lâu.",
+    "actions": [
+      "Xem prepza bảo vệ dữ liệu thế nào: đăng nhập, mã hóa, kiểm tra quyền truy cập, giới hạn số yêu cầu và sao lưu.",
+      "Xem prepza cung cấp những gì cho GDPR, Đạo luật AI của EU, Vương quốc Anh và Hoa Kỳ, kể cả luật kiểm toán thiên lệch của Thành phố New York.",
+      "Xem dữ liệu được lưu ở đâu, những bên xử lý phụ nào xử lý dữ liệu và mỗi loại dữ liệu được giữ trong bao lâu.",
+      "Mở điều khoản, chính sách quyền riêng tư, thỏa thuận xử lý dữ liệu và tài liệu dành cho công ty."
+    ],
+    "tips": [
+      "Nếu có câu hỏi về bảo mật, quyền riêng tư hay tuân thủ, hoặc muốn báo một vấn đề bảo mật, hãy gửi email đến địa chỉ ở cuối trang."
     ]
   },
   "terms": {

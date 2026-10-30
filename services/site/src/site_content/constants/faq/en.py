@@ -84,7 +84,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Can I see who did what in my company?",
-        "answer": "Yes, if you own the company. Its Action log tab lists everything its members did, newest first: inviting or removing candidates, viewing results, changing interviews, the team, billing and integrations, with who did it, when, and whether the assistant, an AI app or the API did it for them. You can filter it by member, kind of action and dates. Actions are kept for 12 months. An API key's actions show under the key's name.",
+        "answer": "Yes, if you own the company. Its Action log tab lists everything its members did, newest first: inviting or removing candidates, viewing results, changing interviews, the team, billing and integrations, with who did it, when, and whether the assistant, an AI app or the API did it for them. You can filter it by member, kind of action and dates. Actions are kept for 12 months. An API key's actions show under the key's name. The owner can also download a bias-audit export there: a CSV file of every candidate who finished, with their grade and whether they passed, for an independent bias audit.",
     },
     {
         "key": "notes",
@@ -129,7 +129,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Can we use prepza for candidates in the UK and the US?",
-        "answer": "Yes. The data processing agreement covers UK and US law, and the instructions for companies and the candidate notice templates (with New York City, Illinois and Colorado versions) cover what you must tell candidates. For jobs in New York City, use it only once you've done what Local Law 144 asks of you: an independent bias audit within the year before use, its summary published, and a notice to candidates 10 business days before.",
+        "answer": "Yes. The data processing agreement covers UK and US law, and the instructions for companies and the candidate notice templates (with New York City, Illinois and Colorado versions) cover what you must tell candidates. For jobs in New York City, use it only once you've done what Local Law 144 asks of you: an independent bias audit within the year before use, its summary published, and a notice to candidates 10 business days before. The Action log's bias-audit export gives your auditor each finished candidate's grade and result, to match with your candidates' own self-reported answers.",
     },
     {
         "key": "emails",

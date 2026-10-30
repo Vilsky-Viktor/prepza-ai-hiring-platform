@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "Posso vedere chi ha fatto cosa nella mia azienda?",
-        "answer": "Sì, se sei il proprietario dell'azienda. La sua scheda Registro attività elenca tutto ciò che hanno fatto i membri, dal più recente: invitare o rimuovere candidati, vedere i risultati, modificare colloqui, team, fatturazione e integrazioni, con chi l'ha fatto, quando e se l'ha fatto per suo conto l'assistente, un'app di IA o l'API. Puoi filtrarlo per membro, tipo di azione e date. Le attività vengono conservate per 12 mesi. Le azioni di una chiave API compaiono con il nome della chiave.",
+        "answer": "Sì, se sei il proprietario dell'azienda. La sua scheda Registro attività elenca tutto ciò che hanno fatto i membri, dal più recente: invitare o rimuovere candidati, vedere i risultati, modificare colloqui, team, fatturazione e integrazioni, con chi l'ha fatto, quando e se l'ha fatto per suo conto l'assistente, un'app di IA o l'API. Puoi filtrarlo per membro, tipo di azione e date. Le attività vengono conservate per 12 mesi. Le azioni di una chiave API compaiono con il nome della chiave. Lì il proprietario può anche scaricare un export per l'audit dei bias: un file CSV di ogni candidato che ha finito, con il suo punteggio e se ha superato la soglia, per un audit indipendente sui bias.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Possiamo usare prepza per candidati nel Regno Unito e negli Stati Uniti?",
-        "answer": "Sì. L'accordo sul trattamento dei dati copre la legge del Regno Unito e degli Stati Uniti, e le istruzioni per le aziende e i modelli di informativa per i candidati (con versioni per New York City, l'Illinois e il Colorado) coprono ciò che devi comunicare ai candidati. Per posizioni a New York City, usalo solo dopo aver fatto ciò che la Local Law 144 ti richiede: un audit indipendente sui bias nell'anno precedente all'utilizzo, la pubblicazione della sua sintesi e un avviso ai candidati 10 giorni lavorativi prima.",
+        "answer": "Sì. L'accordo sul trattamento dei dati copre la legge del Regno Unito e degli Stati Uniti, e le istruzioni per le aziende e i modelli di informativa per i candidati (con versioni per New York City, l'Illinois e il Colorado) coprono ciò che devi comunicare ai candidati. Per posizioni a New York City, usalo solo dopo aver fatto ciò che la Local Law 144 ti richiede: un audit indipendente sui bias nell'anno precedente all'utilizzo, la pubblicazione della sua sintesi e un avviso ai candidati 10 giorni lavorativi prima. L'export per l'audit dei bias del Registro attività dà al tuo auditor il punteggio e l'esito di ogni candidato che ha finito, da abbinare alle risposte che i tuoi candidati hanno dichiarato loro stessi.",
     },
     {
         "key": "emails",

@@ -85,7 +85,7 @@ FAQ = [
     {
         "key": "action_log",
         "question": "¿Puedo ver quién hizo qué en mi empresa?",
-        "answer": "Sí, si eres el propietario de la empresa. Su pestaña Registro de acciones muestra todo lo que hicieron sus miembros, de lo más reciente a lo más antiguo: invitar o quitar candidatos, ver resultados y cambiar las entrevistas, el equipo, la facturación y las integraciones, con quién lo hizo, cuándo y si lo hizo en su nombre el asistente, una app de IA o la API. Puedes filtrarlo por miembro, tipo de acción y fechas. Las acciones se guardan durante 12 meses. Las acciones de una clave de API aparecen con el nombre de la clave.",
+        "answer": "Sí, si eres el propietario de la empresa. Su pestaña Registro de acciones muestra todo lo que hicieron sus miembros, de lo más reciente a lo más antiguo: invitar o quitar candidatos, ver resultados y cambiar las entrevistas, el equipo, la facturación y las integraciones, con quién lo hizo, cuándo y si lo hizo en su nombre el asistente, una app de IA o la API. Puedes filtrarlo por miembro, tipo de acción y fechas. Las acciones se guardan durante 12 meses. Las acciones de una clave de API aparecen con el nombre de la clave. Allí el propietario también puede descargar una exportación para auditoría de sesgos: un archivo CSV con cada candidato que terminó, con su nota y si aprobó, para una auditoría de sesgos independiente.",
     },
     {
         "key": "notes",
@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "¿Podemos usar prepza con candidatos del Reino Unido y Estados Unidos?",
-        "answer": "Sí. El acuerdo de tratamiento de datos cubre la legislación del Reino Unido y de Estados Unidos, y las instrucciones para empresas y las plantillas de aviso para candidatos (con versiones para la ciudad de Nueva York, Illinois y Colorado) cubren lo que debes comunicar a los candidatos. Para puestos en la ciudad de Nueva York, úsalo solo cuando hayas cumplido lo que te exige la Local Law 144: una auditoría de sesgos independiente en el año anterior a su uso, la publicación de su resumen y un aviso a los candidatos 10 días hábiles antes.",
+        "answer": "Sí. El acuerdo de tratamiento de datos cubre la legislación del Reino Unido y de Estados Unidos, y las instrucciones para empresas y las plantillas de aviso para candidatos (con versiones para la ciudad de Nueva York, Illinois y Colorado) cubren lo que debes comunicar a los candidatos. Para puestos en la ciudad de Nueva York, úsalo solo cuando hayas cumplido lo que te exige la Local Law 144: una auditoría de sesgos independiente en el año anterior a su uso, la publicación de su resumen y un aviso a los candidatos 10 días hábiles antes. La exportación para auditoría de sesgos del Registro de acciones da a tu auditor la nota y el resultado de cada candidato que terminó, para cruzarlos con las respuestas que tus candidatos dieron ellos mismos.",
     },
     {
         "key": "emails",

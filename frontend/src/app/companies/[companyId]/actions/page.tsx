@@ -3,6 +3,7 @@ import { redirect } from "next/navigation"
 
 import { ActionFilters } from "@/features/company/components/action-filters"
 import { ActionList } from "@/features/company/components/action-list"
+import { BiasAuditExport } from "@/features/company/components/bias-audit-export"
 import { CompanyHeader } from "@/features/company/components/company-header"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { TOKEN_COOKIE } from "@/config/auth"
@@ -11,7 +12,12 @@ import { actionFilters } from "@/lib/action-log"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyHeaderProps } from "@/lib/company-header"
-import type { Company, CompanyAction, CompanyMember } from "@/types/company"
+import type {
+  Company,
+  CompanyAction,
+  CompanyMember,
+  Interview,
+} from "@/types/company"
 
 export const generateMetadata = () => translatedTitle("company", "actions")
 
@@ -32,7 +38,7 @@ export default async function ActionsPage({
   const company = signedIn
     ? await serverFetch<Company>(`/companies/companies/${companyId}`)
     : null
-  const [members, first] = company?.can_see_actions
+  const [members, first, interviews] = company?.can_see_actions
     ? await Promise.all([
         // Without a limit, the API's largest page: every member.
         serverFetch<CompanyMember[]>(
@@ -41,8 +47,12 @@ export default async function ActionsPage({
         serverFetch<CompanyAction[]>(
           `${path}${filters.size ? "&" : "?"}limit=${PAGE_SIZE}`
         ),
+        // The newest interviews for the bias-audit export's picker, which finds any other.
+        serverFetch<Interview[]>(
+          `/companies/interviews?company_id=${companyId}&limit=100`
+        ),
       ])
-    : [null, null]
+    : [null, null, null]
 
   if (!signedIn) {
     return (
@@ -67,6 +77,12 @@ export default async function ActionsPage({
         {...companyHeaderProps(company)}
         companyId={companyId}
         current="actions"
+        action={
+          <BiasAuditExport
+            companyId={companyId}
+            interviews={interviews ?? []}
+          />
+        }
       >
         <ActionFilters
           members={(members ?? []).filter((member) => member.joined)}
