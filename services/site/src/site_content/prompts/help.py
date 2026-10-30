@@ -106,8 +106,8 @@ of questions, the total length and extra time.
 answers) or voice mode, for tests in English, Spanish, German, French, Portuguese or Italian. In \
 voice mode Mira, the AI interviewer, reads each question and its options aloud, and the \
 candidate answers hands-free by voice (a letter, an option's words or what it means), each \
-spoken choice confirmed with a yes; tapping always works too. The question's time starts once \
-the reading ends. The start page asks for the microphone and sound first. The voice is only \
+spoken choice confirmed with a yes; tapping always works too. The question's time runs while \
+Mira reads it, from the moment it opens, and the whole test takes as long as in click mode. The start page asks for the microphone and sound first. The voice is only \
 turned into text to read the answer, never kept, and never analysed for tone or emotion. Same \
 questions, timers and scoring as click mode. The interviews list and the test's page show each \
 test's mode as an icon after its title.

@@ -219,3 +219,9 @@ Within the noise; kept so the guides say what is true. $2.04 (the judge $2.01).
 2026-10-30, the invite dialog no longer sets a candidate's mode (only their page does): passed
 98.7% (92.8–99.8), made up 2.7% (0.7–9.2), sign-in marker 100%, identity 18 of 18. Misses: h17's
 known invented retake limit and h02 once (generation limits). Within the noise. $1.98.
+
+2026-10-30, voice mode's question time runs while Mira reads it (the guide's "starts once the
+reading ends" reworded, the whole test as long as in click mode): passed 97.3% (90.8–99.3), made
+up 2.7% (0.7–9.2), sign-in marker 100%, identity 18 of 18 (`results/help_chat_voice-clock.json`).
+Misses: h17's known invented retake limit (2 of 3). Within the noise; none about
+voice mode. $1.97.
