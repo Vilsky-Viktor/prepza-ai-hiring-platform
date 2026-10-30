@@ -233,3 +233,13 @@ test("the four columns show, one linking to the documents", { tag: "@phone" }, a
   // The local dev server compiles the documents on first open.
   await expect(page).toHaveURL(/\/documents$/, { timeout: 60_000 });
 });
+
+test("on a phone the loop's steps show as cards in place of the ring", { tag: "@phone-only" }, async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  const section = await openTrust(page);
+
+  await expect(section.getByTestId("quality-step").first()).toBeHidden();
+  await expect(section.getByTestId("phone-steps").getByTestId("icon-card")).toHaveCount(5);
+});

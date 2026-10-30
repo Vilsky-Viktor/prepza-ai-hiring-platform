@@ -148,7 +148,7 @@
     "price": "{price} lang bawat aplikante."
   },
   "start": {
-    "placeholder": "Mag-paste ng job description, o ilarawan ang role at ang dapat malaman ng aplikante",
+    "placeholder": "I-paste dito ang iyong job description…",
     "description": "Job description",
     "submit": "Gumawa ng interview",
     "whichCompany": "Para sa aling kumpanya ang interview na ito?",
@@ -1391,6 +1391,8 @@
     "demos": "Video",
     "demosTooltip": "Panoorin ang mga demo sa YouTube",
     "videoTooltip": "Panoorin kung paano gumagana ang prepza",
+    "watchVideo": "Panoorin ang video",
+    "howItWorks": "Paano ito gumagana",
     "askAgent": "magtanong kay Mira",
     "create": {
       "title": "Gumawa ng interview sa loob ng ilang minuto",
@@ -1400,13 +1402,20 @@
         "templates": "may mga handang template",
         "expert": "hindi kailangan ng eksperto sa larangan"
       },
-      "describe": "I-paste ang iyong description",
-      "adjust": "Ayusin ang mga topic",
-      "ask": "Hilingin sa AI na baguhin ang mga topic",
-      "ready": "Handa na ang interview mo",
+      "describe": "<n>1.</n> I-paste ang iyong description",
+      "adjust": "<n>2.</n> Ayusin ang mga topic",
+      "menu": {
+        "cut": "I-cut",
+        "copy": "Kopyahin",
+        "paste": "I-paste"
+      },
+      "ready": "<n>3.</n> Handa na ang interview mo",
       "status": "Handa na",
-      "invite": "Mag-imbita ng mga aplikante",
-      "waiting": "naghihintay…"
+      "phone": {
+        "describe": "Mag-paste ng job description, o magsulat ng ilang salita tungkol sa role.",
+        "adjust": "Itira ang mahahalagang topic, palitan ang pangalan nila o magdagdag ng sarili mo.",
+        "ready": "May mga tanong para sa bawat topic; imbitahan ang mga aplikante gamit ang link o email."
+      }
     },
     "proof": {
       "anyJob": "Anumang trabaho, anumang larangan",
@@ -1427,16 +1436,34 @@
         "agent": "AI assistant",
         "apps": "Mga AI app (MCP)"
       },
-      "automate": "I-automate ang hiring",
+      "descriptions": {
+        "ats": "Direkta mula sa iyong ATS",
+        "email": "Isang link sa email nila",
+        "file": "Mag-upload ng listahan",
+        "link": "Isang link para sa job ad",
+        "api": "Mula sa sarili mong code",
+        "sdk": "Sa sarili mong site",
+        "agent": "Itanong lang kay Mira",
+        "apps": "Mula sa Claude o ChatGPT"
+      },
+      "slackDescription": "Mga update sa channel mo",
+      "automate": "I-automate ang hiring gamit ang",
       "developerDocs": "dokumentasyon para sa developer",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> aplikante} other {<n>#</n> aplikante}}"
     },
     "candidates": {
       "title": "Ang nakikita ng mga aplikante",
-      "text": "Isang timed interview na may brand mo: single choice, multi-choice at praktikal.",
+      "text": "Isang timed interview na may brand mo, sinasagot sa click o sa boses.",
+      "micPrompt": {
+        "asks": "Gusto ng {site} na",
+        "microphone": "Gamitin ang iyong mga mikropono",
+        "always": "Payagan habang binibisita ang site",
+        "once": "Payagan ngayong pagkakataon",
+        "never": "Huwag kailanman payagan"
+      },
       "notes": {
-        "language": "sa sarili nilang wika",
+        "modes": "click/voice mode",
         "phone": "gumagana sa phone",
         "time": "makikita agad ang oras",
         "extraTime": "dagdag na oras para sa nangangailangan"
@@ -1450,17 +1477,48 @@
         "extraTime": "Kailangan mo ba ng mas maraming oras? Magtanong sa <bdi>{company}</bdi> bago ka magsimula.",
         "people": "Mga tao sa <bdi>{company}</bdi> ang nagre-review ng mga resulta at nagpapasya.",
         "stay": "Manatili sa page na ito hanggang matapos ka."
+      },
+      "phone": {
+        "click": {
+          "title": "Click mode",
+          "text": "Pinipili ng mga aplikante ang sagot nila, may timer sa bawat tanong."
+        },
+        "voice": {
+          "title": "Voice mode kasama si Mira",
+          "text": "Si Mira, ang aming AI interviewer, ang nagbabasa ng mga tanong at nakikinig sa mga sagot."
+        }
       }
     },
     "shareReports": {
       "title": "Tingnan kung sino ang pinakamagaling\nI-share sa loob ng ilang segundo",
       "text": "Ang mga sagot at grade ng bawat aplikante, ishine-share sa email o chat.",
-      "chatQuestion": "Uy, may pumasa na ba?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Mensahe",
+        "best": "ito ang mukhang pinakamagaling",
+        "flagged": "siguradong nandadaya ito gamit ang AI"
+      },
+      "proceeding": "Itutuloy natin sina {first} at {second}",
       "samples": "Mga halimbawang ulat",
       "notes": {
         "notes": "magsulat ng mga note sa interview",
         "pdf": "magpadala ng mga PDF report",
-        "messengers": "i-share ang mga buod sa messaging app"
+        "messengers": "i-share ang mga buod sa messaging app",
+        "slack": "mga notification sa Slack"
+      },
+      "phone": {
+        "pdf": {
+          "title": "I-download ang PDF",
+          "text": "Ang grades at sagot ng bawat aplikante sa iisang report."
+        },
+        "share": {
+          "title": "I-share sa messaging app o email",
+          "text": "Ipadala sa team mo ang buod ng isang aplikante sa loob ng ilang segundo."
+        },
+        "team": {
+          "title": "Mga note ng team at Slack",
+          "text": "Mag-iwan ng mga note para sa team mo, at maabisuhan sa Slack kapag tapos na ang isang aplikante."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "walang subscription",
         "unanswered": "walang bayad ang mga imbitasyong hindi sinagot",
         "expire": "hindi nag-e-expire ang credits",
-        "refund": "mare-refund ang binayarang credits sa 14 araw",
-        "tax": "hindi pa kasama sa presyo ang VAT o sales tax"
+        "refund": "mare-refund ang hindi nagamit na binayarang credits"
       }
     }
   },

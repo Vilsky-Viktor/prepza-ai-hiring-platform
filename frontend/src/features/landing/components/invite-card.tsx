@@ -30,18 +30,21 @@ type Mark = InviteSource["key"] | "slack"
 
 /** One card on the invite stage, bordered on the page's background like the app's lists: its
  * mark (an icon, the ATSs' logos, the MCP mark or Slack's) in a soft tile like the integrations'
- * logo tiles, and its short label. On phones and tablets a cell of the grid, the tile above the
+ * logo tiles, and its short label, with what it does under it when given. On phones and tablets a cell of the grid, the tile above the
  * label; from laptops up, side by side. */
 export function InviteCard({
   ref,
   mark,
   label,
+  description,
   className,
   style,
 }: {
   ref?: React.Ref<HTMLLIElement>
   mark: Mark
   label: string
+  // What it does, in a few words, under the label (from laptops up).
+  description?: string
   className?: string
   style?: React.CSSProperties
 }) {
@@ -66,8 +69,18 @@ export function InviteCard({
       >
         <MarkIcon mark={mark} />
       </span>
-      <span className="min-w-0">
-        <KeepAcronyms text={label} />
+      {/* A long word (Russian's "ИИ-приложения") breaks rather than reaching past a phone's
+          narrow cell. */}
+      <span className="max-w-full min-w-0 wrap-anywhere hyphens-auto">
+        <span className="block">
+          <KeepAcronyms text={label} />
+        </span>
+        {description && (
+          // Laptops up: phones' and tablets' cells are too narrow to keep it to one line.
+          <span className="mt-0.5 block text-sm text-muted-foreground normal-case max-lg:hidden">
+            {description}
+          </span>
+        )}
       </span>
     </li>
   )

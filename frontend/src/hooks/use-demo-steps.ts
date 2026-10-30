@@ -28,12 +28,12 @@ const STEPS_SEEN = Array.from({ length: 21 }, (_, i) => i / 20)
 /** Where a looping demo is in its `steps`: the step's index and its count, and a `ref` for the
  * element whose coming into view starts it. It rests on its first step until then, plays the
  * steps over and over while in view, and starts again from the first when it's back; `skipTo`
- * moves it on to a later step. Without
+ * moves it on to a later step, `jumpTo` to any. Without
  * scripts and with reduced motion (useStill) it rests on the last step, a complete frame. */
 export function useDemoSteps<T extends Element>(steps: readonly DemoStep[]) {
   const ref = useRef<T>(null)
-  // Set while it plays: moves it on to a later step.
-  const jump = useRef<((to: number) => void) | null>(null)
+  // Set while it plays: moves it to another step (only on to a later one unless `back`).
+  const jump = useRef<((to: number, back: boolean) => void) | null>(null)
   const last = steps.length - 1
   const complete = { index: last, n: steps[last].repeat ?? 0 }
   const [at, setAt] = useState(complete)
@@ -64,8 +64,8 @@ export function useDemoSteps<T extends Element>(steps: readonly DemoStep[]) {
 
     let shown = false
 
-    jump.current = (to) => {
-      if (!skips(shown, index, to)) {
+    jump.current = (to, back) => {
+      if (!(back ? shown && index !== to : skips(shown, index, to))) {
         return
       }
 
@@ -111,9 +111,11 @@ export function useDemoSteps<T extends Element>(steps: readonly DemoStep[]) {
   }, [steps, still])
 
   // On to step `to` now, if it's playing and hasn't got there yet.
-  const skipTo = useCallback((to: number) => jump.current?.(to), [])
+  const skipTo = useCallback((to: number) => jump.current?.(to, false), [])
+  // To step `to` now, earlier or later, if it's playing (a visitor's choice).
+  const jumpTo = useCallback((to: number) => jump.current?.(to, true), [])
 
-  return { ref, skipTo, ...(still ? complete : at) }
+  return { ref, skipTo, jumpTo, ...(still ? complete : at) }
 }
 
 /** Whether a demo is seen: IN_VIEW of it on a `screen` this tall, or, for one taller than the
@@ -145,7 +147,7 @@ export function countedAt(
   name: string,
   full: number
 ) {
-  const at = steps.findIndex((step) => step.name === name)
+  const at = stepIndex(steps, name)
 
   return index < at ? 0 : index === at ? n : full
 }
@@ -153,4 +155,9 @@ export function countedAt(
 /** What the pointer is on at step `index` of `steps`: the last step so far that moved it. */
 export function pointedAt(steps: readonly DemoStep[], index: number) {
   return steps.slice(0, index + 1).findLast((step) => step.point)?.point
+}
+
+/** Where the step called `name` is in `steps`. */
+export function stepIndex(steps: readonly DemoStep[], name: string) {
+  return steps.findIndex((step) => step.name === name)
 }

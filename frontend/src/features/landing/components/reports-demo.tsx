@@ -2,130 +2,136 @@
 
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
-import { useRef } from "react"
+import { useMemo, useState } from "react"
 
 import { DemoCandidates } from "@/features/landing/components/demo-candidates"
-import { DemoChat } from "@/features/landing/components/demo-chat"
+import {
+  DemoChat,
+  type DemoMessage,
+} from "@/features/landing/components/demo-chat"
+import { DemoDownloadCue } from "@/features/landing/components/demo-download-cue"
+import { DemoNotes } from "@/features/landing/components/demo-notes"
 import { DemoPanel } from "@/features/landing/components/demo-panel"
 import { DemoPointer } from "@/features/landing/components/demo-pointer"
 import { DemoReport } from "@/features/landing/components/demo-report"
 import { DemoSentNotice } from "@/features/landing/components/demo-popup"
 import { DemoSharePopup } from "@/features/landing/components/demo-share"
-import { DEMO_SHARE_EMAIL } from "@/config/reports-demo"
+import { DemoSlackChannel } from "@/features/landing/components/demo-slack-channel"
+import {
+  DEMO_BEST,
+  DEMO_CHAT_TIMES,
+  DEMO_FLAGGED,
+  DEMO_REPORT_CANDIDATES,
+  DEMO_RUNNER_UP,
+  DEMO_SHARE_EMAIL,
+} from "@/config/reports-demo"
+import {
+  REPORT_TARGETS,
+  type ReportStep,
+  reportSteps,
+} from "@/config/reports-demo-steps"
 import {
   countedAt,
-  type DemoStep,
   pointedAt,
+  stepIndex,
   useDemoSteps,
 } from "@/hooks/use-demo-steps"
 import { bdi } from "@/lib/bidi"
 
-// A step and what it shows: the screen, whether the share popup is open or the "sent" notice
-// shows, and how far down the report is scrolled (0 to 1).
-type Screen = "list" | "report" | "chat"
-type Step = DemoStep & {
-  screen: Screen
-  popup?: boolean
-  notice?: boolean
-  scrolled?: number
+// The list's action pressed at each step that presses one.
+const LIST_PRESSES: Record<string, "download" | "share"> = {
+  download: "download",
+  share: "share",
 }
 
-// On the candidates list the pointer shares the report by email: the popup, the address
-// typed, sent. It opens a candidate's report, which scrolls through their answers, and shares
-// it to WhatsApp, which gets the text summary. Last, the report at its top: the still frame.
-const STEPS: Step[] = [
-  { name: "list", ms: 1600, point: "none", screen: "list" },
-  { name: "aimListShare", ms: 900, point: "listShare", screen: "list" },
-  { name: "listShare", ms: 450, click: true, screen: "list", popup: true },
-  { name: "aimEmail", ms: 700, point: "email", screen: "list", popup: true },
-  { name: "focusEmail", ms: 300, click: true, screen: "list", popup: true },
-  {
-    name: "typing",
-    ms: 70,
-    repeat: DEMO_SHARE_EMAIL.length,
-    screen: "list",
-    popup: true,
-  },
-  { name: "aimSend", ms: 700, point: "send", screen: "list", popup: true },
-  { name: "send", ms: 450, click: true, screen: "list", popup: true },
-  { name: "sent", ms: 2200, point: "none", screen: "list", notice: true },
-  { name: "aimRow", ms: 900, point: "row", screen: "list", notice: true },
-  { name: "openRow", ms: 450, click: true, screen: "list", notice: true },
-  { name: "report", ms: 1400, point: "none", screen: "report" },
-  { name: "scrollMid", ms: 2600, screen: "report", scrolled: 0.5 },
-  { name: "scrollEnd", ms: 2600, screen: "report", scrolled: 1 },
-  {
-    name: "aimReportShare",
-    ms: 900,
-    point: "reportShare",
-    screen: "report",
-    scrolled: 1,
-  },
-  {
-    name: "reportShare",
-    ms: 450,
-    click: true,
-    screen: "report",
-    scrolled: 1,
-    popup: true,
-  },
-  {
-    name: "aimWhatsApp",
-    ms: 900,
-    point: "whatsApp",
-    screen: "report",
-    scrolled: 1,
-    popup: true,
-  },
-  {
-    name: "whatsApp",
-    ms: 450,
-    click: true,
-    screen: "report",
-    scrolled: 1,
-    popup: true,
-  },
-  { name: "chat", ms: 6000, point: "none", screen: "chat" },
-  { name: "end", ms: 1500, screen: "report" },
-]
-const REPORT = STEPS.findIndex(({ name }) => name === "report")
-
-/** Reports and sharing, played by a pointer in one panel of a fixed height: an interview's
- * candidates and their report emailed, then one candidate's report scrolled through and shared
- * to WhatsApp as a text summary. One screen fades out and the next in; the popup and the notice
- * lie over them. With reduced motion, the candidate's report at its top. */
-export function ReportsDemo() {
-  const report = useTranslations("report")
-  const { ref, ...at } = useDemoSteps<HTMLDivElement>(STEPS)
-  const step = STEPS[at.index]
-  const listShareRef = useRef<HTMLSpanElement>(null)
-  const rowRef = useRef<HTMLLIElement>(null)
-  const reportShareRef = useRef<HTMLSpanElement>(null)
-  const emailRef = useRef<HTMLDivElement>(null)
-  const sendRef = useRef<HTMLSpanElement>(null)
-  const whatsAppRef = useRef<HTMLSpanElement>(null)
-  const targets = {
-    listShare: listShareRef,
-    row: rowRef,
-    reportShare: reportShareRef,
-    email: emailRef,
-    send: sendRef,
-    whatsApp: whatsAppRef,
+/** What's pressed in the share dialog at step `name`. */
+function popupPressed(name: string) {
+  if (name === "send") {
+    return "send"
   }
-  const point = pointedAt(STEPS, at.index)
-  // The address is typed into the list's popup only; the report's opens empty.
-  const letters =
-    at.index < REPORT
-      ? countedAt(STEPS, at, "typing", DEMO_SHARE_EMAIL.length)
-      : 0
+
+  return name.startsWith("whatsApp") ? "whatsApp" : null
+}
+
+/** The chat's messages at step `index`: each turn's summary once it arrives, then its line once
+ * sent. */
+function messagesAt(
+  steps: ReportStep[],
+  index: number,
+  lines: [string, string]
+): DemoMessage[] {
+  const after = (name: string) => index >= stepIndex(steps, name)
+  const messages: DemoMessage[] = []
+
+  ;[DEMO_BEST, DEMO_FLAGGED].forEach((candidate, at) => {
+    if (after(`summary${at}`)) {
+      messages.push({
+        summary: DEMO_REPORT_CANDIDATES[candidate],
+        time: DEMO_CHAT_TIMES[at * 2],
+      })
+    }
+
+    if (after(`sent${at}`)) {
+      messages.push({ text: lines[at], time: DEMO_CHAT_TIMES[at * 2 + 1] })
+    }
+  })
+
+  return messages
+}
+
+/** Reports and sharing, played by a pointer in one panel of a fixed size: the interview's
+ * candidates, their PDF downloaded and emailed to the manager; the best candidate's page shared
+ * to WhatsApp (its text summary, then a line typed); the flagged one's the same; then a note
+ * posted on the interview's notes, and last the Slack channel with prepza's messages. Each screen fades out and the next in; the share dialog, the
+ * download and the notices lie over them. With reduced motion, the Slack channel at its newest message. */
+export function ReportsDemo() {
+  const t = useTranslations("landing.shareReports")
+  const report = useTranslations("report")
+  const lines: [string, string] = [t("chat.best"), t("chat.flagged")]
+  const note = t("proceeding", {
+    first: DEMO_REPORT_CANDIDATES[DEMO_BEST].name,
+    second: DEMO_REPORT_CANDIDATES[DEMO_RUNNER_UP].name,
+  })
+  const steps = useMemo(
+    () => reportSteps(DEMO_BEST, DEMO_FLAGGED, lines, DEMO_SHARE_EMAIL, note),
+    // The texts decide the steps' lengths.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [lines[0], lines[1], note]
+  )
+  const { ref, ...at } = useDemoSteps<HTMLDivElement>(steps)
+  const step = steps[at.index]
+  const after = (name: string) => at.index >= stepIndex(steps, name)
+  // What the pointer moves to: found in the screen shown when the pointer looks for it.
+  const [targets] = useState(() =>
+    Object.fromEntries(
+      REPORT_TARGETS.map((name) => [
+        name,
+        {
+          get current() {
+            return (
+              ref.current?.querySelector<HTMLElement>(
+                `[data-shown=true] [data-demo-target=${name}], [data-overlay] [data-demo-target=${name}]`
+              ) ?? null
+            )
+          },
+        },
+      ])
+    )
+  )
+  const point = pointedAt(steps, at.index)
+  const turn = after("aimRow1") ? 1 : 0
+  const typedTurn = countedAt(steps, at, `typing${turn}`, lines[turn].length)
+  const chatTyped = after(`sent${turn}`) ? "" : lines[turn].slice(0, typedTurn)
 
   // A screen, shown while it's the step's, fading in after the one before has faded out.
-  function screen(name: Screen, content: React.ReactNode) {
+  function screen(shown: boolean, key: string, content: React.ReactNode) {
     return (
       <div
+        key={key}
+        data-shown={shown}
         className={cn(
           "flex min-h-0 flex-col transition-[opacity,translate,visibility]",
-          step.screen === name
+          shown
             ? "delay-200 duration-500"
             : "invisible translate-y-2 opacity-0 duration-200"
         )}
@@ -136,54 +142,90 @@ export function ReportsDemo() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-5xl">
+    <div
+      data-testid="reports-demo"
+      data-step={step.name}
+      className="mx-auto w-full max-w-5xl"
+    >
       <DemoPanel ref={ref}>
         <DemoPointer
-          target={
-            point && point in targets
-              ? targets[point as keyof typeof targets]
-              : null
-          }
+          target={targets[point ?? ""] ?? null}
           clicking={step.click === true}
           click={at.index}
         />
         {/* As tall on every screen, so nothing moves as they change. */}
-        <div className="grid h-136 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] p-2 *:min-w-0 *:[grid-area:1/1] sm:h-128 sm:p-5">
+        <div className="grid h-176 grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] p-2 *:min-w-0 *:[grid-area:1/1] max-sm:h-160 sm:h-152 sm:p-5">
           {screen(
+            step.screen === "list",
             "list",
             <DemoCandidates
-              shareRef={listShareRef}
-              sharePressed={step.name === "listShare"}
-              rowRef={rowRef}
-              rowPressed={step.name === "openRow"}
+              pressed={LIST_PRESSES[step.name] ?? null}
+              opened={
+                step.name.startsWith("openRow")
+                  ? (step.candidate ?? steps[at.index + 1]?.candidate ?? null)
+                  : null
+              }
+            />
+          )}
+          {[DEMO_BEST, DEMO_FLAGGED].map((candidate) =>
+            screen(
+              step.screen === "page" && step.candidate === candidate,
+              `page${candidate}`,
+              <DemoReport
+                candidate={DEMO_REPORT_CANDIDATES[candidate]}
+                scrolled={step.scrolled ?? 0}
+                pressed={step.name.startsWith("share")}
+              />
+            )
+          )}
+          {screen(
+            step.screen === "chat",
+            "chat",
+            <DemoChat
+              messages={messagesAt(steps, at.index, lines)}
+              typed={chatTyped}
+              typing={step.name === `typing${turn}`}
+              pressed={step.name === `send${turn}`}
             />
           )}
           {screen(
-            "report",
-            <DemoReport
-              scrolled={step.scrolled ?? 0}
-              gliding={step.name.startsWith("scroll")}
-              shareRef={reportShareRef}
-              sharePressed={step.name === "reportShare"}
+            step.screen === "slack",
+            "slack",
+            <DemoSlackChannel scrolled={after("slackScrolled")} />
+          )}
+          {screen(
+            step.screen === "notes",
+            "notes",
+            <DemoNotes
+              typed={
+                after("post")
+                  ? ""
+                  : note.slice(
+                      0,
+                      countedAt(steps, at, "typingNote", note.length)
+                    )
+              }
+              pressed={step.name === "post"}
+              posted={after("posted") ? note : null}
             />
           )}
-          {screen("chat", <DemoChat shown={step.screen === "chat"} />)}
         </div>
-        <DemoSharePopup
-          open={step.popup === true}
-          email={DEMO_SHARE_EMAIL.slice(0, letters)}
-          typing={["focusEmail", "typing"].includes(step.name)}
-          pressed={
-            step.name === "send"
-              ? "send"
-              : step.name === "whatsApp"
-                ? "whatsApp"
-                : null
-          }
-          emailRef={emailRef}
-          sendRef={sendRef}
-          whatsAppRef={whatsAppRef}
-        />
+        <div data-overlay>
+          <DemoSharePopup
+            open={step.popup === true}
+            email={
+              step.screen === "list"
+                ? DEMO_SHARE_EMAIL.slice(
+                    0,
+                    countedAt(steps, at, "typingEmail", DEMO_SHARE_EMAIL.length)
+                  )
+                : ""
+            }
+            typing={["focusEmail", "typingEmail"].includes(step.name)}
+            pressed={popupPressed(step.name)}
+          />
+        </div>
+        <DemoDownloadCue shown={step.download === true} />
         <DemoSentNotice
           shown={step.notice === true}
           text={report.rich("sent", { email: DEMO_SHARE_EMAIL, ...bdi })}

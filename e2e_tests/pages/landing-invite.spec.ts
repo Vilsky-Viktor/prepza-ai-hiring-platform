@@ -16,7 +16,7 @@ async function openPicture(page: Page) {
   return section;
 }
 
-test("every way in and Slack are joined to the interview by a wire", { tag: "@phone" }, async ({ page }) => {
+test("every way in and Slack are joined to the interview by a wire", async ({ page }) => {
   // The local dev server compiles the home page on first open.
   test.setTimeout(120_000);
   const section = await openPicture(page);
@@ -65,7 +65,7 @@ test("every way in and Slack are joined to the interview by a wire", { tag: "@ph
   ]);
 });
 
-test("no wire runs over the interview's card", { tag: "@phone" }, async ({ page }) => {
+test("no wire runs over the interview's card", async ({ page }) => {
   test.setTimeout(120_000);
   const section = await openPicture(page);
   const wires = section.locator("svg > g > path");
@@ -123,4 +123,24 @@ test("the developer docs button opens the developer docs", async ({ page }) => {
   await section.getByRole("link").click();
   // The local dev server compiles the docs on first open.
   await expect(page).toHaveURL(/\/api-docs$/, { timeout: 30_000 });
+});
+
+test("on a phone the ways in show without wires, edge to edge", { tag: "@phone-only" }, async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  const section = await openPicture(page);
+
+  await expect(section.getByTestId("invite-card")).toHaveCount(WAYS_IN.length + 1);
+  await expect(section.locator("svg").first()).toBeHidden();
+  // The rows and Slack's card reach both edges of the screen.
+  const edges = await section.getByTestId("invite-card").evaluateAll((cards) => {
+    const boxes = cards.map((card) => card.getBoundingClientRect());
+
+    return [
+      Math.round(Math.min(...boxes.map((box) => box.left))),
+      Math.round(Math.max(...boxes.map((box) => box.right))),
+    ];
+  });
+  expect(edges).toEqual([0, page.viewportSize()!.width]);
 });

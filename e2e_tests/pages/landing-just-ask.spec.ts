@@ -46,3 +46,20 @@ test("the lit card's icon stands out from the others", async ({ page }) => {
     })
     .toBe(true);
 });
+
+test("on a phone the three cards show without the chat, each as wide as the screen", { tag: "@phone-only" }, async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  await page.goto("/");
+  const section = page.locator("#agent");
+  await section.scrollIntoViewIfNeeded();
+  const cards = section.getByTestId("icon-card");
+  await expect(cards).toHaveCount(3);
+
+  await expect(section.getByTestId("agent-chat")).toBeHidden();
+  const widths = await cards.evaluateAll((all) =>
+    all.map((card) => Math.round(card.getBoundingClientRect().width)),
+  );
+  expect(new Set(widths)).toEqual(new Set([page.viewportSize()!.width]));
+});

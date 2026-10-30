@@ -51,7 +51,7 @@ export function NetOutside({
             d={`M 0 0 H ${cell} M 0 0 V ${cell}`}
             fill="none"
             strokeWidth={1}
-            className="stroke-border"
+            className="stroke-muted-foreground/30"
           />
         </pattern>
         <radialGradient

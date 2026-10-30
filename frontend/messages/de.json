@@ -148,7 +148,7 @@
     "price": "Nur {price} pro Kandidat."
   },
   "start": {
-    "placeholder": "Füge eine Stellenbeschreibung ein oder beschreibe die Rolle und was ein Kandidat wissen sollte",
+    "placeholder": "Füge hier deine Stellenbeschreibung ein…",
     "description": "Stellenbeschreibung",
     "submit": "Interview erstellen",
     "whichCompany": "Für welches Unternehmen ist dieses Interview?",
@@ -1391,6 +1391,8 @@
     "demos": "Video",
     "demosTooltip": "Demos auf YouTube ansehen",
     "videoTooltip": "Sieh dir an, wie prepza funktioniert",
+    "watchVideo": "Video ansehen",
+    "howItWorks": "So funktioniert’s",
     "askAgent": "Mira fragen",
     "create": {
       "title": "Ein Interview in Minuten erstellen",
@@ -1400,13 +1402,20 @@
         "templates": "fertige Vorlagen verfügbar",
         "expert": "kein Fachexperte nötig"
       },
-      "describe": "Beschreibung einfügen",
-      "adjust": "Themen anpassen",
-      "ask": "Themen von der KI ändern lassen",
-      "ready": "Dein Interview ist fertig",
+      "describe": "<n>1.</n> Beschreibung einfügen",
+      "adjust": "<n>2.</n> Themen anpassen",
+      "menu": {
+        "cut": "Ausschneiden",
+        "copy": "Kopieren",
+        "paste": "Einfügen"
+      },
+      "ready": "<n>3.</n> Dein Interview ist fertig",
       "status": "Bereit",
-      "invite": "Kandidaten einladen",
-      "waiting": "wartet…"
+      "phone": {
+        "describe": "Füge eine Stellenbeschreibung ein oder schreib ein paar Worte zur Rolle.",
+        "adjust": "Behalte die wichtigen Themen, benenne sie um oder füge eigene hinzu.",
+        "ready": "Für jedes Thema werden Fragen erstellt; lade Kandidaten per Link oder E-Mail ein."
+      }
     },
     "proof": {
       "anyJob": "Jede Stelle, jede Branche",
@@ -1427,16 +1436,34 @@
         "agent": "KI-Assistent",
         "apps": "KI-Apps (MCP)"
       },
-      "automate": "Automatisiere dein Recruiting",
+      "descriptions": {
+        "ats": "Direkt aus deinem ATS",
+        "email": "Ein Link in ihrer E-Mail",
+        "file": "Liste hochladen",
+        "link": "Ein Link für eine Stellenanzeige",
+        "api": "Aus deinem eigenen Code",
+        "sdk": "Auf deiner eigenen Website",
+        "agent": "Frag einfach Mira",
+        "apps": "Aus Claude oder ChatGPT"
+      },
+      "slackDescription": "Updates in deinem Channel",
+      "automate": "Automatisiere dein Recruiting mit",
       "developerDocs": "Entwicklerdokumentation",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> Kandidat} other {<n>#</n> Kandidaten}}"
     },
     "candidates": {
       "title": "Was Kandidaten sehen",
-      "text": "Ein Interview mit Zeitlimit im Look deiner Marke: Einfachauswahl, Mehrfachauswahl und Praxisaufgaben.",
+      "text": "Ein Interview mit Zeitlimit im Look deiner Marke, beantwortet per Klick oder per Sprache.",
+      "micPrompt": {
+        "asks": "{site} möchte",
+        "microphone": "Ihre Mikrofone verwenden",
+        "always": "Beim Besuch der Website zulassen",
+        "once": "Dieses Mal zulassen",
+        "never": "Nie zulassen"
+      },
       "notes": {
-        "language": "in ihrer Sprache",
+        "modes": "Klick- und Sprachmodus",
         "phone": "funktioniert auf dem Handy",
         "time": "Zeit vorab sichtbar",
         "extraTime": "mehr Zeit für alle, die sie brauchen"
@@ -1450,17 +1477,48 @@
         "extraTime": "Brauchst du mehr Zeit? Frag <bdi>{company}</bdi>, bevor du beginnst.",
         "people": "Mitarbeitende von <bdi>{company}</bdi> prüfen die Ergebnisse und entscheiden.",
         "stay": "Bleib auf dieser Seite, bis du fertig bist."
+      },
+      "phone": {
+        "click": {
+          "title": "Klickmodus",
+          "text": "Kandidaten wählen ihre Antworten, mit einem Timer für jede Frage."
+        },
+        "voice": {
+          "title": "Sprachmodus mit Mira",
+          "text": "Mira, unsere KI-Interviewerin, liest die Fragen vor und hört die Antworten."
+        }
       }
     },
     "shareReports": {
       "title": "Sieh, wer am besten ist\nTeile es in Sekunden",
       "text": "Die Antworten und das Ergebnis jedes Kandidaten, geteilt per E-Mail oder Chat.",
-      "chatQuestion": "Hey, hat schon jemand bestanden?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Nachricht",
+        "best": "der hier sieht am besten aus",
+        "flagged": "der hier schummelt ganz klar mit KI"
+      },
+      "proceeding": "Wir machen weiter mit {first} und {second}",
       "samples": "Beispielberichte",
       "notes": {
         "notes": "Interview-Notizen schreiben",
         "pdf": "PDF-Berichte senden",
-        "messengers": "Zusammenfassungen per Messenger teilen"
+        "messengers": "Zusammenfassungen per Messenger teilen",
+        "slack": "Slack-Benachrichtigungen"
+      },
+      "phone": {
+        "pdf": {
+          "title": "PDF herunterladen",
+          "text": "Bewertungen und Antworten jedes Kandidaten in einem Bericht."
+        },
+        "share": {
+          "title": "Per Messenger oder E-Mail teilen",
+          "text": "Schick deinem Team die Zusammenfassung eines Kandidaten in Sekunden."
+        },
+        "team": {
+          "title": "Team-Notizen und Slack",
+          "text": "Hinterlasse Notizen für dein Team und erfahre in Slack, wenn ein Kandidat fertig ist."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "kein abo",
         "unanswered": "unbeantwortete einladungen kosten nichts",
         "expire": "credits verfallen nie",
-        "refund": "ungenutzte bezahlte credits 14 tage lang erstattbar",
-        "tax": "preise zzgl. MwSt. oder sales tax"
+        "refund": "ungenutzte bezahlte credits erstattbar"
       }
     }
   },

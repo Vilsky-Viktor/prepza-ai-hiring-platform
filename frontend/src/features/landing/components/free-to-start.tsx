@@ -27,7 +27,7 @@ export async function FreeToStartSection({ catalog }: { catalog: Catalog }) {
   return (
     <LandingSection id="pricing" title={t("title")} text={t("text")}>
       <div className="flex flex-col items-center gap-10">
-        <div className="grid w-full max-w-4xl gap-10 md:grid-cols-2">
+        <div className="grid w-full max-w-5xl gap-10 md:grid-cols-2">
           <div className="flex justify-center">
             <Receipt
               free={
@@ -45,7 +45,7 @@ export async function FreeToStartSection({ catalog }: { catalog: Catalog }) {
               perCandidate={t("each", { price: price(topUp.candidate_cents) })}
             />
           </div>
-          <div className="mx-auto flex w-full max-w-sm flex-col gap-5 md:mx-0">
+          <div className="mx-auto flex w-full max-w-md flex-col gap-5 md:mx-0">
             <Badge
               variant="secondary"
               className="h-11 w-full gap-2 rounded-xl px-3 text-sm [&>svg]:size-4!"

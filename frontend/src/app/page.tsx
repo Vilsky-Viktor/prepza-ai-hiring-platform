@@ -1,4 +1,4 @@
-import { ArrowDownIcon } from "lucide-react"
+import { ChevronDownIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
 import { CandidatesSection } from "@/features/landing/components/candidates"
@@ -14,6 +14,7 @@ import { VideoButton } from "@/features/landing/components/video-button"
 import { JsonLd } from "@/components/common/json-ld"
 import { PageHelp } from "@/components/common/page-help"
 import { Dotted } from "@/components/common/dot"
+import { HeroCallout } from "@/features/landing/components/hero-callout"
 import { HeroWires } from "@/features/landing/components/hero-wires"
 import { StartTest } from "@/components/common/start-test"
 import { LOCALES } from "@/config/i18n"
@@ -70,8 +71,12 @@ export default async function HomePage() {
                 narrower ones. */}
               <div className="relative">
                 <div className="-ms-3 mb-2 flex items-center gap-1 xl:absolute xl:end-[calc(100%+0.75rem)] xl:top-2 xl:ms-0 xl:mb-0 xl:flex-col xl:gap-4">
-                  <PageHelp page="landing" className="[&_svg]:size-7" />
-                  <VideoButton />
+                  <HeroCallout label={landing("howItWorks")}>
+                    <PageHelp page="landing" className="[&_svg]:size-7" />
+                  </HeroCallout>
+                  <HeroCallout label={landing("watchVideo")}>
+                    <VideoButton />
+                  </HeroCallout>
                 </div>
                 {/* Two lines, each ending with the logo's blue dot; close together, with room for
                   marks above and below in Arabic, Persian, Hindi, Thai and Vietnamese. */}
@@ -123,12 +128,23 @@ export default async function HomePage() {
               </p>
             </div>
           </div>
+          {/* The way on to how it works: two blue chevrons that fade down one after the other,
+              named for screen readers. */}
           <a
             href="#how"
-            className="absolute bottom-8 flex items-center gap-2 text-lg text-muted-foreground lowercase hover:text-foreground"
+            aria-label={landing("more")}
+            className="absolute bottom-6 flex flex-col items-center rounded-xl p-2 text-primary outline-none hover:opacity-80 focus-visible:ring-3 focus-visible:ring-ring/50"
           >
-            {landing("more")}
-            <ArrowDownIcon className="size-5" />
+            <ChevronDownIcon
+              aria-hidden
+              strokeWidth={2.5}
+              className="size-7 animate-[cascade-down_1.6s_ease-in-out_infinite]"
+            />
+            <ChevronDownIcon
+              aria-hidden
+              strokeWidth={2.5}
+              className="-mt-4 size-7 animate-[cascade-down_1.6s_ease-in-out_0.2s_infinite]"
+            />
           </a>
         </div>
         <CreateSection questionsPerTopic={sizes?.questions_per_topic ?? null} />

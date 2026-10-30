@@ -1,72 +1,65 @@
+"use client"
+
 import { cn } from "cn"
-import { CheckIcon } from "lucide-react"
+import { SquarePenIcon } from "lucide-react"
+
+import { DEMO_PRESSED } from "@/features/landing/components/demo-panel"
+import { Dot } from "@/components/common/dot"
+import { buttonVariants } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 
 /** A topic as the topic review shows it (features/generation/components/topic-review.tsx),
- * small, as a card of its own in a list: its checkbox, its name, and `children` (its subtopic
- * chips) under it. `hidden` keeps its place unseen; `highlighted` tints it while it's being
- * changed. */
+ * small, as a row of its list: its checkbox, its name and its subtopics under it, and its edit
+ * button at the end (the pointer's "edit" while `aimed`), pressed in while `pressed`. `hidden` keeps its
+ * place unseen. */
 export function TopicCard({
   name,
-  checked = true,
+  subtopics,
   hidden = false,
-  highlighted = false,
-  children,
+  aimed = false,
+  pressed = false,
 }: {
   name: string
-  checked?: boolean
+  subtopics: string[]
   hidden?: boolean
-  highlighted?: boolean
-  children?: React.ReactNode
-}) {
-  return (
-    <li
-      className={cn(
-        "flex gap-3 rounded-xl border bg-background px-3 py-2.5 transition-[opacity,background-color] duration-300",
-        hidden && "opacity-0",
-        highlighted && "bg-primary/5"
-      )}
-    >
-      <span
-        className={cn(
-          "flex size-5 shrink-0 items-center justify-center rounded-[6px] border transition-colors",
-          checked
-            ? "border-primary bg-primary-gradient text-primary-foreground gradient-soft"
-            : "border-input"
-        )}
-      >
-        {checked && <CheckIcon className="size-3.5" />}
-      </span>
-      <span className="min-w-0 flex-1 space-y-1.5">
-        <span className="block font-medium">{name}</span>
-        {children && <span className="flex flex-wrap gap-1">{children}</span>}
-      </span>
-    </li>
-  )
-}
-
-/** A subtopic under a topic card: a soft pill. While `typing`, it's ringed like a field in use;
- * `hidden` keeps its place unseen. */
-export function SubtopicChip({
-  ref,
-  typing = false,
-  hidden = false,
-  children,
-}: {
-  ref?: React.Ref<HTMLSpanElement>
-  typing?: boolean
-  hidden?: boolean
-  children: React.ReactNode
+  aimed?: boolean
+  pressed?: boolean
 }) {
   return (
     <span
-      ref={ref}
       className={cn(
-        "flex h-5 items-center rounded-full border px-2 text-xs",
-        typing ? "border-ring bg-background" : "border-transparent bg-surface",
-        hidden && "invisible"
+        "relative flex items-center gap-3 py-2.5 ps-3 pe-11 transition-opacity duration-300",
+        hidden && "opacity-0"
       )}
     >
-      {children}
+      <Checkbox
+        checked
+        className="size-5 shrink-0 [&_[data-slot=checkbox-indicator]>svg]:size-3.5"
+      />
+      <span className="min-w-0 space-y-0.5">
+        <span className="block font-medium">{name}</span>
+        <span className="block text-xs text-muted-foreground">
+          {subtopics.map((subtopic, position) => (
+            <span key={subtopic}>
+              {position > 0 && <Dot />}
+              {subtopic}
+            </span>
+          ))}
+        </span>
+      </span>
+      <span
+        data-demo-target={aimed ? "edit" : undefined}
+        className={buttonVariants({
+          variant: "ghost",
+          size: "icon-sm",
+          className: cn(
+            "absolute end-2 top-1/2 -translate-y-1/2",
+            pressed && DEMO_PRESSED
+          ),
+        })}
+      >
+        <SquarePenIcon />
+      </span>
     </span>
   )
 }

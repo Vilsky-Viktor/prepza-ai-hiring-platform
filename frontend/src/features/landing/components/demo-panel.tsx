@@ -1,3 +1,7 @@
+// A button in a demo as the pointer clicks it: the real button's pressed look
+// (components/ui/button.tsx), shrunk and dimmed a little.
+export const DEMO_PRESSED = "translate-y-px scale-[0.97] opacity-80"
+
 // A group of panels, laid out in a column.
 export const DEMO_GROUP = "flex flex-col gap-3"
 
@@ -30,7 +34,7 @@ export function DemoPanel({
       <div
         aria-hidden
         inert
-        className="relative flex flex-1 flex-col rounded-xl border bg-background p-3 text-start text-sm"
+        className="relative flex flex-1 flex-col rounded-xl border bg-background p-3 text-start text-sm max-sm:-mx-6 max-sm:rounded-none max-sm:border-x-0"
       >
         {children}
       </div>

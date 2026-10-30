@@ -1,9 +1,15 @@
 export type Box = { left: number; top: number; width: number; height: number }
 
+// How far from the card's side a source above or below it, beside it, comes down (or up), in
+// pixels; a source standing off the side by less than this turns into it (turningWire).
+const REACH_OFFSET = 56
+
 /** The wires from each of `sources` to `card` (boxes in the same frame, in pixels), as SVG
  * curves: from `inset` pixels inside the source's side that faces the card to the card's edge,
- * leaving and meeting it straight on. A source beside the card meets its near side, one above
- * or below meets its top or bottom; the wires meeting one side are `gap` pixels apart there, in
+ * leaving and meeting it straight on. A source beside the card (by its middle) meets its near
+ * side, coming down or up into it when it also stands above or below the card close to its
+ * side (turningWire); one above or below meets
+ * its top or bottom; the wires meeting one side are `gap` pixels apart there, in
  * the sources' order along it, so they never cross. */
 export function sourceWires(
   card: Box,
@@ -11,14 +17,21 @@ export function sourceWires(
   gap: number,
   inset: number
 ) {
-  const sideOf = (box: Box) =>
-    box.left + box.width <= card.left
-      ? "left"
-      : box.left >= card.left + card.width
-        ? "right"
-        : box.top + box.height <= card.top
-          ? "top"
-          : "bottom"
+  // By the source's middle: one mostly beside the card meets its side, even when its edge
+  // reaches over the card (a wide card above and to the side).
+  const sideOf = (box: Box) => {
+    const middle = box.left + box.width / 2
+
+    if (middle < card.left) {
+      return "left"
+    }
+
+    if (middle > card.left + card.width) {
+      return "right"
+    }
+
+    return box.top + box.height <= card.top ? "top" : "bottom"
+  }
   const across = (box: Box) =>
     ["left", "right"].includes(sideOf(box))
       ? box.top + box.height / 2
@@ -31,6 +44,14 @@ export function sourceWires(
       .filter((other) => sideOf(other) === side)
       .sort((a, b) => across(a) - across(b))
     const step = (sharing.indexOf(box) - (sharing.length - 1) / 2) * gap
+
+    if (side === "left" || side === "right") {
+      const turning = turningWire(card, box, side, step, inset)
+
+      if (turning) {
+        return turning
+      }
+    }
 
     if (side === "left" || side === "right") {
       const x1 =
@@ -51,6 +72,40 @@ export function sourceWires(
 
     return `M ${x1} ${y1} C ${x1} ${middle}, ${x2} ${middle}, ${x2} ${y2}`
   })
+}
+
+/** The wire of a source beside the card (on `side`) that also stands above or below it and
+ * reaches over the card's side or comes close to it: down (or up) near the card's side, then
+ * round into it, so it passes inside the other wires on that side, never across. Null for any
+ * other source. */
+function turningWire(
+  card: Box,
+  box: Box,
+  side: "left" | "right",
+  step: number,
+  inset: number
+) {
+  const right = card.left + card.width
+  // How far the source stands off the card's side (negative when it reaches over it).
+  const offSide =
+    side === "left" ? card.left - (box.left + box.width) : box.left - right
+  const above = box.top + box.height <= card.top
+  const below = box.top >= card.top + card.height
+
+  if (!(above || below) || offSide >= REACH_OFFSET) {
+    return null
+  }
+
+  const x2 = side === "left" ? card.left : right
+  const y2 = card.top + card.height / 2 + step
+  const near = side === "left" ? card.left - REACH_OFFSET : right + REACH_OFFSET
+  const x1 = Math.min(
+    Math.max(near, box.left + inset),
+    box.left + box.width - inset
+  )
+  const y1 = above ? box.top + box.height - inset : box.top + inset
+
+  return `M ${x1} ${y1} C ${x1} ${y2}, ${x1} ${y2}, ${x2} ${y2}`
 }
 
 /** Where `element` is laid out in its positioned parent, as a box. */

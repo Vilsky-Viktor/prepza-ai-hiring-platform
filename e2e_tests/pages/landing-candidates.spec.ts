@@ -32,3 +32,53 @@ for (const locale of ["he", "ar"]) {
     expect(answered).toBeLessThan(total);
   });
 }
+
+// The switch above the picture jumps the demo to the mode a visitor picks, back and forth, and
+// shows which is on; the frame keeps its size and place as the screens change.
+test("the mode switch jumps the demo to either mode, and the frame never moves", async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  await page.goto("/");
+  await loaded(page);
+  const section = page.locator("#candidates");
+  await section.scrollIntoViewIfNeeded();
+  const demo = section.getByTestId("candidates-demo");
+  const frame = demo.getByTestId("demo-panel");
+  const box = () =>
+    frame.evaluate((element) => {
+      const rect = element.getBoundingClientRect();
+
+      return [rect.width, rect.height, rect.left, rect.top + window.scrollY].map(Math.round).join();
+    });
+  const [click, voice] = [demo.getByRole("button").nth(0), demo.getByRole("button").nth(1)];
+  // Playing once in view: its steps move on.
+  const first = await demo.getAttribute("data-step");
+  await expect(demo).not.toHaveAttribute("data-step", first!);
+  const before = await box();
+
+  await voice.click();
+  await expect(voice).toHaveAttribute("aria-pressed", "true");
+  await expect(click).toHaveAttribute("aria-pressed", "false");
+  // Voice steps are named v…, click ones c… or by their question.
+  await expect(demo).toHaveAttribute("data-step", /^v/);
+  expect(await box()).toBe(before);
+
+  await click.click();
+  await expect(click).toHaveAttribute("aria-pressed", "true");
+  await expect(demo).toHaveAttribute("data-step", /^(?!v)/);
+  expect(await box()).toBe(before);
+});
+
+test("on a phone the modes show as cards in place of the demo", { tag: "@phone-only" }, async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  await page.goto("/");
+  const section = page.locator("#candidates");
+  await section.scrollIntoViewIfNeeded();
+
+  await expect(section.getByTestId("candidates-demo")).toBeHidden();
+  await expect(section.getByTestId("phone-steps").getByTestId("icon-card")).toHaveCount(2);
+  await expect(section.getByTestId("notes")).toBeVisible();
+});

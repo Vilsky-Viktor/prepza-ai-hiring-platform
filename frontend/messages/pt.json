@@ -148,7 +148,7 @@
     "price": "Apenas {price} por candidato."
   },
   "start": {
-    "placeholder": "Cole uma descrição de vaga ou descreva o cargo e o que um candidato deve saber",
+    "placeholder": "Cole aqui a descrição da vaga…",
     "description": "Descrição da vaga",
     "submit": "Criar uma entrevista",
     "whichCompany": "Para qual empresa é esta entrevista?",
@@ -1391,6 +1391,8 @@
     "demos": "Vídeo",
     "demosTooltip": "Ver demos no YouTube",
     "videoTooltip": "Veja como o prepza funciona",
+    "watchVideo": "Assistir ao vídeo",
+    "howItWorks": "Como funciona",
     "askAgent": "perguntar à Mira",
     "create": {
       "title": "Crie uma entrevista em minutos",
@@ -1400,13 +1402,20 @@
         "templates": "modelos prontos disponíveis",
         "expert": "sem precisar de um especialista na área"
       },
-      "describe": "Cole sua descrição",
-      "adjust": "Ajuste os tópicos",
-      "ask": "Peça à IA para mudar os tópicos",
-      "ready": "Sua entrevista está pronta",
+      "describe": "<n>1.</n> Cole sua descrição",
+      "adjust": "<n>2.</n> Ajuste os tópicos",
+      "menu": {
+        "cut": "Recortar",
+        "copy": "Copiar",
+        "paste": "Colar"
+      },
+      "ready": "<n>3.</n> Sua entrevista está pronta",
       "status": "Pronta",
-      "invite": "Convidar candidatos",
-      "waiting": "aguardando…"
+      "phone": {
+        "describe": "Cole uma descrição de vaga ou escreva algumas palavras sobre o cargo.",
+        "adjust": "Mantenha os tópicos que importam, renomeie-os ou adicione os seus.",
+        "ready": "As questões são escritas para cada tópico; convide candidatos por link ou e-mail."
+      }
     },
     "proof": {
       "anyJob": "Qualquer vaga, qualquer área",
@@ -1427,16 +1436,34 @@
         "agent": "Assistente de IA",
         "apps": "Apps de IA (MCP)"
       },
-      "automate": "Automatize suas contratações",
+      "descriptions": {
+        "ats": "Direto do seu ATS",
+        "email": "Um link no e-mail",
+        "file": "Envie uma lista",
+        "link": "Um link para o anúncio da vaga",
+        "api": "Do seu próprio código",
+        "sdk": "No seu próprio site",
+        "agent": "Basta pedir à Mira",
+        "apps": "Pelo Claude ou ChatGPT"
+      },
+      "slackDescription": "Novidades no seu canal",
+      "automate": "Automatize suas contratações com",
       "developerDocs": "documentação para desenvolvedores",
       "interview": "Entrevista",
       "candidates": "{count, plural, one {<n>#</n> candidato} other {<n>#</n> candidatos}}"
     },
     "candidates": {
       "title": "O que os candidatos veem",
-      "text": "Uma entrevista cronometrada com a sua marca: escolha única, múltipla escolha e prática.",
+      "text": "Uma entrevista cronometrada com a sua marca, respondida com um clique ou por voz.",
+      "micPrompt": {
+        "asks": "{site} quer",
+        "microphone": "Usar seus microfones",
+        "always": "Permitir ao visitar o site",
+        "once": "Permitir desta vez",
+        "never": "Nunca permitir"
+      },
       "notes": {
-        "language": "no idioma deles",
+        "modes": "modos clique e voz",
         "phone": "funciona no celular",
         "time": "tempo mostrado antes de começar",
         "extraTime": "tempo extra para quem precisa"
@@ -1450,17 +1477,48 @@
         "extraTime": "Precisa de mais tempo? Peça à equipe da <bdi>{company}</bdi> antes de começar.",
         "people": "Pessoas da <bdi>{company}</bdi> analisam os resultados e decidem.",
         "stay": "Fique nesta página até terminar."
+      },
+      "phone": {
+        "click": {
+          "title": "Modo clique",
+          "text": "Os candidatos escolhem as respostas, com um cronômetro para cada questão."
+        },
+        "voice": {
+          "title": "Modo de voz com a Mira",
+          "text": "A Mira, nossa entrevistadora de IA, lê as questões e ouve as respostas."
+        }
       }
     },
     "shareReports": {
       "title": "Veja quem é o melhor\nCompartilhe em segundos",
       "text": "As respostas e a nota de cada candidato, compartilhadas por e-mail ou chat.",
-      "chatQuestion": "Oi, alguém já passou?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Mensagem",
+        "best": "esse parece o melhor",
+        "flagged": "esse aqui com certeza está colando com IA"
+      },
+      "proceeding": "Seguindo com {first} e {second}",
       "samples": "Relatórios de exemplo",
       "notes": {
         "notes": "escreva anotações da entrevista",
         "pdf": "envie relatórios em PDF",
-        "messengers": "compartilhe resumos por mensageiros"
+        "messengers": "compartilhe resumos por mensageiros",
+        "slack": "notificações no Slack"
+      },
+      "phone": {
+        "pdf": {
+          "title": "Baixe o PDF",
+          "text": "As notas e respostas de cada candidato em um só relatório."
+        },
+        "share": {
+          "title": "Compartilhe por mensageiros ou e-mail",
+          "text": "Envie o resumo de um candidato para sua equipe em segundos."
+        },
+        "team": {
+          "title": "Anotações da equipe e Slack",
+          "text": "Deixe anotações para sua equipe e seja avisado no Slack quando um candidato terminar."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "sem assinatura",
         "unanswered": "convites não respondidos não custam nada",
         "expire": "os créditos não expiram",
-        "refund": "créditos pagos não usados reembolsáveis por 14 dias",
-        "tax": "preços sem IVA nem imposto sobre vendas"
+        "refund": "créditos pagos não usados reembolsáveis"
       }
     }
   },

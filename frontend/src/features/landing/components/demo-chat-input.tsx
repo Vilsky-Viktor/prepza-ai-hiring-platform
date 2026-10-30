@@ -1,13 +1,14 @@
 import { cn } from "cn"
 import { ArrowUpIcon, MicIcon } from "lucide-react"
 
+import { DEMO_PRESSED } from "@/features/landing/components/demo-panel"
 import { Caret } from "@/features/landing/components/caret"
 import { buttonVariants } from "@/components/ui/button"
 
 /** The assistant's chat input (features/assistant/components/chat-input.tsx) as a small
  * picture: `text` as typed so far (the `placeholder` while null), with a caret and the field's
  * focus border while `typing`, the voice button's microphone, and its send button (`sendRef`),
- * dimmed while there's no text, ringed while `pressed`. */
+ * dimmed while there's no text, pressed in while `pressed`. */
 export function DemoChatInput({
   ref,
   sendRef,
@@ -53,7 +54,7 @@ export function DemoChatInput({
           className: cn(
             "size-10 shrink-0 rounded-lg",
             !text && "opacity-50",
-            pressed && "ring-3 ring-ring/50"
+            pressed && DEMO_PRESSED
           ),
         })}
       >

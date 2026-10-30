@@ -148,7 +148,7 @@
     "price": "Solo {price} per candidato."
   },
   "start": {
-    "placeholder": "Incolla una descrizione del ruolo, oppure descrivi il ruolo e cosa dovrebbe sapere un candidato",
+    "placeholder": "Incolla qui la descrizione del ruolo…",
     "description": "Descrizione del ruolo",
     "submit": "Crea un colloquio",
     "whichCompany": "Per quale azienda è questo colloquio?",
@@ -1391,6 +1391,8 @@
     "demos": "Video",
     "demosTooltip": "Guarda le demo su YouTube",
     "videoTooltip": "Guarda come funziona prepza",
+    "watchVideo": "Guarda il video",
+    "howItWorks": "Come funziona",
     "askAgent": "chiedi a Mira",
     "create": {
       "title": "Crea un colloquio in pochi minuti",
@@ -1400,13 +1402,20 @@
         "templates": "modelli pronti disponibili",
         "expert": "nessun esperto della materia necessario"
       },
-      "describe": "Incolla la descrizione",
-      "adjust": "Regola gli argomenti",
-      "ask": "Chiedi all'IA di cambiare gli argomenti",
-      "ready": "Il tuo colloquio è pronto",
+      "describe": "<n>1.</n> Incolla la descrizione",
+      "adjust": "<n>2.</n> Regola gli argomenti",
+      "menu": {
+        "cut": "Taglia",
+        "copy": "Copia",
+        "paste": "Incolla"
+      },
+      "ready": "<n>3.</n> Il tuo colloquio è pronto",
       "status": "Pronto",
-      "invite": "Invita candidati",
-      "waiting": "in attesa…"
+      "phone": {
+        "describe": "Incolla una descrizione del ruolo, oppure scrivi due parole sul ruolo.",
+        "adjust": "Tieni gli argomenti che contano, rinominali o aggiungine di tuoi.",
+        "ready": "Le domande vengono scritte per ogni argomento; invita i candidati con un link o via email."
+      }
     },
     "proof": {
       "anyJob": "Qualsiasi ruolo, qualsiasi settore",
@@ -1427,16 +1436,34 @@
         "agent": "Assistente IA",
         "apps": "App IA (MCP)"
       },
-      "automate": "Automatizza le tue assunzioni",
+      "descriptions": {
+        "ats": "Direttamente dal tuo ATS",
+        "email": "Un link nella loro email",
+        "file": "Carica un elenco",
+        "link": "Un link per un annuncio",
+        "api": "Dal tuo codice",
+        "sdk": "Sul tuo sito",
+        "agent": "Chiedi a Mira",
+        "apps": "Da Claude o ChatGPT"
+      },
+      "slackDescription": "Aggiornamenti nel tuo canale",
+      "automate": "Automatizza le assunzioni con",
       "developerDocs": "documentazione per sviluppatori",
       "interview": "Colloquio",
       "candidates": "{count, plural, one {<n>#</n> candidato} other {<n>#</n> candidati}}"
     },
     "candidates": {
       "title": "Cosa vedono i candidati",
-      "text": "Un colloquio a tempo con il tuo brand: scelta singola, scelta multipla e prove pratiche.",
+      "text": "Un colloquio a tempo con il tuo brand, a cui si risponde con un clic o a voce.",
+      "micPrompt": {
+        "asks": "{site} vuole",
+        "microphone": "Usare i tuoi microfoni",
+        "always": "Consenti durante la visita al sito",
+        "once": "Consenti questa volta",
+        "never": "Non consentire mai"
+      },
       "notes": {
-        "language": "nella loro lingua",
+        "modes": "modalità clic/vocale",
         "phone": "funziona su smartphone",
         "time": "tempi indicati in anticipo",
         "extraTime": "tempo extra per chi ne ha bisogno"
@@ -1450,17 +1477,48 @@
         "extraTime": "Ti serve più tempo? Contatta <bdi>{company}</bdi> prima di iniziare.",
         "people": "I risultati vengono esaminati da persone e decide <bdi>{company}</bdi>.",
         "stay": "Resta su questa pagina fino alla fine."
+      },
+      "phone": {
+        "click": {
+          "title": "Modalità clic",
+          "text": "I candidati scelgono le risposte, con un timer per ogni domanda."
+        },
+        "voice": {
+          "title": "Modalità vocale con Mira",
+          "text": "Mira, la nostra intervistatrice IA, legge le domande e ascolta le risposte."
+        }
       }
     },
     "shareReports": {
       "title": "Scopri chi è il migliore\nCondividilo in pochi secondi",
       "text": "Le risposte e il punteggio di ogni candidato, condivisi via email o in chat.",
-      "chatQuestion": "Ehi, qualcuno l'ha già superato?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Messaggio",
+        "best": "questo sembra il migliore",
+        "flagged": "questo sta sicuramente barando con l'IA"
+      },
+      "proceeding": "Andiamo avanti con {first} e {second}",
       "samples": "Report di esempio",
       "notes": {
         "notes": "scrivi note sul colloquio",
         "pdf": "invia report in PDF",
-        "messengers": "condividi riepiloghi via app di messaggistica"
+        "messengers": "condividi riepiloghi via app di messaggistica",
+        "slack": "notifiche Slack"
+      },
+      "phone": {
+        "pdf": {
+          "title": "Scarica il PDF",
+          "text": "Voti e risposte di ogni candidato in un unico report."
+        },
+        "share": {
+          "title": "Condividi via app di messaggistica o email",
+          "text": "Invia il riepilogo di un candidato al tuo team in pochi secondi."
+        },
+        "team": {
+          "title": "Note del team e Slack",
+          "text": "Lascia note per il tuo team e ricevi un avviso su Slack quando un candidato finisce."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "nessun abbonamento",
         "unanswered": "gli inviti senza risposta non costano nulla",
         "expire": "i crediti non scadono",
-        "refund": "crediti pagati non usati rimborsabili per 14 giorni",
-        "tax": "prezzi al netto di IVA o imposta sulle vendite"
+        "refund": "crediti pagati non usati rimborsabili"
       }
     }
   },

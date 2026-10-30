@@ -20,6 +20,7 @@ import {
   type AskAgentCard,
   type AskAgentQuestion,
 } from "@/config/ask-agent-demo"
+import { GLOW_CARD } from "@/config/landing-backgrounds"
 import { type DemoStep, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
 import { bdi, bdiText } from "@/lib/bidi"
 import { formatPercent } from "@/lib/format"
@@ -107,7 +108,7 @@ function demoSteps(letters: Record<AskAgentQuestion, number>): Step[] {
  * candidates passed an interview (from its report), how to give extra time (from a guide), and
  * a candidate invited once the pointer confirms the action's card. Beside it, the three things
  * it does, each lit while the chat shows it. A fixed height that scrolls as messages come; with
- * reduced motion, the whole conversation, still. */
+ * reduced motion, the whole conversation, still. On phones, the three cards alone. */
 export function AskAgentDemo() {
   const t = useTranslations("landing.justAsk")
   const locale = useLocale()
@@ -195,7 +196,8 @@ export function AskAgentDemo() {
       <div
         ref={ref}
         aria-hidden
-        className="relative flex h-120 flex-col overflow-hidden rounded-xl bg-surface text-popover-foreground ring-1 ring-foreground/10 motion-reduce:h-auto"
+        data-testid="agent-chat"
+        className={`relative flex h-120 flex-col overflow-hidden rounded-xl ${GLOW_CARD} text-popover-foreground ring-1 ring-foreground/10 motion-reduce:h-auto max-sm:hidden`}
       >
         <DemoPointer
           target={

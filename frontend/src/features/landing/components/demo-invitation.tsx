@@ -5,14 +5,12 @@ import { useTranslations } from "next-intl"
 
 import { TimeFact } from "@/components/common/invite-intro"
 import { DemoLogo } from "@/features/landing/components/demo-logo"
-import { buttonVariants } from "@/components/ui/button"
 import {
   DEMO_COMPANY,
   DEMO_QUESTION_SECONDS,
   DEMO_TITLE,
   DEMO_TOTAL_MINUTES,
 } from "@/config/candidates-demo"
-import { START_BUTTON } from "@/config/start-page"
 import { bdi } from "@/lib/bidi"
 
 // The real page's rules, shortened; phones show the first few.
@@ -29,16 +27,16 @@ const RULES = [
 const PHONE_RULES = 4
 
 /** A candidate's start page, small, for the landing: the company's logo and who invited them,
- * the interview's title and times, its start button, and the rules on a gray area beside them
+ * the interview's title and times, its start (`action`), and the rules on a gray area beside them
  * (across the frame on phones, before the start). */
 export function DemoInvitation({
-  titleRef,
-  startRef,
-  pressed,
+  voice,
+  action,
 }: {
-  titleRef: React.Ref<HTMLParagraphElement>
-  startRef: React.Ref<HTMLSpanElement>
-  pressed: boolean
+  // Taken by voice: its rule first, as on the real page.
+  voice: boolean
+  // The start: the pledge, the start button and, by voice, the microphone's step first.
+  action: React.ReactNode
 }) {
   const t = useTranslations("invite")
   const rules = useTranslations("landing.candidates.rules")
@@ -60,7 +58,7 @@ export function DemoInvitation({
             </p>
           </div>
           <p
-            ref={titleRef}
+            data-demo-target="title"
             className="font-heading text-2xl leading-tight font-medium tracking-tight text-balance"
           >
             {DEMO_TITLE}
@@ -78,32 +76,30 @@ export function DemoInvitation({
             unit={t("minutesUnit")}
           />
         </div>
-        <div className="max-md:order-last">
-          <span
-            ref={startRef}
-            className={buttonVariants({
-              className: cn(START_BUTTON, pressed && "ring-3 ring-ring/50"),
-            })}
-          >
-            {t("start")}
-          </span>
-        </div>
+        <div className="max-md:order-last">{action}</div>
       </div>
       {/* The rules, numbered in the brand colour, on a gray area as on the real page: out to the
           frame's edges, the full height of its end side from tablets up; across it on phones. */}
       <ol className="-mx-5 flex flex-col justify-center gap-3 bg-surface px-5 py-6 text-start text-sm text-muted-foreground sm:-mx-8 sm:px-8 md:-my-8 md:ms-0 md:rounded-e-[calc(var(--radius-xl)-1px)] md:py-8">
-        {RULES.map((rule, index) => (
+        {[
+          ...(voice ? [t("voice")] : []),
+          ...RULES.map((rule) =>
+            rules.rich(rule, { company: DEMO_COMPANY, ...bdi })
+          ),
+        ].map((rule, index) => (
           <li
-            key={rule}
+            key={index}
             className={cn(
               "flex items-baseline gap-3",
-              index >= PHONE_RULES && "max-md:hidden"
+              index >= PHONE_RULES && "max-md:hidden",
+              // By voice, its rule leaves out the last ones, so both pages are as tall.
+              voice && index >= RULES.length - 1 && "md:hidden"
             )}
           >
             <span className="w-5 shrink-0 text-base font-medium text-primary tabular-nums">
               {index + 1}.
             </span>
-            <span>{rules.rich(rule, { company: DEMO_COMPANY, ...bdi })}</span>
+            <span>{rule}</span>
           </li>
         ))}
       </ol>

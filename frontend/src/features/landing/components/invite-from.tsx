@@ -7,11 +7,14 @@ import { INVITE_SOURCES, type InviteSource } from "@/config/invite-demo"
 import { DOT_GRID } from "@/config/landing-backgrounds"
 
 /** Every way candidates come into an interview, around it, each wired to it, and Slack told
- * about them; above the interview, a link to the developer docs. */
+ * about them; under it, the way to the developer docs. */
 export async function InviteFromSection() {
   const t = await getTranslations("landing.sources")
   const labels = Object.fromEntries(
     INVITE_SOURCES.map(({ key }) => [key, t(`labels.${key}`)])
+  ) as Record<InviteSource["key"], string>
+  const descriptions = Object.fromEntries(
+    INVITE_SOURCES.map(({ key }) => [key, t(`descriptions.${key}`)])
   ) as Record<InviteSource["key"], string>
 
   return (
@@ -25,16 +28,17 @@ export async function InviteFromSection() {
       <div className={`${DEMO_GROUP} -mt-6`}>
         <InviteStage
           labels={labels}
+          descriptions={descriptions}
+          slackDescription={t("slackDescription")}
           interview={t("interview")}
-          developers={
-            <>
-              <span className="text-lg text-muted-foreground lowercase">
-                {t("automate")}
-              </span>
-              <MoreLink href="/api-docs">{t("developerDocs")}</MoreLink>
-            </>
-          }
         />
+      </div>
+      {/* Under the picture: for developers, the way to the docs. */}
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <span className="text-lg text-muted-foreground lowercase">
+          {t("automate")}
+        </span>
+        <MoreLink href="/api-docs">{t("developerDocs")}</MoreLink>
       </div>
     </LandingSection>
   )

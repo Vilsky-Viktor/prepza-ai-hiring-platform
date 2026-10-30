@@ -148,7 +148,7 @@
     "price": "每位候选人仅需 {price}。"
   },
   "start": {
-    "placeholder": "粘贴职位描述，或描述这个职位以及候选人应该掌握的内容",
+    "placeholder": "在此粘贴职位描述…",
     "description": "职位描述",
     "submit": "创建面试",
     "whichCompany": "这个面试是为哪家公司创建的？",
@@ -1391,6 +1391,8 @@
     "demos": "视频",
     "demosTooltip": "在 YouTube 上观看演示",
     "videoTooltip": "了解 prepza 如何运作",
+    "watchVideo": "观看视频",
+    "howItWorks": "使用方式",
     "askAgent": "问问米拉",
     "create": {
       "title": "几分钟创建一场面试",
@@ -1400,13 +1402,20 @@
         "templates": "提供现成模板",
         "expert": "无需专业领域专家"
       },
-      "describe": "粘贴职位描述",
-      "adjust": "调整主题",
-      "ask": "让 AI 修改主题",
-      "ready": "你的面试已就绪",
+      "describe": "<n>1.</n> 粘贴职位描述",
+      "adjust": "<n>2.</n> 调整主题",
+      "menu": {
+        "cut": "剪切",
+        "copy": "复制",
+        "paste": "粘贴"
+      },
+      "ready": "<n>3.</n> 你的面试已就绪",
       "status": "就绪",
-      "invite": "邀请候选人",
-      "waiting": "等待中…"
+      "phone": {
+        "describe": "粘贴职位描述，或简单写几句关于这个职位的介绍。",
+        "adjust": "保留重要的主题，重命名或添加你自己的主题。",
+        "ready": "为每个主题编写题目；通过链接或邮件邀请候选人。"
+      }
     },
     "proof": {
       "anyJob": "任何职位，任何领域",
@@ -1427,16 +1436,34 @@
         "agent": "AI 助手",
         "apps": "AI 应用 (MCP)"
       },
-      "automate": "让招聘自动化",
+      "descriptions": {
+        "ats": "直接从你的 ATS",
+        "email": "邮件中的链接",
+        "file": "上传名单",
+        "link": "招聘广告的一个链接",
+        "api": "通过你自己的代码",
+        "sdk": "在你自己的网站上",
+        "agent": "直接问米拉",
+        "apps": "通过 Claude 或 ChatGPT"
+      },
+      "slackDescription": "频道内获取动态",
+      "automate": "借助以下方式自动化招聘",
       "developerDocs": "开发者文档",
       "interview": "面试",
       "candidates": "{count, plural, other {<n>#</n> 位候选人}}"
     },
     "candidates": {
       "title": "候选人看到的界面",
-      "text": "带有你的品牌的限时面试：单选题、多选题和实操题。",
+      "text": "带有你的品牌的限时面试，可点选作答，也可语音作答。",
+      "micPrompt": {
+        "asks": "{site} 想要",
+        "microphone": "使用您的麦克风",
+        "always": "访问此网站时允许",
+        "once": "仅限这一次",
+        "never": "一律不允许"
+      },
       "notes": {
-        "language": "使用候选人的语言",
+        "modes": "点选和语音模式",
         "phone": "手机也能作答",
         "time": "提前显示时间",
         "extraTime": "需要时可延长时间"
@@ -1450,17 +1477,48 @@
         "extraTime": "需要更多时间吗？请在开始前联系 <bdi>{company}</bdi>。",
         "people": "<bdi>{company}</bdi> 的工作人员会审核结果并做出决定。",
         "stay": "完成之前请停留在此页面。"
+      },
+      "phone": {
+        "click": {
+          "title": "点选模式",
+          "text": "候选人点选答案，每道题都有计时。"
+        },
+        "voice": {
+          "title": "米拉语音模式",
+          "text": "我们的 AI 面试官米拉朗读题目并听取回答。"
+        }
       }
     },
     "shareReports": {
       "title": "看清谁最优秀\n几秒内即可分享",
       "text": "每位候选人的答案和成绩，通过邮件或聊天分享。",
-      "chatQuestion": "嘿，有人通过了吗？",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "消息",
+        "best": "这个看起来最好",
+        "flagged": "这个肯定在用 AI 作弊"
+      },
+      "proceeding": "继续推进 {first} 和 {second}",
       "samples": "报告示例",
       "notes": {
         "notes": "撰写面试备注",
         "pdf": "发送 PDF 报告",
-        "messengers": "通过聊天应用分享摘要"
+        "messengers": "通过聊天应用分享摘要",
+        "slack": "Slack 通知"
+      },
+      "phone": {
+        "pdf": {
+          "title": "下载 PDF",
+          "text": "每位候选人的成绩和答案汇总在一份报告中。"
+        },
+        "share": {
+          "title": "通过聊天应用或邮件分享",
+          "text": "几秒内把候选人的摘要发给团队。"
+        },
+        "team": {
+          "title": "团队备注和 Slack",
+          "text": "给团队留下备注，候选人完成后在 Slack 收到通知。"
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "无需订阅",
         "unanswered": "未作答的邀请不收费",
         "expire": "点数永不过期",
-        "refund": "未使用的付费点数 14 天内可退款",
-        "tax": "价格另加增值税或销售税"
+        "refund": "未使用的付费点数可退款"
       }
     }
   },

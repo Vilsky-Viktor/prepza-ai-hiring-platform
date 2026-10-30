@@ -1,14 +1,7 @@
 "use client"
 
 import { cn } from "cn"
-import {
-  CpuAiIcon,
-  FlagIcon,
-  ListChecksIcon,
-  PenLineIcon,
-  ScanSearchIcon,
-  SparklesIcon,
-} from "lucide-react"
+import { CpuAiIcon } from "lucide-react"
 import { useEffect, useId, useRef, useState } from "react"
 
 import { useStill } from "@/hooks/use-still"
@@ -22,6 +15,7 @@ import {
   NET_WAVES,
   QUALITY_CARD_PADDING,
   QUALITY_ELLIPSE,
+  QUALITY_ICONS,
   QUALITY_PAUSE_MS,
   QUALITY_STEPS,
   type QualityStep,
@@ -29,14 +23,6 @@ import {
 import { ON_SCREEN, useDemoSteps } from "@/hooks/use-demo-steps"
 import { ellipsePoints, ellipseWires } from "@/lib/ellipse-wires"
 import { type Area, sectionArea } from "@/lib/section-area"
-
-const ICONS = {
-  generated: SparklesIcon,
-  checked: ScanSearchIcon,
-  answered: ListChecksIcon,
-  flagged: FlagIcon,
-  rewritten: PenLineIcon,
-}
 
 // Each step's centre on the ellipse, in percent of the stage.
 const PLACES = ellipsePoints(
@@ -86,6 +72,14 @@ export function QualityLoop({
 
     function draw() {
       const { offsetWidth: width, offsetHeight: height } = stage!
+
+      // Hidden (on phones): nothing to draw.
+      if (width === 0) {
+        setSize(null)
+
+        return
+      }
+
       const tallest = Math.max(
         ...contents.current.map((content) => content.offsetHeight)
       )
@@ -175,7 +169,7 @@ export function QualityLoop({
               d={`M 0 0 H ${NET_CELL} M 0 0 V ${NET_CELL}`}
               fill="none"
               strokeWidth={1}
-              className="stroke-primary/15 dark:stroke-primary/25"
+              className="stroke-primary/30"
             />
           </pattern>
         </defs>
@@ -249,7 +243,7 @@ export function QualityLoop({
         />
       </span>
       {QUALITY_STEPS.map((key, at) => {
-        const Icon = ICONS[key]
+        const Icon = QUALITY_ICONS[key]
 
         return (
           <div

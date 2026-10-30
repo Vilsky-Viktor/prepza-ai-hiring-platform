@@ -1,127 +1,120 @@
 "use client"
 
 import { cn } from "cn"
-import { createRef, useRef, useState } from "react"
+import { useTranslations } from "next-intl"
+import { useState } from "react"
 
+import { DemoClickSession } from "@/features/landing/components/demo-click-session"
 import { DemoInvitation } from "@/features/landing/components/demo-invitation"
+import { DemoMicPrompt } from "@/features/landing/components/demo-mic-prompt"
 import { DemoPanel } from "@/features/landing/components/demo-panel"
 import { DemoPointer } from "@/features/landing/components/demo-pointer"
-import { DemoQuestion } from "@/features/landing/components/demo-question"
+import { DemoStartAction } from "@/features/landing/components/demo-start-action"
+import { DemoVoiceSession } from "@/features/landing/components/demo-voice-session"
+import { AnswerModeSwitch } from "@/features/company/components/answer-mode-switch"
+import { CLICK_QUESTIONS, DEMO_SAID } from "@/config/candidates-demo"
 import {
-  DEMO_QUESTIONS,
-  type DemoQuestion as Question,
-} from "@/config/candidates-demo"
-import { type DemoStep, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
+  CLICK_START,
+  STEPS,
+  TARGETS,
+  VOICE_START,
+} from "@/config/candidates-demo-steps"
+import { pointedAt, stepIndex, useDemoSteps } from "@/hooks/use-demo-steps"
+import { useStill } from "@/hooks/use-still"
+import type { VoiceAccess } from "@/hooks/use-voice-access"
 import type { CodeToken } from "@/lib/code-tokens"
+import type { VoiceStatus } from "@/types/round"
 
-// A step and what it shows: the screen (0 the invitation, then each question) and the options
-// picked on it so far.
-type Step = DemoStep & { screen: number; picked: number[] }
-
-// A question's steps: read, then each pick aimed at and clicked; then Next, but on the last
-// question, whose answer stays a while before it all starts again.
-function questionSteps(question: Question, screen: number): Step[] {
-  const last = screen === DEMO_QUESTIONS.length
-  const steps: Step[] = [
-    {
-      name: `read${screen}`,
-      ms: question.example ? 3200 : 1800,
-      screen,
-      picked: [],
-    },
-  ]
-
-  question.picks.forEach((option, index) => {
-    const before = question.picks.slice(0, index)
-    const after = question.picks.slice(0, index + 1)
-    steps.push(
-      {
-        name: `aim${screen}-${index}`,
-        ms: 900,
-        point: `option${option}`,
-        screen,
-        picked: before,
-      },
-      {
-        name: `pick${screen}-${index}`,
-        ms: 450,
-        click: true,
-        screen,
-        picked: after,
-      }
-    )
-  })
-
-  const picked = question.picks
-
-  if (last) {
-    steps.push({ name: "done", ms: 3000, screen, picked })
-
-    return steps
-  }
-
-  steps.push(
-    { name: `picked${screen}`, ms: 600, screen, picked },
-    { name: `aimNext${screen}`, ms: 800, point: "next", screen, picked },
-    { name: `next${screen}`, ms: 450, click: true, screen, picked }
-  )
-
-  return steps
+// Each voice-screen step's state: whose turn it is, the words Mira heard and whether the option
+// is picked.
+const VOICE: Record<string, [VoiceStatus, string | null, boolean]> = {
+  vSpeaking: ["speaking", null, false],
+  vListening: ["hearing", null, false],
+  vThinking: ["thinking", DEMO_SAID.answer, false],
+  vPicked: ["speaking", DEMO_SAID.answer, true],
+  vYes: ["hearing", DEMO_SAID.yes, true],
+  vMoving: ["speaking", DEMO_SAID.yes, true],
 }
 
-// The pointer reads the invitation and clicks to start; then answers each question in turn.
-const STEPS: Step[] = [
-  { name: "invite", ms: 1800, point: "title", screen: 0, picked: [] },
-  { name: "aimStart", ms: 900, point: "start", screen: 0, picked: [] },
-  { name: "start", ms: 450, click: true, screen: 0, picked: [] },
-  ...DEMO_QUESTIONS.flatMap((question, index) =>
-    questionSteps(question, index + 1)
-  ),
+// The voice screen before it plays: Mira about to speak.
+const BEFORE_VOICE: [VoiceStatus, string | null, boolean] = [
+  "speaking",
+  null,
+  false,
 ]
 
-/** What a candidate sees, played by a pointer in one panel: the invitation, accepted, then a
- * single-answer question, a multi-answer one and a practical one, each answered. The screens
- * lie on top of each other, so the panel is as tall as the tallest and never changes size; one
- * fades out and the next in. With reduced motion, the last question, answered. */
+/** The microphone's state on the voice start page at step `index`. */
+function accessAt(index: number): VoiceAccess {
+  if (index < VOICE_START) {
+    return "ask"
+  }
+
+  if (index >= stepIndex(STEPS, "vGranted")) {
+    return "granted"
+  }
+
+  return index >= stepIndex(STEPS, "vAllow") ? "asking" : "ask"
+}
+
+/** What a candidate sees, played by a pointer in one panel, in click mode and then in voice mode,
+ * the switch above it showing which; a visitor can switch to either. Click mode: the start page,
+ * the pledge ticked and started, a question answered by a tap and Next. Voice mode: the start
+ * page, the microphone and sound allowed in the browser's prompt, started, and the voice screen:
+ * Mira reads, the candidate answers, she thinks, picks it, hears a yes and moves on. The screens
+ * lie on top of each other, so the panel is as tall as the tallest and never changes size. With
+ * reduced motion, each mode's last frame. */
 export function CandidatesDemo({
   exampleColors,
 }: {
-  // Each question's example in its colors, made on the server.
+  // Each click-mode question's example in its colors, made on the server.
   exampleColors: (CodeToken[][] | null)[]
 }) {
-  const { ref, index } = useDemoSteps<HTMLDivElement>(STEPS)
+  const interviews = useTranslations("interviews")
+  const { ref, index: playing, jumpTo } = useDemoSteps<HTMLDivElement>(STEPS)
+  const still = useStill()
+  // With reduced motion, the mode a visitor chose shows its last frame.
+  const [stillAt, setStillAt] = useState<number | null>(null)
+  const index = still && stillAt !== null ? stillAt : playing
   const step = STEPS[index]
-  const titleRef = useRef<HTMLParagraphElement>(null)
-  const startRef = useRef<HTMLSpanElement>(null)
-  // Each question's options and Next, for the pointer.
-  const [questionRefs] = useState(() =>
-    DEMO_QUESTIONS.map((question) => ({
-      options: question.options.map(() => createRef<HTMLLIElement>()),
-      next: createRef<HTMLSpanElement>(),
-    }))
+  const after = (name: string) => index >= stepIndex(STEPS, name)
+  // What the pointer moves to: found in the screen shown when the pointer looks for it.
+  const [targets] = useState(() =>
+    Object.fromEntries(
+      Object.entries(TARGETS).map(([name, selector]) => [
+        name,
+        {
+          get current() {
+            return (
+              ref.current?.querySelector<HTMLElement>(
+                `[data-shown=true] ${selector}`
+              ) ?? null
+            )
+          },
+        },
+      ])
+    )
   )
   const point = pointedAt(STEPS, index)
-  const on = questionRefs[step.screen - 1]
-  const target =
-    point === "title"
-      ? titleRef
-      : point === "start"
-        ? startRef
-        : point === "next"
-          ? (on?.next ?? null)
-          : point?.startsWith("option")
-            ? (on?.options[Number(point.slice("option".length))] ?? null)
-            : null
+  const voice = step.voice
+
+  function choose(toVoice: boolean) {
+    const to = toVoice ? VOICE_START : CLICK_START
+
+    if (still) {
+      setStillAt(toVoice ? STEPS.length - 1 : VOICE_START - 1)
+    } else {
+      jumpTo(to)
+    }
+  }
 
   // A screen, shown while it's the step's, fading in after the one before has faded out.
-  function screen(number: number, content: React.ReactNode) {
-    const shown = step.screen === number
-
+  function screen(shown: boolean, content: React.ReactNode, key?: string) {
     return (
       <div
-        key={number}
+        key={key}
+        data-shown={shown}
         className={cn(
-          "flex flex-col transition-[opacity,translate,visibility]",
+          "flex min-h-0 flex-col transition-[opacity,translate,visibility]",
           shown
             ? "delay-200 duration-500"
             : "invisible translate-y-2 opacity-0 duration-200"
@@ -132,40 +125,94 @@ export function CandidatesDemo({
     )
   }
 
+  const [status, heard, voicePicked] = VOICE[step.name] ?? BEFORE_VOICE
+
   return (
-    <div className="mx-auto w-full max-w-5xl">
-      <DemoPanel ref={ref}>
-        <DemoPointer
-          target={target}
-          clicking={step.click === true}
-          click={index}
+    // The switch sits above the picture, overlapping its top edge by a third of its height, so it
+    // never moves the picture.
+    <div
+      data-testid="candidates-demo"
+      data-step={step.name}
+      className="relative mx-auto w-full max-w-5xl"
+    >
+      <div className="absolute start-1/2 top-0 z-20 w-max -translate-x-1/2 -translate-y-2/3 rtl:translate-x-1/2">
+        <AnswerModeSwitch
+          label={interviews("answerMode")}
+          voice={voice}
+          disabled={false}
+          onChange={choose}
         />
-        <div className="grid grid-cols-[minmax(0,1fr)] p-2 *:min-w-0 *:[grid-area:1/1] sm:p-5">
-          {screen(
-            0,
-            <DemoInvitation
-              titleRef={titleRef}
-              startRef={startRef}
-              pressed={step.name === "start"}
-            />
-          )}
-          {DEMO_QUESTIONS.map((question, at) =>
-            screen(
-              at + 1,
-              <DemoQuestion
-                question={question}
-                exampleColors={exampleColors[at]}
-                // Unseen, a question keeps all its picks, so it fades out as it was left.
-                picked={step.screen === at + 1 ? step.picked : question.picks}
-                active={step.screen === at + 1}
-                optionRefs={questionRefs[at].options}
-                nextRef={questionRefs[at].next}
-                pressed={step.name === `next${at + 1}`}
+      </div>
+      <div className="w-full">
+        <DemoPanel ref={ref}>
+          <DemoPointer
+            target={targets[point ?? ""] ?? null}
+            clicking={step.click === true}
+            click={index}
+          />
+          <DemoMicPrompt
+            open={["vAllow", "vPrompt", "vAimPrompt", "vPromptAllow"].includes(
+              step.name
+            )}
+            pressed={step.name === "vPromptAllow"}
+          />
+          {/* One fixed height for every screen of both modes, the tallest's (the voice screen
+              with Mute), so the page never moves as they change. */}
+          <div className="grid h-[54rem] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] p-2 pt-5 *:min-w-0 *:[grid-area:1/1] max-sm:h-[49rem] sm:p-5 lg:h-[42rem]">
+            {screen(
+              !voice && step.screen === "start",
+              <DemoInvitation
+                voice={false}
+                action={
+                  <DemoStartAction
+                    access={null}
+                    pledged={voice || after("cPledge")}
+                    pressed={step.name === "cStart"}
+                  />
+                }
               />
-            )
-          )}
-        </div>
-      </DemoPanel>
+            )}
+            {CLICK_QUESTIONS.map((question, at) => {
+              const shown = step.screen === `q${at}`
+
+              return screen(
+                shown,
+                <DemoClickSession
+                  question={question}
+                  exampleColors={exampleColors[at]}
+                  active={shown}
+                  // Unseen, a question keeps its picks, so it fades out as it was left.
+                  picked={shown ? step.picked : question.picks}
+                  pressed={step.name === `next${at}`}
+                />,
+                `q${at}`
+              )
+            })}
+            {screen(
+              voice && step.screen === "start",
+              <DemoInvitation
+                voice
+                action={
+                  <DemoStartAction
+                    access={accessAt(index)}
+                    pledged={voice && after("vPledge")}
+                    pressed={step.name === "vStart"}
+                  />
+                }
+              />
+            )}
+            {screen(
+              voice && step.screen === "voice",
+              <DemoVoiceSession
+                active={voice && step.screen === "voice"}
+                status={status}
+                heard={heard}
+                picked={voicePicked}
+              />
+            )}
+          </div>
+        </DemoPanel>
+      </div>
     </div>
   )
 }

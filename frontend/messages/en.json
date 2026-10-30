@@ -148,7 +148,7 @@
     "price": "Just {price} per candidate."
   },
   "start": {
-    "placeholder": "Paste a job description, or describe the role and what a candidate should know",
+    "placeholder": "Paste your job description here…",
     "description": "Job description",
     "submit": "Create an interview",
     "whichCompany": "Which company is this interview for?",
@@ -1391,6 +1391,8 @@
     "demos": "Video",
     "demosTooltip": "Watch demos on YouTube",
     "videoTooltip": "Watch how prepza works",
+    "watchVideo": "Watch video",
+    "howItWorks": "How it works",
     "askAgent": "ask Mira",
     "create": {
       "title": "Create an interview in minutes",
@@ -1400,13 +1402,20 @@
         "templates": "ready-made templates available",
         "expert": "no expert needed"
       },
-      "describe": "Paste your description",
-      "adjust": "Adjust the topics",
-      "ask": "Ask AI to change the topics",
-      "ready": "Your interview is ready",
+      "describe": "<n>1.</n> Paste your description",
+      "adjust": "<n>2.</n> Adjust the topics",
+      "menu": {
+        "cut": "Cut",
+        "copy": "Copy",
+        "paste": "Paste"
+      },
+      "ready": "<n>3.</n> Your interview is ready",
       "status": "Ready",
-      "invite": "Invite candidates",
-      "waiting": "waiting…"
+      "phone": {
+        "describe": "Paste a job description, or write a few words about the role.",
+        "adjust": "Keep the topics that matter, rename them or add your own.",
+        "ready": "Questions are written for each topic; invite candidates by link or email."
+      }
     },
     "proof": {
       "anyJob": "Any job, any field",
@@ -1427,19 +1436,37 @@
         "agent": "AI assistant",
         "apps": "AI apps (MCP)"
       },
-      "automate": "Automate hiring",
+      "descriptions": {
+        "ats": "Straight from your ATS",
+        "email": "A link in their email",
+        "file": "Upload a list",
+        "link": "One link for a job ad",
+        "api": "From your own code",
+        "sdk": "On your own site",
+        "agent": "Just ask Mira",
+        "apps": "From Claude or ChatGPT"
+      },
+      "slackDescription": "Updates in your channel",
+      "automate": "Automate hiring with",
       "developerDocs": "developer docs",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> candidate} other {<n>#</n> candidates}}"
     },
     "candidates": {
       "title": "What candidates see",
-      "text": "A timed interview in your brand: single choice, multi-choice and practical.",
+      "text": "A timed interview in your brand, answered with a click or by voice.",
+      "micPrompt": {
+        "asks": "{site} wants to",
+        "microphone": "Use your microphones",
+        "always": "Allow while visiting the site",
+        "once": "Allow this time",
+        "never": "Never allow"
+      },
       "notes": {
-        "language": "in their language",
+        "modes": "click/voice modes",
         "phone": "works on a phone",
         "time": "time shown up front",
-        "extraTime": "extra time for those who need it"
+        "extraTime": "extra time for those in need"
       },
       "rules": {
         "pick": "Pick one answer, or every right one where it says Pick multiple options.",
@@ -1450,17 +1477,48 @@
         "extraTime": "Need more time? Ask <bdi>{company}</bdi> before you start.",
         "people": "People at <bdi>{company}</bdi> review the results and decide.",
         "stay": "Stay on this page until you finish."
+      },
+      "phone": {
+        "click": {
+          "title": "Click mode",
+          "text": "Candidates pick their answers, with a timer for each question."
+        },
+        "voice": {
+          "title": "Voice mode with Mira",
+          "text": "Mira, our AI interviewer, reads the questions and hears the answers."
+        }
       }
     },
     "shareReports": {
       "title": "See who's best\nShare it in seconds",
       "text": "Every candidate's answers and grade, shared by email or chat.",
-      "chatQuestion": "Hey, has anyone passed yet?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Message",
+        "best": "this one looks the best",
+        "flagged": "this one is definitely cheating with AI"
+      },
+      "proceeding": "Proceeding with {first} and {second}",
       "samples": "Report samples",
       "notes": {
         "notes": "write interview notes",
         "pdf": "send PDF reports",
-        "messengers": "share summaries via messengers"
+        "messengers": "share summaries via messengers",
+        "slack": "Slack notifications"
+      },
+      "phone": {
+        "pdf": {
+          "title": "Download the PDF",
+          "text": "Every candidate's grades and answers in one report."
+        },
+        "share": {
+          "title": "Share via messengers or email",
+          "text": "Send a candidate's summary to your team in seconds."
+        },
+        "team": {
+          "title": "Team notes and Slack",
+          "text": "Leave notes for your team, and get told in Slack when a candidate finishes."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "no subscription",
         "unanswered": "unanswered invites cost nothing",
         "expire": "credits never expire",
-        "refund": "unused paid credits refundable for 14 days",
-        "tax": "prices plus VAT or sales tax"
+        "refund": "unused paid credits refundable"
       }
     }
   },

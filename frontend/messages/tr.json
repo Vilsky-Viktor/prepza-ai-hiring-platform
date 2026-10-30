@@ -148,7 +148,7 @@
     "price": "Aday başına yalnızca {price}."
   },
   "start": {
-    "placeholder": "Bir iş tanımı yapıştırın ya da pozisyonu ve adayın bilmesi gerekenleri anlatın",
+    "placeholder": "İş tanımınızı buraya yapıştırın…",
     "description": "İş tanımı",
     "submit": "Mülakat oluştur",
     "whichCompany": "Bu mülakat hangi şirket için?",
@@ -1391,6 +1391,8 @@
     "demos": "Video",
     "demosTooltip": "Demoları YouTube'da izle",
     "videoTooltip": "prepza'nın nasıl çalıştığını izleyin",
+    "watchVideo": "Videoyu izle",
+    "howItWorks": "Nasıl çalışır",
     "askAgent": "Mira'ya sor",
     "create": {
       "title": "Dakikalar içinde mülakat oluşturun",
@@ -1400,13 +1402,20 @@
         "templates": "hazır şablonlar mevcut",
         "expert": "alan uzmanı gerekmez"
       },
-      "describe": "İş tanımınızı yapıştırın",
-      "adjust": "Konuları düzenleyin",
-      "ask": "Konuları değiştirmesini yapay zekâdan isteyin",
-      "ready": "Mülakatınız hazır",
+      "describe": "<n>1.</n> İş tanımınızı yapıştırın",
+      "adjust": "<n>2.</n> Konuları düzenleyin",
+      "menu": {
+        "cut": "Kes",
+        "copy": "Kopyala",
+        "paste": "Yapıştır"
+      },
+      "ready": "<n>3.</n> Mülakatınız hazır",
       "status": "Hazır",
-      "invite": "Adayları davet et",
-      "waiting": "bekleniyor…"
+      "phone": {
+        "describe": "Bir iş tanımı yapıştırın ya da pozisyon hakkında birkaç kelime yazın.",
+        "adjust": "Önemli konuları tutun, yeniden adlandırın ya da kendi konularınızı ekleyin.",
+        "ready": "Her konu için sorular yazılır; adayları bağlantıyla ya da e-postayla davet edin."
+      }
     },
     "proof": {
       "anyJob": "Her pozisyon, her sektör",
@@ -1427,16 +1436,34 @@
         "agent": "Yapay zekâ asistanı",
         "apps": "Yapay zekâ uygulamaları (MCP)"
       },
-      "automate": "İşe alımınızı otomatikleştirin",
+      "descriptions": {
+        "ats": "Doğrudan ATS'nizden",
+        "email": "E-postalarında bir bağlantı",
+        "file": "Bir liste yükleyin",
+        "link": "İş ilanı için tek bağlantı",
+        "api": "Kendi kodunuzdan",
+        "sdk": "Kendi sitenizde",
+        "agent": "Mira'ya sormanız yeterli",
+        "apps": "Claude veya ChatGPT'den"
+      },
+      "slackDescription": "Kanalınızda güncellemeler",
+      "automate": "İşe alımı otomatikleştirin:",
       "developerDocs": "geliştirici dokümantasyonu",
       "interview": "Mülakat",
       "candidates": "{count, plural, one {<n>#</n> aday} other {<n>#</n> aday}}"
     },
     "candidates": {
       "title": "Adaylar ne görür",
-      "text": "Markanıza özel, süreli bir mülakat: tek seçimli, çok seçimli ve uygulamalı sorular.",
+      "text": "Markanıza özel, süreli bir mülakat; tıklayarak ya da sesle cevaplanır.",
+      "micPrompt": {
+        "asks": "{site} şunu yapmak istiyor",
+        "microphone": "Mikrofonlarınızı kullanma",
+        "always": "Siteyi ziyaret ederken izin ver",
+        "once": "Bu sefer izin ver",
+        "never": "Hiçbir zaman izin verme"
+      },
       "notes": {
-        "language": "kendi dillerinde",
+        "modes": "tıklama ve sesli mod",
         "phone": "telefonda çalışır",
         "time": "süre baştan gösterilir",
         "extraTime": "ihtiyacı olana ek süre"
@@ -1450,17 +1477,48 @@
         "extraTime": "Daha fazla süreye mi ihtiyacınız var? Başlamadan önce <bdi>{company}</bdi> ekibinden isteyin.",
         "people": "Sonuçları <bdi>{company}</bdi> ekibindeki kişiler inceler ve karar verir.",
         "stay": "Bitirene kadar bu sayfada kalın."
+      },
+      "phone": {
+        "click": {
+          "title": "Tıklama modu",
+          "text": "Adaylar cevaplarını seçer, her soru için bir süre sayacı vardır."
+        },
+        "voice": {
+          "title": "Mira ile sesli mod",
+          "text": "Yapay zekâ mülakatçımız Mira soruları okur ve cevapları dinler."
+        }
       }
     },
     "shareReports": {
       "title": "En iyisini görün\nSaniyeler içinde paylaşın",
       "text": "Her adayın cevapları ve notu, e-postayla ya da sohbette paylaşılır.",
-      "chatQuestion": "Selam, geçen oldu mu?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Mesaj",
+        "best": "en iyisi bu gibi",
+        "flagged": "bu kesin yapay zekâyla kopya çekiyor"
+      },
+      "proceeding": "{first} ve {second} ile devam ediyoruz",
       "samples": "Örnek raporlar",
       "notes": {
         "notes": "mülakat yorumları yazın",
         "pdf": "PDF raporlar gönderin",
-        "messengers": "özetleri mesajlaşma uygulamalarıyla paylaşın"
+        "messengers": "özetleri mesajlaşma uygulamalarıyla paylaşın",
+        "slack": "Slack bildirimleri"
+      },
+      "phone": {
+        "pdf": {
+          "title": "PDF'i indirin",
+          "text": "Her adayın notları ve cevapları tek raporda."
+        },
+        "share": {
+          "title": "Mesajlaşma uygulamalarıyla ya da e-postayla paylaşın",
+          "text": "Bir adayın özetini saniyeler içinde ekibinize gönderin."
+        },
+        "team": {
+          "title": "Ekip yorumları ve Slack",
+          "text": "Ekibinize yorum bırakın, bir aday bitirdiğinde Slack'ten haber alın."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "abonelik yok",
         "unanswered": "yanıtlanmayan davetler ücretsizdir",
         "expire": "krediler hiç sona ermez",
-        "refund": "kullanılmayan ücretli krediler 14 gün içinde iade edilebilir",
-        "tax": "fiyatlara KDV veya satış vergisi eklenir"
+        "refund": "kullanılmayan ücretli krediler iade edilebilir"
       }
     }
   },

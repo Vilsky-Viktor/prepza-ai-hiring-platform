@@ -148,7 +148,7 @@
     "price": "Tylko {price} za kandydata."
   },
   "start": {
-    "placeholder": "Wklej opis stanowiska albo opisz rolę i to, co kandydat powinien wiedzieć",
+    "placeholder": "Wklej tutaj opis stanowiska…",
     "description": "Opis stanowiska",
     "submit": "Utwórz rozmowę",
     "whichCompany": "Dla której firmy jest ta rozmowa?",
@@ -1391,6 +1391,8 @@
     "demos": "Wideo",
     "demosTooltip": "Obejrzyj dema na YouTube",
     "videoTooltip": "Zobacz, jak działa prepza",
+    "watchVideo": "Obejrzyj wideo",
+    "howItWorks": "Jak to działa",
     "askAgent": "zapytaj Mirę",
     "create": {
       "title": "Utwórz rozmowę w kilka minut",
@@ -1400,13 +1402,20 @@
         "templates": "gotowe szablony do wyboru",
         "expert": "bez eksperta w danej dziedzinie"
       },
-      "describe": "Wklej swój opis",
-      "adjust": "Dopasuj tematy",
-      "ask": "Poproś AI o zmianę tematów",
-      "ready": "Twoja rozmowa jest gotowa",
+      "describe": "<n>1.</n> Wklej swój opis",
+      "adjust": "<n>2.</n> Dopasuj tematy",
+      "menu": {
+        "cut": "Wytnij",
+        "copy": "Kopiuj",
+        "paste": "Wklej"
+      },
+      "ready": "<n>3.</n> Twoja rozmowa jest gotowa",
       "status": "Gotowa",
-      "invite": "Zaproś kandydatów",
-      "waiting": "oczekiwanie…"
+      "phone": {
+        "describe": "Wklej opis stanowiska albo napisz kilka słów o roli.",
+        "adjust": "Zostaw ważne tematy, zmień ich nazwy albo dodaj własne.",
+        "ready": "Pytania powstają dla każdego tematu; zaproś kandydatów linkiem lub e-mailem."
+      }
     },
     "proof": {
       "anyJob": "Każde stanowisko, każda branża",
@@ -1427,16 +1436,34 @@
         "agent": "Asystent AI",
         "apps": "Aplikacje AI (MCP)"
       },
-      "automate": "Zautomatyzuj rekrutację",
+      "descriptions": {
+        "ats": "Prosto z Twojego ATS",
+        "email": "Link w ich e-mailu",
+        "file": "Prześlij listę",
+        "link": "Jeden link do ogłoszenia",
+        "api": "Z Twojego kodu",
+        "sdk": "Na Twojej stronie",
+        "agent": "Po prostu zapytaj Mirę",
+        "apps": "Z Claude'a lub ChatGPT"
+      },
+      "slackDescription": "Powiadomienia na Twoim kanale",
+      "automate": "Zautomatyzuj rekrutację dzięki",
       "developerDocs": "dokumentacja dla deweloperów",
       "interview": "Rozmowa",
       "candidates": "{count, plural, one {<n>#</n> kandydat} few {<n>#</n> kandydaci} many {<n>#</n> kandydatów} other {<n>#</n> kandydata}}"
     },
     "candidates": {
       "title": "Co widzą kandydaci",
-      "text": "Rozmowa na czas w barwach Twojej marki: jednokrotny wybór, wielokrotny wybór i zadania praktyczne.",
+      "text": "Rozmowa na czas w barwach Twojej marki, z odpowiedziami kliknięciem lub głosem.",
+      "micPrompt": {
+        "asks": "{site} chce",
+        "microphone": "Używać Twoich mikrofonów",
+        "always": "Zezwalaj podczas odwiedzania witryny",
+        "once": "Zezwól tym razem",
+        "never": "Nigdy nie zezwalaj"
+      },
       "notes": {
-        "language": "w ich języku",
+        "modes": "tryb kliknięć/głosowy",
         "phone": "działa na telefonie",
         "time": "czas widoczny z góry",
         "extraTime": "dodatkowy czas dla potrzebujących"
@@ -1450,17 +1477,48 @@
         "extraTime": "Potrzebujesz więcej czasu? Przed startem zapytaj, czy <bdi>{company}</bdi> może go przyznać.",
         "people": "Wyniki sprawdzają ludzie, a decyzję podejmuje <bdi>{company}</bdi>.",
         "stay": "Zostań na tej stronie do końca."
+      },
+      "phone": {
+        "click": {
+          "title": "Tryb kliknięć",
+          "text": "Kandydaci wybierają odpowiedzi, z limitem czasu na każde pytanie."
+        },
+        "voice": {
+          "title": "Tryb głosowy z Mirą",
+          "text": "Mira, nasza rekruterka AI, czyta pytania i słucha odpowiedzi."
+        }
       }
     },
     "shareReports": {
       "title": "Zobacz, kto jest najlepszy\nUdostępnij w kilka sekund",
       "text": "Odpowiedzi i wynik każdego kandydata, udostępniane e-mailem lub na czacie.",
-      "chatQuestion": "Hej, czy ktoś już zdał?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Wiadomość",
+        "best": "ten wygląda najlepiej",
+        "flagged": "ten na bank oszukuje z AI"
+      },
+      "proceeding": "Idziemy dalej z: {first} i {second}",
       "samples": "Przykładowe raporty",
       "notes": {
         "notes": "pisz notatki z rozmowy",
         "pdf": "wysyłaj raporty PDF",
-        "messengers": "udostępniaj podsumowania przez komunikatory"
+        "messengers": "udostępniaj podsumowania przez komunikatory",
+        "slack": "powiadomienia w Slacku"
+      },
+      "phone": {
+        "pdf": {
+          "title": "Pobierz PDF",
+          "text": "Oceny i odpowiedzi każdego kandydata w jednym raporcie."
+        },
+        "share": {
+          "title": "Udostępniaj przez komunikatory lub e-mail",
+          "text": "Wyślij podsumowanie kandydata zespołowi w kilka sekund."
+        },
+        "team": {
+          "title": "Notatki zespołu i Slack",
+          "text": "Zostawiaj notatki dla zespołu i dostawaj powiadomienie w Slacku, gdy kandydat skończy."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "bez abonamentu",
         "unanswered": "zaproszenia bez odpowiedzi nic nie kosztują",
         "expire": "kredyty nie wygasają",
-        "refund": "zwrot niewykorzystanych kredytów do 14 dni",
-        "tax": "ceny bez VAT ani podatku od sprzedaży"
+        "refund": "zwrot niewykorzystanych opłaconych kredytów"
       }
     }
   },

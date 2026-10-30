@@ -148,7 +148,7 @@
     "price": "Slechts {price} per kandidaat."
   },
   "start": {
-    "placeholder": "Plak een functieomschrijving, of beschrijf de functie en wat een kandidaat moet weten",
+    "placeholder": "Plak hier je functieomschrijving…",
     "description": "Functieomschrijving",
     "submit": "Interview maken",
     "whichCompany": "Voor welk bedrijf is dit interview?",
@@ -1391,6 +1391,8 @@
     "demos": "Video",
     "demosTooltip": "Demo's bekijken op YouTube",
     "videoTooltip": "Bekijk hoe prepza werkt",
+    "watchVideo": "Video bekijken",
+    "howItWorks": "Hoe het werkt",
     "askAgent": "vraag Mira",
     "create": {
       "title": "Maak een interview in enkele minuten",
@@ -1400,13 +1402,20 @@
         "templates": "kant-en-klare sjablonen beschikbaar",
         "expert": "geen vakexpert nodig"
       },
-      "describe": "Plak je omschrijving",
-      "adjust": "Pas de onderwerpen aan",
-      "ask": "Laat AI de onderwerpen aanpassen",
-      "ready": "Je interview is klaar",
+      "describe": "<n>1.</n> Plak je omschrijving",
+      "adjust": "<n>2.</n> Pas de onderwerpen aan",
+      "menu": {
+        "cut": "Knippen",
+        "copy": "Kopiëren",
+        "paste": "Plakken"
+      },
+      "ready": "<n>3.</n> Je interview is klaar",
       "status": "Klaar",
-      "invite": "Kandidaten uitnodigen",
-      "waiting": "wachten…"
+      "phone": {
+        "describe": "Plak een functieomschrijving, of schrijf een paar woorden over de functie.",
+        "adjust": "Houd de onderwerpen die ertoe doen, geef ze een andere naam of voeg je eigen toe.",
+        "ready": "Per onderwerp worden vragen geschreven; nodig kandidaten uit via een link of e-mail."
+      }
     },
     "proof": {
       "anyJob": "Elke functie, elke branche",
@@ -1427,16 +1436,34 @@
         "agent": "AI-assistent",
         "apps": "AI-apps (MCP)"
       },
-      "automate": "Automatiseer je werving",
+      "descriptions": {
+        "ats": "Rechtstreeks uit je ATS",
+        "email": "Een link in hun e-mail",
+        "file": "Upload een lijst",
+        "link": "Eén link voor een vacature",
+        "api": "Vanuit je eigen code",
+        "sdk": "Op je eigen site",
+        "agent": "Vraag het gewoon Mira",
+        "apps": "Vanuit Claude of ChatGPT"
+      },
+      "slackDescription": "Updates in je kanaal",
+      "automate": "Automatiseer je werving met",
       "developerDocs": "documentatie voor ontwikkelaars",
       "interview": "Interview",
       "candidates": "{count, plural, one {<n>#</n> kandidaat} other {<n>#</n> kandidaten}}"
     },
     "candidates": {
       "title": "Wat kandidaten zien",
-      "text": "Een interview met tijdslimiet in je eigen huisstijl: één antwoord, meerdere antwoorden en praktijkopdrachten.",
+      "text": "Een interview met tijdslimiet in je eigen huisstijl, beantwoord met een klik of met je stem.",
+      "micPrompt": {
+        "asks": "{site} wil het volgende:",
+        "microphone": "Je microfoons gebruiken",
+        "always": "Toestaan tijdens bezoek aan site",
+        "once": "Deze keer toestaan",
+        "never": "Nooit toestaan"
+      },
       "notes": {
-        "language": "in hun eigen taal",
+        "modes": "klik-/spraakmodus",
         "phone": "werkt op een telefoon",
         "time": "tijd vooraf zichtbaar",
         "extraTime": "extra tijd voor wie dat nodig heeft"
@@ -1450,17 +1477,48 @@
         "extraTime": "Meer tijd nodig? Vraag het aan <bdi>{company}</bdi> voordat je begint.",
         "people": "Mensen bij <bdi>{company}</bdi> bekijken de resultaten en beslissen.",
         "stay": "Blijf op deze pagina tot je klaar bent."
+      },
+      "phone": {
+        "click": {
+          "title": "Klikmodus",
+          "text": "Kandidaten kiezen hun antwoorden, met een timer per vraag."
+        },
+        "voice": {
+          "title": "Spraakmodus met Mira",
+          "text": "Mira, onze AI-interviewer, leest de vragen voor en luistert naar de antwoorden."
+        }
       }
     },
     "shareReports": {
       "title": "Zie wie de beste is\nDeel het in seconden",
       "text": "De antwoorden en score van elke kandidaat, gedeeld per e-mail of chat.",
-      "chatQuestion": "Hé, is er al iemand geslaagd?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Bericht",
+        "best": "deze lijkt me de beste",
+        "flagged": "deze speelt echt vals met AI"
+      },
+      "proceeding": "We gaan verder met {first} en {second}",
       "samples": "Voorbeeldrapporten",
       "notes": {
         "notes": "interviewnotities schrijven",
         "pdf": "PDF-rapporten versturen",
-        "messengers": "samenvattingen delen via berichtenapps"
+        "messengers": "samenvattingen delen via berichtenapps",
+        "slack": "Slack-meldingen"
+      },
+      "phone": {
+        "pdf": {
+          "title": "Download de PDF",
+          "text": "De beoordelingen en antwoorden van elke kandidaat in één rapport."
+        },
+        "share": {
+          "title": "Delen via berichtenapps of e-mail",
+          "text": "Stuur de samenvatting van een kandidaat binnen seconden naar je team."
+        },
+        "team": {
+          "title": "Teamnotities en Slack",
+          "text": "Laat notities achter voor je team, en krijg een melding in Slack als een kandidaat klaar is."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "geen abonnement",
         "unanswered": "onbeantwoorde uitnodigingen kosten niets",
         "expire": "credits verlopen nooit",
-        "refund": "ongebruikte betaalde credits 14 dagen lang terug te krijgen",
-        "tax": "prijzen excl. btw of verkoopbelasting"
+        "refund": "ongebruikte betaalde credits terug te krijgen"
       }
     }
   },

@@ -59,6 +59,72 @@ describe("sourceWires", () => {
   })
 })
 
+describe("sourceWires' turning wires", () => {
+  it("comes down near the card's side, then turns into it, for a source above and close to it", () => {
+    // Above the card, 20 px off its left side.
+    const [wire] = sourceWires(
+      CARD,
+      [{ left: 20, top: 0, width: 60, height: 40 }],
+      10,
+      4
+    )
+
+    // Down at 56 px off the side, then level into the side's middle.
+    expect(wire).toBe("M 44 36 C 44 130, 44 130, 100 130")
+  })
+
+  it("turns from within the source when it reaches over the card's side", () => {
+    // Above, reaching 30 px over the left side, its middle still left of the card.
+    const [wire] = sourceWires(
+      CARD,
+      [{ left: 60, top: 0, width: 70, height: 40 }],
+      10,
+      4
+    )
+
+    expect(ends(wire)).toEqual({ from: [64, 36], to: [100, 130] })
+    expect(numbers(wire)[2]).toBe(64)
+  })
+
+  it("comes up into the far side for a source below and close to it", () => {
+    const [wire] = sourceWires(
+      CARD,
+      [{ left: 190, top: 200, width: 40, height: 40 }],
+      10,
+      4
+    )
+
+    expect(wire).toBe("M 226 204 C 226 130, 226 130, 200 130")
+  })
+
+  it("keeps its place among the other wires on that side", () => {
+    const turning = { left: 20, top: 0, width: 60, height: 40 }
+    const beside = { left: 0, top: 110, width: 40, height: 40 }
+    const [fromTurning, fromBeside] = sourceWires(
+      CARD,
+      [turning, beside],
+      10,
+      0
+    )
+
+    // The higher source meets the side higher, so the two never cross.
+    expect(ends(fromTurning).to).toEqual([100, 125])
+    expect(ends(fromBeside).to).toEqual([100, 135])
+  })
+
+  it("runs straight for a source well off the side", () => {
+    // 60 px off the left side: the plain curve, leaving level from the source's side.
+    const [wire] = sourceWires(
+      CARD,
+      [{ left: 0, top: 0, width: 40, height: 40 }],
+      10,
+      4
+    )
+
+    expect(ends(wire).from).toEqual([36, 20])
+  })
+})
+
 describe("reversed", () => {
   it("draws the same curve from its other end", () => {
     expect(reversed("M 1 2 C 3 4, 5 6, 7 8")).toBe("M 7 8 C 5 6, 3 4, 1 2")

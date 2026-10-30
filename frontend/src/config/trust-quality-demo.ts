@@ -1,5 +1,12 @@
 // The home page's "trust, quality and compliance" section: the quality loop's steps and the
 // cards under it. Display only.
+import {
+  FlagIcon,
+  ListChecksIcon,
+  PenLineIcon,
+  ScanSearchIcon,
+  SparklesIcon,
+} from "lucide-react"
 
 // The loop's steps, in order, by their text's key; after the last, back to the first.
 export const QUALITY_STEPS = [
@@ -11,6 +18,15 @@ export const QUALITY_STEPS = [
 ] as const
 
 export type QualityStep = (typeof QUALITY_STEPS)[number]
+
+// Each step's icon.
+export const QUALITY_ICONS = {
+  generated: SparklesIcon,
+  checked: ScanSearchIcon,
+  answered: ListChecksIcon,
+  flagged: FlagIcon,
+  rewritten: PenLineIcon,
+}
 
 // Light through the loop's net: each ring's seconds from the chip to the ellipse, and how many
 // rings run at once, evenly apart.

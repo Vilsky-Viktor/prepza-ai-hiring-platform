@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest"
 
-import { seenOnScreen, skips } from "@/hooks/use-demo-steps"
+import {
+  countedAt,
+  pointedAt,
+  seenOnScreen,
+  skips,
+  stepIndex,
+} from "@/hooks/use-demo-steps"
 
 const SCREEN = 800
 
@@ -46,5 +52,36 @@ describe("skips", () => {
 
   it("leaves a demo that isn't playing where it is", () => {
     expect(skips(false, 2, 5)).toBe(false)
+  })
+})
+
+// A demo's steps: a pause, a pointer moved, five letters typed, the pointer hidden.
+const STEPS = [
+  { name: "start", ms: 100 },
+  { name: "aim", ms: 100, point: "field" },
+  { name: "typing", ms: 50, repeat: 5 },
+  { name: "done", ms: 100, point: "none" },
+]
+
+describe("stepIndex", () => {
+  it("finds a step by its name", () => {
+    expect(stepIndex(STEPS, "typing")).toBe(2)
+    expect(stepIndex(STEPS, "missing")).toBe(-1)
+  })
+})
+
+describe("countedAt", () => {
+  it("counts nothing before the step, its count during it and all of it after", () => {
+    expect(countedAt(STEPS, { index: 1, n: 0 }, "typing", 5)).toBe(0)
+    expect(countedAt(STEPS, { index: 2, n: 3 }, "typing", 5)).toBe(3)
+    expect(countedAt(STEPS, { index: 3, n: 0 }, "typing", 5)).toBe(5)
+  })
+})
+
+describe("pointedAt", () => {
+  it("is the last target a step so far moved the pointer to", () => {
+    expect(pointedAt(STEPS, 0)).toBeUndefined()
+    expect(pointedAt(STEPS, 2)).toBe("field")
+    expect(pointedAt(STEPS, 3)).toBe("none")
   })
 })

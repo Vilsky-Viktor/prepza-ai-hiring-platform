@@ -148,7 +148,7 @@
     "price": "Hanya {price} per kandidat."
   },
   "start": {
-    "placeholder": "Tempel deskripsi pekerjaan, atau jelaskan posisinya dan apa yang perlu diketahui kandidat",
+    "placeholder": "Tempel deskripsi pekerjaanmu di sini…",
     "description": "Deskripsi pekerjaan",
     "submit": "Buat wawancara",
     "whichCompany": "Wawancara ini untuk perusahaan mana?",
@@ -1391,6 +1391,8 @@
     "demos": "Video",
     "demosTooltip": "Tonton demo di YouTube",
     "videoTooltip": "Lihat cara kerja prepza",
+    "watchVideo": "Tonton video",
+    "howItWorks": "Cara kerjanya",
     "askAgent": "tanya Mira",
     "create": {
       "title": "Buat wawancara dalam hitungan menit",
@@ -1400,13 +1402,20 @@
         "templates": "templat siap pakai tersedia",
         "expert": "tanpa perlu ahli di bidangnya"
       },
-      "describe": "Tempel deskripsimu",
-      "adjust": "Sesuaikan topiknya",
-      "ask": "Minta AI mengubah topiknya",
-      "ready": "Wawancaramu sudah siap",
+      "describe": "<n>1.</n> Tempel deskripsimu",
+      "adjust": "<n>2.</n> Sesuaikan topiknya",
+      "menu": {
+        "cut": "Potong",
+        "copy": "Salin",
+        "paste": "Tempel"
+      },
+      "ready": "<n>3.</n> Wawancaramu sudah siap",
       "status": "Siap",
-      "invite": "Undang kandidat",
-      "waiting": "menunggu…"
+      "phone": {
+        "describe": "Tempel deskripsi pekerjaan, atau tulis beberapa kata tentang posisinya.",
+        "adjust": "Pertahankan topik yang penting, ganti namanya, atau tambahkan topikmu sendiri.",
+        "ready": "Soal ditulis untuk setiap topik; undang kandidat lewat tautan atau email."
+      }
     },
     "proof": {
       "anyJob": "Pekerjaan apa pun, bidang apa pun",
@@ -1427,16 +1436,34 @@
         "agent": "Asisten AI",
         "apps": "Aplikasi AI (MCP)"
       },
-      "automate": "Otomatiskan rekrutmenmu",
+      "descriptions": {
+        "ats": "Langsung dari ATS-mu",
+        "email": "Tautan di email mereka",
+        "file": "Unggah daftar",
+        "link": "Satu tautan untuk iklan lowongan",
+        "api": "Dari kodemu sendiri",
+        "sdk": "Di situsmu sendiri",
+        "agent": "Tanya saja Mira",
+        "apps": "Dari Claude atau ChatGPT"
+      },
+      "slackDescription": "Kabar terbaru di kanalmu",
+      "automate": "Otomatiskan rekrutmen dengan",
       "developerDocs": "dokumentasi pengembang",
       "interview": "Wawancara",
       "candidates": "{count, plural, other {<n>#</n> kandidat}}"
     },
     "candidates": {
       "title": "Yang dilihat kandidat",
-      "text": "Wawancara berbatas waktu dengan merekmu: pilihan tunggal, pilihan ganda, dan praktik.",
+      "text": "Wawancara berbatas waktu dengan merekmu, dijawab dengan klik atau suara.",
+      "micPrompt": {
+        "asks": "{site} ingin",
+        "microphone": "Menggunakan mikrofon Anda",
+        "always": "Izinkan saat mengunjungi situs",
+        "once": "Izinkan kali ini",
+        "never": "Jangan pernah izinkan"
+      },
       "notes": {
-        "language": "dalam bahasa mereka",
+        "modes": "mode klik/suara",
         "phone": "bisa di ponsel",
         "time": "waktu ditampilkan di awal",
         "extraTime": "waktu tambahan bagi yang membutuhkan"
@@ -1450,17 +1477,48 @@
         "extraTime": "Butuh waktu lebih? Tanyakan ke <bdi>{company}</bdi> sebelum kamu mulai.",
         "people": "Orang-orang di <bdi>{company}</bdi> meninjau hasilnya dan memutuskan.",
         "stay": "Tetap di halaman ini sampai selesai."
+      },
+      "phone": {
+        "click": {
+          "title": "Mode klik",
+          "text": "Kandidat memilih jawabannya, dengan timer untuk setiap soal."
+        },
+        "voice": {
+          "title": "Mode suara dengan Mira",
+          "text": "Mira, pewawancara AI kami, membacakan soal dan mendengarkan jawabannya."
+        }
       }
     },
     "shareReports": {
       "title": "Lihat siapa yang terbaik\nBagikan dalam hitungan detik",
       "text": "Jawaban dan nilai setiap kandidat, dibagikan lewat email atau chat.",
-      "chatQuestion": "Hai, sudah ada yang lulus belum?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Ketik pesan",
+        "best": "yang ini kelihatannya paling bagus",
+        "flagged": "yang ini pasti curang pakai AI"
+      },
+      "proceeding": "Lanjut dengan {first} dan {second}",
       "samples": "Contoh laporan",
       "notes": {
         "notes": "tulis catatan wawancara",
         "pdf": "kirim laporan PDF",
-        "messengers": "bagikan ringkasan lewat aplikasi pesan"
+        "messengers": "bagikan ringkasan lewat aplikasi pesan",
+        "slack": "notifikasi Slack"
+      },
+      "phone": {
+        "pdf": {
+          "title": "Unduh PDF-nya",
+          "text": "Nilai dan jawaban setiap kandidat dalam satu laporan."
+        },
+        "share": {
+          "title": "Bagikan lewat aplikasi pesan atau email",
+          "text": "Kirim ringkasan kandidat ke timmu dalam hitungan detik."
+        },
+        "team": {
+          "title": "Catatan tim dan Slack",
+          "text": "Tinggalkan catatan untuk timmu, dan dapat kabar di Slack saat kandidat selesai."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "tanpa langganan",
         "unanswered": "undangan yang tidak dijawab gratis",
         "expire": "kredit tidak pernah kedaluwarsa",
-        "refund": "kredit berbayar sisa bisa di-refund 14 hari",
-        "tax": "harga belum termasuk PPN atau pajak penjualan"
+        "refund": "kredit berbayar sisa bisa di-refund"
       }
     }
   },

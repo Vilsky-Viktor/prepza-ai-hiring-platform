@@ -1,290 +1,108 @@
 "use client"
 
 import { cn } from "cn"
-import { useTranslations } from "next-intl"
-import { useEffect, useRef } from "react"
+import { useState } from "react"
 
-import { Caret } from "@/features/landing/components/caret"
-import { DemoInterview } from "@/features/landing/components/demo-interview"
-import { DemoInvitePopup } from "@/features/landing/components/demo-invite-popup"
+import { CreateDescribe } from "@/features/landing/components/create-describe"
+import { CreateReady } from "@/features/landing/components/create-ready"
+import { CreateTopics } from "@/features/landing/components/create-topics"
 import { DemoPanel } from "@/features/landing/components/demo-panel"
 import { DemoPointer } from "@/features/landing/components/demo-pointer"
-import { DemoSentNotice } from "@/features/landing/components/demo-popup"
-import { Waiting } from "@/features/landing/components/demo-waiting"
-import { DemoWriting } from "@/features/landing/components/demo-writing"
-import { FlowArrows } from "@/features/landing/components/flow-arrows"
-import {
-  SubtopicChip,
-  TopicCard,
-} from "@/features/landing/components/topic-card"
-import { TypedDescription } from "@/features/landing/components/typed-description"
-import { buttonVariants } from "@/components/ui/button"
-import {
-  DEMO_ADDED_SUBTOPIC,
-  DEMO_CHANGE,
-  DEMO_DESCRIPTION,
-  DEMO_EDITED,
-  DEMO_INVITE_EMAIL,
-  DEMO_NEW_TOPIC,
-  DEMO_TOPICS,
-} from "@/config/create-demo"
-import {
-  ADJUST,
-  APPLIED,
-  DESCRIBE,
-  GO,
-  INVITING,
-  READY,
-  RESULT,
-  STEPS,
-  WRITING,
-  WRITTEN,
-} from "@/config/create-demo-steps"
-import { countedAt, pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
-import { bdi } from "@/lib/bidi"
+import { STEPS, TARGETS, TOPICS, WRITING } from "@/config/create-demo-steps"
+import { pointedAt, useDemoSteps } from "@/hooks/use-demo-steps"
 
-// Tailwind's lg: below it the panels stack, one under another.
-const STACKED_BELOW = 1024
-
-/** How an interview is created, as three panels joined by arrows: a job description typed and
- * sent; the topics it gives, adjusted by hand and by asking the AI, then approved; and their
- * questions written, then the interview ready, a candidate invited to it. Every row keeps its
- * place before it shows, so the panels never change size. */
+/** How an interview is created, played in one frame, each screen taking the last one's place: a
+ * job description pasted into the home page's box and sent, and a first company named; the
+ * topics it gives, adjusted by hand and by asking the AI, then approved; their questions written,
+ * then the interview ready, its questions per candidate changed and a candidate invited. A
+ * numbered pill on the frame's top edge names the stage. The frame keeps one size as it plays. */
 export function CreateFlow({
   labels,
 }: {
   labels: {
-    describe: string
-    adjust: string
-    ask: string
-    ready: string
+    // Each stage's title, its number first.
+    steps: React.ReactNode[]
     status: string
-    invite: string
-    waiting: string
   }
 }) {
-  const start = useTranslations("start")
-  const generation = useTranslations("generation")
-  const share = useTranslations("share")
-  const { ref: playRef, skipTo, ...at } = useDemoSteps<HTMLDivElement>(STEPS)
-  const readyRef = useRef<HTMLDivElement>(null)
-  const step = STEPS[at.index].name
-  const letters = countedAt(STEPS, at, "typing", DEMO_DESCRIPTION.length)
-  const shown = countedAt(STEPS, at, "topics", DEMO_TOPICS.length)
-  const added = countedAt(STEPS, at, "adding", DEMO_ADDED_SUBTOPIC.length)
-  const asked = countedAt(STEPS, at, "asking", DEMO_CHANGE.length)
-  const adding = step === "open" || step === "adding"
-  const asking = ["asking", "aimApply", "apply", "applying"].includes(step)
-  const fieldRef = useRef<HTMLParagraphElement>(null)
-  const sendRef = useRef<HTMLSpanElement>(null)
-  const topicRef = useRef<HTMLSpanElement>(null)
-  const askRef = useRef<HTMLDivElement>(null)
-  const applyRef = useRef<HTMLSpanElement>(null)
-  const inviteRef = useRef<HTMLSpanElement>(null)
-  const emailRef = useRef<HTMLDivElement>(null)
-  const sendInviteRef = useRef<HTMLSpanElement>(null)
-  const emailed = countedAt(STEPS, at, "typingEmail", DEMO_INVITE_EMAIL.length)
-  const targets = {
-    field: fieldRef,
-    send: sendRef,
-    topic: topicRef,
-    ask: askRef,
-    apply: applyRef,
-    invite: inviteRef,
-    email: emailRef,
-    sendInvite: sendInviteRef,
-  }
+  const { ref, ...at } = useDemoSteps<HTMLDivElement>(STEPS)
+  const stage = at.index < TOPICS ? 0 : at.index < WRITING ? 1 : 2
+  // What the pointer moves to: the element named so in the screen shown, found as the pointer
+  // looks for it. Made once, so the pointer only moves when its target does.
+  const [targets] = useState(() =>
+    Object.fromEntries(
+      TARGETS.map((name) => [
+        name,
+        {
+          get current() {
+            return (
+              ref.current?.querySelector<HTMLElement>(
+                `[data-shown=true] [data-demo-target="${name}"]`
+              ) ?? null
+            )
+          },
+        },
+      ])
+    )
+  )
   const point = pointedAt(STEPS, at.index)
-  const clicking = STEPS[at.index].click === true
 
-  // The pointer in `panel`, on what it points at there.
-  function pointer(panel: string[]) {
-    const on = point && panel.includes(point) ? point : null
-
+  // A screen, shown while it's the stage's, fading in after the one before has faded out.
+  function screen(number: number, content: React.ReactNode) {
     return (
-      <DemoPointer
-        target={on ? targets[on as keyof typeof targets] : null}
-        clicking={clicking && on !== null}
-        click={at.index}
-      />
+      <div
+        data-shown={stage === number}
+        className={cn(
+          "relative flex min-h-0 flex-col overflow-hidden transition-[opacity,translate,visibility]",
+          stage === number
+            ? "delay-200 duration-500"
+            : "invisible translate-y-2 opacity-0 duration-200"
+        )}
+      >
+        {content}
+      </div>
     )
   }
-
-  // On phones the panels stack, so reaching the last one skips ahead to its generating, rather
-  // than leaving it empty while the first two play off screen.
-  useEffect(() => {
-    const panel = readyRef.current
-
-    if (
-      !panel ||
-      window.matchMedia(`(min-width: ${STACKED_BELOW}px)`).matches
-    ) {
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          skipTo(GO)
-        }
-      },
-      { threshold: 0.5 }
-    )
-    observer.observe(panel)
-
-    return () => observer.disconnect()
-  }, [skipTo])
 
   return (
-    <div
-      ref={playRef}
-      className="grid flex-1 lg:grid-cols-[minmax(0,5fr)_auto_minmax(0,5fr)_auto_minmax(0,6fr)]"
-    >
-      <DemoPanel label={labels.describe}>
-        {pointer(DESCRIBE)}
-        <TypedDescription
-          ref={fieldRef}
-          sendRef={sendRef}
-          full={DEMO_DESCRIPTION}
-          letters={step === "empty" ? null : letters}
-          typing={step === "typing"}
-          placeholder={start("placeholder")}
-          pressed={step === "send"}
-        />
-      </DemoPanel>
-      <FlowArrows />
-      <DemoPanel label={labels.adjust}>
-        {pointer(ADJUST)}
-        <div className="flex flex-1 flex-col gap-3 p-2">
-          {/* Until the first topic shows, "waiting…" in the middle of the list's place. */}
-          <div className="relative flex-1">
-            {shown === 0 && <Waiting text={labels.waiting} />}
-            <ul className="space-y-2">
-              {DEMO_TOPICS.map((topic, position) => {
-                const edited = topic.name === DEMO_EDITED
-
-                return (
-                  <TopicCard
-                    key={topic.name}
-                    name={topic.name}
-                    hidden={position >= shown}
-                    highlighted={edited && adding}
-                  >
-                    {topic.subtopics.map((subtopic) => (
-                      <SubtopicChip key={subtopic}>{subtopic}</SubtopicChip>
-                    ))}
-                    {/* The added subtopic keeps its place, unseen, until it's typed; sized by
-                      the whole word (and caret) all along, so nothing moves as it's typed. */}
-                    {edited && (
-                      <SubtopicChip
-                        ref={topicRef}
-                        typing={adding}
-                        hidden={!adding && added === 0}
-                      >
-                        <span className="grid *:[grid-area:1/1]">
-                          {/* The caret's width as padding. */}
-                          <span className="invisible pe-0.5">
-                            {DEMO_ADDED_SUBTOPIC}
-                          </span>
-                          <span className="flex h-4 items-center">
-                            {DEMO_ADDED_SUBTOPIC.slice(0, added)}
-                            {adding && <Caret />}
-                          </span>
-                        </span>
-                      </SubtopicChip>
-                    )}
-                  </TopicCard>
-                )
-              })}
-              <TopicCard name={DEMO_NEW_TOPIC.name} hidden={at.index < APPLIED}>
-                {DEMO_NEW_TOPIC.subtopics.map((subtopic) => (
-                  <SubtopicChip key={subtopic}>{subtopic}</SubtopicChip>
-                ))}
-              </TopicCard>
-            </ul>
-          </div>
-          {/* The request for changes, as the review's box, and its button. */}
-          <div
-            ref={askRef}
-            className="flex h-10 items-center rounded-xl bg-surface px-4"
-          >
-            {asking ? (
-              <span className="flex h-5 min-w-0 items-center">
-                <span className="truncate">{DEMO_CHANGE.slice(0, asked)}</span>
-                {step === "asking" && <Caret />}
-              </span>
-            ) : (
-              <span className="truncate text-muted-foreground">
-                {labels.ask}
-              </span>
-            )}
-          </div>
-          <div className="flex justify-end">
-            <span
-              ref={applyRef}
-              className={buttonVariants({
-                size: "sm",
-                className: cn(
-                  "lowercase",
-                  step === "applying" && "opacity-50",
-                  (step === "apply" || step === "go") && "ring-3 ring-ring/50"
-                ),
-              })}
-            >
-              {/* As the real button: applying the changes while there are some, else
-                  approving the topics. */}
-              {asking ? generation("apply") : generation("approve")}
-            </span>
-          </div>
-        </div>
-      </DemoPanel>
-      <FlowArrows />
-      <DemoPanel ref={readyRef} label={labels.ready}>
-        {pointer(RESULT)}
-        {/* "waiting…" until the topics are approved, then the questions being written, then the
-            interview in their place. */}
-        <div className="relative grid flex-1 p-2 *:[grid-area:1/1]">
-          {at.index < WRITING && <Waiting text={labels.waiting} />}
-          <div
-            data-testid="demo-writing"
+    // The stage's title sits on the frame's top edge, a third of it over it, so it never moves
+    // the frame; the titles lie on top of each other, crossfading, as wide as the widest.
+    <div className="relative">
+      <div className="absolute start-1/2 top-0 z-20 grid -translate-x-1/2 -translate-y-2/3 *:[grid-area:1/1] rtl:translate-x-1/2">
+        {labels.steps.map((title, index) => (
+          <p
+            key={index}
+            data-testid="create-step"
+            data-current={index === stage}
             className={cn(
-              "flex min-w-0",
-              (at.index < WRITING || at.index >= READY) && "invisible opacity-0"
+              "rounded-full border bg-background px-6 py-3 text-center font-heading text-lg font-medium whitespace-nowrap transition-opacity duration-300 sm:text-xl",
+              index !== stage && "opacity-0"
             )}
           >
-            <DemoWriting
-              topics={WRITTEN}
-              ready={countedAt(STEPS, at, "writing", WRITTEN.length)}
-            />
-          </div>
-          <div
-            data-testid="demo-interview"
-            className={cn(
-              "flex min-w-0",
-              at.index < READY && "invisible opacity-0"
-            )}
-          >
-            <DemoInterview
-              topics={WRITTEN}
-              status={labels.status}
-              invite={labels.invite}
-              inviteRef={inviteRef}
-              pressed={step === "invite"}
-            />
-          </div>
+            {title}
+          </p>
+        ))}
+      </div>
+      <DemoPanel ref={ref}>
+        <DemoPointer
+          target={targets[point ?? ""] ?? null}
+          clicking={STEPS[at.index].click === true}
+          click={at.index}
+        />
+        {/* One size for every screen, so nothing moves as they change. */}
+        <div className="grid h-[44rem] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] p-2 *:min-w-0 *:[grid-area:1/1] max-sm:h-[40rem] sm:p-5 lg:h-[38rem]">
+          {screen(0, <CreateDescribe at={at} />)}
+          {screen(
+            1,
+            <div className="mx-auto flex w-full max-w-3xl min-w-0 flex-1">
+              <CreateTopics at={at} />
+            </div>
+          )}
+          {screen(
+            2,
+            <CreateReady at={at} labels={{ status: labels.status }} />
+          )}
         </div>
-        <DemoInvitePopup
-          open={INVITING.includes(step)}
-          email={DEMO_INVITE_EMAIL.slice(0, emailed)}
-          typing={step === "focusEmail" || step === "typingEmail"}
-          pressed={step === "sendInvite"}
-          emailRef={emailRef}
-          sendRef={sendInviteRef}
-        />
-        <DemoSentNotice
-          shown={step === "invited"}
-          text={share.rich("sent", { email: DEMO_INVITE_EMAIL, ...bdi })}
-        />
       </DemoPanel>
     </div>
   )

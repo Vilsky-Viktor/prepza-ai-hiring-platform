@@ -51,8 +51,7 @@ export function NetWave({
           <path
             d={`M 0 0 H ${cell} M 0 0 V ${cell}`}
             fill="none"
-            strokeWidth={1.25}
-            className="stroke-primary"
+            className="stroke-primary [stroke-width:1.75]"
           />
         </pattern>
         {/* The blur may draw over the whole net and round it: the usual 10% round each ring

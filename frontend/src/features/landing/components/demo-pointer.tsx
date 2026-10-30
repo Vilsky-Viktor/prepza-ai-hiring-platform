@@ -4,8 +4,8 @@ import { cn } from "cn"
 import { type RefObject, useEffect, useRef, useState } from "react"
 
 /** A mouse pointer for a landing demo, laid over its panel (whose box must be `relative`): it
- * glides to the middle of `target` and, while `clicking`, presses with a ring spreading in the
- * primary colour; hidden while there's no target, and with reduced motion. Each click is keyed
+ * glides to the middle of `target` and, while `clicking`, presses with a soft glow spreading in
+ * the primary colour; hidden while there's no target, and with reduced motion. Each click is keyed
  * by `click`, so the ring plays again for the next one. Measured from the page, so it finds its
  * target at any width. */
 export function DemoPointer({
@@ -81,7 +81,7 @@ export function DemoPointer({
       {clicking && (
         <span
           key={click}
-          className="absolute -top-4 -left-4 size-8 animate-[ripple_0.5s_ease-out_forwards] rounded-full border-2 border-primary"
+          className="absolute -top-4 -left-4 size-8 animate-[ripple_0.5s_ease-out_forwards] rounded-full bg-primary/25"
         />
       )}
       <svg

@@ -148,7 +148,7 @@
     "price": "候補者 1 人あたりわずか {price}。"
   },
   "start": {
-    "placeholder": "求人票を貼り付けるか、職種と候補者が知っておくべきことを説明してください",
+    "placeholder": "ここに求人票を貼り付けてください…",
     "description": "求人票",
     "submit": "面接を作成",
     "whichCompany": "どの会社の面接ですか？",
@@ -1391,6 +1391,8 @@
     "demos": "動画",
     "demosTooltip": "YouTube でデモを見る",
     "videoTooltip": "prepza の使い方を見る",
+    "watchVideo": "動画を見る",
+    "howItWorks": "使い方",
     "askAgent": "ミラに質問",
     "create": {
       "title": "数分で面接を作成",
@@ -1400,13 +1402,20 @@
         "templates": "すぐ使えるテンプレートあり",
         "expert": "専門家がいなくても作成可能"
       },
-      "describe": "求人票を貼り付け",
-      "adjust": "トピックを調整",
-      "ask": "AI にトピックの変更を依頼",
-      "ready": "面接が完成しました",
+      "describe": "<n>1.</n> 求人票を貼り付け",
+      "adjust": "<n>2.</n> トピックを調整",
+      "menu": {
+        "cut": "切り取り",
+        "copy": "コピー",
+        "paste": "貼り付け"
+      },
+      "ready": "<n>3.</n> 面接が完成しました",
       "status": "準備完了",
-      "invite": "候補者を招待",
-      "waiting": "待機中…"
+      "phone": {
+        "describe": "求人票を貼り付けるか、職種について簡単に書いてください。",
+        "adjust": "必要なトピックを残し、名前を変えたり、独自のトピックを追加したりできます。",
+        "ready": "トピックごとに問題が作成されます。候補者はリンクかメールで招待できます。"
+      }
     },
     "proof": {
       "anyJob": "あらゆる職種・業界に対応",
@@ -1427,16 +1436,34 @@
         "agent": "AI アシスタント",
         "apps": "AI アプリ (MCP)"
       },
-      "automate": "採用を自動化",
+      "descriptions": {
+        "ats": "ご利用の ATS から直接",
+        "email": "メールで届くリンク",
+        "file": "リストをアップロード",
+        "link": "求人広告用のリンク 1 つ",
+        "api": "自社のコードから",
+        "sdk": "自社サイトで",
+        "agent": "ミラに聞くだけ",
+        "apps": "Claude や ChatGPT から"
+      },
+      "slackDescription": "チャンネルにお知らせ",
+      "automate": "採用を自動化するには",
       "developerDocs": "開発者向けドキュメント",
       "interview": "面接",
       "candidates": "{count, plural, other {候補者 <n>#</n> 人}}"
     },
     "candidates": {
       "title": "候補者に見える画面",
-      "text": "自社ブランドの時間制限付き面接：単一選択、複数選択、実践問題。",
+      "text": "自社ブランドの時間制限付き面接。クリックでも音声でも回答できます。",
+      "micPrompt": {
+        "asks": "{site} が次の許可を求めています",
+        "microphone": "マイクを使用する",
+        "always": "サイトにアクセスしている間は許可する",
+        "once": "今回は許可する",
+        "never": "許可しない"
+      },
       "notes": {
-        "language": "候補者の言語で",
+        "modes": "クリック／音声モード",
         "phone": "スマホで受験可能",
         "time": "所要時間を事前に表示",
         "extraTime": "必要な人には延長時間"
@@ -1450,17 +1477,48 @@
         "extraTime": "もっと時間が必要ですか？開始する前に<bdi>{company}</bdi>にお問い合わせください。",
         "people": "結果は<bdi>{company}</bdi>の担当者が確認して判断します。",
         "stay": "終わるまでこのページから離れないでください。"
+      },
+      "phone": {
+        "click": {
+          "title": "クリックモード",
+          "text": "候補者が回答を選びます。問題ごとにタイマー付き。"
+        },
+        "voice": {
+          "title": "ミラとの音声モード",
+          "text": "AI 面接官のミラが問題を読み上げ、回答を聞き取ります。"
+        }
       }
     },
     "shareReports": {
       "title": "誰が一番かがわかる\n数秒で共有",
       "text": "すべての候補者の回答とスコアを、メールやチャットで共有。",
-      "chatQuestion": "ねえ、もう誰か合格した？",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "メッセージ",
+        "best": "この人がいちばん良さそう",
+        "flagged": "この人は絶対 AI でカンニングしてる"
+      },
+      "proceeding": "{first}さんと{second}さんで進めます",
       "samples": "レポートのサンプル",
       "notes": {
         "notes": "面接メモを記入",
         "pdf": "PDF レポートを送信",
-        "messengers": "要約をメッセージアプリで共有"
+        "messengers": "要約をメッセージアプリで共有",
+        "slack": "Slack 通知"
+      },
+      "phone": {
+        "pdf": {
+          "title": "PDF をダウンロード",
+          "text": "全候補者の評価と回答を 1 つのレポートに。"
+        },
+        "share": {
+          "title": "メッセージアプリやメールで共有",
+          "text": "候補者の要約を数秒でチームに送信。"
+        },
+        "team": {
+          "title": "チームメモと Slack",
+          "text": "チーム向けにメモを残し、候補者が終了したら Slack で通知を受け取れます。"
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "サブスクリプションなし",
         "unanswered": "未回答の招待は無料",
         "expire": "クレジットに有効期限なし",
-        "refund": "未使用の有料クレジットは 14 日間返金可能",
-        "tax": "価格は税別（付加価値税・売上税）"
+        "refund": "未使用の有料クレジットは返金可能"
       }
     }
   },

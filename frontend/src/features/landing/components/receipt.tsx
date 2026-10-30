@@ -43,7 +43,7 @@ export function Receipt({
       ref={ref}
       aria-hidden
       data-testid="receipt"
-      className="flex w-full max-w-sm flex-col justify-between rounded-xl bg-surface p-7 text-sm sm:p-9"
+      className="flex w-full max-w-md flex-col justify-between rounded-xl bg-surface p-7 text-base sm:p-9"
     >
       <ul className="space-y-2.5">
         {FREE_LINES.map((key, at) => (

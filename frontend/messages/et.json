@@ -148,7 +148,7 @@
     "price": "Vaid {price} kandidaadi kohta."
   },
   "start": {
-    "placeholder": "Kleebi töökuulutus või kirjelda rolli ja seda, mida kandidaat peaks teadma",
+    "placeholder": "Kleebi siia oma töökuulutus…",
     "description": "Töökuulutus",
     "submit": "Loo intervjuu",
     "whichCompany": "Millise ettevõtte jaoks see intervjuu on?",
@@ -1391,6 +1391,8 @@
     "demos": "Video",
     "demosTooltip": "Vaata demosid YouTube'is",
     "videoTooltip": "Vaata, kuidas prepza töötab",
+    "watchVideo": "Vaata videot",
+    "howItWorks": "Kuidas see töötab",
     "askAgent": "küsi Miralt",
     "create": {
       "title": "Loo intervjuu mõne minutiga",
@@ -1400,13 +1402,20 @@
         "templates": "valmis mallid olemas",
         "expert": "valdkonna eksperti pole vaja"
       },
-      "describe": "Kleebi oma kuulutus",
-      "adjust": "Kohanda teemasid",
-      "ask": "Palu tehisarul teemasid muuta",
-      "ready": "Sinu intervjuu on valmis",
+      "describe": "<n>1.</n> Kleebi oma kuulutus",
+      "adjust": "<n>2.</n> Kohanda teemasid",
+      "menu": {
+        "cut": "Lõika",
+        "copy": "Kopeeri",
+        "paste": "Kleebi"
+      },
+      "ready": "<n>3.</n> Sinu intervjuu on valmis",
       "status": "Valmis",
-      "invite": "Kutsu kandidaadid",
-      "waiting": "ootab…"
+      "phone": {
+        "describe": "Kleebi töökuulutus või kirjuta paar sõna rolli kohta.",
+        "adjust": "Jäta alles olulised teemad, nimeta need ümber või lisa enda omad.",
+        "ready": "Iga teema jaoks koostatakse küsimused; kutsu kandidaadid lingi või e-posti teel."
+      }
     },
     "proof": {
       "anyJob": "Iga ametikoht, iga valdkond",
@@ -1427,16 +1436,34 @@
         "agent": "AI-assistent",
         "apps": "AI-rakendused (MCP)"
       },
-      "automate": "Automatiseeri värbamine",
+      "descriptions": {
+        "ats": "Otse sinu ATS-ist",
+        "email": "Link nende e-kirjas",
+        "file": "Laadi üles nimekiri",
+        "link": "Üks link töökuulutuse jaoks",
+        "api": "Sinu enda koodist",
+        "sdk": "Sinu enda veebisaidil",
+        "agent": "Lihtsalt küsi Miralt",
+        "apps": "Claude’ist või ChatGPT-st"
+      },
+      "slackDescription": "Uudised sinu kanalis",
+      "automate": "Automatiseeri värbamine:",
       "developerDocs": "arendaja dokumentatsioon",
       "interview": "Intervjuu",
       "candidates": "{count, plural, one {<n>#</n> kandidaat} other {<n>#</n> kandidaati}}"
     },
     "candidates": {
       "title": "Mida kandidaadid näevad",
-      "text": "Ajapiiranguga intervjuu sinu brändis: üks õige vastus, mitu õiget vastust ja praktilised ülesanded.",
+      "text": "Ajapiiranguga intervjuu sinu brändis, vastatakse klõpsu või häälega.",
+      "micPrompt": {
+        "asks": "{site} soovib",
+        "microphone": "Kasutada teie mikrofone",
+        "always": "Luba saidi külastamise ajal",
+        "once": "Luba seekord",
+        "never": "Ära kunagi luba"
+      },
       "notes": {
-        "language": "nende keeles",
+        "modes": "klõpsu- ja häälerežiim",
         "phone": "töötab telefonis",
         "time": "aeg on enne näha",
         "extraTime": "lisaaeg neile, kes seda vajavad"
@@ -1450,17 +1477,48 @@
         "extraTime": "Vajad rohkem aega? Küsi seda enne alustamist: lisaaega saab anda <bdi>{company}</bdi>.",
         "people": "Tulemused vaatavad üle ja otsuse teevad inimesed ettevõttest <bdi>{company}</bdi>.",
         "stay": "Jää sellele lehele, kuni lõpetad."
+      },
+      "phone": {
+        "click": {
+          "title": "Klõpsurežiim",
+          "text": "Kandidaadid valivad oma vastused, igal küsimusel on taimer."
+        },
+        "voice": {
+          "title": "Häälerežiim Miraga",
+          "text": "Mira, meie tehisaru intervjueerija, loeb küsimused ette ja kuulab vastuseid."
+        }
       }
     },
     "shareReports": {
       "title": "Vaata, kes on parim\nJaga sekunditega",
       "text": "Iga kandidaadi vastused ja hinne, jagatud e-kirja või vestluse kaudu.",
-      "chatQuestion": "Hei, kas keegi juba läbis?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Sõnum",
+        "best": "see tundub parim",
+        "flagged": "see kasutab kindlasti tehisaru abil sohki"
+      },
+      "proceeding": "Jätkame kandidaatidega {first} ja {second}",
       "samples": "Näidisaruanded",
       "notes": {
         "notes": "kirjuta intervjuu märkmeid",
         "pdf": "saada PDF-aruandeid",
-        "messengers": "jaga kokkuvõtteid sõnumirakendustes"
+        "messengers": "jaga kokkuvõtteid sõnumirakendustes",
+        "slack": "Slacki teavitused"
+      },
+      "phone": {
+        "pdf": {
+          "title": "Laadi PDF alla",
+          "text": "Iga kandidaadi hinded ja vastused ühes aruandes."
+        },
+        "share": {
+          "title": "Jaga sõnumirakenduste või e-posti kaudu",
+          "text": "Saada kandidaadi kokkuvõte oma meeskonnale sekunditega."
+        },
+        "team": {
+          "title": "Meeskonna märkmed ja Slack",
+          "text": "Jäta meeskonnale märkmeid ja saa Slackis teada, kui kandidaat lõpetab."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "tellimust pole",
         "unanswered": "vastamata kutsed ei maksa midagi",
         "expire": "krediidid ei aegu",
-        "refund": "kasutamata ostetud krediidid saab 14 päeva jooksul tagasi",
-        "tax": "hindadele lisandub käibemaks või müügimaks"
+        "refund": "kasutamata ostetud krediidid saab tagasi"
       }
     }
   },

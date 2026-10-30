@@ -25,10 +25,4 @@ export const RECEIPT_STEPS: DemoStep[] = [
 ]
 
 // The small print under the prices, by its text's key.
-export const NOTES = [
-  "subscription",
-  "unanswered",
-  "expire",
-  "refund",
-  "tax",
-] as const
+export const NOTES = ["subscription", "unanswered", "expire", "refund"] as const

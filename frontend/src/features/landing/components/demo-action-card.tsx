@@ -2,6 +2,7 @@ import { cn } from "cn"
 import { ArrowRightIcon, CheckIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 
+import { DEMO_PRESSED } from "@/features/landing/components/demo-panel"
 import { buttonVariants } from "@/components/ui/button"
 import { ASK_AGENT_EMAIL, ASK_AGENT_INTERVIEW } from "@/config/ask-agent-demo"
 import { CARD } from "@/config/cards"
@@ -10,7 +11,7 @@ export type DemoCardState = "pending" | "running" | "done"
 
 /** The card the assistant shows before it invites a candidate (features/assistant/components/
  * action-card.tsx) as a small picture: what it will do, with the email, Confirm (`confirmRef`,
- * ringed while `pressed`) and Cancel; then Done, with the candidates' page. */
+ * pressed in while `pressed`) and Cancel; then Done, with the candidates' page. */
 export function DemoActionCard({
   state,
   confirmRef,
@@ -55,7 +56,7 @@ export function DemoActionCard({
               className: cn(
                 "h-9 px-4",
                 state === "running" && "opacity-50",
-                pressed && "ring-3 ring-ring/50"
+                pressed && DEMO_PRESSED
               ),
             })}
           >

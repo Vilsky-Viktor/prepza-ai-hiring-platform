@@ -25,15 +25,19 @@
   }
 }
 
-/* The landing's arrows between two panels: each lights up in turn. */
-@keyframes light-up {
-  0%,
-  70%,
-  100% {
-    opacity: 0.25;
+/* The landing hero's "how it works" arrows: each falls a little, fading in then out, one after
+   the other, like a cascade pointing down. */
+@keyframes cascade-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.25rem);
   }
-  35% {
+  50% {
     opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0.25rem);
   }
 }
 

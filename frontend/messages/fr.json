@@ -148,7 +148,7 @@
     "price": "Seulement {price} par candidat."
   },
   "start": {
-    "placeholder": "Collez une fiche de poste, ou décrivez le poste et ce qu'un candidat doit savoir",
+    "placeholder": "Collez votre fiche de poste ici…",
     "description": "Description du poste",
     "submit": "Créer un entretien",
     "whichCompany": "Pour quelle entreprise est cet entretien ?",
@@ -1391,6 +1391,8 @@
     "demos": "Vidéo",
     "demosTooltip": "Voir les démos sur YouTube",
     "videoTooltip": "Découvrez comment fonctionne prepza",
+    "watchVideo": "Voir la vidéo",
+    "howItWorks": "Comment ça marche",
     "askAgent": "demander à Mira",
     "create": {
       "title": "Créez un entretien en quelques minutes",
@@ -1400,13 +1402,20 @@
         "templates": "modèles prêts à l'emploi disponibles",
         "expert": "aucun expert du métier requis"
       },
-      "describe": "Collez votre fiche",
-      "adjust": "Ajustez les thèmes",
-      "ask": "Demandez à l'IA de modifier les thèmes",
-      "ready": "Votre entretien est prêt",
+      "describe": "<n>1.</n> Collez votre fiche",
+      "adjust": "<n>2.</n> Ajustez les thèmes",
+      "menu": {
+        "cut": "Couper",
+        "copy": "Copier",
+        "paste": "Coller"
+      },
+      "ready": "<n>3.</n> Votre entretien est prêt",
       "status": "Prêt",
-      "invite": "Inviter des candidats",
-      "waiting": "en attente…"
+      "phone": {
+        "describe": "Collez une fiche de poste, ou écrivez quelques mots sur le poste.",
+        "adjust": "Gardez les thèmes qui comptent, renommez-les ou ajoutez les vôtres.",
+        "ready": "Des questions sont rédigées pour chaque thème ; invitez des candidats par lien ou par e-mail."
+      }
     },
     "proof": {
       "anyJob": "Tous les postes, tous les secteurs",
@@ -1427,16 +1436,34 @@
         "agent": "Assistant IA",
         "apps": "Apps IA (MCP)"
       },
-      "automate": "Automatisez votre recrutement",
+      "descriptions": {
+        "ats": "Directement depuis votre ATS",
+        "email": "Un lien dans leur e-mail",
+        "file": "Importez une liste",
+        "link": "Un lien pour une offre d’emploi",
+        "api": "Depuis votre propre code",
+        "sdk": "Sur votre propre site",
+        "agent": "Demandez simplement à Mira",
+        "apps": "Depuis Claude ou ChatGPT"
+      },
+      "slackDescription": "Mises à jour dans votre canal",
+      "automate": "Automatisez votre recrutement avec",
       "developerDocs": "documentation développeurs",
       "interview": "Entretien",
       "candidates": "{count, plural, one {<n>#</n> candidat} other {<n>#</n> candidats}}"
     },
     "candidates": {
       "title": "Ce que voient les candidats",
-      "text": "Un entretien chronométré aux couleurs de votre marque : choix unique, choix multiple et mises en situation.",
+      "text": "Un entretien chronométré aux couleurs de votre marque, avec réponses d’un clic ou à l’oral.",
+      "micPrompt": {
+        "asks": "{site} veut",
+        "microphone": "Utiliser vos micros",
+        "always": "Autoriser lors de la visite du site",
+        "once": "Autoriser cette fois-ci",
+        "never": "Ne jamais autoriser"
+      },
       "notes": {
-        "language": "dans leur langue",
+        "modes": "mode clic ou vocal",
         "phone": "fonctionne sur mobile",
         "time": "durée affichée à l'avance",
         "extraTime": "temps supplémentaire pour qui en a besoin"
@@ -1450,17 +1477,48 @@
         "extraTime": "Besoin de plus de temps ? Contactez <bdi>{company}</bdi> avant de commencer.",
         "people": "Chez <bdi>{company}</bdi>, des personnes examinent les résultats et prennent la décision.",
         "stay": "Restez sur cette page jusqu'à la fin."
+      },
+      "phone": {
+        "click": {
+          "title": "Mode clic",
+          "text": "Les candidats choisissent leurs réponses, avec un minuteur pour chaque question."
+        },
+        "voice": {
+          "title": "Mode vocal avec Mira",
+          "text": "Mira, notre recruteuse IA, lit les questions et écoute les réponses."
+        }
       }
     },
     "shareReports": {
       "title": "Voyez qui est le meilleur\nPartagez-le en quelques secondes",
       "text": "Les réponses et la note de chaque candidat, partagées par e-mail ou par chat.",
-      "chatQuestion": "Salut, quelqu'un a déjà réussi ?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Message",
+        "best": "celui-ci a l’air le meilleur",
+        "flagged": "celui-ci triche clairement avec l’IA"
+      },
+      "proceeding": "On continue avec {first} et {second}",
       "samples": "Exemples de rapports",
       "notes": {
         "notes": "rédigez des commentaires d'entretien",
         "pdf": "envoyez des rapports PDF",
-        "messengers": "partagez des résumés par messagerie"
+        "messengers": "partagez des résumés par messagerie",
+        "slack": "notifications Slack"
+      },
+      "phone": {
+        "pdf": {
+          "title": "Téléchargez le PDF",
+          "text": "Les notes et réponses de chaque candidat dans un seul rapport."
+        },
+        "share": {
+          "title": "Partagez par messagerie ou e-mail",
+          "text": "Envoyez le résumé d’un candidat à votre équipe en quelques secondes."
+        },
+        "team": {
+          "title": "Commentaires d’équipe et Slack",
+          "text": "Laissez des commentaires à votre équipe et soyez prévenu dans Slack quand un candidat termine."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "sans abonnement",
         "unanswered": "les invitations sans réponse ne coûtent rien",
         "expire": "les crédits n'expirent jamais",
-        "refund": "crédits payés non utilisés remboursables pendant 14 jours",
-        "tax": "prix hors TVA ou taxe de vente"
+        "refund": "crédits payés non utilisés remboursables"
       }
     }
   },

@@ -1,127 +1,146 @@
 "use client"
 
 import { cn } from "cn"
+import { CheckIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
 
-import { PassStatus } from "@/components/common/pass-status"
-import { Dot, Dotted } from "@/components/common/dot"
+import { DemoAnswerPatterns } from "@/features/landing/components/demo-answer-patterns"
 import { DemoReportActions } from "@/features/landing/components/demo-share"
-import { AnswerOptions } from "@/components/common/answer-options"
-import { MultiChoiceTag } from "@/components/common/multi-choice-tag"
+import { Dot } from "@/components/common/dot"
+import { GradeBlock, GradeCard } from "@/components/common/grade-card"
+import { PassStatus } from "@/components/common/pass-status"
+import { ScorecardItem } from "@/components/common/scorecard-review"
+import { InfoCard } from "@/components/common/warning-card"
 import { Badge } from "@/components/ui/badge"
+import { LIST_BOX } from "@/config/lists"
 import {
-  DEMO_OPENED,
   DEMO_PASS_MARK,
-  DEMO_REPORT_CANDIDATES,
-  DEMO_REPORT_TOPICS,
-  type DemoAnswer,
+  type DemoCandidate,
   type DemoTopic,
 } from "@/config/reports-demo"
 import { WARNING_TONE } from "@/config/tones"
 import { useElementSize } from "@/hooks/use-element-size"
 import { formatPercent } from "@/lib/format"
 import { gradeTone } from "@/lib/grade-tone"
+import type { ReviewItem } from "@/types/round"
 
-const candidate = DEMO_REPORT_CANDIDATES[DEMO_OPENED]
+// The interview's language, for its questions.
+const LANGUAGE = "en"
 
-/** A candidate's report page, small, for the landing: their email, name and status with the
- * report's actions, then, in a window of its own, the grade card, each topic's grade, and the
- * topics with their integrity line and answers. The window scrolls `scrolled` of the way down
- * (0 to 1), smoothly while `gliding`. */
+/** A topic's question as the scorecard gives it (types/round.ts). */
+function reviewItem(topic: DemoTopic): ReviewItem | null {
+  const question = topic.question
+
+  if (!question) {
+    return null
+  }
+
+  return {
+    question_id: topic.title,
+    number: 1,
+    text: question.text,
+    options: question.options,
+    multi: false,
+    limit_seconds: 60,
+    correct_option_index: question.right,
+    answer: {
+      answer_id: topic.title,
+      option_index: question.pick,
+      picks: [question.pick],
+      timed_out: false,
+      correct: question.pick === question.right,
+      seconds: question.seconds,
+      fast: question.fast ?? false,
+    },
+    tab_leaves: question.tab_leaves ?? 0,
+    copies: question.copies ?? 0,
+  }
+}
+
+/** A candidate's page (app/companies/[companyId]/interviews/[id]/candidates/[inviteId]), for
+ * the landing, scrolled down `scrolled` pixels (gliding there and back) inside the picture:
+ * their email, name and status with the report's actions (the share `pressed` in); the grade
+ * card with whether they passed and their pledge; the note that people decide; what their
+ * answers show, when anything stood out; then each topic with its signals and grade, and one of
+ * its questions as they answered it. */
 export function DemoReport({
+  candidate,
   scrolled,
-  gliding,
-  shareRef,
-  sharePressed,
+  pressed,
 }: {
+  candidate: DemoCandidate
   scrolled: number
-  gliding: boolean
-  shareRef: React.Ref<HTMLSpanElement>
-  sharePressed: boolean
+  pressed: boolean
 }) {
   const t = useTranslations("candidates")
+  const report = useTranslations("report")
   const statuses = useTranslations("candidateStatus")
   const locale = useLocale()
   const { ref: windowRef, size: windowSize } = useElementSize<HTMLDivElement>()
-  const { ref: contentRef, size: contentSize } =
-    useElementSize<HTMLDivElement>()
+  const { ref: pageRef, size: pageSize } = useElementSize<HTMLDivElement>()
   const room =
-    windowSize && contentSize
-      ? Math.max(0, contentSize.height - windowSize.height)
+    windowSize && pageSize
+      ? Math.max(0, pageSize.height - windowSize.height)
       : 0
+  const by = Math.min(room, scrolled)
+  const signals =
+    candidate.tab_leaves + candidate.copies + candidate.fast_answers
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col gap-4">
-      <div className="flex items-start justify-between gap-2 px-1 pt-1">
-        <div className="min-w-0 space-y-1">
-          <p className="font-heading text-lg font-medium break-all sm:truncate sm:text-xl">
-            {candidate.email}
-          </p>
-          <div className="flex items-center gap-3">
-            <span className="truncate text-sm text-muted-foreground">
-              {candidate.name}
-            </span>
-            <Badge variant="outline" className="h-6 px-2.5 text-sm font-light">
-              {statuses(candidate.status)}
-            </Badge>
-          </div>
-        </div>
-        <DemoReportActions shareRef={shareRef} pressed={sharePressed} />
-      </div>
-      {/* The page below the header, scrolled inside its own window. */}
+    <div ref={windowRef} className="relative min-h-0 flex-1 overflow-hidden">
       <div
-        ref={windowRef}
-        className="relative min-h-0 flex-1 overflow-hidden rounded-xl"
+        ref={pageRef}
+        style={{ transform: `translateY(${-by}px)` }}
+        className="absolute inset-x-0 top-0 space-y-8 transition-transform duration-2000 ease-in-out motion-reduce:transition-none"
       >
-        <div
-          ref={contentRef}
-          style={{ transform: `translateY(${-room * scrolled}px)` }}
-          className={cn(
-            "absolute inset-x-0 top-0 space-y-6",
-            gliding && "transition-transform duration-2000 ease-in-out"
-          )}
-        >
-          <div className="mx-auto flex w-fit items-center divide-x rounded-xl border max-sm:w-full max-sm:flex-col max-sm:divide-x-0 max-sm:py-2">
-            <div className="flex items-baseline gap-3 px-6 py-4 max-sm:py-2">
-              <p
-                className={cn(
-                  "text-4xl font-light tabular-nums sm:text-5xl",
-                  gradeTone(candidate.passed)
-                )}
-              >
-                {formatPercent(candidate.grade, locale)}
-              </p>
-              <p className="text-muted-foreground">{t("grade")}</p>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="min-w-0 space-y-1">
+            <p className="font-heading text-3xl font-medium tracking-tight break-all">
+              {candidate.email}
+            </p>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="text-lg">{candidate.name}</span>
+              <Badge variant="outline" className="h-7 px-3 text-sm font-light">
+                {statuses(candidate.status)}
+              </Badge>
             </div>
-            <p className="px-6 py-4 text-base max-sm:py-2">
-              <PassStatus passed={candidate.passed} passMark={DEMO_PASS_MARK} />
+          </div>
+          <DemoReportActions pressed={pressed ? "share" : null} />
+        </div>
+        <GradeCard>
+          <GradeBlock
+            value={formatPercent(candidate.grade, locale)}
+            label={t("grade")}
+            tone={gradeTone(candidate.passed)}
+          />
+          <div className="flex flex-col justify-center gap-1 px-8 py-6 text-base max-sm:items-center">
+            <PassStatus passed={candidate.passed} passMark={DEMO_PASS_MARK} />
+            <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
+              <CheckIcon aria-hidden className="size-4 shrink-0" />
+              {report("pledged")}
             </p>
           </div>
-          <p className="text-center text-sm text-muted-foreground tabular-nums">
-            <Dotted
-              items={DEMO_REPORT_TOPICS.map((topic) => (
-                <span key={topic.title} className="whitespace-nowrap">
-                  {topic.title}{" "}
-                  <span className="text-foreground">
-                    {formatPercent(topic.grade, locale)}
-                  </span>
-                </span>
-              ))}
-            />
-          </p>
-          {DEMO_REPORT_TOPICS.map((topic) => (
-            <DemoTopicAnswers key={topic.title} topic={topic} />
-          ))}
-        </div>
+        </GradeCard>
+        <InfoCard className="text-sm">
+          {signals ? report("humanReviewSignals") : report("humanReview")}
+        </InfoCard>
+        {candidate.patterns && (
+          <DemoAnswerPatterns patterns={candidate.patterns} />
+        )}
+        {candidate.topics?.map((topic) => (
+          <DemoTopicSection key={topic.title} topic={topic} />
+        ))}
       </div>
     </div>
   )
 }
 
-/** A topic of the report: its title and integrity line, its grade, and its answers. */
-function DemoTopicAnswers({ topic }: { topic: DemoTopic }) {
+/** A topic on the page: its heading, its integrity line (features/company/components/
+ * integrity-line.tsx) and grade, then its question as answered, in the real scorecard's row. */
+function DemoTopicSection({ topic }: { topic: DemoTopic }) {
   const t = useTranslations("candidates")
   const locale = useLocale()
+  const item = reviewItem(topic)
   const signals = [
     [t("pageLeaves", { count: topic.tab_leaves }), topic.tab_leaves],
     [t("copies", { count: topic.copies }), topic.copies],
@@ -129,11 +148,11 @@ function DemoTopicAnswers({ topic }: { topic: DemoTopic }) {
   ] as const
 
   return (
-    <section className="space-y-3">
-      <div className="flex items-center justify-between gap-3">
+    <section className="space-y-4">
+      <div className="flex items-center justify-between gap-4">
         <div className="min-w-0 space-y-1">
-          <p className="font-heading text-lg font-medium">{topic.title}</p>
-          <p className="flex flex-wrap items-center gap-x-1.5 text-xs text-muted-foreground tabular-nums">
+          <p className="font-heading text-2xl font-medium">{topic.title}</p>
+          <p className="flex flex-wrap items-center gap-x-1.5 text-sm text-muted-foreground tabular-nums">
             {signals.map(([signal, count], index) => (
               <span key={signal} className="flex items-center gap-x-1.5">
                 {index > 0 && <Dot className="mx-0" />}
@@ -144,68 +163,18 @@ function DemoTopicAnswers({ topic }: { topic: DemoTopic }) {
         </div>
         <p
           className={cn(
-            "text-3xl font-light tabular-nums",
+            "text-5xl font-light tabular-nums",
             gradeTone(topic.grade >= DEMO_PASS_MARK)
           )}
         >
           {formatPercent(topic.grade, locale)}
         </p>
       </div>
-      <ul className="divide-y rounded-xl border">
-        {topic.answers.map((answer) => (
-          <DemoAnswerItem key={answer.text} answer={answer} />
-        ))}
-      </ul>
-    </section>
-  )
-}
-
-/** One answer of the report: the question (tagged when it's multi-answer), its verdict in the
- * scorecard's colours (partly correct in the warnings' amber), and what was picked; a
- * multi-answer one's ticks marked right or wrong, with its points. */
-function DemoAnswerItem({ answer }: { answer: DemoAnswer }) {
-  const rounds = useTranslations("rounds")
-
-  return (
-    <li className="space-y-3 p-4">
-      {/* On phones the verdict sits above the question, centred, as in the real report. */}
-      <div className="flex items-start justify-between gap-3 max-sm:flex-col-reverse max-sm:items-center">
-        <div className="min-w-0 space-y-2 max-sm:self-stretch">
-          {answer.multi && <MultiChoiceTag />}
-          <p className="text-base font-light">{answer.text}</p>
+      {item && (
+        <div className={LIST_BOX}>
+          <ScorecardItem item={item} language={LANGUAGE} />
         </div>
-        <span
-          data-verdict={answer.verdict}
-          className={cn(
-            "shrink-0 text-base font-light",
-            answer.verdict === "partlyCorrect"
-              ? WARNING_TONE
-              : gradeTone(answer.verdict === "correct")
-          )}
-        >
-          {rounds(answer.verdict)}
-        </span>
-      </div>
-      {answer.multi ? (
-        <div className="space-y-2">
-          <AnswerOptions
-            options={answer.picks}
-            className="rounded-xl bg-surface px-4 py-3 text-base font-light"
-          />
-          <p className="text-sm text-muted-foreground tabular-nums">
-            <Dotted
-              items={[
-                rounds("rightPicks", answer.multi),
-                rounds("points", { points: answer.multi.points }),
-              ]}
-            />
-          </p>
-        </div>
-      ) : (
-        <p className="rounded-xl bg-surface px-4 py-3 text-base font-light">
-          {answer.picks[0].answer}
-        </p>
       )}
-    </li>
+    </section>
   )
 }

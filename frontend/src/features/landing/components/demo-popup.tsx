@@ -15,7 +15,7 @@ export function DemoPopup({
   return (
     <div
       className={cn(
-        "absolute inset-0 z-5 flex items-center justify-center rounded-xl bg-black/10 p-3 transition-opacity duration-200",
+        "absolute inset-0 z-5 flex items-center justify-center rounded-[inherit] bg-black/10 p-3 transition-opacity duration-200",
         !open && "invisible opacity-0"
       )}
     >
@@ -35,21 +35,28 @@ export function DemoPopup({
  * `ref` for the pointer. */
 export function DemoEmailField({
   ref,
+  target,
+  className,
   email,
   typing,
   placeholder,
 }: {
-  ref: React.Ref<HTMLDivElement>
+  ref?: React.Ref<HTMLSpanElement>
+  // The demo's pointer target's name, for a demo that finds them by name.
+  target?: string
+  className?: string
   email: string
   typing: boolean
   placeholder: string
 }) {
   return (
-    <div
+    <span
       ref={ref}
+      data-demo-target={target}
       className={cn(
         "flex h-12 items-center rounded-xl border bg-surface px-5",
-        typing || email ? "border-ring" : "border-input"
+        typing || email ? "border-ring" : "border-input",
+        className
       )}
     >
       {email || typing ? (
@@ -60,7 +67,7 @@ export function DemoEmailField({
       ) : (
         <span className="truncate text-muted-foreground">{placeholder}</span>
       )}
-    </div>
+    </span>
   )
 }
 

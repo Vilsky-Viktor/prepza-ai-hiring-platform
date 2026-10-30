@@ -148,7 +148,7 @@
     "price": "Chỉ {price} mỗi ứng viên."
   },
   "start": {
-    "placeholder": "Dán mô tả công việc, hoặc mô tả vị trí và những gì ứng viên cần biết",
+    "placeholder": "Dán mô tả công việc vào đây…",
     "description": "Mô tả công việc",
     "submit": "Tạo buổi phỏng vấn",
     "whichCompany": "Buổi phỏng vấn này dành cho công ty nào?",
@@ -1391,6 +1391,8 @@
     "demos": "Video",
     "demosTooltip": "Xem demo trên YouTube",
     "videoTooltip": "Xem prepza hoạt động thế nào",
+    "watchVideo": "Xem video",
+    "howItWorks": "Cách hoạt động",
     "askAgent": "hỏi Mira",
     "create": {
       "title": "Tạo buổi phỏng vấn trong vài phút",
@@ -1400,13 +1402,20 @@
         "templates": "có sẵn các mẫu dùng ngay",
         "expert": "không cần chuyên gia trong lĩnh vực"
       },
-      "describe": "Dán mô tả công việc",
-      "adjust": "Điều chỉnh chủ đề",
-      "ask": "Nhờ AI thay đổi chủ đề",
-      "ready": "Buổi phỏng vấn của bạn đã sẵn sàng",
+      "describe": "<n>1.</n> Dán mô tả công việc",
+      "adjust": "<n>2.</n> Điều chỉnh chủ đề",
+      "menu": {
+        "cut": "Cắt",
+        "copy": "Sao chép",
+        "paste": "Dán"
+      },
+      "ready": "<n>3.</n> Buổi phỏng vấn của bạn đã sẵn sàng",
       "status": "Sẵn sàng",
-      "invite": "Mời ứng viên",
-      "waiting": "đang chờ…"
+      "phone": {
+        "describe": "Dán mô tả công việc, hoặc viết vài dòng về vị trí.",
+        "adjust": "Giữ các chủ đề quan trọng, đổi tên hoặc thêm chủ đề của riêng bạn.",
+        "ready": "Câu hỏi được soạn cho từng chủ đề; mời ứng viên qua liên kết hoặc email."
+      }
     },
     "proof": {
       "anyJob": "Mọi vị trí, mọi lĩnh vực",
@@ -1427,16 +1436,34 @@
         "agent": "Trợ lý AI",
         "apps": "Ứng dụng AI (MCP)"
       },
-      "automate": "Tự động hóa tuyển dụng",
+      "descriptions": {
+        "ats": "Trực tiếp từ ATS của bạn",
+        "email": "Một liên kết trong email của họ",
+        "file": "Tải lên danh sách",
+        "link": "Một liên kết cho tin tuyển dụng",
+        "api": "Từ mã của riêng bạn",
+        "sdk": "Trên trang web của riêng bạn",
+        "agent": "Chỉ cần hỏi Mira",
+        "apps": "Từ Claude hoặc ChatGPT"
+      },
+      "slackDescription": "Cập nhật trong kênh của bạn",
+      "automate": "Tự động hóa tuyển dụng với",
       "developerDocs": "tài liệu cho nhà phát triển",
       "interview": "Phỏng vấn",
       "candidates": "{count, plural, other {<n>#</n> ứng viên}}"
     },
     "candidates": {
       "title": "Ứng viên thấy gì",
-      "text": "Buổi phỏng vấn có tính giờ mang thương hiệu của bạn: một đáp án, nhiều đáp án và câu hỏi thực hành.",
+      "text": "Buổi phỏng vấn có tính giờ mang thương hiệu của bạn, trả lời bằng một cú nhấp hoặc bằng giọng nói.",
+      "micPrompt": {
+        "asks": "{site} muốn",
+        "microphone": "Sử dụng micrô của bạn",
+        "always": "Cho phép khi truy cập trang web",
+        "once": "Cho phép lần này",
+        "never": "Không bao giờ cho phép"
+      },
       "notes": {
-        "language": "bằng ngôn ngữ của họ",
+        "modes": "chế độ nhấp và giọng nói",
         "phone": "dùng được trên điện thoại",
         "time": "thời gian hiển thị trước",
         "extraTime": "thêm thời gian cho người cần"
@@ -1450,17 +1477,48 @@
         "extraTime": "Bạn cần thêm thời gian? Hãy hỏi <bdi>{company}</bdi> trước khi bắt đầu.",
         "people": "Người của <bdi>{company}</bdi> sẽ xem xét kết quả và đưa ra quyết định.",
         "stay": "Hãy ở lại trang này cho đến khi làm xong."
+      },
+      "phone": {
+        "click": {
+          "title": "Chế độ nhấp",
+          "text": "Ứng viên chọn câu trả lời, mỗi câu hỏi có đồng hồ đếm giờ riêng."
+        },
+        "voice": {
+          "title": "Chế độ giọng nói với Mira",
+          "text": "Mira, người phỏng vấn AI của chúng tôi, đọc câu hỏi và nghe câu trả lời."
+        }
       }
     },
     "shareReports": {
       "title": "Biết ngay ai giỏi nhất\nChia sẻ trong vài giây",
       "text": "Câu trả lời và điểm của mọi ứng viên, chia sẻ qua email hoặc chat.",
-      "chatQuestion": "Này, đã có ai đạt chưa?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "Tin nhắn",
+        "best": "người này có vẻ tốt nhất",
+        "flagged": "người này chắc chắn đang gian lận bằng AI"
+      },
+      "proceeding": "Tiếp tục với {first} và {second}",
       "samples": "Báo cáo mẫu",
       "notes": {
         "notes": "viết ghi chú phỏng vấn",
         "pdf": "gửi báo cáo PDF",
-        "messengers": "chia sẻ tóm tắt qua ứng dụng nhắn tin"
+        "messengers": "chia sẻ tóm tắt qua ứng dụng nhắn tin",
+        "slack": "thông báo qua Slack"
+      },
+      "phone": {
+        "pdf": {
+          "title": "Tải PDF",
+          "text": "Điểm và câu trả lời của mọi ứng viên trong một báo cáo."
+        },
+        "share": {
+          "title": "Chia sẻ qua ứng dụng nhắn tin hoặc email",
+          "text": "Gửi tóm tắt về một ứng viên cho đội của bạn trong vài giây."
+        },
+        "team": {
+          "title": "Ghi chú nhóm và Slack",
+          "text": "Để lại ghi chú cho đội của bạn, và nhận thông báo trên Slack khi ứng viên làm xong."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "không có gói đăng ký",
         "unanswered": "lời mời chưa được trả lời không mất phí",
         "expire": "credit không bao giờ hết hạn",
-        "refund": "credit đã mua chưa dùng được hoàn tiền trong 14 ngày",
-        "tax": "giá chưa gồm VAT hoặc thuế bán hàng"
+        "refund": "credit đã mua chưa dùng được hoàn tiền"
       }
     }
   },

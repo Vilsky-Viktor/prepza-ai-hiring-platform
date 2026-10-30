@@ -34,17 +34,21 @@ const CARDS = SLACK_CARD + 1
  * in as they arrive; under the interview, Slack, with a wire from it and a bell running along it.
  * From laptops up the ways sit on both sides at their own heights; below, half in a row above
  * and half below, with a gap in the middle of the lower row for Slack's wire. Plays while on
- * screen; with reduced motion, the wires alone and nothing floats. */
+ * screen; with reduced motion, the wires alone and nothing floats. On phones, the cards alone,
+ * without wires, each row edge to edge. */
 export function InviteStage({
   labels,
+  descriptions,
+  slackDescription,
   interview,
-  developers,
 }: {
   labels: Record<InviteSource["key"], string>
+  // What each way does, in a few words.
+  descriptions: Record<InviteSource["key"], string>
+  // What Slack gets, in a few words: it's told about candidates, it brings none.
+  slackDescription: string
   // The pill on the interview card's top edge.
   interview: string
-  // Two lines over the interview: what developers can do, and the link to their docs.
-  developers: React.ReactNode
 }) {
   const { ref, index } = useDemoSteps<HTMLDivElement>(ON_SCREEN)
   const playing = ON_SCREEN[index].name === "playing"
@@ -162,13 +166,21 @@ export function InviteStage({
     offset: number,
     className: string
   ) => (
-    <ul aria-hidden className={cn("grid gap-2 lg:contents", className)}>
+    <ul
+      aria-hidden
+      className={cn(
+        // On phones, edge to edge, square, without borders at the screen's edges.
+        "grid gap-2 max-sm:-mx-6 lg:contents",
+        className
+      )}
+    >
       {sources.map((source, at) => (
         <InviteCard
           key={source.key}
           ref={holders[offset + at]}
           mark={source.key}
           label={labels[source.key]}
+          description={descriptions[source.key]}
           style={
             {
               "--x": `${source.x}%`,
@@ -178,7 +190,7 @@ export function InviteStage({
             } as React.CSSProperties
           }
           className={cn(
-            "lg:absolute lg:top-(--y)",
+            "max-sm:rounded-none max-sm:first:border-s-0 max-sm:last:border-e-0 lg:absolute lg:top-(--y)",
             source.side === "start" ? "lg:start-(--x)" : "lg:end-(--x)",
             playing &&
               "lg:motion-safe:animate-[source-float_var(--float)_ease-in-out_var(--phase)_infinite]"
@@ -189,12 +201,15 @@ export function InviteStage({
   )
 
   return (
-    <div ref={ref} className="relative flex flex-col gap-12 lg:block lg:h-140">
+    <div
+      ref={ref}
+      className="relative flex flex-col gap-12 max-sm:gap-8 lg:block lg:h-140"
+    >
       {/* Drawn anew as it starts playing, so the travellers start then, each after its delay. */}
       <svg
         key={String(playing)}
         aria-hidden
-        className="pointer-events-none absolute inset-0 size-full overflow-visible text-ring"
+        className="pointer-events-none absolute inset-0 size-full overflow-visible text-ring max-sm:hidden"
       >
         {wires.sources.map((d, at) => (
           <Wire
@@ -217,10 +232,6 @@ export function InviteStage({
           />
         )}
       </svg>
-      {/* Over the interview from laptops up; above the picture on phones, clear of the wires. */}
-      <div className="flex flex-col items-center gap-1.5 lg:absolute lg:inset-x-0 lg:bottom-[calc(100%-9rem)]">
-        {developers}
-      </div>
       {list(
         INVITE_SOURCES.slice(0, 4),
         0,
@@ -233,7 +244,7 @@ export function InviteStage({
         // The dot grid under it shows faintly.
         className={cn(
           SEE_THROUGH_CARD,
-          "relative z-10 mx-auto w-full max-w-88 space-y-5 rounded-xl p-6 text-start lg:absolute lg:inset-x-0 lg:top-56 lg:mx-auto"
+          "relative z-10 mx-auto w-full max-w-88 space-y-5 rounded-xl p-6 text-start max-sm:-mx-6 max-sm:w-auto max-sm:max-w-none max-sm:rounded-none lg:absolute lg:inset-x-0 lg:top-56 lg:mx-auto"
         )}
       >
         {/* What the card is, on its top edge. */}
@@ -243,18 +254,19 @@ export function InviteStage({
         <InterviewHeader {...DEMO_INVITE_INTERVIEW} large />
         <ArrivingCandidates arrived={arrived} />
       </div>
-      {/* The middle column stays empty on phones, for Slack's wire. */}
+      {/* The middle column stays empty on tablets, for Slack's wire (phones have no wires). */}
       {list(
         INVITE_SOURCES.slice(4),
         4,
-        "grid-cols-[repeat(2,minmax(0,1fr))_1.5rem_repeat(2,minmax(0,1fr))] [&>li:nth-child(3)]:col-start-4"
+        "grid-cols-[repeat(2,minmax(0,1fr))_1.5rem_repeat(2,minmax(0,1fr))] max-sm:grid-cols-4 sm:[&>li:nth-child(3)]:col-start-4"
       )}
       <ul aria-hidden className="contents">
         <InviteCard
           ref={holders[SLACK_CARD]}
           mark="slack"
           label={SLACK.name}
-          className="-mt-6 w-[calc((100%-3rem)/4)] self-center lg:absolute lg:inset-x-0 lg:bottom-0 lg:mx-auto lg:mt-0 lg:w-fit"
+          description={slackDescription}
+          className="-mt-6 w-[calc((100%-3rem)/4)] self-center max-sm:-mx-6 max-sm:mt-0 max-sm:w-auto max-sm:self-stretch max-sm:rounded-none max-sm:border-x-0 lg:absolute lg:inset-x-0 lg:bottom-0 lg:mx-auto lg:mt-0 lg:w-fit"
         />
       </ul>
     </div>

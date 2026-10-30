@@ -1,9 +1,10 @@
 import { cn } from "cn"
-import { DownloadIcon } from "lucide-react"
+import { DownloadIcon, NotebookPenIcon, Share2Icon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
 import { DEMO_GROUP } from "@/features/landing/components/demo-panel"
 import { NotesLine } from "@/features/landing/components/notes-line"
+import { PhoneSteps } from "@/features/landing/components/phone-steps"
 import { ReportsDemo } from "@/features/landing/components/reports-demo"
 import {
   LandingSection,
@@ -13,6 +14,14 @@ import { StartButton } from "@/features/landing/components/start-button"
 import { buttonVariants } from "@/components/ui/button"
 import { BAND } from "@/config/landing-backgrounds"
 import { REPORT_SAMPLES_URL } from "@/config/report-samples"
+
+// What the section shows, as cards on phones, each with its icon.
+const PHONE_STEPS = {
+  pdf: DownloadIcon,
+  share: Share2Icon,
+  team: NotebookPenIcon,
+}
+const PHONE_KEYS = Object.keys(PHONE_STEPS) as (keyof typeof PHONE_STEPS)[]
 
 /** Detailed reports and quick sharing: the candidates list and a candidate's report, each
  * shared, played in one panel, with short facts under it; then the button to create an interview and, beside it, the
@@ -28,14 +37,24 @@ export async function ShareReportsSection() {
       background={BAND}
     >
       <div className="flex flex-col gap-8">
-        <div className={DEMO_GROUP}>
+        <div className={`${DEMO_GROUP} max-sm:hidden`}>
           <ReportsDemo />
         </div>
+        <PhoneSteps
+          className="bg-background"
+          steps={PHONE_KEYS.map((key) => ({
+            key,
+            icon: PHONE_STEPS[key],
+            title: t(`shareReports.phone.${key}.title`),
+            text: t(`shareReports.phone.${key}.text`),
+          }))}
+        />
         <NotesLine
           notes={[
             t("shareReports.notes.notes"),
             t("shareReports.notes.pdf"),
             t("shareReports.notes.messengers"),
+            t("shareReports.notes.slack"),
           ]}
         />
       </div>

@@ -1,17 +1,26 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type Locator, type Page } from "@playwright/test";
 
 import { REQUEST_URL } from "./helpers/env";
 import { pauseClock } from "./helpers/clock";
 import { loaded } from "./helpers/waits";
 
-// The home page's "create an interview" section: three panels (the description, the topics and
-// the interview made from them), and under them short facts, the first being how many questions
-// each topic gets, as generation's public sizes route says.
+// The home page's "create an interview" section: one frame playing the three steps, a numbered
+// pill on its top edge naming the one shown; under it, short facts, one being how many questions
+// each topic gets, as generation's public sizes route says. On phones, the steps as cards.
 
 async function questionsPerTopic(page: Page) {
   const response = await page.request.get(`${REQUEST_URL}/api/generate/sizes`);
 
   return ((await response.json()) as { questions_per_topic: number }).questions_per_topic;
+}
+
+/** Where `frame` is on the page, rounded: its size and its place from the page's top. */
+function frameBox(frame: Locator) {
+  return frame.evaluate((element) => {
+    const box = element.getBoundingClientRect();
+
+    return [box.width, box.height, box.left, box.top + window.scrollY].map(Math.round).join();
+  });
 }
 
 test("with reduced motion the create section rests on the finished interview and its counts", async ({
@@ -25,26 +34,27 @@ test("with reduced motion the create section rests on the finished interview and
 
   await expect(section.getByTestId("demo-interview")).toBeVisible();
   await expect(section.getByTestId("demo-writing")).toBeHidden();
+  // The pill names the last step.
+  await expect(section.getByTestId("create-step").last()).toHaveAttribute("data-current", "true");
 
   // Its topic rows each show how many questions were written for the topic:
   // DEMO_INTERVIEW.topicQuestions (frontend/src/config/create-demo.ts), not what one candidate
-  // gets. The topics are the interview's last list, after its estimate (the demo is hidden from
-  // screen readers, so it has no roles to find it by).
+  // gets (the demo is hidden from screen readers, so it has no roles to find it by).
   const rows = section.getByTestId("demo-interview").locator("ul").last().locator("li");
   await expect(rows).not.toHaveCount(0);
 
   for (const row of await rows.all()) {
-    await expect(row.locator("span").last()).toHaveText(/^70\D/);
+    await expect(row).toContainText("70");
   }
 });
 
-// Three panels, and under them the questions each topic gets. Once the section comes into view,
-// the topics and the interview panels wait for the steps before them: the topics' panel until its
-// first topic shows, the interview's until the questions are being written. The clock runs a
-// second at a time: the steps between the two take far longer, and a busy page still gets
-// through the demo in time.
-test("the create demo's three panels wait for the earlier steps", async ({ page }) => {
-  test.setTimeout(120_000);
+// The pill names each step in turn, as the frame shows it, and the frame never changes size or
+// place. The clock runs three seconds at a time (each stage lasts far longer), so a busy page
+// still gets through the demo in time.
+test("the create demo's pill names each step in turn and the frame never moves", async ({
+  page,
+}) => {
+  test.setTimeout(360_000);
   const count = await questionsPerTopic(page);
   await page.clock.install();
   await page.goto("/");
@@ -53,40 +63,49 @@ test("the create demo's three panels wait for the earlier steps", async ({ page 
   await pauseClock(page);
   const section = page.locator("#how");
   await section.scrollIntoViewIfNeeded();
-  const panels = section.getByTestId("demo-panel");
-  await expect(panels).toHaveCount(3);
   await expect(section.getByTestId("notes")).toContainText(String(count));
-  const [describe, topics, ready] = [panels.nth(0), panels.nth(1), panels.nth(2)];
+  const frame = section.getByTestId("demo-panel");
+  await expect(frame).toHaveCount(1);
+  const pills = section.getByTestId("create-step");
+  await expect(pills).toHaveCount(3);
+  const current = () =>
+    pills.evaluateAll((all) => all.findIndex((pill) => pill.dataset.current === "true"));
+  const boxes = new Set([await frameBox(frame)]);
 
-  await expect(topics.getByTestId("demo-waiting")).toBeVisible();
-  await expect(ready.getByTestId("demo-waiting")).toBeVisible();
-  await expect(describe.getByTestId("demo-waiting")).toHaveCount(0);
+  expect(await current()).toBe(0);
 
-  // The topics show first, while the interview's panel still waits.
-  await expect
-    .poll(
-      async () => {
-        await page.clock.runFor(1_000);
+  for (const step of [1, 2]) {
+    await expect
+      .poll(
+        async () => {
+          await page.clock.runFor(3_000);
+          boxes.add(await frameBox(frame));
 
-        return topics.getByTestId("demo-waiting").count();
-      },
-      { timeout: 60_000 },
-    )
-    .toBe(0);
-  await expect(ready.getByTestId("demo-waiting")).toBeVisible();
+          return current();
+        },
+        { timeout: 150_000 },
+      )
+      .toBe(step);
+  }
 
-  // Then the interview's panel stops waiting, its questions being written.
-  await expect
-    .poll(
-      async () => {
-        await page.clock.runFor(1_000);
+  expect([...boxes]).toHaveLength(1);
+});
 
-        return ready.getByTestId("demo-waiting").count();
-      },
-      { timeout: 60_000 },
-    )
-    .toBe(0);
-  await expect(ready.getByTestId("demo-writing")).toBeVisible();
+test("on a phone the steps show as three cards in place of the frame", { tag: "@phone-only" }, async ({
+  page,
+}) => {
+  test.setTimeout(120_000);
+  await page.goto("/");
+  const section = page.locator("#how");
+  await section.scrollIntoViewIfNeeded();
+
+  await expect(section.getByTestId("demo-panel")).toBeHidden();
+  await expect(section.getByTestId("phone-steps").getByTestId("icon-card")).toHaveCount(3);
+  // Each as wide as the screen.
+  const widths = await section
+    .getByTestId("icon-card")
+    .evaluateAll((cards) => cards.map((card) => Math.round(card.getBoundingClientRect().width)));
+  expect(new Set(widths)).toEqual(new Set([page.viewportSize()!.width]));
 });
 
 test("on a 375 px phone the notes are one a row, and nothing scrolls sideways", { tag: "@phone-only" }, async ({

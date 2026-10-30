@@ -3,68 +3,69 @@
 import { cn } from "cn"
 import { useTranslations } from "next-intl"
 
+import { DEMO_PRESSED } from "@/features/landing/components/demo-panel"
+import { DemoInterviewTabs } from "@/features/landing/components/demo-interview-tabs"
+import { DemoInterviewTopics } from "@/features/landing/components/demo-interview-topics"
 import { InterviewEstimate } from "@/components/common/interview-estimate"
-import { InterviewHeader } from "@/features/landing/components/interview-header"
+import { InterviewStatus } from "@/components/common/interview-status"
 import { buttonVariants } from "@/components/ui/button"
 import { DEMO_INTERVIEW } from "@/config/create-demo"
 
-/** A new interview's page (app/companies/[companyId]/interviews/[id]), small: its title, its
- * `status` and size, what it adds up to for each candidate, its topics with how many questions
- * were written for each, and right under them the button to invite candidates
- * (`inviteRef`), ringed while `pressed`. */
+/** A new interview's page (app/companies/[companyId]/interviews/[id]), small: its title with
+ * "new candidate" beside it (`invite`, pressed in while `pressed`) and its `status` under it,
+ * its tabs as on narrow screens with topics open, what it adds up to for each candidate, and its
+ * topics with how many questions each candidate gets of each (`limits`, one `focused`). */
 export function DemoInterview({
   topics,
   status,
-  invite,
-  inviteRef,
+  limits,
+  changed,
+  focused,
   pressed,
 }: {
-  topics: string[]
+  topics: { name: string; subtopics: string[] }[]
   status: string
-  invite: string
-  inviteRef?: React.Ref<HTMLSpanElement>
+  limits: Record<string, number>
+  changed: string[]
+  focused: string | null
   pressed: boolean
 }) {
-  const t = useTranslations("questions")
-  const { title, topicQuestions, perCandidate, questionSeconds } =
-    DEMO_INTERVIEW
-  const questions = topics.length * perCandidate
+  const t = useTranslations("interviews")
+  const { title, topicQuestions, questionSeconds } = DEMO_INTERVIEW
+  const questions = Object.values(limits).reduce((sum, n) => sum + n, 0)
 
   return (
-    <div className="flex min-w-0 flex-1 flex-col gap-3">
-      <InterviewHeader
-        title={title}
-        statusLabel={status}
-        topics={topics.length}
-        questions={topics.length * topicQuestions}
-      />
+    <div className="flex min-w-0 flex-1 flex-col gap-4">
+      <div className="flex items-start justify-between gap-3 px-1">
+        <div className="min-w-0 space-y-1.5">
+          <p className="font-heading text-xl leading-tight font-medium">
+            {title}
+          </p>
+          <InterviewStatus status="new" label={status} />
+        </div>
+        <span
+          data-demo-target="invite"
+          className={buttonVariants({
+            className: cn("h-9 shrink-0 px-4", pressed && DEMO_PRESSED),
+          })}
+        >
+          {t("newCandidate")}
+        </span>
+      </div>
+      <DemoInterviewTabs current="topics" counts={{ topics: topics.length }} />
       <InterviewEstimate
         questions={questions}
         questionSeconds={questionSeconds}
         minutes={(questions * questionSeconds) / 60}
         small
       />
-      <ul className="divide-y rounded-xl border">
-        {topics.map((topic) => (
-          <li
-            key={topic}
-            className="flex items-center justify-between gap-3 px-3 py-2"
-          >
-            <span className="min-w-0 truncate font-medium">{topic}</span>
-            <span className="shrink-0 text-xs whitespace-nowrap text-muted-foreground tabular-nums">
-              {topicQuestions} {t("count", { count: topicQuestions })}
-            </span>
-          </li>
-        ))}
-      </ul>
-      <span
-        ref={inviteRef}
-        className={buttonVariants({
-          className: cn("w-full lowercase", pressed && "ring-3 ring-ring/50"),
-        })}
-      >
-        {invite}
-      </span>
+      <DemoInterviewTopics
+        topics={topics}
+        count={topicQuestions}
+        limits={limits}
+        changed={changed}
+        focused={focused}
+      />
     </div>
   )
 }

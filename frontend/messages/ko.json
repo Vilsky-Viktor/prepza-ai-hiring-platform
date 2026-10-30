@@ -148,7 +148,7 @@
     "price": "지원자당 단 {price}."
   },
   "start": {
-    "placeholder": "채용 공고를 붙여 넣거나, 직무와 지원자가 알아야 할 내용을 설명하세요",
+    "placeholder": "여기에 채용 공고를 붙여 넣으세요…",
     "description": "채용 공고",
     "submit": "면접 만들기",
     "whichCompany": "어느 회사의 면접인가요?",
@@ -1391,6 +1391,8 @@
     "demos": "동영상",
     "demosTooltip": "YouTube에서 데모 보기",
     "videoTooltip": "prepza 사용 방법 보기",
+    "watchVideo": "동영상 보기",
+    "howItWorks": "이용 방법",
     "askAgent": "미라에게 묻기",
     "create": {
       "title": "몇 분 만에 면접 만들기",
@@ -1400,13 +1402,20 @@
         "templates": "바로 쓸 수 있는 템플릿 제공",
         "expert": "직무 전문가 없이도 가능"
       },
-      "describe": "채용 공고 붙여 넣기",
-      "adjust": "주제 조정",
-      "ask": "AI에게 주제 변경 요청",
-      "ready": "면접이 준비되었습니다",
+      "describe": "<n>1.</n> 채용 공고 붙여 넣기",
+      "adjust": "<n>2.</n> 주제 조정",
+      "menu": {
+        "cut": "잘라내기",
+        "copy": "복사",
+        "paste": "붙여넣기"
+      },
+      "ready": "<n>3.</n> 면접이 준비되었습니다",
       "status": "준비 완료",
-      "invite": "지원자 초대",
-      "waiting": "대기 중…"
+      "phone": {
+        "describe": "채용 공고를 붙여 넣거나, 직무를 몇 마디로 적어 주세요.",
+        "adjust": "중요한 주제는 남기고, 이름을 바꾸거나 직접 주제를 추가하세요.",
+        "ready": "주제별로 문제가 작성되고, 링크나 이메일로 지원자를 초대합니다."
+      }
     },
     "proof": {
       "anyJob": "모든 직무, 모든 분야",
@@ -1427,16 +1436,34 @@
         "agent": "AI 어시스턴트",
         "apps": "AI 앱 (MCP)"
       },
-      "automate": "채용 자동화",
+      "descriptions": {
+        "ats": "사용 중인 ATS에서 바로",
+        "email": "이메일로 받는 링크",
+        "file": "목록 업로드",
+        "link": "채용 공고용 링크 하나",
+        "api": "직접 만든 코드에서",
+        "sdk": "내 사이트에서",
+        "agent": "미라에게 물어보세요",
+        "apps": "Claude나 ChatGPT에서"
+      },
+      "slackDescription": "채널로 받는 업데이트",
+      "automate": "채용을 자동화하려면",
       "developerDocs": "개발자 문서",
       "interview": "면접",
       "candidates": "{count, plural, other {지원자 <n>#</n>명}}"
     },
     "candidates": {
       "title": "지원자에게 보이는 화면",
-      "text": "우리 브랜드로 진행하는 시간 제한 면접: 단일 선택, 복수 선택, 실무형 문제.",
+      "text": "우리 브랜드로 진행하는 시간 제한 면접, 클릭이나 음성으로 답합니다.",
+      "micPrompt": {
+        "asks": "{site}에서 다음 권한을 요청합니다",
+        "microphone": "마이크 사용",
+        "always": "사이트 방문 중에 허용",
+        "once": "이번에 허용",
+        "never": "허용 안함"
+      },
       "notes": {
-        "language": "지원자의 언어로",
+        "modes": "클릭/음성 모드",
         "phone": "휴대폰에서도 응시 가능",
         "time": "시간을 미리 안내",
         "extraTime": "필요한 지원자에게 추가 시간"
@@ -1450,17 +1477,48 @@
         "extraTime": "시간이 더 필요하신가요? 시작하기 전에 <bdi>{company}</bdi> 측에 문의하세요.",
         "people": "결과는 <bdi>{company}</bdi> 측 담당자가 검토하고 결정합니다.",
         "stay": "끝날 때까지 이 페이지에 머물러 주세요."
+      },
+      "phone": {
+        "click": {
+          "title": "클릭 모드",
+          "text": "지원자가 답을 고르고, 문제마다 타이머가 있습니다."
+        },
+        "voice": {
+          "title": "미라와 함께하는 음성 모드",
+          "text": "AI 면접관 미라가 문제를 읽어 주고 답을 들어요."
+        }
       }
     },
     "shareReports": {
       "title": "누가 가장 잘했는지 한눈에\n몇 초 만에 공유",
       "text": "모든 지원자의 답변과 점수를 이메일이나 채팅으로 공유하세요.",
-      "chatQuestion": "혹시 합격한 사람 벌써 있어요?",
+      "chat": {
+        "app": "WhatsApp",
+        "placeholder": "메시지",
+        "best": "이 사람이 제일 괜찮아 보여",
+        "flagged": "이 사람은 확실히 AI로 부정행위 중이야"
+      },
+      "proceeding": "{first} 님과 {second} 님으로 진행합니다",
       "samples": "보고서 샘플",
       "notes": {
         "notes": "면접 메모 작성",
         "pdf": "PDF 보고서 보내기",
-        "messengers": "메신저로 요약 공유"
+        "messengers": "메신저로 요약 공유",
+        "slack": "Slack 알림"
+      },
+      "phone": {
+        "pdf": {
+          "title": "PDF 다운로드",
+          "text": "모든 지원자의 점수와 답변을 보고서 하나에."
+        },
+        "share": {
+          "title": "메신저나 이메일로 공유",
+          "text": "지원자 요약을 몇 초 만에 팀에 보내세요."
+        },
+        "team": {
+          "title": "팀 메모와 Slack",
+          "text": "팀을 위한 메모를 남기고, 지원자가 마치면 Slack으로 알림을 받으세요."
+        }
       }
     },
     "justAsk": {
@@ -1598,8 +1656,7 @@
         "subscription": "구독 없음",
         "unanswered": "답변 없는 초대는 무료",
         "expire": "크레딧은 만료되지 않음",
-        "refund": "사용하지 않은 유료 크레딧은 14일 동안 환불 가능",
-        "tax": "가격에 부가가치세(VAT) 또는 판매세 별도"
+        "refund": "사용하지 않은 유료 크레딧은 환불 가능"
       }
     }
   },
