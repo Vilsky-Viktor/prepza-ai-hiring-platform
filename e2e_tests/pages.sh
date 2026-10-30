@@ -58,7 +58,7 @@ COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude 
     -e REQUEST_URL=http://gateway:8082 \
     -e WORKERS \
     -e SHOTS \
-    mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27 \
+    mcr.microsoft.com/playwright:v1.64.1-noble@sha256:47b510dd9230bf0b9bfc9b20102241e577ea7a99334ab4c3ca19f19770e9b8ea \
     sh -c 'tar -xf - && npm ci --no-audit --no-fund --loglevel=error && npx playwright test "$@"' sh "$@" ||
   status=$?
 

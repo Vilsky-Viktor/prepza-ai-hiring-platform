@@ -25,8 +25,8 @@ docker run --rm --network "$network" \
   -v "$out:/out" -w /work \
   -e npm_config_update_notifier=false \
   -e HOST_RULES="MAP localhost:8090 gateway:80" \
-  mcr.microsoft.com/playwright:v1.63.0-noble@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27 \
-  sh -c "npm i --no-save --no-audit --no-fund --loglevel=error playwright@1.63.0 >/dev/null && node report-samples.mjs /out"
+  mcr.microsoft.com/playwright:v1.64.1-noble@sha256:47b510dd9230bf0b9bfc9b20102241e577ea7a99334ab4c3ca19f19770e9b8ea \
+  sh -c "npm i --no-save --no-audit --no-fund --loglevel=error playwright@1.64.1 >/dev/null && node report-samples.mjs /out"
 
 zip="$PWD/frontend/public/samples/prepza-report-samples.zip"
 mkdir -p "$(dirname "$zip")"

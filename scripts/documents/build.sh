@@ -24,7 +24,7 @@ for name in instructions-for-companies data-processing-agreement; do
   title="$(head -n 1 "$src/$name.md" | sed 's/^# //')"
   "$pandoc" "$src/$name.md" -s --embed-resources --css scripts/documents/print.css \
     --metadata pagetitle="$title" |
-    docker run --rm -i mcr.microsoft.com/playwright:v1.63.0-noble sh -c '
+    docker run --rm -i mcr.microsoft.com/playwright:v1.64.1-noble@sha256:47b510dd9230bf0b9bfc9b20102241e577ea7a99334ab4c3ca19f19770e9b8ea sh -c '
       cat > /tmp/page.html
       chrome="$(ls /ms-playwright/chromium-*/chrome-linux*/chrome | head -n 1)"
       "$chrome" --headless --no-sandbox --disable-gpu --no-pdf-header-footer \
