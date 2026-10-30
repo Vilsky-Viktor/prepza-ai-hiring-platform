@@ -39,7 +39,7 @@ def question():
         ],
         answers=40,
         option_picks={"Debit cash": 30, "Credit cash": 6, "Debit revenue": 2, "Credit expenses": 2},
-        reports=[ReportNote(reason="wrong_answer", comment="Cash comes in, so it's a debit")],
+        reports=[ReportNote(reason="wrong_answer")],
     )
 
 

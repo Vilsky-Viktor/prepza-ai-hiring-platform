@@ -103,7 +103,13 @@ async def list_revision_reports(
     newest = sorted(found.reports, key=lambda report: report["created_at"], reverse=True)
 
     return [
-        # Kept reports have no id of their own; their place in the revision names them.
-        ReportOut(id=uuid5(revision_id, str(index)), **report)
+        # Kept reports have no id of their own (their place in the revision names them) and no
+        # comment (a reporter's own words don't outlive the report).
+        ReportOut(
+            id=uuid5(revision_id, str(index)),
+            reason=report["reason"],
+            comment="",
+            created_at=report["created_at"],
+        )
         for index, report in enumerate(newest)
     ][page.offset : page.offset + page.limit]

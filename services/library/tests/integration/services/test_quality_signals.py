@@ -4,7 +4,7 @@ that tells whose they are."""
 
 import uuid
 
-from sqlalchemy import update
+from sqlalchemy import select, update
 
 from library.core.db import Session
 from library.models.quality import QuestionRevision
@@ -33,6 +33,14 @@ async def reported(question_id, reason, times=2):
         await transaction(
             feedback.report_question, question_id, f"user-{uuid.uuid4()}", reason, COMMENT
         )
+
+
+async def revisions_of(session, question_id):
+    revisions = await session.scalars(
+        select(QuestionRevision).where(QuestionRevision.question_id == question_id)
+    )
+
+    return [report for revision in revisions for report in revision.reports]
 
 
 def mine(signals, *texts):
@@ -109,6 +117,9 @@ def test_a_replaced_question_comes_with_the_flag_it_had_and_what_replaced_it(run
     )
     assert [option.answer for option in replaced.new_options] == ["Yes"]
     assert COMMENT not in replaced.model_dump_json()
+    # The revision keeps the reports' reasons, never a reporter's comment: it outlives them.
+    kept = run(transaction(revisions_of, flagged.id))
+    assert [sorted(report) for report in kept] == [["created_at", "reason"]] * 2
 
 
 def test_a_revision_kept_before_flags_were_kept_gets_the_flag_its_feedback_gives(run):

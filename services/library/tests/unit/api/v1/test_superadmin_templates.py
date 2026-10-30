@@ -196,8 +196,8 @@ def test_a_replaced_questions_kept_reports_are_listed_newest_first(client, signe
 
     kept = SimpleNamespace(
         reports=[
-            {"reason": "unclear", "comment": "Old", "created_at": "2026-10-01T10:00:00+00:00"},
-            {"reason": "wrong_answer", "comment": "New", "created_at": "2026-10-04T10:00:00+00:00"},
+            {"reason": "unclear", "created_at": "2026-10-01T10:00:00+00:00"},
+            {"reason": "wrong_answer", "created_at": "2026-10-04T10:00:00+00:00"},
         ]
     )
 
@@ -209,7 +209,10 @@ def test_a_replaced_questions_kept_reports_are_listed_newest_first(client, signe
 
     reports = client.get(f"/superadmin/quality/revisions/{uuid.uuid4()}/reports").json()
 
-    assert [report["comment"] for report in reports] == ["New", "Old"]
+    assert [(report["reason"], report["comment"]) for report in reports] == [
+        ("wrong_answer", ""),
+        ("unclear", ""),
+    ]
 
 
 def test_a_template_says_whether_its_pages_are_indexed(client, stored, monkeypatch):

@@ -12,7 +12,6 @@ class VerifyIn(BaseModel):
 
 class ReportNote(BaseModel):
     reason: str
-    comment: str
 
 
 class QuestionQuality(BaseModel):

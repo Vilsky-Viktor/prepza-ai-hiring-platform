@@ -184,11 +184,9 @@ async def archive(session: AsyncSession, question_id: uuid.UUID, fixed: bool = F
             likes=likes,
             dislikes=dislikes,
             reports=[
-                {
-                    "reason": report.reason,
-                    "comment": report.comment,
-                    "created_at": report.created_at.isoformat(),
-                }
+                # Without the comment: it's the reporter's own words, and the revision outlives
+                # the report (and the reporter's account), so only the reason and time stay.
+                {"reason": report.reason, "created_at": report.created_at.isoformat()}
                 for report in reports
             ],
         )

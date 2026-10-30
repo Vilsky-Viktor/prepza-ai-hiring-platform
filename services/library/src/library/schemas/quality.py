@@ -6,8 +6,8 @@ from pydantic import AwareDatetime, BaseModel, Field
 
 
 class ReportNote(BaseModel):
+    # Only the reason: a reporter's comment is for the superadmin, never sent to the AI.
     reason: str
-    comment: str
 
 
 class QuestionQuality(BaseModel):

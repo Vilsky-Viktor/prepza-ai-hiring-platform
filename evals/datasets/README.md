@@ -17,8 +17,11 @@ when they were last built, one section each. Best practices behind them:
   general questions, page questions and named-vs-page edge cases.
 - **Every real AI failure adds a case**, rewritten as a made-up one that fails the same way
   (a reported wrong key, a thumbs-down answer in Langfuse, a support complaint): never the
-  real text. The one exception is platform templates' own flagged questions, which are ours
-  and go in word for word (`flagged_traps.json`). Hand-written assistant cases go into
+  real text. The one exception is flagged questions in `flagged_traps.json`, word for word:
+  platform templates' own, which are ours, and companies' whose wording passed the shared
+  question bank's filter (no organisation or person named) from interviews not kept out of the
+  bank, under the terms' licence to reuse generated questions; a question added stays, as the
+  licence lets reused questions stay where they are. Hand-written assistant cases go into
   `assistant_questions.json` or `assistant_guides.json` with what a right answer does, help chat
   cases into `help_questions.json`; cases made from a thumbs down stay apart from them, in
   `assistant_feedback.json` and `help_feedback.json` (Feedback cases below); a question failure (a wrong key, an arguable one) becomes a made-up

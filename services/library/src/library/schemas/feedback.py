@@ -44,5 +44,6 @@ class ReportOut(BaseModel):
 
     id: UUID
     reason: str
+    # Empty for a replaced question's kept reports: their comments aren't kept.
     comment: str
     created_at: datetime
