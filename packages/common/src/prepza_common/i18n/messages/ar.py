@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "أدخل عنوان Recruitee الخاص بك، مثل acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "أدخل عنوان Workable الخاص بك، مثل acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "لا يمكن تغيير الوقت الإضافي إلا قبل أن يبدأ المرشح.",
+    "The interview mode can only be changed before the candidate starts.": "لا يمكن تغيير نمط المقابلة إلا قبل أن يبدأ المرشح.",
     "Generation already finished": "انتهى الإنشاء بالفعل",
     "Generation is not awaiting review": "الإنشاء لا ينتظر المراجعة",
     "Generation not found": "لم يتم العثور على الإنشاء",

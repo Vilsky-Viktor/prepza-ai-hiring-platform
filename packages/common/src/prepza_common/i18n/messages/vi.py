@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Nhập địa chỉ Recruitee của bạn, ví dụ acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "Nhập địa chỉ Workable của bạn, ví dụ acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "Chỉ có thể đổi thời gian thêm trước khi ứng viên bắt đầu.",
+    "The interview mode can only be changed before the candidate starts.": "Chỉ có thể đổi chế độ phỏng vấn trước khi ứng viên bắt đầu.",
     "Generation already finished": "Quá trình tạo đã kết thúc",
     "Generation is not awaiting review": "Quá trình tạo không chờ duyệt",
     "Generation not found": "Không tìm thấy quá trình tạo",

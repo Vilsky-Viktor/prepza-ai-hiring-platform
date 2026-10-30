@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Vul je Recruitee-adres in, zoals acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "Vul je Workable-adres in, zoals acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "Extra tijd kan alleen worden gewijzigd voordat de kandidaat begint.",
+    "The interview mode can only be changed before the candidate starts.": "De interviewmodus kan alleen worden gewijzigd voordat de kandidaat begint.",
     "Generation already finished": "Het genereren is al afgerond",
     "Generation is not awaiting review": "Het genereren wacht niet op controle",
     "Generation not found": "Generatie niet gevonden",

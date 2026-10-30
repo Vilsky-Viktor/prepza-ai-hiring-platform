@@ -11,6 +11,7 @@ import { InviteProblems } from "@/features/company/components/invite-problems"
 import { FloatingInput } from "@/components/ui/floating-field"
 import { TabNav, TabPanel } from "@/components/common/tab-nav"
 import { INVITE_TAB_ICONS } from "@/features/company/components/invite-tab-icons"
+import { AnswerModeSwitch } from "@/features/company/components/answer-mode-switch"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -34,16 +35,20 @@ import type { BulkInviteResult } from "@/types/company"
 /** "New candidate" beside the test's title: a dialog with three tabs, one email with an
  * optional name, a list, or a file. The API reads the emails and names and invites each; what
  * it couldn't stays in the tab with the reasons under it. The last tab used is remembered in
- * this browser. The candidate list (`candidatesHref`) shows the invited after. */
+ * this browser. Where voice mode is offered, a switch chooses how they take it, the
+ * interview's mode at first. The candidate list (`candidatesHref`) shows the invited after. */
 export function InviteCandidate({
   interviewId,
   candidatesHref,
   maxInvites,
+  voice,
 }: {
   interviewId: string
   candidatesHref: string
   // The most candidates one list or file may invite; null when the API didn't say.
   maxInvites: number | null
+  // The interview's mode (voice or click), and whether its language allows voice mode.
+  voice: { on: boolean; available: boolean }
 }) {
   const t = useTranslations("interviews")
   const share = useTranslations("share")
@@ -60,6 +65,7 @@ export function InviteCandidate({
   const [problems, setProblems] = useState<BulkInviteResult["problems"]>([])
   const [error, setError] = useState("")
   const [sending, setSending] = useState(false)
+  const [mode, setMode] = useState(voice.on)
 
   // The tab last used in this browser, as the dialog opens.
   function openDialog(next: boolean) {
@@ -69,6 +75,7 @@ export function InviteCandidate({
 
     if (next) {
       setProblems([])
+      setMode(voice.on)
 
       try {
         const saved = localStorage.getItem(INVITE_TAB_KEY) as InviteTab
@@ -99,12 +106,13 @@ export function InviteCandidate({
     setError("")
 
     try {
-      const body =
+      const list =
         tab === "one"
           ? { text: email, name }
           : tab === "many"
             ? { text }
             : { text: await file!.text(), filename: file!.name }
+      const body = { ...list, voice: mode }
       const result = await apiFetch<BulkInviteResult>(
         `/companies/interviews/${interviewId}/candidates/bulk`,
         { method: "POST", body: JSON.stringify(body) }
@@ -236,6 +244,18 @@ export function InviteCandidate({
             />
           </form>
         </TabPanel>
+        {/* How they take it, for everyone this invites: the interview's mode at first. */}
+        {voice.available && (
+          <div className="flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-stretch">
+            <span className="text-base">{t("answerMode")}</span>
+            <AnswerModeSwitch
+              label={t("answerMode")}
+              voice={mode}
+              disabled={sending}
+              onChange={setMode}
+            />
+          </div>
+        )}
         <DialogFooter>
           <DialogClose
             render={

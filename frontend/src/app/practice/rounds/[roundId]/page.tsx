@@ -7,6 +7,7 @@ import { GradeBlock, GradeCard } from "@/components/common/grade-card"
 import { BackLink } from "@/components/common/back-link"
 import { PageHeader } from "@/components/common/page-header"
 import { HireWithTemplate } from "@/features/practice/components/hire-with-template"
+import { OpenToOffersCard } from "@/features/practice/components/open-to-offers"
 import { PracticeActions } from "@/features/practice/components/practice-actions"
 import { PracticeReview } from "@/features/practice/components/practice-review"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
@@ -14,7 +15,7 @@ import { Button } from "@/components/ui/button"
 import { TOKEN_COOKIE } from "@/config/auth"
 import { publicFetch, serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
-import type { PracticeRound, PracticeSize } from "@/types/round"
+import type { OpenToOffers, PracticeRound, PracticeSize } from "@/types/round"
 import { formatPercent } from "@/lib/format"
 import { PageKey } from "@/components/common/page-key"
 
@@ -40,9 +41,10 @@ export default async function PracticeRoundPage({
     )
   }
 
-  const round = await serverFetch<PracticeRound>(
-    `/rounds/practice/rounds/${roundId}`
-  )
+  const [round, offers] = await Promise.all([
+    serverFetch<PracticeRound>(`/rounds/practice/rounds/${roundId}`),
+    serverFetch<OpenToOffers>("/rounds/open-to-offers"),
+  ])
 
   if (!round) {
     notFound()
@@ -96,6 +98,9 @@ export default async function PracticeRoundPage({
         </div>
       ) : (
         <>
+          {/* Having just finished a round, a talent can let companies hiring for it find them:
+              first, where they see it. */}
+          {round.finished && offers && <OpenToOffersCard initial={offers} />}
           {/* The grade, and how many the talent picked an answer for. */}
           <GradeCard>
             <GradeBlock

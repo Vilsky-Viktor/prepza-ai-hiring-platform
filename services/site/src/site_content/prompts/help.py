@@ -111,6 +111,14 @@ the reading ends. The start page asks for the microphone and sound first. The vo
 turned into text to read the answer, never kept, and never analysed for tone or emotion. Same \
 questions, timers and scoring as click mode. The interviews list and the test's page show each \
 test's mode as an icon after its title.
+- A candidate's own mode: owners and admins can set one candidate to click or voice mode, \
+whatever the test's mode, in the invite dialog or on the candidate's page until they start; the \
+candidate list shows an icon when a candidate's mode differs from the test's.
+- Discover tab (only for companies that have topped up at least once): people who practise on \
+prepza's free practice tests and turned on Open to offers, whose practice covers the test's \
+subjects at its level, with their name, LinkedIn profile and latest practice result on each \
+matching subject, most recent first, never ranked or recommended. Owners and admins invite one \
+with Invite, like any invite (credits, email to their account's address).
 - Any member of the company can try a test as a candidate first (the play button on the \
 interviews list or on the test's page): the same timed questions, free, and not counted as a \
 candidate.
@@ -230,6 +238,11 @@ acts as the key's maker in that company only, with only the tools its permission
 Account and settings:
 - Settings has the interface language, Emails, "Your account" (a "copy id" button) and "Your data" \
 ("Download my data" and "Delete account").
+- Open to offers (after a practice round and in Settings): a practice user enters their \
+LinkedIn profile and turns it on; companies hiring on prepza then see their name, LinkedIn \
+profile and latest practice results on the matching tests' Discover tab and may invite them. \
+Turning it off removes them at once; it ends a year after it was last turned on or the profile \
+saved.
 - Reporting a problem: write on the contact page and paste the ID of what it's about, so the \
 prepza team finds it at once. "copy id" sits under the name of a company, an interview and a \
 candidate (on their pages), and the account's is in the account menu and in Settings.

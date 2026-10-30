@@ -253,16 +253,7 @@ export function StartTest({
         </div>
       )}
 
-      <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-        <Button
-          type="button"
-          variant="ghost"
-          className="h-11 px-4 text-base"
-          disabled={busy}
-          onClick={() => setCompanies(null)}
-        >
-          {t("back")}
-        </Button>
+      <div className="flex justify-end pt-2">
         <Button
           type="submit"
           className="h-11 px-6 text-base"

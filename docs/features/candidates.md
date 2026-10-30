@@ -114,6 +114,10 @@ The interview's screen has two parts, 30% and 70% on a computer, one under the o
 - A page reloaded without a tap can't play sound: the screen offers **Turn on sound**. Without a microphone, it says how to allow it, and the options can still be tapped.
 - Nothing of the voice is kept: the audio and the words are processed in memory for the request, never stored, logged or traced. Only speech-to-text, no analysis of tone, emotion or confidence. Spoken answers are limited per candidate an hour and per company a day; a member's preview also stops at the daily AI cap for unpaid companies. Mira's phrases are said in the interview's language (`services/rounds/src/rounds/constants/voice_phrases.py`, translated by their English text like the services' messages).
 
+#### A candidate's own mode
+
+A candidate can take the interview in another mode than the interview's, for someone who can't answer aloud in a voice interview, or one candidate of a click interview who'd rather speak. Where the interview's language allows voice mode, the "New candidate(s)" dialog has the mode switch under its tabs, starting at the interview's mode, for everyone it invites (`voice` in `POST /interviews/{id}/candidates` and `…/candidates/bulk`; the public API and ATS invites take it too). On the candidate's page, owners and admins change it in a card under the invite link until the candidate starts (`PUT /interviews/{id}/candidates/{invite_id}/voice` with `{"voice": true|false}`; after the start, or during one, 409 "The interview mode can only be changed before the candidate starts."), and the card is gone once they've started. The invite keeps only a mode apart from the interview's (null follows the interview's, so changing the interview's mode reaches them); the candidate list shows the mode's icon on the rows whose mode differs from the interview's, nothing on the rest. The [action log](companies.md#action-log) records the change (`candidate_mode_set`).
+
 ## Timing
 
 Every interview is timed. Each question has its own countdown, with its own time.
@@ -169,6 +173,7 @@ The candidate's page shows the card: with no signal, only the follow-up question
 - Can be sorted by grade instead: best first, candidates without a grade yet last.
 - Can be searched by email or name.
 - Can be filtered by status: invited, in process, finished, passed, flagged, not delivered, expired.
+- A candidate taking it in another mode than the interview's shows that mode's icon (see [A candidate's own mode](#a-candidates-own-mode)).
 
 Any member, viewers too, can also search a company's candidates across all its interviews by email or name, newest first, a page at a time (`GET /companies/{id}/candidates?q=&offset=&limit=` in companies). Each row is a list row with its interview's id and title; candidates of a deleted interview are gone with it. The app has no page for it.
 

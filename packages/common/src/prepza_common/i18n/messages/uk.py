@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Введіть адресу Recruitee, наприклад acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "Введіть адресу Workable, наприклад acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "Додатковий час можна змінити лише до того, як кандидат почне.",
+    "The interview mode can only be changed before the candidate starts.": "Режим співбесіди можна змінити лише до того, як кандидат почне.",
     "Generation already finished": "Генерацію вже завершено",
     "Generation is not awaiting review": "Генерація не чекає на перевірку",
     "Generation not found": "Генерацію не знайдено",

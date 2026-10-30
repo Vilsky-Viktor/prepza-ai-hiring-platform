@@ -156,7 +156,6 @@
     "newCompany": "Perusahaan baru",
     "companyName": "Nama perusahaan",
     "freeCandidates": "Perusahaan pertamamu mewawancarai {count, plural, other {# kandidat}} pertamanya secara gratis.",
-    "back": "Ubah deskripsi",
     "continue": "Lanjutkan",
     "starting": "Memulai…",
     "failed": "Wawancara tidak bisa dimulai. Coba lagi."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Tanpa waktu tambahan",
     "extraTimeSome": "+{percent} waktu",
     "extraTimeNote": "Untuk kandidat yang butuh waktu lebih, misalnya karena disabilitas. Atur sebelum mereka mulai.",
-    "extraTimeFailed": "Waktu tambahan tidak bisa diubah. Coba lagi."
+    "extraTimeFailed": "Waktu tambahan tidak bisa diubah. Coba lagi.",
+    "modeHelp": "Cara kandidat ini mengikuti wawancara, apa pun mode wawancaranya. Kamu bisa mengubahnya sampai mereka mulai.",
+    "modeFailed": "Mode wawancara tidak bisa diubah. Coba lagi."
   },
   "interviewStatus": {
     "new": "Baru",
@@ -1096,6 +1097,18 @@
     "candidates": "Kandidat",
     "notes": "Catatan",
     "notesEmpty": "Belum ada catatan. Tulis yang pertama untuk timmu.",
+    "discover": "Temukan",
+    "discoverLinkedIn": "Profil LinkedIn {name}",
+    "discoverText": "Orang yang terbuka untuk tawaran kerja dan sudah berlatih topik wawancara ini. Terbaru lebih dulu, tanpa peringkat.",
+    "discoverEmpty": "Belum ada orang yang terbuka untuk tawaran kerja yang berlatih topik wawancara ini.",
+    "discoverResults": "Hasil latihan",
+    "discoverPractised": "Berlatih {date}",
+    "discoverInvite": "Undang",
+    "discoverInviting": "Mengundang…",
+    "discoverInvited": "Diundang",
+    "discoverInviteDone": "Undangan dikirim ke <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "Undangan tidak bisa dikirim. Coba lagi.",
+    "discoverNoName": "Nama tidak dibagikan",
     "noteLabel": "Tulis catatan untuk timmu",
     "notePlaceholder": "catatan keren di sini…",
     "notePost": "Kirim",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "Rata-rata {time} per pertanyaan",
     "timingNone": "Tanpa batas waktu",
     "timingNote": "Latihan tidak dibandingkan dengan siapa pun, jadi ambil waktu lebih lama, atau tanpa batas, jika perlu."
+  },
+  "openToOffers": {
+    "title": "Terbuka untuk tawaran kerja",
+    "text": "Perusahaan yang merekrut lewat prepza akan melihat nama, profil LinkedIn, dan hasil latihan terbarumu, serta bisa mengundangmu ke wawancara. Matikan kapan saja.",
+    "linkedin": "Profil LinkedIn",
+    "linkedinHint": "linkedin.com/in/nama-kamu",
+    "save": "Simpan",
+    "on": "Perusahaan melihatmu sebagai <bdi>{name}</bdi> sampai {date}.",
+    "onNoName": "Perusahaan melihatmu sampai {date}.",
+    "needsLinkedin": "Masukkan profil LinkedIn-mu untuk mengaktifkannya.",
+    "failed": "Tidak bisa menyimpan. Coba lagi."
   },
   "verify": {
     "verify": "Verifikasi",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "Menghapus kandidat",
       "candidate_renamed": "Mengubah nama kandidat",
       "extra_time_set": "Memberi kandidat waktu tambahan",
+      "candidate_mode_set": "Mengubah mode wawancara kandidat",
       "results_viewed": "Melihat hasil kandidat",
       "report_emailed": "Mengirim laporan lewat email",
       "member_invited": "Mengundang anggota",

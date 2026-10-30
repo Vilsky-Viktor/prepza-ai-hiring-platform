@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Each candidate who answers at least one question uses credits, including those from the link.",
-      "Reminders go to candidates automatically."
+      "Reminders go to candidates automatically.",
+      "Inviting, choose whether they take it by click or by voice; a candidate in another mode than the interview's shows that mode's icon."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Working for clients? Pin a note like “For Acme, Backend Developer” to see at a glance whom each interview is for.",
       "A deleted note is gone for good. The action log records who wrote, changed or deleted a note, never its text."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Discover",
+    "text": "People who practise on prepza and chose to be open to offers, whose practice covers this interview's subjects at its level. Each shows their name, LinkedIn profile and latest practice result on each matching subject. Only companies that have topped up at least once see this tab.",
+    "actions": [
+      "Open someone's LinkedIn profile to learn more about them.",
+      "Invite someone to this interview (owners and admins): it goes to their account's email and costs credits like any invite."
+    ],
+    "tips": [
+      "These are practice results, not a qualification, and the list is not a recommendation: whoever practised last comes first.",
+      "Someone who turns Open to offers off disappears from this list at once."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Once they finish, see any unusual patterns in their answers and times, and questions they got right to ask about in a live interview.",
       "Download the report as a PDF, or share it by email.",
       "Give extra time before they start, for example for a disability.",
+      "Choose whether they take it by click or by voice, whatever the interview's mode, until they start.",
       "Add or edit the candidate's name.",
       "Copy their invite link to send it yourself, if the email didn't arrive; it's there until they finish.",
       "Resend or revoke the invite, or delete the candidate with their results."
@@ -362,6 +376,7 @@
     "actions": [
       "Choose the language of the site, the help chat and your emails.",
       "Choose which optional emails you get; service emails, such as invites, reports and billing problems, always go out.",
+      "Turn Open to offers on or off: while it's on, companies hiring on prepza for the subjects you practised see your name, LinkedIn profile and practice results, and may invite you.",
       "Download everything prepza holds about you, or delete your account."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Whatever you picked when a question's time runs out still counts; a question left with nothing picked, or never reached, counts as wrong.",
-      "Hiring for this role? Create an interview from it for your own candidates."
+      "Hiring for this role? Create an interview from it for your own candidates.",
+      "Looking for a job? Turn on Open to offers to let companies hiring for these subjects see your name, LinkedIn profile and practice results."
     ]
   },
   "pricing": {

@@ -14,6 +14,8 @@ export type PracticeStatus = Schemas["PracticeStatusOut"]
 export type PracticeSize = Schemas["PracticeSizeOut"]
 export type PracticeTiming = Schemas["PracticeTimingOut"]
 export type PracticeTimingId = Schemas["PracticeStartIn"]["timing"]
+// A practice user's Open to offers switch.
+export type OpenToOffers = Schemas["OpenToOffersOut"]
 
 // What Mira, the AI interviewer, is doing, as the screen shows it. "blocked": the browser holds
 // the sound back until a tap (the page was reloaded).

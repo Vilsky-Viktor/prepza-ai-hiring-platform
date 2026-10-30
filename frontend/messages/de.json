@@ -156,7 +156,6 @@
     "newCompany": "Ein neues Unternehmen",
     "companyName": "Name des Unternehmens",
     "freeCandidates": "Bei deinem ersten Unternehmen {count, plural, one {ist der erste Kandidat} other {sind die ersten # Kandidaten}} kostenlos.",
-    "back": "Beschreibung bearbeiten",
     "continue": "Weiter",
     "starting": "Wird gestartet…",
     "failed": "Das Interview konnte nicht gestartet werden. Bitte versuche es erneut."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Keine zusätzliche Zeit",
     "extraTimeSome": "+{percent} Zeit",
     "extraTimeNote": "Für einen Kandidaten, der mehr Zeit braucht, zum Beispiel wegen einer Behinderung. Lege sie fest, bevor er beginnt.",
-    "extraTimeFailed": "Die zusätzliche Zeit konnte nicht geändert werden. Bitte versuche es erneut."
+    "extraTimeFailed": "Die zusätzliche Zeit konnte nicht geändert werden. Bitte versuche es erneut.",
+    "modeHelp": "Wie dieser Kandidat das Interview absolviert, unabhängig vom Modus des Interviews. Du kannst es ändern, bis er beginnt.",
+    "modeFailed": "Der Interviewmodus konnte nicht geändert werden. Bitte versuche es erneut."
   },
   "interviewStatus": {
     "new": "Neu",
@@ -1096,6 +1097,18 @@
     "candidates": "Kandidaten",
     "notes": "Notizen",
     "notesEmpty": "Noch keine Notizen. Schreib die erste für dein Team.",
+    "discover": "Entdecken",
+    "discoverLinkedIn": "LinkedIn-Profil von {name}",
+    "discoverText": "Personen, die offen für Angebote sind und die Themen dieses Interviews geübt haben. Neueste zuerst, ohne Rangfolge.",
+    "discoverEmpty": "Noch hat niemand, der offen für Angebote ist, die Themen dieses Interviews geübt.",
+    "discoverResults": "Übungsergebnisse",
+    "discoverPractised": "Geübt am {date}",
+    "discoverInvite": "Einladen",
+    "discoverInviting": "Wird eingeladen…",
+    "discoverInvited": "Eingeladen",
+    "discoverInviteDone": "Einladung an <bdi>{name}</bdi> gesendet.",
+    "discoverInviteFailed": "Die Einladung konnte nicht gesendet werden. Versuche es erneut.",
+    "discoverNoName": "Name nicht geteilt",
     "noteLabel": "Schreib eine Notiz für dein Team",
     "notePlaceholder": "eine richtig gute Notiz hier…",
     "notePost": "Posten",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "Durchschnittlich {time} pro Frage",
     "timingNone": "Ohne Zeitlimit",
     "timingNote": "Übungen werden mit niemandem verglichen: Nimm dir mehr Zeit oder gar kein Limit, wenn du es brauchst."
+  },
+  "openToOffers": {
+    "title": "Offen für Angebote",
+    "text": "Unternehmen, die über prepza einstellen, sehen deinen Namen, dein LinkedIn-Profil und deine neuesten Übungsergebnisse und können dich zu einem Interview einladen. Du kannst es jederzeit ausschalten.",
+    "linkedin": "LinkedIn-Profil",
+    "linkedinHint": "linkedin.com/in/dein-name",
+    "save": "Speichern",
+    "on": "Unternehmen sehen dich bis zum {date} als <bdi>{name}</bdi>.",
+    "onNoName": "Unternehmen sehen dich bis zum {date}.",
+    "needsLinkedin": "Gib dein LinkedIn-Profil ein, um es einzuschalten.",
+    "failed": "Speichern fehlgeschlagen. Versuche es erneut."
   },
   "verify": {
     "verify": "Verifizieren",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "Hat einen Kandidaten gelöscht",
       "candidate_renamed": "Hat den Namen eines Kandidaten geändert",
       "extra_time_set": "Hat einem Kandidaten zusätzliche Zeit gegeben",
+      "candidate_mode_set": "Hat den Interviewmodus eines Kandidaten geändert",
       "results_viewed": "Hat die Ergebnisse eines Kandidaten angesehen",
       "report_emailed": "Hat einen Bericht per E-Mail gesendet",
       "member_invited": "Hat ein Mitglied eingeladen",

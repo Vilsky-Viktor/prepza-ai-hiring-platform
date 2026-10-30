@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Elke kandidaat die minstens één vraag beantwoordt, gebruikt credits, ook kandidaten via de link.",
-      "Herinneringen gaan automatisch naar kandidaten."
+      "Herinneringen gaan automatisch naar kandidaten.",
+      "Kies bij het uitnodigen of kandidaten in klikmodus of spraakmodus antwoorden; een kandidaat in een andere modus dan die van het interview toont het pictogram van die modus."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Werk je voor klanten? Zet een notitie vast zoals “Voor Acme, backend developer” om in één oogopslag te zien voor wie elk interview is.",
       "Een verwijderde notitie is voorgoed weg. Het actielog legt vast wie een notitie schreef, wijzigde of verwijderde, nooit de tekst ervan."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Ontdekken",
+    "text": "Mensen die op prepza oefenen en ervoor gekozen hebben open te staan voor nieuwe kansen, en van wie de oefeningen de onderwerpen van dit interview op het niveau ervan dekken. Van iedereen zie je de naam, het LinkedIn-profiel en het nieuwste oefenresultaat op elk passend onderwerp. Alleen bedrijven die minstens één keer credits hebben opgewaardeerd, zien dit tabblad.",
+    "actions": [
+      "Open iemands LinkedIn-profiel om meer over die persoon te weten te komen.",
+      "Nodig iemand uit voor dit interview (eigenaren en beheerders): de uitnodiging gaat naar het e-mailadres van diens account en kost credits zoals elke uitnodiging."
+    ],
+    "tips": [
+      "Dit zijn oefenresultaten, geen kwalificatie, en de lijst is geen aanbeveling: wie het laatst heeft geoefend, staat bovenaan.",
+      "Wie Open voor nieuwe kansen uitzet, verdwijnt meteen uit deze lijst."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Bekijk zodra de kandidaat klaar is ongebruikelijke patronen in de antwoorden en antwoordtijden, en vragen die de kandidaat goed had om in een live gesprek op door te vragen.",
       "Download het rapport als PDF, of deel het per e-mail.",
       "Geef extra tijd voordat de kandidaat begint, bijvoorbeeld bij een beperking.",
+      "Kies of de kandidaat in klikmodus of spraakmodus antwoordt, ongeacht de modus van het interview, tot hij begint.",
       "Voeg de naam van de kandidaat toe of bewerk die.",
       "Kopieer de uitnodigingslink om die zelf te sturen als de e-mail niet is aangekomen; hij blijft beschikbaar tot de kandidaat klaar is.",
       "Verstuur de uitnodiging opnieuw of trek die in, of verwijder de kandidaat met de resultaten."
@@ -362,6 +376,7 @@
     "actions": [
       "Kies de taal van de site, de hulpchat en je e-mails.",
       "Kies welke optionele e-mails je krijgt; service-e-mails, zoals uitnodigingen, rapporten en betalingsproblemen, worden altijd verstuurd.",
+      "Zet Open voor nieuwe kansen aan of uit: zolang het aan staat, zien bedrijven die via prepza werven voor de onderwerpen die je hebt geoefend je naam, je LinkedIn-profiel en je oefenresultaten, en kunnen ze je uitnodigen.",
       "Download alles wat prepza over je bewaart, of verwijder je account."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Wat je had aangevinkt toen de tijd van een vraag op was, telt gewoon mee; een vraag zonder iets aangevinkt, of die je nooit hebt bereikt, telt als fout.",
-      "Werf je voor deze functie? Maak er een interview van voor je eigen kandidaten."
+      "Werf je voor deze functie? Maak er een interview van voor je eigen kandidaten.",
+      "Op zoek naar een baan? Zet Open voor nieuwe kansen aan, zodat bedrijven die voor deze onderwerpen werven je naam, je LinkedIn-profiel en je oefenresultaten zien."
     ]
   },
   "pricing": {

@@ -27,4 +27,10 @@ describe("interviewTab", () => {
     expect(interviewTab("settings", true, false)).toBe("topics")
     expect(interviewTab(undefined, true, true)).toBe("topics")
   })
+
+  it("shows Discover only to a company the API allows it", () => {
+    expect(interviewTab("discover", true, false, true)).toBe("discover")
+    expect(interviewTab("discover", true, true, false)).toBe("topics")
+    expect(interviewTab("discover", false, true, true)).toBe("topics")
+  })
 })

@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Recruitee 주소를 입력해 주세요(예: acme.recruitee.com)",
     "Enter your Workable address, like acme.workable.com": "Workable 주소를 입력해 주세요(예: acme.workable.com)",
     "Extra time can only be changed before the candidate starts.": "추가 시간은 지원자가 시작하기 전에만 변경할 수 있습니다.",
+    "The interview mode can only be changed before the candidate starts.": "면접 모드는 지원자가 시작하기 전에만 변경할 수 있습니다.",
     "Generation already finished": "생성이 이미 완료되었습니다",
     "Generation is not awaiting review": "생성이 검토 대기 중이 아닙니다",
     "Generation not found": "생성을 찾을 수 없습니다",

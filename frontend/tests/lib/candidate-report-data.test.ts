@@ -10,6 +10,8 @@ const card = {
   status: "finished",
   extra_time: 0,
   extra_time_options: [],
+  voice: false,
+  mode_editable: false,
   can_edit: true,
   can_resend: false,
   revokable: false,

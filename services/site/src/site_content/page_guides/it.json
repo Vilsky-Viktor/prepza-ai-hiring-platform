@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Ogni candidato che risponde ad almeno una domanda consuma crediti, compresi quelli arrivati dal link.",
-      "I promemoria vengono inviati ai candidati automaticamente."
+      "I promemoria vengono inviati ai candidati automaticamente.",
+      "Quando inviti, scegli se i candidati rispondono in modalità clic o in modalità vocale; un candidato in una modalità diversa da quella del colloquio mostra l'icona della sua modalità."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Lavori per dei clienti? Fissa una nota come «Per Acme, sviluppatore backend» per vedere a colpo d'occhio per chi è ogni colloquio.",
       "Una nota eliminata non si può recuperare. Il registro attività annota chi ha scritto, modificato o eliminato una nota, mai il suo testo."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Scopri",
+    "text": "Persone che si esercitano su prepza e hanno scelto di essere aperte a nuove opportunità, le cui simulazioni coprono gli argomenti di questo colloquio al suo livello. Per ognuna vedi il nome, il profilo LinkedIn e l'ultimo risultato della simulazione in ogni argomento corrispondente. Solo le aziende che hanno ricaricato crediti almeno una volta vedono questa scheda.",
+    "actions": [
+      "Apri il profilo LinkedIn di una persona per saperne di più.",
+      "Invita una persona a questo colloquio (proprietari e amministratori): l'invito arriva all'email del suo account e costa crediti come qualsiasi invito."
+    ],
+    "tips": [
+      "Sono risultati di simulazioni, non una qualifica, e l'elenco non è una raccomandazione: chi si è esercitato per ultimo compare per primo.",
+      "Chi disattiva Aperto a nuove opportunità scompare subito da questo elenco."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Quando ha finito, vedi eventuali andamenti insoliti nelle sue risposte e nei tempi, e le domande a cui ha risposto correttamente da approfondire in un colloquio dal vivo.",
       "Scarica il report in PDF o condividilo via email.",
       "Concedi tempo extra prima che inizi, ad esempio per una disabilità.",
+      "Scegli se risponde in modalità clic o in modalità vocale, qualunque sia la modalità del colloquio, finché non inizia.",
       "Aggiungi o modifica il nome del candidato.",
       "Copia il suo link d'invito per inviarlo tu, se l'email non è arrivata; resta disponibile finché il candidato non ha finito.",
       "Invia di nuovo o revoca l'invito, oppure elimina il candidato con i suoi risultati."
@@ -362,6 +376,7 @@
     "actions": [
       "Scegli la lingua del sito, della chat di assistenza e delle tue email.",
       "Scegli quali email facoltative ricevere; le email di servizio, come inviti, report e problemi di pagamento, vengono sempre inviate.",
+      "Attiva o disattiva Aperto a nuove opportunità: finché è attivo, le aziende che assumono su prepza per gli argomenti su cui ti sei esercitato vedono il tuo nome, il tuo profilo LinkedIn e i risultati delle tue simulazioni, e possono invitarti.",
       "Scarica tutto ciò che prepza conserva su di te o elimina il tuo account."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Quello che hai selezionato quando scade il tempo di una domanda conta comunque; una domanda senza nulla selezionato, o mai raggiunta, conta come sbagliata.",
-      "Assumi per questo ruolo? Crea da qui un colloquio per i tuoi candidati."
+      "Assumi per questo ruolo? Crea da qui un colloquio per i tuoi candidati.",
+      "Cerchi lavoro? Attiva Aperto a nuove opportunità per permettere alle aziende che assumono per questi argomenti di vedere il tuo nome, il tuo profilo LinkedIn e i risultati delle tue simulazioni."
     ]
   },
   "pricing": {

@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "نشانی Recruitee خود را وارد کنید، مثلاً acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "نشانی Workable خود را وارد کنید، مثلاً acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "زمان اضافه را فقط پیش از شروع متقاضی می‌توان تغییر داد.",
+    "The interview mode can only be changed before the candidate starts.": "حالت مصاحبه را فقط پیش از شروع متقاضی می‌توان تغییر داد.",
     "Generation already finished": "ساخت قبلاً تمام شده است",
     "Generation is not awaiting review": "ساخت در انتظار بازبینی نیست",
     "Generation not found": "ساخت پیدا نشد",
@@ -283,5 +284,5 @@ MESSAGES = {
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "سپاسگزارم. پاسخ‌های شما ثبت شد و شرکت دربارهٔ نتایج با شما تماس خواهد گرفت.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "نشانی پروفایل LinkedIn خود را وارد کنید، مانند linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "متنی که با آن موافقت کردید تغییر کرده است. صفحه را دوباره بارگذاری کنید و دوباره امتحان کنید.",
-    "Only companies that have topped up can see people open to offers.": "فقط شرکت‌هایی که اعتبار خریده‌اند می‌توانند افرادِ آماده برای پیشنهاد شغلی را ببینند.",
+    "Only companies that have topped up can see people open to offers.": "فقط شرکت‌هایی که اعتبار خریده‌اند می‌توانند افرادِ آماده دریافت پیشنهاد شغلی را ببینند.",
 }

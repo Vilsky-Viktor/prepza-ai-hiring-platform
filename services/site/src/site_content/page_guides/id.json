@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Setiap kandidat yang menjawab setidaknya satu soal memakai kredit, termasuk yang datang dari tautan.",
-      "Pengingat dikirim ke kandidat secara otomatis."
+      "Pengingat dikirim ke kandidat secara otomatis.",
+      "Saat mengundang, pilih apakah kandidat menjawab dengan mode klik atau mode suara; kandidat dengan mode yang berbeda dari mode wawancara menampilkan ikon modenya."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Bekerja untuk klien? Sematkan catatan seperti “Untuk Acme, Backend Developer” agar langsung terlihat untuk siapa setiap wawancara.",
       "Catatan yang dihapus hilang selamanya. Log tindakan mencatat siapa yang menulis, mengubah, atau menghapus catatan, tetapi tidak pernah isinya."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Temukan",
+    "text": "Orang yang berlatih di prepza dan memilih terbuka untuk tawaran kerja, yang latihannya mencakup topik wawancara ini di levelnya. Setiap orang ditampilkan dengan nama, profil LinkedIn, dan hasil latihan terbarunya di setiap topik yang cocok. Hanya perusahaan yang sudah isi ulang setidaknya sekali yang melihat tab ini.",
+    "actions": [
+      "Buka profil LinkedIn seseorang untuk mengenalnya lebih jauh.",
+      "Undang seseorang ke wawancara ini (pemilik dan admin): undangan dikirim ke email akunnya dan memakai kredit seperti undangan lainnya."
+    ],
+    "tips": [
+      "Ini hasil latihan, bukan kualifikasi, dan daftarnya bukan rekomendasi: yang terakhir berlatih muncul paling atas.",
+      "Orang yang mematikan Terbuka untuk tawaran kerja langsung hilang dari daftar ini."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Setelah kandidat selesai, lihat pola tidak biasa dalam jawaban dan waktunya, serta soal yang dijawab benar untuk ditanyakan dalam wawancara langsung.",
       "Unduh laporan sebagai PDF, atau bagikan lewat email.",
       "Beri waktu ekstra sebelum kandidat mulai, misalnya karena disabilitas.",
+      "Pilih apakah kandidat menjawab dengan mode klik atau mode suara, apa pun mode wawancaranya, sampai kandidat mulai.",
       "Tambah atau ubah nama kandidat.",
       "Salin tautan undangannya untuk kamu kirim sendiri jika email tidak sampai; tautan ini tersedia sampai kandidat selesai.",
       "Kirim ulang atau cabut undangan, atau hapus kandidat beserta hasilnya."
@@ -362,6 +376,7 @@
     "actions": [
       "Pilih bahasa untuk situs, chat bantuan, dan email yang kamu terima.",
       "Pilih email opsional mana yang kamu terima; email layanan, seperti undangan, laporan, dan masalah pembayaran, selalu dikirim.",
+      "Aktifkan atau matikan Terbuka untuk tawaran kerja: selama aktif, perusahaan yang merekrut lewat prepza untuk topik yang kamu latih melihat nama, profil LinkedIn, dan hasil latihanmu, serta bisa mengundangmu.",
       "Unduh semua yang disimpan prepza tentangmu, atau hapus akunmu."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Apa pun yang sudah kamu pilih saat waktu soal habis tetap dihitung; soal yang tidak dipilih jawabannya, atau tidak sempat dicapai, dihitung salah.",
-      "Sedang merekrut untuk posisi ini? Buat wawancara darinya untuk kandidatmu sendiri."
+      "Sedang merekrut untuk posisi ini? Buat wawancara darinya untuk kandidatmu sendiri.",
+      "Sedang cari kerja? Aktifkan Terbuka untuk tawaran kerja agar perusahaan yang merekrut untuk topik ini bisa melihat nama, profil LinkedIn, dan hasil latihanmu."
     ]
   },
   "pricing": {

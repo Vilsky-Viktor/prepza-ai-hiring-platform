@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Jeder Kandidat, der mindestens eine Frage beantwortet, verbraucht Credits, auch über den Link.",
-      "Erinnerungen gehen automatisch an die Kandidaten."
+      "Erinnerungen gehen automatisch an die Kandidaten.",
+      "Lege beim Einladen fest, ob Kandidaten per Klick oder per Sprache antworten; ein Kandidat in einem anderen Modus als dem des Interviews zeigt das Symbol seines Modus."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Du arbeitest für Kunden? Hefte eine Notiz wie „Für Acme, Backend-Entwickler“ an, um auf einen Blick zu sehen, für wen jedes Interview ist.",
       "Eine gelöschte Notiz ist endgültig weg. Das Aktionsprotokoll hält fest, wer eine Notiz geschrieben, geändert oder gelöscht hat, aber nie ihren Text."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Entdecken",
+    "text": "Personen, die auf prepza üben und sich entschieden haben, offen für Angebote zu sein, und deren Übungen die Themen dieses Interviews auf seinem Niveau abdecken. Zu jeder Person siehst du den Namen, das LinkedIn-Profil und das neueste Übungsergebnis in jedem passenden Thema. Nur Unternehmen, die mindestens einmal Credits aufgeladen haben, sehen diesen Tab.",
+    "actions": [
+      "Öffne das LinkedIn-Profil einer Person, um mehr über sie zu erfahren.",
+      "Lade eine Person zu diesem Interview ein (Inhaber und Admins): Die Einladung geht an die E-Mail-Adresse ihres Kontos und kostet Credits wie jede Einladung."
+    ],
+    "tips": [
+      "Das sind Übungsergebnisse, keine Qualifikation, und die Liste ist keine Empfehlung: Wer zuletzt geübt hat, steht oben.",
+      "Wer „Offen für Angebote“ ausschaltet, verschwindet sofort aus dieser Liste."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Sieh dir nach Abschluss ungewöhnliche Muster in seinen Antworten und Antwortzeiten an, dazu richtig beantwortete Fragen, nach denen du in einem Live-Gespräch fragen kannst.",
       "Lade den Bericht als PDF herunter oder teile ihn per E-Mail.",
       "Gib vor dem Start zusätzliche Zeit, zum Beispiel bei einer Behinderung.",
+      "Lege fest, ob er per Klick oder per Sprache antwortet, unabhängig vom Modus des Interviews, bis er startet.",
       "Füge den Namen des Kandidaten hinzu oder bearbeite ihn.",
       "Kopiere den Einladungslink, um ihn selbst zu schicken, falls die E-Mail nicht angekommen ist; er bleibt verfügbar, bis der Kandidat fertig ist.",
       "Sende die Einladung erneut, widerrufe sie oder lösche den Kandidaten mit seinen Ergebnissen."
@@ -362,6 +376,7 @@
     "actions": [
       "Wähle die Sprache der Website, des Hilfe-Chats und deiner E-Mails.",
       "Wähle, welche optionalen E-Mails du bekommst; Service-E-Mails wie Einladungen, Berichte und Zahlungsprobleme werden immer gesendet.",
+      "Schalte „Offen für Angebote“ ein oder aus: Solange es an ist, sehen Unternehmen, die über prepza für die von dir geübten Themen einstellen, deinen Namen, dein LinkedIn-Profil und deine Übungsergebnisse und können dich einladen.",
       "Lade alles herunter, was prepza über dich speichert, oder lösche dein Konto."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Was du gewählt hast, wenn die Zeit einer Frage abläuft, zählt trotzdem; eine Frage ohne Auswahl oder eine, die du nicht erreicht hast, zählt als falsch.",
-      "Du stellst für diese Rolle ein? Erstelle daraus ein Interview für deine eigenen Kandidaten."
+      "Du stellst für diese Rolle ein? Erstelle daraus ein Interview für deine eigenen Kandidaten.",
+      "Auf Jobsuche? Schalte „Offen für Angebote“ ein, damit Unternehmen, die für diese Themen einstellen, deinen Namen, dein LinkedIn-Profil und deine Übungsergebnisse sehen."
     ]
   },
   "pricing": {

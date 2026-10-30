@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Masukkan alamat Recruitee-mu, misalnya acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "Masukkan alamat Workable-mu, misalnya acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "Waktu tambahan hanya bisa diubah sebelum kandidat mulai.",
+    "The interview mode can only be changed before the candidate starts.": "Mode wawancara hanya bisa diubah sebelum kandidat mulai.",
     "Generation already finished": "Pembuatan sudah selesai",
     "Generation is not awaiting review": "Pembuatan tidak sedang menunggu tinjauan",
     "Generation not found": "Pembuatan tidak ditemukan",

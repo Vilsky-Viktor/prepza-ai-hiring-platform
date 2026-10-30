@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Cada candidato que responde al menos una pregunta consume créditos, incluidos los que llegan por el enlace.",
-      "Los recordatorios se envían a los candidatos automáticamente."
+      "Los recordatorios se envían a los candidatos automáticamente.",
+      "Al invitar, elige si lo hacen en modo clic o en modo de voz; un candidato con un modo distinto al de la entrevista muestra el icono de su modo."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "¿Trabajas para clientes? Fija un comentario como «Para Acme, desarrollador backend» para ver de un vistazo para quién es cada entrevista.",
       "Un comentario eliminado desaparece para siempre. El registro de acciones guarda quién escribió, cambió o eliminó un comentario, nunca su texto."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Descubrir",
+    "text": "Personas que practican en prepza y eligieron estar abiertas a ofertas, cuya práctica cubre los temas de esta entrevista a su nivel. De cada una se muestra su nombre, su perfil de LinkedIn y su último resultado de práctica en cada tema que coincide. Solo las empresas que han recargado créditos al menos una vez ven esta pestaña.",
+    "actions": [
+      "Abre el perfil de LinkedIn de alguien para saber más sobre esa persona.",
+      "Invita a alguien a esta entrevista (propietarios y administradores): la invitación llega al correo de su cuenta y cuesta créditos como cualquier invitación."
+    ],
+    "tips": [
+      "Son resultados de práctica, no una cualificación, y la lista no es una recomendación: quien practicó por último aparece primero.",
+      "Quien desactiva Abierto a ofertas desaparece de esta lista al instante."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Cuando termine, mira los patrones inusuales en sus respuestas y tiempos, y las preguntas que acertó para tratar en una entrevista en vivo.",
       "Descarga el informe en PDF o compártelo por correo.",
       "Da tiempo extra antes de que empiece, por ejemplo por una discapacidad.",
+      "Elige si lo hace en modo clic o en modo de voz, sea cual sea el modo de la entrevista, hasta que empiece.",
       "Añade o edita el nombre del candidato.",
       "Copia su enlace de invitación para enviárselo tú mismo si el correo no le llegó; está disponible hasta que termine.",
       "Reenvía o revoca la invitación, o elimina al candidato con sus resultados."
@@ -362,6 +376,7 @@
     "actions": [
       "Elige el idioma del sitio, del chat de ayuda y de tus correos.",
       "Elige qué correos opcionales recibes; los correos de servicio, como invitaciones, informes y problemas de pago, se envían siempre.",
+      "Activa o desactiva Abierto a ofertas: mientras está activado, las empresas que contratan en prepza para los temas que practicaste ven tu nombre, tu perfil de LinkedIn y tus resultados de práctica, y pueden invitarte.",
       "Descarga todo lo que prepza guarda sobre ti o elimina tu cuenta."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Lo que hayas marcado cuando se acaba el tiempo de una pregunta cuenta igualmente; una pregunta sin nada marcado, o a la que no llegaste, cuenta como incorrecta.",
-      "¿Contratas para este puesto? Crea a partir de ella una entrevista para tus propios candidatos."
+      "¿Contratas para este puesto? Crea a partir de ella una entrevista para tus propios candidatos.",
+      "¿Buscas trabajo? Activa Abierto a ofertas para que las empresas que contratan para estos temas vean tu nombre, tu perfil de LinkedIn y tus resultados de práctica."
     ]
   },
   "pricing": {

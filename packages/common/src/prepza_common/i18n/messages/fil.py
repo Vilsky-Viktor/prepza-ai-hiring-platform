@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Ilagay ang Recruitee address mo, tulad ng acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "Ilagay ang Workable address mo, tulad ng acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "Mababago lang ang dagdag na oras bago magsimula ang aplikante.",
+    "The interview mode can only be changed before the candidate starts.": "Mababago lang ang mode ng interview bago magsimula ang aplikante.",
     "Generation already finished": "Tapos na ang paggawa",
     "Generation is not awaiting review": "Hindi naghihintay ng review ang paggawa",
     "Generation not found": "Hindi nakita ang paggawa",
@@ -283,5 +284,5 @@ MESSAGES = {
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "Salamat. Naitala na ang mga sagot mo, at makikipag-ugnayan sa iyo ang kumpanya tungkol sa resulta.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Ilagay ang address ng iyong LinkedIn profile, gaya ng linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "Nagbago ang tekstong sinang-ayunan mo. I-reload ang page at subukan muli.",
-    "Only companies that have topped up can see people open to offers.": "Ang mga kumpanyang nakapag-top up lang ang makakakita sa mga taong bukas sa mga alok na trabaho.",
+    "Only companies that have topped up can see people open to offers.": "Ang mga kumpanyang nakapag-top up lang ang makakakita sa mga taong open to offers.",
 }

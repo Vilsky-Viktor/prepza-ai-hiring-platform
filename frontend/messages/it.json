@@ -156,7 +156,6 @@
     "newCompany": "Una nuova azienda",
     "companyName": "Nome dell'azienda",
     "freeCandidates": "La tua prima azienda fa il colloquio gratis a {count, plural, one {il suo primo candidato} other {i suoi primi # candidati}}.",
-    "back": "Modifica la descrizione",
     "continue": "Continua",
     "starting": "Avvio…",
     "failed": "Impossibile avviare il colloquio. Riprova."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Nessun tempo extra",
     "extraTimeSome": "+{percent} di tempo",
     "extraTimeNote": "Per un candidato che ha bisogno di più tempo, ad esempio a causa di una disabilità. Impostalo prima che inizi.",
-    "extraTimeFailed": "Impossibile modificare il tempo extra. Riprova."
+    "extraTimeFailed": "Impossibile modificare il tempo extra. Riprova.",
+    "modeHelp": "Come questo candidato svolge il colloquio, qualunque sia la modalità del colloquio. Puoi cambiarla finché non inizia.",
+    "modeFailed": "Impossibile modificare la modalità del colloquio. Riprova."
   },
   "interviewStatus": {
     "new": "Nuovo",
@@ -1096,6 +1097,18 @@
     "candidates": "Candidati",
     "notes": "Note",
     "notesEmpty": "Ancora nessuna nota. Scrivi la prima per il tuo team.",
+    "discover": "Scopri",
+    "discoverLinkedIn": "Profilo LinkedIn di {name}",
+    "discoverText": "Persone aperte a nuove opportunità che si sono esercitate sugli argomenti di questo colloquio. Le più recenti prima, senza classifica.",
+    "discoverEmpty": "Nessuno aperto a nuove opportunità si è ancora esercitato sugli argomenti di questo colloquio.",
+    "discoverResults": "Risultati della simulazione",
+    "discoverPractised": "Simulazione del {date}",
+    "discoverInvite": "Invita",
+    "discoverInviting": "Invito in corso…",
+    "discoverInvited": "Invitato",
+    "discoverInviteDone": "Invito inviato a <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "Impossibile inviare l'invito. Riprova.",
+    "discoverNoName": "Nome non condiviso",
     "noteLabel": "Scrivi una nota per il tuo team",
     "notePlaceholder": "una nota fantastica qui…",
     "notePost": "Pubblica",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "{time} per domanda in media",
     "timingNone": "Senza limite di tempo",
     "timingNote": "La simulazione non viene confrontata con nessuno: prenditi più tempo, o nessun limite, se ti serve."
+  },
+  "openToOffers": {
+    "title": "Aperto a nuove opportunità",
+    "text": "Le aziende che assumono su prepza vedranno il tuo nome, il tuo profilo LinkedIn e i risultati delle tue ultime simulazioni, e potranno invitarti a un colloquio. Puoi disattivarlo in qualsiasi momento.",
+    "linkedin": "Profilo LinkedIn",
+    "linkedinHint": "linkedin.com/in/tuo-nome",
+    "save": "Salva",
+    "on": "Le aziende ti vedono come <bdi>{name}</bdi> fino al {date}.",
+    "onNoName": "Le aziende ti vedono fino al {date}.",
+    "needsLinkedin": "Inserisci il tuo profilo LinkedIn per attivarlo.",
+    "failed": "Impossibile salvare. Riprova."
   },
   "verify": {
     "verify": "Verifica",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "Ha eliminato un candidato",
       "candidate_renamed": "Ha cambiato il nome di un candidato",
       "extra_time_set": "Ha dato tempo extra a un candidato",
+      "candidate_mode_set": "Ha cambiato la modalità del colloquio di un candidato",
       "results_viewed": "Ha visto i risultati di un candidato",
       "report_emailed": "Ha inviato un report via email",
       "member_invited": "Ha invitato un membro",

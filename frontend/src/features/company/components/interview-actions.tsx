@@ -66,6 +66,10 @@ export async function InterviewActions({
           interviewId={interview.id}
           candidatesHref={`${interviewsHref}/${interview.id}?tab=candidates`}
           maxInvites={maxInvites}
+          voice={{
+            on: interview.voice ?? false,
+            available: interview.voice_available ?? false,
+          }}
         />
       )}
     </>

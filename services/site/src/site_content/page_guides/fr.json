@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Chaque candidat qui répond à au moins une question consomme des crédits, y compris ceux venus par le lien.",
-      "Les rappels sont envoyés automatiquement aux candidats."
+      "Les rappels sont envoyés automatiquement aux candidats.",
+      "En invitant, choisissez si les candidats passent l'entretien en mode clic ou en mode vocal ; un candidat dans un autre mode que celui de l'entretien affiche l'icône de son mode."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Vous travaillez pour des clients ? Épinglez un commentaire comme « Pour Acme, développeur backend » pour voir d'un coup d'œil pour qui est chaque entretien.",
       "Un commentaire supprimé l'est définitivement. Le journal des actions enregistre qui a écrit, modifié ou supprimé un commentaire, jamais son texte."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Découvrir",
+    "text": "Les personnes qui s'entraînent sur prepza et ont choisi d'être ouvertes aux opportunités, dont l'entraînement couvre les sujets de cet entretien à son niveau. Pour chacune s'affichent son nom, son profil LinkedIn et son dernier résultat d'entraînement sur chaque sujet correspondant. Seules les entreprises qui ont rechargé des crédits au moins une fois voient cet onglet.",
+    "actions": [
+      "Ouvrez le profil LinkedIn d'une personne pour en savoir plus sur elle.",
+      "Invitez une personne à cet entretien (propriétaires et admins) : l'invitation part vers l'e-mail de son compte et coûte des crédits comme toute invitation."
+    ],
+    "tips": [
+      "Ce sont des résultats d'entraînement, pas une qualification, et la liste n'est pas une recommandation : la personne qui s'est entraînée en dernier apparaît en premier.",
+      "Une personne qui désactive Ouvert aux opportunités disparaît aussitôt de cette liste."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Une fois qu'il a terminé, voyez les éventuels schémas inhabituels dans ses réponses et ses temps, et les questions auxquelles il a bien répondu, à aborder lors d'un entretien en direct.",
       "Téléchargez le rapport en PDF, ou partagez-le par e-mail.",
       "Accordez du temps supplémentaire avant le début, par exemple en cas de handicap.",
+      "Choisissez s'il passe l'entretien en mode clic ou en mode vocal, quel que soit le mode de l'entretien, jusqu'à ce qu'il commence.",
       "Ajoutez ou modifiez le nom du candidat.",
       "Copiez son lien d'invitation pour l'envoyer vous-même si l'e-mail n'est pas arrivé ; il reste disponible jusqu'à ce que le candidat ait terminé.",
       "Renvoyez ou révoquez l'invitation, ou supprimez le candidat avec ses résultats."
@@ -362,6 +376,7 @@
     "actions": [
       "Choisissez la langue du site, du chat d'aide et de vos e-mails.",
       "Choisissez les e-mails facultatifs que vous recevez ; les e-mails de service, comme les invitations, les rapports et les problèmes de paiement, sont toujours envoyés.",
+      "Activez ou désactivez Ouvert aux opportunités : tant que c'est activé, les entreprises qui recrutent sur prepza sur les sujets sur lesquels vous vous êtes entraîné voient votre nom, votre profil LinkedIn et vos résultats d'entraînement, et peuvent vous inviter.",
       "Téléchargez tout ce que prepza conserve sur vous, ou supprimez votre compte."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Ce que vous avez coché quand le temps d'une question s'écoule compte quand même ; une question sans rien de coché, ou jamais atteinte, compte comme fausse.",
-      "Vous recrutez pour ce poste ? Créez-en un entretien pour vos propres candidats."
+      "Vous recrutez pour ce poste ? Créez-en un entretien pour vos propres candidats.",
+      "Vous cherchez un emploi ? Activez Ouvert aux opportunités pour que les entreprises qui recrutent sur ces sujets voient votre nom, votre profil LinkedIn et vos résultats d'entraînement."
     ]
   },
   "pricing": {

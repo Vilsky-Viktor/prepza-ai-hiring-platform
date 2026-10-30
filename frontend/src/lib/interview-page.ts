@@ -1,10 +1,12 @@
 import { CANDIDATE_SORTS, type CandidateSort } from "@/config/interviews"
 import { PAGE_SIZE } from "@/config/lists"
+import { discoverPath } from "@/lib/interview-discover"
 import { notesPath } from "@/lib/interview-notes"
 import { serverFetch } from "@/lib/server-api"
 import type {
   Candidate,
   CandidateFilters,
+  DiscoverPerson,
   InterviewDetail,
   InterviewNote,
   InviteLimits,
@@ -40,8 +42,8 @@ export function candidatesPath(
   return `/companies/interviews/${id}/candidates?${query}`
 }
 
-/** Everything an interview's page shows, fetched together, the candidates and notes only for
- * their tabs:
+/** Everything an interview's page shows, fetched together, the candidates, notes and Discover's
+ * people only for their tabs (Discover's refused, and then null, to a company that never paid):
  * their first pages render on the server, the rest load as the user scrolls. A sort or status
  * the API doesn't offer is ignored. */
 export async function loadInterviewPage(id: string, query: InterviewQuery) {
@@ -51,22 +53,28 @@ export async function loadInterviewPage(id: string, query: InterviewQuery) {
   const search = query.q?.trim() ?? ""
   const shownCandidates = query.tab === "candidates"
   const firstPath = candidatesPath(id, sort, search, query.status ?? null)
-  const [interview, filters, firstPage, limits, notes] = await Promise.all([
-    serverFetch<InterviewDetail>(`/companies/interviews/${id}`),
-    shownCandidates
-      ? serverFetch<CandidateFilters>(
-          "/companies/interviews/candidates/filters"
-        )
-      : null,
-    shownCandidates
-      ? serverFetch<Candidate[]>(`${firstPath}&limit=${PAGE_SIZE}`)
-      : null,
-    // The invite dialog's texts quote the current limit.
-    serverFetch<InviteLimits>("/companies/limits"),
-    query.tab === "notes"
-      ? serverFetch<InterviewNote[]>(`${notesPath(id)}?limit=${PAGE_SIZE}`)
-      : null,
-  ])
+  const [interview, filters, firstPage, limits, notes, people] =
+    await Promise.all([
+      serverFetch<InterviewDetail>(`/companies/interviews/${id}`),
+      shownCandidates
+        ? serverFetch<CandidateFilters>(
+            "/companies/interviews/candidates/filters"
+          )
+        : null,
+      shownCandidates
+        ? serverFetch<Candidate[]>(`${firstPath}&limit=${PAGE_SIZE}`)
+        : null,
+      // The invite dialog's texts quote the current limit.
+      serverFetch<InviteLimits>("/companies/limits"),
+      query.tab === "notes"
+        ? serverFetch<InterviewNote[]>(`${notesPath(id)}?limit=${PAGE_SIZE}`)
+        : null,
+      query.tab === "discover"
+        ? serverFetch<DiscoverPerson[]>(
+            `${discoverPath(id)}?limit=${PAGE_SIZE}`
+          )
+        : null,
+    ])
   const status =
     filters?.filters.find((option) => option === query.status) ?? null
   const candidates =
@@ -76,21 +84,37 @@ export async function loadInterviewPage(id: string, query: InterviewQuery) {
         )
       : firstPage
 
-  return { interview, filters, candidates, limits, sort, search, status, notes }
+  return {
+    interview,
+    filters,
+    candidates,
+    limits,
+    sort,
+    search,
+    status,
+    notes,
+    people,
+  }
 }
 
 /** An interview page's tab. */
-export type InterviewTab = "topics" | "candidates" | "notes" | "settings"
+export type InterviewTab =
+  "topics" | "candidates" | "notes" | "discover" | "settings"
 
 /** The tab shown: the one asked for once the interview is ready (settings only for those who
- * can edit; every member reads and writes notes), else its topics. */
+ * can edit; every member reads and writes notes; Discover only when the API allows the company
+ * it), else its topics. */
 export function interviewTab(
   tab: string | undefined,
   ready: boolean,
-  canEdit: boolean
+  canEdit: boolean,
+  discover = false
 ): InterviewTab {
   return ready &&
-    (tab === "candidates" || tab === "notes" || (tab === "settings" && canEdit))
+    (tab === "candidates" ||
+      tab === "notes" ||
+      (tab === "discover" && discover) ||
+      (tab === "settings" && canEdit))
     ? tab
     : "topics"
 }

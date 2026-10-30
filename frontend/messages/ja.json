@@ -156,7 +156,6 @@
     "newCompany": "新しい会社",
     "companyName": "会社名",
     "freeCandidates": "最初の会社は、最初の {count, plural, other {# 人の候補者}}を無料で面接できます。",
-    "back": "説明を編集",
     "continue": "続ける",
     "starting": "開始中…",
     "failed": "面接を開始できませんでした。もう一度お試しください。"
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "追加時間なし",
     "extraTimeSome": "時間 +{percent}",
     "extraTimeNote": "障がいなどの理由で、より多くの時間が必要な候補者向けです。候補者が開始する前に設定してください。",
-    "extraTimeFailed": "追加時間を変更できませんでした。もう一度お試しください。"
+    "extraTimeFailed": "追加時間を変更できませんでした。もう一度お試しください。",
+    "modeHelp": "面接のモードに関係なく、この候補者が面接を受ける方法です。候補者が開始するまで変更できます。",
+    "modeFailed": "面接モードを変更できませんでした。もう一度お試しください。"
   },
   "interviewStatus": {
     "new": "新規",
@@ -1096,6 +1097,18 @@
     "candidates": "候補者",
     "notes": "メモ",
     "notesEmpty": "メモはまだありません。チームに向けて最初のメモを書きましょう。",
+    "discover": "人材を探す",
+    "discoverLinkedIn": "{name}さんの LinkedIn プロフィール",
+    "discoverText": "スカウトを受け付けていて、この面接のトピックを練習した人です。新しい順に表示され、順位付けはしていません。",
+    "discoverEmpty": "スカウトを受け付けている人で、この面接のトピックを練習した人はまだいません。",
+    "discoverResults": "練習の結果",
+    "discoverPractised": "{date}に練習",
+    "discoverInvite": "招待",
+    "discoverInviting": "招待中…",
+    "discoverInvited": "招待済み",
+    "discoverInviteDone": "<bdi>{name}</bdi>さんに招待を送りました。",
+    "discoverInviteFailed": "招待を送れませんでした。もう一度お試しください。",
+    "discoverNoName": "名前は非公開",
     "noteLabel": "チームに向けてメモを書く",
     "notePlaceholder": "ここにすてきなメモを…",
     "notePost": "投稿",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "1問あたり平均 {time}",
     "timingNone": "時間制限なし",
     "timingNote": "練習は誰とも比較されません。必要なら時間を延ばすか、制限なしにできます。"
+  },
+  "openToOffers": {
+    "title": "スカウト受付中",
+    "text": "prepza で採用活動をしている会社に、あなたの名前、LinkedIn プロフィール、最新の練習結果が表示され、面接に招待されることがあります。いつでもオフにできます。",
+    "linkedin": "LinkedIn プロフィール",
+    "linkedinHint": "linkedin.com/in/yamada-taro",
+    "save": "保存",
+    "on": "{date}まで、会社には <bdi>{name}</bdi> として表示されます。",
+    "onNoName": "{date}まで会社に表示されます。",
+    "needsLinkedin": "オンにするには LinkedIn プロフィールを入力してください。",
+    "failed": "保存できませんでした。もう一度お試しください。"
   },
   "verify": {
     "verify": "認証",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "候補者を削除しました",
       "candidate_renamed": "候補者の名前を変更しました",
       "extra_time_set": "候補者に追加時間を付与しました",
+      "candidate_mode_set": "候補者の面接モードを変更しました",
       "results_viewed": "候補者の結果を閲覧しました",
       "report_emailed": "レポートをメールで送信しました",
       "member_invited": "メンバーを招待しました",

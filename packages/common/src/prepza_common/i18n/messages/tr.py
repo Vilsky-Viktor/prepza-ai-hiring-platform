@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Recruitee adresinizi girin, örneğin acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "Workable adresinizi girin, örneğin acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "Ek süre yalnızca aday başlamadan önce değiştirilebilir.",
+    "The interview mode can only be changed before the candidate starts.": "Mülakat modu yalnızca aday başlamadan önce değiştirilebilir.",
     "Generation already finished": "Oluşturma zaten bitti",
     "Generation is not awaiting review": "Oluşturma incelemeyi beklemiyor",
     "Generation not found": "Oluşturma bulunamadı",

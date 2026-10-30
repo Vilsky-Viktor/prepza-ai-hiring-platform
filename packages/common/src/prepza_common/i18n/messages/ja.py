@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Recruitee のアドレスを入力してください（例：acme.recruitee.com）",
     "Enter your Workable address, like acme.workable.com": "Workable のアドレスを入力してください（例：acme.workable.com）",
     "Extra time can only be changed before the candidate starts.": "延長時間は候補者が開始する前にのみ変更できます。",
+    "The interview mode can only be changed before the candidate starts.": "面接モードは候補者が開始する前にのみ変更できます。",
     "Generation already finished": "生成はすでに終了しています",
     "Generation is not awaiting review": "生成はレビュー待ちではありません",
     "Generation not found": "生成が見つかりません",

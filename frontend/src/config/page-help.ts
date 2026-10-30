@@ -12,6 +12,7 @@ export const PAGE_HELP_KEYS = [
   "interviewTopics",
   "interviewCandidates",
   "interviewNotes",
+  "interviewDiscover",
   "interviewSettings",
   "tryInterview",
   "candidate",
@@ -73,5 +74,6 @@ export const INTERVIEW_TAB_HELP = {
   topics: "interviewTopics",
   candidates: "interviewCandidates",
   notes: "interviewNotes",
+  discover: "interviewDiscover",
   settings: "interviewSettings",
 } as const

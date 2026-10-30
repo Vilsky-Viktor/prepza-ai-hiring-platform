@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Mỗi ứng viên trả lời ít nhất một câu sẽ dùng credit, kể cả ứng viên đến từ liên kết.",
-      "Lời nhắc được gửi tới ứng viên tự động."
+      "Lời nhắc được gửi tới ứng viên tự động.",
+      "Khi mời, chọn ứng viên làm bài ở chế độ nhấp hay chế độ giọng nói; ứng viên có chế độ khác với chế độ của buổi phỏng vấn sẽ hiện biểu tượng của chế độ đó."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Bạn làm việc cho khách hàng? Ghim một ghi chú như “Cho Acme, Backend Developer” để biết ngay mỗi buổi phỏng vấn dành cho ai.",
       "Ghi chú đã xóa sẽ mất vĩnh viễn. Nhật ký thao tác ghi lại ai đã viết, sửa hoặc xóa ghi chú, nhưng không bao giờ lưu nội dung của nó."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Khám phá",
+    "text": "Những người luyện tập trên prepza và đã chọn sẵn sàng nhận cơ hội việc làm, có phần luyện tập bao quát các chủ đề của buổi phỏng vấn này ở đúng cấp độ của nó. Mỗi người hiện tên, hồ sơ LinkedIn và kết quả luyện tập mới nhất ở từng chủ đề khớp. Chỉ những công ty đã nạp credit ít nhất một lần mới thấy thẻ này.",
+    "actions": [
+      "Mở hồ sơ LinkedIn của một người để tìm hiểu thêm về họ.",
+      "Mời một người tham gia buổi phỏng vấn này (chủ sở hữu và quản trị viên): lời mời được gửi đến email tài khoản của họ và tốn credit như mọi lời mời khác."
+    ],
+    "tips": [
+      "Đây là kết quả luyện tập, không phải bằng cấp, và danh sách không phải là lời giới thiệu: ai luyện tập gần nhất sẽ đứng đầu.",
+      "Ai tắt Sẵn sàng nhận cơ hội việc làm sẽ biến mất khỏi danh sách này ngay lập tức."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Khi họ làm xong, xem những điểm bất thường trong câu trả lời và thời gian trả lời của họ, cùng những câu họ đã trả lời đúng để hỏi lại trong buổi phỏng vấn trực tiếp.",
       "Tải báo cáo xuống dưới dạng PDF, hoặc chia sẻ qua email.",
       "Cho thêm thời gian trước khi họ bắt đầu, ví dụ vì khuyết tật.",
+      "Chọn ứng viên làm bài ở chế độ nhấp hay chế độ giọng nói, bất kể chế độ của buổi phỏng vấn, cho đến khi họ bắt đầu.",
       "Thêm hoặc sửa họ tên ứng viên.",
       "Sao chép liên kết mời của ứng viên để tự gửi nếu email không đến; liên kết vẫn dùng được cho đến khi họ làm xong.",
       "Gửi lại hoặc thu hồi lời mời, hoặc xóa ứng viên cùng kết quả của họ."
@@ -362,6 +376,7 @@
     "actions": [
       "Chọn ngôn ngữ của trang web, chat hỗ trợ và email của bạn.",
       "Chọn những email không bắt buộc bạn muốn nhận; email dịch vụ, như lời mời, báo cáo và sự cố thanh toán, luôn được gửi.",
+      "Bật hoặc tắt Sẵn sàng nhận cơ hội việc làm: khi bật, các công ty tuyển dụng trên prepza cho những chủ đề bạn đã luyện tập sẽ thấy tên, hồ sơ LinkedIn và kết quả luyện tập của bạn, và có thể mời bạn.",
       "Tải xuống mọi thứ prepza lưu về bạn, hoặc xóa tài khoản."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Những gì bạn đã chọn khi hết giờ của câu hỏi vẫn được tính; câu hỏi chưa chọn gì, hoặc chưa làm tới, bị tính là sai.",
-      "Đang tuyển cho vị trí này? Tạo buổi phỏng vấn từ đây cho ứng viên của bạn."
+      "Đang tuyển cho vị trí này? Tạo buổi phỏng vấn từ đây cho ứng viên của bạn.",
+      "Đang tìm việc? Bật Sẵn sàng nhận cơ hội việc làm để các công ty tuyển dụng cho những chủ đề này thấy tên, hồ sơ LinkedIn và kết quả luyện tập của bạn."
     ]
   },
   "pricing": {

@@ -134,14 +134,15 @@ handover test (`../scripts/assistant_handover.py`): every service a tool calls f
 asked, and code checks the answer links the contact page after a failed call (and not without
 one), writes no link in its text and doesn't keep retrying.
 
-## `assistant_actions.json` (by hand, 2026-10-20; notes cases 2026-10-29)
+## `assistant_actions.json` (by hand, 2026-10-20; notes cases 2026-10-29; voice invites 2026-10-30)
 
-The assistant's action test (`../scripts/assistant_actions.py`): 74 panel messages on 11 pages,
+The assistant's action test (`../scripts/assistant_actions.py`): 76 panel messages on 11 pages,
 against the page-context fixture plus an empty second company, a pending team member and two
-notes on the Backend Developer interview. 50 ask
+notes on the Backend Developer interview. 52 ask
 for an action of each kind: creating (a company, an interview from a pasted description, one that
 only mentions an AI assistant and keeps those words), inviting (a candidate, several, a team
-member), editing (pass mark, time per question, keeping an interview's questions out of the
+member; a candidate who answers by voice, `voice: true`, and one who clicks, `voice: false`,
+while a plain invite, `i01` and `i05`, expects `voice` left out or null: the interview's own mode), editing (pass mark, time per question, keeping an interview's questions out of the
 shared bank, names, roles, language, adding a note to an interview and pinning one), deleting (an interview,
 a company, a member, the account), buying (credits, auto top-up: a link, as the assistant can't
 charge) and connecting (an ATS, Slack, an API key: a link, asked from other pages and on the

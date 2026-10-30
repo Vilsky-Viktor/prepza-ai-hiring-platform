@@ -118,7 +118,8 @@
     ],
     "tips": [
       "En az bir soruyu cevaplayan her aday, bağlantıdan gelenler dahil, kredi kullanır.",
-      "Hatırlatmalar adaylara otomatik olarak gönderilir."
+      "Hatırlatmalar adaylara otomatik olarak gönderilir.",
+      "Davet ederken adayların tıklama modunda mı yoksa sesli modda mı cevap vereceğini seçin; modu mülakatınkinden farklı olan adayın yanında o modun simgesi görünür."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Müşteriler için mi çalışıyorsunuz? Her mülakatın kimin için olduğunu bir bakışta görmek için “Acme için, Backend Developer” gibi bir yorumu sabitleyin.",
       "Silinen bir yorum kalıcı olarak gider. İşlem kaydı, bir yorumu kimin yazdığını, değiştirdiğini veya sildiğini kaydeder, metnini asla kaydetmez."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Keşfet",
+    "text": "prepza'da pratik yapan, iş tekliflerine açık olmayı seçen ve pratiği bu mülakatın konularını mülakatın seviyesinde kapsayan kişiler. Her birinde adı, LinkedIn profili ve eşleşen her konudaki en son pratik sonucu görünür. Bu sekmeyi yalnızca en az bir kez kredi yüklemiş şirketler görür.",
+    "actions": [
+      "Biri hakkında daha fazla bilgi edinmek için LinkedIn profilini açın.",
+      "Birini bu mülakata davet edin (sahipler ve yöneticiler): davet, kişinin hesabındaki e-posta adresine gider ve her davet gibi kredi harcar."
+    ],
+    "tips": [
+      "Bunlar bir yeterlilik değil, pratik sonuçlarıdır; liste de bir öneri değildir: en son pratik yapan en üstte yer alır.",
+      "\"İş tekliflerine açık\" seçeneğini kapatan kişi bu listeden hemen kaybolur."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Aday bitirdiğinde cevaplarındaki ve sürelerindeki olağan dışı örüntüleri ve canlı bir mülakatta sormak için doğru cevapladığı soruları görün.",
       "Raporu PDF olarak indirin veya e-postayla paylaşın.",
       "Başlamadan önce ek süre verin, örneğin bir engel durumu için.",
+      "Aday başlayana kadar, mülakatın modu ne olursa olsun, tıklama modunda mı yoksa sesli modda mı cevap vereceğini seçin.",
       "Adayın adını ekleyin veya düzenleyin.",
       "E-posta ulaşmadıysa kendiniz göndermek için davet bağlantısını kopyalayın; aday bitirene kadar orada kalır.",
       "Daveti yeniden gönderin veya geri alın ya da adayı sonuçlarıyla birlikte silin."
@@ -362,6 +376,7 @@
     "actions": [
       "Sitenin, yardım sohbetinin ve e-postalarınızın dilini seçin.",
       "Hangi isteğe bağlı e-postaları alacağınızı seçin; davetler, raporlar ve ödeme sorunları gibi hizmet e-postaları her zaman gönderilir.",
+      "\"İş tekliflerine açık\" seçeneğini açın veya kapatın: açıkken, pratik yaptığınız konularda prepza üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve pratik sonuçlarınızı görür ve sizi davet edebilir.",
       "prepza'nın sizin hakkınızda tuttuğu her şeyi indirin veya hesabınızı silin."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Bir sorunun süresi dolduğunda seçili olanlar yine sayılır; hiçbir şey seçilmeden bırakılan veya hiç ulaşılmayan soru yanlış sayılır.",
-      "Bu pozisyon için işe alım mı yapıyorsunuz? Bundan kendi adaylarınız için bir mülakat oluşturun."
+      "Bu pozisyon için işe alım mı yapıyorsunuz? Bundan kendi adaylarınız için bir mülakat oluşturun.",
+      "İş mi arıyorsunuz? Bu konularda işe alım yapan şirketlerin adınızı, LinkedIn profilinizi ve pratik sonuçlarınızı görmesi için \"İş tekliflerine açık\" seçeneğini açın."
     ]
   },
   "pricing": {

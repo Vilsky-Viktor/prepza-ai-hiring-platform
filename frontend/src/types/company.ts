@@ -23,6 +23,8 @@ export type Interview = Schemas["InterviewOut"]
 export type InterviewDetail = Schemas["InterviewDetail"]
 // A note on an interview, with what the signed-in member may do with it.
 export type InterviewNote = Schemas["NoteOut"]
+// A person open to offers on an interview's Discover tab.
+export type DiscoverPerson = Schemas["DiscoverPersonOut"]
 export type Candidate = Schemas["CandidateOut"]
 export type InterviewReportData = Schemas["InterviewReportOut"]
 export type CandidateFilters = Schemas["CandidateFiltersOut"]
@@ -99,6 +101,10 @@ export type Scorecard = {
   // Extra time on each question, in percent, and the amounts still offered (none once started).
   extra_time: number
   extra_time_options: number[]
+  // Taken by voice (the mode chosen for them, else the interview's), and whether the user may
+  // still change it (before they start, in a language voice mode speaks).
+  voice: boolean
+  mode_editable: boolean
   // Whether the user may resend, revoke or delete the candidate: owners and admins.
   can_edit: boolean
   // What the server allows on this candidate now: sending the invite again, revoking it.

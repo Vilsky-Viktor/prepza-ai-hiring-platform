@@ -156,7 +156,6 @@
     "newCompany": "Nowa firma",
     "companyName": "Nazwa firmy",
     "freeCandidates": "Twoja pierwsza firma przeprowadza rozmowy z {count, plural, one {pierwszym kandydatem} few {pierwszymi # kandydatami} many {pierwszymi # kandydatami} other {pierwszymi # kandydata}} za darmo.",
-    "back": "Edytuj opis",
     "continue": "Dalej",
     "starting": "Uruchamianie…",
     "failed": "Nie udało się rozpocząć rozmowy. Spróbuj ponownie."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Bez dodatkowego czasu",
     "extraTimeSome": "+{percent} czasu",
     "extraTimeNote": "Dla kandydata, który potrzebuje więcej czasu, np. z powodu niepełnosprawności. Ustaw to, zanim zacznie.",
-    "extraTimeFailed": "Nie udało się zmienić dodatkowego czasu. Spróbuj ponownie."
+    "extraTimeFailed": "Nie udało się zmienić dodatkowego czasu. Spróbuj ponownie.",
+    "modeHelp": "Jak ten kandydat przechodzi rozmowę, niezależnie od trybu rozmowy. Możesz to zmienić, dopóki nie zacznie.",
+    "modeFailed": "Nie udało się zmienić trybu rozmowy. Spróbuj ponownie."
   },
   "interviewStatus": {
     "new": "Nowa",
@@ -1096,6 +1097,18 @@
     "candidates": "Kandydaci",
     "notes": "Notatki",
     "notesEmpty": "Nie ma jeszcze notatek. Napisz pierwszą dla swojego zespołu.",
+    "discover": "Odkrywaj",
+    "discoverLinkedIn": "Profil LinkedIn: {name}",
+    "discoverText": "Osoby otwarte na oferty pracy, które ćwiczyły tematy tej rozmowy. Od najnowszych, bez rankingu.",
+    "discoverEmpty": "Nikt otwarty na oferty pracy nie ćwiczył jeszcze tematów tej rozmowy.",
+    "discoverResults": "Wyniki ćwiczeń",
+    "discoverPractised": "Ostatnie ćwiczenie: {date}",
+    "discoverInvite": "Zaproś",
+    "discoverInviting": "Zapraszanie…",
+    "discoverInvited": "Zaproszono",
+    "discoverInviteDone": "Wysłano zaproszenie: <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "Nie udało się wysłać zaproszenia. Spróbuj ponownie.",
+    "discoverNoName": "Nie udostępniono imienia i nazwiska",
     "noteLabel": "Napisz notatkę dla swojego zespołu",
     "notePlaceholder": "jakaś świetna notatka…",
     "notePost": "Opublikuj",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "Średnio {time} na pytanie",
     "timingNone": "Bez limitu czasu",
     "timingNote": "Ćwiczenie nie jest z nikim porównywane, więc jeśli potrzebujesz, weź więcej czasu albo zrezygnuj z limitu."
+  },
+  "openToOffers": {
+    "title": "Rozważam oferty pracy",
+    "text": "Firmy, które rekrutują przez prepza, zobaczą Twoje imię i nazwisko, profil LinkedIn i najnowsze wyniki ćwiczeń oraz mogą zaprosić Cię na rozmowę. Możesz to wyłączyć w każdej chwili.",
+    "linkedin": "Profil LinkedIn",
+    "linkedinHint": "linkedin.com/in/twoje-imie",
+    "save": "Zapisz",
+    "on": "Firmy widzą Cię jako <bdi>{name}</bdi> do {date}.",
+    "onNoName": "Firmy widzą Cię do {date}.",
+    "needsLinkedin": "Podaj swój profil LinkedIn, aby to włączyć.",
+    "failed": "Nie udało się zapisać. Spróbuj ponownie."
   },
   "verify": {
     "verify": "Zweryfikuj",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "Usunął(-ęła) kandydata",
       "candidate_renamed": "Zmienił(a) imię i nazwisko kandydata",
       "extra_time_set": "Dał(a) kandydatowi dodatkowy czas",
+      "candidate_mode_set": "Zmienił(a) tryb rozmowy kandydata",
       "results_viewed": "Wyświetlił(a) wyniki kandydata",
       "report_emailed": "Wysłał(a) raport e-mailem",
       "member_invited": "Zaprosił(a) członka zespołu",

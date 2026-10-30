@@ -156,7 +156,6 @@
     "newCompany": "شركة جديدة",
     "companyName": "اسم الشركة",
     "freeCandidates": "تُجري شركتك الأولى المقابلات مع {count, plural, zero {أول مرشح} one {أول مرشح} two {أول مرشحَين} few {أول # مرشحين} many {أول # مرشحًا} other {أول # مرشح}} مجانًا.",
-    "back": "تعديل الوصف",
     "continue": "متابعة",
     "starting": "جارٍ البدء…",
     "failed": "تعذّر بدء المقابلة. حاول مرة أخرى."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "بلا وقت إضافي",
     "extraTimeSome": "+{percent} من الوقت",
     "extraTimeNote": "لمرشح يحتاج إلى وقت أطول، مثلًا بسبب إعاقة. اضبطه قبل أن يبدأ.",
-    "extraTimeFailed": "تعذّر تغيير الوقت الإضافي. حاول مرة أخرى."
+    "extraTimeFailed": "تعذّر تغيير الوقت الإضافي. حاول مرة أخرى.",
+    "modeHelp": "طريقة خوض هذا المرشح للمقابلة، بغض النظر عن نمط المقابلة. يمكنك تغييرها حتى يبدأ.",
+    "modeFailed": "تعذّر تغيير نمط المقابلة. حاول مرة أخرى."
   },
   "interviewStatus": {
     "new": "جديدة",
@@ -1096,6 +1097,18 @@
     "candidates": "المرشحون",
     "notes": "الملاحظات",
     "notesEmpty": "لا توجد ملاحظات بعد. اكتب أول ملاحظة لفريقك.",
+    "discover": "اكتشاف",
+    "discoverLinkedIn": "ملف {name} على LinkedIn",
+    "discoverText": "أشخاص منفتحون على عروض العمل تدرّبوا على مواضيع هذه المقابلة. الأحدث أولًا، دون ترتيب حسب الأفضلية.",
+    "discoverEmpty": "لم يتدرّب أحد من المنفتحين على عروض العمل على مواضيع هذه المقابلة بعد.",
+    "discoverResults": "نتائج التدريب",
+    "discoverPractised": "تدرّب في {date}",
+    "discoverInvite": "دعوة",
+    "discoverInviting": "جارٍ الإرسال…",
+    "discoverInvited": "تمت الدعوة",
+    "discoverInviteDone": "تم إرسال الدعوة إلى <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "تعذّر إرسال الدعوة. حاول مرة أخرى.",
+    "discoverNoName": "الاسم غير معروض",
     "noteLabel": "اكتب ملاحظة لفريقك",
     "notePlaceholder": "ملاحظة رائعة هنا…",
     "notePost": "نشر",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "{time} لكل سؤال في المتوسط",
     "timingNone": "بلا حد زمني",
     "timingNote": "التدريب لا يُقارَن بأحد، فخذ وقتًا أطول، أو بلا حد زمني، إن احتجت."
+  },
+  "openToOffers": {
+    "title": "منفتح على عروض العمل",
+    "text": "ستطّلع الشركات التي توظّف عبر prepza على اسمك وملفك على LinkedIn وأحدث نتائج تدريبك، وقد تدعوك إلى مقابلة. يمكنك إيقاف ذلك في أي وقت.",
+    "linkedin": "الملف الشخصي على LinkedIn",
+    "linkedinHint": "linkedin.com/in/اسمك",
+    "save": "حفظ",
+    "on": "تراك الشركات باسم <bdi>{name}</bdi> حتى {date}.",
+    "onNoName": "تراك الشركات حتى {date}.",
+    "needsLinkedin": "أدخل رابط ملفك على LinkedIn لتفعيله.",
+    "failed": "تعذّر الحفظ. حاول مرة أخرى."
   },
   "verify": {
     "verify": "توثيق",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "حذف مرشحًا",
       "candidate_renamed": "غيّر اسم مرشح",
       "extra_time_set": "منح مرشحًا وقتًا إضافيًا",
+      "candidate_mode_set": "غيّر نمط المقابلة لمرشح",
       "results_viewed": "اطّلع على نتائج مرشح",
       "report_emailed": "أرسل تقريرًا بالبريد الإلكتروني",
       "member_invited": "دعا عضوًا",

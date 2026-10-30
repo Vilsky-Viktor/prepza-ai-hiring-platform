@@ -1,6 +1,7 @@
 "use client"
 
 import {
+  CompassIcon,
   ListChecksIcon,
   NotebookPenIcon,
   SettingsIcon,
@@ -14,18 +15,20 @@ import { SideMenuLayout } from "@/components/common/side-menu"
 import type { InterviewTab } from "@/lib/interview-page"
 
 /** The interview's page menu beside its tab's content (`children`): its topics, candidates and
- * notes, each with how many there are; settings only for those who can change them (owners and
- * admins). */
+ * notes, each with how many there are; Discover when the API says the company may use it (it has
+ * topped up); settings only for those who can change them (owners and admins). */
 export function InterviewNav({
   href,
   current,
   canEdit,
+  discover,
   counts,
   children,
 }: {
   href: string
   current: InterviewTab
   canEdit: boolean
+  discover: boolean
   // As the API gives them; none shows at 0.
   counts: { topics: number; candidates: number; notes: number }
   children: ReactNode
@@ -53,6 +56,16 @@ export function InterviewNav({
       icon: NotebookPenIcon,
       count: counts.notes,
     },
+    ...(discover
+      ? [
+          {
+            id: "discover",
+            href: `${href}?tab=discover`,
+            label: t("discover"),
+            icon: CompassIcon,
+          } as const,
+        ]
+      : []),
     ...(canEdit
       ? [
           {

@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 
 import { InterviewCandidatesTab } from "@/features/company/components/interview-candidates-tab"
 import { InterviewHeader } from "@/features/company/components/interview-header"
+import { InterviewDiscoverTab } from "@/features/company/components/interview-discover-tab"
 import { InterviewNotesTab } from "@/features/company/components/interview-notes-tab"
 import { InterviewSettings } from "@/features/company/components/interview-settings"
 import { ShareLink } from "@/features/company/components/share-link"
@@ -43,6 +44,7 @@ export default async function InterviewPage({
     search,
     status,
     notes,
+    people,
   } = await loadInterviewPage(id, query)
 
   if (!interview) {
@@ -54,7 +56,12 @@ export default async function InterviewPage({
   const ready = Boolean(interview.set_id)
   // Viewers see everything but change nothing.
   const canEdit = interview.can_edit
-  const current = interviewTab(query.tab, ready, canEdit)
+  const current = interviewTab(
+    query.tab,
+    ready,
+    canEdit,
+    Boolean(interview.discover)
+  )
 
   return (
     <main className="mx-auto max-w-page space-y-8 px-6 py-12">
@@ -105,6 +112,12 @@ export default async function InterviewPage({
           />
         ) : current === "notes" ? (
           <InterviewNotesTab interviewId={interview.id} initial={notes ?? []} />
+        ) : current === "discover" ? (
+          <InterviewDiscoverTab
+            interviewId={interview.id}
+            canEdit={canEdit}
+            initial={people}
+          />
         ) : (
           <InterviewTopics
             interviewId={id}

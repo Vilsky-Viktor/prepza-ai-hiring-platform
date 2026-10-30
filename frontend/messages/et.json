@@ -156,7 +156,6 @@
     "newCompany": "Uus ettevõte",
     "companyName": "Ettevõtte nimi",
     "freeCandidates": "Sinu esimene ettevõte intervjueerib {count, plural, one {oma esimest kandidaati} other {oma esimest # kandidaati}} tasuta.",
-    "back": "Muuda kirjeldust",
     "continue": "Jätka",
     "starting": "Alustamine…",
     "failed": "Intervjuud ei õnnestunud alustada. Proovi uuesti."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Lisaaega pole",
     "extraTimeSome": "+{percent} aega",
     "extraTimeNote": "Kandidaadile, kes vajab rohkem aega, näiteks puude tõttu. Määra see enne, kui ta alustab.",
-    "extraTimeFailed": "Lisaaega ei õnnestunud muuta. Proovi uuesti."
+    "extraTimeFailed": "Lisaaega ei õnnestunud muuta. Proovi uuesti.",
+    "modeHelp": "Kuidas see kandidaat intervjuud teeb, olenemata intervjuu režiimist. Saad seda muuta, kuni ta alustab.",
+    "modeFailed": "Intervjuu režiimi ei õnnestunud muuta. Proovi uuesti."
   },
   "interviewStatus": {
     "new": "Uus",
@@ -1096,6 +1097,18 @@
     "candidates": "Kandidaadid",
     "notes": "Märkmed",
     "notesEmpty": "Märkmeid veel pole. Kirjuta oma meeskonnale esimene.",
+    "discover": "Avasta",
+    "discoverLinkedIn": "LinkedIni profiil: {name}",
+    "discoverText": "Tööpakkumistele avatud inimesed, kes on harjutanud selle intervjuu teemasid. Uusimad eespool, ilma pingereata.",
+    "discoverEmpty": "Keegi tööpakkumistele avatud inimestest pole veel selle intervjuu teemasid harjutanud.",
+    "discoverResults": "Harjutuse tulemused",
+    "discoverPractised": "Harjutas {date}",
+    "discoverInvite": "Kutsu",
+    "discoverInviting": "Kutsun…",
+    "discoverInvited": "Kutsutud",
+    "discoverInviteDone": "Kutse saadeti: <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "Kutset ei õnnestunud saata. Proovi uuesti.",
+    "discoverNoName": "Nimi pole jagatud",
     "noteLabel": "Kirjuta oma meeskonnale märge",
     "notePlaceholder": "mingi äge märge siia…",
     "notePost": "Postita",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "Keskmiselt {time} küsimuse kohta",
     "timingNone": "Ajapiiranguta",
     "timingNote": "Harjutust ei võrrelda kellegagi, nii et võta vajadusel rohkem aega või ajapiirang üldse ära."
+  },
+  "openToOffers": {
+    "title": "Avatud tööpakkumistele",
+    "text": "Ettevõtted, kes värbavad prepza kaudu, näevad sinu nime, LinkedIni profiili ja viimaseid harjutuse tulemusi ning võivad sind intervjuule kutsuda. Saad selle igal ajal välja lülitada.",
+    "linkedin": "LinkedIni profiil",
+    "linkedinHint": "linkedin.com/in/sinu-nimi",
+    "save": "Salvesta",
+    "on": "Ettevõtted näevad sind nimega <bdi>{name}</bdi> kuni {date}.",
+    "onNoName": "Ettevõtted näevad sind kuni {date}.",
+    "needsLinkedin": "Sisselülitamiseks sisesta oma LinkedIni profiil.",
+    "failed": "Salvestamine ei õnnestunud. Proovi uuesti."
   },
   "verify": {
     "verify": "Kinnita",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "Kustutas kandidaadi",
       "candidate_renamed": "Muutis kandidaadi nime",
       "extra_time_set": "Andis kandidaadile lisaaega",
+      "candidate_mode_set": "Muutis kandidaadi intervjuu režiimi",
       "results_viewed": "Vaatas kandidaadi tulemusi",
       "report_emailed": "Saatis aruande e-postiga",
       "member_invited": "Kutsus liikme",

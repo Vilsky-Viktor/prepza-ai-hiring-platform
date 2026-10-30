@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "הזינו את כתובת ה-Recruitee שלכם, למשל acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "הזינו את כתובת ה-Workable שלכם, למשל acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "אפשר לשנות את הזמן הנוסף רק לפני שהמועמד מתחיל.",
+    "The interview mode can only be changed before the candidate starts.": "אפשר לשנות את מצב הראיון רק לפני שהמועמד מתחיל.",
     "Generation already finished": "היצירה כבר הסתיימה",
     "Generation is not awaiting review": "היצירה לא ממתינה לבדיקה",
     "Generation not found": "היצירה לא נמצאה",

@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "请输入你的 Recruitee 地址，例如 acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "请输入你的 Workable 地址，例如 acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "只能在候选人开始前更改额外时间。",
+    "The interview mode can only be changed before the candidate starts.": "只能在候选人开始前更改面试模式。",
     "Generation already finished": "生成已经完成",
     "Generation is not awaiting review": "生成不在等待审核",
     "Generation not found": "未找到生成任务",

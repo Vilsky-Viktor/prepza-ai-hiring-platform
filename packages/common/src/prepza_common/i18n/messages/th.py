@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "ป้อนที่อยู่ Recruitee ของคุณ เช่น acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "ป้อนที่อยู่ Workable ของคุณ เช่น acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "เปลี่ยนเวลาเพิ่มเติมได้เฉพาะก่อนที่ผู้สมัครจะเริ่มเท่านั้น",
+    "The interview mode can only be changed before the candidate starts.": "เปลี่ยนโหมดการสัมภาษณ์ได้เฉพาะก่อนที่ผู้สมัครจะเริ่มเท่านั้น",
     "Generation already finished": "การสร้างเสร็จสิ้นไปแล้ว",
     "Generation is not awaiting review": "การสร้างไม่ได้รอการตรวจทาน",
     "Generation not found": "ไม่พบการสร้าง",

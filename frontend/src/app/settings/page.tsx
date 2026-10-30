@@ -5,19 +5,22 @@ import { AccountId } from "@/features/settings/components/account-id"
 import { EmailPreferencesSetting } from "@/components/common/email-preferences"
 import { CurrencySetting } from "@/features/settings/components/currency-setting"
 import { LanguageSetting } from "@/features/settings/components/language-setting"
+import { OpenToOffersCard } from "@/features/practice/components/open-to-offers"
 import { SettingsSection } from "@/components/common/settings-section"
 import type { Locale } from "@/config/i18n"
 import { currencyPath } from "@/lib/catalog"
 import { serverFetch } from "@/lib/server-api"
 import type { CurrencyChoice } from "@/types/billing"
 import type { EmailPreferences } from "@/types/emails"
+import type { OpenToOffers } from "@/types/round"
 
 export default async function GeneralSettingsPage() {
   const t = await getTranslations("settings")
   const locale = (await getLocale()) as Locale
-  const [emails, currency] = await Promise.all([
+  const [emails, currency, offers] = await Promise.all([
     serverFetch<EmailPreferences>("/accounts/me/email-preferences"),
     serverFetch<CurrencyChoice>(await currencyPath()),
+    serverFetch<OpenToOffers>("/rounds/open-to-offers"),
   ])
 
   return (
@@ -44,6 +47,7 @@ export default async function GeneralSettingsPage() {
           <EmailPreferencesSetting initial={emails} />
         </SettingsSection>
       )}
+      {offers && <OpenToOffersCard initial={offers} />}
       {/* Side by side on desktop, one under the other otherwise. */}
       <div className="grid gap-8 lg:grid-cols-2">
         <SettingsSection title={t("account")} description={t("accountNote")}>

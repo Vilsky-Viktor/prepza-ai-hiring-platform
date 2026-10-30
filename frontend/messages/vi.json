@@ -156,7 +156,6 @@
     "newCompany": "Một công ty mới",
     "companyName": "Tên công ty",
     "freeCandidates": "Công ty đầu tiên của bạn được phỏng vấn miễn phí {count, plural, other {# ứng viên}} đầu tiên.",
-    "back": "Sửa mô tả",
     "continue": "Tiếp tục",
     "starting": "Đang bắt đầu…",
     "failed": "Không thể bắt đầu buổi phỏng vấn. Vui lòng thử lại."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Không thêm thời gian",
     "extraTimeSome": "+{percent} thời gian",
     "extraTimeNote": "Dành cho ứng viên cần thêm thời gian, ví dụ vì khuyết tật. Hãy đặt trước khi họ bắt đầu.",
-    "extraTimeFailed": "Không thể thay đổi thời gian thêm. Vui lòng thử lại."
+    "extraTimeFailed": "Không thể thay đổi thời gian thêm. Vui lòng thử lại.",
+    "modeHelp": "Cách ứng viên này làm bài phỏng vấn, bất kể chế độ của buổi phỏng vấn. Bạn có thể đổi cho đến khi họ bắt đầu.",
+    "modeFailed": "Không thể thay đổi chế độ phỏng vấn. Vui lòng thử lại."
   },
   "interviewStatus": {
     "new": "Mới",
@@ -1096,6 +1097,18 @@
     "candidates": "Ứng viên",
     "notes": "Ghi chú",
     "notesEmpty": "Chưa có ghi chú nào. Hãy viết ghi chú đầu tiên cho nhóm của bạn.",
+    "discover": "Khám phá",
+    "discoverLinkedIn": "Hồ sơ LinkedIn của {name}",
+    "discoverText": "Những người sẵn sàng nhận cơ hội việc làm đã luyện tập các chủ đề của buổi phỏng vấn này. Mới nhất trước, không xếp hạng.",
+    "discoverEmpty": "Chưa có ai sẵn sàng nhận cơ hội việc làm luyện tập các chủ đề của buổi phỏng vấn này.",
+    "discoverResults": "Kết quả luyện tập",
+    "discoverPractised": "Đã luyện tập {date}",
+    "discoverInvite": "Mời",
+    "discoverInviting": "Đang mời…",
+    "discoverInvited": "Đã mời",
+    "discoverInviteDone": "Đã gửi lời mời đến <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "Không thể gửi lời mời. Vui lòng thử lại.",
+    "discoverNoName": "Không chia sẻ tên",
     "noteLabel": "Viết ghi chú cho nhóm của bạn",
     "notePlaceholder": "một ghi chú thật hay ở đây…",
     "notePost": "Đăng",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "Trung bình {time} mỗi câu hỏi",
     "timingNone": "Không giới hạn thời gian",
     "timingNote": "Bài luyện tập không được so sánh với ai, nên nếu cần, bạn có thể dùng thêm thời gian hoặc bỏ giới hạn."
+  },
+  "openToOffers": {
+    "title": "Sẵn sàng nhận cơ hội việc làm",
+    "text": "Các công ty tuyển dụng trên prepza sẽ thấy tên, hồ sơ LinkedIn và kết quả luyện tập mới nhất của bạn, và có thể mời bạn phỏng vấn. Bạn có thể tắt bất cứ lúc nào.",
+    "linkedin": "Hồ sơ LinkedIn",
+    "linkedinHint": "linkedin.com/in/nguyen-van-a",
+    "save": "Lưu",
+    "on": "Các công ty thấy bạn với tên <bdi>{name}</bdi> cho đến {date}.",
+    "onNoName": "Các công ty thấy bạn cho đến {date}.",
+    "needsLinkedin": "Nhập hồ sơ LinkedIn của bạn để bật.",
+    "failed": "Không thể lưu. Vui lòng thử lại."
   },
   "verify": {
     "verify": "Xác minh",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "Đã xóa một ứng viên",
       "candidate_renamed": "Đã đổi tên một ứng viên",
       "extra_time_set": "Đã cho một ứng viên thêm thời gian",
+      "candidate_mode_set": "Đã đổi chế độ phỏng vấn của một ứng viên",
       "results_viewed": "Đã xem kết quả của một ứng viên",
       "report_emailed": "Đã gửi báo cáo qua email",
       "member_invited": "Đã mời một thành viên",

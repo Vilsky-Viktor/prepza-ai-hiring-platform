@@ -181,8 +181,8 @@ export default async function PracticeTestPage({
               <span className="block min-w-0 space-y-3">
                 <span className="block text-lg font-medium">{topic.title}</span>
                 <SubtopicList subtopics={topic.subtopics} />
-                {/* Signed in: empty until the talent's first round, then how far their latest
-                    round got on the topic. */}
+                {/* Signed in: how far their latest round got on the topic, 0 of the topic's
+                    questions before it's started. */}
                 {signedIn && (
                   <span className="flex items-center gap-4">
                     <Progress
@@ -191,11 +191,10 @@ export default async function PracticeTestPage({
                       className="flex-1"
                     />
                     <span className="shrink-0 text-base text-muted-foreground tabular-nums">
-                      {step ? (
-                        <Count done={step.answered} total={step.total} />
-                      ) : (
-                        "—"
-                      )}
+                      <Count
+                        done={step?.answered ?? 0}
+                        total={step?.total ?? size?.topics?.[topic.id] ?? 0}
+                      />
                     </span>
                   </span>
                 )}

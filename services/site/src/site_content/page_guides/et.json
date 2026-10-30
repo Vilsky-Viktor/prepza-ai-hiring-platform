@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Iga kandidaat, kes vastab vähemalt ühele küsimusele, kasutab krediiti, ka lingi kaudu tulnud.",
-      "Kandidaadid saavad meeldetuletused automaatselt."
+      "Kandidaadid saavad meeldetuletused automaatselt.",
+      "Kutsudes vali, kas kandidaadid vastavad klõpsu- või häälerežiimis; kandidaadi juures, kelle režiim erineb intervjuu omast, on tema režiimi ikoon."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Töötad klientidele? Kinnita üles märge nagu „Acme jaoks, backend-arendaja“, et näha kohe, kelle jaoks iga intervjuu on.",
       "Kustutatud märge kaob jäädavalt. Toimingute logi salvestab, kes märkme kirjutas, muutis või kustutas, kuid mitte kunagi selle teksti."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Avasta",
+    "text": "Inimesed, kes harjutavad prepzas ja on valinud „Avatud tööpakkumistele“ ning kelle harjutused katavad selle intervjuu teemasid selle tasemel. Igaühe juures on näha nimi, LinkedIni profiil ja viimane harjutuse tulemus igas sobivas teemas. Seda vahekaarti näevad ainult ettevõtted, kes on vähemalt korra krediiti juurde laadinud.",
+    "actions": [
+      "Ava kellegi LinkedIni profiil, et tema kohta rohkem teada saada.",
+      "Kutsu keegi sellele intervjuule (omanikud ja administraatorid): kutse läheb tema konto e-posti aadressile ja maksab krediite nagu iga kutse."
+    ],
+    "tips": [
+      "Need on harjutuse tulemused, mitte kvalifikatsioon, ja loend ei ole soovitus: eespool on see, kes harjutas viimati.",
+      "Kes lülitab „Avatud tööpakkumistele“ välja, kaob sellest loendist kohe."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Kui ta on lõpetanud, vaata ebatavalisi mustreid tema vastustes ja vastamisaegades ning küsimusi, millele ta vastas õigesti, et neist otsevestlusel küsida.",
       "Laadi aruanne alla PDF-ina või jaga seda e-kirjaga.",
       "Anna enne alustamist lisaaega, näiteks puude tõttu.",
+      "Vali, kas kandidaat vastab klõpsu- või häälerežiimis, olenemata intervjuu režiimist, kuni ta pole alustanud.",
       "Lisa või muuda kandidaadi nime.",
       "Kopeeri kandidaadi kutselink, et see ise saata, kui e-kiri kohale ei jõudnud; see on olemas, kuni ta on lõpetanud.",
       "Saada kutse uuesti või tühista see või kustuta kandidaat koos tulemustega."
@@ -362,6 +376,7 @@
     "actions": [
       "Vali saidi, abivestluse ja oma e-kirjade keel.",
       "Vali, milliseid valikulisi e-kirju saad; teenusekirjad, näiteks kutsed, aruanded ja makseprobleemid, saadetakse alati.",
+      "Lülita „Avatud tööpakkumistele“ sisse või välja: kui see on sees, näevad prepza kaudu sinu harjutatud teemadel värbavad ettevõtted sinu nime, LinkedIni profiili ja harjutuse tulemusi ning võivad sind kutsuda.",
       "Laadi alla kõik, mida prepza sinu kohta hoiab, või kustuta oma konto."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "See, mille oled valinud, kui küsimuse aeg täis saab, läheb arvesse; küsimus, kus pole midagi valitud või milleni sa ei jõudnud, loetakse valeks.",
-      "Värbad sellesse rolli? Loo selle põhjal intervjuu oma kandidaatidele."
+      "Värbad sellesse rolli? Loo selle põhjal intervjuu oma kandidaatidele.",
+      "Otsid tööd? Lülita sisse „Avatud tööpakkumistele“, et nendel teemadel värbavad ettevõtted näeksid sinu nime, LinkedIni profiili ja harjutuse tulemusi."
     ]
   },
   "pricing": {

@@ -57,12 +57,26 @@ Free practice (`/practice`) gives people preparing for a role practice interview
 
 - 10 questions a topic, about 1 in 10 of them "select all that apply" (scored as in [Interviews](interviews.md#questions)), with an average time per question of the seconds a company's new test of the template's level starts with (60 for basic and medium, 75 for hard, by default); each question gets its own time from that average, as in a company's interview ([Timing](candidates.md#timing)).
 - Before a round, beside its start button, the person picks the average time per question: the standard seconds, double (the average doubled, then fitted to each question), or no time limit (WCAG 2.2.1: practice measures nothing, so whoever needs it gets more time or none). Rounds decides the options (`PRACTICE_TIMINGS` in `services/rounds/src/rounds/constants/practice.py`), sends them with the round's size (`GET /rounds/practice/{template_id}/size`, worked out from the level's current seconds) and takes the choice when the round starts (`POST /rounds/practice/{template_id}` with `{"timing": "standard" | "double" | "untimed"}`; anything else is a 422). A round with double time or none doesn't count in the questions' statistics, as repeat rounds don't.
+- Signed in, the test's page shows each topic's progress in the person's latest round: answered of the questions a round asks on the topic, 0 of them before it's started (the size route gives each topic's count, `topics`, by the topic's id).
 - At the end: the grade and every right answer; for a "select all that apply" question, also the options ticked, which were right, and its points ("2 of 3 right options · 0.67 of 1 point").
 - Each template keeps the person's rounds and progress. Their rounds (`/practice/history/<template id>`) are listed newest first, 20 at a time, and more load as the list scrolls (`GET /rounds/practice/{template_id}/rounds?offset=&limit=`).
 - Signed in, the practice list marks each test after its title, from the person's latest round on it: a blue check while in progress, the results' green double check once every topic's questions are all answered, nothing before the first answer. Its tooltip says how many topics are answered to the end of all ("In progress: 2/7 topics"). Rounds decides the status, by the same count as the test page's per-topic progress (`GET /rounds/practice/statuses`, one entry per practiced test); a round that ended with questions left unanswered stays in progress.
 - At most 20 rounds an hour per person (`PRACTICE_ROUNDS_PER_HOUR`, by default).
 
 A practice page is in English and in its template's language only (see [Public site](site.md#skills-tests-by-role)).
+
+### Open to offers
+
+A practice user can choose to be found by companies: the **Open to offers** card, under a finished practice round's results and in Settings. It is a separate, unticked switch, never bundled with the terms, and its text names exactly what is shared.
+
+- **What's shared:** the person's name (from their sign-in when they turn it on), the LinkedIn profile they enter, and their latest timed practice result on each subject a company's interview covers, with companies hiring on prepza (those that have topped up at least once), on those interviews' [Discover](interviews.md#discover) tab. Those companies may invite them to an interview, at their account's email.
+- **The LinkedIn profile:** required to turn it on; rounds accepts only a profile's address (`linkedin.com/in/<name>`, with or without `https://` and a country subdomain, kept as `https://www.linkedin.com/in/<name>`), and refuses anything else (422, `linkedin_invalid`). While it's on, the person can change the address and save it.
+- **Consent:** each time it's turned on or the profile changes, rounds logs the consent with its time and the version of the switch's wording (`CONSENT_VERSION`; the frontend sends the version it showed, and an older one is refused, 409, `consent_outdated`). Turning it off and a lapse are logged too (`offer_consents`).
+- **Withdrawal:** turning it off deletes the opt-in, so the person disappears from every company's tab at once.
+- **Lapse:** it ends a year after it was last turned on or the profile last saved (`OPEN_DAYS`, the daily `open-to-offers` job in rounds); turning it on again starts it anew. The card says until when it's on.
+- **Account deletion and export:** both tables go with the account (`user.deleted`), and both are in "Download my data".
+
+Routes (rounds): `GET /rounds/open-to-offers`, `PUT /rounds/open-to-offers` with `{"linkedin_url", "consent_version"}`, `DELETE /rounds/open-to-offers`.
 
 ### "Hiring for this role?"
 

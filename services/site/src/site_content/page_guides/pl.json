@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Każdy kandydat, który odpowie na co najmniej jedno pytanie, zużywa kredyty, także ten z linku.",
-      "Przypomnienia trafiają do kandydatów automatycznie."
+      "Przypomnienia trafiają do kandydatów automatycznie.",
+      "Zapraszając, wybierz, czy kandydaci odpowiadają w trybie kliknięć, czy w trybie głosowym; przy kandydacie w innym trybie niż tryb rozmowy widać ikonę jego trybu."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Pracujesz dla klientów? Przypnij notatkę w rodzaju „Dla Acme, backend developer”, aby od razu widzieć, dla kogo jest każda rozmowa.",
       "Usuniętej notatki nie da się przywrócić. Dziennik działań zapisuje, kto napisał, zmienił lub usunął notatkę, ale nigdy jej treści."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Odkrywaj",
+    "text": "Osoby, które ćwiczą w prepza i zdecydowały się włączyć „Rozważam oferty pracy”, a ich ćwiczenia obejmują tematy tej rozmowy na jej poziomie. Przy każdej widać imię i nazwisko, profil LinkedIn i najnowszy wynik ćwiczeń z każdego pasującego tematu. Tę kartę widzą tylko firmy, które choć raz doładowały kredyty.",
+    "actions": [
+      "Otwórz czyjś profil LinkedIn, aby dowiedzieć się o tej osobie więcej.",
+      "Zaproś kogoś na tę rozmowę (właściciele i administratorzy): zaproszenie trafia na e-mail powiązany z kontem tej osoby i kosztuje kredyty jak każde zaproszenie."
+    ],
+    "tips": [
+      "To wyniki ćwiczeń, nie kwalifikacje, a lista nie jest rekomendacją: na górze jest ten, kto ćwiczył ostatnio.",
+      "Osoba, która wyłączy „Rozważam oferty pracy”, od razu znika z tej listy."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Gdy kandydat skończy, zobacz nietypowe wzorce w jego odpowiedziach i czasach oraz pytania, na które odpowiedział poprawnie, by dopytać o nie na rozmowie na żywo.",
       "Pobierz raport jako PDF albo udostępnij go e-mailem.",
       "Daj dodatkowy czas, zanim kandydat zacznie, np. z powodu niepełnosprawności.",
+      "Wybierz, czy kandydat odpowiada w trybie kliknięć, czy w trybie głosowym, niezależnie od trybu rozmowy, dopóki nie zacznie.",
       "Dodaj lub edytuj imię i nazwisko kandydata.",
       "Skopiuj link z zaproszeniem, aby wysłać go samodzielnie, jeśli e-mail nie dotarł; jest dostępny, dopóki kandydat nie skończy.",
       "Wyślij zaproszenie ponownie lub je wycofaj albo usuń kandydata razem z jego wynikami."
@@ -362,6 +376,7 @@
     "actions": [
       "Wybierz język strony, czatu pomocy i Twoich e-maili.",
       "Wybierz, które opcjonalne e-maile dostajesz; e-maile serwisowe, takie jak zaproszenia, raporty i problemy z płatnościami, są wysyłane zawsze.",
+      "Włącz lub wyłącz „Rozważam oferty pracy”: gdy jest włączone, firmy, które rekrutują przez prepza w tematach Twoich ćwiczeń, widzą Twoje imię i nazwisko, profil LinkedIn i wyniki ćwiczeń oraz mogą Cię zaprosić.",
       "Pobierz wszystko, co prepza przechowuje na Twój temat, albo usuń konto."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "To, co masz zaznaczone, gdy skończy się czas na pytanie, nadal się liczy; pytanie bez zaznaczonej odpowiedzi lub takie, do którego nie dotrzesz, liczy się jako błędne.",
-      "Rekrutujesz na to stanowisko? Utwórz na jej podstawie rozmowę dla swoich kandydatów."
+      "Rekrutujesz na to stanowisko? Utwórz na jej podstawie rozmowę dla swoich kandydatów.",
+      "Szukasz pracy? Włącz „Rozważam oferty pracy”, aby firmy rekrutujące w tych tematach widziały Twoje imię i nazwisko, profil LinkedIn i wyniki ćwiczeń."
     ]
   },
   "pricing": {

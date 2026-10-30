@@ -156,7 +156,6 @@
     "newCompany": "Een nieuw bedrijf",
     "companyName": "Bedrijfsnaam",
     "freeCandidates": "Je eerste bedrijf test {count, plural, one {de eerste kandidaat} other {de eerste # kandidaten}} gratis.",
-    "back": "Omschrijving bewerken",
     "continue": "Doorgaan",
     "starting": "Wordt gestart…",
     "failed": "Het interview kon niet worden gestart. Probeer het opnieuw."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Geen extra tijd",
     "extraTimeSome": "+{percent} tijd",
     "extraTimeNote": "Voor een kandidaat die meer tijd nodig heeft, bijvoorbeeld door een beperking. Stel het in voordat de kandidaat begint.",
-    "extraTimeFailed": "De extra tijd kon niet worden gewijzigd. Probeer het opnieuw."
+    "extraTimeFailed": "De extra tijd kon niet worden gewijzigd. Probeer het opnieuw.",
+    "modeHelp": "Hoe deze kandidaat het interview doet, ongeacht de modus van het interview. Je kunt het wijzigen tot de kandidaat begint.",
+    "modeFailed": "De interviewmodus kon niet worden gewijzigd. Probeer het opnieuw."
   },
   "interviewStatus": {
     "new": "Nieuw",
@@ -1096,6 +1097,18 @@
     "candidates": "Kandidaten",
     "notes": "Notities",
     "notesEmpty": "Nog geen notities. Schrijf de eerste voor je team.",
+    "discover": "Ontdekken",
+    "discoverLinkedIn": "LinkedIn-profiel van {name}",
+    "discoverText": "Mensen die openstaan voor nieuwe kansen en de onderwerpen van dit interview hebben geoefend. Nieuwste eerst, niet gerangschikt.",
+    "discoverEmpty": "Nog niemand die openstaat voor nieuwe kansen heeft de onderwerpen van dit interview geoefend.",
+    "discoverResults": "Oefenresultaten",
+    "discoverPractised": "Geoefend op {date}",
+    "discoverInvite": "Uitnodigen",
+    "discoverInviting": "Bezig met uitnodigen…",
+    "discoverInvited": "Uitgenodigd",
+    "discoverInviteDone": "Uitnodiging verstuurd naar <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "De uitnodiging kon niet worden verstuurd. Probeer het opnieuw.",
+    "discoverNoName": "Naam niet gedeeld",
     "noteLabel": "Schrijf een notitie voor je team",
     "notePlaceholder": "een geweldige notitie hier…",
     "notePost": "Plaatsen",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "Gemiddeld {time} per vraag",
     "timingNone": "Geen tijdslimiet",
     "timingNote": "Oefenen wordt met niemand vergeleken: neem meer tijd, of geen limiet, als je dat nodig hebt."
+  },
+  "openToOffers": {
+    "title": "Open voor nieuwe kansen",
+    "text": "Bedrijven die via prepza werven, zien je naam, je LinkedIn-profiel en je nieuwste oefenresultaten en kunnen je uitnodigen voor een interview. Je kunt het op elk moment uitzetten.",
+    "linkedin": "LinkedIn-profiel",
+    "linkedinHint": "linkedin.com/in/jouw-naam",
+    "save": "Opslaan",
+    "on": "Bedrijven zien je tot {date} als <bdi>{name}</bdi>.",
+    "onNoName": "Bedrijven zien je tot {date}.",
+    "needsLinkedin": "Vul je LinkedIn-profiel in om het aan te zetten.",
+    "failed": "Opslaan mislukt. Probeer het opnieuw."
   },
   "verify": {
     "verify": "Verifiëren",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "Verwijderde een kandidaat",
       "candidate_renamed": "Wijzigde de naam van een kandidaat",
       "extra_time_set": "Gaf een kandidaat extra tijd",
+      "candidate_mode_set": "Wijzigde de interviewmodus van een kandidaat",
       "results_viewed": "Bekeek de resultaten van een kandidaat",
       "report_emailed": "Mailde een rapport",
       "member_invited": "Nodigde een lid uit",

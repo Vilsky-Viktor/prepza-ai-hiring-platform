@@ -156,7 +156,6 @@
     "newCompany": "新公司",
     "companyName": "公司名称",
     "freeCandidates": "你的第一家公司可以免费面试前 {count, plural, other {# 位候选人}}。",
-    "back": "编辑描述",
     "continue": "继续",
     "starting": "正在开始…",
     "failed": "无法开始面试，请重试。"
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "无额外时间",
     "extraTimeSome": "时间 +{percent}",
     "extraTimeNote": "适用于需要更多时间的候选人，例如因残障原因。请在候选人开始前设置。",
-    "extraTimeFailed": "无法更改额外时间，请重试。"
+    "extraTimeFailed": "无法更改额外时间，请重试。",
+    "modeHelp": "无论面试设为哪种模式，这位候选人都按此方式参加面试。在候选人开始前都可以更改。",
+    "modeFailed": "无法更改面试模式，请重试。"
   },
   "interviewStatus": {
     "new": "新建",
@@ -1096,6 +1097,18 @@
     "candidates": "候选人",
     "notes": "备注",
     "notesEmpty": "还没有备注。为团队写下第一条吧。",
+    "discover": "发现人才",
+    "discoverLinkedIn": "{name} 的 LinkedIn 个人资料",
+    "discoverText": "接受工作邀约、并练习过这场面试主题的人。按最近练习排列，不是排名。",
+    "discoverEmpty": "还没有接受工作邀约的人练习过这场面试的主题。",
+    "discoverResults": "练习结果",
+    "discoverPractised": "{date} 练习",
+    "discoverInvite": "邀请",
+    "discoverInviting": "正在邀请…",
+    "discoverInvited": "已邀请",
+    "discoverInviteDone": "已向 <bdi>{name}</bdi> 发送邀请。",
+    "discoverInviteFailed": "无法发送邀请，请重试。",
+    "discoverNoName": "未公开姓名",
     "noteLabel": "为团队写一条备注",
     "notePlaceholder": "在这里写点精彩的备注……",
     "notePost": "发布",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "平均每题 {time}",
     "timingNone": "不限时",
     "timingNote": "练习不与任何人比较，如有需要，可以延长时间或不限时。"
+  },
+  "openToOffers": {
+    "title": "接受工作邀约",
+    "text": "通过 prepza 招聘的公司将看到你的姓名、LinkedIn 个人资料和最近的练习结果，并可能邀请你参加面试。你可以随时关闭。",
+    "linkedin": "LinkedIn 个人资料",
+    "linkedinHint": "linkedin.com/in/zhang-san",
+    "save": "保存",
+    "on": "在 {date} 之前，公司会看到你的名字 <bdi>{name}</bdi>。",
+    "onNoName": "在 {date} 之前，公司都能看到你。",
+    "needsLinkedin": "请输入你的 LinkedIn 个人资料以开启。",
+    "failed": "无法保存，请重试。"
   },
   "verify": {
     "verify": "验证",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "删除了一位候选人",
       "candidate_renamed": "更改了一位候选人的姓名",
       "extra_time_set": "给了一位候选人额外时间",
+      "candidate_mode_set": "更改了一位候选人的面试模式",
       "results_viewed": "查看了一位候选人的结果",
       "report_emailed": "通过邮件发送了一份报告",
       "member_invited": "邀请了一位成员",

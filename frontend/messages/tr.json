@@ -156,7 +156,6 @@
     "newCompany": "Yeni bir şirket",
     "companyName": "Şirket adı",
     "freeCandidates": "İlk şirketiniz {count, plural, one {ilk adayıyla} other {ilk # adayıyla}} ücretsiz mülakat yapar.",
-    "back": "İş tanımını düzenle",
     "continue": "Devam et",
     "starting": "Başlatılıyor…",
     "failed": "Mülakat başlatılamadı. Lütfen tekrar deneyin."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Ek süre yok",
     "extraTimeSome": "+{percent} süre",
     "extraTimeNote": "Daha fazla süreye ihtiyaç duyan bir aday için, örneğin bir engel nedeniyle. Aday başlamadan önce ayarlayın.",
-    "extraTimeFailed": "Ek süre değiştirilemedi. Lütfen tekrar deneyin."
+    "extraTimeFailed": "Ek süre değiştirilemedi. Lütfen tekrar deneyin.",
+    "modeHelp": "Mülakatın modu ne olursa olsun, bu adayın mülakata nasıl gireceği. Aday başlayana kadar değiştirebilirsiniz.",
+    "modeFailed": "Mülakat modu değiştirilemedi. Lütfen tekrar deneyin."
   },
   "interviewStatus": {
     "new": "Yeni",
@@ -1096,6 +1097,18 @@
     "candidates": "Adaylar",
     "notes": "Yorumlar",
     "notesEmpty": "Henüz yorum yok. Ekibiniz için ilkini yazın.",
+    "discover": "Keşfet",
+    "discoverLinkedIn": "LinkedIn profili: {name}",
+    "discoverText": "Bu mülakatın konularında pratik yapmış, iş tekliflerine açık kişiler. En yeniler önce; derecelendirme yapılmaz.",
+    "discoverEmpty": "İş tekliflerine açık kimse henüz bu mülakatın konularında pratik yapmadı.",
+    "discoverResults": "Pratik sonuçları",
+    "discoverPractised": "Pratik: {date}",
+    "discoverInvite": "Davet et",
+    "discoverInviting": "Davet ediliyor…",
+    "discoverInvited": "Davet edildi",
+    "discoverInviteDone": "Davet gönderildi: <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "Davet gönderilemedi. Tekrar deneyin.",
+    "discoverNoName": "Ad paylaşılmadı",
     "noteLabel": "Ekibiniz için bir yorum yazın",
     "notePlaceholder": "buraya harika bir yorum…",
     "notePost": "Paylaş",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "Soru başına ortalama {time}",
     "timingNone": "Süre sınırı yok",
     "timingNote": "Pratik kimseyle karşılaştırılmaz; gerekirse daha fazla süre alın ya da süre sınırını kaldırın."
+  },
+  "openToOffers": {
+    "title": "İş tekliflerine açık",
+    "text": "prepza üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve en son pratik sonuçlarınızı görür ve sizi bir mülakata davet edebilir. İstediğiniz zaman kapatabilirsiniz.",
+    "linkedin": "LinkedIn profili",
+    "linkedinHint": "linkedin.com/in/ad-soyad",
+    "save": "Kaydet",
+    "on": "Şirketler sizi {date} tarihine kadar <bdi>{name}</bdi> olarak görür.",
+    "onNoName": "Şirketler sizi {date} tarihine kadar görür.",
+    "needsLinkedin": "Açmak için LinkedIn profilinizi girin.",
+    "failed": "Kaydedilemedi. Tekrar deneyin."
   },
   "verify": {
     "verify": "Doğrula",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "Bir adayı sildi",
       "candidate_renamed": "Bir adayın adını değiştirdi",
       "extra_time_set": "Bir adaya ek süre verdi",
+      "candidate_mode_set": "Bir adayın mülakat modunu değiştirdi",
       "results_viewed": "Bir adayın sonuçlarını görüntüledi",
       "report_emailed": "Bir raporu e-postayla gönderdi",
       "member_invited": "Bir üyeyi davet etti",

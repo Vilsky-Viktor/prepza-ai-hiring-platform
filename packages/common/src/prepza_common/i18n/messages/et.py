@@ -110,6 +110,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Sisesta oma Recruitee aadress, näiteks acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "Sisesta oma Workable aadress, näiteks acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "Lisaaega saab muuta ainult enne, kui kandidaat alustab.",
+    "The interview mode can only be changed before the candidate starts.": "Intervjuu režiimi saab muuta ainult enne, kui kandidaat alustab.",
     "Generation already finished": "Loomine on juba lõppenud",
     "Generation is not awaiting review": "Loomine ei oota ülevaatust",
     "Generation not found": "Loomist ei leitud",

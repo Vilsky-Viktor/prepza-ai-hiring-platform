@@ -1,16 +1,16 @@
-import { CheckIcon, LinkIcon } from "lucide-react"
+import { CheckIcon } from "lucide-react"
 import { notFound } from "next/navigation"
 import { getLocale, getTranslations } from "next-intl/server"
 import { cn } from "cn"
 import type { ComponentProps } from "react"
 
 import { BackLink } from "@/components/common/back-link"
-import { CopyField } from "@/components/common/copy-field"
-import { CornerSign } from "@/components/common/corner-sign"
 import { AnswerPatternsCard } from "@/features/company/components/answer-patterns"
 import { CandidateActions } from "@/features/company/components/candidate-actions"
 import { CandidateReport } from "@/features/company/components/candidate-report"
 import { ExtraTime } from "@/features/company/components/extra-time"
+import { CandidateMode } from "@/features/company/components/candidate-mode"
+import { InviteLinkCard } from "@/features/company/components/invite-link-card"
 import { IntegrityLine } from "@/features/company/components/integrity-line"
 import { CandidateReportActions } from "@/features/company/components/candidate-report-actions"
 import { ScorecardReview } from "@/components/common/scorecard-review"
@@ -24,7 +24,6 @@ import { SignInPage } from "@/components/common/sign-in-page"
 import { Badge } from "@/components/ui/badge"
 import { InfoCard } from "@/components/common/warning-card"
 import { WrappedEmail } from "@/components/common/wrapped-email"
-import { SIGN_CARD } from "@/config/cards"
 import { MAX_CANDIDATE_NAME_LENGTH } from "@/config/limits"
 import { gradeTone } from "@/lib/grade-tone"
 import { serverFetch, signedIn } from "@/lib/server-api"
@@ -134,7 +133,15 @@ export default async function ScorecardPage({
 
       {/* The invite link until the interview is finished, in case the email didn't reach the
           candidate or they lost it. */}
-      <InviteLink token={card.invite_token} />
+      <InviteLinkCard token={card.invite_token} />
+
+      {/* How they take it, click or voice, until they start. */}
+      <CandidateMode
+        interviewId={id}
+        inviteId={inviteId}
+        voice={card.voice}
+        editable={card.mode_editable}
+      />
 
       {card.sessions.length > 0 && <ScorecardSummary card={card} />}
 
@@ -219,33 +226,6 @@ function ScorecardActions({
           report={report}
         />
       )}
-    </div>
-  )
-}
-
-/** The invite link until the interview is finished, in case the email didn't reach the
- * candidate or they lost it. */
-async function InviteLink({ token }: { token?: string | null }) {
-  const t = await getTranslations("candidates")
-
-  if (!token) {
-    return null
-  }
-
-  return (
-    <div
-      className={cn(SIGN_CARD, "space-y-4 max-sm:-mx-6 max-sm:rounded-none")}
-    >
-      <CornerSign>
-        <LinkIcon className="text-primary" />
-      </CornerSign>
-      <div className="flex items-center gap-4 text-base">
-        <div className="min-w-0 flex-1 space-y-1">
-          <p className="font-medium lowercase">{t("inviteLinkTitle")}</p>
-          <p className="text-sm text-muted-foreground">{t("inviteLinkHint")}</p>
-        </div>
-      </div>
-      <CopyField path={`/invite/${token}`} />
     </div>
   )
 }

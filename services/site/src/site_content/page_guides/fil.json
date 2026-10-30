@@ -118,7 +118,8 @@
     ],
     "tips": [
       "Gumagamit ng credits ang bawat aplikanteng sumagot ng kahit isang tanong, kasama ang mga galing sa link.",
-      "Awtomatikong napapadalhan ng paalala ang mga aplikante."
+      "Awtomatikong napapadalhan ng paalala ang mga aplikante.",
+      "Sa pag-imbita, piliin kung click mode o voice mode ang gagamitin nila; may icon ng mode niya ang aplikanteng iba ang mode sa mode ng interview."
     ]
   },
   "interviewNotes": {
@@ -132,6 +133,18 @@
     "tips": [
       "Nagtatrabaho para sa mga kliyente? Mag-pin ng note gaya ng “Para sa Acme, Backend Developer” para makita agad kung para kanino ang bawat interview.",
       "Tuluyan nang nawawala ang na-delete na note. Itinatala ng log ng aksyon kung sino ang sumulat, nagbago o nag-delete ng note, pero hindi kailanman ang text nito."
+    ]
+  },
+  "interviewDiscover": {
+    "title": "Discover",
+    "text": "Mga taong nagpa-practice sa prepza at piniling maging open to offers, na ang practice ay sumasaklaw sa mga topic ng interview na ito sa level nito. Makikita sa bawat isa ang pangalan, LinkedIn profile at pinakabagong resulta ng practice sa bawat katugmang topic. Ang mga kumpanyang nakapag-top up na kahit isang beses lang ang nakakakita sa tab na ito.",
+    "actions": [
+      "Buksan ang LinkedIn profile ng isang tao para makilala pa siya.",
+      "Imbitahan ang isang tao sa interview na ito (para sa mga may-ari at admin): mapupunta ito sa email ng account niya at gagastos ng credits gaya ng anumang imbitasyon."
+    ],
+    "tips": [
+      "Mga resulta ito ng practice, hindi kwalipikasyon, at hindi rekomendasyon ang listahan: nauuna ang pinakahuling nag-practice.",
+      "Ang taong nag-off ng Open to offers ay agad na nawawala sa listahang ito."
     ]
   },
   "interviewSettings": {
@@ -171,6 +184,7 @@
       "Kapag tapos na siya, tingnan ang anumang hindi karaniwang pattern sa kanyang mga sagot at oras, at ang mga tanong na tama ang sagot niya para itanong sa isang live na interview.",
       "I-download ang report bilang PDF, o i-share ito sa email.",
       "Magbigay ng extra time bago siya magsimula, halimbawa dahil sa kapansanan.",
+      "Piliin kung click mode o voice mode ang gagamitin niya, anuman ang mode ng interview, hanggang magsimula siya.",
       "Idagdag o i-edit ang pangalan ng aplikante.",
       "Kopyahin ang invite link niya para ikaw mismo ang magpadala kung hindi dumating ang email; nandiyan ito hanggang matapos siya.",
       "Ipadala muli o bawiin ang imbitasyon, o burahin ang aplikante kasama ang kanyang resulta."
@@ -362,6 +376,7 @@
     "actions": [
       "Piliin ang wika ng site, ng help chat at ng iyong mga email.",
       "Piliin kung aling opsyonal na email ang matatanggap mo; laging ipinapadala ang mga email ng serbisyo, gaya ng mga imbitasyon, report at problema sa bayad.",
+      "I-on o i-off ang Open to offers: habang naka-on ito, nakikita ng mga kumpanyang nagha-hire sa prepza para sa mga topic na pinag-practice-an mo ang pangalan mo, LinkedIn profile at mga resulta ng practice, at puwede ka nilang imbitahan.",
       "I-download ang lahat ng hawak ng prepza tungkol sa iyo, o burahin ang iyong account."
     ],
     "tips": [
@@ -455,7 +470,8 @@
     ],
     "tips": [
       "Bibilangin pa rin ang anumang pinili mo nang maubos ang oras ng isang tanong; ang tanong na walang napili, o hindi naabot, ay mabibilang na mali.",
-      "Nagha-hire para sa role na ito? Gumawa ng interview mula rito para sa sarili mong mga aplikante."
+      "Nagha-hire para sa role na ito? Gumawa ng interview mula rito para sa sarili mong mga aplikante.",
+      "Naghahanap ng trabaho? I-on ang Open to offers para makita ng mga kumpanyang nagha-hire para sa mga topic na ito ang pangalan mo, LinkedIn profile at mga resulta ng practice."
     ]
   },
   "pricing": {

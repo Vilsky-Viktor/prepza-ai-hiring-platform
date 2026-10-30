@@ -148,7 +148,8 @@
       "tool": "invite_candidate",
       "args": {
        "interview_id": "{interview0}",
-       "email": "maya.chen@example.com"
+       "email": "maya.chen@example.com",
+       "voice": null
       }
      }
     ]
@@ -200,7 +201,8 @@
       "tool": "invite_candidates",
       "args": {
        "interview_id": "{interview1}",
-       "text": "~raj.patel@example.com"
+       "text": "~raj.patel@example.com",
+       "voice": null
       }
      }
     ]
@@ -302,6 +304,42 @@
    "message": "Invite a new candidate here.",
    "expect": {
     "ask": "value"
+   }
+  },
+  {
+   "id": "i12",
+   "kind": "invite",
+   "page": "candidatesA",
+   "message": "Invite nadia.berg@example.com here; she'll answer the questions by voice.",
+   "expect": {
+    "actions": [
+     {
+      "tool": "invite_candidate",
+      "args": {
+       "interview_id": "{interview0}",
+       "email": "nadia.berg@example.com",
+       "voice": true
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "i13",
+   "kind": "invite",
+   "page": "interviewsA",
+   "message": "Invite leo.march@example.com to the Data Analyst interview. He should take it by clicking the answers, not by voice.",
+   "expect": {
+    "actions": [
+     {
+      "tool": "invite_candidate",
+      "args": {
+       "interview_id": "{interview1}",
+       "email": "leo.march@example.com",
+       "voice": false
+      }
+     }
+    ]
    }
   },
   {

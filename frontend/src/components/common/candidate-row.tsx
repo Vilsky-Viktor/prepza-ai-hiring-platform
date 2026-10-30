@@ -3,6 +3,7 @@
 import { cn } from "cn"
 import Link from "next/link"
 import { useLocale, useTranslations } from "next-intl"
+import type { ReactNode } from "react"
 
 import { useLocalTime } from "@/hooks/use-local-time"
 import { CandidateSignals } from "@/components/common/candidate-signals"
@@ -36,12 +37,15 @@ export function CandidateRow({
   href,
   onClick,
   canEdit = false,
+  mode,
 }: {
   candidate: CandidateRowData
   href: string
   onClick?: () => void
   // An owner or admin, who can enter a missing name on the candidate's page.
   canEdit?: boolean
+  // How they take the interview, as an icon, when it's apart from the interview's mode.
+  mode?: ReactNode
 }) {
   const t = useTranslations("candidates")
   const locale = useLocale()
@@ -76,6 +80,7 @@ export function CandidateRow({
                 {localTime.date(candidate.created_at)}
               </time>
             )}
+            {mode}
             <CandidateSignals candidate={candidate} />
           </span>
         </span>

@@ -156,7 +156,6 @@
     "newCompany": "Une nouvelle entreprise",
     "companyName": "Nom de l'entreprise",
     "freeCandidates": "Votre première entreprise fait passer l'entretien gratuitement à {count, plural, =1 {son premier candidat} other {ses # premiers candidats}}.",
-    "back": "Modifier la description",
     "continue": "Continuer",
     "starting": "Démarrage…",
     "failed": "Impossible de démarrer l'entretien. Veuillez réessayer."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Pas de temps supplémentaire",
     "extraTimeSome": "+{percent} de temps",
     "extraTimeNote": "Pour un candidat qui a besoin de plus de temps, par exemple en raison d'un handicap. À définir avant qu'il ne commence.",
-    "extraTimeFailed": "Impossible de modifier le temps supplémentaire. Veuillez réessayer."
+    "extraTimeFailed": "Impossible de modifier le temps supplémentaire. Veuillez réessayer.",
+    "modeHelp": "La façon dont ce candidat passe l'entretien, quel que soit le mode de l'entretien. Vous pouvez le modifier tant qu'il n'a pas commencé.",
+    "modeFailed": "Impossible de modifier le mode d'entretien. Veuillez réessayer."
   },
   "interviewStatus": {
     "new": "Nouveau",
@@ -1096,6 +1097,18 @@
     "candidates": "Candidats",
     "notes": "Commentaires",
     "notesEmpty": "Aucun commentaire pour l'instant. Écrivez le premier pour votre équipe.",
+    "discover": "Découvrir",
+    "discoverLinkedIn": "Profil LinkedIn de {name}",
+    "discoverText": "Les personnes ouvertes aux opportunités qui se sont entraînées sur les sujets de cet entretien. Les plus récentes d'abord, sans classement.",
+    "discoverEmpty": "Aucune personne ouverte aux opportunités ne s'est encore entraînée sur les sujets de cet entretien.",
+    "discoverResults": "Résultats de l'entraînement",
+    "discoverPractised": "Entraînement le {date}",
+    "discoverInvite": "Inviter",
+    "discoverInviting": "Invitation…",
+    "discoverInvited": "Invité",
+    "discoverInviteDone": "Invitation envoyée à <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "Impossible d'envoyer l'invitation. Réessayez.",
+    "discoverNoName": "Nom non communiqué",
     "noteLabel": "Écrivez un commentaire pour votre équipe",
     "notePlaceholder": "un super commentaire ici…",
     "notePost": "Publier",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "{time} par question en moyenne",
     "timingNone": "Sans limite de temps",
     "timingNote": "L'entraînement n'est comparé à personne : prenez plus de temps, ou aucune limite, si vous en avez besoin."
+  },
+  "openToOffers": {
+    "title": "Ouvert aux opportunités",
+    "text": "Les entreprises qui recrutent sur prepza verront votre nom, votre profil LinkedIn et vos derniers résultats d'entraînement, et pourront vous inviter à un entretien. Vous pouvez le désactiver à tout moment.",
+    "linkedin": "Profil LinkedIn",
+    "linkedinHint": "linkedin.com/in/votre-nom",
+    "save": "Enregistrer",
+    "on": "Les entreprises vous voient sous le nom <bdi>{name}</bdi> jusqu'au {date}.",
+    "onNoName": "Les entreprises vous voient jusqu'au {date}.",
+    "needsLinkedin": "Saisissez votre profil LinkedIn pour l'activer.",
+    "failed": "Impossible d'enregistrer. Réessayez."
   },
   "verify": {
     "verify": "Vérifier",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "A supprimé un candidat",
       "candidate_renamed": "A modifié le nom d'un candidat",
       "extra_time_set": "A accordé du temps supplémentaire à un candidat",
+      "candidate_mode_set": "A modifié le mode d'entretien d'un candidat",
       "results_viewed": "A consulté les résultats d'un candidat",
       "report_emailed": "A envoyé un rapport par e-mail",
       "member_invited": "A invité un membre",

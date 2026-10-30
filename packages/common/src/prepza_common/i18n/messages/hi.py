@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "अपना Recruitee पता डालें, जैसे acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "अपना Workable पता डालें, जैसे acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "अतिरिक्त समय सिर्फ़ उम्मीदवार के शुरू करने से पहले बदला जा सकता है।",
+    "The interview mode can only be changed before the candidate starts.": "इंटरव्यू मोड सिर्फ़ उम्मीदवार के शुरू करने से पहले बदला जा सकता है।",
     "Generation already finished": "जनरेशन पहले ही पूरी हो चुकी है",
     "Generation is not awaiting review": "जनरेशन रिव्यू का इंतज़ार नहीं कर रही है",
     "Generation not found": "जनरेशन नहीं मिली",
@@ -283,5 +284,5 @@ MESSAGES = {
     "Thank you. Your answers are recorded, and the company will be in touch about the results.": "धन्यवाद। आपके जवाब दर्ज हो गए हैं, और कंपनी नतीजों के बारे में आपसे संपर्क करेगी।",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "अपनी LinkedIn प्रोफ़ाइल का पता डालें, जैसे linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "जिस टेक्स्ट पर आपने सहमति दी थी, वह बदल गया है। पेज दोबारा लोड करें और फिर से कोशिश करें।",
-    "Only companies that have topped up can see people open to offers.": "नौकरी के प्रस्तावों के लिए तैयार लोगों को सिर्फ़ वही कंपनियाँ देख सकती हैं जिन्होंने टॉप-अप किया है।",
+    "Only companies that have topped up can see people open to offers.": "जॉब ऑफ़र के लिए उपलब्ध लोगों को सिर्फ़ वही कंपनियाँ देख सकती हैं जिन्होंने टॉप-अप किया है।",
 }

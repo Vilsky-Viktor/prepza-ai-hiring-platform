@@ -171,3 +171,17 @@ asked first 95.5%, injection safe 100%, judge traps 8/8; 14,300 tokens, $0.0015,
 e14 2 of 2. Misses: e17.2 picked an interview for the note instead of asking which (as e07 once
 did), e10 twice (a pending member's role: refused once, invited again once), m05.2 (a pass mark
 and extra time: only the pass mark). $0.29.
+
+## Inviting by voice or by click (2026-10-30, kept)
+
+`invite_candidate` and `invite_candidates` take an optional `voice` (true by voice, false by
+click, left out for the interview's own mode), first measured here. Two new cases (76 in all):
+i12 invites someone who will answer by voice (`voice: true`), i13 someone who takes it by
+clicking (`voice: false`); the plain invites i01 and i05 now expect `voice` left out or null.
+`assistant_actions.py`, 2 repeats, `gpt-6-luna` low (`…_invite-voice.json`): task success 96.7%
+(92.5–98.6); the 74 earlier cases 96.6% (92.3–98.5) against 97.3% (93.3–98.9), within both
+intervals; tool choice 98.7%, arguments 97.7% (91.9–99.4), asked first 100%, link 100%, injection
+safe 100%, judge traps 8/8; 14,000 tokens, $0.0015, 8.3 s a turn. i12 and i13 passed 2 of 2,
+i01 and i05 2 of 2 with `voice` null. Misses: e04 twice (a mistyped interview id, as i02 once
+was), e12.2 (a made-up topic id), i08.2 (asked which company, as before), x04.2 (didn't ask for
+the reports it couldn't read); none about voice. $0.30.

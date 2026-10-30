@@ -90,6 +90,7 @@ function candidate(
     fast_answers: 0,
     flagged: false,
     extra_time: 0,
+    voice: false,
     can_resend: false,
     revokable: false,
     created_at: CREATED_AT,

@@ -13,6 +13,7 @@ PAGE_KEYS = (
     "interviewTopics",
     "interviewCandidates",
     "interviewNotes",
+    "interviewDiscover",
     "interviewSettings",
     "tryInterview",
     "candidate",

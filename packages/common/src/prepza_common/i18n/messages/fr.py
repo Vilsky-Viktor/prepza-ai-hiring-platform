@@ -100,6 +100,7 @@ MESSAGES = {
     "Enter your Recruitee address, like acme.recruitee.com": "Saisissez votre adresse Recruitee, par exemple acme.recruitee.com",
     "Enter your Workable address, like acme.workable.com": "Saisissez votre adresse Workable, par exemple acme.workable.com",
     "Extra time can only be changed before the candidate starts.": "Le temps supplémentaire ne peut être modifié qu'avant le début du candidat.",
+    "The interview mode can only be changed before the candidate starts.": "Le mode d'entretien ne peut être modifié qu'avant que le candidat ne commence.",
     "Generation already finished": "La génération est déjà terminée",
     "Generation is not awaiting review": "La génération n'est pas en attente de validation",
     "Generation not found": "Génération introuvable",

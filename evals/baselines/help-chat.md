@@ -204,3 +204,14 @@ options"). `help_chat.py`, 25 × 3, `gpt-6-luna` at none, judged by `gpt-6.1-sol
 (88.9–98.6); made up 1.3% → 4.0% (1.4–11.1); sign-in marker 100% both; identity 18 of 18.
 Misses: h17's known invented retake limit (3 of 3); none about voice mode. Within the noise;
 kept so the guides say what is true. $1.79.
+
+## Help chat: Open to offers and the Discover tab (2026-10-30, kept)
+
+The help chat's prompt, the FAQ (Open to offers, UK and US), the page guides (the interview's
+Discover tab, settings, practice results) and the privacy policy and terms now cover a
+candidate's own interview mode, the Discover tab and Open to offers. `help_chat.py`, 25 × 3,
+`gpt-6-luna` at none, judged by `gpt-6.1-sol` high (`results/help_chat_offers-discover.json`),
+against the voice-mode run: passed 96.0% (88.9–98.6) → 96.0% (88.9–98.6); made up 4.0% → 2.7%
+(0.7–9.2); sign-in marker 100% both; identity 18 of 18. Misses: h17's known invented retake
+limit (2 of 3) and h12 once (two sentences where one was asked); none about offers or Discover.
+Within the noise; kept so the guides say what is true. $2.04 (the judge $2.01).

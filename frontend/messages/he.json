@@ -156,7 +156,6 @@
     "newCompany": "חברה חדשה",
     "companyName": "שם החברה",
     "freeCandidates": "החברה הראשונה שלכם מראיינת בחינם את {count, plural, one {המועמד הראשון} two {# המועמדים הראשונים} other {# המועמדים הראשונים}}.",
-    "back": "עריכת התיאור",
     "continue": "המשך",
     "starting": "מתחיל…",
     "failed": "לא ניתן להתחיל את הראיון. נסו שוב."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "ללא זמן נוסף",
     "extraTimeSome": "+{percent} זמן",
     "extraTimeNote": "למועמד שצריך יותר זמן, למשל בגלל מוגבלות. הגדירו את זה לפני שהוא מתחיל.",
-    "extraTimeFailed": "לא ניתן לשנות את הזמן הנוסף. נסו שוב."
+    "extraTimeFailed": "לא ניתן לשנות את הזמן הנוסף. נסו שוב.",
+    "modeHelp": "האופן שבו המועמד הזה עובר את הראיון, בלי קשר למצב הראיון. אפשר לשנות את זה עד שהוא מתחיל.",
+    "modeFailed": "לא ניתן לשנות את מצב הראיון. נסו שוב."
   },
   "interviewStatus": {
     "new": "חדש",
@@ -1096,6 +1097,18 @@
     "candidates": "מועמדים",
     "notes": "הערות",
     "notesEmpty": "אין עדיין הערות. כתבו את הראשונה לצוות שלכם.",
+    "discover": "גילוי",
+    "discoverLinkedIn": "פרופיל ה־LinkedIn של {name}",
+    "discoverText": "אנשים שפתוחים להצעות עבודה ותרגלו את הנושאים של הראיון הזה. האחרונים קודם, בלי דירוג.",
+    "discoverEmpty": "עדיין אף אחד מהפתוחים להצעות עבודה לא תרגל את הנושאים של הראיון הזה.",
+    "discoverResults": "תוצאות תרגול",
+    "discoverPractised": "תרגול ב־{date}",
+    "discoverInvite": "הזמנה",
+    "discoverInviting": "שולחים הזמנה…",
+    "discoverInvited": "הוזמן/ה",
+    "discoverInviteDone": "ההזמנה נשלחה אל <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "לא ניתן לשלוח את ההזמנה. נסו שוב.",
+    "discoverNoName": "השם לא שותף",
     "noteLabel": "כתבו הערה לצוות שלכם",
     "notePlaceholder": "הערה מעולה כאן…",
     "notePost": "פרסום",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "{time} לכל שאלה בממוצע",
     "timingNone": "ללא הגבלת זמן",
     "timingNote": "תרגול לא מושווה לאף אחד, אז קחו יותר זמן, או בלי הגבלה, אם צריך."
+  },
+  "openToOffers": {
+    "title": "פתוח/ה להצעות עבודה",
+    "text": "חברות שמגייסות דרך prepza יראו את השם שלכם, פרופיל ה־LinkedIn שלכם ואת תוצאות התרגול האחרונות שלכם, ויוכלו להזמין אתכם לראיון. אפשר לכבות את זה בכל עת.",
+    "linkedin": "פרופיל LinkedIn",
+    "linkedinHint": "linkedin.com/in/השם-שלכם",
+    "save": "שמירה",
+    "on": "חברות רואות אתכם בשם <bdi>{name}</bdi> עד {date}.",
+    "onNoName": "חברות רואות אתכם עד {date}.",
+    "needsLinkedin": "כדי להפעיל, הזינו את פרופיל ה־LinkedIn שלכם.",
+    "failed": "השמירה נכשלה. נסו שוב."
   },
   "verify": {
     "verify": "אימות",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "מחק/ה מועמד",
       "candidate_renamed": "שינה/תה שם של מועמד",
       "extra_time_set": "נתן/ה למועמד זמן נוסף",
+      "candidate_mode_set": "שינה/תה את מצב הראיון של מועמד",
       "results_viewed": "צפה/תה בתוצאות של מועמד",
       "report_emailed": "שלח/ה דוח באימייל",
       "member_invited": "הזמין/ה חבר צוות",

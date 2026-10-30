@@ -47,13 +47,14 @@ A company's **interviews** tab lists its interviews, newest first, with a search
 
 ## The interview page
 
-An interview's page has four tabs, in its side menu as on a company's pages ([Companies](companies.md)). Topics, candidates and notes show how many they hold in a badge after their name (none at 0). A [pinned note](#notes) shows as one muted line under the interview's title.
+An interview's page has four tabs (five with Discover), in its side menu as on a company's pages ([Companies](companies.md)). Topics, candidates and notes show how many they hold in a badge after their name (none at 0). A [pinned note](#notes) shows as one muted line under the interview's title.
 
 | Tab | Who sees it | What it holds |
 |---|---|---|
 | **topics** | Every member | What the interview adds up to for each candidate (total questions, average time per question and the whole interview's minutes, questions × average, as companies counts them, which follow each change), then the interview's topics and questions, each with its number of questions for each candidate |
 | **candidates** | Every member | The candidate list (see [Candidates](candidates.md#the-candidate-list)) |
 | **notes** | Every member | The team's [notes](#notes) on the hiring round (`?tab=notes`) |
+| **discover** | Every member of a company that has topped up at least once | People open to offers whose practice matches the interview ([Discover](#discover), `?tab=discover`) |
 | **settings** | Owners and admins | The [shareable link](candidates.md#shareable-link) in a card at the top (the screen's full width on a phone), then the interview mode (click or voice), average time per question, pass mark, "Mark as hired" and keeping its questions out of the shared question bank, each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
 
 ### Settings
@@ -79,6 +80,18 @@ The **notes** tab is where the company's team writes about the hiring round and 
 - **Data:** notes are the company's data and go with the interview and with the company when either is deleted. A member who leaves the company or deletes their account takes none with them: their notes stay as a former member's. Each member's own notes, with the company and interview, are in their "Download my data".
 
 Routes (companies): `GET /companies/interviews/{id}/notes` (a page, with what the signed-in member may do with each: `can_edit`, `can_delete`, `can_pin`), `POST` to add, `PATCH /…/notes/{note_id}` to edit, `DELETE /…/notes/{note_id}`, and `PUT /…/notes/{note_id}/pinned` with `{"pinned": true|false}`. An interview in a list carries `note_count` and `pinned_note`. Stored in `interview_notes` (a unique partial index allows one pinned note an interview).
+
+### Discover
+
+The **discover** tab lists people who practise on prepza's free practice interviews and chose to be open to offers ([Templates and practice](templates-and-practice.md#open-to-offers)), whose practice covers the interview's subjects at its level. It is never called "suggested" or "recommended": prepza doesn't judge or recommend people.
+
+- **Who sees it:** only companies that have topped up at least once. Billing answers whether a company ever paid (`GET /internal/companies/{id}/paid`; when billing can't answer, the answer is no); the interview's detail carries `discover`, and the frontend shows the tab only when it's true. Companies refuses the list and the invite to any other company (403, `discover_unpaid`), which also keeps these people's details away from throwaway sign-ups.
+- **Matching:** library finds the template topics of the interview's level whose embedding is within the question bank's distance of one of the interview's topics (`MAX_TOPIC_DISTANCE`; templates of any language), and rounds lists the people open to offers with a finished, timed practice result on them. Untimed practice rounds don't count.
+- **Each row:** the person's name (from their sign-in when they turned it on), their LinkedIn profile, when they last practised, and their latest result on each matching subject, labelled as practice results. The list is ordered by who practised last, never by grade: nothing is ranked.
+- **Inviting:** owners and admins invite a person with **Invite**, through the usual invite (credits set aside, email limits, the invite email to the person's account address, which the company then sees like any candidate's). Companies asks rounds first whether the person is still open to offers: someone who turned it off can't be invited (404).
+- **Withdrawal:** a person who turns it off disappears from every company's tab at once.
+
+Routes (companies): `GET /companies/interviews/{id}/discover` (a page, every member) and `POST /companies/interviews/{id}/discover/{person_id}/invite` (owners and admins, 204). They call library's `GET /internal/sets/{set_id}/practice-topics` and rounds' `POST /internal/open-to-offers/matches` and `GET /internal/open-to-offers/{user_id}`.
 
 ### Status
 

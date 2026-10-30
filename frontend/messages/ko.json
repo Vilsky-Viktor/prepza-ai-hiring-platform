@@ -156,7 +156,6 @@
     "newCompany": "새 회사",
     "companyName": "회사 이름",
     "freeCandidates": "첫 회사는 처음 {count, plural, other {지원자 #명}}을 무료로 면접합니다.",
-    "back": "설명 수정",
     "continue": "계속",
     "starting": "시작하는 중…",
     "failed": "면접을 시작하지 못했습니다. 다시 시도해 주세요."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "추가 시간 없음",
     "extraTimeSome": "시간 +{percent}",
     "extraTimeNote": "장애 등의 이유로 시간이 더 필요한 지원자를 위한 설정입니다. 지원자가 시작하기 전에 설정하세요.",
-    "extraTimeFailed": "추가 시간을 변경하지 못했습니다. 다시 시도해 주세요."
+    "extraTimeFailed": "추가 시간을 변경하지 못했습니다. 다시 시도해 주세요.",
+    "modeHelp": "면접의 모드와 관계없이 이 지원자가 면접을 보는 방식입니다. 지원자가 시작하기 전까지 변경할 수 있습니다.",
+    "modeFailed": "면접 모드를 변경하지 못했습니다. 다시 시도해 주세요."
   },
   "interviewStatus": {
     "new": "신규",
@@ -1096,6 +1097,18 @@
     "candidates": "지원자",
     "notes": "메모",
     "notesEmpty": "아직 메모가 없습니다. 팀을 위해 첫 메모를 남겨 보세요.",
+    "discover": "인재 찾기",
+    "discoverLinkedIn": "{name} 님의 LinkedIn 프로필",
+    "discoverText": "포지션 제안 받기를 켜고 이 면접의 주제를 연습한 사람들입니다. 최근 순으로 표시되며 순위가 아닙니다.",
+    "discoverEmpty": "포지션 제안 받기를 켠 사람 중 이 면접의 주제를 연습한 사람이 아직 없습니다.",
+    "discoverResults": "연습 결과",
+    "discoverPractised": "{date} 연습",
+    "discoverInvite": "초대",
+    "discoverInviting": "초대 중…",
+    "discoverInvited": "초대함",
+    "discoverInviteDone": "<bdi>{name}</bdi> 님에게 초대를 보냈습니다.",
+    "discoverInviteFailed": "초대를 보내지 못했습니다. 다시 시도해 주세요.",
+    "discoverNoName": "이름 비공개",
     "noteLabel": "팀을 위한 메모 작성",
     "notePlaceholder": "여기에 멋진 메모를…",
     "notePost": "게시",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "문항당 평균 {time}",
     "timingNone": "시간 제한 없음",
     "timingNote": "연습은 누구와도 비교되지 않으니, 필요하면 시간을 늘리거나 제한 없이 하세요."
+  },
+  "openToOffers": {
+    "title": "포지션 제안 받기",
+    "text": "prepza로 채용하는 회사가 내 이름, LinkedIn 프로필, 최근 연습 결과를 보고 면접에 초대할 수 있습니다. 언제든지 끌 수 있습니다.",
+    "linkedin": "LinkedIn 프로필",
+    "linkedinHint": "linkedin.com/in/hong-gildong",
+    "save": "저장",
+    "on": "{date}까지 회사에 <bdi>{name}</bdi> 님으로 표시됩니다.",
+    "onNoName": "{date}까지 회사에 표시됩니다.",
+    "needsLinkedin": "켜려면 LinkedIn 프로필을 입력하세요.",
+    "failed": "저장하지 못했습니다. 다시 시도해 주세요."
   },
   "verify": {
     "verify": "인증",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "지원자를 삭제함",
       "candidate_renamed": "지원자 이름을 바꿈",
       "extra_time_set": "지원자에게 추가 시간을 줌",
+      "candidate_mode_set": "지원자의 면접 모드를 변경함",
       "results_viewed": "지원자의 결과를 확인함",
       "report_emailed": "보고서를 이메일로 보냄",
       "member_invited": "멤버를 초대함",

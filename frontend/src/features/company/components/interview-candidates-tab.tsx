@@ -45,6 +45,7 @@ export function InterviewCandidatesTab({
         narrowed={Boolean(search || status)}
         initial={candidates ?? []}
         canEdit={canEdit}
+        voice={interview.voice ?? false}
       />
     </SearchedList>
   )

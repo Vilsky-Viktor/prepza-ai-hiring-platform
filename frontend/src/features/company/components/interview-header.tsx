@@ -91,6 +91,7 @@ export async function InterviewHeader({
           href={interviewHref}
           current={current}
           canEdit={canEdit}
+          discover={interview.discover ?? false}
           counts={{
             topics: interview.topics.length,
             candidates: interview.candidate_count,

@@ -156,7 +156,6 @@
     "newCompany": "Bagong kumpanya",
     "companyName": "Pangalan ng kumpanya",
     "freeCandidates": "Libreng mai-interview ng iyong unang kumpanya ang {count, plural, =1 {unang aplikante nito} other {unang # aplikante nito}}.",
-    "back": "I-edit ang description",
     "continue": "Magpatuloy",
     "starting": "Sinisimulan…",
     "failed": "Hindi masimulan ang interview. Pakisubukang muli."
@@ -1082,7 +1081,9 @@
     "extraTimeNone": "Walang dagdag na oras",
     "extraTimeSome": "+{percent} oras",
     "extraTimeNote": "Para sa aplikanteng kailangan ng mas maraming oras, halimbawa dahil sa kapansanan. Itakda ito bago siya magsimula.",
-    "extraTimeFailed": "Hindi mabago ang dagdag na oras. Pakisubukang muli."
+    "extraTimeFailed": "Hindi mabago ang dagdag na oras. Pakisubukang muli.",
+    "modeHelp": "Kung paano kukunin ng aplikanteng ito ang interview, anuman ang mode ng interview. Mababago mo ito hangga't hindi pa siya nagsisimula.",
+    "modeFailed": "Hindi mabago ang mode ng interview. Pakisubukang muli."
   },
   "interviewStatus": {
     "new": "Bago",
@@ -1096,6 +1097,18 @@
     "candidates": "Mga aplikante",
     "notes": "Mga note",
     "notesEmpty": "Wala pang note. Isulat ang una para sa team mo.",
+    "discover": "Discover",
+    "discoverLinkedIn": "LinkedIn profile ni {name}",
+    "discoverText": "Mga taong open to offers na nag-practice ng mga topic ng interview na ito. Pinakabago muna, walang ranking.",
+    "discoverEmpty": "Wala pang open to offers na nag-practice ng mga topic ng interview na ito.",
+    "discoverResults": "Mga resulta ng practice",
+    "discoverPractised": "Nag-practice noong {date}",
+    "discoverInvite": "Imbitahan",
+    "discoverInviting": "Iniimbitahan…",
+    "discoverInvited": "Naimbitahan",
+    "discoverInviteDone": "Naipadala ang imbitasyon kay <bdi>{name}</bdi>.",
+    "discoverInviteFailed": "Hindi maipadala ang imbitasyon. Subukang muli.",
+    "discoverNoName": "Hindi ibinahagi ang pangalan",
     "noteLabel": "Magsulat ng note para sa team mo",
     "notePlaceholder": "isang astig na note dito…",
     "notePost": "I-post",
@@ -1732,6 +1745,17 @@
     "timingPerQuestion": "{time} bawat tanong sa average",
     "timingNone": "Walang time limit",
     "timingNote": "Hindi ikinukumpara sa iba ang practice, kaya kumuha ng mas maraming oras, o alisin ang limit, kung kailangan mo."
+  },
+  "openToOffers": {
+    "title": "Open to offers",
+    "text": "Makikita ng mga kumpanyang nagha-hire sa prepza ang pangalan mo, LinkedIn profile at pinakabagong mga resulta ng practice, at puwede ka nilang imbitahan sa isang interview. I-off ito kahit kailan.",
+    "linkedin": "LinkedIn profile",
+    "linkedinHint": "linkedin.com/in/pangalan-mo",
+    "save": "I-save",
+    "on": "Nakikita ka ng mga kumpanya bilang <bdi>{name}</bdi> hanggang {date}.",
+    "onNoName": "Nakikita ka ng mga kumpanya hanggang {date}.",
+    "needsLinkedin": "Ilagay ang LinkedIn profile mo para i-on ito.",
+    "failed": "Hindi ma-save. Subukang muli."
   },
   "verify": {
     "verify": "I-verify",
@@ -2511,6 +2535,7 @@
       "candidate_deleted": "Nag-delete ng aplikante",
       "candidate_renamed": "Pinalitan ang pangalan ng isang aplikante",
       "extra_time_set": "Binigyan ng dagdag na oras ang isang aplikante",
+      "candidate_mode_set": "Binago ang mode ng interview ng isang aplikante",
       "results_viewed": "Tiningnan ang mga resulta ng isang aplikante",
       "report_emailed": "Nag-email ng report",
       "member_invited": "Nag-imbita ng miyembro",
