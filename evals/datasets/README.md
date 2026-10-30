@@ -220,10 +220,10 @@ replacement took over, or the question now while it's still flagged), as traps f
 a trap for (`flagged_labels.py`): a wrong key only once a replacement with the same options moved
 it (`expected_key_correct` false, `right_key`), since a flag alone may be wrong; weak options and
 rewrites by their flag. A question already in the file stays as it is; new ones are added. The
-evals' own throwaway templates are left out. Companies' questions never: they may join only after
-the shared question bank's filter (no company, product, person or place details) exists, and never
-from an interview kept out of the bank (`company_questions()` in the script is where they'd
-come in). On 2026-10-29 no template question was flagged locally beyond the throwaway ones, so
+evals' own throwaway templates are left out. Companies' flagged questions only when their wording
+(topic, text, options) passed the shared question bank's filter (`bank_checks`: no organisation
+or private person named or revealed) and their interview isn't kept out of the bank
+(`company_questions()` in the script). On 2026-10-29 no template question was flagged locally beyond the throwaway ones, so
 the file isn't there yet.
 
 ## `titles.json` (by hand, 2026-10-22)

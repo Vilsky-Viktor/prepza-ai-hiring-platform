@@ -4,11 +4,13 @@ actually see. Runs in library's container, free:
 
     evals/run.sh library export_flagged.py
 
-Only platform templates' questions, word for word, as they were when flagged (the version a
+Platform templates' questions, word for word, as they were when flagged (the version a
 replacement took over, or the question now while it's still flagged); the evals' own throwaway
-templates (assistant_fixture.TEMPLATES) are left out. What each is a trap for: flagged_labels.py.
-Companies' questions: company_questions() below. A question already in the dataset stays as it
-is (frozen); new ones are added."""
+templates (assistant_fixture.TEMPLATES) are left out. And companies' questions, only those whose
+wording passed the shared question bank's filter (no organisation, person or place of theirs)
+from interviews not kept out of the bank: company_questions() below. What each is a trap for:
+flagged_labels.py. A question already in the dataset stays as it is (frozen); new ones are
+added."""
 
 import asyncio
 import json
@@ -29,15 +31,21 @@ ABOUT = (
     "Platform templates' flagged questions, word for word as they were when flagged, exported by "
     "export_flagged.py: traps for the verifier and the judge (flagged_labels.py). A wrong key only "
     "once a replacement with the same options moved it (expected_key_correct false, right_key); "
-    "weak options and rewrites by their flag. Never a company's question. See datasets/README.md."
+    "weak options and rewrites by their flag. Companies' flagged questions only when their wording "
+    "passed the shared question bank's filter and their interview isn't kept out of the bank. See "
+    "datasets/README.md."
 )
 
 
-def company_questions() -> list[dict]:
-    """Companies' flagged questions: none until the shared question bank's filter exists (no
-    company, product, person or place details). Then only questions that pass it, never one from
-    an interview kept out of the bank (`keep_private`), and no other company text in a dataset."""
-    return []
+async def company_questions() -> list[dict]:
+    """Companies' flagged questions, now and as replaced, that passed the shared question bank's
+    filter as they read (bank_checks) and come from interviews not kept out of the bank
+    (`keep_private`): no company text the filter didn't clear reaches a dataset."""
+    async with Session() as session:
+        now = await quality_signals.flagged_companies(session)
+        replaced = await quality_signals.replaced_companies(session)
+
+    return await traps(now, replaced)
 
 
 def as_trap(text, options, flag, topic, template, replaced_by) -> dict | None:
@@ -58,11 +66,11 @@ def as_trap(text, options, flag, topic, template, replaced_by) -> dict | None:
     }
 
 
-async def flagged() -> list[dict]:
+async def traps(now: list, replaced: list) -> list[dict]:
+    """Traps of questions flagged now and of revisions replaced while flagged."""
+    ids = {question.id for _, question, _, _ in replaced}
+
     async with Session() as session:
-        now = await quality_signals.flagged_templates(session)
-        replaced = await quality_signals.replaced_templates(session)
-        ids = {question.id for _, question, _, _ in replaced}
         versions = await quality_signals.revisions_of(session, ids)
 
     found = [
@@ -76,7 +84,15 @@ async def flagged() -> list[dict]:
             as_trap(revision.text, revision.options, revision.flag, topic, template, options)
         )
 
-    return [item for item in found if item] + company_questions()
+    return [item for item in found if item]
+
+
+async def flagged() -> list[dict]:
+    async with Session() as session:
+        now = await quality_signals.flagged_templates(session)
+        replaced = await quality_signals.replaced_templates(session)
+
+    return await traps(now, replaced) + await company_questions()
 
 
 def main() -> None:
