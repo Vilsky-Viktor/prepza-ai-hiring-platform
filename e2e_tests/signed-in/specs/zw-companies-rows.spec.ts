@@ -74,10 +74,16 @@ test("companies are rows that open their company", async ({ signInAs }) => {
   const rowBox = (await row(withLogo.id).boundingBox())!
   const tileBox = (await tile.boundingBox())!
   expect(Math.abs(tileBox.x - rowBox.x)).toBeLessThan(1)
-  // Under the row's top border, if it has one (the list's dividers), down to its bottom.
-  expect(tileBox.y - rowBox.y).toBeGreaterThanOrEqual(0)
-  expect(tileBox.y - rowBox.y).toBeLessThanOrEqual(1)
-  expect(Math.abs(tileBox.y + tileBox.height - (rowBox.y + rowBox.height))).toBeLessThan(1)
+  // Between the row's borders, if it has them (the list's dividers: a bottom one on every row
+  // but the last, and the companies' order is their random names').
+  const borders = await row(withLogo.id).evaluate((element) => {
+    const style = getComputedStyle(element)
+
+    return { top: parseFloat(style.borderTopWidth), bottom: parseFloat(style.borderBottomWidth) }
+  })
+  expect(Math.abs(tileBox.y - (rowBox.y + borders.top))).toBeLessThan(1)
+  const rowBottom = rowBox.y + rowBox.height - borders.bottom
+  expect(Math.abs(tileBox.y + tileBox.height - rowBottom)).toBeLessThan(1)
   expect(Math.abs(tileBox.width - tileBox.height)).toBeLessThan(1)
   // Without a logo, the first letter.
   const letterTile = row(noLogo.id).getByTestId("company-logo")
