@@ -1746,11 +1746,6 @@
     "timingNone": "No time limit",
     "timingNote": "Practice isn't compared with anyone, so take more time, or none, if you need it."
   },
-  "verify": {
-    "verify": "Verify",
-    "verified": "Verified: <bdi>{domain}</bdi>",
-    "title": "Verify company",
-    "text": "Enter the company's website. Once an owner or admin signs in with a work email on it, like you@acme.com (right away if that's you), we review the company and add the badge.",
   "openToOffers": {
     "title": "Open to offers",
     "text": "Companies hiring on prepza will see your name, LinkedIn profile and latest practice results, and may invite you to an interview. Turn it off at any time.",
@@ -1762,6 +1757,11 @@
     "needsLinkedin": "Enter your LinkedIn profile to turn it on.",
     "failed": "Couldn't save. Try again."
   },
+  "verify": {
+    "verify": "Verify",
+    "verified": "Verified: <bdi>{domain}</bdi>",
+    "title": "Verify company",
+    "text": "Enter the company's website. Once an owner or admin signs in with a work email on it, like you@acme.com (right away if that's you), we review the company and add the badge.",
     "website": "Company website",
     "save": "Save",
     "done": "Verified: <bdi>{domain}</bdi>",
