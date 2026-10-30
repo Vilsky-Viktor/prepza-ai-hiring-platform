@@ -72,8 +72,7 @@ export const CLICK_QUESTIONS: DemoQuestion[] = [
   },
 ]
 
-// The question Mira reads in voice mode, and what the candidate says: the answer, then the
-// yes that confirms it.
+// The question Mira reads in voice mode.
 export const VOICE_QUESTION: DemoQuestion = {
   topic: "Visualisation",
   section: 2,
@@ -87,7 +86,6 @@ export const VOICE_QUESTION: DemoQuestion = {
   ],
   picks: [1],
 }
-export const DEMO_SAID = { answer: "The line chart", yes: "Yes" }
 
 // The site asking for the microphone in the browser's prompt.
 export const DEMO_SITE = "prepza.ai"

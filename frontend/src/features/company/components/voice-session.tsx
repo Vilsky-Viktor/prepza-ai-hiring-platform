@@ -92,9 +92,12 @@ export function VoiceSession({
         // The pick counts, and quietly on to the next question: a message would only distract.
         onTimeUp={() => {
           setTimedOut(question?.question_id ?? null)
-          // The question's time is over even if its pick can't be saved: the next opens.
+          // The question's time is over even if its pick can't be saved: the next opens. An
+          // answer spoken in time is waited for, and what it picked is saved without asking.
           voice.announce("time-up")
-          void sendThen(onAdvance, true)
+          void voice
+            .timeUp()
+            .then((picks) => sendThen(onAdvance, true, picks ?? undefined))
         }}
       />
       {/* Two parts, 30% and 70%, stacked on phones: the voices (Mira's, then the candidate's with
@@ -118,7 +121,6 @@ export function VoiceSession({
           <VoiceTurn status={voice.status} />
           <VoiceHeard
             waveRef={waves.you}
-            heard={voice.heard}
             problem={voice.problem}
             status={voice.status}
           />
@@ -148,7 +150,7 @@ export function VoiceSession({
               <QuestionText
                 heading
                 text={prose}
-                className="text-2xl leading-snug font-medium max-sm:text-xl"
+                className="text-2xl leading-snug font-normal max-sm:text-xl"
               />
             </div>
             {code && <QuestionCode code={code} />}
