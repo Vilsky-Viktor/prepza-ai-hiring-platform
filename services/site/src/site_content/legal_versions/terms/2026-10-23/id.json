@@ -42,15 +42,18 @@
         "Hasil mendukung keputusan perusahaan; hasil tidak membuat keputusan itu. Perusahaan meninjau hasil sebelum memutuskan, tidak menolak kandidat hanya berdasarkan skor, dan memungkinkan kandidat meminta agar hasilnya ditinjau oleh manusia.",
         "Perusahaan memberikan penyesuaian kepada kandidat yang membutuhkannya, seperti waktu tambahan, yang dapat diatur untuk setiap kandidat sebelum mereka mulai.",
         "Perusahaan yang menghubungkan alatnya sendiri (sistem pelacakan pelamar, Slack, atau sistemnya melalui API dan webhook prepza) memilih ke mana hasil kandidatnya dikirim dan bertanggung jawab atas alat tersebut, serta tidak mengaturnya untuk menolak kandidat secara otomatis berdasarkan hasil prepza.",
-        "Kunci API dan rahasia webhook wajib dirahasiakan oleh perusahaan: apa pun yang dilakukan dengan kunci yang valid dianggap dilakukan untuk perusahaan, seolah-olah oleh anggota yang membuatnya. Kunci atau webhook yang mungkin bocor harus segera dihapus di halaman API perusahaan.",
+        "Kunci API dan rahasia webhook wajib dirahasiakan oleh perusahaan: apa pun yang dilakukan dengan kunci yang valid dilakukan untuk perusahaan oleh kunci itu, dalam batas izin yang diberikan kepadanya, dan log tindakan perusahaan mencantumkan kunci tersebut. Kunci dan webhook adalah milik perusahaan dan tetap ada saat anggota yang membuatnya keluar. Kunci atau webhook yang mungkin bocor harus segera dihapus di halaman API perusahaan.",
         "Perjanjian pemrosesan data di prepza.ai/dpa merupakan bagian dari ketentuan ini bagi setiap perusahaan yang menggunakan prepza untuk kandidat.",
+        "Perusahaan menggunakan apa yang dilihatnya tentang orang yang terbuka untuk tawaran kerja hanya untuk mempertimbangkan mereka bagi lowongannya sendiri dan untuk mengundang mereka. Hasil mereka adalah hasil latihan, bukan kualifikasi, dan daftarnya bukan rekomendasi: urutannya hanya menunjukkan siapa yang terakhir berlatih.",
+        "Perusahaan yang mengundang seseorang dari tab Temukan memberi tahu orang itu, paling lambat dalam undangan, siapa perusahaan itu, mengapa menghubunginya, apa yang dilihatnya, dan hak-haknya.",
         "Selama prepza belum memiliki audit bias independen, perusahaan tidak boleh menggunakannya untuk menilai kandidat untuk pekerjaan di New York City, tempat Local Law 144 mewajibkan audit tersebut."
       ]
     },
     {
       "heading": "Latihan",
       "items": [
-        "Wawancara latihan gratis, dan hasilnya hanya bisa dilihat olehmu."
+        "Wawancara latihan gratis, dan hasilnya hanya bisa dilihat olehmu kecuali kamu mengaktifkan Terbuka untuk tawaran kerja.",
+        "Terbuka untuk tawaran kerja bersifat opsional dan nonaktif kecuali kamu mengaktifkannya. Selama aktif, perusahaan yang merekrut lewat prepza melihat namamu, profil LinkedIn-mu, dan hasil latihan berwaktu terbarumu pada topik wawancara mereka, dan bisa mengundangmu ke wawancara; undangan dikirim ke email akunmu. prepza tidak memeringkat atau merekomendasikanmu. Kamu bisa mematikannya kapan saja di Pengaturan, dan kamu langsung hilang dari daftar setiap perusahaan. Fitur ini juga berakhir setahun setelah terakhir kali kamu mengaktifkannya atau menyimpan profil LinkedIn-mu."
       ]
     },
     {

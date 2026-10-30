@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Oui. Ouvrez votre entretien en tant que candidat depuis sa page, gratuitement : les aperçus n'apparaissent ni parmi vos candidats ni dans les statistiques des questions. Vous pouvez aussi passer n'importe lequel des entretiens d'entraînement gratuits.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Les entreprises peuvent-elles me trouver grâce à mon entraînement ?",
+        "answer": "Seulement si vous le choisissez. Activez Ouvert aux opportunités après une session d'entraînement ou dans les Paramètres, avec l'adresse de votre profil LinkedIn. Les entreprises qui recrutent sur prepza voient alors votre nom, votre profil LinkedIn et votre dernier résultat d'entraînement sur chaque sujet de leurs entretiens sur lequel vous vous êtes entraîné, et peuvent vous inviter à un entretien. prepza ne vous classe pas et ne vous recommande pas. Désactivez-le à tout moment dans les Paramètres : vous disparaissez aussitôt de la liste de toutes les entreprises. Il prend aussi fin un an après la dernière fois que vous l'avez activé ou avez enregistré votre profil LinkedIn.",
+    },
+    {
         "key": "cheating",
         "question": "Les candidats peuvent-ils utiliser une IA ou chercher les réponses ?",
         "answer": "Chaque candidat reçoit ses propres questions aléatoires, dans son propre ordre, avec [un minuteur sur chaque question](/guides/skills-test-timing-and-extra-time) contrôlé par notre serveur, il a donc peu de temps pour chercher les réponses ou demander à une IA. Les résultats montrent aussi quand un candidat a quitté la page, copié du texte ou répondu trop vite pour avoir lu la question. Une fois qu'il a terminé, sa page relève aussi les schémas de réponse que laisse souvent le fait de soumettre les questions à une IA, comme à peu près le même temps sur chaque question ou des questions difficiles réussies alors que des faciles sont ratées, et suggère des questions auxquelles il a bien répondu, à aborder lors d'un entretien en direct. Un schéma est une raison de poser des questions, pas une preuve. Avant de commencer, chaque candidat confirme aussi qu'il répondra par lui-même, sans outils d'IA ni l'aide d'autres personnes, et ses résultats l'indiquent.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "Est-il légal d'utiliser l'IA pour présélectionner des candidats dans l'UE ?",
         "answer": "Oui, avec des règles. Selon le règlement européen sur l'IA (AI Act), les outils qui notent des candidats sont très probablement à haut risque, avec des obligations à partir du 2 décembre 2027, et le RGPD s'applique déjà : une personne prend la décision d'embauche, les candidats sont informés de l'usage de l'IA et des traces sont conservées. prepza fonctionne ainsi : l'IA rédige les questions, des personnes de votre entreprise examinent les résultats et décident, et les candidats sont informés avant de commencer. Ceci n'est pas un conseil juridique ; [L'IA dans le recrutement est-elle légale dans l'UE ?](/guides/is-ai-hiring-legal-in-the-eu) explique les règles et les dates.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Pouvons-nous utiliser prepza pour des candidats au Royaume-Uni et aux États-Unis ?",
+        "answer": "Oui. L'accord de traitement des données couvre le droit britannique et américain, et les instructions pour les entreprises ainsi que les modèles d'information des candidats (avec des versions pour la ville de New York, l'Illinois et le Colorado) couvrent ce que vous devez dire aux candidats. Tant que prepza n'a pas fait l'objet d'un audit de biais indépendant, ne l'utilisez pas pour des postes dans la ville de New York.",
     },
     {
         "key": "emails",

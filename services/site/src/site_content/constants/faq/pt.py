@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Sim. Abra sua entrevista como candidato na página dela, sem custo: as prévias não aparecem entre seus candidatos nem nas estatísticas das questões. Você também pode fazer qualquer uma das simulações de entrevista gratuitas.",
     },
     {
+        "key": "open-to-offers",
+        "question": "As empresas podem me encontrar pela minha prática?",
+        "answer": "Só se você quiser. Ative Aberto a propostas depois de uma rodada de prática ou em Configurações, com o endereço do seu perfil do LinkedIn. As empresas que contratam pela prepza passam a ver seu nome, seu perfil do LinkedIn e seu resultado de prática mais recente em cada tema das entrevistas delas que você praticou, e podem convidar você para uma entrevista. A prepza não classifica nem recomenda você. Desative quando quiser em Configurações, e você some na hora da lista de todas as empresas; a opção também termina um ano depois da última vez que você a ativou ou salvou seu perfil do LinkedIn.",
+    },
+    {
         "key": "cheating",
         "question": "Os candidatos podem usar IA ou procurar as respostas?",
         "answer": "Cada candidato recebe suas próprias questões aleatórias, em sua própria ordem, com [um cronômetro em cada questão](/guides/skills-test-timing-and-extra-time) controlado pelo nosso servidor, então sobra pouco tempo para procurar respostas ou perguntar a uma IA. Os resultados também mostram quando um candidato saiu da página, copiou texto ou respondeu rápido demais para ter lido a questão. Quando ele termina, a página do candidato também aponta padrões de resposta que costumam aparecer quando alguém repassa as questões a uma IA, como mais ou menos o mesmo tempo em cada questão ou questões difíceis certas enquanto as fáceis estavam erradas, e sugere questões que ele acertou para explorar em uma entrevista ao vivo. Um padrão é um motivo para perguntar, não uma prova. Antes de começar, cada candidato também confirma que vai responder por conta própria, sem ferramentas de IA nem ajuda de outras pessoas, e os resultados mostram isso.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "É legal usar IA na triagem de candidatos na UE?",
         "answer": "Sim, com regras. Pelo Regulamento de IA da UE (AI Act), ferramentas que avaliam candidatos muito provavelmente são de alto risco, com obrigações a partir de 2 de dezembro de 2027, e o GDPR já se aplica: uma pessoa toma a decisão de contratação, os candidatos são informados de que a IA é usada e são mantidos registros. A prepza funciona assim: a IA escreve as perguntas, pessoas da sua empresa revisam os resultados e decidem, e os candidatos são informados antes de começar. Isso não é aconselhamento jurídico; [O uso de IA no recrutamento é legal na UE?](/guides/is-ai-hiring-legal-in-the-eu) explica as regras e as datas.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Podemos usar a prepza para candidatos no Reino Unido e nos Estados Unidos?",
+        "answer": "Sim. O acordo de tratamento de dados cobre a legislação do Reino Unido e dos Estados Unidos, e as instruções para empresas e os modelos de aviso aos candidatos (com versões para a cidade de Nova York, Illinois e Colorado) cobrem o que você deve informar aos candidatos. Até que a prepza tenha uma auditoria de viés independente, não a use para vagas na cidade de Nova York.",
     },
     {
         "key": "emails",

@@ -42,15 +42,18 @@
         "Os resultados apoiam a decisão da empresa; não a tomam. A empresa os revisa antes de decidir, não rejeita um candidato apenas pela pontuação e permite que o candidato peça que uma pessoa revise o resultado dele.",
         "A empresa oferece ao candidato que precisar uma adaptação, como tempo extra, que pode definir para cada candidato antes de ele começar.",
         "A empresa que conecta suas próprias ferramentas (um sistema de gestão de candidatos, o Slack ou seus sistemas por meio da API e dos webhooks da prepza) escolhe para onde vão os resultados dos seus candidatos, é responsável por essas ferramentas e não as configura para rejeitar candidatos automaticamente com base nos resultados da prepza.",
-        "As chaves de API e os segredos dos webhooks devem ser mantidos em sigilo pela empresa: tudo o que é feito com uma chave válida é feito em nome da empresa, como se fosse pelo membro que a criou. Uma chave ou um webhook que possa ter vazado deve ser excluído imediatamente na página de API da empresa.",
+        "As chaves de API e os segredos dos webhooks devem ser mantidos em sigilo pela empresa: tudo o que é feito com uma chave válida é feito para a empresa por essa chave, dentro das permissões que lhe foram concedidas, e o registro de ações da empresa identifica a chave. As chaves e os webhooks pertencem à empresa e permanecem quando o membro que os criou sai dela. Uma chave ou um webhook que possa ter vazado deve ser excluído imediatamente na página de API da empresa.",
         "O acordo de tratamento de dados disponível em prepza.ai/dpa faz parte destes termos para toda empresa que usa a prepza com candidatos.",
+        "A empresa usa o que vê das pessoas abertas a propostas apenas para considerá-las para as suas próprias vagas e convidá-las. Os resultados delas são resultados de prática, não uma qualificação, e a lista não é uma recomendação: a ordem mostra apenas quem praticou por último.",
+        "A empresa que convida alguém pela aba Descobrir informa a essa pessoa, no máximo no convite, quem é, por que entrou em contato, o que viu e quais são os direitos dela.",
         "Enquanto a prepza não tiver uma auditoria de viés independente, a empresa não pode usá-la para avaliar candidatos a vagas na cidade de Nova York, onde a Local Law 144 exige essa auditoria."
       ]
     },
     {
       "heading": "Prática",
       "items": [
-        "As entrevistas de prática são gratuitas, e os resultados delas são visíveis apenas para você."
+        "As entrevistas de prática são gratuitas, e os resultados delas são visíveis apenas para você, a menos que você ative Aberto a propostas.",
+        "Aberto a propostas é opcional e fica desativado a menos que você o ative. Enquanto estiver ativado, as empresas que contratam pela prepza veem o seu nome, o seu perfil do LinkedIn e os seus resultados mais recentes de prática cronometrada nos temas das entrevistas delas, e podem convidar você para uma entrevista; o convite vai para o e-mail da sua conta. A prepza não classifica nem recomenda você. Você pode desativá-lo a qualquer momento em Configurações, e então some na hora da lista de todas as empresas. Ele também termina um ano depois da última vez que você o ativou ou salvou o seu perfil do LinkedIn."
       ]
     },
     {

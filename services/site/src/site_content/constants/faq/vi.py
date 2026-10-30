@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Có. Mở buổi phỏng vấn của bạn với tư cách ứng viên từ trang của nó, miễn phí: các lần xem trước không xuất hiện trong danh sách ứng viên hay trong thống kê câu hỏi. Bạn cũng có thể làm bất kỳ buổi phỏng vấn luyện tập miễn phí nào.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Các công ty có thể tìm thấy tôi qua phần luyện tập không?",
+        "answer": "Chỉ khi bạn chọn như vậy. Bật Sẵn sàng nhận cơ hội việc làm sau một lượt luyện tập hoặc trong Cài đặt, kèm địa chỉ hồ sơ LinkedIn của bạn. Khi đó, các công ty tuyển dụng trên prepza sẽ thấy tên, hồ sơ LinkedIn và kết quả luyện tập mới nhất của bạn ở từng chủ đề trong các buổi phỏng vấn của họ mà bạn đã luyện tập, và có thể mời bạn phỏng vấn. prepza không xếp hạng hay giới thiệu bạn. Bạn có thể tắt bất cứ lúc nào trong Cài đặt, và bạn biến mất khỏi danh sách của mọi công ty ngay lập tức; tính năng này cũng tự kết thúc sau một năm kể từ lần cuối bạn bật nó hoặc lưu hồ sơ LinkedIn.",
+    },
+    {
         "key": "cheating",
         "question": "Ứng viên có thể dùng AI hoặc tra cứu đáp án không?",
         "answer": "Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng theo thứ tự riêng, với [thời gian giới hạn cho từng câu](/guides/skills-test-timing-and-extra-time) do máy chủ của chúng tôi theo dõi, nên có rất ít thời gian để tra cứu đáp án hay hỏi AI. Bảng điểm cũng cho thấy khi ứng viên rời trang, sao chép văn bản hoặc trả lời quá nhanh để kịp đọc câu hỏi. Khi ứng viên làm xong, trang của họ còn chỉ ra những mẫu trả lời thường xuất hiện khi chuyển câu hỏi cho AI rồi chép lại đáp án, chẳng hạn mọi câu hỏi tốn gần như cùng một khoảng thời gian, hoặc câu khó thì đúng trong khi câu dễ lại sai, và gợi ý những câu ứng viên đã trả lời đúng để hỏi lại trong buổi phỏng vấn trực tiếp. Một mẫu trả lời là lý do để hỏi, không phải bằng chứng. Trước khi bắt đầu, mỗi ứng viên cũng xác nhận sẽ tự trả lời, không dùng công cụ AI hay nhờ người khác, và bảng điểm sẽ cho thấy điều đó.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "Dùng AI để sàng lọc ứng viên ở EU có hợp pháp không?",
         "answer": "Có, nhưng phải theo quy định. Theo Đạo luật AI của EU (EU AI Act), các công cụ chấm điểm ứng viên rất có thể thuộc nhóm rủi ro cao, với các nghĩa vụ áp dụng từ ngày 2/12/2027, và GDPR thì đã áp dụng: con người đưa ra quyết định tuyển dụng, ứng viên được thông báo rằng AI được sử dụng, và hồ sơ được lưu giữ. prepza hoạt động đúng như vậy: AI soạn câu hỏi, người trong công ty bạn xem xét kết quả và quyết định, và ứng viên được thông báo trước khi bắt đầu. Đây không phải là tư vấn pháp lý; [Dùng AI trong tuyển dụng có hợp pháp ở EU không?](/guides/is-ai-hiring-legal-in-the-eu) giải thích các quy định và mốc thời gian.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Chúng tôi có thể dùng prepza cho ứng viên ở Vương quốc Anh và Hoa Kỳ không?",
+        "answer": "Có. Thỏa thuận xử lý dữ liệu bao quát luật của Vương quốc Anh và Hoa Kỳ, còn hướng dẫn cho các công ty và các mẫu thông báo cho ứng viên (có phiên bản cho Thành phố New York, Illinois và Colorado) bao quát những gì bạn phải cho ứng viên biết. Cho đến khi prepza có một cuộc kiểm toán thiên lệch độc lập, đừng dùng prepza cho các công việc tại Thành phố New York.",
     },
     {
         "key": "emails",

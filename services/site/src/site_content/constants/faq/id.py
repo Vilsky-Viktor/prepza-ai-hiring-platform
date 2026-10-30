@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Bisa. Buka wawancaramu sebagai kandidat dari halamannya, gratis: pratinjau tidak muncul di antara kandidatmu atau di statistik soal. Kamu juga bisa mengikuti wawancara latihan gratis mana pun.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Bisakah perusahaan menemukanku lewat latihanku?",
+        "answer": "Hanya jika kamu memilihnya. Aktifkan Terbuka untuk tawaran kerja setelah sesi latihan atau di Pengaturan, dengan alamat profil LinkedIn-mu. Perusahaan yang merekrut lewat prepza lalu melihat nama, profil LinkedIn, dan hasil latihan terbarumu di setiap topik wawancara mereka yang pernah kamu latih, dan bisa mengundangmu ke wawancara. prepza tidak memeringkat atau merekomendasikanmu. Matikan kapan saja di Pengaturan, dan kamu langsung hilang dari daftar setiap perusahaan; fitur ini juga berakhir setahun setelah terakhir kali kamu mengaktifkannya atau menyimpan profil LinkedIn-mu.",
+    },
+    {
         "key": "cheating",
         "question": "Bisakah kandidat memakai AI atau mencari jawabannya?",
         "answer": "Setiap kandidat mendapat soal acak sendiri dengan urutan sendiri, dengan [batas waktu di tiap soal](/guides/skills-test-timing-and-extra-time) yang dijaga server kami, jadi hanya ada sedikit waktu untuk mencari jawaban atau bertanya ke AI. Scorecard juga menunjukkan saat kandidat meninggalkan halaman, menyalin teks, atau menjawab terlalu cepat untuk sempat membaca soal. Setelah selesai, halamannya juga menunjukkan pola jawaban yang biasanya muncul saat soal diteruskan ke AI, seperti waktu yang kira-kira sama di setiap soal atau soal sulit benar sementara soal mudah salah, dan menyarankan soal yang dijawab benar oleh kandidat untuk ditanyakan dalam wawancara langsung. Pola adalah alasan untuk bertanya, bukan bukti. Sebelum mulai, setiap kandidat juga mengonfirmasi akan menjawab sendiri, tanpa alat AI atau bantuan orang lain, dan scorecard-nya menunjukkan hal itu.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "Apakah legal memakai AI untuk menyaring kandidat di UE?",
         "answer": "Ya, dengan aturan. Menurut EU AI Act, alat yang menilai kandidat sangat mungkin tergolong berisiko tinggi, dengan kewajiban mulai 2 Desember 2027, dan GDPR sudah berlaku: keputusan perekrutan diambil oleh manusia, kandidat diberi tahu bahwa AI digunakan, dan catatan disimpan. prepza bekerja seperti itu: AI menulis soal, orang-orang di perusahaanmu meninjau hasilnya dan memutuskan, dan kandidat diberi tahu sebelum mulai. Ini bukan nasihat hukum; [Apakah rekrutmen dengan AI legal di UE?](/guides/is-ai-hiring-legal-in-the-eu) menjelaskan aturan dan tanggalnya.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Bisakah kami memakai prepza untuk kandidat di Inggris dan AS?",
+        "answer": "Bisa. Perjanjian pemrosesan data mencakup hukum Inggris dan AS, dan petunjuk untuk perusahaan serta templat pemberitahuan kandidat (dengan versi untuk New York City, Illinois, dan Colorado) mencakup apa yang wajib kamu sampaikan kepada kandidat. Selama prepza belum menjalani audit bias independen, jangan gunakan untuk lowongan di New York City.",
     },
     {
         "key": "emails",

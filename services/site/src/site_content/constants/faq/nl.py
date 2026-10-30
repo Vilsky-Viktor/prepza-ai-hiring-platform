@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Ja. Open je interview gratis als kandidaat vanaf de pagina ervan: voorbeelden verschijnen niet tussen je kandidaten of in de vraagstatistieken. Je kunt ook elk gratis oefeninterview doen.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Kunnen bedrijven me vinden via mijn oefeningen?",
+        "answer": "Alleen als je daarvoor kiest. Zet Open voor nieuwe kansen aan na een oefenronde of in Instellingen, met het adres van je LinkedIn-profiel. Bedrijven die via prepza werven, zien dan je naam, je LinkedIn-profiel en je nieuwste oefenresultaat op elk onderwerp van hun interviews dat je hebt geoefend, en kunnen je uitnodigen voor een interview. prepza rangschikt je niet en beveelt je niet aan. Zet het op elk moment uit in Instellingen, en je verdwijnt meteen uit de lijst van elk bedrijf; het stopt ook een jaar nadat je het voor het laatst hebt aangezet of je LinkedIn-profiel hebt opgeslagen.",
+    },
+    {
         "key": "cheating",
         "question": "Kunnen kandidaten AI gebruiken of de antwoorden opzoeken?",
         "answer": "Elke kandidaat krijgt eigen willekeurige vragen in een eigen volgorde, met [een timer bij elke vraag](/guides/skills-test-timing-and-extra-time) die onze server bijhoudt, dus er is weinig tijd om antwoorden op te zoeken of het een AI te vragen. De resultaten laten ook zien wanneer een kandidaat de pagina verliet, tekst kopieerde of te snel antwoordde om de vraag te hebben gelezen. Zodra ze klaar zijn, wijst de pagina van de kandidaat ook op antwoordpatronen die vaak ontstaan als iemand de vragen aan een AI doorgeeft en de antwoorden overneemt, zoals ongeveer even lang bij elke vraag of moeilijke vragen goed terwijl makkelijke fout waren, en stelt vragen voor die de kandidaat goed had, om in een live gesprek op door te vragen. Een patroon is een reden om door te vragen, geen bewijs. Voordat ze beginnen, bevestigt elke kandidaat ook dat die de vragen zelf beantwoordt, zonder AI-tools of hulp van anderen, en de resultaten laten dat zien.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "Is het legaal om AI te gebruiken voor de preselectie van kandidaten in de EU?",
         "answer": "Ja, met regels. Onder de Europese AI-verordening (AI Act) zijn tools die kandidaten beoordelen zeer waarschijnlijk hoog risico, met verplichtingen vanaf 2 december 2027, en de AVG geldt nu al: een mens neemt het besluit om iemand aan te nemen, kandidaten horen dat er AI wordt gebruikt en alles wordt vastgelegd. prepza werkt zo: AI schrijft de vragen, mensen in jouw bedrijf bekijken de resultaten en beslissen, en kandidaten worden geïnformeerd voordat ze beginnen. Dit is geen juridisch advies; [Is AI bij werving en selectie legaal in de EU?](/guides/is-ai-hiring-legal-in-the-eu) legt de regels en de data uit.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Kunnen we prepza gebruiken voor kandidaten in het Verenigd Koninkrijk en de VS?",
+        "answer": "Ja. De verwerkersovereenkomst dekt het Britse en Amerikaanse recht, en de instructies voor bedrijven en de sjablonen voor kandidaatinformatie (met versies voor New York City, Illinois en Colorado) dekken wat je kandidaten moet vertellen. Zolang prepza geen onafhankelijke bias-audit heeft, gebruik je het niet voor vacatures in New York City.",
     },
     {
         "key": "emails",

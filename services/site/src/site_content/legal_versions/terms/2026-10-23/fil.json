@@ -42,15 +42,18 @@
         "Sinusuportahan ng mga resulta ang desisyon ng kumpanya; hindi ang mga ito ang nagpapasya. Sinusuri ng kumpanya ang mga resulta bago magpasya, hindi nito tinatanggihan ang isang aplikante batay lamang sa score, at pinapayagan nito ang aplikante na humiling na suriin ng isang tao ang kanyang resulta.",
         "Nagbibigay ang kumpanya ng akomodasyon sa aplikanteng nangangailangan nito, gaya ng dagdag na oras, na maaari nitong itakda para sa bawat aplikante bago sila magsimula.",
         "Ang kumpanyang nagkokonekta ng sarili nitong mga tool (isang applicant tracking system, Slack, o ang mga sistema nito sa pamamagitan ng API at mga webhook ng prepza) ang pumipili kung saan pupunta ang mga resulta ng mga aplikante nito at may pananagutan sa mga tool na iyon, at hindi nito sine-set up ang mga ito para awtomatikong tanggihan ang mga aplikante batay sa mga resulta ng prepza.",
-        "Tungkulin ng kumpanya na panatilihing lihim ang mga API key at ang mga secret ng mga webhook: anumang gawin gamit ang isang valid na key ay ginagawa para sa kumpanya, na parang ginawa ng miyembrong gumawa nito. Ang key o webhook na maaaring na-leak ay dapat burahin agad sa API page ng kumpanya.",
+        "Tungkulin ng kumpanya na panatilihing lihim ang mga API key at ang mga secret ng mga webhook: anumang gawin gamit ang isang valid na key ay ginagawa para sa kumpanya ng key na iyon, sa loob ng mga pahintulot na ibinigay rito, at pinangangalanan ng log ng aksyon ng kumpanya ang key. Pag-aari ng kumpanya ang mga key at webhook at nananatili ang mga ito kapag umalis ang miyembrong gumawa ng mga ito. Ang key o webhook na maaaring na-leak ay dapat burahin agad sa API page ng kumpanya.",
         "Ang kasunduan sa pagproseso ng data sa prepza.ai/dpa ay bahagi ng mga tuntuning ito para sa bawat kumpanyang gumagamit ng prepza para sa mga aplikante.",
+        "Ginagamit lang ng isang kumpanya ang nakikita nito tungkol sa mga taong open to offers para isaalang-alang sila sa sarili nitong mga trabaho at para imbitahan sila. Mga resulta ng practice ang mga resulta nila, hindi kwalipikasyon, at hindi rekomendasyon ang listahan: ipinapakita lang ng pagkakasunod kung sino ang huling nag-practice.",
+        "Ang kumpanyang nag-iimbita ng isang tao mula sa Discover tab nito ay nagsasabi sa kanya, sa imbitasyon sa pinakahuli, kung sino ito, bakit siya kinontak, ano ang nakita nito at ang kanyang mga karapatan.",
         "Hangga't walang independiyenteng bias audit ang prepza, hindi ito maaaring gamitin ng kumpanya para suriin ang mga aplikante para sa mga trabaho sa New York City, kung saan hinihingi ito ng Local Law 144."
       ]
     },
     {
       "heading": "Practice",
       "items": [
-        "Libre ang mga practice interview, at ikaw lang ang nakakakita ng mga resulta nito."
+        "Libre ang mga practice interview, at ikaw lang ang nakakakita ng mga resulta nito maliban kung i-on mo ang Open to offers.",
+        "Opsyonal ang Open to offers at naka-off maliban kung i-on mo ito. Habang naka-on ito, nakikita ng mga kumpanyang nagha-hire sa prepza ang pangalan mo, ang iyong LinkedIn profile at ang pinakabago mong naka-time na mga resulta ng practice sa mga topic ng kanilang mga interview, at puwede ka nilang imbitahan sa isang interview; mapupunta ang imbitasyon sa email ng iyong account. Hindi ka nira-rank o inirerekomenda ng prepza. Puwede mo itong i-off kahit kailan sa Mga setting, at agad kang mawawala sa listahan ng bawat kumpanya. Natatapos din ito isang taon matapos mo itong huling i-on o i-save ang iyong LinkedIn profile."
       ]
     },
     {

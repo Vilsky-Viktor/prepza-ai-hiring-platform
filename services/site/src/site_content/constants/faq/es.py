@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Sí. Abre tu entrevista como candidato desde su página, sin coste: las vistas previas no aparecen entre tus candidatos ni en las estadísticas de preguntas. También puedes hacer cualquiera de las entrevistas de práctica gratuitas.",
     },
     {
+        "key": "open-to-offers",
+        "question": "¿Pueden las empresas encontrarme a través de mi práctica?",
+        "answer": "Solo si tú lo eliges. Activa Abierto a ofertas después de una ronda de práctica o en Ajustes, con la dirección de tu perfil de LinkedIn. Entonces, las empresas que contratan en prepza ven tu nombre, tu perfil de LinkedIn y tu último resultado de práctica en cada tema de sus entrevistas que hayas practicado, y pueden invitarte a una entrevista. prepza no te clasifica ni te recomienda. Desactívalo cuando quieras en Ajustes y desaparecerás al instante de la lista de todas las empresas; además, se desactiva un año después de la última vez que lo activaste o guardaste tu perfil de LinkedIn.",
+    },
+    {
         "key": "cheating",
         "question": "¿Pueden los candidatos usar IA o buscar las respuestas?",
         "answer": "Cada candidato recibe sus propias preguntas aleatorias en su propio orden, con [un temporizador en cada pregunta](/guides/skills-test-timing-and-extra-time) que controla nuestro servidor, así que hay poco tiempo para buscar las respuestas o preguntar a una IA. Las fichas de evaluación también muestran cuándo un candidato salió de la página, copió texto o respondió demasiado rápido para haber leído la pregunta. Cuando termina, su página también señala patrones de respuesta que suele dejar pasarle las preguntas a una IA, como más o menos el mismo tiempo en cada pregunta o preguntas difíciles acertadas mientras fallaba las fáciles, y sugiere preguntas que acertó para tratar en una entrevista en vivo. Un patrón es un motivo para preguntar, no una prueba. Antes de empezar, cada candidato también confirma que responderá por su cuenta, sin herramientas de IA ni ayuda de otras personas, y su ficha de evaluación lo muestra.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "¿Es legal usar IA en la preselección de candidatos en la UE?",
         "answer": "Sí, con normas. Según el Reglamento de IA de la UE (AI Act), las herramientas que puntúan a candidatos son muy probablemente de alto riesgo, con obligaciones desde el 2 de diciembre de 2027, y el RGPD ya se aplica: una persona toma la decisión de contratación, se informa a los candidatos de que se usa IA y se guardan registros. prepza funciona así: la IA redacta las preguntas, las personas de tu empresa revisan los resultados y deciden, y se informa a los candidatos antes de empezar. Esto no es asesoramiento jurídico; [¿Es legal usar IA en la selección de personal en la UE?](/guides/is-ai-hiring-legal-in-the-eu) explica las normas y las fechas.",
+    },
+    {
+        "key": "uk_us",
+        "question": "¿Podemos usar prepza con candidatos del Reino Unido y Estados Unidos?",
+        "answer": "Sí. El acuerdo de tratamiento de datos cubre la legislación del Reino Unido y de Estados Unidos, y las instrucciones para empresas y las plantillas de aviso para candidatos (con versiones para la ciudad de Nueva York, Illinois y Colorado) cubren lo que debes comunicar a los candidatos. Hasta que prepza tenga una auditoría de sesgos independiente, no lo uses para puestos en la ciudad de Nueva York.",
     },
     {
         "key": "emails",

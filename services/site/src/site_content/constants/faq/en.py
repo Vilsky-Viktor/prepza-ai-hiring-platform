@@ -27,6 +27,11 @@ FAQ = [
         "answer": "Yes. Open your interview as a candidate from its page, free of charge: previews don't appear among your candidates or in question statistics. You can also take any of the free practice interviews.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Can companies find me through my practice?",
+        "answer": "Only if you choose to. Turn on Open to offers after a practice round or in Settings, with your LinkedIn profile's address. Companies hiring on prepza then see your name, LinkedIn profile and latest practice result on each subject of their interviews that you practised, and may invite you to an interview. prepza doesn't rank or recommend you. Turn it off at any time in Settings, and you disappear from every company's list at once; it also ends a year after you last turned it on or saved your LinkedIn profile.",
+    },
+    {
         "key": "cheating",
         "question": "Can candidates use AI or look up the answers?",
         "answer": "Every candidate gets their own random questions in their own order, with [a timer on each question](/guides/skills-test-timing-and-extra-time) that our server keeps, so there's little time to look answers up or ask an AI. The scorecard also shows when a candidate left the page, copied text, or answered too fast to have read the question. Once they finish, their page also points out answer patterns that relaying questions to an AI tends to leave, such as about the same time on every question or hard questions right while easy ones were wrong, and suggests questions they got right to ask about in a live interview. A pattern is a reason to ask, not proof. Before starting, each candidate also confirms they'll answer on their own, without AI tools or other people, and their scorecard shows it.",
@@ -120,6 +125,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "Is it legal to use AI to screen candidates in the EU?",
         "answer": "Yes, with rules. Under the EU AI Act, tools that score candidates are very likely high-risk, with duties from 2 December 2027, and the GDPR already applies: a person makes the hiring decision, candidates are told AI is used, and records are kept. prepza works that way: AI writes the questions, people at your company review the results and decide, and candidates are told before they start. This isn't legal advice; [Is AI hiring legal in the EU?](/guides/is-ai-hiring-legal-in-the-eu) explains the rules and the dates.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Can we use prepza for candidates in the UK and the US?",
+        "answer": "Yes. The data processing agreement covers UK and US law, and the instructions for companies and the candidate notice templates (with New York City, Illinois and Colorado versions) cover what you must tell candidates. Until prepza has an independent bias audit, don't use it for jobs in New York City.",
     },
     {
         "key": "emails",

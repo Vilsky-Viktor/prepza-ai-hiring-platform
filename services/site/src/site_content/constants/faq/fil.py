@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Oo. Buksan ang iyong interview bilang aplikante mula sa page nito, nang libre: hindi lumalabas ang mga preview sa iyong mga aplikante o sa statistics ng mga tanong. Puwede mo ring sagutan ang alinman sa mga libreng practice interview.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Puwede ba akong mahanap ng mga kumpanya sa pamamagitan ng practice ko?",
+        "answer": "Kung pipiliin mo lang. I-on ang Open to offers pagkatapos ng isang practice round o sa Settings, kasama ang address ng iyong LinkedIn profile. Makikita na ng mga kumpanyang nagha-hire sa prepza ang pangalan mo, LinkedIn profile at pinakabagong resulta ng practice mo sa bawat topic ng kanilang mga interview na pinag-practice-an mo, at puwede ka nilang imbitahan sa isang interview. Hindi ka nira-rank o inirerekomenda ng prepza. I-off ito kahit kailan sa Settings, at agad kang mawawala sa listahan ng bawat kumpanya; natatapos din ito isang taon matapos mo itong huling i-on o i-save ang iyong LinkedIn profile.",
+    },
+    {
         "key": "cheating",
         "question": "Puwede bang gumamit ng AI ang mga aplikante o hanapin ang mga sagot?",
         "answer": "Bawat aplikante ay may sariling random na mga tanong sa sarili nilang pagkakasunod-sunod, may [timer sa bawat tanong](/guides/skills-test-timing-and-extra-time) na binabantayan ng aming server, kaya kaunti lang ang oras para maghanap ng sagot o magtanong sa AI. Ipinapakita rin ng scorecard ng aplikante kung kailan siya umalis sa page, kumopya ng text, o sumagot nang masyadong mabilis para nabasa ang tanong. Kapag tapos na siya, itinuturo rin ng kanyang page ang mga pattern ng sagot na kadalasang naiiwan kapag ipinapasa ang mga tanong sa AI, gaya ng halos parehong oras sa bawat tanong o tama ang mahihirap na tanong habang mali ang madadali, at nagmumungkahi ng mga tanong na tama ang sagot niya para itanong sa isang live na interview. Ang pattern ay dahilan para magtanong, hindi patunay. Bago magsimula, kinukumpirma rin ng bawat aplikante na sasagot siya nang mag-isa, nang walang AI tool o tulong ng ibang tao, at ipinapakita ito ng kanyang scorecard.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "Legal ba ang paggamit ng AI sa pag-screen ng mga aplikante sa EU?",
         "answer": "Oo, basta may sinusunod na patakaran. Sa ilalim ng EU AI Act, malaki ang posibilidad na high-risk ang mga tool na nag-i-score ng mga aplikante, na may mga obligasyon simula 2 Disyembre 2027, at umiiral na ang GDPR: tao ang gumagawa ng desisyon sa pag-hire, sinasabihan ang mga aplikante na ginagamit ang AI, at may itinatagong mga record. Ganito gumagana ang prepza: AI ang sumusulat ng mga tanong, ang mga tao sa iyong kumpanya ang nagre-review ng mga resulta at nagdedesisyon, at sinasabihan ang mga aplikante bago sila magsimula. Hindi ito legal advice; ipinapaliwanag ng [Legal ba ang AI hiring sa EU?](/guides/is-ai-hiring-legal-in-the-eu) ang mga patakaran at petsa.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Puwede ba naming gamitin ang prepza para sa mga aplikante sa UK at US?",
+        "answer": "Oo. Sakop ng data processing agreement ang batas ng UK at US, at sakop ng mga tagubilin para sa mga kumpanya at ng mga template ng abiso sa aplikante (may bersyon para sa New York City, Illinois at Colorado) ang dapat mong sabihin sa mga aplikante. Hangga't wala pang independiyenteng bias audit ang prepza, huwag itong gamitin para sa mga trabaho sa New York City.",
     },
     {
         "key": "emails",

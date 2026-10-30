@@ -42,15 +42,18 @@
         "Resultaten ondersteunen de beslissing van een bedrijf; ze nemen die beslissing niet. Een bedrijf beoordeelt ze voordat het beslist, wijst een kandidaat niet alleen op basis van de score af en laat een kandidaat vragen om een beoordeling van zijn resultaat door een mens.",
         "Een bedrijf geeft een kandidaat die dat nodig heeft een aanpassing, zoals extra tijd, die het per kandidaat kan instellen voordat die begint.",
         "Een bedrijf dat zijn eigen tools koppelt (een sollicitantvolgsysteem, Slack of zijn systemen via de API en webhooks van prepza), kiest waar de resultaten van zijn kandidaten naartoe gaan, is verantwoordelijk voor die tools en stelt ze niet zo in dat ze kandidaten automatisch afwijzen op basis van de resultaten van prepza.",
-        "API-sleutels en de secrets van webhooks moet het bedrijf geheimhouden: alles wat met een geldige sleutel wordt gedaan, wordt voor het bedrijf gedaan, alsof het lid dat de sleutel heeft gemaakt het deed. Een sleutel of webhook die mogelijk is uitgelekt, moet direct worden verwijderd op de API-pagina van het bedrijf.",
+        "API-sleutels en de secrets van webhooks moet het bedrijf geheimhouden: alles wat met een geldige sleutel wordt gedaan, doet die sleutel voor het bedrijf, binnen de rechten die hij heeft gekregen, en het actielog van het bedrijf vermeldt de sleutel. Sleutels en webhooks zijn van het bedrijf en blijven bestaan wanneer het lid dat ze heeft gemaakt het bedrijf verlaat. Een sleutel of webhook die mogelijk is uitgelekt, moet direct worden verwijderd op de API-pagina van het bedrijf.",
         "De verwerkersovereenkomst op prepza.ai/dpa maakt deel uit van deze voorwaarden voor elk bedrijf dat prepza voor kandidaten gebruikt.",
+        "Een bedrijf gebruikt wat het ziet van mensen die openstaan voor nieuwe kansen alleen om hen te overwegen voor zijn eigen vacatures en hen uit te nodigen. Hun resultaten zijn oefenresultaten, geen kwalificatie, en de lijst is geen aanbeveling: de volgorde laat alleen zien wie het laatst heeft geoefend.",
+        "Een bedrijf dat iemand uitnodigt vanuit zijn tabblad Ontdekken, vertelt die persoon uiterlijk in de uitnodiging wie het is, waarom het contact opneemt, wat het heeft gezien en welke rechten die persoon heeft.",
         "Zolang prepza geen onafhankelijke bias-audit heeft, mag een bedrijf het niet gebruiken om kandidaten te beoordelen voor banen in New York City, waar Local Law 144 zo'n audit verplicht stelt."
       ]
     },
     {
       "heading": "Oefenen",
       "items": [
-        "Oefeninterviews zijn gratis, en alleen jij ziet de resultaten ervan."
+        "Oefeninterviews zijn gratis, en alleen jij ziet de resultaten ervan, tenzij je Open voor nieuwe kansen aanzet.",
+        "Open voor nieuwe kansen is optioneel en staat uit tenzij je het aanzet. Zolang het aan staat, zien bedrijven die via prepza werven je naam, je LinkedIn-profiel en je nieuwste getimede oefenresultaten op de onderwerpen van hun interviews, en kunnen ze je uitnodigen voor een interview; de uitnodiging gaat naar het e-mailadres van je account. prepza rangschikt je niet en beveelt je niet aan. Je kunt het op elk moment uitzetten in Instellingen, en dan verdwijn je meteen uit de lijst van elk bedrijf. Het stopt ook een jaar nadat je het voor het laatst hebt aangezet of je LinkedIn-profiel hebt opgeslagen."
       ]
     },
     {

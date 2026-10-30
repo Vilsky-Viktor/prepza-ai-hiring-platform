@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Sì. Apri il tuo colloquio come candidato dalla sua pagina, gratis: le anteprime non compaiono tra i tuoi candidati né nelle statistiche delle domande. Puoi anche fare una qualsiasi delle simulazioni di colloquio gratuite.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Le aziende possono trovarmi attraverso le mie simulazioni?",
+        "answer": "Solo se lo scegli tu. Attiva Aperto a nuove opportunità dopo una simulazione o nelle Impostazioni, indicando l'indirizzo del tuo profilo LinkedIn. Le aziende che assumono su prepza vedranno allora il tuo nome, il tuo profilo LinkedIn e il tuo ultimo risultato in ogni argomento dei loro colloqui su cui ti sei esercitato, e potranno invitarti a un colloquio. prepza non ti classifica né ti raccomanda. Puoi disattivarlo in qualsiasi momento nelle Impostazioni e sparisci subito dall'elenco di ogni azienda; si disattiva anche un anno dopo l'ultima volta che l'hai attivato o hai salvato il tuo profilo LinkedIn.",
+    },
+    {
         "key": "cheating",
         "question": "I candidati possono usare l'IA o cercare le risposte?",
         "answer": "Ogni candidato riceve domande casuali tutte sue, in un ordine tutto suo, con [un timer su ogni domanda](/guides/skills-test-timing-and-extra-time) gestito dal nostro server, quindi c'è poco tempo per cercare le risposte o chiedere a un'IA. Le schede di valutazione mostrano anche quando un candidato ha lasciato la pagina, copiato del testo o risposto troppo in fretta per aver letto la domanda. Quando ha finito, la sua pagina indica anche gli andamenti delle risposte che di solito lascia chi passa le domande a un'IA, come più o meno lo stesso tempo per ogni domanda o domande difficili giuste e facili sbagliate, e suggerisce domande a cui ha risposto correttamente da approfondire in un colloquio dal vivo. Un andamento è un motivo per fare domande, non una prova. Prima di iniziare, ogni candidato conferma anche che risponderà in autonomia, senza strumenti di IA né l'aiuto di altre persone, e la sua scheda di valutazione lo mostra.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "È legale usare l'IA per la preselezione dei candidati nell'UE?",
         "answer": "Sì, con delle regole. Secondo il regolamento europeo sull'IA (AI Act), gli strumenti che valutano i candidati sono molto probabilmente ad alto rischio, con obblighi dal 2 dicembre 2027, e il GDPR si applica già: una persona prende la decisione di assunzione, i candidati vengono informati che si usa l'IA e si conserva una documentazione. prepza funziona così: l'IA scrive le domande, le persone della tua azienda esaminano i risultati e decidono, e i candidati vengono informati prima di iniziare. Questa non è una consulenza legale; [Usare l'IA nella selezione del personale è legale nell'UE?](/guides/is-ai-hiring-legal-in-the-eu) spiega le regole e le date.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Possiamo usare prepza per candidati nel Regno Unito e negli Stati Uniti?",
+        "answer": "Sì. L'accordo sul trattamento dei dati copre la legge del Regno Unito e degli Stati Uniti, e le istruzioni per le aziende e i modelli di informativa per i candidati (con versioni per New York City, l'Illinois e il Colorado) coprono ciò che devi comunicare ai candidati. Finché prepza non avrà un audit indipendente sui bias, non usarlo per posizioni a New York City.",
     },
     {
         "key": "emails",

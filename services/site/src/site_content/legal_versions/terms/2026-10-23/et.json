@@ -42,15 +42,18 @@
         "Tulemused toetavad ettevõtte otsust, kuid ei tee seda tema eest. Ettevõte vaatab need enne otsustamist üle, ei lükka kandidaati tagasi ainult punktisumma põhjal ja võimaldab kandidaadil paluda, et tema tulemuse vaataks üle inimene.",
         "Ettevõte võimaldab kandidaadile, kes seda vajab, kohandust, näiteks lisaaega, mille ta saab iga kandidaadi jaoks enne alustamist määrata.",
         "Ettevõte, kes ühendab oma tööriistad (värbamissüsteemi, Slacki või oma süsteemid prepza API ja veebikonksude kaudu), valib, kuhu tema kandidaatide tulemused lähevad, vastutab nende tööriistade eest ega seadista neid kandidaate prepza tulemuste põhjal automaatselt tagasi lükkama.",
-        "API-võtmeid ja veebikonksude saladusi peab ettevõte hoidma salajasena: kõik, mis tehakse kehtiva võtmega, tehakse ettevõtte nimel, nagu teeks seda võtme loonud liige. Võti või veebikonks, mis võib olla lekkinud, tuleb kohe kustutada ettevõtte API lehel.",
+        "API-võtmeid ja veebikonksude saladusi peab ettevõte hoidma salajasena: kõik, mis tehakse kehtiva võtmega, teeb ettevõtte nimel see võti talle antud õiguste piires ning ettevõtte toimingute logis on märgitud see võti. Võtmed ja veebikonksud kuuluvad ettevõttele ja jäävad alles, kui need loonud liige lahkub. Võti või veebikonks, mis võib olla lekkinud, tuleb kohe kustutada ettevõtte API lehel.",
         "Aadressil prepza.ai/dpa olev andmetöötlusleping on nende tingimuste osa iga ettevõtte jaoks, kes kasutab prepzat kandidaatidega.",
+        "Ettevõte kasutab seda, mida ta valikuga „Avatud tööpakkumistele“ inimeste kohta näeb, ainult selleks, et kaaluda neid oma töökohtadele ja neid kutsuda. Nende tulemused on harjutuse tulemused, mitte kvalifikatsioon, ja loend ei ole soovitus: järjekord näitab ainult, kes viimati harjutas.",
+        "Ettevõte, kes kutsub kellegi vahekaardilt „Avasta“, teatab talle hiljemalt kutses, kes ta on, miks ta temaga ühendust võttis, mida ta nägi ja millised on tema õigused.",
         "Kuni prepzal ei ole sõltumatut kallutatuse auditit, ei tohi ettevõte seda kasutada kandidaatide hindamiseks New Yorgi linna töökohtadele, kus Local Law 144 sellist auditit nõuab."
       ]
     },
     {
       "heading": "Harjutamine",
       "items": [
-        "Harjutusintervjuud on tasuta ja nende tulemusi näed ainult sina."
+        "Harjutusintervjuud on tasuta ja nende tulemusi näed ainult sina, kui sa ei lülita sisse valikut „Avatud tööpakkumistele“.",
+        "„Avatud tööpakkumistele“ on vabatahtlik ja välja lülitatud, kuni sa selle sisse lülitad. Kui see on sees, näevad prepza kaudu värbavad ettevõtted sinu nime, sinu LinkedIni profiili ja sinu viimaseid ajapiiranguga harjutuse tulemusi oma intervjuude teemadel ning võivad sind intervjuule kutsuda; kutse läheb sinu konto e-posti aadressile. prepza ei järjesta ega soovita sind. Saad selle igal ajal seadetes välja lülitada ja kaod siis kohe kõigi ettevõtete loenditest. See lõpeb ka aasta pärast seda, kui selle viimati sisse lülitasid või LinkedIni profiili salvestasid."
       ]
     },
     {

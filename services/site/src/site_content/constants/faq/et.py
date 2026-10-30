@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Jah. Ava oma intervjuu selle lehelt kandidaadina, tasuta: eelvaated ei ilmu sinu kandidaatide hulka ega küsimuste statistikasse. Võid teha ka ükskõik millise tasuta harjutusintervjuu.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Kas ettevõtted võivad mind mu harjutamise kaudu leida?",
+        "answer": "Ainult siis, kui ise soovid. Lülita „Avatud tööpakkumistele“ sisse pärast harjutusvooru või seadetes ja lisa oma LinkedIni profiili aadress. Siis näevad prepza kaudu värbavad ettevõtted sinu nime, LinkedIni profiili ja viimast harjutuse tulemust igas nende intervjuude teemas, mida oled harjutanud, ning võivad sind intervjuule kutsuda. prepza ei järjesta ega soovita sind. Saad selle igal ajal seadetes välja lülitada ja kaod siis kohe kõigi ettevõtete loenditest; see lõpeb ka aasta pärast seda, kui selle viimati sisse lülitasid või LinkedIni profiili salvestasid.",
+    },
+    {
         "key": "cheating",
         "question": "Kas kandidaadid saavad kasutada tehisaru või vastuseid otsida?",
         "answer": "Iga kandidaat saab oma juhuslikud küsimused oma järjekorras ja igal küsimusel on [ajapiirang](/guides/skills-test-timing-and-extra-time), mida jälgib meie server, nii et vastuste otsimiseks või tehisarult küsimiseks jääb vähe aega. Kandidaadi tulemused näitavad ka, millal kandidaat lehelt lahkus, teksti kopeeris või vastas liiga kiiresti, et küsimust lugeda. Kui kandidaat on lõpetanud, toob tema leht välja ka vastuste mustrid, mis jäävad sageli maha, kui küsimusi tehisarule edasi antakse, näiteks igale küsimusele umbes sama palju aega või rasked küsimused õigesti, samal ajal kui lihtsad valesti, ning soovitab küsimusi, millele ta vastas õigesti, et neist otsevestlusel küsida. Muster on põhjus küsida, mitte tõend. Enne alustamist kinnitab iga kandidaat ka, et vastab ise, ilma tehisaru tööriistade ja teiste inimeste abita, ning tema tulemused näitavad seda.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "Kas ELis on seaduslik kasutada tehisaru kandidaatide eelvalikuks?",
         "answer": "Jah, reeglite järgi. ELi tehisintellekti määruse (AI Act) alusel on kandidaate hindavad tööriistad väga tõenäoliselt suure riskiga, kohustustega alates 2. detsembrist 2027, ja GDPR kehtib juba praegu: värbamisotsuse teeb inimene, kandidaatidele öeldakse, et kasutatakse tehisaru, ja kõik dokumenteeritakse. prepza töötab just nii: tehisaru koostab küsimused, sinu ettevõtte inimesed vaatavad tulemused üle ja otsustavad ning kandidaatidele öeldakse seda enne alustamist. See ei ole õigusnõustamine; [Kas AI kasutamine värbamisel on ELis seaduslik?](/guides/is-ai-hiring-legal-in-the-eu) selgitab reegleid ja tähtaegu.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Kas saame kasutada prepzat Ühendkuningriigi ja USA kandidaatidega?",
+        "answer": "Jah. Andmetöötlusleping hõlmab Ühendkuningriigi ja USA õigust ning ettevõtetele mõeldud juhised ja kandidaatide teavituste mallid (New Yorgi linna, Illinoisi ja Colorado versioonidega) katavad selle, mida pead kandidaatidele ütlema. Kuni prepzal ei ole sõltumatut kallutatuse auditit, ära kasuta seda New Yorgi linna töökohtade jaoks.",
     },
     {
         "key": "emails",

@@ -42,15 +42,18 @@
         "Kết quả hỗ trợ quyết định của công ty; kết quả không thay công ty đưa ra quyết định. Công ty xem xét kết quả trước khi quyết định, không loại ứng viên chỉ dựa trên điểm số, và cho phép ứng viên yêu cầu một người xem xét lại kết quả của họ.",
         "Công ty cung cấp sự điều chỉnh hợp lý cho ứng viên cần đến, chẳng hạn như thêm thời gian, mà công ty có thể thiết lập cho từng ứng viên trước khi họ bắt đầu.",
         "Công ty kết nối các công cụ của riêng mình (hệ thống theo dõi ứng viên, Slack, hoặc các hệ thống của mình thông qua API và webhook của prepza) tự chọn nơi nhận kết quả của ứng viên, chịu trách nhiệm về các công cụ đó, và không thiết lập chúng để tự động loại ứng viên dựa trên kết quả của prepza.",
-        "Khóa API và khóa bí mật của webhook do công ty tự giữ bí mật: mọi việc được thực hiện bằng một khóa hợp lệ đều được coi là thực hiện cho công ty, như thể do thành viên đã tạo khóa đó thực hiện. Khóa hoặc webhook có thể đã bị lộ phải được xóa ngay trên trang API của công ty.",
+        "Khóa API và khóa bí mật của webhook do công ty tự giữ bí mật: mọi việc được thực hiện bằng một khóa hợp lệ đều do chính khóa đó thực hiện cho công ty, trong phạm vi các quyền đã cấp cho khóa, và nhật ký thao tác của công ty ghi rõ khóa đó. Khóa và webhook thuộc về công ty và vẫn còn khi thành viên đã tạo chúng rời công ty. Khóa hoặc webhook có thể đã bị lộ phải được xóa ngay trên trang API của công ty.",
         "Thỏa thuận xử lý dữ liệu tại prepza.ai/dpa là một phần của các điều khoản này đối với mọi công ty sử dụng prepza cho ứng viên.",
+        "Công ty chỉ dùng những gì họ thấy về những người sẵn sàng nhận cơ hội việc làm để cân nhắc họ cho các công việc của chính mình và để mời họ. Kết quả của họ là kết quả luyện tập, không phải bằng cấp, và danh sách không phải là lời giới thiệu: thứ tự chỉ cho biết ai luyện tập gần nhất.",
+        "Công ty mời một người từ thẻ Khám phá phải cho người đó biết, muộn nhất là trong lời mời, công ty là ai, vì sao liên hệ với họ, đã thấy những gì và các quyền của họ.",
         "Cho đến khi prepza có một cuộc kiểm toán thiên lệch độc lập, công ty không được sử dụng prepza để đánh giá ứng viên cho các công việc tại Thành phố New York, nơi Local Law 144 yêu cầu phải có cuộc kiểm toán đó."
       ]
     },
     {
       "heading": "Luyện tập",
       "items": [
-        "Các buổi phỏng vấn luyện tập là miễn phí, và kết quả của chúng chỉ riêng bạn xem được."
+        "Các buổi phỏng vấn luyện tập là miễn phí, và kết quả của chúng chỉ riêng bạn xem được, trừ khi bạn bật Sẵn sàng nhận cơ hội việc làm.",
+        "Sẵn sàng nhận cơ hội việc làm là tùy chọn và luôn tắt trừ khi bạn bật nó. Khi bật, các công ty tuyển dụng trên prepza thấy tên, hồ sơ LinkedIn và kết quả luyện tập có tính giờ mới nhất của bạn ở các chủ đề trong buổi phỏng vấn của họ, và có thể mời bạn phỏng vấn; lời mời được gửi đến email tài khoản của bạn. prepza không xếp hạng hay giới thiệu bạn. Bạn có thể tắt bất cứ lúc nào trong Cài đặt, và khi đó bạn biến mất khỏi danh sách của mọi công ty ngay lập tức. Tính năng này cũng kết thúc sau một năm kể từ lần cuối bạn bật nó hoặc lưu hồ sơ LinkedIn."
       ]
     },
     {

@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Tak. Otwórz swoją rozmowę jako kandydat z jej strony, bezpłatnie: podglądy nie pojawiają się wśród Twoich kandydatów ani w statystykach pytań. Możesz też odbyć dowolną z darmowych próbnych rozmów.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Czy firmy mogą mnie znaleźć dzięki moim ćwiczeniom?",
+        "answer": "Tylko jeśli tego chcesz. Włącz „Rozważam oferty pracy” po rundzie ćwiczeń lub w Ustawieniach, podając adres swojego profilu LinkedIn. Firmy, które rekrutują przez prepza, zobaczą wtedy Twoje imię i nazwisko, profil LinkedIn i najnowszy wynik ćwiczeń z każdego tematu ich rozmów, który ćwiczyłeś, i mogą zaprosić Cię na rozmowę. prepza nie tworzy rankingu ani Cię nie poleca. Możesz to wyłączyć w każdej chwili w Ustawieniach, a wtedy od razu znikasz z list wszystkich firm; wyłącza się to też samo rok po tym, jak ostatnio to włączyłeś lub zapisałeś profil LinkedIn.",
+    },
+    {
         "key": "cheating",
         "question": "Czy kandydaci mogą korzystać z AI albo szukać odpowiedzi?",
         "answer": "Każdy kandydat dostaje własne losowe pytania we własnej kolejności, z [limitem czasu na każde pytanie](/guides/skills-test-timing-and-extra-time) pilnowanym przez nasz serwer, więc zostaje niewiele czasu na szukanie odpowiedzi czy pytanie AI. Wyniki pokazują też, kiedy kandydat opuścił stronę, skopiował tekst albo odpowiedział zbyt szybko, by przeczytać pytanie. Gdy kandydat skończy, jego strona wskazuje też wzorce odpowiedzi, jakie zwykle zostawia przekazywanie pytań AI, np. mniej więcej tyle samo czasu przy każdym pytaniu albo poprawne odpowiedzi na trudne pytania przy błędnych na łatwe, i podsuwa pytania, na które odpowiedział poprawnie, by dopytać o nie na rozmowie na żywo. Wzorzec to powód, by zapytać, a nie dowód. Przed startem każdy kandydat potwierdza też, że odpowie samodzielnie, bez narzędzi AI i pomocy innych osób, a jego wyniki to pokazują.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "Czy w UE można legalnie używać AI do wstępnej selekcji kandydatów?",
         "answer": "Tak, na określonych zasadach. Zgodnie z unijnym AI Act narzędzia, które oceniają kandydatów, najpewniej należą do kategorii wysokiego ryzyka, z obowiązkami od 2 grudnia 2027, a RODO obowiązuje już teraz: decyzję o zatrudnieniu podejmuje człowiek, kandydaci wiedzą, że używana jest AI, a dokumentacja jest przechowywana. prepza działa właśnie tak: AI pisze pytania, osoby z Twojej firmy przeglądają wyniki i decydują, a kandydaci są informowani przed rozpoczęciem. To nie jest porada prawna; [Czy rekrutacja z AI jest legalna w UE?](/guides/is-ai-hiring-legal-in-the-eu) wyjaśnia zasady i terminy.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Czy możemy używać prepza do kandydatów z Wielkiej Brytanii i USA?",
+        "answer": "Tak. Umowa powierzenia przetwarzania danych obejmuje prawo Wielkiej Brytanii i USA, a instrukcje dla firm i wzory informacji dla kandydatów (z wersjami dla Nowego Jorku, Illinois i Kolorado) opisują, co musisz przekazać kandydatom. Dopóki prepza nie przejdzie niezależnego audytu pod kątem stronniczości, nie używaj jej do rekrutacji na stanowiska w Nowym Jorku.",
     },
     {
         "key": "emails",

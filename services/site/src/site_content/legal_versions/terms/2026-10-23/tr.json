@@ -42,15 +42,18 @@
         "Sonuçlar şirketin kararını destekler; kararı vermez. Şirket karar vermeden önce sonuçları gözden geçirir, bir adayı yalnızca puana dayanarak reddetmez ve adayın sonucunun bir insan tarafından incelenmesini istemesine olanak tanır.",
         "Şirket, ihtiyacı olan adaya ek süre gibi bir uyarlama sağlar; bunu her aday için aday başlamadan önce ayarlayabilir.",
         "Kendi araçlarını (bir aday takip sistemi, Slack veya prepza'nın API'si ve webhook'ları aracılığıyla kendi sistemleri) bağlayan bir şirket, adaylarının sonuçlarının nereye gideceğini seçer, bu araçlardan sorumludur ve bunları prepza'nın sonuçlarına dayanarak adayları otomatik olarak reddedecek şekilde ayarlamaz.",
-        "API anahtarlarını ve webhook gizli anahtarlarını gizli tutmak şirketin sorumluluğundadır: geçerli bir anahtarla yapılan her şey, anahtarı oluşturan üye tarafından yapılmış gibi şirket adına yapılmış sayılır. Sızmış olabilecek bir anahtar veya webhook, şirketin API sayfasında derhal silinmelidir.",
+        "API anahtarlarını ve webhook gizli anahtarlarını gizli tutmak şirketin sorumluluğundadır: geçerli bir anahtarla yapılan her şey, şirket adına o anahtar tarafından, anahtara verilen izinler dahilinde yapılır ve şirketin işlem kaydında o anahtar belirtilir. Anahtarlar ve webhook'lar şirkete aittir ve onları oluşturan üye ayrıldığında da şirkette kalır. Sızmış olabilecek bir anahtar veya webhook, şirketin API sayfasında derhal silinmelidir.",
         "prepza.ai/dpa adresindeki veri işleme sözleşmesi, prepza'yı adaylar için kullanan her şirket açısından bu koşulların bir parçasıdır.",
+        "Bir şirket, \"İş tekliflerine açık\" seçeneğini açmış kişiler hakkında gördüklerini yalnızca onları kendi işleri için değerlendirmek ve davet etmek amacıyla kullanır. Onların sonuçları bir yeterlilik değil, pratik sonuçlarıdır ve liste bir öneri değildir: sıralama yalnızca en son kimin pratik yaptığını gösterir.",
+        "Keşfet sekmesinden birini davet eden şirket, en geç davette, o kişiye kim olduğunu, onunla neden iletişime geçtiğini, ne gördüğünü ve haklarını bildirir.",
         "prepza bağımsız bir yanlılık denetiminden geçene kadar şirket, onu New York City'deki işler için adayları değerlendirmek amacıyla kullanamaz; orada Local Law 144 böyle bir denetimi zorunlu kılar."
       ]
     },
     {
       "heading": "Pratik",
       "items": [
-        "Pratik mülakatları ücretsizdir ve sonuçlarını yalnızca siz görürsünüz."
+        "Pratik mülakatları ücretsizdir ve sonuçlarını \"İş tekliflerine açık\" seçeneğini açmadığınız sürece yalnızca siz görürsünüz.",
+        "\"İş tekliflerine açık\" isteğe bağlıdır ve siz açmadıkça kapalıdır. Açıkken prepza üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve mülakatlarının konularındaki en son süreli pratik sonuçlarınızı görür ve sizi bir mülakata davet edebilir; davet hesabınızın e-posta adresine gider. prepza sizi sıralamaz veya önermez. Seçeneği istediğiniz zaman Ayarlar'dan kapatabilirsiniz; o anda tüm şirketlerin listesinden kaybolursunuz. Ayrıca, en son açtığınız veya LinkedIn profilinizi kaydettiğiniz tarihten bir yıl sonra sona erer."
       ]
     },
     {

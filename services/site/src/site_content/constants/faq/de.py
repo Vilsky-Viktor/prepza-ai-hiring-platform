@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Ja. Öffne dein Interview über seine Seite als Kandidat, kostenlos: Vorschauen erscheinen weder bei deinen Kandidaten noch in der Fragenstatistik. Du kannst auch jedes der kostenlosen Übungsinterviews machen.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Können Unternehmen mich über meine Übungen finden?",
+        "answer": "Nur wenn du das willst. Schalte „Offen für Angebote“ nach einer Übungsrunde oder in den Einstellungen ein und gib dabei die Adresse deines LinkedIn-Profils an. Unternehmen, die über prepza einstellen, sehen dann deinen Namen, dein LinkedIn-Profil und dein neuestes Übungsergebnis in jedem Thema ihrer Interviews, das du geübt hast, und können dich zu einem Interview einladen. prepza erstellt keine Rangliste und empfiehlt dich nicht. Du kannst es jederzeit in den Einstellungen ausschalten und verschwindest dann sofort aus der Liste jedes Unternehmens; außerdem endet es ein Jahr, nachdem du es zuletzt eingeschaltet oder dein LinkedIn-Profil gespeichert hast.",
+    },
+    {
         "key": "cheating",
         "question": "Können Kandidaten KI nutzen oder die Antworten nachschlagen?",
         "answer": "Jeder Kandidat bekommt eigene, zufällige Fragen in eigener Reihenfolge, mit [einem Zeitlimit für jede Frage](/guides/skills-test-timing-and-extra-time), das unser Server überwacht, also bleibt wenig Zeit, Antworten nachzuschlagen oder eine KI zu fragen. Die Auswertung zeigt außerdem, wann ein Kandidat die Seite verlassen, Text kopiert oder zu schnell geantwortet hat, um die Frage gelesen zu haben. Sobald er fertig ist, weist seine Seite zudem auf Antwortmuster hin, die das Weitergeben von Fragen an eine KI oft hinterlässt, etwa ungefähr gleich viel Zeit bei jeder Frage oder schwere Fragen richtig, während leichte falsch waren, und schlägt richtig beantwortete Fragen vor, nach denen man in einem Live-Gespräch fragen kann. Ein Muster ist ein Grund nachzufragen, kein Beweis. Vor dem Start bestätigt außerdem jeder Kandidat, dass er die Fragen selbst beantwortet, ohne KI-Tools oder andere Personen, und die Auswertung zeigt das.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "Darf man in der EU KI für die Vorauswahl von Kandidaten nutzen?",
         "answer": "Ja, mit Regeln. Nach der KI-Verordnung der EU (AI Act) gelten Tools, die Kandidaten bewerten, sehr wahrscheinlich als Hochrisiko-Systeme, mit Pflichten ab dem 2. Dezember 2027, und die DSGVO gilt schon heute: Ein Mensch trifft die Einstellungsentscheidung, Kandidaten erfahren, dass KI eingesetzt wird, und alles wird dokumentiert. prepza arbeitet genau so: KI schreibt die Fragen, Menschen in deinem Unternehmen prüfen die Ergebnisse und entscheiden, und Kandidaten werden informiert, bevor sie beginnen. Das ist keine Rechtsberatung; [Ist KI im Recruiting in der EU erlaubt?](/guides/is-ai-hiring-legal-in-the-eu) erklärt die Regeln und Fristen.",
+    },
+    {
+        "key": "uk_us",
+        "question": "Können wir prepza für Kandidaten in Großbritannien und den USA nutzen?",
+        "answer": "Ja. Der Auftragsverarbeitungsvertrag deckt britisches und US-amerikanisches Recht ab, und die Hinweise für Unternehmen sowie die Vorlagen für die Kandidateninformation (mit Fassungen für New York City, Illinois und Colorado) decken ab, was du Kandidaten mitteilen musst. Solange prepza kein unabhängiges Bias-Audit hat, nutze es nicht für Stellen in New York City.",
     },
     {
         "key": "emails",

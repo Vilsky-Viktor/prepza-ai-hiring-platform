@@ -42,15 +42,18 @@
         "I risultati supportano la decisione di un'azienda, ma non la prendono. Un'azienda li esamina prima di decidere, non scarta un candidato sulla base del solo punteggio e consente a un candidato di chiedere che una persona riesamini il suo risultato.",
         "Un'azienda concede al candidato che ne ha bisogno un accomodamento, come del tempo extra, che può impostare per ciascun candidato prima che inizi.",
         "Un'azienda che collega i propri strumenti (un sistema di gestione delle candidature, Slack o i propri sistemi tramite l'API e i webhook di prepza) sceglie dove vanno i risultati dei suoi candidati, è responsabile di tali strumenti e non li configura per scartare automaticamente i candidati in base ai risultati di prepza.",
-        "Le chiavi API e i segreti dei webhook devono essere mantenuti riservati dall'azienda: tutto ciò che viene fatto con una chiave valida è fatto per conto dell'azienda, come se lo facesse il membro che l'ha creata. Una chiave o un webhook che potrebbe essere stato divulgato va eliminato subito nella pagina API dell'azienda.",
+        "Le chiavi API e i segreti dei webhook devono essere mantenuti riservati dall'azienda: tutto ciò che viene fatto con una chiave valida è fatto per conto dell'azienda da quella chiave, nei limiti delle autorizzazioni che le sono state concesse, e il registro attività dell'azienda indica la chiave. Le chiavi e i webhook appartengono all'azienda e restano quando il membro che li ha creati la lascia. Una chiave o un webhook che potrebbe essere stato divulgato va eliminato subito nella pagina API dell'azienda.",
         "L'accordo sul trattamento dei dati disponibile su prepza.ai/dpa fa parte di questi termini per ogni azienda che usa prepza per i candidati.",
+        "Un'azienda usa ciò che vede delle persone aperte a nuove opportunità solo per valutarle per le proprie posizioni e invitarle. I loro risultati sono risultati di simulazioni, non una qualifica, e l'elenco non è una raccomandazione: l'ordine mostra solo chi si è esercitato per ultimo.",
+        "Un'azienda che invita qualcuno dalla sua scheda Scopri gli comunica, al più tardi nell'invito, chi è, perché lo ha contattato, cosa ha visto e quali sono i suoi diritti.",
         "Finché prepza non sarà stato sottoposto a un audit indipendente sui bias, un'azienda non può usarlo per valutare candidati per posizioni nella città di New York, dove la Local Law 144 lo richiede."
       ]
     },
     {
       "heading": "Simulazioni",
       "items": [
-        "Le simulazioni di colloquio sono gratuite e i loro risultati sono visibili solo a te."
+        "Le simulazioni di colloquio sono gratuite e i loro risultati sono visibili solo a te, a meno che tu non attivi Aperto a nuove opportunità.",
+        "Aperto a nuove opportunità è facoltativo e disattivato finché non lo attivi. Finché è attivo, le aziende che assumono su prepza vedono il tuo nome, il tuo profilo LinkedIn e i tuoi ultimi risultati delle simulazioni a tempo sugli argomenti dei loro colloqui, e possono invitarti a un colloquio; l'invito arriva all'email del tuo account. prepza non ti classifica né ti raccomanda. Puoi disattivarlo in qualsiasi momento nelle Impostazioni, e sparisci subito dall'elenco di ogni azienda. Si disattiva anche un anno dopo l'ultima volta che lo hai attivato o hai salvato il tuo profilo LinkedIn."
       ]
     },
     {

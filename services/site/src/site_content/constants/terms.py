@@ -48,13 +48,16 @@ TERMS_SECTIONS = [
             "A company that connects its own tools (an applicant tracking system, Slack, or its systems through prepza's API and web hooks) chooses where its candidates' results go and is responsible for those tools, and doesn't set them up to reject candidates automatically on prepza's results.",
             "API keys and web hooks' secrets are the company's to keep secret: anything done with a valid key is done for the company by that key, under the permissions it was given, and the company's action log names the key. Keys and web hooks belong to the company and stay when the member who made them leaves. A key or web hook that may have leaked should be deleted at once on the company's API page.",
             "The data processing agreement at prepza.ai/dpa forms part of these terms for every company that uses prepza for candidates.",
+            "A company uses what it sees of people open to offers only to consider them for its own jobs and to invite them. Their results are practice results, not a qualification, and the list is not a recommendation: the order only shows who practised last.",
+            "A company that invites someone from its Discover tab tells them, at the latest in the invite, who it is, why it contacted them, what it saw and their rights.",
             "Until prepza has an independent bias audit, a company may not use it to assess candidates for jobs in New York City, where Local Law 144 requires one.",
         ],
     },
     {
         "heading": "Practice",
         "items": [
-            "Practice interviews are free, and their results are private to you.",
+            "Practice interviews are free, and their results are private to you unless you turn on Open to offers.",
+            "Open to offers is optional and off unless you turn it on. While it's on, companies hiring on prepza see your name, your LinkedIn profile and your latest timed practice results on the subjects of their interviews, and may invite you to an interview; the invite goes to your account's email. prepza doesn't rank or recommend you. You can turn it off at any time in Settings, and you then disappear from every company's list at once. It also ends a year after you last turned it on or saved your LinkedIn profile.",
         ],
     },
     {

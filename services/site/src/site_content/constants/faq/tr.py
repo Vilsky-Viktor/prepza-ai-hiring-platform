@@ -28,6 +28,11 @@ FAQ = [
         "answer": "Evet. Mülakatınızı kendi sayfasından ücretsiz olarak aday gibi açın: önizlemeler adaylarınız arasında ya da soru istatistiklerinde görünmez. Ücretsiz pratik mülakatlardan herhangi birine de girebilirsiniz.",
     },
     {
+        "key": "open-to-offers",
+        "question": "Şirketler beni pratiklerim üzerinden bulabilir mi?",
+        "answer": "Yalnızca siz isterseniz. Bir pratik turundan sonra veya Ayarlar'da, LinkedIn profilinizin adresiyle \"İş tekliflerine açık\" seçeneğini açın. Bunun ardından prepza üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve mülakatlarındaki konulardan pratik yaptığınız her birindeki en son pratik sonucunuzu görür ve sizi bir mülakata davet edebilir. prepza sizi sıralamaz veya önermez. İstediğiniz zaman Ayarlar'dan kapatabilirsiniz; o anda tüm şirketlerin listesinden kaybolursunuz. Ayrıca bu seçenek, en son açtığınız veya LinkedIn profilinizi kaydettiğiniz tarihten bir yıl sonra kendiliğinden kapanır.",
+    },
+    {
         "key": "cheating",
         "question": "Adaylar yapay zekâ kullanabilir ya da cevapları arayabilir mi?",
         "answer": "Her aday kendi sırasında kendi rastgele sorularını alır ve her sorunun sunucumuzun tuttuğu [bir süre sınırı](/guides/skills-test-timing-and-extra-time) vardır, bu yüzden cevapları aramaya ya da yapay zekâya sormaya pek zaman kalmaz. Değerlendirme kartı ayrıca adayın sayfadan ne zaman ayrıldığını, metin kopyaladığını ya da soruyu okumuş olamayacak kadar hızlı cevap verdiğini gösterir. Aday bitirdiğinde sayfası, soruları bir yapay zekâya aktarmanın genellikle bıraktığı cevap örüntülerini de gösterir, örneğin her soruda yaklaşık aynı süre veya kolay sorular yanlışken zor soruların doğru olması; ayrıca canlı bir mülakatta sormak için adayın doğru cevapladığı soruları önerir. Örüntü, sormak için bir nedendir, kanıt değildir. Başlamadan önce her aday ayrıca soruları yapay zekâ araçları veya başkalarının yardımı olmadan kendisinin yanıtlayacağını onaylar ve değerlendirme kartı bunu gösterir.",
@@ -121,6 +126,11 @@ FAQ = [
         "key": "eu_ai_law",
         "question": "AB'de adayları ön elemek için yapay zekâ kullanmak yasal mı?",
         "answer": "Evet, kurallara uyarak. AB Yapay Zekâ Yasası'na (AI Act) göre adayları puanlayan araçlar büyük olasılıkla yüksek risklidir ve yükümlülükler 2 Aralık 2027'den itibaren başlar; GDPR ise zaten geçerlidir: işe alım kararını bir insan verir, adaylara yapay zekâ kullanıldığı söylenir ve kayıt tutulur. prepza da böyle çalışır: soruları yapay zekâ yazar, şirketinizdeki kişiler sonuçları inceleyip karar verir ve adaylar başlamadan önce bilgilendirilir. Bu bir hukuki tavsiye değildir; [AB'de yapay zekâ ile işe alım yasal mı?](/guides/is-ai-hiring-legal-in-the-eu) kuralları ve tarihleri açıklar.",
+    },
+    {
+        "key": "uk_us",
+        "question": "prepza'yı Birleşik Krallık ve ABD'deki adaylar için kullanabilir miyiz?",
+        "answer": "Evet. Veri işleme sözleşmesi Birleşik Krallık ve ABD hukukunu kapsar; şirketlere yönelik talimatlar ve aday bilgilendirme şablonları (New York City, Illinois ve Colorado sürümleriyle) adaylara neleri söylemeniz gerektiğini açıklar. prepza bağımsız bir yanlılık denetiminden geçene kadar onu New York City'deki işler için kullanmayın.",
     },
     {
         "key": "emails",
