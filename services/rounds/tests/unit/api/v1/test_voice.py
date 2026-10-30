@@ -195,3 +195,22 @@ def test_a_confirmation_names_the_options_and_needs_some(client, voice, monkeypa
     assert client.get(f"{base}/phrases/end").status_code == 200
     assert client.get(f"{base}/phrases/anything").status_code == 422
     assert [company for _, company in read_aloud] == [False, False]
+
+
+def test_the_candidates_words_reach_no_log_trace_or_event(
+    client, voice, published, monkeypatch, caplog
+):
+    """The spoken answer's text goes back to the candidate only: the trace keeps the reading
+    (intent and letters), the usage events their counts, and no log line quotes it."""
+    traced = []
+    monkeypatch.setattr(voice_match, "traced_call", lambda *arguments: traced.append(arguments))
+    caplog.set_level("DEBUG")
+
+    response = client.post(f"/sessions/{voice.row.id}/voice/answers", content=SPOKEN, headers=OGG)
+
+    assert response.json()["heard"] == "die Mediane"
+    [arguments] = traced
+    assert arguments[-1] == {"intent": "choose", "letters": ["B"]}
+    assert "Mediane" not in repr(arguments)
+    assert "Mediane" not in repr(published)
+    assert "Mediane" not in caplog.text
