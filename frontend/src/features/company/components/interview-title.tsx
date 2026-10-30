@@ -4,11 +4,12 @@ import { InterviewStatus } from "@/components/common/interview-status"
 import { EditableTitle } from "@/components/common/editable-title"
 import { EntityId } from "@/components/common/entity-id"
 import { PinnedNote } from "@/components/common/pinned-note"
+import { AnswerModeIcon } from "@/features/company/components/answer-mode-icon"
 import type { InterviewDetail } from "@/types/company"
 
 /** An interview's title (editable by those who can), or what's happening while it has none
- * (generating, or failed); under it its pinned note, its status once ready and the id to
- * quote when writing to prepza. */
+ * (generating, or failed), with how it's answered after its last word; under it its pinned
+ * note, its status once ready and the id to quote when writing to prepza. */
 export async function InterviewTitle({
   interview,
   canEdit,
@@ -17,6 +18,9 @@ export async function InterviewTitle({
   canEdit: boolean
 }) {
   const t = await getTranslations("interviews")
+  const mode = (
+    <AnswerModeIcon voice={interview.voice ?? false} className="ms-3" />
+  )
 
   return (
     <div className="min-w-0 flex-1">
@@ -25,6 +29,7 @@ export async function InterviewTitle({
           title={interview.title}
           path={`/companies/interviews/${interview.id}/title`}
           editable={canEdit}
+          after={mode}
         />
       ) : (
         <h1
@@ -36,6 +41,8 @@ export async function InterviewTitle({
           {interview.generation_failed
             ? t("generationFailed")
             : t("generating")}
+          {"\u2060"}
+          {mode}
         </h1>
       )}
       {interview.pinned_note && (

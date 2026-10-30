@@ -20,6 +20,7 @@ export function InviteIntro({
   questionSeconds,
   totalMinutes,
   finished,
+  voice = false,
   viaLink = false,
   fillScreen,
   back,
@@ -35,6 +36,8 @@ export function InviteIntro({
   // The whole interview at that pace, in minutes; left out while it isn't known.
   totalMinutes?: number | null
   finished: boolean
+  // Taken by voice: a rule says the questions are read aloud and the voice is never kept.
+  voice?: boolean
   // Opened from the test's shareable link: their own link comes by email, and extra time needs
   // a personal invite.
   viaLink?: boolean
@@ -49,6 +52,8 @@ export function InviteIntro({
 }) {
   const t = useTranslations("invite")
   const height = screenHeight(fillScreen !== false)
+  // Taken by voice: read aloud, the voice only turned into text.
+  const voiceRule = voiceRules(voice, t("voice"))
 
   const header = (
     <div className="space-y-4">
@@ -153,6 +158,7 @@ export function InviteIntro({
           t("pickOne"),
           t("changePick"),
           t("timeRunsOut"),
+          ...voiceRule,
           t("unanswered"),
           viaLink ? t("savedLink") : t("saved"),
           // Accommodations, and the human decision behind the score.
@@ -211,6 +217,11 @@ export function TimeFact({
       </span>
     </p>
   )
+}
+
+/** The rule a voice interview adds, or none. */
+function voiceRules(voice: boolean, rule: string) {
+  return voice ? [rule] : []
 }
 
 /** From md up the page fills the screen and the rules scroll within it; embedded, neither. */

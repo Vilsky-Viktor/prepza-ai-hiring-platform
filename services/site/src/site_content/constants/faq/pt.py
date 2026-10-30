@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Cada candidato recebe suas próprias questões aleatórias, em sua própria ordem, com [um cronômetro em cada questão](/guides/skills-test-timing-and-extra-time) controlado pelo nosso servidor, então sobra pouco tempo para procurar respostas ou perguntar a uma IA. Os resultados também mostram quando um candidato saiu da página, copiou texto ou respondeu rápido demais para ter lido a questão. Quando ele termina, a página do candidato também aponta padrões de resposta que costumam aparecer quando alguém repassa as questões a uma IA, como mais ou menos o mesmo tempo em cada questão ou questões difíceis certas enquanto as fáceis estavam erradas, e sugere questões que ele acertou para explorar em uma entrevista ao vivo. Um padrão é um motivo para perguntar, não uma prova. Antes de começar, cada candidato também confirma que vai responder por conta própria, sem ferramentas de IA nem ajuda de outras pessoas, e os resultados mostram isso.",
     },
     {
+        "key": "voice",
+        "question": "Os candidatos podem responder por voz?",
+        "answer": "Sim, se a empresa definir uma entrevista no modo de voz (em inglês, espanhol, alemão, francês, português ou italiano). As questões são lidas em voz alta e os candidatos respondem falando; o que eles dizem é convertido em texto e associado a uma opção que eles confirmam, e nunca é armazenado. As vozes não são analisadas quanto a tom ou emoção, e os candidatos sempre podem tocar em uma opção.",
+    },
+    {
         "key": "cost",
         "question": "Quanto custa?",
         "answer": "Gerar entrevistas é grátis. Cada candidato que responde pelo menos uma questão custa {candidate} créditos ({candidate_price}), e menos com créditos de recargas maiores, até {cheapest_price}. Sua primeira empresa recebe {company} créditos grátis, o suficiente para os primeiros {company_candidates} candidatos. A [página de preços](/pricing) lista todos os valores.",

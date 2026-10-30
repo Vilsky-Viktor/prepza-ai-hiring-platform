@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Iga kandidaat saab oma juhuslikud küsimused oma järjekorras ja igal küsimusel on [ajapiirang](/guides/skills-test-timing-and-extra-time), mida jälgib meie server, nii et vastuste otsimiseks või tehisarult küsimiseks jääb vähe aega. Kandidaadi tulemused näitavad ka, millal kandidaat lehelt lahkus, teksti kopeeris või vastas liiga kiiresti, et küsimust lugeda. Kui kandidaat on lõpetanud, toob tema leht välja ka vastuste mustrid, mis jäävad sageli maha, kui küsimusi tehisarule edasi antakse, näiteks igale küsimusele umbes sama palju aega või rasked küsimused õigesti, samal ajal kui lihtsad valesti, ning soovitab küsimusi, millele ta vastas õigesti, et neist otsevestlusel küsida. Muster on põhjus küsida, mitte tõend. Enne alustamist kinnitab iga kandidaat ka, et vastab ise, ilma tehisaru tööriistade ja teiste inimeste abita, ning tema tulemused näitavad seda.",
     },
     {
+        "key": "voice",
+        "question": "Kas kandidaadid saavad vastata häälega?",
+        "answer": "Jah, kui ettevõte seab intervjuu häälerežiimile (inglise, hispaania, saksa, prantsuse, portugali või itaalia keeles). Küsimused loetakse ette ja kandidaadid vastavad suuliselt; nende öeldu muudetakse tekstiks ja seotakse variandiga, mille nad kinnitavad, ning seda ei salvestata kunagi. Hääli ei analüüsita tooni ega emotsioonide suhtes ning kandidaadid saavad alati selle asemel varianti puudutada.",
+    },
+    {
         "key": "cost",
         "question": "Kui palju see maksab?",
         "answer": "Intervjuude loomine on tasuta. Iga kandidaat, kes vastab vähemalt ühele küsimusele, maksab {candidate} krediiti ({candidate_price}), ja suuremate juurdelaadimiste krediitidega vähem, kuni {cheapest_price}. Sinu esimene ettevõte saab {company} tasuta krediiti, millest piisab tema esimese {company_candidates} kandidaadi jaoks. [Hinnalehel](/pricing) on kõik hinnad.",

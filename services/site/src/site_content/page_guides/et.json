@@ -139,6 +139,7 @@
     "text": "Kuidas see intervjuu iga kandidaadi jaoks kulgeb.",
     "actions": [
       "Lülita töökuulutuse jaoks sisse jagatav link: igaüks, kellel see on, saab intervjuu teha.",
+      "Vali intervjuu režiim: klõpsurežiim, kus kandidaadid puudutavad oma vastuseid, või häälerežiim, kus tehisaru intervjueerija Mira loeb iga küsimuse ette ja kandidaadid vastavad hääle või puudutusega. Häälerežiim on saadaval inglise, hispaania, saksa, prantsuse, portugali ja itaalia keeles toimuvate intervjuude jaoks.",
       "Määra keskmine aeg küsimuse kohta sekundites: iga küsimus saab oma aja vastavalt pikkusele ja koodile, mida see näitab, ning intervjuu koguaeg jääb samaks.",
       "Määra läbimise lävi: selle saavutanud kandidaadid läbivad intervjuu.",
       "Märgi intervjuu palgatuks, kui oled ametikoha täitnud.",
@@ -158,7 +159,8 @@
       "Kontrolli ajastust, sõnastust ja vastuseid, enne kui kedagi kutsud."
     ],
     "tips": [
-      "Vastamise ajal ära lahku lehelt: kandidaatide puhul salvestatakse lehelt lahkumised, kopeerimine ja liiga kiired vastused."
+      "Vastamise ajal ära lahku lehelt: kandidaatide puhul salvestatakse lehelt lahkumised, kopeerimine ja liiga kiired vastused.",
+      "Häälerežiimis intervjuu küsib kõigepealt luba mikrofonile ja helile: luba need ning Mira loeb iga küsimuse ette, kui sina vastad hääle või puudutusega."
     ]
   },
   "candidate": {
@@ -176,7 +178,7 @@
     "tips": [
       "Punktid toetavad sinu otsust, kuid ei tee seda sinu eest. Kui kandidaat palub, lase tema tulemus inimesel üle vaadata.",
       "Linnuke hinde all näitab, et kandidaat kinnitas enne alustamist, et vastab ise, ilma tehisaru tööriistade ja teiste inimeste abita.",
-      "Hinne on teenitud punktide protsent: iga küsimus annab ühe punkti ja „vali kõik õiged“ küsimus annab osa sellest iga märgitud õige variandi eest, kuid mitte midagi, kui märgitud on vale variant."
+      "Hinne on teenitud punktide protsent: iga küsimus annab ühe punkti ja „vali mitu varianti“ küsimus annab osa sellest iga märgitud õige variandi eest, kuid mitte midagi, kui märgitud on vale variant."
     ]
   },
   "templates": {
@@ -444,7 +446,7 @@
   },
   "practiceRound": {
     "title": "Harjutuse tulemused",
-    "text": "Ühe katse tulemused: sinu hinne, iga teema punktid ja iga küsimus koos õigete vastuste ja sinu valikutega; „vali kõik õiged“ küsimuse juures on näha ka selle eest saadud punktid.",
+    "text": "Ühe katse tulemused: sinu hinne, iga teema punktid ja iga küsimus koos õigete vastuste ja sinu valikutega; „vali mitu varianti“ küsimuse juures on näha ka selle eest saadud punktid.",
     "actions": [
       "Loe iga küsimust, selle õigeid vastuseid ja seda, mida valisid.",
       "Hinda küsimust või teata sellest, kui selle vastus on vale; teatatud küsimused vaadatakse üle ja parandatakse.",

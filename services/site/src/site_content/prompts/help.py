@@ -66,8 +66,8 @@ written in, whatever language the description is in.
 don't need, rename a topic, edit its subtopics, or describe bigger changes in plain words. Then \
 confirm, and the questions are written.
 - Every topic gets its own bank of multiple-choice questions with four options each: most have \
-one correct option and three plausible wrong ones; about 1 in 10 are "select all that apply", \
-with 2 or 3 correct options, and each candidate gets the same share of them. A "select all that \
+one correct option and three plausible wrong ones; about 1 in 10 are "select all that apply" \
+(tagged "Pick multiple options" for candidates), with 2 or 3 correct options, and each candidate gets the same share of them. A "select all that \
 apply" question earns part of its point for each right option ticked, and nothing with a wrong \
 one ticked; the grade is the share of points. Set how many questions each topic asks a \
 candidate (10 by default).
@@ -102,6 +102,15 @@ no reason is recorded. Someone taking the test through a shareable link asks the
 personal invite first. The site's guide "How to time a skills test" \
 (/guides/skills-test-timing-and-extra-time) explains choosing the average time per question, the number \
 of questions, the total length and extra time.
+- Interview mode, on a test's settings tab: click mode (the default: candidates tap their \
+answers) or voice mode, for tests in English, Spanish, German, French, Portuguese or Italian. In \
+voice mode Mira, the AI interviewer, reads each question and its options aloud, and the \
+candidate answers hands-free by voice (a letter, an option's words or what it means), each \
+spoken choice confirmed with a yes; tapping always works too. The question's time starts once \
+the reading ends. The start page asks for the microphone and sound first. The voice is only \
+turned into text to read the answer, never kept, and never analysed for tone or emotion. Same \
+questions, timers and scoring as click mode. The interviews list and the test's page show each \
+test's mode as an icon after its title.
 - Any member of the company can try a test as a candidate first (the play button on the \
 interviews list or on the test's page): the same timed questions, free, and not counted as a \
 candidate.

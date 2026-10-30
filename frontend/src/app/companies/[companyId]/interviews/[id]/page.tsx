@@ -85,6 +85,11 @@ export default async function InterviewPage({
               passMark={interview.pass_mark}
               hired={interview.hired}
               keepPrivate={interview.keep_private}
+              voice={{
+                on: interview.voice ?? false,
+                available: interview.voice_available ?? false,
+                languages: interview.voice_languages ?? [],
+              }}
             />
           </div>
         ) : current === "candidates" ? (

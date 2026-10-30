@@ -102,6 +102,7 @@ export function LinkView({ token }: { token: string }) {
       title={link.title}
       questionSeconds={link.question_seconds}
       totalMinutes={link.total_minutes}
+      voice={link.voice}
       finished={link.status === "finished"}
       viaLink
       action={
@@ -110,6 +111,7 @@ export function LinkView({ token }: { token: string }) {
           pledge={link.status !== "in_process"}
           busy={starting}
           onStart={start}
+          voice={link.voice}
         />
       }
     />

@@ -7,21 +7,24 @@ import { useLocalTime } from "@/hooks/use-local-time"
 import { InterviewStatus } from "@/components/common/interview-status"
 import { IconStat } from "@/components/common/icon-stat"
 import { PinnedNote } from "@/components/common/pinned-note"
+import { AnswerModeIcon } from "@/features/company/components/answer-mode-icon"
 
 /** An interview's row content: its title, its pinned note and date, then its status (when it
- * has one) and how many candidates it has. */
+ * has one), how it's answered (click or voice mode) and how many candidates it has. */
 export function InterviewSummary({
   title,
   createdAt,
   status,
   candidateCount,
   pinnedNote,
+  voice,
 }: {
   title: string
   createdAt: string
   status: string | null
   candidateCount: number
   pinnedNote?: string | null
+  voice: boolean
 }) {
   const t = useTranslations("interviews")
   const localTime = useLocalTime()
@@ -29,7 +32,12 @@ export function InterviewSummary({
   return (
     <>
       <span className="min-w-0 space-y-1">
-        <span className="block text-lg font-medium">{title}</span>
+        {/* How it's answered, after the title's last word, wrapping with it. */}
+        <span className="block text-lg font-medium">
+          {title}
+          {"\u2060"}
+          <AnswerModeIcon voice={voice} className="ms-2" />
+        </span>
         {pinnedNote && <PinnedNote text={pinnedNote} className="text-sm" />}
         <span className="block text-sm text-muted-foreground">
           <time dateTime={createdAt} suppressHydrationWarning>

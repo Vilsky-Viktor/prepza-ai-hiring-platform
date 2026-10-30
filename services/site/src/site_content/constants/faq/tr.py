@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Her aday kendi sırasında kendi rastgele sorularını alır ve her sorunun sunucumuzun tuttuğu [bir süre sınırı](/guides/skills-test-timing-and-extra-time) vardır, bu yüzden cevapları aramaya ya da yapay zekâya sormaya pek zaman kalmaz. Değerlendirme kartı ayrıca adayın sayfadan ne zaman ayrıldığını, metin kopyaladığını ya da soruyu okumuş olamayacak kadar hızlı cevap verdiğini gösterir. Aday bitirdiğinde sayfası, soruları bir yapay zekâya aktarmanın genellikle bıraktığı cevap örüntülerini de gösterir, örneğin her soruda yaklaşık aynı süre veya kolay sorular yanlışken zor soruların doğru olması; ayrıca canlı bir mülakatta sormak için adayın doğru cevapladığı soruları önerir. Örüntü, sormak için bir nedendir, kanıt değildir. Başlamadan önce her aday ayrıca soruları yapay zekâ araçları veya başkalarının yardımı olmadan kendisinin yanıtlayacağını onaylar ve değerlendirme kartı bunu gösterir.",
     },
     {
+        "key": "voice",
+        "question": "Adaylar sesle cevap verebilir mi?",
+        "answer": "Evet, şirket bir mülakatı sesli moda ayarlarsa (İngilizce, İspanyolca, Almanca, Fransızca, Portekizce veya İtalyanca). Sorular sesli okunur ve adaylar sesli cevap verir; söyledikleri metne dönüştürülüp onayladıkları bir seçenekle eşleştirilir ve hiçbir zaman saklanmaz. Sesler ton veya duygu açısından analiz edilmez ve adaylar her zaman bunun yerine dokunarak cevap verebilir.",
+    },
+    {
         "key": "cost",
         "question": "Ücreti ne kadar?",
         "answer": "Mülakat oluşturmak ücretsizdir. En az bir soruyu cevaplayan her aday {candidate} kredi ({candidate_price}) tutar; daha büyük yüklemelerden gelen kredilerle daha az, {cheapest_price} seviyesine kadar. İlk şirketiniz {company} ücretsiz kredi alır; bu, ilk {company_candidates} adayı için yeterlidir. [Fiyatlar sayfasında](/pricing) tüm fiyatlar yer alır.",

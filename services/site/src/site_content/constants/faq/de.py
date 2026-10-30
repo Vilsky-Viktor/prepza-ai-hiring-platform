@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Jeder Kandidat bekommt eigene, zufällige Fragen in eigener Reihenfolge, mit [einem Zeitlimit für jede Frage](/guides/skills-test-timing-and-extra-time), das unser Server überwacht, also bleibt wenig Zeit, Antworten nachzuschlagen oder eine KI zu fragen. Die Auswertung zeigt außerdem, wann ein Kandidat die Seite verlassen, Text kopiert oder zu schnell geantwortet hat, um die Frage gelesen zu haben. Sobald er fertig ist, weist seine Seite zudem auf Antwortmuster hin, die das Weitergeben von Fragen an eine KI oft hinterlässt, etwa ungefähr gleich viel Zeit bei jeder Frage oder schwere Fragen richtig, während leichte falsch waren, und schlägt richtig beantwortete Fragen vor, nach denen man in einem Live-Gespräch fragen kann. Ein Muster ist ein Grund nachzufragen, kein Beweis. Vor dem Start bestätigt außerdem jeder Kandidat, dass er die Fragen selbst beantwortet, ohne KI-Tools oder andere Personen, und die Auswertung zeigt das.",
     },
     {
+        "key": "voice",
+        "question": "Können Kandidaten per Sprache antworten?",
+        "answer": "Ja, wenn das Unternehmen ein Interview auf den Sprachmodus stellt (auf Englisch, Spanisch, Deutsch, Französisch, Portugiesisch oder Italienisch). Die Fragen werden vorgelesen und Kandidaten antworten laut; was sie sagen, wird in Text umgewandelt und einer Option zugeordnet, die sie bestätigen, und nie gespeichert. Stimmen werden nicht auf Tonfall oder Emotionen analysiert, und Kandidaten können jederzeit stattdessen antippen.",
+    },
+    {
         "key": "cost",
         "question": "Was kostet es?",
         "answer": "Interviews zu generieren ist kostenlos. Jeder Kandidat, der mindestens eine Frage beantwortet, kostet {candidate} Credits ({candidate_price}), mit Credits aus größeren Aufladungen weniger, bis hinunter auf {cheapest_price}. Dein erstes Unternehmen bekommt {company} kostenlose Credits, genug für seine ersten {company_candidates} Kandidaten. Auf der [Preisseite](/pricing) stehen alle Preise.",

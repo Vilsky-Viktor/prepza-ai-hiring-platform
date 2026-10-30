@@ -139,6 +139,7 @@
     "text": "Kung paano tumatakbo ang interview na ito para sa bawat aplikante.",
     "actions": [
       "I-on ang link na puwedeng i-share para sa job ad: puwedeng sumagot sa interview ang sinumang may link.",
+      "Piliin ang mode ng interview: click mode, kung saan tina-tap ng mga aplikante ang sagot nila, o voice mode, kung saan binabasa nang malakas ni Mira, isang AI interviewer, ang bawat tanong at sumasagot ang mga aplikante gamit ang boses o pag-tap. Available ang voice mode para sa mga interview sa Ingles, Espanyol, Aleman, Pranses, Portuges at Italyano.",
       "Itakda ang average na oras bawat tanong, sa segundo: may sariling oras ang bawat tanong batay sa haba nito at sa anumang code na ipinapakita nito, at hindi nagbabago ang kabuuang oras ng interview.",
       "Itakda ang passing grade: pasado ang mga aplikanteng aabot dito.",
       "Markahan ang interview bilang na-hire kapag may napili ka na para sa role.",
@@ -158,7 +159,8 @@
       "Suriin ang oras, ang pagkakasulat at ang mga sagot bago ka mag-imbita."
     ],
     "tips": [
-      "Manatili sa page habang sumasagot: para sa mga aplikante, naitatala ang pag-alis sa page, pagkopya at sobrang bilis na pagsagot."
+      "Manatili sa page habang sumasagot: para sa mga aplikante, naitatala ang pag-alis sa page, pagkopya at sobrang bilis na pagsagot.",
+      "Sa voice mode na interview, hihingin muna ang iyong mikropono at tunog: payagan ang mga ito, at babasahin nang malakas ni Mira ang bawat tanong habang sumasagot ka gamit ang boses o pag-tap."
     ]
   },
   "candidate": {
@@ -176,7 +178,7 @@
     "tips": [
       "Tumutulong ang score sa iyong desisyon; hindi ito ang nagdedesisyon. Kung hilingin ng aplikante, ipa-review sa isang tao ang kanyang resulta.",
       "Ipinapakita ng check mark sa ilalim ng grade na kinumpirma ng aplikante, bago magsimula, na sasagot siya nang mag-isa, nang walang AI tool o tulong ng ibang tao.",
-      "Ang grade ay ang porsiyento ng puntos na nakuha: bawat tanong ay isang puntos, at ang tanong na \"piliin ang lahat ng tama\" ay nagbibigay ng bahagi nito sa bawat tamang opsyong na-check, at wala kung may na-check na mali."
+      "Ang grade ay ang porsiyento ng puntos na nakuha: bawat tanong ay isang puntos, at ang tanong na \"pumili ng higit sa isang opsyon\" ay nagbibigay ng bahagi nito sa bawat tamang opsyong na-check, at wala kung may na-check na mali."
     ]
   },
   "templates": {
@@ -444,7 +446,7 @@
   },
   "practiceRound": {
     "title": "Resulta ng practice",
-    "text": "Ang resulta ng isang practice round: ang iyong grade, ang score ng bawat topic, at bawat tanong kasama ang mga tamang sagot nito at ang mga pinili mo; ipinapakita rin ng tanong na \"piliin ang lahat ng tama\" ang puntos na nakuha nito.",
+    "text": "Ang resulta ng isang practice round: ang iyong grade, ang score ng bawat topic, at bawat tanong kasama ang mga tamang sagot nito at ang mga pinili mo; ipinapakita rin ng tanong na \"pumili ng higit sa isang opsyon\" ang puntos na nakuha nito.",
     "actions": [
       "Basahin ang bawat tanong, ang mga tamang sagot nito at ang pinili mo.",
       "I-rate ang isang tanong, o i-report ito kung mali ang sagot nito; sinusuri at inaayos ang mga na-report na tanong.",

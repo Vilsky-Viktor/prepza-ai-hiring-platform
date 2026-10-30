@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Elke kandidaat krijgt eigen willekeurige vragen in een eigen volgorde, met [een timer bij elke vraag](/guides/skills-test-timing-and-extra-time) die onze server bijhoudt, dus er is weinig tijd om antwoorden op te zoeken of het een AI te vragen. De resultaten laten ook zien wanneer een kandidaat de pagina verliet, tekst kopieerde of te snel antwoordde om de vraag te hebben gelezen. Zodra ze klaar zijn, wijst de pagina van de kandidaat ook op antwoordpatronen die vaak ontstaan als iemand de vragen aan een AI doorgeeft en de antwoorden overneemt, zoals ongeveer even lang bij elke vraag of moeilijke vragen goed terwijl makkelijke fout waren, en stelt vragen voor die de kandidaat goed had, om in een live gesprek op door te vragen. Een patroon is een reden om door te vragen, geen bewijs. Voordat ze beginnen, bevestigt elke kandidaat ook dat die de vragen zelf beantwoordt, zonder AI-tools of hulp van anderen, en de resultaten laten dat zien.",
     },
     {
+        "key": "voice",
+        "question": "Kunnen kandidaten met hun stem antwoorden?",
+        "answer": "Ja, als het bedrijf een interview op spraakmodus zet (in het Engels, Spaans, Duits, Frans, Portugees of Italiaans). De vragen worden voorgelezen en kandidaten antwoorden hardop; wat ze zeggen, wordt omgezet in tekst en gekoppeld aan een optie die ze bevestigen, en wordt nooit opgeslagen. Stemmen worden niet geanalyseerd op toon of emotie, en kandidaten kunnen altijd in plaats daarvan tikken.",
+    },
+    {
         "key": "cost",
         "question": "Wat kost het?",
         "answer": "Interviews genereren is gratis. Elke kandidaat die minstens één vraag beantwoordt, kost {candidate} credits ({candidate_price}), en minder met credits uit grotere opwaarderingen, tot {cheapest_price}. Je eerste bedrijf krijgt {company} gratis credits, genoeg voor de eerste {company_candidates} kandidaten. De [prijzenpagina](/pricing) toont elke prijs.",

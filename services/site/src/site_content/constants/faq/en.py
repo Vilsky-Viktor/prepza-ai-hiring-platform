@@ -32,6 +32,11 @@ FAQ = [
         "answer": "Every candidate gets their own random questions in their own order, with [a timer on each question](/guides/skills-test-timing-and-extra-time) that our server keeps, so there's little time to look answers up or ask an AI. The scorecard also shows when a candidate left the page, copied text, or answered too fast to have read the question. Once they finish, their page also points out answer patterns that relaying questions to an AI tends to leave, such as about the same time on every question or hard questions right while easy ones were wrong, and suggests questions they got right to ask about in a live interview. A pattern is a reason to ask, not proof. Before starting, each candidate also confirms they'll answer on their own, without AI tools or other people, and their scorecard shows it.",
     },
     {
+        "key": "voice",
+        "question": "Can candidates answer by voice?",
+        "answer": "Yes, if the company sets an interview to voice mode (in English, Spanish, German, French, Portuguese or Italian). The questions are read aloud and candidates answer aloud; what they say is turned into text and matched to an option they confirm, and it's never stored. Voices aren't analysed for tone or emotion, and candidates can always tap instead.",
+    },
+    {
         "key": "cost",
         "question": "How much does it cost?",
         "answer": "Generating interviews is free. Each candidate who answers at least one question costs {candidate} credits ({candidate_price}), and less with credits from larger top-ups, down to {cheapest_price}. Your first company gets {company} free credits, enough for its first {company_candidates} candidates. The [pricing page](/pricing) lists every price.",

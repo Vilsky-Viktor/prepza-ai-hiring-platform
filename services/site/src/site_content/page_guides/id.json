@@ -139,6 +139,7 @@
     "text": "Cara wawancara ini berjalan untuk setiap kandidat.",
     "actions": [
       "Aktifkan tautan yang bisa dibagikan untuk iklan lowongan: siapa pun yang memilikinya bisa mengikuti wawancara.",
+      "Pilih mode wawancara: mode klik, tempat kandidat mengetuk jawabannya, atau mode suara, tempat Mira, pewawancara AI, membacakan setiap soal dan kandidat menjawab dengan suara atau ketukan. Mode suara tersedia untuk wawancara dalam bahasa Inggris, Spanyol, Jerman, Prancis, Portugis, dan Italia.",
       "Atur rata-rata waktu per soal, dalam detik: setiap soal mendapat waktunya sendiri berdasarkan panjangnya dan kode yang ditampilkannya, dan total waktu wawancara tetap sama.",
       "Atur nilai lulus: kandidat yang mencapainya dinyatakan lulus.",
       "Tandai wawancara sebagai diterima setelah posisinya terisi.",
@@ -158,7 +159,8 @@
       "Periksa waktu, kata-kata, dan jawabannya sebelum mengundang siapa pun."
     ],
     "tips": [
-      "Tetap di halaman saat menjawab: untuk kandidat, meninggalkan halaman, menyalin, dan menjawab terlalu cepat akan dicatat."
+      "Tetap di halaman saat menjawab: untuk kandidat, meninggalkan halaman, menyalin, dan menjawab terlalu cepat akan dicatat.",
+      "Wawancara mode suara pertama-tama meminta izin untuk mikrofon dan suara: izinkan, lalu Mira membacakan setiap soal sementara kamu menjawab dengan suara atau ketukan."
     ]
   },
   "candidate": {
@@ -176,7 +178,7 @@
     "tips": [
       "Skor mendukung keputusanmu, bukan menggantikannya. Jika kandidat memintanya, minta seseorang meninjau hasilnya.",
       "Tanda centang di bawah nilai menunjukkan kandidat telah mengonfirmasi, sebelum mulai, bahwa ia akan menjawab sendiri, tanpa alat AI atau bantuan orang lain.",
-      "Nilai adalah persentase poin yang diperoleh: setiap soal bernilai satu poin, dan soal \"pilih semua yang benar\" memberi sebagian poinnya untuk setiap opsi benar yang dicentang, dan nol jika ada opsi salah yang dicentang."
+      "Nilai adalah persentase poin yang diperoleh: setiap soal bernilai satu poin, dan soal \"pilih lebih dari satu jawaban\" memberi sebagian poinnya untuk setiap opsi benar yang dicentang, dan nol jika ada opsi salah yang dicentang."
     ]
   },
   "templates": {
@@ -444,7 +446,7 @@
   },
   "practiceRound": {
     "title": "Hasil latihan",
-    "text": "Hasil satu sesi latihan: nilaimu, skor setiap topik, dan setiap soal dengan jawaban benarnya dan pilihanmu; soal \"pilih semua yang benar\" juga menampilkan poin yang diperolehnya.",
+    "text": "Hasil satu sesi latihan: nilaimu, skor setiap topik, dan setiap soal dengan jawaban benarnya dan pilihanmu; soal \"pilih lebih dari satu jawaban\" juga menampilkan poin yang diperolehnya.",
     "actions": [
       "Baca setiap soal, jawaban benarnya, dan yang kamu pilih.",
       "Beri nilai pada soal, atau laporkan jika jawabannya salah; soal yang dilaporkan diperiksa dan diperbaiki.",

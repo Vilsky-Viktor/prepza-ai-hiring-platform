@@ -1,26 +1,31 @@
 import { cn } from "cn"
 import { CornerRightDownIcon } from "lucide-react"
 import { useLocale, useTranslations } from "next-intl"
-import { type ReactNode, useEffect, useRef, useState } from "react"
+import { type ReactNode, useState } from "react"
 
 import {
   FinishDialog,
   SessionFooter,
 } from "@/features/company/components/session-finish"
-import { SessionHeader } from "@/features/company/components/session-header"
+import { SessionTop } from "@/features/company/components/session-header"
 import { QuestionActions } from "@/components/common/question-actions"
 import { MultiChoiceTag } from "@/components/common/multi-choice-tag"
 import { QuestionText } from "@/components/common/question-text"
+import { QuestionCode } from "@/features/company/components/question-code"
 import { CARD_PADDING } from "@/config/cards"
 import { ChoiceOptions } from "@/features/company/components/choice-options"
 import { useIntegritySignals } from "@/hooks/use-integrity-signals"
 import { useScrolls } from "@/hooks/use-scrolls"
+import {
+  useQuestionFocus,
+  useSessionAnswers,
+} from "@/hooks/use-session-answers"
 import { languageOf } from "@/lib/locale"
 import { proseAndCode } from "@/lib/question-text"
 import type { InterviewSession } from "@/types/company"
 import type { AnswerInput, NextQuestion } from "@/types/round"
 
-type SessionPlayProps = {
+export type SessionPlayProps = {
   session: InterviewSession
   progress: { answered: number; total: number }
   // This topic's place among the interview's sections.
@@ -53,87 +58,36 @@ export function SessionPlay({
   const [confirmFinish, setConfirmFinish] = useState(false)
   // The question whose clock ran out, announced to screen readers; the screen moves on quietly.
   const [timedOut, setTimedOut] = useState<string | null>(null)
-  // The options picked on the question on screen (one, or any for a multi-answer question):
-  // they can change until they're sent, on Next, on finishing or when the time runs out.
-  const [pick, setPick] = useState<{ question: string; options: number[] }>({
-    question: "",
-    options: [],
-  })
-  const [sending, setSending] = useState(false)
   useIntegritySignals(session.id, session.status === "in_progress")
-  const questionRef = useRef<HTMLDivElement>(null)
   const questionId = question?.question_id
+  const multi = Boolean(question?.multi)
+  const { chosen, sending, answered, allAnswered, sendThen, choose } =
+    useSessionAnswers(questionId, multi, progress, onAnswer)
+  const questionRef = useQuestionFocus(questionId)
   // A long question scrolls in its own box, which then takes keyboard focus to scroll by keys.
   const { ref: cardRef, scrolls } = useScrolls<HTMLDivElement>(questionId)
-  const chosen = pick.question === questionId ? pick.options : []
-  const multi = Boolean(question?.multi)
   const { prose, code } = proseAndCode(question?.text ?? "")
-  const answered = progress.answered + (chosen.length ? 1 : 0)
-  const allAnswered = progress.total > 0 && answered === progress.total
-
-  // Each new question takes focus, so the keyboard and screen readers start from it.
-  useEffect(() => {
-    if (questionId) {
-      questionRef.current?.querySelector<HTMLElement>("[role=heading]")?.focus()
-    }
-  }, [questionId])
-
-  // Saves the pick, if there is one, then does `then`; when saving fails, only if `always`.
-  // Nothing can be picked and the clock can't move on while it's sent, so neither Next nor the
-  // clock can move on twice; a failed send keeps the question's real time left.
-  async function sendThen(then: () => Promise<void>, always = false) {
-    setSending(true)
-
-    try {
-      const saved =
-        chosen.length === 0 ||
-        (await onAnswer(
-          multi ? { picks: chosen } : { option_index: chosen[0] }
-        ))
-
-      if (saved || always) {
-        await then()
-      }
-    } finally {
-      setSending(false)
-    }
-  }
 
   const sendAndAdvance = () => sendThen(onAdvance)
 
-  // A multi-answer question's option is ticked or unticked on its own; otherwise it's the pick.
-  function choose(questionId: string, option: number) {
-    const options = !multi
-      ? [option]
-      : chosen.includes(option)
-        ? chosen.filter((index) => index !== option)
-        : [...chosen, option]
-    setPick({ question: questionId, options })
-  }
-
   return (
     <div className="space-y-8 pb-28">
-      {/* On phones the way back and the logo share a line, the progress under them. */}
-      <div className="relative max-sm:flex max-sm:flex-wrap max-sm:items-center max-sm:gap-x-2 max-sm:gap-y-4">
-        {back}
-        <SessionHeader
-          brand={brand}
-          session={session}
-          progress={progress}
-          section={section}
-          question={question}
-          sending={sending}
-          // The pick counts, and quietly on to the next question: a message would only distract.
-          onTimeUp={() => {
-            setTimedOut(question?.question_id ?? null)
-            // The question's time is over even if its pick can't be saved: the next opens.
-            void sendThen(onAdvance, true)
-          }}
-        />
-      </div>
-      <p aria-live="polite" className="sr-only">
-        {timedOut && <span key={timedOut}>{t("timeUp")}</span>}
-      </p>
+      <SessionTop
+        back={back}
+        timedOut={timedOut}
+        brand={brand}
+        session={session}
+        progress={progress}
+        section={section}
+        question={question}
+        sending={sending}
+        // The pick counts, and quietly on to the next question: a message would only distract.
+        onTimeUp={() => {
+          setTimedOut(question?.question_id ?? null)
+          // The question's time is over even if its pick can't be saved: the next opens.
+          void sendThen(onAdvance, true)
+        }}
+      />
       {question && (
         // The question at the start of the line (on the left, on the right in a right-to-left
         // interface), its options beside it; on phones stacked, the question first. A long
@@ -177,10 +131,10 @@ export function SessionPlay({
                 <QuestionText
                   heading
                   text={prose}
-                  className="text-2xl leading-snug font-medium"
+                  className="text-2xl leading-snug font-medium max-sm:text-xl"
                 />
               </div>
-              {code && <QuestionText text={code} />}
+              {code && <QuestionCode code={code} />}
             </div>
             <div
               {...languageOf(locale)}

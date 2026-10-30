@@ -96,6 +96,8 @@ test("a multi-answer question is ticked, scored in part and shown", async ({ sig
     await owner.getByTestId("manage-questions").first().click()
     const dialog = owner.getByRole("dialog")
     const labelled = dialog.getByText(MULTI_QUESTION, { exact: false })
+    // Loaded first: the count is read once.
+    await expect(labelled.first()).toBeVisible()
     await expect(dialog.getByTestId("multi-choice")).toHaveCount(await labelled.count())
     await expect(dialog.getByTestId("multi-choice").first()).toBeVisible()
     await shots(owner, "question-list")

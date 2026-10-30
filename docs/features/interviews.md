@@ -43,7 +43,7 @@ When a generated interview is ready, the generation page opens it marked as just
 
 ## The interviews list
 
-A company's **interviews** tab lists its interviews, newest first, with a search above it: it finds the interviews whose title contains the text, in any case, with `%` and `_` matched as typed (`GET /companies/interviews?q=`). The address keeps the search (`?q=`), so a reload and the pages loaded as you scroll keep it too. An interview with a [pinned note](#notes) shows it as one muted line under its name.
+A company's **interviews** tab lists its interviews, newest first, with a search above it: it finds the interviews whose title contains the text, in any case, with `%` and `_` matched as typed (`GET /companies/interviews?q=`). The address keeps the search (`?q=`), so a reload and the pages loaded as you scroll keep it too. An interview with a [pinned note](#notes) shows it as one muted line under its name. Each row, and the interview's page under its title, shows how it's answered: a pointer icon for click mode, a microphone for voice mode, after the title's last word, named in its tooltip and for screen readers (`voice` on every interview in companies' lists).
 
 ## The interview page
 
@@ -54,7 +54,7 @@ An interview's page has four tabs, in its side menu as on a company's pages ([Co
 | **topics** | Every member | What the interview adds up to for each candidate (total questions, average time per question and the whole interview's minutes, questions × average, as companies counts them, which follow each change), then the interview's topics and questions, each with its number of questions for each candidate |
 | **candidates** | Every member | The candidate list (see [Candidates](candidates.md#the-candidate-list)) |
 | **notes** | Every member | The team's [notes](#notes) on the hiring round (`?tab=notes`) |
-| **settings** | Owners and admins | The [shareable link](candidates.md#shareable-link) in a card at the top, then average time per question, pass mark, "Mark as hired" and keeping its questions out of the shared question bank, each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
+| **settings** | Owners and admins | The [shareable link](candidates.md#shareable-link) in a card at the top (the screen's full width on a phone), then the interview mode (click or voice), average time per question, pass mark, "Mark as hired" and keeping its questions out of the shared question bank, each saved as it changes; the API (`PATCH /interviews/{id}/settings`) changes only the settings sent, so the assistant and AI apps can change one alone |
 
 ### Settings
 
@@ -62,6 +62,7 @@ An interview's page has four tabs, in its side menu as on a company's pages ([Co
 - **Average time per question:** each question gets its own time from it when a candidate's questions are drawn (see [Timing](candidates.md#timing)); the interview's total stays questions × average. A new test starts with its level's: 60 seconds for a basic or medium one, 75 for a hard one, by default (`QUESTION_SECONDS_BASIC`, `_MEDIUM`, `_HARD`, values in the admin zone's Controls). A template's copy gets them at once; a generated test when its questions are ready, the first time only. Adjustable per interview (see [Timing](candidates.md#timing)); a change in Controls reaches only new tests.
 - **Pass mark:** 70% by default, from 1 to 100. Grades show green or red against it.
 - **Mark as hired:** marks the interview as hired and stops its shareable link at once.
+- **Interview mode:** click mode (the default, for every interview) or voice mode, a two-option switch in the first row ("Interview mode"; on a phone the switch takes its own line, full width). In voice mode Mira, an AI interviewer, reads each question aloud and candidates answer by voice or by tapping. Voice mode is offered only for interviews in English, Spanish, German, French, Portuguese and Italian (`VOICE_LANGUAGES`; the API refuses it in another language with a 422, and the row names the languages); see [Voice mode](candidates.md#voice-mode). A change is in the action log (`interview_settings_changed`) and reaches candidates who start after it.
 - **Keep these questions out of prepza's shared question bank:** off by default, as the terms (2026-10-23) say: an interview's generated questions may be reused in other companies' interviews, without anything that identifies the company or anyone else. Checking it keeps the interview's questions out from then on (`keep_private` on the interview in companies); questions already reused in other interviews stay there. A change is in the action log (`interview_settings_changed`), and Mira and AI apps can set it (`keep_questions_private`). Library hears of each change (`interview.privacy_changed`): checked, the interview's questions leave the bank and never join it; unchecked, those that qualify may join again. Deleting the interview or the company never deletes copies already in the bank. How questions join and leave: [The question bank](../generation.md#the-question-bank).
 
 ### Notes

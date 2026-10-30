@@ -435,6 +435,48 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/schedules/voice-clips": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Remove Unused Clips
+     * @description Daily, from Cloud Scheduler: deletes the questions and phrases read aloud that nobody has
+     *     played for CLIP_UNUSED_DAYS; a question still asked is read again when it next opens.
+     */
+    post: operations["remove_unused_clips_internal_schedules_voice_clips_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/schedules/open-to-offers": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Close Lapsed Offers
+     * @description Daily, from Cloud Scheduler: takes off the Discover tabs whoever turned Open to offers on
+     *     more than OPEN_DAYS ago (they can turn it on again).
+     */
+    post: operations["close_lapsed_offers_internal_schedules_open_to_offers_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/superadmin/stats": {
     parameters: {
       query?: never
@@ -556,6 +598,182 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/sessions/{session_id}/voice/question": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Question Audio
+     * @description Voice mode: the question on screen and its options read aloud (Ogg Opus), once its clock
+     *     started. Made when the question opened and kept for every candidate who gets it.
+     */
+    get: operations["question_audio_sessions__session_id__voice_question_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/sessions/{session_id}/voice/next-question/prepare": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Prepare Next Question
+     * @description Voice mode, as a question opens: the next question of the section read aloud ahead and
+     *     kept, so moving on doesn't wait for it. Nothing of it is sent: it's heard only once it
+     *     opens. Counted against the voice limits when it's new.
+     */
+    post: operations["prepare_next_question_sessions__session_id__voice_next_question_prepare_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/sessions/{session_id}/voice/phrases/{phrase}": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Phrase Audio
+     * @description Voice mode: one of the interviewer's phrases read aloud (Ogg Opus) in the interview's
+     *     language.
+     */
+    get: operations["phrase_audio_sessions__session_id__voice_phrases__phrase__get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/sessions/{session_id}/voice/confirmations": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Confirmation Audio
+     * @description Voice mode: the interviewer naming the options in `picks` (indices) and asking whether
+     *     that's the candidate's answer, read aloud (Ogg Opus).
+     */
+    get: operations["confirmation_audio_sessions__session_id__voice_confirmations_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/sessions/{session_id}/voice/answers": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Voice Answer
+     * @description Voice mode: a spoken answer to the question on screen, understood. The body is the
+     *     recording (audio/webm, audio/mp4 or audio/ogg, at most 2 MB); `waiting` is the choice (option
+     *     indices) waiting for the candidate's yes or no. Nothing is saved: a confirmed choice is
+     *     sent to the answers route as a tapped one is. The audio and the words are never kept.
+     */
+    post: operations["voice_answer_sessions__session_id__voice_answers_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/open-to-offers": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /** Get Open To Offers */
+    get: operations["get_open_to_offers_open_to_offers_get"]
+    /**
+     * Turn On
+     * @description Turns it on, or changes the profile, under the wording the person saw; each time is
+     *     logged as their consent.
+     */
+    put: operations["turn_on_open_to_offers_put"]
+    post?: never
+    /**
+     * Turn Off
+     * @description Off every company's Discover tab at once.
+     */
+    delete: operations["turn_off_open_to_offers_delete"]
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/open-to-offers/matches": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    put?: never
+    /**
+     * Matches
+     * @description A page of the people open to offers with results on these template topics, whoever
+     *     practised last first; topic ids in the body, as a list.
+     */
+    post: operations["matches_internal_open_to_offers_matches_post"]
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/open-to-offers/{user_id}": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * Open Profile
+     * @description The person's shared profile while they're open to offers; 404 once they aren't, so an
+     *     invite from an open tab can't reach someone who turned it off.
+     */
+    get: operations["open_profile_internal_open_to_offers__user_id__get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
 }
 export type webhooks = Record<string, never>
 export interface components {
@@ -661,6 +879,12 @@ export interface components {
      */
     IntegritySignal: "tab_leave" | "copy" | "tab_return"
     /**
+     * Intent
+     * @description What a spoken answer meant (schemas/voice.py).
+     * @enum {string}
+     */
+    Intent: "choose" | "confirm" | "reject" | "unclear"
+    /**
      * InterviewStep
      * @description Where a candidate's interview stands: the section on screen and its waiting question,
      *     every section, and whether the whole interview is finished.
@@ -682,6 +906,35 @@ export interface components {
     InviteScoresIn: {
       /** Invite Ids */
       invite_ids: string[]
+    }
+    /** MatchOut */
+    MatchOut: {
+      /** User Id */
+      user_id: string
+      /** Name */
+      name: string | null
+      /** Linkedin Url */
+      linkedin_url: string
+      /** Results */
+      results: components["schemas"]["PracticeResultOut"][]
+    }
+    /**
+     * MatchesIn
+     * @description Companies, for an interview's Discover tab: the template topics it matches.
+     */
+    MatchesIn: {
+      /** Topic Ids */
+      topic_ids: string[]
+      /**
+       * Offset
+       * @default 0
+       */
+      offset: number
+      /**
+       * Limit
+       * @default 20
+       */
+      limit: number
     }
     /**
      * NextQuestion
@@ -708,6 +961,41 @@ export interface components {
       seconds?: number | null
       /** Seconds Left */
       seconds_left?: number | null
+      /** Reading Left */
+      reading_left?: number | null
+    }
+    /** OpenProfileOut */
+    OpenProfileOut: {
+      /** User Id */
+      user_id: string
+      /** Name */
+      name: string | null
+      /** Linkedin Url */
+      linkedin_url: string
+    }
+    /**
+     * OpenToOffersIn
+     * @description Turning Open to offers on, or changing the profile: the LinkedIn profile's address and the
+     *     version of the switch's wording the person saw (`consent_version` of OpenToOffersOut).
+     */
+    OpenToOffersIn: {
+      /** Linkedin Url */
+      linkedin_url: string
+      /** Consent Version */
+      consent_version: string
+    }
+    /** OpenToOffersOut */
+    OpenToOffersOut: {
+      /** On */
+      on: boolean
+      /** Name */
+      name?: string | null
+      /** Linkedin Url */
+      linkedin_url?: string | null
+      /** Until */
+      until?: string | null
+      /** Consent Version */
+      consent_version: string
     }
     /** Option */
     Option: {
@@ -735,6 +1023,27 @@ export interface components {
       easy?: number | null
       /** Easy Wrong */
       easy_wrong?: number | null
+    }
+    /**
+     * Phrase
+     * @description The interviewer's fixed phrases the browser asks for by name.
+     * @enum {string}
+     */
+    Phrase: "unclear" | "again" | "got-it" | "next" | "time-up" | "end"
+    /**
+     * PracticeResultOut
+     * @description A practice topic's latest timed result: practice, never a company's interview.
+     */
+    PracticeResultOut: {
+      /** Topic Title */
+      topic_title: string
+      /** Score */
+      score: number
+      /**
+       * Finished At
+       * Format: date-time
+       */
+      finished_at: string
     }
     /**
      * PracticeRoundOut
@@ -1067,6 +1376,11 @@ export interface components {
        * @default false
        */
       practice: boolean
+      /**
+       * Voice
+       * @default false
+       */
+      voice: boolean
       status: components["schemas"]["RoundStatus"]
       /** Total */
       total: number
@@ -1120,6 +1434,11 @@ export interface components {
        * Format: uuid
        */
       company_id: string
+      /**
+       * Voice
+       * @default false
+       */
+      voice: boolean
     }
     /**
      * SetCompaniesIn
@@ -1187,6 +1506,19 @@ export interface components {
       input?: unknown
       /** Context */
       ctx?: Record<string, never>
+    }
+    /**
+     * VoiceAnswerOut
+     * @description A spoken answer, understood: what was heard (the candidate's own words, shown back to
+     *     them and kept nowhere), what it meant, and the options it picks (indices, as a click sends
+     *     them) for `choose` and `confirm`.
+     */
+    VoiceAnswerOut: {
+      /** Heard */
+      heard: string
+      intent: components["schemas"]["Intent"]
+      /** Picks */
+      picks: number[]
     }
   }
   responses: never
@@ -1916,6 +2248,42 @@ export interface operations {
       }
     }
   }
+  remove_unused_clips_internal_schedules_voice_clips_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  close_lapsed_offers_internal_schedules_open_to_offers_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
   get_stats_superadmin_stats_get: {
     parameters: {
       query?: {
@@ -2084,6 +2452,293 @@ export interface operations {
           [name: string]: unknown
         }
         content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  question_audio_sessions__session_id__voice_question_get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        session_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  prepare_next_question_sessions__session_id__voice_next_question_prepare_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        session_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  phrase_audio_sessions__session_id__voice_phrases__phrase__get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        session_id: string
+        phrase: components["schemas"]["Phrase"]
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  confirmation_audio_sessions__session_id__voice_confirmations_get: {
+    parameters: {
+      query: {
+        picks: number[]
+      }
+      header?: never
+      path: {
+        session_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  voice_answer_sessions__session_id__voice_answers_post: {
+    parameters: {
+      query?: {
+        waiting?: number[] | null
+      }
+      header?: never
+      path: {
+        session_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["VoiceAnswerOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  get_open_to_offers_open_to_offers_get: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["OpenToOffersOut"]
+        }
+      }
+    }
+  }
+  turn_on_open_to_offers_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["OpenToOffersIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["OpenToOffersOut"]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  turn_off_open_to_offers_delete: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
+      }
+    }
+  }
+  matches_internal_open_to_offers_matches_post: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["MatchesIn"]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["MatchOut"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  open_profile_internal_open_to_offers__user_id__get: {
+    parameters: {
+      query?: never
+      header?: never
+      path: {
+        user_id: string
+      }
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["OpenProfileOut"]
+        }
       }
       /** @description Validation Error */
       422: {

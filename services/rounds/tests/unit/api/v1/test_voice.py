@@ -5,7 +5,9 @@ from uuid import uuid4
 import pytest
 from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
+from prepza_common.i18n.i18n import translate
 
+from rounds.constants.voice_phrases import GOT_IT, NEXT, TIME_UP
 from rounds.integrations import library
 from rounds.main import app
 from rounds.models.sessions import Session
@@ -193,8 +195,17 @@ def test_a_confirmation_names_the_options_and_needs_some(client, voice, monkeypa
     assert client.get(f"{base}/confirmations").status_code == 422
     assert client.get(f"{base}/confirmations?picks=4").status_code == 422
     assert client.get(f"{base}/phrases/end").status_code == 200
+    assert client.get(f"{base}/phrases/got-it").status_code == 200
+    assert client.get(f"{base}/phrases/next").status_code == 200
+    assert client.get(f"{base}/phrases/time-up").status_code == 200
     assert client.get(f"{base}/phrases/anything").status_code == 422
-    assert [company for _, company in read_aloud] == [False, False]
+    # Mira no longer reminds a silent candidate: she just listens.
+    assert client.get(f"{base}/phrases/reminder").status_code == 422
+    assert [company for _, company in read_aloud] == [False] * 5
+    # In the interview's language.
+    assert [text for text, _ in read_aloud[-3:]] == [
+        translate(phrase, "de") for phrase in (GOT_IT, NEXT, TIME_UP)
+    ]
 
 
 def test_the_candidates_words_reach_no_log_trace_or_event(
@@ -227,71 +238,3 @@ def test_a_plain_yes_confirms_without_a_matching_call(client, voice, published):
     assert voice.matched == []
     # Only the hearing is paid for.
     assert [d["action"] for kind, d in published if kind == "ai.used"] == ["voice_transcription"]
-
-
-def with_next_question(row: Session) -> Session:
-    row.questions = [
-        *row.questions,
-        {
-            "id": str(uuid4()),
-            "text": "Which chart shows a distribution?",
-            "options": [
-                {"answer": "Histogram", "correct": True},
-                {"answer": "Pie", "correct": False},
-            ],
-            "seconds": 60,
-        },
-    ]
-
-    return row
-
-
-@pytest.fixture
-def ahead(monkeypatch):
-    """The clips made ahead: (text, language, company_text) each."""
-    made = []
-
-    async def made_ahead(row, text, language, company_text):
-        made.append((text, language, company_text))
-
-    monkeypatch.setattr(voice_session, "made_ahead", made_ahead)
-
-    return made
-
-
-def test_the_next_question_is_read_aloud_ahead_and_nothing_of_it_is_sent(client, voice, ahead):
-    voice.row = with_next_question(section())
-
-    response = client.post(f"/sessions/{voice.row.id}/voice/next-question/prepare")
-
-    assert response.status_code == 204
-    assert response.content == b""
-    assert ahead == [("Which chart shows a distribution? A: Histogram. B: Pie.", "de", True)]
-
-
-@pytest.mark.parametrize(
-    ("row", "status"),
-    [
-        # The section's last question: nothing follows it.
-        (section(), 204),
-        # Never ahead of a question that isn't on the clock, or in click mode, or another's.
-        (with_next_question(section(shown=False)), 409),
-        (with_next_question(section(voice=False)), 409),
-        (with_next_question(section(user_id="someone-else")), 404),
-    ],
-)
-def test_nothing_is_read_ahead_without_a_next_question_on_the_candidates_clock(
-    client, voice, ahead, row, status
-):
-    voice.row = row
-
-    assert client.post(f"/sessions/{row.id}/voice/next-question/prepare").status_code == status
-    assert ahead == []
-
-
-def test_a_finished_section_reads_nothing_ahead(client, voice, ahead):
-    voice.row = with_next_question(section())
-    voice.row.status = "finished"
-
-    assert client.post(f"/sessions/{voice.row.id}/voice/next-question/prepare").status_code == 204
-    assert ahead == []

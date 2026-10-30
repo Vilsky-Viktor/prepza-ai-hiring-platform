@@ -128,6 +128,7 @@ export function InviteView({
       title={invite.title}
       questionSeconds={invite.question_seconds}
       totalMinutes={invite.total_minutes}
+      voice={invite.voice}
       finished={invite.status === "finished"}
       fillScreen={!onStarted}
       action={
@@ -136,6 +137,7 @@ export function InviteView({
           signedIn={!!user}
           matches={matches}
           inProcess={invite.status === "in_process"}
+          voice={invite.voice}
           starting={starting}
           onSignIn={() => signIn()}
           onStart={start}
@@ -152,6 +154,7 @@ function InviteAction({
   signedIn,
   matches,
   inProcess,
+  voice,
   starting,
   onSignIn,
   onStart,
@@ -160,6 +163,8 @@ function InviteAction({
   signedIn: boolean
   matches: boolean
   inProcess: boolean
+  // Taken by voice: the microphone and sound are allowed first.
+  voice: boolean
   starting: boolean
   onSignIn: () => void
   onStart: (pledged: boolean) => void
@@ -181,6 +186,7 @@ function InviteAction({
         pledge={!inProcess}
         busy={starting}
         onStart={onStart}
+        voice={voice}
       />
     )
   }

@@ -14,6 +14,17 @@
   }
 }
 
+/* The voice screen's line while Mira thinks: a light a third of its length glides from its start
+   to its end (and back, run alternately). */
+@keyframes line-sweep {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}
+
 /* The landing's arrows between two panels: each lights up in turn. */
 @keyframes light-up {
   0%,

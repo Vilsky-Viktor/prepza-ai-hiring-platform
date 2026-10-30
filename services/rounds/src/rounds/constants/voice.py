@@ -56,7 +56,7 @@ class Intent(StrEnum):
 
 
 # What the user reads; translated by its English text.
-VOICE_FAILED = "Couldn't hear the answer. Please try again or tap an option."
+VOICE_FAILED = "Couldn't hear the answer.\nPlease try again or tap an option."
 SPEECH_FAILED = "Couldn't read the question aloud."
 NOT_VOICE = "This interview isn't taken by voice."
 NO_QUESTION = "No question is waiting for an answer."

@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Ogni candidato riceve domande casuali tutte sue, in un ordine tutto suo, con [un timer su ogni domanda](/guides/skills-test-timing-and-extra-time) gestito dal nostro server, quindi c'è poco tempo per cercare le risposte o chiedere a un'IA. Le schede di valutazione mostrano anche quando un candidato ha lasciato la pagina, copiato del testo o risposto troppo in fretta per aver letto la domanda. Quando ha finito, la sua pagina indica anche gli andamenti delle risposte che di solito lascia chi passa le domande a un'IA, come più o meno lo stesso tempo per ogni domanda o domande difficili giuste e facili sbagliate, e suggerisce domande a cui ha risposto correttamente da approfondire in un colloquio dal vivo. Un andamento è un motivo per fare domande, non una prova. Prima di iniziare, ogni candidato conferma anche che risponderà in autonomia, senza strumenti di IA né l'aiuto di altre persone, e la sua scheda di valutazione lo mostra.",
     },
     {
+        "key": "voice",
+        "question": "I candidati possono rispondere a voce?",
+        "answer": "Sì, se l'azienda imposta un colloquio in modalità vocale (in inglese, spagnolo, tedesco, francese, portoghese o italiano). Le domande vengono lette ad alta voce e i candidati rispondono a voce; ciò che dicono viene trasformato in testo e abbinato a un'opzione che confermano, e non viene mai conservato. Le voci non vengono analizzate per tono o emozioni, e i candidati possono sempre toccare un'opzione.",
+    },
+    {
         "key": "cost",
         "question": "Quanto costa?",
         "answer": "Generare colloqui è gratis. Ogni candidato che risponde ad almeno una domanda costa {candidate} crediti ({candidate_price}), e meno con i crediti di ricariche più grandi, fino a {cheapest_price}. La tua prima azienda riceve {company} crediti gratuiti, sufficienti per i suoi primi {company_candidates} candidati. La [pagina dei prezzi](/pricing) elenca ogni prezzo.",

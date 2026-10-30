@@ -69,6 +69,7 @@ export function CodeEditor({
 
   return (
     <div
+      data-slot="code-editor"
       className={cn(
         "overflow-hidden rounded-xl border bg-surface text-start",
         className

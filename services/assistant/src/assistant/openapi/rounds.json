@@ -1513,6 +1513,48 @@
     }
    }
   },
+  "/sessions/{session_id}/voice/next-question/prepare": {
+   "post": {
+    "tags": [
+     "voice"
+    ],
+    "summary": "Prepare Next Question",
+    "description": "Voice mode, as a question opens: the next question of the section read aloud ahead and\nkept, so moving on doesn't wait for it. Nothing of it is sent: it's heard only once it\nopens. Counted against the voice limits when it's new.",
+    "operationId": "prepare_next_question_sessions__session_id__voice_next_question_prepare_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "session_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Session Id"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/sessions/{session_id}/voice/phrases/{phrase}": {
    "get": {
     "tags": [
@@ -2524,8 +2566,10 @@
     "type": "string",
     "enum": [
      "unclear",
-     "reminder",
      "again",
+     "got-it",
+     "next",
+     "time-up",
      "end"
     ],
     "title": "Phrase",

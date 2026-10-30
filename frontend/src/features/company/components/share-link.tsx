@@ -47,7 +47,9 @@ export function ShareLink({
   }
 
   return (
-    <div className={cn(SIGN_CARD, "space-y-4")}>
+    <div
+      className={cn(SIGN_CARD, "space-y-4 max-sm:-mx-6 max-sm:rounded-none")}
+    >
       <CornerSign>
         <LinkIcon className="text-primary" />
       </CornerSign>

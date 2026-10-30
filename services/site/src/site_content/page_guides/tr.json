@@ -139,6 +139,7 @@
     "text": "Bu mülakatın her aday için nasıl işlediği.",
     "actions": [
       "İş ilanı için paylaşılabilir bağlantıyı açın: bağlantıya sahip herkes mülakata girebilir.",
+      "Mülakat modunu seçin: adayların cevaplarına dokunduğu tıklama modu ya da yapay zekâ mülakatçısı Mira'nın her soruyu sesli okuduğu ve adayların sesle veya dokunarak cevap verdiği sesli mod. Sesli mod İngilizce, İspanyolca, Almanca, Fransızca, Portekizce ve İtalyanca mülakatlarda kullanılabilir.",
       "Soru başına ortalama süreyi saniye olarak belirleyin: her soru, uzunluğuna ve gösterdiği koda göre kendi süresini alır; mülakatın toplam süresi aynı kalır.",
       "Geçme notunu belirleyin: buna ulaşan adaylar geçer.",
       "Pozisyonu doldurduğunuzda mülakatı işe alındı olarak işaretleyin.",
@@ -158,7 +159,8 @@
       "Kimseyi davet etmeden önce süreyi, ifadeleri ve cevapları kontrol edin."
     ],
     "tips": [
-      "Cevaplarken sayfada kalın: adaylarda sayfadan ayrılma, kopyalama ve çok hızlı cevaplar kaydedilir."
+      "Cevaplarken sayfada kalın: adaylarda sayfadan ayrılma, kopyalama ve çok hızlı cevaplar kaydedilir.",
+      "Sesli moddaki bir mülakat önce mikrofonunuza ve sese izin ister: izin verin; siz sesle veya dokunarak cevap verirken Mira her soruyu sesli okur."
     ]
   },
   "candidate": {
@@ -176,7 +178,7 @@
     "tips": [
       "Puan kararınızı destekler, kararı sizin yerinize vermez. Aday isterse sonucunu bir insana inceletin.",
       "Notun altındaki onay işareti, adayın başlamadan önce soruları yapay zekâ araçları veya başkalarının yardımı olmadan kendisinin yanıtlayacağını onayladığını gösterir.",
-      "Not, kazanılan puanların yüzdesidir: her soru bir puan değerindedir; \"doğru olanların hepsini seçin\" sorusu işaretlenen her doğru seçenek için bu puanın bir kısmını verir, yanlış bir seçenek işaretlenirse hiç puan vermez."
+      "Not, kazanılan puanların yüzdesidir: her soru bir puan değerindedir; \"birden fazla seçenek seçin\" sorusu işaretlenen her doğru seçenek için bu puanın bir kısmını verir, yanlış bir seçenek işaretlenirse hiç puan vermez."
     ]
   },
   "templates": {
@@ -444,7 +446,7 @@
   },
   "practiceRound": {
     "title": "Pratik sonuçları",
-    "text": "Bir denemenin sonuçları: notunuz, her konunun puanı ve doğru cevapları ile seçimlerinizle birlikte her soru; \"doğru olanların hepsini seçin\" sorusunda kazandırdığı puan da görünür.",
+    "text": "Bir denemenin sonuçları: notunuz, her konunun puanı ve doğru cevapları ile seçimlerinizle birlikte her soru; \"birden fazla seçenek seçin\" sorusunda kazandırdığı puan da görünür.",
     "actions": [
       "Her soruyu, doğru cevaplarını ve sizin seçtiklerinizi okuyun.",
       "Bir soruyu puanlayın veya cevabı yanlışsa bildirin; bildirilen sorular kontrol edilip düzeltilir.",

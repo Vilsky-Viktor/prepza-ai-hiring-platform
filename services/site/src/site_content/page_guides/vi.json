@@ -139,6 +139,7 @@
     "text": "Cách buổi phỏng vấn này diễn ra với mọi ứng viên.",
     "actions": [
       "Bật liên kết chia sẻ cho tin tuyển dụng: bất kỳ ai có liên kết đều có thể làm bài phỏng vấn.",
+      "Chọn chế độ phỏng vấn: chế độ nhấp, trong đó ứng viên chạm để chọn câu trả lời, hoặc chế độ giọng nói, trong đó Mira, người phỏng vấn AI, đọc to từng câu hỏi và ứng viên trả lời bằng giọng nói hoặc bằng cách chạm. Chế độ giọng nói có sẵn cho các buổi phỏng vấn bằng tiếng Anh, tiếng Tây Ban Nha, tiếng Đức, tiếng Pháp, tiếng Bồ Đào Nha và tiếng Ý.",
       "Đặt thời gian trung bình mỗi câu hỏi, tính bằng giây: mỗi câu hỏi có thời gian riêng dựa trên độ dài và đoạn mã mà nó hiển thị, còn tổng thời gian của buổi phỏng vấn vẫn giữ nguyên.",
       "Đặt điểm đạt: ứng viên đạt mức này là đậu.",
       "Đánh dấu buổi phỏng vấn là đã tuyển khi bạn đã tuyển được người cho vị trí.",
@@ -158,7 +159,8 @@
       "Kiểm tra thời gian, cách diễn đạt và đáp án trước khi mời ai."
     ],
     "tips": [
-      "Hãy ở lại trang khi trả lời: với ứng viên, việc rời trang, sao chép và trả lời quá nhanh đều được ghi lại."
+      "Hãy ở lại trang khi trả lời: với ứng viên, việc rời trang, sao chép và trả lời quá nhanh đều được ghi lại.",
+      "Buổi phỏng vấn ở chế độ giọng nói trước tiên sẽ xin quyền dùng micrô và âm thanh của bạn: hãy cho phép, rồi Mira sẽ đọc to từng câu hỏi trong khi bạn trả lời bằng giọng nói hoặc bằng cách chạm."
     ]
   },
   "candidate": {
@@ -176,7 +178,7 @@
     "tips": [
       "Điểm hỗ trợ quyết định của bạn chứ không thay bạn quyết định. Nếu ứng viên yêu cầu, hãy để một người xem xét lại kết quả của họ.",
       "Dấu tích dưới điểm cho thấy ứng viên đã xác nhận trước khi bắt đầu rằng sẽ tự trả lời, không dùng công cụ AI hay nhờ người khác.",
-      "Điểm là tỷ lệ phần trăm điểm đạt được: mỗi câu hỏi có một điểm, câu \"chọn tất cả đáp án đúng\" được một phần điểm cho mỗi đáp án đúng đã chọn, và không được điểm nào nếu chọn một đáp án sai."
+      "Điểm là tỷ lệ phần trăm điểm đạt được: mỗi câu hỏi có một điểm, câu \"chọn nhiều phương án\" được một phần điểm cho mỗi đáp án đúng đã chọn, và không được điểm nào nếu chọn một đáp án sai."
     ]
   },
   "templates": {
@@ -444,7 +446,7 @@
   },
   "practiceRound": {
     "title": "Kết quả luyện tập",
-    "text": "Kết quả của một lượt luyện tập: điểm của bạn, điểm từng chủ đề, và mọi câu hỏi kèm đáp án đúng và lựa chọn của bạn; câu \"chọn tất cả phương án đúng\" còn hiện số điểm đạt được.",
+    "text": "Kết quả của một lượt luyện tập: điểm của bạn, điểm từng chủ đề, và mọi câu hỏi kèm đáp án đúng và lựa chọn của bạn; câu \"chọn nhiều phương án\" còn hiện số điểm đạt được.",
     "actions": [
       "Đọc từng câu hỏi, đáp án đúng và lựa chọn của bạn.",
       "Đánh giá một câu hỏi, hoặc báo cáo nếu đáp án sai; câu hỏi bị báo cáo sẽ được kiểm tra và sửa.",

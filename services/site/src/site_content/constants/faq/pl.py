@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Każdy kandydat dostaje własne losowe pytania we własnej kolejności, z [limitem czasu na każde pytanie](/guides/skills-test-timing-and-extra-time) pilnowanym przez nasz serwer, więc zostaje niewiele czasu na szukanie odpowiedzi czy pytanie AI. Wyniki pokazują też, kiedy kandydat opuścił stronę, skopiował tekst albo odpowiedział zbyt szybko, by przeczytać pytanie. Gdy kandydat skończy, jego strona wskazuje też wzorce odpowiedzi, jakie zwykle zostawia przekazywanie pytań AI, np. mniej więcej tyle samo czasu przy każdym pytaniu albo poprawne odpowiedzi na trudne pytania przy błędnych na łatwe, i podsuwa pytania, na które odpowiedział poprawnie, by dopytać o nie na rozmowie na żywo. Wzorzec to powód, by zapytać, a nie dowód. Przed startem każdy kandydat potwierdza też, że odpowie samodzielnie, bez narzędzi AI i pomocy innych osób, a jego wyniki to pokazują.",
     },
     {
+        "key": "voice",
+        "question": "Czy kandydaci mogą odpowiadać głosem?",
+        "answer": "Tak, jeśli firma ustawi rozmowę w trybie głosowym (po angielsku, hiszpańsku, niemiecku, francusku, portugalsku lub włosku). Pytania są czytane na głos, a kandydaci odpowiadają na głos; to, co mówią, jest zamieniane na tekst i dopasowywane do odpowiedzi, którą potwierdzają, i nigdy nie jest zapisywane. Głosy nie są analizowane pod kątem tonu ani emocji, a kandydaci zawsze mogą zamiast tego dotknąć odpowiedzi.",
+    },
+    {
         "key": "cost",
         "question": "Ile to kosztuje?",
         "answer": "Generowanie rozmów jest darmowe. Każdy kandydat, który odpowie na co najmniej jedno pytanie, kosztuje {candidate} kredytów ({candidate_price}), a mniej z kredytami z większych doładowań, nawet {cheapest_price}. Twoja pierwsza firma dostaje {company} darmowych kredytów, co wystarczy na pierwszych {company_candidates} kandydatów. Wszystkie ceny są na [stronie cennika](/pricing).",

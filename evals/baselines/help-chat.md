@@ -193,3 +193,14 @@ none, judged by `gpt-6.1-sol` high (`results/help_chat_key-author.json`), agains
 passed 96.0% (88.9–98.6) → 98.7% (92.8–99.8); made up 2.7% → 1.3% (0.2–7.2); sign-in marker
 100% both; identity 18 of 18. Misses: h17's known invented retake limit once and one language
 case. Within the noise; kept so the guides say what is true. $1.35.
+
+## Help chat: voice mode (2026-10-30, kept)
+
+The platform guide, the FAQ and the interview settings' and preview's page guides now describe
+voice mode (Mira reading each question aloud, answers by voice or tap, the six languages, the
+voice never kept) and quote the multi-answer tag as candidates now see it ("Pick multiple
+options"). `help_chat.py`, 25 × 3, `gpt-6-luna` at none, judged by `gpt-6.1-sol` high
+(`results/help_chat_voice-mode.json`), against the API-keys run: passed 98.7% (92.8–99.8) → 96.0%
+(88.9–98.6); made up 1.3% → 4.0% (1.4–11.1); sign-in marker 100% both; identity 18 of 18.
+Misses: h17's known invented retake limit (3 of 3); none about voice mode. Within the noise;
+kept so the guides say what is true. $1.79.

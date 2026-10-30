@@ -13,9 +13,12 @@ import { StartPledge } from "@/features/company/components/start-pledge"
 export function StartPreview({
   companyId,
   interviewId,
+  voice,
 }: {
   companyId: string
   interviewId: string
+  // Taken by voice: the microphone and sound are allowed first.
+  voice: boolean
 }) {
   const t = useTranslations("invite")
   const interviews = useTranslations("interviews")
@@ -46,6 +49,7 @@ export function StartPreview({
       busy={starting}
       onStart={start}
       testId="accept-start"
+      voice={voice}
     />
   )
 }

@@ -139,6 +139,7 @@
     "text": "Wie dieses Interview für jeden Kandidaten abläuft.",
     "actions": [
       "Schalte den Link zum Teilen für eine Stellenanzeige ein: Jeder mit dem Link kann das Interview machen.",
+      "Wähle den Interviewmodus: den Klickmodus, in dem Kandidaten ihre Antworten antippen, oder den Sprachmodus, in dem Mira, eine KI-Interviewerin, jede Frage vorliest und Kandidaten per Sprache oder durch Antippen antworten. Der Sprachmodus ist für Interviews auf Englisch, Spanisch, Deutsch, Französisch, Portugiesisch und Italienisch verfügbar.",
       "Lege die durchschnittliche Zeit pro Frage in Sekunden fest: Jede Frage bekommt ihre eigene Zeit, abhängig von ihrer Länge und dem Code, den sie zeigt; die Gesamtzeit des Interviews bleibt gleich.",
       "Lege die Bestehensgrenze fest: Kandidaten, die sie erreichen, bestehen.",
       "Markiere das Interview als eingestellt, sobald die Stelle besetzt ist.",
@@ -158,7 +159,8 @@
       "Prüfe Zeit, Formulierungen und Antworten, bevor du jemanden einlädst."
     ],
     "tips": [
-      "Bleib beim Antworten auf der Seite: Bei Kandidaten werden das Verlassen der Seite, Kopieren und zu schnelle Antworten erfasst."
+      "Bleib beim Antworten auf der Seite: Bei Kandidaten werden das Verlassen der Seite, Kopieren und zu schnelle Antworten erfasst.",
+      "Ein Interview im Sprachmodus fragt zuerst nach deinem Mikrofon und dem Ton: Erlaube beides, dann liest Mira jede Frage vor, während du per Sprache oder durch Antippen antwortest."
     ]
   },
   "candidate": {

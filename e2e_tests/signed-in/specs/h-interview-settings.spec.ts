@@ -4,8 +4,13 @@ import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { throwawayEmail } from "../helpers/users"
 
-// An interview's settings are its own tab: time per question, passing grade, hired and keeping
-// its questions out of the shared question bank, each saved as it changes and kept after a reload.
+// The voice mode icon's name: an icon-only mark, so its name is what it says.
+const VOICE_MODE = "Voice mode: questions are read aloud and answered by voice"
+
+// An interview's settings are its own tab: click or voice mode, time per question, passing grade,
+// hired and keeping its questions out of the shared question bank, each saved as it changes and
+// kept after a reload. The mode shows as an icon after the interview's title, here and in the
+// interviews list, named for screen readers.
 test("an owner changes an interview's settings on its settings tab", async ({ signInAs }) => {
   const owner = await signInAs(throwawayEmail("interview-settings"))
   const company = await createCompany(owner)
@@ -16,6 +21,15 @@ test("an owner changes an interview's settings on its settings tab", async ({ si
   await owner.locator('main nav a[href$="?tab=settings"]:visible').click()
   await expect(owner).toHaveURL(new RegExp(`${interviewUrl}\\?tab=settings$`))
   await shot(owner, "settings-tab")
+
+  // Click mode by default; voice mode chosen on the mode's switch, its first row.
+  const modes = owner.getByRole("main").getByRole("group").first().getByRole("button")
+  const mode = owner.getByRole("main").getByTestId("answer-mode").filter({ visible: true })
+  await expect(modes.first()).toHaveAttribute("aria-pressed", "true")
+  await expect(mode).toHaveAttribute("data-mode", "click")
+  await modes.nth(1).click()
+  await expect(modes.nth(1)).toHaveAttribute("aria-pressed", "true")
+  await expect(modes.first()).toHaveAttribute("aria-pressed", "false")
 
   // The time per question, then the passing grade.
   const seconds = owner.getByRole("main").getByRole("spinbutton").first()
@@ -34,6 +48,9 @@ test("an owner changes an interview's settings on its settings tab", async ({ si
   await expect(keepPrivate).toBeChecked()
 
   await owner.reload()
+  await expect(modes.nth(1)).toHaveAttribute("aria-pressed", "true")
+  await expect(mode).toHaveAttribute("data-mode", "voice")
+  await expect(mode).toHaveAccessibleName(VOICE_MODE)
   await expect(seconds).toHaveValue("90")
   await expect(mark).toHaveValue("70")
   await expect(hired).toBeChecked()
@@ -45,6 +62,15 @@ test("an owner changes an interview's settings on its settings tab", async ({ si
   await owner.reload()
   await expect(keepPrivate).not.toBeChecked()
   await expect(hired).toBeChecked()
+
+  // The interviews list names its mode too.
+  await visit(owner, `/companies/${company.id}/interviews`)
+  const listed = owner
+    .locator(`main a[href$="/interviews/${interviewId}"]`)
+    .getByTestId("answer-mode")
+    .filter({ visible: true })
+  await expect(listed).toHaveAttribute("data-mode", "voice")
+  await expect(listed).toHaveAccessibleName(VOICE_MODE)
 })
 
 // The shareable link is on the settings tab, not the candidates tab: turned on there, it gives

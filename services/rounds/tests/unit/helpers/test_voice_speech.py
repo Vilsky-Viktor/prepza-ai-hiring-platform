@@ -33,7 +33,7 @@ def test_code_and_long_examples_are_left_on_screen():
 
     assert "print(1 + 1)" not in found and long not in found
     assert found == (
-        "What does this print? Look at the example on screen. Choose every option that applies. "
+        "What does this print? Look at the example on screen. Pick multiple options for this question. "
         "A: 2. B: shown on screen. C: shown on screen. D: Nothing."
     )
 

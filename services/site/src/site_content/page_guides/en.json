@@ -139,6 +139,7 @@
     "text": "How this interview runs for every candidate.",
     "actions": [
       "Turn on the shareable link for a job ad: anyone with it can take the interview.",
+      "Choose the interview mode: click mode, where candidates tap their answers, or voice mode, where Mira, an AI interviewer, reads each question aloud and candidates answer by voice or tap. Voice mode is offered for interviews in English, Spanish, German, French, Portuguese and Italian.",
       "Set the average time per question, in seconds: each question gets its own time from its length and any code it shows, and the interview's total time stays the same.",
       "Set the passing grade: candidates who reach it pass.",
       "Mark the interview as hired once you've filled the role.",
@@ -158,7 +159,8 @@
       "Check the timing, the wording and the answers before you invite anyone."
     ],
     "tips": [
-      "Stay on the page while you answer: for candidates, leaving the page, copying and answering too fast are recorded."
+      "Stay on the page while you answer: for candidates, leaving the page, copying and answering too fast are recorded.",
+      "A voice mode interview first asks for your microphone and sound: allow them, and Mira reads each question aloud while you answer by voice or tap."
     ]
   },
   "candidate": {
@@ -176,7 +178,7 @@
     "tips": [
       "The score supports your decision; it doesn't make it. If the candidate asks, have a person review their result.",
       "A check mark under the grade shows the candidate confirmed, before starting, that they'd answer on their own, without AI tools or other people.",
-      "A grade is the percentage of points earned: each question is worth one point, and a \"select all that apply\" question earns part of it for each right option ticked, and nothing if a wrong one is ticked."
+      "A grade is the percentage of points earned: each question is worth one point, and a \"pick multiple options\" question earns part of it for each right option ticked, and nothing if a wrong one is ticked."
     ]
   },
   "templates": {
@@ -444,7 +446,7 @@
   },
   "practiceRound": {
     "title": "Practice results",
-    "text": "One practice round's results: your grade, each topic's score, and every question with its right answers and your picks; a \"select all that apply\" question also shows the points it earned.",
+    "text": "One practice round's results: your grade, each topic's score, and every question with its right answers and your picks; a \"pick multiple options\" question also shows the points it earned.",
     "actions": [
       "Read each question, its right answers and what you picked.",
       "Rate a question, or report it if its answer is wrong; reported questions get checked and fixed.",

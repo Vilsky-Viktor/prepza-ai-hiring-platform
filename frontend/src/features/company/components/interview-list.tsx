@@ -74,6 +74,7 @@ export function InterviewList({
               status={interview.set_id ? interview.status : null}
               candidateCount={interview.candidate_count}
               pinnedNote={interview.pinned_note}
+              voice={interview.voice ?? false}
             />
           </Link>
           {/* Still generating: cancelling it, on its page, is the way to remove it. */}

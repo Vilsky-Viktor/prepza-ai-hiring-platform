@@ -51,6 +51,7 @@ export default async function TryInterviewPage({
           title={interview.title}
           questionSeconds={interview.question_seconds}
           totalMinutes={interview.total_minutes}
+          voice={interview.voice}
           finished={false}
           back={
             <BackLink
@@ -60,7 +61,13 @@ export default async function TryInterviewPage({
               {interviews("title")}
             </BackLink>
           }
-          action={<StartPreview companyId={companyId} interviewId={id} />}
+          action={
+            <StartPreview
+              companyId={companyId}
+              interviewId={id}
+              voice={interview.voice}
+            />
+          }
         />
       </div>
     </main>

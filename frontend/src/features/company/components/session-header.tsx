@@ -8,17 +8,7 @@ import type { InterviewSession } from "@/types/company"
 import type { NextQuestion } from "@/types/round"
 import { Dot } from "@/components/common/dot"
 
-/** The interview's header: the company's logo, the section's title and place, the question's
- * clock and the progress. */
-export function SessionHeader({
-  brand,
-  session,
-  progress,
-  section,
-  question,
-  sending,
-  onTimeUp,
-}: {
+type HeaderProps = {
   brand?: ReactNode
   session: InterviewSession
   progress: { answered: number; total: number }
@@ -30,7 +20,46 @@ export function SessionHeader({
   // Called when the question's clock reaches zero: the server counts it as wrong, and the
   // next one opens.
   onTimeUp: () => void
+}
+
+/** The interview's top, on its click and voice screens alike: the way back (a member's preview)
+ * and the header, and the polite line announcing a question whose time ran out. */
+export function SessionTop({
+  back,
+  timedOut,
+  ...header
+}: HeaderProps & {
+  back?: ReactNode
+  // The question whose clock ran out, announced to screen readers.
+  timedOut: string | null
 }) {
+  const t = useTranslations("session")
+
+  return (
+    <>
+      {/* On phones the way back and the logo share a line, the progress under them. */}
+      <div className="relative max-sm:flex max-sm:flex-wrap max-sm:items-center max-sm:gap-x-2 max-sm:gap-y-4">
+        {back}
+        <SessionHeader {...header} />
+      </div>
+      <p aria-live="polite" className="sr-only">
+        {timedOut && <span key={timedOut}>{t("timeUp")}</span>}
+      </p>
+    </>
+  )
+}
+
+/** The interview's header: the company's logo, the section's title and place, the question's
+ * clock and the progress. */
+export function SessionHeader({
+  brand,
+  session,
+  progress,
+  section,
+  question,
+  sending,
+  onTimeUp,
+}: HeaderProps) {
   const t = useTranslations("session")
   const candidates = useTranslations("candidates")
 

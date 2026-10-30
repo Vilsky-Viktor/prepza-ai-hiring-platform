@@ -6,6 +6,7 @@
 @import "./bell.css";
 @import "./animations.css";
 @import "./scripts.css";
+@import "./headings.css";
 /* The logo's blue dot after titles and menu links (blue-dot for one in markup). */
 @import "./blue-dot.css";
 /* The primary gradient as fills and borders (bg-primary-gradient, border-primary-gradient). */

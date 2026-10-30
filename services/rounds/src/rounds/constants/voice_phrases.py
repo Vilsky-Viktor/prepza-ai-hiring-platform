@@ -6,7 +6,7 @@ from enum import StrEnum
 # In place of a code block or a long example, which isn't read aloud.
 LOOK_AT_EXAMPLE = "Look at the example on screen."
 # A select-all-that-apply question, after its text.
-CHOOSE_ALL = "Choose every option that applies."
+CHOOSE_ALL = "Pick multiple options for this question."
 # Each option as it's read: its letter, then its text.
 OPTION = "{letter}: {text}."
 # An option with code or a long example in it, instead of its text.
@@ -14,9 +14,13 @@ OPTION_ON_SCREEN = "{letter}: shown on screen."
 # The last two letters of a choice of several: "A, C and D".
 LAST_TWO = "{first} and {last}"
 CONFIRM = "You chose {letters}. Is that right?"
-UNCLEAR = "Sorry, I didn't catch that. Say the letter of your answer, or tap an option."
-REMINDER = "Take your time. Say the letter of your answer when you're ready."
+UNCLEAR = "Sorry, I didn't catch that. Say your answer again, or tap an option."
 AGAIN = "All right. Which option do you choose?"
+# At once when the candidate stops speaking, while their answer is understood.
+GOT_IT = "Got it."
+# Before the next question: after a confirmed answer, or when the question's time ran out.
+NEXT = "Moving on to the next question."
+TIME_UP = "Time's up. Moving on to the next question."
 END = "Thank you. Your answers are recorded, and the company will be in touch about the results."
 
 
@@ -24,14 +28,18 @@ class Phrase(StrEnum):
     """The interviewer's fixed phrases the browser asks for by name."""
 
     UNCLEAR = "unclear"
-    REMINDER = "reminder"
     AGAIN = "again"
+    GOT_IT = "got-it"
+    NEXT = "next"
+    TIME_UP = "time-up"
     END = "end"
 
 
 FIXED_PHRASES = {
     Phrase.UNCLEAR: UNCLEAR,
-    Phrase.REMINDER: REMINDER,
     Phrase.AGAIN: AGAIN,
+    Phrase.GOT_IT: GOT_IT,
+    Phrase.NEXT: NEXT,
+    Phrase.TIME_UP: TIME_UP,
     Phrase.END: END,
 }

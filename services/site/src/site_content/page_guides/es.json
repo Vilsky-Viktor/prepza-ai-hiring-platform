@@ -139,6 +139,7 @@
     "text": "Cómo funciona esta entrevista para cada candidato.",
     "actions": [
       "Activa el enlace para compartir en una oferta de empleo: cualquiera que lo tenga puede hacer la entrevista.",
+      "Elige el modo de la entrevista: el modo clic, en el que los candidatos tocan sus respuestas, o el modo de voz, en el que Mira, una entrevistadora de IA, lee cada pregunta en voz alta y los candidatos responden con la voz o tocando una opción. El modo de voz está disponible para entrevistas en inglés, español, alemán, francés, portugués e italiano.",
       "Define el tiempo medio por pregunta, en segundos: cada pregunta tiene su propio tiempo según su longitud y el código que muestre, y el tiempo total de la entrevista no cambia.",
       "Define la nota de aprobado: los candidatos que la alcanzan aprueban.",
       "Marca el puesto como cubierto cuando hayas contratado.",
@@ -158,7 +159,8 @@
       "Revisa los tiempos, la redacción y las respuestas antes de invitar a nadie."
     ],
     "tips": [
-      "Quédate en la página mientras respondes: en los candidatos se registra si salen de la página, copian o responden demasiado rápido."
+      "Quédate en la página mientras respondes: en los candidatos se registra si salen de la página, copian o responden demasiado rápido.",
+      "Una entrevista en modo de voz primero pide acceso a tu micrófono y al sonido: permítelos, y Mira lee cada pregunta en voz alta mientras respondes con la voz o tocando una opción."
     ]
   },
   "candidate": {
@@ -176,7 +178,7 @@
     "tips": [
       "La puntuación apoya tu decisión; no la toma por ti. Si el candidato lo pide, haz que una persona revise su resultado.",
       "Una marca bajo la nota indica que el candidato confirmó, antes de empezar, que respondería por su cuenta, sin herramientas de IA ni ayuda de otras personas.",
-      "La nota es el porcentaje de puntos obtenidos: cada pregunta vale un punto, y una de «selecciona todas las correctas» da una parte por cada opción correcta marcada, y nada si se marca una incorrecta."
+      "La nota es el porcentaje de puntos obtenidos: cada pregunta vale un punto, y una de «elige varias opciones» da una parte por cada opción correcta marcada, y nada si se marca una incorrecta."
     ]
   },
   "templates": {
@@ -444,7 +446,7 @@
   },
   "practiceRound": {
     "title": "Resultados de la práctica",
-    "text": "Los resultados de una ronda de práctica: tu nota, la puntuación de cada tema y cada pregunta con sus respuestas correctas y lo que marcaste; una pregunta de «selecciona todas las correctas» también muestra los puntos obtenidos.",
+    "text": "Los resultados de una ronda de práctica: tu nota, la puntuación de cada tema y cada pregunta con sus respuestas correctas y lo que marcaste; una pregunta de «elige varias opciones» también muestra los puntos obtenidos.",
     "actions": [
       "Lee cada pregunta, sus respuestas correctas y lo que marcaste.",
       "Valora una pregunta, o repórtala si su respuesta es incorrecta; las preguntas reportadas se revisan y se corrigen.",

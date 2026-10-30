@@ -139,6 +139,7 @@
     "text": "Come si svolge questo colloquio per ogni candidato.",
     "actions": [
       "Attiva il link condivisibile per un annuncio di lavoro: chiunque lo abbia può sostenere il colloquio.",
+      "Scegli la modalità del colloquio: la modalità clic, in cui i candidati toccano le risposte, o la modalità vocale, in cui Mira, un'intervistatrice IA, legge ogni domanda ad alta voce e i candidati rispondono a voce o con un tocco. La modalità vocale è disponibile per i colloqui in inglese, spagnolo, tedesco, francese, portoghese e italiano.",
       "Imposta il tempo medio per domanda, in secondi: ogni domanda ha un tempo suo in base alla lunghezza e al codice che mostra, e il tempo totale del colloquio resta lo stesso.",
       "Imposta la soglia di superamento: i candidati che la raggiungono superano il colloquio.",
       "Segna il colloquio come assunto quando hai coperto la posizione.",
@@ -158,7 +159,8 @@
       "Controlla i tempi, la formulazione e le risposte prima di invitare qualcuno."
     ],
     "tips": [
-      "Resta sulla pagina mentre rispondi: per i candidati vengono registrati l'uscita dalla pagina, la copia e le risposte troppo veloci."
+      "Resta sulla pagina mentre rispondi: per i candidati vengono registrati l'uscita dalla pagina, la copia e le risposte troppo veloci.",
+      "Un colloquio in modalità vocale chiede prima il microfono e l'audio: consentili, e Mira legge ogni domanda ad alta voce mentre rispondi a voce o con un tocco."
     ]
   },
   "candidate": {

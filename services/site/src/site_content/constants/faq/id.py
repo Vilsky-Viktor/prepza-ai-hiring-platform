@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Setiap kandidat mendapat soal acak sendiri dengan urutan sendiri, dengan [batas waktu di tiap soal](/guides/skills-test-timing-and-extra-time) yang dijaga server kami, jadi hanya ada sedikit waktu untuk mencari jawaban atau bertanya ke AI. Scorecard juga menunjukkan saat kandidat meninggalkan halaman, menyalin teks, atau menjawab terlalu cepat untuk sempat membaca soal. Setelah selesai, halamannya juga menunjukkan pola jawaban yang biasanya muncul saat soal diteruskan ke AI, seperti waktu yang kira-kira sama di setiap soal atau soal sulit benar sementara soal mudah salah, dan menyarankan soal yang dijawab benar oleh kandidat untuk ditanyakan dalam wawancara langsung. Pola adalah alasan untuk bertanya, bukan bukti. Sebelum mulai, setiap kandidat juga mengonfirmasi akan menjawab sendiri, tanpa alat AI atau bantuan orang lain, dan scorecard-nya menunjukkan hal itu.",
     },
     {
+        "key": "voice",
+        "question": "Bisakah kandidat menjawab dengan suara?",
+        "answer": "Bisa, jika perusahaan mengatur wawancara ke mode suara (dalam bahasa Inggris, Spanyol, Jerman, Prancis, Portugis, atau Italia). Soal dibacakan dan kandidat menjawab secara lisan; ucapan mereka diubah menjadi teks dan dicocokkan dengan opsi yang mereka konfirmasi, dan tidak pernah disimpan. Suara tidak dianalisis untuk nada atau emosi, dan kandidat selalu bisa mengetuk opsi sebagai gantinya.",
+    },
+    {
         "key": "cost",
         "question": "Berapa biayanya?",
         "answer": "Membuat wawancara gratis. Setiap kandidat yang menjawab setidaknya satu soal seharga {candidate} kredit ({candidate_price}), dan lebih murah dengan kredit dari isi ulang yang lebih besar, hingga {cheapest_price}. Perusahaan pertamamu mendapat {company} kredit gratis, cukup untuk {company_candidates} kandidat pertamanya. [Halaman harga](/pricing) mencantumkan semua harga.",

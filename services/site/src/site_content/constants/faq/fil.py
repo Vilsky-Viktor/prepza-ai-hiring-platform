@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Bawat aplikante ay may sariling random na mga tanong sa sarili nilang pagkakasunod-sunod, may [timer sa bawat tanong](/guides/skills-test-timing-and-extra-time) na binabantayan ng aming server, kaya kaunti lang ang oras para maghanap ng sagot o magtanong sa AI. Ipinapakita rin ng scorecard ng aplikante kung kailan siya umalis sa page, kumopya ng text, o sumagot nang masyadong mabilis para nabasa ang tanong. Kapag tapos na siya, itinuturo rin ng kanyang page ang mga pattern ng sagot na kadalasang naiiwan kapag ipinapasa ang mga tanong sa AI, gaya ng halos parehong oras sa bawat tanong o tama ang mahihirap na tanong habang mali ang madadali, at nagmumungkahi ng mga tanong na tama ang sagot niya para itanong sa isang live na interview. Ang pattern ay dahilan para magtanong, hindi patunay. Bago magsimula, kinukumpirma rin ng bawat aplikante na sasagot siya nang mag-isa, nang walang AI tool o tulong ng ibang tao, at ipinapakita ito ng kanyang scorecard.",
     },
     {
+        "key": "voice",
+        "question": "Puwede bang sumagot gamit ang boses ang mga aplikante?",
+        "answer": "Oo, kung itinakda ng kumpanya ang interview sa voice mode (sa Ingles, Espanyol, Aleman, Pranses, Portuges o Italyano). Binabasa nang malakas ang mga tanong at sumasagot nang pasalita ang mga aplikante; ginagawang text ang sinasabi nila at itinutugma sa opsyong kinukumpirma nila, at hindi ito kailanman sine-save. Hindi sinusuri ang boses para sa tono o emosyon, at puwedeng mag-tap na lang palagi ang mga aplikante.",
+    },
+    {
         "key": "cost",
         "question": "Magkano ito?",
         "answer": "Libre ang paggawa ng interview. Bawat aplikanteng sumagot ng kahit isang tanong ay {candidate} credits ({candidate_price}), at mas mura gamit ang credits mula sa mas malalaking top-up, hanggang {cheapest_price}. Makakatanggap ang iyong unang kumpanya ng {company} libreng credits, sapat para sa unang {company_candidates} aplikante nito. Nakalista sa [pricing page](/pricing) ang bawat presyo.",

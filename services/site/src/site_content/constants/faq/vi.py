@@ -33,6 +33,11 @@ FAQ = [
         "answer": "Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng theo thứ tự riêng, với [thời gian giới hạn cho từng câu](/guides/skills-test-timing-and-extra-time) do máy chủ của chúng tôi theo dõi, nên có rất ít thời gian để tra cứu đáp án hay hỏi AI. Bảng điểm cũng cho thấy khi ứng viên rời trang, sao chép văn bản hoặc trả lời quá nhanh để kịp đọc câu hỏi. Khi ứng viên làm xong, trang của họ còn chỉ ra những mẫu trả lời thường xuất hiện khi chuyển câu hỏi cho AI rồi chép lại đáp án, chẳng hạn mọi câu hỏi tốn gần như cùng một khoảng thời gian, hoặc câu khó thì đúng trong khi câu dễ lại sai, và gợi ý những câu ứng viên đã trả lời đúng để hỏi lại trong buổi phỏng vấn trực tiếp. Một mẫu trả lời là lý do để hỏi, không phải bằng chứng. Trước khi bắt đầu, mỗi ứng viên cũng xác nhận sẽ tự trả lời, không dùng công cụ AI hay nhờ người khác, và bảng điểm sẽ cho thấy điều đó.",
     },
     {
+        "key": "voice",
+        "question": "Ứng viên có thể trả lời bằng giọng nói không?",
+        "answer": "Có, nếu công ty đặt buổi phỏng vấn ở chế độ giọng nói (bằng tiếng Anh, tiếng Tây Ban Nha, tiếng Đức, tiếng Pháp, tiếng Bồ Đào Nha hoặc tiếng Ý). Câu hỏi được đọc to và ứng viên trả lời thành tiếng; những gì họ nói được chuyển thành văn bản và khớp với một phương án mà họ xác nhận, và không bao giờ được lưu lại. Giọng nói không bị phân tích về ngữ điệu hay cảm xúc, và ứng viên luôn có thể chạm để chọn thay vào đó.",
+    },
+    {
         "key": "cost",
         "question": "Chi phí bao nhiêu?",
         "answer": "Tạo buổi phỏng vấn là miễn phí. Mỗi ứng viên trả lời ít nhất một câu hỏi tốn {candidate} credit ({candidate_price}), và rẻ hơn với credit từ các lần nạp lớn hơn, xuống tới {cheapest_price}. Công ty đầu tiên của bạn nhận {company} credit miễn phí, đủ cho {company_candidates} ứng viên đầu tiên. [Trang bảng giá](/pricing) liệt kê mọi mức giá.",

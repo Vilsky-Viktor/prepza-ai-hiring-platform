@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
 import { useState } from "react"
 import { toast } from "sonner"
 
@@ -9,33 +9,42 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type { InterviewSettingsData } from "@/types/company"
+import { formatList } from "@/lib/format"
 import { LIST_BOX } from "@/config/lists"
 import { CARD_PADDING } from "@/config/cards"
+import { AnswerModeSetting } from "@/features/company/components/answer-mode-switch"
 
-/** The interview's settings tab: the average time per question (each question gets its own,
-fitted to it by rounds), the pass mark, whether the company
-hired, and whether its questions stay out of prepza's shared question bank, one row each in a
-list like the topics'. Every interview is timed, and candidates never see their scores. */
+/** The interview's settings tab: whether it's taken in click mode or voice mode (voice only in
+the languages the API names), the average time per question (each question gets its own, fitted
+to it by rounds), the pass mark, whether the company hired, and whether its questions stay out of
+prepza's shared question bank, one row each in a list like the topics'.
+Every interview is timed, and candidates never see their scores. */
 export function InterviewSettings({
   interviewId,
   questionSeconds,
   passMark,
   hired,
   keepPrivate,
+  voice,
 }: {
   interviewId: string
   questionSeconds: number
   passMark: number
   hired: boolean
   keepPrivate: boolean
+  // Taken in voice mode (click mode otherwise, the default), whether the interview's language
+  // allows it, and the languages that do.
+  voice: { on: boolean; available: boolean; languages: string[] }
 }) {
   const t = useTranslations("interviews")
+  const locale = useLocale()
   const router = useRouter()
   const [saved, setSaved] = useState<InterviewSettingsData>({
     question_seconds: questionSeconds,
     hired,
     pass_mark: passMark,
     keep_private: keepPrivate,
+    voice: voice.on,
   })
   const [seconds, setSeconds] = useState(String(questionSeconds))
   const [mark, setMark] = useState(String(passMark))
@@ -70,6 +79,19 @@ export function InterviewSettings({
 
   return (
     <div className={LIST_BOX}>
+      <AnswerModeSetting
+        label={t("answerMode")}
+        help={
+          voice.available
+            ? t("answerModeHelp")
+            : t("voiceModeLanguages", {
+                languages: languageList(voice.languages, locale),
+              })
+        }
+        voice={saved.voice}
+        disabled={saving || (!voice.available && !saved.voice)}
+        onChange={(on) => save({ voice: on })}
+      />
       <NumberSetting
         label={t("timePerQuestion")}
         help={t("timePerQuestionHelp")}
@@ -103,6 +125,16 @@ export function InterviewSettings({
         onChange={(checked) => save({ keep_private: checked })}
       />
     </div>
+  )
+}
+
+/** The languages' names in the interface's language, as a list: "English, Spanish and German". */
+function languageList(codes: string[], locale: string) {
+  const names = new Intl.DisplayNames(locale, { type: "language" })
+
+  return formatList(
+    codes.map((code) => names.of(code) ?? code),
+    locale
   )
 }
 
@@ -165,8 +197,9 @@ function NumberSetting({
   onSave: () => void
 }) {
   return (
+    // On phones the field takes its own line.
     <label
-      className={`flex items-center justify-between gap-4 ${CARD_PADDING}`}
+      className={`flex items-center justify-between gap-4 max-sm:flex-col max-sm:items-start ${CARD_PADDING}`}
     >
       <span className="min-w-0 space-y-1">
         <span className="block text-lg font-light">{label}</span>

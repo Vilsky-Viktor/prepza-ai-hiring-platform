@@ -7,7 +7,11 @@ import { useEffect } from "react"
 import { useAuth } from "@/providers/auth-provider"
 import { BackLink } from "@/components/common/back-link"
 import { CompanyLogo } from "@/components/common/company-logo"
-import { SessionPlay } from "@/features/company/components/session-play"
+import {
+  SessionPlay,
+  type SessionPlayProps,
+} from "@/features/company/components/session-play"
+import { VoiceSession } from "@/features/company/components/voice-session"
 import { SignInPrompt } from "@/components/common/sign-in-prompt"
 import { Button } from "@/components/ui/button"
 import { useSessionPlayer } from "@/hooks/use-session-player"
@@ -111,7 +115,7 @@ export function SessionView({
   }
 
   return (
-    <SessionPlay
+    <SessionScreen
       session={session}
       progress={progress}
       section={section}
@@ -128,6 +132,15 @@ export function SessionView({
         />
       }
     />
+  )
+}
+
+/** A voice interview's screen, Mira in the centre, or the screen whose options are tapped. */
+function SessionScreen(props: SessionPlayProps) {
+  return props.session.voice ? (
+    <VoiceSession {...props} />
+  ) : (
+    <SessionPlay {...props} />
   )
 }
 

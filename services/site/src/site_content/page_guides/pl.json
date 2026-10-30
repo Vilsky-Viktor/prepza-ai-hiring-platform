@@ -139,6 +139,7 @@
     "text": "Jak ta rozmowa przebiega dla każdego kandydata.",
     "actions": [
       "Włącz link do udostępnienia do ogłoszenia o pracę: każdy, kto go ma, może przejść rozmowę.",
+      "Wybierz tryb rozmowy: tryb kliknięć, w którym kandydaci dotykają odpowiedzi, lub tryb głosowy, w którym Mira, rekruterka AI, czyta każde pytanie na głos, a kandydaci odpowiadają głosem lub dotknięciem. Tryb głosowy jest dostępny dla rozmów po angielsku, hiszpańsku, niemiecku, francusku, portugalsku i włosku.",
       "Ustaw średni czas na pytanie, w sekundach: każde pytanie dostaje własny czas zależnie od długości i kodu, który pokazuje, a łączny czas rozmowy pozostaje taki sam.",
       "Ustaw próg zaliczenia: kandydaci, którzy go osiągną, przechodzą.",
       "Oznacz rozmowę jako zakończoną zatrudnieniem, gdy obsadzisz stanowisko.",
@@ -158,7 +159,8 @@
       "Sprawdź czas, sformułowania i odpowiedzi, zanim kogokolwiek zaprosisz."
     ],
     "tips": [
-      "Nie opuszczaj strony podczas odpowiadania: u kandydatów opuszczenie strony, kopiowanie i zbyt szybkie odpowiedzi są rejestrowane."
+      "Nie opuszczaj strony podczas odpowiadania: u kandydatów opuszczenie strony, kopiowanie i zbyt szybkie odpowiedzi są rejestrowane.",
+      "Rozmowa w trybie głosowym najpierw prosi o dostęp do mikrofonu i dźwięku: zezwól na nie, a Mira będzie czytać każde pytanie na głos, gdy Ty odpowiadasz głosem lub dotknięciem."
     ]
   },
   "candidate": {
@@ -176,7 +178,7 @@
     "tips": [
       "Wynik wspiera Twoją decyzję, ale jej nie podejmuje. Jeśli kandydat o to poprosi, niech jego wynik sprawdzi człowiek.",
       "Znacznik pod oceną pokazuje, że kandydat przed startem potwierdził, że odpowie samodzielnie, bez narzędzi AI i pomocy innych osób.",
-      "Wynik to odsetek zdobytych punktów: każde pytanie jest warte jeden punkt, a pytanie wielokrotnego wyboru („zaznacz wszystkie poprawne”) daje jego część za każdą zaznaczoną poprawną odpowiedź i nic, jeśli zaznaczono błędną."
+      "Wynik to odsetek zdobytych punktów: każde pytanie jest warte jeden punkt, a pytanie wielokrotnego wyboru („zaznacz kilka odpowiedzi”) daje jego część za każdą zaznaczoną poprawną odpowiedź i nic, jeśli zaznaczono błędną."
     ]
   },
   "templates": {
@@ -444,7 +446,7 @@
   },
   "practiceRound": {
     "title": "Wyniki ćwiczeń",
-    "text": "Wyniki jednego podejścia: Twój wynik, wynik z każdego tematu i każde pytanie z poprawnymi odpowiedziami i Twoimi wyborami; przy pytaniu „zaznacz wszystkie poprawne” widać też zdobyte za nie punkty.",
+    "text": "Wyniki jednego podejścia: Twój wynik, wynik z każdego tematu i każde pytanie z poprawnymi odpowiedziami i Twoimi wyborami; przy pytaniu „zaznacz kilka odpowiedzi” widać też zdobyte za nie punkty.",
     "actions": [
       "Przeczytaj każde pytanie, jego poprawne odpowiedzi i swoje wybory.",
       "Oceń pytanie albo zgłoś je, jeśli jego odpowiedź jest błędna; zgłoszone pytania są sprawdzane i poprawiane.",

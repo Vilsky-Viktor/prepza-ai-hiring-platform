@@ -1,0 +1,12 @@
+/* Titles a step smaller on phones: each heading size the title utilities use (text-2xl to
+   text-6xl) is redefined on headings only, below Tailwind's sm breakpoint, so other large text
+   (numbers, prices) keeps its size. */
+@media (width < 40rem) {
+  :is(h1, h2, [data-slot="dialog-title"]) {
+    --text-2xl: 1.375rem;
+    --text-3xl: 1.625rem;
+    --text-4xl: 1.875rem;
+    --text-5xl: 2.5rem;
+    --text-6xl: 3rem;
+  }
+}

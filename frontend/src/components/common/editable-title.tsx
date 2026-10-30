@@ -27,7 +27,8 @@ const smallClass = "text-sm text-muted-foreground break-all"
  * a secondary line under the title. With `emptyLabel` (text, or a node such as one with a
  * tooltip), it may be left blank (saved as blank)
  * and shows the label while it is. `label` names the field for screen readers, and `editLabel`
- * the pencil button after the text ("Edit title" by default), which starts editing too. */
+ * the pencil button after the text ("Edit title" by default), which starts editing too. `after`
+ * (an icon) follows the last word, wrapping with it. */
 export function EditableTitle({
   title,
   path,
@@ -39,6 +40,7 @@ export function EditableTitle({
   small = false,
   emptyLabel,
   editLabel,
+  after,
 }: {
   title: string
   path: string
@@ -50,6 +52,7 @@ export function EditableTitle({
   small?: boolean
   emptyLabel?: ReactNode
   editLabel?: string
+  after?: ReactNode
 }) {
   const t = useTranslations("common")
   const textClass = small ? smallClass : titleClass
@@ -122,7 +125,14 @@ export function EditableTitle({
   }
 
   if (!editable) {
-    return <Tag className={textClass}>{shown}</Tag>
+    return (
+      <Tag className={textClass}>
+        {/* The word joiner keeps `after` on the last word's line. */}
+        {shown}
+        {"\u2060"}
+        {after}
+      </Tag>
+    )
   }
 
   function startEditing() {
@@ -168,6 +178,7 @@ export function EditableTitle({
                   .
                 </span>
                 {pencil}
+                {after}
               </span>
             </>
           )}

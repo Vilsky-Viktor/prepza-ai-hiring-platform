@@ -3370,6 +3370,11 @@ export interface components {
       /** Pinned Note */
       pinned_note?: string | null
       /**
+       * Voice
+       * @default false
+       */
+      voice: boolean
+      /**
        * Company Id
        * Format: uuid
        */
@@ -3392,6 +3397,21 @@ export interface components {
        * @default false
        */
       keep_private: boolean
+      /**
+       * Voice Available
+       * @default false
+       */
+      voice_available: boolean
+      /**
+       * Voice Languages
+       * @default []
+       */
+      voice_languages: string[]
+      /**
+       * Discover
+       * @default false
+       */
+      discover: boolean
     }
     /** InterviewFromTemplate */
     InterviewFromTemplate: {
@@ -3442,6 +3462,11 @@ export interface components {
       note_count: number
       /** Pinned Note */
       pinned_note?: string | null
+      /**
+       * Voice
+       * @default false
+       */
+      voice: boolean
     }
     /**
      * InterviewReportOut
@@ -3475,6 +3500,8 @@ export interface components {
       pass_mark?: number | null
       /** Keep Private */
       keep_private?: boolean | null
+      /** Voice */
+      voice?: boolean | null
     }
     /** InviteStartOut */
     InviteStartOut: {
@@ -3509,6 +3536,11 @@ export interface components {
       question_seconds: number
       /** Total Minutes */
       total_minutes?: number | null
+      /**
+       * Voice
+       * @default false
+       */
+      voice: boolean
       /**
        * Guest
        * @default false
@@ -3591,6 +3623,11 @@ export interface components {
       question_seconds: number
       /** Total Minutes */
       total_minutes?: number | null
+      /**
+       * Voice
+       * @default false
+       */
+      voice: boolean
       /** Status */
       status?: string | null
     }
