@@ -61,7 +61,7 @@ def test_a_text_is_read_aloud_once_for_every_candidate(run, monkeypatch, publish
 
 
 def test_two_readings_of_one_text_at_once_keep_one_clip(run, monkeypatch):
-    reading(monkeypatch)
+    read = reading(monkeypatch)
     text = f"A phrase {uuid.uuid4()}"
 
     async def scenario():
@@ -79,8 +79,79 @@ def test_two_readings_of_one_text_at_once_keep_one_clip(run, monkeypatch):
     (one, other), count = run(scenario())
 
     assert one.id == other.id and count == 1
+    # The second waited for the first's clip: the text was paid for once.
+    assert read == [text]
     # The interviewer's phrases belong to no company.
     assert one.company_id is None
+
+
+def test_a_clip_made_ahead_is_paid_for_once_and_found_when_its_question_opens(
+    run, monkeypatch, published
+):
+    read = reading(monkeypatch)
+    text = f"The next question {uuid.uuid4()}"
+
+    async def scenario():
+        row = await voice_section()
+        # Two prepares at once (a double request), then a repeated one: one reading.
+        await asyncio.gather(
+            voice_clips.made_ahead(row, text, "en", company_text=True),
+            voice_clips.made_ahead(row, text, "en", company_text=True),
+        )
+        await voice_clips.made_ahead(row, text, "en", company_text=True)
+        opened = await voice_clips.clip_for(row, text, "en", company_text=True)
+
+        return row, opened, await clips_of(opened.key)
+
+    row, opened, kept = run(scenario())
+
+    assert read == [text]
+    assert [clip.id for clip in kept] == [opened.id]
+    assert opened.company_id == row.company_id
+    speech = [d for kind, d in published if kind == "ai.used" and d["action"] == "voice_speech"]
+    assert len(speech) == 1
+
+
+def test_a_question_opening_while_its_clip_is_made_ahead_waits_for_it(run, monkeypatch):
+    """The step needing the clip a prepare is reading aloud waits for that one: no second
+    reading."""
+    read = []
+    started, release = asyncio.Event(), asyncio.Event()
+
+    async def speak(text):
+        read.append(text)
+        started.set()
+        await release.wait()
+
+        return AUDIO
+
+    monkeypatch.setattr(voice_clips, "speak", speak)
+    waiting = asyncio.Event()
+    wait_for_it = voice_clips.made_elsewhere
+
+    async def made_elsewhere(key):
+        waiting.set()
+        await wait_for_it(key)
+
+    monkeypatch.setattr(voice_clips, "made_elsewhere", made_elsewhere)
+    text = f"A question read ahead {uuid.uuid4()}"
+
+    async def scenario():
+        row = await voice_section()
+        ahead = asyncio.create_task(voice_clips.made_ahead(row, text, "en", company_text=True))
+        await started.wait()
+        opening = asyncio.create_task(voice_clips.clip_for(row, text, "en", company_text=True))
+        # The opening request waits on the lock rather than reading the text itself.
+        await waiting.wait()
+        release.set()
+        await ahead
+
+        return await opening
+
+    opened = run(scenario())
+
+    assert read == [text]
+    assert opened.audio == AUDIO
 
 
 def test_a_deleted_company_takes_its_questions_clips_but_not_the_phrases(run, monkeypatch):

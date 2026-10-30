@@ -1,7 +1,7 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Query, Request, Response
+from fastapi import APIRouter, Query, Request, Response, status
 from prepza_common.auth.auth import CurrentUser
 from pydantic import Field
 
@@ -28,6 +28,22 @@ async def question_audio(session_id: UUID, user: CurrentUser) -> Response:
     clip = await voice_session.question_clip(row, voice_session.shown_question(row))
 
     return Response(clip.audio, media_type=OGG)
+
+
+@router.post(
+    "/{session_id}/voice/next-question/prepare",
+    status_code=status.HTTP_204_NO_CONTENT,
+    response_class=Response,
+)
+async def prepare_next_question(session_id: UUID, user: CurrentUser) -> Response:
+    """Voice mode, as a question opens: the next question of the section read aloud ahead and
+    kept, so moving on doesn't wait for it. Nothing of it is sent: it's heard only once it
+    opens. Counted against the voice limits when it's new."""
+    row = await get_own_session(session_id, user)
+    voice_session.voice_only(row)
+    await voice_session.prepare_next(row)
+
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 @router.get("/{session_id}/voice/phrases/{phrase}", response_class=Response)

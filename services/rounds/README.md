@@ -53,9 +53,12 @@ transaction.
 A section started with `voice` (the interview's setting in companies) is read aloud: when its
 next question opens (`POST /sessions/{id}/step`), the question and its options are read by
 OpenAI's text-to-speech (`SPEECH_MODEL`, Ogg Opus) once per text and voice and kept in
-`voice_clips` for every candidate who gets it, and the question's own time starts after the
+`voice_clips` for every candidate who gets it (one reading a text: a Redis lock per clip, and a
+request needing a clip being read waits for it), and the question's own time starts after the
 reading (`question_reading_seconds`, at most `MAX_READING_SECONDS`); a reading that fails leaves
-the question unread, never stopped. Code blocks and long options aren't read: the interviewer
+the question unread, never stopped. As a question opens, the browser asks for the section's
+next question to be read ahead (`POST .../voice/next-question/prepare`, 204: only the clip cache
+gets it, nothing is sent), so moving on finds it kept. Code blocks and long options aren't read: the interviewer
 points to the screen (`helpers/voice_speech.py`). The browser plays the clip
 (`GET .../voice/question`), the interviewer's phrases (`.../voice/phrases/{phrase}`,
 `.../voice/confirmations?picks=`), and sends each spoken answer (`POST .../voice/answers`, at most

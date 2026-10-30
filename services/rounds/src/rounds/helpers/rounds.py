@@ -5,22 +5,29 @@ from prepza_common.ai.multi_answer import is_multi
 from rounds.schemas.rounds import NextQuestion
 
 
-def next_question(row) -> NextQuestion | None:
-    """The first question of a session without an answer, numbered from 1."""
+def next_question(row, after: int = 0) -> NextQuestion | None:
+    """The first question of a session without an answer, numbered from 1; with `after`, the
+    one that many unanswered questions further on (voice mode reads it aloud ahead)."""
     answered = {str(answer.question_id) for answer in row.answers}
+    unanswered = [
+        (number, question)
+        for number, question in enumerate(row.questions, start=1)
+        if question["id"] not in answered
+    ]
 
-    for number, question in enumerate(row.questions, start=1):
-        if question["id"] not in answered:
-            return NextQuestion(
-                question_id=question["id"],
-                number=number,
-                text=question["text"],
-                options=[option["answer"] for option in question["options"]],
-                multi=is_multi(question["options"]),
-                seconds=question.get("seconds"),
-            )
+    if len(unanswered) <= after:
+        return None
 
-    return None
+    number, question = unanswered[after]
+
+    return NextQuestion(
+        question_id=question["id"],
+        number=number,
+        text=question["text"],
+        options=[option["answer"] for option in question["options"]],
+        multi=is_multi(question["options"]),
+        seconds=question.get("seconds"),
+    )
 
 
 def find_question(row, question_id: str) -> dict | None:

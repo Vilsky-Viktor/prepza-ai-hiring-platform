@@ -37,6 +37,11 @@ CLIP_UNUSED_DAYS = 30
 CLIP_DELETE_BATCH = 100
 # The daily clean-up starts no batch after this many seconds; the next run takes the rest.
 JOB_SECONDS = 240
+# While one request reads a text aloud, it holds the text's lock this long at most (above the
+# speech call's timeout and retry), and another request needing the clip checks every
+# CLIP_WAIT_SECONDS whether it's done rather than paying for it twice.
+CLIP_LOCK_SECONDS = 70
+CLIP_WAIT_SECONDS = 0.25
 # A clip's last use is written at most this often, so playing it doesn't write every time.
 CLIP_TOUCH_HOURS = 24
 

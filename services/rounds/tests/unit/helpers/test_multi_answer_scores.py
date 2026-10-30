@@ -150,10 +150,15 @@ def test_the_next_question_says_whether_it_is_multi_answer():
     row = round_of()
 
     assert next_question(row).multi is True
+    # The one after it, which voice mode reads aloud ahead.
+    following = next_question(row, after=1)
+    assert (str(following.question_id), following.number) == (row.questions[1]["id"], 2)
 
     row.answers = [answer(question_id=row.questions[0]["id"], picks=[0])]
 
     assert next_question(row).multi is False
+    # The section's last question has none after it.
+    assert next_question(row, after=1) is None
 
 
 def topic(single, multi):

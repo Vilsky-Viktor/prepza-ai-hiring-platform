@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from datetime import UTC, datetime, timedelta
 
@@ -5,12 +6,20 @@ from fastapi import HTTPException, status
 from openai import OpenAIError
 from prepza_common.ai import ai_usage
 from prepza_common.ai.ai_constants import Outcome
+from prepza_common.redis import redis_lock
 
 from rounds.config import settings
-from rounds.constants.voice import CLIP_TOUCH_HOURS, SPEECH_ACTION, SPEECH_FAILED
+from rounds.constants.voice import (
+    CLIP_LOCK_SECONDS,
+    CLIP_TOUCH_HOURS,
+    CLIP_WAIT_SECONDS,
+    SPEECH_ACTION,
+    SPEECH_FAILED,
+)
 from rounds.core.db import Session as Db
 from rounds.helpers.voice_speech import clip_key, ogg_seconds
 from rounds.integrations.llm import get_speech_client
+from rounds.integrations.redis import get_redis
 from rounds.models.sessions import Session
 from rounds.models.voice_clips import VoiceClip
 from rounds.prompts.voice_speech import READING
@@ -48,16 +57,68 @@ async def cached(key: str) -> VoiceClip | None:
     return found
 
 
+def lock_of(key: str) -> str:
+    """The Redis lock held while a clip is read aloud, so one text is paid for once."""
+    return f"voice:clip_lock:{key}"
+
+
+async def made_elsewhere(key: str) -> None:
+    """Waits while another request reads the same text aloud (holds its lock), at most
+    CLIP_LOCK_SECONDS."""
+    redis = get_redis()
+
+    for _ in range(int(CLIP_LOCK_SECONDS / CLIP_WAIT_SECONDS)):
+        if not await redis.exists(lock_of(key)):
+            return
+
+        await asyncio.sleep(CLIP_WAIT_SECONDS)
+
+
 async def clip_for(row: Session, text: str, language: str, company_text: bool) -> VoiceClip:
     """`text` read aloud: the clip kept from before, or read now (counted against the limits,
     priced) and kept for every candidate after. `company_text`: a question of the company's,
-    deleted with it; otherwise one of the interviewer's phrases. 502 when OpenAI fails."""
+    deleted with it; otherwise one of the interviewer's phrases. While another request reads
+    the same text, its clip is waited for rather than paid for twice. 502 when OpenAI fails."""
     key = clip_key(settings.speech_model, settings.speech_voice, language, text)
     found = await cached(key)
 
     if found is not None:
         return found
 
+    token = await redis_lock.acquire(get_redis(), lock_of(key), CLIP_LOCK_SECONDS)
+
+    if token is None:
+        await made_elsewhere(key)
+
+        return await cached(key) or await made(row, key, text, company_text)
+
+    return await made_once(row, key, text, company_text, token)
+
+
+async def made_ahead(row: Session, text: str, language: str, company_text: bool) -> None:
+    """clip_for, ahead of time: nothing when the clip is kept or another request is reading it
+    aloud now."""
+    key = clip_key(settings.speech_model, settings.speech_voice, language, text)
+
+    if await cached(key) is not None:
+        return
+
+    token = await redis_lock.acquire(get_redis(), lock_of(key), CLIP_LOCK_SECONDS)
+
+    if token is not None:
+        await made_once(row, key, text, company_text, token)
+
+
+async def made_once(row: Session, key: str, text: str, company_text: bool, token: str) -> VoiceClip:
+    """Under the clip's lock (`token`): the clip, unless another request kept it just before."""
+    try:
+        return await cached(key) or await made(row, key, text, company_text)
+    finally:
+        await redis_lock.release(get_redis(), lock_of(key), token)
+
+
+async def made(row: Session, key: str, text: str, company_text: bool) -> VoiceClip:
+    """`text` read aloud now, counted against the limits, priced and kept."""
     await voice_limits.check_clip(row)
     who = {"company_id": row.company_id, "user_id": row.user_id, "subject_id": row.id}
 

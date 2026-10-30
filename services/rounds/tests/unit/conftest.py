@@ -9,6 +9,7 @@ REDIS_USERS = [
     "rounds.api.v1.practice",
     "rounds.services.practice",
     "rounds.services.signals",
+    "rounds.services.voice_clips",
     "rounds.services.voice_limits",
 ]
 
