@@ -84,7 +84,7 @@ test("superadmin writes, edits and deletes a news post", { tag: "@global" }, asy
       `${title}.`,
     );
     await expect(
-      post.getByRole("heading").locator("span.text-primary"),
+      post.getByRole("heading").locator("span.blue-dot"),
     ).toHaveText(".");
     await expect(post.locator("time")).toHaveText(today);
     await expect(post.getByText("First line.").filter({ visible: true })).toBeVisible();
