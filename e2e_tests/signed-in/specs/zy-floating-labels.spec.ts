@@ -24,11 +24,10 @@ async function labelOf(field: Locator) {
   return field.page().locator(`label[for="${id}"]`)
 }
 
-// The site's fields carry their name inside: it is the field's accessible name, it rests where
-// the value goes while the field is empty and rises onto the box's top edge once the field is
-// focused or has a value (a select once something is chosen, a date field always), and a click
-// anywhere in the box focuses the field.
-test("a field's name rests inside it and rises onto its edge when focused or filled", async ({
+// The site's fields carry their name on them: it is the field's accessible name and stands on
+// the box's top edge whether the field is empty, focused or filled (a select once something is
+// chosen), and a click anywhere in the box focuses the field.
+test("a field's name stands on its edge, empty or filled", async ({
   signInAs,
 }) => {
   // Three pages on the dev server, each compiled on first visit.
@@ -60,27 +59,27 @@ test("a field's name rests inside it and rises onto its edge when focused or fil
     )
   }
 
-  // Empty and not focused: inside. A click at the box's far end focuses the field.
+  // Empty and not focused: on the edge already. A click at the box's far end focuses the field.
   await dialog.getByRole("tab").first().focus()
-  await expect.poll(() => labelPlace(name, nameLabel)).toBe("rest")
+  await expect.poll(() => labelPlace(name, nameLabel)).toBe("up")
   const area = await box(name.locator(".."))
   await owner.mouse.click(area.right - 30, (area.top + area.bottom) / 2)
   await expect(name).toBeFocused()
   await expect.poll(() => labelPlace(name, nameLabel)).toBe("up")
 
-  // Filled and left: still up. Emptied and left: back inside.
+  // Filled and left, or emptied and left: still up.
   await email.fill("ann@example.com")
   await name.focus()
   await expect.poll(() => labelPlace(email, emailLabel)).toBe("up")
   await expect.poll(() => labelPlace(name, nameLabel)).toBe("up")
   await email.fill("")
   await name.fill("Ann")
-  await expect.poll(() => labelPlace(email, emailLabel)).toBe("rest")
+  await expect.poll(() => labelPlace(email, emailLabel)).toBe("up")
   await expect.poll(() => labelPlace(name, nameLabel)).toBe("up")
   await owner.keyboard.press("Escape")
 
-  // The action log's filters: two selects with a choice made and two date fields, which show
-  // their "dd/mm/yyyy" while empty: all four labels are up.
+  // The action log's filters: two selects with a choice made and two empty date fields: all
+  // four labels are up.
   await visit(owner, `/companies/${company.id}/actions`)
   const filters = owner.getByTestId("action-filters")
 

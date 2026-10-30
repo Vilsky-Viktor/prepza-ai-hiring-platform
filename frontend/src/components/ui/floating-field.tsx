@@ -7,17 +7,12 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import {
   FLOAT_ADORNMENT,
-  FLOAT_ADORNMENT_PEER_SHOWN,
   FLOAT_BOX,
   FLOAT_FIELD,
   FLOAT_LABEL,
-  FLOAT_LABEL_PEER_UP,
-  FLOAT_LABEL_REST,
-  FLOAT_LABEL_REST_START,
-  FLOAT_LABEL_REST_TOP,
   FLOAT_LABEL_UP,
 } from "@/config/floating-label"
-import { adornmentRoom, alwaysFilled } from "@/lib/floating-field"
+import { adornmentRoom } from "@/lib/floating-field"
 
 /** The site's grey field with its name: inside, where the value goes, while the field is empty,
  * and a small pill on its top edge once it's focused or filled (CSS alone, autofill too). The
@@ -46,8 +41,6 @@ export function FloatingInput({
 }) {
   const own = useId()
   const fieldId = id ?? own
-  const filled = alwaysFilled(type)
-  const adornment = cn(FLOAT_ADORNMENT, !filled && FLOAT_ADORNMENT_PEER_SHOWN)
 
   return (
     <div
@@ -72,25 +65,17 @@ export function FloatingInput({
         }}
       />
       {prefix && (
-        <span aria-hidden className={cn(adornment, "start-6")}>
+        <span aria-hidden className={cn(FLOAT_ADORNMENT, "start-6")}>
           {prefix}
         </span>
       )}
       {suffix && (
-        <span aria-hidden className={cn(adornment, "end-6")}>
+        <span aria-hidden className={cn(FLOAT_ADORNMENT, "end-6")}>
           {suffix}
         </span>
       )}
       {action}
-      <label
-        htmlFor={fieldId}
-        className={cn(
-          FLOAT_LABEL,
-          filled ? FLOAT_LABEL_UP : [FLOAT_LABEL_REST, FLOAT_LABEL_PEER_UP],
-          // Beside a button, at rest it starts where typing does.
-          action && !filled && FLOAT_LABEL_REST_START
-        )}
-      >
+      <label htmlFor={fieldId} className={cn(FLOAT_LABEL, FLOAT_LABEL_UP)}>
         {label}
       </label>
     </div>
@@ -142,15 +127,7 @@ export function FloatingTextarea({
           )}
         </div>
       )}
-      <label
-        htmlFor={fieldId}
-        className={cn(
-          FLOAT_LABEL,
-          FLOAT_LABEL_REST_TOP,
-          FLOAT_LABEL_PEER_UP,
-          action && FLOAT_LABEL_REST_START
-        )}
-      >
+      <label htmlFor={fieldId} className={cn(FLOAT_LABEL, FLOAT_LABEL_UP)}>
         {label}
       </label>
     </div>

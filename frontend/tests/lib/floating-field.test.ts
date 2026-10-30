@@ -1,25 +1,8 @@
 import { describe, expect, it } from "vitest"
 
-import { adornmentRoom, alwaysFilled } from "@/lib/floating-field"
+import { adornmentRoom } from "@/lib/floating-field"
 
 describe("floating field labels", () => {
-  it("keeps the label raised on fields that always show something", () => {
-    for (const type of ["date", "time", "datetime-local", "month", "week"]) {
-      expect(alwaysFilled(type)).toBe(true)
-    }
-
-    for (const type of [
-      undefined,
-      "text",
-      "email",
-      "number",
-      "password",
-      "search",
-    ]) {
-      expect(alwaysFilled(type)).toBe(false)
-    }
-  })
-
   it("keeps room for a sign or unit by its length, and none without one", () => {
     expect(adornmentRoom(undefined)).toBeUndefined()
     expect(adornmentRoom("")).toBeUndefined()
