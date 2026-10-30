@@ -12,7 +12,7 @@ import { DemoPointer } from "@/features/landing/components/demo-pointer"
 import { DemoStartAction } from "@/features/landing/components/demo-start-action"
 import { DemoVoiceSession } from "@/features/landing/components/demo-voice-session"
 import { AnswerModeSwitch } from "@/features/company/components/answer-mode-switch"
-import { CLICK_QUESTIONS, DEMO_SAID } from "@/config/candidates-demo"
+import { CLICK_QUESTIONS } from "@/config/candidates-demo"
 import {
   CLICK_START,
   STEPS,
@@ -25,23 +25,18 @@ import type { VoiceAccess } from "@/hooks/use-voice-access"
 import type { CodeToken } from "@/lib/code-tokens"
 import type { VoiceStatus } from "@/types/round"
 
-// Each voice-screen step's state: whose turn it is, the words Mira heard and whether the option
-// is picked.
-const VOICE: Record<string, [VoiceStatus, string | null, boolean]> = {
-  vSpeaking: ["speaking", null, false],
-  vListening: ["hearing", null, false],
-  vThinking: ["thinking", DEMO_SAID.answer, false],
-  vPicked: ["speaking", DEMO_SAID.answer, true],
-  vYes: ["hearing", DEMO_SAID.yes, true],
-  vMoving: ["speaking", DEMO_SAID.yes, true],
+// Each voice-screen step's state: whose turn it is and whether the option is picked.
+const VOICE: Record<string, [VoiceStatus, boolean]> = {
+  vSpeaking: ["speaking", false],
+  vListening: ["hearing", false],
+  vThinking: ["thinking", false],
+  vPicked: ["speaking", true],
+  vYes: ["hearing", true],
+  vMoving: ["speaking", true],
 }
 
 // The voice screen before it plays: Mira about to speak.
-const BEFORE_VOICE: [VoiceStatus, string | null, boolean] = [
-  "speaking",
-  null,
-  false,
-]
+const BEFORE_VOICE: [VoiceStatus, boolean] = ["speaking", false]
 
 /** The microphone's state on the voice start page at step `index`. */
 function accessAt(index: number): VoiceAccess {
@@ -125,7 +120,7 @@ export function CandidatesDemo({
     )
   }
 
-  const [status, heard, voicePicked] = VOICE[step.name] ?? BEFORE_VOICE
+  const [status, voicePicked] = VOICE[step.name] ?? BEFORE_VOICE
 
   return (
     // The switch sits above the picture, overlapping its top edge by a third of its height, so it
@@ -158,7 +153,7 @@ export function CandidatesDemo({
           />
           {/* One fixed height for every screen of both modes, the tallest's (the voice screen
               with Mute), so the page never moves as they change. */}
-          <div className="grid h-[54rem] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] p-2 pt-5 *:min-w-0 *:[grid-area:1/1] max-sm:h-[49rem] sm:p-5 lg:h-[40rem]">
+          <div className="grid h-[54rem] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] p-2 pt-5 *:min-w-0 *:[grid-area:1/1] max-sm:h-[49rem] sm:p-5 lg:h-[38rem]">
             {screen(
               !voice && step.screen === "start",
               <DemoInvitation
@@ -206,7 +201,6 @@ export function CandidatesDemo({
               <DemoVoiceSession
                 active={voice && step.screen === "voice"}
                 status={status}
-                heard={heard}
                 picked={voicePicked}
               />
             )}
