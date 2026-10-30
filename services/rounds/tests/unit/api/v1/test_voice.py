@@ -7,6 +7,7 @@ from prepza_common.auth.auth import current_user
 from prepza_common.auth.user import User
 from prepza_common.i18n.i18n import translate
 
+from rounds.constants.voice import IN_TIME_KEY
 from rounds.constants.voice_phrases import GOT_IT, NEXT, TIME_UP
 from rounds.integrations import library
 from rounds.main import app
@@ -82,7 +83,9 @@ def voice(monkeypatch):
     return state
 
 
-def test_a_spoken_answer_is_heard_in_the_interviews_language_and_matched(client, voice, published):
+def test_a_spoken_answer_is_heard_in_the_interviews_language_and_matched(
+    client, voice, published, redis
+):
     response = client.post(
         f"/sessions/{voice.row.id}/voice/answers?waiting=2", content=SPOKEN, headers=OGG
     )
@@ -102,6 +105,9 @@ def test_a_spoken_answer_is_heard_in_the_interviews_language_and_matched(client,
         ("voice_match", str(voice.row.company_id)),
     ]
     assert used[0]["audio_seconds"] == 2.0
+    # Received in its question's time: its answer may come a little past the deadline.
+    noted = redis.counts[IN_TIME_KEY.format(session_id=voice.row.id)]
+    assert noted == voice.row.questions[0]["id"]
 
 
 @pytest.mark.parametrize("heard", ["  ", "[cough]", "..."])

@@ -3,10 +3,9 @@ from uuid import UUID
 from fastapi import APIRouter
 from prepza_common.auth.auth import CurrentUser
 
-from rounds.constants.rounds import TIME_GRACE_SECONDS
 from rounds.schemas.rounds import AnswerCreate
 from rounds.schemas.sessions import SessionAnswerResult, SignalIn
-from rounds.services import signals
+from rounds.services import signals, voice_deadline
 from rounds.services.session_access import get_owned_session
 from rounds.services.session_answers import submit_session_answer
 
@@ -26,7 +25,9 @@ async def add_signal(session_id: UUID, body: SignalIn, user: CurrentUser) -> Non
 async def answer_question(
     session_id: UUID, body: AnswerCreate, user: CurrentUser
 ) -> SessionAnswerResult:
-    # An answer sent just before the clock ran out still counts.
-    row = await get_owned_session(session_id, user, TIME_GRACE_SECONDS)
+    # An answer sent just before the clock ran out still counts, and a spoken one the service
+    # received in time a little longer, while it's understood.
+    grace = await voice_deadline.answer_grace(session_id, body.question_id)
+    row = await get_owned_session(session_id, user, grace)
 
     return await submit_session_answer(row, body)

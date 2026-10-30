@@ -17,7 +17,7 @@ from rounds.constants.voice import (
 from rounds.integrations.llm import get_transcribe_client
 from rounds.models.sessions import Session
 from rounds.schemas.voice import VoiceAnswerOut
-from rounds.services import voice_limits, voice_match
+from rounds.services import voice_deadline, voice_limits, voice_match
 from rounds.services.session_titles import interview_language
 from rounds.services.voice_session import shown_question, voice_only
 
@@ -61,6 +61,9 @@ async def answer(row: Session, request: Request, waiting: list[int]) -> VoiceAns
     429 (or 503); a failed call a 502."""
     voice_only(row)
     question = shown_question(row)
+    # Noted as it arrives, before the upload is read: in time, its answer may come after the
+    # deadline (services/voice_deadline.py).
+    await voice_deadline.note_arrival(row, question.question_id)
     await voice_limits.check_answer(row)
     language = await interview_language(row)
     who = {"company_id": row.company_id, "user_id": row.user_id, "subject_id": row.id}

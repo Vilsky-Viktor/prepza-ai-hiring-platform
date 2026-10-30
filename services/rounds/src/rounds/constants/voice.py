@@ -30,6 +30,14 @@ TRANSCRIBE_RETRIES = 1
 
 # The longest spoken answer the browser sends (it stops listening then).
 MAX_ANSWER_SECONDS = 30
+# A spoken answer that reached the service by its question's deadline plus this many seconds (a
+# recording sent as the time ran out, still uploading) counts once it's understood, without a
+# confirmation, when the answer it gives arrives within VOICE_ANSWER_GRACE_SECONDS of the
+# deadline (the browser waits about 10 seconds for it). Noted in Redis under IN_TIME_KEY, with
+# the question's id, until that grace ends.
+VOICE_UPLOAD_SECONDS = 2
+VOICE_ANSWER_GRACE_SECONDS = 15
+IN_TIME_KEY = "voice:in-time:{session_id}"
 # A request's body may be this large on the answer route: a spoken answer, with room for its
 # headers (prepza_common.ai.speech.MAX_AUDIO_BYTES).
 MAX_ANSWER_BODY_BYTES = 3_000_000
