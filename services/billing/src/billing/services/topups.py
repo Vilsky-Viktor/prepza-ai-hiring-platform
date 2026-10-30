@@ -1,22 +1,19 @@
 import asyncio
 import logging
+from collections.abc import Callable
 from datetime import UTC, datetime
 
 from prepza_common.events.analytics import track
-from prepza_common.events.notifications import (
-    NOTIFICATION_REQUESTED,
-    NotificationKind,
-    notification,
-)
+from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 
 from billing.config import settings
 from billing.constants.declines import PAYMENT_METHOD_CHANGE_ORIGIN
-from billing.constants.notifications import TOP_UP_LINK
 from billing.constants.products import PADDLE_API_ORIGIN, OwnerType
 from billing.core.db import Session
 from billing.repositories import ledger, purchases
 from billing.services import auto_top_ups, credit_events
 from billing.services import outbox as outbox_service
+from billing.services.auto_top_up_notices import charged
 from billing.services.catalog import bought
 from billing.services.referrals import reward_after_top_up
 
@@ -85,18 +82,29 @@ async def handle_completed(data: dict) -> None:
 
         key, paid_cents, credits = found
         # With the credits: the services waiting for them hear of it, and for an automatic
-        # top-up the owner's bell.
-        events = [credit_events.credits_added(owner_type, owner_id)]
-
-        if subscription_id:
-            notice = notification(
+        # top-up the owners' and admins' bell and email, with the credits available after it.
+        notice = (
+            charged(
                 owner_type,
                 owner_id,
-                NotificationKind.AUTO_TOP_UP_CHARGED,
-                TOP_UP_LINK,
-                credits=credits,
+                data["id"],
+                credits,
+                data["details"]["totals"]["grand_total"],
+                data["currency_code"],
+                (data.get("billed_at") or datetime.now(UTC).isoformat())[:10],
             )
-            events.append((NOTIFICATION_REQUESTED, notice))
+            if subscription_id
+            else None
+        )
+
+        def events_for(available: int, notice=notice) -> list[tuple[str, dict]]:
+            events = [credit_events.credits_added(owner_type, owner_id)]
+
+            if notice is not None:
+                notice["data"]["available"] = available
+                events.append((NOTIFICATION_REQUESTED, notice))
+
+            return events
 
         granted = await grant(
             owner_type,
@@ -110,7 +118,7 @@ async def handle_completed(data: dict) -> None:
             data["currency_code"],
             datetime.now(UTC),
             subscription_id is not None,
-            events,
+            events_for,
         )
 
         # Paid once (it's idempotent), also on Paddle's retry after a failure right after the
@@ -133,10 +141,11 @@ async def grant(
     currency: str,
     now: datetime,
     automatic: bool = False,
-    events: list[tuple[str, dict]] = (),
+    events_for: Callable[[int], list[tuple[str, dict]]] | None = None,
 ) -> bool:
-    """Adds a paid top-up once per product of a transaction (purchases.grant), and a member's own
-    top-up to the company's action log in the same save; an automatic one isn't theirs."""
+    """Adds a paid top-up once per product of a transaction (purchases.grant), with its events
+    for the outbox (`events_for` the credits available after it), and a member's own top-up to
+    the company's action log in the same save; an automatic one isn't theirs."""
     async with Session.begin() as session:
         granted = await purchases.grant(
             session,
@@ -151,7 +160,7 @@ async def grant(
             currency,
             now,
             automatic,
-            events,
+            events_for,
         )
 
         if granted and owner_type == OwnerType.COMPANY and buyer_id and not automatic:

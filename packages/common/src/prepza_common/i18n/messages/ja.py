@@ -13,6 +13,8 @@ MESSAGES = {
     "Too many invites waiting. Remove some, or wait for them to join.": "承諾待ちの招待が多すぎます。いくつか削除するか、参加を待ってください。",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "変更できるのは、支払いに使われているカードの持ち主だけです。オフにしてから、ご自分のカードでオンにしてください。",
     "Automatic top-up isn't on": "自動チャージはオンになっていません",
+    "Tick the box to agree to the automatic top-up's charges.": "自動チャージの請求に同意するには、チェックボックスにチェックを入れてください。",
+    "{price} plus tax when the balance falls under {threshold} credits": "残高が {threshold} クレジットを下回ったら {price}（税別）",
     "The request is too large.": "リクエストが大きすぎます。",
     "Too many requests. Try again later.": "リクエストが多すぎます。しばらくしてからもう一度お試しください。",
     "Sign-in is temporarily unavailable. Please try again shortly.": "サインインは一時的に利用できません。少し時間をおいてもう一度お試しください。",

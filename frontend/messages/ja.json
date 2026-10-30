@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "自動チャージ",
-    "text": "利用可能な残高が選んだ金額を下回ると、保存したカードでチャージします。Paddle から毎回領収書がメールで届き、いつでもオフにできます。",
+    "text": "利用可能な残高が選んだ金額を下回ると、保存したカードでチャージします。請求のたびに会社の所有者と管理者にメールでお知らせし、Paddle からも領収書がメールで届きます。ここからいつでもオフにでき、すぐに停止します。",
+    "agree": "利用可能な残高が {threshold, plural, other {# クレジット}} を下回るたびに、ここで自動チャージをオフにするまで、{amount}（付加価値税または売上税がかかる場合はその税額を加算）が私のカードに請求されることに同意します。",
     "amount": "チャージ額",
     "when": "残高が下回ったら",
     "level": "{threshold, number} クレジット",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, =1 {{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の「<bdi>{topic}</bdi>」に関する問題がレビュー対象として報告されました。} other {{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の問題 # 件がレビュー対象として報告されました。}}",
       "question_fixed": "{count, plural, =1 {AI が{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の「<bdi>{topic}</bdi>」に関する報告された問題を修正しました。} other {AI が{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の報告された問題 # 件を修正しました。}}",
       "referral_rewarded": "紹介した相手がチャージしました。{credits, number} クレジットを獲得しました。",
+      "auto_top_up_on": "自動チャージはオンです：利用可能なクレジットが {threshold, number} を下回ると {price}（税別）を請求します。",
       "auto_top_up_charged": "自動チャージで {credits, number} クレジットが追加されました。",
       "auto_top_up_failed": "自動チャージでカードに請求できませんでした。残高が不足しないようチャージしてください。",
       "auto_top_up_paused": "カードが承認されなかったため、自動チャージを一時停止しています。再開するにはカードを更新してください。",

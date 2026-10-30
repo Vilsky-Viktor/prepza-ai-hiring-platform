@@ -10,19 +10,24 @@ from prepza_common.events.audit_actions import AuditAction
 from billing.config import settings
 from billing.constants.currencies import Currency
 from billing.constants.products import (
+    AGREEMENT_NEEDED,
     AUTO_TOP_UP_FLAG,
     AUTO_TOP_UP_THRESHOLDS,
     NOT_YOUR_AUTO_TOP_UP,
+    SCHEDULED_CANCEL,
     SUBSCRIPTION_ENDED_STATUS,
     TOP_UP_UNAVAILABLE,
     TOP_UPS,
 )
 from billing.core.db import Session
+from billing.helpers.agreed_terms import agreed_terms
 from billing.helpers.credits import top_up_price
 from billing.integrations import paddle
 from billing.repositories import auto_top_up_charges, auto_top_ups, company_actions
+from billing.repositories.events import tell
 from billing.schemas.billing import AutoTopUpIn, AutoTopUpOut, CheckoutOut
 from billing.services.auto_top_up_charging import check, check_briefly
+from billing.services.auto_top_up_notices import turned_on
 from billing.services.auto_top_up_prices import charge_price, listed
 
 logger = logging.getLogger(__name__)
@@ -87,8 +92,12 @@ async def turn_on(
 ) -> AutoTopUpOut:
     """Saves the choice, and the buyer's `language`, which names what each charge buys. If it
     isn't running yet, the answer carries the checkout that saves the card; it starts when
-    Paddle confirms the subscription. With `logged`, a company's action log gets the buyer's
-    change in the same save."""
+    Paddle confirms the subscription. Every save needs the buyer's tick on its terms (`agreed`),
+    and keeps when they agreed. With `logged`, a company's action log gets the buyer's change
+    with the terms they agreed to, in the same save."""
+    if not body.agreed:
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, AGREEMENT_NEEDED)
+
     if not offered() or body.product not in products():
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, TOP_UP_UNAVAILABLE)
 
@@ -111,13 +120,17 @@ async def turn_on(
             buyer_id,
             listed(body.product, currency),
             currency,
+            datetime.now(UTC),
             language,
         )
 
         if logged:
             running = current is not None and current.subscription_id is not None
             action = AuditAction.AUTO_TOP_UP_CHANGED if running else AuditAction.AUTO_TOP_UP_SET
-            company_actions.log(session, owner_id, buyer_id, action)
+            # The price the dialog showed: what a charge costs now (out()).
+            price = charge_price(row, currency, datetime.now(UTC))
+            terms = agreed_terms(price, currency, row.threshold, language)
+            company_actions.log(session, owner_id, buyer_id, action, terms)
 
     result = await out(owner_type, owner_id, currency)
 
@@ -213,9 +226,14 @@ async def start(custom: dict, subscription_id: str, currency: str) -> None:
         return
 
     async with Session.begin() as session:
-        started = await auto_top_ups.start(
+        started, attached = await auto_top_ups.start(
             session, *owner, custom.get("buyer_id"), subscription_id, currency
         )
+
+        # Confirmed once, by the event that attached it: the bell, and an email with its terms
+        # and how to turn it off.
+        if attached is not None:
+            tell(session, turned_on(attached, subscription_id, datetime.now(UTC)))
 
     if not started:
         await cancel_quietly(subscription_id)
@@ -237,6 +255,20 @@ async def ended(subscription_id: str) -> None:
     """Paddle ended the subscription (cancelled there, or after failed payments): it's off."""
     async with Session.begin() as session:
         await auto_top_ups.remove_subscription(session, subscription_id)
+
+
+async def cancel_scheduled(data: dict) -> None:
+    """A subscription Paddle changed: one its customer cancelled through Paddle's own email link
+    or portal (Paddle ends it at the end of the billing period) ends at once, as turning it off
+    here does, so no charge follows. If Paddle can't cancel it, this raises and Paddle sends the
+    event again."""
+    scheduled = data.get("scheduled_change") or {}
+
+    if scheduled.get("action") != SCHEDULED_CANCEL or await owner_of(data["id"]) is None:
+        return
+
+    await cancel(data["id"])
+    await ended(data["id"])
 
 
 async def card_saved(subscription_id: str, saved_at: datetime) -> None:

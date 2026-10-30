@@ -60,7 +60,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "Os créditos expiram?",
-        "answer": "Não. Os créditos nunca expiram, e não há assinaturas pagas. Se você ativar a recarga automática opcional, a Paddle salva seu cartão como uma assinatura de {zero_price}; você paga só pelas recargas que ela fizer.",
+        "answer": "Não. Os créditos nunca expiram, e não há assinaturas pagas. Se você ativar a recarga automática opcional, a Paddle salva seu cartão como uma assinatura de {zero_price}; você paga só pelas recargas que ela fizer. Para ativá-la, você mesmo precisa marcar a caixa com o que ela cobra e quando; cada cobrança é enviada por e-mail aos proprietários e administradores da empresa, e você pode desativá-la a qualquer momento onde a ativou, o que a interrompe na hora.",
     },
     {
         "key": "currency",

@@ -326,6 +326,58 @@ TEXTS = {
             "envía sin importar tu configuración de correo."
         ),
     },
+    "top_up_on": {
+        "subject": "Recarga automática activada: {company}",
+        "preheader": (
+            "{price} más impuestos cada vez que los créditos disponibles bajen de {threshold}."
+        ),
+        "heading": "La recarga automática está activada",
+        "lines": [
+            (
+                "La recarga automática ya está activada para {company}. Cada vez que sus créditos "
+                "disponibles bajen de {threshold}, se cargarán {price} a la tarjeta guardada, más "
+                "el IVA o el impuesto sobre las ventas donde corresponda, hasta que se desactive "
+                "la recarga automática."
+            ),
+            (
+                "Cada cargo se notifica por correo a los propietarios y administradores de la "
+                "empresa, y Paddle, nuestro revendedor, envía su recibo por correo."
+            ),
+            (
+                "Para desactivarla, abre la recarga automática en la página de facturación y "
+                "elige «Desactivar». Se detiene al instante y no se cobra nada más."
+            ),
+        ],
+        "button": "Abrir facturación",
+        "footer": (
+            "Este correo se envió a {email} porque eres propietario o administrador de "
+            "{company} en prepza. Trata sobre la facturación de tu empresa, así que se envía "
+            "sin importar tu configuración de correo."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Recarga automática cobrada: {company}",
+        "preheader": "{price} por {credits} créditos el {date}.",
+        "heading": "La recarga automática cobró a la tarjeta",
+        "lines": [
+            (
+                "El {date}, la recarga automática cobró {price}, impuestos incluidos, a la "
+                "tarjeta de {company} y añadió {credits} créditos. {company} tiene ahora "
+                "{available} créditos disponibles."
+            ),
+            "Paddle, nuestro revendedor, envía el recibo por correo.",
+            (
+                "Para detener estos cargos, abre la recarga automática en la página de "
+                "facturación y elige «Desactivar». Se detiene al instante y no se cobra nada más."
+            ),
+        ],
+        "button": "Abrir facturación",
+        "footer": (
+            "Este correo se envió a {email} porque eres propietario o administrador de "
+            "{company} en prepza. Trata sobre la facturación de tu empresa, así que se envía "
+            "sin importar tu configuración de correo."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Nuevo precio de recarga para {company}",
         "preheader": (

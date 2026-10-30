@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Awtomatikong top-up",
-    "text": "Kapag bumaba ang available na balance sa halagang pinili mo, magto-top up kami gamit ang naka-save mong card. Nagpapadala ang Paddle ng resibo bawat beses, at puwede mo itong i-off anumang oras.",
+    "text": "Kapag bumaba ang available na balance sa ilalim ng antas na pinili mo, bibili kami ng top-up gamit ang naka-save mong card. Ini-email ang bawat singil sa mga may-ari at admin ng kumpanya, at nag-e-email ang Paddle ng resibo nito. Puwede mo itong i-off dito anumang oras: titigil ito agad.",
+    "agree": "Pumapayag ako na i-charge ang aking card ng {amount}, dagdag ang anumang VAT o sales tax, tuwing bababa ang available na balance sa ilalim ng {threshold, plural, =1 {# credit} other {# credits}}, hanggang i-off ko rito ang awtomatikong top-up.",
     "amount": "Top-up",
     "when": "Kapag bumaba ang balance sa ilalim ng",
     "level": "{threshold, plural, =1 {# credit} other {# credits}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, =1 {Na-flag para i-review ang isang tanong tungkol sa “<bdi>{topic}</bdi>” sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.} other {Na-flag para i-review ang # tanong sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.}}",
       "question_fixed": "{count, plural, =1 {Inayos ng AI ang na-flag na tanong tungkol sa “<bdi>{topic}</bdi>” sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.} other {Inayos ng AI ang # na-flag na tanong sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.}}",
       "referral_rewarded": "Nag-top up ang isang inimbitahan mo. Nakatanggap ka ng {credits, plural, =1 {# credit} other {# credits}}.",
+      "auto_top_up_on": "Naka-on ang awtomatikong top-up: {price} dagdag ang buwis kapag bumaba ang available na credits sa ilalim ng {threshold, number}.",
       "auto_top_up_charged": "Nagdagdag ang awtomatikong top-up ng {credits, plural, =1 {# credit} other {# credits}}.",
       "auto_top_up_failed": "Hindi ma-charge ng awtomatikong top-up ang card. Mag-top up para hindi maubos ang iyong balance.",
       "auto_top_up_paused": "Naka-pause ang awtomatikong top-up: tinanggihan ang card. I-update ang card para i-on ito ulit.",

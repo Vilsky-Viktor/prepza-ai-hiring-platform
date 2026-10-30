@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "الشحن التلقائي",
-    "text": "عندما ينخفض الرصيد المتاح عن المبلغ الذي تختاره، نشحن رصيدك ببطاقتك المحفوظة. ترسل Paddle إيصالًا في كل مرة، ويمكنك إيقافه في أي وقت.",
+    "text": "عندما ينخفض الرصيد المتاح عن المستوى الذي تختاره، نشحن الرصيد ببطاقتك المحفوظة. نرسل بريدًا إلكترونيًا عن كل عملية خصم إلى مالكي الشركة ومسؤوليها، وترسل Paddle إيصالها بالبريد. يمكنك إيقافه من هنا في أي وقت، فيتوقف فورًا.",
+    "agree": "أوافق على أن تُخصم من بطاقتي {amount}، تُضاف إليها أي ضريبة قيمة مضافة أو ضريبة مبيعات، في كل مرة ينخفض فيها الرصيد المتاح عن {threshold, plural, zero {# رصيد} one {رصيد واحد} two {رصيدين} few {# أرصدة} many {# رصيدًا} other {# رصيد}}، إلى أن أوقف الشحن التلقائي من هنا.",
     "amount": "مبلغ الشحن",
     "when": "عندما ينخفض الرصيد عن",
     "level": "{threshold, plural, zero {# رصيد} one {رصيد واحد} two {رصيدان} few {# أرصدة} many {# رصيدًا} other {# رصيد}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, one {تم الإبلاغ عن سؤال حول «<bdi>{topic}</bdi>» في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}} للمراجعة.} zero {تم الإبلاغ عن # سؤال في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}} للمراجعة.} two {تم الإبلاغ عن سؤالين في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}} للمراجعة.} few {تم الإبلاغ عن # أسئلة في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}} للمراجعة.} many {تم الإبلاغ عن # سؤالًا في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}} للمراجعة.} other {تم الإبلاغ عن # سؤال في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}} للمراجعة.}}",
       "question_fixed": "{count, plural, one {أصلح الذكاء الاصطناعي سؤالًا مُبلَّغًا عنه حول «<bdi>{topic}</bdi>» في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.} zero {أصلح الذكاء الاصطناعي # سؤال مُبلَّغ عنه في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.} two {أصلح الذكاء الاصطناعي سؤالين مُبلَّغًا عنهما في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.} few {أصلح الذكاء الاصطناعي # أسئلة مُبلَّغ عنها في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.} many {أصلح الذكاء الاصطناعي # سؤالًا مُبلَّغًا عنه في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.} other {أصلح الذكاء الاصطناعي # سؤال مُبلَّغ عنه في {title, select, none {مقابلة} other {«<bdi>{title}</bdi>»}}.}}",
       "referral_rewarded": "شحن شخصٌ دعوته رصيده. حصلت على {credits, number} من الأرصدة.",
+      "auto_top_up_on": "الشحن التلقائي مفعّل: {price} مضافًا إليها الضريبة عند انخفاض الرصيد المتاح عن {threshold, number}.",
       "auto_top_up_charged": "أضاف الشحن التلقائي {credits, number} من الأرصدة.",
       "auto_top_up_failed": "تعذّر على الشحن التلقائي الخصم من البطاقة. اشحن رصيدك حتى لا ينفد.",
       "auto_top_up_paused": "الشحن التلقائي متوقف مؤقتًا: رُفضت البطاقة. حدّث البطاقة لإعادة تشغيله.",

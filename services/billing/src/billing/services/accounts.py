@@ -60,6 +60,7 @@ async def export(user_id: str) -> dict:
                 "product": row.product,
                 "threshold": row.threshold,
                 "started": row.subscription_id is not None,
+                "agreed_at": row.agreed_at,
                 "last_charged_at": row.charged_at,
                 "last_declined_at": row.failed_at,
             }

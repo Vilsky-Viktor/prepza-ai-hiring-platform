@@ -333,6 +333,59 @@ TEXTS = {
             "daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
     },
+    "top_up_on": {
+        "subject": "Automatisch opwaarderen staat aan: {company}",
+        "preheader": (
+            "{price} plus belasting elke keer dat de beschikbare credits onder {threshold} zakken."
+        ),
+        "heading": "Automatisch opwaarderen staat aan",
+        "lines": [
+            (
+                "Automatisch opwaarderen staat nu aan voor {company}. Elke keer dat de "
+                "beschikbare credits onder {threshold} zakken, wordt de opgeslagen kaart belast "
+                "met {price}, plus btw of verkoopbelasting waar die van toepassing is, totdat "
+                "automatisch opwaarderen wordt uitgezet."
+            ),
+            (
+                "Elke afschrijving wordt gemaild naar de eigenaren en beheerders van het bedrijf, "
+                "en Paddle, onze wederverkoper, mailt zijn bon."
+            ),
+            (
+                "Wil je het uitzetten, open dan automatisch opwaarderen op de factureringspagina "
+                "en kies ‘Uitzetten’. Het stopt meteen en er wordt niets meer afgeschreven."
+            ),
+        ],
+        "button": "Facturering openen",
+        "footer": (
+            "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van "
+            "{company} op prepza. Hij gaat over de facturering van je bedrijf en wordt daarom "
+            "altijd verstuurd, wat je e-mailinstellingen ook zijn."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Automatisch opgewaardeerd: {company}",
+        "preheader": "{price} voor {credits} credits op {date}.",
+        "heading": "Automatisch opwaarderen heeft de kaart belast",
+        "lines": [
+            (
+                "Op {date} heeft automatisch opwaarderen de kaart voor {company} belast met "
+                "{price}, inclusief belasting, en {credits} credits toegevoegd. {company} heeft "
+                "nu {available} credits beschikbaar."
+            ),
+            "Paddle, onze wederverkoper, mailt de bon.",
+            (
+                "Wil je deze afschrijvingen stoppen, open dan automatisch opwaarderen op de "
+                "factureringspagina en kies ‘Uitzetten’. Het stopt meteen en er wordt niets meer "
+                "afgeschreven."
+            ),
+        ],
+        "button": "Facturering openen",
+        "footer": (
+            "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van "
+            "{company} op prepza. Hij gaat over de facturering van je bedrijf en wordt daarom "
+            "altijd verstuurd, wat je e-mailinstellingen ook zijn."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Nieuwe opwaardeerprijs voor {company}",
         "preheader": (

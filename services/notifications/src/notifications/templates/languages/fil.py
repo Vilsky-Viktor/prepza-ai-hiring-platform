@@ -337,6 +337,59 @@ TEXTS = {
             "ito anuman ang iyong email settings."
         ),
     },
+    "top_up_on": {
+        "subject": "Naka-on ang awtomatikong top-up: {company}",
+        "preheader": (
+            "{price} dagdag ang buwis tuwing bababa ang available na credits sa ilalim ng "
+            "{threshold}."
+        ),
+        "heading": "Naka-on ang awtomatikong top-up",
+        "lines": [
+            (
+                "Naka-on na ang awtomatikong top-up para sa {company}. Tuwing bababa ang "
+                "available nitong credits sa ilalim ng {threshold}, sisingilin ang naka-save na "
+                "card ng {price}, dagdag ang VAT o sales tax kung saan ito naaangkop, hanggang "
+                "i-off ang awtomatikong top-up."
+            ),
+            (
+                "Ini-email ang bawat singil sa mga may-ari at admin ng kumpanya, at nag-e-email "
+                "ng resibo ang Paddle, ang aming reseller."
+            ),
+            (
+                "Para i-off ito, buksan ang awtomatikong top-up sa billing page at piliin ang "
+                "“I-off”. Titigil ito agad, at wala nang sisingilin."
+            ),
+        ],
+        "button": "Buksan ang billing",
+        "footer": (
+            "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng {company} "
+            "sa prepza. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala ito anuman "
+            "ang iyong email settings."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Nag-charge ang awtomatikong top-up: {company}",
+        "preheader": "{price} para sa {credits} credits noong {date}.",
+        "heading": "Nag-charge sa card ang awtomatikong top-up",
+        "lines": [
+            (
+                "Noong {date}, siningil ng awtomatikong top-up ang card para sa {company} ng "
+                "{price}, kasama ang buwis, at nagdagdag ito ng {credits} credits. May "
+                "{available} credits na available ngayon ang {company}."
+            ),
+            "Nag-e-email ng resibo ang Paddle, ang aming reseller.",
+            (
+                "Para ihinto ang mga singil na ito, buksan ang awtomatikong top-up sa billing "
+                "page at piliin ang “I-off”. Titigil ito agad, at wala nang sisingilin."
+            ),
+        ],
+        "button": "Buksan ang billing",
+        "footer": (
+            "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng {company} "
+            "sa prepza. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala ito anuman "
+            "ang iyong email settings."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Bagong presyo ng top-up para sa {company}",
         "preheader": (

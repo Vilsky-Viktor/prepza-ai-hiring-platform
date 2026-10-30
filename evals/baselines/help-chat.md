@@ -248,3 +248,12 @@ confirm"): passed 96.0% (88.9–98.6), made up 2.7% (0.7–9.2), sign-in marker 
 18 (`results/help_chat_voice-clear.json`). Misses: h17's known invented retake limit, h04 once
 (viewers and the balance), h12 once (two sentences), h15 once (stray Thai in an English answer);
 none about voice mode. Within the noise; kept so the guide says what is true. $1.94.
+
+2026-10-30, automatic top-up's consent in the guide (turning it on or changing it needs the
+buyer's own tick on what it charges, plus tax, and when; an email when it's turned on and after
+every charge; "Turn off" in the same setting stops it at once, and so does cancelling through
+Paddle's emails) and the FAQ's "Do credits expire?": passed 90.7% (82.0–95.4), made up 5.3%
+(2.1–12.9), sign-in marker 100%, identity 18 of 18 (`results/help_chat_auto-top-up-consent.json`).
+Misses: h17's known invented retake limit (3 of 3), h12 three times (two sentences where one was
+asked) and h06 once (deletion without "once the candidate started"); none about automatic top-up.
+Within the noise of the last runs (96.0%, 88.9–98.6); kept so the guide says what is true. $1.97.

@@ -39,7 +39,7 @@ def top_up(monkeypatch, saved):
 
     async def grant(session, *args):
         if state["granted"]:
-            saved.extend(event for event in args[11] if event[0] == CREDITS_ADDED)
+            saved.extend(event for event in args[11](0) if event[0] == CREDITS_ADDED)
 
         return state["granted"]
 

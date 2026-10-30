@@ -59,7 +59,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "Do credits expire?",
-        "answer": "No. Credits never expire, and there are no paid subscriptions. If you turn on the optional automatic top-up, Paddle saves your card as a {zero_price} subscription; you pay only for the top-ups it makes.",
+        "answer": "No. Credits never expire, and there are no paid subscriptions. If you turn on the optional automatic top-up, Paddle saves your card as a {zero_price} subscription; you pay only for the top-ups it makes. Turning it on needs your own tick on what it charges and when; each charge is emailed to the company's owners and admins, and you can turn it off at any time where you turned it on, which stops it at once.",
     },
     {
         "key": "currency",

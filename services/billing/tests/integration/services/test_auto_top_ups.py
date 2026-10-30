@@ -30,7 +30,11 @@ def test_turning_on_waits_for_the_checkout_then_refills_under_the_threshold_once
     async def scenario():
         await welcomed(acme, f"{acme}@example.com")
         waiting = await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
+            COMPANY,
+            acme,
+            AutoTopUpIn(product="topup_50", threshold=500, agreed=True),
+            ann,
+            Currency.USD,
         )
         # Someone else's checkout can't start it; the owner's does, once.
         await auto_top_ups.start(checkout_data(acme, "mallory"), "sub_other", "USD")
@@ -71,15 +75,19 @@ def test_turning_off_cancels_the_subscription_and_choices_are_checked(run, paddl
 
     async def scenario():
         await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
+            COMPANY,
+            acme,
+            AutoTopUpIn(product="topup_50", threshold=500, agreed=True),
+            ann,
+            Currency.USD,
         )
         await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
         await auto_top_ups.turn_off(COMPANY, acme)
         refused = []
 
         for body in (
-            AutoTopUpIn(product="topup_50", threshold=123),
-            AutoTopUpIn(product="topup_7", threshold=500),
+            AutoTopUpIn(product="topup_50", threshold=123, agreed=True),
+            AutoTopUpIn(product="topup_7", threshold=500, agreed=True),
         ):
             try:
                 await auto_top_ups.turn_on(COMPANY, acme, body, ann, Currency.USD)
@@ -111,7 +119,11 @@ def test_an_automatic_charge_credits_the_wallet_its_subscription_belongs_to(run,
 
     async def scenario():
         await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
+            COMPANY,
+            acme,
+            AutoTopUpIn(product="topup_50", threshold=500, agreed=True),
+            ann,
+            Currency.USD,
         )
         # The $0 checkout starts it and buys nothing; the charge carries no custom data.
         await handle_completed(card)
@@ -136,7 +148,11 @@ def test_the_same_subscription_twice_stays_attached_and_a_deleted_buyer_turns_it
 
     async def scenario():
         await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
+            COMPANY,
+            acme,
+            AutoTopUpIn(product="topup_50", threshold=500, agreed=True),
+            ann,
+            Currency.USD,
         )
         # Paddle's two events for one checkout, handled at the same moment.
         first = await transaction(rows.start, COMPANY, acme, ann, sub, "USD")
@@ -161,7 +177,11 @@ def test_a_removed_member_turns_it_off_only_when_their_card_pays(run, paddle_cal
 
     async def scenario():
         await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
+            COMPANY,
+            acme,
+            AutoTopUpIn(product="topup_50", threshold=500, agreed=True),
+            ann,
+            Currency.USD,
         )
         await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
         # Bob didn't turn it on: removing him leaves it running.

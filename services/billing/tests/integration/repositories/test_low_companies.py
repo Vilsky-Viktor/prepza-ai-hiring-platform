@@ -1,4 +1,5 @@
 import uuid
+from datetime import UTC, datetime
 
 from billing.constants.credits import CANDIDATE_CREDITS
 from billing.constants.products import OwnerType
@@ -9,6 +10,8 @@ from billing.repositories import ledger
 from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
+# When the buyer agreed to its terms.
+NOW = datetime(2026, 10, 30, tzinfo=UTC)
 
 
 async def wallet(available: int) -> str:
@@ -26,7 +29,7 @@ def test_running_low_lists_companies_short_of_a_candidate_unless_a_top_up_refill
         low = await wallet(CANDIDATE_CREDITS - 1)
         enough = await wallet(CANDIDATE_CREDITS)
         refilled = await wallet(0)
-        await transaction(rows.save, COMPANY, refilled, "topup_50", 500, "ann", 5000, "USD")
+        await transaction(rows.save, COMPANY, refilled, "topup_50", 500, "ann", 5000, "USD", NOW)
         await transaction(
             rows.start, COMPANY, refilled, "ann", f"sub_{uuid.uuid4().hex[:12]}", "USD"
         )
@@ -56,7 +59,7 @@ def test_running_low_with_owner_ids_lists_only_those_owners(run):
 def test_running_low_counts_an_automatic_top_up_waiting_for_its_checkout(run):
     async def scenario():
         waiting = await wallet(0)
-        await transaction(rows.save, COMPANY, waiting, "topup_50", 500, "ann", 5000, "USD")
+        await transaction(rows.save, COMPANY, waiting, "topup_50", 500, "ann", 5000, "USD", NOW)
         found = await transaction(ledger.running_low, COMPANY, [waiting])
 
         return [row.owner_id for row in found], waiting
@@ -69,7 +72,7 @@ def test_running_low_counts_an_automatic_top_up_waiting_for_its_checkout(run):
 def test_running_low_leaves_out_an_asked_owner_with_an_active_automatic_top_up(run):
     async def scenario():
         refilled = await wallet(0)
-        await transaction(rows.save, COMPANY, refilled, "topup_50", 500, "ann", 5000, "USD")
+        await transaction(rows.save, COMPANY, refilled, "topup_50", 500, "ann", 5000, "USD", NOW)
         await transaction(
             rows.start, COMPANY, refilled, "ann", f"sub_{uuid.uuid4().hex[:12]}", "USD"
         )

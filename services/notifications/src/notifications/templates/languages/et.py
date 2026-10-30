@@ -319,6 +319,56 @@ TEXTS = {
             "saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
     },
+    "top_up_on": {
+        "subject": "Juurdelaadimine sisse lülitatud: {company}",
+        "preheader": "{price} pluss maks iga kord, kui saadaolev krediit langeb alla {threshold}.",
+        "heading": "Automaatne juurdelaadimine on sees",
+        "lines": [
+            (
+                "Ettevõtte {company} automaatne juurdelaadimine on nüüd sees. Iga kord, kui selle "
+                "saadaolev krediit langeb alla {threshold}, võetakse salvestatud kaardilt "
+                "{price}, millele lisandub käibemaks või müügimaks, kus see kehtib, kuni "
+                "automaatne juurdelaadimine välja lülitatakse."
+            ),
+            (
+                "Igast maksest saadetakse e-kiri ettevõtte omanikele ja administraatoritele ning "
+                "meie edasimüüja Paddle saadab oma kviitungi e-kirjaga."
+            ),
+            (
+                "Väljalülitamiseks ava arvelduse lehel automaatne juurdelaadimine ja vali „Lülita "
+                "välja”. See peatub kohe ja rohkem makseid ei võeta."
+            ),
+        ],
+        "button": "Ava arveldus",
+        "footer": (
+            "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte {company} "
+            "omanik või administraator. See puudutab sinu ettevõtte arveldust, seega "
+            "saadetakse see sõltumata sinu e-kirjade seadetest."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Juurdelaadimise makse: {company}",
+        "preheader": "{price} {credits} krediidi eest kuupäeval {date}.",
+        "heading": "Automaatne juurdelaadimine võttis kaardilt makse",
+        "lines": [
+            (
+                "Kuupäeval {date} võttis automaatne juurdelaadimine ettevõtte {company} kaardilt "
+                "{price} koos maksudega ja lisas {credits} krediiti. Ettevõttel {company} on nüüd "
+                "saadaval {available} krediiti."
+            ),
+            "Kviitungi saadab e-kirjaga meie edasimüüja Paddle.",
+            (
+                "Nende maksete peatamiseks ava arvelduse lehel automaatne juurdelaadimine ja vali "
+                "„Lülita välja”. See peatub kohe ja rohkem makseid ei võeta."
+            ),
+        ],
+        "button": "Ava arveldus",
+        "footer": (
+            "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte {company} "
+            "omanik või administraator. See puudutab sinu ettevõtte arveldust, seega "
+            "saadetakse see sõltumata sinu e-kirjade seadetest."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Uus juurdelaadimise hind: {company}",
         "preheader": (

@@ -61,7 +61,8 @@ def test_a_rewarded_referrer_is_told_with_the_reward(monkeypatch, notified):
 @pytest.fixture
 def granted(monkeypatch, notified):
     async def fake_grant(session, *args):
-        notified.extend(bells(args[11]))
+        # 4,200 credits available after it.
+        notified.extend(bells(args[11](4_200)))
 
         return True
 
@@ -76,14 +77,27 @@ def granted(monkeypatch, notified):
     monkeypatch.setattr(auto_top_ups_storage, "owner_of", owner)
 
 
-def test_an_automatic_top_up_tells_the_owner_the_credits_it_added(granted, notified):
-    event = completed()
-    event["data"]["subscription_id"] = "sub_01"
+def test_an_automatic_top_up_tells_the_owners_what_it_charged_and_added(granted, notified):
+    event = completed(currency="EUR")
+    event["data"].update(subscription_id="sub_01", billed_at="2026-10-29T23:10:00Z")
 
     asyncio.run(webhooks.handle(event))
 
+    # Once per transaction (its key), opening the billing page where it's turned off: what the
+    # card paid with tax, the day, the credits added and those available after them.
     assert notified == [
-        notification("company", "acme", "auto_top_up_charged", "/top-up", credits=5_000)
+        notification(
+            "company",
+            "acme",
+            "auto_top_up_charged",
+            "/companies/acme/billing",
+            key="txn_01",
+            credits=5_000,
+            price=5_000,
+            currency="EUR",
+            date="2026-10-29",
+            available=4_200,
+        )
     ]
 
 

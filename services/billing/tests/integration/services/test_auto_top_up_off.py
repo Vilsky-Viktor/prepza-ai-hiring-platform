@@ -12,7 +12,7 @@ from tests.integration.services.test_auto_top_ups import checkout_data
 from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
-CHOICE = AutoTopUpIn(product="topup_50", threshold=500)
+CHOICE = AutoTopUpIn(product="topup_50", threshold=500, agreed=True)
 
 
 def running(run, subscription: str) -> tuple[str, str]:

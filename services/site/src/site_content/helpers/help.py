@@ -8,7 +8,8 @@ from site_content.constants.faq import FAQS
 from site_content.constants.help import FAQ_EXAMPLE_CANDIDATES
 from site_content.constants.privacy import PRIVACY_INTRO, PRIVACY_SECTIONS
 from site_content.constants.terms import TERMS_INTRO, TERMS_SECTIONS
-from site_content.prompts.help import HELP_KNOWLEDGE, PLATFORM_GUIDE
+from site_content.prompts.help import PLATFORM_GUIDE
+from site_content.prompts.help_knowledge import HELP_KNOWLEDGE
 
 # Catalog fields only Paddle.js needs; they say nothing about prices.
 CATALOG_INTERNALS = {"environment", "client_token"}

@@ -76,7 +76,7 @@ def test_a_members_currency_and_automatic_top_up_changes_are_logged_with_them(ru
     currency, the automatic top-up set up, changed once running, and turned off. A change made
     for no member (a removed member's card, the company deleted) logs nothing."""
     acme, ann = str(uuid.uuid4()), f"user-{uuid.uuid4()}"
-    choice = AutoTopUpIn(product="topup_50", threshold=500)
+    choice = AutoTopUpIn(product="topup_50", threshold=500, agreed=True)
 
     async def scenario():
         await welcomed(acme, f"{acme}@example.com")

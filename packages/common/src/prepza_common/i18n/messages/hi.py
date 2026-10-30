@@ -13,6 +13,8 @@ MESSAGES = {
     "Too many invites waiting. Remove some, or wait for them to join.": "बहुत सारे आमंत्रण प्रतीक्षा में हैं। कुछ हटाएँ, या उनके जुड़ने तक प्रतीक्षा करें।",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "इसे केवल वही व्यक्ति बदल सकता है जिसके कार्ड से भुगतान होता है। इसे बंद करें, फिर अपने कार्ड से चालू करें।",
     "Automatic top-up isn't on": "ऑटो टॉप अप चालू नहीं है",
+    "Tick the box to agree to the automatic top-up's charges.": "ऑटो टॉप अप के चार्ज के लिए सहमति देने हेतु बॉक्स पर टिक करें।",
+    "{price} plus tax when the balance falls under {threshold} credits": "बैलेंस {threshold} क्रेडिट से कम होने पर {price} और टैक्स",
     "The request is too large.": "अनुरोध बहुत बड़ा है।",
     "Too many requests. Try again later.": "बहुत अधिक अनुरोध। कृपया बाद में फिर से कोशिश करें।",
     "Sign-in is temporarily unavailable. Please try again shortly.": "साइन-इन अस्थायी रूप से उपलब्ध नहीं है। कृपया थोड़ी देर बाद फिर से कोशिश करें।",

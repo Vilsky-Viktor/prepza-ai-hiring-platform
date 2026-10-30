@@ -35,6 +35,7 @@ export const NOTIFICATION_LOOKS: Record<
   question_flagged: { icon: FlagIcon, alert: false },
   question_fixed: { icon: SparklesIcon, alert: false },
   referral_rewarded: { icon: DollarSignIcon, alert: false },
+  auto_top_up_on: { icon: CreditCardIcon, alert: false },
   auto_top_up_charged: { icon: DollarSignIcon, alert: false },
   auto_top_up_failed: { icon: DollarSignIcon, alert: true },
   auto_top_up_paused: { icon: CreditCardIcon, alert: true },
@@ -77,4 +78,5 @@ export const NOTIFICATION_DEFAULTS = {
   ats: "ATS",
   integration: "ats",
   url: "",
+  threshold: 0,
 }

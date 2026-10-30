@@ -13,5 +13,6 @@ describe("the bell's notification kinds", () => {
   it("shows a paused automatic top-up as a problem to act on", () => {
     expect(NOTIFICATION_LOOKS.auto_top_up_paused.alert).toBe(true)
     expect(NOTIFICATION_LOOKS.auto_top_up_price_change.alert).toBe(false)
+    expect(NOTIFICATION_LOOKS.auto_top_up_on.alert).toBe(false)
   })
 })

@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Recarga automática",
-    "text": "Cuando el saldo disponible baja del importe que elijas, compramos la recarga con tu tarjeta guardada. Paddle te envía un recibo cada vez y puedes desactivarla cuando quieras.",
+    "text": "Cuando el saldo disponible baja del importe que elijas, compramos la recarga con tu tarjeta guardada. Cada cargo se notifica por correo a los propietarios y administradores de la empresa, y Paddle envía su recibo por correo. Puedes desactivarla aquí cuando quieras: se detiene al instante.",
+    "agree": "Acepto que se cargue a mi tarjeta {amount}, más el IVA o el impuesto sobre las ventas que corresponda, cada vez que el saldo disponible baje de {threshold, plural, one {# crédito} many {# créditos} other {# créditos}}, hasta que desactive aquí la recarga automática.",
     "amount": "Recarga",
     "when": "Cuando el saldo baje de",
     "level": "{threshold, plural, one {# crédito} other {# créditos}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, one {Se marcó para revisión una pregunta sobre «<bdi>{topic}</bdi>» de {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}.} other {# preguntas de {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}} se marcaron para revisión.}}",
       "question_fixed": "{count, plural, one {La IA corrigió una pregunta marcada sobre «<bdi>{topic}</bdi>» de {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}.} other {La IA corrigió # preguntas marcadas de {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}.}}",
       "referral_rewarded": "Alguien a quien invitaste recargó. Recibiste {credits, plural, one {# crédito} other {# créditos}}.",
+      "auto_top_up_on": "La recarga automática está activada: {price} más impuestos cuando los créditos disponibles bajen de {threshold, number}.",
       "auto_top_up_charged": "La recarga automática añadió {credits, plural, one {# crédito} other {# créditos}}.",
       "auto_top_up_failed": "La recarga automática no pudo cobrar a la tarjeta. Recarga para no quedarte sin saldo.",
       "auto_top_up_paused": "La recarga automática está en pausa: la tarjeta fue rechazada. Actualiza la tarjeta para volver a activarla.",

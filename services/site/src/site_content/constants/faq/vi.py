@@ -60,7 +60,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "Credit có hết hạn không?",
-        "answer": "Không. Credit không bao giờ hết hạn, và không có gói đăng ký trả phí. Nếu bạn bật tự động nạp (không bắt buộc), Paddle lưu thẻ của bạn dưới dạng một gói đăng ký {zero_price}; bạn chỉ trả cho những lần nạp thực tế.",
+        "answer": "Không. Credit không bao giờ hết hạn, và không có gói đăng ký trả phí. Nếu bạn bật tự động nạp (không bắt buộc), Paddle lưu thẻ của bạn dưới dạng một gói đăng ký {zero_price}; bạn chỉ trả cho những lần nạp thực tế. Để bật, bạn phải tự đánh dấu đồng ý với số tiền bị trừ và thời điểm trừ; mỗi lần trừ tiền đều được gửi email đến chủ sở hữu và quản trị viên của công ty, và bạn có thể tắt bất cứ lúc nào tại nơi đã bật, tự động nạp sẽ dừng ngay lập tức.",
     },
     {
         "key": "currency",

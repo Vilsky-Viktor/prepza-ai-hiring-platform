@@ -806,13 +806,19 @@ export interface components {
     }
     /**
      * AutoTopUpIn
-     * @description Which top-up to buy, and under which available balance (credits).
+     * @description Which top-up to buy, and under which available balance (credits); `agreed` is the buyer's
+     *     tick on its terms (what it charges, when, and how to turn it off), which saving needs.
      */
     AutoTopUpIn: {
       /** Product */
       product: string
       /** Threshold */
       threshold: number
+      /**
+       * Agreed
+       * @default false
+       */
+      agreed: boolean
     }
     /**
      * AutoTopUpOut

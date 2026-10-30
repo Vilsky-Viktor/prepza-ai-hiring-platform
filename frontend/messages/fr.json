@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Recharge automatique",
-    "text": "Quand le solde disponible passe sous le montant choisi, nous achetons la recharge avec votre carte enregistrée. Paddle vous envoie un reçu à chaque fois, et vous pouvez la désactiver à tout moment.",
+    "text": "Quand le solde disponible passe sous le montant choisi, nous achetons la recharge avec votre carte enregistrée. Chaque débit est notifié par e-mail aux propriétaires et administrateurs de l'entreprise, et Paddle envoie son reçu par e-mail. Vous pouvez la désactiver ici à tout moment : elle s'arrête immédiatement.",
+    "agree": "J'accepte que ma carte soit débitée de {amount}, plus toute TVA ou taxe de vente applicable, chaque fois que le solde disponible passe sous {threshold, plural, one {# crédit} many {# crédits} other {# crédits}}, jusqu'à ce que je désactive la recharge automatique ici.",
     "amount": "Recharge",
     "when": "Quand le solde passe sous",
     "level": "{threshold, plural, one {# crédit} other {# crédits}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, =1 {Une question sur « <bdi>{topic}</bdi> » {title, select, none {d'un entretien} other {de « <bdi>{title}</bdi> »}} a été signalée pour vérification.} other {# questions {title, select, none {d'un entretien} other {de « <bdi>{title}</bdi> »}} ont été signalées pour vérification.}}",
       "question_fixed": "{count, plural, =1 {L'IA a corrigé une question signalée sur « <bdi>{topic}</bdi> » {title, select, none {d'un entretien} other {de « <bdi>{title}</bdi> »}}.} other {L'IA a corrigé # questions signalées {title, select, none {d'un entretien} other {de « <bdi>{title}</bdi> »}}.}}",
       "referral_rewarded": "Une personne que vous avez invitée a rechargé. Vous avez reçu {credits, plural, one {# crédit} other {# crédits}}.",
+      "auto_top_up_on": "La recharge automatique est activée : {price} hors taxes quand les crédits disponibles passent sous {threshold, number}.",
       "auto_top_up_charged": "La recharge automatique a ajouté {credits, plural, one {# crédit} other {# crédits}}.",
       "auto_top_up_failed": "La recharge automatique n'a pas pu débiter la carte. Rechargez pour ne pas manquer de solde.",
       "auto_top_up_paused": "La recharge automatique est en pause : la carte a été refusée. Mettez la carte à jour pour la réactiver.",

@@ -60,7 +60,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "I crediti scadono?",
-        "answer": "No. I crediti non scadono mai, e non ci sono abbonamenti a pagamento. Se attivi la ricarica automatica facoltativa, Paddle salva la tua carta come abbonamento da {zero_price}; paghi solo le ricariche che effettua.",
+        "answer": "No. I crediti non scadono mai, e non ci sono abbonamenti a pagamento. Se attivi la ricarica automatica facoltativa, Paddle salva la tua carta come abbonamento da {zero_price}; paghi solo le ricariche che effettua. Per attivarla devi spuntare tu stesso cosa addebita e quando; ogni addebito viene comunicato via email ai proprietari e agli amministratori dell'azienda, e puoi disattivarla in qualsiasi momento dove l'hai attivata, il che la interrompe subito.",
     },
     {
         "key": "currency",

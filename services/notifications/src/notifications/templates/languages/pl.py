@@ -325,6 +325,59 @@ TEXTS = {
             " wysyłana niezależnie od Twoich ustawień e-maili."
         ),
     },
+    "top_up_on": {
+        "subject": "Automatyczne doładowanie włączone: {company}",
+        "preheader": (
+            "{price} plus podatek za każdym razem, gdy dostępne kredyty spadną poniżej {threshold}."
+        ),
+        "heading": "Automatyczne doładowanie jest włączone",
+        "lines": [
+            (
+                "Automatyczne doładowanie jest teraz włączone dla {company}. Za każdym razem, gdy "
+                "dostępne kredyty spadną poniżej {threshold}, zapisana karta zostanie obciążona "
+                "kwotą {price} plus VAT lub podatek od sprzedaży tam, gdzie obowiązuje, dopóki "
+                "automatyczne doładowanie nie zostanie wyłączone."
+            ),
+            (
+                "O każdym obciążeniu informujemy e-mailem właścicieli i administratorów firmy, a "
+                "Paddle, nasz odsprzedawca, wysyła potwierdzenie."
+            ),
+            (
+                "Aby je wyłączyć, otwórz automatyczne doładowanie na stronie rozliczeń i wybierz "
+                "„Wyłącz”. Wyłączenie działa od razu i nic więcej nie zostanie pobrane."
+            ),
+        ],
+        "button": "Otwórz rozliczenia",
+        "footer": (
+            "Ta wiadomość została wysłana na {email}, ponieważ masz rolę właściciela lub "
+            "administratora w {company} w prepza. Dotyczy rozliczeń Twojej firmy, więc jest "
+            "wysyłana niezależnie od Twoich ustawień e-maili."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Automatyczne doładowanie obciążyło kartę: {company}",
+        "preheader": "{date}: pobrano {price}, dodane kredyty: {credits}.",
+        "heading": "Automatyczne doładowanie obciążyło kartę",
+        "lines": [
+            (
+                "W dniu {date} automatyczne doładowanie obciążyło kartę dla {company} kwotą "
+                "{price} z podatkiem i dodało kredyty: {credits}. Dostępne teraz kredyty dla "
+                "{company}: {available}."
+            ),
+            "Paddle, nasz odsprzedawca, wysyła potwierdzenie e-mailem.",
+            (
+                "Aby zatrzymać te obciążenia, otwórz automatyczne doładowanie na stronie "
+                "rozliczeń i wybierz „Wyłącz”. Wyłączenie działa od razu i nic więcej nie "
+                "zostanie pobrane."
+            ),
+        ],
+        "button": "Otwórz rozliczenia",
+        "footer": (
+            "Ta wiadomość została wysłana na {email}, ponieważ masz rolę właściciela lub "
+            "administratora w {company} w prepza. Dotyczy rozliczeń Twojej firmy, więc jest "
+            "wysyłana niezależnie od Twoich ustawień e-maili."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Nowa cena doładowania dla {company}",
         "preheader": (

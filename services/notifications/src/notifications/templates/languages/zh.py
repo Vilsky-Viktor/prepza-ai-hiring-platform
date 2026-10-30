@@ -215,6 +215,36 @@ TEXTS = {
         "button": "更新银行卡",
         "footer": "这封邮件发送到 {email}，因为你是 prepza 上 {company} 的所有者或管理员。它与你公司的账单有关，因此无论你的邮件设置如何都会发送。",
     },
+    "top_up_on": {
+        "subject": "自动充值已开启：{company}",
+        "preheader": "每当可用点数低于 {threshold} 时充值 {price}，另加税费。",
+        "heading": "自动充值已开启",
+        "lines": [
+            (
+                "{company} 的自动充值现已开启。每当其可用点数低于 {threshold} 时，系统会从已保存的银行卡扣款 "
+                "{price}，如适用，另加增值税或销售税，直到自动充值被关闭。"
+            ),
+            "每笔扣款都会通过电子邮件通知公司的所有者和管理员，我们的转售商 Paddle 也会发送收据。",
+            "如需关闭，请在账单页面打开自动充值并选择“关闭”。关闭后立即停止，不会再产生任何扣款。",
+        ],
+        "button": "打开账单",
+        "footer": "这封邮件发送到 {email}，因为你是 prepza 上 {company} 的所有者或管理员。它与你公司的账单有关，因此无论你的邮件设置如何都会发送。",
+    },
+    "top_up_charged": {
+        "subject": "自动充值已扣款：{company}",
+        "preheader": "{date} 充值 {price}，获得 {credits} 点数。",
+        "heading": "自动充值已从银行卡扣款",
+        "lines": [
+            (
+                "{date}，自动充值从 {company} 的银行卡扣款 {price}（含税），并添加了 {credits} 点数。{company} 现在有 "
+                "{available} 点数可用。"
+            ),
+            "我们的转售商 Paddle 会通过电子邮件发送收据。",
+            "如需停止这些扣款，请在账单页面打开自动充值并选择“关闭”。关闭后立即停止，不会再产生任何扣款。",
+        ],
+        "button": "打开账单",
+        "footer": "这封邮件发送到 {email}，因为你是 prepza 上 {company} 的所有者或管理员。它与你公司的账单有关，因此无论你的邮件设置如何都会发送。",
+    },
     "top_up_price_change": {
         "subject": "{company} 的自动充值新价格",
         "preheader": "自 {date} 起，每次自动充值的价格从 {price} 调整为 {new_price}。",

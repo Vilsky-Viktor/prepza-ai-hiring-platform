@@ -37,7 +37,8 @@ src/site_content/
 ├── helpers/, constants/    # Pure functions (guides, legal versions); fixed values, the FAQ
 ├── integrations/           # billing (public prices), generation (translations), Redis
 ├── jobs/                   # One-off: the copy of library's news rows
-├── prompts/                # The platform guide's texts, sent with the help knowledge
+├── prompts/                # The platform guide (help.py) and the help knowledge's frame
+│                           # (help_knowledge.py: guide, FAQ, prices, terms, privacy)
 ├── page_guides/            # Each page's guide, one JSON file per language
 ├── legal_versions/         # Every published version of the legal texts
 └── legal_archive.py        # `python -m site_content.legal_archive`: keeps a new legal version

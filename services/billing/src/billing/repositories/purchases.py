@@ -1,3 +1,4 @@
+from collections.abc import Callable
 from datetime import datetime
 
 from prepza_common.events.audit_actions import AuditAction
@@ -10,7 +11,7 @@ from billing.constants.products import OwnerType
 from billing.models.billing import Entry, Purchase
 from billing.repositories import company_actions
 from billing.repositories.events import save
-from billing.repositories.ledger import add, ensure
+from billing.repositories.ledger import add, ensure, wallet
 
 
 async def grant(
@@ -26,11 +27,12 @@ async def grant(
     currency: str,
     now: datetime,
     automatic: bool = False,
-    events: list[tuple[str, dict]] = (),
+    events_for: Callable[[int], list[tuple[str, dict]]] | None = None,
 ) -> bool:
     """Adds a paid top-up once per product of a transaction, however often Paddle retries, with
-    `events` (type, data) for the outbox in the same transaction. `credits` is what the whole
-    line buys; `quantity` is kept for the accounts."""
+    the events (type, data) `events_for` makes from the credits available after it, for the
+    outbox in the same transaction. `credits` is what the whole line buys; `quantity` is kept for
+    the accounts."""
     new = await session.scalar(
         insert(Purchase)
         .values(
@@ -63,7 +65,10 @@ async def grant(
         currency,
         automatic,
     )
-    save(session, events)
+
+    if events_for is not None:
+        after = await wallet(session, owner_type, owner_id)
+        save(session, events_for(after.balance - after.reserved))
 
     return True
 

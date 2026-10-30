@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Isi ulang otomatis",
-    "text": "Saat saldo tersedia turun di bawah jumlah yang kamu pilih, kami mengisi ulang dengan kartu yang tersimpan. Paddle mengirim tanda terima setiap kali, dan kamu bisa mematikannya kapan saja.",
+    "text": "Saat saldo tersedia turun di bawah batas yang kamu pilih, kami membeli isi ulang dengan kartu yang tersimpan. Setiap tagihan dikirim lewat email ke pemilik dan admin perusahaan, dan Paddle mengirim tanda terimanya lewat email. Kamu bisa mematikannya di sini kapan saja: isi ulang otomatis langsung berhenti.",
+    "agree": "Saya setuju kartu saya ditagih {amount}, ditambah PPN atau pajak penjualan yang berlaku, setiap kali saldo tersedia turun di bawah {threshold, plural, other {# kredit}}, sampai saya mematikan isi ulang otomatis di sini.",
     "amount": "Isi ulang",
     "when": "Saat saldo turun di bawah",
     "level": "{threshold, number} kredit",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, =1 {Sebuah soal tentang “<bdi>{topic}</bdi>” di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}} ditandai untuk ditinjau.} other {# soal di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}} ditandai untuk ditinjau.}}",
       "question_fixed": "{count, plural, =1 {AI memperbaiki soal yang ditandai tentang “<bdi>{topic}</bdi>” di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}}.} other {AI memperbaiki # soal yang ditandai di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}}.}}",
       "referral_rewarded": "Seseorang yang kamu undang sudah isi ulang. Kamu dapat {credits, number} kredit.",
+      "auto_top_up_on": "Isi ulang otomatis menyala: {price} ditambah pajak saat kredit tersedia turun di bawah {threshold, number}.",
       "auto_top_up_charged": "Isi ulang otomatis menambahkan {credits, number} kredit.",
       "auto_top_up_failed": "Isi ulang otomatis gagal menagih kartu. Isi ulang agar saldomu tidak habis.",
       "auto_top_up_paused": "Isi ulang otomatis dijeda: kartu ditolak. Perbarui kartu untuk menyalakannya lagi.",

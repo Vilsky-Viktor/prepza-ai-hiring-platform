@@ -318,6 +318,57 @@ TEXTS = {
             "pengaturan emailmu."
         ),
     },
+    "top_up_on": {
+        "subject": "Isi ulang otomatis menyala: {company}",
+        "preheader": "{price} ditambah pajak setiap kali kredit tersedia turun di bawah {threshold}.",
+        "heading": "Isi ulang otomatis menyala",
+        "lines": [
+            (
+                "Isi ulang otomatis sekarang menyala untuk {company}. Setiap kali kredit "
+                "tersedianya turun di bawah {threshold}, kartu yang tersimpan ditagih {price}, "
+                "ditambah PPN atau pajak penjualan jika berlaku, sampai isi ulang otomatis "
+                "dimatikan."
+            ),
+            (
+                "Setiap tagihan dikirim lewat email ke pemilik dan admin perusahaan, dan Paddle, "
+                "penjual kembali kami, mengirim tanda terimanya lewat email."
+            ),
+            (
+                "Untuk mematikannya, buka isi ulang otomatis di halaman tagihan lalu pilih "
+                "“Matikan”. Isi ulang otomatis langsung berhenti, dan tidak ada tagihan lagi."
+            ),
+        ],
+        "button": "Buka tagihan",
+        "footer": (
+            "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di prepza. "
+            "Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun pengaturan "
+            "emailmu."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Isi ulang otomatis menagih: {company}",
+        "preheader": "{price} untuk {credits} kredit pada {date}.",
+        "heading": "Isi ulang otomatis menagih kartu",
+        "lines": [
+            (
+                "Pada {date}, isi ulang otomatis menagih kartu untuk {company} sebesar {price}, "
+                "termasuk pajak, dan menambahkan {credits} kredit. {company} sekarang memiliki "
+                "{available} kredit tersedia."
+            ),
+            "Paddle, penjual kembali kami, mengirim tanda terimanya lewat email.",
+            (
+                "Untuk menghentikan tagihan ini, buka isi ulang otomatis di halaman tagihan lalu "
+                "pilih “Matikan”. Isi ulang otomatis langsung berhenti, dan tidak ada tagihan "
+                "lagi."
+            ),
+        ],
+        "button": "Buka tagihan",
+        "footer": (
+            "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di prepza. "
+            "Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun pengaturan "
+            "emailmu."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Harga isi ulang baru untuk {company}",
         "preheader": "Mulai {date}, setiap isi ulang otomatis berharga {new_price}, bukan {price}.",

@@ -13,6 +13,8 @@ MESSAGES = {
     "Too many invites waiting. Remove some, or wait for them to join.": "대기 중인 초대가 너무 많습니다. 일부를 삭제하거나 참여할 때까지 기다리세요.",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "결제 카드의 소유자만 변경할 수 있습니다. 끈 다음 본인 카드로 다시 켜세요.",
     "Automatic top-up isn't on": "자동 충전이 켜져 있지 않습니다",
+    "Tick the box to agree to the automatic top-up's charges.": "자동 충전 결제에 동의하려면 확인란을 선택하세요.",
+    "{price} plus tax when the balance falls under {threshold} credits": "잔액이 {threshold} 크레딧 미만이 되면 {price}(세금 별도)",
     "The request is too large.": "요청이 너무 큽니다.",
     "Too many requests. Try again later.": "요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "로그인을 일시적으로 사용할 수 없습니다. 잠시 후 다시 시도해 주세요.",

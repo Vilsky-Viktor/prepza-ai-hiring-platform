@@ -13,6 +13,8 @@ MESSAGES = {
     "Too many invites waiting. Remove some, or wait for them to join.": "Za dużo oczekujących zaproszeń. Usuń kilka albo poczekaj, aż dołączą.",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Zmienić to może tylko osoba, której karta za to płaci. Wyłącz je, a potem włącz ponownie ze swoją kartą.",
     "Automatic top-up isn't on": "Automatyczne doładowanie nie jest włączone",
+    "Tick the box to agree to the automatic top-up's charges.": "Zaznacz pole, aby zgodzić się na obciążenia z automatycznego doładowania.",
+    "{price} plus tax when the balance falls under {threshold} credits": "{price} plus podatek, gdy kredyty spadną poniżej {threshold}",
     "The request is too large.": "Żądanie jest zbyt duże.",
     "Too many requests. Try again later.": "Zbyt wiele żądań. Spróbuj później.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Logowanie jest chwilowo niedostępne. Spróbuj ponownie za chwilę.",

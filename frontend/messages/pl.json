@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Automatyczne doładowanie",
-    "text": "Gdy dostępne saldo spadnie poniżej wybranej kwoty, kupimy doładowanie zapisaną kartą. Paddle za każdym razem wysyła potwierdzenie, a funkcję możesz wyłączyć w dowolnym momencie.",
+    "text": "Gdy dostępne saldo spadnie poniżej wybranej kwoty, kupimy doładowanie zapisaną kartą. O każdym obciążeniu informujemy e-mailem właścicieli i administratorów firmy, a Paddle wysyła potwierdzenie. Możesz tu w dowolnym momencie wyłączyć tę funkcję: wyłączenie działa od razu.",
+    "agree": "Zgadzam się, że moja karta będzie obciążana kwotą {amount} plus ewentualny VAT lub podatek od sprzedaży za każdym razem, gdy dostępne saldo spadnie poniżej {threshold, plural, one {# kredytu} few {# kredytów} many {# kredytów} other {# kredytu}}, dopóki nie wyłączę tutaj automatycznego doładowania.",
     "amount": "Doładowanie",
     "when": "Gdy saldo spadnie poniżej",
     "level": "{threshold, plural, one {# kredyt} few {# kredyty} many {# kredytów} other {# kredytu}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, one {Pytanie z tematu „<bdi>{topic}</bdi>” {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}} zgłoszono do weryfikacji.} few {# pytania {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}} zgłoszono do weryfikacji.} many {# pytań {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}} zgłoszono do weryfikacji.} other {# pytania {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}} zgłoszono do weryfikacji.}}",
       "question_fixed": "{count, plural, one {AI poprawiła zgłoszone pytanie z tematu „<bdi>{topic}</bdi>” {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}}.} few {AI poprawiła # zgłoszone pytania {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}}.} many {AI poprawiła # zgłoszonych pytań {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}}.} other {AI poprawiła # zgłoszonego pytania {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}}.}}",
       "referral_rewarded": "Zaproszona przez Ciebie osoba doładowała konto. Otrzymujesz kredyty: {credits, number}.",
+      "auto_top_up_on": "Automatyczne doładowanie jest włączone: {price} plus podatek, gdy dostępne kredyty spadną poniżej {threshold, number}.",
       "auto_top_up_charged": "Automatyczne doładowanie dodało kredyty: {credits, number}.",
       "auto_top_up_failed": "Automatyczne doładowanie nie mogło obciążyć karty. Doładuj konto, aby nie zabrakło Ci kredytów.",
       "auto_top_up_paused": "Automatyczne doładowanie jest wstrzymane: karta została odrzucona. Zaktualizuj kartę, aby je ponownie włączyć.",

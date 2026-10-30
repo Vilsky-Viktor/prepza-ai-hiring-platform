@@ -97,8 +97,12 @@ AUTO_TOP_UP_WAIT_SECONDS = 5
 # us when it starts and when it ends (cancelled in Paddle, or after failed payments).
 SUBSCRIPTION_CREATED = "subscription.created"
 SUBSCRIPTION_CANCELED = "subscription.canceled"
+SUBSCRIPTION_UPDATED = "subscription.updated"
 # A subscription's status in Paddle once it has ended.
 SUBSCRIPTION_ENDED_STATUS = "canceled"
+# The change Paddle schedules when its customer cancels through Paddle's own email link or portal
+# (for the end of the billing period): billing ends it at once instead.
+SCHEDULED_CANCEL = "cancel"
 # Marks the checkout that turns automatic top-up on.
 AUTO_TOP_UP_FLAG = "auto_top_up"
 # A running automatic top-up charges its buyer's card: only they change what it buys or when.
@@ -106,6 +110,12 @@ NOT_YOUR_AUTO_TOP_UP = (
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with "
     "your own card."
 )
+# Saving it needs the buyer's tick on what it charges, when and how to turn it off: every save
+# is a new agreement to its terms.
+AGREEMENT_NEEDED = "Tick the box to agree to the automatic top-up's charges."
+# Its terms as the company's action log keeps them with the buyer's agreement, in the buyer's
+# language (prepza_common.i18n messages).
+AGREED_TERMS = "{price} plus tax when the balance falls under {threshold} credits"
 PADDLE_API = {"sandbox": "https://sandbox-api.paddle.com", "production": "https://api.paddle.com"}
 # The version of Paddle's API every call asks for (its `Paddle-Version` header), so a new default
 # version in Paddle's dashboard can't change the answers billing reads.

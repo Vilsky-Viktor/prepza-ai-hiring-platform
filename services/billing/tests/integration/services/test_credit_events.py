@@ -48,7 +48,7 @@ def test_a_top_up_saves_its_event_once_however_often_paddle_repeats_it(run):
                 "USD",
                 NOW,
                 False,
-                events,
+                lambda available: events,
             )
 
         return await saved(acme)

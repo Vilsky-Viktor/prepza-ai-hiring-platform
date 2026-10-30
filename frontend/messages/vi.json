@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Tự động nạp",
-    "text": "Khi số dư khả dụng xuống dưới mức bạn chọn, chúng tôi nạp bằng thẻ đã lưu. Paddle gửi biên lai mỗi lần, và bạn có thể tắt bất cứ lúc nào.",
+    "text": "Khi số dư khả dụng xuống dưới mức bạn chọn, chúng tôi mua gói nạp bằng thẻ đã lưu. Mỗi lần trừ tiền đều được gửi email đến chủ sở hữu và quản trị viên của công ty, và Paddle gửi biên lai qua email. Bạn có thể tắt tại đây bất cứ lúc nào: tự động nạp dừng ngay lập tức.",
+    "agree": "Tôi đồng ý để thẻ của tôi bị trừ {amount}, cộng thêm VAT hoặc thuế bán hàng nếu có, mỗi khi số dư khả dụng xuống dưới {threshold, plural, other {# credit}}, cho đến khi tôi tắt tự động nạp tại đây.",
     "amount": "Số tiền nạp",
     "when": "Khi số dư xuống dưới",
     "level": "{threshold, number} credit",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, =1 {Một câu hỏi về “<bdi>{topic}</bdi>” trong {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}} đã bị đánh dấu để xem xét.} other {# câu hỏi trong {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}} đã bị đánh dấu để xem xét.}}",
       "question_fixed": "{count, plural, =1 {AI đã sửa một câu hỏi bị đánh dấu về “<bdi>{topic}</bdi>” trong {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}}.} other {AI đã sửa # câu hỏi bị đánh dấu trong {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}}.}}",
       "referral_rewarded": "Một người bạn mời đã nạp credit. Bạn nhận được {credits, number} credit.",
+      "auto_top_up_on": "Tự động nạp đang bật: {price} cộng thuế khi credit khả dụng xuống dưới {threshold, number}.",
       "auto_top_up_charged": "Tự động nạp đã thêm {credits, number} credit.",
       "auto_top_up_failed": "Tự động nạp không trừ tiền được từ thẻ. Hãy nạp credit để không bị hết số dư.",
       "auto_top_up_paused": "Tự động nạp đã tạm dừng: thẻ bị từ chối. Hãy cập nhật thẻ để bật lại.",

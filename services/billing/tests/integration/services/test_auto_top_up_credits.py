@@ -25,7 +25,11 @@ def test_once_a_charges_credits_come_the_next_charge_waits_only_the_cooldown(run
     async def scenario():
         await welcomed(acme, f"{acme}@example.com")
         await auto_top_ups.turn_on(
-            COMPANY, acme, AutoTopUpIn(product="topup_50", threshold=500), ann, Currency.USD
+            COMPANY,
+            acme,
+            AutoTopUpIn(product="topup_50", threshold=500, agreed=True),
+            ann,
+            Currency.USD,
         )
         await auto_top_ups.start(checkout_data(acme, ann), sub, "USD")
         await transaction(

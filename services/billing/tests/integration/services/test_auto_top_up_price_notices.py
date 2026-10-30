@@ -37,7 +37,7 @@ async def notices(acme: str) -> int:
 
 async def agreed_at(acme: str, ann: str, price: int) -> None:
     """Acme's automatic top-up runs, agreed at `price` (an older price list's)."""
-    choice = AutoTopUpIn(product="topup_50", threshold=500)
+    choice = AutoTopUpIn(product="topup_50", threshold=500, agreed=True)
     await auto_top_ups.turn_on(COMPANY, acme, choice, ann, Currency.USD)
     await auto_top_ups.start(checkout_data(acme, ann), f"sub_{uuid.uuid4().hex[:12]}", "USD")
     await transaction(price_rows.agree, COMPANY, acme, price, "USD")
@@ -58,7 +58,7 @@ def test_a_new_price_is_announced_once_and_charged_only_from_its_day(run, paddle
         await auto_top_up_prices.check_price(row, Currency.USD, now)
         announced = await transaction(rows.get, COMPANY, acme)
         # Changing only the level keeps both prices.
-        level = AutoTopUpIn(product="topup_50", threshold=1500)
+        level = AutoTopUpIn(product="topup_50", threshold=1500, agreed=True)
         await auto_top_ups.turn_on(COMPANY, acme, level, ann, Currency.USD)
         kept = await transaction(rows.get, COMPANY, acme)
 
@@ -105,7 +105,7 @@ def test_choosing_another_top_up_agrees_to_its_price_at_once(run, paddle_calls):
         await transaction(
             price_rows.announce, COMPANY, acme, row, 5000, datetime.now(UTC) + 31 * DAY, {}
         )
-        bigger = AutoTopUpIn(product="topup_200", threshold=500)
+        bigger = AutoTopUpIn(product="topup_200", threshold=500, agreed=True)
         await auto_top_ups.turn_on(COMPANY, acme, bigger, ann, Currency.EUR)
 
         return await transaction(rows.get, COMPANY, acme)

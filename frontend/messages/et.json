@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Automaatne juurdelaadimine",
-    "text": "Kui saadaolev saldo langeb alla valitud summa, laeme juurde sinu salvestatud kaardiga. Paddle saadab iga kord kviitungi ja saad selle igal ajal välja lülitada.",
+    "text": "Kui saadaolev saldo langeb alla valitud taseme, ostame juurdelaadimise sinu salvestatud kaardiga. Igast maksest saadetakse e-kiri ettevõtte omanikele ja administraatoritele ning Paddle saadab oma kviitungi e-kirjaga. Saad selle siin igal ajal välja lülitada: see peatub kohe.",
+    "agree": "Nõustun, et minu kaardilt võetakse {amount} koos võimaliku käibemaksu või müügimaksuga iga kord, kui saadaolev saldo langeb alla {threshold, plural, one {# krediidi} other {# krediidi}}, kuni lülitan automaatse juurdelaadimise siin välja.",
     "amount": "Juurdelaadimine",
     "when": "Kui saldo langeb alla",
     "level": "{threshold, plural, one {# krediit} other {# krediiti}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, one {{title, select, none {Intervjuus on teema „<bdi>{topic}</bdi>“ küsimus märgitud ülevaatamiseks.} other {„<bdi>{title}</bdi>“: teema „<bdi>{topic}</bdi>“ küsimus märgiti ülevaatamiseks.}}} other {{title, select, none {Intervjuus on} other {„<bdi>{title}</bdi>“:}} # küsimust {title, select, none {märgitud} other {märgiti}} ülevaatamiseks.}}",
       "question_fixed": "{count, plural, one {{title, select, none {Intervjuus parandas tehisaru teema „<bdi>{topic}</bdi>“ märgitud küsimuse.} other {„<bdi>{title}</bdi>“: tehisaru parandas teema „<bdi>{topic}</bdi>“ märgitud küsimuse.}}} other {{title, select, none {Intervjuus parandas tehisaru} other {„<bdi>{title}</bdi>“: tehisaru parandas}} # märgitud küsimust.}}",
       "referral_rewarded": "Sinu kutsutud inimene laadis juurde. Said {credits, plural, one {# krediidi} other {# krediiti}}.",
+      "auto_top_up_on": "Automaatne juurdelaadimine on sees: {price} pluss maks, kui saadaolev krediit langeb alla {threshold, number}.",
       "auto_top_up_charged": "Automaatne juurdelaadimine lisas {credits, plural, one {# krediidi} other {# krediiti}}.",
       "auto_top_up_failed": "Automaatne juurdelaadimine ei saanud kaardilt makset võtta. Laadi juurde, et saldo otsa ei saaks.",
       "auto_top_up_paused": "Automaatne juurdelaadimine on peatatud: kaart lükati tagasi. Uuenda kaarti, et see uuesti sisse lülitada.",

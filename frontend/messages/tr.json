@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Otomatik yükleme",
-    "text": "Kullanılabilir bakiye seçtiğiniz tutarın altına düştüğünde, kayıtlı kartınızla yükleme yaparız. Paddle her seferinde makbuz gönderir; dilediğiniz zaman kapatabilirsiniz.",
+    "text": "Kullanılabilir bakiye seçtiğiniz seviyenin altına düştüğünde, yüklemeyi kayıtlı kartınızla satın alırız. Her tahsilat şirketin sahiplerine ve yöneticilerine e-postayla bildirilir, Paddle da makbuzunu e-postayla gönderir. Otomatik yüklemeyi istediğiniz zaman buradan kapatabilirsiniz: hemen durur.",
+    "agree": "Kullanılabilir bakiye her {threshold, plural, one {# kredinin} other {# kredinin}} altına düştüğünde, otomatik yüklemeyi buradan kapatana kadar kartımdan {amount} ile varsa KDV veya satış vergisinin tahsil edilmesini kabul ediyorum.",
     "amount": "Yükleme tutarı",
     "when": "Bakiye şunun altına düştüğünde",
     "level": "{threshold, number} kredi",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, one {{title, select, none {Bir mülakatta} other {“<bdi>{title}</bdi>” setinde}} “<bdi>{topic}</bdi>” konusundaki bir soru inceleme için işaretlendi.} other {{title, select, none {Bir mülakatta} other {“<bdi>{title}</bdi>” setinde}}ki # soru inceleme için işaretlendi.}}",
       "question_fixed": "{count, plural, one {Yapay zekâ {title, select, none {bir mülakatta} other {“<bdi>{title}</bdi>” setinde}} “<bdi>{topic}</bdi>” konusundaki işaretlenen bir soruyu düzeltti.} other {Yapay zekâ {title, select, none {bir mülakatta} other {“<bdi>{title}</bdi>” setinde}}ki işaretlenen # soruyu düzeltti.}}",
       "referral_rewarded": "Davet ettiğiniz biri yükleme yaptı. {credits, number} kredi kazandınız.",
+      "auto_top_up_on": "Otomatik yükleme açık: kullanılabilir krediler {threshold, number} altına düştüğünde {price} artı vergi.",
       "auto_top_up_charged": "Otomatik yükleme {credits, number} kredi ekledi.",
       "auto_top_up_failed": "Otomatik yükleme karttan ödeme alamadı. Bakiyenizin bitmemesi için kredi yükleyin.",
       "auto_top_up_paused": "Otomatik yükleme duraklatıldı: kart reddedildi. Yeniden açmak için kartı güncelleyin.",

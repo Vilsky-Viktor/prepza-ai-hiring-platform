@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "טעינה אוטומטית",
-    "text": "כשהיתרה הזמינה יורדת מתחת לסכום שבחרתם, נטען אותה בכרטיס השמור. Paddle שולחת קבלה בכל פעם, ואפשר לכבות את זה בכל רגע.",
+    "text": "כשהיתרה הזמינה יורדת מתחת לרמה שבחרתם, נקנה את הטעינה בכרטיס השמור. על כל חיוב נשלח אימייל לבעלים ולמנהלים של החברה, ו-Paddle שולחת את הקבלה שלה באימייל. אפשר לכבות את זה כאן בכל רגע, והטעינה נעצרת מיד.",
+    "agree": "אני מסכים/ה שהכרטיס שלי יחויב ב-{amount}, בתוספת כל מע״מ או מס מכירה, בכל פעם שהיתרה הזמינה יורדת מתחת ל-{threshold, plural, one {קרדיט אחד} two {# קרדיטים} other {# קרדיטים}}, עד שאכבה כאן את הטעינה האוטומטית.",
     "amount": "טעינה",
     "when": "כשהיתרה יורדת אל מתחת ל",
     "level": "{threshold, plural, one {קרדיט אחד} two {# קרדיטים} other {# קרדיטים}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, one {שאלה בנושא \"<bdi>{topic}</bdi>\" {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}} סומנה לבדיקה.} two {שתי שאלות {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}} סומנו לבדיקה.} other {# שאלות {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}} סומנו לבדיקה.}}",
       "question_fixed": "{count, plural, one {ה-AI תיקן שאלה שסומנה בנושא \"<bdi>{topic}</bdi>\" {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}}.} two {ה-AI תיקן שתי שאלות שסומנו {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}}.} other {ה-AI תיקן # שאלות שסומנו {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}}.}}",
       "referral_rewarded": "מישהו שהזמנתם טען קרדיטים. קיבלתם {credits, plural, one {קרדיט אחד} two {# קרדיטים} other {# קרדיטים}}.",
+      "auto_top_up_on": "הטעינה האוטומטית פעילה: {price} בתוספת מס כשהקרדיטים הזמינים יורדים מתחת ל-{threshold, number}.",
       "auto_top_up_charged": "הטעינה האוטומטית הוסיפה {credits, plural, one {קרדיט אחד} two {# קרדיטים} other {# קרדיטים}}.",
       "auto_top_up_failed": "הטעינה האוטומטית לא הצליחה לחייב את הכרטיס. טענו קרדיטים כדי שהיתרה לא תיגמר.",
       "auto_top_up_paused": "הטעינה האוטומטית מושהית: הכרטיס נדחה. עדכנו את הכרטיס כדי להפעיל אותה מחדש.",

@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Automatisch opwaarderen",
-    "text": "Als het beschikbare saldo onder het gekozen bedrag zakt, kopen we de opwaardering met je opgeslagen kaart. Paddle mailt elke keer een bon, en je kunt het altijd uitzetten.",
+    "text": "Als het beschikbare saldo onder het gekozen bedrag zakt, kopen we de opwaardering met je opgeslagen kaart. Elke afschrijving wordt gemaild naar de eigenaren en beheerders van het bedrijf, en Paddle mailt zijn bon. Je kunt het hier altijd uitzetten: het stopt meteen.",
+    "agree": "Ik ga ermee akkoord dat mijn kaart elke keer dat het beschikbare saldo onder {threshold, plural, one {# credit} other {# credits}} zakt, wordt belast met {amount}, plus eventuele btw of verkoopbelasting, totdat ik automatisch opwaarderen hier uitzet.",
     "amount": "Opwaardering",
     "when": "Als het saldo daalt onder",
     "level": "{threshold, plural, one {# credit} other {# credits}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, one {Een vraag over “<bdi>{topic}</bdi>” in {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} is gemarkeerd voor controle.} other {# vragen in {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} zijn gemarkeerd voor controle.}}",
       "question_fixed": "{count, plural, one {De AI heeft een gemarkeerde vraag over “<bdi>{topic}</bdi>” in {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} verbeterd.} other {De AI heeft # gemarkeerde vragen in {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} verbeterd.}}",
       "referral_rewarded": "Iemand die je hebt uitgenodigd heeft opgewaardeerd. Je hebt {credits, plural, one {# credit} other {# credits}} gekregen.",
+      "auto_top_up_on": "Automatisch opwaarderen staat aan: {price} plus belasting als de beschikbare credits onder {threshold, number} zakken.",
       "auto_top_up_charged": "Automatisch opwaarderen heeft {credits, plural, one {# credit} other {# credits}} toegevoegd.",
       "auto_top_up_failed": "Automatisch opwaarderen kon de kaart niet belasten. Waardeer op zodat je saldo niet opraakt.",
       "auto_top_up_paused": "Automatisch opwaarderen is gepauzeerd: de kaart is geweigerd. Werk de kaart bij om het weer aan te zetten.",

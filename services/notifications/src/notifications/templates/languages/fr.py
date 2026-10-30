@@ -338,6 +338,60 @@ TEXTS = {
             " donc envoyé quels que soient vos réglages d'e-mails."
         ),
     },
+    "top_up_on": {
+        "subject": "Recharge automatique activée : {company}",
+        "preheader": (
+            "{price} hors taxes chaque fois que les crédits disponibles passent sous {threshold}."
+        ),
+        "heading": "La recharge automatique est activée",
+        "lines": [
+            (
+                "La recharge automatique est désormais activée pour {company}. Chaque fois que "
+                "ses crédits disponibles passent sous {threshold}, la carte enregistrée est "
+                "débitée de {price}, plus la TVA ou la taxe de vente là où elle s'applique, "
+                "jusqu'à ce que la recharge automatique soit désactivée."
+            ),
+            (
+                "Chaque débit est notifié par e-mail aux propriétaires et administrateurs de "
+                "l'entreprise, et Paddle, notre revendeur, envoie son reçu par e-mail."
+            ),
+            (
+                "Pour la désactiver, ouvrez la recharge automatique sur la page Facturation et "
+                "choisissez « Désactiver ». Elle s'arrête immédiatement, et plus rien n'est "
+                "débité."
+            ),
+        ],
+        "button": "Ouvrir la facturation",
+        "footer": (
+            "Cet e-mail a été envoyé à {email} parce que vous êtes propriétaire ou admin de "
+            "{company} sur prepza. Il concerne la facturation de votre entreprise ; il est "
+            "donc envoyé quels que soient vos réglages d'e-mails."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Recharge automatique débitée : {company}",
+        "preheader": "{price} pour {credits} crédits le {date}.",
+        "heading": "La recharge automatique a débité la carte",
+        "lines": [
+            (
+                "Le {date}, la recharge automatique a débité la carte de {company} de {price}, "
+                "taxes comprises, et ajouté {credits} crédits. {company} dispose désormais de "
+                "{available} crédits."
+            ),
+            "Paddle, notre revendeur, envoie le reçu par e-mail.",
+            (
+                "Pour arrêter ces débits, ouvrez la recharge automatique sur la page Facturation "
+                "et choisissez « Désactiver ». Elle s'arrête immédiatement, et plus rien n'est "
+                "débité."
+            ),
+        ],
+        "button": "Ouvrir la facturation",
+        "footer": (
+            "Cet e-mail a été envoyé à {email} parce que vous êtes propriétaire ou admin de "
+            "{company} sur prepza. Il concerne la facturation de votre entreprise ; il est "
+            "donc envoyé quels que soient vos réglages d'e-mails."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Nouveau prix de recharge pour {company}",
         "preheader": (

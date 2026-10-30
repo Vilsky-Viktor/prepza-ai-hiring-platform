@@ -104,9 +104,10 @@ test("only the card's owner changes a running automatic top-up", async ({
   await openDialog(page, page.getByTestId("top-up").first());
   await page.getByTestId("auto-top-up").getByRole("button").last().click();
   const form = page.locator("#auto-top-up-form");
-  // The level's pill: its last choice, then Save.
+  // The level's pill: its last choice, the tick on its terms, then Save.
   await form.getByRole("button").last().click();
   await page.getByRole("menu").getByRole("menuitemradio").last().click();
+  await form.getByTestId("auto-top-up-agree").click();
   await page.locator('button[type="submit"][form="auto-top-up-form"]').click();
 
   await expect(

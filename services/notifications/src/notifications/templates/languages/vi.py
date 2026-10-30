@@ -321,6 +321,54 @@ TEXTS = {
             " luôn được gửi, bất kể cài đặt email của bạn."
         ),
     },
+    "top_up_on": {
+        "subject": "Tự động nạp đã bật: {company}",
+        "preheader": "{price} cộng thuế mỗi khi credit khả dụng xuống dưới {threshold}.",
+        "heading": "Tự động nạp đã bật",
+        "lines": [
+            (
+                "Tự động nạp giờ đã bật cho {company}. Mỗi khi credit khả dụng của công ty xuống "
+                "dưới {threshold}, thẻ đã lưu sẽ bị trừ {price}, cộng thêm VAT hoặc thuế bán hàng "
+                "nếu có, cho đến khi tự động nạp bị tắt."
+            ),
+            (
+                "Mỗi lần trừ tiền đều được gửi email đến chủ sở hữu và quản trị viên của công ty, "
+                "và Paddle, bên bán lại của chúng tôi, gửi biên lai qua email."
+            ),
+            (
+                "Để tắt, hãy mở tự động nạp trên trang thanh toán và chọn “Tắt”. Tự động nạp dừng "
+                "ngay lập tức và không trừ thêm khoản nào nữa."
+            ),
+        ],
+        "button": "Mở trang thanh toán",
+        "footer": (
+            "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của "
+            "{company} trên prepza. Email liên quan đến việc thanh toán của công ty bạn nên "
+            "luôn được gửi, bất kể cài đặt email của bạn."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Tự động nạp đã trừ tiền: {company}",
+        "preheader": "{price} cho {credits} credit vào {date}.",
+        "heading": "Tự động nạp đã trừ tiền từ thẻ",
+        "lines": [
+            (
+                "Vào {date}, tự động nạp đã trừ {price} (đã gồm thuế) từ thẻ của {company} và "
+                "thêm {credits} credit. {company} hiện có {available} credit khả dụng."
+            ),
+            "Paddle, bên bán lại của chúng tôi, gửi biên lai qua email.",
+            (
+                "Để dừng các khoản trừ tiền này, hãy mở tự động nạp trên trang thanh toán và chọn "
+                "“Tắt”. Tự động nạp dừng ngay lập tức và không trừ thêm khoản nào nữa."
+            ),
+        ],
+        "button": "Mở trang thanh toán",
+        "footer": (
+            "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của "
+            "{company} trên prepza. Email liên quan đến việc thanh toán của công ty bạn nên "
+            "luôn được gửi, bất kể cài đặt email của bạn."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Giá tự động nạp mới cho {company}",
         "preheader": "Từ {date}, mỗi lần tự động nạp có giá {new_price} thay vì {price}.",

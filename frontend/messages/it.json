@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Ricarica automatica",
-    "text": "Quando il saldo disponibile scende sotto l'importo scelto, acquistiamo la ricarica con la tua carta salvata. Paddle ti invia una ricevuta ogni volta, e puoi disattivarla quando vuoi.",
+    "text": "Quando il saldo disponibile scende sotto l'importo scelto, acquistiamo la ricarica con la tua carta salvata. Ogni addebito viene comunicato via email ai proprietari e agli amministratori dell'azienda, e Paddle invia la sua ricevuta via email. Puoi disattivarla qui in qualsiasi momento: si interrompe subito.",
+    "agree": "Accetto che sulla mia carta venga addebitato {amount}, più l'eventuale IVA o imposta sulle vendite, ogni volta che il saldo disponibile scende sotto {threshold, plural, one {# credito} many {# crediti} other {# crediti}}, finché non disattivo qui la ricarica automatica.",
     "amount": "Ricarica",
     "when": "Quando il saldo scende sotto",
     "level": "{threshold, plural, one {# credito} other {# crediti}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, one {Una domanda su «<bdi>{topic}</bdi>» in {title, select, none {un colloquio} other {«<bdi>{title}</bdi>»}} è stata segnalata per la revisione.} other {# domande in {title, select, none {un colloquio} other {«<bdi>{title}</bdi>»}} sono state segnalate per la revisione.}}",
       "question_fixed": "{count, plural, one {L'IA ha corretto una domanda segnalata su «<bdi>{topic}</bdi>» in {title, select, none {un colloquio} other {«<bdi>{title}</bdi>»}}.} other {L'IA ha corretto # domande segnalate in {title, select, none {un colloquio} other {«<bdi>{title}</bdi>»}}.}}",
       "referral_rewarded": "Una persona che hai invitato ha ricaricato. Hai ricevuto {credits, plural, one {# credito} other {# crediti}}.",
+      "auto_top_up_on": "La ricarica automatica è attiva: {price} più imposte quando i crediti disponibili scendono sotto {threshold, number}.",
       "auto_top_up_charged": "La ricarica automatica ha aggiunto {credits, plural, one {# credito} other {# crediti}}.",
       "auto_top_up_failed": "La ricarica automatica non è riuscita ad addebitare la carta. Ricarica per non restare senza saldo.",
       "auto_top_up_paused": "La ricarica automatica è in pausa: la carta è stata rifiutata. Aggiorna la carta per riattivarla.",

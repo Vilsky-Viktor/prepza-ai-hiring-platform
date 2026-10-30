@@ -322,6 +322,55 @@ TEXTS = {
             "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
     },
+    "top_up_on": {
+        "subject": "Otomatik yükleme açıldı: {company}",
+        "preheader": "Kullanılabilir krediler her {threshold} altına düştüğünde {price} artı vergi.",
+        "heading": "Otomatik yükleme açık",
+        "lines": [
+            (
+                "{company} için otomatik yükleme artık açık. Kullanılabilir kredileri her "
+                "{threshold} altına düştüğünde, otomatik yükleme kapatılana kadar kayıtlı karttan "
+                "{price} tahsil edilir; geçerli olduğu yerlerde KDV veya satış vergisi eklenir."
+            ),
+            (
+                "Her tahsilat şirketin sahiplerine ve yöneticilerine e-postayla bildirilir; "
+                "yeniden satıcımız Paddle da makbuzunu e-postayla gönderir."
+            ),
+            (
+                "Kapatmak için faturalandırma sayfasında otomatik yükleme bölümüne gidin ve "
+                "“Kapat”ı seçin. Hemen durur ve başka hiçbir tahsilat yapılmaz."
+            ),
+        ],
+        "button": "Faturalandırmayı aç",
+        "footer": (
+            "Bu e-posta {email} adresine, prepza'da {company} şirketinin sahibi veya "
+            "yöneticisi olduğunuz için gönderildi. Şirketinizin faturalandırmasıyla ilgili "
+            "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Otomatik yükleme tahsil edildi: {company}",
+        "preheader": "{date} tarihinde {credits} kredi için {price}.",
+        "heading": "Otomatik yükleme karttan tahsilat yaptı",
+        "lines": [
+            (
+                "{date} tarihinde otomatik yükleme {company} için karttan vergiler dahil {price} "
+                "tahsil etti ve {credits} kredi ekledi. {company} şirketinin artık {available} "
+                "kullanılabilir kredisi var."
+            ),
+            "Makbuzu yeniden satıcımız Paddle e-postayla gönderir.",
+            (
+                "Bu tahsilatları durdurmak için faturalandırma sayfasında otomatik yükleme "
+                "bölümüne gidin ve “Kapat”ı seçin. Hemen durur ve başka hiçbir tahsilat yapılmaz."
+            ),
+        ],
+        "button": "Faturalandırmayı aç",
+        "footer": (
+            "Bu e-posta {email} adresine, prepza'da {company} şirketinin sahibi veya "
+            "yöneticisi olduğunuz için gönderildi. Şirketinizin faturalandırmasıyla ilgili "
+            "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
+        ),
+    },
     "top_up_price_change": {
         "subject": "{company} için yeni otomatik yükleme fiyatı",
         "preheader": (

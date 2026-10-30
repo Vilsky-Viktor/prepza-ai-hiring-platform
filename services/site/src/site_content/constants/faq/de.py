@@ -60,7 +60,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "Verfallen Credits?",
-        "answer": "Nein. Credits verfallen nie, und es gibt keine kostenpflichtigen Abos. Wenn du das optionale automatische Aufladen einschaltest, speichert Paddle deine Karte als Abo für {zero_price}; du zahlst nur die Aufladungen, die es vornimmt.",
+        "answer": "Nein. Credits verfallen nie, und es gibt keine kostenpflichtigen Abos. Wenn du das optionale automatische Aufladen einschaltest, speichert Paddle deine Karte als Abo für {zero_price}; du zahlst nur die Aufladungen, die es vornimmt. Zum Einschalten musst du selbst per Häkchen zustimmen, was es wann abbucht; jede Belastung wird den Inhabern und Admins des Unternehmens per E-Mail mitgeteilt, und du kannst es jederzeit dort ausschalten, wo du es eingeschaltet hast, was es sofort stoppt.",
     },
     {
         "key": "currency",

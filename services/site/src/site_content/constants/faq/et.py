@@ -60,7 +60,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "Kas krediidid aeguvad?",
-        "answer": "Ei. Krediidid ei aegu kunagi ning tasulisi tellimusi pole. Kui lülitad sisse valikulise automaatse juurdelaadimise, salvestab Paddle sinu kaardi tellimusena hinnaga {zero_price}; maksad ainult selle tehtud juurdelaadimiste eest.",
+        "answer": "Ei. Krediidid ei aegu kunagi ning tasulisi tellimusi pole. Kui lülitad sisse valikulise automaatse juurdelaadimise, salvestab Paddle sinu kaardi tellimusena hinnaga {zero_price}; maksad ainult selle tehtud juurdelaadimiste eest. Selle sisselülitamiseks pead ise linnukesega kinnitama, mida ja millal see võtab; igast maksest saadetakse e-kiri ettevõtte omanikele ja administraatoritele ning saad selle igal ajal välja lülitada samas kohas, kus selle sisse lülitasid, ja see peatub kohe.",
     },
     {
         "key": "currency",

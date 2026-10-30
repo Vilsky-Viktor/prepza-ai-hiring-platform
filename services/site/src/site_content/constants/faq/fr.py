@@ -60,7 +60,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "Les crédits expirent-ils ?",
-        "answer": "Non. Les crédits n'expirent jamais, et il n'y a aucun abonnement payant. Si vous activez la recharge automatique facultative, Paddle enregistre votre carte sous forme d'abonnement à {zero_price} ; vous ne payez que les recharges qu'elle effectue.",
+        "answer": "Non. Les crédits n'expirent jamais, et il n'y a aucun abonnement payant. Si vous activez la recharge automatique facultative, Paddle enregistre votre carte sous forme d'abonnement à {zero_price} ; vous ne payez que les recharges qu'elle effectue. Pour l'activer, vous devez cocher vous-même ce qu'elle débite et quand ; chaque débit est notifié par e-mail aux propriétaires et administrateurs de l'entreprise, et vous pouvez la désactiver à tout moment là où vous l'avez activée, ce qui l'arrête immédiatement.",
     },
     {
         "key": "currency",

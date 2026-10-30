@@ -20,7 +20,7 @@ from tests.integration.services.test_auto_top_ups import checkout_data
 from tests.integration.transactions import transaction
 
 COMPANY = OwnerType.COMPANY
-CHOICE = AutoTopUpIn(product="topup_50", threshold=500)
+CHOICE = AutoTopUpIn(product="topup_50", threshold=500, agreed=True)
 
 
 def test_a_second_member_turning_it_on_before_the_first_checkout_starts_it_with_their_card(
@@ -124,7 +124,9 @@ def test_its_charges_are_named_in_the_language_of_whoever_pays(run, paddle_calls
         waiting = (await transaction(rows.get, COMPANY, acme)).language
         await auto_top_ups.start(checkout_data(acme, bob), sub, "USD")
         # Ann's save reaching the table anyway (a race past the service's check) keeps Bob's.
-        await transaction(rows.save, COMPANY, acme, "topup_50", 500, ann, 5000, "USD", "fr")
+        await transaction(
+            rows.save, COMPANY, acme, "topup_50", 500, ann, 5000, "USD", datetime.now(UTC), "fr"
+        )
         kept = (await transaction(rows.get, COMPANY, acme)).language
         await auto_top_ups.turn_on(COMPANY, acme, CHOICE, bob, Currency.USD, "ja")
 

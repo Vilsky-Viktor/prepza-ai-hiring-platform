@@ -73,7 +73,7 @@ def test_a_user_deletion_whose_currency_fails_keeps_what_they_bought_and_turned_
     """Their automatic top-ups going off, their purchases losing their id and their currency go
     together: a failure leaves all of it for the deletion's retry."""
     acme, ann = str(uuid.uuid4()), f"user-{uuid.uuid4()}"
-    choice = AutoTopUpIn(product="topup_50", threshold=500)
+    choice = AutoTopUpIn(product="topup_50", threshold=500, agreed=True)
 
     async def scenario():
         await welcomed(acme, f"{acme}@example.com")

@@ -177,10 +177,12 @@ class ReferralOut(BaseModel):
 
 
 class AutoTopUpIn(BaseModel):
-    """Which top-up to buy, and under which available balance (credits)."""
+    """Which top-up to buy, and under which available balance (credits); `agreed` is the buyer's
+    tick on its terms (what it charges, when, and how to turn it off), which saving needs."""
 
     product: str
     threshold: int
+    agreed: bool = False
 
 
 class CheckoutOut(BaseModel):

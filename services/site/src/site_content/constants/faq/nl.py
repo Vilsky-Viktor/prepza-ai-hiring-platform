@@ -60,7 +60,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "Verlopen credits?",
-        "answer": "Nee. Credits verlopen nooit, en er zijn geen betaalde abonnementen. Zet je het optionele automatisch opwaarderen aan, dan bewaart Paddle je kaart als abonnement van {zero_price}; je betaalt alleen de opwaarderingen die het doet.",
+        "answer": "Nee. Credits verlopen nooit, en er zijn geen betaalde abonnementen. Zet je het optionele automatisch opwaarderen aan, dan bewaart Paddle je kaart als abonnement van {zero_price}; je betaalt alleen de opwaarderingen die het doet. Om het aan te zetten vink je zelf aan wat het afschrijft en wanneer; elke afschrijving wordt gemaild naar de eigenaren en beheerders van het bedrijf, en je kunt het altijd uitzetten waar je het aanzette, waarna het meteen stopt.",
     },
     {
         "key": "currency",

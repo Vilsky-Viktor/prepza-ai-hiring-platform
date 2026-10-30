@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "自动充值",
-    "text": "当可用余额低于你设定的金额时，我们会用你保存的银行卡自动充值。Paddle 每次都会发送收据，你可以随时关闭。",
+    "text": "当可用余额低于你设定的金额时，我们会用你保存的银行卡自动充值。每笔扣款都会通过电子邮件通知公司的所有者和管理员，Paddle 也会发送收据。你可以随时在这里关闭，关闭后立即停止。",
+    "agree": "我同意每当可用余额低于 {threshold, plural, other {# 点数}} 时，从我的银行卡扣款 {amount}，另加任何增值税或销售税，直到我在这里关闭自动充值。",
     "amount": "充值金额",
     "when": "当余额低于",
     "level": "{threshold, number} 点数",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, =1 {{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}中关于“<bdi>{topic}</bdi>”的一道题目被标记待审核。} other {{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}中有 # 道题目被标记待审核。}}",
       "question_fixed": "{count, plural, =1 {AI 修正了{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}中关于“<bdi>{topic}</bdi>”的被标记题目。} other {AI 修正了{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}中 # 道被标记的题目。}}",
       "referral_rewarded": "你邀请的人完成了充值，你获得了 {credits, number} 点数。",
+      "auto_top_up_on": "自动充值已开启：可用点数低于 {threshold, number} 时充值 {price}，另加税费。",
       "auto_top_up_charged": "自动充值已添加 {credits, number} 点数。",
       "auto_top_up_failed": "自动充值无法从银行卡扣款。请充值，以免余额不足。",
       "auto_top_up_paused": "自动充值已暂停：银行卡被拒。请更新银行卡以重新开启。",

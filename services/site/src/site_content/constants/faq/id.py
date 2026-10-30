@@ -60,7 +60,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "Apakah kredit bisa kedaluwarsa?",
-        "answer": "Tidak. Kredit tidak pernah kedaluwarsa, dan tidak ada langganan berbayar. Jika Anda menyalakan isi ulang otomatis yang opsional, Paddle menyimpan kartu Anda sebagai langganan {zero_price}; Anda hanya membayar isi ulang yang dilakukannya.",
+        "answer": "Tidak. Kredit tidak pernah kedaluwarsa, dan tidak ada langganan berbayar. Jika Anda menyalakan isi ulang otomatis yang opsional, Paddle menyimpan kartu Anda sebagai langganan {zero_price}; Anda hanya membayar isi ulang yang dilakukannya. Untuk menyalakannya, Anda sendiri harus mencentang apa yang ditagihnya dan kapan; setiap tagihan dikirim lewat email ke pemilik dan admin perusahaan, dan Anda bisa mematikannya kapan saja di tempat Anda menyalakannya, yang langsung menghentikannya.",
     },
     {
         "key": "currency",

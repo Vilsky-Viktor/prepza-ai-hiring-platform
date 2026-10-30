@@ -337,6 +337,61 @@ TEXTS = {
             " wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
     },
+    "top_up_on": {
+        "subject": "Automatisches Aufladen ist an: {company}",
+        "preheader": (
+            "{price} zzgl. Steuern jedes Mal, wenn die verfügbaren Credits unter {threshold} "
+            "fallen."
+        ),
+        "heading": "Automatisches Aufladen ist an",
+        "lines": [
+            (
+                "Automatisches Aufladen ist jetzt für {company} eingeschaltet. Jedes Mal, wenn "
+                "die verfügbaren Credits unter {threshold} fallen, wird die gespeicherte Karte "
+                "mit {price} belastet, zuzüglich MwSt. oder Sales Tax, wo sie anfällt, bis das "
+                "automatische Aufladen ausgeschaltet wird."
+            ),
+            (
+                "Jede Belastung wird den Inhabern und Admins des Unternehmens per E-Mail "
+                "mitgeteilt, und Paddle, unser Wiederverkäufer, schickt seine Quittung per "
+                "E-Mail."
+            ),
+            (
+                "Um es auszuschalten, öffne das automatische Aufladen auf der Abrechnungsseite "
+                "und wähle „Ausschalten“. Das gilt sofort, und es wird nichts mehr abgebucht."
+            ),
+        ],
+        "button": "Abrechnung öffnen",
+        "footer": (
+            "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin von {company} "
+            "auf prepza bist. Sie betrifft die Abrechnung deines Unternehmens und wird daher "
+            "unabhängig von deinen E-Mail-Einstellungen gesendet."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Automatisches Aufladen abgebucht: {company}",
+        "preheader": "{price} für {credits} Credits am {date}.",
+        "heading": "Automatisches Aufladen hat die Karte belastet",
+        "lines": [
+            (
+                "Am {date} hat das automatische Aufladen die Karte für {company} mit {price} "
+                "inklusive Steuern belastet und {credits} Credits hinzugefügt. {company} hat "
+                "jetzt {available} Credits verfügbar."
+            ),
+            "Paddle, unser Wiederverkäufer, schickt die Quittung per E-Mail.",
+            (
+                "Um diese Belastungen zu beenden, öffne das automatische Aufladen auf der "
+                "Abrechnungsseite und wähle „Ausschalten“. Das gilt sofort, und es wird nichts "
+                "mehr abgebucht."
+            ),
+        ],
+        "button": "Abrechnung öffnen",
+        "footer": (
+            "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin von {company} "
+            "auf prepza bist. Sie betrifft die Abrechnung deines Unternehmens und wird daher "
+            "unabhängig von deinen E-Mail-Einstellungen gesendet."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Neuer Aufladepreis für {company}",
         "preheader": "Ab {date} kostet jedes automatische Aufladen {new_price} statt {price}.",

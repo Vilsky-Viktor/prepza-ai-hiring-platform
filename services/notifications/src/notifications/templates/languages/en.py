@@ -288,6 +288,55 @@ TEXTS = {
             " settings."
         ),
     },
+    "top_up_on": {
+        "subject": "Automatic top-up is on: {company}",
+        "preheader": "{price} plus tax each time the available credits fall under {threshold}.",
+        "heading": "Automatic top-up is on",
+        "lines": [
+            (
+                "Automatic top-up is now on for {company}. Each time its available credits fall "
+                "under {threshold}, the saved card is charged {price}, plus VAT or sales tax "
+                "where it applies, until automatic top-up is turned off."
+            ),
+            (
+                "Every charge is emailed to the company's owners and admins, and Paddle, our "
+                "reseller, emails its receipt."
+            ),
+            (
+                "To turn it off, open automatic top-up on the billing page and choose Turn off. "
+                "It stops at once, and nothing more is charged."
+            ),
+        ],
+        "button": "Open billing",
+        "footer": (
+            "This email was sent to {email} because you're an owner or admin of {company} "
+            "on prepza. It's about your company's billing, so it's sent whatever your email"
+            " settings."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Automatic top-up charged: {company}",
+        "preheader": "{price} for {credits} credits on {date}.",
+        "heading": "Automatic top-up charged the card",
+        "lines": [
+            (
+                "On {date}, automatic top-up charged the card for {company} {price}, tax "
+                "included, and added {credits} credits. {company} now has {available} credits "
+                "available."
+            ),
+            "Paddle, our reseller, emails the receipt.",
+            (
+                "To stop these charges, open automatic top-up on the billing page and choose "
+                "Turn off. It stops at once, and nothing more is charged."
+            ),
+        ],
+        "button": "Open billing",
+        "footer": (
+            "This email was sent to {email} because you're an owner or admin of {company} "
+            "on prepza. It's about your company's billing, so it's sent whatever your email"
+            " settings."
+        ),
+    },
     "top_up_price_change": {
         "subject": "New top-up price for {company}",
         "preheader": "From {date}, each automatic top-up costs {new_price} instead of {price}.",

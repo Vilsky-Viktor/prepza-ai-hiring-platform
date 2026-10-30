@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Automatisches Aufladen",
-    "text": "Wenn das verfügbare Guthaben unter den gewählten Wert fällt, kaufen wir die Aufladung mit deiner gespeicherten Karte. Paddle schickt jedes Mal eine Quittung, und du kannst es jederzeit ausschalten.",
+    "text": "Wenn das verfügbare Guthaben unter den gewählten Wert fällt, kaufen wir die Aufladung mit deiner gespeicherten Karte. Jede Belastung wird den Inhabern und Admins des Unternehmens per E-Mail mitgeteilt, und Paddle schickt seine Quittung per E-Mail. Du kannst es hier jederzeit ausschalten: Das gilt sofort.",
+    "agree": "Ich bin einverstanden, dass meine Karte jedes Mal mit {amount} zuzüglich etwaiger MwSt. oder Sales Tax belastet wird, wenn das verfügbare Guthaben unter {threshold, plural, one {# Credit} other {# Credits}} fällt, bis ich das automatische Aufladen hier ausschalte.",
     "amount": "Aufladen",
     "when": "Wenn das Guthaben unter diesen Wert fällt",
     "level": "{threshold, plural, one {# Credit} other {# Credits}}",
@@ -1720,6 +1721,7 @@
       "question_flagged": "{count, plural, one {Eine Frage zu „<bdi>{topic}</bdi>“ {title, select, none {in einem Interview} other {in „<bdi>{title}</bdi>“}} wurde zur Prüfung gemeldet.} other {# Fragen {title, select, none {in einem Interview} other {in „<bdi>{title}</bdi>“}} wurden zur Prüfung gemeldet.}}",
       "question_fixed": "{count, plural, one {Die KI hat eine gemeldete Frage zu „<bdi>{topic}</bdi>“ {title, select, none {in einem Interview} other {in „<bdi>{title}</bdi>“}} korrigiert.} other {Die KI hat # gemeldete Fragen {title, select, none {in einem Interview} other {in „<bdi>{title}</bdi>“}} korrigiert.}}",
       "referral_rewarded": "Jemand, den du eingeladen hast, hat aufgeladen. Du hast {credits, plural, one {# Credit} other {# Credits}} bekommen.",
+      "auto_top_up_on": "Automatisches Aufladen ist an: {price} zzgl. Steuern, wenn die verfügbaren Credits unter {threshold, number} fallen.",
       "auto_top_up_charged": "Automatisches Aufladen hat {credits, plural, one {# Credit} other {# Credits}} hinzugefügt.",
       "auto_top_up_failed": "Automatisches Aufladen konnte die Karte nicht belasten. Lade auf, damit dein Guthaben nicht ausgeht.",
       "auto_top_up_paused": "Automatisches Aufladen ist pausiert: Die Karte wurde abgelehnt. Aktualisiere die Karte, um es wieder einzuschalten.",

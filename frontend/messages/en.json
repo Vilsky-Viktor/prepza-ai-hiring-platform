@@ -1343,7 +1343,8 @@
   },
   "autoTopUp": {
     "title": "Automatic top-up",
-    "text": "When the available balance falls under the amount you choose, we buy the top-up with your saved card. Paddle emails a receipt each time, and you can turn it off at any time.",
+    "text": "When the available balance falls under the level you choose, we buy the top-up with your saved card. Every charge is emailed to the company's owners and admins, and Paddle emails its receipt. You can turn it off here at any time: it stops at once.",
+    "agree": "I agree that my card is charged {amount}, plus any VAT or sales tax, each time the available balance falls under {threshold, plural, one {# credit} other {# credits}}, until I turn automatic top-up off here.",
     "amount": "Top up",
     "when": "When the balance falls under",
     "level": "{threshold, plural, one {# credit} other {# credits}}",
@@ -1721,6 +1722,7 @@
       "referral_rewarded": "Someone you invited topped up. You got {credits, plural, one {# credit} other {# credits}}.",
       "auto_top_up_charged": "Automatic top-up added {credits, plural, one {# credit} other {# credits}}.",
       "auto_top_up_failed": "Automatic top-up couldn't charge the card. Top up to keep your balance going.",
+      "auto_top_up_on": "Automatic top-up is on: {price} plus tax when the available credits fall under {threshold, number}.",
       "auto_top_up_paused": "Automatic top-up is paused: the card was declined. Update the card to turn it back on.",
       "auto_top_up_price_change": "From <time>{date}</time>, each automatic top-up costs {newPrice} instead of {price}.",
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> finished {title, select, none {an interview} other {“<bdi>{title}</bdi>”}}{grade, select, none {.} other {: {grade}.}}} other {# candidates finished {title, select, none {an interview} other {“<bdi>{title}</bdi>”}}.}}",

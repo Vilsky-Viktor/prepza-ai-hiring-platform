@@ -137,9 +137,12 @@ test("the automatic top-up card changes the setting it shows", async ({ signInAs
   const footer = setup.locator("[data-slot=dialog-footer]").getByRole("button")
   const save = setup.locator("button[type=submit]")
 
-  // Turn off, Close and Save; nothing to save until something changes.
+  // Turn off, Close and Save; nothing to save, and nothing to agree to, until something
+  // changes.
   await expect(footer).toHaveCount(3)
   await expect(save).toBeDisabled()
+  const agree = setup.getByTestId("auto-top-up-agree")
+  await expect(agree).toHaveCount(0)
   const amount = setup.locator("form").getByRole("button").first()
   await expect(amount).toContainText("$50")
   await expect(amount).toContainText("10")
@@ -149,11 +152,21 @@ test("the automatic top-up card changes the setting it shows", async ({ signInAs
   await owner.getByRole("menu").getByRole("menuitemradio").last().click()
   await expect(amount).toContainText("$200")
   await expect(amount).toContainText("50")
+  // A change is saved only with the buyer's own tick on its new terms: the amount chosen and
+  // the level it charges under.
+  await expect(agree).not.toBeChecked()
+  await expect(setup.locator("form label")).toContainText("$200")
+  await expect(setup.locator("form label")).toContainText("500")
+  await expect(save).toBeDisabled()
+  await agree.click()
   await expect(save).toBeEnabled()
+  await shot(owner, "auto-top-up-agreed")
 
+  // Choosing again clears the tick, so it always agrees to what's shown.
   await amount.click()
   await owner.getByRole("menu").getByRole("menuitemradio").first().click()
   await expect(save).toBeDisabled()
+  await expect(agree).toHaveCount(0)
 })
 
 test("an automatic top-up that's off is set up from its card", async ({ signInAs }) => {
@@ -170,9 +183,14 @@ test("an automatic top-up that's off is set up from its card", async ({ signInAs
   const setup = owner.getByRole("dialog")
   await expect(setup.locator("form")).toBeVisible()
 
-  // Close and Turn on, which needs no change.
+  // Close and Turn on, which needs no change but the buyer's own tick, never given beforehand.
   await expect(setup.locator("[data-slot=dialog-footer]").getByRole("button")).toHaveCount(2)
-  await expect(setup.locator("button[type=submit]")).toBeEnabled()
+  const turnOn = setup.locator("button[type=submit]")
+  const agree = setup.getByTestId("auto-top-up-agree")
+  await expect(agree).not.toBeChecked()
+  await expect(turnOn).toBeDisabled()
+  await agree.click()
+  await expect(turnOn).toBeEnabled()
 
   // The amount and the level are two pills picked from the site's menu, not the browser's.
   const pills = setup.locator("form").getByRole("button")
@@ -190,5 +208,14 @@ test("an automatic top-up that's off is set up from its card", async ({ signInAs
     await items.last().click()
     await expect(owner.getByRole("menu")).toHaveCount(0)
     await expect(pill).toContainText(picked)
+    // Another choice takes the tick away: it agreed to the one before.
+    await expect(agree).not.toBeChecked()
+    await expect(turnOn).toBeDisabled()
+    await agree.click()
   }
+
+  // What's saved carries the tick.
+  const saved = owner.waitForRequest((request) => request.method() === "PUT")
+  await turnOn.click()
+  expect((await saved).postDataJSON()).toMatchObject({ product: "topup_200", agreed: true })
 })

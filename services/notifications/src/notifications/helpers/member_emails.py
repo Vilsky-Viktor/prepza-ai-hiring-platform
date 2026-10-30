@@ -8,7 +8,7 @@ from prepza_common.i18n.money import money
 from notifications.constants.member_emails import COMPANIES_LINK, TOP_UP_LINK, MemberEmail
 from notifications.constants.unsubscribe import UnsubscribeType
 from notifications.helpers.emails import optional_email
-from notifications.helpers.rendering import Section, email_language, render
+from notifications.helpers.rendering import Section, email_language, render, shown
 from notifications.models.email import Email
 
 
@@ -88,6 +88,37 @@ def price_change_email(recipient: dict, company: str, notice: dict, link: str) -
     }
 
     return render("top_up_price_change", data, link)
+
+
+def top_up_on_email(recipient: dict, company: str, notice: dict, link: str) -> Email:
+    """A service email: automatic top-up is on, with what each charge costs, the level that
+    starts one, and how to turn it off; its button opens the company's billing page."""
+    language = recipient["language"]
+    data = {
+        **recipient_data(recipient),
+        "company": company,
+        "price": money(notice["price"], notice["currency"], language),
+        "threshold": shown(notice["threshold"], language),
+    }
+
+    return render("top_up_on", data, link)
+
+
+def top_up_charged_email(recipient: dict, company: str, notice: dict, link: str) -> Email:
+    """A service email for one automatic charge: what was paid (tax included), the day, the
+    credits it added and those available after it, and how to turn it off; its button opens the
+    company's billing page. Paddle's receipt is separate."""
+    language = recipient["language"]
+    data = {
+        **recipient_data(recipient),
+        "company": company,
+        "price": money(notice["price"], notice["currency"], language),
+        "date": long_date(notice["date"], language),
+        "credits": shown(notice["credits"], language),
+        "available": shown(notice["available"], language),
+    }
+
+    return render("top_up_charged", data, link)
 
 
 def legal_email(recipient: dict, document: str, version: str, site_url: str) -> Email:

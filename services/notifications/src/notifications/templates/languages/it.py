@@ -323,6 +323,59 @@ TEXTS = {
             "azienda, quindi viene inviata indipendentemente dalle tue impostazioni email."
         ),
     },
+    "top_up_on": {
+        "subject": "Ricarica automatica attiva: {company}",
+        "preheader": (
+            "{price} più imposte ogni volta che i crediti disponibili scendono sotto {threshold}."
+        ),
+        "heading": "La ricarica automatica è attiva",
+        "lines": [
+            (
+                "La ricarica automatica è ora attiva per {company}. Ogni volta che i suoi crediti "
+                "disponibili scendono sotto {threshold}, sulla carta salvata vengono addebitati "
+                "{price}, più IVA o imposta sulle vendite dove si applica, finché la ricarica "
+                "automatica non viene disattivata."
+            ),
+            (
+                "Ogni addebito viene comunicato via email ai proprietari e agli amministratori "
+                "dell'azienda, e Paddle, il nostro rivenditore, invia la sua ricevuta via email."
+            ),
+            (
+                "Per disattivarla, apri la ricarica automatica nella pagina Fatturazione e scegli "
+                "«Disattiva». Si interrompe subito e non viene addebitato altro."
+            ),
+        ],
+        "button": "Apri Fatturazione",
+        "footer": (
+            "Questa email è stata inviata a {email} perché sei proprietario o amministratore "
+            "di {company} su prepza. Riguarda la fatturazione della tua azienda, quindi viene "
+            "inviata indipendentemente dalle tue impostazioni email."
+        ),
+    },
+    "top_up_charged": {
+        "subject": "Addebito della ricarica automatica: {company}",
+        "preheader": "{price} per {credits} crediti il {date}.",
+        "heading": "La ricarica automatica ha addebitato la carta",
+        "lines": [
+            (
+                "Il {date}, la ricarica automatica ha addebitato {price}, imposte incluse, sulla "
+                "carta di {company} e ha aggiunto {credits} crediti. {company} ha ora {available} "
+                "crediti disponibili."
+            ),
+            "Paddle, il nostro rivenditore, invia la ricevuta via email.",
+            (
+                "Per interrompere questi addebiti, apri la ricarica automatica nella pagina "
+                "Fatturazione e scegli «Disattiva». Si interrompe subito e non viene addebitato "
+                "altro."
+            ),
+        ],
+        "button": "Apri Fatturazione",
+        "footer": (
+            "Questa email è stata inviata a {email} perché sei proprietario o amministratore "
+            "di {company} su prepza. Riguarda la fatturazione della tua azienda, quindi viene "
+            "inviata indipendentemente dalle tue impostazioni email."
+        ),
+    },
     "top_up_price_change": {
         "subject": "Nuovo prezzo della ricarica per {company}",
         "preheader": "Dal {date}, ogni ricarica automatica costa {new_price} invece di {price}.",

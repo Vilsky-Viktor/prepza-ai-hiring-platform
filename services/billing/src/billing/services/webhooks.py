@@ -2,6 +2,7 @@ from billing.constants.products import (
     ADJUSTMENT_EVENTS,
     SUBSCRIPTION_CANCELED,
     SUBSCRIPTION_CREATED,
+    SUBSCRIPTION_UPDATED,
     TRANSACTION_COMPLETED,
 )
 from billing.services import auto_top_ups
@@ -11,7 +12,8 @@ from billing.services.topups import handle_completed
 
 async def handle(event: dict) -> None:
     """Paddle's events: a paid top-up adds credits; refunds and chargebacks take them back;
-    an automatic top-up's subscription starts it or, when it ends, turns it off."""
+    an automatic top-up's subscription starts it or, when it ends or is cancelled in Paddle,
+    turns it off."""
     event_type = event.get("event_type")
 
     if event_type == TRANSACTION_COMPLETED:
@@ -23,3 +25,5 @@ async def handle(event: dict) -> None:
         await auto_top_ups.start(data.get("custom_data") or {}, data["id"], data["currency_code"])
     elif event_type == SUBSCRIPTION_CANCELED:
         await auto_top_ups.ended(event["data"]["id"])
+    elif event_type == SUBSCRIPTION_UPDATED:
+        await auto_top_ups.cancel_scheduled(event["data"])

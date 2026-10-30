@@ -60,7 +60,7 @@ FAQ = [
     {
         "key": "expire",
         "question": "¿Caducan los créditos?",
-        "answer": "No. Los créditos nunca caducan y no hay suscripciones de pago. Si activas la recarga automática opcional, Paddle guarda tu tarjeta como una suscripción de {zero_price}; solo pagas las recargas que haga.",
+        "answer": "No. Los créditos nunca caducan y no hay suscripciones de pago. Si activas la recarga automática opcional, Paddle guarda tu tarjeta como una suscripción de {zero_price}; solo pagas las recargas que haga. Para activarla tienes que marcar tú mismo la casilla de lo que cobra y cuándo; cada cargo se notifica por correo a los propietarios y administradores de la empresa, y puedes desactivarla cuando quieras donde la activaste, lo que la detiene al instante.",
     },
     {
         "key": "currency",

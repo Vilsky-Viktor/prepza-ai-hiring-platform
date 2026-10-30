@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { useAuth } from "@/providers/auth-provider"
+import { AutoTopUpAgreement } from "@/components/common/auto-top-up-agreement"
 import { AutoTopUpStatus } from "@/components/common/auto-top-up-status"
 import { Dotted } from "@/components/common/dot"
 import { PillSelect } from "@/components/common/pill-select"
@@ -47,6 +48,9 @@ export function AutoTopUpSetting({
   const [open, setOpen] = useState(false)
   const [product, setProduct] = useState("")
   const [threshold, setThreshold] = useState("")
+  // The buyer's tick on what it charges, when and how to turn it off: never ticked beforehand,
+  // and cleared whenever the choice changes, so it always agrees to what's shown.
+  const [agreed, setAgreed] = useState(false)
   const [saving, setSaving] = useState(false)
 
   // Read again as the page refreshes after a payment: a card update resumes it once Paddle's
@@ -94,6 +98,14 @@ export function AutoTopUpSetting({
     setOpen(next)
     setProduct(setting.product ?? setting.products[0] ?? "")
     setThreshold(String(setting.threshold ?? setting.thresholds[0] ?? ""))
+    setAgreed(false)
+  }
+
+  function choose(set: (value: string) => void) {
+    return (value: string) => {
+      set(value)
+      setAgreed(false)
+    }
   }
 
   async function save(event: React.FormEvent) {
@@ -103,7 +115,11 @@ export function AutoTopUpSetting({
     try {
       const saved = await apiFetch<AutoTopUp>(path, {
         method: "PUT",
-        body: JSON.stringify({ product, threshold: Number(threshold) }),
+        body: JSON.stringify({
+          product,
+          threshold: Number(threshold),
+          agreed,
+        }),
       })
       setSetting(saved)
       setOpen(false)
@@ -167,11 +183,12 @@ export function AutoTopUpSetting({
   }
 
   const set = setting.on || setting.waiting
-  // Once on, saving needs a change; turning it on doesn't.
+  // Once on, saving needs a change; turning it on doesn't. Either needs the tick.
   const changed =
     !setting.on ||
     product !== setting.product ||
     Number(threshold) !== setting.threshold
+  const ready = Boolean(product && threshold && changed && agreed)
 
   return (
     <Dialog open={open} onOpenChange={handleOpen}>
@@ -193,7 +210,7 @@ export function AutoTopUpSetting({
           <PillSelect
             label={t("amount")}
             value={product}
-            onChange={setProduct}
+            onChange={choose(setProduct)}
             options={setting.products.map((key) => ({
               value: key,
               label: titles[key] ?? key,
@@ -217,12 +234,22 @@ export function AutoTopUpSetting({
           <PillSelect
             label={t("when")}
             value={threshold}
-            onChange={setThreshold}
+            onChange={choose(setThreshold)}
             options={setting.thresholds.map((value) => ({
               value: String(value),
               label: t("level", { threshold: value }),
             }))}
           />
+          {/* Its own, unticked agreement to the terms chosen above, needed to save them. */}
+          {changed && (
+            <AutoTopUpAgreement
+              amount={titles[product] ?? product}
+              threshold={Number(threshold)}
+              agreed={agreed}
+              disabled={saving}
+              onChange={setAgreed}
+            />
+          )}
         </form>
         <DialogFooter>
           {set && (
@@ -247,7 +274,7 @@ export function AutoTopUpSetting({
             type="submit"
             form="auto-top-up-form"
             className="h-10 px-5 text-base"
-            disabled={saving || !product || !threshold || !changed}
+            disabled={saving || !ready}
           >
             {setting.on ? t("save") : t("turnOn")}
           </Button>

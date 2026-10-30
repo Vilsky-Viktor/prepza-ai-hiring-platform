@@ -13,6 +13,8 @@ MESSAGES = {
     "Too many invites waiting. Remove some, or wait for them to join.": "Слишком много ожидающих приглашений. Удалите часть или дождитесь, пока к вам присоединятся.",
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Изменить это может только тот, чья карта за это платит. Выключите его, а затем включите со своей картой.",
     "Automatic top-up isn't on": "Автопополнение не включено",
+    "Tick the box to agree to the automatic top-up's charges.": "Поставьте галочку, чтобы согласиться со списаниями автопополнения.",
+    "{price} plus tax when the balance falls under {threshold} credits": "{price} плюс налог, когда кредитов на балансе становится меньше {threshold}",
     "The request is too large.": "Слишком большой запрос.",
     "Too many requests. Try again later.": "Слишком много запросов. Попробуйте позже.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Вход временно недоступен. Попробуйте чуть позже.",

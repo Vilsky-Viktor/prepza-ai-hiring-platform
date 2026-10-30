@@ -186,7 +186,10 @@ that, or at once when the bank refuses the card for good, automatic top-up pause
 company's owners and admins are told (email and the bell): the person whose card pays updates \
 it with "Update card" on the company's billing page, and it starts again. A new price for it is \
 emailed at least 30 days before it applies; until then it charges the old one. Changing the \
-company's currency changes what it charges at once.
+company's currency changes what it charges at once. Turning it on or changing it needs the \
+buyer's own tick on what it charges (plus tax) and when. Owners and admins get an email when \
+it's turned on and after every charge (Paddle sends the receipt). Turning it off is "Turn off" in \
+the same setting and stops it at once; cancelling it through Paddle's emails does too.
 - Currencies: prices are in the local currency in Canada, Australia, Israel, Poland, \
 Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore and India; in euros in \
 the rest of the EU and in Iceland, Liechtenstein and Norway; in pounds in the UK; and in US \
@@ -258,8 +261,8 @@ prepza team finds it at once. "copy id" sits under the name of a company, an int
 candidate (on their pages), and the account's is in the account menu and in Settings.
 
 Emails:
-- Service emails always go out: invites, candidate reports, billing problems (such as a failed \
-automatic top-up) and changes to the terms.
+- Service emails always go out: invites, candidate reports, billing emails (automatic top-up \
+turned on, each of its charges, a failed one) and changes to the terms.
 - Settings → Emails chooses the rest: the activity digest (one email a day about what happened \
 in your companies: candidates who finished, undelivered invites, ATS candidates not invited, \
 interviews ready, the team's new notes; each can be turned off), reminders to owners and admins (low credits, \
@@ -276,25 +279,3 @@ doesn't email them for that company again and the company sees the invite as not
 - The site works in {language_count} languages: {languages}. On a first visit it opens in the \
 browser's language if supported. Arabic, Hebrew and Persian read right to left.
 """
-
-# Everything the help chat answers from; the in-app assistant reads the same (GET /help/guide).
-HELP_KNOWLEDGE = """\
-<guide>
-{guide}
-</guide>
-
-<faq>
-{faq}
-</faq>
-
-<prices>
-{prices}
-</prices>
-
-<terms>
-{terms}
-</terms>
-
-<privacy_policy>
-{privacy}
-</privacy_policy>"""

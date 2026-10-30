@@ -99,6 +99,10 @@ class AutoTopUp(Base):
     # The interface language of whoever turned it on, which names what each charge buys on
     # Paddle's invoice; None (set up before it was kept) is English.
     language: Mapped[str | None] = mapped_column(String(8))
+    # When the buyer last agreed to its terms (what it buys, its price and its level), ticking the
+    # agreement before saving it; None for one saved before the agreement was asked for. Its
+    # history is in the company's action log.
+    agreed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
 
 class CurrencyChoice(Base):

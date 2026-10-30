@@ -1,4 +1,5 @@
 import asyncio
+from datetime import UTC, datetime
 from types import SimpleNamespace
 
 from prepza_common.http.http import bearer
@@ -122,6 +123,7 @@ def test_accounts_exports_a_users_purchases_and_automatic_top_ups_with_a_post(cl
                 product="topup_50",
                 threshold=500,
                 subscription_id="sub_1",
+                agreed_at=datetime(2026, 10, 30, 9, tzinfo=UTC),
                 charged_at=None,
                 failed_at=None,
             )
@@ -150,6 +152,8 @@ def test_accounts_exports_a_users_purchases_and_automatic_top_ups_with_a_post(cl
                 "product": "topup_50",
                 "threshold": 500,
                 "started": True,
+                # When they agreed to its terms.
+                "agreed_at": "2026-10-30T09:00:00+00:00",
                 "last_charged_at": None,
                 "last_declined_at": None,
             }

@@ -22,6 +22,7 @@ async def save(
     buyer_id: str,
     price: int,
     currency: str,
+    agreed_at: datetime,
     language: str = DEFAULT_LANGUAGE,
 ) -> AutoTopUp:
     """Sets what to buy and when. A running one keeps its subscription and the card it charges
@@ -29,8 +30,9 @@ async def save(
     for its checkout waits for this person's, whoever turned it on before. Choosing another
     top-up agrees to its `price` now (in `currency`); keeping the same one keeps the price agreed
     and any new price announced. `language`, which names what each charge buys, is the buyer's:
-    it changes only with the person whose card pays."""
-    values = {"product": product, "threshold": threshold}
+    it changes only with the person whose card pays. `agreed_at`: when they agreed to its terms,
+    which every save asks for."""
+    values = {"product": product, "threshold": threshold, "agreed_at": agreed_at}
     upsert = insert(AutoTopUp).values(
         owner_type=owner_type,
         owner_id=owner_id,
@@ -74,26 +76,31 @@ async def start(
     buyer_id: str,
     subscription_id: str,
     currency: str,
-) -> bool:
+) -> tuple[bool, AutoTopUp | None]:
     """Attaches the subscription, and its currency, from the checkout of whoever turned it on;
     once only. Paddle's two events for one checkout can arrive together, so finding it already
-    attached counts as started too."""
-    started = await session.scalar(
+    attached counts as started too; only the call that attached it gets the row (the other
+    waits on its lock, then finds it attached), so what follows the start happens once."""
+    owner = (
+        AutoTopUp.owner_type == owner_type,
+        AutoTopUp.owner_id == owner_id,
+        AutoTopUp.buyer_id == buyer_id,
+    )
+    attached = await session.scalar(
         update(AutoTopUp)
-        .where(
-            AutoTopUp.owner_type == owner_type,
-            AutoTopUp.owner_id == owner_id,
-            AutoTopUp.buyer_id == buyer_id,
-            or_(
-                AutoTopUp.subscription_id.is_(None),
-                AutoTopUp.subscription_id == subscription_id,
-            ),
-        )
+        .where(*owner, AutoTopUp.subscription_id.is_(None))
         .values(subscription_id=subscription_id, currency=currency)
-        .returning(AutoTopUp.owner_id)
+        .returning(AutoTopUp)
     )
 
-    return started is not None
+    if attached is not None:
+        return True, attached
+
+    already = await session.scalar(
+        select(AutoTopUp.owner_id).where(*owner, AutoTopUp.subscription_id == subscription_id)
+    )
+
+    return already is not None, None
 
 
 async def owner_of(session: AsyncSession, subscription_id: str) -> tuple[str, str] | None:
