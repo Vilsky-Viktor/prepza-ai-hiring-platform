@@ -21,7 +21,8 @@ type Step = {
   question: { question_id: string; multi: boolean } | null
 }
 
-/** A voice interview of a throwaway template (German, one of the voice languages), with a
+/** A voice interview of a throwaway template (German, one of the voice languages) of 10 company
+ * questions, so every draw holds all of them, its 4 multi-answer ones among them, with a
  * candidate invited, signed in on a page with a fake microphone and Mira mocked at the network
  * edge; nothing is read aloud by OpenAI. Deletes the template afterwards. */
 async function voiceInterview(
@@ -35,7 +36,7 @@ async function voiceInterview(
   // Each question's time.
   seconds = 300
 ) {
-  const template = await multiAnswerTemplate(`E2E voice ${randomId()}`)
+  const template = await multiAnswerTemplate(`E2E voice ${randomId()}`, 10)
 
   try {
     const owner = await signInAs(ownerEmail())
@@ -114,7 +115,7 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
   test.setTimeout(300_000)
   await voiceInterview(signInAs, async ({ candidate, token, microphone, mira }) => {
     // Started, and on to a multi-answer question of the draw that isn't its last, as the player
-    // does.
+    // does: of its 4, at least 3 aren't.
     const { sessions } = await api<{ sessions: { id: string }[] }>(
       candidate,
       "POST",
@@ -175,11 +176,12 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
     await shot(candidate, "picked-phone")
     await candidate.setViewportSize({ width: 1280, height: 800 })
 
-    // A spoken yes confirms the choice on screen: it's sent, and the next question opens.
+    // A spoken yes confirms the choice on screen: it's sent, and the next question opens with
+    // nothing picked.
     await microphone.say()
     expect(await mira.sent()).toEqual([0, 1])
     await mira.answer({ heard: "yes", intent: "confirm", picks: [] })
-    await expect(candidate.getByTestId("option-check")).toHaveCount(0)
+    await expect(options).toHaveCount(0)
     await expect.poll(async () => Number(await answered(candidate))).toBe(before + 1)
     await expect(turn).toHaveAttribute("data-turn", "candidate")
     expect(mira.asked).toContain("phrases/next")
