@@ -6,9 +6,9 @@ import { ownerEmail, throwawayEmail } from "../helpers/users"
 
 type Candidate = { id: string; email: string; voice: boolean }
 
-// A company chooses how one candidate takes the interview, apart from its mode: the invite
-// dialog's switch starts at the interview's mode (click here), and inviting with voice mode
-// keeps it for that candidate. The candidate list marks only the candidates whose mode differs.
+// A company chooses how one candidate takes the interview, apart from its mode: invited with
+// voice mode (here through the API; the invite dialog follows the interview's mode), it's kept for
+// that candidate. The candidate list marks only the candidates whose mode differs.
 // On the candidate's page the same switch changes it until they start, then disappears.
 test("a candidate takes the interview in their own mode, set until they start", async ({
   signInAs,
@@ -23,20 +23,11 @@ test("a candidate takes the interview in their own mode, set until they start", 
   })
   const interviewPath = `/companies/${company.id}/interviews/${interviewId}`
 
-  // The dialog's switch: click mode first, voice chosen before inviting.
+  await api(owner, "POST", `/companies/interviews/${interviewId}/candidates`, {
+    email: voiceEmail,
+    voice: true,
+  })
   await visit(owner, `${interviewPath}?tab=candidates`)
-  await owner.getByTestId("new-candidate").filter({ visible: true }).click()
-  const dialog = owner.getByRole("dialog")
-  await dialog.getByRole("tab").first().click()
-  await dialog.locator('input[type="email"]').fill(voiceEmail)
-  const modes = dialog.getByRole("group").getByRole("button")
-  await expect(modes.first()).toHaveAttribute("aria-pressed", "true")
-  await modes.nth(1).click()
-  await expect(modes.nth(1)).toHaveAttribute("aria-pressed", "true")
-  await shot(owner, "invite-mode")
-  await dialog.locator('button[type="submit"]').click()
-  await expect(dialog).toHaveCount(0)
-  await expect(owner.locator('[data-sonner-toast][data-type="success"]')).toContainText(voiceEmail)
 
   const candidates = await api<Candidate[]>(
     owner,

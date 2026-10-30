@@ -215,3 +215,7 @@ against the voice-mode run: passed 96.0% (88.9–98.6) → 96.0% (88.9–98.6); 
 (0.7–9.2); sign-in marker 100% both; identity 18 of 18. Misses: h17's known invented retake
 limit (2 of 3) and h12 once (two sentences where one was asked); none about offers or Discover.
 Within the noise; kept so the guides say what is true. $2.04 (the judge $2.01).
+
+2026-10-30, the invite dialog no longer sets a candidate's mode (only their page does): passed
+98.7% (92.8–99.8), made up 2.7% (0.7–9.2), sign-in marker 100%, identity 18 of 18. Misses: h17's
+known invented retake limit and h02 once (generation limits). Within the noise. $1.98.

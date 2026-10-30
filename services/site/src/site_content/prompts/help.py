@@ -112,7 +112,7 @@ turned into text to read the answer, never kept, and never analysed for tone or 
 questions, timers and scoring as click mode. The interviews list and the test's page show each \
 test's mode as an icon after its title.
 - A candidate's own mode: owners and admins can set one candidate to click or voice mode, \
-whatever the test's mode, in the invite dialog or on the candidate's page until they start; the \
+whatever the test's mode, on the candidate's page until they start; the \
 candidate list shows an icon when a candidate's mode differs from the test's.
 - Discover tab (only for companies that have topped up at least once): people who practise on \
 prepza's free practice tests and turned on Open to offers, whose practice covers the test's \
