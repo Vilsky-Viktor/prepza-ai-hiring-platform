@@ -553,7 +553,8 @@
       "transcription": "音声メッセージ",
       "help_chat": "ヘルプチャット",
       "quality_patterns": "問題の品質パターン",
-      "code_tags": "例の記法タグ"
+      "code_tags": "例の記法タグ",
+      "bank_filter": "共有問題バンクのフィルター"
     },
     "aiUnitCost": {
       "interview_generation": "面接 1 件あたり {cost}",
@@ -571,7 +572,8 @@
       "transcription": "1 分あたり {cost}",
       "help_chat": "呼び出し 1 回あたり {cost}",
       "quality_patterns": "実行 1 回あたり {cost}",
-      "code_tags": "実行 1 回あたり {cost}"
+      "code_tags": "実行 1 回あたり {cost}",
+      "bank_filter": "実行 1 回あたり {cost}"
     },
     "aiPaid": "有料 {spend}",
     "aiUnpaid": "無料 {spend}",

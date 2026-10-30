@@ -553,7 +553,8 @@
       "transcription": "음성 메시지",
       "help_chat": "도움말 채팅",
       "quality_patterns": "문제 품질 패턴",
-      "code_tags": "예시 표기법 태그"
+      "code_tags": "예시 표기법 태그",
+      "bank_filter": "공유 문제 은행 필터"
     },
     "aiUnitCost": {
       "interview_generation": "면접당 {cost}",
@@ -571,7 +572,8 @@
       "transcription": "분당 {cost}",
       "help_chat": "호출당 {cost}",
       "quality_patterns": "실행 1회당 {cost}",
-      "code_tags": "실행 1회당 {cost}"
+      "code_tags": "실행 1회당 {cost}",
+      "bank_filter": "실행 1회당 {cost}"
     },
     "aiPaid": "유료 {spend}",
     "aiUnpaid": "무료 {spend}",

@@ -553,7 +553,8 @@
       "transcription": "Messages vocaux",
       "help_chat": "Chat d'aide",
       "quality_patterns": "Schémas de qualité des questions",
-      "code_tags": "Notation des exemples"
+      "code_tags": "Notation des exemples",
+      "bank_filter": "Filtre de la banque de questions partagée"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} par entretien",
@@ -571,7 +572,8 @@
       "transcription": "{cost} par minute",
       "help_chat": "{cost} par appel",
       "quality_patterns": "{cost} par exécution",
-      "code_tags": "{cost} par exécution"
+      "code_tags": "{cost} par exécution",
+      "bank_filter": "{cost} par exécution"
     },
     "aiPaid": "payant {spend}",
     "aiUnpaid": "non payant {spend}",

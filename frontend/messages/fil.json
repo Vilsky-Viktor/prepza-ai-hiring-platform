@@ -553,7 +553,8 @@
       "transcription": "Mga voice message",
       "help_chat": "Help chat",
       "quality_patterns": "Mga pattern sa kalidad ng tanong",
-      "code_tags": "Mga tag ng notation ng halimbawa"
+      "code_tags": "Mga tag ng notation ng halimbawa",
+      "bank_filter": "Filter ng shared question bank"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} bawat interview",
@@ -571,7 +572,8 @@
       "transcription": "{cost} bawat minuto",
       "help_chat": "{cost} bawat call",
       "quality_patterns": "{cost} bawat pagpapatakbo",
-      "code_tags": "{cost} bawat pagpapatakbo"
+      "code_tags": "{cost} bawat pagpapatakbo",
+      "bank_filter": "{cost} bawat pagpapatakbo"
     },
     "aiPaid": "bayad {spend}",
     "aiUnpaid": "hindi bayad {spend}",

@@ -553,7 +553,8 @@
       "transcription": "הודעות קוליות",
       "help_chat": "צ׳אט העזרה",
       "quality_patterns": "דפוסי איכות של שאלות",
-      "code_tags": "תיוג סימון הדוגמאות"
+      "code_tags": "תיוג סימון הדוגמאות",
+      "bank_filter": "סינון למאגר השאלות המשותף"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} לראיון",
@@ -571,7 +572,8 @@
       "transcription": "{cost} לדקה",
       "help_chat": "{cost} לקריאה",
       "quality_patterns": "{cost} להרצה",
-      "code_tags": "{cost} להרצה"
+      "code_tags": "{cost} להרצה",
+      "bank_filter": "{cost} להרצה"
     },
     "aiPaid": "משלמים {spend}",
     "aiUnpaid": "לא משלמים {spend}",

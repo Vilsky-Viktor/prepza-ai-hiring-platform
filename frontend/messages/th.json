@@ -553,7 +553,8 @@
       "transcription": "ข้อความเสียง",
       "help_chat": "แชตช่วยเหลือ",
       "quality_patterns": "รูปแบบคุณภาพของคำถาม",
-      "code_tags": "แท็กรูปแบบการเขียนของตัวอย่าง"
+      "code_tags": "แท็กรูปแบบการเขียนของตัวอย่าง",
+      "bank_filter": "ตัวกรองคลังคำถามที่ใช้ร่วมกัน"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} ต่อการสัมภาษณ์",
@@ -571,7 +572,8 @@
       "transcription": "{cost} ต่อนาที",
       "help_chat": "{cost} ต่อการเรียกใช้",
       "quality_patterns": "{cost} ต่อการรันหนึ่งครั้ง",
-      "code_tags": "{cost} ต่อการรันหนึ่งครั้ง"
+      "code_tags": "{cost} ต่อการรันหนึ่งครั้ง",
+      "bank_filter": "{cost} ต่อการรันหนึ่งครั้ง"
     },
     "aiPaid": "ชำระเงินแล้ว {spend}",
     "aiUnpaid": "ยังไม่ชำระเงิน {spend}",

@@ -553,7 +553,8 @@
       "transcription": "Voice messages",
       "help_chat": "Help chat",
       "quality_patterns": "Question quality patterns",
-      "code_tags": "Example notation tags"
+      "code_tags": "Example notation tags",
+      "bank_filter": "Shared question bank filter"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} an interview",
@@ -571,7 +572,8 @@
       "transcription": "{cost} a minute",
       "help_chat": "{cost} a call",
       "quality_patterns": "{cost} a run",
-      "code_tags": "{cost} a run"
+      "code_tags": "{cost} a run",
+      "bank_filter": "{cost} a run"
     },
     "aiPaid": "paid {spend}",
     "aiUnpaid": "unpaid {spend}",

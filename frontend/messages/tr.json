@@ -553,7 +553,8 @@
       "transcription": "Sesli mesajlar",
       "help_chat": "Yardım sohbeti",
       "quality_patterns": "Soru kalitesi örüntüleri",
-      "code_tags": "Örnek notasyonu etiketleri"
+      "code_tags": "Örnek notasyonu etiketleri",
+      "bank_filter": "Ortak soru bankası filtresi"
     },
     "aiUnitCost": {
       "interview_generation": "mülakat başına {cost}",
@@ -571,7 +572,8 @@
       "transcription": "dakika başına {cost}",
       "help_chat": "çağrı başına {cost}",
       "quality_patterns": "çalıştırma başına {cost}",
-      "code_tags": "çalıştırma başına {cost}"
+      "code_tags": "çalıştırma başına {cost}",
+      "bank_filter": "çalıştırma başına {cost}"
     },
     "aiPaid": "ödeme yapan {spend}",
     "aiUnpaid": "ödeme yapmayan {spend}",

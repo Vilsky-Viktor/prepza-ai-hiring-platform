@@ -553,7 +553,8 @@
       "transcription": "الرسائل الصوتية",
       "help_chat": "دردشة المساعدة",
       "quality_patterns": "أنماط جودة الأسئلة",
-      "code_tags": "وسوم ترميز الأمثلة"
+      "code_tags": "وسوم ترميز الأمثلة",
+      "bank_filter": "تصفية بنك الأسئلة المشترك"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} لكل مقابلة",
@@ -571,7 +572,8 @@
       "transcription": "{cost} لكل دقيقة",
       "help_chat": "{cost} لكل طلب",
       "quality_patterns": "{cost} لكل تشغيل",
-      "code_tags": "{cost} لكل تشغيل"
+      "code_tags": "{cost} لكل تشغيل",
+      "bank_filter": "{cost} لكل تشغيل"
     },
     "aiPaid": "الدافعون {spend}",
     "aiUnpaid": "غير الدافعين {spend}",

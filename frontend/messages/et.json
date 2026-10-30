@@ -553,7 +553,8 @@
       "transcription": "Häälsõnumid",
       "help_chat": "Abivestlus",
       "quality_patterns": "Küsimuste kvaliteedimustrid",
-      "code_tags": "Näidete notatsiooni sildid"
+      "code_tags": "Näidete notatsiooni sildid",
+      "bank_filter": "Ühise küsimustepanga filter"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} intervjuu kohta",
@@ -571,7 +572,8 @@
       "transcription": "{cost} minuti kohta",
       "help_chat": "{cost} päringu kohta",
       "quality_patterns": "{cost} käivituse kohta",
-      "code_tags": "{cost} käivituse kohta"
+      "code_tags": "{cost} käivituse kohta",
+      "bank_filter": "{cost} käivituse kohta"
     },
     "aiPaid": "maksvad {spend}",
     "aiUnpaid": "mittemaksvad {spend}",

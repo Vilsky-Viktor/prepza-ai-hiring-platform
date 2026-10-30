@@ -553,7 +553,8 @@
       "transcription": "Spraakberichten",
       "help_chat": "Helpchat",
       "quality_patterns": "Kwaliteitspatronen van vragen",
-      "code_tags": "Notatie van voorbeelden"
+      "code_tags": "Notatie van voorbeelden",
+      "bank_filter": "Filter voor de gedeelde vragenbank"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} per interview",
@@ -571,7 +572,8 @@
       "transcription": "{cost} per minuut",
       "help_chat": "{cost} per aanroep",
       "quality_patterns": "{cost} per run",
-      "code_tags": "{cost} per run"
+      "code_tags": "{cost} per run",
+      "bank_filter": "{cost} per run"
     },
     "aiPaid": "betalend {spend}",
     "aiUnpaid": "niet-betalend {spend}",

@@ -553,7 +553,8 @@
       "transcription": "Sprachnachrichten",
       "help_chat": "Hilfe-Chat",
       "quality_patterns": "Qualitätsmuster bei Fragen",
-      "code_tags": "Notation der Beispiele"
+      "code_tags": "Notation der Beispiele",
+      "bank_filter": "Filter für den gemeinsamen Fragenpool"
     },
     "aiUnitCost": {
       "interview_generation": "{cost} pro Interview",
@@ -571,7 +572,8 @@
       "transcription": "{cost} pro Minute",
       "help_chat": "{cost} pro Aufruf",
       "quality_patterns": "{cost} pro Durchlauf",
-      "code_tags": "{cost} pro Durchlauf"
+      "code_tags": "{cost} pro Durchlauf",
+      "bank_filter": "{cost} pro Durchlauf"
     },
     "aiPaid": "zahlend {spend}",
     "aiUnpaid": "nicht zahlend {spend}",
