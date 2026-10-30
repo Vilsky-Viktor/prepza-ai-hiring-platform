@@ -269,4 +269,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "Hindi sinasagot sa boses ang interview na ito.",
     "No question is waiting for an answer.": "Walang tanong na naghihintay ng sagot.",
     "Voice mode isn't available in this interview's language.": "Hindi available ang voice mode sa wika ng interview na ito.",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Ilagay ang address ng iyong LinkedIn profile, gaya ng linkedin.com/in/your-name.",
+    "The text you agreed to has changed. Reload the page and try again.": "Nagbago ang tekstong sinang-ayunan mo. I-reload ang page at subukan muli.",
 }

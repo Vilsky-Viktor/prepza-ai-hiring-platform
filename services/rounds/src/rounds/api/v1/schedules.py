@@ -1,4 +1,5 @@
 import time
+from datetime import UTC, datetime
 
 from fastapi import APIRouter, status
 from prepza_common.auth.google import Invoker
@@ -6,8 +7,8 @@ from prepza_common.limits.maintenance import is_on
 
 from rounds.constants.voice import CLIP_UNUSED_DAYS, JOB_SECONDS
 from rounds.integrations.redis import get_redis
+from rounds.services import open_to_offers, voice_clips
 from rounds.services import outbox as outbox_service
-from rounds.services import voice_clips
 from rounds.services.session_expiry import finish_expired
 
 router = APIRouter(prefix="/internal/schedules", tags=["schedules"], dependencies=[Invoker])
@@ -36,3 +37,10 @@ async def remove_unused_clips() -> None:
     """Daily, from Cloud Scheduler: deletes the questions and phrases read aloud that nobody has
     played for CLIP_UNUSED_DAYS; a question still asked is read again when it next opens."""
     await voice_clips.remove_unused(CLIP_UNUSED_DAYS, time.monotonic() + JOB_SECONDS)
+
+
+@router.post("/open-to-offers", status_code=status.HTTP_204_NO_CONTENT)
+async def close_lapsed_offers() -> None:
+    """Daily, from Cloud Scheduler: takes off the Discover tabs whoever turned Open to offers on
+    more than OPEN_DAYS ago (they can turn it on again)."""
+    await open_to_offers.close_lapsed(datetime.now(UTC), time.monotonic() + JOB_SECONDS)

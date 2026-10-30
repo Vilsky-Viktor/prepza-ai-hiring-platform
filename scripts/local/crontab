@@ -49,3 +49,5 @@
 * * * * * curl -s -X POST http://rounds:8000/internal/schedules/expire-interviews
 # Questions and phrases read aloud in voice mode that nobody has played for 30 days, daily.
 15 4 * * * curl -s -X POST http://rounds:8000/internal/schedules/voice-clips
+# Open to offers turned on more than a year ago lapses (rounds).
+20 4 * * * curl -s -X POST http://rounds:8000/internal/schedules/open-to-offers

@@ -269,4 +269,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "この面接は音声では受けられません。",
     "No question is waiting for an answer.": "回答を待っている質問はありません。",
     "Voice mode isn't available in this interview's language.": "この面接の言語では音声モードを利用できません。",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedInプロフィールのアドレスを入力してください（例: linkedin.com/in/your-name）。",
+    "The text you agreed to has changed. Reload the page and try again.": "同意した文面が変更されました。ページを再読み込みして、もう一度お試しください。",
 }

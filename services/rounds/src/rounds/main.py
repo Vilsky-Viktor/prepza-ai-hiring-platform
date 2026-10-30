@@ -17,7 +17,9 @@ from rounds.api.v1 import (
     internal,
     internal_accounts,
     internal_maintenance,
+    internal_offers,
     interview_flow,
+    open_to_offers,
     practice,
     schedules,
     session_feedback,
@@ -65,6 +67,8 @@ app.include_router(superadmin.router)
 app.include_router(internal_accounts.router)
 app.include_router(internal_maintenance.router)
 app.include_router(voice.router)
+app.include_router(open_to_offers.router)
+app.include_router(internal_offers.router)
 
 
 app.include_router(health_router(engine))

@@ -269,4 +269,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "Buổi phỏng vấn này không trả lời bằng giọng nói.",
     "No question is waiting for an answer.": "Không có câu hỏi nào đang chờ trả lời.",
     "Voice mode isn't available in this interview's language.": "Chế độ giọng nói không khả dụng bằng ngôn ngữ của buổi phỏng vấn này.",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Nhập địa chỉ hồ sơ LinkedIn của bạn, ví dụ linkedin.com/in/ten-ban.",
+    "The text you agreed to has changed. Reload the page and try again.": "Nội dung bạn đã đồng ý đã thay đổi. Hãy tải lại trang và thử lại.",
 }

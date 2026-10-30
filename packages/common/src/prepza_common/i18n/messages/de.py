@@ -269,4 +269,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "Dieses Interview wird nicht per Sprache geführt.",
     "No question is waiting for an answer.": "Keine Frage wartet auf eine Antwort.",
     "Voice mode isn't available in this interview's language.": "Der Sprachmodus ist in der Sprache dieses Interviews nicht verfügbar.",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Gib die Adresse deines LinkedIn-Profils ein, z. B. linkedin.com/in/dein-name.",
+    "The text you agreed to has changed. Reload the page and try again.": "Der Text, dem du zugestimmt hast, hat sich geändert. Lade die Seite neu und versuche es noch einmal.",
 }

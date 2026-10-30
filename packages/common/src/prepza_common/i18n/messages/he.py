@@ -269,4 +269,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "הריאיון הזה לא מתקיים בקול.",
     "No question is waiting for an answer.": "אין שאלה שממתינה לתשובה.",
     "Voice mode isn't available in this interview's language.": "מצב קולי לא זמין בשפה של הריאיון הזה.",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "הזינו את כתובת פרופיל ה-LinkedIn שלכם, למשל linkedin.com/in/your-name.",
+    "The text you agreed to has changed. Reload the page and try again.": "הנוסח שהסכמתם לו השתנה. טענו מחדש את הדף ונסו שוב.",
 }

@@ -1,6 +1,6 @@
 from prepza_common.auth.service_auth import issue_token
 
-from rounds.repositories import accounts
+from rounds.repositories import accounts, open_to_offers
 
 HEADERS = {
     "Authorization": "Bearer "
@@ -16,11 +16,26 @@ def test_library_exports_a_users_sessions_with_a_post(client, monkeypatch):
 
         return []
 
+    async def not_open(session, user_id):
+        asked.append(user_id)
+
+    async def no_consents(session, user_id):
+        asked.append(user_id)
+
+        return []
+
     monkeypatch.setattr(accounts, "of_user", of_user)
+    monkeypatch.setattr(open_to_offers, "get", not_open)
+    monkeypatch.setattr(open_to_offers, "consents", no_consents)
 
     response = client.post("/internal/users/ann/export", headers=HEADERS)
 
-    assert (asked, response.json()) == (["ann"], {"interview_sections": []})
+    assert asked == ["ann", "ann", "ann"]
+    assert response.json() == {
+        "interview_sections": [],
+        "open_to_offers": None,
+        "open_to_offers_changes": [],
+    }
 
 
 def test_notifications_reads_the_candidates_or_the_learners_a_page_at_a_time(client, monkeypatch):

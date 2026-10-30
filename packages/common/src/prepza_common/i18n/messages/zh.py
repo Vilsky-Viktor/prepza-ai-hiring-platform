@@ -269,4 +269,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "此面试不通过语音进行。",
     "No question is waiting for an answer.": "没有等待回答的问题。",
     "Voice mode isn't available in this interview's language.": "此面试的语言不支持语音模式。",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "请输入你的 LinkedIn 个人主页地址，例如 linkedin.com/in/your-name。",
+    "The text you agreed to has changed. Reload the page and try again.": "你同意的文本已更改。请刷新页面后重试。",
 }

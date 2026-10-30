@@ -269,4 +269,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "Wawancara ini tidak dijawab dengan suara.",
     "No question is waiting for an answer.": "Tidak ada pertanyaan yang menunggu jawaban.",
     "Voice mode isn't available in this interview's language.": "Mode suara tidak tersedia dalam bahasa wawancara ini.",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Masukkan alamat profil LinkedIn Anda, misalnya linkedin.com/in/nama-anda.",
+    "The text you agreed to has changed. Reload the page and try again.": "Teks yang Anda setujui telah berubah. Muat ulang halaman dan coba lagi.",
 }

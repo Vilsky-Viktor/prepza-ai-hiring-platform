@@ -279,4 +279,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "Seda intervjuud ei tehta häälega.",
     "No question is waiting for an answer.": "Ükski küsimus ei oota vastust.",
     "Voice mode isn't available in this interview's language.": "Häälerežiim pole selle intervjuu keeles saadaval.",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Sisesta oma LinkedIni profiili aadress, nt linkedin.com/in/sinu-nimi.",
+    "The text you agreed to has changed. Reload the page and try again.": "Tekst, millega nõustusid, on muutunud. Laadi leht uuesti ja proovi veel kord.",
 }

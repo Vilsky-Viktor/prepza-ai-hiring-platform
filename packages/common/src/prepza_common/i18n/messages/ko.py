@@ -269,4 +269,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "이 면접은 음성으로 진행되지 않습니다.",
     "No question is waiting for an answer.": "답변을 기다리는 질문이 없습니다.",
     "Voice mode isn't available in this interview's language.": "이 면접의 언어에서는 음성 모드를 사용할 수 없습니다.",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedIn 프로필 주소를 입력하세요(예: linkedin.com/in/your-name).",
+    "The text you agreed to has changed. Reload the page and try again.": "동의하신 문구가 변경되었습니다. 페이지를 새로고침한 뒤 다시 시도하세요.",
 }

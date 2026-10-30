@@ -269,4 +269,6 @@ MESSAGES = {
     "This interview isn't taken by voice.": "Bu mülakat sesle yapılmıyor.",
     "No question is waiting for an answer.": "Cevap bekleyen bir soru yok.",
     "Voice mode isn't available in this interview's language.": "Sesli mod bu mülakatın dilinde kullanılamıyor.",
+    "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedIn profilinin adresini gir, örneğin linkedin.com/in/adin.",
+    "The text you agreed to has changed. Reload the page and try again.": "Onay verdiğin metin değişti. Sayfayı yenile ve tekrar dene.",
 }

@@ -1168,6 +1168,21 @@
     }
    }
   },
+  "/internal/schedules/open-to-offers": {
+   "post": {
+    "tags": [
+     "schedules"
+    ],
+    "summary": "Close Lapsed Offers",
+    "description": "Daily, from Cloud Scheduler: takes off the Discover tabs whoever turned Open to offers on\nmore than OPEN_DAYS ago (they can turn it on again).",
+    "operationId": "close_lapsed_offers_internal_schedules_open_to_offers_post",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     }
+    }
+   }
+  },
   "/superadmin/stats": {
    "get": {
     "tags": [
@@ -1676,6 +1691,194 @@
      }
     }
    }
+  },
+  "/open-to-offers": {
+   "get": {
+    "tags": [
+     "practice"
+    ],
+    "summary": "Get Open To Offers",
+    "operationId": "get_open_to_offers_open_to_offers_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OpenToOffersOut"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   },
+   "put": {
+    "tags": [
+     "practice"
+    ],
+    "summary": "Turn On",
+    "description": "Turns it on, or changes the profile, under the wording the person saw; each time is\nlogged as their consent.",
+    "operationId": "turn_on_open_to_offers_put",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/OpenToOffersIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OpenToOffersOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   },
+   "delete": {
+    "tags": [
+     "practice"
+    ],
+    "summary": "Turn Off",
+    "description": "Off every company's Discover tab at once.",
+    "operationId": "turn_off_open_to_offers_delete",
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/internal/open-to-offers/matches": {
+   "post": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Matches",
+    "description": "A page of the people open to offers with results on these template topics, whoever\npractised last first; topic ids in the body, as a list.",
+    "operationId": "matches_internal_open_to_offers_matches_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/MatchesIn"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/MatchOut"
+         },
+         "type": "array",
+         "title": "Response Matches Internal Open To Offers Matches Post"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
+  "/internal/open-to-offers/{user_id}": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Open Profile",
+    "description": "The person's shared profile while they're open to offers; 404 once they aren't, so an\ninvite from an open tab can't reach someone who turned it off.",
+    "operationId": "open_profile_internal_open_to_offers__user_id__get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "user_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "User Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/OpenProfileOut"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
   }
  },
  "components": {
@@ -1990,6 +2193,76 @@
     ],
     "title": "InviteScoresIn"
    },
+   "MatchOut": {
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "title": "User Id"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "linkedin_url": {
+      "type": "string",
+      "title": "Linkedin Url"
+     },
+     "results": {
+      "items": {
+       "$ref": "#/components/schemas/PracticeResultOut"
+      },
+      "type": "array",
+      "title": "Results"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_id",
+     "name",
+     "linkedin_url",
+     "results"
+    ],
+    "title": "MatchOut"
+   },
+   "MatchesIn": {
+    "properties": {
+     "topic_ids": {
+      "items": {
+       "type": "string",
+       "format": "uuid"
+      },
+      "type": "array",
+      "maxItems": 500,
+      "title": "Topic Ids"
+     },
+     "offset": {
+      "type": "integer",
+      "minimum": 0.0,
+      "title": "Offset",
+      "default": 0
+     },
+     "limit": {
+      "type": "integer",
+      "maximum": 100.0,
+      "minimum": 1.0,
+      "title": "Limit",
+      "default": 20
+     }
+    },
+    "type": "object",
+    "required": [
+     "topic_ids"
+    ],
+    "title": "MatchesIn",
+    "description": "Companies, for an interview's Discover tab: the template topics it matches."
+   },
    "NextQuestion": {
     "properties": {
      "question_id": {
@@ -2060,6 +2333,109 @@
     ],
     "title": "NextQuestion",
     "description": "The next unanswered question, without the correct flags."
+   },
+   "OpenProfileOut": {
+    "properties": {
+     "user_id": {
+      "type": "string",
+      "title": "User Id"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "linkedin_url": {
+      "type": "string",
+      "title": "Linkedin Url"
+     }
+    },
+    "type": "object",
+    "required": [
+     "user_id",
+     "name",
+     "linkedin_url"
+    ],
+    "title": "OpenProfileOut"
+   },
+   "OpenToOffersIn": {
+    "properties": {
+     "linkedin_url": {
+      "type": "string",
+      "maxLength": 300,
+      "title": "Linkedin Url"
+     },
+     "consent_version": {
+      "type": "string",
+      "maxLength": 16,
+      "title": "Consent Version"
+     }
+    },
+    "type": "object",
+    "required": [
+     "linkedin_url",
+     "consent_version"
+    ],
+    "title": "OpenToOffersIn",
+    "description": "Turning Open to offers on, or changing the profile: the LinkedIn profile's address and the\nversion of the switch's wording the person saw (`consent_version` of OpenToOffersOut)."
+   },
+   "OpenToOffersOut": {
+    "properties": {
+     "on": {
+      "type": "boolean",
+      "title": "On"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "linkedin_url": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Linkedin Url"
+     },
+     "until": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "date-time"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Until"
+     },
+     "consent_version": {
+      "type": "string",
+      "title": "Consent Version"
+     }
+    },
+    "type": "object",
+    "required": [
+     "on",
+     "consent_version"
+    ],
+    "title": "OpenToOffersOut"
    },
    "Option": {
     "properties": {
@@ -2154,6 +2530,31 @@
     ],
     "title": "Phrase",
     "description": "The interviewer's fixed phrases the browser asks for by name."
+   },
+   "PracticeResultOut": {
+    "properties": {
+     "topic_title": {
+      "type": "string",
+      "title": "Topic Title"
+     },
+     "score": {
+      "type": "integer",
+      "title": "Score"
+     },
+     "finished_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Finished At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "topic_title",
+     "score",
+     "finished_at"
+    ],
+    "title": "PracticeResultOut",
+    "description": "A practice topic's latest timed result: practice, never a company's interview."
    },
    "PracticeRoundOut": {
     "properties": {

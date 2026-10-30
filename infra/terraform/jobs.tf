@@ -86,6 +86,8 @@ locals {
     interview-expiry = { service = "rounds", path = "/internal/schedules/expire-interviews", cron = "* * * * *" }
     # Questions and phrases read aloud in voice mode that nobody has played for 30 days.
     voice-clips = { service = "rounds", path = "/internal/schedules/voice-clips", cron = "15 4 * * *" }
+    # Open to offers turned on more than OPEN_DAYS ago lapses: off every Discover tab.
+    open-to-offers = { service = "rounds", path = "/internal/schedules/open-to-offers", cron = "20 4 * * *" }
   }
 }
 
