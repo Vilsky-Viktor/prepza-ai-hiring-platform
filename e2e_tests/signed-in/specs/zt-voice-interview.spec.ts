@@ -189,8 +189,11 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
 
 // The candidate answers in a question's last seconds and the time runs out while Mira is still
 // understanding it: the screen waits for the answer, saves what it picked without asking to
-// confirm, and moves on with "Time's up".
+// confirm, and Mira says the time is up and the answer saved. On the next question nothing is
+// said: she says the time is up with no answer.
 test("an answer spoken before the time runs out still counts", async ({ signInAs }) => {
+  // Two questions' time run out.
+  test.setTimeout(240_000)
   await voiceInterview(
     signInAs,
     async ({ candidate, token, microphone, mira }) => {
@@ -223,8 +226,21 @@ test("an answer spoken before the time runs out still counts", async ({ signInAs
       const sent = answer.request().postDataJSON()
       expect(sent.option_index ?? sent.picks).toEqual(sent.picks ? [0] : 0)
       await expect.poll(async () => Number(await answered(candidate))).toBe(before + 1)
-      await expect.poll(() => mira.asked).toContain("phrases/time-up")
+      await expect.poll(() => mira.asked).toContain("phrases/time-up-saved")
+      expect(mira.asked).not.toContain("phrases/time-up")
       expect(mira.asked.filter((path) => path.startsWith("confirmations"))).toEqual([])
+
+      // Silence until the next question's time runs out: no answer.
+      await expect
+        .poll(() => mira.asked.filter((path) => path === "question"))
+        .toHaveLength(2)
+      await expect(candidate.getByRole("timer")).not.toHaveText("0:00")
+      await expect(candidate.getByRole("timer")).toHaveText("0:00", {
+        timeout: ANSWER_SECONDS * 1000 + LISTENING_MS,
+      })
+      await expect.poll(() => mira.asked).toContain("phrases/time-up")
+      expect(mira.asked.filter((path) => path === "phrases/time-up-saved")).toHaveLength(1)
+      expect(mira.asked.filter((path) => path.startsWith("answers"))).toHaveLength(1)
     },
     ANSWER_SECONDS
   )

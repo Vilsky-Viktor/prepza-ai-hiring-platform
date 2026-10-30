@@ -39,4 +39,4 @@ export type VoiceHandlers = {
 }
 
 // What Mira says before the next question: an answer was sent, or the question's time ran out.
-export type VoiceAnnouncement = "next" | "time-up"
+export type VoiceAnnouncement = "next" | "time-up" | "time-up-saved"

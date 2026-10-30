@@ -20,7 +20,9 @@ AGAIN = "All right. Which option do you choose?"
 GOT_IT = "Got it."
 # Before the next question: after a confirmed answer, or when the question's time ran out.
 NEXT = "Moving on to the next question."
-TIME_UP = "Time's up. Moving on to the next question."
+TIME_UP = "Time's up. No answer. Moving on to the next question."
+# When the question's time ran out with an answer picked, which was saved.
+TIME_UP_SAVED = "Time's up. Your answer is saved. Moving on to the next question."
 END = "Thank you. Your answers are recorded, and the company will be in touch about the results."
 
 
@@ -32,6 +34,7 @@ class Phrase(StrEnum):
     GOT_IT = "got-it"
     NEXT = "next"
     TIME_UP = "time-up"
+    TIME_UP_SAVED = "time-up-saved"
     END = "end"
 
 
@@ -41,5 +44,6 @@ FIXED_PHRASES = {
     Phrase.GOT_IT: GOT_IT,
     Phrase.NEXT: NEXT,
     Phrase.TIME_UP: TIME_UP,
+    Phrase.TIME_UP_SAVED: TIME_UP_SAVED,
     Phrase.END: END,
 }

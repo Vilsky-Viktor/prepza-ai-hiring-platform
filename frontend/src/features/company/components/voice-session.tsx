@@ -94,16 +94,22 @@ export function VoiceSession({
         section={section}
         question={question}
         sending={sending}
-        // The pick counts, and quietly on to the next question: a message would only distract.
         onTimeUp={() => {
           setTimedOut(question?.question_id ?? null)
           // The question's time is over even if its pick can't be saved: the next opens. An
-          // answer spoken in time is waited for, and what it picked is saved without asking.
-          void voice
-            .timeUp()
-            .then((picks) =>
-              sendThen(() => moveOn("time-up"), true, picks ?? undefined)
+          // answer spoken in time is waited for, and what it picked shows on the options and is
+          // saved without asking; Mira says whether an answer was saved.
+          void voice.timeUp().then((picks) => {
+            if (picks) {
+              setPick({ question: questionId ?? "", options: picks })
+            }
+
+            return sendThen(
+              (saved) => moveOn(saved ? "time-up-saved" : "time-up"),
+              true,
+              picks ?? undefined
             )
+          })
         }}
       />
       {/* Two parts, 30% and 70%, stacked on phones: the voices (Mira's, then the candidate's with

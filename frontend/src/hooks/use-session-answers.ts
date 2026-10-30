@@ -22,29 +22,18 @@ export function useSessionAnswers(
   const answered = progress.answered + (chosen.length ? 1 : 0)
   const allAnswered = progress.total > 0 && answered === progress.total
 
-  // Saves the pick (`picks`, or the one on screen), if there is one, then does `then`; when
-  // saving fails, only if `always`. Whether `then` was done.
+  // Saves the pick (`picks`, or the one on screen) and does `then` as `sendPicks` does.
   // Nothing can be picked and the clock can't move on while it's sent, so neither Next nor the
   // clock can move on twice; a failed send keeps the question's real time left.
   async function sendThen(
-    then: () => Promise<void>,
+    then: (saved: boolean) => Promise<void>,
     always = false,
     picks = chosen
   ) {
     setSending(true)
 
     try {
-      const saved =
-        picks.length === 0 ||
-        (await onAnswer(multi ? { picks } : { option_index: picks[0] }))
-
-      if (saved || always) {
-        await then()
-
-        return true
-      }
-
-      return false
+      return await sendPicks(picks, multi, onAnswer, then, always)
     } finally {
       setSending(false)
     }
@@ -63,6 +52,28 @@ export function useSessionAnswers(
     choose,
     setPick,
   }
+}
+
+/** Saves `picks`, if there are any, then does `then`, told whether a pick was saved; when saving
+ * fails, only if `always`. Whether `then` was done. */
+export async function sendPicks(
+  picks: number[],
+  multi: boolean,
+  onAnswer: (input: AnswerInput) => Promise<boolean>,
+  then: (saved: boolean) => Promise<void>,
+  always: boolean
+) {
+  const saved =
+    picks.length === 0 ||
+    (await onAnswer(multi ? { picks } : { option_index: picks[0] }))
+
+  if (saved || always) {
+    await then(saved && picks.length > 0)
+
+    return true
+  }
+
+  return false
 }
 
 /** The options picked after a tap on `option`: a multi-answer question's option is ticked or

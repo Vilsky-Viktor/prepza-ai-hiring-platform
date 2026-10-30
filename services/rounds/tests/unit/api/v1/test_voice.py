@@ -8,7 +8,7 @@ from prepza_common.auth.user import User
 from prepza_common.i18n.i18n import translate
 
 from rounds.constants.voice import IN_TIME_KEY
-from rounds.constants.voice_phrases import GOT_IT, NEXT, TIME_UP
+from rounds.constants.voice_phrases import GOT_IT, NEXT, TIME_UP, TIME_UP_SAVED
 from rounds.integrations import library
 from rounds.main import app
 from rounds.models.sessions import Session
@@ -207,13 +207,14 @@ def test_a_confirmation_names_the_options_and_needs_some(client, voice, monkeypa
     assert client.get(f"{base}/phrases/got-it").status_code == 200
     assert client.get(f"{base}/phrases/next").status_code == 200
     assert client.get(f"{base}/phrases/time-up").status_code == 200
+    assert client.get(f"{base}/phrases/time-up-saved").status_code == 200
     assert client.get(f"{base}/phrases/anything").status_code == 422
     # Mira no longer reminds a silent candidate: she just listens.
     assert client.get(f"{base}/phrases/reminder").status_code == 422
-    assert [company for _, company in read_aloud] == [False] * 5
+    assert [company for _, company in read_aloud] == [False] * 6
     # In the interview's language.
-    assert [text for text, _ in read_aloud[-3:]] == [
-        translate(phrase, "de") for phrase in (GOT_IT, NEXT, TIME_UP)
+    assert [text for text, _ in read_aloud[-4:]] == [
+        translate(phrase, "de") for phrase in (GOT_IT, NEXT, TIME_UP, TIME_UP_SAVED)
     ]
 
 
