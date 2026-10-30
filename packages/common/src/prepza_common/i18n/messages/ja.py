@@ -271,4 +271,5 @@ MESSAGES = {
     "Voice mode isn't available in this interview's language.": "この面接の言語では音声モードを利用できません。",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedInプロフィールのアドレスを入力してください（例: linkedin.com/in/your-name）。",
     "The text you agreed to has changed. Reload the page and try again.": "同意した文面が変更されました。ページを再読み込みして、もう一度お試しください。",
+    "Only companies that have topped up can see people open to offers.": "求人のオファーを受け付けている人を見られるのは、チャージしたことのある企業だけです。",
 }

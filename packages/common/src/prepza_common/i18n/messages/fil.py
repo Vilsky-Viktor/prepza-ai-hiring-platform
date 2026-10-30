@@ -271,4 +271,5 @@ MESSAGES = {
     "Voice mode isn't available in this interview's language.": "Hindi available ang voice mode sa wika ng interview na ito.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Ilagay ang address ng iyong LinkedIn profile, gaya ng linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "Nagbago ang tekstong sinang-ayunan mo. I-reload ang page at subukan muli.",
+    "Only companies that have topped up can see people open to offers.": "Ang mga kumpanyang nakapag-top up lang ang makakakita sa mga taong bukas sa mga alok na trabaho.",
 }

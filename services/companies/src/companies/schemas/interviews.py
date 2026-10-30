@@ -108,6 +108,8 @@ class InterviewDetail(InterviewOut):
     # Whether its language allows voice mode (VOICE_LANGUAGES, listed for the setting's note).
     voice_available: bool = False
     voice_languages: list[str] = []
+    # Whether the company may use the Discover tab: it has topped up at least once.
+    discover: bool = False
 
 
 class ReviewIn(BaseModel):

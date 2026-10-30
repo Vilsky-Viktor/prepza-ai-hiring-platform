@@ -271,4 +271,5 @@ MESSAGES = {
     "Voice mode isn't available in this interview's language.": "מצב קולי לא זמין בשפה של הריאיון הזה.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "הזינו את כתובת פרופיל ה-LinkedIn שלכם, למשל linkedin.com/in/your-name.",
     "The text you agreed to has changed. Reload the page and try again.": "הנוסח שהסכמתם לו השתנה. טענו מחדש את הדף ונסו שוב.",
+    "Only companies that have topped up can see people open to offers.": "רק חברות שכבר טענו קרדיטים יכולות לראות אנשים הפתוחים להצעות עבודה.",
 }

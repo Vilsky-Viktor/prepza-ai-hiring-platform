@@ -17,8 +17,8 @@ from companies.helpers.interviews import (
     interview_status,
     topics_out,
 )
+from companies.integrations import billing, library
 from companies.integrations import generation as generation_api
-from companies.integrations import library
 from companies.models.companies import Member
 from companies.models.interviews import Interview
 from companies.repositories import candidates, interview_generations, interview_notes, interviews
@@ -161,6 +161,7 @@ async def detail(interview: Interview, member: Member) -> InterviewDetail:
         keep_private=interview.keep_private,
         voice_available=interview.language in VOICE_LANGUAGES,
         voice_languages=list(VOICE_LANGUAGES),
+        discover=await billing.company_paid(interview.company_id),
     )
 
 

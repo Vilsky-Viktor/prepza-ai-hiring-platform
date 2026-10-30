@@ -24,6 +24,7 @@ from companies.api.v1 import (
     candidates,
     companies,
     company_candidates,
+    discover,
     internal_accounts,
     internal_api,
     internal_api_changes,
@@ -88,6 +89,7 @@ app.include_router(billing.router)
 app.include_router(members.router)
 app.include_router(interviews.router)
 app.include_router(interview_notes.router)
+app.include_router(discover.router)
 app.include_router(candidates.router)
 app.include_router(company_candidates.router)
 app.include_router(accommodations.router)

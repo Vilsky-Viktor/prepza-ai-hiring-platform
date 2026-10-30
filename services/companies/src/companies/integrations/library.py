@@ -115,3 +115,16 @@ async def get_question_context(question_id: UUID) -> dict | None:
     response.raise_for_status()
 
     return response.json()
+
+
+async def practice_topics(set_id: UUID) -> list[str]:
+    """The template topics of the interview set's level on the same subjects as its topics, for
+    its Discover tab."""
+    response = await http.get_client().get(
+        f"{settings.library_url}/internal/sets/{set_id}/practice-topics",
+        headers=bearer(service_token("library")),
+    )
+
+    response.raise_for_status()
+
+    return response.json()["topic_ids"]

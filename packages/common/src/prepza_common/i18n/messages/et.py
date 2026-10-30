@@ -281,4 +281,5 @@ MESSAGES = {
     "Voice mode isn't available in this interview's language.": "Häälerežiim pole selle intervjuu keeles saadaval.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Sisesta oma LinkedIni profiili aadress, nt linkedin.com/in/sinu-nimi.",
     "The text you agreed to has changed. Reload the page and try again.": "Tekst, millega nõustusid, on muutunud. Laadi leht uuesti ja proovi veel kord.",
+    "Only companies that have topped up can see people open to offers.": "Tööpakkumistele avatud inimesi näevad ainult ettevõtted, kes on krediiti juba ostnud.",
 }

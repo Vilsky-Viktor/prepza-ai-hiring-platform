@@ -2085,6 +2085,138 @@
     }
    }
   },
+  "/interviews/{interview_id}/discover": {
+   "get": {
+    "tags": [
+     "interviews"
+    ],
+    "summary": "List People",
+    "description": "Every member reads it; whoever practised last first, never ranked.",
+    "operationId": "list_people_interviews__interview_id__discover_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "offset",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "minimum": 0,
+       "description": "Number of items to skip",
+       "default": 0,
+       "title": "Offset"
+      },
+      "description": "Number of items to skip"
+     },
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 100,
+       "minimum": 1,
+       "description": "Number of items to return, up to 100",
+       "default": 100,
+       "title": "Limit"
+      },
+      "description": "Number of items to return, up to 100"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/DiscoverPersonOut"
+         },
+         "title": "Response List People Interviews  Interview Id  Discover Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/interviews/{interview_id}/discover/{person_id}/invite": {
+   "post": {
+    "tags": [
+     "interviews"
+    ],
+    "summary": "Invite Person",
+    "description": "An owner or admin invites them to the interview, as any candidate.",
+    "operationId": "invite_person_interviews__interview_id__discover__person_id__invite_post",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "person_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "maxLength": 128,
+       "title": "Person Id"
+      }
+     }
+    ],
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/interviews/{interview_id}/candidates": {
    "post": {
     "tags": [
@@ -9491,6 +9623,45 @@
     "type": "object",
     "title": "DeclineIn"
    },
+   "DiscoverPersonOut": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "name": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Name"
+     },
+     "linkedin_url": {
+      "type": "string",
+      "title": "Linkedin Url"
+     },
+     "results": {
+      "items": {
+       "$ref": "#/components/schemas/PracticeResultOut"
+      },
+      "type": "array",
+      "title": "Results"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "name",
+     "linkedin_url",
+     "results"
+    ],
+    "title": "DiscoverPersonOut",
+    "description": "What a person open to offers shares with a paying company: their name, LinkedIn profile\nand practice results on the interview's subjects. Listed whoever practised last first, never\nranked."
+   },
    "DraftTopic": {
     "properties": {
      "main_topic": {
@@ -10095,6 +10266,11 @@
       "type": "array",
       "title": "Voice Languages",
       "default": []
+     },
+     "discover": {
+      "type": "boolean",
+      "title": "Discover",
+      "default": false
      }
     },
     "type": "object",
@@ -11350,6 +11526,31 @@
      "pinned"
     ],
     "title": "PinIn"
+   },
+   "PracticeResultOut": {
+    "properties": {
+     "topic_title": {
+      "type": "string",
+      "title": "Topic Title"
+     },
+     "score": {
+      "type": "integer",
+      "title": "Score"
+     },
+     "finished_at": {
+      "type": "string",
+      "format": "date-time",
+      "title": "Finished At"
+     }
+    },
+    "type": "object",
+    "required": [
+     "topic_title",
+     "score",
+     "finished_at"
+    ],
+    "title": "PracticeResultOut",
+    "description": "One practice topic's latest timed result: practice, never a company's interview."
    },
    "PrepzaBrand": {
     "properties": {

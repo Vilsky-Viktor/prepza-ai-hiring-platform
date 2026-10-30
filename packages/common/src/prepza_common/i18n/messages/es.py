@@ -271,4 +271,5 @@ MESSAGES = {
     "Voice mode isn't available in this interview's language.": "El modo de voz no está disponible en el idioma de esta entrevista.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Introduce la dirección de tu perfil de LinkedIn, como linkedin.com/in/tu-nombre.",
     "The text you agreed to has changed. Reload the page and try again.": "El texto que aceptaste ha cambiado. Recarga la página e inténtalo de nuevo.",
+    "Only companies that have topped up can see people open to offers.": "Solo las empresas que han recargado saldo pueden ver a las personas abiertas a ofertas de empleo.",
 }

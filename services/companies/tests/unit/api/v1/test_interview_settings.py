@@ -221,3 +221,15 @@ def test_every_interview_in_a_list_says_its_mode(voice):
     )
 
     assert asyncio.run(interview_out(interview)).voice is voice
+
+
+@pytest.mark.parametrize("paid", [True, False])
+def test_the_discover_tab_shows_only_for_a_company_that_topped_up(client, saved, monkeypatch, paid):
+    from companies.integrations import billing
+
+    async def company_paid(company_id):
+        return paid
+
+    monkeypatch.setattr(billing, "company_paid", company_paid)
+
+    assert client.get(f"/interviews/{INTERVIEW_ID}").json()["discover"] is paid

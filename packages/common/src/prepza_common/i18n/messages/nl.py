@@ -271,4 +271,5 @@ MESSAGES = {
     "Voice mode isn't available in this interview's language.": "Spraakmodus is niet beschikbaar in de taal van dit interview.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Vul het adres van je LinkedIn-profiel in, zoals linkedin.com/in/jouw-naam.",
     "The text you agreed to has changed. Reload the page and try again.": "De tekst waarmee je akkoord ging, is gewijzigd. Laad de pagina opnieuw en probeer het nog eens.",
+    "Only companies that have topped up can see people open to offers.": "Alleen bedrijven die al hebben opgewaardeerd, zien mensen die openstaan voor vacatures.",
 }

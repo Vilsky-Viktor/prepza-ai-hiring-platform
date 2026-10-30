@@ -127,3 +127,36 @@ async def fill_session_companies(companies: dict[UUID, UUID]) -> int:
     response.raise_for_status()
 
     return response.json()["filled"]
+
+
+async def offer_matches(topic_ids: list[str], offset: int, limit: int) -> list[dict]:
+    """A page of the people open to offers with practice results on these template topics, as
+    rounds gives them ({"user_id", "linkedin_url", "results"}), whoever practised last first."""
+    if not topic_ids:
+        return []
+
+    response = await http.get_client().post(
+        f"{settings.rounds_url}/internal/open-to-offers/matches",
+        json={"topic_ids": topic_ids, "offset": offset, "limit": limit},
+        headers=bearer(service_token("rounds")),
+    )
+
+    response.raise_for_status()
+
+    return response.json()
+
+
+async def open_profile(user_id: str) -> dict | None:
+    """The person's shared profile ({"user_id", "linkedin_url"}) while they're open to offers;
+    None once they aren't."""
+    response = await http.get_client().get(
+        f"{settings.rounds_url}/internal/open-to-offers/{user_id}",
+        headers=bearer(service_token("rounds")),
+    )
+
+    if response.status_code == httpx.codes.NOT_FOUND:
+        return None
+
+    response.raise_for_status()
+
+    return response.json()

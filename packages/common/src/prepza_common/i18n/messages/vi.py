@@ -271,4 +271,5 @@ MESSAGES = {
     "Voice mode isn't available in this interview's language.": "Chế độ giọng nói không khả dụng bằng ngôn ngữ của buổi phỏng vấn này.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "Nhập địa chỉ hồ sơ LinkedIn của bạn, ví dụ linkedin.com/in/ten-ban.",
     "The text you agreed to has changed. Reload the page and try again.": "Nội dung bạn đã đồng ý đã thay đổi. Hãy tải lại trang và thử lại.",
+    "Only companies that have topped up can see people open to offers.": "Chỉ những công ty đã nạp tiền mới xem được những người sẵn sàng nhận lời mời làm việc.",
 }

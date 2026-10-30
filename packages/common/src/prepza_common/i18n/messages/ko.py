@@ -271,4 +271,5 @@ MESSAGES = {
     "Voice mode isn't available in this interview's language.": "이 면접의 언어에서는 음성 모드를 사용할 수 없습니다.",
     "Enter your LinkedIn profile's address, like linkedin.com/in/your-name.": "LinkedIn 프로필 주소를 입력하세요(예: linkedin.com/in/your-name).",
     "The text you agreed to has changed. Reload the page and try again.": "동의하신 문구가 변경되었습니다. 페이지를 새로고침한 뒤 다시 시도하세요.",
+    "Only companies that have topped up can see people open to offers.": "채용 제안에 열려 있는 사람은 충전한 적이 있는 회사만 볼 수 있습니다.",
 }

@@ -15,6 +15,7 @@ from sqlalchemy import update
 from companies.config import settings
 from companies.core.db import Session
 from companies.core.security import SERVICE_NAME
+from companies.integrations import billing
 from companies.main import app
 from companies.models.interviews import Interview
 from companies.repositories import interview_notes, interviews, invites, members
@@ -49,7 +50,13 @@ KEY = (settings.service_secret, SERVICE_NAME)
 
 # Values of the parameters naming nothing this service owns: the question bank's topics and
 # questions are library's, which checks them against the interview's set.
-VALUES = {"theme": "light", "topic_id": str(uuid4()), "question_id": str(uuid4())}
+# A Discover person is an account open to offers, which rounds vouches for.
+VALUES = {
+    "theme": "light",
+    "topic_id": str(uuid4()),
+    "question_id": str(uuid4()),
+    "person_id": "someone-open-to-offers",
+}
 
 # Bodies the OpenAPI description alone can't make valid (validators, unique names).
 BODIES = {
@@ -83,6 +90,12 @@ EXCEPTIONS = {
 
 async def pass_human(request, secret):
     return None
+
+
+async def paid(company_id):
+    """Both sides have topped up, so Discover refuses only by membership and role here
+    (test_discover_access.py checks a company that hasn't)."""
+    return True
 
 
 async def side(kind: str) -> Side:
@@ -121,6 +134,7 @@ async def side(kind: str) -> Side:
 def world(run, monkeypatch):
     """No Turnstile here: the owner's review gets past the person check."""
     monkeypatch.setattr(generation_steps, "require_human", pass_human)
+    monkeypatch.setattr(billing, "company_paid", paid)
 
     async def make():
         return World(await side("mine"), await side("theirs"))
