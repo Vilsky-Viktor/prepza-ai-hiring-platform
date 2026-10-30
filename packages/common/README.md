@@ -201,6 +201,9 @@ out or listed under another area):
   library.
 - `news`: the payload of `news.translated` (`NewsTranslated`), a news post's translations from
   generation to site.
+- `notes`: the payloads of `company.note_created`, `company.note_edited` and
+  `company.note_deleted` (`NoteWritten`, `NoteDeleted`), an interview's team notes from companies
+  to notifications.
 - `notifications`: the bell's notifications other services ask for.
 - `outbox`: events saved with their change and published once committed.
 - `processed_events`: events a consumer handled, to handle each once (`claim`).

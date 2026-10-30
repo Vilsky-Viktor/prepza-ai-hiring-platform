@@ -38,6 +38,9 @@ class NotificationKind(StrEnum):
     ATS_CANNOT_WRITE = "ats_cannot_write"
     # An ATS or Slack connection stopped working and needs reconnecting.
     CONNECTION_BROKEN = "connection_broken"
+    # Members' new notes on an interview, one notification per member and interview while it's
+    # unread (never to the note's author).
+    NOTE_ADDED = "note_added"
     # Someone the owner invited joined the company's team.
     MEMBER_JOINED = "member_joined"
     # The owner made this member the company's owner.

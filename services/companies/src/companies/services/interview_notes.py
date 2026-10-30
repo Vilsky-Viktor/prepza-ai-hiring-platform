@@ -1,6 +1,7 @@
 """An interview's notes: every member reads and writes them; each edits only their own and
 deletes their own, the owner and admins delete anyone's and pin one. Each change is saved with
-its line in the action log (never the note's text)."""
+its line in the action log (never the note's text) and, but pinning, its event for notifications
+(repositories/note_events.py), published right after."""
 
 import logging
 
@@ -24,8 +25,9 @@ from companies.integrations.redis import get_redis
 from companies.models.companies import Company, Member
 from companies.models.interview_notes import InterviewNote
 from companies.models.interviews import Interview
-from companies.repositories import audit, interview_notes
+from companies.repositories import audit, interview_notes, note_events
 from companies.schemas.interview_notes import NoteAuthor, NoteOut
+from companies.services import outbox as outbox_service
 from companies.services.access import can_edit, suspension_refusal
 
 logger = logging.getLogger(__name__)
@@ -51,6 +53,23 @@ async def key_names(company_id, notes: list[InterviewNote]) -> dict[str, str]:
     return await api_keys.names(
         company_id, [note.author_key_id for note in notes if note.author_key_id]
     )
+
+
+async def writer(company_id, member: Member) -> tuple[dict[str, dict], dict[str, str]]:
+    """Who is writing: the member's profile, or the name of the API key acting as `member`."""
+    key = actor_key(member.user_id)
+
+    return await profiles_of([member]), await api_keys.names(company_id, [key] if key else [])
+
+
+def writer_name(member: Member, profiles: dict[str, dict], keys: dict[str, str]) -> str | None:
+    """The writer as the team sees them: a member's name or email, a key's name."""
+    key = actor_key(member.user_id)
+
+    if key is not None:
+        return keys.get(key)
+
+    return profiles.get(member.user_id, {}).get("name") or member.invited_email
 
 
 def is_author(note: InterviewNote, member: Member) -> bool:
@@ -135,6 +154,8 @@ async def add(
         user_id=member.user_id,
     )
 
+    profiles, keys = await writer(interview.company_id, member)
+
     async with Session.begin() as session:
         note = await interview_notes.add(
             session, interview, member.id, actor_key(member.user_id), text
@@ -142,15 +163,13 @@ async def add(
         await audit.record_interview(
             session, interview, member.user_id, AuditAction.NOTE_ADDED, via
         )
+        note_events.written(
+            session, interview, note, member.user_id, writer_name(member, profiles, keys)
+        )
 
-    return await own_note_out(interview, note, member)
+    await outbox_service.flush_quietly()
 
-
-async def own_note_out(interview: Interview, note: InterviewNote, member: Member) -> NoteOut:
-    """A note `member` just wrote or changed, as they see it."""
-    keys = await key_names(interview.company_id, [note])
-
-    return note_out(note, member, member, await profiles_of([member]), keys)
+    return note_out(note, member, member, profiles, keys)
 
 
 async def found(interview: Interview, note_id) -> InterviewNote:
@@ -168,6 +187,7 @@ async def edit(
 ) -> NoteOut:
     """Only its author changes its text (403)."""
     refuse_if_suspended(company)
+    profiles, keys = await writer(interview.company_id, member)
 
     async with Session.begin() as session:
         note = await interview_notes.get(session, interview.id, note_id)
@@ -180,8 +200,13 @@ async def edit(
 
         await interview_notes.set_text(session, note, text)
         await audit.record_interview(session, interview, member.user_id, AuditAction.NOTE_EDITED)
+        note_events.written(
+            session, interview, note, member.user_id, writer_name(member, profiles, keys)
+        )
 
-    return await own_note_out(interview, note, member)
+    await outbox_service.flush_quietly()
+
+    return note_out(note, member, member, profiles, keys)
 
 
 async def delete(interview: Interview, company: Company, member: Member, note_id) -> None:
@@ -195,6 +220,9 @@ async def delete(interview: Interview, company: Company, member: Member, note_id
     async with Session.begin() as session:
         await interview_notes.remove(session, note.id)
         await audit.record_interview(session, interview, member.user_id, AuditAction.NOTE_DELETED)
+        note_events.deleted(session, interview, note.id)
+
+    await outbox_service.flush_quietly()
 
 
 async def pin(
