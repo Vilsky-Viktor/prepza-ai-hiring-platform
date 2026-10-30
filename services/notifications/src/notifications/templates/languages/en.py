@@ -290,13 +290,17 @@ TEXTS = {
     },
     "top_up_on": {
         "subject": "Automatic top-up is on: {company}",
-        "preheader": "{price} plus tax each time the available credits fall under {threshold}.",
+        "preheader": (
+            "{price} plus tax each time the available balance falls under "
+            "{threshold, plural, one {# credit} other {# credits}}."
+        ),
         "heading": "Automatic top-up is on",
         "lines": [
             (
-                "Automatic top-up is now on for {company}. Each time its available credits fall "
-                "under {threshold}, the saved card is charged {price}, plus VAT or sales tax "
-                "where it applies, until automatic top-up is turned off."
+                "Automatic top-up is now on for {company}. Each time its available balance falls "
+                "under {threshold, plural, one {# credit} other {# credits}}, the saved card is "
+                "charged {price}, plus VAT or sales tax where it applies, until automatic top-up "
+                "is turned off."
             ),
             (
                 "Every charge is emailed to the company's owners and admins, and Paddle, our "
@@ -316,12 +320,13 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Automatic top-up charged: {company}",
-        "preheader": "{price} for {credits} credits on {date}.",
+        "preheader": "{price} for {credits, plural, one {# credit} other {# credits}} on {date}.",
         "heading": "Automatic top-up charged the card",
         "lines": [
             (
                 "On {date}, automatic top-up charged the card for {company} {price}, tax "
-                "included, and added {credits} credits. {company} now has {available} credits "
+                "included, and added {credits, plural, one {# credit} other {# credits}}. "
+                "{company} now has {available, plural, one {# credit} other {# credits}} "
                 "available."
             ),
             "Paddle, our reseller, emails the receipt.",

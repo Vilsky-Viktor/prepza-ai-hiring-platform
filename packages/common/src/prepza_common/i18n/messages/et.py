@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Seda saab muuta ainult see, kelle kaardiga selle eest makstakse. Lülita see välja ja seejärel oma kaardiga uuesti sisse.",
     "Automatic top-up isn't on": "Automaatne juurdelaadimine pole sisse lülitatud",
     "Tick the box to agree to the automatic top-up's charges.": "Märgi kast, et nõustuda automaatse juurdelaadimise maksetega.",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} pluss maks, kui saldo langeb alla {threshold} krediidi",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} pluss maks, kui saldo langeb alla {threshold, plural, one {# krediidi} other {# krediidi}}",
     "The request is too large.": "Päring on liiga suur.",
     "Too many requests. Try again later.": "Liiga palju päringuid. Proovi hiljem uuesti.",
     "Sign-in is temporarily unavailable. Please try again shortly.": (

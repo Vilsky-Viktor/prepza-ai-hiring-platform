@@ -321,16 +321,16 @@ TEXTS = {
     "top_up_on": {
         "subject": "Recarga automática ativada: {company}",
         "preheader": (
-            "{price} mais impostos sempre que os créditos disponíveis ficarem abaixo de "
-            "{threshold}."
+            "{price} mais impostos sempre que o saldo disponível ficar abaixo de {threshold, "
+            "plural, one {# crédito} many {# créditos} other {# créditos}}."
         ),
         "heading": "A recarga automática está ativada",
         "lines": [
             (
-                "A recarga automática agora está ativada para {company}. Sempre que os créditos "
-                "disponíveis ficarem abaixo de {threshold}, o cartão salvo será cobrado em "
-                "{price}, mais IVA ou imposto sobre vendas onde se aplicar, até que a recarga "
-                "automática seja desativada."
+                "A recarga automática agora está ativada para {company}. Sempre que o saldo "
+                "disponível ficar abaixo de {threshold, plural, one {# crédito} many {# créditos} "
+                "other {# créditos}}, o cartão salvo será cobrado em {price}, mais IVA ou imposto "
+                "sobre vendas onde se aplicar, até que a recarga automática seja desativada."
             ),
             (
                 "Cada cobrança é enviada por e-mail aos proprietários e administradores da "
@@ -350,13 +350,18 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Recarga automática cobrada: {company}",
-        "preheader": "{price} por {credits} créditos em {date}.",
+        "preheader": (
+            "{price} por {credits, plural, one {# crédito} many {# créditos} other {# "
+            "créditos}} em {date}."
+        ),
         "heading": "A recarga automática cobrou o cartão",
         "lines": [
             (
                 "Em {date}, a recarga automática cobrou {price}, com impostos incluídos, no "
-                "cartão de {company} e adicionou {credits} créditos. {company} agora tem "
-                "{available} créditos disponíveis."
+                "cartão de {company} e adicionou {credits, plural, one {# crédito} many {# "
+                "créditos} other {# créditos}}. {company} agora tem {available, plural, one {# "
+                "crédito disponível} many {# créditos disponíveis} other {# créditos "
+                "disponíveis}}."
             ),
             "O Paddle, nosso revendedor, envia o recibo por e-mail.",
             (

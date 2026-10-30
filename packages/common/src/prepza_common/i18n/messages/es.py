@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Solo la persona cuya tarjeta lo paga puede cambiarlo. Desactívalo y vuelve a activarlo con tu propia tarjeta.",
     "Automatic top-up isn't on": "La recarga automática no está activada",
     "Tick the box to agree to the automatic top-up's charges.": "Marca la casilla para aceptar los cargos de la recarga automática.",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} más impuestos cuando el saldo baje de {threshold} créditos",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} más impuestos cuando el saldo baje de {threshold, plural, one {# crédito} many {# créditos} other {# créditos}}",
     "The request is too large.": "La solicitud es demasiado grande.",
     "Too many requests. Try again later.": "Demasiadas solicitudes. Inténtalo más tarde.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "El inicio de sesión no está disponible temporalmente. Inténtalo de nuevo en un momento.",

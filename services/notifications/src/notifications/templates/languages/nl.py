@@ -336,15 +336,16 @@ TEXTS = {
     "top_up_on": {
         "subject": "Automatisch opwaarderen staat aan: {company}",
         "preheader": (
-            "{price} plus belasting elke keer dat de beschikbare credits onder {threshold} zakken."
+            "{price} plus belasting elke keer dat het beschikbare saldo onder {threshold, "
+            "plural, one {# credit} other {# credits}} zakt."
         ),
         "heading": "Automatisch opwaarderen staat aan",
         "lines": [
             (
-                "Automatisch opwaarderen staat nu aan voor {company}. Elke keer dat de "
-                "beschikbare credits onder {threshold} zakken, wordt de opgeslagen kaart belast "
-                "met {price}, plus btw of verkoopbelasting waar die van toepassing is, totdat "
-                "automatisch opwaarderen wordt uitgezet."
+                "Automatisch opwaarderen staat nu aan voor {company}. Elke keer dat het "
+                "beschikbare saldo onder {threshold, plural, one {# credit} other {# credits}} "
+                "zakt, wordt de opgeslagen kaart belast met {price}, plus btw of verkoopbelasting "
+                "waar die van toepassing is, totdat automatisch opwaarderen wordt uitgezet."
             ),
             (
                 "Elke afschrijving wordt gemaild naar de eigenaren en beheerders van het bedrijf, "
@@ -364,13 +365,14 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Automatisch opgewaardeerd: {company}",
-        "preheader": "{price} voor {credits} credits op {date}.",
+        "preheader": "{price} voor {credits, plural, one {# credit} other {# credits}} op {date}.",
         "heading": "Automatisch opwaarderen heeft de kaart belast",
         "lines": [
             (
                 "Op {date} heeft automatisch opwaarderen de kaart voor {company} belast met "
-                "{price}, inclusief belasting, en {credits} credits toegevoegd. {company} heeft "
-                "nu {available} credits beschikbaar."
+                "{price}, inclusief belasting, en {credits, plural, one {# credit} other {# "
+                "credits}} toegevoegd. {company} heeft nu {available, plural, one {# credit} "
+                "other {# credits}} beschikbaar."
             ),
             "Paddle, onze wederverkoper, mailt de bon.",
             (

@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Alleen degene met wiens kaart het betaald wordt, kan het wijzigen. Zet het uit en daarna weer aan met je eigen kaart.",
     "Automatic top-up isn't on": "Automatisch opwaarderen staat niet aan",
     "Tick the box to agree to the automatic top-up's charges.": "Vink het vakje aan om akkoord te gaan met de afschrijvingen van automatisch opwaarderen.",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} plus belasting als het saldo onder {threshold} credits zakt",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} plus belasting als het saldo onder {threshold, plural, one {# credit} other {# credits}} zakt",
     "The request is too large.": "Het verzoek is te groot.",
     "Too many requests. Try again later.": "Te veel verzoeken. Probeer het later opnieuw.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Inloggen is tijdelijk niet beschikbaar. Probeer het zo meteen opnieuw.",

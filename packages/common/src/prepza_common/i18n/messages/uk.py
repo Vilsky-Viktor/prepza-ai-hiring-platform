@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Змінити це може лише той, чия картка за це платить. Вимкніть його, а потім увімкніть зі своєю карткою.",
     "Automatic top-up isn't on": "Автопоповнення не ввімкнено",
     "Tick the box to agree to the automatic top-up's charges.": "Поставте позначку, щоб погодитися на списання автопоповнення.",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} плюс податок, коли кредитів на балансі стає менше {threshold}",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} плюс податок, коли баланс опускається нижче {threshold, plural, one {# кредиту} few {# кредитів} many {# кредитів} other {# кредиту}}",
     "The request is too large.": "Запит завеликий.",
     "Too many requests. Try again later.": "Забагато запитів. Спробуйте пізніше.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Вхід тимчасово недоступний. Спробуйте трохи згодом.",

@@ -8,7 +8,7 @@ from prepza_common.i18n.money import money
 from notifications.constants.member_emails import COMPANIES_LINK, TOP_UP_LINK, MemberEmail
 from notifications.constants.unsubscribe import UnsubscribeType
 from notifications.helpers.emails import optional_email
-from notifications.helpers.rendering import Section, email_language, render, shown
+from notifications.helpers.rendering import Section, email_language, render
 from notifications.models.email import Email
 
 
@@ -98,7 +98,7 @@ def top_up_on_email(recipient: dict, company: str, notice: dict, link: str) -> E
         **recipient_data(recipient),
         "company": company,
         "price": money(notice["price"], notice["currency"], language),
-        "threshold": shown(notice["threshold"], language),
+        "threshold": notice["threshold"],
     }
 
     return render("top_up_on", data, link)
@@ -114,8 +114,8 @@ def top_up_charged_email(recipient: dict, company: str, notice: dict, link: str)
         "company": company,
         "price": money(notice["price"], notice["currency"], language),
         "date": long_date(notice["date"], language),
-        "credits": shown(notice["credits"], language),
-        "available": shown(notice["available"], language),
+        "credits": notice["credits"],
+        "available": notice["available"],
     }
 
     return render("top_up_charged", data, link)

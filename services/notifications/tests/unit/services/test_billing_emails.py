@@ -127,3 +127,31 @@ def test_a_redelivered_charge_notice_sends_with_the_same_key(sent):
         asyncio.run(service_emails.billing_emails(event, event["key"]))
 
     assert {key for key, _, _ in sent["sent"]} == {"events/auto_top_up_charged:txn_1/ann"}
+
+
+@pytest.mark.parametrize(
+    ("language", "credits", "available", "shown"),
+    [
+        ("en", 1, 1, ["added 1 credit.", "now has 1 credit available"]),
+        ("en", 5000, 21, ["added 5,000 credits.", "now has 21 credits available"]),
+        # Each language's own forms: Russian one, few and many; Arabic two and few.
+        ("ru", 3, 5, ["3 кредита", "5 доступных кредитов"]),
+        ("ru", 21, 1, ["21 кредит", "1 доступный кредит"]),
+        ("ar", 2, 3, ["3 أرصدة متاحة"]),
+    ],
+)
+def test_a_charges_credits_take_the_plural_their_number_needs(
+    sent, monkeypatch, language, credits, available, shown
+):
+    async def recipients(user_ids):
+        return [{"user_id": "ann", "email": "ann@example.com", "language": language}]
+
+    monkeypatch.setattr(accounts, "recipients", recipients)
+    data = {**CHARGED, "credits": credits, "available": available}
+    event = notification("company", "c1", "auto_top_up_charged", "/companies/c1/billing", **data)
+
+    asyncio.run(service_emails.billing_emails(event, "k1"))
+
+    [(_, _, text)] = sent["sent"]
+    assert [value for value in shown if value not in text] == []
+    assert "plural" not in text

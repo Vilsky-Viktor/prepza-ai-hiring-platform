@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Bunu yalnızca kartıyla ödeme yapılan kişi değiştirebilir. Kapatın, ardından kendi kartınızla açın.",
     "Automatic top-up isn't on": "Otomatik yükleme açık değil",
     "Tick the box to agree to the automatic top-up's charges.": "Otomatik yüklemenin tahsilatlarını kabul etmek için kutuyu işaretleyin.",
-    "{price} plus tax when the balance falls under {threshold} credits": "Bakiye {threshold} kredinin altına düştüğünde {price} artı vergi",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "Bakiye {threshold, plural, one {# kredinin} other {# kredinin}} altına düştüğünde {price} artı vergi",
     "The request is too large.": "İstek çok büyük.",
     "Too many requests. Try again later.": "Çok fazla istek. Daha sonra tekrar deneyin.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Giriş geçici olarak kullanılamıyor. Lütfen birazdan tekrar deneyin.",

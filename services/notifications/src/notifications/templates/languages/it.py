@@ -326,15 +326,17 @@ TEXTS = {
     "top_up_on": {
         "subject": "Ricarica automatica attiva: {company}",
         "preheader": (
-            "{price} più imposte ogni volta che i crediti disponibili scendono sotto {threshold}."
+            "{price} più imposte ogni volta che il saldo disponibile scende sotto {threshold, "
+            "plural, one {# credito} many {# crediti} other {# crediti}}."
         ),
         "heading": "La ricarica automatica è attiva",
         "lines": [
             (
-                "La ricarica automatica è ora attiva per {company}. Ogni volta che i suoi crediti "
-                "disponibili scendono sotto {threshold}, sulla carta salvata vengono addebitati "
-                "{price}, più IVA o imposta sulle vendite dove si applica, finché la ricarica "
-                "automatica non viene disattivata."
+                "La ricarica automatica è ora attiva per {company}. Ogni volta che il suo saldo "
+                "disponibile scende sotto {threshold, plural, one {# credito} many {# crediti} "
+                "other {# crediti}}, sulla carta salvata vengono addebitati {price}, più IVA o "
+                "imposta sulle vendite dove si applica, finché la ricarica automatica non viene "
+                "disattivata."
             ),
             (
                 "Ogni addebito viene comunicato via email ai proprietari e agli amministratori "
@@ -354,13 +356,17 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Addebito della ricarica automatica: {company}",
-        "preheader": "{price} per {credits} crediti il {date}.",
+        "preheader": (
+            "{price} per {credits, plural, one {# credito} many {# crediti} other {# "
+            "crediti}} il {date}."
+        ),
         "heading": "La ricarica automatica ha addebitato la carta",
         "lines": [
             (
                 "Il {date}, la ricarica automatica ha addebitato {price}, imposte incluse, sulla "
-                "carta di {company} e ha aggiunto {credits} crediti. {company} ha ora {available} "
-                "crediti disponibili."
+                "carta di {company} e ha aggiunto {credits, plural, one {# credito} many {# "
+                "crediti} other {# crediti}}. {company} ha ora {available, plural, one {# credito "
+                "disponibile} many {# crediti disponibili} other {# crediti disponibili}}."
             ),
             "Paddle, il nostro rivenditore, invia la ricevuta via email.",
             (

@@ -328,15 +328,18 @@ TEXTS = {
     "top_up_on": {
         "subject": "Automatyczne doładowanie włączone: {company}",
         "preheader": (
-            "{price} plus podatek za każdym razem, gdy dostępne kredyty spadną poniżej {threshold}."
+            "{price} plus podatek za każdym razem, gdy dostępne saldo spadnie poniżej "
+            "{threshold, plural, one {# kredytu} few {# kredytów} many {# kredytów} other {# "
+            "kredytu}}."
         ),
         "heading": "Automatyczne doładowanie jest włączone",
         "lines": [
             (
                 "Automatyczne doładowanie jest teraz włączone dla {company}. Za każdym razem, gdy "
-                "dostępne kredyty spadną poniżej {threshold}, zapisana karta zostanie obciążona "
-                "kwotą {price} plus VAT lub podatek od sprzedaży tam, gdzie obowiązuje, dopóki "
-                "automatyczne doładowanie nie zostanie wyłączone."
+                "dostępne saldo spadnie poniżej {threshold, plural, one {# kredytu} few {# "
+                "kredytów} many {# kredytów} other {# kredytu}}, zapisana karta zostanie "
+                "obciążona kwotą {price} plus VAT lub podatek od sprzedaży tam, gdzie obowiązuje, "
+                "dopóki automatyczne doładowanie nie zostanie wyłączone."
             ),
             (
                 "O każdym obciążeniu informujemy e-mailem właścicieli i administratorów firmy, a "
@@ -356,13 +359,18 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Automatyczne doładowanie obciążyło kartę: {company}",
-        "preheader": "{date}: pobrano {price}, dodane kredyty: {credits}.",
+        "preheader": (
+            "{date}: {price} za {credits, plural, one {# kredyt} few {# kredyty} many {# "
+            "kredytów} other {# kredytu}}."
+        ),
         "heading": "Automatyczne doładowanie obciążyło kartę",
         "lines": [
             (
                 "W dniu {date} automatyczne doładowanie obciążyło kartę dla {company} kwotą "
-                "{price} z podatkiem i dodało kredyty: {credits}. Dostępne teraz kredyty dla "
-                "{company}: {available}."
+                "{price} z podatkiem i dodało {credits, plural, one {# kredyt} few {# kredyty} "
+                "many {# kredytów} other {# kredytu}}. {company} ma teraz do dyspozycji "
+                "{available, plural, one {# kredyt} few {# kredyty} many {# kredytów} other {# "
+                "kredytu}}."
             ),
             "Paddle, nasz odsprzedawca, wysyła potwierdzenie e-mailem.",
             (

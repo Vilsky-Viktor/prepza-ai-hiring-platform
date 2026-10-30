@@ -238,6 +238,7 @@ out or listed under another area):
 - `language_words`: the scripts and common words `text_language` tells languages by.
 - `money`: an amount of money as a language writes it.
 - `names`: a candidate's name cleaned from untrusted fields.
+- `plurals`: counted nouns in backend texts as ICU plurals, by each language's CLDR rules.
 - `text_language`: a text's language from its script and common words (`language_words`).
 - `titles`: an edited name's or title's check.
 - `translations`: the messages users read, by language, and the check that each is translated.

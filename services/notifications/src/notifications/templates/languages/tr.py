@@ -324,13 +324,17 @@ TEXTS = {
     },
     "top_up_on": {
         "subject": "Otomatik yükleme açıldı: {company}",
-        "preheader": "Kullanılabilir krediler her {threshold} altına düştüğünde {price} artı vergi.",
+        "preheader": (
+            "Kullanılabilir bakiye her {threshold, plural, one {# kredinin} other {# "
+            "kredinin}} altına düştüğünde {price} artı vergi."
+        ),
         "heading": "Otomatik yükleme açık",
         "lines": [
             (
-                "{company} için otomatik yükleme artık açık. Kullanılabilir kredileri her "
-                "{threshold} altına düştüğünde, otomatik yükleme kapatılana kadar kayıtlı karttan "
-                "{price} tahsil edilir; geçerli olduğu yerlerde KDV veya satış vergisi eklenir."
+                "{company} için otomatik yükleme artık açık. Kullanılabilir bakiyesi her "
+                "{threshold, plural, one {# kredinin} other {# kredinin}} altına düştüğünde, "
+                "otomatik yükleme kapatılana kadar kayıtlı karttan {price} tahsil edilir; geçerli "
+                "olduğu yerlerde KDV veya satış vergisi eklenir."
             ),
             (
                 "Her tahsilat şirketin sahiplerine ve yöneticilerine e-postayla bildirilir; "
@@ -350,13 +354,14 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Otomatik yükleme tahsil edildi: {company}",
-        "preheader": "{date} tarihinde {credits} kredi için {price}.",
+        "preheader": "{date} tarihinde {credits, plural, one {# kredi} other {# kredi}} için {price}.",
         "heading": "Otomatik yükleme karttan tahsilat yaptı",
         "lines": [
             (
                 "{date} tarihinde otomatik yükleme {company} için karttan vergiler dahil {price} "
-                "tahsil etti ve {credits} kredi ekledi. {company} şirketinin artık {available} "
-                "kullanılabilir kredisi var."
+                "tahsil etti ve {credits, plural, one {# kredi} other {# kredi}} ekledi. "
+                "{company} şirketinin artık {available, plural, one {# kullanılabilir kredisi} "
+                "other {# kullanılabilir kredisi}} var."
             ),
             "Makbuzu yeniden satıcımız Paddle e-postayla gönderir.",
             (

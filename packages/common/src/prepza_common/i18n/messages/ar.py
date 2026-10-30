@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "لا يمكن تغييره إلا لمن تُدفع ببطاقته. أوقفه، ثم شغّله ببطاقتك.",
     "Automatic top-up isn't on": "الشحن التلقائي غير مفعّل",
     "Tick the box to agree to the automatic top-up's charges.": "حدّد المربع للموافقة على عمليات الخصم في الشحن التلقائي.",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} مضافًا إليها الضريبة عند انخفاض الرصيد عن {threshold}",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} مضافًا إليها الضريبة عند انخفاض الرصيد عن {threshold, plural, zero {# رصيد} one {رصيد واحد} two {رصيدين} few {# أرصدة} many {# رصيدًا} other {# رصيد}}",
     "The request is too large.": "الطلب كبير جدًا.",
     "Too many requests. Try again later.": "طلبات كثيرة جدًا. حاول مرة أخرى لاحقًا.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "تسجيل الدخول غير متاح مؤقتًا. حاول مرة أخرى بعد قليل.",

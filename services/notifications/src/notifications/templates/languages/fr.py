@@ -341,15 +341,17 @@ TEXTS = {
     "top_up_on": {
         "subject": "Recharge automatique activée : {company}",
         "preheader": (
-            "{price} hors taxes chaque fois que les crédits disponibles passent sous {threshold}."
+            "{price} hors taxes chaque fois que le solde disponible passe sous {threshold, "
+            "plural, one {# crédit} many {# crédits} other {# crédits}}."
         ),
         "heading": "La recharge automatique est activée",
         "lines": [
             (
                 "La recharge automatique est désormais activée pour {company}. Chaque fois que "
-                "ses crédits disponibles passent sous {threshold}, la carte enregistrée est "
-                "débitée de {price}, plus la TVA ou la taxe de vente là où elle s'applique, "
-                "jusqu'à ce que la recharge automatique soit désactivée."
+                "son solde disponible passe sous {threshold, plural, one {# crédit} many {# "
+                "crédits} other {# crédits}}, la carte enregistrée est débitée de {price}, plus "
+                "la TVA ou la taxe de vente là où elle s'applique, jusqu'à ce que la recharge "
+                "automatique soit désactivée."
             ),
             (
                 "Chaque débit est notifié par e-mail aux propriétaires et administrateurs de "
@@ -370,13 +372,17 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Recharge automatique débitée : {company}",
-        "preheader": "{price} pour {credits} crédits le {date}.",
+        "preheader": (
+            "{price} pour {credits, plural, one {# crédit} many {# crédits} other {# "
+            "crédits}} le {date}."
+        ),
         "heading": "La recharge automatique a débité la carte",
         "lines": [
             (
                 "Le {date}, la recharge automatique a débité la carte de {company} de {price}, "
-                "taxes comprises, et ajouté {credits} crédits. {company} dispose désormais de "
-                "{available} crédits."
+                "taxes comprises, et ajouté {credits, plural, one {# crédit} many {# crédits} "
+                "other {# crédits}}. {company} dispose désormais de {available, plural, one {# "
+                "crédit disponible} many {# crédits disponibles} other {# crédits disponibles}}."
             ),
             "Paddle, notre revendeur, envoie le reçu par e-mail.",
             (

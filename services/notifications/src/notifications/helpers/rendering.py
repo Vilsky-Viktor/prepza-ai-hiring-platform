@@ -3,6 +3,7 @@ from html import escape
 
 from babel.numbers import format_decimal
 from prepza_common.config.constants import DEFAULT_LANGUAGE, OPERATOR, RTL_LANGUAGES
+from prepza_common.i18n.plurals import plurals
 
 from notifications.constants.email import LTR_VALUE
 from notifications.helpers.markdown import markdown_html
@@ -50,6 +51,24 @@ def shown(value, language: str) -> str:
     return str(value)
 
 
+def counted(texts, language: str, data: dict):
+    """An email's texts with their plural blocks written out for the counts in `data` (its whole
+    numbers): "{credits, plural, one {# credit} other {# credits}}" becomes "1 credit"."""
+    counts = {
+        key: value
+        for key, value in data.items()
+        if isinstance(value, int) and not isinstance(value, bool)
+    }
+
+    if isinstance(texts, str):
+        return plurals(texts, language, counts)
+
+    if isinstance(texts, list):
+        return [counted(text, language, data) for text in texts]
+
+    return {key: counted(text, language, data) for key, text in texts.items()}
+
+
 def render(
     kind: str,
     data: dict,
@@ -66,7 +85,7 @@ def render(
     and escaped in the HTML."""
     language = email_language(kind, data.get("language"))
     texts = EMAILS[language]
-    template = texts[kind]
+    template = counted(texts[kind], language, data)
     # An email with its own reason for being sent says so; the others share the general one.
     footer = template.get("footer", texts["footer"])
 

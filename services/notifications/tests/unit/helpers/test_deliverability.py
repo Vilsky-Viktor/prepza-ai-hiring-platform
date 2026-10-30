@@ -203,8 +203,8 @@ def placeholders(language: str) -> dict:
         "price": "$45",
         "new_price": "$50",
         # Automatic top-up turned on (its level) and one charge (the credits it added).
-        "threshold": "1,500",
-        "credits": "5,000",
+        "threshold": 1500,
+        "credits": 5000,
         # A campaign's own texts.
         "subject": "Code questions",
         "preheader": "Now with code.",

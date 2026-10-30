@@ -4,6 +4,7 @@ from types import SimpleNamespace
 
 import pytest
 from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
+from prepza_common.i18n.plurals import PLURAL
 
 from notifications.constants.email import AUTOMATED_HEADERS
 from notifications.constants.member_emails import MemberEmail
@@ -188,6 +189,9 @@ def test_member_emails_come_in_the_users_language():
 
 
 def placeholders(text: str) -> set[str]:
+    """The values a text takes; a plural block counts as its count's name."""
+    text = PLURAL.sub(lambda match: "{" + match.group(1) + "}", text)
+
     return {name for _, name, _, _ in string.Formatter().parse(text) if name}
 
 

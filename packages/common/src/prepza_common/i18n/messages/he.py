@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "רק מי שהכרטיס שלו משלם יכול לשנות זאת. כבו את זה, ואז הפעילו עם הכרטיס שלכם.",
     "Automatic top-up isn't on": "הטעינה האוטומטית לא פעילה",
     "Tick the box to agree to the automatic top-up's charges.": "יש לסמן את התיבה כדי להסכים לחיובים של הטעינה האוטומטית.",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} בתוספת מס כשהיתרה יורדת מתחת ל-{threshold} קרדיטים",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} בתוספת מס כשהיתרה יורדת מתחת {threshold, plural, one {לקרדיט אחד} two {ל-# קרדיטים} other {ל-# קרדיטים}}",
     "The request is too large.": "הבקשה גדולה מדי.",
     "Too many requests. Try again later.": "יותר מדי בקשות. נסו שוב מאוחר יותר.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "ההתחברות אינה זמינה כרגע. נסו שוב בעוד רגע.",

@@ -321,14 +321,18 @@ TEXTS = {
     },
     "top_up_on": {
         "subject": "Juurdelaadimine sisse lülitatud: {company}",
-        "preheader": "{price} pluss maks iga kord, kui saadaolev krediit langeb alla {threshold}.",
+        "preheader": (
+            "{price} pluss maks iga kord, kui saadaolev saldo langeb alla {threshold, plural, "
+            "one {# krediidi} other {# krediidi}}."
+        ),
         "heading": "Automaatne juurdelaadimine on sees",
         "lines": [
             (
                 "Ettevõtte {company} automaatne juurdelaadimine on nüüd sees. Iga kord, kui selle "
-                "saadaolev krediit langeb alla {threshold}, võetakse salvestatud kaardilt "
-                "{price}, millele lisandub käibemaks või müügimaks, kus see kehtib, kuni "
-                "automaatne juurdelaadimine välja lülitatakse."
+                "saadaolev saldo langeb alla {threshold, plural, one {# krediidi} other {# "
+                "krediidi}}, võetakse salvestatud kaardilt {price}, millele lisandub käibemaks "
+                "või müügimaks, kus see kehtib, kuni automaatne juurdelaadimine välja "
+                "lülitatakse."
             ),
             (
                 "Igast maksest saadetakse e-kiri ettevõtte omanikele ja administraatoritele ning "
@@ -348,13 +352,16 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Juurdelaadimise makse: {company}",
-        "preheader": "{price} {credits} krediidi eest kuupäeval {date}.",
+        "preheader": (
+            "{price} {credits, plural, one {# krediidi} other {# krediidi}} eest kuupäeval {date}."
+        ),
         "heading": "Automaatne juurdelaadimine võttis kaardilt makse",
         "lines": [
             (
                 "Kuupäeval {date} võttis automaatne juurdelaadimine ettevõtte {company} kaardilt "
-                "{price} koos maksudega ja lisas {credits} krediiti. Ettevõttel {company} on nüüd "
-                "saadaval {available} krediiti."
+                "{price} koos maksudega ja lisas {credits, plural, one {# krediidi} other {# "
+                "krediiti}}. Ettevõttel {company} on nüüd saadaval {available, plural, one {# "
+                "krediit} other {# krediiti}}."
             ),
             "Kviitungi saadab e-kirjaga meie edasimüüja Paddle.",
             (

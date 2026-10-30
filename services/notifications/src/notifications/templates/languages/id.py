@@ -320,14 +320,17 @@ TEXTS = {
     },
     "top_up_on": {
         "subject": "Isi ulang otomatis menyala: {company}",
-        "preheader": "{price} ditambah pajak setiap kali kredit tersedia turun di bawah {threshold}.",
+        "preheader": (
+            "{price} ditambah pajak setiap kali saldo tersedia turun di bawah {threshold, "
+            "plural, other {# kredit}}."
+        ),
         "heading": "Isi ulang otomatis menyala",
         "lines": [
             (
-                "Isi ulang otomatis sekarang menyala untuk {company}. Setiap kali kredit "
-                "tersedianya turun di bawah {threshold}, kartu yang tersimpan ditagih {price}, "
-                "ditambah PPN atau pajak penjualan jika berlaku, sampai isi ulang otomatis "
-                "dimatikan."
+                "Isi ulang otomatis sekarang menyala untuk {company}. Setiap kali saldo "
+                "tersedianya turun di bawah {threshold, plural, other {# kredit}}, kartu yang "
+                "tersimpan ditagih {price}, ditambah PPN atau pajak penjualan jika berlaku, "
+                "sampai isi ulang otomatis dimatikan."
             ),
             (
                 "Setiap tagihan dikirim lewat email ke pemilik dan admin perusahaan, dan Paddle, "
@@ -347,13 +350,13 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Isi ulang otomatis menagih: {company}",
-        "preheader": "{price} untuk {credits} kredit pada {date}.",
+        "preheader": "{price} untuk {credits, plural, other {# kredit}} pada {date}.",
         "heading": "Isi ulang otomatis menagih kartu",
         "lines": [
             (
                 "Pada {date}, isi ulang otomatis menagih kartu untuk {company} sebesar {price}, "
-                "termasuk pajak, dan menambahkan {credits} kredit. {company} sekarang memiliki "
-                "{available} kredit tersedia."
+                "termasuk pajak, dan menambahkan {credits, plural, other {# kredit}}. {company} "
+                "sekarang memiliki {available, plural, other {# kredit tersedia}}."
             ),
             "Paddle, penjual kembali kami, mengirim tanda terimanya lewat email.",
             (

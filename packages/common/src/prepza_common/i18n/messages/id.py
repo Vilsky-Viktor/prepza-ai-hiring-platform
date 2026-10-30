@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Hanya orang yang kartunya membayar yang dapat mengubahnya. Matikan, lalu aktifkan lagi dengan kartu Anda sendiri.",
     "Automatic top-up isn't on": "Isi ulang otomatis tidak menyala",
     "Tick the box to agree to the automatic top-up's charges.": "Centang kotaknya untuk menyetujui tagihan isi ulang otomatis.",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} ditambah pajak saat saldo turun di bawah {threshold} kredit",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} ditambah pajak saat saldo turun di bawah {threshold, plural, other {# kredit}}",
     "The request is too large.": "Permintaan terlalu besar.",
     "Too many requests. Try again later.": "Terlalu banyak permintaan. Coba lagi nanti.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Masuk sedang tidak tersedia untuk sementara. Coba lagi sebentar lagi.",

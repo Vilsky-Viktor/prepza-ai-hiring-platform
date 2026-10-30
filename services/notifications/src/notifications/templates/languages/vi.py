@@ -323,13 +323,16 @@ TEXTS = {
     },
     "top_up_on": {
         "subject": "Tự động nạp đã bật: {company}",
-        "preheader": "{price} cộng thuế mỗi khi credit khả dụng xuống dưới {threshold}.",
+        "preheader": (
+            "{price} cộng thuế mỗi khi số dư khả dụng xuống dưới {threshold, plural, other {# "
+            "credit}}."
+        ),
         "heading": "Tự động nạp đã bật",
         "lines": [
             (
-                "Tự động nạp giờ đã bật cho {company}. Mỗi khi credit khả dụng của công ty xuống "
-                "dưới {threshold}, thẻ đã lưu sẽ bị trừ {price}, cộng thêm VAT hoặc thuế bán hàng "
-                "nếu có, cho đến khi tự động nạp bị tắt."
+                "Tự động nạp giờ đã bật cho {company}. Mỗi khi số dư khả dụng của công ty xuống "
+                "dưới {threshold, plural, other {# credit}}, thẻ đã lưu sẽ bị trừ {price}, cộng "
+                "thêm VAT hoặc thuế bán hàng nếu có, cho đến khi tự động nạp bị tắt."
             ),
             (
                 "Mỗi lần trừ tiền đều được gửi email đến chủ sở hữu và quản trị viên của công ty, "
@@ -349,12 +352,13 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Tự động nạp đã trừ tiền: {company}",
-        "preheader": "{price} cho {credits} credit vào {date}.",
+        "preheader": "{price} cho {credits, plural, other {# credit}} vào {date}.",
         "heading": "Tự động nạp đã trừ tiền từ thẻ",
         "lines": [
             (
                 "Vào {date}, tự động nạp đã trừ {price} (đã gồm thuế) từ thẻ của {company} và "
-                "thêm {credits} credit. {company} hiện có {available} credit khả dụng."
+                "thêm {credits, plural, other {# credit}}. {company} hiện có {available, plural, "
+                "other {# credit khả dụng}}."
             ),
             "Paddle, bên bán lại của chúng tôi, gửi biên lai qua email.",
             (

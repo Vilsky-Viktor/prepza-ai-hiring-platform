@@ -340,16 +340,17 @@ TEXTS = {
     "top_up_on": {
         "subject": "Naka-on ang awtomatikong top-up: {company}",
         "preheader": (
-            "{price} dagdag ang buwis tuwing bababa ang available na credits sa ilalim ng "
-            "{threshold}."
+            "{price} dagdag ang buwis tuwing bababa ang available na balance sa ilalim ng "
+            "{threshold, plural, =1 {# credit} one {# credits} other {# credits}}."
         ),
         "heading": "Naka-on ang awtomatikong top-up",
         "lines": [
             (
                 "Naka-on na ang awtomatikong top-up para sa {company}. Tuwing bababa ang "
-                "available nitong credits sa ilalim ng {threshold}, sisingilin ang naka-save na "
-                "card ng {price}, dagdag ang VAT o sales tax kung saan ito naaangkop, hanggang "
-                "i-off ang awtomatikong top-up."
+                "available nitong balance sa ilalim ng {threshold, plural, =1 {# credit} one {# "
+                "credits} other {# credits}}, sisingilin ang naka-save na card ng {price}, dagdag "
+                "ang VAT o sales tax kung saan ito naaangkop, hanggang i-off ang awtomatikong "
+                "top-up."
             ),
             (
                 "Ini-email ang bawat singil sa mga may-ari at admin ng kumpanya, at nag-e-email "
@@ -369,13 +370,17 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Nag-charge ang awtomatikong top-up: {company}",
-        "preheader": "{price} para sa {credits} credits noong {date}.",
+        "preheader": (
+            "{price} para sa {credits, plural, =1 {# credit} one {# credits} other {# "
+            "credits}} noong {date}."
+        ),
         "heading": "Nag-charge sa card ang awtomatikong top-up",
         "lines": [
             (
                 "Noong {date}, siningil ng awtomatikong top-up ang card para sa {company} ng "
-                "{price}, kasama ang buwis, at nagdagdag ito ng {credits} credits. May "
-                "{available} credits na available ngayon ang {company}."
+                "{price}, kasama ang buwis, at nagdagdag ito ng {credits, plural, =1 {# credit} "
+                "one {# credits} other {# credits}}. May {available, plural, =1 {# credit} one {# "
+                "credits} other {# credits}} na available ngayon ang {company}."
             ),
             "Nag-e-email ng resibo ang Paddle, ang aming reseller.",
             (

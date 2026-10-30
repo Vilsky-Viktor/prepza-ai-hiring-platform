@@ -222,11 +222,11 @@ TEXTS = {
     },
     "top_up_on": {
         "subject": "自動チャージをオンにしました: {company}",
-        "preheader": "利用可能なクレジットが {threshold} を下回るたびに {price}（税別）を請求します。",
+        "preheader": "利用可能な残高が {threshold, plural, other {# クレジット}} を下回るたびに {price}（税別）を請求します。",
         "heading": "自動チャージがオンになりました",
         "lines": [
             (
-                "{company} の自動チャージがオンになりました。利用可能なクレジットが {threshold} "
+                "{company} の自動チャージがオンになりました。利用可能な残高が {threshold, plural, other {# クレジット}} "
                 "を下回るたびに、自動チャージがオフになるまで、保存されたカードに {price} "
                 "が請求されます（課税される場合は付加価値税（VAT）または売上税が加算されます）。"
             ),
@@ -241,12 +241,12 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "自動チャージ請求: {company}",
-        "preheader": "{date} に {credits} クレジット分として {price} を請求しました。",
+        "preheader": "{date} に {credits, plural, other {# クレジット}} 分として {price} を請求しました。",
         "heading": "自動チャージでカードに請求しました",
         "lines": [
             (
-                "{date}、自動チャージで {company} のカードに {price}（税込）を請求し、{credits} クレジットを追加しました。{company} "
-                "の現在の利用可能なクレジットは {available} です。"
+                "{date}、自動チャージで {company} のカードに {price}（税込）を請求し、{credits, plural, other {# "
+                "クレジット}} を追加しました。{company} で現在利用できるのは {available, plural, other {# クレジット}} です。"
             ),
             "当社の再販業者である Paddle から領収書がメールで届きます。",
             "今後の請求を止めるには、請求ページで自動チャージを開き、「オフにする」を選んでください。すぐに停止し、それ以降は請求されません。",

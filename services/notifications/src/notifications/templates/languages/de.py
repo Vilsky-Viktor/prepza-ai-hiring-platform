@@ -340,16 +340,17 @@ TEXTS = {
     "top_up_on": {
         "subject": "Automatisches Aufladen ist an: {company}",
         "preheader": (
-            "{price} zzgl. Steuern jedes Mal, wenn die verfügbaren Credits unter {threshold} "
-            "fallen."
+            "{price} zzgl. Steuern jedes Mal, wenn das verfügbare Guthaben unter {threshold, "
+            "plural, one {# Credit} other {# Credits}} fällt."
         ),
         "heading": "Automatisches Aufladen ist an",
         "lines": [
             (
                 "Automatisches Aufladen ist jetzt für {company} eingeschaltet. Jedes Mal, wenn "
-                "die verfügbaren Credits unter {threshold} fallen, wird die gespeicherte Karte "
-                "mit {price} belastet, zuzüglich MwSt. oder Sales Tax, wo sie anfällt, bis das "
-                "automatische Aufladen ausgeschaltet wird."
+                "das verfügbare Guthaben unter {threshold, plural, one {# Credit} other {# "
+                "Credits}} fällt, wird die gespeicherte Karte mit {price} belastet, zuzüglich "
+                "MwSt. oder Sales Tax, wo sie anfällt, bis das automatische Aufladen "
+                "ausgeschaltet wird."
             ),
             (
                 "Jede Belastung wird den Inhabern und Admins des Unternehmens per E-Mail "
@@ -370,13 +371,14 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "Automatisches Aufladen abgebucht: {company}",
-        "preheader": "{price} für {credits} Credits am {date}.",
+        "preheader": "{price} für {credits, plural, one {# Credit} other {# Credits}} am {date}.",
         "heading": "Automatisches Aufladen hat die Karte belastet",
         "lines": [
             (
                 "Am {date} hat das automatische Aufladen die Karte für {company} mit {price} "
-                "inklusive Steuern belastet und {credits} Credits hinzugefügt. {company} hat "
-                "jetzt {available} Credits verfügbar."
+                "inklusive Steuern belastet und {credits, plural, one {# Credit} other {# "
+                "Credits}} hinzugefügt. {company} hat jetzt {available, plural, one {# Credit} "
+                "other {# Credits}} verfügbar."
             ),
             "Paddle, unser Wiederverkäufer, schickt die Quittung per E-Mail.",
             (

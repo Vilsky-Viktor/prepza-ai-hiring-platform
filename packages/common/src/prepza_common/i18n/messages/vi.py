@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Chỉ người có thẻ đang trả tiền mới thay đổi được. Hãy tắt đi, rồi bật lại bằng thẻ của bạn.",
     "Automatic top-up isn't on": "Tự động nạp chưa bật",
     "Tick the box to agree to the automatic top-up's charges.": "Hãy đánh dấu vào ô để đồng ý với các khoản trừ tiền của tự động nạp.",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} cộng thuế khi số dư xuống dưới {threshold} credit",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} cộng thuế khi số dư xuống dưới {threshold, plural, other {# credit}}",
     "The request is too large.": "Yêu cầu quá lớn.",
     "Too many requests. Try again later.": "Quá nhiều yêu cầu. Vui lòng thử lại sau.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Đăng nhập tạm thời không khả dụng. Vui lòng thử lại sau ít phút.",

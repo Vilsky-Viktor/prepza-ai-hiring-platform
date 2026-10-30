@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "เฉพาะผู้ที่ใช้บัตรของตนชำระเท่านั้นที่เปลี่ยนได้ ปิดก่อน แล้วเปิดใหม่ด้วยบัตรของคุณเอง",
     "Automatic top-up isn't on": "การเติมเครดิตอัตโนมัติไม่ได้เปิดอยู่",
     "Tick the box to agree to the automatic top-up's charges.": "ทำเครื่องหมายในช่องเพื่อยอมรับการเรียกเก็บเงินของการเติมเครดิตอัตโนมัติ",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} บวกภาษี เมื่อยอดคงเหลือต่ำกว่า {threshold} เครดิต",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} บวกภาษี เมื่อยอดคงเหลือต่ำกว่า {threshold, plural, other {# เครดิต}}",
     "The request is too large.": "คำขอมีขนาดใหญ่เกินไป",
     "Too many requests. Try again later.": "มีคำขอมากเกินไป โปรดลองอีกครั้งในภายหลัง",
     "Sign-in is temporarily unavailable. Please try again shortly.": "การลงชื่อเข้าใช้ไม่พร้อมใช้งานชั่วคราว โปรดลองอีกครั้งในอีกสักครู่",

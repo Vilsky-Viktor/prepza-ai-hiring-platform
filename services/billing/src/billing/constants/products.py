@@ -115,7 +115,10 @@ NOT_YOUR_AUTO_TOP_UP = (
 AGREEMENT_NEEDED = "Tick the box to agree to the automatic top-up's charges."
 # Its terms as the company's action log keeps them with the buyer's agreement, in the buyer's
 # language (prepza_common.i18n messages).
-AGREED_TERMS = "{price} plus tax when the balance falls under {threshold} credits"
+AGREED_TERMS = (
+    "{price} plus tax when the balance falls under "
+    "{threshold, plural, one {# credit} other {# credits}}"
+)
 PADDLE_API = {"sandbox": "https://sandbox-api.paddle.com", "production": "https://api.paddle.com"}
 # The version of Paddle's API every call asks for (its `Paddle-Version` header), so a new default
 # version in Paddle's dashboard can't change the answers billing reads.

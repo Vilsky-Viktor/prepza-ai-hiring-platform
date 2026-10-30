@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "Ang taong ang card ang nagbabayad lang ang puwedeng magbago nito. I-off ito, saka i-on gamit ang sarili mong card.",
     "Automatic top-up isn't on": "Hindi naka-on ang awtomatikong top-up",
     "Tick the box to agree to the automatic top-up's charges.": "Lagyan ng tsek ang kahon para pumayag sa mga singil ng awtomatikong top-up.",
-    "{price} plus tax when the balance falls under {threshold} credits": "{price} dagdag ang buwis kapag bumaba ang balance sa ilalim ng {threshold} credits",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "{price} dagdag ang buwis kapag bumaba ang balance sa ilalim ng {threshold, plural, =1 {# credit} one {# credits} other {# credits}}",
     "The request is too large.": "Masyadong malaki ang request.",
     "Too many requests. Try again later.": "Masyadong maraming request. Subukang muli mamaya.",
     "Sign-in is temporarily unavailable. Please try again shortly.": "Pansamantalang hindi available ang pag-sign in. Subukang muli maya-maya.",

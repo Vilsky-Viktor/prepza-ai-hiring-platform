@@ -14,7 +14,7 @@ MESSAGES = {
     "Only the person whose card pays for it can change it. Turn it off, then turn it on with your own card.": "只有付款卡的持有人才能更改。请先关闭，再用你自己的卡开启。",
     "Automatic top-up isn't on": "自动充值未开启",
     "Tick the box to agree to the automatic top-up's charges.": "请勾选复选框，同意自动充值的扣款。",
-    "{price} plus tax when the balance falls under {threshold} credits": "余额低于 {threshold} 点数时充值 {price}，另加税费",
+    "{price} plus tax when the balance falls under {threshold, plural, one {# credit} other {# credits}}": "余额低于 {threshold, plural, other {# 点数}} 时充值 {price}，另加税费",
     "The request is too large.": "请求过大。",
     "Too many requests. Try again later.": "请求过多，请稍后再试。",
     "Sign-in is temporarily unavailable. Please try again shortly.": "登录暂时不可用，请稍后再试。",

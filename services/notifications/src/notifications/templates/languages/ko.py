@@ -231,12 +231,12 @@ TEXTS = {
     },
     "top_up_on": {
         "subject": "자동 충전 켜짐: {company}",
-        "preheader": "사용 가능한 크레딧이 {threshold} 미만이 될 때마다 {price}(세금 별도)가 결제됩니다.",
+        "preheader": "사용 가능한 잔액이 {threshold, plural, other {# 크레딧}} 미만이 될 때마다 {price}(세금 별도)가 결제됩니다.",
         "heading": "자동 충전이 켜졌습니다",
         "lines": [
             (
-                "{company}의 자동 충전이 켜졌습니다. 사용 가능한 크레딧이 {threshold} 미만이 될 때마다 자동 충전이 꺼질 때까지 저장된 "
-                "카드에서 {price} 결제가 이루어지며, 해당되는 경우 부가가치세(VAT) 또는 판매세가 추가됩니다."
+                "{company}의 자동 충전이 켜졌습니다. 사용 가능한 잔액이 {threshold, plural, other {# 크레딧}} 미만이 될 때마다 "
+                "자동 충전이 꺼질 때까지 저장된 카드에서 {price} 결제가 이루어지며, 해당되는 경우 부가가치세(VAT) 또는 판매세가 추가됩니다."
             ),
             "결제할 때마다 회사의 소유자와 관리자에게 이메일로 알리며, 당사의 재판매자인 Paddle이 영수증을 이메일로 보냅니다.",
             "끄려면 결제 페이지에서 자동 충전을 열고 ‘끄기’를 선택하세요. 즉시 중지되며 더 이상 결제되지 않습니다.",
@@ -249,12 +249,12 @@ TEXTS = {
     },
     "top_up_charged": {
         "subject": "자동 충전 결제: {company}",
-        "preheader": "{date}에 {credits} 크레딧 충전, {price} 결제.",
+        "preheader": "{date}에 {credits, plural, other {# 크레딧}} 충전, {price} 결제.",
         "heading": "자동 충전으로 카드가 결제되었습니다",
         "lines": [
             (
-                "{date}에 {company}의 자동 충전으로 카드에서 {price}(세금 포함)가 결제되었고 {credits} 크레딧이 추가되었습니다. 현재 "
-                "{company}의 사용 가능한 크레딧은 {available}입니다."
+                "{date}에 {company}의 자동 충전으로 카드에서 {price}(세금 포함)가 결제되었고 {credits, plural, other {# "
+                "크레딧}}이 추가되었습니다. 현재 {company}의 사용 가능 잔액은 {available, plural, other {# 크레딧}}입니다."
             ),
             "당사의 재판매자인 Paddle이 영수증을 이메일로 보냅니다.",
             "이 결제를 중지하려면 결제 페이지에서 자동 충전을 열고 ‘끄기’를 선택하세요. 즉시 중지되며 더 이상 결제되지 않습니다.",
