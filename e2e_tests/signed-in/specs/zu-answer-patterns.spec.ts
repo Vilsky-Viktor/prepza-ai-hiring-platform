@@ -67,7 +67,8 @@ test("a finished candidate comes with questions to ask about", async ({ signInAs
   test.setTimeout(240_000)
   const { owner, path, scorecard, right } = await finishedCandidate(signInAs, false)
   await visit(owner, path)
-  const card = owner.getByTestId("answer-patterns")
+  // The visible one: while the page renders again, Next.js can keep a hidden copy of it.
+  const card = owner.getByTestId("answer-patterns").filter({ visible: true })
   const followUps = card.getByTestId("follow-up")
 
   await expect(card).toBeVisible()
@@ -94,13 +95,14 @@ test("relayed-looking answers show both signals on the page and in the PDF", asy
   test.setTimeout(240_000)
   const { owner, path } = await finishedCandidate(signInAs, true)
   await visit(owner, path)
-  const card = owner.getByTestId("answer-patterns")
+  // The visible one: while the page renders again, Next.js can keep a hidden copy of it.
+  const card = owner.getByTestId("answer-patterns").filter({ visible: true })
 
   await expect(card.locator('[data-signal="timing"]')).toBeVisible()
   await expect(card.locator('[data-signal="person_fit"]')).toBeVisible()
   await expect(card.getByTestId("follow-up").first()).toBeVisible()
   // The PDF report, off screen, lists the same signals and no questions.
-  const report = owner.getByTestId("report-answer-patterns")
+  const report = owner.getByTestId("report-answer-patterns").filter({ visible: true })
   await expect(report.locator("[data-signal]")).toHaveCount(2)
   await expect(report.getByTestId("follow-up")).toHaveCount(0)
   await shot(owner, "answer-patterns-signals")

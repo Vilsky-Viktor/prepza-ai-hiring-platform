@@ -16,7 +16,8 @@ test("the company, interview and candidate pages copy their IDs", async ({ signI
   await inviteCandidate(owner, interviewId, candidate)
   const copied = () => owner.evaluate(() => navigator.clipboard.readText())
 
-  const copyId = owner.getByTestId("copy-id")
+  // The visible one: while a page renders again, Next.js can keep a hidden copy of it.
+  const copyId = owner.getByTestId("copy-id").filter({ visible: true })
 
   await visit(owner, `/companies/${company.id}/interviews`)
   await copyId.click()
