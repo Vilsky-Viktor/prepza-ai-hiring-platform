@@ -5,8 +5,7 @@ import { InterviewCandidatesTab } from "@/features/company/components/interview-
 import { InterviewHeader } from "@/features/company/components/interview-header"
 import { InterviewDiscoverTab } from "@/features/company/components/interview-discover-tab"
 import { InterviewNotesTab } from "@/features/company/components/interview-notes-tab"
-import { InterviewSettings } from "@/features/company/components/interview-settings"
-import { ShareLink } from "@/features/company/components/share-link"
+import { InterviewSettingsTab } from "@/features/company/components/interview-settings-tab"
 import { InterviewTopics } from "@/features/company/components/interview-topics"
 import { WhatsNext } from "@/features/company/components/whats-next"
 import { SignInPage } from "@/components/common/sign-in-page"
@@ -79,26 +78,7 @@ export default async function InterviewPage({
         maxInvites={limits?.max_bulk_invites ?? null}
       >
         {current === "settings" ? (
-          // The shareable link sits with the interview's settings, above them.
-          <div className="space-y-6">
-            <ShareLink
-              interviewId={interview.id}
-              linkToken={interview.link_token}
-              canEdit={canEdit}
-            />
-            <InterviewSettings
-              interviewId={interview.id}
-              questionSeconds={interview.question_seconds}
-              passMark={interview.pass_mark}
-              hired={interview.hired}
-              keepPrivate={interview.keep_private}
-              voice={{
-                on: interview.voice ?? false,
-                available: interview.voice_available ?? false,
-                languages: interview.voice_languages ?? [],
-              }}
-            />
-          </div>
+          <InterviewSettingsTab interview={interview} canEdit={canEdit} />
         ) : current === "candidates" ? (
           <InterviewCandidatesTab
             interview={interview}
