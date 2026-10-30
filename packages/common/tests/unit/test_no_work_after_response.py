@@ -22,6 +22,9 @@ ALLOWED = {
     # A spoken answer's realtime transcription reads OpenAI's events in a task, cancelled as its
     # session closes, inside the answer's WebSocket.
     "services/rounds/src/rounds/integrations/live_hearing.py",
+    # The event loop's heartbeat, one per instance for its whole life, started in its lifespan:
+    # no request's work. Throttled between requests, the loop then waits idle, never counted.
+    "packages/common/src/prepza_common/observability/loop_watch.py",
     # Integration tests' races only: both calls are awaited before the test ends.
     "packages/common/src/prepza_common/db/lock_waits.py",
 }

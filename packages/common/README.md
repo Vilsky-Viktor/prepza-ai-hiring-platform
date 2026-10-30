@@ -260,12 +260,15 @@ out or listed under another area):
 - `constants`: the values every service shares: timeouts, pools, limits, languages, keys.
 - `event_constants`: Pub/Sub's topic and message attributes, the outbox's batches and limits, and
   the answers of other services that make an event unhandleable for good.
+- `observability_constants`: the event loop's heartbeat and when a late one is logged.
 - `settings`: the base of every service's settings.
 
 ### `observability/`
 
 - `logging`: one-line JSON logs with severity and trace, each request's line, and an event's trace
   followed by its consumer (`follow_trace`).
+- `loop_watch`: each time a service's event loop was blocked, logged with how long and where
+  (files, lines and functions only); started in every service's lifespan.
 - `scrub`: emails, URLs and people's names taken out of logs, errors and traces.
 - `scrub_patterns`: the patterns `scrub` takes out.
 - `sentry`: Sentry without personal data, and which requests are traced.

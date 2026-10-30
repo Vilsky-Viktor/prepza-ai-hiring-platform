@@ -10,6 +10,7 @@ from prepza_common.http.shutdown import close_shared
 from prepza_common.i18n.i18n import add_localized_errors
 from prepza_common.limits.maintenance import MaintenanceMiddleware
 from prepza_common.observability.logging import RequestLogMiddleware, configure_logging
+from prepza_common.observability.loop_watch import start_loop_watch
 from prepza_common.observability.sentry import init_sentry
 
 from accounts.api.v1 import (
@@ -32,9 +33,11 @@ init_sentry("accounts")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     start_firebase(settings.firebase_project_id)
+    stop_loop_watch = start_loop_watch()
 
     yield
 
+    stop_loop_watch()
     await close_shared(engine, get_redis())
 
 
