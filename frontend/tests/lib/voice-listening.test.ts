@@ -189,6 +189,28 @@ describe("listen", () => {
     expect(heard).toHaveLength(1)
   })
 
+  it("sends speech already heard at once when the time runs out, and drops anything else", async () => {
+    const heardOnTime = await start()
+    heardOnTime.listener.resume()
+    heardOnTime.events.onSpeechStart()
+    heardOnTime.frames(MIN_VOICED_MS, 0.9, LOUD)
+    heardOnTime.listener.flush()
+
+    expect(heardOnTime.heard).toHaveLength(1)
+    expect(heardOnTime.detector.pause).toHaveBeenCalledOnce()
+
+    const notYet = await start()
+    notYet.listener.resume()
+    notYet.events.onSpeechStart()
+    notYet.frames(FRAME_MS, 0.9, LOUD)
+    notYet.listener.flush()
+    notYet.frames(1000, 0.9, LOUD)
+    notYet.events.onSpeechEnd()
+
+    expect(notYet.heard).toEqual([])
+    expect(notYet.detector.pause).toHaveBeenCalledOnce()
+  })
+
   it("lets the detector go when it stops", async () => {
     const { listener, detector, heard, events, frames } = await start()
     listener.resume()

@@ -11,6 +11,9 @@ export type Listener = {
   // Stops sending speech (muted, or while an answer is understood); resume starts afresh.
   pause: () => void
   resume: () => void
+  // The question's time ran out: a stretch already heard as speech is sent now, unfinished;
+  // anything else is dropped. Listening waits for a resume either way.
+  flush: () => void
   stop: () => void
 }
 
@@ -189,6 +192,17 @@ export async function listen(
       record()
       paused = false
       void detector.start()
+    },
+    flush: () => {
+      if (heard && !paused) {
+        send()
+
+        return
+      }
+
+      paused = true
+      finish(false)
+      void detector.pause()
     },
     stop: () => {
       paused = true

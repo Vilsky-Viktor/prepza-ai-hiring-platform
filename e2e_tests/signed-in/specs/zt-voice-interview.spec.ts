@@ -11,6 +11,11 @@ import { answered } from "../helpers/session"
 import { ownerEmail, randomId, throwawayEmail } from "../helpers/users"
 import { fakeMicrophone, fakeMira, noReadingAloud } from "../helpers/voice"
 
+// How long the screen may take to start listening.
+const LISTENING_MS = 45_000
+// A question's time in the test of its last moment: long enough to start listening and speak.
+const ANSWER_SECONDS = 40
+
 type Step = {
   session: { id: string; answered: number; total: number }
   question: { question_id: string; multi: boolean } | null
@@ -26,7 +31,9 @@ async function voiceInterview(
     token: string
     microphone: Awaited<ReturnType<typeof fakeMicrophone>>
     mira: Awaited<ReturnType<typeof fakeMira>>
-  }) => Promise<void>
+  }) => Promise<void>,
+  // Each question's time.
+  seconds = 300
 ) {
   const template = await multiAnswerTemplate(`E2E voice ${randomId()}`)
 
@@ -41,7 +48,7 @@ async function voiceInterview(
       { template_id: template }
     )
     await api(owner, "PATCH", `/companies/interviews/${interview.id}/settings`, {
-      question_seconds: 300,
+      question_seconds: seconds,
       voice: true,
     })
     const email = throwawayEmail("voice-candidate")
@@ -89,7 +96,8 @@ test("a candidate allows the microphone before a voice interview starts", async 
 
     // Mira reads the question, then it's the candidate's turn.
     const turn = candidate.getByTestId("voice-turn")
-    await expect(turn).toHaveAttribute("data-turn", "candidate")
+    // Listening starts once the speech detector's WebAssembly is compiled: slow on a busy stack.
+    await expect(turn).toHaveAttribute("data-turn", "candidate", { timeout: LISTENING_MS })
     expect(mira.asked).toContain("question")
     const you = candidate.getByTestId("voice-heard").getByTestId("talking-dot")
     await expect(you).toHaveAttribute("data-talking", "true")
@@ -136,7 +144,8 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
     await expect(candidate).toHaveURL(/\/sessions\//)
     const main = candidate.getByRole("main")
     const turn = candidate.getByTestId("voice-turn")
-    await expect(turn).toHaveAttribute("data-turn", "candidate")
+    // Listening starts once the speech detector's WebAssembly is compiled: slow on a busy stack.
+    await expect(turn).toHaveAttribute("data-turn", "candidate", { timeout: LISTENING_MS })
     await expect(candidate.getByTestId("multi-choice").filter({ visible: true })).toBeVisible()
     await expect(candidate.getByTestId("option-check")).toHaveCount(4)
     const before = Number(await answered(candidate))
@@ -176,4 +185,47 @@ test("a candidate answers a voice interview's question by speaking", async ({ si
     expect(mira.asked).toContain("phrases/next")
     expect(mira.asked.filter((path) => path === "question")).toHaveLength(2)
   })
+})
+
+// The candidate answers in a question's last seconds and the time runs out while Mira is still
+// understanding it: the screen waits for the answer, saves what it picked without asking to
+// confirm, and moves on with "Time's up".
+test("an answer spoken before the time runs out still counts", async ({ signInAs }) => {
+  await voiceInterview(
+    signInAs,
+    async ({ candidate, token, microphone, mira }) => {
+      await visit(candidate, `/invite/${token}`)
+      await candidate.getByRole("checkbox").check()
+      await candidate.getByTestId("voice-access").getByRole("button").click()
+      await candidate.getByRole("main").getByRole("button").last().click()
+      await expect(candidate).toHaveURL(/\/sessions\//)
+      const turn = candidate.getByTestId("voice-turn")
+      // Listening starts once the speech detector's WebAssembly is compiled: slow on a busy stack.
+      await expect(turn).toHaveAttribute("data-turn", "candidate", { timeout: LISTENING_MS })
+      const before = Number(await answered(candidate))
+
+      // Spoken in time; understood only once the clock has reached zero.
+      await microphone.say()
+      expect(await mira.sent()).toEqual([])
+      await expect(candidate.getByRole("timer")).toHaveText("0:00", {
+        timeout: ANSWER_SECONDS * 1000,
+      })
+      expect(mira.asked).not.toContain("phrases/time-up")
+      const saved = candidate.waitForResponse(
+        (response) =>
+          response.request().method() === "POST" && /\/sessions\/[^/]+\/answers$/.test(response.url())
+      )
+      await mira.answer({ heard: "A", intent: "choose", picks: [0] })
+
+      // Saved as the candidate's pick, not timed out.
+      const answer = await saved
+      expect(answer.status()).toBe(201)
+      const sent = answer.request().postDataJSON()
+      expect(sent.option_index ?? sent.picks).toEqual(sent.picks ? [0] : 0)
+      await expect.poll(async () => Number(await answered(candidate))).toBe(before + 1)
+      await expect.poll(() => mira.asked).toContain("phrases/time-up")
+      expect(mira.asked.filter((path) => path.startsWith("confirmations"))).toEqual([])
+    },
+    ANSWER_SECONDS
+  )
 })

@@ -36,6 +36,10 @@ export const VAD_OPTIONS = {
 export const ACK_MIN_VOICED_MS = 500
 // A spoken answer is sent at most this long (the service's limit is 30 seconds).
 export const MAX_ANSWER_MS = 25_000
+// When the question's time runs out while the candidate is speaking or their answer is being
+// understood, the screen waits at most this long for it (the service takes it until 15 seconds
+// past the deadline, rounds' VOICE_ANSWER_GRACE_SECONDS).
+export const TIME_UP_HOLD_MS = 10_000
 // Without speech, the recording starts afresh this often, so little silence is ever sent.
 export const IDLE_RESTART_MS = 4_000
 // A moment of silence played on the start button's press, which lets the page play sound

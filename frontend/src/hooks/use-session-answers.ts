@@ -22,19 +22,21 @@ export function useSessionAnswers(
   const answered = progress.answered + (chosen.length ? 1 : 0)
   const allAnswered = progress.total > 0 && answered === progress.total
 
-  // Saves the pick, if there is one, then does `then`; when saving fails, only if `always`.
-  // Whether `then` was done.
+  // Saves the pick (`picks`, or the one on screen), if there is one, then does `then`; when
+  // saving fails, only if `always`. Whether `then` was done.
   // Nothing can be picked and the clock can't move on while it's sent, so neither Next nor the
   // clock can move on twice; a failed send keeps the question's real time left.
-  async function sendThen(then: () => Promise<void>, always = false) {
+  async function sendThen(
+    then: () => Promise<void>,
+    always = false,
+    picks = chosen
+  ) {
     setSending(true)
 
     try {
       const saved =
-        chosen.length === 0 ||
-        (await onAnswer(
-          multi ? { picks: chosen } : { option_index: chosen[0] }
-        ))
+        picks.length === 0 ||
+        (await onAnswer(multi ? { picks } : { option_index: picks[0] }))
 
       if (saved || always) {
         await then()
