@@ -1,5 +1,6 @@
 import asyncio
 import uuid
+from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import httpx
@@ -20,7 +21,10 @@ INVITE = SimpleNamespace(
     email="cand@example.com",
     hold_key="k",
     voice=None,
+    status="invited",
+    starting_at=None,
 )
+MARKED_AT = datetime(2026, 10, 30, 9, tzinfo=UTC)
 INTERVIEW = SimpleNamespace(
     set_id=uuid.uuid4(), company_id=uuid.uuid4(), question_seconds=60, topic_limits={}, voice=False
 )
@@ -38,9 +42,20 @@ def steps(monkeypatch):
         return {"id": str(set_id), "topics": [{"id": "t", "title": "Python", "questions": []}]}
 
     async def create(payload):
-        done.append("sessions")
+        done.append(("sessions", payload["question_seconds"], payload["voice"]))
 
         return [{"id": str(uuid.uuid4()), "topic_title": "Python", "status": "in_progress"}]
+
+    async def mark(session, invite_id):
+        done.append("marked")
+
+        # As stored now: the company gave extra time and voice before the start marked it.
+        return SimpleNamespace(
+            **{**vars(INVITE), "extra_time": 50, "voice": True, "starting_at": MARKED_AT}
+        )
+
+    async def clear(session, invite_id, starting_at):
+        done.append(("cleared", starting_at))
 
     async def start(session, invite_id, user_id, name=None):
         done.append("started")
@@ -54,6 +69,8 @@ def steps(monkeypatch):
     monkeypatch.setattr(library, "get_content", content)
     monkeypatch.setattr(rounds, "create_sessions", create)
     monkeypatch.setattr(rounds, "delete_invite_sessions", erase)
+    monkeypatch.setattr(invite_progress, "mark_starting", mark)
+    monkeypatch.setattr(invite_progress, "clear_starting", clear)
     monkeypatch.setattr(invite_progress, "start", start)
 
     return done
@@ -63,7 +80,8 @@ def test_the_invite_is_marked_started_once_its_sessions_exist(steps):
     out = asyncio.run(candidate_start.start_sessions(INVITE, INTERVIEW, USER))
 
     assert [row.topic_title for row in out.sessions] == ["Python"]
-    assert steps == ["sessions", "started"]
+    # Made with the values stored when the start marked the invite, not those read before.
+    assert steps == ["marked", ("sessions", 90, True), "started"]
 
 
 def test_rounds_failing_leaves_the_invite_unstarted_so_expiry_frees_its_credits(steps, monkeypatch):
@@ -75,6 +93,36 @@ def test_rounds_failing_leaves_the_invite_unstarted_so_expiry_frees_its_credits(
     with pytest.raises(httpx.ConnectError):
         asyncio.run(candidate_start.start_sessions(INVITE, INTERVIEW, USER))
 
+    # Unreachable, rounds may have made them: the mark stays, and starting again finishes it.
+    assert steps == ["marked"]
+
+
+def test_rounds_refusing_lifts_the_starting_mark(steps, monkeypatch):
+    """Rounds answered and made nothing: the company may change extra time or the mode again."""
+
+    async def refused(payload):
+        request = httpx.Request("POST", "http://rounds/internal/sessions")
+
+        raise httpx.HTTPStatusError("refused", request=request, response=httpx.Response(500))
+
+    monkeypatch.setattr(rounds, "create_sessions", refused)
+
+    with pytest.raises(httpx.HTTPStatusError):
+        asyncio.run(candidate_start.start_sessions(INVITE, INTERVIEW, USER))
+
+    assert steps == ["marked", ("cleared", MARKED_AT)]
+
+
+def test_an_invite_revoked_before_its_start_makes_no_sessions(steps, monkeypatch):
+    async def gone(session, invite_id):
+        return None
+
+    monkeypatch.setattr(invite_progress, "mark_starting", gone)
+
+    with pytest.raises(HTTPException) as refused:
+        asyncio.run(candidate_start.start_sessions(INVITE, INTERVIEW, USER))
+
+    assert refused.value.status_code == 404
     assert steps == []
 
 
@@ -88,7 +136,7 @@ def test_an_invite_revoked_while_starting_loses_its_sessions(steps, monkeypatch)
         asyncio.run(candidate_start.start_sessions(INVITE, INTERVIEW, USER))
 
     assert refused.value.status_code == 404
-    assert steps == ["sessions", "erased"]
+    assert steps == ["marked", ("sessions", 90, True), "erased"]
 
 
 def test_an_invite_that_expired_while_starting_has_its_credits_set_aside_again(steps, monkeypatch):

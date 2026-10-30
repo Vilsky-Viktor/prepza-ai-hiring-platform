@@ -4,7 +4,7 @@ from prepza_common.auth.user import User
 from prepza_common.config.constants import VOICE_LANGUAGES
 from prepza_common.events.analytics import track
 
-from companies.constants.invites import EXTRA_TIME_OPTIONS, NOT_STARTED, InviteStatus
+from companies.constants.invites import EXTRA_TIME_OPTIONS, InviteStatus
 from companies.core.db import Session
 from companies.helpers.candidates import (
     open_link_token,
@@ -12,6 +12,7 @@ from companies.helpers.candidates import (
     row_actions,
     section_passed,
     takes_voice,
+    unstarted,
 )
 from companies.helpers.logos import logo_path
 from companies.integrations import rounds
@@ -72,13 +73,9 @@ async def scorecard(
         extra_time=invite.extra_time,
         can_edit=editor,
         **row_actions(invite.status),
-        extra_time_options=(
-            list(EXTRA_TIME_OPTIONS) if invite.status in NOT_STARTED and editor else []
-        ),
+        extra_time_options=(list(EXTRA_TIME_OPTIONS) if unstarted(invite) and editor else []),
         voice=takes_voice(invite, interview),
-        mode_editable=(
-            editor and invite.status in NOT_STARTED and interview.language in VOICE_LANGUAGES
-        ),
+        mode_editable=(editor and unstarted(invite) and interview.language in VOICE_LANGUAGES),
         invite_token=open_link_token(invite) if editor else None,
         title=await interview_title(interview),
         company=company.name,

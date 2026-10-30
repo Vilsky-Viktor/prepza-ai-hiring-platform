@@ -93,7 +93,7 @@ async def change(
 
     # The changes and their lines in the action log, in one save.
     async with Session.begin() as session:
-        written = await invites.change(session, invite.id, values, statuses)
+        written = await invites.change(session, invite.id, values, statuses, bool(fixed))
 
         for field, action in CHANGE_ACTIONS.items():
             if written and field in values:

@@ -74,7 +74,7 @@ def written(monkeypatch, world):
     """The changes written to the candidate, as the database would take them."""
     changes = []
 
-    async def change(session, invite_id, values, statuses):
+    async def change(session, invite_id, values, statuses, unstarted=False):
         if world["invite"].status not in statuses:
             return False
 

@@ -7,7 +7,7 @@ from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.constants.events import CANDIDATE_INVITED, CANDIDATE_REMOVED
-from companies.constants.invites import InviteStatus
+from companies.constants.invites import NOT_STARTED, InviteStatus
 from companies.helpers.candidates import new_hold_key
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
@@ -63,6 +63,19 @@ async def upsert(
     await session.execute(
         update(CandidateInvite).where(*this, CandidateInvite.name.is_(None)).values(name=name)
     )
+
+    # In SQL too, so a start making their sessions (starting_at) or done keeps theirs.
+    if mode_chosen:
+        await session.execute(
+            update(CandidateInvite)
+            .where(
+                *this,
+                CandidateInvite.status.in_(NOT_STARTED),
+                CandidateInvite.starting_at.is_(None),
+            )
+            .values(voice=voice)
+        )
+
     invite = await session.scalar(select(CandidateInvite).where(*this))
     revived = invite.status == InviteStatus.EXPIRED
 
@@ -81,9 +94,6 @@ async def upsert(
 
     if theme:
         invite.theme = theme
-
-    if mode_chosen and invite.status == InviteStatus.INVITED:
-        invite.voice = voice
 
     company_id = await session.scalar(
         select(Interview.company_id).where(Interview.id == interview_id)
@@ -210,13 +220,21 @@ async def remove(session: AsyncSession, invite: CandidateInvite, company_id) -> 
     return removed
 
 
-async def change(session: AsyncSession, invite_id: uuid.UUID, values: dict, statuses) -> bool:
-    """Writes an owner or admin's changes to the candidate (`name`, `extra_time`) in one
+async def change(
+    session: AsyncSession, invite_id: uuid.UUID, values: dict, statuses, unstarted: bool = False
+) -> bool:
+    """Writes an owner or admin's changes to the candidate (`name`, `extra_time`, `voice`) in one
     statement, all or none: only while the invite's status is one of `statuses`, so a candidate
-    who started, or was deleted, since it was read keeps theirs. Whether it was written."""
+    who started, or was deleted, since it was read keeps theirs; with `unstarted`, also only
+    while no start is making their sessions (`starting_at`). The update waits for a start
+    holding the row, then checks again. Whether it was written."""
     query = (
         update(CandidateInvite)
-        .where(CandidateInvite.id == invite_id, CandidateInvite.status.in_(statuses))
+        .where(
+            CandidateInvite.id == invite_id,
+            CandidateInvite.status.in_(statuses),
+            *([CandidateInvite.starting_at.is_(None)] if unstarted else []),
+        )
         .values(**values)
     )
 

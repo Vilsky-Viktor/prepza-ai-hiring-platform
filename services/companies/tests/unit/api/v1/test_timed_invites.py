@@ -57,6 +57,9 @@ def start(client, monkeypatch, voice=None, own=None):
             "topics": [{"id": str(uuid.uuid4()), "title": "T", "questions": []}],
         }
 
+    async def fake_mark(session, invite_id):
+        return invite
+
     async def fake_start(session, invite_id, user_id, name=None):
         return True
 
@@ -69,6 +72,7 @@ def start(client, monkeypatch, voice=None, own=None):
     monkeypatch.setattr(invites_router, "attach_set", same)
     monkeypatch.setattr(library, "get_content", fake_content)
     monkeypatch.setattr(invite_progress, "start", fake_start)
+    monkeypatch.setattr(invite_progress, "mark_starting", fake_mark)
     monkeypatch.setattr(rounds, "create_sessions", fake_create)
 
     assert client.post("/invites/token-1/start", json={"pledged": True}).status_code == 200

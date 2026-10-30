@@ -71,6 +71,10 @@ class CandidateInvite(Base):
     # None follows the interview's (interviews.voice). Only one apart from the interview's is
     # kept (helpers/candidates.py voice_override).
     voice: Mapped[bool | None]
+    # When the candidate's latest start began making their sessions with the extra time and mode
+    # above (services/candidate_start.py): from then on neither changes, so their sessions never
+    # miss a change saved meanwhile. Cleared when rounds refused that start; None before.
+    starting_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     # The candidate's final grade, in percent, and whether any integrity signal was recorded:
     # stored when they finish (interview.finished), so the list sorts and filters by them in SQL.
     # None until then.

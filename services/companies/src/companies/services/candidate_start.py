@@ -1,3 +1,4 @@
+import httpx
 from fastapi import HTTPException, status
 from prepza_common.ai.multi_answer import multi_share
 from prepza_common.auth.user import User
@@ -38,18 +39,7 @@ async def start_sessions(
 
     # Sessions first: if rounds fails, the invite stays unstarted, so expiry gives its credits
     # back. Starting again returns the sessions already made.
-    created = await rounds.create_sessions(
-        {
-            "user_id": user.uid,
-            "company_id": str(interview.company_id),
-            "candidate_invite_id": str(invite.id),
-            "question_seconds": candidate_seconds(interview.question_seconds, invite.extra_time),
-            "topics": session_topics(interview, content, await multi_share(get_redis())),
-            # Their own mode when the company set one, else the interview's (a link's
-            # candidate has none).
-            "voice": takes_voice(invite, interview),
-        }
-    )
+    created = await make_sessions(invite, interview, user, content)
 
     async with Session.begin() as session:
         before = await invite_progress.start(session, invite.id, user.uid, clean_name(user.name))
@@ -70,6 +60,40 @@ async def start_sessions(
             for row in created
         ]
     )
+
+
+async def make_sessions(
+    invite: CandidateInvite, interview: Interview, user: User, content: dict
+) -> list[dict]:
+    """Rounds' sessions for the invite, made with its extra time and mode as they are once it's
+    marked as starting: a change saved before is in them, and one after is refused
+    (candidate_changes). When rounds refuses, nothing was made, and the mark is lifted; when
+    it can't be reached, the mark stays, as the sessions may exist: starting again finishes it
+    with the same values."""
+    async with Session.begin() as session:
+        current = await invite_progress.mark_starting(session, invite.id)
+
+    if current is None:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Invite not found")
+
+    payload = {
+        "user_id": user.uid,
+        "company_id": str(interview.company_id),
+        "candidate_invite_id": str(invite.id),
+        "question_seconds": candidate_seconds(interview.question_seconds, current.extra_time),
+        "topics": session_topics(interview, content, await multi_share(get_redis())),
+        # Their own mode when the company set one, else the interview's (a link's candidate
+        # has none).
+        "voice": takes_voice(current, interview),
+    }
+
+    try:
+        return await rounds.create_sessions(payload)
+    except httpx.HTTPStatusError:
+        async with Session.begin() as session:
+            await invite_progress.clear_starting(session, invite.id, current.starting_at)
+
+        raise
 
 
 async def start_invite(token: str, user: User, pledged: bool) -> InviteStartOut:

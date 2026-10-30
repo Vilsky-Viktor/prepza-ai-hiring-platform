@@ -12,6 +12,31 @@ from companies.models.invites import CandidateInvite
 from companies.repositories import candidate_events, outbox
 
 
+async def mark_starting(session: AsyncSession, invite_id: uuid.UUID) -> CandidateInvite | None:
+    """The invite as it is now, locked, marked as starting (`starting_at`) while not started yet,
+    so its extra time and mode are read after any change saved before and no change lands after;
+    None when it's gone. A started one is returned as it is."""
+    stored = await session.get(
+        CandidateInvite, invite_id, with_for_update=True, populate_existing=True
+    )
+
+    if stored is not None and stored.status in NOT_STARTED:
+        stored.starting_at = datetime.now(UTC)
+
+    return stored
+
+
+async def clear_starting(
+    session: AsyncSession, invite_id: uuid.UUID, starting_at: datetime | None
+) -> None:
+    """Lifts the mark of the start that set `starting_at`; a later start's mark stays."""
+    await session.execute(
+        update(CandidateInvite)
+        .where(CandidateInvite.id == invite_id, CandidateInvite.starting_at == starting_at)
+        .values(starting_at=None)
+    )
+
+
 async def start(
     session: AsyncSession, invite_id: uuid.UUID, user_id: str, name: str | None = None
 ) -> str | None:

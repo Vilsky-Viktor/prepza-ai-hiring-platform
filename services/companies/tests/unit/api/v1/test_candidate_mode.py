@@ -44,7 +44,7 @@ def candidate(monkeypatch):
     async def fake_invite(session, interview_id, invite_id):
         return invite if invite.interview_id == interview_id else None
 
-    async def fake_change(session, invite_id, values, statuses):
+    async def fake_change(session, invite_id, values, statuses, unstarted=False):
         saved.append(values)
 
         return invite.status in statuses

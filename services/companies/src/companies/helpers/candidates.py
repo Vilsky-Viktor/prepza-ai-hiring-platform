@@ -122,6 +122,12 @@ def row_actions(status: str) -> dict:
     }
 
 
+def unstarted(invite) -> bool:
+    """Whether what's fixed at the start (extra time, the mode) can still change: not started,
+    and no start making their sessions."""
+    return invite.status in NOT_STARTED and invite.starting_at is None
+
+
 def takes_voice(invite, interview) -> bool:
     """Whether the candidate takes the interview by voice: their own mode when the company set
     one, else the interview's."""

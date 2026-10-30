@@ -118,7 +118,7 @@ def candidate(monkeypatch):
     async def fake_company(session, _id):
         return company
 
-    async def change(session, invite_id, values, statuses):
+    async def change(session, invite_id, values, statuses, unstarted=False):
         saved.append((invite_id, values["name"]))
 
         return invite.status in statuses
