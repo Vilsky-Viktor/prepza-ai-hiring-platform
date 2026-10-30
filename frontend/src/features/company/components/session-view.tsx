@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { useAuth } from "@/providers/auth-provider"
 import { BackLink } from "@/components/common/back-link"
 import { CompanyLogo } from "@/components/common/company-logo"
+import { LoadingSpinner } from "@/components/common/loading-spinner"
 import {
   SessionPlay,
   type SessionPlayProps,
@@ -34,6 +35,7 @@ export function SessionView({
   onFinished?: (candidateId: string) => void
 }) {
   const interviews = useTranslations("interviews")
+  const common = useTranslations("common")
   const back = testHref && (
     <BackLink
       href={testHref.slice(0, testHref.lastIndexOf("/"))}
@@ -81,8 +83,9 @@ export function SessionView({
     return <SessionProblem missing={missing} onRetry={retry} />
   }
 
+  // Loading the session, or its next question: the site's AI loading mark, never a blank page.
   if (!session) {
-    return null
+    return <LoadingSpinner label={common("loading")} />
   }
 
   const progress = topics.reduce(
@@ -96,7 +99,7 @@ export function SessionView({
   if (!question) {
     // A practice round goes on to its results instead.
     if (!done || session.practice) {
-      return null
+      return <LoadingSpinner label={common("loading")} />
     }
 
     return (
