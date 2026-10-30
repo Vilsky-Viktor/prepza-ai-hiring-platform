@@ -1493,7 +1493,7 @@
     },
     "shareReports": {
       "title": "Zobacz, kto jest najlepszy\nUdostępnij w kilka sekund",
-      "text": "Odpowiedzi i wynik każdego kandydata, udostępniane e-mailem lub na czacie.",
+      "text": "Odpowiedzi, wyniki i ostrzeżenia o podejrzanych zachowaniach każdego kandydata, udostępniane e-mailem lub na czacie.",
       "chat": {
         "app": "WhatsApp",
         "placeholder": "Wiadomość",

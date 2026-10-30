@@ -1493,7 +1493,7 @@
     },
     "shareReports": {
       "title": "Scopri chi è il migliore\nCondividilo in pochi secondi",
-      "text": "Le risposte e il punteggio di ogni candidato, condivisi via email o in chat.",
+      "text": "Le risposte, i punteggi e le segnalazioni di integrità di ogni candidato, condivisi via email o in chat.",
       "chat": {
         "app": "WhatsApp",
         "placeholder": "Messaggio",

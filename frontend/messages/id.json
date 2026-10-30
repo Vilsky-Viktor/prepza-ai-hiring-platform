@@ -1493,7 +1493,7 @@
     },
     "shareReports": {
       "title": "Lihat siapa yang terbaik\nBagikan dalam hitungan detik",
-      "text": "Jawaban dan nilai setiap kandidat, dibagikan lewat email atau chat.",
+      "text": "Jawaban, nilai, dan tanda integritas setiap kandidat, dibagikan lewat email atau chat.",
       "chat": {
         "app": "WhatsApp",
         "placeholder": "Ketik pesan",

@@ -5,7 +5,7 @@
     "actions": [
       "Pega la descripción del puesto en el cuadro de arriba o elige una plantilla lista; ajusta los temas, y las preguntas se escriben y revisan por ti.",
       "Invita a candidatos por correo, desde un archivo, con un enlace para compartir en tu oferta de empleo, o desde tu ATS, tu propia plataforma o un asistente de IA.",
-      "Lee los informes: las respuestas y la nota de cada candidato, compartidas por correo o chat con un clic.",
+      "Lee los informes: las respuestas, las notas y las alertas de integridad de cada candidato, compartidas por correo o chat con un clic.",
       "Conecta tu plataforma, tu app de IA y los portales de empleo, recibe novedades en Slack o pide a Mira, la asistente de IA, que haga el trabajo por ti."
     ],
     "tips": [

@@ -1493,7 +1493,7 @@
     },
     "shareReports": {
       "title": "Voyez qui est le meilleur\nPartagez-le en quelques secondes",
-      "text": "Les réponses et la note de chaque candidat, partagées par e-mail ou par chat.",
+      "text": "Les réponses, les notes et les alertes d'intégrité de chaque candidat, partagées par e-mail ou par chat.",
       "chat": {
         "app": "WhatsApp",
         "placeholder": "Message",

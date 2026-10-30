@@ -1493,7 +1493,7 @@
     },
     "shareReports": {
       "title": "Biết ngay ai giỏi nhất\nChia sẻ trong vài giây",
-      "text": "Câu trả lời và điểm của mọi ứng viên, chia sẻ qua email hoặc chat.",
+      "text": "Câu trả lời, điểm và cảnh báo hành vi bất thường của mọi ứng viên, chia sẻ qua email hoặc chat.",
       "chat": {
         "app": "WhatsApp",
         "placeholder": "Tin nhắn",

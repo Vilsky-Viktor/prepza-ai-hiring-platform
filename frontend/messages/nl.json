@@ -1493,7 +1493,7 @@
     },
     "shareReports": {
       "title": "Zie wie de beste is\nDeel het in seconden",
-      "text": "De antwoorden en score van elke kandidaat, gedeeld per e-mail of chat.",
+      "text": "De antwoorden, scores en integriteitssignalen van elke kandidaat, gedeeld per e-mail of chat.",
       "chat": {
         "app": "WhatsApp",
         "placeholder": "Bericht",

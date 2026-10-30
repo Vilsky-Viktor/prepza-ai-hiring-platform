@@ -1493,7 +1493,7 @@
     },
     "shareReports": {
       "title": "Vaata, kes on parim\nJaga sekunditega",
-      "text": "Iga kandidaadi vastused ja hinne, jagatud e-kirja või vestluse kaudu.",
+      "text": "Iga kandidaadi vastused, hinded ja märked kahtlase käitumise kohta, jagatud e-kirja või vestluse kaudu.",
       "chat": {
         "app": "WhatsApp",
         "placeholder": "Sõnum",

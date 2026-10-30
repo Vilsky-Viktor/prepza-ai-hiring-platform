@@ -1493,7 +1493,7 @@
     },
     "shareReports": {
       "title": "See who's best\nShare it in seconds",
-      "text": "Every candidate's answers and grade, shared by email or chat.",
+      "text": "Every candidate's answers, grades and integrity signals, shared by email or chat.",
       "chat": {
         "app": "WhatsApp",
         "placeholder": "Message",
