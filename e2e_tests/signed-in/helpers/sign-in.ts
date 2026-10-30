@@ -38,7 +38,7 @@ export async function signIn(
   const context = await browser.newContext({ storageState: storageOf(session) })
   const page = await context.newPage()
   await visit(page, "/companies")
-  await expect(page.locator("main h1")).toBeVisible()
+  await expect(page.getByRole("main").getByRole("heading", { level: 1 })).toBeVisible()
 
   return page
 }
@@ -180,7 +180,7 @@ async function signInThroughPopup(
     .toBe(true)
   // The companies page, in whatever language the account uses, rendered again as signed in: its
   // sign-in options gone (a busy run may take a while to render it).
-  await expect(page.locator("main h1")).toBeVisible()
+  await expect(page.getByRole("main").getByRole("heading", { level: 1 })).toBeVisible()
   await expect(page.getByTestId(`sign-in-${provider}`)).toHaveCount(0, { timeout: 90_000 })
 
   return page
