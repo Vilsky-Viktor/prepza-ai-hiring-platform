@@ -5,9 +5,12 @@ import { dirname, join } from "node:path"
 import { afterEach, beforeEach, expect, it, vi } from "vitest"
 
 import { VAD_FILES, VAD_OPTIONS } from "@/config/voice"
-import { micDetector } from "@/lib/voice-vad"
+import { micDetector, warmDetector } from "@/lib/voice-vad"
 
-const made = vi.hoisted(() => ({ options: {} as Record<string, unknown> }))
+const made = vi.hoisted(() => ({
+  options: {} as Record<string, unknown>,
+  count: 0,
+}))
 const vad = vi.hoisted(() => ({
   start: vi.fn(async () => undefined),
   pause: vi.fn(async () => undefined),
@@ -18,6 +21,7 @@ vi.mock("@ricky0123/vad-web", () => ({
   MicVAD: {
     new: async (options: Record<string, unknown>) => {
       made.options = options
+      made.count += 1
 
       return vad
     },
@@ -104,4 +108,16 @@ it("names the folder of the installed detector's versions", () => {
   )
 
   expect(VAD_FILES).toBe(`/vad/${version(vadWeb)}-${version(ort)}/`)
+})
+
+it("loads the detector ahead once, without touching a microphone", async () => {
+  const before = made.count
+  await Promise.all([warmDetector(), warmDetector()])
+
+  expect(made.count).toBe(before + 1)
+  expect(made.options).toMatchObject({
+    startOnLoad: false,
+    baseAssetPath: VAD_FILES,
+  })
+  expect(made.options).not.toHaveProperty("getStream")
 })

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { SILENT_WAV } from "@/config/voice"
 import { recordingType } from "@/lib/voice"
 import { openMicrophone } from "@/lib/voice-listening"
+import { warmDetector } from "@/lib/voice-vad"
 
 // The voice interview's access, asked for on its start page: not yet asked, being asked,
 // granted, refused, or a browser that can't record.
@@ -18,7 +19,14 @@ export function useVoiceAccess(on: boolean) {
   const [access, setAccess] = useState<VoiceAccess>("ask")
 
   useEffect(() => {
-    if (!on || !navigator.permissions) {
+    if (!on) {
+      return
+    }
+
+    // The speech detector loads meanwhile, so listening starts as the interview opens.
+    void warmDetector()
+
+    if (!navigator.permissions) {
       return
     }
 

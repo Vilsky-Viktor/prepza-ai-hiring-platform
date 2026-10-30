@@ -1,6 +1,32 @@
 import { VAD_FILES, VAD_MODEL, VAD_OPTIONS } from "@/config/voice"
 import type { Detector, OpenDetector } from "@/lib/voice-listening"
 
+// The detector's model and runtime, from the site's own files.
+const RUNTIME = {
+  model: VAD_MODEL,
+  baseAssetPath: VAD_FILES,
+  onnxWASMBasePath: VAD_FILES,
+  ortConfig: (ort: {
+    env: { logLevel?: string; wasm: { numThreads?: number } }
+  }) => {
+    ort.env.logLevel = "error"
+    // One thread: more need a cross-origin isolated page.
+    ort.env.wasm.numThreads = 1
+  },
+} as const
+let warming: Promise<void> | null = null
+
+/** Loads the detector ahead, on a voice interview's start page, so its WebAssembly is compiled
+ * (once a page) before the interview opens and listening starts at once there. Never throws. */
+export function warmDetector() {
+  warming ??= import("@ricky0123/vad-web")
+    .then(({ MicVAD }) => MicVAD.new({ ...RUNTIME, startOnLoad: false }))
+    .then(() => undefined)
+    .catch(() => undefined)
+
+  return warming
+}
+
 /** Silero VAD (vad-web, on ONNX Runtime's WebAssembly) on the microphone already open: loaded
  * only when voice mode starts, its model and runtime from VAD_FILES (the site's own). It reads
  * `stream` through `context` and never stops the microphone itself. Its steps run one after
@@ -13,7 +39,7 @@ export function micDetector(
     const { MicVAD } = await import("@ricky0123/vad-web")
     const vad = await MicVAD.new({
       ...VAD_OPTIONS,
-      model: VAD_MODEL,
+      ...RUNTIME,
       audioContext: context,
       getStream: async () => stream,
       pauseStream: async () => undefined,
@@ -21,13 +47,6 @@ export function micDetector(
       startOnLoad: false,
       // An audio worklet's script would need its own place in the page's script policy.
       processorType: "ScriptProcessor",
-      baseAssetPath: VAD_FILES,
-      onnxWASMBasePath: VAD_FILES,
-      ortConfig: (ort) => {
-        ort.env.logLevel = "error"
-        // One thread: more need a cross-origin isolated page.
-        ort.env.wasm.numThreads = 1
-      },
       onFrameProcessed: (probabilities, frame) =>
         events.onFrame(probabilities.isSpeech, frame),
       onSpeechStart: events.onSpeechStart,
