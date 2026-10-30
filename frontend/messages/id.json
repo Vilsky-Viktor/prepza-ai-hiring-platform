@@ -912,11 +912,8 @@
       "blocked": "Browser-mu menjeda suara. Nyalakan suara untuk mendengar Mira.",
       "unavailable": "Mira tidak bisa mendengarmu: mikrofonmu tidak tersedia. Izinkan mikrofon untuk situs ini di browser-mu (ikon di samping alamat), lalu muat ulang halaman. Kamu juga bisa memilih jawaban di bawah."
     },
-    "voiceMuted": "Mikrofonmu mati. Pilih jawaban di bawah, atau aktifkan kembali mikrofonmu.",
     "voiceSoundOn": "Nyalakan suara",
     "voiceHeard": "“<bdi>{words}</bdi>”",
-    "voiceMute": "Bisukan",
-    "voiceUnmute": "Batalkan bisu",
     "voiceEnd": "Selesaikan wawancara",
     "voiceFailed": "Jawaban tidak terdengar.\nCoba lagi atau ketuk salah satu opsi.",
     "toTest": "Ke wawancara",

@@ -31,8 +31,6 @@ export function useVoiceInterviewer(
   handlers: VoiceHandlers
 ) {
   const [status, setStatus] = useState<VoiceStatus>("off")
-  // The microphone muted: Mira still reads, but nothing is heard.
-  const [muted, setMuted] = useState(false)
   const [heard, setHeard] = useState<string | null>(null)
   const [problem, setProblem] = useState<string | null>(null)
   const audio = useRef<HTMLAudioElement | null>(null)
@@ -49,7 +47,6 @@ export function useVoiceInterviewer(
     handlers,
     questionId,
     status,
-    muted,
   })
   // Mira asked again for this question's answer: she asks once, then just listens.
   const askedAgain = useRef(false)
@@ -60,7 +57,7 @@ export function useVoiceInterviewer(
   const gotIt = useRef(acknowledgement())
 
   useEffect(() => {
-    latest.current = { sessionId, chosen, handlers, questionId, status, muted }
+    latest.current = { sessionId, chosen, handlers, questionId, status }
   })
 
   /** Plays `path`'s clip to its end, then listens (unless `more` follows at once). The microphone
@@ -93,11 +90,9 @@ export function useVoiceInterviewer(
     hearAgain()
   }
 
-  /** Listening starts afresh, unless muted. */
+  /** Listening starts afresh. */
   function hearAgain() {
-    if (!latest.current.muted) {
-      listener.current?.resume()
-    }
+    listener.current?.resume()
   }
 
   async function understood(answer: VoiceAnswer) {
@@ -227,21 +222,7 @@ export function useVoiceInterviewer(
     void context.current?.close()
     context.current = null
     audio.current?.pause()
-    setMuted(false)
     setStatus("off")
-  }
-
-  function toggleMute() {
-    latest.current.muted = !muted
-    setMuted(!muted)
-
-    if (muted) {
-      listener.current?.resume()
-
-      return
-    }
-
-    listener.current?.pause()
   }
 
   // Each new question is read aloud.
@@ -285,16 +266,16 @@ export function useVoiceInterviewer(
 
   return {
     status,
-    muted,
     heard,
     problem,
     meter,
     start,
-    toggleMute,
     // Before the next question opens: Mira first says she's moving on (an answer was sent, or
     // the time ran out).
     announce: (said: VoiceAnnouncement) => {
       announcement.current = said
+      // Moving on: the last answer heard is cleared at once.
+      setHeard(null)
     },
   }
 }

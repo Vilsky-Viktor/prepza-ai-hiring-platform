@@ -912,11 +912,8 @@
       "blocked": "Brauser peatas heli. Lülita see sisse, et Mirat kuulda.",
       "unavailable": "Mira ei kuule sind: mikrofon pole saadaval. Luba see selle saidi jaoks brauseris (aadressi kõrval olev ikoon) ja laadi leht uuesti. Võid ka valida allpool variandi."
     },
-    "voiceMuted": "Mikrofon on välja lülitatud. Vali allpool variant või lülita mikrofon sisse.",
     "voiceSoundOn": "Lülita heli sisse",
     "voiceHeard": "„<bdi>{words}</bdi>“",
-    "voiceMute": "Vaigista",
-    "voiceUnmute": "Tühista vaigistus",
     "voiceEnd": "Lõpeta intervjuu",
     "voiceFailed": "Vastust ei õnnestunud kuulda.\nProovi uuesti või puuduta valikut.",
     "toTest": "Mine intervjuude juurde",

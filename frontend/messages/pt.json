@@ -912,11 +912,8 @@
       "blocked": "Seu navegador pausou o som. Ative-o para ouvir a Mira.",
       "unavailable": "A Mira não consegue ouvir você: seu microfone não está disponível. Permita-o para este site no navegador (o ícone ao lado do endereço) e recarregue a página. Você também pode escolher uma opção abaixo."
     },
-    "voiceMuted": "Seu microfone está desligado. Escolha uma opção abaixo ou ative o microfone.",
     "voiceSoundOn": "Ativar som",
     "voiceHeard": "“<bdi>{words}</bdi>”",
-    "voiceMute": "Silenciar microfone",
-    "voiceUnmute": "Ativar microfone",
     "voiceEnd": "Concluir entrevista",
     "voiceFailed": "Não deu para ouvir a resposta.\nTente novamente ou toque em uma opção.",
     "toTest": "Ir para as entrevistas",

@@ -57,8 +57,7 @@ async function voiceInterview(
 
 // A voice interview's start page asks for the microphone and sound first: the start works only
 // once they're allowed. Refused, the step says so and offers to try again; allowed, the
-// interview opens with Mira reading the question, then listening, and Mute turns the
-// candidate's microphone off and on.
+// interview opens with Mira reading the question, then listening.
 test("a candidate allows the microphone before a voice interview starts", async ({
   signInAs,
 }) => {
@@ -95,12 +94,6 @@ test("a candidate allows the microphone before a voice interview starts", async 
     const you = candidate.getByTestId("voice-heard").getByTestId("talking-dot")
     await expect(you).toHaveAttribute("data-talking", "true")
     await shot(candidate, "listening")
-
-    // Muted, the candidate isn't heard; unmuted, again.
-    await candidate.getByTestId("voice-mute").click()
-    await expect(you).toHaveAttribute("data-talking", "false")
-    await candidate.getByTestId("voice-mute").click()
-    await expect(you).toHaveAttribute("data-talking", "true")
   })
 })
 

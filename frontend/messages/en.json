@@ -912,11 +912,8 @@
       "blocked": "Your browser paused the sound. Turn it on to hear Mira.",
       "unavailable": "Mira can't hear you: your microphone isn't available. Allow it for this site in your browser (the icon beside the address), then reload the page. You can also choose an option below."
     },
-    "voiceMuted": "Your microphone is off. Choose an option below, or unmute.",
     "voiceSoundOn": "Turn on sound",
     "voiceHeard": "“<bdi>{words}</bdi>”",
-    "voiceMute": "Mute",
-    "voiceUnmute": "Unmute",
     "voiceEnd": "End interview",
     "voiceFailed": "Couldn't hear the answer.\nPlease try again or tap an option.",
     "toTest": "Go to interviews",

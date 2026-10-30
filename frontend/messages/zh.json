@@ -912,11 +912,8 @@
       "blocked": "浏览器暂停了声音。请打开声音，才能听到米拉。",
       "unavailable": "米拉听不到你：麦克风不可用。请在浏览器中允许此网站使用麦克风（地址旁的图标），然后重新加载页面。你也可以在下方选择一个选项。"
     },
-    "voiceMuted": "你的麦克风已关闭。请在下方选择一个选项，或取消静音。",
     "voiceSoundOn": "打开声音",
     "voiceHeard": "“<bdi>{words}</bdi>”",
-    "voiceMute": "静音",
-    "voiceUnmute": "取消静音",
     "voiceEnd": "结束面试",
     "voiceFailed": "没能听清回答。\n请重试或点按一个选项。",
     "toTest": "前往面试",

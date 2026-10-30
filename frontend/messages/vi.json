@@ -912,11 +912,8 @@
       "blocked": "Trình duyệt của bạn đã tạm dừng âm thanh. Hãy bật lên để nghe Mira.",
       "unavailable": "Mira không nghe được bạn: micrô của bạn không khả dụng. Hãy cho phép micrô cho trang này trong trình duyệt (biểu tượng bên cạnh địa chỉ), rồi tải lại trang. Bạn cũng có thể chọn một phương án bên dưới."
     },
-    "voiceMuted": "Micrô của bạn đang tắt. Hãy chọn một phương án bên dưới, hoặc bật tiếng.",
     "voiceSoundOn": "Bật âm thanh",
     "voiceHeard": "“<bdi>{words}</bdi>”",
-    "voiceMute": "Tắt tiếng",
-    "voiceUnmute": "Bật tiếng",
     "voiceEnd": "Kết thúc phỏng vấn",
     "voiceFailed": "Không nghe được câu trả lời.\nHãy thử lại hoặc chạm vào một phương án.",
     "toTest": "Đến buổi phỏng vấn",

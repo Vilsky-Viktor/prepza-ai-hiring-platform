@@ -17,7 +17,7 @@ const NOTHING = () => {}
 
 /** A voice interview's screen (features/company/components/voice-session.tsx), for the landing,
  * with its real parts: the header; Mira with her wave and green dot while she speaks, whose turn
- * it is on the line, and "You" with your wave, Mute and the words she `heard`, on the start side
+ * it is on the line, and "You" with the words she `heard` and your wave, on the start side
  * (30%); the question and its options on the other (70%), stacked on phones; the footer with
  * Next once an option is `picked`. The waves move with speech-like levels while their voice talks (`status`), drawn by the real
  * useVoiceWaves. */
@@ -51,7 +51,6 @@ export function DemoVoiceSession({
           <MiraWave
             waveRef={waves.mira}
             status={status}
-            muted={false}
             picked={picked}
             onSoundOn={NOTHING}
           />
@@ -61,9 +60,6 @@ export function DemoVoiceSession({
             heard={heard}
             problem={null}
             status={status}
-            muted={false}
-            onToggleMute={NOTHING}
-            keepRoom
           />
         </div>
         <DemoQuestionCard

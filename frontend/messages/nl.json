@@ -912,11 +912,8 @@
       "blocked": "Je browser heeft het geluid gepauzeerd. Zet het aan om Mira te horen.",
       "unavailable": "Mira kan je niet horen: je microfoon is niet beschikbaar. Sta hem toe voor deze site in je browser (het pictogram naast het adres) en laad de pagina daarna opnieuw. Je kunt ook hieronder een optie kiezen."
     },
-    "voiceMuted": "Je microfoon staat uit. Kies hieronder een optie of zet je microfoon weer aan.",
     "voiceSoundOn": "Geluid aanzetten",
     "voiceHeard": "‘<bdi>{words}</bdi>’",
-    "voiceMute": "Dempen",
-    "voiceUnmute": "Dempen opheffen",
     "voiceEnd": "Interview afronden",
     "voiceFailed": "Het antwoord was niet te verstaan.\nProbeer het opnieuw of tik op een optie.",
     "toTest": "Naar de interviews",

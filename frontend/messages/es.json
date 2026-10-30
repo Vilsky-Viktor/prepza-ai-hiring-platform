@@ -912,11 +912,8 @@
       "blocked": "Tu navegador pausó el sonido. Actívalo para oír a Mira.",
       "unavailable": "Mira no puede oírte: tu micrófono no está disponible. Permítelo para este sitio en tu navegador (el icono junto a la dirección) y vuelve a cargar la página. También puedes elegir una opción abajo."
     },
-    "voiceMuted": "Tu micrófono está apagado. Elige una opción abajo o activa el micrófono.",
     "voiceSoundOn": "Activar sonido",
     "voiceHeard": "«<bdi>{words}</bdi>»",
-    "voiceMute": "Silenciar micrófono",
-    "voiceUnmute": "Activar micrófono",
     "voiceEnd": "Terminar entrevista",
     "voiceFailed": "No se pudo oír la respuesta.\nInténtalo de nuevo o toca una opción.",
     "toTest": "Ir a las entrevistas",

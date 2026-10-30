@@ -912,11 +912,8 @@
       "blocked": "Votre navigateur a mis le son en pause. Activez-le pour entendre Mira.",
       "unavailable": "Mira ne vous entend pas : votre micro n'est pas disponible. Autorisez-le pour ce site dans votre navigateur (l'icône à côté de l'adresse), puis rechargez la page. Vous pouvez aussi choisir une réponse ci-dessous."
     },
-    "voiceMuted": "Votre micro est coupé. Choisissez une réponse ci-dessous ou réactivez le micro.",
     "voiceSoundOn": "Activer le son",
     "voiceHeard": "« <bdi>{words}</bdi> »",
-    "voiceMute": "Couper le micro",
-    "voiceUnmute": "Réactiver le micro",
     "voiceEnd": "Terminer l'entretien",
     "voiceFailed": "La réponse n'a pas pu être entendue.\nRéessayez ou touchez une réponse.",
     "toTest": "Aller aux entretiens",

@@ -18,26 +18,18 @@ export const FLAT = { transform: `scaleY(${FLAT_BAR})` }
 export function MiraWave({
   waveRef,
   status,
-  muted,
   picked,
   onSoundOn,
 }: {
   // The wave's bars, moved by useVoiceWaves.
   waveRef: Ref<HTMLDivElement>
   status: VoiceStatus
-  muted: boolean
   // An answer is chosen and waits for a yes, or another answer.
   picked: boolean
   onSoundOn: () => void
 }) {
   const t = useTranslations("session")
-  const listening = status === "listening" || status === "hearing"
-
   function statusText() {
-    if (muted && listening) {
-      return t("voiceMuted")
-    }
-
     return status === "listening" && picked
       ? t("voiceStatus.listeningPicked")
       : t(`voiceStatus.${status}`)
@@ -53,15 +45,18 @@ export function MiraWave({
             <TalkingDot talking={status === "speaking"} />
           </span>
         </p>
-        <span className="rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground">
-          {t("miraLabel")}
+        {/* The same height as the words heard under "You", so the two sides line up. */}
+        <span className="flex h-7 items-center">
+          <span className="rounded-full border px-2.5 py-0.5 text-xs text-muted-foreground">
+            {t("miraLabel")}
+          </span>
         </span>
       </div>
       <div
         ref={waveRef}
         aria-hidden
         data-testid="mira-wave"
-        className="flex h-24 w-full items-center justify-between max-sm:h-14"
+        className="flex h-24 w-full items-center justify-between max-sm:h-10"
       >
         {Array.from({ length: MIRA_BARS }, (_, index) => (
           <span

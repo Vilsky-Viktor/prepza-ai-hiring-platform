@@ -912,11 +912,8 @@
       "blocked": "Przeglądarka wstrzymała dźwięk. Włącz go, aby słyszeć Mirę.",
       "unavailable": "Mira Cię nie słyszy: mikrofon jest niedostępny. Zezwól na niego dla tej strony w przeglądarce (ikona obok adresu), a potem odśwież stronę. Możesz też wybrać odpowiedź poniżej."
     },
-    "voiceMuted": "Mikrofon jest wyłączony. Wybierz odpowiedź poniżej albo włącz mikrofon.",
     "voiceSoundOn": "Włącz dźwięk",
     "voiceHeard": "„<bdi>{words}</bdi>”",
-    "voiceMute": "Wycisz",
-    "voiceUnmute": "Wyłącz wyciszenie",
     "voiceEnd": "Zakończ rozmowę",
     "voiceFailed": "Nie udało się usłyszeć odpowiedzi.\nSpróbuj ponownie lub dotknij jednej z opcji.",
     "toTest": "Przejdź do rozmów",

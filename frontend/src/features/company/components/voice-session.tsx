@@ -28,7 +28,7 @@ import { proseAndCode } from "@/lib/question-text"
 /** A voice interview's screen: the session's header on top; on one side Mira (the AI
  * interviewer) with the wave her voice moves and her status, then the candidate's own wave and the
  * answer she heard; on the other the question she reads and its options as the same cards as in click mode; at the
- * bottom only Mute and End (and Next once an option is tapped, for anyone answering without their
+ * bottom only End (and Next once an option is tapped, for anyone answering without their
  * voice). She starts speaking as it
  * opens: the start page allowed the microphone and sound. */
 export function VoiceSession({
@@ -70,10 +70,7 @@ export function VoiceSession({
   })
   // The candidate's wave stays flat while Mira speaks: the microphone hears her from the speakers
   // too, and it isn't listening then.
-  const waves = useVoiceWaves(
-    voice.meter,
-    voice.muted || voice.status === "speaking"
-  )
+  const waves = useVoiceWaves(voice.meter, voice.status === "speaking")
 
   // Mira starts as the screen opens.
   useEffect(() => {
@@ -103,17 +100,18 @@ export function VoiceSession({
       {/* Two parts, 30% and 70%, stacked on phones: the voices (Mira's, then the candidate's with
           the answer heard, a fading line between with whose turn it is) on the start side, the
           question and its options on the other. */}
-      <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] lg:items-start lg:gap-12">
+      <div className="grid grid-cols-1 gap-10 max-sm:gap-5 lg:grid-cols-[minmax(0,3fr)_minmax(0,7fr)] lg:items-start lg:gap-12">
         <section
+          // On phones Mira and the candidate side by side, whose turn under them, so the
+          // question shows sooner.
           aria-label={t("voiceInterviewer")}
           data-testid="voice-interviewer"
           data-status={voice.status}
-          className="flex flex-col items-center gap-12 text-center max-sm:gap-6 lg:sticky lg:top-6 [&>*]:w-full"
+          className="flex flex-col items-center gap-12 text-center max-sm:grid max-sm:grid-cols-2 max-sm:items-start max-sm:gap-x-4 max-sm:gap-y-2 lg:sticky lg:top-6 [&>*]:w-full max-sm:[&>[data-testid=voice-turn]]:order-last max-sm:[&>[data-testid=voice-turn]]:col-span-2"
         >
           <MiraWave
             waveRef={waves.mira}
             status={voice.status}
-            muted={voice.muted}
             picked={chosen.length > 0}
             onSoundOn={() => void voice.start()}
           />
@@ -123,8 +121,6 @@ export function VoiceSession({
             heard={voice.heard}
             problem={voice.problem}
             status={voice.status}
-            muted={voice.muted}
-            onToggleMute={voice.toggleMute}
           />
         </section>
         {question && (

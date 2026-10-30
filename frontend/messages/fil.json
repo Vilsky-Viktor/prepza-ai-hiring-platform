@@ -912,11 +912,8 @@
       "blocked": "Na-pause ng browser mo ang tunog. I-on ito para marinig si Mira.",
       "unavailable": "Hindi ka marinig ni Mira: hindi available ang mikropono mo. Payagan ito para sa site na ito sa browser mo (ang icon sa tabi ng address), tapos i-reload ang page. Puwede ka ring pumili ng opsyon sa ibaba."
     },
-    "voiceMuted": "Naka-off ang mikropono mo. Pumili ng opsyon sa ibaba, o i-unmute.",
     "voiceSoundOn": "I-on ang tunog",
     "voiceHeard": "“<bdi>{words}</bdi>”",
-    "voiceMute": "I-mute",
-    "voiceUnmute": "I-unmute",
     "voiceEnd": "Tapusin ang interview",
     "voiceFailed": "Hindi narinig ang sagot.\nSubukang muli o i-tap ang isang opsyon.",
     "toTest": "Pumunta sa mga interview",

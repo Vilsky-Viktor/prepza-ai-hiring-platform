@@ -912,11 +912,8 @@
       "blocked": "Tarayıcınız sesi duraklattı. Mira'yı duymak için sesi açın.",
       "unavailable": "Mira sizi duyamıyor: mikrofonunuz kullanılamıyor. Tarayıcınızda bu site için mikrofona izin verin (adresin yanındaki simge), ardından sayfayı yeniden yükleyin. Aşağıdan bir seçenek de seçebilirsiniz."
     },
-    "voiceMuted": "Mikrofonunuz kapalı. Aşağıdan bir seçenek seçin veya mikrofonu açın.",
     "voiceSoundOn": "Sesi aç",
     "voiceHeard": "“<bdi>{words}</bdi>”",
-    "voiceMute": "Mikrofonu kapat",
-    "voiceUnmute": "Mikrofonu aç",
     "voiceEnd": "Mülakatı bitir",
     "voiceFailed": "Cevap duyulamadı.\nTekrar deneyin veya bir seçeneğe dokunun.",
     "toTest": "Mülakatlara git",

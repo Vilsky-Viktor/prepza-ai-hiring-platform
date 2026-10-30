@@ -912,11 +912,8 @@
       "blocked": "Il browser ha messo in pausa l'audio. Attivalo per sentire Mira.",
       "unavailable": "Mira non ti sente: il microfono non è disponibile. Consentilo per questo sito nel browser (l'icona accanto all'indirizzo), poi ricarica la pagina. Puoi anche scegliere un'opzione qui sotto."
     },
-    "voiceMuted": "Il microfono è disattivato. Scegli un'opzione qui sotto o riattiva il microfono.",
     "voiceSoundOn": "Attiva l'audio",
     "voiceHeard": "«<bdi>{words}</bdi>»",
-    "voiceMute": "Disattiva il microfono",
-    "voiceUnmute": "Riattiva il microfono",
     "voiceEnd": "Termina il colloquio",
     "voiceFailed": "Non è stato possibile sentire la risposta.\nRiprova o tocca un'opzione.",
     "toTest": "Vai ai colloqui",

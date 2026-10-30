@@ -36,7 +36,7 @@ export function voiceHeight(level: number) {
 }
 
 /** Moves the voice screen's two waves with the real sound: `mira` with what Mira says, `you` with
- * what the microphone hears (flat while `quiet`: muted, or while Mira speaks). One animation
+ * what the microphone hears (flat while `quiet`: while Mira speaks). One animation
  * frame loop writing transforms only, stopped while the page is hidden and never started with
  * reduced motion, where both stay flat lines. Returns the refs for the two waves' bar
  * containers. */
