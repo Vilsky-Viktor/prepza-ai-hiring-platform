@@ -1659,7 +1659,8 @@
         "unanswered": "zaproszenia bez odpowiedzi nic nie kosztują",
         "expire": "kredyty nie wygasają",
         "refund": "zwrot niewykorzystanych opłaconych kredytów"
-      }
+      },
+      "currencies": "{count, plural, one {# waluta} few {# waluty} many {# walut} other {# waluty}}"
     }
   },
   "faq": {

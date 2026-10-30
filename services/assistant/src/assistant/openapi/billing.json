@@ -2717,6 +2717,30 @@
       "type": "integer",
       "title": "Free Candidates"
      },
+     "currencies": {
+      "items": {
+       "$ref": "#/components/schemas/Currency"
+      },
+      "type": "array",
+      "title": "Currencies",
+      "default": [
+       "USD",
+       "EUR",
+       "GBP",
+       "CAD",
+       "AUD",
+       "ILS",
+       "PLN",
+       "JPY",
+       "KRW",
+       "TWD",
+       "HKD",
+       "CHF",
+       "THB",
+       "SGD",
+       "INR"
+      ]
+     },
      "referral_company": {
       "type": "integer",
       "title": "Referral Company"

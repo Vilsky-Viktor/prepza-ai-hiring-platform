@@ -1659,7 +1659,8 @@
         "unanswered": "convites não respondidos não custam nada",
         "expire": "os créditos não expiram",
         "refund": "créditos pagos não usados reembolsáveis"
-      }
+      },
+      "currencies": "{count, plural, one {# moeda} many {# moedas} other {# moedas}}"
     }
   },
   "faq": {

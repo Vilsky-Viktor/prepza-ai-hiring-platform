@@ -47,7 +47,10 @@ def test_a_signed_in_persons_prices_are_in_their_saved_currency(
     signed_in("bob@example.com")
     params = {"country": country} if country else {}
 
-    assert client.get("/catalog", params=params).json()["currency"] == shown
+    catalog = client.get("/catalog", params=params).json()
+    assert catalog["currency"] == shown
+    # Every currency it sells in, whichever is shown, for the landing's count.
+    assert catalog["currencies"] == [currency.value for currency in Currency]
     assert client.get("/me/currency", params=params).json() == {
         "currency": shown,
         "currencies": [currency.value for currency in Currency],

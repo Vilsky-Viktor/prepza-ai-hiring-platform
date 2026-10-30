@@ -1659,7 +1659,8 @@
         "unanswered": "unanswered invites cost nothing",
         "expire": "credits never expire",
         "refund": "unused paid credits refundable"
-      }
+      },
+      "currencies": "{count, plural, one {# currency} other {# currencies}}"
     }
   },
   "faq": {

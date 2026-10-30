@@ -25,6 +25,7 @@ type Catalog = {
   candidate_cents_min: number;
   candidate_cents_max: number;
   free_candidates: number;
+  currencies: string[];
   products: {
     key: string;
     price_cents: number;
@@ -226,6 +227,10 @@ test("the pricing section shows the catalog's top-ups and free candidates", asyn
   await expect(section.getByRole("link").filter({ visible: true }).last()).toHaveAttribute(
     "href",
     "/pricing",
+  );
+  // The last fact under it counts the currencies billing sells in.
+  await expect(section.getByTestId("notes").locator("li").last()).toContainText(
+    String(prices.currencies.length),
   );
 });
 

@@ -1659,7 +1659,8 @@
         "unanswered": "未回答の招待は無料",
         "expire": "クレジットに有効期限なし",
         "refund": "未使用の有料クレジットは返金可能"
-      }
+      },
+      "currencies": "{count, plural, other {#種類の通貨}}"
     }
   },
   "faq": {

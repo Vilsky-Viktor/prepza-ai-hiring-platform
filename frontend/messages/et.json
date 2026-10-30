@@ -1659,7 +1659,8 @@
         "unanswered": "vastamata kutsed ei maksa midagi",
         "expire": "krediidid ei aegu",
         "refund": "kasutamata ostetud krediidid saab tagasi"
-      }
+      },
+      "currencies": "{count, plural, one {# valuuta} other {# valuutat}}"
     }
   },
   "faq": {

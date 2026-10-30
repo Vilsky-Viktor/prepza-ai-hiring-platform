@@ -105,7 +105,12 @@ export async function FreeToStartSection({ catalog }: { catalog: Catalog }) {
             </div>
           </div>
         </div>
-        <NotesLine notes={NOTES.map((key) => t(`notes.${key}`))} />
+        <NotesLine
+          notes={[
+            ...NOTES.map((key) => t(`notes.${key}`)),
+            t("currencies", { count: catalog.currencies.length }),
+          ]}
+        />
       </div>
     </LandingSection>
   )

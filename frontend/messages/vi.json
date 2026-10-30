@@ -1659,7 +1659,8 @@
         "unanswered": "lời mời chưa được trả lời không mất phí",
         "expire": "credit không bao giờ hết hạn",
         "refund": "credit đã mua chưa dùng được hoàn tiền"
-      }
+      },
+      "currencies": "{count, plural, other {# loại tiền tệ}}"
     }
   },
   "faq": {

@@ -932,6 +932,27 @@ export interface components {
       welcome_company: number
       /** Free Candidates */
       free_candidates: number
+      /**
+       * Currencies
+       * @default [
+       *       "USD",
+       *       "EUR",
+       *       "GBP",
+       *       "CAD",
+       *       "AUD",
+       *       "ILS",
+       *       "PLN",
+       *       "JPY",
+       *       "KRW",
+       *       "TWD",
+       *       "HKD",
+       *       "CHF",
+       *       "THB",
+       *       "SGD",
+       *       "INR"
+       *     ]
+       */
+      currencies: components["schemas"]["Currency"][]
       /** Referral Company */
       referral_company: number
       /** Products */

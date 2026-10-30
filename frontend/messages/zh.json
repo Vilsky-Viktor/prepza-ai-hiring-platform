@@ -1659,7 +1659,8 @@
         "unanswered": "未作答的邀请不收费",
         "expire": "点数永不过期",
         "refund": "未使用的付费点数可退款"
-      }
+      },
+      "currencies": "{count, plural, other {# 种货币}}"
     }
   },
   "faq": {

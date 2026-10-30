@@ -1659,7 +1659,8 @@
         "unanswered": "walang bayad ang mga imbitasyong hindi sinagot",
         "expire": "hindi nag-e-expire ang credits",
         "refund": "mare-refund ang hindi nagamit na binayarang credits"
-      }
+      },
+      "currencies": "{count, plural, one {# uri ng pera} other {# uri ng pera}}"
     }
   },
   "faq": {

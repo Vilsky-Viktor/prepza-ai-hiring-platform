@@ -1659,7 +1659,8 @@
         "unanswered": "les invitations sans réponse ne coûtent rien",
         "expire": "les crédits n'expirent jamais",
         "refund": "crédits payés non utilisés remboursables"
-      }
+      },
+      "currencies": "{count, plural, one {# devise} many {# devises} other {# devises}}"
     }
   },
   "faq": {

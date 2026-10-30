@@ -66,6 +66,8 @@ class CatalogOut(BaseModel):
     welcome_company: int
     # The candidates a new company's welcome credits cover.
     free_candidates: int
+    # Every currency prices can be paid in, for "15 currencies".
+    currencies: list[Currency] = list(Currency)
     referral_company: int
     products: list[TopUpOut]
     custom: CustomTopUpOut

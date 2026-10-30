@@ -1659,7 +1659,8 @@
         "unanswered": "onbeantwoorde uitnodigingen kosten niets",
         "expire": "credits verlopen nooit",
         "refund": "ongebruikte betaalde credits terug te krijgen"
-      }
+      },
+      "currencies": "{count, plural, one {# valuta} other {# valuta's}}"
     }
   },
   "faq": {

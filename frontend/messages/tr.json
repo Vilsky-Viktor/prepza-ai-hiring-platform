@@ -1659,7 +1659,8 @@
         "unanswered": "yanıtlanmayan davetler ücretsizdir",
         "expire": "krediler hiç sona ermez",
         "refund": "kullanılmayan ücretli krediler iade edilebilir"
-      }
+      },
+      "currencies": "{count, plural, one {# para birimi} other {# para birimi}}"
     }
   },
   "faq": {
