@@ -104,3 +104,15 @@ async def is_recipient(session: AsyncSession, send_id: uuid.UUID, user_id: str) 
 async def remove_user(session: AsyncSession, user_id: str) -> None:
     """A deleted account's rows go."""
     await session.execute(delete(BulkRecipient).where(BulkRecipient.user_id == user_id))
+
+
+async def of_user(session: AsyncSession, user_id: str) -> list[tuple[BulkSend, BulkRecipient]]:
+    """The notices and campaigns the user was among the recipients of, for their export."""
+    rows = await session.execute(
+        select(BulkSend, BulkRecipient)
+        .join(BulkSend, BulkSend.id == BulkRecipient.send_id)
+        .where(BulkRecipient.user_id == user_id)
+        .order_by(BulkSend.created_at.desc())
+    )
+
+    return [tuple(row) for row in rows]

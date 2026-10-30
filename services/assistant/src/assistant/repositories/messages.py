@@ -140,6 +140,19 @@ async def export(session: AsyncSession, user_id: str) -> list[dict]:
         .order_by(Message.created_at, Message.id)
     )
 
+    messages = list(messages)
+    tools = await session.scalars(
+        select(ToolCall)
+        .where(ToolCall.message_id.in_([message.id for message in messages]))
+        .order_by(ToolCall.created_at, ToolCall.id)
+    )
+    tools_of: dict[UUID, list[dict]] = {}
+
+    for call in tools:
+        tools_of.setdefault(call.message_id, []).append(
+            {"tool": call.tool, "arguments": call.arguments, "state": call.state}
+        )
+
     by_conversation: dict[UUID, list[dict]] = {}
 
     for message in messages:
@@ -152,6 +165,7 @@ async def export(session: AsyncSession, user_id: str) -> list[dict]:
                 "page": message.page,
                 "status": message.status,
                 "vote": message.vote,
+                "tools": tools_of.get(message.id, []),
                 "at": message.created_at,
             }
         )

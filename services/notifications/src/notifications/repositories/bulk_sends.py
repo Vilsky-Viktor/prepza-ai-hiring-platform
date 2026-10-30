@@ -98,7 +98,8 @@ async def save_page(
             .on_conflict_do_nothing()
         )
 
-    send.prepared_after = last
+    # The cursor names the last account read, so it's kept only while the audience is read.
+    send.prepared_after = None if done else last
 
     if done:
         send.prepared_at = datetime.now(UTC)
@@ -126,7 +127,7 @@ async def stop(session: AsyncSession, send_id: uuid.UUID, now: datetime) -> None
     await session.execute(
         update(BulkSend)
         .where(BulkSend.id == send_id, BulkSend.finished_at.is_(None))
-        .values(finished_at=now, stopped_at=now)
+        .values(finished_at=now, stopped_at=now, prepared_after=None)
     )
 
 

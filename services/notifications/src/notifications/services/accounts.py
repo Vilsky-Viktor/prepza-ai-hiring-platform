@@ -30,10 +30,15 @@ async def remove_user(user_id: str, email: str) -> None:
 
 
 async def export(user_id: str) -> dict:
-    """The user's own notifications and the Slack channels they connected."""
+    """The user's own notifications, when they last opened them, the Slack channels they
+    connected, the log of digests and reminders sent to them, and the notices and campaigns they
+    were sent (with what became of each)."""
     async with Session() as session:
         items = await notifications.latest(session, [(Recipient.USER, user_id)], limit=None)
+        seen_at = await notifications.seen_at(session, user_id)
         channels = await slack.made_by(session, user_id)
+        sent = await sent_emails.of_user(session, user_id)
+        bulk = await bulk_recipients.of_user(session, user_id)
 
     return jsonable_encoder(
         {
@@ -46,6 +51,21 @@ async def export(user_id: str) -> dict:
                     "at": row.created_at,
                 }
                 for row in channels
+            ],
+            "notifications_last_opened": seen_at,
+            "emails_sent": [
+                {"kind": row.kind, "about": row.key, "on": row.sent_on} for row in sent
+            ],
+            "emails_to_many": [
+                {
+                    "kind": send.kind,
+                    "about": send.about,
+                    "status": row.status,
+                    "sent_at": row.sent_at,
+                    "unsubscribed_at": row.unsubscribed_at,
+                    "complained_at": row.complained_at,
+                }
+                for send, row in bulk
             ],
         }
     )

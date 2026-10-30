@@ -6,7 +6,7 @@ from prepza_common.http.http import bearer
 from billing.constants.credits import CANDIDATE_CREDITS
 from billing.core.security import service_token
 from billing.repositories import auto_top_ups as auto_top_up_rows
-from billing.repositories import ledger, purchases
+from billing.repositories import ledger, purchases, usage
 from billing.services import auto_top_up_charging, auto_top_ups
 
 AUTH = bearer(service_token("billing"))
@@ -127,8 +127,17 @@ def test_accounts_exports_a_users_purchases_and_automatic_top_ups_with_a_post(cl
             )
         ]
 
+    async def of_user(session, user_id):
+        call = SimpleNamespace(
+            occurred_at=None, action="chat", model="m", company_id="acme", outcome="ok"
+        )
+        hit = SimpleNamespace(occurred_at=None, limit="chat", company_id=None, what=None)
+
+        return [call], [hit]
+
     monkeypatch.setattr(purchases, "purchases_of", purchases_of)
     monkeypatch.setattr(auto_top_up_rows, "of_buyer", of_buyer)
+    monkeypatch.setattr(usage, "of_user", of_user)
 
     response = client.post("/internal/users/ann/export", headers=AUTH)
 
@@ -146,6 +155,10 @@ def test_accounts_exports_a_users_purchases_and_automatic_top_ups_with_a_post(cl
             }
         ],
         "purchases": [],
+        "ai_usage": [
+            {"at": None, "action": "chat", "model": "m", "company_id": "acme", "outcome": "ok"}
+        ],
+        "limits_reached": [{"at": None, "limit": "chat", "company_id": None, "what": None}],
     }
 
 

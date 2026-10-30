@@ -26,9 +26,9 @@ def now() -> datetime:
 class BulkSend(Base):
     """One email to many users (constants/bulk.py BulkKind): a legal notice, about a document's
     version, or a campaign, about its id. Once each: (kind, about) is unique. Its recipients are
-    worked out a page at a time, each run going on after the last id read (`prepared_after`),
-    until the audience ends (`prepared_at`); it's finished when none is pending, or when it was
-    stopped."""
+    worked out a page at a time, each run going on after the last id read (`prepared_after`,
+    an account id, so emptied once the audience ends (`prepared_at`) or the send is stopped);
+    it's finished when none is pending, or when it was stopped."""
 
     __tablename__ = "bulk_sends"
     __table_args__ = (

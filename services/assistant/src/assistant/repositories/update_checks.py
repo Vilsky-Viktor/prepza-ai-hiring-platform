@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from prepza_common.db.db import delete_in_batches
-from sqlalchemy import select
+from sqlalchemy import delete, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
@@ -25,6 +25,11 @@ async def save(session: AsyncSession, connection_id: str, at: datetime) -> None:
     )
 
     await session.execute(query)
+
+
+async def delete_connections(session: AsyncSession, connection_ids: list[str]) -> None:
+    """The checks of these connections (a deleted account's). Safe to repeat."""
+    await session.execute(delete(UpdateCheck).where(UpdateCheck.connection_id.in_(connection_ids)))
 
 
 async def delete_before(sessions: async_sessionmaker, before: datetime) -> int:

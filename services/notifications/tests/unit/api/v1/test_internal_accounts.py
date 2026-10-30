@@ -66,12 +66,24 @@ def test_an_export_holds_the_slack_channels_they_connected(client, monkeypatch):
     async def made_by(session, user_id):
         return [SlackConnection(company_id="c1", team="Acme", channel="#hiring", created_at=None)]
 
+    async def nothing(session, user_id):
+        return []
+
+    async def never_opened(session, user_id):
+        return None
+
     monkeypatch.setattr(notifications, "latest", latest)
+    monkeypatch.setattr(notifications, "seen_at", never_opened)
     monkeypatch.setattr(slack, "made_by", made_by)
+    monkeypatch.setattr(sent_emails, "of_user", nothing)
+    monkeypatch.setattr(bulk_recipients, "of_user", nothing)
 
     response = client.post("/internal/users/u1/export", headers=HEADERS)
 
     assert response.json() == {
         "notifications": [],
         "slack_channels": [{"company_id": "c1", "team": "Acme", "channel": "#hiring", "at": None}],
+        "notifications_last_opened": None,
+        "emails_sent": [],
+        "emails_to_many": [],
     }

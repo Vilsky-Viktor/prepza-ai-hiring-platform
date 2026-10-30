@@ -44,11 +44,13 @@ async def delete_user(user_id: str) -> None:
 
 async def export(user_id: str) -> dict:
     """What the user bought for their companies, the automatic top-ups they turned on (charged
-    to their card once started), and the currency they see prices in."""
+    to their card once started), the currency they see prices in, and the records of their AI
+    use and of the limits that refused them (never the text sent to the AI)."""
     async with Session() as session:
         currency = await currencies.chosen(session, ChoiceOwner.USER, user_id)
         turned_on = await auto_top_up_rows.of_buyer(session, user_id)
         bought = await purchases.purchases_of(session, user_id)
+        calls, hits = await usage.of_user(session, user_id)
 
     return {
         "currency": currency,
@@ -72,5 +74,24 @@ async def export(user_id: str) -> dict:
                 "at": item.created_at,
             }
             for item in bought
+        ],
+        "ai_usage": [
+            {
+                "at": row.occurred_at,
+                "action": row.action,
+                "model": row.model,
+                "company_id": row.company_id,
+                "outcome": row.outcome,
+            }
+            for row in calls
+        ],
+        "limits_reached": [
+            {
+                "at": row.occurred_at,
+                "limit": row.limit,
+                "company_id": row.company_id,
+                "what": row.what,
+            }
+            for row in hits
         ],
     }

@@ -2,7 +2,7 @@ from prepza_common.ai.tracing import tracing_on
 
 from assistant.core.db import Session
 from assistant.integrations import trace_retention
-from assistant.repositories import actions, conversations, messages, oauth
+from assistant.repositories import actions, conversations, messages, oauth, update_checks
 from assistant.schemas.connect import ConnectionOut
 
 
@@ -19,6 +19,8 @@ async def delete_user(user_id: str) -> None:
 
     async with Session.begin() as session:
         await conversations.delete_user(session, user_id)
+        grants = await oauth.of_user(session, user_id)
+        await update_checks.delete_connections(session, [str(grant.id) for grant in grants])
         await oauth.delete_user(session, user_id)
 
     await actions.delete_user(user_id)

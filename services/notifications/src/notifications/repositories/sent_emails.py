@@ -81,3 +81,14 @@ async def forget(sessions, before: date, until: float | None = None) -> None:
 
 async def remove_user(session: AsyncSession, user_id: str) -> None:
     await session.execute(delete(SentEmail).where(SentEmail.user_id == user_id))
+
+
+async def of_user(session: AsyncSession, user_id: str) -> list[SentEmail]:
+    """The user's log of digests and reminders, for their export, newest first."""
+    rows = await session.scalars(
+        select(SentEmail)
+        .where(SentEmail.user_id == user_id)
+        .order_by(SentEmail.sent_on.desc(), SentEmail.id.desc())
+    )
+
+    return list(rows)

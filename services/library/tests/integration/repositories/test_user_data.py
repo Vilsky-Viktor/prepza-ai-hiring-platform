@@ -31,4 +31,5 @@ def test_a_deleted_account_takes_their_votes_and_reports_and_the_export_has_them
     assert exported["question_votes"] == [{"question": "Ledgers question 0?", "vote": -1}]
     [report] = exported["question_reports"]
     assert (report["question"], report["reason"]) == ("Ledgers question 1?", "unclear")
+    assert exported["questions_reported"] == ["Ledgers question 1?"]
     assert (vote, reported, kept) == (None, False, 1)

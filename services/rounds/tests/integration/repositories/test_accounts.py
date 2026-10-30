@@ -2,10 +2,12 @@ import uuid
 
 from sqlalchemy import update
 
+from rounds.constants.integrity import IntegritySignal
 from rounds.core.db import Session as Db
 from rounds.handlers.dispatch import handle
 from rounds.models.answers import Answer
 from rounds.models.sessions import Session
+from rounds.models.signals import Signal
 from rounds.repositories import accounts, sessions
 from rounds.services import accounts as accounts_service
 from tests.integration.factories import created, option_index, topic
@@ -31,6 +33,14 @@ def test_a_deleted_account_takes_their_interview_sessions(run):
 
         async with Db() as db:
             await db.execute(update(Session).where(Session.id == session.id).values(final_score=50))
+            db.add(
+                Signal(
+                    session_id=session.id,
+                    question_id=uuid.UUID(question["id"]),
+                    kind=IntegritySignal.TAB_LEAVE,
+                    away_seconds=12.5,
+                )
+            )
             await db.commit()
 
         exported = await accounts_service.export_user("gone")
@@ -55,6 +65,9 @@ def test_a_deleted_account_takes_their_interview_sessions(run):
     # is.
     assert "correct" not in answer
     assert section["final_score"] == 50
+    # A page leave comes with how long they were away.
+    [leave] = section["page_leaves_and_copies"]
+    assert (leave["kind"], leave["away_seconds"]) == ("tab_leave", 12.5)
     assert session is None
     assert kept is not None
 

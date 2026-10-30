@@ -28,10 +28,18 @@ async def export(session: AsyncSession, user_id: str) -> dict:
         .where(QuestionReport.user_id == user_id)
     )
 
+    # Kept after a reported question is replaced, so its current wording is what they're shown.
+    reported = await session.scalars(
+        select(Question.text)
+        .join(QuestionReporter, QuestionReporter.question_id == Question.id)
+        .where(QuestionReporter.user_id == user_id)
+    )
+
     return {
         "question_votes": [{"question": text, "vote": value} for text, value in votes],
         "question_reports": [
             {"question": text, "reason": reason, "comment": comment, "at": at}
             for text, reason, comment, at in reports
         ],
+        "questions_reported": list(reported),
     }

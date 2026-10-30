@@ -89,3 +89,16 @@ async def drop_old(sessions, now: datetime, usage_days: int, changes_days: int) 
 
     before = now - timedelta(days=changes_days)
     await delete_in_batches(sessions, LimitChange, LimitChange.changed_at < before)
+
+
+async def of_user(session: AsyncSession, user_id: str) -> tuple[list[AiUsage], list[LimitHit]]:
+    """The user's AI calls and limit hits still kept (13 months at most), for their export,
+    oldest first."""
+    calls = await session.scalars(
+        select(AiUsage).where(AiUsage.user_id == user_id).order_by(AiUsage.occurred_at)
+    )
+    hits = await session.scalars(
+        select(LimitHit).where(LimitHit.user_id == user_id).order_by(LimitHit.occurred_at)
+    )
+
+    return list(calls), list(hits)

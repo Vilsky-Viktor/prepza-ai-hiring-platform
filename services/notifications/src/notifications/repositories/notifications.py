@@ -158,6 +158,11 @@ async def unread_count(
     return await session.scalar(query) or 0
 
 
+async def seen_at(session: AsyncSession, user_id: str) -> datetime | None:
+    """When the user last opened the bell."""
+    return await session.scalar(select(Seen.seen_at).where(Seen.user_id == user_id))
+
+
 async def mark_seen(session: AsyncSession, user_id: str, now: datetime) -> None:
     await session.execute(
         insert(Seen)

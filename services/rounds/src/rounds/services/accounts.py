@@ -34,7 +34,12 @@ async def export_user(user_id: str) -> dict:
                     for a in row.answers
                 ],
                 "page_leaves_and_copies": [
-                    {"kind": s.kind, "question_id": s.question_id, "at": s.created_at}
+                    {
+                        "kind": s.kind,
+                        "question_id": s.question_id,
+                        "away_seconds": s.away_seconds,
+                        "at": s.created_at,
+                    }
                     for s in row.signals
                 ],
             }
