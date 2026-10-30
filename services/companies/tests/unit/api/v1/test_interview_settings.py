@@ -121,7 +121,19 @@ def test_a_tests_status_follows_its_candidates_and_the_hired_mark():
     assert interview_status(True, 0) == "hired"
 
 
-def test_keeping_the_questions_out_of_the_bank_is_saved_logged_and_shown(client, saved, audited):
+def test_keeping_the_questions_out_of_the_bank_is_saved_logged_and_shown(
+    client, saved, audited, monkeypatch
+):
+    from companies.repositories import outbox
+    from companies.services import outbox as outbox_service
+
+    sent = []
+
+    async def no_flush():
+        pass
+
+    monkeypatch.setattr(outbox, "add", lambda session, kind, data: sent.append((kind, data)))
+    monkeypatch.setattr(outbox_service, "flush_quietly", no_flush)
     url = f"/interviews/{INTERVIEW_ID}/settings"
     # Shared until the company keeps them out, as the terms say.
     assert client.get(f"/interviews/{INTERVIEW_ID}").json()["keep_private"] is False
@@ -141,3 +153,21 @@ def test_keeping_the_questions_out_of_the_bank_is_saved_logged_and_shown(client,
         )
     ]
     assert client.get(f"/interviews/{INTERVIEW_ID}").json()["keep_private"] is True
+    # Library hears each time, with the interview's set and generation; repeating is harmless.
+    assert [(kind, data["keep_private"], data["interview_id"]) for kind, data in sent] == [
+        ("interview.privacy_changed", True, str(INTERVIEW_ID))
+    ] * 2
+    assert all(data["company_id"] == str(COMPANY_ID) and data["set_id"] for _, data in sent)
+    assert sent[0][1]["changed_at"] <= sent[1][1]["changed_at"]
+
+
+def test_other_settings_send_no_bank_event(client, saved, monkeypatch):
+    from companies.repositories import outbox
+
+    sent = []
+    monkeypatch.setattr(outbox, "add", lambda session, kind, data: sent.append(kind))
+
+    url = f"/interviews/{INTERVIEW_ID}/settings"
+
+    assert client.patch(url, json={"question_seconds": 45}).status_code == 204
+    assert sent == []

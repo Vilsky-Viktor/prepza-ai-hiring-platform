@@ -2,10 +2,12 @@
 questions and shareable link. Each is saved with its line in the action log."""
 
 import secrets
+from datetime import UTC, datetime
 from uuid import UUID
 
 from fastapi import HTTPException, status
 from prepza_common.events.audit_actions import AuditAction
+from prepza_common.events.interviews import INTERVIEW_PRIVACY_CHANGED, InterviewPrivacyChanged
 
 from companies.constants.interviews import NO_QUESTIONS_LEFT, SETTINGS_LOGGED
 from companies.constants.invites import INTERVIEW_NOT_READY, LINK_TOKEN_BYTES
@@ -13,8 +15,9 @@ from companies.core.db import Session
 from companies.helpers.interviews import interview_questions
 from companies.integrations import library
 from companies.models.interviews import Interview
-from companies.repositories import audit, interviews
+from companies.repositories import audit, interviews, outbox
 from companies.schemas.interviews import InterviewSettings
+from companies.services import outbox as outbox_service
 from companies.services.interview_access import ready_for_invites
 
 
@@ -22,11 +25,14 @@ async def update_settings(
     interview: Interview, settings: InterviewSettings, user_id: str, via: str | None
 ) -> None:
     """Saves the settings that were sent, with a line in the log for a changed setting and one
-    for a changed pass mark."""
+    for a changed pass mark, and library told of the bank opt-out when it's sent."""
     sent = settings.model_dump(include=SETTINGS_LOGGED, exclude_none=True)
 
     async with Session.begin() as session:
         await interviews.update_settings(session, interview.id, settings)
+
+        if settings.keep_private is not None:
+            add_privacy_changed(session, interview, settings.keep_private)
 
         if any(value != getattr(interview, key) for key, value in sent.items()):
             await audit.record_interview(
@@ -37,6 +43,25 @@ async def update_settings(
             await audit.record_interview(
                 session, interview, user_id, AuditAction.PASS_MARK_CHANGED, via
             )
+
+    if settings.keep_private is not None:
+        await outbox_service.flush_quietly()
+
+
+def add_privacy_changed(session, interview: Interview, keep_private: bool) -> None:
+    """interview.privacy_changed, sent whenever the opt-out is (repeating the state is harmless):
+    library takes the interview's questions out of the shared bank or lets them back in. Timed
+    after the update took the interview's row lock, so of two changes at once the one saved last
+    is the newer for library too."""
+    data = InterviewPrivacyChanged(
+        interview_id=interview.id,
+        company_id=interview.company_id,
+        set_id=interview.set_id,
+        generation_id=interview.generation_id,
+        keep_private=keep_private,
+        changed_at=datetime.now(UTC),
+    )
+    outbox.add(session, INTERVIEW_PRIVACY_CHANGED, data.model_dump(mode="json"))
 
 
 async def rename(interview: Interview, title: str, user_id: str) -> None:
