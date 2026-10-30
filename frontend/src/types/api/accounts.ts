@@ -445,6 +445,8 @@ export interface components {
       ats_not_invited: boolean
       /** Interview Ready */
       interview_ready: boolean
+      /** Note Added */
+      note_added: boolean
       /** Reminders */
       reminders: boolean
       /** Updates */
@@ -463,6 +465,7 @@ export interface components {
       | "invite_undelivered"
       | "ats_not_invited"
       | "interview_ready"
+      | "note_added"
       | "reminders"
       | "updates"
       | "promotions"

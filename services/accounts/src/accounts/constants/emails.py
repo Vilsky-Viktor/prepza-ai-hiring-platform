@@ -4,7 +4,7 @@ from prepza_common.events.notifications import NotificationKind
 
 # The wording of the email checkboxes (settings and sign-in). Change it whenever that wording
 # changes, so the consent log tells which wording each choice was made under.
-CONSENT_TEXT_VERSION = "2026-10-08"
+CONSENT_TEXT_VERSION = "2026-10-30"
 
 
 class EmailSetting(StrEnum):
@@ -15,6 +15,7 @@ class EmailSetting(StrEnum):
     INVITE_UNDELIVERED = NotificationKind.INVITE_UNDELIVERED.value
     ATS_NOT_INVITED = NotificationKind.ATS_NOT_INVITED.value
     INTERVIEW_READY = NotificationKind.INTERVIEW_READY.value
+    NOTE_ADDED = NotificationKind.NOTE_ADDED.value
     REMINDERS = "reminders"
     UPDATES = "updates"
     PROMOTIONS = "promotions"

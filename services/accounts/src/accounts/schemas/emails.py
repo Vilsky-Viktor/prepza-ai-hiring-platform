@@ -10,6 +10,7 @@ class EmailPreferencesOut(BaseModel):
     invite_undelivered: bool
     ats_not_invited: bool
     interview_ready: bool
+    note_added: bool
     reminders: bool
     updates: bool
     promotions: bool

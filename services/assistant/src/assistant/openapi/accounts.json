@@ -988,6 +988,10 @@
       "type": "boolean",
       "title": "Interview Ready"
      },
+     "note_added": {
+      "type": "boolean",
+      "title": "Note Added"
+     },
      "reminders": {
       "type": "boolean",
       "title": "Reminders"
@@ -1007,6 +1011,7 @@
      "invite_undelivered",
      "ats_not_invited",
      "interview_ready",
+     "note_added",
      "reminders",
      "updates",
      "promotions"
@@ -1020,6 +1025,7 @@
      "invite_undelivered",
      "ats_not_invited",
      "interview_ready",
+     "note_added",
      "reminders",
      "updates",
      "promotions"

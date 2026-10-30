@@ -42,6 +42,7 @@ def test_a_new_user_gets_activity_and_reminders_but_no_marketing(client, signed_
         "invite_undelivered": True,
         "ats_not_invited": True,
         "interview_ready": True,
+        "note_added": True,
         "reminders": True,
         "updates": False,
         "promotions": False,

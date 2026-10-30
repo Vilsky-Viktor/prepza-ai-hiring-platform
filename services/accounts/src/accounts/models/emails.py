@@ -24,6 +24,8 @@ class EmailPreferences(Base):
     invite_undelivered: Mapped[bool] = mapped_column(default=True, server_default=true())
     ats_not_invited: Mapped[bool] = mapped_column(default=True, server_default=true())
     interview_ready: Mapped[bool] = mapped_column(default=True, server_default=true())
+    # The team's new notes in the digest, on like its other kinds.
+    note_added: Mapped[bool] = mapped_column(default=True, server_default=true())
     reminders: Mapped[bool] = mapped_column(default=True, server_default=true())
     updates: Mapped[bool] = mapped_column(default=False, server_default=false())
     promotions: Mapped[bool] = mapped_column(default=False, server_default=false())
