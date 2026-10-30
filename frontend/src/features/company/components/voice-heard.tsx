@@ -1,3 +1,4 @@
+import { cn } from "cn"
 import { MicIcon, MicOffIcon } from "lucide-react"
 import { useTranslations } from "next-intl"
 import type { Ref } from "react"
@@ -20,6 +21,7 @@ export function VoiceHeard({
   status,
   muted,
   onToggleMute,
+  keepRoom = false,
 }: {
   // The wave's bars, moved by useVoiceWaves.
   waveRef: Ref<HTMLDivElement>
@@ -28,6 +30,8 @@ export function VoiceHeard({
   status: VoiceStatus
   muted: boolean
   onToggleMute: () => void
+  // Mute's room kept while it's hidden, so nothing under it moves (the landing's picture).
+  keepRoom?: boolean
 }) {
   const t = useTranslations("session")
   // The microphone takes an answer now: not muted, and Mira isn't speaking or thinking.
@@ -59,10 +63,13 @@ export function VoiceHeard({
         ))}
       </span>
       {/* Mute only while the microphone takes an answer; muted, the way to turn it back on. */}
-      {(listening || muted) && (
+      {(listening || muted || keepRoom) && (
         <Button
           variant="outline"
-          className="h-10 px-5 text-base"
+          className={cn(
+            "h-10 px-5 text-base",
+            !listening && !muted && "invisible"
+          )}
           onClick={onToggleMute}
           data-testid="voice-mute"
         >

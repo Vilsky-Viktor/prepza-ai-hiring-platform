@@ -5,6 +5,7 @@ import Link from "next/link"
 import { type ComponentType, type ReactNode, useEffect, useRef } from "react"
 
 import { MenuCount } from "@/components/common/menu-count"
+import { CURRENT_TAB } from "@/config/tab-nav"
 
 /** A menu item's icon: a lucide icon or another icon sized by its class (McpIcon). */
 export type MenuIcon = ComponentType<{
@@ -113,7 +114,7 @@ export function TabNav({
               : "text-base whitespace-nowrap",
             item.keepCase ? "normal-case" : "lowercase",
             item.id === current
-              ? "text-foreground [border-image:linear-gradient(90deg,color-mix(in_oklch,var(--primary)_78%,black),var(--primary),color-mix(in_oklch,var(--primary)_78%,black))_1]"
+              ? CURRENT_TAB
               : "border-transparent text-muted-foreground hover:text-foreground active:border-border active:text-foreground"
           )
 

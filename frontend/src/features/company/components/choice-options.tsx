@@ -53,7 +53,7 @@ export function ChoiceOptions({
                   aria-hidden
                   data-testid="option-check"
                   className={cn(
-                    "mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-md border-2 border-input",
+                    "flex size-6 shrink-0 items-center justify-center self-center rounded-md border-2 border-input",
                     picked &&
                       "border-primary bg-primary-gradient text-primary-foreground gradient-soft"
                   )}
@@ -61,7 +61,7 @@ export function ChoiceOptions({
                   {picked && <CheckIcon className="size-4" strokeWidth={3} />}
                 </span>
               )}
-              <span className="w-4 shrink-0 text-muted-foreground">
+              <span className="w-4 shrink-0 self-center text-muted-foreground">
                 {String.fromCharCode(65 + index)}
               </span>
               <span className="bidi-auto min-w-0 flex-1">

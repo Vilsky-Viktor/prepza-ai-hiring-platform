@@ -31,7 +31,8 @@ export function AnswerModeSwitch({
     <div
       role="group"
       aria-label={label}
-      className="flex h-14 shrink-0 overflow-hidden rounded-xl bg-surface max-sm:w-full"
+      // Solid in both themes (the dark theme's grey is see-through), as it can sit on a border.
+      className="flex h-14 shrink-0 overflow-hidden rounded-xl bg-background bg-[linear-gradient(var(--surface),var(--surface))] max-sm:w-full"
     >
       {MODES.map(({ voice: option, key, icon: Icon }) => (
         <Button

@@ -32,24 +32,36 @@ export function ScorecardReview({
       getKey={(item) => item.question_id}
       estimateSize={160}
       className={LIST_BOX}
-      renderItem={(item) => (
-        <div className="space-y-4 p-6 max-sm:py-8">
-          {/* On phones whether it was right sits above the question, centered. */}
-          <div className="flex items-start justify-between gap-4 max-sm:flex-col-reverse max-sm:items-center">
-            {/* A multi-answer question tagged as while it was played. */}
-            <div className="min-w-0 space-y-3 max-sm:self-stretch">
-              {item.multi && <MultiChoiceTag />}
-              <div {...languageOf(language)}>
-                <QuestionText text={item.text} className="text-lg font-light" />
-              </div>
-            </div>
-            <ScorecardMark item={item} />
-          </div>
-          <ScorecardAnswer item={item} language={language} />
-          <ScorecardSignals item={item} />
-        </div>
-      )}
+      renderItem={(item) => <ScorecardItem item={item} language={language} />}
     />
+  )
+}
+
+/** One question of a section as the candidate answered it: the question, whether it was right,
+ * what they picked and how fast, and the signals while it was open. */
+export function ScorecardItem({
+  item,
+  language,
+}: {
+  item: ReviewItem
+  language: string
+}) {
+  return (
+    <div className="space-y-4 p-6 max-sm:py-8">
+      {/* On phones whether it was right sits above the question, centered. */}
+      <div className="flex items-start justify-between gap-4 max-sm:flex-col-reverse max-sm:items-center">
+        {/* A multi-answer question tagged as while it was played. */}
+        <div className="min-w-0 space-y-3 max-sm:self-stretch">
+          {item.multi && <MultiChoiceTag />}
+          <div {...languageOf(language)}>
+            <QuestionText text={item.text} className="text-lg font-light" />
+          </div>
+        </div>
+        <ScorecardMark item={item} />
+      </div>
+      <ScorecardAnswer item={item} language={language} />
+      <ScorecardSignals item={item} />
+    </div>
   )
 }
 
