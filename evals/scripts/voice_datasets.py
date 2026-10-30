@@ -1,6 +1,6 @@
 """Checks by code of the speech datasets, for check_datasets.py: the assistant's voice messages,
-voice mode's spoken answers and its readings. Each says what it is, has unique ids and its recordings, and
-returns the texts to check against prompts' examples."""
+voice mode's spoken answers, its readings and the sounds it must ignore. Each says what it is, has
+unique ids and its recordings, and returns the texts to check against prompts' examples."""
 
 import re
 
@@ -75,3 +75,17 @@ def check_voice_reading(problems: list[str]) -> list[str]:
     ]
 
     return [item["text"] for item in data["items"]]
+
+
+def check_voice_sounds(problems: list[str]) -> None:
+    """Each sound has its formula (or a made-up message to play) and its recording."""
+    name = "voice_sounds.json"
+    data = load(name)
+    check_described(name, data, problems)
+    unique_ids(name, data["items"], problems)
+    problems += [
+        f"{name}: {item['id']} has no audio/sound_{item['id']}.ogg (build_voice_sounds.py)"
+        for item in data["items"]
+        if not (DATASETS / "audio" / f"sound_{item['id']}.ogg").exists()
+        or ("source" in item) == ("speech" in item)
+    ]

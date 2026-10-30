@@ -284,6 +284,19 @@ over 10% off; then Ogg Opus with pink noise mixed into most, by ffmpeg) into
 `audio/answer_<id>.ogg`. Graded by code
 (`voice_answers_test.py`): the intent and the options.
 
+## `voice_sounds.json` and `audio/sound_*.ogg` (by hand, 2026-10-30; synthesised by ffmpeg)
+
+23 made-up sounds that aren't speech, what a candidate's microphone hears besides their answer:
+coughs (dry, hoarse, far), throat clearing, a sigh, knocks on a door and a desk, a door slammed
+and one closing next door, thunder (a rumble, a clap), a chair scraped and one creaking, typing,
+a cup, a phone's beeps, two claps, steady room noise (as loud as under the noisy spoken answers)
+and a loud fan, instrumental music loud and quiet, and a television in the next room (two of
+`voice.json`'s made-up messages, muffled and quiet). Each is a formula (`build_voice_sounds.py`:
+ffmpeg's noise and tone sources, envelopes and filters, at levels from far to close), never a
+recording. Graded by code: the browser must never send one (`voice_listening_test.mjs`, with
+the spoken answers of `voice_answers.json` as the speech that must be sent) and the service must
+hear each as noise (`voice_answers_test.py`).
+
 ## `screen.json` (by hand, 2026-10-22)
 
 42 made-up texts a user may paste to start a test, for the check that refuses text naming

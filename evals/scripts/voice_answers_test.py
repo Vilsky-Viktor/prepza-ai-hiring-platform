@@ -3,7 +3,9 @@ recognition would give) and, for the `spoken` ones, also as audio (audio/answer_
 by the service's own speech-to-text first), goes through rounds' own matching call
 (services/voice_match.py), and code grades the intent and the options picked. A wrong match
 (options the candidate didn't say, recorded as theirs) is the failure that matters most; an
-unclear one only asks again.
+unclear one only asks again. datasets/voice_sounds.json's sounds (a cough, a door, thunder: no
+speech) are heard the same way and must come back as noise, which the browser ignores; any other
+intent is a reaction (Mira asks again).
 
     evals/run.sh rounds voice_answers_test.py --label base     # --repeat 2, --only en01,de04
 
@@ -34,6 +36,15 @@ if "EFFORT" in os.environ:
     settings.voice_match_reasoning_effort = os.environ["EFFORT"]
 
 PICKING = (Intent.CHOOSE, Intent.CONFIRM)
+# Sounds are heard as a question of en1 would be, with nothing waiting.
+SOUND = {
+    "sound": True,
+    "language": "en",
+    "question": "en1",
+    "waiting": [],
+    "intent": "noise",
+    "picks": [],
+}
 MAX_CONCURRENCY = 8
 
 
@@ -50,7 +61,8 @@ def question_of(data: dict, item: dict) -> NextQuestion:
 
 
 async def hear(item: dict) -> tuple[str, float]:
-    audio = (DATASETS / "audio" / f"answer_{item['id']}.ogg").read_bytes()
+    name = f"sound_{item['id']}" if "sound" in item else f"answer_{item['id']}"
+    audio = (DATASETS / "audio" / f"{name}.ogg").read_bytes()
     model = settings.transcribe_model
     result = await speech_to_text(
         get_transcribe_client(), model, "audio.ogg", audio, "audio/ogg", item["language"]
@@ -74,6 +86,7 @@ async def one(data: dict, item: dict, spoken: bool, slots: asyncio.Semaphore) ->
         "id": item["id"],
         "language": item["language"],
         "kind": item["kind"],
+        "sound": "sound" in item,
         "spoken": spoken,
         "said": said,
         "intent": intent,
@@ -86,6 +99,11 @@ async def one(data: dict, item: dict, spoken: bool, slots: asyncio.Semaphore) ->
         "cost": (cost(settings.voice_match_model, usage) if usage else 0.0) + heard_cost,
         "seconds": time.monotonic() - started,
     }
+
+
+def sound_scores(rows: list[dict]) -> dict:
+    """Sounds that got a reaction (any intent but noise), the target 0."""
+    return {"reacted": share(sum(r["intent"] != "noise" for r in rows), len(rows))}
 
 
 def scores_of(rows: list[dict]) -> dict:
@@ -113,13 +131,21 @@ async def main(args) -> None:
     data = load(DATASETS / "voice_answers.json")
     items = [i for i in data["items"] if not args.only or i["id"] in args.only.split(",")]
     slots = asyncio.Semaphore(MAX_CONCURRENCY)
+    sounds = [
+        {**SOUND, **sound}
+        for sound in load(DATASETS / "voice_sounds.json")["items"]
+        if not args.only or sound["id"] in args.only.split(",")
+    ]
     jobs = [(item, False) for item in items] + [(i, True) for i in items if "spoken" in i]
+    jobs += [(sound, True) for sound in sounds]
     rows = await asyncio.gather(
         *(one(data, item, spoken, slots) for item, spoken in jobs for _ in range(args.repeat))
     )
+    answers = [r for r in rows if not r["sound"]]
     scores = {
-        "text": scores_of([r for r in rows if not r["spoken"]]),
-        "spoken": scores_of([r for r in rows if r["spoken"]]),
+        "text": scores_of([r for r in answers if not r["spoken"]]),
+        "spoken": scores_of([r for r in answers if r["spoken"]]),
+        "sounds": sound_scores([r for r in rows if r["sound"]]),
     }
     times = sorted(r["seconds"] for r in rows)
     spent = round(sum(r["cost"] for r in rows), 4)
