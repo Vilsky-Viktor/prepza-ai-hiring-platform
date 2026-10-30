@@ -92,4 +92,7 @@ class PracticeSizeOut(BaseModel):
     choose from, standard first."""
 
     questions: int
+    # How many of them each topic gets, by the topic's id: its progress reads 0/N before it's
+    # started.
+    topics: dict[str, int]
     timings: list[PracticeTimingOut]

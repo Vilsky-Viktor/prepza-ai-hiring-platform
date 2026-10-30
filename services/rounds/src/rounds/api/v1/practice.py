@@ -12,9 +12,9 @@ from rounds.helpers.practice import (
     practice_statuses,
     practice_timings,
     round_out,
-    round_size,
     round_summaries,
     topic_progress,
+    topic_sizes,
 )
 from rounds.integrations import library
 from rounds.integrations.redis import get_redis
@@ -55,8 +55,8 @@ async def list_statuses(user: CurrentUser) -> list[PracticeStatusOut]:
 
 @router.get("/{template_id}/size")
 async def practice_size(template_id: UUID) -> PracticeSizeOut:
-    """Public, for the test's page: how many questions a round has (with its level, kept for a
-    few minutes), and the times per question to choose from."""
+    """Public, for the test's page: how many questions a round has, in all and on each topic
+    (with its level, kept for a few minutes), and the times per question to choose from."""
     key = f"practice-size:{template_id}"
     cached = memory_cache.get(key)
 
@@ -66,13 +66,15 @@ async def practice_size(template_id: UUID) -> PracticeSizeOut:
         if content is None:
             raise HTTPException(status.HTTP_404_NOT_FOUND, "Test not found")
 
-        cached = (round_size(content), content["level"])
+        cached = (topic_sizes(content), content["level"])
         memory_cache.put(key, cached, PRACTICE_SIZE_CACHE_SECONDS)
 
-    size, level = cached
+    topics, level = cached
     base = await question_seconds(get_redis(), level)
 
-    return PracticeSizeOut(questions=size, timings=practice_timings(base))
+    return PracticeSizeOut(
+        questions=sum(topics.values()), topics=topics, timings=practice_timings(base)
+    )
 
 
 @router.get("/rounds/{round_id}")

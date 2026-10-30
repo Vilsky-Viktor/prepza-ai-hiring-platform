@@ -309,7 +309,7 @@
      "practice"
     ],
     "summary": "Practice Size",
-    "description": "Public, for the test's page: how many questions a round has (with its level, kept for a\nfew minutes), and the times per question to choose from.",
+    "description": "Public, for the test's page: how many questions a round has, in all and on each topic\n(with its level, kept for a few minutes), and the times per question to choose from.",
     "operationId": "practice_size_practice__template_id__size_get",
     "parameters": [
      {
@@ -2746,6 +2746,13 @@
       "type": "integer",
       "title": "Questions"
      },
+     "topics": {
+      "additionalProperties": {
+       "type": "integer"
+      },
+      "type": "object",
+      "title": "Topics"
+     },
      "timings": {
       "items": {
        "$ref": "#/components/schemas/PracticeTimingOut"
@@ -2757,6 +2764,7 @@
     "type": "object",
     "required": [
      "questions",
+     "topics",
      "timings"
     ],
     "title": "PracticeSizeOut",

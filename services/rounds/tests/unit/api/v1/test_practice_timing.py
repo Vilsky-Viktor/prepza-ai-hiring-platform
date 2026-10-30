@@ -13,10 +13,11 @@ from tests.unit.api.v1.test_practice import TEMPLATE_ID, content, given_ids, sig
 
 
 def test_anyone_sees_how_many_questions_a_round_has(client, monkeypatch, redis):
-    async def fake_content(template_id):
-        two_topics = content(14)
-        two_topics["topics"].append({**content(4)["topics"][0], "title": "SQL"})
+    two_topics = content(14)
+    two_topics["topics"].append({**content(4)["topics"][0], "title": "SQL"})
+    first, second = (topic["id"] for topic in two_topics["topics"])
 
+    async def fake_content(template_id):
         return two_topics
 
     monkeypatch.setattr(library, "practice_content", fake_content)
@@ -25,6 +26,8 @@ def test_anyone_sees_how_many_questions_a_round_has(client, monkeypatch, redis):
     template_id = uuid.uuid4()
     size = {
         "questions": 14,
+        # Each topic's share, so a topic not started yet reads 0 of its count.
+        "topics": {first: 10, second: 4},
         # The times per question to choose from, worked out from the level's seconds.
         "timings": [
             {"id": "standard", "seconds": 40},

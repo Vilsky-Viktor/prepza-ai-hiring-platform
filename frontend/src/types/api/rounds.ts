@@ -129,8 +129,8 @@ export interface paths {
     }
     /**
      * Practice Size
-     * @description Public, for the test's page: how many questions a round has (with its level, kept for a
-     *     few minutes), and the times per question to choose from.
+     * @description Public, for the test's page: how many questions a round has, in all and on each topic
+     *     (with its level, kept for a few minutes), and the times per question to choose from.
      */
     get: operations["practice_size_practice__template_id__size_get"]
     put?: never
@@ -1109,6 +1109,10 @@ export interface components {
     PracticeSizeOut: {
       /** Questions */
       questions: number
+      /** Topics */
+      topics: {
+        [key: string]: number
+      }
       /** Timings */
       timings: components["schemas"]["PracticeTimingOut"][]
     }

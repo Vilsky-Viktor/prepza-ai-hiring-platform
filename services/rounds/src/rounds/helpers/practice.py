@@ -31,11 +31,13 @@ def practice_topics(content: dict, share: float) -> list[TopicQuestions]:
     ]
 
 
-def round_size(content: dict) -> int:
-    """How many questions a round on the template has: up to PRACTICE_TOPIC_QUESTIONS a topic."""
-    return sum(
-        min(PRACTICE_TOPIC_QUESTIONS, len(topic["questions"])) for topic in content["topics"]
-    )
+def topic_sizes(content: dict) -> dict[str, int]:
+    """How many questions a round on the template asks on each topic, by the topic's id: up to
+    PRACTICE_TOPIC_QUESTIONS."""
+    return {
+        str(topic["id"]): min(PRACTICE_TOPIC_QUESTIONS, len(topic["questions"]))
+        for topic in content["topics"]
+    }
 
 
 def timing_seconds(base: int, timing: str) -> int | None:
