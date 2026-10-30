@@ -5,6 +5,7 @@ from prepza_common.auth.user import User
 from rounds.constants.rounds import RoundStatus
 from rounds.core.db import Session as Db
 from rounds.helpers.sessions import (
+    following_question,
     next_session_question,
     seconds_left,
     time_is_up,
@@ -15,18 +16,10 @@ from rounds.repositories import sessions
 from rounds.schemas.interview_flow import InterviewStep
 from rounds.schemas.rounds import NextQuestion
 from rounds.services import outbox as outbox_service
-from rounds.services import sections
-from rounds.services.session_access import get_owned_session, read
+from rounds.services import sections, voice_session
+from rounds.services.session_access import get_owned_session, own_sections, read
 from rounds.services.session_expiry import finish_if_expired
 from rounds.services.session_titles import session_out_titled
-
-
-async def own_sections(row: Session, user: User) -> list[Session]:
-    """The interview's sections, in order."""
-    async with Db() as session:
-        rows = await sessions.list_for_invite(session, row.candidate_invite_id)
-
-    return [item for item in rows if item.user_id == user.uid]
 
 
 async def move_on(done: list[Session], shown: Session | None) -> None:
@@ -48,7 +41,7 @@ async def interview_step(row: Session, user: User) -> InterviewStep:
     clock. A section with no question left is finished on the way, with the next question's
     clock; with none open, the interview is done. The sections are loaded once; only after a
     change (a time-out, a finish) are they read again."""
-    sections_now = await own_sections(row, user)
+    sections_now = await own_sections(row)
     running = [section for section in sections_now if section.status == RoundStatus.IN_PROGRESS]
     # get_owned_session checked the interview's time only if this section was running.
     changed = bool(
@@ -75,8 +68,11 @@ async def interview_step(row: Session, user: User) -> InterviewStep:
 
             continue
 
+        # Voice mode: the clock starts once the question's reading is ready to play.
+        await voice_session.clip_ready(section, question)
         await move_on(done, section)
         question.seconds_left = seconds_left(section, datetime.now(UTC))
+        question.last = following_question(section, sections_now) is None
 
         return await step_out(section, user, question, None if changed else sections_now)
 
@@ -91,7 +87,7 @@ async def interview_step(row: Session, user: User) -> InterviewStep:
 async def finish_interview(row: Session, user: User) -> InterviewStep:
     """The candidate ends the interview: every open section finishes, in one save; unanswered
     questions count as wrong."""
-    open_sections = await own_sections(row, user)
+    open_sections = await own_sections(row)
 
     async with Db.begin() as session:
         await sections.finish_open(session, open_sections)
@@ -108,7 +104,7 @@ async def step_out(
     sections_now: list[Session] | None = None,
 ) -> InterviewStep:
     """`sections_now`: the interview's, when they're current; read again without them."""
-    topics = [topic_out(item) for item in sections_now or await own_sections(section, user)]
+    topics = [topic_out(item) for item in sections_now or await own_sections(section)]
 
     return InterviewStep(
         session=await session_out_titled(section),

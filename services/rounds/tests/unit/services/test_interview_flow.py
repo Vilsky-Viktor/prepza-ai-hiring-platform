@@ -3,13 +3,14 @@ from datetime import UTC, datetime, timedelta
 from uuid import uuid4
 
 import pytest
+from fastapi import HTTPException
 from prepza_common.auth.user import User
 
 from rounds.integrations import library
 from rounds.models.answers import Answer
 from rounds.models.sessions import Session
 from rounds.repositories import sessions
-from rounds.services import interview_flow, sections
+from rounds.services import interview_flow, sections, voice_session
 
 CANDIDATE = User(uid="cand", email="cand@example.com", email_verified=True)
 INVITE_ID = uuid4()
@@ -89,19 +90,61 @@ def test_a_section_with_no_question_left_finishes_and_the_next_opens(interview):
     assert finished == [first.id]
     assert step.session.id == second.id
     assert step.question is not None and step.question.seconds_left == pytest.approx(30, abs=1)
+    # The interview's last question: nothing follows it.
+    assert step.question.last is True
     assert step.done is False
 
 
-def test_a_voice_questions_time_starts_as_it_opens(interview):
+def test_a_question_with_another_section_after_it_isnt_the_last(interview):
     rows, _ = interview
-    rows.append(section())
-    rows[0].voice = True
+    rows += [section(), section()]
 
     step = asyncio.run(interview_flow.interview_step(rows[0], CANDIDATE))
 
-    # Read aloud or not, the question's own 30 seconds start as it opens, as in click mode.
+    assert step.session.id == rows[0].id
+    assert step.question.last is False
+
+
+@pytest.mark.parametrize("reading_fails", [False, True])
+def test_a_voice_questions_clock_starts_once_its_reading_is_ready(
+    interview, monkeypatch, reading_fails
+):
+    rows, _ = interview
+    rows.append(section())
+    rows[0].voice = True
+    made = []
+
+    async def question_clip(row, question):
+        # The clock hasn't started while the reading is made.
+        assert row.question_shown_at is None
+        made.append(datetime.now(UTC))
+
+        if reading_fails:
+            raise HTTPException(502, "OpenAI is down")
+
+    monkeypatch.setattr(voice_session, "question_clip", question_clip)
+
+    step = asyncio.run(interview_flow.interview_step(rows[0], CANDIDATE))
+
+    # The clock starts after the reading is ready, so it and the voice start together; a reading
+    # that failed still starts it, the question unread. Its own 30 seconds are all left.
+    [ready] = made
+    assert rows[0].question_shown_at >= ready
     assert step.question.seconds_left == pytest.approx(30, abs=1)
-    assert rows[0].question_shown_at is not None
+
+
+def test_a_click_question_opens_without_a_reading(interview, monkeypatch):
+    rows, _ = interview
+    rows.append(section())
+
+    async def question_clip(row, question):
+        raise AssertionError("click mode reads nothing aloud")
+
+    monkeypatch.setattr(voice_session, "question_clip", question_clip)
+
+    step = asyncio.run(interview_flow.interview_step(rows[0], CANDIDATE))
+
+    assert step.question.seconds_left == pytest.approx(30, abs=1)
 
 
 def test_the_last_answer_finishes_the_interview(interview):

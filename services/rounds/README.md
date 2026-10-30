@@ -50,18 +50,22 @@ transaction.
 
 ## Voice mode
 
-A section started with `voice` (the interview's setting in companies) is read aloud: its next
-question opens (`POST /sessions/{id}/step`) and starts its clock as in click mode, the reading
-counting in its time, and the question and its options are read by OpenAI's realtime voice
-model (`SPEECH_MODEL`, voice `SPEECH_VOICE`; `prompts/voice_speech.py`
+A section started with `voice` (the interview's setting in companies) is read aloud: the step
+that opens its next question (`POST /sessions/{id}/step`) first makes sure the question's
+reading is kept (read ahead, or made now under the clip's lock), then starts its clock, so the
+clock and the voice start together and the reading counts in its time; a reading that fails
+leaves the question unread, its clock started. The question and its options are read by
+OpenAI's realtime voice model (`SPEECH_MODEL`, voice `SPEECH_VOICE`; `prompts/voice_speech.py`
 tells it to say the text exactly; a reading whose own transcript strays from the text, such as
 an answer added, is made again once, then the question stays unread; kept as Ogg Opus, its eval
 `evals/scripts/voice_reading_test.py`) once per text and voice and kept in
 `voice_clips` for every candidate who gets it (one reading a text: a Redis lock per clip, and a
 request needing a clip being read waits for it); a reading that fails leaves the question
-unread, never stopped. As a question opens, the browser asks for the section's
-next question to be read ahead (`POST .../voice/next-question/prepare`, 204: only the clip cache
-gets it, nothing is sent), so moving on finds it kept. Code blocks and long options aren't read: the interviewer
+unread, never stopped. As a question opens, the browser asks for the question after it to be
+read ahead, the next section's first after a section's last (`POST
+.../voice/next-question/prepare`, 204: only the clip cache gets it, nothing is sent), so moving on
+finds it kept. The step's question says whether it's the interview's `last`: the browser plays
+"Moving on…" or "Time's up…" before asking for the next step, never after the last. Code blocks and long options aren't read: the interviewer
 points to the screen (`helpers/voice_speech.py`). The browser plays the clip
 (`GET .../voice/question`), the interviewer's phrases (`.../voice/phrases/{phrase}`,
 `.../voice/confirmations?picks=`), and sends each spoken answer (`POST .../voice/answers`, at most

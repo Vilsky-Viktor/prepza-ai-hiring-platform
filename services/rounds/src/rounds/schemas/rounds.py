@@ -46,3 +46,6 @@ class NextQuestion(BaseModel):
     # Timed interviews only: seconds until the question counts as wrong. Relative, so the
     # candidate's clock being off doesn't matter.
     seconds_left: float | None = None
+    # The interview's last question: nothing follows it (voice mode says it's moving on only
+    # before another).
+    last: bool = False

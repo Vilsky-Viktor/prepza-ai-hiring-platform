@@ -24,6 +24,7 @@ import { useVoiceInterviewer } from "@/hooks/use-voice-interviewer"
 import { useVoiceWaves } from "@/hooks/use-voice-waves"
 import { languageOf } from "@/lib/locale"
 import { proseAndCode } from "@/lib/question-text"
+import type { VoiceAnnouncement } from "@/types/round"
 
 /** A voice interview's screen: the session's header on top; on one side Mira (the AI
  * interviewer) with the wave her voice moves and her status, then the candidate's own wave and the
@@ -56,12 +57,16 @@ export function VoiceSession({
     useSessionAnswers(questionId, multi, progress, onAnswer)
   const questionRef = useQuestionFocus(questionId)
   const { prose, code } = proseAndCode(question?.text ?? "")
-  // Mira says she's moving on before the next question is read.
-  const sendAndAdvance = () => {
-    voice.announce("next")
+  // Once the answer is saved, Mira says she's moving on (not after the interview's last
+  // question), and only then is the next question asked for: its clock starts as it opens.
+  const moveOn = async (said: VoiceAnnouncement) => {
+    if (!question?.last) {
+      await voice.announce(said)
+    }
 
-    return sendThen(onAdvance)
+    await onAdvance()
   }
+  const sendAndAdvance = () => sendThen(() => moveOn("next"))
   // Spoken answers pick options as taps do, and a spoken yes sends them as Next does.
   const voice = useVoiceInterviewer(session.id, questionId, chosen, {
     onPick: (question, options) => setPick({ question, options }),
@@ -94,10 +99,11 @@ export function VoiceSession({
           setTimedOut(question?.question_id ?? null)
           // The question's time is over even if its pick can't be saved: the next opens. An
           // answer spoken in time is waited for, and what it picked is saved without asking.
-          voice.announce("time-up")
           void voice
             .timeUp()
-            .then((picks) => sendThen(onAdvance, true, picks ?? undefined))
+            .then((picks) =>
+              sendThen(() => moveOn("time-up"), true, picks ?? undefined)
+            )
         }}
       />
       {/* Two parts, 30% and 70%, stacked on phones: the voices (Mira's, then the candidate's with

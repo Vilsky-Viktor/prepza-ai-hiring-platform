@@ -6,6 +6,7 @@ from rounds.helpers.question_times import add_times
 from rounds.helpers.rounds import next_question, shuffled
 from rounds.models.sessions import Session
 from rounds.schemas.library import TopicQuestions
+from rounds.schemas.rounds import NextQuestion
 from rounds.schemas.sessions import SessionOut, SessionTopicOut
 
 
@@ -117,3 +118,22 @@ def session_out(
 
 # Sessions use the same next-question shape as rounds.
 next_session_question = next_question
+
+
+def following_question(row: Session, sections: list[Session]) -> NextQuestion | None:
+    """The question after the one waiting in `row`: the section's next, or else the first of the
+    interview's next running section (`sections`, in order: the step opens the first running one
+    with a question). None after the interview's last."""
+    question = next_session_question(row, after=1)
+
+    if question is not None:
+        return question
+
+    for section in sections:
+        if section.id != row.id and section.status == RoundStatus.IN_PROGRESS:
+            question = next_session_question(section)
+
+            if question is not None:
+                return question
+
+    return None

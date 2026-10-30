@@ -962,6 +962,11 @@ export interface components {
       seconds?: number | null
       /** Seconds Left */
       seconds_left?: number | null
+      /**
+       * Last
+       * @default false
+       */
+      last: boolean
     }
     /** OpenProfileOut */
     OpenProfileOut: {

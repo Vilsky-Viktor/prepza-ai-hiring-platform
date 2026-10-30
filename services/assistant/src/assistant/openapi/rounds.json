@@ -2354,6 +2354,11 @@
        }
       ],
       "title": "Seconds Left"
+     },
+     "last": {
+      "type": "boolean",
+      "title": "Last",
+      "default": false
      }
     },
     "type": "object",

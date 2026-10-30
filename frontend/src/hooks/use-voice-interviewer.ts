@@ -53,8 +53,6 @@ export function useVoiceInterviewer(
   const askedAgain = useRef(false)
   // The last answer was confirmed by voice: if the interview ends with it, Mira says goodbye.
   const confirmed = useRef(false)
-  // What Mira says before the next question: an answer was sent, or the time ran out.
-  const announcement = useRef<VoiceAnnouncement | null>(null)
   const gotIt = useRef(acknowledgement())
 
   useEffect(() => {
@@ -255,15 +253,7 @@ export function useVoiceInterviewer(
     confirmed.current = false
     setHeard(null)
     setProblem(null)
-    const said = announcement.current
-    announcement.current = null
-    void (async () => {
-      if (said) {
-        await say(`${sessionId}/voice/phrases/${said}`, true)
-      }
-
-      await say(`${sessionId}/voice/question`)
-    })()
+    void say(`${sessionId}/voice/question`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [questionId])
 
@@ -289,12 +279,14 @@ export function useVoiceInterviewer(
     problem,
     meter,
     start,
-    // Before the next question opens: Mira first says she's moving on (an answer was sent, or
-    // the time ran out).
+    // Before the next question is asked for: Mira says she's moving on (an answer was sent, or
+    // the time ran out); resolves once she has said it, so the next question's clock, which the
+    // server starts as it opens, starts as she reads it.
     announce: (said: VoiceAnnouncement) => {
-      announcement.current = said
       // Moving on: the last answer heard is cleared at once.
       setHeard(null)
+
+      return say(`${latest.current.sessionId}/voice/phrases/${said}`, true)
     },
   }
 }

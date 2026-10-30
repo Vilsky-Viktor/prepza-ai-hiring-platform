@@ -22,6 +22,14 @@ async def read(session_id: UUID) -> RoundSession | None:
         return await sessions.get(session, session_id)
 
 
+async def own_sections(row: RoundSession) -> list[RoundSession]:
+    """The sections of `row`'s interview, the candidate's own, in order."""
+    async with Session() as session:
+        rows = await sessions.list_for_invite(session, row.candidate_invite_id)
+
+    return [item for item in rows if item.user_id == row.user_id]
+
+
 async def get_own_session(session_id: UUID, user: User) -> RoundSession:
     """The candidate's own session, as it is: for requests on the side of the interview (rating
     or reporting a question, a page leave), which must never time out the question on screen, or
