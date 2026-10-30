@@ -21,10 +21,17 @@ test("owner creates a company, an interview from a template and invites a candid
   const start = owner.getByRole("main").locator("form").first()
   await start.getByRole("textbox").fill("Backend developer: SQL basics and indexes.")
   await start.locator('button[type="submit"]').click()
-  // No company to pick: only the new company's name to enter.
-  await expect(start.locator("textarea")).toHaveCount(0)
-  await expect(start.getByRole("radiogroup")).toHaveCount(0)
-  await expect(start.getByRole("textbox")).toBeVisible()
+  // A window over the box asks which company; with none yet, only the new company's name.
+  const companyStep = owner.getByRole("dialog")
+  await expect(companyStep).toBeVisible()
+  await expect(companyStep.getByRole("radiogroup")).toHaveCount(0)
+  await expect(companyStep.getByRole("textbox")).toBeVisible()
+  // Cancel closes it, the description kept as typed.
+  await companyStep.getByRole("button").first().click()
+  await expect(companyStep).toHaveCount(0)
+  await expect(start.getByRole("textbox")).toHaveValue("Backend developer: SQL basics and indexes.")
+  await start.locator('button[type="submit"]').click()
+  await expect(companyStep.getByRole("textbox")).toBeVisible()
   await shot(owner, "home-company-step", false)
 
   const name = `E2E Owner ${randomId()}`
@@ -38,6 +45,22 @@ test("owner creates a company, an interview from a template and invites a candid
   await expect(owner.getByRole("heading", { name })).toBeVisible()
   await expect(owner.getByRole("main").getByRole("listitem")).toHaveCount(0)
   await shot(owner, "interviews-empty")
+
+  // With a company, the window lists it, chosen at first, before "a new company"; Cancel
+  // keeps the description again.
+  await visit(owner, "/")
+  await start.getByRole("textbox").fill("Data analyst: SQL joins.")
+  await start.locator('button[type="submit"]').click()
+  const choices = companyStep.getByRole("radiogroup").getByRole("radio")
+  await expect(choices).toHaveCount(2)
+  await expect(choices.first()).toContainText(name)
+  await expect(choices.first()).toHaveAttribute("aria-checked", "true")
+  await expect(choices.last()).toHaveAttribute("aria-checked", "false")
+  await expect(companyStep.getByRole("textbox")).toHaveCount(0)
+  // Cancel, the first of the window's buttons (the companies are radios).
+  await companyStep.getByRole("button").first().click()
+  await expect(companyStep).toHaveCount(0)
+  await expect(start.getByRole("textbox")).toHaveValue("Data analyst: SQL joins.")
 
   // Templates tab: "Use template" on each row. Only templates a company can
   // copy are listed, so using one never fails: a throwaway one with too few questions isn't,

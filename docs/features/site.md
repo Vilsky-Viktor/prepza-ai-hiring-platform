@@ -20,7 +20,7 @@ The site follows the device's light or dark setting until a visitor picks a them
 The first screen: "Test everyone. Hire the best.", what prepza does and its price per candidate, each sentence on a line of its own, an info button that explains in a dialog how prepza works and a play icon under it (named in its tooltip, with a blue ring pulsing out of it, left out with reduced motion) that plays prepza's video in a window on the page (YouTube's no-cookie player, loaded only when the window opens): in the margin on the title's start side on wide screens, each with a thin line drawn out from under it and rising at an angle, "how it works" and "watch video" written along it; side by side above the title, without the lines, on narrower ones; then the box to paste a job description. From tablets up, four thin wires run from the window's edges into the box and out of it, with candidates moving along them. Under the box, a short line of facts: any job, the number of languages, how long an interview takes to be ready, and no subscription. At the bottom of the first screen, two blue chevrons fading down one after the other lead on to how it works. Submitting the box:
 
 1. signs you in if needed,
-2. asks which company the interview is for (or its name, for a first company),
+2. asks, in a window over the box, which company the interview is for (the first one chosen at first; or its name, for a first company), Cancel closing it with the description kept,
 3. starts the generation.
 
 Below, the page follows a company's hiring, one section per screen, each with a short title, one sentence and a live picture that plays while it's on screen:
