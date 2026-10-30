@@ -38,6 +38,10 @@ class Settings(ServiceSettings):
     # the user waits on it.
     screen_model: str = "gpt-6-luna"
     screen_reasoning_effort: ReasoningEffort = "none"
+    # The shared question bank's filter: whether a company's question names or reveals anything
+    # about an organisation or a person before it's shared (daily, a few questions).
+    bank_filter_model: str = "gpt-6.1-sol"
+    bank_filter_reasoning_effort: ReasoningEffort = "low"
     # Embeds topics (to find bank questions to reuse) and questions (to drop repeats). Stored
     # vectors of two models can't be compared: a new one needs every topic embedded again
     # (jobs/embed_templates.py), at the dimensions library's column holds.

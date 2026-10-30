@@ -29,7 +29,9 @@ locals {
     generation-retention = { service = "generation-worker", path = "/internal/schedules/retention", cron = "0 3 * * *" }
     # Weekly, Monday morning: last week's flagged and replaced questions turned into proposed
     # general rules for the admin zone's patterns tab. Created paused (paused_schedules).
-    quality-patterns    = { service = "generation-worker", path = "/internal/schedules/patterns", cron = "0 5 * * 1" }
+    quality-patterns = { service = "generation-worker", path = "/internal/schedules/patterns", cron = "0 5 * * 1" }
+    # Companies' proven questions checked for the shared question bank; those that pass join it.
+    bank-filter         = { service = "generation-worker", path = "/internal/schedules/bank-filter", cron = "30 3 * * *" }
     candidate-retention = { service = "companies", path = "/internal/schedules/retention", cron = "15 3 * * *" }
     invite-expiry       = { service = "companies", path = "/internal/schedules/invite-expiry", cron = "30 3 * * *" }
     # Candidates erased in the last 14 days, erased again if a restore brought them back.

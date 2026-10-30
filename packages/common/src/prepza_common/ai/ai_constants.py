@@ -50,6 +50,7 @@ ACTIONS = {
     "campaign_translation": "generation",
     "quality_patterns": "generation",
     "code_tags": "generation",
+    "bank_filter": "generation",
     "assistant_message": "assistant",
     "assistant_title": "assistant",
     "transcription": "assistant",
@@ -69,6 +70,7 @@ PREPZA_ACTIONS = {
     "campaign_translation",
     "quality_patterns",
     "code_tags",
+    "bank_filter",
 }
 
 

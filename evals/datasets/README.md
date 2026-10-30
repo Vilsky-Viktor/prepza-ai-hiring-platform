@@ -261,6 +261,17 @@ goal, a posting with a misleading first line) and 12 to refuse (a recipe, a news
 gibberish, a shopping list, small talk, instructions aimed at an AI in three languages). Graded
 by code (`screen_test.py`); a false refusal fails.
 
+## `bank_filter.json` (by hand, 2026-10-30)
+
+55 made-up companies' questions (topic, text, options) for the shared question bank's filter: 30
+general ones that may join (knowledge, widely known products such as Excel, AWS, Jira and
+Salesforce, public standards and laws, public places and figures as the subject, "Company X"
+placeholders, a generic "our warehouse") and 25 that must stay out (an invented employer, client,
+internal tool, code name, policy, office or figure, private people's names, an email, a web
+address, a phone number). English and German, Japanese, Chinese, Korean, Arabic, Hebrew, Thai,
+Hindi, Russian, Ukrainian, Polish, Spanish and French; every name is invented. Graded by code
+(`bank_filter_test.py`); one private question kept is a leak.
+
 ## `code_languages.json` (by hand, 2026-10-22)
 
 36 made-up examples as questions show them, each with the notation the site should color it in

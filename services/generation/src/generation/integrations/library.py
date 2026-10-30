@@ -7,6 +7,7 @@ from prepza_common.http.http import bearer
 
 from generation.config import settings
 from generation.core.security import service_token
+from generation.schemas.bank_filter import BankCandidate, BankCheck
 from generation.schemas.library import ReuseIn
 from generation.schemas.patterns import QualitySignal
 from generation.schemas.regenerate import QuestionContext, RegeneratedQuestion
@@ -123,7 +124,7 @@ async def find_reusable(request: ReuseIn) -> list[QuestionIn]:
     """Proven questions from other tests on a similar topic."""
     response = await http.get_client().post(
         f"{settings.library_url}/internal/reuse",
-        json=request.model_dump(),
+        json=request.model_dump(mode="json"),
         headers=bearer(service_token("library")),
     )
 
@@ -208,3 +209,30 @@ async def quality_signals(days: int) -> list[QualitySignal]:
     response.raise_for_status()
 
     return [QualitySignal.model_validate(item) for item in response.json()]
+
+
+async def bank_candidates(limit: int, after: UUID | None = None) -> list[BankCandidate]:
+    """Companies' questions the bank filter hasn't checked as they read now, in id order after
+    `after`."""
+    params = {"limit": limit} | ({"after": str(after)} if after else {})
+    response = await http.get_client().get(
+        f"{settings.library_url}/internal/bank/candidates",
+        params=params,
+        headers=bearer(service_token("library")),
+    )
+
+    response.raise_for_status()
+
+    return [BankCandidate.model_validate(item) for item in response.json()]
+
+
+async def save_bank_checks(checks: list[BankCheck]) -> None:
+    """The filter's verdicts: library keeps them and adds the proven ones that passed to the
+    bank."""
+    response = await http.get_client().put(
+        f"{settings.library_url}/internal/bank/checks",
+        json=[check.model_dump(mode="json") for check in checks],
+        headers=bearer(service_token("library")),
+    )
+
+    response.raise_for_status()

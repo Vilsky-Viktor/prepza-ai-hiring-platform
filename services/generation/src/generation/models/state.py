@@ -63,6 +63,9 @@ class State(TypedDict):
     language: str
     # A template (public practice): extraction leaves out anything naming the company.
     template: bool
+    # The interview's company (None for a template): reuse offers it the shared bank's questions,
+    # never its own. Runs started before it was kept have none.
+    company_id: str | None
     # Questions each topic gets, from Controls as the run started, so the whole run holds one.
     topic_size: int
     title: str

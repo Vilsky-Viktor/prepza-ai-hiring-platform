@@ -50,6 +50,10 @@ def get_screen_llm() -> ChatOpenAI:
     )
 
 
+def get_bank_filter_llm() -> ChatOpenAI:
+    return build_llm(settings.bank_filter_model, settings.bank_filter_reasoning_effort)
+
+
 def get_code_tags_llm() -> ChatOpenAI:
     return build_llm(settings.code_tags_model, settings.code_tags_reasoning_effort)
 

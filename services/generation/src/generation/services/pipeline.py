@@ -43,6 +43,8 @@ async def run_pipeline(graph, generation: Generation, resume: dict | None) -> No
             "input_text": generation.text,
             "language": generation.language,
             "template": template,
+            # A company's interview reuses the shared bank's questions, never its own.
+            "company_id": None if template else str(generation.company_id),
             "topic_size": await limit(get_redis(), topic_size_name(template)),
         }
         graph_input = values

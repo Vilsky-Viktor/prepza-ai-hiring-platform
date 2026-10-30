@@ -188,3 +188,28 @@ def test_a_key_check_run_frees_only_its_own_lock(monkeypatch):
     asyncio.run(schedules.key_check_batches())
 
     assert redis.values == {"lock:key-check-batches": "next run"}
+
+
+@pytest.mark.parametrize("company_id", [None, str(uuid.uuid4())])
+def test_only_a_companys_interview_asks_the_shared_bank_naming_its_company(company_id, monkeypatch):
+    """A template (no company) reuses only templates' questions; an interview's company is sent
+    so the bank never offers it its own questions."""
+    asked = []
+
+    async def find_reusable(request):
+        asked.append(request.company_id)
+
+        return []
+
+    monkeypatch.setattr(llm, "get_embeddings", lambda: Recorder())
+    monkeypatch.setattr(library, "find_reusable", find_reusable)
+    state = {
+        "topics": [{"main_topic": "Python", "subtopics": []}],
+        "level": "mid",
+        "language": "en",
+        "company_id": company_id,
+    }
+
+    asyncio.run(find_reused(state))
+
+    assert [str(found) if found else None for found in asked] == [company_id]

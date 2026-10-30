@@ -1,0 +1,777 @@
+{
+ "about": "Made-up companies' questions for the shared question bank's filter (generation's bank_filter): general ones (knowledge, widely known products, standards, laws, public places and figures as the subject, made-up placeholders, a generic 'our') that may join the bank, and private ones naming or revealing an employer, its clients, staff, internal tools, code names, policies, sites or figures, a private person, an email, a web address or a phone number, which must stay out. Every name is invented. Graded by code; one private question kept is a leak.",
+ "built": "2026-10-30",
+ "model": "by hand",
+ "items": [
+  {
+   "id": "b01",
+   "language": "en",
+   "topic": "SQL joins",
+   "question": "Which join returns only the rows that have a match in both tables?",
+   "options": [
+    "INNER JOIN",
+    "LEFT JOIN",
+    "FULL OUTER JOIN",
+    "CROSS JOIN"
+   ],
+   "general": true,
+   "why": "plain knowledge"
+  },
+  {
+   "id": "b02",
+   "language": "en",
+   "topic": "Spreadsheets",
+   "question": "In Excel, which function looks up a value in the first column of a range and returns a value from another column?",
+   "options": [
+    "VLOOKUP",
+    "SUMIF",
+    "CONCAT",
+    "ROUND"
+   ],
+   "general": true,
+   "why": "widely known product"
+  },
+  {
+   "id": "b03",
+   "language": "en",
+   "topic": "Cloud",
+   "question": "Which AWS service stores objects in buckets?",
+   "options": [
+    "S3",
+    "EC2",
+    "Lambda",
+    "RDS"
+   ],
+   "general": true,
+   "why": "widely known product"
+  },
+  {
+   "id": "b04",
+   "language": "en",
+   "topic": "Customer service",
+   "question": "A customer asks for a refund two days after the return window closed. What is the best first step?",
+   "options": [
+    "Listen and check whether an exception is possible",
+    "Refuse at once",
+    "Ignore the request",
+    "Promise a refund without checking"
+   ],
+   "general": true,
+   "why": "made-up scenario"
+  },
+  {
+   "id": "b05",
+   "language": "en",
+   "topic": "Literature",
+   "question": "Who wrote 'Hamlet'?",
+   "options": [
+    "William Shakespeare",
+    "Charles Dickens",
+    "Jane Austen",
+    "Mark Twain"
+   ],
+   "general": true,
+   "why": "public figure as subject"
+  },
+  {
+   "id": "b06",
+   "language": "en",
+   "topic": "Logistics",
+   "question": "Company X ships 120 parcels a day with Tool Y. Which metric best shows on-time delivery?",
+   "options": [
+    "Share of parcels delivered by the promised date",
+    "Number of drivers",
+    "Fuel price",
+    "Warehouse size"
+   ],
+   "general": true,
+   "why": "placeholders"
+  },
+  {
+   "id": "b07",
+   "language": "en",
+   "topic": "Geography for travel agents",
+   "question": "Which city is the capital of Australia?",
+   "options": [
+    "Canberra",
+    "Sydney",
+    "Melbourne",
+    "Perth"
+   ],
+   "general": true,
+   "why": "public place as subject"
+  },
+  {
+   "id": "b08",
+   "language": "en",
+   "topic": "Law",
+   "question": "Under the GDPR, how long does a controller normally have to answer a subject access request?",
+   "options": [
+    "One month",
+    "One week",
+    "Six months",
+    "One year"
+   ],
+   "general": true,
+   "why": "public law"
+  },
+  {
+   "id": "b09",
+   "language": "en",
+   "topic": "Python",
+   "question": "What does `len([1, 2, 3])` return?",
+   "options": [
+    "3",
+    "2",
+    "6",
+    "An error"
+   ],
+   "general": true,
+   "why": "code"
+  },
+  {
+   "id": "b10",
+   "language": "en",
+   "topic": "Accounting",
+   "question": "Under IFRS 16, how does a lessee record most leases?",
+   "options": [
+    "As a right-of-use asset and a lease liability",
+    "As an expense only",
+    "Off the balance sheet",
+    "As revenue"
+   ],
+   "general": true,
+   "why": "public standard"
+  },
+  {
+   "id": "b11",
+   "language": "en",
+   "topic": "Physics",
+   "question": "Which of Newton's laws says that force equals mass times acceleration?",
+   "options": [
+    "The second",
+    "The first",
+    "The third",
+    "None"
+   ],
+   "general": true,
+   "why": "historical figure"
+  },
+  {
+   "id": "b12",
+   "language": "en",
+   "topic": "Sales",
+   "question": "A prospect says the price is too high. Which answer best keeps the conversation going?",
+   "options": [
+    "Ask what value they compare it with",
+    "Cut the price at once",
+    "End the call",
+    "Say every competitor costs more"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b13",
+   "language": "en",
+   "topic": "Networking",
+   "question": "Which port does HTTPS use by default?",
+   "options": [
+    "443",
+    "80",
+    "21",
+    "25"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b14",
+   "language": "en",
+   "topic": "CRM",
+   "question": "In Salesforce, what is an Opportunity?",
+   "options": [
+    "A potential deal being tracked",
+    "A support ticket",
+    "An invoice",
+    "A user role"
+   ],
+   "general": true,
+   "why": "widely known product"
+  },
+  {
+   "id": "b15",
+   "language": "en",
+   "topic": "Onboarding",
+   "question": "At Brightwave Analytics, which team approves a new vendor before a purchase order is raised?",
+   "options": [
+    "Procurement Council",
+    "Finance",
+    "Legal",
+    "IT"
+   ],
+   "general": false,
+   "why": "employer named"
+  },
+  {
+   "id": "b16",
+   "language": "en",
+   "topic": "Internal tools",
+   "question": "In Orbitdesk, our ticketing tool, which status means the ticket waits for the customer?",
+   "options": [
+    "Pending",
+    "Open",
+    "Closed",
+    "Escalated"
+   ],
+   "general": false,
+   "why": "internal tool"
+  },
+  {
+   "id": "b17",
+   "language": "en",
+   "topic": "Office",
+   "question": "How many desks does our Gdansk office have on the third floor?",
+   "options": [
+    "40",
+    "20",
+    "60",
+    "80"
+   ],
+   "general": false,
+   "why": "employer's site"
+  },
+  {
+   "id": "b18",
+   "language": "en",
+   "topic": "Clients",
+   "question": "Which client did the team onboard first in March, before Halvorsen Freight?",
+   "options": [
+    "Nordlake Retail",
+    "Fjord Media",
+    "Tallis Bank",
+    "Ostra Foods"
+   ],
+   "general": false,
+   "why": "clients named"
+  },
+  {
+   "id": "b19",
+   "language": "en",
+   "topic": "Projects",
+   "question": "What was the code name of the Q3 checkout redesign?",
+   "options": [
+    "Project Heron",
+    "Project Lynx",
+    "Project Atlas",
+    "Project Swift"
+   ],
+   "general": false,
+   "why": "code name"
+  },
+  {
+   "id": "b20",
+   "language": "en",
+   "topic": "Policy",
+   "question": "Under our 2025 travel policy, what is the daily meal allowance in Germany?",
+   "options": [
+    "35 EUR",
+    "20 EUR",
+    "50 EUR",
+    "70 EUR"
+   ],
+   "general": false,
+   "why": "employer's policy"
+  },
+  {
+   "id": "b21",
+   "language": "en",
+   "topic": "People",
+   "question": "Who should you ask for access to the payroll system: Tomasz Nowak or Ewa Lis?",
+   "options": [
+    "Tomasz Nowak",
+    "Ewa Lis",
+    "Both",
+    "Neither"
+   ],
+   "general": false,
+   "why": "private persons"
+  },
+  {
+   "id": "b22",
+   "language": "en",
+   "topic": "Support",
+   "question": "Where do you send an escalation?",
+   "options": [
+    "support-escalations@kestrelpay.io",
+    "The CEO",
+    "A customer",
+    "Nobody"
+   ],
+   "general": false,
+   "why": "email"
+  },
+  {
+   "id": "b23",
+   "language": "en",
+   "topic": "Documentation",
+   "question": "Where is the deployment guide kept?",
+   "options": [
+    "https://wiki.internal.example/deploy",
+    "On paper",
+    "Nowhere",
+    "In email"
+   ],
+   "general": false,
+   "why": "URL"
+  },
+  {
+   "id": "b24",
+   "language": "en",
+   "topic": "Revenue",
+   "question": "What was the company's revenue growth last quarter, as shared at the all-hands?",
+   "options": [
+    "12%",
+    "5%",
+    "20%",
+    "0%"
+   ],
+   "general": false,
+   "why": "internal figure"
+  },
+  {
+   "id": "b25",
+   "language": "en",
+   "topic": "Products",
+   "question": "Which tier of our Pulsefin plan includes the fraud alerts add-on?",
+   "options": [
+    "Pro",
+    "Basic",
+    "Free",
+    "Starter"
+   ],
+   "general": false,
+   "why": "employer's product"
+  },
+  {
+   "id": "b26",
+   "language": "en",
+   "topic": "Shifts",
+   "question": "On which day does the night shift at the Rotterdam warehouse start its stock count?",
+   "options": [
+    "Sunday",
+    "Monday",
+    "Friday",
+    "Wednesday"
+   ],
+   "general": false,
+   "why": "employer's site and process"
+  },
+  {
+   "id": "b27",
+   "language": "en",
+   "topic": "Hiring manager",
+   "question": "Which framework does Marta, the team lead, prefer for new services?",
+   "options": [
+    "FastAPI",
+    "Django",
+    "Flask",
+    "Express"
+   ],
+   "general": false,
+   "why": "private person"
+  },
+  {
+   "id": "b28",
+   "language": "de",
+   "topic": "Buchhaltung",
+   "question": "Welches Konto erhöht sich im Soll, wenn eine Rechnung bar bezahlt wird?",
+   "options": [
+    "Das Aufwandskonto",
+    "Das Kassenkonto",
+    "Das Eigenkapital",
+    "Die Umsatzerlöse"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b29",
+   "language": "ja",
+   "topic": "Excel",
+   "question": "Excelで、複数の条件に合うセルの合計を求める関数はどれですか？",
+   "options": [
+    "SUMIFS",
+    "COUNT",
+    "LEN",
+    "TODAY"
+   ],
+   "general": true,
+   "why": "widely known product"
+  },
+  {
+   "id": "b30",
+   "language": "ar",
+   "topic": "خدمة العملاء",
+   "question": "عميل غاضب بسبب تأخر الطلب. ما أفضل خطوة أولى؟",
+   "options": [
+    "الاستماع إليه والاعتذار",
+    "إنهاء المكالمة",
+    "لوم شركة الشحن",
+    "تجاهل الرسالة"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b31",
+   "language": "th",
+   "topic": "ความปลอดภัย",
+   "question": "ข้อใดเป็นรหัสผ่านที่ปลอดภัยที่สุด?",
+   "options": [
+    "วลียาวที่มีตัวอักษรหลายแบบ",
+    "123456",
+    "ชื่อของตัวเอง",
+    "password"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b32",
+   "language": "hi",
+   "topic": "बिक्री",
+   "question": "ग्राहक कहता है कि कीमत ज़्यादा है। सबसे अच्छा जवाब क्या है?",
+   "options": [
+    "पूछें कि वह किससे तुलना कर रहा है",
+    "तुरंत छूट दें",
+    "बात खत्म करें",
+    "प्रतिस्पर्धी की बुराई करें"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b33",
+   "language": "ru",
+   "topic": "SQL",
+   "question": "Какой оператор удаляет все строки таблицы, но оставляет саму таблицу?",
+   "options": [
+    "TRUNCATE",
+    "DROP",
+    "ALTER",
+    "CREATE"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b34",
+   "language": "uk",
+   "topic": "Логістика",
+   "question": "Що означає FIFO на складі?",
+   "options": [
+    "Перший прийшов — перший пішов",
+    "Останній прийшов — перший пішов",
+    "Сортування за ціною",
+    "Випадковий порядок"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b35",
+   "language": "pl",
+   "topic": "Prawo pracy",
+   "question": "Ile dni urlopu przysługuje w Polsce pracownikowi z 10-letnim stażem?",
+   "options": [
+    "26",
+    "20",
+    "30",
+    "15"
+   ],
+   "general": true,
+   "why": "public law"
+  },
+  {
+   "id": "b36",
+   "language": "es",
+   "topic": "Marketing",
+   "question": "¿Qué mide la tasa de conversión?",
+   "options": [
+    "La parte de visitantes que completan la acción deseada",
+    "El número de anuncios",
+    "El precio medio",
+    "El número de empleados"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b37",
+   "language": "fr",
+   "topic": "Management",
+   "question": "Quel est l'objectif principal d'un entretien annuel?",
+   "options": [
+    "Faire le point et fixer des objectifs",
+    "Licencier",
+    "Fixer les congés",
+    "Changer de bureau"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b38",
+   "language": "zh",
+   "topic": "网络",
+   "question": "HTTP 状态码 404 表示什么？",
+   "options": [
+    "资源未找到",
+    "服务器错误",
+    "成功",
+    "重定向"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b39",
+   "language": "he",
+   "topic": "גיאוגרפיה",
+   "question": "מהו הנהר הארוך ביותר באפריקה?",
+   "options": [
+    "הנילוס",
+    "הקונגו",
+    "הניז'ר",
+    "הזמבזי"
+   ],
+   "general": true,
+   "why": "public place"
+  },
+  {
+   "id": "b40",
+   "language": "ko",
+   "topic": "회계",
+   "question": "재무상태표에 표시되지 않는 항목은 무엇인가요?",
+   "options": [
+    "매출액",
+    "자산",
+    "부채",
+    "자본"
+   ],
+   "general": true,
+   "why": "general"
+  },
+  {
+   "id": "b41",
+   "language": "de",
+   "topic": "Interne Abläufe",
+   "question": "Wer gibt bei der Krämer Logistik GmbH die Urlaubsanträge des Lagerteams frei?",
+   "options": [
+    "Herr Albrecht",
+    "Frau Seidel",
+    "Die Personalabteilung",
+    "Niemand"
+   ],
+   "general": false,
+   "why": "employer and persons"
+  },
+  {
+   "id": "b42",
+   "language": "ja",
+   "topic": "社内ツール",
+   "question": "当社の社内システム「ハヤブサ」で経費を申請するとき、最初に開く画面はどれですか？",
+   "options": [
+    "申請一覧",
+    "設定",
+    "ログアウト",
+    "ヘルプ"
+   ],
+   "general": false,
+   "why": "internal tool"
+  },
+  {
+   "id": "b43",
+   "language": "ar",
+   "topic": "الفروع",
+   "question": "في أي يوم يغلق فرعنا في شارع الملك فهد في الرياض مبكرًا؟",
+   "options": [
+    "الخميس",
+    "الأحد",
+    "الاثنين",
+    "الثلاثاء"
+   ],
+   "general": false,
+   "why": "employer's site"
+  },
+  {
+   "id": "b44",
+   "language": "th",
+   "topic": "ลูกค้า",
+   "question": "ลูกค้ารายใหญ่ที่สุดของเราในปีนี้คือบริษัทใด?",
+   "options": [
+    "สยามฟู้ดเทรด",
+    "บางกอกโลจิสติกส์",
+    "ไทยเดลต้า",
+    "เชียงใหม่ซอฟต์"
+   ],
+   "general": false,
+   "why": "clients"
+  },
+  {
+   "id": "b45",
+   "language": "hi",
+   "topic": "नीतियाँ",
+   "question": "हमारी पुणे शाखा की नई उपस्थिति नीति में देर से आने की सीमा कितने मिनट है?",
+   "options": [
+    "10",
+    "5",
+    "15",
+    "30"
+   ],
+   "general": false,
+   "why": "employer's policy and site"
+  },
+  {
+   "id": "b46",
+   "language": "ru",
+   "topic": "Команда",
+   "question": "Кому из руководителей, Ирине Соколовой или Павлу Орлову, отправляют отчёт по продажам?",
+   "options": [
+    "Ирине Соколовой",
+    "Павлу Орлову",
+    "Обоим",
+    "Никому"
+   ],
+   "general": false,
+   "why": "private persons"
+  },
+  {
+   "id": "b47",
+   "language": "pl",
+   "topic": "Projekty",
+   "question": "Jaką nazwę kodową miał nasz projekt migracji danych w 2024 roku?",
+   "options": [
+    "Wisła",
+    "Odra",
+    "Tatry",
+    "Bałtyk"
+   ],
+   "general": false,
+   "why": "code name"
+  },
+  {
+   "id": "b48",
+   "language": "es",
+   "topic": "Contacto",
+   "question": "¿A qué número llamas si falla el servidor de pagos fuera de horario?",
+   "options": [
+    "+34 612 345 678",
+    "112",
+    "El número de un cliente",
+    "Ninguno"
+   ],
+   "general": false,
+   "why": "phone number of employer"
+  },
+  {
+   "id": "b49",
+   "language": "fr",
+   "topic": "Clients",
+   "question": "Quel client de l'agence a demandé la refonte du site en avril, après Maison Verlaine?",
+   "options": [
+    "Atelier Brunel",
+    "Café Lune",
+    "Boulangerie Roche",
+    "Studio Opale"
+   ],
+   "general": false,
+   "why": "clients"
+  },
+  {
+   "id": "b50",
+   "language": "zh",
+   "topic": "内部流程",
+   "question": "在我们公司的“青云”审批系统中，采购超过五万元需要谁批准？",
+   "options": [
+    "财务总监",
+    "实习生",
+    "客户",
+    "供应商"
+   ],
+   "general": false,
+   "why": "internal system"
+  },
+  {
+   "id": "b51",
+   "language": "he",
+   "topic": "משמרות",
+   "question": "באיזו שעה מתחילה משמרת הבוקר במחסן שלנו בחולון?",
+   "options": [
+    "06:00",
+    "08:00",
+    "10:00",
+    "12:00"
+   ],
+   "general": false,
+   "why": "employer's site"
+  },
+  {
+   "id": "b52",
+   "language": "en",
+   "topic": "Brand knowledge",
+   "question": "Which company makes the iPhone?",
+   "options": [
+    "Apple",
+    "Samsung",
+    "Nokia",
+    "Sony"
+   ],
+   "general": true,
+   "why": "public company as subject"
+  },
+  {
+   "id": "b53",
+   "language": "en",
+   "topic": "Project management",
+   "question": "In Jira, what is an epic?",
+   "options": [
+    "A large body of work split into stories",
+    "A bug",
+    "A user",
+    "A dashboard"
+   ],
+   "general": true,
+   "why": "widely known product"
+  },
+  {
+   "id": "b54",
+   "language": "en",
+   "topic": "Inventory",
+   "question": "Our warehouse counts stock every Friday. Which method finds the difference between system stock and shelf stock?",
+   "options": [
+    "Cycle counting with reconciliation",
+    "Guessing",
+    "Ignoring returns",
+    "Pricing"
+   ],
+   "general": true,
+   "why": "generic 'our' with nothing specific"
+  },
+  {
+   "id": "b55",
+   "language": "en",
+   "topic": "Reporting",
+   "question": "Which KPI did Ludmila's team miss in the October review?",
+   "options": [
+    "Churn",
+    "NPS",
+    "ARPU",
+    "CAC"
+   ],
+   "general": false,
+   "why": "private person and internal review"
+  }
+ ]
+}

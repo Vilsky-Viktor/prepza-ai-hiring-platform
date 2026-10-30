@@ -1,7 +1,8 @@
 # Baselines of the small utility prompts
 
 The runs behind the README's numbers for translations, code-language tags, the weekly quality
-patterns, the assistant's conversation titles and voice messages, by date; the rest are in
+patterns, the assistant's conversation titles, voice messages and the shared bank's filter, by
+date; the rest are in
 `README.md`.
 
 ## Code-language tags: a role and tagged examples (2026-10-22, kept)
@@ -93,3 +94,15 @@ target; the one miss is v14 (Filipino, "aplikanteng" heard as "aktibong", 1 of 3
 rerun the same day, still gave 100% / 0.4%. Two earlier tries were dropped: the message sent as a
 user turn (voice `alloy`, then `marin`) let the model drift (Thai and Filipino words misspoken,
 an Italian clip opening with "Ecco come suona la frase"), 92.3–96.2% heard right.
+
+## Shared question bank filter: first prompt (2026-10-30, kept)
+
+A new prompt (`prompts/bank_filter.py`: a role, the question tagged as data, keep it out when in
+doubt) after a code check for emails and web addresses. `bank_filter.json` (55), 3 repeats,
+`bank_filter_test.py`: `gpt-6.1-sol` low and `gpt-6-luna` none both 0 leaks, private kept out
+100% (95.1–100), general passed 96.7% (90.7–98.9); $0.159 and 2.4 s a run of 165 checks on
+`gpt-6.1-sol`, $0.008 and 1.8 s on `gpt-6-luna`. The one miss on both is b54 (a generic "our
+warehouse counts stock every Friday", kept out: the cautious side). Kept on `gpt-6.1-sol` low: a
+checker runs on a strong model (`.claude/rules/ai.md`), a leak costs far more than the call, and
+each question is checked once. On 150 local companies' questions (`--local`, not committed) it
+passed all 150 (97.5–100): generated from job texts, they named no organisation or person.

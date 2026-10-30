@@ -111,11 +111,24 @@ Each record is one log line ("AI used: …", the `prepza_ai_spend` metric and th
 
 ## Reusing proven questions
 
-The question bank is the superadmins' templates' company questions; their pools (practice and company) are in [Templates and practice](features/templates-and-practice.md#the-question-bank). Practice questions are public, so they're never reused.
+A new generation reuses proven questions on similar topics (topic embeddings, pgvector) from two sources:
 
-- Reused questions fill at most half of a new interview's topic.
-- Only proven company questions qualify: from templates of the same level and language, answered at least 5 times, never flagged.
-- Template topics keep embeddings, so proven questions on similar topics can be found (pgvector).
+- **Templates' company questions** (pools in [Templates and practice](features/templates-and-practice.md#the-question-bank)), for templates and companies' interviews: of the same level and language, answered at least 5 times, never flagged. Practice questions are public, so they're never reused.
+- **The shared question bank**, for companies' interviews only (never a template, never practice, as practice is public): other companies' proven questions, as the terms (2026-10-23) let prepza reuse them. A company is never offered its own questions back.
+
+Reused questions fill at most half of a new interview's topic.
+
+### The question bank
+
+Library keeps the bank (`bank_questions`, `src/library/models/bank.py`): a copy of each question that joined, with its topic's embedding, level and language, and no company id.
+
+- **Who joins:** a company's own generated question (not a copy of a template's or of a bank question), answered at least 30 times (`MIN_ANSWERS`), not flagged, never reported, never replaced or edited, from an interview not kept out of the bank (`keep_private`), and passing the filter.
+- **The filter** (generation's `src/generation/services/bank_filter.py`, daily at 03:30 UTC, `POST /internal/schedules/bank-filter` on generation-worker): library offers the proven questions not yet checked as they read now (`GET /internal/bank/candidates`, 50 a page, up to 1,000 a run), and flagged ones too, which only get a verdict for the evals. A question with an email or web address is kept out by code; then the model (`bank_filter_model`, `gpt-6.1-sol` at low effort) is asked whether its topic, text or options name or reveal anything about a specific organisation (its name, clients, staff, internal tools, projects, policies, figures, sites) or a private person, keeping it out when in doubt. Widely known products, standards, laws, places and public figures as the subject are fine. Verdicts go back to library (`PUT /internal/bank/checks`, `bank_checks`, keyed by the question and an md5 of its wording, so a reworded question is checked again), and the proven ones that passed join in the same save. A failed check is offered again the next day. The eval: `bank_filter_test.py` (see [evals/README.md](../evals/README.md)).
+- **Reuse:** a company's interview asks with its company (`company_id` in `POST /internal/reuse`); library adds the bank's questions within the topic distance and leaves out those whose source is that company's. The interview's copy is marked as the bank question's (`questions.bank_question_id`, not a foreign key, so the mark outlives the bank copy and a copy never joins the bank in its source's place).
+- **Taken out for everyone:** a flag or a report on the source or on any copy removes the bank copy at once, in the same save, and bars the source from joining again (`bank_checks.barred`). Copies already reused stay in their interviews.
+- **The opt-out:** checking "Keep these questions out of prepza's shared question bank" sends `interview.privacy_changed` (companies' outbox, with the interview's set and generation); library keeps the newest change per interview (`interview_privacy`), takes the interview's questions out of the bank and never lets them join; unchecking lets those that qualify join again at once. Copies already reused elsewhere stay.
+- **Deletion never deletes a bank copy:** deleting an interview, a company (by its owner, by a superadmin, or with its owner's account) or an account removes the company's own questions, while each bank copy stays and keeps being reused; only its link to the source is cleared (`ON DELETE SET NULL`). The integration tests in `services/library/tests/integration/handlers/test_bank_deletions.py` check every path.
+- **The daily sweep** (library's `POST /internal/schedules/bank`): takes out a bank copy a flag, a report or an opt-out raced as it joined, 500 a day at most.
 
 ## Question quality
 

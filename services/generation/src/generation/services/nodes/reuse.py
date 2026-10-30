@@ -23,8 +23,9 @@ def topic_text(topic: dict) -> str:
 
 
 async def find_reused(state: State) -> dict:
-    """Embeds the approved topics and takes proven questions from similar public topics; and
-    sets the run's share of multi-answer questions.
+    """Embeds the approved topics and takes proven questions from similar topics (templates' and,
+    for a company's interview, the shared bank's); and sets the run's share of multi-answer
+    questions.
 
     Reuse only saves cost, so any failure here means generating every question instead.
     """
@@ -53,6 +54,7 @@ async def find_reused(state: State) -> dict:
                         level=state["level"],
                         language=state.get("language") or DEFAULT_LANGUAGE,
                         count=count,
+                        company_id=state.get("company_id"),
                     )
                 )
                 if count

@@ -55,6 +55,8 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | | Price and time per message | Measured | ≤ $0.001, ≤ 5 s |
 | **Refusing text that names nothing to test** | Postings, roles and short skill lists accepted (any refusal fails) / recipes, stories, gibberish, instructions to an AI refused | Code | 0 false refusals / ≥ 90% |
 | | Price and time per check | Measured | ≤ $0.0001, ≤ 3 s |
+| **Shared question bank filter** | Private questions (an employer, its clients, staff, tools, sites or figures, a private person, contact details) kept out / general ones passed (`bank_filter.json`) | Code | 0 leaks / ≥ 90% |
+| | Price and time per question | Measured | ≤ $0.002, ≤ 5 s |
 | **Code-language tags** | Examples tagged with the notation expected (`code_languages.json`: look-alike notations, plain-text traps, several files) | Code | ≥ 98% (regression: near 100%) |
 | | Price and time per batch of 20 | Measured | ≤ $0.01, ≤ 15 s |
 | **Verifier** | Planted wrong keys fixed, real keys kept, and the blind confirmation naming the real key (`verify_test.py`, `--confirm`); flagged templates' questions whose wrong key a replacement moved join them (`flagged_traps.json`) | Code | 100% (regression) |
@@ -121,6 +123,7 @@ only on a difference beyond both intervals (every result prints its 95% interval
 | Repeated questions: distinct kept / repeats dropped | 100% (74.1–100) / 18.2% (5.1–47.7); the closest distinct pair at 0.084, the threshold 0.08 | `duplicates.json`, 22 pairs | 2026-10-22 |
 | Voice messages (`gpt-transcribe`): heard right / character errors / script | 98.7% (93.1–99.8) / 0.7% ± 0.4 / 100%; $0.00035 and 2.9 s a message | `voice.json`, 26 × 3 (all 23 languages; audio by `gpt-realtime-2.1-mini`) | 2026-10-29 |
 | Text check: false refusals / accepted / refused | 0 / 100% (95.9–100) / 100% (90.4–100); $0.00003 and 1.9 s a check | `screen.json`, 42 × 3 | 2026-10-22 |
+| Bank filter (`gpt-6.1-sol` low): leaks / private kept out / general passed | 0 / 100% (95.1–100) / 96.7% (90.7–98.9); $0.001 and 2.4 s a question | `bank_filter.json`, 55 × 3 | 2026-10-30 |
 | Code-language tags: right / skipped | 100% (96.6–100) / 0%; $0.006 and 7 s a batch of 20 | `code_languages.json`, 3 repeats | 2026-10-22 |
 | Fitted question times: distance from the judge's times, fitted / equal; judge's own repeat | 0.158 ± 0.002 / 0.167 ± 0.002 of the average (basic 0.116 / 0.147; with an example 0.181 / 0.209; text-only medium 0.193 / 0.186, within the noise); repeat Spearman 0.95, 2.1 s apart | `question_times.json` (452 questions, 40 twice), `gpt-6.1-sol` high; free | 2026-10-29 |
 | Integrity signals: honest flagged / relays caught (all questions to an AI / half / the hard ones), either signal | ≤ 0.7% (each population, 10–30 questions) / 33–35% / 7–9% / 15–19%; timing alone 0.6–0.7% / 33–34%; person-fit alone ≤ 0.5% / 0–3% (2–10% of half and hard-only relays) | 4,000 made-up candidates a population on the eval's questions, `ai_picks.json`; free | 2026-10-29 |
@@ -129,7 +132,8 @@ only on a difference beyond both intervals (every result prints its 95% interval
 
 ## Datasets
 
-All in `datasets/`, frozen, made up, never a company's text. What each covers, how it was built
+All in `datasets/`, frozen, made up, never a company's text (but companies' flagged questions
+cleared by the shared bank's filter in `flagged_traps.json`). What each covers, how it was built
 and when: `datasets/README.md`, which also says how a real failure becomes a case and how big a
 set must be for the noise we accept. `scripts/check_datasets.py` checks them by code (shape,
 duplicates, overlap with the prompts' examples, coverage), for free.
@@ -154,6 +158,7 @@ it; `scripts/tests/test_ai_rules.py` fails when an action has none.
 | `news_translation`, `campaign_translation` | `translations_test.py` |
 | `quality_patterns` | `patterns_test.py`; a pattern before it's a rule in use: `pattern_gate.py` |
 | `code_tags` | `code_languages_test.py` |
+| `bank_filter` | `bank_filter_test.py` |
 | `assistant_message` | `page_context.py`, `guides.py`, `assistant_actions.py`, `assistant_handover.py` |
 | `assistant_title` | `titles_test.py` |
 | `transcription` | `transcription_test.py` |

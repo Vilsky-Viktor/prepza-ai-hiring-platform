@@ -145,6 +145,13 @@ fails):
 evals/run.sh generation screen_test.py --label new-prompt   # --repeat 3
 ```
 
+The shared question bank's filter (`is_general`), graded by code (a private question kept is a
+leak); `--local FILE` counts what it keeps of questions saved in `results/` (never committed):
+
+```bash
+evals/run.sh generation bank_filter_test.py --label new-prompt   # --repeat 3
+```
+
 The code-language tagging job's call (`tag_examples`), graded by code:
 
 ```bash

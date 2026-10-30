@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Request, status
 from prepza_common.auth.google import Invoker
 
-from generation.services import patterns, schedules
+from generation.services import bank_filter, patterns, schedules
 
 router = APIRouter(prefix="/internal/schedules", tags=["schedules"], dependencies=[Invoker])
 
@@ -36,3 +36,10 @@ async def quality_patterns() -> None:
     """Weekly: the recurring mistakes in last week's flagged and replaced questions, proposed
     as general rules for a superadmin to review."""
     await patterns.run()
+
+
+@router.post("/bank-filter", status_code=status.HTTP_204_NO_CONTENT)
+async def bank_filter_run() -> None:
+    """Daily: companies' proven questions checked for the shared bank (and flagged ones, for the
+    evals); those that name or reveal nothing about an organisation or a person join it."""
+    await bank_filter.run()

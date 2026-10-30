@@ -3,8 +3,9 @@
 The AI pipeline: it reads a job posting (or a template's brief), drafts the test's topics for a
 member to review, writes each topic's questions and options, checks the answer keys, and saves
 the result to library. It also re-generates single questions, adds questions to templates,
-verifies questions flagged by users, tags code examples, translates news and campaigns, and
-finds the patterns behind flagged questions. Each AI call is capped, traced and priced, and a
+verifies questions flagged by users, tags code examples, translates news and campaigns,
+finds the patterns behind flagged questions, and filters companies' proven questions before they
+join the shared question bank. Each AI call is capped, traced and priced, and a
 company's or the platform's AI spend limit stops new work. Its own database keeps the runs, the
 graph's checkpoints, the batched work and the quality patterns. What it does and its settings:
 [Generation and question quality](../../docs/generation.md).
