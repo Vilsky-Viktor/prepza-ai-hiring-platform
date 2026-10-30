@@ -10,7 +10,8 @@ paths:
 
 - Datasets are frozen, versioned by date, model and prompt, and mix typical, edge and trap
   cases; each real AI failure adds a case. Only made-up or public data, never a company's text,
-  not even anonymised.
+  not even anonymised; the one exception is a flagged question that passed the shared bank's
+  filter from an interview not kept private (`company_questions()`, licensed by the terms).
 - Check by code where possible. A judge works out the answer first, compares pairs blind in
   shuffled order, and is checked on traps before its scores count.
 - Every result records model, effort, prompt, judge, scores and cost. Compare only with a
