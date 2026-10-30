@@ -18,6 +18,8 @@ class CandidateIn(BaseModel):
     email: EmailStr
     # Optional; trimmed and cut to MAX_CANDIDATE_NAME_LENGTH as it's saved.
     name: str | None = None
+    # How the candidate takes it: by voice (true) or click (false); none follows the interview's.
+    voice: bool | None = None
 
 
 class SectionGrade(BaseModel):
@@ -44,6 +46,8 @@ class CandidateOut(BaseModel):
     flagged: bool = False
     # Extra time per question, as a percentage of its time.
     extra_time: int = 0
+    # Taken by voice: their own mode when the company set one, else the interview's.
+    voice: bool = False
     created_at: datetime
     # When it last changed; the API syncs lists by it (updated_since).
     updated_at: datetime | None = None
@@ -168,6 +172,8 @@ class BulkInviteIn(BaseModel):
     name: str | None = None
     # The uploaded file's name, when the text was read from one.
     filename: str | None = Field(default=None, max_length=255)
+    # How everyone on it takes the interview, as CandidateIn's.
+    voice: bool | None = None
 
 
 class SkippedInvite(BaseModel):
@@ -209,6 +215,12 @@ class ExtraTimeIn(BaseModel):
     """Extra time for a candidate who needs it, in percent of each question's time."""
 
     extra_time: ExtraTime
+
+
+class CandidateModeIn(BaseModel):
+    """How one candidate takes the interview: by voice (true) or click (false)."""
+
+    voice: bool
 
 
 class CandidateNameIn(BaseModel):

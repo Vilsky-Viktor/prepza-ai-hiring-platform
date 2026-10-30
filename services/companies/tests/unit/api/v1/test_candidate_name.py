@@ -192,7 +192,7 @@ def test_a_single_invite_passes_its_name(client, candidate, monkeypatch, earlier
     async def held(session, interview_id, email):
         return earlier, None
 
-    async def invite(interview, company, user, email, name=None):
+    async def invite(interview, company, user, email, name=None, voice=None):
         names.append(name)
 
         return CandidateInvite(

@@ -8,11 +8,12 @@ from prepza_common.db.paging import PageParams
 from companies.api.dependencies import Via
 from companies.constants.invites import MAX_SEARCH_LENGTH, OPEN, CandidateFilter, CandidateSort
 from companies.core.db import Session
-from companies.helpers.candidates import row_actions
+from companies.helpers.candidates import row_actions, takes_voice
 from companies.repositories import invites
 from companies.schemas.invites import (
     CandidateFiltersOut,
     CandidateIn,
+    CandidateModeIn,
     CandidateNameIn,
     CandidateOut,
 )
@@ -36,7 +37,9 @@ async def invite_candidate(
     async with Session() as session:
         earlier, _ = await invites.held(session, interview.id, str(body.email))
 
-    invite = await candidate_invites.invite(interview, company, user, str(body.email), body.name)
+    invite = await candidate_invites.invite(
+        interview, company, user, str(body.email), body.name, voice=body.voice
+    )
     await outbox_service.flush_quietly()
 
     if earlier in OPEN:
@@ -47,6 +50,7 @@ async def invite_candidate(
         email=invite.email,
         name=invite.name,
         status=invite.status,
+        voice=takes_voice(invite, interview),
         created_at=invite.created_at,
         **row_actions(invite.status),
     )
@@ -93,6 +97,16 @@ async def rename_candidate(
     blank name makes it not known. The sign-in fills only a name not known, so this one stays."""
     interview, invite, _, _ = await candidate_for(user, interview_id, invite_id, editor=True)
     await candidate_changes.change(interview, invite, {"name": body.name or None}, user.uid)
+
+
+@router.put("/{interview_id}/candidates/{invite_id}/voice", status_code=status.HTTP_204_NO_CONTENT)
+async def set_candidate_mode(
+    interview_id: UUID, invite_id: UUID, body: CandidateModeIn, user: CurrentUser, via: Via
+) -> None:
+    """Owners and admins choose how one candidate takes the interview, by voice or click, apart
+    from the interview's mode, until they start (candidate_changes)."""
+    interview, invite, _, _ = await candidate_for(user, interview_id, invite_id, editor=True)
+    await candidate_changes.change(interview, invite, {"voice": body.voice}, user.uid, via)
 
 
 @router.get("/{interview_id}/candidates/{invite_id}")

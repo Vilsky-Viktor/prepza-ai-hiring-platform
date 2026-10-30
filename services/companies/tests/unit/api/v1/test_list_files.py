@@ -74,7 +74,7 @@ def test_a_csv_header_isnt_a_problem_and_its_rows_are_checked():
 def test_the_list_endpoint_reports_unusable_lines_and_refuses_bad_files(client, monkeypatch):
     invite_setup(monkeypatch)
 
-    async def invite(interview, company, user, email, name=None):
+    async def invite(interview, company, user, email, name=None, voice=None):
         return SimpleNamespace(id=None)
 
     monkeypatch.setattr(candidate_invites, "invite", invite)

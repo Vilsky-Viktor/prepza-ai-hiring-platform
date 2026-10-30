@@ -4,18 +4,22 @@ from prepza_common.i18n.i18n import CodedError
 
 from companies.constants import error_codes
 from companies.constants.invites import (
+    BEFORE_START,
     CHANGE_ACTIONS,
     EXTRA_TIME_STARTED,
+    MODE_STARTED,
     NOT_STARTED,
     InviteStatus,
 )
 from companies.core.db import Session
+from companies.helpers.candidates import voice_override
 from companies.integrations import rounds
 from companies.models.interviews import Interview
 from companies.models.invites import CandidateInvite
 from companies.repositories import audit, invites
 from companies.services import outbox as outbox_service
 from companies.services.candidate_billing import settle_removed
+from companies.services.voice_modes import refuse_unspoken
 
 
 async def remove(
@@ -62,22 +66,26 @@ async def change(
     via: str | None = None,
 ) -> None:
     """Corrects the candidate's name (`name`; none makes it not known, and the sign-in fills only
-    a name not known, so this one stays) and gives them extra time on each question
-    (`extra_time`, until they start), all or nothing: every rule is checked before anything is
-    written, and both are written at once. A deleted candidate is 404; extra time for one who
-    started, 409. Each change is recorded for `user_id`, with `via`."""
-    timed = "extra_time" in values
+    a name not known, so this one stays), gives them extra time on each question (`extra_time`)
+    and chooses how they take it (`voice`, kept only when apart from the interview's), the last
+    two until they start; all or nothing: every rule is checked before anything is written, and
+    all are written at once. A deleted candidate is 404; extra time or a mode for one who
+    started, 409; voice in a language voice mode doesn't speak, 422. Each change is recorded for
+    `user_id`, with `via`."""
+    fixed = [field for field in BEFORE_START if field in values]
 
     if invite.status == InviteStatus.DELETED:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
 
-    if timed and invite.status not in NOT_STARTED:
-        raise CodedError(
-            status.HTTP_409_CONFLICT, EXTRA_TIME_STARTED, error_codes.CANDIDATE_STARTED
-        )
+    if fixed and invite.status not in NOT_STARTED:
+        raise started(fixed)
+
+    if "voice" in values:
+        refuse_unspoken(interview, values["voice"])
+        values = {**values, "voice": voice_override(values["voice"], interview)}
 
     statuses = (
-        NOT_STARTED if timed else [item for item in InviteStatus if item != InviteStatus.DELETED]
+        NOT_STARTED if fixed else [item for item in InviteStatus if item != InviteStatus.DELETED]
     )
 
     if not values:
@@ -100,10 +108,15 @@ async def change(
                 )
 
     # Started, or deleted, since it was read.
-    if not written and timed:
-        raise CodedError(
-            status.HTTP_409_CONFLICT, EXTRA_TIME_STARTED, error_codes.CANDIDATE_STARTED
-        )
+    if not written and fixed:
+        raise started(fixed)
 
     if not written:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")
+
+
+def started(fields: list[str]) -> CodedError:
+    """The refusal of a change that only goes before the candidate starts, for its first field."""
+    message = EXTRA_TIME_STARTED if fields[0] == "extra_time" else MODE_STARTED
+
+    return CodedError(status.HTTP_409_CONFLICT, message, error_codes.CANDIDATE_STARTED)

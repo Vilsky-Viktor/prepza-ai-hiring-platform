@@ -67,6 +67,10 @@ class CandidateInvite(Base):
     # Extra time for a candidate who needs it (an accommodation), in percent of each question's
     # time; set before they start.
     extra_time: Mapped[int] = mapped_column(default=0, server_default="0")
+    # This candidate's own interview mode, set before they start: True by voice, False by click;
+    # None follows the interview's (interviews.voice). Only one apart from the interview's is
+    # kept (helpers/candidates.py voice_override).
+    voice: Mapped[bool | None]
     # The candidate's final grade, in percent, and whether any integrity signal was recorded:
     # stored when they finish (interview.finished), so the list sorts and filters by them in SQL.
     # None until then.

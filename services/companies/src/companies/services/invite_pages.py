@@ -9,7 +9,7 @@ from prepza_common.auth.user import User
 from companies.core.db import Session
 from companies.helpers.allowed_domains import frame_sources
 from companies.helpers.brand import color_sets, style_of
-from companies.helpers.candidates import candidate_seconds
+from companies.helpers.candidates import candidate_seconds, takes_voice
 from companies.helpers.interviews import interview_minutes
 from companies.helpers.invite_links import addressed_to
 from companies.helpers.logos import logo_path
@@ -47,6 +47,8 @@ async def invite_view(
     seconds = candidate_seconds(interview.question_seconds, invite.extra_time)
     found = await set_cache.get_set(interview.set_id) if interview.set_id else None
     matches, email = addressed_to(user, invite.email)
+    # Their own mode when the company set one, else the interview's.
+    voice = takes_voice(invite, interview)
 
     return InviteView(
         interview_id=interview.id,
@@ -58,10 +60,8 @@ async def invite_view(
         matches=matches,
         status=invite.status,
         question_seconds=seconds,
-        total_minutes=interview_minutes(
-            found, interview.topic_limits, seconds, bool(interview.voice)
-        ),
-        voice=bool(interview.voice),
+        total_minutes=interview_minutes(found, interview.topic_limits, seconds, voice),
+        voice=voice,
         guest=invite.guest,
         brand_colors=BrandColorSets(**color_sets(company.brand_colors if company else None)),
         theme=invite.theme,

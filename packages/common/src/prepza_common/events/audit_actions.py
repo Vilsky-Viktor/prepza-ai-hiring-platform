@@ -55,6 +55,8 @@ class AuditAction(StrEnum):
     CANDIDATE_DELETED = "candidate_deleted"
     CANDIDATE_RENAMED = "candidate_renamed"
     EXTRA_TIME_SET = "extra_time_set"
+    # A candidate's own interview mode (click or voice) set apart from the interview's.
+    CANDIDATE_MODE_SET = "candidate_mode_set"
     RESULTS_VIEWED = "results_viewed"
     REPORT_EMAILED = "report_emailed"
     # Team.
@@ -121,6 +123,7 @@ _GROUPS = {
         AuditAction.CANDIDATE_DELETED,
         AuditAction.CANDIDATE_RENAMED,
         AuditAction.EXTRA_TIME_SET,
+        AuditAction.CANDIDATE_MODE_SET,
         AuditAction.RESULTS_VIEWED,
         AuditAction.REPORT_EMAILED,
     ),

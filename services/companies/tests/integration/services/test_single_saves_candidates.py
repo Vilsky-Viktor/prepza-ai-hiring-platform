@@ -1,5 +1,5 @@
 """A change to a candidate is one save with its line in the action log: an invite and its
-email, a removal, a new name or extra time, an emailed report. When the log's line fails,
+email, a removal, a new name, extra time or mode, an emailed report. When the log's line fails,
 nothing else is kept, so the retry finds the whole action still to do."""
 
 import uuid
@@ -80,7 +80,7 @@ def test_a_removal_whose_log_line_fails_keeps_the_candidate(run):
     assert run(scenario()) is True
 
 
-@pytest.mark.parametrize("values", [{"name": "Cara Diaz"}, {"extra_time": 30}])
+@pytest.mark.parametrize("values", [{"name": "Cara Diaz"}, {"extra_time": 30}, {"voice": True}])
 def test_a_change_whose_log_line_fails_isnt_written(run, values):
     async def scenario():
         _, interview, invite, user = await a_candidate()
@@ -90,7 +90,11 @@ def test_a_change_whose_log_line_fails_isnt_written(run, values):
 
         found = await transaction(invites.get, invite.id)
 
-        return (invite.name, invite.extra_time), (found.name, found.extra_time)
+        return (invite.name, invite.extra_time, invite.voice), (
+            found.name,
+            found.extra_time,
+            found.voice,
+        )
 
     before, after = run(scenario())
 

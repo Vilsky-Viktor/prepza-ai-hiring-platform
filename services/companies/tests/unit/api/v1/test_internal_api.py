@@ -12,7 +12,7 @@ from companies.services import candidate_results, interview_views
 
 COMPANY_ID, OTHER_ID = uuid.uuid4(), uuid.uuid4()
 INTERVIEW = SimpleNamespace(
-    id=uuid.uuid4(), company_id=COMPANY_ID, set_id=uuid.uuid4(), pass_mark=70
+    id=uuid.uuid4(), company_id=COMPANY_ID, set_id=uuid.uuid4(), pass_mark=70, voice=False
 )
 INVITE = SimpleNamespace(
     id=uuid.uuid4(),
@@ -23,6 +23,7 @@ INVITE = SimpleNamespace(
     created_at=datetime(2026, 10, 2, tzinfo=UTC),
     flagged=False,
     extra_time=50,
+    voice=None,
     started_at=datetime(2026, 10, 3, 9, tzinfo=UTC),
     finished_at=datetime(2026, 10, 3, 9, 20, tzinfo=UTC),
     updated_at=datetime(2026, 10, 3, 9, 20, tzinfo=UTC),

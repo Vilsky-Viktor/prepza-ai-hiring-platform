@@ -113,8 +113,9 @@ async def get_candidate(
             "(`request_in_progress`)"
         ),
         422: refusal(
-            "The body is invalid (`validation_failed`), or `return_url` isn't an https address "
-            "(http only on localhost) (`return_url_invalid`)"
+            "The body is invalid (`validation_failed`), `return_url` isn't an https address "
+            "(http only on localhost) (`return_url_invalid`), or `mode` is `voice` in a "
+            "language voice mode doesn't support (`voice_unavailable`)"
         ),
         429: {
             **refusal("The key reached its email limits or its rate limit (`rate_limited`)"),
@@ -133,7 +134,8 @@ async def invite_candidate(
     credits for them, with their name if given. By default prepza emails the invitation and the
     candidate signs in with that email; with `sign_in` false, your platform sends them to the
     response's `invite_url`, which opens the interview without signing in. With a `return_url`,
-    the finished page takes the candidate back to your platform. Retrying is safe: inviting an
+    the finished page takes the candidate back to your platform. With `mode`, the candidate takes
+    it by voice or click, whatever the interview's mode. Retrying is safe: inviting an
     address whose invite is still open, or who already finished, returns that candidate as they
     are (`200`), without another email or credits; an expired invite is sent again. To send an
     open invite again, use the resend endpoint."""
@@ -153,6 +155,7 @@ async def invite_candidate(
             body.sign_in,
             # Companies keeps only a theme that's enforced.
             None if body.theme == "default" else body.theme,
+            None if body.mode is None else body.mode == "voice",
         )
 
         return str(invite_id)

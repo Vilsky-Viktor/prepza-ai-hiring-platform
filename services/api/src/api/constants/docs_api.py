@@ -142,6 +142,7 @@ you don't know by its HTTP status.
 | `request_in_progress` | 409 | The same request is still running |
 | `idempotency_key_reused` | 422 | An `Idempotency-Key` sent before with another request |
 | `return_url_invalid` | 422 | `return_url` isn't https (http only on localhost) |
+| `voice_unavailable` | 422 | `mode` is `voice` in a language voice mode doesn't support |
 | `validation_failed` | 422 | The request is invalid; `detail` names each field |
 | `body_too_large` | 413 | The request body is too large |
 | `rate_limited` | 429 | A rate or email limit; wait `Retry-After` seconds |
@@ -184,6 +185,8 @@ SDK. Company verification only adds the verified badge: the API, the SDK and MCP
 Within `v1`, fields, optional parameters, error codes, enum values and event types are only ever
 added. Anything retired first answers with `Deprecation` and `Sunset` headers and is listed here.
 
+- 2026-10-30: inviting a candidate takes an optional `mode` (`click` or `voice`), refused with
+  `voice_unavailable` in a language voice mode doesn't support; candidates carry their `mode`.
 - 2026-10-29: `GET /interviews/{id}/notes` and `POST /interviews/{id}/notes` list and add your
   team's notes on an interview, with the new `notes:read` and `notes:add` permissions.
 - 2026-10-29: a key can be limited to allowed IPs (`ip_not_allowed`); `return_url` may be any

@@ -30,7 +30,13 @@ class InviteStatus(StrEnum):
 NOT_STARTED = (InviteStatus.INVITED, InviteStatus.UNDELIVERED, InviteStatus.EXPIRED)
 STARTED = (InviteStatus.IN_PROCESS, InviteStatus.FINISHED)
 # What each change an owner or admin makes to a candidate is recorded as.
-CHANGE_ACTIONS = {"name": AuditAction.CANDIDATE_RENAMED, "extra_time": AuditAction.EXTRA_TIME_SET}
+CHANGE_ACTIONS = {
+    "name": AuditAction.CANDIDATE_RENAMED,
+    "extra_time": AuditAction.EXTRA_TIME_SET,
+    "voice": AuditAction.CANDIDATE_MODE_SET,
+}
+# What can be changed only before the candidate starts: their sessions are made with it then.
+BEFORE_START = ("extra_time", "voice")
 # Statuses of an invite still open: its link works and its credits are set aside (an expired
 # one gave them back).
 OPEN = (InviteStatus.INVITED, InviteStatus.UNDELIVERED, InviteStatus.IN_PROCESS)
@@ -172,3 +178,5 @@ SIGNAL_KEYS = ("tab_leaves", "copies", "fast_answers")
 EXTRA_TIME_OPTIONS = (0, 25, 50, 100)
 # Extra time is set before the candidate starts: their questions' time is fixed then.
 EXTRA_TIME_STARTED = "Extra time can only be changed before the candidate starts."
+# A candidate's interview mode is set before they start: their sessions are made in it then.
+MODE_STARTED = "The interview mode can only be changed before the candidate starts."

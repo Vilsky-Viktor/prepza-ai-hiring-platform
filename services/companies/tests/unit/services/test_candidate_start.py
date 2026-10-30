@@ -14,7 +14,12 @@ from companies.services import candidate_start
 USER = User(uid="cand", email="cand@example.com", email_verified=True)
 
 INVITE = SimpleNamespace(
-    id=uuid.uuid4(), extra_time=0, interview_id=uuid.uuid4(), email="cand@example.com", hold_key="k"
+    id=uuid.uuid4(),
+    extra_time=0,
+    interview_id=uuid.uuid4(),
+    email="cand@example.com",
+    hold_key="k",
+    voice=None,
 )
 INTERVIEW = SimpleNamespace(
     set_id=uuid.uuid4(), company_id=uuid.uuid4(), question_seconds=60, topic_limits={}, voice=False

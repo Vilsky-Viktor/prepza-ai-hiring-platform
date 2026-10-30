@@ -77,6 +77,10 @@ class ScorecardOut(BaseModel):
     revokable: bool = False
     # What extra time can still be given: only before the candidate starts, and not by a viewer.
     extra_time_options: list[int]
+    # Taken by voice (their own mode, else the interview's), and whether the user may still
+    # change it: before the candidate starts, not a viewer, in a language voice mode speaks.
+    voice: bool = False
+    mode_editable: bool = False
     # The invite link's token, to copy and send in case the email didn't arrive or got lost: until
     # the candidate finishes, while the link works (not expired), and not for a viewer.
     invite_token: str | None = None

@@ -196,6 +196,7 @@ def test_voice_mode_is_refused_in_a_language_without_it(client, saved):
 
     assert refused.status_code == 422
     assert refused.json()["detail"] == "Voice mode isn't available in this interview's language."
+    assert refused.json()["code"] == "voice_unavailable"
     assert (
         client.patch(f"/interviews/{INTERVIEW_ID}/settings", json={"voice": False}).status_code
         == 204

@@ -17,9 +17,14 @@ logger = logging.getLogger(__name__)
 
 
 async def invite_each(
-    interview: Interview, company: Company, user: User, found: list[tuple[str, str | None]]
+    interview: Interview,
+    company: Company,
+    user: User,
+    found: list[tuple[str, str | None]],
+    voice: bool | None = None,
 ) -> tuple[list[str], list[SkippedInvite]]:
-    """(invited emails, skipped ones with why). Once credits run out, the rest are skipped."""
+    """(invited emails, skipped ones with why), each taking it by `voice` as chosen. Once credits
+    run out, the rest are skipped."""
     invited: list[str] = []
     skipped: list[SkippedInvite] = []
     out_of_credits = False
@@ -38,7 +43,7 @@ async def invite_each(
             reason = SkipReason.STARTED
         else:
             try:
-                await candidate_invites.invite(interview, company, user, email, name)
+                await candidate_invites.invite(interview, company, user, email, name, voice=voice)
             except HTTPException as error:
                 out_of_credits = error.status_code == status.HTTP_402_PAYMENT_REQUIRED
                 reason = SKIP_REASONS.get(error.status_code, SkipReason.FAILED)

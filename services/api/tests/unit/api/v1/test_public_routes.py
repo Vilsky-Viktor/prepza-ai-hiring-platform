@@ -1,7 +1,7 @@
-from prepza_common.auth.key_actor import key_actor
 import uuid
 
 import pytest
+from prepza_common.auth.key_actor import key_actor
 
 from api.helpers.public import candidate_of
 from tests.unit.api_keys import call
@@ -94,20 +94,39 @@ def test_an_invite_passes_where_to_return_whether_to_sign_in_and_its_theme(
     response = call(client, "POST", f"/interviews/{INTERVIEW}/candidates", json=body)
 
     assert response.status_code == 201
-    assert companies_api["options"] == {"bob@example.com": ("https://acme.com/done", False, "dark")}
+    assert companies_api["options"] == {
+        "bob@example.com": ("https://acme.com/done", False, "dark", None)
+    }
 
 
 def test_an_invite_signs_in_and_returns_nowhere_unless_told(client, companies_api, key):
     call(client, "POST", f"/interviews/{INTERVIEW}/candidates", json={"email": "bob@example.com"})
 
-    assert companies_api["options"] == {"bob@example.com": (None, True, None)}
+    assert companies_api["options"] == {"bob@example.com": (None, True, None, None)}
+
+
+@pytest.mark.parametrize(("mode", "voice"), [("voice", True), ("click", False)])
+def test_an_invite_passes_the_candidates_mode(client, companies_api, key, mode, voice):
+    body = {"email": "bob@example.com", "mode": mode}
+    response = call(client, "POST", f"/interviews/{INTERVIEW}/candidates", json=body)
+
+    assert response.status_code == 201
+    assert companies_api["options"] == {"bob@example.com": (None, True, None, voice)}
+
+
+def test_an_invite_with_an_unknown_mode_is_refused(client, companies_api, key):
+    body = {"email": "bob@example.com", "mode": "video"}
+    response = call(client, "POST", f"/interviews/{INTERVIEW}/candidates", json=body)
+
+    assert response.status_code == 422
+    assert companies_api["sent"] == []
 
 
 def test_an_invites_default_theme_leaves_it_to_the_candidate(client, companies_api, key):
     body = {"email": "bob@example.com", "theme": "default"}
     call(client, "POST", f"/interviews/{INTERVIEW}/candidates", json=body)
 
-    assert companies_api["options"] == {"bob@example.com": (None, True, None)}
+    assert companies_api["options"] == {"bob@example.com": (None, True, None, None)}
 
 
 def test_an_invite_with_an_unknown_theme_is_refused(client, companies_api, key):
@@ -187,6 +206,7 @@ def test_a_candidate_reads_with_the_flag_extra_time_times_and_sections():
         candidate(
             flagged=True,
             extra_time=25,
+            voice=True,
             started_at="2026-10-15T08:00:00Z",
             finished_at="2026-10-15T08:20:00Z",
             sections=[{"title": "SQL", "grade": 90}],
@@ -196,10 +216,13 @@ def test_a_candidate_reads_with_the_flag_extra_time_times_and_sections():
         "https://prepza.ai",
     )
 
-    assert (found.flagged, found.extra_time) == (True, 25)
+    assert (found.flagged, found.extra_time, found.mode) == (True, 25, "voice")
     assert found.started_at is not None and found.finished_at is not None
     assert [(section.title, section.grade) for section in found.sections] == [("SQL", 90)]
 
 
 def test_a_candidate_from_a_list_has_no_sections():
-    assert candidate_of(candidate(), COMPANY, INTERVIEW, "https://prepza.ai").sections is None
+    found = candidate_of(candidate(), COMPANY, INTERVIEW, "https://prepza.ai")
+
+    assert found.sections is None
+    assert found.mode == "click"

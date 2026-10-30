@@ -114,6 +114,7 @@ async def invite(
     return_url: str | None = None,
     sign_in: bool = True,
     theme: str | None = None,
+    voice: bool | None = None,
 ) -> tuple[UUID, bool]:
     """Invites the candidate as `sender_id` would: the invite's id, and whether this invited them.
     A candidate whose invite is still open, or who finished, is returned as they are (no second
@@ -126,6 +127,7 @@ async def invite(
         "return_url": return_url,
         "sign_in": sign_in,
         "theme": theme,
+        "voice": voice,
         "resend": False,
     }
 

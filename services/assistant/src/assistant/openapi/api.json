@@ -574,7 +574,7 @@
      "Candidates"
     ],
     "summary": "Invite a candidate",
-    "description": "Invites the candidate to the interview as the key (the action log names it) and reserves\ncredits for them, with their name if given. By default prepza emails the invitation and the\ncandidate signs in with that email; with `sign_in` false, your platform sends them to the\nresponse's `invite_url`, which opens the interview without signing in. With a `return_url`,\nthe finished page takes the candidate back to your platform. Retrying is safe: inviting an\naddress whose invite is still open, or who already finished, returns that candidate as they\nare (`200`), without another email or credits; an expired invite is sent again. To send an\nopen invite again, use the resend endpoint.\n\nNeeds the `candidates:invite` permission.",
+    "description": "Invites the candidate to the interview as the key (the action log names it) and reserves\ncredits for them, with their name if given. By default prepza emails the invitation and the\ncandidate signs in with that email; with `sign_in` false, your platform sends them to the\nresponse's `invite_url`, which opens the interview without signing in. With a `return_url`,\nthe finished page takes the candidate back to your platform. With `mode`, the candidate takes\nit by voice or click, whatever the interview's mode. Retrying is safe: inviting an\naddress whose invite is still open, or who already finished, returns that candidate as they\nare (`200`), without another email or credits; an expired invite is sent again. To send an\nopen invite again, use the resend endpoint.\n\nNeeds the `candidates:invite` permission.",
     "operationId": "invite_candidate",
     "security": [
      {
@@ -703,7 +703,7 @@
       }
      },
      "422": {
-      "description": "The body is invalid (`validation_failed`), or `return_url` isn't an https address (http only on localhost) (`return_url_invalid`)",
+      "description": "The body is invalid (`validation_failed`), `return_url` isn't an https address (http only on localhost) (`return_url_invalid`), or `mode` is `voice` in a language voice mode doesn't support (`voice_unavailable`)",
       "content": {
        "application/json": {
         "schema": {
@@ -2523,6 +2523,16 @@
       "description": "Extra time per question the company gave the candidate, in percent",
       "default": 0
      },
+     "mode": {
+      "type": "string",
+      "enum": [
+       "click",
+       "voice"
+      ],
+      "title": "Mode",
+      "description": "How the candidate takes the interview: `voice` (the questions are read aloud and may be answered by voice) or `click`; the mode the company chose for them, else the interview's",
+      "default": "click"
+     },
      "sections": {
       "anyOf": [
        {
@@ -2626,6 +2636,7 @@
       "grade": 86,
       "id": "0e7a4d2c-91b3-4f6e-8a5d-2c1b9f3e7a60",
       "interview_id": "6b1f0c3e-2a7d-4c58-9e41-3f8a2d5b7c90",
+      "mode": "click",
       "name": "Anna Nowak",
       "passed": true,
       "progress": 100,
@@ -2710,6 +2721,22 @@
       "title": "Sign In",
       "description": "Whether the candidate signs in to prepza with this email, which prepza sends the invitation and its reminder to. Set it to false when your platform already knows who the candidate is and sends them to the response's `invite_url` itself: the link then opens the interview without signing in, and prepza sends no emails. Anyone with that link can take the interview, so give it only to the candidate",
       "default": true
+     },
+     "mode": {
+      "anyOf": [
+       {
+        "type": "string",
+        "enum": [
+         "click",
+         "voice"
+        ]
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Mode",
+      "description": "How this candidate takes the interview, optional: `voice` (the questions are read aloud and may be answered by voice) or `click`; left out, the interview's mode. Voice only in the languages voice mode supports (English, Spanish, German, French, Portuguese and Italian). Inviting an address whose invite is still open returns it as it is, mode included"
      }
     },
     "type": "object",

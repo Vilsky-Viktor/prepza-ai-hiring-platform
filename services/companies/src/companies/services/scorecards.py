@@ -1,11 +1,18 @@
 import asyncio
 
 from prepza_common.auth.user import User
+from prepza_common.config.constants import VOICE_LANGUAGES
 from prepza_common.events.analytics import track
 
 from companies.constants.invites import EXTRA_TIME_OPTIONS, NOT_STARTED, InviteStatus
 from companies.core.db import Session
-from companies.helpers.candidates import open_link_token, passed, row_actions, section_passed
+from companies.helpers.candidates import (
+    open_link_token,
+    passed,
+    row_actions,
+    section_passed,
+    takes_voice,
+)
 from companies.helpers.logos import logo_path
 from companies.integrations import rounds
 from companies.models.companies import Company, Member
@@ -67,6 +74,10 @@ async def scorecard(
         **row_actions(invite.status),
         extra_time_options=(
             list(EXTRA_TIME_OPTIONS) if invite.status in NOT_STARTED and editor else []
+        ),
+        voice=takes_voice(invite, interview),
+        mode_editable=(
+            editor and invite.status in NOT_STARTED and interview.language in VOICE_LANGUAGES
         ),
         invite_token=open_link_token(invite) if editor else None,
         title=await interview_title(interview),

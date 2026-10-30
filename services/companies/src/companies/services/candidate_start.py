@@ -6,7 +6,7 @@ from prepza_common.limits.pause import refuse_if_paused
 
 from companies.constants.invites import EMAIL_NOT_VERIFIED, NOT_THE_GUEST, InviteStatus
 from companies.core.db import Session
-from companies.helpers.candidates import candidate_seconds
+from companies.helpers.candidates import candidate_seconds, takes_voice
 from companies.helpers.interviews import session_topics
 from companies.integrations import library, rounds
 from companies.integrations.firebase_tokens import guest_uid
@@ -45,7 +45,9 @@ async def start_sessions(
             "candidate_invite_id": str(invite.id),
             "question_seconds": candidate_seconds(interview.question_seconds, invite.extra_time),
             "topics": session_topics(interview, content, await multi_share(get_redis())),
-            "voice": bool(interview.voice),
+            # Their own mode when the company set one, else the interview's (a link's
+            # candidate has none).
+            "voice": takes_voice(invite, interview),
         }
     )
 

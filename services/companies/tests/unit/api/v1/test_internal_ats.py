@@ -3,8 +3,8 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth.key_actor import key_actor
 from fastapi import HTTPException
+from prepza_common.auth.key_actor import key_actor
 from prepza_common.auth.service_auth import issue_token
 from prepza_common.http.http import bearer
 
@@ -60,6 +60,7 @@ def stored(monkeypatch):
         sign_in=True,
         theme=None,
         via=None,
+        voice=None,
     ):
         calls["invites"].append((interview.id, company.id, user.uid, email, via))
         calls.setdefault("names", []).append(name)

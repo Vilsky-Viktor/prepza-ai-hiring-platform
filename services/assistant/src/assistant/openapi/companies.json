@@ -2593,6 +2593,68 @@
     }
    }
   },
+  "/interviews/{interview_id}/candidates/{invite_id}/voice": {
+   "put": {
+    "tags": [
+     "interviews"
+    ],
+    "summary": "Set Candidate Mode",
+    "description": "Owners and admins choose how one candidate takes the interview, by voice or click, apart\nfrom the interview's mode, until they start (candidate_changes).",
+    "operationId": "set_candidate_mode_interviews__interview_id__candidates__invite_id__voice_put",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "interview_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Interview Id"
+      }
+     },
+     {
+      "name": "invite_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "format": "uuid",
+       "title": "Invite Id"
+      }
+     }
+    ],
+    "requestBody": {
+     "required": true,
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/CandidateModeIn"
+       }
+      }
+     }
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
   "/companies/{company_id}/candidates": {
    "get": {
     "tags": [
@@ -2751,7 +2813,7 @@
      "interviews"
     ],
     "summary": "Invite Many",
-    "description": "Invites every email in a pasted or uploaded list, one by one as a single invite would,\nwith the names the list gives (\"Name <email>\", \"email, Name\", or a CSV's name columns), and\nsays who was invited and why the others weren't.",
+    "description": "Invites every email in a pasted or uploaded list, one by one as a single invite would,\nwith the names the list gives (\"Name <email>\", \"email, Name\", or a CSV's name columns), and\nsays who was invited and why the others weren't. `voice` chooses how they all take it.",
     "operationId": "invite_many_interviews__interview_id__candidates_bulk_post",
     "security": [
      {
@@ -8141,6 +8203,17 @@
       "title": "Sign In",
       "default": true
      },
+     "voice": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Voice"
+     },
      "resend": {
       "type": "boolean",
       "title": "Resend",
@@ -8520,6 +8593,17 @@
        }
       ],
       "title": "Filename"
+     },
+     "voice": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Voice"
      }
     },
     "type": "object",
@@ -8638,6 +8722,17 @@
        }
       ],
       "title": "Name"
+     },
+     "voice": {
+      "anyOf": [
+       {
+        "type": "boolean"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Voice"
      }
     },
     "type": "object",
@@ -8645,6 +8740,20 @@
      "email"
     ],
     "title": "CandidateIn"
+   },
+   "CandidateModeIn": {
+    "properties": {
+     "voice": {
+      "type": "boolean",
+      "title": "Voice"
+     }
+    },
+    "type": "object",
+    "required": [
+     "voice"
+    ],
+    "title": "CandidateModeIn",
+    "description": "How one candidate takes the interview: by voice (true) or click (false)."
    },
    "CandidateNameIn": {
     "properties": {
@@ -8738,6 +8847,11 @@
       "type": "integer",
       "title": "Extra Time",
       "default": 0
+     },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
      },
      "created_at": {
       "type": "string",
@@ -9134,6 +9248,11 @@
       "type": "integer",
       "title": "Extra Time",
       "default": 0
+     },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
      },
      "created_at": {
       "type": "string",
@@ -12035,6 +12154,16 @@
       },
       "type": "array",
       "title": "Extra Time Options"
+     },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
+     },
+     "mode_editable": {
+      "type": "boolean",
+      "title": "Mode Editable",
+      "default": false
      },
      "invite_token": {
       "anyOf": [

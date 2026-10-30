@@ -76,6 +76,7 @@ async def invite(interview_id: UUID, body: AtsInviteIn, via: str) -> tuple[UUID,
         body.sign_in,
         body.theme,
         via=via,
+        voice=body.voice,
     )
     await outbox_service.flush_quietly()
 

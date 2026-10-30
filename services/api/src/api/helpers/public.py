@@ -49,6 +49,7 @@ def candidate_of(found: dict, company_id, interview_id, site: str) -> Candidate:
         ),
         flagged=found.get("flagged", False),
         extra_time=found.get("extra_time", 0),
+        mode="voice" if found.get("voice") else "click",
         sections=found.get("sections"),
         results_url=CANDIDATE_LINK.format(
             site=site, company_id=company_id, interview_id=interview_id, invite_id=found["id"]

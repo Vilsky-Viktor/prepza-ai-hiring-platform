@@ -108,6 +108,14 @@ class Candidate(BaseModel):
         default=0,
         description="Extra time per question the company gave the candidate, in percent",
     )
+    mode: Literal["click", "voice"] = Field(
+        default="click",
+        description=(
+            "How the candidate takes the interview: `voice` (the questions are read aloud and "
+            "may be answered by voice) or `click`; the mode the company chose for them, else "
+            "the interview's"
+        ),
+    )
     sections: list[Section] | None = Field(
         default=None,
         description=(
@@ -181,6 +189,16 @@ class CandidateIn(BaseModel):
             "who the candidate is and sends them to the response's `invite_url` itself: the "
             "link then opens the interview without signing in, and prepza sends no emails. "
             "Anyone with that link can take the interview, so give it only to the candidate"
+        ),
+    )
+    mode: Literal["click", "voice"] | None = Field(
+        default=None,
+        description=(
+            "How this candidate takes the interview, optional: `voice` (the questions are read "
+            "aloud and may be answered by voice) or `click`; left out, the interview's mode. "
+            "Voice only in the languages voice mode supports (English, Spanish, German, French, "
+            "Portuguese and Italian). Inviting an address whose invite is still open returns it "
+            "as it is, mode included"
         ),
     )
 

@@ -61,7 +61,7 @@ def test_the_list_invites_each_candidate_with_their_name(client, monkeypatch):
     invite_setup(monkeypatch)
     calls = []
 
-    async def invite(interview, company, user, email, name=None):
+    async def invite(interview, company, user, email, name=None, voice=None):
         calls.append((email, name))
 
         return SimpleNamespace(id=None)
@@ -77,7 +77,7 @@ def test_the_forms_name_field_goes_with_its_one_email(client, monkeypatch):
     invite_setup(monkeypatch)
     calls = []
 
-    async def invite(interview, company, user, email, name=None):
+    async def invite(interview, company, user, email, name=None, voice=None):
         calls.append((email, name))
 
         return SimpleNamespace(id=None)

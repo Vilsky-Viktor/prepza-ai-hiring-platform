@@ -191,8 +191,9 @@ INTERVIEW_ACTIONS = {
         "POST",
         "/interviews/{interview_id}/candidates",
         "Invite one candidate to an interview by email, with their name when the user gave it (it "
-        "costs credits once they answer).",
-        body=["email", "name"],
+        "costs credits once they answer). `voice` only when the user asked how they take it: "
+        "true by voice, false by click; left out, the interview's mode.",
+        body=["email", "name", "voice"],
         fields=["id", "email", "status"],
         link=CANDIDATES_PAGE,
     ),
@@ -200,8 +201,9 @@ INTERVIEW_ACTIONS = {
         "POST",
         "/interviews/{interview_id}/candidates/bulk",
         "Invite several candidates at once: `text` holds their emails, separated by commas, "
-        "spaces or new lines.",
-        body=["text"],
+        "spaces or new lines. `voice` only when the user asked how they take it: true by voice, "
+        "false by click; left out, the interview's mode.",
+        body=["text", "voice"],
         fields=["invited", "skipped"],
         link=CANDIDATES_PAGE,
     ),

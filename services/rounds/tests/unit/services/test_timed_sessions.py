@@ -50,7 +50,10 @@ def timed(shown_seconds_ago, answers=None):
     )
 
 
-def test_starting_a_timed_interview_passes_the_seconds_per_question(client, monkeypatch):
+@pytest.mark.parametrize("voice", [False, True])
+def test_starting_a_timed_interview_passes_the_seconds_per_question(client, monkeypatch, voice):
+    """Companies sends the candidate's mode with the start (their own, else the interview's):
+    every section is taken in it."""
     created = {}
 
     async def no_sessions(session, invite_id):
@@ -70,6 +73,7 @@ def test_starting_a_timed_interview_passes_the_seconds_per_question(client, monk
             {"id": str(uuid4()), "preparation_id": str(uuid4()), "title": "T", "questions": []}
         ],
         "question_seconds": 45,
+        "voice": voice,
     }
 
     response = client.post(
@@ -79,7 +83,9 @@ def test_starting_a_timed_interview_passes_the_seconds_per_question(client, monk
     )
 
     assert response.status_code == 201
-    assert [(row.question_seconds, row.preview) for row in created["rows"]] == [(45, False)]
+    assert [(row.question_seconds, row.preview, row.voice) for row in created["rows"]] == [
+        (45, False, voice)
+    ]
 
 
 def test_a_question_past_its_time_counts_as_wrong(monkeypatch):

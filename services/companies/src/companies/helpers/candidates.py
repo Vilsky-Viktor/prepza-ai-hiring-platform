@@ -86,6 +86,7 @@ def candidate_out(invite, totals: dict, interview, with_link: bool = False) -> C
         **{key: totals.get(key, 0) for key in SIGNAL_KEYS},
         flagged=bool(invite.flagged),
         extra_time=invite.extra_time or 0,
+        voice=takes_voice(invite, interview),
         created_at=invite.created_at,
         updated_at=invite.updated_at,
         started_at=invite.started_at,
@@ -119,3 +120,15 @@ def row_actions(status: str) -> dict:
         "can_resend": status not in (InviteStatus.FINISHED, InviteStatus.DELETED),
         "revokable": status in NOT_STARTED,
     }
+
+
+def takes_voice(invite, interview) -> bool:
+    """Whether the candidate takes the interview by voice: their own mode when the company set
+    one, else the interview's."""
+    return bool(interview.voice) if invite.voice is None else invite.voice
+
+
+def voice_override(voice: bool, interview) -> bool | None:
+    """What a candidate's chosen mode keeps on their invite: None when it's the interview's own,
+    so they follow the interview's when it changes; the choice when it's apart from it."""
+    return None if voice == bool(interview.voice) else voice

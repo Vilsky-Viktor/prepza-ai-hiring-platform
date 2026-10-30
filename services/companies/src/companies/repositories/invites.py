@@ -30,11 +30,15 @@ async def upsert(
     return_url: str | None = None,
     sign_in: bool = True,
     theme: str | None = None,
+    mode_chosen: bool = False,
+    voice: bool | None = None,
 ) -> tuple[CandidateInvite, bool]:
     """Creates the invite (with `hold_key`, its credits' key, or a new one), or returns the
     existing one so it can be sent again, and saves the email's event with it. True when it revived an expired
     invite, whose credits were given back. `name`, the inviter's or the ATS's, fills a name not
-    known yet: a name an owner or admin set stays, also when the same invite comes again."""
+    known yet: a name an owner or admin set stays, also when the same invite comes again. With
+    `mode_chosen`, `voice` becomes the candidate's own mode (None: the interview's) unless they
+    already started."""
     email = email.lower()
     statement = (
         insert(CandidateInvite)
@@ -77,6 +81,9 @@ async def upsert(
 
     if theme:
         invite.theme = theme
+
+    if mode_chosen and invite.status == InviteStatus.INVITED:
+        invite.voice = voice
 
     company_id = await session.scalar(
         select(Interview.company_id).where(Interview.id == interview_id)

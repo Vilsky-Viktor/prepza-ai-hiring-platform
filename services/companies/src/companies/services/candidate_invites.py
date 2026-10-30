@@ -17,7 +17,7 @@ from companies.constants.invites import (
     InviteStatus,
 )
 from companies.core.db import Session
-from companies.helpers.candidates import new_hold_key
+from companies.helpers.candidates import new_hold_key, voice_override
 from companies.helpers.logos import logo_path
 from companies.integrations import billing
 from companies.integrations.redis import get_redis
@@ -28,6 +28,7 @@ from companies.repositories import audit, companies, invites
 from companies.services import outbox as outbox_service
 from companies.services.candidate_billing import hold_again
 from companies.services.interview_views import interview_title
+from companies.services.voice_modes import refuse_unspoken
 
 
 async def invite(
@@ -40,14 +41,19 @@ async def invite(
     sign_in: bool = True,
     theme: str | None = None,
     via: str | None = None,
+    voice: bool | None = None,
 ) -> CandidateInvite:
     """Invites one candidate, or sends their invite again, with the invite email queued; `name`
     (untrusted: cleaned here) fills their name if it isn't known yet. Raises 429 over the
     member's email limits and billing's 402 when the company is out of credits, and 409 while a
     superadmin has the company suspended (an ATS keeps its candidates waiting then). The action
-    log records it as `user`'s, through `via` when an ATS or the API sent it."""
+    log records it as `user`'s, through `via` when an ATS or the API sent it. `voice` chooses how
+    a candidate not started yet takes it (none leaves it as it is); voice in a language voice
+    mode doesn't speak is 422."""
     if company.suspended_at is not None:
         raise CodedError(status.HTTP_409_CONFLICT, COMPANY_SUSPENDED, error_codes.COMPANY_SUSPENDED)
+
+    refuse_unspoken(interview, voice)
 
     email = email.lower()
 
@@ -92,6 +98,8 @@ async def invite(
             return_url=return_url,
             sign_in=sign_in,
             theme=theme,
+            mode_chosen=voice is not None,
+            voice=None if voice is None else voice_override(voice, interview),
         )
     except Exception:
         await give_back(interview, company, email, current, key)

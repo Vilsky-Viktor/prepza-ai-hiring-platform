@@ -24,7 +24,7 @@ def candidate():
     app.dependency_overrides.clear()
 
 
-def start(client, monkeypatch, voice=None):
+def start(client, monkeypatch, voice=None, own=None):
     invite = CandidateInvite(
         id=uuid.uuid4(),
         interview_id=uuid.uuid4(),
@@ -32,6 +32,7 @@ def start(client, monkeypatch, voice=None):
         token="token-1",
         status=InviteStatus.INVITED,
         created_at=datetime.now(UTC),
+        voice=own,
     )
     interview = Interview(
         id=invite.interview_id,
@@ -86,3 +87,10 @@ def test_every_interview_limits_each_question(client, monkeypatch):
 
 def test_an_interview_taken_by_voice_starts_its_sessions_by_voice(client, monkeypatch):
     assert start(client, monkeypatch, voice=True)["voice"] is True
+
+
+@pytest.mark.parametrize(("voice", "own"), [(False, True), (True, False)])
+def test_a_candidates_own_mode_starts_their_sessions_in_it(client, monkeypatch, voice, own):
+    """Rounds learns the mode as the sessions are made: the candidate's own when the company set
+    one, whatever the interview's."""
+    assert start(client, monkeypatch, voice=voice, own=own)["voice"] is own

@@ -92,7 +92,15 @@ PATTERNS = {
 }
 
 
-def open_scorecard(client, monkeypatch, headers=None, status=InviteStatus.FINISHED, role="owner"):
+def open_scorecard(
+    client,
+    monkeypatch,
+    headers=None,
+    status=InviteStatus.FINISHED,
+    role="owner",
+    language="ar",
+    own=None,
+):
     sign_in()
     fake_candidates.add(
         CandidateInvite(
@@ -105,6 +113,7 @@ def open_scorecard(client, monkeypatch, headers=None, status=InviteStatus.FINISH
             extra_time=0,
             created_at=datetime.now(UTC),
             pledged_at=PLEDGED_AT if status == InviteStatus.FINISHED else None,
+            voice=own,
         )
     )
     interview = Interview(
@@ -114,7 +123,8 @@ def open_scorecard(client, monkeypatch, headers=None, status=InviteStatus.FINISH
         set_id=uuid.uuid4(),
         title="Backend",
         pass_mark=70,
-        language="ar",
+        language=language,
+        voice=False,
     )
     company = Company(id=COMPANY_ID, name="Arcolabs", created_at=datetime.now(UTC))
     company.members = [
@@ -187,6 +197,31 @@ def test_the_invite_link_is_there_to_copy_until_the_candidate_finishes(
     card = open_scorecard(client, monkeypatch, status=status, role=role).json()
 
     assert card["invite_token"] == token
+
+
+@pytest.mark.parametrize(
+    ("status", "role", "language", "editable"),
+    [
+        (InviteStatus.INVITED, "owner", "en", True),
+        (InviteStatus.EXPIRED, "admin", "de", True),
+        # Started: their sessions are made in their mode.
+        (InviteStatus.IN_PROCESS, "owner", "en", False),
+        (InviteStatus.FINISHED, "owner", "en", False),
+        # A viewer changes nothing; voice mode doesn't speak Arabic.
+        (InviteStatus.INVITED, "viewer", "en", False),
+        (InviteStatus.INVITED, "owner", "ar", False),
+    ],
+)
+def test_a_candidates_mode_can_be_changed_until_they_start(
+    client, monkeypatch, tracked, status, role, language, editable
+):
+    card = open_scorecard(
+        client, monkeypatch, status=status, role=role, language=language, own=True
+    ).json()
+
+    # Their own mode, apart from the interview's click mode.
+    assert card["voice"] is True
+    assert card["mode_editable"] is editable
 
 
 def test_viewing_a_finished_candidates_results_is_recorded(client, monkeypatch, audited, tracked):

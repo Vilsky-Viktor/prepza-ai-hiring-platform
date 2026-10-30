@@ -171,6 +171,7 @@ def test_a_candidate_is_found_by_exact_email_in_full_and_credits_are_read(
         token="tok-1",
         flagged=False,
         extra_time=0,
+        voice=None,
         grade=None,
         created_at=datetime.now(UTC),
         updated_at=None,
