@@ -1,6 +1,6 @@
 # Using prepza responsibly: instructions for companies
 
-Version of 2026-10-29. Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Estonia; hello@prepza.ai.
+Version of 2026-10-30. Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Estonia; hello@prepza.ai.
 
 For owners and admins of a company on prepza. These are prepza's instructions for use under the
 EU AI Act (Art. 13). Your own duties as an employer, under the employment and data protection law
@@ -173,6 +173,17 @@ words; they appear only on the candidate's page.
 - You can also raise the average time per question for everyone in the interview's settings;
   each question's own time grows with it.
 - prepza's candidate pages are built to WCAG 2.2 AA.
+- **Voice mode** (an interview's setting, in English, Spanish, German, French, Portuguese or
+  Italian) reads each question and its options aloud and lets candidates answer aloud. It can help
+  some candidates (some visual or motor impairments, a phone), but speech recognition can mishear
+  an accent, a speech impairment or a noisy room: the interviewer says the option it heard and the
+  candidate confirms it before it counts, and tapping an option always works. Tell candidates
+  before they start, and set an interview to click mode for anyone who prefers it. prepza turns
+  the speech into text and options only, never stores it and never analyses the voice (no tone,
+  emotion or confidence, which the EU AI Act forbids in hiring).
+- In the **UK**, the Equality Act 2010 asks you to make reasonable adjustments for disabled
+  candidates; in the **US**, the ADA asks for reasonable accommodation. Extra time, an alternative
+  assessment and click or voice mode are the adjustments prepza gives you.
 
 ## 9. Telling candidates
 
@@ -184,6 +195,11 @@ templates (at prepza.ai/documents) are a starting point. prepza's invite page al
 what to expect and links prepza's privacy policy, but the notice about **your** use of the results
 is yours to give.
 
+- **People you find on the Discover tab** chose to be open to offers and gave you no data
+  themselves: you got their name, LinkedIn profile and practice results from prepza. Tell them, at
+  the latest in your invite, who you are, why you're contacting them, what you saw and their
+  rights (GDPR and UK GDPR Art. 14). Use what you see only to consider them for your own jobs, and
+  remember their results are practice, not a qualification.
 - Until prepza has verified your company, your invite pages and emails say so in a small line.
   Use **Verify company**: your website, and a sign-in with an email on its domain.
 - prepza's invite and reminder emails let candidates stop your company's emails, or that
@@ -207,7 +223,7 @@ is yours to give.
 ## 10. Records, retention and data requests
 
 **Records (logs).** For each candidate prepza records every question shown and when, the picks,
-right or wrong (or the points of a "select all that apply" question), the time taken, timeouts, page leaves and copy attempts, start and finish: the
+right or wrong (or the points of a "select all that apply" question), the time taken, timeouts, page leaves (with how long they lasted) and copy attempts, start and finish (in voice mode, the options the candidate confirmed, never what they said): the
 scorecard and its PDF report show them, and the API returns the results. Answer patterns aren't
 stored: they're read from these records each time the results are opened. It also records when the
 candidate confirmed, before starting, that they'd answer on their own, which the scorecard shows. Your company's action
@@ -219,7 +235,10 @@ the assistant, an AI app, the API or an ATS. The owner reads it on the company's
 tab, filtered by member, kind of action and days, or through the API
 (`GET /companies/{id}/audit`). Keep what your law requires: the EU AI Act asks you to keep
 these records at least six months, and prepza keeps them for you as below. Download PDF reports to
-keep them longer.
+keep them longer: some laws ask for more than prepza's 12 months, such as California's rules on
+automated-decision systems in employment (4 years, from 2025-10-01), Colorado's AI law (3 years,
+from 2027-01-01) and US federal rules on hiring records (1 year from the record or the decision).
+Team notes on an interview stay with it until you delete them or the interview.
 
 **Retention.**
 
@@ -267,6 +286,40 @@ under the data processing agreement at prepza.ai/dpa, which is part of the terms
 - Where your local law requires a works council agreement, a regulator approval or a bias audit you
   haven't done.
 
+prepza treats itself as an automated employment decision tool under Local Law 144 whenever the
+grade or the passing grade is used to screen, rank or reject candidates: a numeric score that
+substantially assists a hiring decision. Used only as one input among others that people weigh more,
+it may not be one, but count on the duties above.
+
+## 11a. The UK and the US
+
+- **UK:** the UK GDPR and the Data Protection Act 2018 apply as the GDPR does: a lawful basis,
+  a DPIA (the ICO treats AI in recruitment as high risk), the candidate notice, human review on
+  request and a way to challenge a decision (Art. 22 UK GDPR). The ICO's recommendations for AI
+  recruitment tools (2024) also ask you to check the tool's accuracy and bias with its provider,
+  to collect no more than needed, and to keep candidates' data no longer than needed. Avoid
+  indirect discrimination under the Equality Act 2010: choose topics and a passing grade the job
+  really needs (sections 4 and 6), and watch pass rates.
+- **US federal:** Title VII and the ADA apply to tests used in hiring. Check adverse impact on
+  your own outcomes (the EEOC's four-fifths rule of thumb: a group's pass rate under 80% of the
+  highest group's is a warning sign), and give reasonable accommodation.
+- **New York City:** section 11.
+- **Illinois** (Human Rights Act, from 2026-01-01): tell candidates when AI is used in
+  recruitment or hiring decisions, and never use AI that discriminates by a protected class, or
+  zip codes as a proxy for one (prepza asks for neither). Use the Illinois notice template.
+- **Colorado** (its AI law, from 2027-01-01): before using prepza on Colorado candidates, give the
+  pre-use notice; after an adverse outcome, within 30 days, explain the decision and prepza's role,
+  the data used and its sources, and the candidate's rights to correct data and to ask for human
+  review and reconsideration; keep records 3 years. Use the Colorado notice template; prepza's
+  documentation for deployers is this document, the technical facts in section 3 and the DPIA
+  template.
+- **California:** the Civil Rights Council's rules on automated-decision systems (from
+  2025-10-01) make you answer for discrimination through such tools, value anti-bias testing,
+  and ask you to keep their records 4 years; the privacy agency's rules on automated
+  decision-making technology ask for a pre-use notice, and access and opt-out or appeal rights,
+  for significant decisions such as hiring, from 2027-01-01. prepza is your service provider under
+  the CCPA (the data processing agreement's US section).
+
 ## 12. Your duties as a deployer under the EU AI Act
 
 From 2027-12-02, when you use prepza in the EU:
@@ -279,6 +332,8 @@ From 2027-12-02, when you use prepza in the EU:
 - tell your employees' representatives before you use it for hiring, where your law requires;
 - tell candidates that a high-risk AI system is used to assess them (section 9), and explain, on
   request, the role it played in a decision about them;
+- in voice mode, rely on what prepza does: speech turned into text only, never emotion
+  recognition, which Art. 5 forbids in the workplace and hiring;
 - use these instructions for your data protection impact assessment (prepza's DPIA template at
   prepza.ai/documents).
 

@@ -1,12 +1,13 @@
 # Candidate notice templates
 
-Version of 2026-10-17. Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Estonia; hello@prepza.ai.
+Version of 2026-10-30. Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Estonia; hello@prepza.ai.
 
 For companies to adapt and send **before** inviting candidates to a prepza interview. Replace
 everything in [brackets]. The notice is yours to give as the employer: these templates cover what
 prepza does, and you add how you use the results. In the EU, telling candidates that a high-risk
 AI system is used to assess them is one of your duties under the AI Act from 2027-12-02; the
-general notice (section 2) does it.
+general notice (section 2) does it. Illinois and Colorado candidates get the general notice with
+the state wording in sections 4 and 5 added.
 
 ## 1. New York City (Local Law 144, automated employment decision tool)
 
@@ -89,6 +90,12 @@ your audit summary is published (see prepza's instructions for companies).
 > difficulty as other candidates' do, with questions to ask you about; it's a reason to ask, never
 > a decision. You won't see your score.
 >
+> [Voice mode only:] **Answering aloud.** The questions and their options are read aloud and you
+> can answer aloud. What the microphone picks up while you answer is turned into text by AI and
+> matched to an option, which you confirm before it counts; it is never recorded or stored, and
+> your voice isn't analysed in any other way. You can always tap an option instead, or ask us at
+> [contact] for the test without voice.
+>
 > **How we use it.** Your result is one part of our assessment, alongside [your CV / interviews].
 > A person at [Company] reviews it; no decision is made automatically. You can ask us for a human
 > review of your result and for an explanation of how it was used, at [contact].
@@ -118,3 +125,34 @@ your audit summary is published (see prepza's instructions for companies).
 > AI-written on topics our team chose; a person reviews every result and you can ask for a human
 > review. Need extra time or an alternative? Write to [contact] before you start. Details:
 > [link to full notice].
+
+## 4. Illinois (Human Rights Act, AI in employment)
+
+Add to the general notice for candidates in Illinois, from 2026-01-01:
+
+> **Use of artificial intelligence (Illinois).** [Company] uses artificial intelligence in
+> recruitment and hiring for [job title]: prepza, a timed knowledge test whose questions and answer
+> keys were written with the help of AI and which gives each candidate a grade. We use the grade
+> to [decide whom to invite to the next interview / as one part of our assessment]. It doesn't use
+> your age, race, sex, disability, zip code or any other protected characteristic, or a proxy for
+> one. A person at [Company] reviews every result. Questions, an accommodation or a human review:
+> [contact].
+
+## 5. Colorado (its AI law, from 2027-01-01)
+
+Before the test, add to the general notice for candidates who live in Colorado:
+
+> **Automated decision-making technology (Colorado).** [Company] uses prepza, technology that
+> grades a timed knowledge test with answer keys written with the help of AI, and the grade
+> [materially influences / is one part of] our decision about [job title]. To learn more about the
+> technology, the data it uses and your rights, write to [contact] or see [link].
+
+If the outcome is adverse (not hired, or not invited onward), send within 30 days:
+
+> **About our decision (Colorado).** We decided [not to move your application forward] for
+> [job title]. prepza's grade of your knowledge test [describe its role, e.g. was below our passing
+> grade of N%, which we weighed with your interview]. The system is prepza (Arcolabs OÜ, version
+> as used on [date]); it used your answers, how long each took and the integrity signals described
+> in our notice, all from your test, and your name and email from your application. You can ask us
+> to correct any of this data, and ask a person to review and reconsider the decision, at
+> [contact] by [date].

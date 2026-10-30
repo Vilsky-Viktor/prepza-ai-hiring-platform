@@ -42,6 +42,12 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
    "select all that apply" question, about 1 in 10, earns part of it for each right option ticked
    and nothing with a wrong one) and shows you a grade, the percentage of points earned, green or red against the passing grade you set, ranked best first, with
    integrity signals.
+   If you set an interview to **voice mode** (English, Spanish, German, French, Portuguese or
+   Italian), prepza reads each question and its options aloud and the candidate answers aloud:
+   what the microphone picks up while they answer is turned into text by AI and matched to the
+   options, the candidate confirms the choice, and it's recorded as a tapped answer is. The audio
+   and its text are never stored, voices are never analysed (no tone, emotion or confidence), and
+   the candidate can always tap an option instead. Marking is the same in both modes.
 5. You review results and decide. prepza sends candidates no decision. If you connect them, prepza
    also sends results to your applicant tracking system (as a note), your Slack channel (the
    notifications you choose) and your own systems (through the API and web hooks).
@@ -50,6 +56,13 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
    It reads with that member's access and role, can summarise and compare candidates, and can
    act for them (inviting, changing a pass mark, revoking): in the app each action waits for their
    confirmation; through an AI app, whether to ask first is up to that app.
+7. Your team can write notes on an interview (its Notes tab, the assistant, AI apps or the API's
+   keys); candidates never see them.
+8. If you have topped up at least once, an interview's **Discover** tab lists people who chose to
+   be open to offers and practised its subjects at its level: their name, LinkedIn profile and
+   latest timed practice results. prepza shows them with their consent, as their controller; what
+   you do with what you see, and anyone you invite from there, is yours as controller (see
+   section 3, Information to candidates).
 
 **Data categories.**
 
@@ -58,7 +71,10 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
 | Identity and contact | Invited email address; name (from you, your applicant tracking system or the sign-in) and account id from sign-in; the candidate's id in your applicant tracking system, if it sent them |
 | Assessment | Questions shown, answers (every option ticked), right/wrong or points, time per answer, timeouts, topic and overall grades, pass/fail against your passing grade, rank |
 | Accommodations | Extra time you give a candidate (the amount only, never a reason) |
-| Integrity signals | Times the candidate left the page, copy attempts, answers under 3 seconds, each with the question on screen |
+| Integrity signals | Times the candidate left the page (with how long they were away), copy attempts, answers under 3 seconds, each with the question on screen; answer patterns worked out when you read the results and never stored (answer times about the same on every question whatever its length, or hard questions right while easy ones were wrong, against all candidates' answers), with up to 3 follow-up questions to ask in a live interview |
+| Voice mode | Only for an interview you set to it: what the microphone picks up while the candidate answers (their spoken answer, and any other voice in the room), turned into text and matched to the options in memory, never stored; the options they confirm are stored as answers |
+| Team notes | Notes your members and API keys write on an interview, which may name candidates; kept with the interview |
+| Open to offers | For people on your Discover tab: name, LinkedIn profile address, latest timed practice results on your interview's subjects; never their email until you invite them |
 | Pledge | When the candidate confirmed, before starting, that they'd answer on their own, without AI tools or other people |
 | Feedback | Candidate's ratings and reports of questions (reports may include a free-text comment) |
 | Reports | PDFs made in your browser; if emailed through prepza, kept at most 7 days to send |
@@ -75,14 +91,16 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
   picked each option, and the reasons questions were reported, never reporters' comments. The
   assistant's answers: the member's questions and the data its tools read with their access,
   which can include candidates' emails, names, grades and integrity signals; voice messages
-  turned into text. prepza tells OpenAI not to store it; under OpenAI's API terms it keeps the
+  turned into text. In voice mode: questions read aloud (no personal data), and a candidate's
+  spoken answer turned into text and matched to the options, from the recording and then its
+  text with the question and options, never the answer key. prepza tells OpenAI not to store it; under OpenAI's API terms it keeps the
   data for at most 30 days, only to check for abuse, and uses none of it for training. OpenAI
   Ireland Ltd, which transfers it to OpenAI in the United States under the European Commission's
   standard contractual clauses).
 - Resend (emails; EU, Ireland).
 - Google Workspace (prepza's email inbox: messages from companies and candidates, and requests passed on to the company; Google Ireland Ltd, mail may be stored outside the EU under the EU-US Data Privacy Framework and standard contractual clauses).
 - Sentry (error reports, without email addresses; EU).
-- Langfuse (records of AI calls, to monitor and improve the quality of answers: what is sent to the AI and its answers, which can include candidates' data the AI handles, such as the results the assistant reads to answer a member, and votes on the assistant's answers; kept 30 days; Langfuse GmbH, Germany, its EU cloud).
+- Langfuse (records of AI calls, to monitor and improve the quality of answers: what is sent to the AI and its answers, which can include candidates' data the AI handles, such as the results the assistant reads to answer a member, and votes on the assistant's answers; in voice mode only which options a spoken answer matched, never its words; kept 30 days; Langfuse GmbH, Germany, its EU cloud).
 - Cloudflare (the "I'm not a robot" check, Turnstile, when a candidate starts through a job ad's link: their browser's signals and address, from which prepza keeps only whether it passed; Cloudflare, Inc., United States, under the EU-US Data Privacy Framework).
 - Upstash (short-lived counters for limits and live updates; EU, Belgium).
 - Paddle (payments; receives no candidate data).
@@ -108,7 +126,11 @@ those apps).
 Firebase (sign-in) and Cloudflare (the "I'm not a robot" check), under the EU-US Data Privacy
 Framework, and OpenAI, through OpenAI Ireland Ltd under the European Commission's standard
 contractual clauses. prepza gives a copy of the
-safeguards on request. Transfers to tools you connect are yours to cover.
+safeguards on request. Transfers to tools you connect are yours to cover. For candidates under
+UK data protection law, transfers from the UK to prepza in the EU need no safeguard (UK adequacy
+regulations), and the onward transfers rely on the UK Extension to the EU-US Data Privacy
+Framework (Google Firebase, Cloudflare) and the standard contractual clauses with the UK
+International Data Transfer Addendum (OpenAI).
 
 **Retention.** Candidate results, timings and signals: deleted automatically 12 months after the
 invite was last sent. Unstarted invites expire after 30 days. Candidates your applicant tracking
@@ -117,7 +139,8 @@ generation records: 90 days. Your company's action log: 12 months. Assistant con
 company is deleted. AI app connections: until the member disconnects one or deletes their
 account, and 90 days after its last use. Candidates' requests to stop your emails: until your
 company is deleted.
-Records of AI calls at Langfuse: 30 days.
+Records of AI calls at Langfuse: 30 days. Team notes: with their interview. Voice mode's spoken
+answers: never stored.
 Database backups: 14 days, then overwritten. **[COMPANY]**: your own retention of
 downloaded PDFs and notes, and of what reached your applicant tracking system, Slack and own
 systems.
@@ -133,8 +156,8 @@ describe who reviews results and how (see section 5).
 | Lawful basis | **[COMPANY]** usually legitimate interest (Art. 6(1)(f)) or steps before a contract (Art. 6(1)(b)); record your balancing test |
 | Is the knowledge tested a genuine requirement of the role? | **[COMPANY]** you approved the topics; keep that record |
 | Could a less intrusive method work? | **[COMPANY]** |
-| Data minimisation | Only sign-in details and test data; no CV, video, voice or demographics are collected by prepza |
-| Information to candidates | Invite page tells candidates what to expect, whether prepza has verified your company, that leaving the page and copying are recorded, that questions are AI-written, that people at your company decide and can review their result, and to ask you for more time if needed. Invites and reminders have links to stop your emails or that interview's reminders. **[COMPANY]** add your notice (see prepza's candidate notice templates) |
+| Data minimisation | Only sign-in details and test data; no CV, video, voice recordings or demographics are kept by prepza; in voice mode, speech is turned into text and options in memory and never stored or analysed for anything else |
+| Information to candidates | For people you invite from the Discover tab, you got their data from prepza, not from them: tell them, at the latest in your first message (the invite), who you are, why you contacted them, what you saw (name, LinkedIn profile, practice results) and their rights (GDPR and UK GDPR Art. 14). Invite page tells candidates what to expect, whether prepza has verified your company, that leaving the page and copying are recorded, that questions are AI-written, that people at your company decide and can review their result, and to ask you for more time if needed. Invites and reminders have links to stop your emails or that interview's reminders. **[COMPANY]** add your notice (see prepza's candidate notice templates) |
 | Rights | Access: candidate's scorecard page and PDF report give you everything to answer; erasure: "Delete candidate" on the candidate's page (also deletes prepza's copy of what your applicant tracking system sent; delete it in your own tools yourself); a candidate who deletes their prepza account erases their answers and results too; objection: **[COMPANY]** process; stopping your emails: the link in prepza's invites and reminders, after which an invite to them shows as undelivered; candidates can also write to prepza, who passes requests on |
 | Human review on request | **[COMPANY]** who handles it and how fast |
 | Accommodations | Extra time per candidate (+25%, +50% or +100%), set before they start, no reason stored; **[COMPANY]** alternative process |
@@ -148,7 +171,10 @@ Likelihood and severity: **[COMPANY]** to rate. Starting points from prepza:
 | Unfair rejection from a wrong or ambiguous question | AI-written content | Your topic review and trial run; a sample of answer keys per topic checked before release; statistics and reports flag questions for a fix, and a fix applies to candidates who start after it (past results don't change) | |
 | Discrimination (age, disability, language, origin) | Time pressure, language, content | Knowledge questions only; questions flagged when too slow or not discriminating; extra time | |
 | Over-reliance on the grade or signals | Ranked list, green/red | All answers visible; signals as counts; no automatic decisions | |
-| Wrongful cheating suspicion | Page-leave and fast-answer signals | Shown as hints with the question on screen | |
+| Wrongful cheating suspicion | Page-leave and fast-answer signals; answer patterns | Shown as hints with the question on screen; each answer pattern set on an offline test to flag at most 1% of honest candidates, not counted as "flagged", and shown with follow-up questions to ask rather than a verdict | |
+| A spoken answer misheard (accent, speech impairment, noise) | Voice mode's speech-to-text and matching | The interviewer says the option it heard and the candidate confirms it before it counts; tapping an option is always possible; voice mode only in languages where speech recognition is reliable | |
+| Other people's voices sent for transcription | A room with others talking while the candidate answers | Speech is sent only while the interview listens for an answer, turned into text in memory and never stored | |
+| Candidates found through Discover treated as applicants without being told | Open to offers | Listed only with their own consent, which they can withdraw at once; no ranking or recommendation; no email until you invite | |
 | Over-reliance on the assistant's summaries or comparisons | AI-written answers about candidates | It answers only from the data its tools read, says the AI can be wrong, makes no decision, and asks before every action in the app; action log marks results read through it | |
 | Candidates' data in an AI app outside your control | A member connecting Claude, ChatGPT or another app | Only the member's own access; your owners and admins can turn AI apps off for your company; no access to the in-app notifications; deleting an account or a company is impossible through an app; connections end when disconnected or unused for 90 days; your action log marks what came through an app | |
 | Lack of transparency | Candidates don't see their grade | Privacy policy; invite page notice | |
@@ -164,6 +190,9 @@ Likelihood and severity: **[COMPANY]** to rate. Starting points from prepza:
 - [ ] A named person reviews every candidate's scorecard before a rejection
 - [ ] Integrity signals never the sole reason to reject
 - [ ] Candidate notice sent before the invite; accommodation route offered
+- [ ] Voice mode: candidates told before they start that their answers are turned into text by
+  AI, and that they can tap instead; click mode offered to anyone who asks
+- [ ] Discover: people invited from it told, in the invite, where you found them and their rights
 - [ ] Human review offered on request, with a response time
 - [ ] Adverse impact checked on your own hiring outcomes where lawful
 - [ ] Downloaded PDFs kept no longer than your retention period
