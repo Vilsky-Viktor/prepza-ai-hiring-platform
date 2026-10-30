@@ -107,6 +107,7 @@ async def interview_out(
         updated_at=interview.updated_at,
         note_count=notes[0],
         pinned_note=notes[1],
+        voice=bool(interview.voice),
     )
 
 
@@ -158,7 +159,6 @@ async def detail(interview: Interview, member: Member) -> InterviewDetail:
         total_questions=interview_questions(found, interview.topic_limits),
         can_edit=can_edit(member),
         keep_private=interview.keep_private,
-        voice=bool(interview.voice),
         voice_available=interview.language in VOICE_LANGUAGES,
         voice_languages=list(VOICE_LANGUAGES),
     )

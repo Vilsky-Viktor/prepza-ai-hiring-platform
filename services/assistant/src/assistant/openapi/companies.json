@@ -10030,6 +10030,11 @@
       ],
       "title": "Pinned Note"
      },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
+     },
      "company_id": {
       "type": "string",
       "format": "uuid",
@@ -10076,11 +10081,6 @@
      "keep_private": {
       "type": "boolean",
       "title": "Keep Private",
-      "default": false
-     },
-     "voice": {
-      "type": "boolean",
-      "title": "Voice",
       "default": false
      },
      "voice_available": {
@@ -10240,6 +10240,11 @@
        }
       ],
       "title": "Pinned Note"
+     },
+     "voice": {
+      "type": "boolean",
+      "title": "Voice",
+      "default": false
      }
     },
     "type": "object",

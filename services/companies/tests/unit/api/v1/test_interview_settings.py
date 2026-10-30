@@ -200,3 +200,24 @@ def test_voice_mode_is_refused_in_a_language_without_it(client, saved):
         client.patch(f"/interviews/{INTERVIEW_ID}/settings", json={"voice": False}).status_code
         == 204
     )
+
+
+@pytest.mark.parametrize("voice", [True, False])
+def test_every_interview_in_a_list_says_its_mode(voice):
+    import asyncio
+
+    from companies.services.interview_views import interview_out
+
+    interview = Interview(
+        id=INTERVIEW_ID,
+        company_id=COMPANY_ID,
+        title="Backend",
+        question_seconds=60,
+        hired=False,
+        pass_mark=70,
+        generation_failed=False,
+        created_at=datetime.now(UTC),
+        voice=voice,
+    )
+
+    assert asyncio.run(interview_out(interview)).voice is voice

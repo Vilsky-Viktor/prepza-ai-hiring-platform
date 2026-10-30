@@ -52,6 +52,8 @@ class InterviewOut(BaseModel):
     # Its team's notes: how many, and the pinned one's text (None without one).
     note_count: int = 0
     pinned_note: str | None = None
+    # Taken in voice mode (read aloud, answered by voice); click mode otherwise, the default.
+    voice: bool = False
 
 
 class QuestionOption(BaseModel):
@@ -103,9 +105,7 @@ class InterviewDetail(InterviewOut):
     can_edit: bool = False
     # Its questions are kept out of prepza's shared question bank (the terms' opt-out).
     keep_private: bool = False
-    # Taken by voice, and whether its language allows it (VOICE_LANGUAGES, listed for the
-    # setting's note).
-    voice: bool = False
+    # Whether its language allows voice mode (VOICE_LANGUAGES, listed for the setting's note).
     voice_available: bool = False
     voice_languages: list[str] = []
 
