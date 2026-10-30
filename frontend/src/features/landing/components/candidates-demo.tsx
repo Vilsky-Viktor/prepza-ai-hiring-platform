@@ -158,7 +158,7 @@ export function CandidatesDemo({
           />
           {/* One fixed height for every screen of both modes, the tallest's (the voice screen
               with Mute), so the page never moves as they change. */}
-          <div className="grid h-[54rem] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] p-2 pt-5 *:min-w-0 *:[grid-area:1/1] max-sm:h-[49rem] sm:p-5 lg:h-[42rem]">
+          <div className="grid h-[54rem] grid-cols-[minmax(0,1fr)] grid-rows-[minmax(0,1fr)] p-2 pt-5 *:min-w-0 *:[grid-area:1/1] max-sm:h-[49rem] sm:p-5 lg:h-[40rem]">
             {screen(
               !voice && step.screen === "start",
               <DemoInvitation
