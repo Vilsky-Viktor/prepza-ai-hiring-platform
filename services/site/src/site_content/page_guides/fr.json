@@ -174,7 +174,8 @@
     ],
     "tips": [
       "Restez sur la page pendant que vous répondez : pour les candidats, quitter la page, copier et répondre trop vite sont enregistrés.",
-      "Un entretien en mode vocal demande d'abord l'accès à votre micro et au son : autorisez-les, et Mira lit chaque question à voix haute pendant que vous répondez à l'oral ou en touchant une réponse."
+      "Un entretien en mode vocal demande d'abord l'accès à votre micro et au son : autorisez-les, et Mira lit chaque question à voix haute pendant que vous répondez à l'oral ou en touchant une réponse.",
+      "Chaque entreprise dispose d'un nombre d'aperçus par jour, moins en mode vocal ; une fois épuisés, le démarrage indique quand réessayer."
     ]
   },
   "candidate": {

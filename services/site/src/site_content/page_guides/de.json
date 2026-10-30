@@ -174,7 +174,8 @@
     ],
     "tips": [
       "Bleib beim Antworten auf der Seite: Bei Kandidaten werden das Verlassen der Seite, Kopieren und zu schnelle Antworten erfasst.",
-      "Ein Interview im Sprachmodus fragt zuerst nach deinem Mikrofon und dem Ton: Erlaube beides, dann liest Mira jede Frage vor, während du per Sprache oder durch Antippen antwortest."
+      "Ein Interview im Sprachmodus fragt zuerst nach deinem Mikrofon und dem Ton: Erlaube beides, dann liest Mira jede Frage vor, während du per Sprache oder durch Antippen antwortest.",
+      "Jedes Unternehmen hat eine bestimmte Zahl an Vorschauen pro Tag, im Sprachmodus weniger; sind sie aufgebraucht, sagt dir der Start, wann du es wieder versuchen kannst."
     ]
   },
   "candidate": {

@@ -174,7 +174,8 @@
     ],
     "tips": [
       "Tetap di halaman saat menjawab: untuk kandidat, meninggalkan halaman, menyalin, dan menjawab terlalu cepat akan dicatat.",
-      "Wawancara mode suara pertama-tama meminta izin untuk mikrofon dan suara: izinkan, lalu Mira membacakan setiap soal sementara kamu menjawab dengan suara atau ketukan."
+      "Wawancara mode suara pertama-tama meminta izin untuk mikrofon dan suara: izinkan, lalu Mira membacakan setiap soal sementara kamu menjawab dengan suara atau ketukan.",
+      "Setiap perusahaan punya sejumlah pratinjau per hari, lebih sedikit di mode suara; setelah habis, saat memulai akan tertera kapan kamu bisa mencoba lagi."
     ]
   },
   "candidate": {

@@ -174,7 +174,8 @@
     ],
     "tips": [
       "Fique na página enquanto responde: no caso dos candidatos, sair da página, copiar e responder rápido demais ficam registrados.",
-      "Uma entrevista no modo de voz primeiro pede acesso ao seu microfone e ao som: permita, e a Mira lê cada questão em voz alta enquanto você responde por voz ou com um toque."
+      "Uma entrevista no modo de voz primeiro pede acesso ao seu microfone e ao som: permita, e a Mira lê cada questão em voz alta enquanto você responde por voz ou com um toque.",
+      "Cada empresa tem um número de prévias por dia, menos no modo de voz; quando acabam, ao iniciar você vê quando pode tentar de novo."
     ]
   },
   "candidate": {

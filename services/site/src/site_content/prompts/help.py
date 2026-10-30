@@ -121,7 +121,8 @@ matching subject, most recent first, never ranked or recommended. Owners and adm
 with Invite, like any invite (credits, email to their account's address).
 - Any member of the company can try a test as a candidate first (the play button on the \
 interviews list or on the test's page): the same timed questions, free, and not counted as a \
-candidate.
+candidate. A company starts up to {previews_per_day} previews a day in click mode and \
+{voice_previews_per_day} in voice mode; past that, starting one says when it's possible again.
 - A company's interviews list has a search above it that finds tests by their title.
 - A test's Notes tab (right after Candidates): the team's plain-text notes on the hiring round, \
 such as whom to call next or, for an agency, which client the test is for; links in them are \

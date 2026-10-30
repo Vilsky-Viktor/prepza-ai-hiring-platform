@@ -32,6 +32,10 @@ def test_the_help_chat_reads_the_platform_guide_in_english_with_the_visitors_pri
     limits = asyncio.run(guide_limits(redis))
     assert found["knowledge"] == knowledge("en", CATALOG, limits)
     assert f"can own up to {LIMITS['MAX_OWNED_COMPANIES'].default}" in found["knowledge"]
+    previews = LIMITS["PREVIEWS_PER_COMPANY_DAY"].default
+    voice_previews = LIMITS["VOICE_PREVIEWS_PER_COMPANY_DAY"].default
+    preview_limits = f"up to {previews} previews a day in click mode and {voice_previews} in voice"
+    assert preview_limits in found["knowledge"]
     assert "Refunds: you can ask for a refund" in found["knowledge"]
     assert "Who is responsible" in found["knowledge"]
     assert '"candidate_credits": 500' in found["knowledge"]

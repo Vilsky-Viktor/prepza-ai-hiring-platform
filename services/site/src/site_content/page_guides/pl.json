@@ -174,7 +174,8 @@
     ],
     "tips": [
       "Nie opuszczaj strony podczas odpowiadania: u kandydatów opuszczenie strony, kopiowanie i zbyt szybkie odpowiedzi są rejestrowane.",
-      "Rozmowa w trybie głosowym najpierw prosi o dostęp do mikrofonu i dźwięku: zezwól na nie, a Mira będzie czytać każde pytanie na głos, gdy Ty odpowiadasz głosem lub dotknięciem."
+      "Rozmowa w trybie głosowym najpierw prosi o dostęp do mikrofonu i dźwięku: zezwól na nie, a Mira będzie czytać każde pytanie na głos, gdy Ty odpowiadasz głosem lub dotknięciem.",
+      "Każda firma ma dzienną liczbę podglądów, mniejszą w trybie głosowym; gdy się wyczerpią, przy próbie rozpoczęcia zobaczysz, kiedy możesz spróbować ponownie."
     ]
   },
   "candidate": {

@@ -174,7 +174,8 @@
     ],
     "tips": [
       "Stay on the page while you answer: for candidates, leaving the page, copying and answering too fast are recorded.",
-      "A voice mode interview first asks for your microphone and sound: allow them, and Mira reads each question aloud while you answer by voice or tap."
+      "A voice mode interview first asks for your microphone and sound: allow them, and Mira reads each question aloud while you answer by voice or tap.",
+      "Each company has a number of previews a day, fewer in voice mode; once they're used up, starting one says when you can try again."
     ]
   },
   "candidate": {
