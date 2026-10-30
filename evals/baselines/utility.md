@@ -148,9 +148,18 @@ the text answers and 15.2% of the spoken ones, every one right; nothing moved be
 in the next run: the model's, not the code's). Those answers skip the model's ~2 s and its
 $0.00008. The `by_code` share is now in the script's scores.
 
-The reading aloud (`gpt-4o-mini-tts`, the speech endpoint, which reads the text and nothing
-else) has no eval: the code builds the script. OpenAI shuts the model down on 2027-01-06 and names
-the Realtime API as the replacement; a conversational audio model tried as a stand-in
-(`gpt-audio-mini`, asked to read a question word for word) answered it instead ("La risposta
-corretta è B"), so the switch needs an eval that compares what is said with the script before it
-ships.
+The reading aloud has its own eval since (below).
+
+## Voice mode's reading aloud: first eval (2026-10-30)
+
+OpenAI shuts its text-to-speech models (`gpt-4o-mini-tts`, `tts-1`, `tts-1-hd`) down on
+2027-01-06 and names the Realtime API's `gpt-realtime-2.1-mini` as the replacement, which isn't
+on the speech endpoint (developers.openai.com/api/docs/deprecations, the text-to-speech guide).
+A conversational model reads a question at risk of answering it, so what is said is now measured
+against the script: `voice_reading.json` (20 questions, six languages), each script made by
+rounds' `question_script`, read by the service's own call, heard by `gpt-transcribe`, graded by
+code (`voice_reading_test.py`). Baseline, `gpt-4o-mini-tts` with `marin` and the reading
+instructions, 2 repeats: heard right 95.0% (83.5–98.6), word errors 1.2% ± 1.0, every letter heard
+92.5% (80.1–97.4), nothing added 100% (91.2–100); 9.4 minutes read, $0.14 ($0.0035 a reading) plus
+$0.04 of hearing, 3.0 s median. The misses: en01, en04 and it01 heard without their last option
+(each 1 of 2).

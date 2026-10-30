@@ -1,12 +1,20 @@
-"""Checks by code of the speech datasets, for check_datasets.py: the assistant's voice messages
-and voice mode's spoken answers. Each says what it is, has unique ids and its recordings, and
+"""Checks by code of the speech datasets, for check_datasets.py: the assistant's voice messages,
+voice mode's spoken answers and its readings. Each says what it is, has unique ids and its recordings, and
 returns the texts to check against prompts' examples."""
 
-from small_datasets import DATASETS, check_described, load, unique_ids
+import re
+
+from small_datasets import DATASETS, EVALS, check_described, load, unique_ids
 
 # Voice mode's options, by index: four to a question.
 OPTIONS = 4
 INTENTS = {"choose", "confirm", "reject", "unclear"}
+# The languages a test may be taken by voice in, read from the shared constants (this check runs
+# without the package installed).
+CONSTANTS = EVALS.parent / "packages/common/src/prepza_common/config/constants.py"
+VOICE_LANGUAGES = set(
+    re.findall(r'"(\w+)"', re.search(r"VOICE_LANGUAGES = \((.*)\)", CONSTANTS.read_text())[1])
+)
 
 
 def check_voice(problems: list[str]) -> list[str]:
@@ -52,3 +60,18 @@ def check_voice_answers(problems: list[str]) -> list[str]:
             problems.append(f"{name}: {item['id']} has no audio (build_voice_answers.py)")
 
     return [item["said"] for item in data["items"]]
+
+
+def check_voice_reading(problems: list[str]) -> list[str]:
+    """Each question is in a voice language with four options."""
+    name = "voice_reading.json"
+    data = load(name)
+    check_described(name, data, problems)
+    unique_ids(name, data["items"], problems)
+    problems += [
+        f"{name}: {item['id']} needs a voice language and {OPTIONS} options"
+        for item in data["items"]
+        if item["language"] not in VOICE_LANGUAGES or len(item["options"]) != OPTIONS
+    ]
+
+    return [item["text"] for item in data["items"]]

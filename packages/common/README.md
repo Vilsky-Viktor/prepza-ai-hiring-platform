@@ -153,6 +153,8 @@ out or listed under another area):
 - `sets`: a generated test's and a template's shapes, as services pass them.
 - `speech`: speech recorded in a browser, checked and turned into text (the assistant's voice
   messages, voice mode's spoken answers).
+- `spoken_words`: how far spoken words are from the text that was to be said (word errors, words
+  added).
 - `trace_constants`: how long setting our models' prices in Langfuse may take, and its page size.
 - `trace_prices`: our models' prices set in Langfuse at start-up, so traced calls carry their cost.
 - `tracing`: AI calls traced to Langfuse, with personal data masked.

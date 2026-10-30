@@ -178,6 +178,13 @@ evals/run.sh rounds voice_answers_test.py --label new-prompt   # --repeat 3, --o
 MODEL=gpt-6.1-sol EFFORT=low evals/run.sh rounds voice_answers_test.py --label sol
 ```
 
+Voice mode's reading aloud (rounds), each question's script read by the service's own call and
+heard by its transcription model:
+
+```bash
+evals/run.sh rounds voice_reading_test.py --label new-model   # --repeat 2
+```
+
 ## The help chat
 
 The help chat's test runs in the assistant's container, with the service's own prompt and model,
