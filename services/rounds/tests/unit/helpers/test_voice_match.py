@@ -1,7 +1,13 @@
 import pytest
 
 from rounds.constants.voice import Intent
-from rounds.helpers.voice_match import letters_of, match_prompt, obvious, understood
+from rounds.helpers.voice_match import (
+    is_noise,
+    letters_of,
+    match_prompt,
+    obvious,
+    understood,
+)
 from rounds.schemas.rounds import NextQuestion
 from rounds.schemas.voice import VoiceMatch
 
@@ -89,3 +95,22 @@ def test_a_letter_with_no_option_behind_it_goes_to_the_model():
 
     assert obvious("D", three, [], "en") is None
     assert obvious("C", three, [], "en") == (Intent.CHOOSE, [2])
+
+
+@pytest.mark.parametrize(
+    ("said", "noise"),
+    [
+        ("", True),
+        ("[cough]", True),
+        ("(laughs) *sigh*", True),
+        ("... ♪", True),
+        ("B", False),
+        ("hmm, let me think", False),
+        ("[cough] B", False),
+        ("ja", False),
+        ("نعم", False),
+        ("はい", False),
+    ],
+)
+def test_only_a_transcript_without_words_is_noise(said, noise):
+    assert is_noise(said) is noise

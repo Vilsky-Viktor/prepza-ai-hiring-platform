@@ -96,6 +96,13 @@ export function useVoiceInterviewer(
   }
 
   async function understood(answer: VoiceAnswer) {
+    // No words (a cough, a knock): ignored, as if nothing was said.
+    if (answer.intent === "noise") {
+      heardAll()
+
+      return
+    }
+
     setHeard(answer.heard || null)
 
     if (answer.intent === "confirm") {

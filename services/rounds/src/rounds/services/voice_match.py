@@ -3,7 +3,7 @@ from prepza_common.ai.tracing import traced_call
 
 from rounds.config import settings
 from rounds.constants.voice import MATCH_ACTION, Intent
-from rounds.helpers.voice_match import match_prompt, obvious, understood
+from rounds.helpers.voice_match import is_noise, match_prompt, obvious, understood
 from rounds.integrations import llm
 from rounds.schemas.rounds import NextQuestion
 from rounds.schemas.voice import VoiceMatch
@@ -26,9 +26,12 @@ async def match(
     question: NextQuestion, said: str, waiting: list[int], language: str, session_id: str
 ) -> tuple[Intent, list[int], dict | None]:
     """What the candidate meant and the options it picks (helpers/voice_match.py understood), with
-    the call's usage. A plain yes or a letter alone is read by code, without a call (usage
-    None). The trace gets the call's tokens, cost and reading under the session's id, never the
-    candidate's words or the question."""
+    the call's usage. No words at all (a cough, a knock) is noise, and a plain yes or a letter
+    alone is read by code, both without a call (usage None). The trace gets the call's tokens,
+    cost and reading under the session's id, never the candidate's words or the question."""
+    if is_noise(said):
+        return Intent.NOISE, [], None
+
     plain = obvious(said, question, waiting, language)
 
     if plain is not None:

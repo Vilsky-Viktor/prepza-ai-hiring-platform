@@ -13,7 +13,6 @@ from rounds.constants.voice import (
     MAX_ANSWER_SECONDS,
     TRANSCRIPTION_ACTION,
     VOICE_FAILED,
-    Intent,
 )
 from rounds.integrations.llm import get_transcribe_client
 from rounds.models.sessions import Session
@@ -56,19 +55,16 @@ async def hear(request: Request, language: str, who: dict) -> str:
 
 async def answer(row: Session, request: Request, waiting: list[int]) -> VoiceAnswerOut:
     """A spoken answer to the question on screen, understood: heard, then matched to its options
-    (or to a yes or no for the choice `waiting` for confirmation). Nothing is saved: the
-    candidate confirms a choice and it's sent as a tapped one is. The audio and the words are
-    never kept or logged. Over the limits a 429 (or 503); a failed call a 502."""
+    (or to a yes or no for the choice `waiting` for confirmation); a sound without words is
+    noise, which the browser ignores. Nothing is saved: the candidate confirms a choice and it's
+    sent as a tapped one is. The audio and the words are never kept or logged. Over the limits a
+    429 (or 503); a failed call a 502."""
     voice_only(row)
     question = shown_question(row)
     await voice_limits.check_answer(row)
     language = await interview_language(row)
     who = {"company_id": row.company_id, "user_id": row.user_id, "subject_id": row.id}
     said = await hear(request, language, who)
-
-    # Silence or noise heard as nothing: asked again, without a model call.
-    if not said:
-        return VoiceAnswerOut(heard="", intent=Intent.UNCLEAR, picks=[])
 
     model = settings.voice_match_model
 
@@ -80,7 +76,7 @@ async def answer(row: Session, request: Request, waiting: list[int]) -> VoiceAns
         usage = {"input_tokens": estimated_tokens(said + question.text)}
         raise await failed(error, MATCH_ACTION, model, who, usage=usage)
 
-    # A plain yes or a letter alone was read without a call: nothing to record.
+    # Noise, a plain yes or a letter alone was read without a call: nothing to record.
     if usage is not None:
         await ai_usage.record(MATCH_ACTION, model, usage, **who)
 

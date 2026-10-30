@@ -883,7 +883,7 @@ export interface components {
      * @description What a spoken answer meant (schemas/voice.py).
      * @enum {string}
      */
-    Intent: "choose" | "confirm" | "reject" | "unclear"
+    Intent: "choose" | "confirm" | "reject" | "unclear" | "noise"
     /**
      * InterviewStep
      * @description Where a candidate's interview stands: the section on screen and its waiting question,
@@ -1515,7 +1515,7 @@ export interface components {
      * VoiceAnswerOut
      * @description A spoken answer, understood: what was heard (the candidate's own words, shown back to
      *     them and kept nowhere), what it meant, and the options it picks (indices, as a click sends
-     *     them) for `choose` and `confirm`.
+     *     them) for `choose` and `confirm`. `noise` (no words: a cough, a knock) is ignored.
      */
     VoiceAnswerOut: {
       /** Heard */

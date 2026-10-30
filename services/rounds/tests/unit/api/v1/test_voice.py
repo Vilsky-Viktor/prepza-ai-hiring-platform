@@ -104,13 +104,16 @@ def test_a_spoken_answer_is_heard_in_the_interviews_language_and_matched(client,
     assert used[0]["audio_seconds"] == 2.0
 
 
-def test_silence_is_unclear_without_a_matching_call(client, voice):
-    voice.heard = "  "
+@pytest.mark.parametrize("heard", ["  ", "[cough]", "..."])
+def test_a_sound_without_words_is_noise_without_a_matching_call(client, voice, published, heard):
+    voice.heard = heard
 
     response = client.post(f"/sessions/{voice.row.id}/voice/answers", content=SPOKEN, headers=OGG)
 
-    assert response.json() == {"heard": "", "intent": "unclear", "picks": []}
+    assert response.json() == {"heard": heard.strip(), "intent": "noise", "picks": []}
     assert voice.matched == []
+    used = [data["action"] for kind, data in published if kind == "ai.used"]
+    assert used == ["voice_transcription"]
 
 
 @pytest.mark.parametrize(

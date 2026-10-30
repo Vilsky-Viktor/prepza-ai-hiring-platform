@@ -61,6 +61,9 @@ class Intent(StrEnum):
     CONFIRM = "confirm"
     REJECT = "reject"
     UNCLEAR = "unclear"
+    # No words at all (a cough, a knock, thunder): ignored, as if nothing was said. Decided by code
+    # (helpers/voice_match.py is_noise), never by the model.
+    NOISE = "noise"
 
 
 # What the user reads; translated by its English text.

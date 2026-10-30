@@ -2159,7 +2159,8 @@
      "choose",
      "confirm",
      "reject",
-     "unclear"
+     "unclear",
+     "noise"
     ],
     "title": "Intent",
     "description": "What a spoken answer meant (schemas/voice.py)."
@@ -3673,7 +3674,7 @@
      "picks"
     ],
     "title": "VoiceAnswerOut",
-    "description": "A spoken answer, understood: what was heard (the candidate's own words, shown back to\nthem and kept nowhere), what it meant, and the options it picks (indices, as a click sends\nthem) for `choose` and `confirm`."
+    "description": "A spoken answer, understood: what was heard (the candidate's own words, shown back to\nthem and kept nowhere), what it meant, and the options it picks (indices, as a click sends\nthem) for `choose` and `confirm`. `noise` (no words: a cough, a knock) is ignored."
    }
   },
   "securitySchemes": {

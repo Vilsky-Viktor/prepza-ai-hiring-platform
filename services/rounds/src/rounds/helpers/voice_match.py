@@ -11,6 +11,15 @@ from rounds.schemas.voice import VoiceMatch
 
 # Where speech recognition breaks a reply into parts ("Yeah, that's right.").
 PART_BREAKS = re.compile(r"[,.!?;:¡¿…]+")
+# How speech recognition writes a sound that isn't words: "[cough]", "(laughs)", "*sigh*".
+SOUND_TAGS = re.compile(r"\[[^\]]*\]|\([^)]*\)|\*[^*]*\*|<[^>]*>")
+WORD = re.compile(r"\w")
+
+
+def is_noise(said: str) -> bool:
+    """Nothing heard but sounds: an empty transcript, or only sound tags, punctuation or
+    symbols ("[cough]", "...", "♪"), in any script."""
+    return WORD.search(SOUND_TAGS.sub("", said)) is None
 
 
 def letters_of(picks: list[int]) -> str:

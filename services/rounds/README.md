@@ -66,7 +66,8 @@ points to the screen (`helpers/voice_speech.py`). The browser plays the clip
 (`GET .../voice/question`), the interviewer's phrases (`.../voice/phrases/{phrase}`,
 `.../voice/confirmations?picks=`), and sends each spoken answer (`POST .../voice/answers`, at most
 2 MB): it's turned into text (`TRANSCRIBE_MODEL`) and matched to options, or to a yes or no for
-the choice waiting; a plain yes while a choice waits (`constants/voice_confirmations.py`) or
+the choice waiting; a transcript without words (empty, or only a sound such as "[cough]") is
+`noise`, which the browser ignores (`helpers/voice_match.py` `is_noise`); a plain yes while a choice waits (`constants/voice_confirmations.py`) or
 an option's letter alone is read by code, without the model (`helpers/voice_match.py` `obvious`);
 anything else by the model (`VOICE_MATCH_MODEL`, `prompts/voice_match.py`, never the answer
 key; its eval is `evals/scripts/voice_answers_test.py`). Nothing of it is saved: a confirmed
