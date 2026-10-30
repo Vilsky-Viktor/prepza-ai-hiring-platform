@@ -99,7 +99,7 @@
     "actions": [
       "Mở “Quản lý câu hỏi” để đọc câu hỏi và đáp án của một chủ đề.",
       "Tạo lại câu hỏi chưa tốt, đánh dấu đáp án sai, hoặc đọc báo cáo của ứng viên về một câu hỏi.",
-      "Đặt số câu hỏi mỗi ứng viên nhận từ một chủ đề; đặt 0 để bỏ chủ đề đó với ứng viên mới.",
+      "Đặt số câu hỏi mỗi ứng viên nhận từ một chủ đề; đặt 0 để bỏ chủ đề đó với ứng viên mới. Mỗi ứng viên nhận tối đa 60 câu hỏi trên tất cả chủ đề: hãy giảm một chủ đề để tăng chủ đề khác.",
       "Thử buổi phỏng vấn với vai trò ứng viên, hoặc xóa nó."
     ],
     "tips": [

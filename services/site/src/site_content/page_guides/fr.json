@@ -99,7 +99,7 @@
     "actions": [
       "Ouvrez « Gérer les questions » pour lire les questions et les réponses d'un thème.",
       "Régénérez une question faible, signalez une réponse erronée ou lisez les signalements des candidats sur une question.",
-      "Définissez combien de questions chaque candidat reçoit d'un thème ; à 0, le thème est retiré pour les nouveaux candidats.",
+      "Définissez combien de questions chaque candidat reçoit d'un thème ; à 0, le thème est retiré pour les nouveaux candidats. Un candidat reçoit au plus 60 questions sur l'ensemble des thèmes : baissez un thème pour en augmenter un autre.",
       "Essayez l'entretien en tant que candidat, ou supprimez-le."
     ],
     "tips": [

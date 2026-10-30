@@ -99,7 +99,7 @@
     "actions": [
       "Open “Vragen beheren” om de vragen en antwoorden van een onderwerp te lezen.",
       "Genereer een zwakke vraag opnieuw, markeer een fout antwoord of lees meldingen van kandidaten over een vraag.",
-      "Stel in hoeveel vragen elke kandidaat uit een onderwerp krijgt; met 0 valt het onderwerp weg voor nieuwe kandidaten.",
+      "Stel in hoeveel vragen elke kandidaat uit een onderwerp krijgt; met 0 valt het onderwerp weg voor nieuwe kandidaten. Een kandidaat krijgt over alle onderwerpen samen hooguit 60 vragen: verlaag een onderwerp om een ander te verhogen.",
       "Probeer het interview als kandidaat, of verwijder het."
     ],
     "tips": [

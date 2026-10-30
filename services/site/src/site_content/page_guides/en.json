@@ -99,7 +99,7 @@
     "actions": [
       "Open “manage questions” to read a topic's questions and answers.",
       "Re-generate a weak question, mark a wrong answer, or read candidates' reports on a question.",
-      "Set how many questions each candidate gets from a topic; 0 leaves the topic out for new candidates.",
+      "Set how many questions each candidate gets from a topic; 0 leaves the topic out for new candidates. A candidate gets at most 60 questions over all topics: lower one topic to raise another.",
       "Try the interview as a candidate, or delete it."
     ],
     "tips": [

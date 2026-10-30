@@ -99,7 +99,7 @@
     "actions": [
       "Apri «Gestisci domande» per leggere le domande e le risposte di un argomento.",
       "Rigenera una domanda debole, segna una risposta sbagliata o leggi le segnalazioni dei candidati su una domanda.",
-      "Stabilisci quante domande riceve ogni candidato da un argomento; con 0 l'argomento resta fuori per i nuovi candidati.",
+      "Stabilisci quante domande riceve ogni candidato da un argomento; con 0 l'argomento resta fuori per i nuovi candidati. Ogni candidato riceve al massimo 60 domande in tutto: abbassa un argomento per alzarne un altro.",
       "Prova il colloquio come candidato, oppure eliminalo."
     ],
     "tips": [

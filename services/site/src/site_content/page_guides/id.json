@@ -99,7 +99,7 @@
     "actions": [
       "Buka “Kelola soal” untuk membaca soal dan jawaban sebuah topik.",
       "Buat ulang soal yang lemah, tandai jawaban yang salah, atau baca laporan kandidat tentang sebuah soal.",
-      "Atur berapa soal yang didapat setiap kandidat dari sebuah topik; 0 mengeluarkan topik itu untuk kandidat baru.",
+      "Atur berapa soal yang didapat setiap kandidat dari sebuah topik; 0 mengeluarkan topik itu untuk kandidat baru. Setiap kandidat mendapat paling banyak 60 soal dari semua topik: kurangi satu topik untuk menambah topik lain.",
       "Coba wawancara sebagai kandidat, atau hapus."
     ],
     "tips": [

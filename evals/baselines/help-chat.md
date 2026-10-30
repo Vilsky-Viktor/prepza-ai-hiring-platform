@@ -225,3 +225,11 @@ reading ends" reworded, the whole test as long as in click mode): passed 97.3% (
 up 2.7% (0.7–9.2), sign-in marker 100%, identity 18 of 18 (`results/help_chat_voice-clock.json`).
 Misses: h17's known invented retake limit (2 of 3). Within the noise; none about
 voice mode. $1.97.
+
+2026-10-30, the per-company daily preview limits (click and voice mode) and the interview cap
+(at most 60 questions per candidate over all topics, 10 a topic by default, fewer past 6 topics)
+in the guide and the topics page guide, one run for both: passed 96.0% (88.9–98.6), made up 2.7%
+(0.7–9.2), sign-in marker 100%, identity 18 of 18 (`results/help_chat_question-cap.json`).
+Misses: h17's known invented retake limit (1 of 3), h12 twice (two sentences where one was
+asked) and h06 once (deletion without "once the candidate started"); none about previews or the
+cap. Within the noise; kept so the guides say what is true. $1.79.

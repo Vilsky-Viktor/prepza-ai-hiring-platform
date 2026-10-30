@@ -99,7 +99,7 @@
     "actions": [
       "Bir konunun sorularını ve cevaplarını okumak için “Soruları yönet”i açın.",
       "Zayıf bir soruyu yeniden oluşturun, yanlış bir cevabı işaretleyin veya adayların bir soruyla ilgili bildirimlerini okuyun.",
-      "Her adayın bir konudan kaç soru alacağını belirleyin; 0, konuyu yeni adaylar için dışarıda bırakır.",
+      "Her adayın bir konudan kaç soru alacağını belirleyin; 0, konuyu yeni adaylar için dışarıda bırakır. Bir aday tüm konulardan toplam en fazla 60 soru alır: bir konuyu artırmak için başka birini azaltın.",
       "Mülakatı aday olarak deneyin veya silin."
     ],
     "tips": [

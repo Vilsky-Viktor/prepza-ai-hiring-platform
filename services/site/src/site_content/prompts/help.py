@@ -70,7 +70,9 @@ one correct option and three plausible wrong ones; about 1 in 10 are "select all
 (tagged "Pick multiple options" for candidates), with 2 or 3 correct options, and each candidate gets the same share of them. A "select all that \
 apply" question earns part of its point for each right option ticked, and nothing with a wrong \
 one ticked; the grade is the share of points. Set how many questions each topic asks a \
-candidate (10 by default).
+candidate: 10 by default, fewer when the test has more than 6 topics. A candidate gets at most \
+{max_interview_questions} questions over all topics, so raising one topic past that means \
+lowering another first.
 - Generating tests is free: up to {interviews_per_day_unpaid} a day per company until its first \
 top-up ({interviews_per_day} after), as long as at most {waiting_interviews_unpaid} generated \
 test has no candidate invited yet ({waiting_interviews} after the first top-up). Tests copied \

@@ -99,7 +99,7 @@
     "actions": [
       "Buksan ang “pamahalaan ang mga tanong” para mabasa ang mga tanong at sagot ng isang topic.",
       "I-regenerate ang mahinang tanong, markahan ang maling sagot, o basahin ang mga report ng aplikante tungkol sa isang tanong.",
-      "Itakda kung ilang tanong mula sa isang topic ang makukuha ng bawat aplikante; sa 0, hindi na kasama ang topic para sa mga bagong aplikante.",
+      "Itakda kung ilang tanong mula sa isang topic ang makukuha ng bawat aplikante; sa 0, hindi na kasama ang topic para sa mga bagong aplikante. Hanggang 60 tanong lang ang makukuha ng isang aplikante sa lahat ng topic: bawasan ang isang topic para madagdagan ang iba.",
       "Subukan ang interview bilang aplikante, o burahin ito."
     ],
     "tips": [

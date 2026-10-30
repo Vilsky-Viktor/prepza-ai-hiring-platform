@@ -99,7 +99,7 @@
     "actions": [
       "Abra “Gerenciar questões” para ler as questões e respostas de um tópico.",
       "Gere novamente uma questão fraca, marque uma resposta errada ou leia os reportes dos candidatos sobre uma questão.",
-      "Defina quantas questões cada candidato recebe de um tópico; com 0, o tópico fica de fora para novos candidatos.",
+      "Defina quantas questões cada candidato recebe de um tópico; com 0, o tópico fica de fora para novos candidatos. Cada candidato recebe no máximo 60 questões somando todos os tópicos: diminua um tópico para aumentar outro.",
       "Experimente a entrevista como candidato ou exclua-a."
     ],
     "tips": [

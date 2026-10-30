@@ -99,7 +99,7 @@
     "actions": [
       "Ava „Halda küsimusi“, et lugeda teema küsimusi ja vastuseid.",
       "Loo nõrk küsimus uuesti, märgi vale vastus või loe kandidaatide teateid küsimuse kohta.",
-      "Määra, mitu küsimust iga kandidaat teemast saab; 0 jätab teema uutele kandidaatidele välja.",
+      "Määra, mitu küsimust iga kandidaat teemast saab; 0 jätab teema uutele kandidaatidele välja. Kandidaat saab kõigist teemadest kokku kuni 60 küsimust: ühe teema tõstmiseks vähenda teist.",
       "Proovi intervjuud kandidaadina või kustuta see."
     ],
     "tips": [

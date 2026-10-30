@@ -1,4 +1,4 @@
-from prepza_common.config.constants import DEFAULT_LANGUAGE
+from prepza_common.config.constants import DEFAULT_LANGUAGE, MAX_INTERVIEW_QUESTIONS
 from prepza_common.limits.limits import limit, question_seconds
 from prepza_common.redis import memory_cache
 
@@ -23,6 +23,7 @@ async def guide_limits(redis) -> dict:
         "seconds_basic": await question_seconds(redis, "basic"),
         "seconds_medium": await question_seconds(redis, "medium"),
         "seconds_hard": await question_seconds(redis, "hard"),
+        "max_interview_questions": MAX_INTERVIEW_QUESTIONS,
     }
 
 

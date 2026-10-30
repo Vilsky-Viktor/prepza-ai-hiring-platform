@@ -99,7 +99,7 @@
     "actions": [
       "Öffne „Fragen verwalten“, um die Fragen und Antworten eines Themas zu lesen.",
       "Generiere eine schwache Frage neu, markiere eine falsche Antwort oder lies Meldungen von Kandidaten zu einer Frage.",
-      "Lege fest, wie viele Fragen jeder Kandidat aus einem Thema bekommt; mit 0 fällt das Thema für neue Kandidaten weg.",
+      "Lege fest, wie viele Fragen jeder Kandidat aus einem Thema bekommt; mit 0 fällt das Thema für neue Kandidaten weg. Ein Kandidat bekommt über alle Themen höchstens 60 Fragen: Senke ein Thema, um ein anderes zu erhöhen.",
       "Probiere das Interview als Kandidat aus oder lösche es."
     ],
     "tips": [

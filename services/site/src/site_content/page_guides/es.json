@@ -99,7 +99,7 @@
     "actions": [
       "Abre «Gestionar preguntas» para leer las preguntas y respuestas de un tema.",
       "Regenera una pregunta floja, marca una respuesta incorrecta o lee los reportes de los candidatos sobre una pregunta.",
-      "Define cuántas preguntas recibe cada candidato de un tema; con 0, el tema queda fuera para los nuevos candidatos.",
+      "Define cuántas preguntas recibe cada candidato de un tema; con 0, el tema queda fuera para los nuevos candidatos. Cada candidato recibe como máximo 60 preguntas entre todos los temas: baja un tema para subir otro.",
       "Prueba la entrevista como candidato o elimínala."
     ],
     "tips": [

@@ -99,7 +99,7 @@
     "actions": [
       "Otwórz „Zarządzaj pytaniami”, by przeczytać pytania i odpowiedzi tematu.",
       "Wygeneruj ponownie słabe pytanie, oznacz błędną odpowiedź albo przeczytaj zgłoszenia kandydatów do pytania.",
-      "Ustaw, ile pytań z tematu dostaje każdy kandydat; 0 pomija temat dla nowych kandydatów.",
+      "Ustaw, ile pytań z tematu dostaje każdy kandydat; 0 pomija temat dla nowych kandydatów. Kandydat dostaje łącznie najwyżej 60 pytań ze wszystkich tematów: zmniejsz jeden temat, aby zwiększyć inny.",
       "Wypróbuj rozmowę jako kandydat albo ją usuń."
     ],
     "tips": [
