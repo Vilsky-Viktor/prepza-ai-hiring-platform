@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs"
 
-import { expect, type Page, type Route } from "@playwright/test"
+import { expect, type Page, type WebSocketRoute } from "@playwright/test"
 
 import { redis } from "./redis"
 
@@ -123,14 +123,24 @@ export async function fakeMicrophone(page: Page) {
   }
 }
 
+// A spoken answer waiting for the test's `answer`: the choice on screen it carried, and how it's
+// answered (the upload's response, or the live stream's message).
+type Waiting = { waiting: number[]; reply: (understood: Understood) => Promise<void> }
+// A live stream (lib/voice-live.ts) the page opened: its audio's bytes so far.
+type Stream = { socket: WebSocketRoute; started: boolean; ended: boolean; audio: number }
+
 /** Mira's side mocked at the network edge on `page`: every clip she says (the question, her
  * phrases, a confirmation) is a moment of silence, reading ahead does nothing, and each spoken
- * answer waits for the test to `answer` it with what the service understood. `asked` lists the
- * voice requests made, as paths with their queries (her short clips are fetched ahead, said or
- * not); `said` lists the clips she played, the same way. */
-export async function fakeMira(page: Page) {
+ * answer waits for the test to `answer` it with what the service understood. Live listening's
+ * stream is refused, so answers are uploaded as recordings, unless `live`: then it's ready at
+ * once, and an answer streamed to its end waits the same way (`dropStream` cuts the one being
+ * spoken, so the page uploads the recording instead). `asked` lists the voice requests made, as
+ * paths with their queries (her short clips are fetched ahead, said or not); `said` lists the
+ * clips she played, the same way. */
+export async function fakeMira(page: Page, live = false) {
   const asked: string[] = []
-  const waiting: { route: Route; url: URL }[] = []
+  const waiting: Waiting[] = []
+  const streams: Stream[] = []
 
   // Each clip's address is traced back to the path it was fetched from, and each play recorded.
   await page.addInitScript(() => {
@@ -178,7 +188,10 @@ export async function fakeMira(page: Page) {
     asked.push(path)
 
     if (path.startsWith("answers")) {
-      waiting.push({ route, url })
+      waiting.push({
+        waiting: url.searchParams.getAll("waiting").map(Number),
+        reply: (understood) => route.fulfill({ json: understood }),
+      })
 
       return
     }
@@ -192,6 +205,41 @@ export async function fakeMira(page: Page) {
     await route.fulfill({ body: CLIP, contentType: "audio/wav" })
   })
 
+  await page.routeWebSocket(/\/voice\/stream$/, (socket) => {
+    if (!live) {
+      socket.close({ code: 4503 })
+
+      return
+    }
+
+    const stream: Stream = { socket, started: false, ended: false, audio: 0 }
+    streams.push(stream)
+    socket.onMessage((message) => {
+      if (typeof message !== "string") {
+        stream.audio += message.length
+
+        return
+      }
+
+      const step = JSON.parse(message)
+
+      if ("token" in step) {
+        socket.send(JSON.stringify({ type: "ready" }))
+      } else if (step.type === "start") {
+        stream.started = true
+      } else if (step.type === "end") {
+        stream.ended = true
+        waiting.push({
+          waiting: step.waiting,
+          reply: async (understood) => {
+            socket.send(JSON.stringify({ type: "answer", answer: understood, stages: {} }))
+            await socket.close()
+          },
+        })
+      }
+    })
+  })
+
   return {
     asked,
     said: () => page.evaluate(() => (window as unknown as { miraSaid: string[] }).miraSaid),
@@ -199,13 +247,20 @@ export async function fakeMira(page: Page) {
     sent: async () => {
       await expectSoon(() => waiting.length > 0)
 
-      return waiting[0].url.searchParams.getAll("waiting").map(Number)
+      return waiting[0].waiting
     },
     /** Answers the spoken answer waiting with what the service understood. */
     answer: async (understood: Understood) => {
       await expectSoon(() => waiting.length > 0)
-      const { route } = waiting.shift()!
-      await route.fulfill({ json: understood })
+      await waiting.shift()!.reply(understood)
+    },
+    /** The bytes of audio each live stream got, oldest first. */
+    streamed: () => streams.map((stream) => stream.audio),
+    /** Cuts the live stream carrying speech not yet ended, once some of it has arrived. */
+    dropStream: async () => {
+      const speaking = (stream: Stream) => stream.started && !stream.ended && stream.audio > 0
+      await expectSoon(() => streams.some(speaking))
+      await streams.find(speaking)!.socket.close({ code: 4502 })
     },
   }
 }

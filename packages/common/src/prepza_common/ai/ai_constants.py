@@ -17,6 +17,7 @@ MODEL_PRICES = {
 # readings.
 AUDIO_PRICES = {
     "gpt-transcribe": 0.0045,
+    "gpt-live-transcribe": 0.017,
     "gpt-realtime-2.1-mini": 0.026,
 }
 # The Batch API charges this share of the usual price.

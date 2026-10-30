@@ -51,6 +51,19 @@ export const KEPT_PHRASES = [
 ]
 // A spoken answer is sent at most this long (the service's limit is 30 seconds).
 export const MAX_ANSWER_MS = 25_000
+// Live listening (lib/voice-live.ts): the answer is streamed to the service while the candidate
+// speaks, so its text is ready moments after they stop. A connection is opened as listening
+// starts, so none is opened while they speak, and renewed after LIVE_RENEW_MS without speech
+// (the service ends one after 55 seconds). The speech is sent with PRE_ROLL_MS from before the
+// detector heard it, so its first sound isn't cut. The service ends a connection itself when it
+// can't answer (its own calls are bounded), so LIVE_ANSWER_WAIT_MS only guards against one that
+// died silently; then, as after any failure, the recording is sent whole. After
+// LIVE_MAX_FAILURES connections in a row that never got ready, the interview sends recordings
+// only.
+export const PRE_ROLL_MS = 300
+export const LIVE_RENEW_MS = 25_000
+export const LIVE_ANSWER_WAIT_MS = 20_000
+export const LIVE_MAX_FAILURES = 3
 // When the question's time runs out while the candidate is speaking or their answer is being
 // understood, the screen waits at most this long for it (the service takes it until 15 seconds
 // past the deadline, rounds' VOICE_ANSWER_GRACE_SECONDS).

@@ -20,6 +20,7 @@ from rounds.helpers.voice_match import hearing_keywords
 from rounds.helpers.voice_timing import server_timing
 from rounds.integrations.llm import get_transcribe_client
 from rounds.models.sessions import Session
+from rounds.schemas.rounds import NextQuestion
 from rounds.schemas.voice import VoiceAnswerOut
 from rounds.services import voice_deadline, voice_limits, voice_match
 from rounds.services.session_titles import interview_language
@@ -58,29 +59,19 @@ async def hear(request: Request, language: str, who: dict, keywords: list[str]) 
     return result.text.strip()
 
 
-async def answer(
-    row: Session, request: Request, waiting: list[int]
-) -> tuple[VoiceAnswerOut, dict[str, float]]:
-    """A spoken answer to the question on screen, understood: heard, then matched to its options
-    (or to a yes or no for the choice `waiting` for confirmation); a sound without words is
-    noise, which the browser ignores. Nothing is saved here: a clear choice (one option on a
-    single-answer question) is sent at once, any other once the candidate confirms it, as a
-    tapped one is. With it, each stage's seconds (transcribe, match, total), also logged with
-    the session's id and the intent: never the words. The audio and the words are never kept or
-    logged. Over the limits a 429 (or 503); a failed call a 502."""
-    started = time.monotonic()
-    voice_only(row)
-    question = shown_question(row)
-    # Noted as it arrives, before the upload is read: in time, its answer may come after the
-    # deadline (services/voice_deadline.py).
-    await voice_deadline.note_arrival(row, question.question_id)
-    await voice_limits.check_answer(row)
-    language = await interview_language(row)
-    who = {"company_id": row.company_id, "user_id": row.user_id, "subject_id": row.id}
-    heard_at = time.monotonic()
-    said = await hear(request, language, who, hearing_keywords(question))
-    matched_at = time.monotonic()
+def who_of(row: Session) -> dict:
+    """Whose AI use an answer is, as billing records it."""
+    return {"company_id": row.company_id, "user_id": row.user_id, "subject_id": row.id}
+
+
+async def understand(
+    row: Session, question: NextQuestion, said: str, waiting: list[int], language: str
+) -> tuple[VoiceAnswerOut, str]:
+    """What was said, matched to the question's options (or to a yes or no for the choice
+    `waiting`), the matching call's cost recorded; with "model" or "code", whichever read it. A
+    failed call is a 502."""
     model = settings.voice_match_model
+    who = who_of(row)
 
     try:
         intent, picks, usage = await voice_match.match(
@@ -95,18 +86,48 @@ async def answer(
         await ai_usage.record(MATCH_ACTION, model, usage, **who)
 
     clear = intent == Intent.CHOOSE and not question.multi
+    understood = VoiceAnswerOut(heard=said, intent=intent, picks=picks, clear=clear)
+
+    return understood, "model" if usage is not None else "code"
+
+
+def log_answer(row: Session, understood: VoiceAnswerOut, by: str, stages: dict[str, float]):
+    """One line per answer: the session's id, the intent, what read it and the stages' times;
+    never the words."""
+    logger.info(
+        "Voice answer %s: %s by %s, %s", row.id, understood.intent, by, server_timing(stages)
+    )
+
+
+async def answer(
+    row: Session, request: Request, waiting: list[int]
+) -> tuple[VoiceAnswerOut, dict[str, float]]:
+    """A spoken answer to the question on screen, recorded whole and uploaded (when it couldn't be
+    heard live, services/voice_stream.py), understood: heard, then matched to its options (or to
+    a yes or no for the choice `waiting` for confirmation); a sound without words is noise, which
+    the browser ignores. Nothing is saved here: a clear choice (one option on a single-answer
+    question) is sent at once, any other once the candidate confirms it, as a tapped one is. With
+    it, each stage's seconds (transcribe, match, total), also logged with the session's id and
+    the intent: never the words. The audio and the words are never kept or logged. Over the
+    limits a 429 (or 503); a failed call a 502."""
+    started = time.monotonic()
+    voice_only(row)
+    question = shown_question(row)
+    # Noted as it arrives, before the upload is read: in time, its answer may come after the
+    # deadline (services/voice_deadline.py).
+    await voice_deadline.note_arrival(row, question.question_id)
+    await voice_limits.check_answer(row)
+    language = await interview_language(row)
+    heard_at = time.monotonic()
+    said = await hear(request, language, who_of(row), hearing_keywords(question))
+    matched_at = time.monotonic()
+    understood, by = await understand(row, question, said, waiting, language)
     now = time.monotonic()
     stages = {
         "transcribe": matched_at - heard_at,
         "match": now - matched_at,
         "total": now - started,
     }
-    logger.info(
-        "Voice answer %s: %s by %s, %s",
-        row.id,
-        intent,
-        "model" if usage is not None else "code",
-        server_timing(stages),
-    )
+    log_answer(row, understood, by, stages)
 
-    return VoiceAnswerOut(heard=said, intent=intent, picks=picks, clear=clear), stages
+    return understood, stages

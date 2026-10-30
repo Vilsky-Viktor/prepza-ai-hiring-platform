@@ -11,7 +11,7 @@ const ANSWER = {
   picks: [1],
   clear: true,
 }
-const ATTRIBUTES = { intent: "choose", clear: true }
+const ATTRIBUTES = { intent: "choose", clear: true, live: false }
 
 let now: number
 
@@ -51,7 +51,7 @@ it("times a turn from the speech's end to the answer and to Mira's reaction", ()
   const timing = turnTiming()
   timing.ended()
   now = 3400
-  timing.answered(ANSWER, { transcribe: 2000, match: 0 })
+  timing.answered(ANSWER, { transcribe: 2000, match: 0 }, false)
   now = 3500
   timing.reacted()
   // A second clip is no reaction to the same answer.
@@ -68,7 +68,7 @@ it("times a turn from the speech's end to the answer and to Mira's reaction", ()
 it("reports no reaction for an answer Mira said nothing to", () => {
   const timing = turnTiming()
   timing.ended()
-  timing.answered(ANSWER, {})
+  timing.answered(ANSWER, {}, false)
   timing.dropped()
   timing.reacted()
 
@@ -77,7 +77,7 @@ it("reports no reaction for an answer Mira said nothing to", () => {
 
 it("reports nothing for a clip that follows no answer", () => {
   const timing = turnTiming()
-  timing.answered(ANSWER, {})
+  timing.answered(ANSWER, {}, false)
   timing.reacted()
 
   expect(sent()).toEqual([])

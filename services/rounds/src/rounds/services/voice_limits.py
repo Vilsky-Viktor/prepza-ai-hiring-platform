@@ -1,5 +1,5 @@
 from prepza_common.ai.ai_cap import refuse_if_capped
-from prepza_common.limits.rate_limit import hit
+from prepza_common.limits.rate_limit import hit, hit_or_skip
 
 from rounds.integrations.redis import get_redis
 from rounds.models.sessions import Session
@@ -33,3 +33,12 @@ async def check_clip(row: Session) -> None:
     key = f"rate:voice:clips:company:{row.company_id}"
     await hit(redis, key, "VOICE_CLIPS_PER_COMPANY_DAY", **who)
     await hit(redis, "rate:voice:clips:all", "VOICE_CLIPS_PER_DAY", **who)
+
+
+async def check_stream(row: Session) -> None:
+    """Counts one live listening connection, refused (429) over the candidate's hourly limit: each
+    opens an OpenAI session, though only the audio after a counted answer (check_answer) costs.
+    Against floods, so it fails open with Redis down."""
+    who = {"company_id": row.company_id, "user_id": row.user_id}
+    key = f"rate:voice:streams:user:{row.user_id}"
+    await hit_or_skip(get_redis(), key, "VOICE_STREAMS_PER_USER_HOUR", **who)

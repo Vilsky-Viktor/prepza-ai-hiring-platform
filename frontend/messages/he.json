@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "סבבי תרגול למשתמש בשעה",
       "VOICE_ANSWERS_PER_USER_HOUR": "תשובות בעל פה למועמד בשעה",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "תשובות בעל פה לחברה ביום",
+      "VOICE_STREAMS_PER_USER_HOUR": "חיבורי האזנה חיה למועמד בשעה",
       "VOICE_CLIPS_PER_COMPANY_DAY": "שאלות שמוקראות בקול בפעם הראשונה לחברה ביום",
       "VOICE_CLIPS_PER_DAY": "שאלות שמוקראות בקול בפעם הראשונה ביום",
       "SIGNALS_PER_MINUTE": "סימני יושרה לסשן בדקה",

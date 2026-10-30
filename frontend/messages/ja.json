@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "ユーザーごとの 1 時間あたりの練習ラウンド数",
       "VOICE_ANSWERS_PER_USER_HOUR": "候補者ごとの 1 時間あたりの音声回答数",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "会社ごとの 1 日あたりの音声回答数",
+      "VOICE_STREAMS_PER_USER_HOUR": "候補者ごとの 1 時間あたりのライブ聞き取り接続数",
       "VOICE_CLIPS_PER_COMPANY_DAY": "会社ごとの 1 日あたりの初回読み上げ問題数",
       "VOICE_CLIPS_PER_DAY": "1 日あたりの初回読み上げ問題数",
       "SIGNALS_PER_MINUTE": "セッションごとの 1 分あたりの不正行為の兆候の数",

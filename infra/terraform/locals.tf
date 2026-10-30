@@ -18,10 +18,13 @@ locals {
   # a larger tier comes before larger pools or more instances. notifications-stream runs
   # notifications' image only for the bell's live stream (load_balancer.tf routes it there),
   # where each open tab holds one request for up to an hour, so those tabs never take the
-  # capacity Pub/Sub's pushes need. The worker runs 10 generation jobs at once on its one
-  # instance: the 10 Cloud Tasks dispatches at once (jobs.tf). Services that pages ask on most
-  # visits (frontend, rounds, companies, library, billing, generation) keep one warm instance,
-  # so no visitor waits for a 3-6 s cold start; an idle one costs about $10 a month.
+  # capacity Pub/Sub's pushes need. rounds holds voice mode's live listening (a WebSocket per
+  # spoken answer, under a minute) on at most 20 of its 40 slots per instance (MAX_OPEN_STREAMS):
+  # a service of its own would need database connections the budget doesn't have. The worker
+  # runs 10 generation jobs at once on its one instance: the 10 Cloud Tasks dispatches at once
+  # (jobs.tf). Services that pages ask on most visits (frontend, rounds, companies, library,
+  # billing, generation) keep one warm instance, so no visitor waits for a 3-6 s cold start; an
+  # idle one costs about $10 a month.
   services = {
     frontend             = { image = "frontend", public = true, path = null, port = 3000, min = 1, max = 10, connections = 0, cpu = "1", memory = "1Gi", timeout = 60, concurrency = 80, database = null, command = null }
     library              = { image = "library", public = true, path = "library", port = 8000, min = 1, max = 1, connections = 3, cpu = "1", memory = "512Mi", timeout = 150, concurrency = 40, database = "library", command = null }

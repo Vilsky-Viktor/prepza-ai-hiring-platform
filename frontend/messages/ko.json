@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "사용자별 시간당 연습 라운드",
       "VOICE_ANSWERS_PER_USER_HOUR": "지원자별 시간당 음성 답변",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "회사별 하루 음성 답변",
+      "VOICE_STREAMS_PER_USER_HOUR": "지원자별 시간당 실시간 듣기 연결",
       "VOICE_CLIPS_PER_COMPANY_DAY": "회사별 하루 처음 읽어 준 문제",
       "VOICE_CLIPS_PER_DAY": "하루 처음 읽어 준 문제",
       "SIGNALS_PER_MINUTE": "세션별 분당 부정행위 의심 표시",

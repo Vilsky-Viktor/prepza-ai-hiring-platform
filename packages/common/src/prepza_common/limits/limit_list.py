@@ -210,6 +210,9 @@ LIMITS = {
     "VOICE_ANSWERS_PER_COMPANY_DAY": Limit(
         ROUNDS, 20_000, "calls", DAY_SECONDS, 1, 1_000_000, "company"
     ),
+    # Live listening's connections, one per answer and one each 25 quiet seconds (about 300 in an
+    # hour of an interview): each opens an OpenAI session, so a flood is refused.
+    "VOICE_STREAMS_PER_USER_HOUR": Limit(ROUNDS, 1_200, "calls", HOUR_SECONDS, 1, 10_000, "user"),
     "VOICE_CLIPS_PER_COMPANY_DAY": Limit(
         ROUNDS, 3_000, "calls", DAY_SECONDS, 1, 100_000, "company"
     ),

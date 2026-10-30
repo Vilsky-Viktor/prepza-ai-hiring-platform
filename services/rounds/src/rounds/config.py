@@ -19,7 +19,10 @@ class Settings(ServiceSettings):
     # realtime voice model told to say the text exactly (OpenAI's text-to-speech models shut down).
     speech_model: str = "gpt-realtime-2.1-mini"
     speech_voice: str = "marin"
-    # Turns a candidate's spoken answer into text.
+    # Turns a candidate's spoken answer into text: streamed to it while they speak and transcribed
+    # as they stop (services/voice_stream.py), or a whole recording when streaming isn't possible
+    # (services/voice_answers.py). gpt-live-transcribe, which transcribes as it hears, was as fast
+    # at the end and heard worse (evals/baselines/voice-mode.md, 2026-10-31).
     transcribe_model: str = "gpt-transcribe"
 
 

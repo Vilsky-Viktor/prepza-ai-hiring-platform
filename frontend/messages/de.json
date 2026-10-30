@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Übungsrunden pro Nutzer und Stunde",
       "VOICE_ANSWERS_PER_USER_HOUR": "Gesprochene Antworten pro Kandidat und Stunde",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Gesprochene Antworten pro Unternehmen und Tag",
+      "VOICE_STREAMS_PER_USER_HOUR": "Verbindungen zum Live-Zuhören pro Kandidat und Stunde",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Erstmals vorgelesene Fragen pro Unternehmen und Tag",
       "VOICE_CLIPS_PER_DAY": "Erstmals vorgelesene Fragen pro Tag",
       "SIGNALS_PER_MINUTE": "Integritätshinweise pro Sitzung und Minute",

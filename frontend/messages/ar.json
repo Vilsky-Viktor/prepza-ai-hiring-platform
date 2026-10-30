@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "جولات التدريب لكل مستخدم في الساعة",
       "VOICE_ANSWERS_PER_USER_HOUR": "الإجابات المنطوقة لكل مرشح في الساعة",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "الإجابات المنطوقة لكل شركة في اليوم",
+      "VOICE_STREAMS_PER_USER_HOUR": "اتصالات الاستماع المباشر لكل مرشح في الساعة",
       "VOICE_CLIPS_PER_COMPANY_DAY": "الأسئلة المقروءة بصوت عالٍ لأول مرة لكل شركة في اليوم",
       "VOICE_CLIPS_PER_DAY": "الأسئلة المقروءة بصوت عالٍ لأول مرة في اليوم",
       "SIGNALS_PER_MINUTE": "مؤشرات النزاهة لكل جلسة في الدقيقة",

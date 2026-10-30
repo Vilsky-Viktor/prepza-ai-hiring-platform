@@ -8,7 +8,7 @@ import {
 } from "@/config/maintenance"
 import { LOCALE_HEADER, PLAIN_ADDRESS_HEADER } from "@/config/seo"
 import { EMBED_PAGE } from "@/config/embed"
-import { contentSecurityPolicy, newNonce } from "@/lib/csp"
+import { contentSecurityPolicy, newNonce, ownSocketOrigin } from "@/lib/csp"
 import { embedAncestors } from "@/lib/embed"
 import {
   hasLanguageVersions,
@@ -40,7 +40,8 @@ export async function proxy(request: NextRequest) {
   const policy = contentSecurityPolicy(
     nonce,
     process.env.NODE_ENV === "development",
-    ancestors
+    ancestors,
+    ownSocketOrigin(request.headers)
   )
   const requestHeaders = new Headers(request.headers)
   requestHeaders.set("x-nonce", nonce)

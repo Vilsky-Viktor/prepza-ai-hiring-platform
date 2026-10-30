@@ -1,7 +1,7 @@
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Path, Query, Request, Response, status
+from fastapi import APIRouter, Path, Query, Request, Response, WebSocket, status
 from prepza_common.auth.auth import CurrentUser
 from pydantic import Field
 
@@ -9,7 +9,7 @@ from rounds.constants.rounds import OPTIONS_PER_QUESTION
 from rounds.constants.voice_phrases import FIXED_PHRASES, Phrase
 from rounds.helpers.voice_timing import server_timing
 from rounds.schemas.voice import VoiceAnswerOut
-from rounds.services import voice_answers, voice_session
+from rounds.services import voice_answers, voice_session, voice_stream
 from rounds.services.session_access import get_own_session
 
 router = APIRouter(prefix="/sessions", tags=["voice"])
@@ -98,3 +98,13 @@ async def voice_answer(
     response.headers["Server-Timing"] = server_timing(stages)
 
     return understood
+
+
+@router.websocket("/{session_id}/voice/stream")
+async def voice_stream_answer(websocket: WebSocket, session_id: UUID) -> None:
+    """Voice mode: a spoken answer heard live, while the candidate says it (services/
+    voice_stream.py has the messages). Signed in by the first message, not a header (a browser
+    can't set one on a WebSocket), and guarded as the answers route is: the candidate's own voice
+    interview, a question on screen, the voice limits. One answer per connection, closed with
+    4000 plus the answers route's status when refused; the browser then uploads the recording."""
+    await voice_stream.stream(websocket, session_id)

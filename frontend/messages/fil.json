@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Mga practice round bawat user kada oras",
       "VOICE_ANSWERS_PER_USER_HOUR": "Mga sagot na binigkas bawat aplikante kada oras",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Mga sagot na binigkas bawat kumpanya kada araw",
+      "VOICE_STREAMS_PER_USER_HOUR": "Mga koneksiyon sa live na pakikinig bawat aplikante kada oras",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Mga tanong na binasa nang malakas sa unang pagkakataon bawat kumpanya kada araw",
       "VOICE_CLIPS_PER_DAY": "Mga tanong na binasa nang malakas sa unang pagkakataon kada araw",
       "SIGNALS_PER_MINUTE": "Mga integrity flag bawat session kada minuto",

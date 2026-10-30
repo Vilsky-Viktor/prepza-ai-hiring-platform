@@ -28,12 +28,18 @@ export function errorDetail(body: unknown): string | null {
   return typeof first === "string" ? first.replace(/^Value error, /, "") : null
 }
 
-/** The signed-in user's token, and the interface language for the services' messages. */
-export async function authHeaders(): Promise<Record<string, string>> {
+/** The signed-in user's Firebase ID token; none when signed out. */
+export async function idToken() {
   // Right after page load Firebase may still be restoring the signed-in user.
   const auth = await firebaseAuth()
   await auth.authStateReady()
-  const token = await auth.currentUser?.getIdToken()
+
+  return auth.currentUser?.getIdToken()
+}
+
+/** The signed-in user's token, and the interface language for the services' messages. */
+export async function authHeaders(): Promise<Record<string, string>> {
+  const token = await idToken()
   // The page's own language: a first visit has no cookie yet.
   const language = {
     "Accept-Language": document.documentElement.lang || DEFAULT_LOCALE,

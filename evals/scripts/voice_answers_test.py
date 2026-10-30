@@ -8,8 +8,15 @@ speech) are heard the same way and must come back as noise, which the browser ig
 intent is a reaction (Mira asks again).
 
     evals/run.sh rounds voice_answers_test.py --label base     # --repeat 2, --only en01,de04
+    evals/run.sh rounds voice_answers_test.py --hearing live --label streamed
+    evals/run.sh rounds voice_answers_test.py --hearing live --live-model gpt-live-transcribe \
+        --delay low --label live-low
 
-MODEL and EFFORT test another matching model. Costs about a cent a repeat."""
+MODEL and EFFORT test another matching model. `--hearing live` streams the spoken answers as voice
+mode does while the candidate speaks (voice_live.py: rounds' realtime transcription session, in
+real time; `--live-model` and its `--delay` try another model) instead of sending whole
+recordings, and reports how long the final text took after each answer's end; `--no-keywords`
+leaves out the recognition hints. Costs about a cent a repeat (gpt-live-transcribe: about five)."""
 
 import argparse
 import asyncio
@@ -19,9 +26,11 @@ import time
 from collections import defaultdict
 
 from common import DATASETS, RESULTS, cost, load, run_record, save
+from openai import OpenAIError
 from prepza_common.ai.llm import audio_cost
 from prepza_common.ai.speech import audio_seconds, speech_to_text
 from stats import share
+from voice_live import hear_live
 
 from rounds.config import settings
 from rounds.constants.voice import MAX_ANSWER_SECONDS, Intent
@@ -61,9 +70,24 @@ def question_of(data: dict, item: dict) -> NextQuestion:
     )
 
 
-async def hear(data: dict, item: dict) -> tuple[str, float]:
+async def hear(data: dict, item: dict, args) -> tuple[str, float, float | None]:
+    """What the service hears: (text, cost, seconds from the answer's end to the final text when
+    heard live)."""
     name = f"sound_{item['id']}" if "sound" in item else f"answer_{item['id']}"
-    audio = (DATASETS / "audio" / f"{name}.ogg").read_bytes()
+    path = DATASETS / "audio" / f"{name}.ogg"
+    keywords = hearing_keywords(question_of(data, item))
+
+    if args.hearing == "live":
+        # A session that fails is a failure here; voice mode would send the recording whole.
+        try:
+            hints = [] if args.no_keywords else keywords
+            return await hear_live(path, item["language"], hints, args.live_model, args.delay)
+        except (TimeoutError, OpenAIError) as error:
+            print(f"- live hearing failed {item['id']}: {type(error).__name__}")
+
+            return None, 0.0, None
+
+    audio = path.read_bytes()
     model = settings.transcribe_model
     result = await speech_to_text(
         get_transcribe_client(),
@@ -72,20 +96,25 @@ async def hear(data: dict, item: dict) -> tuple[str, float]:
         audio,
         "audio/ogg",
         item["language"],
-        hearing_keywords(question_of(data, item)),
+        keywords,
     )
     seconds = audio_seconds(getattr(result, "usage", None), len(audio), MAX_ANSWER_SECONDS)
 
-    return result.text.strip(), audio_cost(model, seconds) or 0.0
+    return result.text.strip(), audio_cost(model, seconds) or 0.0, None
 
 
-async def one(data: dict, item: dict, spoken: bool, slots: asyncio.Semaphore) -> dict:
+async def one(data: dict, item: dict, spoken: bool, slots: asyncio.Semaphore, args) -> dict:
     async with slots:
         started = time.monotonic()
-        said, heard_cost = await hear(data, item) if spoken else (item["said"], 0.0)
-        intent, picks, usage = await match(
-            question_of(data, item), said, item["waiting"], item["language"], item["id"]
+        said, heard_cost, final = (
+            await hear(data, item, args) if spoken else (item["said"], 0, None)
         )
+        if said is None:
+            intent, picks, usage = Intent.UNCLEAR, [], None
+        else:
+            intent, picks, usage = await match(
+                question_of(data, item), said, item["waiting"], item["language"], item["id"]
+            )
 
     right = intent == item["intent"] and picks == item["picks"]
 
@@ -105,6 +134,8 @@ async def one(data: dict, item: dict, spoken: bool, slots: asyncio.Semaphore) ->
         "by_code": usage is None,
         "cost": (cost(settings.voice_match_model, usage) if usage else 0.0) + heard_cost,
         "seconds": time.monotonic() - started,
+        "final_seconds": final,
+        "failed": said is None,
     }
 
 
@@ -126,6 +157,7 @@ def scores_of(rows: list[dict]) -> dict:
         "by_code": share(sum(r["by_code"] for r in rows), n),
         # Read by code and not what the candidate meant: the target is none.
         "by_code_wrong": share(sum(r["by_code"] and not r["right"] for r in rows), n),
+        "hearing_failed": share(sum(r["failed"] for r in rows), n),
         "unclear_when_chosen": share(
             sum(r["intent"] == Intent.UNCLEAR and not r["right"] for r in rows), n
         ),
@@ -148,7 +180,7 @@ async def main(args) -> None:
     jobs = [(item, False) for item in items] + [(i, True) for i in items if "spoken" in i]
     jobs += [(sound, True) for sound in sounds]
     rows = await asyncio.gather(
-        *(one(data, item, spoken, slots) for item, spoken in jobs for _ in range(args.repeat))
+        *(one(data, item, spoken, slots, args) for item, spoken in jobs for _ in range(args.repeat))
     )
     answers = [r for r in rows if not r["sound"]]
     scores = {
@@ -158,14 +190,23 @@ async def main(args) -> None:
     }
     times = sorted(r["seconds"] for r in rows)
     spent = round(sum(r["cost"] for r in rows), 4)
+    finals = sorted(r["final_seconds"] for r in rows if r["final_seconds"] is not None)
+    hearing = (
+        f"{args.live_model} ({args.delay or 'no delay'}"
+        f"{', no keywords' if args.no_keywords else ''}, streamed)"
+        if args.hearing == "live"
+        else settings.transcribe_model
+    )
     run = run_record(
         model=f"{settings.voice_match_model} ({settings.voice_match_reasoning_effort}), "
-        f"hearing {settings.transcribe_model}",
+        f"hearing {hearing}",
         repeat=args.repeat,
         scores=scores,
         cost=spent,
         median_seconds=round(times[len(times) // 2], 2),
         p90_seconds=round(times[int(len(times) * 0.9)], 2),
+        final_median_seconds=round(finals[len(finals) // 2], 2) if finals else None,
+        final_p90_seconds=round(finals[int(len(finals) * 0.9)], 2) if finals else None,
     )
     save(RESULTS / f"voice_answers_{args.label}.json", {"run": run, "rows": rows})
     print(
@@ -175,6 +216,8 @@ async def main(args) -> None:
                 "cost": spent,
                 "median_seconds": run["median_seconds"],
                 "p90_seconds": run["p90_seconds"],
+                "final_median_seconds": run["final_median_seconds"],
+                "final_p90_seconds": run["final_p90_seconds"],
             },
             indent=1,
             ensure_ascii=False,
@@ -195,4 +238,8 @@ if __name__ == "__main__":
     parser.add_argument("--label", default="run")
     parser.add_argument("--repeat", type=int, default=2)
     parser.add_argument("--only", default="")
+    parser.add_argument("--hearing", choices=("recording", "live"), default="recording")
+    parser.add_argument("--live-model", default=settings.transcribe_model)
+    parser.add_argument("--delay", default="")
+    parser.add_argument("--no-keywords", action="store_true")
     asyncio.run(main(parser.parse_args()))

@@ -28,6 +28,33 @@ MAX_ADDED_WORDS = 3
 TRANSCRIBE_TIMEOUT_SECONDS = 20
 TRANSCRIBE_RETRIES = 1
 
+# Live listening (services/voice_stream.py): a spoken answer streamed to rounds over a WebSocket
+# while the candidate says it, and on to OpenAI's realtime transcription, so its text is ready
+# moments after they stop. The browser sends 16-bit mono PCM at STREAM_RATE (its speech
+# detector's frames); OpenAI takes it at LIVE_RATE.
+STREAM_RATE = 16_000
+LIVE_RATE = 24_000
+# A frame larger than this is refused (the detector's are 1,024 bytes).
+MAX_STREAM_FRAME_BYTES = 16_384
+# The browser opens a stream as listening starts and must sign in within STREAM_SIGN_IN_SECONDS;
+# a stream lives at most STREAM_SECONDS (under Cloud Run's 60-second request timeout: the browser
+# opens a new one when a quiet one is 25 seconds old) and hears one answer.
+STREAM_SIGN_IN_SECONDS = 5
+STREAM_SECONDS = 55
+# Streams are held while candidates speak, so an instance keeps at most this many open (of its 40
+# requests at once, infra/terraform/locals.tf): the rest of its slots stay for short requests,
+# and a candidate over it has the recording uploaded instead (a 503 close).
+MAX_OPEN_STREAMS = 20
+# OpenAI's session: how long opening it and the final transcript after the answer's end may take.
+LIVE_OPEN_TIMEOUT_SECONDS = 10
+LIVE_FINAL_TIMEOUT_SECONDS = 5
+# A stream's close codes beyond a normal close: 4000 plus the HTTP status the upload would get
+# (4401 not signed in, 4404 not their session, 4409 not a voice interview or no question, 4429
+# over a limit, 4502 OpenAI failed), and STREAM_REFUSED for anything the browser sent wrong. The
+# browser sends the recording the usual way after any of them.
+STREAM_CLOSE_BASE = 4000
+STREAM_REFUSED = 4400
+
 # The longest spoken answer the browser sends (it stops listening then).
 MAX_ANSWER_SECONDS = 30
 # A spoken answer that reached the service by its question's deadline plus this many seconds (a

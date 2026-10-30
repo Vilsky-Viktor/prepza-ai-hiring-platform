@@ -3,6 +3,7 @@ import {
   IDLE_RESTART_MS,
   MAX_ANSWER_MS,
   MIN_VOICED_MS,
+  PRE_ROLL_MS,
   SPEECH_LEVEL,
   SPEECH_PROBABILITY,
 } from "@/config/voice"
@@ -32,6 +33,20 @@ export type DetectorEvents = {
 }
 export type OpenDetector = (events: DetectorEvents) => Promise<Detector>
 
+/** Where the candidate's speech is also sent as it comes (lib/voice-live.ts): prepared as
+ * listening starts, started once they're heard (with the moment before), ended with the speech,
+ * closed when listening stops without an answer. */
+export type LiveSink = {
+  open: () => void
+  start: (frames: Float32Array[]) => void
+  frame: (samples: Float32Array) => void
+  end: () => void
+  close: () => void
+}
+
+// The detector's frames kept from before the speech, so its first sound is sent too.
+const PRE_ROLL_FRAMES = Math.ceil(PRE_ROLL_MS / FRAME_MS)
+
 /** The microphone, opened once for the whole interview with the browser's voice processing (echo
  * cancellation, noise suppression, automatic gain). Throws the browser's error when it isn't
  * allowed. */
@@ -59,8 +74,9 @@ export function level(samples: Float32Array) {
 /** Listens all the time once resumed, and gives each stretch of the candidate's speech alone,
  * recorded in `type`: the detector says where speech starts and ends, and a stretch counts once
  * MIN_VOICED_MS of it is speech loud enough to be theirs. A cough, a knock or thunder is no
- * speech, and silence is never sent. Time is counted in the detector's frames. Starts paused;
- * the detector loads meanwhile (its failure rejects). */
+ * speech, and silence is never sent. With `live`, a stretch that counts is also sent to it as it
+ * comes, from PRE_ROLL_MS before it began. Time is counted in the detector's frames. Starts
+ * paused; the detector loads meanwhile (its failure rejects). */
 export async function listen(
   stream: MediaStream,
   type: string,
@@ -69,7 +85,8 @@ export async function listen(
     onSpeechStart: () => void
     // The speech and how long of it was voiced, in milliseconds.
     onSpeech: (audio: Blob, voicedMs: number) => void
-  }
+  },
+  live?: LiveSink
 ): Promise<Listener> {
   const format = type.split(";")[0]
   let recorder: MediaRecorder | null = null
@@ -81,6 +98,10 @@ export async function listen(
   let inSpeech = false
   let heard = false
   let paused = true
+  // The latest frames (PRE_ROLL_FRAMES, and in a stretch not yet heard, all of it) until it's
+  // sent live; then each frame goes as it comes.
+  let frames: Float32Array[] = []
+  let streaming = false
 
   function record() {
     chunks = []
@@ -95,6 +116,22 @@ export async function listen(
     voiced = 0
     inSpeech = false
     heard = false
+    streaming = false
+  }
+
+  // A frame for the live sink: sent while streaming, kept otherwise.
+  function pass(samples: Float32Array) {
+    if (streaming) {
+      live?.frame(samples)
+
+      return
+    }
+
+    frames.push(samples.slice())
+
+    if (!inSpeech && frames.length > PRE_ROLL_FRAMES) {
+      frames = frames.slice(-PRE_ROLL_FRAMES)
+    }
   }
 
   // Ends the recording; `keep` gives it to onSpeech.
@@ -117,6 +154,7 @@ export async function listen(
 
   // One answer at a time: listening waits for a resume after sending.
   function send() {
+    live?.end()
     finish(true)
     paused = true
     void detector.pause()
@@ -134,6 +172,7 @@ export async function listen(
     }
 
     elapsed += FRAME_MS
+    pass(samples)
 
     if (
       inSpeech &&
@@ -145,6 +184,9 @@ export async function listen(
 
     if (inSpeech && !heard && voiced >= MIN_VOICED_MS) {
       heard = true
+      streaming = true
+      live?.start(frames)
+      frames = []
       handlers.onSpeechStart()
     }
 
@@ -184,12 +226,14 @@ export async function listen(
   return {
     pause: () => {
       paused = true
+      live?.close()
       finish(false)
       void detector.pause()
     },
     resume: () => {
       finish(false)
       record()
+      live?.open()
       paused = false
       void detector.start()
     },
@@ -201,11 +245,13 @@ export async function listen(
       }
 
       paused = true
+      live?.close()
       finish(false)
       void detector.pause()
     },
     stop: () => {
       paused = true
+      live?.close()
       finish(false)
       void detector.destroy()
     },

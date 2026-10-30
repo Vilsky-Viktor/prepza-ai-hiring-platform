@@ -92,7 +92,9 @@ resource "google_monitoring_slo" "answers" {
 
   request_based_sli {
     distribution_cut {
-      distribution_filter = "metric.type=\"loadbalancing.googleapis.com/https/total_latencies\" AND resource.type=\"https_lb_rule\" AND resource.label.backend_target_name=\"rounds\""
+      # Without voice mode's live listening (101, a WebSocket held while the candidate speaks,
+      # up to a minute): its latency is how long it was open, not a wait.
+      distribution_filter = "metric.type=\"loadbalancing.googleapis.com/https/total_latencies\" AND resource.type=\"https_lb_rule\" AND resource.label.backend_target_name=\"rounds\" AND NOT metric.label.response_code_class=100"
 
       # Milliseconds.
       range {

@@ -23,24 +23,29 @@ export function serverStages(header: string | null) {
 
 /** One spoken answer's turn, timed from the moment the browser took its speech as ended: when
  * the service's understanding came back (with the service's own stages) and when Mira's
- * reaction started playing. Sent to Sentry as distributions, by what the answer meant: durations
- * only, never the words. "Got it." isn't a reaction: it only fills the wait. */
+ * reaction started playing. Sent to Sentry as distributions, by what the answer meant and
+ * whether it was heard live (lib/voice-live.ts) or sent as a recording: durations only, never
+ * the words. "Got it." isn't a reaction: it only fills the wait. */
 export function turnTiming() {
   let turn: {
     ended: number
-    attributes?: { intent: string; clear: boolean }
+    attributes?: { intent: string; clear: boolean; live: boolean }
   } | null = null
 
   return {
     ended: () => {
       turn = { ended: performance.now() }
     },
-    answered: (answer: VoiceAnswer, stages: Record<string, number>) => {
+    answered: (
+      answer: VoiceAnswer,
+      stages: Record<string, number>,
+      live: boolean
+    ) => {
       if (!turn) {
         return
       }
 
-      const attributes = { intent: answer.intent, clear: answer.clear }
+      const attributes = { intent: answer.intent, clear: answer.clear, live }
       turn.attributes = attributes
       Sentry.metrics.distribution(
         "voice.answer.response",

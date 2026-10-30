@@ -68,7 +68,9 @@ export async function voiceInterview(
     mira: Awaited<ReturnType<typeof fakeMira>>
   }) => Promise<void>,
   // Each question's time.
-  seconds = 300
+  seconds = 300,
+  // Spoken answers streamed while said (fakeMira's `live`), not uploaded.
+  live = false
 ) {
   const template = await multiAnswerTemplate(`E2E voice ${randomId()}`, 10)
 
@@ -90,7 +92,7 @@ export async function voiceInterview(
     await inviteCandidate(owner, interview.id, email)
     const candidate = await signInAs(email)
     const microphone = await fakeMicrophone(candidate)
-    const mira = await fakeMira(candidate)
+    const mira = await fakeMira(candidate, live)
     await run({ candidate, token: await inviteToken(email), microphone, mira })
   } finally {
     await deleteTemplate(template)

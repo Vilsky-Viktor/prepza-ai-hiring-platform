@@ -13,6 +13,20 @@ export function newNonce() {
   )
 }
 
+// A host as a request names it: a name or address and maybe a port, nothing that could end the
+// policy's directive.
+const HOST = /^[a-z0-9.-]+(:\d+)?$/i
+
+/** The site's own address for WebSockets (voice mode's live listening, lib/voice-live.ts), from
+ * the request's host (with its port: the local gateway forwards it apart) and scheme: `'self'`
+ * doesn't cover WebSockets in every browser. Empty for a host that isn't one. */
+export function ownSocketOrigin(headers: Headers) {
+  const host = headers.get("x-forwarded-host") ?? headers.get("host") ?? ""
+  const scheme = headers.get("x-forwarded-proto") === "http" ? "ws" : "wss"
+
+  return HOST.test(host) ? `${scheme}://${host}` : ""
+}
+
 /**
  * The page's Content-Security-Policy. Scripts run only with this request's nonce, or when a
  * script with it loads them ('strict-dynamic'), which covers Firebase loading Google's sign-in
@@ -22,7 +36,9 @@ export function contentSecurityPolicy(
   nonce: string,
   isDev: boolean,
   // Who may show the page in a frame: no one, but a company's own site its embedded interview.
-  frameAncestors = "'none'"
+  frameAncestors = "'none'",
+  // The site's own WebSocket address (ownSocketOrigin).
+  socketOrigin = ""
 ) {
   const authDomain = process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN
   const emulatorUrl = process.env.NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_URL
@@ -43,7 +59,7 @@ export function contentSecurityPolicy(
     "font-src 'self'",
     // Voice mode plays Mira's clips from blob addresses (fetched with the candidate's token).
     "media-src 'self' blob:",
-    `connect-src 'self' ${[...FIREBASE_CONNECT_ORIGINS, ...PADDLE_ORIGINS].join(" ")} ${emulator}${devConnect}`,
+    `connect-src 'self' ${socketOrigin} ${[...FIREBASE_CONNECT_ORIGINS, ...PADDLE_ORIGINS].join(" ")} ${emulator}${devConnect}`,
     `frame-src https://${authDomain} https://apis.google.com ${[...PADDLE_ORIGINS, ...TURNSTILE_ORIGINS, ...YOUTUBE_ORIGINS].join(" ")} ${emulator}`,
     "object-src 'none'",
     "base-uri 'self'",

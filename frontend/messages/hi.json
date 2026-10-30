@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "प्रति उपयोगकर्ता प्रति घंटा प्रैक्टिस राउंड",
       "VOICE_ANSWERS_PER_USER_HOUR": "प्रति उम्मीदवार प्रति घंटा बोले गए जवाब",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "प्रति कंपनी प्रति दिन बोले गए जवाब",
+      "VOICE_STREAMS_PER_USER_HOUR": "प्रति उम्मीदवार प्रति घंटा लाइव सुनने के कनेक्शन",
       "VOICE_CLIPS_PER_COMPANY_DAY": "प्रति कंपनी प्रति दिन पहली बार ज़ोर से पढ़े गए सवाल",
       "VOICE_CLIPS_PER_DAY": "प्रति दिन पहली बार ज़ोर से पढ़े गए सवाल",
       "SIGNALS_PER_MINUTE": "प्रति सेशन प्रति मिनट ईमानदारी के संकेत",

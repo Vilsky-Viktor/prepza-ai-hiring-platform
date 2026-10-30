@@ -1,6 +1,6 @@
 import { afterEach, expect, it, vi } from "vitest"
 
-import { contentSecurityPolicy, newNonce } from "@/lib/csp"
+import { contentSecurityPolicy, newNonce, ownSocketOrigin } from "@/lib/csp"
 
 afterEach(() => {
   vi.unstubAllEnvs()
@@ -71,4 +71,28 @@ it("makes a nonce of 128 random bits, new for every page", () => {
   for (const nonce of nonces) {
     expect(atob(nonce)).toHaveLength(16)
   }
+})
+
+// Voice mode's live listening connects to the site's own WebSocket, which 'self' doesn't cover
+// in every browser: the request's host is named, with its port when the gateway forwards it.
+it.each([
+  [{ host: "prepza.ai" }, "wss://prepza.ai"],
+  [
+    {
+      host: "localhost",
+      "x-forwarded-host": "localhost:8082",
+      "x-forwarded-proto": "http",
+    },
+    "ws://localhost:8082",
+  ],
+  // Anything that isn't a host never reaches the policy.
+  [{ host: "evil.test; script-src *" }, ""],
+])("allows the site's own WebSocket from %j", (headers, origin) => {
+  expect(ownSocketOrigin(new Headers(headers))).toBe(origin)
+})
+
+it("names the site's own WebSocket in connect-src", () => {
+  expect(
+    contentSecurityPolicy("nonce", false, "'none'", "wss://prepza.ai")
+  ).toMatch(/connect-src 'self' wss:\/\/prepza\.ai /)
 })

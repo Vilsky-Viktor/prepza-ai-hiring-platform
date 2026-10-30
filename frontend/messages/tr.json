@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Kullanıcı başına saatlik pratik denemesi",
       "VOICE_ANSWERS_PER_USER_HOUR": "Aday başına saatlik sesli cevap",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Şirket başına günlük sesli cevap",
+      "VOICE_STREAMS_PER_USER_HOUR": "Aday başına saatlik canlı dinleme bağlantısı",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Şirket başına günlük ilk kez sesli okunan soru",
       "VOICE_CLIPS_PER_DAY": "Günlük ilk kez sesli okunan soru",
       "SIGNALS_PER_MINUTE": "Oturum başına dakikalık dürüstlük uyarısı",

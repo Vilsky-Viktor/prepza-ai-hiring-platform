@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Simulazioni per utente all'ora",
       "VOICE_ANSWERS_PER_USER_HOUR": "Risposte vocali per candidato all'ora",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Risposte vocali per azienda al giorno",
+      "VOICE_STREAMS_PER_USER_HOUR": "Connessioni di ascolto in tempo reale per candidato all'ora",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Domande lette ad alta voce per la prima volta per azienda al giorno",
       "VOICE_CLIPS_PER_DAY": "Domande lette ad alta voce per la prima volta al giorno",
       "SIGNALS_PER_MINUTE": "Segnalazioni di integrità per sessione al minuto",

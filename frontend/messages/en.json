@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Practice rounds per user an hour",
       "VOICE_ANSWERS_PER_USER_HOUR": "Spoken answers per candidate an hour",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Spoken answers per company a day",
+      "VOICE_STREAMS_PER_USER_HOUR": "Live listening connections per candidate an hour",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Questions read aloud for the first time per company a day",
       "VOICE_CLIPS_PER_DAY": "Questions read aloud for the first time a day",
       "SIGNALS_PER_MINUTE": "Integrity signals per session a minute",

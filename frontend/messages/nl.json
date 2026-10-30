@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Oefenrondes per gebruiker per uur",
       "VOICE_ANSWERS_PER_USER_HOUR": "Gesproken antwoorden per kandidaat per uur",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Gesproken antwoorden per bedrijf per dag",
+      "VOICE_STREAMS_PER_USER_HOUR": "Verbindingen voor live luisteren per kandidaat per uur",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Vragen die voor het eerst worden voorgelezen, per bedrijf per dag",
       "VOICE_CLIPS_PER_DAY": "Vragen die voor het eerst worden voorgelezen, per dag",
       "SIGNALS_PER_MINUTE": "Integriteitssignalen per sessie per minuut",

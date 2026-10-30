@@ -8,14 +8,11 @@ import { apiErrorMessage } from "@/lib/api"
 import { acknowledgement } from "@/lib/voice-acknowledgement"
 import { answerInProgress } from "@/lib/voice-answering"
 import { react } from "@/lib/voice-reaction"
-import {
-  clipUrl,
-  prepareNextQuestion,
-  sendSpokenAnswer,
-} from "@/lib/voice-clips"
+import { clipUrl, prepareNextQuestion } from "@/lib/voice-clips"
 import { keptClips, savedClips } from "@/lib/voice-kept-clips"
 import { type Meter, meters, soundAllowed } from "@/lib/voice-meters"
 import { type Listener, listen, openMicrophone } from "@/lib/voice-listening"
+import { liveListening } from "@/lib/voice-live"
 import { turnTiming } from "@/lib/voice-timing"
 import { micDetector } from "@/lib/voice-vad"
 import { recordingType } from "@/lib/voice"
@@ -66,6 +63,8 @@ export function useVoiceInterviewer(
   const timing = useRef(turnTiming())
   // The answer being heard or understood, the question's own.
   const inProgress = useRef(answerInProgress())
+  // Listening live: the speech streamed as it's said, and the answer it gives once it ends.
+  const live = useRef(liveListening(latest))
 
   useEffect(() => {
     latest.current = { sessionId, chosen, handlers, questionId, status }
@@ -121,13 +120,14 @@ export function useVoiceInterviewer(
     })
   }
 
-  /** Sends the speech (still thinking, the microphone paused); "Got it." fills the wait only
-   * when the answer is slow, and stops the moment it's back. */
+  /** The speech ended: its answer as heard live, or else the recording sent whole (still
+   * thinking, the microphone paused); "Got it." fills the wait only when the answer is slow, and
+   * stops the moment it's back. */
   async function onSpeech(recording: Blob, voicedMs: number) {
-    const { sessionId: id, chosen: waiting } = latest.current
+    const id = latest.current.sessionId
     setStatus("thinking")
     timing.current.ended()
-    const sent = sendSpokenAnswer(id, recording, waiting)
+    const sent = live.current.answer(recording)
 
     if (audio.current) {
       gotIt.current.schedule(audio.current, id, voicedMs)
@@ -135,9 +135,9 @@ export function useVoiceInterviewer(
 
     // After the time ran out, the screen alone acts on the answer (timeUp).
     try {
-      const { answer, stages } = await sent
+      const { answer, stages, live: streamed } = await sent
       gotIt.current.cancel(audio.current)
-      timing.current.answered(answer, stages)
+      timing.current.answered(answer, stages, streamed)
       inProgress.current.end(answer)
 
       await (inProgress.current.timedOut()
@@ -198,10 +198,16 @@ export function useVoiceInterviewer(
       stream.current = mic
       meter.current = meters(ctx, player, mic)
       // The speech detector loads while Mira reads the first question.
-      const listening = listen(mic, type, micDetector(ctx, mic), {
-        onSpeechStart,
-        onSpeech: (recording, voicedMs) => void onSpeech(recording, voicedMs),
-      })
+      const listening = listen(
+        mic,
+        type,
+        micDetector(ctx, mic),
+        {
+          onSpeechStart,
+          onSpeech: (recording, voicedMs) => void onSpeech(recording, voicedMs),
+        },
+        live.current
+      )
       listening.catch(() => undefined)
       clips.current.preload(sessionId, [
         ...KEPT_PHRASES,

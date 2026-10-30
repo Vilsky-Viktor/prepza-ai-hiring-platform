@@ -19,6 +19,9 @@ ALLOWED = {
     "services/notifications/src/notifications/integrations/subscription.py",
     # Locally only: there's no Cloud Tasks queue, so a job calls the worker in the background.
     "services/generation/src/generation/integrations/tasks.py",
+    # A spoken answer's realtime transcription reads OpenAI's events in a task, cancelled as its
+    # session closes, inside the answer's WebSocket.
+    "services/rounds/src/rounds/integrations/live_hearing.py",
     # Integration tests' races only: both calls are awaited before the test ends.
     "packages/common/src/prepza_common/db/lock_waits.py",
 }

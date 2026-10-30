@@ -2,10 +2,10 @@
 
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, FastAPI
+from fastapi import APIRouter, Depends, FastAPI, WebSocket
 from prepza_common.auth.auth import CurrentUser
 from prepza_common.auth.google import verify_invoker
-from prepza_common.auth.route_guards import not_from_a_service, unguarded
+from prepza_common.auth.route_guards import not_from_a_service, unguarded, websocket_routes
 from prepza_common.auth.service_auth import service_caller
 
 
@@ -60,3 +60,24 @@ def test_internal_routes_take_only_a_services_token_or_googles_signature():
         return {}
 
     assert not_from_a_service(app) == ["GET /internal/by-a-user"]
+
+
+def test_websocket_routes_are_found_also_in_included_routers():
+    router = APIRouter(prefix="/things")
+
+    @router.websocket("/{thing_id}/stream")
+    async def stream(websocket: WebSocket, thing_id: str):
+        await websocket.close()
+
+    @router.get("/mine")
+    def mine(user: CurrentUser):
+        return {}
+
+    app = FastAPI()
+    app.include_router(router)
+
+    @app.websocket("/live")
+    async def live(websocket: WebSocket):
+        await websocket.close()
+
+    assert websocket_routes(app.routes) == ["/things/{thing_id}/stream", "/live"]

@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Harjutusvoorud kasutaja kohta tunnis",
       "VOICE_ANSWERS_PER_USER_HOUR": "Suulised vastused kandidaadi kohta tunnis",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Suulised vastused ettevõtte kohta päevas",
+      "VOICE_STREAMS_PER_USER_HOUR": "Reaalajas kuulamise ühendused kandidaadi kohta tunnis",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Esimest korda ette loetud küsimused ettevõtte kohta päevas",
       "VOICE_CLIPS_PER_DAY": "Esimest korda ette loetud küsimused päevas",
       "SIGNALS_PER_MINUTE": "Kahtlase käitumise märked seansi kohta minutis",

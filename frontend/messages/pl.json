@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Podejścia ćwiczeniowe na użytkownika na godzinę",
       "VOICE_ANSWERS_PER_USER_HOUR": "Odpowiedzi głosowe na kandydata na godzinę",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Odpowiedzi głosowe na firmę dziennie",
+      "VOICE_STREAMS_PER_USER_HOUR": "Połączenia słuchania na żywo na kandydata na godzinę",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Pytania przeczytane na głos po raz pierwszy, na firmę dziennie",
       "VOICE_CLIPS_PER_DAY": "Pytania przeczytane na głos po raz pierwszy, dziennie",
       "SIGNALS_PER_MINUTE": "Ostrzeżenia o podejrzanych zachowaniach na sesję na minutę",

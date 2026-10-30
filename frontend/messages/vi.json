@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Lượt luyện tập mỗi người dùng mỗi giờ",
       "VOICE_ANSWERS_PER_USER_HOUR": "Câu trả lời bằng giọng nói mỗi ứng viên mỗi giờ",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Câu trả lời bằng giọng nói mỗi công ty mỗi ngày",
+      "VOICE_STREAMS_PER_USER_HOUR": "Kết nối nghe trực tiếp mỗi ứng viên mỗi giờ",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Câu hỏi được đọc to lần đầu mỗi công ty mỗi ngày",
       "VOICE_CLIPS_PER_DAY": "Câu hỏi được đọc to lần đầu mỗi ngày",
       "SIGNALS_PER_MINUTE": "Cảnh báo hành vi bất thường mỗi phiên làm bài mỗi phút",

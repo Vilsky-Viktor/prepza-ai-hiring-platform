@@ -3,6 +3,7 @@ routes and lists any that runs none of the guards, unless it's public on purpose
 
 from fastapi import FastAPI
 from fastapi.routing import APIRoute
+from starlette.routing import WebSocketRoute
 
 # The dependencies that check who's asking: a signed-in user (or one optional on a public page
 # that checks a link itself), a superadmin, another service, Google's pushes and jobs, and an
@@ -77,5 +78,21 @@ def not_from_a_service(app: FastAPI) -> list[str]:
 
         if route.path.startswith("/internal") and not names & INTERNAL_GUARDS:
             found += [f"{method} {route.path}" for method in sorted(route.methods)]
+
+    return found
+
+
+def websocket_routes(routes) -> list[str]:
+    """The path of every WebSocket route, also in included routers. A browser can't give a
+    WebSocket headers, so none runs a header's guard and `unguarded` doesn't see them: each signs
+    in its own way, which its service's test names, so a new one fails there until it's
+    listed."""
+    found = []
+
+    for route in routes:
+        if isinstance(route, WebSocketRoute):
+            found.append(route.path)
+        elif hasattr(route, "original_router"):
+            found += websocket_routes(route.original_router.routes)
 
     return found

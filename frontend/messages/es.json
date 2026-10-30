@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Rondas de práctica por usuario y hora",
       "VOICE_ANSWERS_PER_USER_HOUR": "Respuestas habladas por candidato y hora",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Respuestas habladas por empresa y día",
+      "VOICE_STREAMS_PER_USER_HOUR": "Conexiones de escucha en vivo por candidato y hora",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Preguntas leídas en voz alta por primera vez por empresa y día",
       "VOICE_CLIPS_PER_DAY": "Preguntas leídas en voz alta por primera vez al día",
       "SIGNALS_PER_MINUTE": "Alertas de integridad por sesión y minuto",

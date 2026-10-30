@@ -69,9 +69,24 @@ finds it kept. The step's question says whether it's the interview's `last`: the
 points to the screen (`helpers/voice_speech.py`). The browser plays the clip
 (`GET .../voice/question`), the interviewer's phrases (`.../voice/phrases/{phrase}`,
 `.../voice/confirmations?picks=`, `.../voice/saved/{pick}`: "B, saved.", made ahead with the next
-question for each option of a single-answer question), and sends each spoken answer (`POST
-.../voice/answers`, at most 2 MB): it's turned into text (`TRANSCRIBE_MODEL`, told the options'
-letters and texts as keywords) and matched to options, or to a yes or no for the choice waiting; a transcript without words (empty, or only a sound such as "[cough]") is
+question for each option of a single-answer question), and streams each spoken answer while
+it's said (`.../voice/stream`, a WebSocket, `services/voice_stream.py`): opened as listening
+starts, signed in by its first message (the Firebase token, checked as a write's: a browser can't
+give a WebSocket headers, and an address would be logged), the same guards as the upload, then
+`start` once the browser hears the candidate (counted as a spoken answer; audio only after it),
+16-bit PCM at 16 kHz as it comes (resampled to OpenAI's 24 kHz, `helpers/voice_pcm.py`) into a
+realtime transcription session (`integrations/live_hearing.py`, `TRANSCRIBE_MODEL` with the same
+keywords, no turn detection of its own), and `end` with the choice waiting: the final text comes
+within a second, is matched as below and sent back, and the connection closes. One answer per
+connection, at most `STREAM_SECONDS` (55, under Cloud Run's 60-second timeout; the browser
+renews a quiet one after 25) and 30 seconds of audio, and at most `MAX_OPEN_STREAMS` (20) open
+per instance, so short requests keep the rest of its 40 slots. A refusal or failure closes it
+with 4000 plus the status the upload would get (4401, 4404, 4409, 4429, 4502, 4503, 4504; 4400
+for anything out of turn), and the browser sends the recording instead (`POST .../voice/answers`,
+at most 2 MB), which is turned into text (`TRANSCRIBE_MODEL`, told the options' letters and texts
+as keywords) and matched the same way: the candidate gets the same answer or the same refusal.
+The audio sent to OpenAI is billed in seconds whether or not its text came back. Each spoken
+answer is matched to options, or to a yes or no for the choice waiting; a transcript without words (empty, or only a sound such as "[cough]") is
 `noise`, which the browser ignores (`helpers/voice_match.py` `is_noise`); a plain yes while a choice waits (`constants/voice_confirmations.py`) or
 a reply of only options' letters ("B", "option B", "B and D": `helpers/voice_letters.py`,
 `constants/voice_letters.py`) is read by code, without the model (`helpers/voice_match.py` `obvious`);
@@ -80,15 +95,19 @@ key; its eval is `evals/scripts/voice_answers_test.py`). The answer says whether
 `clear` (one option on a single-answer question): the browser saves it at once; any other is
 confirmed first. Nothing of it is saved here: the choice is sent to `.../answers` as a tapped one
 is, and the audio and the words are never stored, logged or traced. Each answer's stages
-(transcribe, match, total) come back in a `Server-Timing` header and are logged with the
-session's id only (`Voice answer <id>: <intent> by code|model, transcribe;dur=…`); the browser
-reports its own (speech end to answer, to Mira's reaction) to Sentry.
-A spoken answer received by its question's deadline plus `VOICE_UPLOAD_SECONDS` is noted in
+(transcribe, match, total; from the speech's end when streamed) come back in a `Server-Timing`
+header or the stream's answer and are logged with the session's id only (`Voice answer <id>:
+<intent> by code|model[, heard live], transcribe;dur=…`; a stream's opening `Voice stream <id>:
+open;dur=…`); the browser reports its own (speech end to answer, to Mira's reaction, whether it
+was heard live) to Sentry.
+A spoken answer received (its stream's end, or its upload) by its question's deadline plus
+`VOICE_UPLOAD_SECONDS` is noted in
 Redis (`services/voice_deadline.py`, the service's own time), and the answers route then takes
 its result until `VOICE_ANSWER_GRACE_SECONDS` past the deadline instead of the usual
 `TIME_GRACE_SECONDS`; one answer per question still wins (the section's lock and the unique
 constraint), so a time-out racing it saves nothing twice.
 Limits: `VOICE_ANSWERS_PER_USER_HOUR`, `VOICE_ANSWERS_PER_COMPANY_DAY`,
+`VOICE_STREAMS_PER_USER_HOUR` (live listening's connections, against floods: it fails open),
 `VOICE_CLIPS_PER_COMPANY_DAY`, `VOICE_CLIPS_PER_DAY`, and a preview also the unpaid AI cap.
 A voice interview's whole time is the same as in click mode. Clips go with their
 company (`company.deleted`) and after 30 days unplayed (`/internal/schedules/voice-clips`, daily).

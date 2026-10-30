@@ -5,9 +5,16 @@ import {
   IDLE_RESTART_MS,
   MAX_ANSWER_MS,
   MIN_VOICED_MS,
-  SPEECH_LEVEL,
 } from "@/config/voice"
-import { type DetectorEvents, level, listen } from "@/lib/voice-listening"
+import { level } from "@/lib/voice-listening"
+
+import {
+  LOUD,
+  QUIET,
+  recorders,
+  startListening as start,
+  stubRecorder,
+} from "./voice-listener"
 
 describe("level", () => {
   it("is the sound's root mean square", () => {
@@ -17,74 +24,8 @@ describe("level", () => {
 })
 
 describe("listen", () => {
-  let recorders: FakeRecorder[]
-
-  class FakeRecorder {
-    state = "inactive"
-    ondataavailable: ((event: { data: Blob }) => void) | null = null
-    onstop: (() => void) | null = null
-
-    constructor() {
-      recorders.push(this)
-    }
-
-    start() {
-      this.state = "recording"
-    }
-
-    stop() {
-      this.state = "inactive"
-      this.ondataavailable?.({ data: new Blob(["sound"]) })
-      this.onstop?.()
-    }
-  }
-
-  const LOUD = SPEECH_LEVEL * 3
-  const QUIET = SPEECH_LEVEL / 3
-
-  async function start() {
-    const heard: { audio: Blob; voicedMs: number }[] = []
-    const onSpeechStart = vi.fn()
-    const detector = {
-      start: vi.fn(async () => undefined),
-      pause: vi.fn(async () => undefined),
-      destroy: vi.fn(async () => undefined),
-    }
-    let events = {} as DetectorEvents
-    const listener = await listen(
-      {} as MediaStream,
-      "audio/webm;codecs=opus",
-      async (given) => {
-        events = given
-
-        return detector
-      },
-      {
-        onSpeechStart,
-        onSpeech: (audio, voicedMs) => heard.push({ audio, voicedMs }),
-      }
-    )
-
-    // `ms` of frames, each with the detector's probability and the sound's level.
-    function frames(ms: number, speech: number, loudness: number) {
-      for (let at = 0; at < ms; at += FRAME_MS) {
-        events.onFrame(speech, new Float32Array(512).fill(loudness))
-      }
-    }
-
-    // A stretch the detector takes for speech, from its start to its end.
-    function stretch(ms: number, speech: number, loudness: number) {
-      events.onSpeechStart()
-      frames(ms, speech, loudness)
-      events.onSpeechEnd()
-    }
-
-    return { listener, detector, events, heard, onSpeechStart, frames, stretch }
-  }
-
   beforeEach(() => {
-    vi.stubGlobal("MediaRecorder", FakeRecorder)
-    recorders = []
+    stubRecorder()
   })
 
   afterEach(() => {

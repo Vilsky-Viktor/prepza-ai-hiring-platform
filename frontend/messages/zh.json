@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "每位用户每小时的练习轮数",
       "VOICE_ANSWERS_PER_USER_HOUR": "每位候选人每小时的语音回答数",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "每家公司每天的语音回答数",
+      "VOICE_STREAMS_PER_USER_HOUR": "每位候选人每小时的实时收听连接数",
       "VOICE_CLIPS_PER_COMPANY_DAY": "每家公司每天首次朗读的题目数",
       "VOICE_CLIPS_PER_DAY": "每天首次朗读的题目数",
       "SIGNALS_PER_MINUTE": "每场会话每分钟的诚信标记数",

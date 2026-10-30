@@ -642,6 +642,7 @@
       "PRACTICE_ROUNDS_PER_HOUR": "Sesi latihan per pengguna per jam",
       "VOICE_ANSWERS_PER_USER_HOUR": "Jawaban lisan per kandidat per jam",
       "VOICE_ANSWERS_PER_COMPANY_DAY": "Jawaban lisan per perusahaan per hari",
+      "VOICE_STREAMS_PER_USER_HOUR": "Koneksi mendengarkan langsung per kandidat per jam",
       "VOICE_CLIPS_PER_COMPANY_DAY": "Soal yang dibacakan untuk pertama kali per perusahaan per hari",
       "VOICE_CLIPS_PER_DAY": "Soal yang dibacakan untuk pertama kali per hari",
       "SIGNALS_PER_MINUTE": "Tanda integritas per sesi per menit",
