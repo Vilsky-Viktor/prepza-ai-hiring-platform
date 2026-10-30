@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Bisakah kami memakai prepza untuk kandidat di Inggris dan AS?",
-        "answer": "Bisa. Perjanjian pemrosesan data mencakup hukum Inggris dan AS, dan petunjuk untuk perusahaan serta templat pemberitahuan kandidat (dengan versi untuk New York City, Illinois, dan Colorado) mencakup apa yang wajib kamu sampaikan kepada kandidat. Selama prepza belum menjalani audit bias independen, jangan gunakan untuk lowongan di New York City.",
+        "answer": "Bisa. Perjanjian pemrosesan data mencakup hukum Inggris dan AS, dan petunjuk untuk perusahaan serta templat pemberitahuan kandidat (dengan versi untuk New York City, Illinois, dan Colorado) mencakup apa yang wajib kamu sampaikan kepada kandidat. Untuk lowongan di New York City, gunakan hanya setelah kamu memenuhi apa yang diwajibkan Local Law 144 kepadamu: audit bias independen dalam satu tahun sebelum penggunaan, publikasi ringkasannya, dan pemberitahuan kepada kandidat 10 hari kerja sebelumnya.",
     },
     {
         "key": "emails",

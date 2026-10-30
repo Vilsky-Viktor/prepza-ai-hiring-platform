@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Kas saame kasutada prepzat Ühendkuningriigi ja USA kandidaatidega?",
-        "answer": "Jah. Andmetöötlusleping hõlmab Ühendkuningriigi ja USA õigust ning ettevõtetele mõeldud juhised ja kandidaatide teavituste mallid (New Yorgi linna, Illinoisi ja Colorado versioonidega) katavad selle, mida pead kandidaatidele ütlema. Kuni prepzal ei ole sõltumatut kallutatuse auditit, ära kasuta seda New Yorgi linna töökohtade jaoks.",
+        "answer": "Jah. Andmetöötlusleping hõlmab Ühendkuningriigi ja USA õigust ning ettevõtetele mõeldud juhised ja kandidaatide teavituste mallid (New Yorgi linna, Illinoisi ja Colorado versioonidega) katavad selle, mida pead kandidaatidele ütlema. New Yorgi linna töökohtade jaoks kasuta seda alles siis, kui oled täitnud, mida Local Law 144 sinult nõuab: sõltumatu kallutatuse audit aasta jooksul enne kasutamist, selle kokkuvõtte avaldamine ja kandidaatide teavitamine 10 tööpäeva ette.",
     },
     {
         "key": "emails",

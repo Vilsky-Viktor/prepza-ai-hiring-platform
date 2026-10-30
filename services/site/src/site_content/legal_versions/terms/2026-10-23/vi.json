@@ -18,7 +18,7 @@
     {
       "heading": "Nội dung của bạn",
       "paragraphs": [
-        "Bạn giữ quyền đối với những gì bạn dán vào và tạo ra. Bạn cho phép chúng tôi lưu trữ và xử lý nội dung đó để vận hành prepza, bao gồm cả việc gửi nội dung đó đến các dịch vụ AI mà chúng tôi sử dụng. Bạn cũng cấp cho chúng tôi một giấy phép toàn cầu, miễn phí bản quyền (royalty-free) và vĩnh viễn để sử dụng, điều chỉnh và tái sử dụng các câu hỏi mà prepza tạo cho bạn trong các buổi phỏng vấn và luyện tập cho khách hàng khác, mà không kèm bất cứ thông tin nào nhận dạng bạn, công ty của bạn hay bất kỳ ai khác; bạn có thể loại các câu hỏi của một buổi phỏng vấn khỏi việc này trong phần cài đặt của buổi phỏng vấn đó, và các câu hỏi đã được tái sử dụng vẫn giữ nguyên ở nơi chúng đang được dùng. Chúng tôi cũng học các mẫu chung, đã ẩn danh hóa, về chất lượng câu hỏi từ tất cả các câu hỏi để cải thiện cách tạo câu hỏi. Không dán bí mật kinh doanh hoặc dữ liệu cá nhân vào mô tả công việc."
+        "Bạn giữ quyền đối với những gì bạn dán vào và tạo ra. Bạn cho phép chúng tôi lưu trữ và xử lý nội dung đó để vận hành prepza, bao gồm cả việc gửi nội dung đó đến các dịch vụ AI mà chúng tôi sử dụng. Bạn cũng cấp cho chúng tôi một giấy phép toàn cầu, miễn phí bản quyền (royalty-free) và không thể hủy ngang, có hiệu lực chừng nào còn bất kỳ quyền nào đối với các câu hỏi đó, để sử dụng, điều chỉnh và tái sử dụng các câu hỏi mà prepza tạo cho bạn trong các buổi phỏng vấn và luyện tập cho khách hàng khác, mà không kèm bất cứ thông tin nào nhận dạng bạn, công ty của bạn hay bất kỳ ai khác; bạn có thể loại các câu hỏi của một buổi phỏng vấn khỏi việc này trong phần cài đặt của buổi phỏng vấn đó, và các câu hỏi đã được tái sử dụng vẫn giữ nguyên ở nơi chúng đang được dùng. Chúng tôi cũng học các mẫu chung, đã ẩn danh hóa, về chất lượng câu hỏi từ tất cả các câu hỏi để cải thiện cách tạo câu hỏi. Không dán bí mật kinh doanh hoặc dữ liệu cá nhân vào mô tả công việc."
       ]
     },
     {
@@ -41,12 +41,13 @@
         "Công ty gửi báo cáo chịu trách nhiệm về việc gửi báo cáo cho ai.",
         "Kết quả hỗ trợ quyết định của công ty; kết quả không thay công ty đưa ra quyết định. Công ty xem xét kết quả trước khi quyết định, không loại ứng viên chỉ dựa trên điểm số, và cho phép ứng viên yêu cầu một người xem xét lại kết quả của họ.",
         "Công ty cung cấp sự điều chỉnh hợp lý cho ứng viên cần đến, chẳng hạn như thêm thời gian, mà công ty có thể thiết lập cho từng ứng viên trước khi họ bắt đầu.",
+        "Buổi phỏng vấn ở chế độ giọng nói được trả lời bằng lời nói: công ty cho ứng viên của mình biết điều này và cho phép ứng viên cần đến trả lời bằng cách chạm thay vào đó.",
         "Công ty kết nối các công cụ của riêng mình (hệ thống theo dõi ứng viên, Slack, hoặc các hệ thống của mình thông qua API và webhook của prepza) tự chọn nơi nhận kết quả của ứng viên, chịu trách nhiệm về các công cụ đó, và không thiết lập chúng để tự động loại ứng viên dựa trên kết quả của prepza.",
         "Khóa API và khóa bí mật của webhook do công ty tự giữ bí mật: mọi việc được thực hiện bằng một khóa hợp lệ đều do chính khóa đó thực hiện cho công ty, trong phạm vi các quyền đã cấp cho khóa, và nhật ký thao tác của công ty ghi rõ khóa đó. Khóa và webhook thuộc về công ty và vẫn còn khi thành viên đã tạo chúng rời công ty. Khóa hoặc webhook có thể đã bị lộ phải được xóa ngay trên trang API của công ty.",
         "Thỏa thuận xử lý dữ liệu tại prepza.ai/dpa là một phần của các điều khoản này đối với mọi công ty sử dụng prepza cho ứng viên.",
         "Công ty chỉ dùng những gì họ thấy về những người sẵn sàng nhận cơ hội việc làm để cân nhắc họ cho các công việc của chính mình và để mời họ. Kết quả của họ là kết quả luyện tập, không phải bằng cấp, và danh sách không phải là lời giới thiệu: thứ tự chỉ cho biết ai luyện tập gần nhất.",
         "Công ty mời một người từ thẻ Khám phá phải cho người đó biết, muộn nhất là trong lời mời, công ty là ai, vì sao liên hệ với họ, đã thấy những gì và các quyền của họ.",
-        "Cho đến khi prepza có một cuộc kiểm toán thiên lệch độc lập, công ty không được sử dụng prepza để đánh giá ứng viên cho các công việc tại Thành phố New York, nơi Local Law 144 yêu cầu phải có cuộc kiểm toán đó."
+        "Công ty chỉ sử dụng prepza để đánh giá ứng viên cho các công việc tại Thành phố New York sau khi đã thực hiện những gì Local Law 144 yêu cầu đối với công ty với tư cách là người sử dụng lao động: một cuộc kiểm toán thiên lệch do một kiểm toán viên độc lập thực hiện trong vòng một năm trước khi sử dụng, công bố bản tóm tắt của cuộc kiểm toán đó và thông báo cho ứng viên ít nhất 10 ngày làm việc trước khi họ được đánh giá."
       ]
     },
     {

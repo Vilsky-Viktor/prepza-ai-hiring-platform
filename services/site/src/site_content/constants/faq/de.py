@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Können wir prepza für Kandidaten in Großbritannien und den USA nutzen?",
-        "answer": "Ja. Der Auftragsverarbeitungsvertrag deckt britisches und US-amerikanisches Recht ab, und die Hinweise für Unternehmen sowie die Vorlagen für die Kandidateninformation (mit Fassungen für New York City, Illinois und Colorado) decken ab, was du Kandidaten mitteilen musst. Solange prepza kein unabhängiges Bias-Audit hat, nutze es nicht für Stellen in New York City.",
+        "answer": "Ja. Der Auftragsverarbeitungsvertrag deckt britisches und US-amerikanisches Recht ab, und die Hinweise für Unternehmen sowie die Vorlagen für die Kandidateninformation (mit Fassungen für New York City, Illinois und Colorado) decken ab, was du Kandidaten mitteilen musst. Für Stellen in New York City nutze es erst, wenn du erfüllt hast, was Local Law 144 von dir verlangt: ein unabhängiges Bias-Audit innerhalb des Jahres vor der Nutzung, die Veröffentlichung seiner Zusammenfassung und eine Information der Kandidaten 10 Arbeitstage vorher.",
     },
     {
         "key": "emails",

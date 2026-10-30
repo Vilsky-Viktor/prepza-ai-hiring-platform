@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Kunnen we prepza gebruiken voor kandidaten in het Verenigd Koninkrijk en de VS?",
-        "answer": "Ja. De verwerkersovereenkomst dekt het Britse en Amerikaanse recht, en de instructies voor bedrijven en de sjablonen voor kandidaatinformatie (met versies voor New York City, Illinois en Colorado) dekken wat je kandidaten moet vertellen. Zolang prepza geen onafhankelijke bias-audit heeft, gebruik je het niet voor vacatures in New York City.",
+        "answer": "Ja. De verwerkersovereenkomst dekt het Britse en Amerikaanse recht, en de instructies voor bedrijven en de sjablonen voor kandidaatinformatie (met versies voor New York City, Illinois en Colorado) dekken wat je kandidaten moet vertellen. Voor vacatures in New York City gebruik je het pas als je hebt gedaan wat Local Law 144 van je vraagt: een onafhankelijke bias-audit binnen het jaar vóór het gebruik, de publicatie van een samenvatting daarvan, en een kennisgeving aan kandidaten 10 werkdagen vooraf.",
     },
     {
         "key": "emails",

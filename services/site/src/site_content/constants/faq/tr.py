@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "prepza'yı Birleşik Krallık ve ABD'deki adaylar için kullanabilir miyiz?",
-        "answer": "Evet. Veri işleme sözleşmesi Birleşik Krallık ve ABD hukukunu kapsar; şirketlere yönelik talimatlar ve aday bilgilendirme şablonları (New York City, Illinois ve Colorado sürümleriyle) adaylara neleri söylemeniz gerektiğini açıklar. prepza bağımsız bir yanlılık denetiminden geçene kadar onu New York City'deki işler için kullanmayın.",
+        "answer": "Evet. Veri işleme sözleşmesi Birleşik Krallık ve ABD hukukunu kapsar; şirketlere yönelik talimatlar ve aday bilgilendirme şablonları (New York City, Illinois ve Colorado sürümleriyle) adaylara neleri söylemeniz gerektiğini açıklar. New York City'deki işler için onu ancak Local Law 144'ün sizden istediklerini yerine getirdikten sonra kullanın: kullanımdan önceki bir yıl içinde bağımsız bir yanlılık denetimi, özetinin yayımlanması ve adayların 10 iş günü önceden bilgilendirilmesi.",
     },
     {
         "key": "emails",

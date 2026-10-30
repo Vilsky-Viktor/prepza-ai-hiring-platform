@@ -18,7 +18,7 @@
     {
       "heading": "Seu conteúdo",
       "paragraphs": [
-        "Você mantém os direitos sobre o que cola e cria. Você nos permite armazená-lo e tratá-lo para operar a prepza, incluindo enviá-lo aos serviços de IA que usamos. Você também nos concede uma licença mundial, isenta de royalties e perpétua para usar, adaptar e reutilizar as perguntas que a prepza gera para você em entrevistas e na prática de outros clientes, sem nada que identifique você, a sua empresa ou qualquer outra pessoa; você pode excluir disso as perguntas de uma entrevista nas configurações dela, e as perguntas já reutilizadas permanecem onde estão. Também extraímos de todas as perguntas padrões gerais e anonimizados de qualidade das perguntas para melhorar a forma como elas são geradas. Não cole segredos comerciais nem dados pessoais em uma descrição de vaga."
+        "Você mantém os direitos sobre o que cola e cria. Você nos permite armazená-lo e tratá-lo para operar a prepza, incluindo enviá-lo aos serviços de IA que usamos. Você também nos concede uma licença mundial, isenta de royalties e irrevogável, pelo prazo de duração de quaisquer direitos sobre elas, para usar, adaptar e reutilizar as perguntas que a prepza gera para você em entrevistas e na prática de outros clientes, sem nada que identifique você, a sua empresa ou qualquer outra pessoa; você pode excluir disso as perguntas de uma entrevista nas configurações dela, e as perguntas já reutilizadas permanecem onde estão. Também extraímos de todas as perguntas padrões gerais e anonimizados de qualidade das perguntas para melhorar a forma como elas são geradas. Não cole segredos comerciais nem dados pessoais em uma descrição de vaga."
       ]
     },
     {
@@ -41,12 +41,13 @@
         "A empresa que envia um relatório é responsável por quem o recebe.",
         "Os resultados apoiam a decisão da empresa; não a tomam. A empresa os revisa antes de decidir, não rejeita um candidato apenas pela pontuação e permite que o candidato peça que uma pessoa revise o resultado dele.",
         "A empresa oferece ao candidato que precisar uma adaptação, como tempo extra, que pode definir para cada candidato antes de ele começar.",
+        "Uma entrevista no modo de voz é respondida em voz alta: a empresa avisa seus candidatos disso e permite que o candidato que precisar responda com um toque em vez disso.",
         "A empresa que conecta suas próprias ferramentas (um sistema de gestão de candidatos, o Slack ou seus sistemas por meio da API e dos webhooks da prepza) escolhe para onde vão os resultados dos seus candidatos, é responsável por essas ferramentas e não as configura para rejeitar candidatos automaticamente com base nos resultados da prepza.",
         "As chaves de API e os segredos dos webhooks devem ser mantidos em sigilo pela empresa: tudo o que é feito com uma chave válida é feito para a empresa por essa chave, dentro das permissões que lhe foram concedidas, e o registro de ações da empresa identifica a chave. As chaves e os webhooks pertencem à empresa e permanecem quando o membro que os criou sai dela. Uma chave ou um webhook que possa ter vazado deve ser excluído imediatamente na página de API da empresa.",
         "O acordo de tratamento de dados disponível em prepza.ai/dpa faz parte destes termos para toda empresa que usa a prepza com candidatos.",
         "A empresa usa o que vê das pessoas abertas a propostas apenas para considerá-las para as suas próprias vagas e convidá-las. Os resultados delas são resultados de prática, não uma qualificação, e a lista não é uma recomendação: a ordem mostra apenas quem praticou por último.",
         "A empresa que convida alguém pela aba Descobrir informa a essa pessoa, no máximo no convite, quem é, por que entrou em contato, o que viu e quais são os direitos dela.",
-        "Enquanto a prepza não tiver uma auditoria de viés independente, a empresa não pode usá-la para avaliar candidatos a vagas na cidade de Nova York, onde a Local Law 144 exige essa auditoria."
+        "A empresa só usa a prepza para avaliar candidatos a vagas na cidade de Nova York depois de cumprir o que a Local Law 144 exige dela como empregadora: uma auditoria de viés feita por um auditor independente no ano anterior ao uso, a publicação do seu resumo e um aviso aos candidatos com pelo menos 10 dias úteis de antecedência da avaliação."
       ]
     },
     {

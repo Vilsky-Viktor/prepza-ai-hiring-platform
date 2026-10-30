@@ -18,7 +18,7 @@
     {
       "heading": "I tuoi contenuti",
       "paragraphs": [
-        "Mantieni i diritti su ciò che incolli e crei. Ci consenti di conservarlo e trattarlo per far funzionare prepza, incluso l'invio ai servizi di IA che utilizziamo. Ci concedi inoltre una licenza mondiale, esente da royalty e perpetua per usare, adattare e riutilizzare le domande che prepza genera per te nei colloqui e nelle simulazioni di altri clienti, senza nulla che identifichi te, la tua azienda o chiunque altro; puoi escludere da questo riutilizzo le domande di un colloquio nelle sue impostazioni, e le domande già riutilizzate restano dove sono. Ricaviamo inoltre da tutte le domande tendenze generali e anonimizzate sulla qualità delle domande, per migliorare il modo in cui vengono generate. Non incollare segreti commerciali né dati personali in una descrizione del lavoro."
+        "Mantieni i diritti su ciò che incolli e crei. Ci consenti di conservarlo e trattarlo per far funzionare prepza, incluso l'invio ai servizi di IA che utilizziamo. Ci concedi inoltre una licenza mondiale, esente da royalty e irrevocabile, per tutta la durata di qualsiasi diritto su di esse, per usare, adattare e riutilizzare le domande che prepza genera per te nei colloqui e nelle simulazioni di altri clienti, senza nulla che identifichi te, la tua azienda o chiunque altro; puoi escludere da questo riutilizzo le domande di un colloquio nelle sue impostazioni, e le domande già riutilizzate restano dove sono. Ricaviamo inoltre da tutte le domande tendenze generali e anonimizzate sulla qualità delle domande, per migliorare il modo in cui vengono generate. Non incollare segreti commerciali né dati personali in una descrizione del lavoro."
       ]
     },
     {
@@ -41,12 +41,13 @@
         "Un'azienda che invia un report è responsabile della scelta dei destinatari.",
         "I risultati supportano la decisione di un'azienda, ma non la prendono. Un'azienda li esamina prima di decidere, non scarta un candidato sulla base del solo punteggio e consente a un candidato di chiedere che una persona riesamini il suo risultato.",
         "Un'azienda concede al candidato che ne ha bisogno un accomodamento, come del tempo extra, che può impostare per ciascun candidato prima che inizi.",
+        "A un colloquio in modalità vocale si risponde a voce: l'azienda lo comunica ai suoi candidati e consente al candidato che ne ha bisogno di rispondere invece con un tocco.",
         "Un'azienda che collega i propri strumenti (un sistema di gestione delle candidature, Slack o i propri sistemi tramite l'API e i webhook di prepza) sceglie dove vanno i risultati dei suoi candidati, è responsabile di tali strumenti e non li configura per scartare automaticamente i candidati in base ai risultati di prepza.",
         "Le chiavi API e i segreti dei webhook devono essere mantenuti riservati dall'azienda: tutto ciò che viene fatto con una chiave valida è fatto per conto dell'azienda da quella chiave, nei limiti delle autorizzazioni che le sono state concesse, e il registro attività dell'azienda indica la chiave. Le chiavi e i webhook appartengono all'azienda e restano quando il membro che li ha creati la lascia. Una chiave o un webhook che potrebbe essere stato divulgato va eliminato subito nella pagina API dell'azienda.",
         "L'accordo sul trattamento dei dati disponibile su prepza.ai/dpa fa parte di questi termini per ogni azienda che usa prepza per i candidati.",
         "Un'azienda usa ciò che vede delle persone aperte a nuove opportunità solo per valutarle per le proprie posizioni e invitarle. I loro risultati sono risultati di simulazioni, non una qualifica, e l'elenco non è una raccomandazione: l'ordine mostra solo chi si è esercitato per ultimo.",
         "Un'azienda che invita qualcuno dalla sua scheda Scopri gli comunica, al più tardi nell'invito, chi è, perché lo ha contattato, cosa ha visto e quali sono i suoi diritti.",
-        "Finché prepza non sarà stato sottoposto a un audit indipendente sui bias, un'azienda non può usarlo per valutare candidati per posizioni nella città di New York, dove la Local Law 144 lo richiede."
+        "Un'azienda usa prepza per valutare candidati per posizioni nella città di New York solo dopo aver fatto ciò che la Local Law 144 le richiede in quanto datore di lavoro: un audit sui bias svolto da un revisore indipendente nell'anno precedente all'utilizzo, la pubblicazione della sua sintesi e un avviso ai candidati almeno 10 giorni lavorativi prima della loro valutazione."
       ]
     },
     {

@@ -18,7 +18,7 @@
     {
       "heading": "Kontenmu",
       "paragraphs": [
-        "Kamu tetap memegang hak atas apa yang kamu tempel dan buat. Kamu mengizinkan kami menyimpan dan memprosesnya untuk menjalankan prepza, termasuk mengirimkannya ke layanan AI yang kami gunakan. Kamu juga memberi kami lisensi yang berlaku di seluruh dunia, bebas royalti, dan berlaku selamanya untuk menggunakan, mengadaptasi, dan menggunakan kembali soal yang dibuat prepza untukmu dalam wawancara dan latihan bagi pelanggan lain, tanpa apa pun yang mengidentifikasi kamu, perusahaanmu, atau orang lain; kamu bisa mengecualikan soal suatu wawancara dari hal ini di pengaturannya, dan soal yang sudah digunakan kembali tetap di tempatnya. Kami juga mempelajari pola umum kualitas soal yang dianonimkan dari semua soal untuk meningkatkan cara soal dibuat. Jangan menempelkan rahasia dagang atau data pribadi ke dalam deskripsi pekerjaan."
+        "Kamu tetap memegang hak atas apa yang kamu tempel dan buat. Kamu mengizinkan kami menyimpan dan memprosesnya untuk menjalankan prepza, termasuk mengirimkannya ke layanan AI yang kami gunakan. Kamu juga memberi kami lisensi yang berlaku di seluruh dunia, bebas royalti, dan tidak dapat dicabut, selama hak apa pun atasnya masih berlaku, untuk menggunakan, mengadaptasi, dan menggunakan kembali soal yang dibuat prepza untukmu dalam wawancara dan latihan bagi pelanggan lain, tanpa apa pun yang mengidentifikasi kamu, perusahaanmu, atau orang lain; kamu bisa mengecualikan soal suatu wawancara dari hal ini di pengaturannya, dan soal yang sudah digunakan kembali tetap di tempatnya. Kami juga mempelajari pola umum kualitas soal yang dianonimkan dari semua soal untuk meningkatkan cara soal dibuat. Jangan menempelkan rahasia dagang atau data pribadi ke dalam deskripsi pekerjaan."
       ]
     },
     {
@@ -41,12 +41,13 @@
         "Perusahaan yang mengirim laporan bertanggung jawab atas siapa penerimanya.",
         "Hasil mendukung keputusan perusahaan; hasil tidak membuat keputusan itu. Perusahaan meninjau hasil sebelum memutuskan, tidak menolak kandidat hanya berdasarkan skor, dan memungkinkan kandidat meminta agar hasilnya ditinjau oleh manusia.",
         "Perusahaan memberikan penyesuaian kepada kandidat yang membutuhkannya, seperti waktu tambahan, yang dapat diatur untuk setiap kandidat sebelum mereka mulai.",
+        "Wawancara dalam mode suara dijawab secara lisan: perusahaan memberi tahu kandidatnya tentang hal ini, dan mengizinkan kandidat yang membutuhkannya menjawab dengan ketukan sebagai gantinya.",
         "Perusahaan yang menghubungkan alatnya sendiri (sistem pelacakan pelamar, Slack, atau sistemnya melalui API dan webhook prepza) memilih ke mana hasil kandidatnya dikirim dan bertanggung jawab atas alat tersebut, serta tidak mengaturnya untuk menolak kandidat secara otomatis berdasarkan hasil prepza.",
         "Kunci API dan rahasia webhook wajib dirahasiakan oleh perusahaan: apa pun yang dilakukan dengan kunci yang valid dilakukan untuk perusahaan oleh kunci itu, dalam batas izin yang diberikan kepadanya, dan log tindakan perusahaan mencantumkan kunci tersebut. Kunci dan webhook adalah milik perusahaan dan tetap ada saat anggota yang membuatnya keluar. Kunci atau webhook yang mungkin bocor harus segera dihapus di halaman API perusahaan.",
         "Perjanjian pemrosesan data di prepza.ai/dpa merupakan bagian dari ketentuan ini bagi setiap perusahaan yang menggunakan prepza untuk kandidat.",
         "Perusahaan menggunakan apa yang dilihatnya tentang orang yang terbuka untuk tawaran kerja hanya untuk mempertimbangkan mereka bagi lowongannya sendiri dan untuk mengundang mereka. Hasil mereka adalah hasil latihan, bukan kualifikasi, dan daftarnya bukan rekomendasi: urutannya hanya menunjukkan siapa yang terakhir berlatih.",
         "Perusahaan yang mengundang seseorang dari tab Temukan memberi tahu orang itu, paling lambat dalam undangan, siapa perusahaan itu, mengapa menghubunginya, apa yang dilihatnya, dan hak-haknya.",
-        "Selama prepza belum memiliki audit bias independen, perusahaan tidak boleh menggunakannya untuk menilai kandidat untuk pekerjaan di New York City, tempat Local Law 144 mewajibkan audit tersebut."
+        "Perusahaan menggunakan prepza untuk menilai kandidat untuk pekerjaan di New York City hanya setelah memenuhi apa yang diwajibkan Local Law 144 kepadanya sebagai pemberi kerja: audit bias oleh auditor independen dalam satu tahun sebelum penggunaan, publikasi ringkasannya, dan pemberitahuan kepada kandidat paling lambat 10 hari kerja sebelum mereka dinilai."
       ]
     },
     {

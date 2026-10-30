@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Podemos usar a prepza para candidatos no Reino Unido e nos Estados Unidos?",
-        "answer": "Sim. O acordo de tratamento de dados cobre a legislação do Reino Unido e dos Estados Unidos, e as instruções para empresas e os modelos de aviso aos candidatos (com versões para a cidade de Nova York, Illinois e Colorado) cobrem o que você deve informar aos candidatos. Até que a prepza tenha uma auditoria de viés independente, não a use para vagas na cidade de Nova York.",
+        "answer": "Sim. O acordo de tratamento de dados cobre a legislação do Reino Unido e dos Estados Unidos, e as instruções para empresas e os modelos de aviso aos candidatos (com versões para a cidade de Nova York, Illinois e Colorado) cobrem o que você deve informar aos candidatos. Para vagas na cidade de Nova York, use-a só depois de cumprir o que a Local Law 144 exige de você: uma auditoria de viés independente no ano anterior ao uso, a publicação do seu resumo e um aviso aos candidatos com 10 dias úteis de antecedência.",
     },
     {
         "key": "emails",

@@ -129,7 +129,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Can we use prepza for candidates in the UK and the US?",
-        "answer": "Yes. The data processing agreement covers UK and US law, and the instructions for companies and the candidate notice templates (with New York City, Illinois and Colorado versions) cover what you must tell candidates. Until prepza has an independent bias audit, don't use it for jobs in New York City.",
+        "answer": "Yes. The data processing agreement covers UK and US law, and the instructions for companies and the candidate notice templates (with New York City, Illinois and Colorado versions) cover what you must tell candidates. For jobs in New York City, use it only once you've done what Local Law 144 asks of you: an independent bias audit within the year before use, its summary published, and a notice to candidates 10 business days before.",
     },
     {
         "key": "emails",

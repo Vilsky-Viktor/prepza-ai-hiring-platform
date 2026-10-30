@@ -18,7 +18,7 @@
     {
       "heading": "Tu contenido",
       "paragraphs": [
-        "Conservas los derechos sobre lo que pegas y creas. Nos permites almacenarlo y tratarlo para hacer funcionar prepza, lo que incluye enviarlo a los servicios de IA que usamos. Además, nos concedes una licencia mundial, libre de regalías y perpetua para usar, adaptar y reutilizar las preguntas que prepza genera para ti en las entrevistas y la práctica de otros clientes, sin nada que te identifique a ti, a tu empresa ni a ninguna otra persona; puedes excluir de esto las preguntas de una entrevista en sus ajustes, y las preguntas ya reutilizadas se quedan donde están. También extraemos de todas las preguntas patrones generales y anonimizados sobre la calidad de las preguntas para mejorar cómo se generan. No pegues secretos empresariales ni datos personales en una descripción de puesto."
+        "Conservas los derechos sobre lo que pegas y creas. Nos permites almacenarlo y tratarlo para hacer funcionar prepza, lo que incluye enviarlo a los servicios de IA que usamos. Además, nos concedes una licencia mundial, libre de regalías e irrevocable, mientras subsista cualquier derecho sobre ellas, para usar, adaptar y reutilizar las preguntas que prepza genera para ti en las entrevistas y la práctica de otros clientes, sin nada que te identifique a ti, a tu empresa ni a ninguna otra persona; puedes excluir de esto las preguntas de una entrevista en sus ajustes, y las preguntas ya reutilizadas se quedan donde están. También extraemos de todas las preguntas patrones generales y anonimizados sobre la calidad de las preguntas para mejorar cómo se generan. No pegues secretos empresariales ni datos personales en una descripción de puesto."
       ]
     },
     {
@@ -41,12 +41,13 @@
         "Una empresa que envía un informe es responsable de a quién se lo envía.",
         "Los resultados apoyan la decisión de una empresa; no la toman. Una empresa los revisa antes de decidir, no rechaza a un candidato basándose solo en la puntuación y permite que un candidato pida que una persona revise su resultado.",
         "Una empresa ofrece al candidato que lo necesite una adaptación, como tiempo extra, que puede configurar para cada candidato antes de que empiece.",
+        "Una entrevista en modo de voz se responde en voz alta: la empresa se lo indica a sus candidatos y permite que el candidato que lo necesite responda tocando una opción en su lugar.",
         "Una empresa que conecta sus propias herramientas (un sistema de seguimiento de candidatos, Slack o sus sistemas a través de la API y los webhooks de prepza) elige adónde van los resultados de sus candidatos, es responsable de esas herramientas y no las configura para rechazar candidatos automáticamente en función de los resultados de prepza.",
         "Las claves de API y los secretos de los webhooks deben mantenerse en secreto por la empresa: todo lo que se hace con una clave válida lo hace esa clave en nombre de la empresa, con los permisos que se le concedieron, y el registro de acciones de la empresa indica la clave. Las claves y los webhooks pertenecen a la empresa y se mantienen cuando el miembro que los creó deja la empresa. Una clave o un webhook que pueda haberse filtrado debe eliminarse de inmediato en la página de API de la empresa.",
         "El acuerdo de tratamiento de datos disponible en prepza.ai/dpa forma parte de estos términos para toda empresa que use prepza con candidatos.",
         "Una empresa usa lo que ve de las personas abiertas a ofertas solo para considerarlas para sus propios puestos e invitarlas. Sus resultados son resultados de práctica, no una cualificación, y la lista no es una recomendación: el orden solo muestra quién practicó por último.",
         "Una empresa que invita a alguien desde su pestaña Descubrir le informa, a más tardar en la invitación, de quién es, por qué se ha puesto en contacto, qué ha visto y cuáles son sus derechos.",
-        "Hasta que prepza cuente con una auditoría de sesgos independiente, una empresa no puede usarlo para evaluar candidatos a puestos en la ciudad de Nueva York, donde la Local Law 144 exige una."
+        "Una empresa usa prepza para evaluar candidatos a puestos en la ciudad de Nueva York solo después de cumplir lo que la Local Law 144 le exige como empleador: una auditoría de sesgos realizada por un auditor independiente en el año anterior a su uso, la publicación de su resumen y un aviso a los candidatos al menos 10 días hábiles antes de evaluarlos."
       ]
     },
     {

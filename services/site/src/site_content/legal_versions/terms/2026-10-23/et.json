@@ -18,7 +18,7 @@
     {
       "heading": "Sinu sisu",
       "paragraphs": [
-        "Õigused sellele, mida kleebid ja lood, jäävad sulle. Lubad meil seda säilitada ja töödelda, et prepzat käitada, sealhulgas saata see meie kasutatavatele tehisintellekti teenustele. Samuti annad meile ülemaailmse, litsentsitasuta ja tähtajatu litsentsi kasutada, töödelda, kohandada ja taaskasutada küsimusi, mille prepza sinu jaoks loob, teiste klientide intervjuudes ja harjutusintervjuudes, ilma millegita, mis tuvastaks sind, sinu ettevõtet või kedagi teist; saad intervjuu küsimused sellest välja jätta selle intervjuu seadetes ning juba taaskasutatud küsimused jäävad sinna, kus need on. Lisaks tuletame kõigist küsimustest üldisi, anonüümitud küsimuste kvaliteedi mustreid, et parandada küsimuste loomist. Ära kleebi töökuulutuse kirjeldusse ärisaladusi ega isikuandmeid."
+        "Õigused sellele, mida kleebid ja lood, jäävad sulle. Lubad meil seda säilitada ja töödelda, et prepzat käitada, sealhulgas saata see meie kasutatavatele tehisintellekti teenustele. Samuti annad meile ülemaailmse, litsentsitasuta ja tagasivõtmatu litsentsi, mis kehtib seni, kuni kehtivad mis tahes õigused neile küsimustele, kasutada, töödelda, kohandada ja taaskasutada küsimusi, mille prepza sinu jaoks loob, teiste klientide intervjuudes ja harjutusintervjuudes, ilma millegita, mis tuvastaks sind, sinu ettevõtet või kedagi teist; saad intervjuu küsimused sellest välja jätta selle intervjuu seadetes ning juba taaskasutatud küsimused jäävad sinna, kus need on. Lisaks tuletame kõigist küsimustest üldisi, anonüümitud küsimuste kvaliteedi mustreid, et parandada küsimuste loomist. Ära kleebi töökuulutuse kirjeldusse ärisaladusi ega isikuandmeid."
       ]
     },
     {
@@ -41,12 +41,13 @@
         "Ettevõte, kes saadab aruande, vastutab selle eest, kellele ta selle saadab.",
         "Tulemused toetavad ettevõtte otsust, kuid ei tee seda tema eest. Ettevõte vaatab need enne otsustamist üle, ei lükka kandidaati tagasi ainult punktisumma põhjal ja võimaldab kandidaadil paluda, et tema tulemuse vaataks üle inimene.",
         "Ettevõte võimaldab kandidaadile, kes seda vajab, kohandust, näiteks lisaaega, mille ta saab iga kandidaadi jaoks enne alustamist määrata.",
+        "Häälerežiimis intervjuule vastatakse häälega: ettevõte ütleb seda oma kandidaatidele ja laseb kandidaadil, kes seda vajab, vastata hoopis puudutusega.",
         "Ettevõte, kes ühendab oma tööriistad (värbamissüsteemi, Slacki või oma süsteemid prepza API ja veebikonksude kaudu), valib, kuhu tema kandidaatide tulemused lähevad, vastutab nende tööriistade eest ega seadista neid kandidaate prepza tulemuste põhjal automaatselt tagasi lükkama.",
         "API-võtmeid ja veebikonksude saladusi peab ettevõte hoidma salajasena: kõik, mis tehakse kehtiva võtmega, teeb ettevõtte nimel see võti talle antud õiguste piires ning ettevõtte toimingute logis on märgitud see võti. Võtmed ja veebikonksud kuuluvad ettevõttele ja jäävad alles, kui need loonud liige lahkub. Võti või veebikonks, mis võib olla lekkinud, tuleb kohe kustutada ettevõtte API lehel.",
         "Aadressil prepza.ai/dpa olev andmetöötlusleping on nende tingimuste osa iga ettevõtte jaoks, kes kasutab prepzat kandidaatidega.",
         "Ettevõte kasutab seda, mida ta valikuga „Avatud tööpakkumistele“ inimeste kohta näeb, ainult selleks, et kaaluda neid oma töökohtadele ja neid kutsuda. Nende tulemused on harjutuse tulemused, mitte kvalifikatsioon, ja loend ei ole soovitus: järjekord näitab ainult, kes viimati harjutas.",
         "Ettevõte, kes kutsub kellegi vahekaardilt „Avasta“, teatab talle hiljemalt kutses, kes ta on, miks ta temaga ühendust võttis, mida ta nägi ja millised on tema õigused.",
-        "Kuni prepzal ei ole sõltumatut kallutatuse auditit, ei tohi ettevõte seda kasutada kandidaatide hindamiseks New Yorgi linna töökohtadele, kus Local Law 144 sellist auditit nõuab."
+        "Ettevõte kasutab prepzat kandidaatide hindamiseks New Yorgi linna töökohtadele alles siis, kui ta on täitnud, mida Local Law 144 talt tööandjana nõuab: sõltumatu audiitori tehtud kallutatuse audit aasta jooksul enne kasutamist, selle kokkuvõtte avaldamine ja kandidaatide teavitamine vähemalt 10 tööpäeva enne nende hindamist."
       ]
     },
     {

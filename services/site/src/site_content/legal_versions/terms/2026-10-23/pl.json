@@ -18,7 +18,7 @@
     {
       "heading": "Twoje treści",
       "paragraphs": [
-        "Zachowujesz prawa do tego, co wklejasz i tworzysz. Pozwalasz nam to przechowywać i przetwarzać w celu prowadzenia prepza, w tym przesyłać to do usług AI, z których korzystamy. Udzielasz nam też ogólnoświatowej, nieodpłatnej, wolnej od opłat licencyjnych i bezterminowej licencji na korzystanie z pytań, które prepza generuje dla Ciebie, tworzenie ich opracowań i ponowne wykorzystywanie w rozmowach i rozmowach ćwiczeniowych dla innych klientów, bez niczego, co identyfikuje Ciebie, Twoją firmę lub kogokolwiek innego; możesz wyłączyć z tego pytania danej rozmowy w jej ustawieniach, a pytania już ponownie wykorzystane pozostają tam, gdzie są. Ze wszystkich pytań wyodrębniamy także ogólne, zanonimizowane wzorce jakości pytań, aby ulepszać sposób ich generowania. Nie wklejaj do opisu stanowiska tajemnic przedsiębiorstwa ani danych osobowych."
+        "Zachowujesz prawa do tego, co wklejasz i tworzysz. Pozwalasz nam to przechowywać i przetwarzać w celu prowadzenia prepza, w tym przesyłać to do usług AI, z których korzystamy. Udzielasz nam też ogólnoświatowej, nieodpłatnej, wolnej od opłat licencyjnych i nieodwołalnej licencji, na czas trwania jakichkolwiek praw do tych pytań, na korzystanie z pytań, które prepza generuje dla Ciebie, tworzenie ich opracowań i ponowne wykorzystywanie w rozmowach i rozmowach ćwiczeniowych dla innych klientów, bez niczego, co identyfikuje Ciebie, Twoją firmę lub kogokolwiek innego; możesz wyłączyć z tego pytania danej rozmowy w jej ustawieniach, a pytania już ponownie wykorzystane pozostają tam, gdzie są. Ze wszystkich pytań wyodrębniamy także ogólne, zanonimizowane wzorce jakości pytań, aby ulepszać sposób ich generowania. Nie wklejaj do opisu stanowiska tajemnic przedsiębiorstwa ani danych osobowych."
       ]
     },
     {
@@ -41,12 +41,13 @@
         "Firma, która wysyła raport, odpowiada za to, do kogo go wysyła.",
         "Wyniki wspierają decyzję firmy; nie podejmują jej. Firma przegląda je przed podjęciem decyzji, nie odrzuca kandydata wyłącznie na podstawie wyniku punktowego i umożliwia kandydatowi wystąpienie o weryfikację jego wyniku przez człowieka.",
         "Firma zapewnia kandydatowi, który tego potrzebuje, dostosowanie, takie jak dodatkowy czas, które może ustawić dla każdego kandydata, zanim zacznie on rozmowę.",
+        "Na rozmowę w trybie głosowym odpowiada się na głos: firma informuje o tym swoich kandydatów i pozwala kandydatowi, który tego potrzebuje, odpowiadać zamiast tego dotknięciem.",
         "Firma, która podłącza własne narzędzia (system ATS, Slack lub swoje systemy przez API i webhooki prepza), wybiera, dokąd trafiają wyniki jej kandydatów, odpowiada za te narzędzia i nie konfiguruje ich tak, aby automatycznie odrzucały kandydatów na podstawie wyników z prepza.",
         "Klucze API i sekrety webhooków firma musi zachować w tajemnicy: wszystko, co zostanie zrobione przy użyciu ważnego klucza, jest robione w imieniu firmy przez ten klucz, w zakresie nadanych mu uprawnień, a dziennik działań firmy wskazuje ten klucz. Klucze i webhooki należą do firmy i pozostają w niej, gdy członek, który je utworzył, odchodzi. Klucz lub webhook, który mógł wyciec, należy natychmiast usunąć na stronie API firmy.",
         "Umowa powierzenia przetwarzania danych dostępna pod adresem prepza.ai/dpa stanowi część niniejszego regulaminu dla każdej firmy, która korzysta z prepza w odniesieniu do kandydatów.",
         "Firma wykorzystuje to, co widzi o osobach z włączoną opcją „Rozważam oferty pracy”, wyłącznie po to, by rozważyć je na własne stanowiska i je zaprosić. Ich wyniki to wyniki ćwiczeń, a nie kwalifikacje, a lista nie jest rekomendacją: kolejność pokazuje jedynie, kto ćwiczył ostatnio.",
         "Firma, która zaprasza kogoś z karty „Odkrywaj”, informuje tę osobę, najpóźniej w zaproszeniu, kim jest, dlaczego się z nią skontaktowała, co widziała oraz o przysługujących jej prawach.",
-        "Dopóki prepza nie przejdzie niezależnego audytu pod kątem stronniczości, firma nie może jej używać do oceny kandydatów na stanowiska w Nowym Jorku, gdzie taki audyt jest wymagany przez Local Law 144."
+        "Firma używa prepza do oceny kandydatów na stanowiska w Nowym Jorku dopiero wtedy, gdy wykona to, czego Local Law 144 wymaga od niej jako pracodawcy: audyt pod kątem stronniczości przeprowadzony przez niezależnego audytora w ciągu roku przed użyciem, opublikowanie jego podsumowania i powiadomienie kandydatów co najmniej 10 dni roboczych przed ich oceną."
       ]
     },
     {

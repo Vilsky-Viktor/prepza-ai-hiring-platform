@@ -22,7 +22,7 @@ TERMS_SECTIONS = [
     {
         "heading": "Your content",
         "paragraphs": [
-            "You keep the rights to what you paste and create. You let us store and process it to run prepza, including sending it to the AI services we use. You also give us a worldwide, royalty-free, perpetual licence to use, adapt and reuse the questions prepza generates for you in interviews and practice for other customers, without anything that identifies you, your company or anyone else; you can keep an interview's questions out of this in its settings, and questions already reused stay where they are. We also learn general, anonymised patterns of question quality from all questions to improve how questions are generated. Don't paste trade secrets or personal data into a job description.",
+            "You keep the rights to what you paste and create. You let us store and process it to run prepza, including sending it to the AI services we use. You also give us a worldwide, royalty-free, irrevocable licence, for as long as any rights in them last, to use, adapt and reuse the questions prepza generates for you in interviews and practice for other customers, without anything that identifies you, your company or anyone else; you can keep an interview's questions out of this in its settings, and questions already reused stay where they are. We also learn general, anonymised patterns of question quality from all questions to improve how questions are generated. Don't paste trade secrets or personal data into a job description.",
         ],
     },
     {
@@ -45,12 +45,13 @@ TERMS_SECTIONS = [
             "A company that sends a report is responsible for whom it sends it to.",
             "Results support a company's decision; they don't make it. A company reviews them before deciding, doesn't reject a candidate on the score alone, and lets a candidate ask for a person to review their result.",
             "A company gives a candidate who needs it an accommodation, such as extra time, which it can set for each candidate before they start.",
+            "An interview in voice mode is answered aloud: the company tells its candidates so, and lets a candidate who needs it answer by tapping instead.",
             "A company that connects its own tools (an applicant tracking system, Slack, or its systems through prepza's API and web hooks) chooses where its candidates' results go and is responsible for those tools, and doesn't set them up to reject candidates automatically on prepza's results.",
             "API keys and web hooks' secrets are the company's to keep secret: anything done with a valid key is done for the company by that key, under the permissions it was given, and the company's action log names the key. Keys and web hooks belong to the company and stay when the member who made them leaves. A key or web hook that may have leaked should be deleted at once on the company's API page.",
             "The data processing agreement at prepza.ai/dpa forms part of these terms for every company that uses prepza for candidates.",
             "A company uses what it sees of people open to offers only to consider them for its own jobs and to invite them. Their results are practice results, not a qualification, and the list is not a recommendation: the order only shows who practised last.",
             "A company that invites someone from its Discover tab tells them, at the latest in the invite, who it is, why it contacted them, what it saw and their rights.",
-            "Until prepza has an independent bias audit, a company may not use it to assess candidates for jobs in New York City, where Local Law 144 requires one.",
+            "A company uses prepza to assess candidates for jobs in New York City only once it has done what Local Law 144 requires of it as the employer: a bias audit by an independent auditor within the year before use, its summary published, and a notice to candidates at least 10 business days before they are assessed.",
         ],
     },
     {

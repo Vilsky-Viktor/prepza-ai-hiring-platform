@@ -130,7 +130,7 @@ FAQ = [
     {
         "key": "uk_us",
         "question": "Chúng tôi có thể dùng prepza cho ứng viên ở Vương quốc Anh và Hoa Kỳ không?",
-        "answer": "Có. Thỏa thuận xử lý dữ liệu bao quát luật của Vương quốc Anh và Hoa Kỳ, còn hướng dẫn cho các công ty và các mẫu thông báo cho ứng viên (có phiên bản cho Thành phố New York, Illinois và Colorado) bao quát những gì bạn phải cho ứng viên biết. Cho đến khi prepza có một cuộc kiểm toán thiên lệch độc lập, đừng dùng prepza cho các công việc tại Thành phố New York.",
+        "answer": "Có. Thỏa thuận xử lý dữ liệu bao quát luật của Vương quốc Anh và Hoa Kỳ, còn hướng dẫn cho các công ty và các mẫu thông báo cho ứng viên (có phiên bản cho Thành phố New York, Illinois và Colorado) bao quát những gì bạn phải cho ứng viên biết. Với các công việc tại Thành phố New York, chỉ dùng prepza sau khi bạn đã làm những gì Local Law 144 yêu cầu: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt của cuộc kiểm toán đó và thông báo cho ứng viên trước 10 ngày làm việc.",
     },
     {
         "key": "emails",
