@@ -41,6 +41,10 @@ browser_slot="$(python3 e2e_tests/browser_lock.py "$$" "$source$alone")"
 container="prepza-browser-tests-$$"
 trap 'rm -rf "$browser_slot"; docker rm -f "$container" >/dev/null 2>&1 || true' EXIT
 e2e_tests/test_frontend.sh "$source"
+# The backend services healthy before the run; afterwards, those that restarted during it are
+# named (backend_restarts.sh).
+e2e_tests/backend_restarts.sh --wait
+started="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
 
 if docker compose version >/dev/null 2>&1; then
   compose=(docker compose)
@@ -98,5 +102,6 @@ COPYFILE_DISABLE=1 tar -C "$tests" --no-xattrs --exclude node_modules --exclude 
     ' sh "$@" ||
   status=$?
 
+e2e_tests/backend_restarts.sh --since "$started"
 echo "Results: ${results#"$PWD"/}"
 exit "${status:-0}"

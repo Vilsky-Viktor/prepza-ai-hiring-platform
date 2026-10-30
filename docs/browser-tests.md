@@ -39,6 +39,13 @@ itself. Runs take a slot in `e2e_tests/browser_lock.py` (a directory under
 later run prints "waiting for earlier browser runs" and starts in the order it came, and a slot
 left by a killed run is taken over once its process is gone.
 
+The backend services the tests call are the dev ones, which run with `--reload`: an edit to a
+service's code or to `packages/common` restarts it, during a run too, and a test that meets the
+restart fails for that reason. So each script waits for every service to be healthy before the
+run and, after it, names the services that restarted during it and when
+(`e2e_tests/backend_restarts.sh`): a failure at one of those moments is the restart's, and that
+test is run again rather than changed.
+
 **Hidden copies of a page's parts.** A page streams in: React first parks a finished part in a
 hidden `<div hidden id="S:0">` and moves it into place a moment later, and a part the browser
 renders itself meanwhile is in the page twice until then. Role locators (`getByRole`) skip hidden
