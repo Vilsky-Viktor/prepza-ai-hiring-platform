@@ -2574,7 +2574,7 @@
       "roles": "prepza è titolare del trattamento degli account delle persone che lo usano, e responsabile del trattamento dei dati dei candidati, che appartengono all'azienda che li invita.",
       "noSelling": "Non vendiamo dati personali né li condividiamo per pubblicità. Non ci sono cookie pubblicitari o di analisi.",
       "noInference": "prepza non raccoglie dati su sesso, età, origine o disabilità dei candidati, e non deduce nulla del genere.",
-      "voice": "In modalità vocale, la risposta parlata di un candidato viene trascritta e abbinata a un'opzione che il candidato conferma. Non viene registrata né conservata, e la voce non viene analizzata in nessun altro modo.",
+      "voice": "In modalità vocale, la risposta parlata di un candidato viene trascritta e abbinata alle opzioni, e l'opzione abbinata gli viene detta e mostrata sullo schermo; una scelta di più opzioni viene prima confermata. Il parlato non viene registrato né conservato, e la voce non viene analizzata in nessun altro modo.",
       "ai": "OpenAI, che scrive le domande, ha l'istruzione di non conservare ciò che riceve; tiene i dati al massimo 30 giorni, solo per individuare abusi, e non li usa per addestrare i suoi modelli.",
       "rights": "Chiunque può scaricare o eliminare i propri dati nelle Impostazioni, senza doverci scrivere."
     },

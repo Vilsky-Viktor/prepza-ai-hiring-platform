@@ -105,7 +105,7 @@ prepza neemt getimede meerkeuze-vaardigheidstests af die door AI worden geschrev
 
 Zo ziet dat er vandaag in het product uit:
 
-- **AI schrijft de vragen en de antwoordsleutels; het nakijken volgt vaste regels.** Geen AI leest of beoordeelt het antwoord van een kandidaat, en er wordt geen video- of gezichtsanalyse gebruikt. In de spraakmodus wordt spraak omgezet in tekst om die te koppelen aan een antwoordoptie die de kandidaat bevestigt; ze wordt nooit opgeslagen en de stem wordt nooit geanalyseerd.
+- **AI schrijft de vragen en de antwoordsleutels; het nakijken volgt vaste regels.** Geen AI leest of beoordeelt het antwoord van een kandidaat, en er wordt geen video- of gezichtsanalyse gebruikt. In de spraakmodus wordt spraak omgezet in tekst en gekoppeld aan een antwoordoptie, die de kandidaat te horen krijgt en op het scherm ziet: één duidelijk genoemde optie wordt meteen vastgelegd, een keuze van meerdere opties wordt eerst bevestigd. De spraak wordt nooit opgeslagen en de stem wordt nooit geanalyseerd.
 - **Jij keurt de onderwerpen goed** voordat er ook maar één vraag wordt geschreven, en jij kiest de slaaggrens.
 - **Mensen beslissen.** De resultatenpagina en de pdf-rapporten herinneren je team eraan de resultaten te beoordelen; prepza wijst geen kandidaten af en stuurt geen afwijzingsberichten.
 - **Kandidaten krijgen te horen,** voordat ze beginnen, dat de vragen door AI zijn geschreven, dat mensen bij jouw bedrijf de resultaten beoordelen en beslissen, en dat ze om een herbeoordeling kunnen vragen.

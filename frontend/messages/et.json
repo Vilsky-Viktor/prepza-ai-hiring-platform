@@ -2574,7 +2574,7 @@
       "roles": "prepza on vastutav töötleja nende inimeste kontode puhul, kes seda kasutavad, ning volitatud töötleja kandidaatide andmete puhul, mis kuuluvad neid kutsunud ettevõttele.",
       "noSelling": "Me ei müü isikuandmeid ega jaga neid reklaami jaoks. Reklaami- ega analüütikaküpsiseid ei ole.",
       "noInference": "prepza ei kogu andmeid kandidaatide soo, vanuse, päritolu ega puude kohta ega tuleta midagi sellist.",
-      "voice": "Häälerežiimis muudetakse kandidaadi suuline vastus tekstiks ja sobitatakse valikuga, mille ta kinnitab. Seda ei salvestata ega säilitata ning häält ei analüüsita muul viisil.",
+      "voice": "Häälerežiimis muudetakse kandidaadi suuline vastus tekstiks ja sobitatakse valikutega ning sobitatud valik öeldakse talle välja ja näidatakse ekraanil; mitme valiku korral kinnitab ta selle kõigepealt. Tema kõnet ei salvestata ega säilitata ning häält ei analüüsita muul viisil.",
       "ai": "OpenAI-l, mis küsimused kirjutab, on palutud saadud andmeid mitte säilitada; ta hoiab neid kõige rohkem 30 päeva, ainult kuritarvituste kontrollimiseks, ega kasuta neid oma mudelite treenimiseks.",
       "rights": "Igaüks saab oma andmed seadetes alla laadida või kustutada, ilma meile kirjutamata."
     },

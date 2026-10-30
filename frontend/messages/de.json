@@ -2574,7 +2574,7 @@
       "roles": "prepza ist Verantwortlicher für die Konten der Personen, die es nutzen, und Auftragsverarbeiter für die Daten der Kandidaten, die dem einladenden Unternehmen gehören.",
       "noSelling": "Wir verkaufen keine personenbezogenen Daten und geben sie nicht für Werbung weiter. Es gibt keine Werbe- oder Analyse-Cookies.",
       "noInference": "prepza erhebt keine Daten über Geschlecht, Alter, Herkunft oder Behinderung von Kandidaten und leitet auch nichts dergleichen ab.",
-      "voice": "Im Sprachmodus wird die gesprochene Antwort eines Kandidaten in Text umgewandelt und einer Option zugeordnet, die er bestätigt. Sie wird weder aufgezeichnet noch gespeichert, und die Stimme wird auf keine andere Weise ausgewertet.",
+      "voice": "Im Sprachmodus wird die gesprochene Antwort eines Kandidaten in Text umgewandelt und den Optionen zugeordnet; die zugeordnete Option wird ihm genannt und auf dem Bildschirm angezeigt, eine Auswahl mehrerer Optionen bestätigt er zuerst. Das Gesprochene wird weder aufgezeichnet noch gespeichert, und die Stimme wird auf keine andere Weise ausgewertet.",
       "ai": "OpenAI, das die Fragen schreibt, ist angewiesen, das Erhaltene nicht zu speichern; es bewahrt die Daten höchstens 30 Tage auf, nur zur Missbrauchserkennung, und nutzt sie nicht zum Training seiner Modelle.",
       "rights": "Alle können ihre eigenen Daten in den Einstellungen herunterladen oder löschen, ohne uns schreiben zu müssen."
     },

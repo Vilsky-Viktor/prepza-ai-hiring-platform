@@ -103,7 +103,7 @@ prepza, bir iş tanımından yapay zekâ tarafından yazılmış süreli, çokta
 
 Bunun bugün üründeki karşılığı:
 
-- **Soruları ve cevap anahtarlarını yapay zekâ yazar; değerlendirme sabit kurallara göre yapılır.** Hiçbir yapay zekâ adayın yanıtını okumaz veya yargılamaz; video veya yüz analizi kullanılmaz. Sesli modda konuşma, adayın onayladığı bir seçenekle eşleştirmek için metne dönüştürülür; asla saklanmaz ve ses asla analiz edilmez.
+- **Soruları ve cevap anahtarlarını yapay zekâ yazar; değerlendirme sabit kurallara göre yapılır.** Hiçbir yapay zekâ adayın yanıtını okumaz veya yargılamaz; video veya yüz analizi kullanılmaz. Sesli modda konuşma metne dönüştürülür ve bir seçenekle eşleştirilir; bu seçenek adaya söylenir ve ekranda gösterilir: açıkça söylenen tek bir seçenek hemen cevap olarak kaydedilir, birden çok seçenekli bir seçim ise önce onaylatılır. Konuşma asla saklanmaz ve ses asla analiz edilmez.
 - **Konuları siz onaylarsınız;** bu, herhangi bir soru yazılmadan önce olur ve geçme notunu siz seçersiniz.
 - **Kararı insanlar verir.** prepza adayları reddetmez veya ret mesajı göndermez.
 - **Korunan özellik yok.** prepza adayların cinsiyetini, ırkını, yaşını, engelliliğini, posta kodunu veya diğer korunan özelliklerini asla sormaz, çıkarsamaz veya saklamaz.

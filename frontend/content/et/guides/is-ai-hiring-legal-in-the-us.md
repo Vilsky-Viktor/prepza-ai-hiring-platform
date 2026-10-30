@@ -103,7 +103,7 @@ prepza viib läbi ajapiiranguga valikvastustega oskuste intervjuusid, mille AI k
 
 Kuidas see tootes täna välja näeb:
 
-- **AI kirjutab küsimused ja nende vastusevõtmed; hindamine käib kindlate reeglite järgi.** Ükski AI ei loe ega hinda kandidaadi vastust ning video- ega näoanalüüsi ei kasutata. Häälerežiimis muudetakse kõne tekstiks, et sobitada see vastusevariandiga, mille kandidaat kinnitab; kõnet ei salvestata kunagi ja häält ei analüüsita kunagi.
+- **AI kirjutab küsimused ja nende vastusevõtmed; hindamine käib kindlate reeglite järgi.** Ükski AI ei loe ega hinda kandidaadi vastust ning video- ega näoanalüüsi ei kasutata. Häälerežiimis muudetakse kõne tekstiks ja sobitatakse vastusevariandiga, mis kandidaadile välja öeldakse ja ekraanil näidatakse: üks selgelt nimetatud variant võetakse vastuseks kohe, mitme variandi valik kinnitatakse kõigepealt. Kõnet ei salvestata kunagi ja häält ei analüüsita kunagi.
 - **Sina kiidad teemad heaks** enne, kui ühtegi küsimust kirjutatakse, ja sina valid läbimise läve.
 - **Otsustavad inimesed.** prepza ei lükka kandidaate tagasi ega saada äraütlemiskirju.
 - **Kaitstud tunnuseid ei koguta.** prepza ei küsi, ei tuleta ega salvesta kunagi kandidaatide sugu, rassi, vanust, puuet, postiindeksit ega muid kaitstud tunnuseid.

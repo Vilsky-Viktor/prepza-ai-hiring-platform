@@ -2574,7 +2574,7 @@
       "roles": "prepza adalah pengendali data untuk akun orang yang menggunakannya, dan pemroses data kandidat, yang menjadi milik perusahaan yang mengundang mereka.",
       "noSelling": "Kami tidak menjual data pribadi atau membagikannya untuk iklan. Tidak ada cookie iklan atau analitik.",
       "noInference": "prepza tidak mengumpulkan data tentang jenis kelamin, usia, asal, atau disabilitas kandidat, dan tidak menyimpulkan hal semacam itu.",
-      "voice": "Dalam mode suara, jawaban lisan kandidat diubah menjadi teks dan dicocokkan dengan pilihan yang dia konfirmasi. Jawaban itu tidak direkam atau disimpan, dan suaranya tidak dianalisis dengan cara lain apa pun.",
+      "voice": "Dalam mode suara, jawaban lisan kandidat diubah menjadi teks dan dicocokkan dengan pilihan yang ada, lalu pilihan yang cocok disebutkan kepadanya dan ditampilkan di layar; jawaban dengan beberapa pilihan dikonfirmasi lebih dulu. Ucapannya tidak direkam atau disimpan, dan suaranya tidak dianalisis dengan cara lain apa pun.",
       "ai": "OpenAI, yang menulis soal-soalnya, diminta untuk tidak menyimpan apa yang diterimanya; OpenAI menyimpan data paling lama 30 hari, hanya untuk memeriksa penyalahgunaan, dan tidak memakainya untuk melatih modelnya.",
       "rights": "Siapa pun bisa mengunduh atau menghapus datanya sendiri di Pengaturan, tanpa perlu menulis kepada kami."
     },

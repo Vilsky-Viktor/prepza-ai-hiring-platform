@@ -103,7 +103,7 @@ prepza führt zeitlich begrenzte Multiple-Choice-Interviews zu Fachkenntnissen d
 
 So sieht das heute im Produkt aus:
 
-- **KI schreibt die Fragen und ihre Lösungsschlüssel; die Bewertung folgt festen Regeln.** Keine KI liest oder beurteilt die Antwort eines Kandidaten, und es wird keine Video- oder Gesichtsanalyse eingesetzt. Im Sprachmodus wird Sprache in Text umgewandelt, um sie einer Antwortoption zuzuordnen, die der Kandidat bestätigt; sie wird nie gespeichert, und die Stimme wird nie analysiert.
+- **KI schreibt die Fragen und ihre Lösungsschlüssel; die Bewertung folgt festen Regeln.** Keine KI liest oder beurteilt die Antwort eines Kandidaten, und es wird keine Video- oder Gesichtsanalyse eingesetzt. Im Sprachmodus wird Sprache in Text umgewandelt und einer Antwortoption zugeordnet, die dem Kandidaten genannt und auf dem Bildschirm angezeigt wird: Eine eindeutig genannte einzelne Option wird sofort übernommen, eine Auswahl mehrerer Optionen wird zuerst bestätigt. Die Sprache wird nie gespeichert, und die Stimme wird nie analysiert.
 - **Du gibst die Themen frei,** bevor eine Frage geschrieben wird, und du wählst die Bestehensgrenze.
 - **Menschen entscheiden.** prepza lehnt keine Kandidaten ab und verschickt keine Absagen.
 - **Keine geschützten Merkmale.** prepza fragt nie nach Geschlecht, ethnischer Herkunft, Alter, Behinderung, Postleitzahl oder anderen geschützten Merkmalen von Kandidaten, leitet sie nicht ab und speichert sie nicht.

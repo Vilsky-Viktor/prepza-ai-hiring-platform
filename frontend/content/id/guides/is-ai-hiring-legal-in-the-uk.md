@@ -105,7 +105,7 @@ prepza menjalankan wawancara keterampilan pilihan ganda berbatas waktu yang ditu
 
 Seperti apa wujudnya di produk saat ini:
 
-- **AI menulis soal dan kunci jawabannya; penilaian mengikuti aturan tetap.** Tidak ada AI yang membaca atau menilai jawaban kandidat, dan tidak ada analisis video atau wajah. Dalam mode suara, ucapan diubah menjadi teks untuk dicocokkan dengan pilihan yang dikonfirmasi kandidat; ucapan itu tidak pernah disimpan dan suaranya tidak pernah dianalisis.
+- **AI menulis soal dan kunci jawabannya; penilaian mengikuti aturan tetap.** Tidak ada AI yang membaca atau menilai jawaban kandidat, dan tidak ada analisis video atau wajah. Dalam mode suara, ucapan diubah menjadi teks dan dicocokkan dengan sebuah pilihan, yang disebutkan kepada kandidat dan ditampilkan di layar: satu pilihan yang disebut dengan jelas langsung dicatat, sedangkan jawaban dengan beberapa pilihan dikonfirmasi lebih dulu. Ucapan tidak pernah disimpan dan suaranya tidak pernah dianalisis.
 - **Kamu menyetujui topiknya** sebelum ada soal yang ditulis, dan kamu yang memilih nilai lulus.
 - **Manusia yang memutuskan.** Halaman hasil dan laporan PDF mengingatkan timmu untuk meninjau hasil; prepza tidak menolak kandidat atau mengirim pesan penolakan.
 - **Kandidat diberi tahu** sebelum mulai bahwa soal ditulis oleh AI, bahwa orang di perusahaanmu yang meninjau hasil dan memutuskan, dan bahwa mereka bisa meminta peninjauan.

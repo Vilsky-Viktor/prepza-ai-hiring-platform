@@ -105,7 +105,7 @@ Nagpapatakbo ang prepza ng timed multiple-choice skills interviews na isinulat n
 
 Ang hitsura nito sa produkto ngayon:
 
-- **AI ang sumusulat ng mga tanong at ng answer keys nito; sumusunod sa nakapirming patakaran ang pagmamarka.** Walang AI na bumabasa o humuhusga sa sagot ng aplikante, at walang video o face analysis. Sa voice mode, ginagawang text ang pananalita para itugma sa isang option na kinukumpirma ng aplikante; hindi ito kailanman iniimbak at hindi kailanman ina-analyze ang boses.
+- **AI ang sumusulat ng mga tanong at ng answer keys nito; sumusunod sa nakapirming patakaran ang pagmamarka.** Walang AI na bumabasa o humuhusga sa sagot ng aplikante, at walang video o face analysis. Sa voice mode, ginagawang text ang pananalita at itinutugma sa isang option, na sinasabi sa aplikante at ipinapakita sa screen: agad na itinatala ang iisang option na malinaw na binanggit, at kinukumpirma muna ang pagpili ng ilang option. Hindi kailanman iniimbak ang pananalita at hindi kailanman ina-analyze ang boses.
 - **Ikaw ang nag-aapruba ng mga topic** bago maisulat ang kahit isang tanong, at ikaw ang pumipili ng passing grade.
 - **Tao ang nagdedesisyon.** Pinapaalalahanan ng results page at ng PDF reports ang iyong team na i-review ang mga resulta; hindi nagre-reject ng aplikante o nagpapadala ng rejection message ang prepza.
 - **Sinasabihan ang mga aplikante** bago sila magsimula na AI ang sumulat ng mga tanong, na mga tao sa iyong kumpanya ang nagre-review ng resulta at nagdedesisyon, at na puwede silang humingi ng review.

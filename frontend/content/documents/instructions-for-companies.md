@@ -225,7 +225,7 @@ is yours to give.
 ## 10. Records, retention and data requests
 
 **Records (logs).** For each candidate prepza records every question shown and when, the picks,
-right or wrong (or the points of a "select all that apply" question), the time taken, timeouts, page leaves (with how long they lasted) and copy attempts, start and finish (in voice mode, the options the candidate confirmed, never what they said): the
+right or wrong (or the points of a "select all that apply" question), the time taken, timeouts, page leaves (with how long they lasted) and copy attempts, start and finish (in voice mode, the options the candidate chose, never what they said): the
 scorecard and its PDF report show them, and the API returns the results. Answer patterns aren't
 stored: they're read from these records each time the results are opened. It also records when the
 candidate confirmed, before starting, that they'd answer on their own, which the scorecard shows. Your company's action

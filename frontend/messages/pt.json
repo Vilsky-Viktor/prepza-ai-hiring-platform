@@ -2574,7 +2574,7 @@
       "roles": "A prepza é a responsável pelo tratamento das contas das pessoas que a usam, e subcontratante dos dados dos candidatos, que pertencem à empresa que os convida.",
       "noSelling": "Não vendemos dados pessoais nem os compartilhamos para publicidade. Não há cookies de publicidade nem de análise.",
       "noInference": "A prepza não coleta dados sobre sexo, idade, origem ou deficiência dos candidatos, e não infere nada desse tipo.",
-      "voice": "No modo de voz, a resposta falada do candidato é transformada em texto e associada a uma opção que ele confirma. Ela não é gravada nem armazenada, e a voz não é analisada de nenhuma outra forma.",
+      "voice": "No modo de voz, a resposta falada do candidato é transformada em texto e associada às opções, e a opção associada é dita a ele e mostrada na tela; uma escolha de várias opções é confirmada primeiro. A fala não é gravada nem armazenada, e a voz não é analisada de nenhuma outra forma.",
       "ai": "A OpenAI, que escreve as questões, recebe instrução para não armazenar o que recebe; ela mantém os dados por no máximo 30 dias, apenas para verificar abusos, e não os usa para treinar seus modelos.",
       "rights": "Qualquer pessoa pode baixar ou excluir os próprios dados em Configurações, sem precisar nos escrever."
     },

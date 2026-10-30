@@ -105,7 +105,7 @@ prepza fait passer des entretiens de compétences chronométrés à choix multip
 
 Ce que cela donne aujourd'hui dans le produit :
 
-- **L'IA rédige les questions et leurs corrigés ; la notation suit des règles fixes.** Aucune IA ne lit ni ne juge la réponse d'un candidat, et aucune analyse vidéo ou faciale n'est utilisée. En mode vocal, la parole est transcrite en texte pour l'associer à une option que le candidat confirme ; elle n'est jamais conservée et la voix n'est jamais analysée.
+- **L'IA rédige les questions et leurs corrigés ; la notation suit des règles fixes.** Aucune IA ne lit ni ne juge la réponse d'un candidat, et aucune analyse vidéo ou faciale n'est utilisée. En mode vocal, la parole est transcrite en texte et associée à une option, annoncée au candidat et affichée à l'écran : une seule option clairement nommée est enregistrée aussitôt, un choix de plusieurs options est d'abord confirmé. La parole n'est jamais conservée et la voix n'est jamais analysée.
 - **Vous validez les thèmes** avant qu'une question ne soit rédigée, et vous choisissez le seuil de réussite.
 - **Des personnes décident.** La page de résultats et les rapports PDF rappellent à votre équipe d'examiner les résultats ; prepza ne rejette pas de candidats et n'envoie pas de messages de refus.
 - **Les candidats sont informés** avant de commencer que les questions sont rédigées par l'IA, que des personnes de votre entreprise examinent les résultats et décident, et qu'ils peuvent demander un réexamen.

@@ -103,7 +103,7 @@ A prepza aplica entrevistas de habilidades de múltipla escolha cronometradas, e
 
 Como isso aparece no produto hoje:
 
-- **A IA escreve as perguntas e os gabaritos; a correção segue regras fixas.** Nenhuma IA lê ou julga a resposta de um candidato, e não há análise de vídeo ou rosto. No modo de voz, a fala é transformada em texto para corresponder a uma opção que o candidato confirma; ela nunca é armazenada e a voz nunca é analisada.
+- **A IA escreve as perguntas e os gabaritos; a correção segue regras fixas.** Nenhuma IA lê ou julga a resposta de um candidato, e não há análise de vídeo ou rosto. No modo de voz, a fala é transformada em texto e associada a uma opção, que é dita ao candidato e mostrada na tela: uma única opção dita com clareza é registrada na hora, e uma escolha de várias opções é confirmada primeiro. A fala nunca é armazenada e a voz nunca é analisada.
 - **Você aprova os tópicos** antes de qualquer pergunta ser escrita, e escolhe a nota de aprovação.
 - **Pessoas decidem.** A prepza não reprova candidatos nem envia mensagens de reprovação.
 - **Nenhuma característica protegida.** A prepza nunca pede, infere ou armazena sexo, raça, idade, deficiência, CEP ou outras características protegidas dos candidatos.

@@ -103,7 +103,7 @@ prepza ofrece entrevistas de habilidades de opción múltiple con tiempo límite
 
 Cómo se refleja hoy en el producto:
 
-- **La IA redacta las preguntas y sus claves de respuestas; la corrección sigue reglas fijas.** Ninguna IA lee ni juzga la respuesta de un candidato, y no se analiza video ni rostros. En el modo de voz, el habla se convierte en texto para asociarla a una opción que el candidato confirma; nunca se guarda y la voz nunca se analiza.
+- **La IA redacta las preguntas y sus claves de respuestas; la corrección sigue reglas fijas.** Ninguna IA lee ni juzga la respuesta de un candidato, y no se analiza video ni rostros. En el modo de voz, el habla se convierte en texto y se asocia a una opción, que se le dice al candidato y se muestra en pantalla: una sola opción nombrada con claridad se registra al instante, y una elección de varias opciones se confirma primero. El habla nunca se guarda y la voz nunca se analiza.
 - **Tú apruebas los temas** antes de que se redacte ninguna pregunta, y tú eliges la nota de aprobado.
 - **Deciden las personas.** prepza no rechaza candidatos ni envía mensajes de rechazo.
 - **Ninguna característica protegida.** prepza nunca pide, infiere ni guarda el sexo, la raza, la edad, la discapacidad, el código postal ni otras características protegidas de los candidatos.

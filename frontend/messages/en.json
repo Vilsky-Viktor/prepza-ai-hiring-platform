@@ -2574,7 +2574,7 @@
       "roles": "prepza is the controller of the accounts of the people who use it, and a processor of candidates' data, which belongs to the company that invites them.",
       "noSelling": "We don't sell personal data or share it for advertising. There are no advertising or analytics cookies.",
       "noInference": "prepza collects no data about candidates' sex, age, origin or disability, and infers nothing of the kind.",
-      "voice": "In voice mode, a candidate's spoken answer is turned into text and matched to an option they confirm. It isn't recorded or stored, and the voice isn't analysed in any other way.",
+      "voice": "In voice mode, a candidate's spoken answer is turned into text and matched to the options, and the option it matched is said back to them and shown on screen; a choice of several options is confirmed first. Their speech isn't recorded or stored, and the voice isn't analysed in any other way.",
       "ai": "OpenAI, which writes the questions, is told not to store what it receives; it keeps the data at most 30 days, only to check for abuse, and doesn't use it to train its models.",
       "rights": "Anyone can download or delete their own data in Settings, without writing to us."
     },

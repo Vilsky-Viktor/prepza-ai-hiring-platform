@@ -2574,7 +2574,7 @@
       "roles": "prepza, onu kullanan kişilerin hesapları için veri sorumlusu, adayların verileri için ise veri işleyendir; bu veriler adayları davet eden şirkete aittir.",
       "noSelling": "Kişisel verileri satmayız ve reklam için paylaşmayız. Reklam veya analiz çerezleri yoktur.",
       "noInference": "prepza adayların cinsiyeti, yaşı, kökeni veya engelliliği hakkında veri toplamaz ve bu türden hiçbir çıkarım yapmaz.",
-      "voice": "Sesli modda adayın sözlü cevabı metne dönüştürülür ve adayın onayladığı bir seçenekle eşleştirilir. Kaydedilmez veya saklanmaz, ses başka hiçbir şekilde analiz edilmez.",
+      "voice": "Sesli modda adayın sözlü cevabı metne dönüştürülür ve seçeneklerle eşleştirilir; eşleşen seçenek adaya söylenir ve ekranda gösterilir, birden çok seçenekli bir seçim ise önce onaylatılır. Konuşması kaydedilmez veya saklanmaz, ses başka hiçbir şekilde analiz edilmez.",
       "ai": "Soruları yazan OpenAI'a aldıklarını saklamaması söylenir; verileri yalnızca kötüye kullanımı denetlemek için en fazla 30 gün tutar ve modellerini eğitmek için kullanmaz.",
       "rights": "Herkes, bize yazmadan, Ayarlar'dan kendi verilerini indirebilir veya silebilir."
     },

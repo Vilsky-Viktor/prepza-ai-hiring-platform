@@ -103,7 +103,7 @@ prepza svolge colloqui di competenze a scelta multipla e a tempo, scritti dall'I
 
 Ecco cosa significa oggi nel prodotto:
 
-- **L'IA scrive le domande e le relative chiavi di correzione; la correzione segue regole fisse.** Nessuna IA legge o giudica la risposta di un candidato, e non si usa alcuna analisi di video o volto. Nella modalità vocale, il parlato viene trasformato in testo per abbinarlo a un'opzione che il candidato conferma; non viene mai conservato e la voce non viene mai analizzata.
+- **L'IA scrive le domande e le relative chiavi di correzione; la correzione segue regole fisse.** Nessuna IA legge o giudica la risposta di un candidato, e non si usa alcuna analisi di video o volto. Nella modalità vocale, il parlato viene trasformato in testo e abbinato a un'opzione, che viene detta al candidato e mostrata sullo schermo: una sola opzione indicata chiaramente viene registrata subito, una scelta di più opzioni viene prima confermata. Il parlato non viene mai conservato e la voce non viene mai analizzata.
 - **Approvi tu gli argomenti** prima che venga scritta qualsiasi domanda, e scegli tu la soglia di superamento.
 - **Decidono le persone.** prepza non scarta candidati né invia messaggi di rifiuto.
 - **Nessuna caratteristica protetta.** prepza non chiede, non deduce e non conserva mai sesso, razza, età, disabilità, codice postale o altre caratteristiche protette dei candidati.

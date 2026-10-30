@@ -92,9 +92,10 @@ your audit summary is published (see prepza's instructions for companies).
 >
 > [Voice mode only:] **Answering aloud.** The questions and their options are read aloud and you
 > can answer aloud. What the microphone picks up while you answer is turned into text by AI and
-> matched to an option, which you confirm before it counts; it is never recorded or stored, and
-> your voice isn't analysed in any other way. You can always tap an option instead, or ask us at
-> [contact] for the test without voice.
+> matched to the options: you hear and see the option it matched, one clearly named option is
+> saved at once, and you confirm a choice of several options before it counts. Your speech is
+> never recorded or stored, and your voice isn't analysed in any other way. You can always tap an
+> option instead, or ask us at [contact] for the test without voice.
 >
 > **How we use it.** Your result is one part of our assessment, alongside [your CV / interviews].
 > A person at [Company] reviews it; no decision is made automatically. You can ask us for a human

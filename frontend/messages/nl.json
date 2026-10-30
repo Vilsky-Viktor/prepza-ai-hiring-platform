@@ -2574,7 +2574,7 @@
       "roles": "prepza is verwerkingsverantwoordelijke voor de accounts van de mensen die het gebruiken, en verwerker van de gegevens van kandidaten, die toebehoren aan het bedrijf dat hen uitnodigt.",
       "noSelling": "We verkopen geen persoonsgegevens en delen ze niet voor advertenties. Er zijn geen advertentie- of analysecookies.",
       "noInference": "prepza verzamelt geen gegevens over geslacht, leeftijd, afkomst of beperking van kandidaten, en leidt daar ook niets over af.",
-      "voice": "In de spraakmodus wordt het gesproken antwoord van een kandidaat omgezet in tekst en gekoppeld aan een optie die de kandidaat bevestigt. Het wordt niet opgenomen of opgeslagen, en de stem wordt op geen enkele andere manier geanalyseerd.",
+      "voice": "In de spraakmodus wordt het gesproken antwoord van een kandidaat omgezet in tekst en gekoppeld aan de opties, en de gekoppelde optie krijgt de kandidaat te horen en op het scherm te zien; een keuze van meerdere opties wordt eerst bevestigd. De spraak wordt niet opgenomen of opgeslagen, en de stem wordt op geen enkele andere manier geanalyseerd.",
       "ai": "OpenAI, dat de vragen schrijft, krijgt de opdracht niets op te slaan van wat het ontvangt; het bewaart de gegevens hooguit 30 dagen, alleen om op misbruik te controleren, en gebruikt ze niet om zijn modellen te trainen.",
       "rights": "Iedereen kan zijn eigen gegevens downloaden of verwijderen in Instellingen, zonder ons te hoeven schrijven."
     },

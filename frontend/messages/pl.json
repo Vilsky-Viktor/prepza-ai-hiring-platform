@@ -2574,7 +2574,7 @@
       "roles": "prepza jest administratorem danych kont osób, które z niej korzystają, oraz podmiotem przetwarzającym dane kandydatów, które należą do firmy zapraszającej ich na rozmowę.",
       "noSelling": "Nie sprzedajemy danych osobowych ani nie udostępniamy ich w celach reklamowych. Nie używamy plików cookie reklamowych ani analitycznych.",
       "noInference": "prepza nie zbiera danych o płci, wieku, pochodzeniu ani niepełnosprawności kandydatów i niczego takiego nie wnioskuje.",
-      "voice": "W trybie głosowym wypowiedziana odpowiedź kandydata jest zamieniana na tekst i dopasowywana do opcji, którą kandydat potwierdza. Nie jest nagrywana ani przechowywana, a głos nie jest analizowany w żaden inny sposób.",
+      "voice": "W trybie głosowym wypowiedziana odpowiedź kandydata jest zamieniana na tekst i dopasowywana do opcji, a dopasowaną opcję kandydat słyszy i widzi na ekranie; wybór kilku opcji jest najpierw potwierdzany. Jego wypowiedź nie jest nagrywana ani przechowywana, a głos nie jest analizowany w żaden inny sposób.",
       "ai": "OpenAI, które pisze pytania, otrzymuje polecenie, aby nie przechowywać tego, co otrzymuje; przechowuje dane najwyżej 30 dni, wyłącznie w celu wykrywania nadużyć, i nie używa ich do trenowania swoich modeli.",
       "rights": "Każdy może pobrać lub usunąć swoje dane w Ustawieniach, bez pisania do nas."
     },

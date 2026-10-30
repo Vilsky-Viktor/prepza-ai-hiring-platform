@@ -2574,7 +2574,7 @@
       "roles": "Ang prepza ang controller ng mga account ng mga taong gumagamit nito, at processor ng data ng mga aplikante, na pag-aari ng kumpanyang nag-iimbita sa kanila.",
       "noSelling": "Hindi kami nagbebenta ng personal na data o nagbabahagi nito para sa advertising. Walang advertising o analytics cookie.",
       "noInference": "Walang kinokolektang data ang prepza tungkol sa kasarian, edad, pinagmulan o kapansanan ng mga aplikante, at wala itong hinihinuha na ganoon.",
-      "voice": "Sa voice mode, ginagawang text ang binigkas na sagot ng aplikante at itinutugma sa isang opsyong kinukumpirma niya. Hindi ito nire-record o sine-save, at hindi sinusuri ang boses sa anumang ibang paraan.",
+      "voice": "Sa voice mode, ginagawang text ang binigkas na sagot ng aplikante at itinutugma sa mga opsyon, at sinasabi sa kanya at ipinapakita sa screen ang opsyong natugma; kinukumpirma muna ang pagpili ng ilang opsyon. Hindi nire-record o sine-save ang kanyang pananalita, at hindi sinusuri ang boses sa anumang ibang paraan.",
       "ai": "Ang OpenAI, na sumusulat ng mga tanong, ay sinabihang huwag i-store ang natatanggap nito; iniingatan nito ang data nang hanggang 30 araw lang, para lang tingnan kung may pang-aabuso, at hindi ito ginagamit para i-train ang mga model nito.",
       "rights": "Kahit sino ay puwedeng mag-download o magbura ng sarili niyang data sa Mga setting, nang hindi na sumusulat sa amin."
     },
