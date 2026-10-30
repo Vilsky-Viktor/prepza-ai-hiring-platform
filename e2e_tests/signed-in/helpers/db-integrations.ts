@@ -136,19 +136,14 @@ export async function markWebhookFailing(url: string, companyId: string) {
   );
 }
 
-/** Hands a throwaway company's web hook to someone who isn't one of its owners or admins, as if
- * the member who added it had been removed: it stops getting events. */
-export async function setWebhookMaker(
-  url: string,
-  companyId: string,
-  userId: string,
-) {
-  await withDatabase("api", (client) =>
-    client.query(
-      "UPDATE webhooks SET created_by = $3 WHERE url = $1 AND company_id = $2",
-      [url, companyId, userId],
-    ),
-  );
+/** Who made a throwaway company's API key or web hook, as the api service keeps it for their
+ * data export; null once they deleted their account (its user.deleted event handled). */
+export async function integrationMaker(table: "api_keys" | "webhooks", id: string) {
+  return withDatabase("api", async (client) => {
+    const found = await client.query(`SELECT created_by FROM ${table} WHERE id = $1`, [id]);
+
+    return found.rows[0]?.created_by as string | null | undefined;
+  });
 }
 
 /** Marks a throwaway company's ATS connection broken, as the ats service does when the ATS

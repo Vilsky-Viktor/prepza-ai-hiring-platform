@@ -1,7 +1,9 @@
 import type { Page } from "@playwright/test"
 
 import { expect, test } from "../fixtures"
+import { API_URL } from "../constants"
 import { api, createCompany } from "../helpers/api"
+import { integrationMaker } from "../helpers/db-integrations"
 import { visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
 import { throwawayEmail } from "../helpers/users"
@@ -77,21 +79,36 @@ test("the owner makes an admin the owner, and an account owning a shared company
   await expect(annDialog.getByRole("button").last()).toBeEnabled()
   await shot(ann, "delete-named")
 
-  // Ann, now an admin of Bob's company, made an API key there; deleting her account takes it.
-  const keysPath = `/v1/manage/keys?company_id=${company.id}`
-  const { id: keyId } = await api<{ id: string }>(ann, "POST", keysPath, {
-    name: "Careers site",
-    expiry: "1",
-    permissions: ["interviews:read"],
-  })
+  // Ann, now an admin of Bob's company, made an API key and a web hook there; they outlive her.
+  const { id: keyId, key } = await api<{ id: string; key: string }>(
+    ann,
+    "POST",
+    `/v1/manage/keys?company_id=${company.id}`,
+    { name: "Careers site", expiry: "1", permissions: ["interviews:read"] }
+  )
+  const { id: hookId } = await api<{ id: string }>(
+    ann,
+    "POST",
+    `/v1/manage/webhooks?company_id=${company.id}`,
+    { url: "https://example.com/prepza" }
+  )
   const deleted = ann.waitForResponse(
     (response) => response.url().endsWith("/accounts/me") && response.request().method() === "DELETE",
   )
   await annDialog.getByRole("button").last().click()
   expect((await deleted).status()).toBe(204)
-  const keyIds = async () =>
-    (await api<{ keys: { id: string }[] }>(bob, "GET", `/v1/manage?company_id=${company.id}`)).keys.map(
-      (key) => key.id,
-    )
-  await expect.poll(keyIds, { timeout: 60_000 }).not.toContain(keyId)
+  // Her account's deletion reached the api service: her id is off both.
+  await expect.poll(() => integrationMaker("api_keys", keyId), { timeout: 60_000 }).toBeNull()
+  await expect.poll(() => integrationMaker("webhooks", hookId), { timeout: 60_000 }).toBeNull()
+  const settings = await api<{ keys: { id: string }[]; webhooks: { id: string; failing: boolean }[] }>(
+    bob,
+    "GET",
+    `/v1/manage?company_id=${company.id}`,
+  )
+  expect(settings.keys.map((found) => found.id)).toContain(keyId)
+  expect(settings.webhooks).toContainEqual(expect.objectContaining({ id: hookId, failing: false }))
+  const listed = await bob.request.get(`${API_URL}/v1/interviews`, {
+    headers: { Authorization: `Bearer ${key}` },
+  })
+  expect(listed.status()).toBe(200)
 })
