@@ -28,7 +28,8 @@
         "candidate_finished": "면접을 완료한 지원자",
         "invite_undelivered": "전달되지 않은 초대",
         "ats_not_invited": "초대되지 않은 ATS 지원자",
-        "interview_ready": "준비된 면접"
+        "interview_ready": "준비된 면접",
+        "note_added": "팀의 새 메모"
       },
       "reminders": "리마인더",
       "remindersNote": "크레딧 부족, 지원자가 없는 면접, 검토를 기다리는 주제.",
@@ -1711,6 +1712,7 @@
     "title": "알림",
     "unread": "{count, plural, other {읽지 않은 알림 #개}}",
     "empty": "아직 새로운 알림이 없습니다.",
+    "formerAuthor": "이전 멤버",
     "kinds": {
       "question_flagged": "{count, plural, =1 {{title, select, none {면접} other {“<bdi>{title}</bdi>”}}의 “<bdi>{topic}</bdi>” 문제가 검토 대상으로 표시되었습니다.} other {{title, select, none {면접} other {“<bdi>{title}</bdi>”}}의 문제 #개가 검토 대상으로 표시되었습니다.}}",
       "question_fixed": "{count, plural, =1 {AI가 {title, select, none {면접} other {“<bdi>{title}</bdi>”}}의 “<bdi>{topic}</bdi>”에서 표시된 문제를 수정했습니다.} other {AI가 {title, select, none {면접} other {“<bdi>{title}</bdi>”}}에서 표시된 문제 #개를 수정했습니다.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> 님이 {title, select, none {면접을} other {“<bdi>{title}</bdi>”을(를)}} 완료했습니다{grade, select, none {.} other {: {grade}.}}} other {지원자 #명이 {title, select, none {면접을} other {“<bdi>{title}</bdi>”을(를)}} 완료했습니다.}}",
       "invite_undelivered": "{count, plural, =1 {<bdi>{email}</bdi> 님에게 보낸 {title, select, none {면접} other {“<bdi>{title}</bdi>”}} 초대가 전달되지 않았습니다.} other {{title, select, none {면접} other {“<bdi>{title}</bdi>”}} 초대 #건이 전달되지 않았습니다.}}",
       "interview_ready": "{title, select, none {면접 준비가 완료되었습니다.} other {면접 “<bdi>{title}</bdi>” 준비가 완료되었습니다.}}",
+      "note_added": "{count, plural, =1 {{title, select, none {면접} other {“<bdi>{title}</bdi>”}}에 <bdi>{authors}</bdi> 님의 새 메모가 있습니다.} other {{title, select, none {면접} other {“<bdi>{title}</bdi>”}}에 새 메모 #개가 있습니다. 최근 작성자: <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {면접이} other {면접 “<bdi>{title}</bdi>”이(가)}} 취소되었습니다: 주제 검토 대기 시간이 너무 길었습니다.",
       "verification_approved": "“<bdi>{name}</bdi>”이(가) <bdi>{domain}</bdi>(으)로 인증되었습니다.",
       "verification_declined": "{reason, select, none {“<bdi>{name}</bdi>”의 인증이 거절되었습니다.} other {“<bdi>{name}</bdi>”의 인증이 거절되었습니다: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "ATS에서 온 지원자가 초대되지 않음",
       "invite_undelivered": "초대 이메일이 전달되지 않음",
       "interview_ready": "면접 준비 완료",
+      "note_added": "팀원이 메모를 작성함(본문 포함)",
       "auto_top_up_charged": "자동 충전 결제 완료",
       "auto_top_up_failed": "자동 충전 실패"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "이제 활동 요약에 전달되지 않은 초대가 포함되지 않습니다.",
       "ats_not_invited": "이제 활동 요약에 초대되지 않은 ATS 지원자가 포함되지 않습니다.",
       "interview_ready": "이제 활동 요약에 준비된 면접이 포함되지 않습니다.",
+      "note_added": "이제 활동 요약에 팀의 새 메모가 포함되지 않습니다.",
       "reminders": "이제 리마인더를 받지 않습니다.",
       "updates": "이제 제품 업데이트 및 소식을 받지 않습니다.",
       "promotions": "이제 혜택 및 프로모션을 받지 않습니다.",

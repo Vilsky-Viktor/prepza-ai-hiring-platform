@@ -5,6 +5,7 @@ export const DIGEST_KINDS = [
   "invite_undelivered",
   "ats_not_invited",
   "interview_ready",
+  "note_added",
 ] as const
 
 export const OTHER_EMAILS = ["reminders", "updates", "promotions"] as const

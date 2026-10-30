@@ -113,6 +113,9 @@ TEXTS = {
             "invite_undelivered": "Недоставлені запрошення: {count} · «{title}»",
             "ats_not_invited": "Незапрошені кандидати з {ats}: {count}",
             "interview_ready": "Готова співбесіда: «{title}»",
+            "note_added": "Нові нотатки вашої команди: {count} · «{title}»",
+            "note": "{author}: «{excerpt}»",
+            "note_by_former": "Колишній учасник: «{excerpt}»",
         },
         "button": "Відкрити prepza",
         "footer": (

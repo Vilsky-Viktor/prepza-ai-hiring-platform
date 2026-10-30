@@ -115,6 +115,9 @@ TEXTS = {
             "invite_undelivered": "Invitaciones no entregadas: {count} · «{title}»",
             "ats_not_invited": "Candidatos de {ats} no invitados: {count}",
             "interview_ready": "Entrevista lista: «{title}»",
+            "note_added": "Nuevos comentarios de tu equipo: {count} · «{title}»",
+            "note": "{author}: «{excerpt}»",
+            "note_by_former": "Un exmiembro: «{excerpt}»",
         },
         "button": "Abrir prepza",
         "footer": (

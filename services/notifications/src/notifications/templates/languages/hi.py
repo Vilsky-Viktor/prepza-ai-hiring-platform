@@ -111,6 +111,9 @@ TEXTS = {
             "invite_undelivered": "डिलीवर न हुए इनवाइट: {count} · “{title}”",
             "ats_not_invited": "{ats} के उम्मीदवार जिन्हें इनवाइट नहीं भेजा गया: {count}",
             "interview_ready": "तैयार इंटरव्यू: “{title}”",
+            "note_added": "आपकी टीम के नए नोट: {count} · “{title}”",
+            "note": "{author}: “{excerpt}”",
+            "note_by_former": "एक पूर्व सदस्य: “{excerpt}”",
         },
         "button": "prepza खोलें",
         "footer": (

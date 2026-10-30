@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Lavori per dei clienti? Fissa una nota come «Per Acme, sviluppatore backend» per vedere a colpo d'occhio per chi è ogni colloquio.",
-      "Una nota eliminata non si può recuperare. Il registro attività annota chi ha scritto, modificato o eliminato una nota, mai il suo testo."
+      "Una nota eliminata non si può recuperare. Il registro attività annota chi ha scritto, modificato o eliminato una nota, mai il suo testo.",
+      "Il resto del team viene avvisato di ogni nuova nota: nelle notifiche, nel riepilogo attività giornaliero e, con Slack collegato, nel vostro canale."
     ]
   },
   "interviewDiscover": {

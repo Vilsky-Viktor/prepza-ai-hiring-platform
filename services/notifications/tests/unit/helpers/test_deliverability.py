@@ -196,6 +196,9 @@ def placeholders(language: str) -> dict:
         "ats": "Greenhouse",
         "available": 5,
         "days": 3,
+        # A note's author and start, as the digest shows them.
+        "author": "Bob",
+        "excerpt": "Shortlist the top 5",
         # An automatic top-up's price and its new one, as the price notice writes them.
         "price": "$45",
         "new_price": "$50",

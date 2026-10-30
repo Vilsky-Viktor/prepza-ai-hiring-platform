@@ -136,6 +136,7 @@ project), as candidates on iPhones take it in Safari.
 - text in another language than the page marked with its `lang` and `dir`: an interview's topics and questions, and each language's own name in the language picker (`zv-text-language.spec.ts`),
 - an interview's settings tab, and the shareable link turned on at its top (not on the candidates tab) to give the link to copy,
 - a candidate's invitation: their extra time doubling each question's time, and the pledge to answer on their own gating the start (`zt-start-pledge.spec.ts`),
+- the team's notes in another member's bell: one item per interview counting them and naming their author, opening the notes tab, and none in the author's own bell (`zu-note-notifications.spec.ts`); the digest's notes setting saved (`l-emails.spec.ts`),
 - an interview's start page on a computer: the whole interview's minutes from its topics' questions and seconds, the big start button, and the rules card from the screen's top to its bottom, scrolling inside on a short screen (`zo-start-page.spec.ts`),
 - a new hard test starting with the hard level's seconds a question, and the value saved in the admin zone's Controls and set back (`zn-level-seconds.spec.ts`; that it reaches the next new test is billing's integration test),
 - a company's brand tab: colors previewed as they're typed, unreadable ones refused, saved ones a newer check refuses shown with why, the font and rounding saved with them, and its candidate's invitation in those colors,

@@ -28,7 +28,8 @@
         "candidate_finished": "Ứng viên đã hoàn thành",
         "invite_undelivered": "Lời mời chưa được gửi đến",
         "ats_not_invited": "Ứng viên từ ATS chưa được mời",
-        "interview_ready": "Buổi phỏng vấn đã sẵn sàng"
+        "interview_ready": "Buổi phỏng vấn đã sẵn sàng",
+        "note_added": "Ghi chú mới của nhóm bạn"
       },
       "reminders": "Lời nhắc",
       "remindersNote": "Sắp hết credit, buổi phỏng vấn chưa có ứng viên, chủ đề đang chờ xem xét.",
@@ -1711,6 +1712,7 @@
     "title": "Thông báo",
     "unread": "{count, plural, other {# thông báo chưa đọc}}",
     "empty": "Chưa có gì mới.",
+    "formerAuthor": "một cựu thành viên",
     "kinds": {
       "question_flagged": "{count, plural, =1 {Một câu hỏi về “<bdi>{topic}</bdi>” trong {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}} đã bị đánh dấu để xem xét.} other {# câu hỏi trong {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}} đã bị đánh dấu để xem xét.}}",
       "question_fixed": "{count, plural, =1 {AI đã sửa một câu hỏi bị đánh dấu về “<bdi>{topic}</bdi>” trong {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}}.} other {AI đã sửa # câu hỏi bị đánh dấu trong {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}}.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> đã hoàn thành {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}}{grade, select, none {.} other {: {grade}.}}} other {# ứng viên đã hoàn thành {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}}.}}",
       "invite_undelivered": "{count, plural, =1 {Lời mời gửi tới <bdi>{email}</bdi> cho {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}} chưa được chuyển đến.} other {# lời mời cho {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}} chưa được chuyển đến.}}",
       "interview_ready": "{title, select, none {Một buổi phỏng vấn đã sẵn sàng.} other {Buổi phỏng vấn “<bdi>{title}</bdi>” đã sẵn sàng.}}",
+      "note_added": "{count, plural, other {# ghi chú mới cho {title, select, none {một buổi phỏng vấn} other {“<bdi>{title}</bdi>”}}, mới nhất từ <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Một buổi phỏng vấn} other {Buổi phỏng vấn “<bdi>{title}</bdi>”}} đã bị hủy: phần xem xét chủ đề phải chờ quá lâu.",
       "verification_approved": "“<bdi>{name}</bdi>” đã được xác minh cho <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {Yêu cầu xác minh “<bdi>{name}</bdi>” đã bị từ chối.} other {Yêu cầu xác minh “<bdi>{name}</bdi>” đã bị từ chối: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "Một ứng viên từ ATS của bạn chưa được mời",
       "invite_undelivered": "Một email mời chưa được gửi đến",
       "interview_ready": "Một buổi phỏng vấn đã sẵn sàng",
+      "note_added": "Một thành viên trong nhóm đã viết ghi chú, kèm nội dung",
       "auto_top_up_charged": "Đã trừ tiền cho một lần tự động nạp",
       "auto_top_up_failed": "Một lần tự động nạp không thành công"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "Tóm tắt hoạt động sẽ không còn gồm lời mời chưa được gửi đến.",
       "ats_not_invited": "Tóm tắt hoạt động sẽ không còn gồm ứng viên từ ATS chưa được mời.",
       "interview_ready": "Tóm tắt hoạt động sẽ không còn gồm buổi phỏng vấn đã sẵn sàng.",
+      "note_added": "Tóm tắt hoạt động sẽ không còn gồm ghi chú mới của nhóm bạn.",
       "reminders": "Bạn sẽ không nhận lời nhắc nữa.",
       "updates": "Bạn sẽ không nhận cập nhật sản phẩm và tin tức nữa.",
       "promotions": "Bạn sẽ không nhận ưu đãi và khuyến mãi nữa.",

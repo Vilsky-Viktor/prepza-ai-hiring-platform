@@ -116,6 +116,9 @@ TEXTS = {
             "invite_undelivered": "İletilemeyen davetler: {count} · “{title}”",
             "ats_not_invited": "Davet edilmeyen {ats} adayları: {count}",
             "interview_ready": "Hazır mülakat: “{title}”",
+            "note_added": "Ekibinizin yeni yorumları: {count} · “{title}”",
+            "note": "{author}: “{excerpt}”",
+            "note_by_former": "Eski bir üye: “{excerpt}”",
         },
         "button": "prepza'yı aç",
         "footer": (

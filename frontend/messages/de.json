@@ -28,7 +28,8 @@
         "candidate_finished": "Kandidaten, die fertig sind",
         "invite_undelivered": "Nicht zugestellte Einladungen",
         "ats_not_invited": "Nicht eingeladene Kandidaten aus dem ATS",
-        "interview_ready": "Fertige Interviews"
+        "interview_ready": "Fertige Interviews",
+        "note_added": "Neue Notizen deines Teams"
       },
       "reminders": "Erinnerungen",
       "remindersNote": "Wenig Credits, Interviews ohne Kandidaten, Themen, die auf Prüfung warten.",
@@ -1711,6 +1712,7 @@
     "title": "Benachrichtigungen",
     "unread": "{count, plural, one {# ungelesene Benachrichtigung} other {# ungelesene Benachrichtigungen}}",
     "empty": "Noch nichts Neues.",
+    "formerAuthor": "einem ehemaligen Mitglied",
     "kinds": {
       "question_flagged": "{count, plural, one {Eine Frage zu „<bdi>{topic}</bdi>“ {title, select, none {in einem Interview} other {in „<bdi>{title}</bdi>“}} wurde zur Prüfung gemeldet.} other {# Fragen {title, select, none {in einem Interview} other {in „<bdi>{title}</bdi>“}} wurden zur Prüfung gemeldet.}}",
       "question_fixed": "{count, plural, one {Die KI hat eine gemeldete Frage zu „<bdi>{topic}</bdi>“ {title, select, none {in einem Interview} other {in „<bdi>{title}</bdi>“}} korrigiert.} other {Die KI hat # gemeldete Fragen {title, select, none {in einem Interview} other {in „<bdi>{title}</bdi>“}} korrigiert.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> hat {title, select, none {ein Interview} other {„<bdi>{title}</bdi>“}} abgeschlossen{grade, select, none {.} other {: {grade}.}}} other {# Kandidaten haben {title, select, none {ein Interview} other {„<bdi>{title}</bdi>“}} abgeschlossen.}}",
       "invite_undelivered": "{count, plural, one {Die Einladung an <bdi>{email}</bdi> für {title, select, none {ein Interview} other {„<bdi>{title}</bdi>“}} wurde nicht zugestellt.} other {# Einladungen für {title, select, none {ein Interview} other {„<bdi>{title}</bdi>“}} wurden nicht zugestellt.}}",
       "interview_ready": "{title, select, none {Ein Interview ist fertig.} other {Das Interview „<bdi>{title}</bdi>“ ist fertig.}}",
+      "note_added": "{count, plural, =1 {Neue Notiz zu {title, select, none {einem Interview} other {„<bdi>{title}</bdi>“}} von <bdi>{authors}</bdi>.} other {# neue Notizen zu {title, select, none {einem Interview} other {„<bdi>{title}</bdi>“}}, die neuesten von <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Ein Interview} other {Das Interview „<bdi>{title}</bdi>“}} wurde abgebrochen: Die Themen wurden zu lange nicht freigegeben.",
       "verification_approved": "„<bdi>{name}</bdi>“ ist für <bdi>{domain}</bdi> verifiziert.",
       "verification_declined": "{reason, select, none {Die Verifizierung von „<bdi>{name}</bdi>“ wurde abgelehnt.} other {Die Verifizierung von „<bdi>{name}</bdi>“ wurde abgelehnt: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "Ein Kandidat aus deinem ATS wurde nicht eingeladen",
       "invite_undelivered": "Eine Einladungs-E-Mail wurde nicht zugestellt",
       "interview_ready": "Ein Interview ist fertig",
+      "note_added": "Ein Teammitglied hat eine Notiz geschrieben, mit ihrem Text",
       "auto_top_up_charged": "Ein automatisches Aufladen wurde abgebucht",
       "auto_top_up_failed": "Ein automatisches Aufladen ist fehlgeschlagen"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "Die Aktivitätsübersicht enthält keine nicht zugestellten Einladungen mehr.",
       "ats_not_invited": "Die Aktivitätsübersicht enthält keine nicht eingeladenen Kandidaten aus dem ATS mehr.",
       "interview_ready": "Die Aktivitätsübersicht enthält keine fertigen Interviews mehr.",
+      "note_added": "Die Aktivitätsübersicht enthält keine neuen Notizen deines Teams mehr.",
       "reminders": "Du bekommst keine Erinnerungen mehr.",
       "updates": "Du bekommst keine Produkt-Updates und Neuigkeiten mehr.",
       "promotions": "Du bekommst keine Angebote und Aktionen mehr.",

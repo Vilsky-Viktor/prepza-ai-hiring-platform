@@ -28,7 +28,8 @@
         "candidate_finished": "ผู้สมัครที่สัมภาษณ์เสร็จแล้ว",
         "invite_undelivered": "คำเชิญที่ส่งไม่ถึง",
         "ats_not_invited": "ผู้สมัครจาก ATS ที่ไม่ได้รับคำเชิญ",
-        "interview_ready": "การสัมภาษณ์ที่พร้อมแล้ว"
+        "interview_ready": "การสัมภาษณ์ที่พร้อมแล้ว",
+        "note_added": "โน้ตใหม่จากทีมของคุณ"
       },
       "reminders": "การเตือนความจำ",
       "remindersNote": "เครดิตใกล้หมด การสัมภาษณ์ที่ยังไม่มีผู้สมัคร หัวข้อที่รอการตรวจสอบ",
@@ -1711,6 +1712,7 @@
     "title": "การแจ้งเตือน",
     "unread": "{count, plural, other {การแจ้งเตือนที่ยังไม่ได้อ่าน # รายการ}}",
     "empty": "ยังไม่มีอะไรใหม่",
+    "formerAuthor": "อดีตสมาชิก",
     "kinds": {
       "question_flagged": "{count, plural, =1 {คำถามเรื่อง “<bdi>{topic}</bdi>” {title, select, none {ในการสัมภาษณ์} other {ใน “<bdi>{title}</bdi>” }}ถูกแจ้งให้ตรวจสอบ} other {คำถาม # ข้อ{title, select, none {ในการสัมภาษณ์} other {ใน “<bdi>{title}</bdi>” }}ถูกแจ้งให้ตรวจสอบ}}",
       "question_fixed": "{count, plural, =1 {AI แก้ไขคำถามที่ถูกแจ้งเรื่อง “<bdi>{topic}</bdi>” {title, select, none {ในการสัมภาษณ์} other {ใน “<bdi>{title}</bdi>” }}แล้ว} other {AI แก้ไขคำถามที่ถูกแจ้ง # ข้อ{title, select, none {ในการสัมภาษณ์} other {ใน “<bdi>{title}</bdi>” }}แล้ว}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> {title, select, none {ทำการสัมภาษณ์เสร็จแล้ว} other {ทำ “<bdi>{title}</bdi>” เสร็จแล้ว}}{grade, select, none {} other { ได้ {grade}}}} other {ผู้สมัคร # คน{title, select, none {ทำการสัมภาษณ์เสร็จแล้ว} other {ทำ “<bdi>{title}</bdi>” เสร็จแล้ว}}}}",
       "invite_undelivered": "{count, plural, =1 {ส่ง{title, select, none {คำเชิญสัมภาษณ์} other {คำเชิญ “<bdi>{title}</bdi>” }}ถึง <bdi>{email}</bdi> ไม่สำเร็จ} other {ส่ง{title, select, none {คำเชิญสัมภาษณ์} other {คำเชิญ “<bdi>{title}</bdi>” }}ถึงผู้รับ # รายไม่สำเร็จ}}",
       "interview_ready": "{title, select, none {การสัมภาษณ์พร้อมแล้ว} other {การสัมภาษณ์ “<bdi>{title}</bdi>” พร้อมแล้ว}}",
+      "note_added": "{count, plural, other {โน้ตใหม่ # รายการใน {title, select, none {การสัมภาษณ์} other {“<bdi>{title}</bdi>”}} ล่าสุดจาก <bdi>{authors}</bdi>}}",
       "interview_cancelled": "{title, select, none {การสัมภาษณ์} other {การสัมภาษณ์ “<bdi>{title}</bdi>”}} ถูกยกเลิก เพราะรอการตรวจหัวข้อนานเกินไป",
       "verification_approved": "“<bdi>{name}</bdi>” ได้รับการยืนยันสำหรับ <bdi>{domain}</bdi> แล้ว",
       "verification_declined": "{reason, select, none {การยืนยัน “<bdi>{name}</bdi>” ถูกปฏิเสธ} other {การยืนยัน “<bdi>{name}</bdi>” ถูกปฏิเสธ: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "ผู้สมัครจาก ATS ของคุณไม่ได้รับคำเชิญ",
       "invite_undelivered": "อีเมลคำเชิญส่งไม่ถึง",
       "interview_ready": "การสัมภาษณ์พร้อมแล้ว",
+      "note_added": "สมาชิกในทีมเขียนโน้ต พร้อมข้อความของโน้ต",
       "auto_top_up_charged": "เรียกเก็บเงินค่าเติมเครดิตอัตโนมัติแล้ว",
       "auto_top_up_failed": "เติมเครดิตอัตโนมัติไม่สำเร็จ"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "สรุปกิจกรรมจะไม่รวมคำเชิญที่ส่งไม่ถึงอีก",
       "ats_not_invited": "สรุปกิจกรรมจะไม่รวมผู้สมัครจาก ATS ที่ไม่ได้รับคำเชิญอีก",
       "interview_ready": "สรุปกิจกรรมจะไม่รวมการสัมภาษณ์ที่พร้อมแล้วอีก",
+      "note_added": "สรุปกิจกรรมจะไม่รวมโน้ตใหม่จากทีมของคุณอีก",
       "reminders": "คุณจะไม่ได้รับการเตือนความจำอีก",
       "updates": "คุณจะไม่ได้รับข่าวสารและอัปเดตผลิตภัณฑ์อีก",
       "promotions": "คุณจะไม่ได้รับข้อเสนอและโปรโมชันอีก",

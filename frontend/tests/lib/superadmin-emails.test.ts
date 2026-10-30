@@ -30,6 +30,7 @@ describe("allOptionalEmailsOff", () => {
       invite_undelivered: false,
       ats_not_invited: false,
       interview_ready: false,
+      note_added: false,
       reminders: false,
       updates: false,
       promotions: false,

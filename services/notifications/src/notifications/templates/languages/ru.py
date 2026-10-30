@@ -117,6 +117,9 @@ TEXTS = {
             "invite_undelivered": "Недоставленные приглашения: {count} · «{title}»",
             "ats_not_invited": "Неприглашённые кандидаты из {ats}: {count}",
             "interview_ready": "Готовое собеседование: «{title}»",
+            "note_added": "Новые заметки вашей команды: {count} · «{title}»",
+            "note": "{author}: «{excerpt}»",
+            "note_by_former": "Бывший участник: «{excerpt}»",
         },
         "button": "Открыть prepza",
         "footer": (

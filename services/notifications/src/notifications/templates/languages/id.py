@@ -113,6 +113,9 @@ TEXTS = {
             "invite_undelivered": "Undangan yang tidak terkirim: {count} · “{title}”",
             "ats_not_invited": "Kandidat dari {ats} yang tidak diundang: {count}",
             "interview_ready": "Wawancara siap: “{title}”",
+            "note_added": "Catatan baru dari timmu: {count} · “{title}”",
+            "note": "{author}: “{excerpt}”",
+            "note_by_former": "Mantan anggota: “{excerpt}”",
         },
         "button": "Buka prepza",
         "footer": (

@@ -28,7 +28,8 @@
         "candidate_finished": "已完成面试的候选人",
         "invite_undelivered": "未送达的邀请",
         "ats_not_invited": "未被邀请的 ATS 候选人",
-        "interview_ready": "已就绪的面试"
+        "interview_ready": "已就绪的面试",
+        "note_added": "团队的新备注"
       },
       "reminders": "提醒",
       "remindersNote": "点数不足、没有候选人的面试、等待审核的主题。",
@@ -1711,6 +1712,7 @@
     "title": "通知",
     "unread": "{count, plural, other {# 条未读通知}}",
     "empty": "暂无新消息。",
+    "formerAuthor": "前成员",
     "kinds": {
       "question_flagged": "{count, plural, =1 {{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}中关于“<bdi>{topic}</bdi>”的一道题目被标记待审核。} other {{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}中有 # 道题目被标记待审核。}}",
       "question_fixed": "{count, plural, =1 {AI 修正了{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}中关于“<bdi>{topic}</bdi>”的被标记题目。} other {AI 修正了{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}中 # 道被标记的题目。}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> 已完成{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}{grade, select, none {。} other {，得分 {grade}。}}} other {# 位候选人已完成{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}。}}",
       "invite_undelivered": "{count, plural, =1 {发送给 <bdi>{email}</bdi> 的{title, select, none {面试} other {“<bdi>{title}</bdi>”}}邀请未能送达。} other {{title, select, none {面试} other {“<bdi>{title}</bdi>”}}的 # 份邀请未能送达。}}",
       "interview_ready": "{title, select, none {一场面试已就绪。} other {面试“<bdi>{title}</bdi>”已就绪。}}",
+      "note_added": "{count, plural, =1 {{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}有一条来自 <bdi>{authors}</bdi> 的新备注。} other {{title, select, none {一场面试} other {“<bdi>{title}</bdi>”}}有 # 条新备注，最新来自 <bdi>{authors}</bdi>。}}",
       "interview_cancelled": "{title, select, none {一场面试} other {面试“<bdi>{title}</bdi>”}}已取消：主题审核等待时间过长。",
       "verification_approved": "“<bdi>{name}</bdi>”已通过 <bdi>{domain}</bdi> 验证。",
       "verification_declined": "{reason, select, none {“<bdi>{name}</bdi>”的验证已被拒绝。} other {“<bdi>{name}</bdi>”的验证已被拒绝：<bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "来自你的 ATS 的候选人未被邀请",
       "invite_undelivered": "邀请邮件未能送达",
       "interview_ready": "面试已就绪",
+      "note_added": "团队成员写了一条备注（附内容）",
       "auto_top_up_charged": "自动充值已扣款",
       "auto_top_up_failed": "自动充值失败"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "动态摘要将不再包含未送达的邀请。",
       "ats_not_invited": "动态摘要将不再包含未被邀请的 ATS 候选人。",
       "interview_ready": "动态摘要将不再包含已就绪的面试。",
+      "note_added": "动态摘要将不再包含团队的新备注。",
       "reminders": "你将不再收到提醒。",
       "updates": "你将不再收到产品更新与新闻。",
       "promotions": "你将不再收到优惠与促销。",

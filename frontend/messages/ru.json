@@ -28,7 +28,8 @@
         "candidate_finished": "Кандидаты, завершившие собеседование",
         "invite_undelivered": "Недоставленные приглашения",
         "ats_not_invited": "Неприглашённые кандидаты из ATS",
-        "interview_ready": "Готовые собеседования"
+        "interview_ready": "Готовые собеседования",
+        "note_added": "Новые заметки вашей команды"
       },
       "reminders": "Напоминания",
       "remindersNote": "Мало кредитов, собеседования без кандидатов, темы, которые ждут проверки.",
@@ -1711,6 +1712,7 @@
     "title": "Уведомления",
     "unread": "{count, plural, one {# непрочитанное уведомление} few {# непрочитанных уведомления} many {# непрочитанных уведомлений} other {# непрочитанного уведомления}}",
     "empty": "Пока ничего нового.",
+    "formerAuthor": "бывшего участника",
     "kinds": {
       "question_flagged": "{count, plural, =1 {Вопрос по теме «<bdi>{topic}</bdi>» {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}} отправлен на проверку.} one {# вопрос {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}} отправлен на проверку.} few {# вопроса {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}} отправлены на проверку.} many {# вопросов {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}} отправлены на проверку.} other {# вопроса {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}} отправлены на проверку.}}",
       "question_fixed": "{count, plural, =1 {ИИ исправил отмеченный вопрос по теме «<bdi>{topic}</bdi>» {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}}.} one {ИИ исправил # отмеченный вопрос {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}}.} few {ИИ исправил # отмеченных вопроса {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}}.} many {ИИ исправил # отмеченных вопросов {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}}.} other {ИИ исправил # отмеченного вопроса {title, select, none {в собеседовании} other {в «<bdi>{title}</bdi>»}}.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {Кандидат <bdi>{email}</bdi> завершил {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}}{grade, select, none {.} other {: {grade}.}}} one {# кандидат завершил {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}}.} few {# кандидата завершили {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}}.} many {# кандидатов завершили {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}}.} other {# кандидата завершили {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}}.}}",
       "invite_undelivered": "{count, plural, =1 {Приглашение для <bdi>{email}</bdi> на {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}} не доставлено.} one {# приглашение на {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}} не доставлено.} few {# приглашения на {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}} не доставлены.} many {# приглашений на {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}} не доставлены.} other {# приглашения на {title, select, none {собеседование} other {«<bdi>{title}</bdi>»}} не доставлены.}}",
       "interview_ready": "{title, select, none {Собеседование готово.} other {Собеседование «<bdi>{title}</bdi>» готово.}}",
+      "note_added": "{count, plural, =1 {Новая заметка к {title, select, none {собеседованию} other {собеседованию «<bdi>{title}</bdi>»}} от <bdi>{authors}</bdi>.} one {# новая заметка к {title, select, none {собеседованию} other {собеседованию «<bdi>{title}</bdi>»}}, последние от <bdi>{authors}</bdi>.} few {# новые заметки к {title, select, none {собеседованию} other {собеседованию «<bdi>{title}</bdi>»}}, последние от <bdi>{authors}</bdi>.} many {# новых заметок к {title, select, none {собеседованию} other {собеседованию «<bdi>{title}</bdi>»}}, последние от <bdi>{authors}</bdi>.} other {# новой заметки к {title, select, none {собеседованию} other {собеседованию «<bdi>{title}</bdi>»}}, последние от <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Собеседование} other {Собеседование «<bdi>{title}</bdi>»}} отменено: темы слишком долго ждали проверки.",
       "verification_approved": "Компания «<bdi>{name}</bdi>» подтверждена для <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {Подтверждение компании «<bdi>{name}</bdi>» отклонено.} other {Подтверждение компании «<bdi>{name}</bdi>» отклонено: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "Кандидат из вашей ATS не приглашён",
       "invite_undelivered": "Письмо с приглашением не доставлено",
       "interview_ready": "Собеседование готово",
+      "note_added": "Участник команды написал заметку, с её текстом",
       "auto_top_up_charged": "Списана оплата за автопополнение",
       "auto_top_up_failed": "Автопополнение не удалось"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "В сводке активности больше не будет недоставленных приглашений.",
       "ats_not_invited": "В сводке активности больше не будет неприглашённых кандидатов из ATS.",
       "interview_ready": "В сводке активности больше не будет готовых собеседований.",
+      "note_added": "В сводке активности больше не будет новых заметок вашей команды.",
       "reminders": "Вы больше не будете получать напоминания.",
       "updates": "Вы больше не будете получать новости продукта.",
       "promotions": "Вы больше не будете получать предложения и акции.",

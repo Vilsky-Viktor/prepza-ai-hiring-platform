@@ -120,6 +120,9 @@ TEXTS = {
             "invite_undelivered": "Niet-bezorgde uitnodigingen: {count} · “{title}”",
             "ats_not_invited": "Niet-uitgenodigde kandidaten uit {ats}: {count}",
             "interview_ready": "Interview klaar: “{title}”",
+            "note_added": "Nieuwe notities van je team: {count} · “{title}”",
+            "note": "{author}: “{excerpt}”",
+            "note_by_former": "Een voormalig lid: “{excerpt}”",
         },
         "button": "prepza openen",
         "footer": (

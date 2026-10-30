@@ -115,6 +115,9 @@ TEXTS = {
             "invite_undelivered": "Niedostarczone zaproszenia: {count} · „{title}”",
             "ats_not_invited": "Niezaproszeni kandydaci z systemu {ats}: {count}",
             "interview_ready": "Gotowa rozmowa: „{title}”",
+            "note_added": "Nowe notatki twojego zespołu: {count} · „{title}”",
+            "note": "{author}: „{excerpt}”",
+            "note_by_former": "Były członek: „{excerpt}”",
         },
         "button": "Otwórz prepza",
         "footer": (

@@ -28,7 +28,8 @@
         "candidate_finished": "מועמדים שסיימו",
         "invite_undelivered": "הזמנות שלא נמסרו",
         "ats_not_invited": "מועמדים מה-ATS שלא הוזמנו",
-        "interview_ready": "ראיונות מוכנים"
+        "interview_ready": "ראיונות מוכנים",
+        "note_added": "ההערות החדשות של הצוות שלך"
       },
       "reminders": "תזכורות",
       "remindersNote": "מעט קרדיטים, ראיונות בלי מועמדים, נושאים שממתינים לבדיקה.",
@@ -1711,6 +1712,7 @@
     "title": "התראות",
     "unread": "{count, plural, one {התראה אחת שלא נקראה} two {# התראות שלא נקראו} other {# התראות שלא נקראו}}",
     "empty": "אין עדיין שום דבר חדש.",
+    "formerAuthor": "חבר/ה לשעבר",
     "kinds": {
       "question_flagged": "{count, plural, one {שאלה בנושא \"<bdi>{topic}</bdi>\" {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}} סומנה לבדיקה.} two {שתי שאלות {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}} סומנו לבדיקה.} other {# שאלות {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}} סומנו לבדיקה.}}",
       "question_fixed": "{count, plural, one {ה-AI תיקן שאלה שסומנה בנושא \"<bdi>{topic}</bdi>\" {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}}.} two {ה-AI תיקן שתי שאלות שסומנו {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}}.} other {ה-AI תיקן # שאלות שסומנו {title, select, none {בראיון} other {ב\"<bdi>{title}</bdi>\"}}.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> השלים/ה {title, select, none {ראיון} other {את \"<bdi>{title}</bdi>\"}}{grade, select, none {.} other {: {grade}.}}} two {שני מועמדים השלימו {title, select, none {ראיון} other {את \"<bdi>{title}</bdi>\"}}.} other {# מועמדים השלימו {title, select, none {ראיון} other {את \"<bdi>{title}</bdi>\"}}.}}",
       "invite_undelivered": "{count, plural, one {ההזמנה ל-<bdi>{email}</bdi> עבור {title, select, none {ראיון} other {\"<bdi>{title}</bdi>\"}} לא נמסרה.} two {שתי הזמנות עבור {title, select, none {ראיון} other {\"<bdi>{title}</bdi>\"}} לא נמסרו.} other {# הזמנות עבור {title, select, none {ראיון} other {\"<bdi>{title}</bdi>\"}} לא נמסרו.}}",
       "interview_ready": "{title, select, none {ראיון מוכן.} other {הראיון \"<bdi>{title}</bdi>\" מוכן.}}",
+      "note_added": "{count, plural, =1 {הערה חדשה על {title, select, none {ראיון} other {\"<bdi>{title}</bdi>\"}} מאת <bdi>{authors}</bdi>.} two {שתי הערות חדשות על {title, select, none {ראיון} other {\"<bdi>{title}</bdi>\"}}, האחרונות מאת <bdi>{authors}</bdi>.} other {# הערות חדשות על {title, select, none {ראיון} other {\"<bdi>{title}</bdi>\"}}, האחרונות מאת <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {ראיון בוטל} other {הראיון \"<bdi>{title}</bdi>\" בוטל}}: בדיקת הנושאים שלו חיכתה יותר מדי זמן.",
       "verification_approved": "\"<bdi>{name}</bdi>\" מאומתת עבור <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {האימות של \"<bdi>{name}</bdi>\" נדחה.} other {האימות של \"<bdi>{name}</bdi>\" נדחה: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "מועמד/ת ממערכת ה-ATS שלכם לא הוזמן/ה",
       "invite_undelivered": "מייל הזמנה לא נמסר",
       "interview_ready": "ראיון מוכן",
+      "note_added": "חבר/ת צוות כתב/ה הערה, עם הטקסט שלה",
       "auto_top_up_charged": "בוצע חיוב של טעינה אוטומטית",
       "auto_top_up_failed": "טעינה אוטומטית נכשלה"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "סיכום הפעילות לא יכלול יותר הזמנות שלא נמסרו.",
       "ats_not_invited": "סיכום הפעילות לא יכלול יותר מועמדים מה-ATS שלא הוזמנו.",
       "interview_ready": "סיכום הפעילות לא יכלול יותר ראיונות מוכנים.",
+      "note_added": "סיכום הפעילות לא יכלול יותר את ההערות החדשות של הצוות שלך.",
       "reminders": "תזכורות לא יישלחו אליך יותר.",
       "updates": "עדכוני מוצר וחדשות לא יישלחו אליך יותר.",
       "promotions": "מבצעים והטבות לא יישלחו אליך יותר.",

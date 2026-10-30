@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Du arbeitest für Kunden? Hefte eine Notiz wie „Für Acme, Backend-Entwickler“ an, um auf einen Blick zu sehen, für wen jedes Interview ist.",
-      "Eine gelöschte Notiz ist endgültig weg. Das Aktionsprotokoll hält fest, wer eine Notiz geschrieben, geändert oder gelöscht hat, aber nie ihren Text."
+      "Eine gelöschte Notiz ist endgültig weg. Das Aktionsprotokoll hält fest, wer eine Notiz geschrieben, geändert oder gelöscht hat, aber nie ihren Text.",
+      "Der Rest deines Teams erfährt von jeder neuen Notiz: in den Benachrichtigungen, in der täglichen Aktivitätsübersicht und, wenn Slack verbunden ist, in eurem Kanal."
     ]
   },
   "interviewDiscover": {

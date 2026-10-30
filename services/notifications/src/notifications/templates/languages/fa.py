@@ -107,6 +107,9 @@ TEXTS = {
             "invite_undelivered": "دعوت‌های تحویل‌نشده: {count} · «{title}»",
             "ats_not_invited": "متقاضیان {ats} که دعوت نشدند: {count}",
             "interview_ready": "مصاحبه آماده: «{title}»",
+            "note_added": "یادداشت‌های تازه تیم شما: {count} · «{title}»",
+            "note": "{author}: «{excerpt}»",
+            "note_by_former": "یک عضو پیشین: «{excerpt}»",
         },
         "button": "باز کردن prepza",
         "footer": (

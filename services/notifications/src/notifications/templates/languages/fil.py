@@ -124,6 +124,9 @@ TEXTS = {
             "invite_undelivered": "Mga imbitasyong hindi naihatid: {count} · “{title}”",
             "ats_not_invited": "Mga aplikante mula sa {ats} na hindi na-imbitahan: {count}",
             "interview_ready": "Handa na ang interview: “{title}”",
+            "note_added": "Mga bagong note ng team mo: {count} · “{title}”",
+            "note": "{author}: “{excerpt}”",
+            "note_by_former": "Isang dating miyembro: “{excerpt}”",
         },
         "button": "Buksan ang prepza",
         "footer": (

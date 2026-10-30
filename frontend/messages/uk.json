@@ -28,7 +28,8 @@
         "candidate_finished": "Кандидати, які завершили співбесіду",
         "invite_undelivered": "Недоставлені запрошення",
         "ats_not_invited": "Незапрошені кандидати з ATS",
-        "interview_ready": "Готові співбесіди"
+        "interview_ready": "Готові співбесіди",
+        "note_added": "Нові нотатки вашої команди"
       },
       "reminders": "Нагадування",
       "remindersNote": "Мало кредитів, співбесіди без кандидатів, теми, що чекають на перевірку.",
@@ -1711,6 +1712,7 @@
     "title": "Сповіщення",
     "unread": "{count, plural, one {# непрочитане сповіщення} few {# непрочитані сповіщення} many {# непрочитаних сповіщень} other {# непрочитаного сповіщення}}",
     "empty": "Поки нічого нового.",
+    "formerAuthor": "колишнього учасника",
     "kinds": {
       "question_flagged": "{count, plural, =1 {Питання з теми «<bdi>{topic}</bdi>» {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}} позначено для перевірки.} one {# питання {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}} позначено для перевірки.} few {# питання {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}} позначено для перевірки.} many {# питань {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}} позначено для перевірки.} other {# питання {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}} позначено для перевірки.}}",
       "question_fixed": "{count, plural, =1 {ШІ виправив позначене питання з теми «<bdi>{topic}</bdi>» {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}}.} one {ШІ виправив # позначене питання {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}}.} few {ШІ виправив # позначені питання {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}}.} many {ШІ виправив # позначених питань {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}}.} other {ШІ виправив # позначеного питання {title, select, none {у співбесіді} other {у «<bdi>{title}</bdi>»}}.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {Кандидат <bdi>{email}</bdi> завершив {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}}{grade, select, none {.} other {: {grade}.}}} one {# кандидат завершив {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}}.} few {# кандидати завершили {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}}.} many {# кандидатів завершили {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}}.} other {# кандидата завершили {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}}.}}",
       "invite_undelivered": "{count, plural, =1 {Запрошення для <bdi>{email}</bdi> на {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}} не доставлено.} one {# запрошення на {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}} не доставлено.} few {# запрошення на {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}} не доставлено.} many {# запрошень на {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}} не доставлено.} other {# запрошення на {title, select, none {співбесіду} other {«<bdi>{title}</bdi>»}} не доставлено.}}",
       "interview_ready": "{title, select, none {Співбесіда готова.} other {Співбесіда «<bdi>{title}</bdi>» готова.}}",
+      "note_added": "{count, plural, =1 {Нова нотатка до {title, select, none {співбесіди} other {співбесіди «<bdi>{title}</bdi>»}} від <bdi>{authors}</bdi>.} one {# нова нотатка до {title, select, none {співбесіди} other {співбесіди «<bdi>{title}</bdi>»}}, останні від <bdi>{authors}</bdi>.} few {# нові нотатки до {title, select, none {співбесіди} other {співбесіди «<bdi>{title}</bdi>»}}, останні від <bdi>{authors}</bdi>.} many {# нових нотаток до {title, select, none {співбесіди} other {співбесіди «<bdi>{title}</bdi>»}}, останні від <bdi>{authors}</bdi>.} other {# нової нотатки до {title, select, none {співбесіди} other {співбесіди «<bdi>{title}</bdi>»}}, останні від <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Співбесіду} other {Співбесіду «<bdi>{title}</bdi>»}} скасовано: теми надто довго чекали на перевірку.",
       "verification_approved": "Компанію «<bdi>{name}</bdi>» підтверджено для <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {Підтвердження компанії «<bdi>{name}</bdi>» відхилено.} other {Підтвердження компанії «<bdi>{name}</bdi>» відхилено: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "Кандидата з вашої ATS не запрошено",
       "invite_undelivered": "Лист із запрошенням не доставлено",
       "interview_ready": "Співбесіда готова",
+      "note_added": "Учасник команди написав нотатку, з її текстом",
       "auto_top_up_charged": "Списано оплату за автопоповнення",
       "auto_top_up_failed": "Автопоповнення не вдалося"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "У зведенні активності більше не буде недоставлених запрошень.",
       "ats_not_invited": "У зведенні активності більше не буде незапрошених кандидатів з ATS.",
       "interview_ready": "У зведенні активності більше не буде готових співбесід.",
+      "note_added": "У зведенні активності більше не буде нових нотаток вашої команди.",
       "reminders": "Ви більше не отримуватимете нагадувань.",
       "updates": "Ви більше не отримуватимете новин продукту.",
       "promotions": "Ви більше не отримуватимете пропозицій та акцій.",

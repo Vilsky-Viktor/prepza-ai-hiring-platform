@@ -132,7 +132,8 @@
     ],
     "tips": [
       "¿Trabajas para clientes? Fija un comentario como «Para Acme, desarrollador backend» para ver de un vistazo para quién es cada entrevista.",
-      "Un comentario eliminado desaparece para siempre. El registro de acciones guarda quién escribió, cambió o eliminó un comentario, nunca su texto."
+      "Un comentario eliminado desaparece para siempre. El registro de acciones guarda quién escribió, cambió o eliminó un comentario, nunca su texto.",
+      "El resto de tu equipo se entera de cada comentario nuevo: en las notificaciones, en el resumen de actividad diario y, si conectaste Slack, en tu canal."
     ]
   },
   "interviewDiscover": {

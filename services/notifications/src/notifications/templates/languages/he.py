@@ -101,6 +101,9 @@ TEXTS = {
             "invite_undelivered": 'הזמנות שלא נמסרו: {count} · "{title}"',
             "ats_not_invited": "מועמדים מ-{ats} שלא הוזמנו: {count}",
             "interview_ready": 'ראיון מוכן: "{title}"',
+            "note_added": 'הערות חדשות מהצוות שלך: {count} · "{title}"',
+            "note": '{author}: "{excerpt}"',
+            "note_by_former": 'חבר/ה לשעבר: "{excerpt}"',
         },
         "button": "פתיחת prepza",
         "footer": (

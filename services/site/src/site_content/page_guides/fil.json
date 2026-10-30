@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Nagtatrabaho para sa mga kliyente? Mag-pin ng note gaya ng “Para sa Acme, Backend Developer” para makita agad kung para kanino ang bawat interview.",
-      "Tuluyan nang nawawala ang na-delete na note. Itinatala ng log ng aksyon kung sino ang sumulat, nagbago o nag-delete ng note, pero hindi kailanman ang text nito."
+      "Tuluyan nang nawawala ang na-delete na note. Itinatala ng log ng aksyon kung sino ang sumulat, nagbago o nag-delete ng note, pero hindi kailanman ang text nito.",
+      "Malalaman ng iba sa team mo ang bawat bagong note: sa mga notification, sa araw-araw na buod ng aktibidad at, kung naka-connect ang Slack, sa channel mo."
     ]
   },
   "interviewDiscover": {

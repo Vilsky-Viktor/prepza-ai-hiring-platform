@@ -1,18 +1,19 @@
 import type { Page } from "@playwright/test"
 
 // The email settings' boxes, in their order (Settings > Emails, and an account found on the
-// admin zone's emails tab): the digest, its four kinds (candidates who finished, undelivered
-// invites, ATS candidates not invited, interviews ready), then reminders, product updates and
-// offers.
+// admin zone's emails tab): the digest, its five kinds (candidates who finished, undelivered
+// invites, ATS candidates not invited, interviews ready, the team's new notes), then reminders,
+// product updates and offers.
 export const EMAIL_BOXES = {
   digest: 0,
-  kinds: [1, 2, 3, 4],
+  kinds: [1, 2, 3, 4, 5],
   undelivered: 2,
   ready: 4,
-  reminders: 5,
-  updates: 6,
-  offers: 7,
-  count: 8,
+  notes: 5,
+  reminders: 6,
+  updates: 7,
+  offers: 8,
+  count: 9,
 }
 
 /** The email settings' boxes on the page. */

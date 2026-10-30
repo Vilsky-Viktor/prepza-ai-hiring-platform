@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Trabalha para clientes? Fixe uma anotação como “Para Acme, desenvolvedor backend” para ver de relance para quem é cada entrevista.",
-      "Uma anotação excluída some para sempre. O registro de ações guarda quem escreveu, alterou ou excluiu uma anotação, nunca o texto dela."
+      "Uma anotação excluída some para sempre. O registro de ações guarda quem escreveu, alterou ou excluiu uma anotação, nunca o texto dela.",
+      "O restante da equipe fica sabendo de cada anotação nova: nas notificações, no resumo diário de atividades e, com o Slack conectado, no seu canal."
     ]
   },
   "interviewDiscover": {

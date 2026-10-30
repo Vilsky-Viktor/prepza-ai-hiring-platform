@@ -5,7 +5,7 @@ import { shot } from "../helpers/screenshots"
 import { ownerEmail } from "../helpers/users"
 
 // Settings > Emails: one block per kind of email, each saved as it changes. The digest's own
-// box turns its four kinds on or off at once, and shows a dash when only some are on.
+// box turns its five kinds on or off at once, and shows a dash when only some are on.
 test("a user chooses their emails in settings", async ({ signInAs }) => {
   const user = await signInAs(ownerEmail())
   await visit(user, "/settings")
@@ -35,7 +35,13 @@ test("a user chooses their emails in settings", async ({ signInAs }) => {
   await expect(digest).toHaveAttribute("data-indeterminate", "")
   await shot(user, "some-kinds")
 
-  // The digest's box turns all four on, then all off.
+  // The team's notes have their own kind, saved like the others.
+  await boxes.nth(EMAIL_BOXES.notes).click()
+  await expect(boxes.nth(EMAIL_BOXES.notes)).not.toBeChecked()
+  await user.reload()
+  await expect(boxes.nth(EMAIL_BOXES.notes)).not.toBeChecked()
+
+  // The digest's box turns all five on, then all off.
   await digest.click()
 
   for (const kind of EMAIL_BOXES.kinds) {

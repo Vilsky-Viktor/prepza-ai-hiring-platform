@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Bekerja untuk klien? Sematkan catatan seperti “Untuk Acme, Backend Developer” agar langsung terlihat untuk siapa setiap wawancara.",
-      "Catatan yang dihapus hilang selamanya. Log tindakan mencatat siapa yang menulis, mengubah, atau menghapus catatan, tetapi tidak pernah isinya."
+      "Catatan yang dihapus hilang selamanya. Log tindakan mencatat siapa yang menulis, mengubah, atau menghapus catatan, tetapi tidak pernah isinya.",
+      "Anggota tim lainnya tahu setiap ada catatan baru: di notifikasi, di ringkasan aktivitas harian, dan, jika Slack terhubung, di channel-mu."
     ]
   },
   "interviewDiscover": {

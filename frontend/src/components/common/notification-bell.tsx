@@ -46,8 +46,10 @@ function prices(
  * values become "none", which the messages' selects read as "leave it out". */
 function useNotificationText() {
   const t = useTranslations("notifications.kinds")
+  const notifications = useTranslations("notifications")
   const common = useTranslations("common")
   const locale = useLocale()
+  const format = useFormatter()
 
   return (item: AppNotification) => {
     const data = item.data as Record<string, string | number | undefined>
@@ -78,6 +80,14 @@ function useNotificationText() {
       date: typeof data.date === "string" ? formatDay(data.date, locale) : "",
       // An automatic top-up's price and its new one, in their currency.
       ...prices(data, locale),
+      // The latest notes' authors, as the language lists them; a former member unnamed.
+      authors: format.list(
+        (Array.isArray(item.data.authors) ? item.data.authors : []).map(
+          (name: unknown) =>
+            typeof name === "string" ? name : notifications("formerAuthor")
+        ),
+        { type: "conjunction" }
+      ),
     }
 
     return hasMessage(t, item.kind)

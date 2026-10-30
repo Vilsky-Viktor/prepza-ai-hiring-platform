@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Werk je voor klanten? Zet een notitie vast zoals “Voor Acme, backend developer” om in één oogopslag te zien voor wie elk interview is.",
-      "Een verwijderde notitie is voorgoed weg. Het actielog legt vast wie een notitie schreef, wijzigde of verwijderde, nooit de tekst ervan."
+      "Een verwijderde notitie is voorgoed weg. Het actielog legt vast wie een notitie schreef, wijzigde of verwijderde, nooit de tekst ervan.",
+      "De rest van je team hoort van elke nieuwe notitie: in de meldingen, in het dagelijkse activiteitenoverzicht en, als Slack gekoppeld is, in jullie kanaal."
     ]
   },
   "interviewDiscover": {

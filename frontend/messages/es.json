@@ -28,7 +28,8 @@
         "candidate_finished": "Candidatos que terminaron",
         "invite_undelivered": "Invitaciones no entregadas",
         "ats_not_invited": "Candidatos del ATS no invitados",
-        "interview_ready": "Entrevistas listas"
+        "interview_ready": "Entrevistas listas",
+        "note_added": "Los nuevos comentarios de tu equipo"
       },
       "reminders": "Recordatorios",
       "remindersNote": "Pocos créditos, entrevistas sin candidatos, temas pendientes de revisión.",
@@ -1711,6 +1712,7 @@
     "title": "Notificaciones",
     "unread": "{count, plural, one {# notificación sin leer} other {# notificaciones sin leer}}",
     "empty": "Nada nuevo por ahora.",
+    "formerAuthor": "un exmiembro",
     "kinds": {
       "question_flagged": "{count, plural, one {Se marcó para revisión una pregunta sobre «<bdi>{topic}</bdi>» de {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}.} other {# preguntas de {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}} se marcaron para revisión.}}",
       "question_fixed": "{count, plural, one {La IA corrigió una pregunta marcada sobre «<bdi>{topic}</bdi>» de {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}.} other {La IA corrigió # preguntas marcadas de {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> terminó {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}{grade, select, none {.} other {: {grade}.}}} other {# candidatos terminaron {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}.}}",
       "invite_undelivered": "{count, plural, one {No se pudo entregar la invitación a <bdi>{email}</bdi> para {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}.} other {No se pudieron entregar # invitaciones para {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}.}}",
       "interview_ready": "{title, select, none {Una entrevista está lista.} other {La entrevista «<bdi>{title}</bdi>» está lista.}}",
+      "note_added": "{count, plural, =1 {Nuevo comentario en {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}} de <bdi>{authors}</bdi>.} other {# comentarios nuevos en {title, select, none {una entrevista} other {«<bdi>{title}</bdi>»}}, los últimos de <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Se canceló una entrevista} other {Se canceló la entrevista «<bdi>{title}</bdi>»}}: la revisión de sus temas esperó demasiado.",
       "verification_approved": "«<bdi>{name}</bdi>» está verificada para <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {Se ha rechazado la verificación de «<bdi>{name}</bdi>».} other {Se ha rechazado la verificación de «<bdi>{name}</bdi>»: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "Un candidato de tu ATS no fue invitado",
       "invite_undelivered": "No se entregó un correo de invitación",
       "interview_ready": "Una entrevista está lista",
+      "note_added": "Un miembro del equipo escribió un comentario, con su texto",
       "auto_top_up_charged": "Se cobró una recarga automática",
       "auto_top_up_failed": "Falló una recarga automática"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "El resumen de actividad ya no incluirá las invitaciones no entregadas.",
       "ats_not_invited": "El resumen de actividad ya no incluirá los candidatos del ATS no invitados.",
       "interview_ready": "El resumen de actividad ya no incluirá las entrevistas listas.",
+      "note_added": "El resumen de actividad ya no incluirá los nuevos comentarios de tu equipo.",
       "reminders": "Ya no recibirás recordatorios.",
       "updates": "Ya no recibirás novedades del producto.",
       "promotions": "Ya no recibirás ofertas ni promociones.",

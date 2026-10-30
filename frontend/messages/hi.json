@@ -28,7 +28,8 @@
         "candidate_finished": "इंटरव्यू पूरा करने वाले उम्मीदवार",
         "invite_undelivered": "डिलीवर न हुए इनवाइट",
         "ats_not_invited": "ATS के उम्मीदवार जिन्हें इनवाइट नहीं भेजा गया",
-        "interview_ready": "तैयार इंटरव्यू"
+        "interview_ready": "तैयार इंटरव्यू",
+        "note_added": "आपकी टीम के नए नोट"
       },
       "reminders": "रिमाइंडर",
       "remindersNote": "कम क्रेडिट, बिना उम्मीदवारों वाले इंटरव्यू, समीक्षा का इंतज़ार कर रहे विषय।",
@@ -1711,6 +1712,7 @@
     "title": "सूचनाएँ",
     "unread": "{count, plural, one {# अपठित सूचना} other {# अपठित सूचनाएँ}}",
     "empty": "अभी कुछ नया नहीं है।",
+    "formerAuthor": "एक पूर्व सदस्य",
     "kinds": {
       "question_flagged": "{count, plural, =1 {{title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} में “<bdi>{topic}</bdi>” विषय का एक सवाल जाँच के लिए फ़्लैग किया गया।} other {{title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} में # सवाल जाँच के लिए फ़्लैग किए गए।}}",
       "question_fixed": "{count, plural, =1 {AI ने {title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} में “<bdi>{topic}</bdi>” विषय का फ़्लैग किया गया सवाल ठीक कर दिया।} other {AI ने {title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} में फ़्लैग किए गए # सवाल ठीक कर दिए।}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> ने {title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} पूरा किया{grade, select, none {।} other {: {grade}।}}} other {# उम्मीदवारों ने {title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} पूरा किया।}}",
       "invite_undelivered": "{count, plural, =1 {{title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} के लिए <bdi>{email}</bdi> को भेजा गया इनवाइट डिलीवर नहीं हुआ।} other {{title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} के लिए भेजे गए # इनवाइट डिलीवर नहीं हुए।}}",
       "interview_ready": "{title, select, none {एक इंटरव्यू तैयार है।} other {इंटरव्यू “<bdi>{title}</bdi>” तैयार है।}}",
+      "note_added": "{count, plural, =1 {{title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} पर <bdi>{authors}</bdi> का नया नोट।} other {{title, select, none {एक इंटरव्यू} other {“<bdi>{title}</bdi>”}} पर # नए नोट, सबसे नए <bdi>{authors}</bdi> के।}}",
       "interview_cancelled": "{title, select, none {एक इंटरव्यू} other {इंटरव्यू “<bdi>{title}</bdi>”}} रद्द हो गया: उसके विषयों की समीक्षा बहुत देर तक रुकी रही।",
       "verification_approved": "“<bdi>{name}</bdi>” <bdi>{domain}</bdi> के लिए सत्यापित है।",
       "verification_declined": "{reason, select, none {“<bdi>{name}</bdi>” का सत्यापन अस्वीकार किया गया।} other {“<bdi>{name}</bdi>” का सत्यापन अस्वीकार किया गया: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "आपके ATS से आए किसी उम्मीदवार को इनवाइट नहीं भेजा गया",
       "invite_undelivered": "इनवाइट ईमेल डिलीवर नहीं हुआ",
       "interview_ready": "इंटरव्यू तैयार है",
+      "note_added": "टीम के किसी सदस्य ने नोट लिखा, उसके टेक्स्ट के साथ",
       "auto_top_up_charged": "ऑटो टॉप अप का भुगतान लिया गया",
       "auto_top_up_failed": "ऑटो टॉप अप नहीं हो सका"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "गतिविधि सारांश में अब डिलीवर न हुए इनवाइट शामिल नहीं होंगे।",
       "ats_not_invited": "गतिविधि सारांश में अब ATS के वे उम्मीदवार शामिल नहीं होंगे जिन्हें इनवाइट नहीं भेजा गया।",
       "interview_ready": "गतिविधि सारांश में अब तैयार इंटरव्यू शामिल नहीं होंगे।",
+      "note_added": "गतिविधि सारांश में अब आपकी टीम के नए नोट शामिल नहीं होंगे।",
       "reminders": "अब आपको रिमाइंडर नहीं मिलेंगे।",
       "updates": "अब आपको प्रोडक्ट अपडेट और खबरें नहीं मिलेंगी।",
       "promotions": "अब आपको ऑफ़र और प्रमोशन नहीं मिलेंगे।",

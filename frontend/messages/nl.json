@@ -28,7 +28,8 @@
         "candidate_finished": "Kandidaten die klaar zijn",
         "invite_undelivered": "Niet-bezorgde uitnodigingen",
         "ats_not_invited": "Niet-uitgenodigde kandidaten uit het ATS",
-        "interview_ready": "Interviews die klaar zijn"
+        "interview_ready": "Interviews die klaar zijn",
+        "note_added": "Nieuwe notities van je team"
       },
       "reminders": "Herinneringen",
       "remindersNote": "Weinig credits, interviews zonder kandidaten, onderwerpen die op beoordeling wachten.",
@@ -1711,6 +1712,7 @@
     "title": "Meldingen",
     "unread": "{count, plural, one {# ongelezen melding} other {# ongelezen meldingen}}",
     "empty": "Nog niets nieuws.",
+    "formerAuthor": "een voormalig lid",
     "kinds": {
       "question_flagged": "{count, plural, one {Een vraag over “<bdi>{topic}</bdi>” in {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} is gemarkeerd voor controle.} other {# vragen in {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} zijn gemarkeerd voor controle.}}",
       "question_fixed": "{count, plural, one {De AI heeft een gemarkeerde vraag over “<bdi>{topic}</bdi>” in {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} verbeterd.} other {De AI heeft # gemarkeerde vragen in {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} verbeterd.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> heeft {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} afgerond{grade, select, none {.} other {: {grade}.}}} other {# kandidaten hebben {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} afgerond.}}",
       "invite_undelivered": "{count, plural, one {De uitnodiging voor {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} aan <bdi>{email}</bdi> is niet bezorgd.} other {# uitnodigingen voor {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} zijn niet bezorgd.}}",
       "interview_ready": "{title, select, none {Een interview is klaar.} other {Het interview “<bdi>{title}</bdi>” is klaar.}}",
+      "note_added": "{count, plural, =1 {Nieuwe notitie bij {title, select, none {een interview} other {“<bdi>{title}</bdi>”}} van <bdi>{authors}</bdi>.} other {# nieuwe notities bij {title, select, none {een interview} other {“<bdi>{title}</bdi>”}}, de laatste van <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Een interview} other {Het interview “<bdi>{title}</bdi>”}} is geannuleerd: de controle van de onderwerpen bleef te lang liggen.",
       "verification_approved": "“<bdi>{name}</bdi>” is geverifieerd voor <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {De verificatie van “<bdi>{name}</bdi>” is afgewezen.} other {De verificatie van “<bdi>{name}</bdi>” is afgewezen: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "Een kandidaat uit je ATS is niet uitgenodigd",
       "invite_undelivered": "Een uitnodigingsmail is niet bezorgd",
       "interview_ready": "Een interview is klaar",
+      "note_added": "Een teamlid schreef een notitie, met de tekst ervan",
       "auto_top_up_charged": "Een automatische opwaardering is afgeschreven",
       "auto_top_up_failed": "Een automatische opwaardering is mislukt"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "Het activiteitenoverzicht bevat niet langer niet-bezorgde uitnodigingen.",
       "ats_not_invited": "Het activiteitenoverzicht bevat niet langer niet-uitgenodigde kandidaten uit het ATS.",
       "interview_ready": "Het activiteitenoverzicht bevat niet langer interviews die klaar zijn.",
+      "note_added": "Het activiteitenoverzicht bevat niet langer nieuwe notities van je team.",
       "reminders": "Je krijgt geen herinneringen meer.",
       "updates": "Je krijgt geen productupdates en nieuws meer.",
       "promotions": "Je krijgt geen aanbiedingen en acties meer.",

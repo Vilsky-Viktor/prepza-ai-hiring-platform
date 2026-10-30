@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Working for clients? Pin a note like “For Acme, Backend Developer” to see at a glance whom each interview is for.",
-      "A deleted note is gone for good. The action log records who wrote, changed or deleted a note, never its text."
+      "A deleted note is gone for good. The action log records who wrote, changed or deleted a note, never its text.",
+      "The rest of your team hears of each new note: in the bell, in the daily activity digest and, with Slack connected, in your channel."
     ]
   },
   "interviewDiscover": {

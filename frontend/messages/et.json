@@ -28,7 +28,8 @@
         "candidate_finished": "Lõpetanud kandidaadid",
         "invite_undelivered": "Kohale jõudmata kutsed",
         "ats_not_invited": "Kutsumata ATS-i kandidaadid",
-        "interview_ready": "Valmis intervjuud"
+        "interview_ready": "Valmis intervjuud",
+        "note_added": "Sinu meeskonna uued märkmed"
       },
       "reminders": "Meeldetuletused",
       "remindersNote": "Vähe krediiti, kandidaatideta intervjuud, ülevaatust ootavad teemad.",
@@ -1711,6 +1712,7 @@
     "title": "Teavitused",
     "unread": "{count, plural, one {# lugemata teavitus} other {# lugemata teavitust}}",
     "empty": "Veel pole midagi uut.",
+    "formerAuthor": "endine liige",
     "kinds": {
       "question_flagged": "{count, plural, one {{title, select, none {Intervjuus on teema „<bdi>{topic}</bdi>“ küsimus märgitud ülevaatamiseks.} other {„<bdi>{title}</bdi>“: teema „<bdi>{topic}</bdi>“ küsimus märgiti ülevaatamiseks.}}} other {{title, select, none {Intervjuus on} other {„<bdi>{title}</bdi>“:}} # küsimust {title, select, none {märgitud} other {märgiti}} ülevaatamiseks.}}",
       "question_fixed": "{count, plural, one {{title, select, none {Intervjuus parandas tehisaru teema „<bdi>{topic}</bdi>“ märgitud küsimuse.} other {„<bdi>{title}</bdi>“: tehisaru parandas teema „<bdi>{topic}</bdi>“ märgitud küsimuse.}}} other {{title, select, none {Intervjuus parandas tehisaru} other {„<bdi>{title}</bdi>“: tehisaru parandas}} # märgitud küsimust.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi> lõpetas intervjuu{title, select, none {} other { „<bdi>{title}</bdi>“}}{grade, select, none {.} other {: {grade}.}}} other {# kandidaati lõpetasid intervjuu{title, select, none {} other { „<bdi>{title}</bdi>“}}.}}",
       "invite_undelivered": "{count, plural, one {Kutset intervjuule{title, select, none {} other { „<bdi>{title}</bdi>“}} aadressile <bdi>{email}</bdi> ei õnnestunud kohale toimetada.} other {# kutset intervjuule{title, select, none {} other { „<bdi>{title}</bdi>“}} ei õnnestunud kohale toimetada.}}",
       "interview_ready": "{title, select, none {Intervjuu on valmis.} other {Intervjuu „<bdi>{title}</bdi>“ on valmis.}}",
+      "note_added": "{count, plural, =1 {Uus märge {title, select, none {intervjuule} other {intervjuule „<bdi>{title}</bdi>“}}, kirjutas <bdi>{authors}</bdi>.} other {# uut märget {title, select, none {intervjuule} other {intervjuule „<bdi>{title}</bdi>“}}, viimased kirjutasid <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Intervjuu} other {Intervjuu „<bdi>{title}</bdi>“}} tühistati: teemade ülevaatus ootas liiga kaua.",
       "verification_approved": "„<bdi>{name}</bdi>“ on kinnitatud domeeniga <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {Ettevõtte „<bdi>{name}</bdi>“ kinnitamine lükati tagasi.} other {Ettevõtte „<bdi>{name}</bdi>“ kinnitamine lükati tagasi: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "Kandidaati sinu ATS-süsteemist ei kutsutud",
       "invite_undelivered": "Kutse e-kiri ei jõudnud kohale",
       "interview_ready": "Intervjuu on valmis",
+      "note_added": "Meeskonnaliige kirjutas märkme, koos selle tekstiga",
       "auto_top_up_charged": "Automaatse juurdelaadimise makse võeti kaardilt",
       "auto_top_up_failed": "Automaatne juurdelaadimine ebaõnnestus"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "Tegevuste kokkuvõttes ei ole enam kohale jõudmata kutseid.",
       "ats_not_invited": "Tegevuste kokkuvõttes ei ole enam kutsumata ATS-i kandidaate.",
       "interview_ready": "Tegevuste kokkuvõttes ei ole enam valmis intervjuusid.",
+      "note_added": "Tegevuste kokkuvõttes ei ole enam sinu meeskonna uusi märkmeid.",
       "reminders": "Sa ei saa enam meeldetuletusi.",
       "updates": "Sa ei saa enam tooteuudiseid.",
       "promotions": "Sa ei saa enam pakkumisi ja kampaaniaid.",

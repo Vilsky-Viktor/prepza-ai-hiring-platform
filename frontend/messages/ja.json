@@ -28,7 +28,8 @@
         "candidate_finished": "面接を完了した候補者",
         "invite_undelivered": "届かなかった招待",
         "ats_not_invited": "招待されなかった ATS の候補者",
-        "interview_ready": "準備ができた面接"
+        "interview_ready": "準備ができた面接",
+        "note_added": "チームの新しいメモ"
       },
       "reminders": "リマインダー",
       "remindersNote": "クレジット残高の不足、候補者がいない面接、審査待ちのトピック。",
@@ -1711,6 +1712,7 @@
     "title": "お知らせ",
     "unread": "{count, plural, other {未読のお知らせ # 件}}",
     "empty": "新しいお知らせはまだありません。",
+    "formerAuthor": "元メンバー",
     "kinds": {
       "question_flagged": "{count, plural, =1 {{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の「<bdi>{topic}</bdi>」に関する問題がレビュー対象として報告されました。} other {{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の問題 # 件がレビュー対象として報告されました。}}",
       "question_fixed": "{count, plural, =1 {AI が{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の「<bdi>{topic}</bdi>」に関する報告された問題を修正しました。} other {AI が{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の報告された問題 # 件を修正しました。}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> さんが{title, select, none {面接} other {「<bdi>{title}</bdi>」}}を完了しました{grade, select, none {。} other {（{grade}）。}}} other {# 人の候補者が{title, select, none {面接} other {「<bdi>{title}</bdi>」}}を完了しました。}}",
       "invite_undelivered": "{count, plural, =1 {<bdi>{email}</bdi> さんへの{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の招待を届けられませんでした。} other {{title, select, none {面接} other {「<bdi>{title}</bdi>」}}の招待 # 件を届けられませんでした。}}",
       "interview_ready": "{title, select, none {面接の準備ができました。} other {面接「<bdi>{title}</bdi>」の準備ができました。}}",
+      "note_added": "{count, plural, =1 {{title, select, none {面接} other {「<bdi>{title}</bdi>」}}に <bdi>{authors}</bdi> さんの新しいメモがあります。} other {{title, select, none {面接} other {「<bdi>{title}</bdi>」}}に新しいメモが # 件あります（最新は <bdi>{authors}</bdi> さん）。}}",
       "interview_cancelled": "{title, select, none {面接} other {面接「<bdi>{title}</bdi>」}}はキャンセルされました：トピックの確認待ちが長すぎました。",
       "verification_approved": "「<bdi>{name}</bdi>」は <bdi>{domain}</bdi> で認証されました。",
       "verification_declined": "{reason, select, none {「<bdi>{name}</bdi>」の認証は却下されました。} other {「<bdi>{name}</bdi>」の認証は却下されました：<bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "ATS から来た候補者が招待されなかった",
       "invite_undelivered": "招待メールが届かなかった",
       "interview_ready": "面接の準備ができた",
+      "note_added": "チームのメンバーがメモを書いた（本文付き）",
       "auto_top_up_charged": "自動チャージで請求された",
       "auto_top_up_failed": "自動チャージに失敗した"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "今後、アクティビティのまとめに届かなかった招待は含まれません。",
       "ats_not_invited": "今後、アクティビティのまとめに招待されなかった ATS の候補者は含まれません。",
       "interview_ready": "今後、アクティビティのまとめに準備ができた面接は含まれません。",
+      "note_added": "今後、アクティビティのまとめにチームの新しいメモは含まれません。",
       "reminders": "今後、リマインダーは届きません。",
       "updates": "今後、製品の最新情報とニュースは届きません。",
       "promotions": "今後、キャンペーンとお得な情報は届きません。",

@@ -114,6 +114,9 @@ TEXTS = {
             "invite_undelivered": "Kohale jõudmata kutsed: {count} · „{title}“",
             "ats_not_invited": "Kutsumata kandidaadid süsteemist {ats}: {count}",
             "interview_ready": "Valmis intervjuu: „{title}“",
+            "note_added": "Sinu meeskonna uued märkmed: {count} · „{title}“",
+            "note": "{author}: „{excerpt}“",
+            "note_by_former": "Endine liige: „{excerpt}“",
         },
         "button": "Ava prepza",
         "footer": (

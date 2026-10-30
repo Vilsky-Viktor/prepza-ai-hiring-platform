@@ -8,6 +8,7 @@ from types import SimpleNamespace
 import pytest
 
 from notifications.constants.notes import GROUP_NOTES_KEPT, SLACK_TEXT_CHARS
+from notifications.helpers.member_emails import digest_email
 from notifications.helpers.member_selection import digest_sections
 from notifications.helpers.notes import (
     authors_of,
@@ -147,3 +148,18 @@ def test_the_digest_groups_others_notes_per_interview_with_the_latest_two():
 def test_no_notes_in_the_digest_with_its_setting_off_or_only_ones_own():
     assert digest_sections("ann", {"note_added": False}, COMPANIES, [], SITE, NOTES) == []
     assert digest_sections("ann", ON, COMPANIES, [], SITE, NOTES[2:3]) == []
+
+
+@pytest.mark.parametrize("language", ["en", "ja", "ar"])
+def test_the_digest_email_shows_each_interviews_notes_with_their_links(language):
+    sections = digest_sections("ann", ON, COMPANIES, [], SITE, NOTES)
+    recipient = {"user_id": "ann", "email": "ann@example.com", "language": language}
+    email = digest_email(recipient, sections, SITE, "secret")
+    link = f"{SITE}/companies/c1/interviews/i1?tab=notes"
+
+    assert "Acme" in email.text
+    assert all(text in email.text for text in ("Bob", "Oldest", "From someone gone", "Hire her"))
+    # The count and the interview's title, and every line links to its interview's notes.
+    assert "2" in email.text and "AI Engineer" in email.text
+    assert link in email.text and f'href="{link}"' in email.html
+    assert "Mine" not in email.text

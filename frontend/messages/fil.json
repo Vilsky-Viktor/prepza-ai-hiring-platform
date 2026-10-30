@@ -28,7 +28,8 @@
         "candidate_finished": "Mga aplikanteng nakatapos",
         "invite_undelivered": "Mga imbitasyong hindi naihatid",
         "ats_not_invited": "Mga aplikante mula sa ATS na hindi na-imbitahan",
-        "interview_ready": "Mga interview na handa na"
+        "interview_ready": "Mga interview na handa na",
+        "note_added": "Mga bagong note ng team mo"
       },
       "reminders": "Mga paalala",
       "remindersNote": "Kaunti na lang ang credit, mga interview na walang aplikante, mga topic na naghihintay ng review.",
@@ -1711,6 +1712,7 @@
     "title": "Mga notification",
     "unread": "{count, plural, one {# hindi pa nababasang notification} other {# hindi pa nababasang notification}}",
     "empty": "Wala pang bago.",
+    "formerAuthor": "isang dating miyembro",
     "kinds": {
       "question_flagged": "{count, plural, =1 {Na-flag para i-review ang isang tanong tungkol sa “<bdi>{topic}</bdi>” sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.} other {Na-flag para i-review ang # tanong sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.}}",
       "question_fixed": "{count, plural, =1 {Inayos ng AI ang na-flag na tanong tungkol sa “<bdi>{topic}</bdi>” sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.} other {Inayos ng AI ang # na-flag na tanong sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {Natapos ni <bdi>{email}</bdi> ang {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}{grade, select, none {.} other {: {grade}.}}} other {# aplikante ang nakatapos ng {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.}}",
       "invite_undelivered": "{count, plural, =1 {Hindi naihatid ang imbitasyon kay <bdi>{email}</bdi> para sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.} other {Hindi naihatid ang # imbitasyon para sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}.}}",
       "interview_ready": "{title, select, none {Handa na ang isang interview.} other {Handa na ang interview na “<bdi>{title}</bdi>”.}}",
+      "note_added": "{count, plural, =1 {Bagong note sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}} mula kay <bdi>{authors}</bdi>.} other {# bagong note sa {title, select, none {isang interview} other {“<bdi>{title}</bdi>”}}, ang pinakabago mula kay <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Kinansela ang isang interview} other {Kinansela ang interview na “<bdi>{title}</bdi>”}}: masyadong natagal ang paghihintay sa review ng mga topic.",
       "verification_approved": "Verified na ang “<bdi>{name}</bdi>” para sa <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {Tinanggihan ang verification ng “<bdi>{name}</bdi>”.} other {Tinanggihan ang verification ng “<bdi>{name}</bdi>”: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "May aplikante mula sa ATS mo na hindi na-imbitahan",
       "invite_undelivered": "May email ng imbitasyon na hindi naihatid",
       "interview_ready": "May interview na handa na",
+      "note_added": "May miyembro ng team na nagsulat ng note, kasama ang text nito",
       "auto_top_up_charged": "Na-charge ang isang awtomatikong top-up",
       "auto_top_up_failed": "Pumalya ang isang awtomatikong top-up"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "Hindi na isasama sa buod ng aktibidad ang mga imbitasyong hindi naihatid.",
       "ats_not_invited": "Hindi na isasama sa buod ng aktibidad ang mga aplikante mula sa ATS na hindi na-imbitahan.",
       "interview_ready": "Hindi na isasama sa buod ng aktibidad ang mga interview na handa na.",
+      "note_added": "Hindi na isasama sa buod ng aktibidad ang mga bagong note ng team mo.",
       "reminders": "Hindi ka na makakatanggap ng mga paalala.",
       "updates": "Hindi ka na makakatanggap ng mga update at balita tungkol sa produkto.",
       "promotions": "Hindi ka na makakatanggap ng mga alok at promo.",

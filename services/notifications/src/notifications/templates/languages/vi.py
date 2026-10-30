@@ -121,6 +121,9 @@ TEXTS = {
             "invite_undelivered": "Lời mời chưa được gửi đến: {count} · “{title}”",
             "ats_not_invited": "Ứng viên từ {ats} chưa được mời: {count}",
             "interview_ready": "Buổi phỏng vấn đã sẵn sàng: “{title}”",
+            "note_added": "Ghi chú mới của nhóm bạn: {count} · “{title}”",
+            "note": "{author}: “{excerpt}”",
+            "note_by_former": "Một cựu thành viên: “{excerpt}”",
         },
         "button": "Mở prepza",
         "footer": (

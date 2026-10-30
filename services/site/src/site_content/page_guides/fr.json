@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Vous travaillez pour des clients ? Épinglez un commentaire comme « Pour Acme, développeur backend » pour voir d'un coup d'œil pour qui est chaque entretien.",
-      "Un commentaire supprimé l'est définitivement. Le journal des actions enregistre qui a écrit, modifié ou supprimé un commentaire, jamais son texte."
+      "Un commentaire supprimé l'est définitivement. Le journal des actions enregistre qui a écrit, modifié ou supprimé un commentaire, jamais son texte.",
+      "Le reste de votre équipe est prévenu de chaque nouveau commentaire : dans les notifications, dans le récapitulatif d'activité quotidien et, si Slack est connecté, dans votre canal."
     ]
   },
   "interviewDiscover": {

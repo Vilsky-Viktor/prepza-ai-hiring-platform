@@ -15,6 +15,7 @@ const KINDS = [
   "invite_undelivered",
   "interview_ready",
   "ats_not_invited",
+  "note_added",
 ]
 const VALUES = {
   topic: "SQL",
@@ -22,6 +23,7 @@ const VALUES = {
   grade: "none",
   ats: "Greenhouse",
   reason: "credits",
+  authors: "Ann Lee",
 }
 
 describe("a notification about an interview without a title", () => {
@@ -56,6 +58,19 @@ describe("a notification about an interview without a title", () => {
           expect(untitled, `${kind} ${count}`).not.toMatch(/none|“”|«»|„“|「」/)
           expect(titled, `${kind} ${count}`).toContain("Backend")
         }
+      }
+    })
+
+    it(`names the latest notes' authors in ${locale}`, () => {
+      for (const count of [1, 3]) {
+        const text = t.markup("note_added", {
+          ...VALUES,
+          count,
+          title: "Backend",
+          ...bdiText,
+        })
+
+        expect(text, `${count}`).toContain("Ann Lee")
       }
     })
   }

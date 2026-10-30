@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Pracujesz dla klientów? Przypnij notatkę w rodzaju „Dla Acme, backend developer”, aby od razu widzieć, dla kogo jest każda rozmowa.",
-      "Usuniętej notatki nie da się przywrócić. Dziennik działań zapisuje, kto napisał, zmienił lub usunął notatkę, ale nigdy jej treści."
+      "Usuniętej notatki nie da się przywrócić. Dziennik działań zapisuje, kto napisał, zmienił lub usunął notatkę, ale nigdy jej treści.",
+      "Reszta zespołu dowiaduje się o każdej nowej notatce: w powiadomieniach, w codziennym podsumowaniu aktywności i, jeśli Slack jest połączony, na waszym kanale."
     ]
   },
   "interviewDiscover": {

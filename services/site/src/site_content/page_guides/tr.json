@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Müşteriler için mi çalışıyorsunuz? Her mülakatın kimin için olduğunu bir bakışta görmek için “Acme için, Backend Developer” gibi bir yorumu sabitleyin.",
-      "Silinen bir yorum kalıcı olarak gider. İşlem kaydı, bir yorumu kimin yazdığını, değiştirdiğini veya sildiğini kaydeder, metnini asla kaydetmez."
+      "Silinen bir yorum kalıcı olarak gider. İşlem kaydı, bir yorumu kimin yazdığını, değiştirdiğini veya sildiğini kaydeder, metnini asla kaydetmez.",
+      "Ekibinizin geri kalanı her yeni yorumdan haberdar olur: bildirimlerde, günlük etkinlik özetinde ve Slack bağlıysa kanalınızda."
     ]
   },
   "interviewDiscover": {

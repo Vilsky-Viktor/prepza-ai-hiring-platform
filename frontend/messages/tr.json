@@ -28,7 +28,8 @@
         "candidate_finished": "Mülakatı tamamlayan adaylar",
         "invite_undelivered": "İletilemeyen davetler",
         "ats_not_invited": "Davet edilmeyen ATS adayları",
-        "interview_ready": "Hazır mülakatlar"
+        "interview_ready": "Hazır mülakatlar",
+        "note_added": "Ekibinizin yeni yorumları"
       },
       "reminders": "Hatırlatmalar",
       "remindersNote": "Azalan kredi, adayı olmayan mülakatlar, inceleme bekleyen konular.",
@@ -1711,6 +1712,7 @@
     "title": "Bildirimler",
     "unread": "{count, plural, one {# okunmamış bildirim} other {# okunmamış bildirim}}",
     "empty": "Henüz yeni bir şey yok.",
+    "formerAuthor": "eski bir üye",
     "kinds": {
       "question_flagged": "{count, plural, one {{title, select, none {Bir mülakatta} other {“<bdi>{title}</bdi>” setinde}} “<bdi>{topic}</bdi>” konusundaki bir soru inceleme için işaretlendi.} other {{title, select, none {Bir mülakatta} other {“<bdi>{title}</bdi>” setinde}}ki # soru inceleme için işaretlendi.}}",
       "question_fixed": "{count, plural, one {Yapay zekâ {title, select, none {bir mülakatta} other {“<bdi>{title}</bdi>” setinde}} “<bdi>{topic}</bdi>” konusundaki işaretlenen bir soruyu düzeltti.} other {Yapay zekâ {title, select, none {bir mülakatta} other {“<bdi>{title}</bdi>” setinde}}ki işaretlenen # soruyu düzeltti.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, one {<bdi>{email}</bdi>, {title, select, none {bir mülakatı} other {“<bdi>{title}</bdi>” mülakatını}} tamamladı{grade, select, none {.} other {: {grade}.}}} other {# aday {title, select, none {bir mülakatı} other {“<bdi>{title}</bdi>” mülakatını}} tamamladı.}}",
       "invite_undelivered": "{count, plural, one {<bdi>{email}</bdi> adresine gönderilen {title, select, none {mülakat daveti} other {“<bdi>{title}</bdi>” daveti}} iletilemedi.} other {{title, select, none {Bir mülakat için} other {“<bdi>{title}</bdi>” için}} gönderilen # davet iletilemedi.}}",
       "interview_ready": "{title, select, none {Bir mülakat hazır.} other {“<bdi>{title}</bdi>” mülakatı hazır.}}",
+      "note_added": "{count, plural, =1 {<bdi>{authors}</bdi>, {title, select, none {bir mülakata} other {“<bdi>{title}</bdi>” mülakatına}} yeni bir yorum yazdı.} other {{title, select, none {bir mülakata} other {“<bdi>{title}</bdi>” mülakatına}} # yeni yorum var, en sonuncular <bdi>{authors}</bdi> tarafından.}}",
       "interview_cancelled": "{title, select, none {Bir mülakat} other {“<bdi>{title}</bdi>” mülakatı}} iptal edildi: konu incelemesi çok uzun süre bekledi.",
       "verification_approved": "“<bdi>{name}</bdi>”, <bdi>{domain}</bdi> için doğrulandı.",
       "verification_declined": "{reason, select, none {“<bdi>{name}</bdi>” doğrulaması reddedildi.} other {“<bdi>{name}</bdi>” doğrulaması reddedildi: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "ATS sisteminizden gelen bir aday davet edilmedi",
       "invite_undelivered": "Bir davet e-postası iletilemedi",
       "interview_ready": "Bir mülakat hazır",
+      "note_added": "Bir ekip üyesi yorum yazdı, metniyle birlikte",
       "auto_top_up_charged": "Otomatik yükleme ücreti tahsil edildi",
       "auto_top_up_failed": "Otomatik yükleme başarısız oldu"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "Etkinlik özeti artık iletilemeyen davetleri içermeyecek.",
       "ats_not_invited": "Etkinlik özeti artık davet edilmeyen ATS adaylarını içermeyecek.",
       "interview_ready": "Etkinlik özeti artık hazır mülakatları içermeyecek.",
+      "note_added": "Etkinlik özeti artık ekibinizin yeni yorumlarını içermeyecek.",
       "reminders": "Artık hatırlatma almayacaksınız.",
       "updates": "Artık ürün güncellemeleri ve haberler almayacaksınız.",
       "promotions": "Artık teklifler ve kampanyalar almayacaksınız.",

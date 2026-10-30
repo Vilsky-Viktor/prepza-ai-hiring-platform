@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Töötad klientidele? Kinnita üles märge nagu „Acme jaoks, backend-arendaja“, et näha kohe, kelle jaoks iga intervjuu on.",
-      "Kustutatud märge kaob jäädavalt. Toimingute logi salvestab, kes märkme kirjutas, muutis või kustutas, kuid mitte kunagi selle teksti."
+      "Kustutatud märge kaob jäädavalt. Toimingute logi salvestab, kes märkme kirjutas, muutis või kustutas, kuid mitte kunagi selle teksti.",
+      "Ülejäänud meeskond saab igast uuest märkmest teada: teavitustes, igapäevases tegevuste kokkuvõttes ja, kui Slack on ühendatud, teie kanalis."
     ]
   },
   "interviewDiscover": {

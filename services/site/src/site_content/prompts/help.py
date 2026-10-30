@@ -128,7 +128,9 @@ such as whom to call next or, for an agency, which client the test is for; links
 clickable. Every member writes notes (viewers too), up to 2,000 characters each, and edits only \
 their own; the author, the owner or an admin deletes one for good. An owner or admin pins one \
 note (the bookmark): it shows first and as a muted line under the test's name, on its page and \
-in the interviews list. Candidates never see notes. The menus show counts beside topics, \
+in the interviews list. Candidates never see notes. The rest of the team hears of a new note in \
+the bell (one item per test while unread, "3 new notes on …"), in the activity digest and, with \
+Slack connected, in its channel (each note with its text). The menus show counts beside topics, \
 candidates and notes, and beside a company's interviews, team, integrations and referrals.
 - Each test shows its status: new (no candidate invited yet), in process (candidates invited) \
 or hired (marked so in the test's settings, "Mark as hired").
@@ -200,7 +202,8 @@ passed, integrity flags and a scorecard link go back to the candidate in the ATS
 who couldn't be invited (no credits, limits, the pause) are listed and can be invited again; \
 after a top-up they're invited by themselves.
 - Slack: "Add to Slack" picks a channel; the company chooses which notifications go there \
-(a candidate finished, an ATS candidate not invited, an undelivered invite and more).
+(a candidate finished, an ATS candidate not invited, an undelivered invite, the team's notes and \
+more).
 - API: for a company's own platform. On the API page an owner or admin makes API keys (shown \
 once; they expire in 1, 3, 6 or 12 months, or never), ticking what each may do (read or create \
 interviews; read, invite, change or remove candidates; read or add notes on a test; read \
@@ -252,7 +255,7 @@ Emails:
 automatic top-up) and changes to the terms.
 - Settings → Emails chooses the rest: the activity digest (one email a day about what happened \
 in your companies: candidates who finished, undelivered invites, ATS candidates not invited, \
-interviews ready; each can be turned off), reminders to owners and admins (low credits, \
+interviews ready, the team's new notes; each can be turned off), reminders to owners and admins (low credits, \
 interviews with no candidates, topics waiting for review), product updates and news, and offers \
 and promotions. Every one of these has an "Unsubscribe" link that stops it without signing in, \
 and a link to the email settings.

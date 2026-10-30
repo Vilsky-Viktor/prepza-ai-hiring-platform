@@ -132,7 +132,8 @@
     ],
     "tips": [
       "Bạn làm việc cho khách hàng? Ghim một ghi chú như “Cho Acme, Backend Developer” để biết ngay mỗi buổi phỏng vấn dành cho ai.",
-      "Ghi chú đã xóa sẽ mất vĩnh viễn. Nhật ký thao tác ghi lại ai đã viết, sửa hoặc xóa ghi chú, nhưng không bao giờ lưu nội dung của nó."
+      "Ghi chú đã xóa sẽ mất vĩnh viễn. Nhật ký thao tác ghi lại ai đã viết, sửa hoặc xóa ghi chú, nhưng không bao giờ lưu nội dung của nó.",
+      "Các thành viên khác trong nhóm sẽ biết mỗi ghi chú mới: trong thông báo, trong tóm tắt hoạt động hằng ngày và, nếu đã kết nối Slack, trong kênh của bạn."
     ]
   },
   "interviewDiscover": {

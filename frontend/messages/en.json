@@ -28,7 +28,8 @@
         "candidate_finished": "Candidates who finished",
         "invite_undelivered": "Undelivered invites",
         "ats_not_invited": "ATS candidates not invited",
-        "interview_ready": "Interviews ready"
+        "interview_ready": "Interviews ready",
+        "note_added": "Your team's new notes"
       },
       "reminders": "Reminders",
       "remindersNote": "Low credits, interviews with no candidates, topics waiting for review.",
@@ -1733,8 +1734,10 @@
       "news": "News: <bdi>{title}</bdi>",
       "legal_terms": "New terms apply from <time>{date}</time>.",
       "legal_privacy": "A new privacy policy applies from <time>{date}</time>.",
-      "legal_dpa": "A new data processing agreement applies from <time>{date}</time>."
+      "legal_dpa": "A new data processing agreement applies from <time>{date}</time>.",
+      "note_added": "{count, plural, one {New note on {title, select, none {an interview} other {“<bdi>{title}</bdi>”}} from <bdi>{authors}</bdi>.} other {# new notes on {title, select, none {an interview} other {“<bdi>{title}</bdi>”}}, latest from <bdi>{authors}</bdi>.}}"
     },
+    "formerAuthor": "a former member",
     "legalBanner": {
       "terms": "prepza's terms change on <time>{date}</time>.",
       "privacy": "prepza's privacy policy changes on <time>{date}</time>.",
@@ -1975,7 +1978,8 @@
       "invite_undelivered": "An invite email wasn't delivered",
       "interview_ready": "An interview is ready",
       "auto_top_up_charged": "An automatic top-up was charged",
-      "auto_top_up_failed": "An automatic top-up failed"
+      "auto_top_up_failed": "An automatic top-up failed",
+      "note_added": "A team member added a note, with its text"
     },
     "instructionsTitle": "How Slack gets your notifications",
     "stepAdd": "Click “Add to Slack”: Slack opens and asks you to allow prepza in your workspace.",
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "The activity digest won't include undelivered invites anymore.",
       "ats_not_invited": "The activity digest won't include ATS candidates not invited anymore.",
       "interview_ready": "The activity digest won't include interviews that are ready anymore.",
+      "note_added": "The activity digest won't include your team's new notes anymore.",
       "reminders": "You won't get reminders anymore.",
       "updates": "You won't get product updates and news anymore.",
       "promotions": "You won't get offers and promotions anymore.",

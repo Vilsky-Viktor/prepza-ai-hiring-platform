@@ -28,7 +28,8 @@
         "candidate_finished": "متقاضیانی که مصاحبه را تمام کردند",
         "invite_undelivered": "دعوت‌های تحویل‌نشده",
         "ats_not_invited": "متقاضیان ATS که دعوت نشدند",
-        "interview_ready": "مصاحبه‌های آماده"
+        "interview_ready": "مصاحبه‌های آماده",
+        "note_added": "یادداشت‌های تازه تیم شما"
       },
       "reminders": "یادآوری‌ها",
       "remindersNote": "اعتبار کم، مصاحبه‌های بدون متقاضی، موضوع‌های در انتظار بررسی.",
@@ -1711,6 +1712,7 @@
     "title": "اعلان‌ها",
     "unread": "{count, plural, one {# اعلان خوانده‌نشده} other {# اعلان خوانده‌نشده}}",
     "empty": "هنوز خبر تازه‌ای نیست.",
+    "formerAuthor": "یک عضو پیشین",
     "kinds": {
       "question_flagged": "{count, plural, =1 {یک پرسش دربارهٔ «<bdi>{topic}</bdi>» در {title, select, none {یک مصاحبه} other {«<bdi>{title}</bdi>»}} برای بررسی علامت خورد.} other {# پرسش در {title, select, none {یک مصاحبه} other {«<bdi>{title}</bdi>»}} برای بررسی علامت خوردند.}}",
       "question_fixed": "{count, plural, =1 {هوش مصنوعی یک پرسش علامت‌خورده دربارهٔ «<bdi>{topic}</bdi>» را در {title, select, none {یک مصاحبه} other {«<bdi>{title}</bdi>»}} اصلاح کرد.} other {هوش مصنوعی # پرسش علامت‌خورده را در {title, select, none {یک مصاحبه} other {«<bdi>{title}</bdi>»}} اصلاح کرد.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> {title, select, none {یک مصاحبه} other {«<bdi>{title}</bdi>»}} را به پایان رساند{grade, select, none {.} other {: {grade}.}}} other {# متقاضی {title, select, none {یک مصاحبه} other {«<bdi>{title}</bdi>»}} را به پایان رساندند.}}",
       "invite_undelivered": "{count, plural, =1 {{title, select, none {دعوت مصاحبه به} other {دعوت «<bdi>{title}</bdi>» به}} <bdi>{email}</bdi> تحویل نشد.} other {# دعوت برای {title, select, none {یک مصاحبه} other {«<bdi>{title}</bdi>»}} تحویل نشد.}}",
       "interview_ready": "{title, select, none {یک مصاحبه آماده است.} other {مصاحبه «<bdi>{title}</bdi>» آماده است.}}",
+      "note_added": "{count, plural, =1 {یادداشت تازه برای {title, select, none {یک مصاحبه} other {مصاحبه «<bdi>{title}</bdi>»}} از <bdi>{authors}</bdi>.} other {# یادداشت تازه برای {title, select, none {یک مصاحبه} other {مصاحبه «<bdi>{title}</bdi>»}}، تازه‌ترین‌ها از <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {یک مصاحبه} other {مصاحبه «<bdi>{title}</bdi>»}} لغو شد: بررسی موضوع‌هایش بیش از حد منتظر ماند.",
       "verification_approved": "«<bdi>{name}</bdi>» برای <bdi>{domain}</bdi> تأیید شد.",
       "verification_declined": "{reason, select, none {تأیید «<bdi>{name}</bdi>» رد شد.} other {تأیید «<bdi>{name}</bdi>» رد شد: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "متقاضی‌ای از ATS شما دعوت نشد",
       "invite_undelivered": "ایمیل دعوتی تحویل نشد",
       "interview_ready": "مصاحبه‌ای آماده است",
+      "note_added": "یکی از اعضای تیم یادداشتی نوشت، همراه با متن آن",
       "auto_top_up_charged": "هزینه شارژ خودکار از کارت برداشت شد",
       "auto_top_up_failed": "شارژ خودکار ناموفق بود"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "خلاصه فعالیت دیگر دعوت‌های تحویل‌نشده را نشان نمی‌دهد.",
       "ats_not_invited": "خلاصه فعالیت دیگر متقاضیان ATS را که دعوت نشدند نشان نمی‌دهد.",
       "interview_ready": "خلاصه فعالیت دیگر مصاحبه‌های آماده را نشان نمی‌دهد.",
+      "note_added": "خلاصه فعالیت دیگر یادداشت‌های تازه تیم شما را نشان نمی‌دهد.",
       "reminders": "دیگر یادآوری دریافت نمی‌کنید.",
       "updates": "دیگر تازه‌های محصول و اخبار را دریافت نمی‌کنید.",
       "promotions": "دیگر پیشنهادها و تخفیف‌ها را دریافت نمی‌کنید.",

@@ -28,7 +28,8 @@
         "candidate_finished": "Kandidat yang selesai",
         "invite_undelivered": "Undangan yang tidak terkirim",
         "ats_not_invited": "Kandidat ATS yang tidak diundang",
-        "interview_ready": "Wawancara yang siap"
+        "interview_ready": "Wawancara yang siap",
+        "note_added": "Catatan baru dari timmu"
       },
       "reminders": "Pengingat",
       "remindersNote": "Kredit hampir habis, wawancara tanpa kandidat, topik yang menunggu peninjauan.",
@@ -1711,6 +1712,7 @@
     "title": "Notifikasi",
     "unread": "{count, plural, other {# notifikasi belum dibaca}}",
     "empty": "Belum ada yang baru.",
+    "formerAuthor": "mantan anggota",
     "kinds": {
       "question_flagged": "{count, plural, =1 {Sebuah soal tentang “<bdi>{topic}</bdi>” di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}} ditandai untuk ditinjau.} other {# soal di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}} ditandai untuk ditinjau.}}",
       "question_fixed": "{count, plural, =1 {AI memperbaiki soal yang ditandai tentang “<bdi>{topic}</bdi>” di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}}.} other {AI memperbaiki # soal yang ditandai di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}}.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, =1 {<bdi>{email}</bdi> menyelesaikan {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}}{grade, select, none {.} other {: {grade}.}}} other {# kandidat menyelesaikan {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}}.}}",
       "invite_undelivered": "{count, plural, =1 {Undangan {title, select, none {wawancara} other {“<bdi>{title}</bdi>”}} ke <bdi>{email}</bdi> tidak terkirim.} other {# undangan {title, select, none {wawancara} other {“<bdi>{title}</bdi>”}} tidak terkirim.}}",
       "interview_ready": "{title, select, none {Sebuah wawancara sudah siap.} other {Wawancara “<bdi>{title}</bdi>” sudah siap.}}",
+      "note_added": "{count, plural, =1 {Catatan baru di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}} dari <bdi>{authors}</bdi>.} other {# catatan baru di {title, select, none {sebuah wawancara} other {“<bdi>{title}</bdi>”}}, yang terbaru dari <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Sebuah wawancara} other {Wawancara “<bdi>{title}</bdi>”}} dibatalkan: tinjauan topiknya menunggu terlalu lama.",
       "verification_approved": "“<bdi>{name}</bdi>” terverifikasi untuk <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {Verifikasi “<bdi>{name}</bdi>” ditolak.} other {Verifikasi “<bdi>{name}</bdi>” ditolak: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "Kandidat dari ATS-mu tidak diundang",
       "invite_undelivered": "Email undangan tidak terkirim",
       "interview_ready": "Wawancara sudah siap",
+      "note_added": "Anggota tim menulis catatan, beserta teksnya",
       "auto_top_up_charged": "Isi ulang otomatis berhasil ditagih",
       "auto_top_up_failed": "Isi ulang otomatis gagal"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "Ringkasan aktivitas tidak akan memuat undangan yang tidak terkirim lagi.",
       "ats_not_invited": "Ringkasan aktivitas tidak akan memuat kandidat ATS yang tidak diundang lagi.",
       "interview_ready": "Ringkasan aktivitas tidak akan memuat wawancara yang siap lagi.",
+      "note_added": "Ringkasan aktivitas tidak akan memuat catatan baru dari timmu lagi.",
       "reminders": "Kamu tidak akan menerima pengingat lagi.",
       "updates": "Kamu tidak akan menerima pembaruan produk dan berita lagi.",
       "promotions": "Kamu tidak akan menerima penawaran dan promosi lagi.",

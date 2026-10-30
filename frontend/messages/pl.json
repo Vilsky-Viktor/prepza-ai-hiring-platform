@@ -28,7 +28,8 @@
         "candidate_finished": "Kandydaci, którzy skończyli",
         "invite_undelivered": "Niedostarczone zaproszenia",
         "ats_not_invited": "Niezaproszeni kandydaci z ATS",
-        "interview_ready": "Gotowe rozmowy"
+        "interview_ready": "Gotowe rozmowy",
+        "note_added": "Nowe notatki twojego zespołu"
       },
       "reminders": "Przypomnienia",
       "remindersNote": "Mało kredytów, rozmowy bez kandydatów, tematy czekające na sprawdzenie.",
@@ -1711,6 +1712,7 @@
     "title": "Powiadomienia",
     "unread": "{count, plural, one {# nieprzeczytane powiadomienie} few {# nieprzeczytane powiadomienia} many {# nieprzeczytanych powiadomień} other {# nieprzeczytanego powiadomienia}}",
     "empty": "Na razie nic nowego.",
+    "formerAuthor": "byłego członka",
     "kinds": {
       "question_flagged": "{count, plural, one {Pytanie z tematu „<bdi>{topic}</bdi>” {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}} zgłoszono do weryfikacji.} few {# pytania {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}} zgłoszono do weryfikacji.} many {# pytań {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}} zgłoszono do weryfikacji.} other {# pytania {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}} zgłoszono do weryfikacji.}}",
       "question_fixed": "{count, plural, one {AI poprawiła zgłoszone pytanie z tematu „<bdi>{topic}</bdi>” {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}}.} few {AI poprawiła # zgłoszone pytania {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}}.} many {AI poprawiła # zgłoszonych pytań {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}}.} other {AI poprawiła # zgłoszonego pytania {title, select, none {w rozmowie} other {w „<bdi>{title}</bdi>”}}.}}",
@@ -1722,6 +1724,7 @@
       "candidate_finished": "{count, plural, one {Kandydat <bdi>{email}</bdi> ukończył {title, select, none {rozmowę} other {„<bdi>{title}</bdi>”}}{grade, select, none {.} other {: {grade}.}}} few {# kandydaci ukończyli {title, select, none {rozmowę} other {„<bdi>{title}</bdi>”}}.} many {# kandydatów ukończyło {title, select, none {rozmowę} other {„<bdi>{title}</bdi>”}}.} other {# kandydata ukończyło {title, select, none {rozmowę} other {„<bdi>{title}</bdi>”}}.}}",
       "invite_undelivered": "{count, plural, one {Zaproszenie dla <bdi>{email}</bdi> {title, select, none {do rozmowy} other {do „<bdi>{title}</bdi>”}} nie zostało dostarczone.} few {# zaproszenia {title, select, none {do rozmowy} other {do „<bdi>{title}</bdi>”}} nie zostały dostarczone.} many {# zaproszeń {title, select, none {do rozmowy} other {do „<bdi>{title}</bdi>”}} nie zostało dostarczonych.} other {# zaproszenia {title, select, none {do rozmowy} other {do „<bdi>{title}</bdi>”}} nie zostało dostarczone.}}",
       "interview_ready": "{title, select, none {Rozmowa jest gotowa.} other {Rozmowa „<bdi>{title}</bdi>” jest gotowa.}}",
+      "note_added": "{count, plural, =1 {Nowa notatka do {title, select, none {rozmowy} other {rozmowy „<bdi>{title}</bdi>”}} od <bdi>{authors}</bdi>.} one {# nowa notatka do {title, select, none {rozmowy} other {rozmowy „<bdi>{title}</bdi>”}}, ostatnie od <bdi>{authors}</bdi>.} few {# nowe notatki do {title, select, none {rozmowy} other {rozmowy „<bdi>{title}</bdi>”}}, ostatnie od <bdi>{authors}</bdi>.} many {# nowych notatek do {title, select, none {rozmowy} other {rozmowy „<bdi>{title}</bdi>”}}, ostatnie od <bdi>{authors}</bdi>.} other {# nowej notatki do {title, select, none {rozmowy} other {rozmowy „<bdi>{title}</bdi>”}}, ostatnie od <bdi>{authors}</bdi>.}}",
       "interview_cancelled": "{title, select, none {Rozmowa została anulowana} other {Rozmowa „<bdi>{title}</bdi>” została anulowana}}: tematy zbyt długo czekały na zatwierdzenie.",
       "verification_approved": "„<bdi>{name}</bdi>” jest zweryfikowana dla <bdi>{domain}</bdi>.",
       "verification_declined": "{reason, select, none {Weryfikacja „<bdi>{name}</bdi>” została odrzucona.} other {Weryfikacja „<bdi>{name}</bdi>” została odrzucona: <bdi>{reason}</bdi>}}",
@@ -1974,6 +1977,7 @@
       "ats_not_invited": "Kandydat z Twojego systemu ATS nie został zaproszony",
       "invite_undelivered": "E-mail z zaproszeniem nie został dostarczony",
       "interview_ready": "Rozmowa jest gotowa",
+      "note_added": "Członek zespołu napisał notatkę, wraz z jej treścią",
       "auto_top_up_charged": "Pobrano płatność za automatyczne doładowanie",
       "auto_top_up_failed": "Automatyczne doładowanie nie powiodło się"
     },
@@ -2219,6 +2223,7 @@
       "invite_undelivered": "Podsumowanie aktywności nie będzie już obejmować niedostarczonych zaproszeń.",
       "ats_not_invited": "Podsumowanie aktywności nie będzie już obejmować niezaproszonych kandydatów z ATS.",
       "interview_ready": "Podsumowanie aktywności nie będzie już obejmować gotowych rozmów.",
+      "note_added": "Podsumowanie aktywności nie będzie już obejmować nowych notatek twojego zespołu.",
       "reminders": "Nie będziesz już dostawać przypomnień.",
       "updates": "Nie będziesz już dostawać nowości o produkcie i aktualności.",
       "promotions": "Nie będziesz już dostawać ofert i promocji.",
