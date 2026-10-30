@@ -64,7 +64,8 @@ export function TopicLimit({
       aria-label={t("limit")}
       // "What's next" focuses the first one.
       data-topic-limit
-      className="h-8 w-12 [appearance:textfield] border-0 bg-surface px-1 text-center text-sm text-foreground tabular-nums md:text-sm [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+      // A transparent border at rest keeps the 1px the focus border draws in.
+      className="h-9 w-14 [appearance:textfield] border-transparent px-1 text-center text-base font-semibold text-foreground tabular-nums md:text-base [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
       onChange={(event) => setValue(event.target.value)}
       onBlur={save}
       onKeyDown={(event) => {
