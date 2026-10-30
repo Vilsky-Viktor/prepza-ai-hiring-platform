@@ -40,6 +40,8 @@ export function contentSecurityPolicy(
     "style-src 'self' 'unsafe-inline'",
     `img-src 'self' blob: data: ${[...ACCOUNT_IMAGE_ORIGINS, ...PADDLE_ORIGINS].join(" ")}`,
     "font-src 'self'",
+    // Voice mode plays Mira's clips from blob addresses (fetched with the candidate's token).
+    "media-src 'self' blob:",
     `connect-src 'self' ${[...FIREBASE_CONNECT_ORIGINS, ...PADDLE_ORIGINS].join(" ")} ${emulator}${devConnect}`,
     `frame-src https://${authDomain} https://apis.google.com ${[...PADDLE_ORIGINS, ...TURNSTILE_ORIGINS, ...YOUTUBE_ORIGINS].join(" ")} ${emulator}`,
     "object-src 'none'",

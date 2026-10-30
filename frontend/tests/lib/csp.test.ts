@@ -23,6 +23,11 @@ it("has no emulator without one", () => {
   expect(policy).not.toContain("9199")
 })
 
+// Voice mode plays Mira's clips from blob addresses; without this Chrome refuses every one.
+it("lets the page play audio from blob addresses", () => {
+  expect(contentSecurityPolicy("nonce", false)).toMatch(/media-src [^;]*blob:/)
+})
+
 // Production's pages ask for https everywhere; the local stack, plain http with the sign-in
 // emulator (a production build too, as the browser tests run), doesn't.
 it("upgrades insecure requests in production only", () => {
