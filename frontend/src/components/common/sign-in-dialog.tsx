@@ -1,9 +1,17 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { createContext, useCallback, useContext, useRef, useState } from "react"
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 
 import { SignInOptions } from "@/components/common/sign-in-options"
+import { useAuth } from "@/providers/auth-provider"
 import {
   Dialog,
   DialogContent,
@@ -11,7 +19,9 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 
-// Opens the dialog; resolves true once signed in, false if it's closed.
+// Opens the dialog; resolves true once signed in, false if it's closed. Asked before the page
+// knows who's signed in (Firebase loads after the page), it waits for that first: someone
+// already signed in is never asked again.
 const SignInContext = createContext<() => Promise<boolean>>(async () => false)
 
 /** The sign-in dialog that a "sign in" button opens (the header, starting an interview); a page
@@ -20,15 +30,32 @@ export function SignInProvider({ children }: { children: React.ReactNode }) {
   const t = useTranslations("signIn")
   const [open, setOpen] = useState(false)
   const done = useRef<((signedIn: boolean) => void) | null>(null)
+  const auth = useAuth()
+  const known = useRef(auth)
+  const waiting = useRef<(() => void)[]>([])
 
-  const request = useCallback(
-    () =>
-      new Promise<boolean>((resolve) => {
-        done.current = resolve
-        setOpen(true)
-      }),
-    []
-  )
+  useEffect(() => {
+    known.current = auth
+
+    if (!auth.loading) {
+      waiting.current.splice(0).forEach((resume) => resume())
+    }
+  }, [auth])
+
+  const request = useCallback(async () => {
+    if (known.current.loading) {
+      await new Promise<void>((resume) => waiting.current.push(resume))
+    }
+
+    if (known.current.user) {
+      return true
+    }
+
+    return new Promise<boolean>((resolve) => {
+      done.current = resolve
+      setOpen(true)
+    })
+  }, [])
 
   function close(signedIn: boolean) {
     setOpen(false)
