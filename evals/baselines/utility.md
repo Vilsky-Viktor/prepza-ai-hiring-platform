@@ -188,3 +188,28 @@ as "D. el M25" once. Price $0.026 a minute (20 audio tokens a second at $20 per 
 the text: measured), about $0.0054 a reading against $0.0035, once per text; median 5.7 s against
 3.0 s (a connection per reading, and the model thinks first): clips are made ahead of the
 question that needs them.
+
+## Voice mode's reading aloud: the larger voice models compared (2026-10-30, not switched)
+
+The same eval (20 questions, 2 repeats, the same reading instructions and transcript check), on
+OpenAI's two larger voice models, for the user to choose by ear (samples, all `marin`:
+`~/Desktop/prepza-voice-samples/`). `gpt-realtime-2.1` (Realtime API, $4 / $24 text and $64 audio
+output per million tokens) runs on the service's own call; `gpt-live-1` (GPT-Live, a full-duplex
+conversation model on `v1/live/sessions`, $0.05 a minute of session, `marin` its default voice)
+has no "response done" event, so a scratch call told it to say the text
+(`session.instructions.append`), fed it silence, and took it as done 2.5 s after its last
+transcribed word (audio cut there).
+
+| Model | Heard right | Word errors | Every letter heard | Nothing added | Per reading |
+|---|---|---|---|---|---|
+| `gpt-4o-mini-tts` (before) | 95.0% (83.5–98.6) | 1.2% ± 1.0 | 92.5% (80.1–97.4) | 100% (91.2–100) | $0.0035, 3.0 s |
+| `gpt-realtime-2.1-mini` (4 repeats) | 97.5% (91.3–99.3) | 1.1% ± 0.8 | 98.8% (93.3–99.8) | 100% (95.4–100) | $0.0054, 5.6 s |
+| `gpt-realtime-2.1` | 100% (91.2–100) | 0.1% ± 0.2 | 100% (91.2–100) | 100% (91.2–100) | $0.022, 7.5 s |
+| `gpt-live-1` | 95.0% (83.5–98.6) | 3.0% ± 2.7 | 92.5% (80.1–97.4) | 100% (91.2–100) | about $0.017, 20 s |
+
+No model added an answer or a comment, the traps included. `gpt-realtime-2.1` read every script
+word for word; within the noise of the mini on every share, better only on word errors, at about
+four times the price. `gpt-live-1` mangled option letters ("B-tree, B-hash, Gin, D-Brin" for en01;
+es03's D read as B; de03's letters run into the numbers), and as a conversation model it fits a
+read-once clip poorly: no end signal, a session per clip, and 20 s a reading. Spent about $1.7
+(two live runs that failed partway on a dropped connection not tallied).
