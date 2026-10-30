@@ -3,7 +3,10 @@
 Candidates' interview sessions and their answers, and free practice rounds. It keeps sessions, answers and integrity signals in its own database, and reads a finished candidate's answer patterns from them when asked (`/internal/invites/{id}/answer-patterns`, never stored); questions come from library, and scores go out as
 events; a deleted interview's or company's sessions go when its `interview.deleted` or
 `company.deleted` arrives. An interview taken by voice is read aloud and answered by voice here too
-(voice mode, below). What it does and its settings:
+(voice mode, below). It also keeps who is open to offers (`/open-to-offers`: a practice user's
+opt-in with their name, LinkedIn profile and consent log, which lapses after `OPEN_DAYS`) and gives
+companies the open people with practice results on an interview's matching topics
+(`/internal/open-to-offers/...`). What it does and its settings:
 [candidates](../../docs/features/candidates.md) and
 [templates and practice](../../docs/features/templates-and-practice.md).
 

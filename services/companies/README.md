@@ -2,6 +2,7 @@
 
 Companies and who may do what in them: companies, members, roles and their invites, the
 access checks every company route runs, interviews (tests), their settings and their team's notes,
+the Discover tab (people open to offers, for companies that have topped up),
 candidates and
 their invites (one by one, from lists, through a shareable link, from an ATS or the public
 API), results and reports, the company's brand (logo, colors, style), domain verification, AI
