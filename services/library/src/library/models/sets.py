@@ -138,3 +138,7 @@ class Question(Base):
     source_question_id: Mapped[uuid.UUID | None] = mapped_column(
         ForeignKey("questions.id", ondelete="SET NULL"), index=True
     )
+    # A company test's copy of a shared bank question (bank_questions.id). Not a foreign key on
+    # purpose: the mark outlives the bank copy, so a copy never joins the bank in its source's
+    # place (after an opt-out or a flag took the source out).
+    bank_question_id: Mapped[uuid.UUID | None] = mapped_column(index=True)

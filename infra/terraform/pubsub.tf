@@ -43,7 +43,7 @@ resource "google_pubsub_subscription" "dead_letter" {
 # subscription is created on apply and gets only the events published after that.
 locals {
   consumes = {
-    library       = ["answer.recorded", "session.scored", "guests.deleted", "question.fixed", "interview.deleted", "company.deleted", "user.*"]
+    library       = ["answer.recorded", "session.scored", "guests.deleted", "question.fixed", "interview.*", "company.deleted", "user.*"]
     rounds        = ["interview.deleted", "company.deleted", "user.*"]
     companies     = ["generation.completed", "generation.failed", "generation.cancelled", "interview.finished", "audit.recorded"]
     notifications = ["notification.*", "candidate.*", "member.*", "report.*", "contact.*", "company.*", "email.*", "user.*"]

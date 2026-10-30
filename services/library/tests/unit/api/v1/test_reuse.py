@@ -16,8 +16,10 @@ def find(client, body):
 def test_proven_questions_are_offered_for_a_similar_topic(client, monkeypatch):
     asked = {}
 
-    async def fake_find(session, embedding, level, language, count):
-        asked.update(embedding=embedding, level=level, language=language, count=count)
+    async def fake_find(session, embedding, level, language, count, company_id):
+        asked.update(
+            embedding=embedding, level=level, language=language, count=count, company=company_id
+        )
 
         return [(SOURCE_ID, "A customer pays cash. Which entry is recorded?", OPTIONS)]
 
@@ -35,7 +37,14 @@ def test_proven_questions_are_offered_for_a_similar_topic(client, monkeypatch):
             "options": OPTIONS,
         }
     ]
-    assert asked == {"embedding": [0.1, 0.2], "level": "basic", "language": "ru", "count": 5}
+    # A template's generation names no company: only templates' questions.
+    assert asked == {
+        "embedding": [0.1, 0.2],
+        "level": "basic",
+        "language": "ru",
+        "count": 5,
+        "company": None,
+    }
 
 
 def test_count_is_bounded(client):

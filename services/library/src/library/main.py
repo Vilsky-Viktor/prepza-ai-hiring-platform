@@ -16,6 +16,7 @@ from library.api.v1 import (
     internal,
     internal_accounts,
     internal_additions,
+    internal_bank,
     internal_code,
     internal_events,
     internal_feedback,
@@ -60,6 +61,7 @@ app.include_router(templates.router)
 app.include_router(internal.router)
 app.include_router(internal_accounts.router)
 app.include_router(internal_additions.router)
+app.include_router(internal_bank.router)
 app.include_router(schedules.router)
 app.include_router(internal_events.router)
 app.include_router(internal_feedback.router)

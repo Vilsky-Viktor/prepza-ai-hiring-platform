@@ -1,7 +1,8 @@
 # library
 
 The question bank: every test's and template's topics and questions (companies' interviews and
-the public templates), question reuse across tests, practice content, the questions'
+the public templates), question reuse across tests, the shared question bank of companies'
+proven questions (which outlives the company that wrote them), practice content, the questions'
 statistics (with each question's difficulty, for rounds' answer patterns) and quality checks (ratings, reports, flags, revisions and the patterns behind them).
 It keeps all of it in its own database. Users' accounts (email settings, accepted
 terms, deleting and downloading an account, the erasures replayed after a restore) are the
@@ -19,7 +20,8 @@ src/library/
 ├── api/dependencies.py     # Calls from other services
 ├── core/                   # db.py (engine, Session), security.py (service tokens)
 ├── handlers/               # Pub/Sub events (answers, scored topics, deleted guests, fixed
-│                           # bank questions, deleted interviews, companies and accounts);
+│                           # bank questions, deleted interviews, companies and accounts,
+│                           # interviews kept out of the shared bank);
 │                           # dispatch.py picks one
 ├── services/               # Sets and templates, quality reviews and fixes, feedback, a
 │                           # user's votes and reports; each opens its transaction

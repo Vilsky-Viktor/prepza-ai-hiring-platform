@@ -7,16 +7,17 @@ from library.constants.reuse import MAX_TOPIC_DISTANCE, MIN_REUSE_ANSWERS
 from library.constants.sets import Pool, SetKind
 
 # The bank: proven company questions of templates of the level whose topic is close to the new
-# one. The same text can sit in several templates; each is offered once, from its closest topic.
-# The templates of the level and language are found first (ix_sets_kind_level_language), so
-# distances are measured only to their topics, never to every company test's.
+# one and, for a company's interview, the shared bank's questions (companies' proven questions,
+# never the company's own). The same text can sit in several templates; each is offered once,
+# from its closest topic. The templates of the level and language are found first
+# (ix_sets_kind_level_language), so distances are measured only to their topics, never to every
+# company test's.
 FIND_SQL = text(
     """
     WITH templates AS MATERIALIZED (
         SELECT id FROM sets WHERE kind = :kind AND level = :level AND language = :language
-    )
-    SELECT id, text, options FROM (
-        SELECT DISTINCT ON (q.text) q.id, q.text, q.options, qs.answers,
+    ), found AS (
+        SELECT q.id, q.text, q.options, qs.answers,
             t.embedding <=> CAST(:embedding AS vector) AS distance
         FROM templates s
         JOIN topics t ON t.set_id = s.id
@@ -24,7 +25,19 @@ FIND_SQL = text(
         JOIN question_stats qs ON qs.question_id = q.id
         WHERE t.embedding <=> CAST(:embedding AS vector) <= :max_distance
             AND q.pool = :pool AND qs.flag IS NULL AND qs.answers >= :min_answers
-        ORDER BY q.text, distance
+        UNION ALL
+        SELECT b.id, b.text, b.options, 0, b.embedding <=> CAST(:embedding AS vector)
+        FROM bank_questions b
+        LEFT JOIN questions source ON source.id = b.source_question_id
+        WHERE CAST(:company_id AS uuid) IS NOT NULL
+            AND b.level = :level AND b.language = :language
+            AND b.embedding <=> CAST(:embedding AS vector) <= :max_distance
+            AND source.company_id IS DISTINCT FROM CAST(:company_id AS uuid)
+    )
+    SELECT id, text, options FROM (
+        SELECT DISTINCT ON (text) id, text, options, answers, distance
+        FROM found
+        ORDER BY text, distance
     ) candidates
     ORDER BY distance, answers DESC
     LIMIT :count
@@ -80,9 +93,16 @@ async def save(session: AsyncSession, embeddings: dict[uuid.UUID, list[float]]) 
 
 
 async def find(
-    session: AsyncSession, embedding: list[float], level: str, language: str, count: int
+    session: AsyncSession,
+    embedding: list[float],
+    level: str,
+    language: str,
+    count: int,
+    company_id: uuid.UUID | None = None,
 ) -> list[tuple[uuid.UUID, str, list]]:
+    """With `company_id` (a company's interview), the shared bank's questions too."""
     params = {
+        "company_id": company_id,
         "embedding": as_vector(embedding),
         "kind": SetKind.TEMPLATE,
         "pool": Pool.COMPANY,

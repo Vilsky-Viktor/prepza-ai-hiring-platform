@@ -6,7 +6,7 @@ from prepza_common.ai.ai_constants import LIMIT_HIT
 from prepza_common.http.http import bearer
 from prepza_common.limits.limit_list import LIMITS
 
-from library.repositories import feedback
+from library.repositories import bank, feedback
 from tests.unit.api.v1.test_internal import token
 
 QUESTION_ID = uuid.uuid4()
@@ -22,11 +22,24 @@ def redis(monkeypatch):
     return fake
 
 
+@pytest.fixture(autouse=True)
+def left_bank(monkeypatch):
+    """The questions a report took out of the shared bank."""
+    left = []
+
+    async def fake_leave(session, question_ids):
+        left.extend(question_ids)
+
+    monkeypatch.setattr(bank, "leave", fake_leave)
+
+    return left
+
+
 async def not_reported(session, question_id, user_id):
     return False
 
 
-def test_a_candidates_second_report_is_rejected(client, monkeypatch):
+def test_a_candidates_second_report_is_rejected(client, monkeypatch, left_bank):
     reported = set()
 
     async def fake_report(session, question_id, user_id, reason, comment):
@@ -54,6 +67,8 @@ def test_a_candidates_second_report_is_rejected(client, monkeypatch):
     }
     assert client.post(url, json=body, headers=AUTH).status_code == 201
     assert client.post(url, json=body, headers=AUTH).status_code == 409
+    # Reported, it left the shared bank once; the refused second report changed nothing.
+    assert left_bank == [QUESTION_ID]
     assert client.get(f"{url}/mine", params={"user_id": "ann"}, headers=AUTH).json() == {
         "reported": True
     }

@@ -12,6 +12,9 @@ class ReuseIn(BaseModel):
     level: str
     language: str = DEFAULT_LANGUAGE
     count: int = Field(ge=1, le=MAX_REUSE_COUNT)
+    # A company interview's company: the shared bank's questions are offered too, never the
+    # company's own. None for a template, which reuses only templates' questions.
+    company_id: UUID | None = None
 
 
 class TopicToEmbed(BaseModel):
@@ -26,7 +29,7 @@ class TopicEmbedding(BaseModel):
 
 
 class ReusedQuestion(BaseModel):
-    # The bank question it's taken from.
+    # The question it's taken from: a template's, or a shared bank question.
     source_id: UUID
     text: str
     options: list[OptionIn]

@@ -8,7 +8,7 @@ from library.constants.quality import FLAG_RESEND_AFTER_HOURS, MAX_FLAG_RESENDS,
 from library.core.db import Session
 from library.helpers.quality import flag_for, no_separation, too_slow
 from library.integrations import generation
-from library.repositories import quality
+from library.repositories import bank, quality
 from library.services import outbox
 from library.services.notices import owner_notice
 
@@ -35,6 +35,9 @@ async def mark_wrong(question_id: uuid.UUID) -> None:
 
         # Marked twice at once, only one is sent.
         changed = await quality.change_flag(session, question_id, current, QualityFlag.WRONG_KEY)
+
+        if changed:
+            await bank.leave(session, [question_id])
 
     if changed:
         await send_to_verifier(question_id, QualityFlag.WRONG_KEY)
@@ -113,6 +116,9 @@ async def save_review(question_id: uuid.UUID) -> tuple[str, bool] | None:
         # Saved before the verifier hears of it, so the verifier finds the flag it acts on.
         if not await quality.change_flag(session, question_id, previous, flag, notice):
             return None
+
+        # Flagged, it leaves the shared bank for everyone, with what it's a copy of.
+        await bank.leave(session, [question_id])
 
         return flag, notice is not None
 

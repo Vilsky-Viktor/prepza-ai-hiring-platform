@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import func, select
+from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from library.models.feedback import QuestionRating, QuestionReport
@@ -106,6 +106,62 @@ async def replaced_templates(
         .join(Topic, Topic.id == Question.topic_id)
         .join(QuestionSet, QuestionSet.id == Topic.set_id)
         .where(QuestionRevision.flag.is_not(None), QuestionSet.company_id.is_(None))
+        .order_by(QuestionRevision.replaced_at, QuestionRevision.id)
+    )
+
+    return [tuple(row) for row in await session.execute(query)]
+
+
+# A company's own question (not a copy) whose wording `{wording}` passed the shared bank's
+# filter, from an interview not kept out of the bank: the only companies' questions the evals
+# may keep.
+FILTERED = """EXISTS (
+    SELECT FROM bank_checks bc
+    WHERE bc.question_id = questions.id AND bc.passed AND bc.text_hash = md5({wording})
+) AND questions.source_question_id IS NULL AND questions.bank_question_id IS NULL
+AND NOT EXISTS (
+    SELECT FROM interview_privacy p
+    WHERE p.keep_private AND p.company_id = sets.company_id
+        AND (p.set_id = sets.id OR p.generation_id = sets.generation_id)
+)"""
+
+
+async def flagged_companies(
+    session: AsyncSession,
+) -> list[tuple[Question, QuestionStats, Topic, QuestionSet]]:
+    """Companies' questions flagged now that passed the bank's filter as they read, with their
+    topic and set, for the evals' traps (export_flagged.py)."""
+    query = (
+        select(Question, QuestionStats, Topic, QuestionSet)
+        .join(QuestionStats, QuestionStats.question_id == Question.id)
+        .join(Topic, Topic.id == Question.topic_id)
+        .join(QuestionSet, QuestionSet.id == Topic.set_id)
+        .where(
+            QuestionStats.flag.is_not(None),
+            QuestionSet.company_id.is_not(None),
+            text(FILTERED.format(wording="questions.text")),
+        )
+        .order_by(Question.id)
+    )
+
+    return [tuple(row) for row in await session.execute(query)]
+
+
+async def replaced_companies(
+    session: AsyncSession,
+) -> list[tuple[QuestionRevision, Question, Topic, QuestionSet]]:
+    """Companies' questions replaced while flagged, as they were, when that wording passed the
+    bank's filter, for the evals' traps."""
+    query = (
+        select(QuestionRevision, Question, Topic, QuestionSet)
+        .join(Question, Question.id == QuestionRevision.question_id)
+        .join(Topic, Topic.id == Question.topic_id)
+        .join(QuestionSet, QuestionSet.id == Topic.set_id)
+        .where(
+            QuestionRevision.flag.is_not(None),
+            QuestionSet.company_id.is_not(None),
+            text(FILTERED.format(wording="question_revisions.text")),
+        )
         .order_by(QuestionRevision.replaced_at, QuestionRevision.id)
     )
 

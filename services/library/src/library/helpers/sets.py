@@ -8,8 +8,10 @@ from library.helpers.pools import assign_pools
 from library.models.sets import Question, QuestionSet, Topic
 
 
-def new_topics(preparation: PreparationIn) -> list[Topic]:
-    """The topics and questions of a generated set, ready to save."""
+def new_topics(preparation: PreparationIn, bank_ids: set[uuid.UUID] = frozenset()) -> list[Topic]:
+    """The topics and questions of a generated set, ready to save. A question reused from the
+    shared bank (its source among `bank_ids`) is marked as the bank question's copy; one from a
+    template keeps its original, whose statistics its answers add to."""
     return [
         Topic(
             position=ti,
@@ -20,7 +22,10 @@ def new_topics(preparation: PreparationIn) -> list[Topic]:
                     position=qi,
                     text=question.text,
                     options=[option.model_dump() for option in question.options],
-                    source_question_id=question.source_id,
+                    source_question_id=None
+                    if question.source_id in bank_ids
+                    else question.source_id,
+                    bank_question_id=question.source_id if question.source_id in bank_ids else None,
                 )
                 for qi, question in enumerate(topic.questions)
             ],
@@ -29,7 +34,13 @@ def new_topics(preparation: PreparationIn) -> list[Topic]:
     ]
 
 
-def new_set(payload: PreparationIn, kind: SetKind, owner_type: OwnerType, owner_id: str):
+def new_set(
+    payload: PreparationIn,
+    kind: SetKind,
+    owner_type: OwnerType,
+    owner_id: str,
+    bank_ids: set[uuid.UUID] = frozenset(),
+):
     return QuestionSet(
         generation_id=payload.generation_id,
         kind=kind,
@@ -40,14 +51,15 @@ def new_set(payload: PreparationIn, kind: SetKind, owner_type: OwnerType, owner_
         level=payload.level,
         language=payload.language,
         requirements=payload.requirements,
-        topics=new_topics(payload),
+        topics=new_topics(payload, bank_ids),
         topic_count=len(payload.topics),
     )
 
 
-def new_interview(payload: PreparationIn) -> QuestionSet:
-    """A company's interview: always private."""
-    return new_set(payload, SetKind.INTERVIEW, OwnerType.COMPANY, payload.owner_uid)
+def new_interview(payload: PreparationIn, bank_ids: set[uuid.UUID]) -> QuestionSet:
+    """A company's interview; `bank_ids`, which of its questions' sources are shared bank
+    questions."""
+    return new_set(payload, SetKind.INTERVIEW, OwnerType.COMPANY, payload.owner_uid, bank_ids)
 
 
 def new_template(payload: PreparationIn, share: float) -> QuestionSet:

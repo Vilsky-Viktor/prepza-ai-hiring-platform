@@ -12,9 +12,12 @@ router = APIRouter(prefix="/internal", tags=["internal"])
 
 @router.post("/reuse")
 async def find_reusable(body: ReuseIn, caller: ServiceCaller) -> list[ReusedQuestion]:
-    """Proven company bank questions on a similar topic, for a new generation."""
+    """Proven questions on a similar topic, for a new generation: templates' company questions
+    and, for a company's interview, the shared bank's."""
     async with Session() as session:
-        found = await reuse.find(session, body.embedding, body.level, body.language, body.count)
+        found = await reuse.find(
+            session, body.embedding, body.level, body.language, body.count, body.company_id
+        )
 
     return [
         ReusedQuestion(source_id=source_id, text=text, options=options)

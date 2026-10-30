@@ -194,6 +194,9 @@ out or listed under another area):
 - `deletions`: the payloads of `interview.deleted`, `company.deleted` and `user.deleted`
   (`InterviewDeleted`, `CompanyDeleted`, `UserDeleted`), which the holders of that data consume.
 - `event_models`: the outbox's and processed events' columns every service's tables share.
+- `interviews`: the payload of `interview.privacy_changed` (`InterviewPrivacyChanged`), an
+  interview's questions kept out of the shared question bank or let back in, from companies to
+  library.
 - `news`: the payload of `news.translated` (`NewsTranslated`), a news post's translations from
   generation to site.
 - `notifications`: the bell's notifications other services ask for.

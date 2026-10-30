@@ -596,6 +596,46 @@ export interface paths {
     patch?: never
     trace?: never
   }
+  "/internal/bank/candidates": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    /**
+     * List Candidates
+     * @description Companies' questions for generation's bank filter, in id order after `after`.
+     */
+    get: operations["list_candidates_internal_bank_candidates_get"]
+    put?: never
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
+  "/internal/bank/checks": {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    get?: never
+    /**
+     * Save Checks
+     * @description The filter's verdicts; the proven questions that passed join the bank.
+     */
+    put: operations["save_checks_internal_bank_checks_put"]
+    post?: never
+    delete?: never
+    options?: never
+    head?: never
+    patch?: never
+    trace?: never
+  }
   "/internal/schedules/outbox": {
     parameters: {
       query?: never
@@ -628,8 +668,9 @@ export interface paths {
     put?: never
     /**
      * Daily Housekeeping
-     * @description Daily, from Cloud Scheduler: sends flags the verifier hasn't acted on to it again, and
-     *     forgets old notes of processed events.
+     * @description Daily, from Cloud Scheduler: sends flags the verifier hasn't acted on to it again, takes
+     *     out of the shared bank what a flag, report or opt-out raced, and forgets old notes of
+     *     processed events.
      */
     post: operations["daily_housekeeping_internal_schedules_bank_post"]
     delete?: never
@@ -852,7 +893,8 @@ export interface paths {
     put?: never
     /**
      * Find Reusable
-     * @description Proven company bank questions on a similar topic, for a new generation.
+     * @description Proven questions on a similar topic, for a new generation: templates' company questions
+     *     and, for a company's interview, the shared bank's.
      */
     post: operations["find_reusable_internal_reuse_post"]
     delete?: never
@@ -983,6 +1025,38 @@ export interface components {
       practice_missing: number
       /** Company Missing */
       company_missing: number
+    }
+    /**
+     * BankCandidate
+     * @description A company's question offered to the bank's filter, with its topic's title.
+     */
+    BankCandidate: {
+      /**
+       * Question Id
+       * Format: uuid
+       */
+      question_id: string
+      /** Topic */
+      topic: string
+      /** Text */
+      text: string
+      /** Options */
+      options: string[]
+    }
+    /**
+     * BankCheckIn
+     * @description The filter's verdict on the question's wording `text`.
+     */
+    BankCheckIn: {
+      /**
+       * Question Id
+       * Format: uuid
+       */
+      question_id: string
+      /** Text */
+      text: string
+      /** Passed */
+      passed: boolean
     }
     /** CodeLanguageIn */
     CodeLanguageIn: {
@@ -1480,6 +1554,8 @@ export interface components {
       language: string
       /** Count */
       count: number
+      /** Company Id */
+      company_id?: string | null
     }
     /** ReusedQuestion */
     ReusedQuestion: {
@@ -2883,6 +2959,69 @@ export interface operations {
         content: {
           "application/json": string[][]
         }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  list_candidates_internal_bank_candidates_get: {
+    parameters: {
+      query?: {
+        limit?: number
+        after?: string | null
+      }
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody?: never
+    responses: {
+      /** @description Successful Response */
+      200: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["BankCandidate"][]
+        }
+      }
+      /** @description Validation Error */
+      422: {
+        headers: {
+          [name: string]: unknown
+        }
+        content: {
+          "application/json": components["schemas"]["HTTPValidationError"]
+        }
+      }
+    }
+  }
+  save_checks_internal_bank_checks_put: {
+    parameters: {
+      query?: never
+      header?: never
+      path?: never
+      cookie?: never
+    }
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["BankCheckIn"][]
+      }
+    }
+    responses: {
+      /** @description Successful Response */
+      204: {
+        headers: {
+          [name: string]: unknown
+        }
+        content?: never
       }
       /** @description Validation Error */
       422: {

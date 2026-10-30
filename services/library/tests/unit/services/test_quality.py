@@ -5,7 +5,7 @@ from types import SimpleNamespace
 from library.constants.quality import QualityFlag
 from library.helpers.quality import flag_for
 from library.integrations import generation
-from library.repositories import preparations, quality
+from library.repositories import bank, preparations, quality
 from library.services import outbox
 from library.services.quality import review
 
@@ -112,6 +112,9 @@ def record(monkeypatch, found, generation_down=False):
     async def fake_flush():
         pass
 
+    async def fake_leave(session, question_ids):
+        calls.append(("leave_bank", question_ids))
+
     monkeypatch.setattr(quality, "load", fake_load)
     monkeypatch.setattr(generation, "verify_question", fake_verify)
     monkeypatch.setattr(quality, "save_flag", fake_save)
@@ -119,17 +122,23 @@ def record(monkeypatch, found, generation_down=False):
     monkeypatch.setattr(preparations, "get_for_question", fake_set)
     monkeypatch.setattr(preparations, "topic_of_question", fake_topic)
     monkeypatch.setattr(outbox, "flush_quietly", fake_flush)
+    monkeypatch.setattr(bank, "leave", fake_leave)
 
     return calls
 
 
 def test_a_new_flag_is_saved_then_goes_to_the_verifier(monkeypatch):
-    """Saved first, so the verifier finds the flag it's asked to act on."""
+    """Saved first, so the verifier finds the flag it's asked to act on; flagged, it leaves the
+    shared bank in the same save."""
     calls = record(monkeypatch, stored())
 
     asyncio.run(review(QUESTION_ID))
 
-    assert calls == [("save", QualityFlag.WRONG_KEY), ("verify", QualityFlag.WRONG_KEY)]
+    assert calls == [
+        ("save", QualityFlag.WRONG_KEY),
+        ("leave_bank", [QUESTION_ID]),
+        ("verify", QualityFlag.WRONG_KEY),
+    ]
 
 
 def test_a_known_flag_is_not_sent_again(monkeypatch):
@@ -154,7 +163,7 @@ def test_a_flag_stays_saved_when_the_verifier_is_unreachable(monkeypatch):
 
     asyncio.run(review(QUESTION_ID))
 
-    assert calls == [("save", QualityFlag.WRONG_KEY)]
+    assert calls == [("save", QualityFlag.WRONG_KEY), ("leave_bank", [QUESTION_ID])]
 
 
 def test_marking_wrong_again_while_the_check_waits_changes_nothing(monkeypatch):
@@ -178,7 +187,11 @@ def test_marking_wrong_again_while_the_check_waits_changes_nothing(monkeypatch):
     asyncio.run(mark_wrong(QUESTION_ID))
     asyncio.run(mark_wrong(QUESTION_ID))
 
-    assert calls == [("save", QualityFlag.WRONG_KEY), ("verify", QualityFlag.WRONG_KEY)]
+    assert calls == [
+        ("save", QualityFlag.WRONG_KEY),
+        ("leave_bank", [QUESTION_ID]),
+        ("verify", QualityFlag.WRONG_KEY),
+    ]
 
 
 def test_flags_left_unfixed_go_to_the_verifier_again(monkeypatch):

@@ -6,7 +6,7 @@ from sqlalchemy.exc import IntegrityError
 
 from library.core.db import Session
 from library.integrations.redis import get_redis
-from library.repositories import feedback
+from library.repositories import bank, feedback
 from library.services.quality import review
 
 
@@ -36,6 +36,10 @@ async def report(question_id: uuid.UUID, user_id: str, reason: str, comment: str
     try:
         async with Session.begin() as session:
             saved = await feedback.report_question(session, question_id, user_id, reason, comment)
+
+            # Reported, it leaves the shared bank for everyone, with what it's a copy of.
+            if saved:
+                await bank.leave(session, [question_id])
     except IntegrityError:
         # The transaction is over: a report made before reporters were kept.
         saved = False

@@ -2054,6 +2054,123 @@
     }
    }
   },
+  "/internal/bank/candidates": {
+   "get": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "List Candidates",
+    "description": "Companies' questions for generation's bank filter, in id order after `after`.",
+    "operationId": "list_candidates_internal_bank_candidates_get",
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ],
+    "parameters": [
+     {
+      "name": "limit",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "integer",
+       "maximum": 100,
+       "minimum": 1,
+       "default": 100,
+       "title": "Limit"
+      }
+     },
+     {
+      "name": "after",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string",
+         "format": "uuid"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "After"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "type": "array",
+         "items": {
+          "$ref": "#/components/schemas/BankCandidate"
+         },
+         "title": "Response List Candidates Internal Bank Candidates Get"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/internal/bank/checks": {
+   "put": {
+    "tags": [
+     "internal"
+    ],
+    "summary": "Save Checks",
+    "description": "The filter's verdicts; the proven questions that passed join the bank.",
+    "operationId": "save_checks_internal_bank_checks_put",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "items": {
+         "$ref": "#/components/schemas/BankCheckIn"
+        },
+        "type": "array",
+        "maxItems": 100,
+        "title": "Body"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "204": {
+      "description": "Successful Response"
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    },
+    "security": [
+     {
+      "HTTPBearer": []
+     }
+    ]
+   }
+  },
   "/internal/schedules/outbox": {
    "post": {
     "tags": [
@@ -2075,7 +2192,7 @@
      "schedules"
     ],
     "summary": "Daily Housekeeping",
-    "description": "Daily, from Cloud Scheduler: sends flags the verifier hasn't acted on to it again, and\nforgets old notes of processed events.",
+    "description": "Daily, from Cloud Scheduler: sends flags the verifier hasn't acted on to it again, takes\nout of the shared bank what a flag, report or opt-out raced, and forgets old notes of\nprocessed events.",
     "operationId": "daily_housekeeping_internal_schedules_bank_post",
     "responses": {
      "204": {
@@ -2629,7 +2746,7 @@
      "internal"
     ],
     "summary": "Find Reusable",
-    "description": "Proven company bank questions on a similar topic, for a new generation.",
+    "description": "Proven questions on a similar topic, for a new generation: templates' company questions\nand, for a company's interview, the shared bank's.",
     "operationId": "find_reusable_internal_reuse_post",
     "requestBody": {
      "content": {
@@ -3002,6 +3119,64 @@
     ],
     "title": "AdditionTopic",
     "description": "A template topic, as generation needs it to add questions to it."
+   },
+   "BankCandidate": {
+    "properties": {
+     "question_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Question Id"
+     },
+     "topic": {
+      "type": "string",
+      "title": "Topic"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "options": {
+      "items": {
+       "type": "string"
+      },
+      "type": "array",
+      "title": "Options"
+     }
+    },
+    "type": "object",
+    "required": [
+     "question_id",
+     "topic",
+     "text",
+     "options"
+    ],
+    "title": "BankCandidate",
+    "description": "A company's question offered to the bank's filter, with its topic's title."
+   },
+   "BankCheckIn": {
+    "properties": {
+     "question_id": {
+      "type": "string",
+      "format": "uuid",
+      "title": "Question Id"
+     },
+     "text": {
+      "type": "string",
+      "title": "Text"
+     },
+     "passed": {
+      "type": "boolean",
+      "title": "Passed"
+     }
+    },
+    "type": "object",
+    "required": [
+     "question_id",
+     "text",
+     "passed"
+    ],
+    "title": "BankCheckIn",
+    "description": "The filter's verdict on the question's wording `text`."
    },
    "CodeLanguageIn": {
     "properties": {
@@ -4050,6 +4225,18 @@
       "maximum": 100.0,
       "minimum": 1.0,
       "title": "Count"
+     },
+     "company_id": {
+      "anyOf": [
+       {
+        "type": "string",
+        "format": "uuid"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Company Id"
      }
     },
     "type": "object",
