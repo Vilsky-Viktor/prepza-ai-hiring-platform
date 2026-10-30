@@ -1,4 +1,4 @@
-import { expect, type Page } from "@playwright/test"
+import { expect, type Locator, type Page } from "@playwright/test"
 
 import { API_URL, FRONTEND_URL } from "../constants"
 import { api } from "./api"
@@ -15,6 +15,25 @@ export async function createKey(
     expiry: "1",
     permissions,
   })
+}
+
+/** A key form's ticks in `form`: "Select all" first, then one per permission in the order the
+ * API lists them for the company (its API settings' groups), found with `tick(permission)`; and
+ * the permissions a new key starts with (`defaults`). */
+export async function permissionTicks(page: Page, companyId: string, form: Locator) {
+  const settings = await api<{
+    permission_groups: Record<string, string[]>
+    default_permissions: string[]
+  }>(page, "GET", `/v1/manage?company_id=${companyId}`)
+  const permissions = Object.values(settings.permission_groups).flat()
+  const all = form.getByRole("checkbox")
+
+  return {
+    all,
+    count: permissions.length + 1,
+    defaults: settings.default_permissions,
+    tick: (permission: string) => all.nth(permissions.indexOf(permission) + 1),
+  }
 }
 
 /** Deletes a company's API key. */

@@ -1,6 +1,7 @@
 import { expect, test } from "../fixtures"
 import { API_URL } from "../constants"
 import { createCompany, createInterview } from "../helpers/api"
+import { permissionTicks } from "../helpers/api-keys"
 import { markWebhookFailing, setWebhookMaker } from "../helpers/db-integrations"
 import { settled } from "../helpers/layout"
 import { openDialog, visit } from "../helpers/navigation"
@@ -46,18 +47,22 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   await expiries.nth(3).click()
   await expect(warning).toHaveCount(0)
   await expect(create).toBeEnabled()
-  // What the key may do: "Select all", then each group's permissions (interviews: read, create;
-  // candidates: read, invite, change, delete; credits: read; AI agents). A new key starts with
-  // the two reads; ticking Invite ticks Candidates read and keeps it ticked.
-  const ticks = owner.getByRole("dialog").getByRole("checkbox")
+  // What the key may do: "Select all", then every permission the API lists. A new key starts
+  // with the API's defaults (the reads); ticking Invite ticks Candidates read and keeps it ticked.
+  const form = owner.getByRole("dialog")
+  const { all: ticks, count, defaults, tick } = await permissionTicks(owner, company.id, form)
   const checked = owner.getByRole("dialog").locator('[role=checkbox][aria-checked="true"]')
-  await expect(ticks).toHaveCount(9)
-  await expect(checked).toHaveCount(2)
-  await expect(ticks.nth(1)).toBeChecked()
-  await expect(ticks.nth(3)).toBeChecked()
-  await ticks.nth(4).click()
-  await expect(ticks.nth(4)).toBeChecked()
-  await expect(ticks.nth(3)).toBeDisabled()
+  await expect(ticks).toHaveCount(count)
+  await expect(checked).toHaveCount(defaults.length)
+
+  for (const permission of defaults) {
+    await expect(tick(permission)).toBeChecked()
+  }
+
+  await tick("candidates:invite").click()
+  await expect(tick("candidates:invite")).toBeChecked()
+  await expect(tick("candidates:read")).toBeChecked()
+  await expect(tick("candidates:read")).toBeDisabled()
   await shot(owner, "new-key")
   await create.click()
   // The key, shown this once in a field to copy.

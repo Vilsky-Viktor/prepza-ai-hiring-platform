@@ -1,6 +1,7 @@
 import { expect, test } from "../fixtures"
 import { API_URL } from "../constants"
 import { api, createCompany } from "../helpers/api"
+import { permissionTicks } from "../helpers/api-keys"
 import { PHONE } from "../helpers/layout"
 import { openDialog, visit } from "../helpers/navigation"
 import { shot } from "../helpers/screenshots"
@@ -33,41 +34,41 @@ test("an owner changes a key's permissions and allowed IPs on its page", async (
   const keyPage = new URL(owner.url()).pathname
   await expect(owner.getByRole("heading", { level: 1 })).toHaveText("Careers site")
 
-  // "Select all", then interviews (read, create), candidates (read, invite, change, delete),
-  // credits (read) and AI agents: only interviews read ticked.
-  const ticks = owner.getByRole("main").getByRole("checkbox")
+  // "Select all", then every permission the API lists: only interviews read ticked.
+  const form = owner.getByRole("main")
+  const { all: ticks, count, tick } = await permissionTicks(owner, company.id, form)
   const checked = owner.getByRole("main").locator('[role=checkbox][aria-checked="true"]')
   const success = owner.locator('[data-sonner-toast][data-type="success"]')
   const error = owner.locator('[data-sonner-toast][data-type="error"]')
-  await expect(ticks).toHaveCount(9)
+  await expect(ticks).toHaveCount(count)
   await expect(checked).toHaveCount(1)
-  await expect(ticks.nth(1)).toBeChecked()
+  await expect(tick("interviews:read")).toBeChecked()
   await shot(owner, "key-page")
 
   // Credits read ticked: saved at once, kept after a reload, and the key reads the credits.
   expect((await credits()).status()).toBe(403)
-  await ticks.nth(7).click()
+  await tick("credits:read").click()
   await expect(success).toBeVisible()
   await visit(owner, keyPage)
-  await expect(ticks.nth(7)).toBeChecked()
+  await expect(tick("credits:read")).toBeChecked()
   await expect(checked).toHaveCount(2)
   expect((await credits()).status()).toBe(200)
 
   // And unticked again: the key can't any more.
-  await ticks.nth(7).click()
+  await tick("credits:read").click()
   await expect(success).toBeVisible()
   await visit(owner, keyPage)
-  await expect(ticks.nth(7)).not.toBeChecked()
+  await expect(tick("credits:read")).not.toBeChecked()
   await expect(checked).toHaveCount(1)
   expect((await credits()).status()).toBe(403)
 
   // Its last permission can't go: refused with the API's reason, and the tick comes back.
-  await ticks.nth(1).click()
+  await tick("interviews:read").click()
   await expect(error).toHaveText(NO_PERMISSION)
-  await expect(ticks.nth(1)).toBeChecked()
+  await expect(tick("interviews:read")).toBeChecked()
   await shot(owner, "permission-refused")
   await visit(owner, keyPage)
-  await expect(ticks.nth(1)).toBeChecked()
+  await expect(tick("interviews:read")).toBeChecked()
 
   // Allowed IPs: a range that isn't clean is refused with the API's reason and stays in the field.
   const field = owner.getByRole("main").getByRole("textbox")
