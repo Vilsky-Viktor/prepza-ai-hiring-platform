@@ -102,10 +102,12 @@ test("owner creates a company, an interview from a template and invites a candid
   // The questions of the first topic: the AI warning card and every answer option, each marked
   // right or wrong for screen readers too.
   await owner.getByTestId("manage-questions").first().click()
+  // The questions first: until they come, the loading mark is a status of its own.
   const dialog = owner.getByRole("dialog")
-  await expect(dialog.getByRole("status")).toBeVisible()
   await expect(dialog.getByRole("img", { name: "Correct answer" }).first()).toBeVisible()
   await expect(dialog.getByRole("img", { name: "Wrong answer" }).first()).toBeVisible()
+  await expect(dialog.getByTestId("page-loading")).toHaveCount(0)
+  await expect(dialog.getByRole("status")).toBeVisible()
   // `inline code` in an option shows as code, as in the question, without its backticks.
   await expect(dialog.locator("li code").first()).toHaveText("if is_member:")
   await expect(dialog.getByText("`if is_member:`")).toHaveCount(0)
