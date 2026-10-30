@@ -1,4 +1,5 @@
 import asyncio
+import logging
 
 import httpx
 from fastapi import status
@@ -11,6 +12,15 @@ from billing.constants.payment_failures import (
 )
 from billing.helpers.payment_failures import latest_failure, paid_by
 from billing.integrations import paddle
+
+logger = logging.getLogger(__name__)
+
+
+def told(transaction_id: str, reason: PaymentFailure, reads: int, why: str) -> PaymentFailure:
+    """`reason`, logged with the transaction, how many reads it took and why (no buyer data)."""
+    logger.info("Payment failure of %s: %s after %d reads (%s)", transaction_id, reason, reads, why)
+
+    return reason
 
 
 async def failure(
@@ -29,9 +39,13 @@ async def failure(
             if error.response.status_code == status.HTTP_404_NOT_FOUND:
                 return None
 
-            return PaymentFailure.OTHER
-        except httpx.HTTPError:
-            return PaymentFailure.OTHER
+            why = f"Paddle answered {error.response.status_code}"
+
+            return told(transaction_id, PaymentFailure.OTHER, read + 1, why)
+        except httpx.HTTPError as error:
+            why = f"Paddle unreachable: {type(error).__name__}"
+
+            return told(transaction_id, PaymentFailure.OTHER, read + 1, why)
 
         if not paid_by(found, owner_type, owner_id, buyer_id):
             return None
@@ -39,6 +53,8 @@ async def failure(
         reason = latest_failure(found)
 
         if reason is not None:
-            return reason
+            code = found["payments"][0].get("error_code")
 
-    return PaymentFailure.OTHER
+            return told(transaction_id, reason, read + 1, f"error code {code}")
+
+    return told(transaction_id, PaymentFailure.OTHER, FAILURE_READS, "no error code yet")

@@ -129,7 +129,7 @@ def test_the_route_needs_a_signed_in_user(client):
     assert response.status_code == 401
 
 
-def test_an_attempt_whose_code_comes_late_is_read_again(monkeypatch):
+def test_an_attempt_whose_code_comes_late_is_read_again(monkeypatch, caplog):
     reads = iter([transaction(attempt(None)), transaction(attempt("expired_card"))])
 
     async def read(transaction_id, timeout):
@@ -141,6 +141,31 @@ def test_an_attempt_whose_code_comes_late_is_read_again(monkeypatch):
     monkeypatch.setattr(paddle, "transaction", read)
     monkeypatch.setattr(payment_failures.asyncio, "sleep", no_wait)
 
+    caplog.set_level("INFO")
+
     found = asyncio.run(payment_failures.failure("company", COMPANY_ID, "bob", TXN))
 
     assert found == PaymentFailure.EXPIRED_CARD
+    # The log says how it was decided, with the transaction's id only.
+    assert f"{TXN}: expired_card after 2 reads (error code expired_card)" in caplog.text
+
+
+@pytest.mark.parametrize(
+    ("found", "why"),
+    [
+        (transaction(attempt(None)), "after 4 reads (no error code yet)"),
+        (httpx.ReadTimeout("slow"), "after 1 reads (Paddle unreachable: ReadTimeout)"),
+    ],
+)
+def test_a_failure_without_a_reason_logs_why(monkeypatch, caplog, found, why):
+    async def no_wait(seconds):
+        return None
+
+    monkeypatch.setattr(paddle, "transaction", answering(found))
+    monkeypatch.setattr(payment_failures.asyncio, "sleep", no_wait)
+    caplog.set_level("INFO")
+
+    found = asyncio.run(payment_failures.failure("company", COMPANY_ID, "bob", TXN))
+
+    assert found == PaymentFailure.OTHER
+    assert f"{TXN}: other {why}" in caplog.text
