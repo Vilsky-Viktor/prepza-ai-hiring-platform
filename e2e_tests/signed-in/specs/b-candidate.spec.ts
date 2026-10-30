@@ -9,9 +9,11 @@ import { openDialog, visit } from "../helpers/navigation";
 import { shot } from "../helpers/screenshots";
 import { answered } from "../helpers/session";
 import { ownerEmail, throwawayEmail } from "../helpers/users";
-// Each question's time: the first question's steps (pick, report, Next) run with the page's time
-// standing still, and the second question's is short enough to wait out.
-const QUESTION_SECONDS = 30;
+// Each question's time: long enough for the first question's steps (pick, report, Next) in
+// the slowest browser here (WebKit on an iPhone takes over 30 s for them on a busy run; the
+// server enforces the time, so the page's clock can't stand in), and the second question's
+// still short enough to wait out.
+const QUESTION_SECONDS = 60;
 
 // A candidate takes an interview from their invite link: picks, changes the pick, goes on, lets a
 // question's time run out, and finishes.
@@ -29,9 +31,6 @@ test("candidate takes the interview from the invite link", async ({
   await inviteCandidate(owner, interviewId, email);
 
   const candidate = await signInAs(email);
-  // The page's clock is Playwright's: its time stands still (timers still run) through the first
-  // question's steps, so a slow browser can't run that question's time out mid-step.
-  await candidate.clock.install();
   const invitePath = `/invite/${await inviteToken(email)}`;
   await visit(candidate, invitePath);
   await expect(candidate.getByText(company.name).first()).toBeVisible();
@@ -46,8 +45,6 @@ test("candidate takes the interview from the invite link", async ({
   // The answer's options, a list beside the question (the rating's buttons are pressed too).
   const options = candidate.getByRole("main").locator("li > button[aria-pressed]");
   await expect(options.first()).toBeVisible();
-  const stopped = Date.now();
-  await candidate.clock.setFixedTime(stopped);
   await shot(candidate, "question");
   await options.nth(0).click();
   await expect(options.nth(0)).toHaveAttribute("aria-pressed", "true");
@@ -84,7 +81,6 @@ test("candidate takes the interview from the invite link", async ({
   await footer.getByRole("button").last().click();
   await expect(question).not.toHaveText(first ?? "");
   await expect.poll(() => answered(candidate)).toBe("1");
-  await candidate.clock.setSystemTime(stopped);
 
   // No pick: the question's clock runs out and the next one opens by itself.
   const second = await question.textContent();
