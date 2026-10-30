@@ -3,7 +3,7 @@ extra (langchain-openai); the key comes from OPENAI_API_KEY."""
 
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage
 from langchain_openai import ChatOpenAI
-from prepza_common.ai.ai_constants import BATCH_SHARE, MODEL_PRICES, TRANSCRIPTION_PRICES
+from prepza_common.ai.ai_constants import AUDIO_PRICES, BATCH_SHARE, MODEL_PRICES
 from prepza_common.config.constants import CHARS_PER_TOKEN
 
 
@@ -53,9 +53,10 @@ def call_cost(model_name: str, usage: dict, batch: bool = False) -> float | None
     return cost * BATCH_SHARE if batch else cost
 
 
-def transcription_cost(model_name: str, seconds: float) -> float | None:
-    """USD for turning `seconds` of audio into text; None for a model without a price."""
-    price = price_of(TRANSCRIPTION_PRICES, model_name)
+def audio_cost(model_name: str, seconds: float) -> float | None:
+    """USD for `seconds` of audio turned into text or made from it; None for a model without a
+    price."""
+    price = price_of(AUDIO_PRICES, model_name)
 
     return None if price is None else price * seconds / 60
 

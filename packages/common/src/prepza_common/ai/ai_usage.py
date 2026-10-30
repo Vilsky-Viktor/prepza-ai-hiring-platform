@@ -7,7 +7,7 @@ import logging
 
 import openai
 from prepza_common.ai.ai_constants import ACTIONS, AI_USED, RECORD_ATTEMPTS, Outcome
-from prepza_common.ai.llm import call_cost, transcription_cost
+from prepza_common.ai.llm import audio_cost, call_cost
 from prepza_common.config.event_constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
 from prepza_common.events.pubsub import publish_retried
 from prepza_common.limits.limits import record_hit
@@ -31,13 +31,13 @@ async def record(
 ) -> None:
     """Records one AI call (or one run's calls of a model) after it answered, failed or was cut
     short. `usage` is LangChain's usage metadata (input_tokens, output_tokens and
-    input_token_details.cache_read), estimated for a call that reported none; transcription
-    gives `audio_seconds` instead. Never raises."""
+    input_token_details.cache_read), estimated for a call that reported none; speech to text and
+    text to speech give `audio_seconds` instead. Never raises."""
     usage = usage or {}
     cached = (usage.get("input_token_details") or {}).get("cache_read", 0) or 0
 
     if audio_seconds:
-        cost = transcription_cost(model, audio_seconds)
+        cost = audio_cost(model, audio_seconds)
     else:
         cost = call_cost(model, usage, batch)
 

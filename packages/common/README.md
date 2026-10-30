@@ -36,7 +36,7 @@ one more of a count (keys, members), `limits.question_seconds` gives a new test'
 question by its level, and `limits.record_hit` records every refusal, ours or a
 provider's, as a log line (`prepza_limit_hits`) and a `limit.hit` event billing stores;
 `limit_schemas.BudgetOut` is a shared daily budget's use today, for the AI costs page.
-AI costs: `ai_constants` holds the prices (`MODEL_PRICES`, `TRANSCRIPTION_PRICES`, the Batch API's
+AI costs: `ai_constants` holds the prices (`MODEL_PRICES`, `AUDIO_PRICES` for speech to text and text to speech, the Batch API's
 half) and every kind of AI call (`ACTIONS`), and `ai_usage.record` records one call with its tokens
 and cost as an "AI used" log line (`prepza_ai_spend`) and an `ai.used` event billing stores;
 `ai_usage.provider_refused` records OpenAI's rate limit and quota. `ai_cap` is the unpaid users'
@@ -151,6 +151,8 @@ out or listed under another area):
 - `secret_words`: words that say a message holds a secret, in every language.
 - `secrets_check`: secrets pasted into the AI chats, found before anything keeps them.
 - `sets`: a generated test's and a template's shapes, as services pass them.
+- `speech`: speech recorded in a browser, checked and turned into text (the assistant's voice
+  messages, voice mode's spoken answers).
 - `trace_constants`: how long setting our models' prices in Langfuse may take, and its page size.
 - `trace_prices`: our models' prices set in Langfuse at start-up, so traced calls carry their cost.
 - `tracing`: AI calls traced to Langfuse, with personal data masked.

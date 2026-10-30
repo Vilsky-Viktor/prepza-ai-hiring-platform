@@ -13,12 +13,13 @@ import json
 import time
 
 from common import DATASETS, RESULTS, load, run_record, save
-from prepza_common.ai.llm import transcription_cost
+from prepza_common.ai.llm import audio_cost
+from prepza_common.ai.speech import audio_seconds
 from stats import mean, share
 from text_checks import error_rate, in_script
 
 from assistant.config import settings
-from assistant.helpers.audio import audio_seconds
+from assistant.constants.limits import MAX_AUDIO_SECONDS
 from assistant.services.transcribe import speech_to_text
 
 # A message is heard right when at most this share of its characters is wrong.
@@ -29,7 +30,7 @@ async def hear(item: dict) -> dict:
     audio = (DATASETS / "audio" / f"{item['id']}.ogg").read_bytes()
     started = time.monotonic()
     result = await speech_to_text("audio.ogg", audio, "audio/ogg", item["language"])
-    seconds = audio_seconds(getattr(result, "usage", None), len(audio))
+    seconds = audio_seconds(getattr(result, "usage", None), len(audio), MAX_AUDIO_SECONDS)
     rate = min(error_rate(said, result.text) for said in [item["text"], *item.get("also", [])])
 
     return {
@@ -37,7 +38,7 @@ async def hear(item: dict) -> dict:
         "heard": result.text,
         "error_rate": round(rate, 3),
         "script": in_script(result.text, item["language"]),
-        "cost": transcription_cost(settings.transcribe_model, seconds) or 0.0,
+        "cost": audio_cost(settings.transcribe_model, seconds) or 0.0,
         "seconds": time.monotonic() - started,
     }
 

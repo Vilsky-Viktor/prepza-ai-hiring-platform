@@ -4,10 +4,10 @@ import httpx
 import pytest
 from fastapi import HTTPException
 from openai import APIConnectionError, RateLimitError
+from prepza_common.ai.speech import MAX_AUDIO_BYTES
 from prepza_common.auth.user import User
 
 from assistant.api.dependencies import user_with_token
-from assistant.constants.transcribe import MAX_AUDIO_BYTES
 from assistant.main import app
 from assistant.services import transcribe
 

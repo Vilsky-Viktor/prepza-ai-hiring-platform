@@ -11,11 +11,13 @@ MODEL_PRICES = {
     "gpt-6-astra": (10.00, 1.00, 50.00),
     "text-embedding-3-small": (0.02, 0.02, 0.0),
 }
-# USD per minute of audio turned into text.
-TRANSCRIPTION_PRICES = {
+# USD per minute of audio turned into text, or of speech made from text (OpenAI's estimate per
+# minute for its text-to-speech model).
+AUDIO_PRICES = {
     "gpt-transcribe": 0.0045,
     "gpt-4o-mini-transcribe": 0.003,
     "gpt-4o-transcribe": 0.006,
+    "gpt-4o-mini-tts": 0.015,
 }
 # The Batch API charges this share of the usual price.
 BATCH_SHARE = 0.5
