@@ -2,8 +2,8 @@
 // panel.
 import {
   DEMO_ADDED_SUBTOPIC,
-  DEMO_CHANGE,
   DEMO_COMPANY,
+  DEMO_CHANGE,
   DEMO_EDITED,
   DEMO_INVITE_EMAIL,
   DEMO_NEW_TOPIC,
@@ -21,7 +21,8 @@ export const ADJUSTED = [...DEMO_TOPICS, DEMO_NEW_TOPIC].map((topic) =>
 export const WRITTEN = ADJUSTED.map(({ name }) => name)
 
 // The pointer right-clicks the empty box, picks paste from its menu and the whole description
-// shows, then it clicks send; a first company is named and it clicks continue, and the loading
+// shows, then it clicks send; the window asking which company it's for opens with the user's
+// company chosen, it picks a new one, types its name and clicks continue; the loading
 // mark stands for the interview being made until it's ready. The topics show
 // one by one; it opens a topic's editor, types a subtopic, adds it and closes the editor, then
 // types into the request for changes and clicks apply, and a topic is added; then it clicks
@@ -37,10 +38,11 @@ export const STEPS: DemoStep[] = [
   { name: "pasted", ms: 900 },
   { name: "aim", ms: 800, point: "send" },
   { name: "send", ms: 500, click: true },
-  { name: "company", ms: 900, point: "name" },
-  { name: "focusName", ms: 300, click: true },
+  { name: "company", ms: 1200, point: "none" },
+  { name: "aimNew", ms: 800, point: "newCompany" },
+  { name: "chooseNew", ms: 400, click: true },
   { name: "naming", ms: 80, repeat: DEMO_COMPANY.length },
-  { name: "aimContinue", ms: 700, point: "continue" },
+  { name: "aimContinue", ms: 800, point: "continue" },
   { name: "continue", ms: 500, click: true },
   { name: "sent", ms: 400, point: "none" },
   { name: "topics", ms: 400, repeat: DEMO_TOPICS.length },
@@ -96,7 +98,7 @@ export const TARGETS = [
   "field",
   "paste",
   "send",
-  "name",
+  "newCompany",
   "continue",
   "edit",
   "subtopic",
@@ -115,6 +117,7 @@ export const APPLIED = stepIndex(STEPS, "applied")
 export const WRITING = stepIndex(STEPS, "writing")
 export const READY = stepIndex(STEPS, "ready")
 export const PASTED = stepIndex(STEPS, "pasted")
-export const NAMING = stepIndex(STEPS, "company")
+export const CHOOSING = stepIndex(STEPS, "company")
+export const ADDING = stepIndex(STEPS, "chooseNew")
 export const TOPICS = stepIndex(STEPS, "sent")
 export const ADDED = stepIndex(STEPS, "aimDone")

@@ -3,9 +3,15 @@
 import { useTranslations } from "next-intl"
 
 import { DemoDescription } from "@/features/landing/components/demo-description"
-import { DemoFirstCompany } from "@/features/landing/components/demo-first-company"
+import { DemoCompanyDialog } from "@/features/landing/components/demo-company-dialog"
 import { DEMO_COMPANY, DEMO_DESCRIPTION } from "@/config/create-demo"
-import { NAMING, PASTED, STEPS, TOPICS } from "@/config/create-demo-steps"
+import {
+  ADDING,
+  CHOOSING,
+  PASTED,
+  STEPS,
+  TOPICS,
+} from "@/config/create-demo-steps"
 import { countedAt } from "@/hooks/use-demo-steps"
 
 // The steps the paste menu is open for.
@@ -13,8 +19,8 @@ const MENU = ["menu", "aimPaste", "paste"]
 
 /** The create demo's first screen at step `at`: the home page's start box (components/common/
  * start-test.tsx) in the middle, the description pasted into it and sent; then the window that
- * asks for a first company over it, the name typed and continued. The box keeps its place and
- * size throughout. */
+ * asks which company it's for over it, a new one picked, named and continued. The box keeps its
+ * place and size throughout. */
 export function CreateDescribe({ at }: { at: { index: number; n: number } }) {
   const start = useTranslations("start")
   const menu = useTranslations("landing.create.menu")
@@ -37,13 +43,14 @@ export function CreateDescribe({ at }: { at: { index: number; n: number } }) {
           }}
         />
       </div>
-      <DemoFirstCompany
-        open={at.index >= NAMING && at.index < TOPICS}
+      <DemoCompanyDialog
+        open={at.index >= CHOOSING && at.index < TOPICS}
+        adding={at.index >= ADDING}
         name={DEMO_COMPANY.slice(
           0,
           countedAt(STEPS, at, "naming", DEMO_COMPANY.length)
         )}
-        typing={step === "focusName" || step === "naming"}
+        typing={step === "naming"}
         pressed={step === "continue"}
       />
     </div>

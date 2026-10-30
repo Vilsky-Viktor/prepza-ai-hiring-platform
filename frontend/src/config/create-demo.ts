@@ -36,7 +36,9 @@ export const DEMO_NEW_TOPIC = {
   subtopics: ["Test sets", "LLM as judge", "Metrics"],
 }
 
-// The company a first-time user names before the interview is made.
+// The user's company, chosen at first in the window that asks which one the interview is for,
+// and the new one named there instead.
+export const DEMO_OTHER_COMPANY = "Globex"
 export const DEMO_COMPANY = "Acme"
 
 // The interview it makes: its title, each topic's questions (as many as an interview's topic
