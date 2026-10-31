@@ -90,7 +90,7 @@ services:
     volumes:
       - ./database/roles/src:/database/roles/src
     environment:
-      ADMIN_DATABASE_URL: postgresql://prepza:${POSTGRES_PASSWORD}@postgres:5432/postgres
+      ADMIN_DATABASE_URL: postgresql://testee:${POSTGRES_PASSWORD}@postgres:5432/postgres
       DATABASE_URL_LIBRARY: postgresql://library:${POSTGRES_PASSWORD}@postgres:5432/library
       DATABASE_URL_GENERATION: postgresql://generation:${POSTGRES_PASSWORD}@postgres:5432/generation
       DATABASE_URL_ROUNDS: postgresql://rounds:${POSTGRES_PASSWORD}@postgres:5432/rounds

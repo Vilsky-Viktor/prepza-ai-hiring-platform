@@ -15,7 +15,7 @@ pandoc="$(uvx --from pypandoc_binary python -c 'import pypandoc; print(pypandoc.
 
 # Editable templates: Word files.
 for name in candidate-notice-templates dpia-template; do
-  "$pandoc" "$src/$name.md" -o "$out/prepza-$name.docx"
+  "$pandoc" "$src/$name.md" -o "$out/testee-$name.docx"
 done
 
 # Documents to read and keep: PDFs. The HTML goes into the container on stdin and the PDF comes
@@ -29,7 +29,7 @@ for name in instructions-for-companies data-processing-agreement; do
       chrome="$(ls /ms-playwright/chromium-*/chrome-linux*/chrome | head -n 1)"
       "$chrome" --headless --no-sandbox --disable-gpu --no-pdf-header-footer \
         --print-to-pdf=/tmp/page.pdf file:///tmp/page.html 2>/dev/null
-      cat /tmp/page.pdf' >"$out/prepza-$name.pdf"
+      cat /tmp/page.pdf' >"$out/testee-$name.pdf"
 done
 
 ls -l "$out"

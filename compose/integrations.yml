@@ -22,9 +22,9 @@ x-notifications-env: &notifications-env
   SERVICE_SECRET: ${SERVICE_SECRET}
   RESEND_API_KEY: ${RESEND_API_KEY:-}
   RESEND_WEBHOOK_SECRET: ${RESEND_WEBHOOK_SECRET:-}
-  MAIL_FROM: ${MAIL_FROM:-prepza. <no-reply@prepza.local>}
+  MAIL_FROM: ${MAIL_FROM:-testee. <no-reply@testee.local>}
   # The digest and reminders: their own sender, so complaints about them can't hurt the others.
-  MAIL_FROM_UPDATES: ${MAIL_FROM_UPDATES:-prepza. <updates@mail.prepza.local>}
+  MAIL_FROM_UPDATES: ${MAIL_FROM_UPDATES:-testee. <updates@mail.testee.local>}
   # Candidates' emails, watched apart; empty: MAIL_FROM.
   MAIL_FROM_CANDIDATES: ${MAIL_FROM_CANDIDATES:-}
   COMPANIES_URL: http://companies:8000
@@ -41,7 +41,7 @@ x-notifications-env: &notifications-env
   SMTP_HOST: ${SMTP_HOST:-mailpit}
   SMTP_PORT: ${SMTP_PORT:-1025}
   SITE_URL: ${SITE_URL:-http://localhost:8090}
-  CONTACT_EMAIL: ${CONTACT_EMAIL:-hello@prepza.ai}
+  CONTACT_EMAIL: ${CONTACT_EMAIL:-hello@testee.ai}
   SLACK_CLIENT_ID: ${SLACK_CLIENT_ID:-}
   SLACK_CLIENT_SECRET: ${SLACK_CLIENT_SECRET:-}
   SLACK_ENCRYPTION_KEY: ${SLACK_ENCRYPTION_KEY:-}

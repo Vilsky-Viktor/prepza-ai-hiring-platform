@@ -30,7 +30,7 @@ permissions:
 
 env:
   REGION: ${{ vars.GCP_REGION }}
-  REGISTRY: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/prepza
+  REGISTRY: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/testee
   VERSION: ${{ inputs.tag || github.ref_name }}
   SERVICES: library generation rounds companies billing notifications ats api assistant accounts site frontend db-roles
 

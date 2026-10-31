@@ -21,7 +21,7 @@ permissions:
   contents: read
 
 env:
-  REGISTRY: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/prepza
+  REGISTRY: ${{ vars.GCP_REGION }}-docker.pkg.dev/${{ vars.GCP_PROJECT_ID }}/testee
   # Only main pushes images: pull requests just check that they build.
   PUBLISH: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
@@ -200,7 +200,7 @@ jobs:
           load: true
           # Published images go to the registry; others (pull requests) only need a valid local tag,
           # as the registry's settings exist only where images are published.
-          tags: ${{ env.PUBLISH == 'true' && format('{0}/{1}:{2}', env.REGISTRY, matrix.name, github.sha) || format('prepza/{0}:{1}', matrix.name, github.sha) }}
+          tags: ${{ env.PUBLISH == 'true' && format('{0}/{1}:{2}', env.REGISTRY, matrix.name, github.sha) || format('testee/{0}:{1}', matrix.name, github.sha) }}
           cache-from: type=gha,scope=${{ matrix.name }}
           cache-to: type=gha,mode=max,scope=${{ matrix.name }}
           # The frontend bakes its public settings in at build time: the real ones for the images
@@ -208,8 +208,8 @@ jobs:
           build-args: |
             SENTRY_RELEASE=${{ github.sha }}
             NEXT_PUBLIC_FIREBASE_API_KEY=${{ env.PUBLISH == 'true' && vars.NEXT_PUBLIC_FIREBASE_API_KEY || 'demo-api-key' }}
-            NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ env.PUBLISH == 'true' && vars.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'demo-prepza.firebaseapp.com' }}
-            NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ env.PUBLISH == 'true' && vars.GCP_PROJECT_ID || 'demo-prepza' }}
+            NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=${{ env.PUBLISH == 'true' && vars.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || 'demo-testee.firebaseapp.com' }}
+            NEXT_PUBLIC_FIREBASE_PROJECT_ID=${{ env.PUBLISH == 'true' && vars.GCP_PROJECT_ID || 'demo-testee' }}
             NEXT_PUBLIC_TURNSTILE_SITE_KEY=${{ env.PUBLISH == 'true' && vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA' }}
             FRONTEND_SENTRY_DSN=${{ env.PUBLISH == 'true' && vars.FRONTEND_SENTRY_DSN || '' }}
             NEXT_PUBLIC_ENVIRONMENT=${{ env.PUBLISH == 'true' && 'production' || '' }}
@@ -223,7 +223,7 @@ jobs:
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           version: v0.76.0
-          image-ref: ${{ env.PUBLISH == 'true' && format('{0}/{1}:{2}', env.REGISTRY, matrix.name, github.sha) || format('prepza/{0}:{1}', matrix.name, github.sha) }}
+          image-ref: ${{ env.PUBLISH == 'true' && format('{0}/{1}:{2}', env.REGISTRY, matrix.name, github.sha) || format('testee/{0}:{1}', matrix.name, github.sha) }}
           trivy-config: trivy.yaml
 
   smoke:

@@ -50,7 +50,7 @@ jobs:
           version: "0.12.24"
       # The locked packages a production image installs; the shared package is ours, not on PyPI.
       - run: |
-          uv export --locked --no-dev --no-hashes --no-emit-project --no-emit-package prepza-common > /tmp/requirements.txt
+          uv export --locked --no-dev --no-hashes --no-emit-project --no-emit-package testee-common > /tmp/requirements.txt
           uvx pip-audit==2.9.0 -r /tmp/requirements.txt --disable-pip --no-deps --progress-spinner off
 
   frontend:
@@ -127,14 +127,14 @@ jobs:
           platforms: linux/amd64
           push: false
           load: true
-          tags: prepza/${{ matrix.name }}:audit
+          tags: testee/${{ matrix.name }}:audit
           build-args: |
             NEXT_PUBLIC_FIREBASE_API_KEY=demo-api-key
-            NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=demo-prepza.firebaseapp.com
-            NEXT_PUBLIC_FIREBASE_PROJECT_ID=demo-prepza
+            NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=demo-testee.firebaseapp.com
+            NEXT_PUBLIC_FIREBASE_PROJECT_ID=demo-testee
             NEXT_PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
       - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           version: v0.76.0
-          image-ref: prepza/${{ matrix.name }}:audit
+          image-ref: testee/${{ matrix.name }}:audit
           trivy-config: trivy.yaml

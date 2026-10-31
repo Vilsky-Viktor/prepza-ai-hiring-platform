@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Makes the landing's sample reports again (frontend/public/samples/prepza-report-samples.zip):
+# Makes the landing's sample reports again (frontend/public/samples/testee-report-samples.zip):
 # the report of all candidates and one candidate's report, made by the app's own PDF export from
 # the made-up data in frontend/src/config/report-samples-fixture.ts. Run it when the reports'
 # design changes. Needs the local stack running (the development page /report-samples).
@@ -28,9 +28,9 @@ docker run --rm --network "$network" \
   mcr.microsoft.com/playwright:v1.64.1-noble@sha256:47b510dd9230bf0b9bfc9b20102241e577ea7a99334ab4c3ca19f19770e9b8ea \
   sh -c "npm i --no-save --no-audit --no-fund --loglevel=error playwright@1.64.1 >/dev/null && node report-samples.mjs /out"
 
-zip="$PWD/frontend/public/samples/prepza-report-samples.zip"
+zip="$PWD/frontend/public/samples/testee-report-samples.zip"
 mkdir -p "$(dirname "$zip")"
 rm -f "$zip"
 # No folders and no extra file attributes, so the ZIP holds just the two PDFs.
-(cd "$out" && zip -q -X -j "$zip" prepza-sample-candidates.pdf prepza-sample-candidate-report.pdf)
+(cd "$out" && zip -q -X -j "$zip" testee-sample-candidates.pdf testee-sample-candidate-report.pdf)
 echo "Made ${zip#"$PWD"/}"

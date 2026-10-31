@@ -8,7 +8,7 @@ x-firebase-env: &firebase-env
   # Development only: serves /docs and /openapi.json, which `pnpm api-types` reads. The public
   # api ignores it: its description is always published.
   API_DOCS: "true"
-  # Superadmins, prepza's own team (templates, the question bank): verified Google emails, comma-separated.
+  # Superadmins, testee's own team (templates, the question bank): verified Google emails, comma-separated.
   SUPERADMIN_EMAILS: ${SUPERADMIN_EMAILS:-}
   # Salts user ids in funnel events; in Google Cloud it's a secret.
   ANALYTICS_SALT: ${ANALYTICS_SALT:-local-analytics-salt}

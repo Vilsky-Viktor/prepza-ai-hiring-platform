@@ -6,13 +6,13 @@ services:
     restart: unless-stopped
     build: database
     environment:
-      POSTGRES_USER: prepza
+      POSTGRES_USER: testee
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
       - postgres-data:/var/lib/postgresql
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "prepza"]
+      test: ["CMD", "pg_isready", "-U", "testee"]
       interval: 5s
       timeout: 3s
       retries: 10

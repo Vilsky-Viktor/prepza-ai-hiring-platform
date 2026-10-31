@@ -88,7 +88,7 @@ services:
         NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${NEXT_PUBLIC_TURNSTILE_SITE_KEY:-}
         NEXT_PUBLIC_ENVIRONMENT: ${ENVIRONMENT:-development}
     labels:
-      prepza.frontend-source: ${FRONTEND_TEST_SOURCE:-}
+      testee.frontend-source: ${FRONTEND_TEST_SOURCE:-}
     environment:
       API_URL: http://gateway:8081
       SITE_URL: ${SITE_URL:-http://localhost:8090}

@@ -14,4 +14,4 @@ EXPOSE 9199 4100
 # The emulator runs from inside data/ (it still finds firebase.json one level up), because it
 # writes the export to a temporary folder in its working directory and then moves it into
 # place, which fails across filesystems.
-CMD ["sh", "-c", "mkdir -p data && cd data && if [ -f export/firebase-export-metadata.json ]; then set -- --import=export; fi; exec firebase emulators:start --only auth --project demo-prepza --export-on-exit=export \"$@\""]
+CMD ["sh", "-c", "mkdir -p data && cd data && if [ -f export/firebase-export-metadata.json ]; then set -- --import=export; fi; exec firebase emulators:start --only auth --project demo-testee --export-on-exit=export \"$@\""]

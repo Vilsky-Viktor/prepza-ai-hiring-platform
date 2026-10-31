@@ -37,7 +37,7 @@ for service in "${services[@]}"; do
 
   "${compose[@]}" run --rm --no-deps \
     -e INTEGRATION_TESTS=1 \
-    -e DATABASE_URL="postgresql://prepza:${password}@postgres:5432/${service}" \
+    -e DATABASE_URL="postgresql://testee:${password}@postgres:5432/${service}" \
     -e REDIS_URL=redis://redis:6379/15 \
     -e LANGFUSE_PUBLIC_KEY= -e LANGFUSE_SECRET_KEY= \
     -e PYTEST_ADDOPTS \

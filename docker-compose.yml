@@ -5,6 +5,8 @@
 # The stack is split by kind into compose/; paths in every file are relative to this folder.
 # compose/base.yml holds what every API service and its migrations share (they extend it).
 
+name: testee
+
 include:
   - path: compose/infrastructure.yml
     project_directory: .

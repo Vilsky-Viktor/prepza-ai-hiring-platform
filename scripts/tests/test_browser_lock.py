@@ -40,7 +40,7 @@ def run(repo: Path, name: str, source: str = "frontend", runs: int = 1) -> subpr
 def test_waiting_runs_take_the_slot_in_the_order_they_came(tmp_path):
     subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
     got = tmp_path / "got"
-    queue = tmp_path / ".git" / "prepza-browser-runs" / "queue"
+    queue = tmp_path / ".git" / "testee-browser-runs" / "queue"
     runs = [run(tmp_path, "first")]
 
     try:
@@ -68,7 +68,7 @@ def test_waiting_runs_take_the_slot_in_the_order_they_came(tmp_path):
 def test_a_waiting_run_that_died_does_not_hold_up_the_queue(tmp_path):
     subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
     got = tmp_path / "got"
-    queue = tmp_path / ".git" / "prepza-browser-runs" / "queue"
+    queue = tmp_path / ".git" / "testee-browser-runs" / "queue"
     runs = [run(tmp_path, "first")]
 
     try:
@@ -93,7 +93,7 @@ def test_a_waiting_run_that_died_does_not_hold_up_the_queue(tmp_path):
 def test_a_stray_file_in_the_queue_does_not_let_a_run_skip_it(tmp_path):
     subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
     got = tmp_path / "got"
-    queue = tmp_path / ".git" / "prepza-browser-runs" / "queue"
+    queue = tmp_path / ".git" / "testee-browser-runs" / "queue"
     runs = [run(tmp_path, "first")]
 
     try:
@@ -121,7 +121,7 @@ def started(got: Path) -> list[str]:
 def test_runs_of_the_same_frontend_share_the_stack_and_others_wait(tmp_path):
     subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
     got = tmp_path / "got"
-    queue = tmp_path / ".git" / "prepza-browser-runs" / "queue"
+    queue = tmp_path / ".git" / "testee-browser-runs" / "queue"
     runs = [run(tmp_path, "first", "old", runs=3)]
 
     try:
@@ -145,7 +145,7 @@ def test_runs_of_the_same_frontend_share_the_stack_and_others_wait(tmp_path):
 def test_a_run_that_needs_the_stack_alone_waits_and_keeps_others_waiting(tmp_path):
     subprocess.run(["git", "init", "-q"], cwd=tmp_path, check=True)
     got = tmp_path / "got"
-    queue = tmp_path / ".git" / "prepza-browser-runs" / "queue"
+    queue = tmp_path / ".git" / "testee-browser-runs" / "queue"
     runs = [run(tmp_path, "first", "frontend", runs=3)]
 
     try:
