@@ -21,7 +21,7 @@ import { HERO_VIDEO_ID } from "@/config/landing"
 /** A play icon, named in its tooltip, that opens testee's video in a window on the page, played
  * by YouTube's no-cookie player, which loads only once the window opens. The size of the page's
  * info button beside it; a blue ring keeps pulsing out of it to draw the eye (hidden with reduced
- * motion). */
+ * motion), and it grows a little on hover, as the footer's social icons do. */
 export function VideoButton() {
   const t = useTranslations("landing")
   const common = useTranslations("common")
@@ -37,7 +37,7 @@ export function VideoButton() {
                   type="button"
                   aria-label={t("videoTooltip")}
                   data-testid="video-button"
-                  className="relative inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-primary transition-colors outline-none hover:bg-surface focus-visible:ring-3 focus-visible:ring-ring/50"
+                  className="relative inline-flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-primary transition-[color,background-color,scale] duration-200 outline-none hover:scale-110 hover:bg-surface focus-visible:ring-3 focus-visible:ring-ring/50"
                 />
               }
             />
