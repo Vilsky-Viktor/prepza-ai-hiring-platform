@@ -8,7 +8,7 @@ locals {
   # window, what to do, whether it pages (else it's a ticket) and its runbook section.
   log_alerts = {
     redis = {
-      name      = "prepza Redis failing"
+      name      = "testee Redis failing"
       condition = "Over 20 Redis errors in 10 minutes"
       filter    = "metric.type=\"logging.googleapis.com/user/${google_logging_metric.redis_errors.name}\" AND resource.type=\"cloud_run_revision\""
       aligner   = "ALIGN_DELTA"
@@ -19,7 +19,7 @@ locals {
       runbook   = "providers.md#redis-down"
     }
     openai = {
-      name      = "prepza OpenAI failing"
+      name      = "testee OpenAI failing"
       condition = "Over 10 OpenAI errors in 15 minutes"
       filter    = "metric.type=\"logging.googleapis.com/user/${google_logging_metric.openai_errors.name}\" AND resource.type=\"cloud_run_revision\""
       aligner   = "ALIGN_DELTA"
@@ -30,7 +30,7 @@ locals {
       runbook   = "providers.md#openai-down"
     }
     spend = {
-      name      = "prepza AI spend high"
+      name      = "testee AI spend high"
       condition = "AI calls cost over var.ai_spend_alert_hourly USD in an hour"
       filter    = "metric.type=\"logging.googleapis.com/user/${google_logging_metric.ai_spend.name}\" AND resource.type=\"cloud_run_revision\""
       # The sum of the logged amounts, a distribution's values.
@@ -42,7 +42,7 @@ locals {
       runbook   = "providers.md#ai-spend-high-or-ai-stopped"
     }
     spend_daily = {
-      name      = "prepza AI spend high today"
+      name      = "testee AI spend high today"
       condition = "AI calls cost over var.ai_spend_alert_daily USD in a day"
       filter    = "metric.type=\"logging.googleapis.com/user/${google_logging_metric.ai_spend.name}\" AND resource.type=\"cloud_run_revision\""
       aligner   = "ALIGN_SUM"
@@ -53,7 +53,7 @@ locals {
       runbook   = "providers.md#ai-spend-high-or-ai-stopped"
     }
     ai_stopped = {
-      name      = "prepza AI stopped for many"
+      name      = "testee AI stopped for many"
       condition = "A shared limit used up, OpenAI out of credit, or unpaid AI spend at 80% of its daily cap"
       filter    = "metric.type=\"logging.googleapis.com/user/${google_logging_metric.ai_stopped.name}\" AND resource.type=\"cloud_run_revision\""
       aligner   = "ALIGN_DELTA"
@@ -64,7 +64,7 @@ locals {
       runbook   = "providers.md#ai-spend-high-or-ai-stopped"
     }
     generations = {
-      name      = "prepza generations failing"
+      name      = "testee generations failing"
       condition = "Over 2 generations failed in an hour"
       filter    = "metric.type=\"logging.googleapis.com/user/${google_logging_metric.generations_failed.name}\" AND resource.type=\"cloud_run_revision\""
       aligner   = "ALIGN_DELTA"
@@ -75,7 +75,7 @@ locals {
       runbook   = "platform.md#a-stuck-generation"
     }
     paddle = {
-      name      = "prepza Paddle failing"
+      name      = "testee Paddle failing"
       condition = "Over 3 calls to Paddle failed in 15 minutes"
       filter    = "metric.type=\"logging.googleapis.com/user/${google_logging_metric.paddle_unavailable.name}\" AND resource.type=\"cloud_run_revision\""
       aligner   = "ALIGN_DELTA"
@@ -86,7 +86,7 @@ locals {
       runbook   = "providers.md#paddle-down"
     }
     migrations = {
-      name      = "prepza migration failed"
+      name      = "testee migration failed"
       condition = "A database migration or roles job failed"
       filter    = "metric.type=\"run.googleapis.com/job/completed_execution_count\" AND resource.type=\"cloud_run_job\" AND metric.label.result=\"failed\""
       aligner   = "ALIGN_DELTA"
@@ -97,7 +97,7 @@ locals {
       runbook   = "platform.md#a-failed-migration-during-a-deploy"
     }
     bounces = {
-      name      = "prepza emails bouncing"
+      name      = "testee emails bouncing"
       condition = "Over var.email_bounce_alert_hourly emails not delivered in an hour"
       filter    = "metric.type=\"logging.googleapis.com/user/${google_logging_metric.emails_undelivered.name}\" AND resource.type=\"cloud_run_revision\""
       aligner   = "ALIGN_DELTA"
@@ -157,7 +157,7 @@ resource "google_monitoring_alert_policy" "logs" {
 # Generation tasks: a task's attempt that fails is retried, and dropped after its last; many
 # failing attempts mean runs are being lost.
 resource "google_monitoring_alert_policy" "tasks_failing" {
-  display_name = "prepza generation tasks failing"
+  display_name = "testee generation tasks failing"
   combiner     = "OR"
   severity     = "CRITICAL"
 

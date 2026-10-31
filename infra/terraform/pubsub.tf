@@ -29,7 +29,7 @@ resource "google_pubsub_subscription" "dead_letter" {
 # Pub/Sub caps a filter at 256 bytes (scripts/tests/test_pubsub_filters.py checks each): a type
 # adds 22 bytes plus its name (no spaces around "=", to save bytes). An entry ending in ".*" is a
 # whole family, every type up to its first dot, matched on the event's `family` attribute
-# (prepza_common.events.pubsub) in 23 bytes plus the family's name: notifications and api take all
+# (testee_common.events.pubsub) in 23 bytes plus the family's name: notifications and api take all
 # "candidate." events that way, as listing them one by one outgrew the cap, and ignore the ones
 # they don't handle; ats takes the "interview." family that way; notifications takes the
 # "notification." family too (notification.requested, and site's notification.news_withdrawn). A

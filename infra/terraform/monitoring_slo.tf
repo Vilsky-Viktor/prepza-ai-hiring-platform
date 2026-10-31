@@ -24,7 +24,7 @@ locals {
   slo_alerts = {
     api_fast = {
       slo     = "api"
-      name    = "prepza API errors burning the budget fast"
+      name    = "testee API errors burning the budget fast"
       windows = ["3600s", "300s"]
       rate    = 14.4
       page    = true
@@ -33,7 +33,7 @@ locals {
     }
     api_slow = {
       slo     = "api"
-      name    = "prepza API errors burning the budget"
+      name    = "testee API errors burning the budget"
       windows = ["86400s", "7200s"]
       rate    = 1
       page    = false
@@ -42,7 +42,7 @@ locals {
     }
     answers_fast = {
       slo     = "answers"
-      name    = "prepza candidate answers slow"
+      name    = "testee candidate answers slow"
       windows = ["3600s", "300s"]
       rate    = 14.4
       page    = true
@@ -51,7 +51,7 @@ locals {
     }
     answers_slow = {
       slo     = "answers"
-      name    = "prepza candidate answers slowing"
+      name    = "testee candidate answers slowing"
       windows = ["86400s", "7200s"]
       rate    = 1
       page    = false
@@ -62,8 +62,8 @@ locals {
 }
 
 resource "google_monitoring_custom_service" "site" {
-  service_id   = "prepza"
-  display_name = "prepza"
+  service_id   = "testee"
+  display_name = "testee"
 
   depends_on = [google_project_service.apis]
 }

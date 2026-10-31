@@ -1,5 +1,5 @@
 locals {
-  registry = "${var.region}-docker.pkg.dev/${var.project_id}/prepza"
+  registry = "${var.region}-docker.pkg.dev/${var.project_id}/testee"
 
   # Cloud Run's deterministic address of a service, known before it exists, so services can
   # point at each other without a cycle.
@@ -8,7 +8,7 @@ locals {
   # Every service. `public` ones are reached through the load balancer at /api/<path>/ (or / for
   # the frontend); the others only by Google (Cloud Tasks, Scheduler, Pub/Sub) as the invoker.
   # `connections` is what one instance may open to Postgres: a pool of 2 plus 1 extra
-  # (prepza_common's DB_POOL_SIZE and DB_MAX_OVERFLOW); 1 plus 1 for notifications, ats, api,
+  # (testee_common's DB_POOL_SIZE and DB_MAX_OVERFLOW); 1 plus 1 for notifications, ats, api,
   # the assistant and generation, which with its worker keeps 2 more for LangGraph's checkpoints
   # (CHECKPOINTER_POOL_SIZE); 1 alone for accounts and site, whose requests mostly wait on other
   # services or read files. `max` instances keep the total within the database's budget, even

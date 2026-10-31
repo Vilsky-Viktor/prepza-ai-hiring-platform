@@ -1,5 +1,5 @@
 variable "project_id" {
-  description = "The Google Cloud project, for example prepza-prod. Firebase uses the same project."
+  description = "The Google Cloud project, for example testee-prod. Firebase uses the same project."
   type        = string
 }
 
@@ -12,7 +12,7 @@ variable "region" {
 variable "domain" {
   description = "The site's domain; its A record points at the load balancer's address."
   type        = string
-  default     = "prepza.ai"
+  default     = "testee.ai"
 }
 
 variable "image_tag" {
@@ -24,7 +24,7 @@ variable "image_tag" {
 variable "github_repository" {
   description = "The repository (owner/name), for links to its files such as the runbooks."
   type        = string
-  default     = "Vilsky-Viktor/prepza-ai-hiring-platform"
+  default     = "Vilsky-Viktor/testee-ai-hiring-platform"
 }
 
 # Google trusts GitHub's tokens by these numbers, not by the names, which can be registered again
@@ -56,13 +56,13 @@ variable "db_high_availability" {
 variable "mail_from" {
   description = "Sender of service emails (invites, reports, billing), on a domain verified in Resend."
   type        = string
-  default     = "prepza. <no-reply@prepza.ai>"
+  default     = "testee. <no-reply@testee.ai>"
 }
 
 variable "mail_from_updates" {
   description = "Sender of the emails users may turn off (the activity digest, reminders), on a subdomain verified in Resend on its own, so their spam complaints can't hurt the service emails."
   type        = string
-  default     = "prepza. <updates@mail.prepza.ai>"
+  default     = "testee. <updates@mail.testee.ai>"
 }
 
 variable "mail_from_candidates" {
@@ -145,7 +145,7 @@ variable "monthly_budget" {
 }
 
 variable "superadmin_emails" {
-  description = "Superadmins, prepza's own team (templates, the question bank, the emergency pause and maintenance mode): verified Google emails."
+  description = "Superadmins, testee's own team (templates, the question bank, the emergency pause and maintenance mode): verified Google emails."
   type        = list(string)
 
   # Without one, nobody can pause invites or turn maintenance mode on in an emergency.

@@ -1,7 +1,7 @@
 # Cloud Armor at the edge: blocks service-to-service routes, as the nginx gateway does locally (the
 # services check those callers' tokens as well), and limits requests per IP.
 resource "google_compute_security_policy" "edge" {
-  name = "prepza-edge"
+  name = "testee-edge"
 
   rule {
     action      = "deny(404)"

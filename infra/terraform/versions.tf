@@ -16,7 +16,7 @@ terraform {
   # The state lives in a Cloud Storage bucket created during bootstrap (see README.md):
   # terraform init -backend-config="bucket=<project>-terraform"
   backend "gcs" {
-    prefix = "prepza"
+    prefix = "testee"
   }
 }
 

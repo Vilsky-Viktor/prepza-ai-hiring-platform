@@ -63,11 +63,11 @@ resource "google_secret_manager_secret_version" "service_secret" {
   secret_data = random_password.service_secret[each.value].result
 }
 
-# Secrets prepza makes itself, 48 random characters each:
+# Secrets testee makes itself, 48 random characters each:
 # - analytics-salt salts the user ids in funnel events, so the table never holds a real id (see
 #   analytics.py and analytics.tf);
 # - preview-secret signs the titles the frontend's link-preview pictures draw, so /preview draws
-#   only prepza's own;
+#   only testee's own;
 # - email-link-secret signs the unsubscribe links in emails (notifications), so nobody can make one
 #   for someone else;
 # - person-hash-key keys the hashes that stand for a person (a candidate's opted-out or suppressed

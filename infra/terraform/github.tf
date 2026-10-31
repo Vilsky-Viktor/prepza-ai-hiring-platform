@@ -38,7 +38,7 @@ resource "google_iam_workload_identity_pool_provider" "github" {
 # What the pipeline acts as: it pushes images, runs migrations and moves services to new images,
 # and nothing else; infrastructure changes go through Terraform.
 resource "google_service_account" "deploy" {
-  account_id   = "prepza-deploy"
+  account_id   = "testee-deploy"
   display_name = "GitHub Actions deploys"
 }
 
@@ -50,7 +50,7 @@ resource "google_service_account_iam_member" "github_is_deploy" {
 
 # What CI acts as: it pushes the images it built, and can't deploy them.
 resource "google_service_account" "ci" {
-  account_id   = "prepza-ci"
+  account_id   = "testee-ci"
   display_name = "GitHub Actions CI (pushes images)"
 }
 

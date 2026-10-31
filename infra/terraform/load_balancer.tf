@@ -1,12 +1,12 @@
 # One global address and HTTPS certificate for the domain. Google's edge ends connections close
 # to each user and carries requests to the region on its own network.
 resource "google_compute_global_address" "site" {
-  name       = "prepza"
+  name       = "testee"
   depends_on = [google_project_service.apis]
 }
 
 resource "google_compute_managed_ssl_certificate" "site" {
-  name = "prepza"
+  name = "testee"
 
   managed {
     domains = [var.domain]
@@ -16,7 +16,7 @@ resource "google_compute_managed_ssl_certificate" "site" {
 # www. only redirects to the domain (the URL map below), with a certificate of its own: one
 # certificate for both would stay inactive, the domain's included, until www's DNS points here.
 resource "google_compute_managed_ssl_certificate" "www" {
-  name = "prepza-www"
+  name = "testee-www"
 
   managed {
     domains = ["www.${var.domain}"]
@@ -87,7 +87,7 @@ resource "google_compute_backend_service" "service" {
 # the bell's live stream to notifications-stream (locals.tf); AI apps' MCP endpoint and its
 # OAuth paths at the root to the assistant; everything else to the frontend.
 resource "google_compute_url_map" "site" {
-  name            = "prepza"
+  name            = "testee"
   default_service = google_compute_backend_service.service["frontend"].id
 
   host_rule {
@@ -192,20 +192,20 @@ resource "google_compute_url_map" "site" {
 # TLS 1.2 or later with modern ciphers only: without a policy Google's default profile still
 # offers TLS 1.0 and 1.1.
 resource "google_compute_ssl_policy" "modern" {
-  name            = "prepza-modern-tls"
+  name            = "testee-modern-tls"
   profile         = "MODERN"
   min_tls_version = "TLS_1_2"
 }
 
 resource "google_compute_target_https_proxy" "site" {
-  name             = "prepza"
+  name             = "testee"
   url_map          = google_compute_url_map.site.id
   ssl_certificates = [google_compute_managed_ssl_certificate.site.id, google_compute_managed_ssl_certificate.www.id]
   ssl_policy       = google_compute_ssl_policy.modern.id
 }
 
 resource "google_compute_global_forwarding_rule" "https" {
-  name                  = "prepza-https"
+  name                  = "testee-https"
   load_balancing_scheme = "EXTERNAL_MANAGED"
   ip_address            = google_compute_global_address.site.id
   port_range            = "443"
@@ -214,7 +214,7 @@ resource "google_compute_global_forwarding_rule" "https" {
 
 # Plain HTTP redirects to HTTPS.
 resource "google_compute_url_map" "redirect" {
-  name = "prepza-redirect"
+  name = "testee-redirect"
 
   default_url_redirect {
     https_redirect         = true
@@ -224,12 +224,12 @@ resource "google_compute_url_map" "redirect" {
 }
 
 resource "google_compute_target_http_proxy" "redirect" {
-  name    = "prepza-redirect"
+  name    = "testee-redirect"
   url_map = google_compute_url_map.redirect.id
 }
 
 resource "google_compute_global_forwarding_rule" "http" {
-  name                  = "prepza-http"
+  name                  = "testee-http"
   load_balancing_scheme = "EXTERNAL_MANAGED"
   ip_address            = google_compute_global_address.site.id
   port_range            = "80"

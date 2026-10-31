@@ -2,8 +2,8 @@
 # pipeline runs it before migrations; it's safe to repeat. Its account, alone, reads the admin's
 # and every service's database URL.
 resource "google_service_account" "db_admin" {
-  account_id   = "prepza-db-admin"
-  display_name = "prepza database users"
+  account_id   = "testee-db-admin"
+  display_name = "testee database users"
 }
 
 resource "google_project_iam_member" "db_admin" {

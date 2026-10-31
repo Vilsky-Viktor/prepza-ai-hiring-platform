@@ -7,7 +7,7 @@ locals {
     connections = {
       # Open connections past 80% of max_connections (database.tf), the sign to raise db_tier
       # before a deploy at peak runs out of them.
-      name      = "prepza database connections high"
+      name      = "testee database connections high"
       condition = "Postgres connections above 80% of the limit"
       metric    = "cloudsql.googleapis.com/database/postgresql/num_backends"
       duration  = "300s"
@@ -18,7 +18,7 @@ locals {
       text      = "The database is near its connection limit. Raise db_tier (and db_max_connections) as infra/README.md describes, or lower services' max instances."
     }
     cpu = {
-      name      = "prepza database CPU high"
+      name      = "testee database CPU high"
       condition = "Cloud SQL CPU above 80%"
       metric    = "cloudsql.googleapis.com/database/cpu/utilization"
       duration  = "900s"
@@ -30,7 +30,7 @@ locals {
     }
     memory = {
       # Above 90% for fifteen minutes, before Postgres starts failing queries.
-      name      = "prepza database memory high"
+      name      = "testee database memory high"
       condition = "Postgres memory above 90%"
       metric    = "cloudsql.googleapis.com/database/memory/utilization"
       duration  = "900s"
@@ -42,7 +42,7 @@ locals {
     }
     disk = {
       # Storage grows by itself, but a fast fill means something writes too much.
-      name      = "prepza database disk filling"
+      name      = "testee database disk filling"
       condition = "Postgres disk above 85% full"
       metric    = "cloudsql.googleapis.com/database/disk/utilization"
       duration  = "0s"
@@ -115,7 +115,7 @@ moved {
 # Backups: a Cloud SQL backup run that failed, from its own error logs. The drill
 # (scripts/ops/restore-drill.sh) proves the ones that succeed restore.
 resource "google_monitoring_alert_policy" "database_backup_failed" {
-  display_name = "prepza database backup failed"
+  display_name = "testee database backup failed"
   combiner     = "OR"
   severity     = "WARNING"
 
@@ -136,7 +136,7 @@ resource "google_monitoring_alert_policy" "database_backup_failed" {
   }
 
   documentation {
-    content   = "A database backup failed. Check the instance's backups in Cloud SQL and start one by hand (gcloud sql backups create --instance=prepza). Google keeps a backup made by hand until someone deletes it: once the automated backups work again, delete it (gcloud sql backups delete <id> --instance=prepza), at most 14 days later, so backups last no longer than the privacy policy says."
+    content   = "A database backup failed. Check the instance's backups in Cloud SQL and start one by hand (gcloud sql backups create --instance=testee). Google keeps a backup made by hand until someone deletes it: once the automated backups work again, delete it (gcloud sql backups delete <id> --instance=testee), at most 14 days later, so backups last no longer than the privacy policy says."
     mime_type = "text/markdown"
 
     links {

@@ -1,6 +1,6 @@
 # Google Cloud infrastructure
 
-Terraform for prepza on Google Cloud, in one region (`europe-west1`, Belgium) behind Google's global load balancer:
+Terraform for testee on Google Cloud, in one region (`europe-west1`, Belgium) behind Google's global load balancer:
 
 - **Cloud Run:** the frontend, eleven APIs (library, generation, rounds, companies, billing, notifications, ats, api, assistant, accounts, site) and the generation worker; notifications' bell stream runs as its own service (`notifications-stream`, same image) so open tabs never take the capacity event pushes need. That's 14 services from 12 images. Billed per request, and idle services cost nothing, except the one warm instance each of `frontend`, `rounds`, `companies`, `library`, `billing` and `generation` keeps (`min` in `locals.tf`, about $10 a month each), so pages never wait for their cold start.
 - **Cloud SQL Postgres 18** (as locally): one database per service, with daily backups (14 kept) and point-in-time recovery (7 days back). Google Cloud refuses to delete the instance (deletion protection on the instance itself, not only in Terraform), its backups outlive it, Google's maintenance restarts it only on Sundays at 03:00 UTC, and it takes only encrypted connections (`ssl_mode = "ENCRYPTED_ONLY"`; the services, jobs and the Cloud SQL Auth Proxy connect through Google's connector, which always encrypts).
@@ -9,9 +9,9 @@ Terraform for prepza on Google Cloud, in one region (`europe-west1`, Belgium) be
 - **The global load balancer:**
   - HTTPS with a Google-managed certificate, TLS 1.2 or later with modern ciphers only (`google_compute_ssl_policy.modern`);
   - `/api/<service>/` routes to each API, the MCP endpoint and its OAuth paths at the root (`/mcp`, `/authorize`, `/token`, `/register`, `/revoke` and the `/.well-known/oauth-*` metadata; exact paths, `locals.mcp_paths`) to the assistant, and everything else to the frontend;
-  - Cloud CDN on the frontend: it caches the static files and compresses responses (`compression_mode = "AUTOMATIC"`: Brotli for browsers that take it, else gzip), which the frontend sends uncompressed (`compress: false`); locally the nginx gateway gzips pages instead; the APIs have no CDN, so they gzip their own JSON (`prepza_common.http.compression`, never their server-sent event streams);
+  - Cloud CDN on the frontend: it caches the static files and compresses responses (`compression_mode = "AUTOMATIC"`: Brotli for browsers that take it, else gzip), which the frontend sends uncompressed (`compress: false`); locally the nginx gateway gzips pages instead; the APIs have no CDN, so they gzip their own JSON (`testee_common.http.compression`, never their server-sent event streams);
   - the security headers the local nginx gateway adds (HSTS for a year with `includeSubDomains`, so browsers use HTTPS on every subdomain too: **any subdomain added later must serve HTTPS**, as `www.` does here; `send.` is Resend's sending domain, with no web site; no `preload`; nosniff, `X-Frame-Options` on the APIs, `Referrer-Policy`, `Permissions-Policy`, and `Cross-Origin-Opener-Policy: same-origin-allow-popups`, which keeps other sites' windows from reaching ours while the Google, LinkedIn and GitHub sign-in popups still report back); the frontend sets its own Content-Security-Policy, whose `frame-ancestors` lets no site frame a page but a company's own its embedded interview;
-  - Cloud Armor rules that block `/api/*/internal/`, give each visitor's IP 20 help chat questions per 10 minutes (at `/api/assistant/help/chat`), and answer `429` past 600 requests a minute per IP (static files outside `/api` don't count; the frontend's server-side calls, from the NAT's fixed address `prepza-nat` in `network.tf`, are left out).
+  - Cloud Armor rules that block `/api/*/internal/`, give each visitor's IP 20 help chat questions per 10 minutes (at `/api/assistant/help/chat`), and answer `429` past 600 requests a minute per IP (static files outside `/api` don't count; the frontend's server-side calls, from the NAT's fixed address `testee-nat` in `network.tf`, are left out).
 - **Cloud Logging:** every log line stays 30 days in the `_Default` bucket; superadmins' use of the admin zone (one line per request: the account's id and the route, never what was looked up) also goes to the `admin-access` bucket, kept a year with its retention locked, so nobody can shorten it or delete the lines sooner (`logging.tf`; the lock is for good, so Terraform can't delete that bucket afterwards).
 - **Secret Manager** for secrets, and **Artifact Registry** for images: released versions' images (`v*` tags) and each image's 10 newest are kept, and the rest are deleted after 30 days.
 
@@ -29,16 +29,16 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
 
 1. **Create the project and link billing.**
    ```bash
-   gcloud projects create prepza-prod
-   gcloud billing projects link prepza-prod --billing-account=<BILLING_ACCOUNT_ID>
-   gcloud config set project prepza-prod
+   gcloud projects create testee-prod
+   gcloud billing projects link testee-prod --billing-account=<BILLING_ACCOUNT_ID>
+   gcloud config set project testee-prod
    gcloud auth application-default login
    # The budget API needs a project to bill your own login's calls to.
-   gcloud auth application-default set-quota-project prepza-prod
+   gcloud auth application-default set-quota-project testee-prod
    ```
-2. **Add Firebase to the project** in the [Firebase console](https://console.firebase.google.com) ("Add project", then choose `prepza-prod`).
+2. **Add Firebase to the project** in the [Firebase console](https://console.firebase.google.com) ("Add project", then choose `testee-prod`).
    - **Authentication → Sign-in method:** enable Google.
-   - **Authentication → Settings → Authorized domains:** add `prepza.ai`.
+   - **Authentication → Settings → Authorized domains:** add `testee.ai`.
    - **Authentication → Settings → User account linking:** keep "Link accounts that use the same email" (the default): the site links GitHub or LinkedIn to an existing account with the same email after the person signs in the way they did before.
    - **GitHub and LinkedIn sign-in (optional):**
      - GitHub: create an OAuth app (GitHub → Settings → Developer settings → OAuth Apps) with the callback URL `https://<authDomain>/__/auth/handler`. Set `github_client_id` in `terraform.tfvars`, and add the client secret to Secret Manager once, after the first `apply` has made the empty secret: `printf %s '<secret>' | gcloud secrets versions add github-client-secret --data-file=-`. Then `apply` again to turn the sign-in on.
@@ -47,8 +47,8 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
    - **Project settings → Your apps:** add a Web app. Note its `apiKey` and `authDomain` for the frontend build; the `apiKey` is also `firebase_web_api_key` in `terraform.tfvars` (the assistant signs AI apps' users in with it, so the plan and the assistant refuse an empty one). In Google Cloud's Credentials, restrict that key to its APIs (Identity Toolkit API and Token Service API) if you restrict it at all, never to websites (HTTP referrers): the assistant calls from the server, with no referrer, and every AI app call would fail.
 3. **Create the bucket for Terraform's state.**
    ```bash
-   gcloud storage buckets create gs://prepza-prod-terraform --location=europe-west1 --uniform-bucket-level-access
-   gcloud storage buckets update gs://prepza-prod-terraform --versioning --public-access-prevention
+   gcloud storage buckets create gs://testee-prod-terraform --location=europe-west1 --uniform-bucket-level-access
+   gcloud storage buckets update gs://testee-prod-terraform --versioning --public-access-prevention
    ```
    The state holds secrets in plain text (the generated passwords and keys, the sign-in apps' client secrets): treat the bucket as one. Only you (the project's owner) can read it; never grant anyone else access to it or copy the state elsewhere.
 4. **Create Redis on Upstash.** Pick the Google Cloud region `europe-west1` (the services' own, so a command takes milliseconds) and a paid plan (pay as you go, or a fixed plan once traffic grows): requests count against their rate limits in it, so the free plan's monthly command limit runs out in days, and Redis then refuses every command until the month ends. Leave eviction off (Upstash's default): an evicted rate-limit counter would let a caller past its limit early. Copy its `rediss://` URL. Services retry a command whose connection dropped, and the Redis alert (below) fires when commands keep failing.
@@ -56,11 +56,11 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
    ```bash
    cd infra/terraform
    cp terraform.tfvars.example terraform.tfvars   # fill it in
-   terraform init -backend-config="bucket=prepza-prod-terraform"
+   terraform init -backend-config="bucket=testee-prod-terraform"
    ```
    For the live site, set `paddle_environment = "production"` with the production `paddle_prices` and `paddle_product_candidates` (each price's tax, and the product's, set to **Exclusive**, see [docs/features/billing.md](../docs/features/billing.md#setting-up-paddle)) and `paddle_client_token` (sandbox ones take no real payments), and at least one `superadmin_emails`: the emergency pause and maintenance mode are switched only from the admin zone, so Terraform refuses an empty list.
 
-   `alert_email`, `alert_app_channel` and `alert_sms` (both optional), `billing_account` and `monthly_budget` set up the alerts in `monitoring*.tf` and the budget in `budget.tf`. A **page** (a symptom users feel now) goes to email, the Cloud Monitoring app (sign in to the app on your phone, then put the channel it made, `projects/<project>/notificationChannels/<id>` from **Monitoring → Alerting → Edit notification channels**, in `alert_app_channel`) and, as a backup, SMS to `alert_sms`; a **ticket** (a cause or a slow drift) and the budget emails go to email only. Pages: an uptime check on the site and each API's `/ready` failing from more than one of three regions (or answering without the expected text), the two service level objectives burning their error budget fast (`monitoring_slo.tf`: the public APIs answering 99.5% without a server error, and 95% of candidates' requests to the interview service within 2 seconds, voice mode's live listening left out as its WebSocket stays open while the candidate speaks, both at the load balancer over 28 days), events dead-lettered, a web hook refused for its signature, Redis, OpenAI, Paddle or generations failing, AI spend over `ai_spend_alert_hourly` (default $20) in an hour, AI stopped for many, a payment not credited, a failed migration, and more than `email_bounce_alert_hourly` (default 20) emails bouncing, failing or marked as spam in an hour. Tickets: the objectives burning slowly, a service's server errors over 5%, events waiting over 15 minutes, a failed scheduled job, the generation queue backed up, the database's connections, CPU, memory or disk high, a failed backup, and AI spend over `ai_spend_alert_daily` (default $20) in a day. Every refusal by a limit is also counted, by limit, in `prepza_limit_hits`. Each alert's email links its runbook section ([docs/runbooks.md](../docs/runbooks.md)). OpenAI's monthly hard limit (in its dashboard) is the last stop on AI spend: set it below what you can afford. Creating the budget needs the Billing Account Costs Manager role on the billing account, which its administrator already has. `monthly_budget` is the Google Cloud bill's budget only; the AI budget the admin zone's AI costs page compares the month's AI spend with is `MONTHLY_BUDGET` in the admin zone's Controls. Usage limits, such as the daily generations of companies that never topped up, aren't Terraform variables: a superadmin sets them in the admin zone's Controls tab ([docs/features/admin-zone.md](../docs/features/admin-zone.md#limits)). `google_site_verification` and `bing_site_verification` (optional) are the tokens from Google Search Console's and Bing Webmaster Tools' meta-tag checks; the frontend adds the tags.
+   `alert_email`, `alert_app_channel` and `alert_sms` (both optional), `billing_account` and `monthly_budget` set up the alerts in `monitoring*.tf` and the budget in `budget.tf`. A **page** (a symptom users feel now) goes to email, the Cloud Monitoring app (sign in to the app on your phone, then put the channel it made, `projects/<project>/notificationChannels/<id>` from **Monitoring → Alerting → Edit notification channels**, in `alert_app_channel`) and, as a backup, SMS to `alert_sms`; a **ticket** (a cause or a slow drift) and the budget emails go to email only. Pages: an uptime check on the site and each API's `/ready` failing from more than one of three regions (or answering without the expected text), the two service level objectives burning their error budget fast (`monitoring_slo.tf`: the public APIs answering 99.5% without a server error, and 95% of candidates' requests to the interview service within 2 seconds, voice mode's live listening left out as its WebSocket stays open while the candidate speaks, both at the load balancer over 28 days), events dead-lettered, a web hook refused for its signature, Redis, OpenAI, Paddle or generations failing, AI spend over `ai_spend_alert_hourly` (default $20) in an hour, AI stopped for many, a payment not credited, a failed migration, and more than `email_bounce_alert_hourly` (default 20) emails bouncing, failing or marked as spam in an hour. Tickets: the objectives burning slowly, a service's server errors over 5%, events waiting over 15 minutes, a failed scheduled job, the generation queue backed up, the database's connections, CPU, memory or disk high, a failed backup, and AI spend over `ai_spend_alert_daily` (default $20) in a day. Every refusal by a limit is also counted, by limit, in `testee_limit_hits`. Each alert's email links its runbook section ([docs/runbooks.md](../docs/runbooks.md)). OpenAI's monthly hard limit (in its dashboard) is the last stop on AI spend: set it below what you can afford. Creating the budget needs the Billing Account Costs Manager role on the billing account, which its administrator already has. `monthly_budget` is the Google Cloud bill's budget only; the AI budget the admin zone's AI costs page compares the month's AI spend with is `MONTHLY_BUDGET` in the admin zone's Controls. Usage limits, such as the daily generations of companies that never topped up, aren't Terraform variables: a superadmin sets them in the admin zone's Controls tab ([docs/features/admin-zone.md](../docs/features/admin-zone.md#limits)). `google_site_verification` and `bing_site_verification` (optional) are the tokens from Google Search Console's and Bing Webmaster Tools' meta-tag checks; the frontend adds the tags.
 6. **Create the image registry first,** then push the first images. CI pushes them on every push to `main` afterwards.
    - Cloud Run runs `linux/amd64`, so build for it even on an Apple-silicon Mac.
    - Use the same tag as `image_tag` in `terraform.tfvars`.
@@ -68,14 +68,14 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
    ```bash
    terraform apply -target=google_artifact_registry_repository.images
    gcloud auth configure-docker europe-west1-docker.pkg.dev
-   REGISTRY=europe-west1-docker.pkg.dev/prepza-prod/prepza
+   REGISTRY=europe-west1-docker.pkg.dev/testee-prod/testee
    for service in library generation rounds companies billing notifications ats api assistant accounts site; do
      docker build --platform linux/amd64 --target prod -f services/$service/Dockerfile -t $REGISTRY/$service:first . && docker push $REGISTRY/$service:first
    done
    docker build --platform linux/amd64 --target prod -t $REGISTRY/frontend:first \
      --build-arg NEXT_PUBLIC_FIREBASE_API_KEY=<apiKey> \
-     --build-arg NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=prepza-prod.firebaseapp.com \
-     --build-arg NEXT_PUBLIC_FIREBASE_PROJECT_ID=prepza-prod frontend && docker push $REGISTRY/frontend:first
+     --build-arg NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=testee-prod.firebaseapp.com \
+     --build-arg NEXT_PUBLIC_FIREBASE_PROJECT_ID=testee-prod frontend && docker push $REGISTRY/frontend:first
    ```
 
    Run these from the repo root.
@@ -99,7 +99,7 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
    python3 -c "import base64,os; print(base64.urlsafe_b64encode(os.urandom(32)).decode(), end='')" | gcloud secrets versions add ats-encryption-key --data-file=-
    # The api service's key that encrypts web hooks' signing secrets (a Fernet key); keep it: a new one makes companies add their web hooks again.
    python3 -c "import base64,os; print(base64.urlsafe_b64encode(os.urandom(32)).decode(), end='')" | gcloud secrets versions add api-encryption-key --data-file=-
-   # Slack: prepza's Slack app (see docs/features/notifications.md#setting-up-slack), and the key that encrypts companies' web hooks; keep it too.
+   # Slack: testee's Slack app (see docs/features/notifications.md#setting-up-slack), and the key that encrypts companies' web hooks; keep it too.
    printf '%s' "$SLACK_CLIENT_ID" | gcloud secrets versions add slack-client-id --data-file=-
    printf '%s' "$SLACK_CLIENT_SECRET" | gcloud secrets versions add slack-client-secret --data-file=-
    python3 -c "import base64,os; print(base64.urlsafe_b64encode(os.urandom(32)).decode(), end='')" | gcloud secrets versions add slack-encryption-key --data-file=-
@@ -125,14 +125,14 @@ You need `gcloud`, Docker and Terraform 1.9+ (or `docker run hashicorp/terraform
      gcloud run services update $service --region=europe-west1 --update-labels=restarted=$(date +%s)
    done
    ```
-10. **Point the domain at the load balancer.** In GoDaddy's DNS, add an **A record** for `@` with the value of `terraform output site_ip`, and keep GoDaddy's **CNAME** `www` → `@` (add it if it's missing): `www.prepza.ai` redirects to `prepza.ai`. Google then issues both certificates, which can take up to about an hour; each is independent, so the site works even while `www`'s is pending:
+10. **Point the domain at the load balancer.** In GoDaddy's DNS, add an **A record** for `@` with the value of `terraform output site_ip`, and keep GoDaddy's **CNAME** `www` → `@` (add it if it's missing): `www.testee.ai` redirects to `testee.ai`. Google then issues both certificates, which can take up to about an hour; each is independent, so the site works even while `www`'s is pending:
     ```bash
     gcloud compute ssl-certificates list --global --format='table(name,managed.status)'
     ```
     Until the certificate is active, the uptime checks fail and their alerts email you; they clear by themselves once the site answers.
 11. **Update the services that call back to the site:**
-    - **Paddle:** the webhook destination is `https://prepza.ai/api/billing/webhooks/paddle`, for `transaction.completed`, `adjustment.created`, `adjustment.updated`, `subscription.created` and `subscription.canceled`. The adjustments are refunds and chargebacks, which take the credits back; the subscriptions start and end automatic top-ups. Once deployed, send Paddle's test notification to it: it must be accepted (a refused signature means `paddle-webhook-secret` is wrong, and the alert below fires).
-    - **Resend:** the `prepza.ai` sending domain is already verified; verify `mail.prepza.ai` too, the optional emails' sender (see [Email deliverability](#email-deliverability)). Add a webhook at `https://prepza.ai/api/notifications/webhooks/resend` for `email.bounced`, `email.complained`, `email.suppressed` and `email.failed` (not `email.delivery_delayed`: a delay is temporary, and the email is still being tried); its signing secret is `resend-webhook-secret` in step 8. Once deployed, send a test event from Resend and check it's accepted.
+    - **Paddle:** the webhook destination is `https://testee.ai/api/billing/webhooks/paddle`, for `transaction.completed`, `adjustment.created`, `adjustment.updated`, `subscription.created` and `subscription.canceled`. The adjustments are refunds and chargebacks, which take the credits back; the subscriptions start and end automatic top-ups. Once deployed, send Paddle's test notification to it: it must be accepted (a refused signature means `paddle-webhook-secret` is wrong, and the alert below fires).
+    - **Resend:** the `testee.ai` sending domain is already verified; verify `mail.testee.ai` too, the optional emails' sender (see [Email deliverability](#email-deliverability)). Add a webhook at `https://testee.ai/api/notifications/webhooks/resend` for `email.bounced`, `email.complained`, `email.suppressed` and `email.failed` (not `email.delivery_delayed`: a delay is temporary, and the email is still being tried); its signing secret is `resend-webhook-secret` in step 8. Once deployed, send a test event from Resend and check it's accepted.
     - **Sentry:** create the organization in Sentry's EU data region (the privacy policy and DPA say error reports stay in the EU), then set `backend_sentry_dsn` in `terraform.tfvars`.
 
 12. **Connect GitHub for deploys.** In the repository's **Settings → Secrets and variables → Actions → Variables**, add:
@@ -154,18 +154,18 @@ Emails go out through Resend in streams, each from its own sender, so spam compl
 
 | Stream | Emails | Sender (`terraform.tfvars`) |
 | --- | --- | --- |
-| Service | team invites, shared reports, billing emails, legal notices, contact messages | `mail_from = "prepza. <no-reply@prepza.ai>"` |
-| Optional | the activity digest and reminders (later product updates and offers) | `mail_from_updates = "prepza. <updates@mail.prepza.ai>"` |
+| Service | team invites, shared reports, billing emails, legal notices, contact messages | `mail_from = "testee. <no-reply@testee.ai>"` |
+| Optional | the activity digest and reminders (later product updates and offers) | `mail_from_updates = "testee. <updates@mail.testee.ai>"` |
 | Candidates | candidate invites, their reminders, a shareable link's own link | `mail_from_candidates`, empty: sent from `mail_from` (see below) |
 
-**Not set up yet: a candidates' subdomain.** Candidate invites go to addresses companies supply, so one company's bad list could hurt every email on that sender. `mail_from_candidates` lets them go from their own subdomain, watched apart; until it's set they come from `mail_from`. Setting it up needs, for `candidates.prepza.ai` (say): the domain added in Resend in the EU region; its `send.candidates` and `rsend.candidates` CNAMEs and its `resend._domainkey.candidates` TXT, as in steps 2 and 3 below; DMARC is already covered by `prepza.ai`'s record; then `mail_from_candidates = "prepza. <invites@candidates.prepza.ai>"` in `terraform.tfvars`, warmed up as below. Service emails still go from the apex domain `prepza.ai`, not a subdomain of their own: moving them is a DNS change for later.
+**Not set up yet: a candidates' subdomain.** Candidate invites go to addresses companies supply, so one company's bad list could hurt every email on that sender. `mail_from_candidates` lets them go from their own subdomain, watched apart; until it's set they come from `mail_from`. Setting it up needs, for `candidates.testee.ai` (say): the domain added in Resend in the EU region; its `send.candidates` and `rsend.candidates` CNAMEs and its `resend._domainkey.candidates` TXT, as in steps 2 and 3 below; DMARC is already covered by `testee.ai`'s record; then `mail_from_candidates = "testee. <invites@candidates.testee.ai>"` in `terraform.tfvars`, warmed up as below. Service emails still go from the apex domain `testee.ai`, not a subdomain of their own: moving them is a DNS change for later.
 
 **Warming up a new sender.** A new sending domain, or a much larger volume on one, starts low: cap it at a few hundred emails a day the first week (`RESEND_DAILY_LIMIT` caps bulk sends; send invites from the new sender for a share of companies first), then raise the cap each week over about six weeks. Each week, before raising it, check deferrals, bounces and complaints per mailbox provider (Google Postmaster Tools for Gmail, SNDS for Outlook, Resend's dashboard for the rest): hold the cap while the spam rate is over 0.1% or bounces over 2%.
 
-The DNS records below are what Gmail, Yahoo (their 2024 rules for bulk senders) and Outlook check. Add them in GoDaddy's DNS, where a record's name is relative to `prepza.ai` (`send` means `send.prepza.ai`):
+The DNS records below are what Gmail, Yahoo (their 2024 rules for bulk senders) and Outlook check. Add them in GoDaddy's DNS, where a record's name is relative to `testee.ai` (`send` means `send.testee.ai`):
 
-1. **Add both domains in Resend, in the EU region.** At resend.com/domains, add `prepza.ai` and `mail.prepza.ai` with the region **Ireland (eu-west-1)**: a domain's region is set when it's added (to change it, delete the domain and add it again). Each domain's page lists its exact records: copy the values from there, as the DKIM key is unique to each domain.
-2. **Sending (SPF and the bounce address).** Two CNAME records per domain point the `send` and `rsend` subdomains at Resend, which publishes the SPF record and receives the bounces there, not on `prepza.ai` itself:
+1. **Add both domains in Resend, in the EU region.** At resend.com/domains, add `testee.ai` and `mail.testee.ai` with the region **Ireland (eu-west-1)**: a domain's region is set when it's added (to change it, delete the domain and add it again). Each domain's page lists its exact records: copy the values from there, as the DKIM key is unique to each domain.
+2. **Sending (SPF and the bounce address).** Two CNAME records per domain point the `send` and `rsend` subdomains at Resend, which publishes the SPF record and receives the bounces there, not on `testee.ai` itself:
 
    | Type | Name | Value |
    | --- | --- | --- |
@@ -174,25 +174,25 @@ The DNS records below are what Gmail, Yahoo (their 2024 rules for bulk senders) 
    | CNAME | `send.mail` | `send.forge.rmta.net` |
    | CNAME | `rsend.mail` | `rsend-euw1.forge.rmta.net` |
 
-   A name has at most one SPF record. Whatever receives mail for `@prepza.ai` (the mailbox behind `hello@prepza.ai`) adds its own MX and SPF records on `@`, as its provider says.
+   A name has at most one SPF record. Whatever receives mail for `@testee.ai` (the mailbox behind `hello@testee.ai`) adds its own MX and SPF records on `@`, as its provider says.
 3. **DKIM.** One TXT record per domain, with the key from Resend's page:
 
    | Type | Name | Value |
    | --- | --- | --- |
-   | TXT | `resend._domainkey` | `p=MIGfMA0GCSqGSIb3DQEB…` (prepza.ai's key) |
-   | TXT | `resend._domainkey.mail` | `p=MIGfMA0GCSqGSIb3DQEB…` (mail.prepza.ai's key) |
+   | TXT | `resend._domainkey` | `p=MIGfMA0GCSqGSIb3DQEB…` (testee.ai's key) |
+   | TXT | `resend._domainkey.mail` | `p=MIGfMA0GCSqGSIb3DQEB…` (mail.testee.ai's key) |
 
    Click **Verify** on each domain's page once the records are in; both should show "Verified".
-4. **DMARC.** One record on `prepza.ai` covers `mail.prepza.ai` too. Start by only collecting reports, sent to an address you read:
+4. **DMARC.** One record on `testee.ai` covers `mail.testee.ai` too. Start by only collecting reports, sent to an address you read:
 
    | Type | Name | Value |
    | --- | --- | --- |
-   | TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:dmarc@prepza.ai; adkim=r; aspf=r` |
+   | TXT | `_dmarc` | `v=DMARC1; p=none; rua=mailto:dmarc@testee.ai; adkim=r; aspf=r` |
 
-   After 2–4 weeks of reports showing every legitimate sender passing (Resend, and the mailbox provider of `hello@prepza.ai`), move to `p=quarantine`, and later to `p=reject`.
-5. **Firebase's own emails.** Firebase sends the link that verifies a new user's email (after a GitHub sign-in, say) itself, by default from `noreply@prepza-prod.firebaseapp.com`, which none of the records above cover. In the Firebase console → **Authentication → Templates**, edit **Email address verification**, set the sender name to `prepza.`, and click **Customize domain**: enter `auth.prepza.ai` and add the TXT and CNAME records it lists (its own SPF and DKIM, on a subdomain so `@`'s SPF stays as it is). Once verified, the emails come from `noreply@auth.prepza.ai` and pass DMARC. When Firebase can't send one, the sign-in says so and the next sign-in sends a new link.
-6. **Turn tracking off.** On each domain's page in Resend, under **Configuration**, keep **Click tracking** and **Open tracking** off: click tracking rewrites links into redirects through another domain, and the open pixel is an image from elsewhere; both look like spam. Emails link only to `prepza.ai`.
-7. **Check it.** Send an invite, a digest and a Firebase verification email to the address mail-tester.com gives you and aim for 10/10; in Gmail, **Show original** should say `PASS` for SPF, DKIM and DMARC. Add `prepza.ai` to [Google Postmaster Tools](https://postmaster.google.com) (verified with one more TXT record) and keep the spam rate under 0.1%, never reaching 0.3%; Outlook's [SNDS](https://sendersupport.olc.protection.outlook.com/snds/) shows the same for Microsoft.
+   After 2–4 weeks of reports showing every legitimate sender passing (Resend, and the mailbox provider of `hello@testee.ai`), move to `p=quarantine`, and later to `p=reject`.
+5. **Firebase's own emails.** Firebase sends the link that verifies a new user's email (after a GitHub sign-in, say) itself, by default from `noreply@testee-prod.firebaseapp.com`, which none of the records above cover. In the Firebase console → **Authentication → Templates**, edit **Email address verification**, set the sender name to `testee.`, and click **Customize domain**: enter `auth.testee.ai` and add the TXT and CNAME records it lists (its own SPF and DKIM, on a subdomain so `@`'s SPF stays as it is). Once verified, the emails come from `noreply@auth.testee.ai` and pass DMARC. When Firebase can't send one, the sign-in says so and the next sign-in sends a new link.
+6. **Turn tracking off.** On each domain's page in Resend, under **Configuration**, keep **Click tracking** and **Open tracking** off: click tracking rewrites links into redirects through another domain, and the open pixel is an image from elsewhere; both look like spam. Emails link only to `testee.ai`.
+7. **Check it.** Send an invite, a digest and a Firebase verification email to the address mail-tester.com gives you and aim for 10/10; in Gmail, **Show original** should say `PASS` for SPF, DKIM and DMARC. Add `testee.ai` to [Google Postmaster Tools](https://postmaster.google.com) (verified with one more TXT record) and keep the spam rate under 0.1%, never reaching 0.3%; Outlook's [SNDS](https://sendersupport.olc.protection.outlook.com/snds/) shows the same for Microsoft.
 
 What the emails do themselves: each has a plain-text part next to the HTML, `Auto-Submitted: auto-generated`, and a Reply-To that someone reads (the member who shared a report, the visitor for contact messages, otherwise `CONTACT_EMAIL`). Only emails the recipient may stop (the digest, reminders, a candidate's invite, link and reminder) carry the one-click `List-Unsubscribe` headers; a spam complaint about the digest or reminders turns them off for that user (see [Notifications and emails](../docs/features/notifications.md#unsubscribing)).
 
@@ -214,7 +214,7 @@ A failed step stops the deploy. Before the services step, nothing has changed fo
 
 ## Restore drill
 
-A backup is only proven by restoring it. Run `scripts/ops/restore-drill.sh prepza-prod` before launch, and then every quarter. It needs `gcloud`, `cloud-sql-proxy`, `psql` and `pg_isready`, and it:
+A backup is only proven by restoring it. Run `scripts/ops/restore-drill.sh testee-prod` before launch, and then every quarter. It needs `gcloud`, `cloud-sql-proxy`, `psql` and `pg_isready`, and it:
 1. Restores the latest backup into a temporary instance.
 2. Reads each service's main tables through the Cloud SQL Auth Proxy.
 3. Deletes the temporary instance, even if a step fails.
@@ -229,7 +229,7 @@ It costs a few cents: the temporary instance runs for about 15 minutes. Each dri
 For an actual recovery, Cloud SQL can also restore to any second of the last 7 days (point-in-time recovery), for example to just before a bad deploy:
 
 ```bash
-gcloud sql instances clone prepza prepza-recovered --point-in-time="2026-10-02T12:00:00Z"
+gcloud sql instances clone testee testee-recovered --point-in-time="2026-10-02T12:00:00Z"
 ```
 
 The services stay on the main instance (each mounts only its socket), so the clone is a source to copy from. To restore one service's database, say `companies`, without touching the other eight:
@@ -237,19 +237,19 @@ The services stay on the main instance (each mounts only its socket), so the clo
 1. Turn maintenance mode on in the admin zone, so nothing writes meanwhile.
 2. Dump the database from the clone and restore it over the main one, through the Cloud SQL Auth Proxy, as the admin (`database-admin-url`):
    ```bash
-   cloud-sql-proxy --port 6544 prepza-prod:europe-west1:prepza-recovered &
-   cloud-sql-proxy --port 6543 prepza-prod:europe-west1:prepza &
-   pg_dump -h 127.0.0.1 -p 6544 -U prepza -Fc companies > companies.dump
-   pg_restore -h 127.0.0.1 -p 6543 -U prepza -d companies --clean --if-exists --no-owner \
+   cloud-sql-proxy --port 6544 testee-prod:europe-west1:testee-recovered &
+   cloud-sql-proxy --port 6543 testee-prod:europe-west1:testee &
+   pg_dump -h 127.0.0.1 -p 6544 -U testee -Fc companies > companies.dump
+   pg_restore -h 127.0.0.1 -p 6543 -U testee -d companies --clean --if-exists --no-owner \
      --role=companies companies.dump
    ```
-3. Turn maintenance mode off, then delete the clone (`gcloud sql instances delete prepza-recovered`) and the dump (`rm companies.dump`): erased people must not outlive the backups' 14 days in a copy.
+3. Turn maintenance mode off, then delete the clone (`gcloud sql instances delete testee-recovered`) and the dump (`rm companies.dump`): erased people must not outlive the backups' 14 days in a copy.
 
 To restore everything, restore the instance from a backup instead (`gcloud sql backups restore`), which overwrites all eleven databases.
 
 **After any restore or clone used for data,** run the account deletions of the last 14 days again, so nobody who deleted their account since the backup comes back: `gcloud scheduler jobs run erasures --location=europe-west1` (it also runs daily; accounts keeps the deleted accounts' ids and emails 14 days for it, `erasures`). A run replays the newest first, 10 at once, for about a minute: if its log says the rest go in the next run, run it again until it doesn't. Then `gcloud scheduler jobs run candidate-removals --location=europe-west1`: the candidates companies erased since come back too, and are erased again (companies keeps their invite ids 14 days, `removed_invites`). A run stops after about 100 seconds: while its log says it erased candidates again, run it again.
 
-**Recovery targets.** At most a few seconds of data is lost (point-in-time recovery, 7 days back), and a restore takes about an hour (cloning or restoring takes 15–30 minutes, plus the copy). The instance is zonal (`db_high_availability` off): if its zone fails, Cloud SQL brings it back in another zone of the region with its data, after some downtime; `db_high_availability = true` makes that failover automatic, at twice the database cost. If the whole region fails, prepza is down until it returns: restoring elsewhere would mean recreating the infrastructure in another region from a backup (backups are kept in a multi-region location by default), which isn't scripted.
+**Recovery targets.** At most a few seconds of data is lost (point-in-time recovery, 7 days back), and a restore takes about an hour (cloning or restoring takes 15–30 minutes, plus the copy). The instance is zonal (`db_high_availability` off): if its zone fails, Cloud SQL brings it back in another zone of the region with its data, after some downtime; `db_high_availability = true` makes that failover automatic, at twice the database cost. If the whole region fails, testee is down until it returns: restoring elsewhere would mean recreating the infrastructure in another region from a backup (backups are kept in a multi-region location by default), which isn't scripted.
 
 **Accepted trade-offs.** The database tier, `db-g1-small`, is shared-core, and the instance is zonal: Cloud SQL's SLA covers neither, so an outage of either kind has no promised recovery time. Backups are Cloud SQL's standard ones, kept by the project: losing the project (deleted, or its account taken over) loses them too; enhanced backups in a vault in a separate project would survive that, at a cost. Both are accepted until paying companies depend on the site; then move to a dedicated-core tier with `db_high_availability` and add the backup vault.
 
@@ -261,10 +261,10 @@ To restore everything, restore the instance from a backup instead (`gcloud sql b
   - Public services take outside traffic only through the load balancer (ingress "internal and Cloud Load Balancing"), so Cloud Armor's rules always apply; their `run.app` addresses refuse the internet. The generation worker takes only Google's calls.
   - Calls between services go out through the private network in `network.tf` (Direct VPC egress, all traffic), so they arrive as internal; the internet (OpenAI, Resend, Paddle, Upstash) is reached through its Cloud NAT, from one fixed address (the frontend's server-side calls to the site come from it, so the per-IP limit leaves it out), about $1–5 a month at this size. The NAT gives each instance ports as it needs them (64 to 4096), so an instance isn't capped at about 64 connections to one address.
   - Calls between services also carry signed service tokens.
-  - Pub/Sub, Cloud Tasks and Scheduler sign as the `prepza-invoker` account, which the services check.
-- **Database users:** each service connects as its own Postgres user (named after its database) that owns only that database; other users can't even connect to it. The `prepza` user is the instance's admin and is used only by the `db-roles` job (`db_roles.tf`; its own small image from `database/roles`, built by CI like the services'), which creates those users and moves ownership to them. The deploy pipeline runs it before migrations; it's safe to repeat. **When first applying this over an existing database,** run it right after `terraform apply`, before any service restarts: `gcloud run jobs execute db-roles --region=europe-west1 --wait`. Until it has run, new instances can't connect, since their URLs already name the new users. Locally, Docker Compose does the same: its `db-roles` service runs the same job before every migration (each local user's password is `POSTGRES_PASSWORD`), so a query into another service's database fails locally as in production; only the integration tests run as `prepza`, since they make and drop their `<service>_test` databases.
-- **Least privilege:** each service runs as its own account (`prepza-<service>`, see `iam.tf`) that can read only its own secrets and its own database's URL. The frontend has no permissions; only the backend services publish events, and only the generation services queue tasks. Accounts manages the sign-ins (`roles/firebaseauth.admin`: a new account's language, lookups for other services and the admin zone, sign-up stats, and deleting the sign-in with the account or a deleted guest invite). The assistant also reads Firebase accounts (`roles/firebaseauth.viewer`) and signs as itself (the custom role `prepzaTokenSigner`, only `iam.serviceAccounts.signBlob`, on its own account, through the `iamcredentials` API), to sign the users of AI apps connected over MCP in with a custom token ([AI apps over MCP](../docs/features/mcp.md#calling-the-services-as-the-user)). Companies signs as itself too (the same role on its own account), to sign in the guest candidate a company's platform sends through the API without a sign-in ([API](../docs/features/api.md)). Migrations run as their service's account.
-- **App settings:** Terraform passes the assistant's `SITE_URL` and `FIREBASE_WEB_API_KEY` (from `domain` and `firebase_web_api_key`), but none of the other settings in `.env.example`: the AI models and reasoning efforts (`INTERVIEW_MODEL`, `VERIFY_MODEL`, `TRANSLATION_MODEL`, `PATTERNS_MODEL`, `CODE_TAGS_MODEL`, `EMBEDDING_MODEL`, `SCREEN_MODEL`, `TITLE_MODEL`, the assistant's help chat `HELP_MODEL`, and their `*_REASONING_EFFORT`). The services run on their code defaults, which match `.env.example`. Tracing to Langfuse (every AI call of generation and the assistant, the help chat's included, and the votes on the chats' answers) is local only: it stays out of Terraform until the privacy policy and DPA version that lists Langfuse as a sub-processor, 2026-10-23, is in force. It will then need `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` as Secret Manager secrets and `LANGFUSE_HOST` (`https://cloud.langfuse.com`, the EU cloud) on generation (API and worker) and assistant. Usage limits and the values tuned with them (the seconds a question by level, generation's AI calls at once and a second, the multi-answer share, the questions generated per topic, the topics and subtopics a test has, the share of Resend's quota kept from bulk sends, the monthly AI budget) aren't settings: each starts at its default in `prepza_common.limits.limit_list` and is changed in the admin zone's Controls. To change one in production, add it to the service's entry in `env.tf`.
+  - Pub/Sub, Cloud Tasks and Scheduler sign as the `testee-invoker` account, which the services check.
+- **Database users:** each service connects as its own Postgres user (named after its database) that owns only that database; other users can't even connect to it. The `testee` user is the instance's admin and is used only by the `db-roles` job (`db_roles.tf`; its own small image from `database/roles`, built by CI like the services'), which creates those users and moves ownership to them. The deploy pipeline runs it before migrations; it's safe to repeat. **When first applying this over an existing database,** run it right after `terraform apply`, before any service restarts: `gcloud run jobs execute db-roles --region=europe-west1 --wait`. Until it has run, new instances can't connect, since their URLs already name the new users. Locally, Docker Compose does the same: its `db-roles` service runs the same job before every migration (each local user's password is `POSTGRES_PASSWORD`), so a query into another service's database fails locally as in production; only the integration tests run as `testee`, since they make and drop their `<service>_test` databases.
+- **Least privilege:** each service runs as its own account (`testee-<service>`, see `iam.tf`) that can read only its own secrets and its own database's URL. The frontend has no permissions; only the backend services publish events, and only the generation services queue tasks. Accounts manages the sign-ins (`roles/firebaseauth.admin`: a new account's language, lookups for other services and the admin zone, sign-up stats, and deleting the sign-in with the account or a deleted guest invite). The assistant also reads Firebase accounts (`roles/firebaseauth.viewer`) and signs as itself (the custom role `testeeTokenSigner`, only `iam.serviceAccounts.signBlob`, on its own account, through the `iamcredentials` API), to sign the users of AI apps connected over MCP in with a custom token ([AI apps over MCP](../docs/features/mcp.md#calling-the-services-as-the-user)). Companies signs as itself too (the same role on its own account), to sign in the guest candidate a company's platform sends through the API without a sign-in ([API](../docs/features/api.md)). Migrations run as their service's account.
+- **App settings:** Terraform passes the assistant's `SITE_URL` and `FIREBASE_WEB_API_KEY` (from `domain` and `firebase_web_api_key`), but none of the other settings in `.env.example`: the AI models and reasoning efforts (`INTERVIEW_MODEL`, `VERIFY_MODEL`, `TRANSLATION_MODEL`, `PATTERNS_MODEL`, `CODE_TAGS_MODEL`, `EMBEDDING_MODEL`, `SCREEN_MODEL`, `TITLE_MODEL`, the assistant's help chat `HELP_MODEL`, and their `*_REASONING_EFFORT`). The services run on their code defaults, which match `.env.example`. Tracing to Langfuse (every AI call of generation and the assistant, the help chat's included, and the votes on the chats' answers) is local only: it stays out of Terraform until the privacy policy and DPA version that lists Langfuse as a sub-processor, 2026-10-23, is in force. It will then need `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` as Secret Manager secrets and `LANGFUSE_HOST` (`https://cloud.langfuse.com`, the EU cloud) on generation (API and worker) and assistant. Usage limits and the values tuned with them (the seconds a question by level, generation's AI calls at once and a second, the multi-answer share, the questions generated per topic, the topics and subtopics a test has, the share of Resend's quota kept from bulk sends, the monthly AI budget) aren't settings: each starts at its default in `testee_common.limits.limit_list` and is changed in the admin zone's Controls. To change one in production, add it to the service's entry in `env.tf`.
 - **Dead-lettered events:** an event a consumer failed on 50 times waits 7 days in the `events-dead-letter` subscription, and an alert emails you while any wait there. After fixing the consumer, replay them to the `events` topic with their attributes (the type), which acknowledges each one republished:
 
   ```bash

@@ -1,7 +1,7 @@
 # One Postgres instance holding each service's database. Cloud Run reaches it through the
 # built-in Cloud SQL connector (a Unix socket), so it needs no private network.
 resource "google_sql_database_instance" "main" {
-  name = "prepza"
+  name = "testee"
   # The major version local development runs (database/Dockerfile).
   database_version = "POSTGRES_18"
   region           = var.region
@@ -68,8 +68,8 @@ resource "random_password" "database" {
 
 # The instance's admin. No service uses it: only the db-roles job, which gives each service its
 # own user owning only its own database (database/roles/src/db_roles.py).
-resource "google_sql_user" "prepza" {
-  name     = "prepza"
+resource "google_sql_user" "testee" {
+  name     = "testee"
   instance = google_sql_database_instance.main.name
   password = random_password.database.result
 }
@@ -86,7 +86,7 @@ resource "google_secret_manager_secret" "database_admin_url" {
 
 resource "google_secret_manager_secret_version" "database_admin_url" {
   secret      = google_secret_manager_secret.database_admin_url.id
-  secret_data = "postgresql://prepza:${random_password.database.result}@/postgres?host=/cloudsql/${google_sql_database_instance.main.connection_name}"
+  secret_data = "postgresql://testee:${random_password.database.result}@/postgres?host=/cloudsql/${google_sql_database_instance.main.connection_name}"
 }
 
 # Each service's own Postgres user, named after its database; db-roles creates it.

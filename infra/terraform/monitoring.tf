@@ -14,7 +14,7 @@ locals {
 }
 
 resource "google_monitoring_notification_channel" "email" {
-  display_name = "prepza alerts"
+  display_name = "testee alerts"
   type         = "email"
   labels       = { email_address = var.alert_email }
 
@@ -25,7 +25,7 @@ resource "google_monitoring_notification_channel" "email" {
 # alert_sms when it's set, besides the Cloud Monitoring app (alert_app_channel).
 resource "google_monitoring_notification_channel" "sms" {
   count        = var.alert_sms == "" ? 0 : 1
-  display_name = "prepza alerts (SMS)"
+  display_name = "testee alerts (SMS)"
   type         = "sms"
   labels       = { number = var.alert_sms }
 
@@ -43,7 +43,7 @@ locals {
 
 resource "google_monitoring_uptime_check_config" "check" {
   for_each     = local.uptime_paths
-  display_name = "prepza ${each.key}"
+  display_name = "testee ${each.key}"
   timeout      = "10s"
   period       = "60s"
 
@@ -63,7 +63,7 @@ resource "google_monitoring_uptime_check_config" "check" {
   # The right page answered, not just something: the site's name on the site, an API's ready
   # status on /ready.
   content_matchers {
-    content = each.key == "site" ? "prepza" : "\"status\":\"ready\""
+    content = each.key == "site" ? "testee" : "\"status\":\"ready\""
     matcher = "CONTAINS_STRING"
   }
 
@@ -77,7 +77,7 @@ resource "google_monitoring_uptime_check_config" "check" {
 
 resource "google_monitoring_alert_policy" "down" {
   for_each     = google_monitoring_uptime_check_config.check
-  display_name = "prepza ${each.key} is down"
+  display_name = "testee ${each.key} is down"
   combiner     = "OR"
   severity     = "CRITICAL"
 
@@ -115,7 +115,7 @@ resource "google_monitoring_alert_policy" "down" {
 # Dead letters: an event a consumer kept failing on for hours (pubsub.tf). Fires while any wait
 # in the dead-letter subscription; replay them as infra/README.md (Notes) shows.
 resource "google_monitoring_alert_policy" "dead_letters" {
-  display_name = "prepza events dead-lettered"
+  display_name = "testee events dead-lettered"
   combiner     = "OR"
   severity     = "CRITICAL"
 
@@ -150,7 +150,7 @@ resource "google_monitoring_alert_policy" "dead_letters" {
 
 # Scheduler: a periodic job (jobs.tf) whose run failed, from Cloud Scheduler's own error logs.
 resource "google_monitoring_alert_policy" "scheduler_failed" {
-  display_name = "prepza scheduled job failed"
+  display_name = "testee scheduled job failed"
   combiner     = "OR"
   severity     = "WARNING"
 
@@ -188,10 +188,10 @@ resource "google_monitoring_alert_policy" "scheduler_failed" {
 }
 
 # Web hooks refused: Paddle's or Resend's signature check failed (WEBHOOK_SIGNATURE_REFUSED in
-# prepza_common/config/constants.py). Usually a wrong or unset secret: then every payment and email event
+# testee_common/config/constants.py). Usually a wrong or unset secret: then every payment and email event
 # is refused, as 401s the server-error alert doesn't count.
 resource "google_monitoring_alert_policy" "webhook_signature_refused" {
-  display_name = "prepza web hook signature refused"
+  display_name = "testee web hook signature refused"
   combiner     = "OR"
   severity     = "CRITICAL"
 
@@ -231,7 +231,7 @@ resource "google_monitoring_alert_policy" "webhook_signature_refused" {
 # Server errors: a Cloud Run service answering more than 5% of its requests with a 5xx for ten
 # minutes. A ticket: the API availability SLO (monitoring_slo.tf) pages when users feel it.
 resource "google_monitoring_alert_policy" "server_errors" {
-  display_name = "prepza server errors"
+  display_name = "testee server errors"
   combiner     = "OR"
   severity     = "WARNING"
 

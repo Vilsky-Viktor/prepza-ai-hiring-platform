@@ -1,13 +1,13 @@
 # Copy to terraform.tfvars (ignored by git) and fill in.
-project_id = "prepza-prod"
+project_id = "testee-prod"
 region     = "europe-west1"
-domain     = "prepza.ai"
+domain     = "testee.ai"
 image_tag  = "first"
 
-mail_from         = "prepza. <no-reply@prepza.ai>"
-mail_from_updates = "prepza. <updates@mail.prepza.ai>"
+mail_from         = "testee. <no-reply@testee.ai>"
+mail_from_updates = "testee. <updates@mail.testee.ai>"
 # Candidates' emails from a subdomain of their own, once it's verified in Resend (empty: mail_from).
-# mail_from_candidates = "prepza. <invites@candidates.prepza.ai>"
+# mail_from_candidates = "testee. <invites@candidates.testee.ai>"
 # Resend's daily quota for your plan; bulk emails use at most 80% of it.
 backend_sentry_dsn = ""
 # The Firebase web app's apiKey (public), as the frontend's build has it: AI apps' calls over MCP
@@ -17,7 +17,7 @@ firebase_web_api_key = ""
 # Outage and budget alerts (monitoring*.tf, budget.tf): pages to email, the Cloud Monitoring app
 # and SMS; tickets to email only.
 alert_email = "you@example.com"
-# alert_app_channel = "projects/prepza-prod/notificationChannels/123"   # optional: the app's channel
+# alert_app_channel = "projects/testee-prod/notificationChannels/123"   # optional: the app's channel
 # alert_sms         = "+3725550000"   # optional: pages by text message too, as a backup
 billing_account = "XXXXXX-XXXXXX-XXXXXX"
 monthly_budget  = 300

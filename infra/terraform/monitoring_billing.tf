@@ -3,7 +3,7 @@
 # missed or failed to. Each one is money a company paid without its credits, or a refund it
 # owes, so a single line alerts.
 resource "google_monitoring_alert_policy" "payments_not_credited" {
-  display_name = "prepza payment not credited"
+  display_name = "testee payment not credited"
   combiner     = "OR"
   severity     = "CRITICAL"
 

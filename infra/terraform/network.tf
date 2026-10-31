@@ -2,14 +2,14 @@
 # they arrive as internal although the services only take outside traffic from the load
 # balancer; everything else reaches the internet through Cloud NAT.
 resource "google_compute_network" "main" {
-  name                    = "prepza"
+  name                    = "testee"
   auto_create_subnetworks = false
 
   depends_on = [google_project_service.apis]
 }
 
 resource "google_compute_subnetwork" "run" {
-  name                     = "prepza-run"
+  name                     = "testee-run"
   region                   = var.region
   network                  = google_compute_network.main.id
   ip_cidr_range            = "10.8.0.0/24"
@@ -17,7 +17,7 @@ resource "google_compute_subnetwork" "run" {
 }
 
 resource "google_compute_router" "main" {
-  name    = "prepza"
+  name    = "testee"
   region  = var.region
   network = google_compute_network.main.id
 }
@@ -26,7 +26,7 @@ resource "google_compute_router" "main" {
 # from it, so Cloud Armor's per-IP limit leaves it out (edge_security.tf). One address gives about
 # 64,000 ports, far above what this size needs.
 resource "google_compute_address" "nat" {
-  name       = "prepza-nat"
+  name       = "testee-nat"
   region     = var.region
   depends_on = [google_project_service.apis]
 }
@@ -34,7 +34,7 @@ resource "google_compute_address" "nat" {
 # Each instance gets NAT ports as it needs them: 64 at first, up to 4096. A fixed 64 would cap an
 # instance at about 64 connections to one address (Upstash, OpenAI, Resend).
 resource "google_compute_router_nat" "main" {
-  name                                = "prepza"
+  name                                = "testee"
   router                              = google_compute_router.main.name
   region                              = var.region
   nat_ip_allocate_option              = "MANUAL_ONLY"

@@ -3,7 +3,7 @@
 # alerts; nothing is stopped.
 resource "google_billing_budget" "monthly" {
   billing_account = var.billing_account
-  display_name    = "prepza monthly"
+  display_name    = "testee monthly"
 
   budget_filter {
     projects = ["projects/${data.google_project.this.number}"]

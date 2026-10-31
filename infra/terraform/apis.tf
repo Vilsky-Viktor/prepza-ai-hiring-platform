@@ -26,7 +26,7 @@ resource "google_project_service" "apis" {
 # mutable: Artifact Registry can't delete images with immutable tags, and every image has its
 # commit's tag. A version tag doesn't move, as deploy.yml only adds it and git protects v* tags.
 resource "google_artifact_registry_repository" "images" {
-  repository_id = "prepza"
+  repository_id = "testee"
   format        = "DOCKER"
   location      = var.region
 

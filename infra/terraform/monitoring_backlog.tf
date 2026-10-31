@@ -4,7 +4,7 @@
 # Events: a consumer's push subscription (pubsub.tf), or the funnel's to BigQuery (analytics.tf),
 # holding an event unhandled for 15 minutes, long before it would be dead-lettered.
 resource "google_monitoring_alert_policy" "events_waiting" {
-  display_name = "prepza events waiting"
+  display_name = "testee events waiting"
   combiner     = "OR"
   severity     = "WARNING"
 
@@ -42,7 +42,7 @@ resource "google_monitoring_alert_policy" "events_waiting" {
 # Generation jobs: more than 50 tasks in the Cloud Tasks queue (jobs.tf) for 15 minutes, so the
 # worker isn't keeping up or keeps failing them.
 resource "google_monitoring_alert_policy" "tasks_waiting" {
-  display_name = "prepza generation queue backed up"
+  display_name = "testee generation queue backed up"
   combiner     = "OR"
   severity     = "WARNING"
 

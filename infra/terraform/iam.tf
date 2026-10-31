@@ -3,15 +3,15 @@
 # flaw in one service can't read another's keys or the payment and AI keys.
 resource "google_service_account" "service" {
   for_each     = local.services
-  account_id   = "prepza-${each.key}"
-  display_name = "prepza ${each.key}"
+  account_id   = "testee-${each.key}"
+  display_name = "testee ${each.key}"
 }
 
 # What Google signs as when it calls our services: Pub/Sub pushes, Cloud Tasks, Cloud Scheduler.
 # Services admit only its tokens on /internal/events, /internal/jobs and /internal/schedules.
 resource "google_service_account" "invoker" {
-  account_id   = "prepza-invoker"
-  display_name = "Pub/Sub, Cloud Tasks and Scheduler calling prepza"
+  account_id   = "testee-invoker"
+  display_name = "Pub/Sub, Cloud Tasks and Scheduler calling testee"
 }
 
 locals {
@@ -93,8 +93,8 @@ resource "google_project_iam_member" "accounts_manages_sign_ins" {
 # also let the account mint access and ID tokens as itself.
 resource "google_project_iam_custom_role" "token_signer" {
   project     = var.project_id
-  role_id     = "prepzaTokenSigner"
-  title       = "prepza token signer"
+  role_id     = "testeeTokenSigner"
+  title       = "testee token signer"
   description = "Signs Firebase custom tokens with the service account's own key (signBlob only)."
   permissions = ["iam.serviceAccounts.signBlob"]
 }
