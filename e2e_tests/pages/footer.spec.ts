@@ -53,6 +53,13 @@ test("the footer groups its links by product, resources and company", { tag: "@p
 
   await expect(footer.locator('[role="img"]')).toHaveCount(4);
   await expect(footer.locator('a [role="img"]')).toHaveCount(0);
+
+  // The logo, the one link outside the menu, leads home.
+  const logo = footer.locator("a:not(nav a)");
+  await expect(logo).toHaveCount(1);
+  await expect(logo).toHaveAttribute("href", "/");
+  await logo.click();
+  await expect(page).toHaveURL(/\/$/);
 });
 
 // The legal operator is within reach of every page: the footer names it, and the contact page

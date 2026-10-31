@@ -9,6 +9,7 @@ import {
 import { AskAgentButton } from "@/components/common/ask-agent-button"
 import { LanguageSwitch } from "@/components/common/language-switch"
 import { LocalizedLink } from "@/components/common/localized-link"
+import { Wordmark } from "@/components/common/wordmark"
 import { FOOTER_COLUMNS } from "@/config/navigation"
 import { OPERATOR } from "@/config/operator"
 
@@ -18,12 +19,18 @@ const SOCIAL =
 
 export async function SiteFooter() {
   const t = await getTranslations("nav")
+  const tc = await getTranslations("common")
 
   return (
     <footer className="border-t">
       {/* On phones: everything centered in one column, with bigger icons, button and links. */}
       <div className="mx-auto flex max-w-page flex-wrap justify-between gap-8 px-6 py-8 text-sm text-muted-foreground max-sm:flex-col max-sm:items-center max-sm:gap-10 max-sm:py-12 max-sm:text-center sm:gap-x-16">
         <div className="space-y-6 max-sm:flex max-sm:flex-col max-sm:items-center">
+          {/* The logo, as in the header, leading home. */}
+          <LocalizedLink href="/" className="inline-flex text-foreground">
+            <Wordmark className="text-2xl leading-none" />
+            <span className="sr-only"> {tc("home")}</span>
+          </LocalizedLink>
           {/* The legal operator, as EU rules want it within reach of every page. */}
           {/* The language menu sits beside it, wrapping under it on narrow phones. */}
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 max-sm:justify-center">
