@@ -257,3 +257,10 @@ Paddle's emails) and the FAQ's "Do credits expire?": passed 90.7% (82.0–95.4),
 Misses: h17's known invented retake limit (3 of 3), h12 three times (two sentences where one was
 asked) and h06 once (deletion without "once the candidate started"); none about automatic top-up.
 Within the noise of the last runs (96.0%, 88.9–98.6); kept so the guide says what is true. $1.97.
+
+2026-10-31, the features page in the guide (the header's "features" link, and the features page
+first in the footer's resources column), committed with the page in 54012bf59 before its run:
+passed 97.3% (90.8–99.3), made up 2.7% (0.7–9.2), sign-in marker 100%, identity 18 of 18
+(`results/help_chat_features-page.json`). Misses: h17's known invented retake limit (2 of 3);
+none about the features page. Within the noise of the last run (90.7%, 82.0–95.4); kept so the
+guide says what is true. $1.96.
