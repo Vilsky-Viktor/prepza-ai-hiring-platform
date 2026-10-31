@@ -36,6 +36,7 @@ PAGES = {
     "faq": "/faq",
     "contact": "/contact",
     "news": "/news",
+    "features": "/features",
     "guide": "/guides/{slug}",
 }
 # Pages named by what they're about: the service and read giving the name, and its field.
@@ -66,8 +67,9 @@ SHOW_DEFINITION = {
             "list or show them, and only the rows that answer (e.g. the best candidate's row, "
             "not everyone's), as `rows` of ids. kind 'link': one link to the single most "
             "relevant, most specific page (`page` and its ids), e.g. the interview's page for a "
-            "question about a position, the candidate's report for a candidate. At most one "
-            "rows and one link per answer; none for small talk. Rows are at most 10: a list of "
+            "question about a position, the candidate's report for a candidate, the features page "
+            "for what prepza can do. At most one rows and one link per answer; none for small "
+            "talk. Rows are at most 10: a list of "
             "candidates or interviews gets a link to the page with all of them by itself, so add "
             "no link of your own to that page."
         ),

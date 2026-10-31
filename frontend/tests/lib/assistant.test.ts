@@ -50,6 +50,7 @@ describe("linkPage", () => {
   it.each([
     ["/pricing", "pricing"],
     ["/top-up", "topUp"],
+    ["/features", "features"],
     [`/companies/${COMPANY}/integrations/slack`, "slack"],
     [`/companies/${COMPANY}/integrations/greenhouse`, "integrations"],
     [`/companies/${COMPANY}/interviews/i1/candidates/c1`, "candidate"],

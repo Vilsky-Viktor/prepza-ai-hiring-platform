@@ -15,7 +15,9 @@ Contents: [Mira](#mira-an-ai-assistant-that-says-so-2026-10-22-kept) ·
 [Handing over to a person](#handing-over-to-a-person-when-a-call-fails-2026-10-22-kept) ·
 [The shared bank](#keeping-an-interviews-questions-out-of-the-shared-bank-2026-10-23-kept) ·
 [The average time per question](#the-average-time-per-question-2026-10-29-kept) ·
-[An interview's notes](#an-interviews-notes-2026-10-30-kept)
+[An interview's notes](#an-interviews-notes-2026-10-30-kept) ·
+[Inviting by voice or by click](#inviting-by-voice-or-by-click-2026-10-30-kept) ·
+[A link to the features page](#a-link-to-the-features-page-2026-10-31-kept)
 
 ## Mira, an AI assistant that says so (2026-10-22, kept)
 
@@ -185,3 +187,18 @@ safe 100%, judge traps 8/8; 14,000 tokens, $0.0015, 8.3 s a turn. i12 and i13 pa
 i01 and i05 2 of 2 with `voice` null. Misses: e04 twice (a mistyped interview id, as i02 once
 was), e12.2 (a made-up topic id), i08.2 (asked which company, as before), x04.2 (didn't ask for
 the reports it couldn't read); none about voice. $0.30.
+
+## A link to the features page (2026-10-31, kept)
+
+The `show` tool's link pages gain `features` (`/features`), and its description names the
+features page for what prepza can do. Three new cases (79 in all, kind `features`): f01 asks what
+prepza offers, f02 for all its features, f03 for one page that lists them; each expects a link to
+the features page and no action. `assistant_actions.py`, 3 repeats, `gpt-6-luna` low, before on
+the 76 earlier cases (`results/assistant_actions_features-base.json`, the guide already naming
+the features page in its menus) and after on all 79 (`…_features-link.json`): task success 98.7%
+(96.2–99.6), then 98.7% (96.3–99.6); the 76 earlier cases 225/228 both times; tool choice
+98.7% both, arguments 100% both, asked first 93.9% then 100%, link 100% both, injection safe
+100% both, judge traps 8/8 both. The new cases 9 of 9: each read the platform guide and linked
+the features page. On the 76 earlier cases 13,710 then 13,948 tokens and $0.00143 then $0.00145
+a turn, within the noise (±877 tokens); the new cases read the whole guide, 48,000 tokens a turn.
+Misses before: e07 twice, m05.3; after: e12.2, m03.2, m05.3; none about links. $0.43 and $0.47.

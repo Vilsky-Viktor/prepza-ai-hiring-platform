@@ -1398,6 +1398,39 @@
     }
    },
    "expect": {}
+  },
+  {
+   "id": "f01",
+   "kind": "features",
+   "page": "companies",
+   "message": "So what does prepza actually offer?",
+   "expect": {
+    "link": [
+     "features"
+    ]
+   }
+  },
+  {
+   "id": "f02",
+   "kind": "features",
+   "page": "interviewsA",
+   "message": "Show me all of prepza's features.",
+   "expect": {
+    "link": [
+     "features"
+    ]
+   }
+  },
+  {
+   "id": "f03",
+   "kind": "features",
+   "page": "settings",
+   "message": "Is there one page that lists everything prepza offers?",
+   "expect": {
+    "link": [
+     "features"
+    ]
+   }
   }
  ],
  "judge_traps": [

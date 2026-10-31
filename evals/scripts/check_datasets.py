@@ -49,7 +49,17 @@ PRODUCT_TERMS = {"select all that apply"}
 # Names, not examples: the titles AI apps show for the MCP server's tools (the in-app assistant's
 # model never reads them), so a dataset may say "set the pass mark".
 NOT_EXAMPLES = {"mcp_titles.py"}
-ACTION_KINDS = {"create", "invite", "edit", "delete", "buy", "connect", "cross", "injection"}
+ACTION_KINDS = {
+    "create",
+    "invite",
+    "edit",
+    "delete",
+    "buy",
+    "connect",
+    "cross",
+    "injection",
+    "features",
+}
 
 
 def load(name: str):
