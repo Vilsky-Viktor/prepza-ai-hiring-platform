@@ -88,7 +88,7 @@ export const VOICE_QUESTION: DemoQuestion = {
 }
 
 // The site asking for the microphone in the browser's prompt.
-export const DEMO_SITE = "prepza.ai"
+export const DEMO_SITE = "testee.ai"
 
 // The facts under the picture, by their text's key.
 export const CANDIDATE_NOTES = ["modes", "phone", "time", "extraTime"] as const

@@ -45,8 +45,8 @@ export const TRUST_LINKS = [
   { href: "/documents", key: "documents" },
 ] as const
 
-// The day the EU AI Act's duties for high-risk systems, prepza among them, apply, and the day
-// prepza's own independent bias audit is done by (content/documents/instructions-for-companies.md).
+// The day the EU AI Act's duties for high-risk systems, testee among them, apply, and the day
+// testee's own independent bias audit is done by (content/documents/instructions-for-companies.md).
 export const AI_ACT_APPLIES = "2027-12-02"
 
 // The data processing agreement's list of sub-processors, which the page shows as the site

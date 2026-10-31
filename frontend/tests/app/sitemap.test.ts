@@ -19,7 +19,7 @@ vi.mock("@/lib/server-api", () => ({ publicFetch: vi.fn(async () => []) }))
 
 describe("sitemap", () => {
   beforeEach(() => {
-    vi.stubEnv("SITE_URL", "https://prepza.example")
+    vi.stubEnv("SITE_URL", "https://testee.example")
     vi.stubGlobal(
       "fetch",
       vi.fn(async () => new Response(null, { status: 503 }))
@@ -36,20 +36,20 @@ describe("sitemap", () => {
     const date = (url: string) =>
       entries.find((entry) => entry.url === url)?.lastModified
 
-    expect(date("https://prepza.example/guides/dated")).toBe("2026-01-01")
-    expect(date("https://prepza.example/de/guides/dated")).toBe("2026-02-02")
+    expect(date("https://testee.example/guides/dated")).toBe("2026-01-01")
+    expect(date("https://testee.example/de/guides/dated")).toBe("2026-02-02")
   })
 
   it("names every language's address of a page in absolute hreflang codes", async () => {
     const entries = await sitemap()
     const pricing = entries.find(
-      (entry) => entry.url === "https://prepza.example/fil/pricing"
+      (entry) => entry.url === "https://testee.example/fil/pricing"
     )
 
     expect(pricing?.alternates?.languages).toMatchObject({
-      tl: "https://prepza.example/fil/pricing",
-      "zh-Hans": "https://prepza.example/zh/pricing",
-      "x-default": "https://prepza.example/pricing",
+      tl: "https://testee.example/fil/pricing",
+      "zh-Hans": "https://testee.example/zh/pricing",
+      "x-default": "https://testee.example/pricing",
     })
   })
 })

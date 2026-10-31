@@ -96,7 +96,7 @@ export default async function ApiDocsPage({
             image: previewImage(t("title"))[0].url,
           }),
           breadcrumbData(site, [
-            { name: "prepza", path: "/" },
+            { name: "testee", path: "/" },
             { name: t("title"), path: "/api-docs" },
           ]),
         ]}

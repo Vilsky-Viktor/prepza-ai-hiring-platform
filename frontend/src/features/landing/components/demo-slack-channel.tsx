@@ -18,7 +18,7 @@ import {
 } from "@/config/reports-slack-demo"
 import { SLACK } from "@/config/slack"
 
-/** A "finished" message as prepza posts it to Slack (services/notifications/helpers/slack.py,
+/** A "finished" message as testee posts it to Slack (services/notifications/helpers/slack.py,
  * in English like all its Slack messages): who finished the interview, and their grade. */
 function finishedText(place: number) {
   const candidate = DEMO_REPORT_CANDIDATES[place]
@@ -28,9 +28,9 @@ function finishedText(place: number) {
 
 /** A Slack channel as Slack lays it out, for the landing: the workspace's side menu, then the
  * channel's header with Slack's mark,
- * its name and members; prepza's messages, each from the app (prepza's mark as its square
- * picture, its name, the APP tag and the time) with the blocks prepza sends (a plain-text section
- * and an "Open in prepza" button); and the message box. Scrolled to the newest message once
+ * its name and members; testee's messages, each from the app (testee's mark as its square
+ * picture, its name, the APP tag and the time) with the blocks testee sends (a plain-text section
+ * and an "Open in testee" button); and the message box. Scrolled to the newest message once
  * `scrolled`, gliding there. */
 export function DemoSlackChannel({ scrolled }: { scrolled: boolean }) {
   const { ref: windowRef, size: windowSize } = useElementSize<HTMLDivElement>()

@@ -20,8 +20,8 @@ export const STATS_SOURCES = [
   "billing",
 ] as const
 
-// The year prepza launched: the first year the menu offers.
+// The year testee launched: the first year the menu offers.
 export const STATS_FIRST_YEAR = 2026
 
 // Where the browser keeps the superadmin's last choice (all time, and the year or month).
-export const STATS_STORAGE_KEY = "prepza_stats_period"
+export const STATS_STORAGE_KEY = "testee_stats_period"

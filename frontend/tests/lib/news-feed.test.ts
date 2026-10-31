@@ -35,10 +35,10 @@ describe("rssDate", () => {
 
 describe("newsFeed", () => {
   const feed = newsFeed({
-    title: "prepza news",
+    title: "testee news",
     description: "What's new",
     language: "de",
-    page: "https://prepza.dev/de/news",
+    page: "https://testee.dev/de/news",
     posts: POSTS,
   })
 
@@ -46,8 +46,8 @@ describe("newsFeed", () => {
     expect(feed).toMatch(
       /^<\?xml version="1.0" encoding="UTF-8"\?>\n<rss version="2.0">/
     )
-    expect(feed).toContain("<title>prepza news</title>")
-    expect(feed).toContain("<link>https://prepza.dev/de/news</link>")
+    expect(feed).toContain("<title>testee news</title>")
+    expect(feed).toContain("<link>https://testee.dev/de/news</link>")
     expect(feed).toContain("<description>What&apos;s new</description>")
     expect(feed).toContain("<language>de</language>")
   })
@@ -63,7 +63,7 @@ describe("newsFeed", () => {
       "<description>Line one.\nSays &quot;hi&quot; &amp; it&apos;s &lt;script&gt;x&lt;/script&gt;</description>"
     )
     expect(feed).not.toContain("<script>")
-    expect(feed).toContain("<link>https://prepza.dev/de/news#b</link>")
+    expect(feed).toContain("<link>https://testee.dev/de/news#b</link>")
     expect(feed).toContain("<pubDate>Thu, 08 Oct 2026 00:00:00 GMT</pubDate>")
   })
 

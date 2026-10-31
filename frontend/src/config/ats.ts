@@ -41,7 +41,7 @@ export const ATS_PROVIDERS = [
 
 export type AtsProvider = (typeof ATS_PROVIDERS)[number]
 
-// Where a Workable admin makes the API access token prepza needs, as Workable's menus name it,
+// Where a Workable admin makes the API access token testee needs, as Workable's menus name it,
 // and the scopes it needs: reading jobs and candidates, and writing results to candidates.
 export const WORKABLE_TOKEN_PATH = [
   "Settings",

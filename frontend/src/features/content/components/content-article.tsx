@@ -36,7 +36,7 @@ export async function ContentArticle({
   const address = await urlLocale()
   // The breadcrumb names the addresses in the page's own language.
   const steps = [
-    { name: "prepza", path: "/" },
+    { name: "testee", path: "/" },
     ...(section ? [section] : []),
     { name: page.title, path },
   ].map((step) => ({ ...step, path: localizeHref(address, step.path) }))

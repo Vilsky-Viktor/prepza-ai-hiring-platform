@@ -76,7 +76,7 @@ it("makes a nonce of 128 random bits, new for every page", () => {
 // Voice mode's live listening connects to the site's own WebSocket, which 'self' doesn't cover
 // in every browser: the request's host is named, with its port when the gateway forwards it.
 it.each([
-  [{ host: "prepza.ai" }, "wss://prepza.ai"],
+  [{ host: "testee.ai" }, "wss://testee.ai"],
   [
     {
       host: "localhost",
@@ -93,6 +93,6 @@ it.each([
 
 it("names the site's own WebSocket in connect-src", () => {
   expect(
-    contentSecurityPolicy("nonce", false, "'none'", "wss://prepza.ai")
-  ).toMatch(/connect-src 'self' wss:\/\/prepza\.ai /)
+    contentSecurityPolicy("nonce", false, "'none'", "wss://testee.ai")
+  ).toMatch(/connect-src 'self' wss:\/\/testee\.ai /)
 })

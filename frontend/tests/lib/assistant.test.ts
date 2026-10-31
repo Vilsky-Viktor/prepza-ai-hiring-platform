@@ -231,7 +231,7 @@ describe("withoutSecret", () => {
     const messages = [
       { role: "user" as const, content: "Hi", blocks: [] },
       { role: "assistant" as const, content: "Hello", blocks: [] },
-      { role: "user" as const, content: "my key pz_secret", blocks: [] },
+      { role: "user" as const, content: "my key te_secret", blocks: [] },
       { role: "assistant" as const, content: "", blocks: [] },
     ]
     const cleaned = withoutSecret(messages)
@@ -243,7 +243,7 @@ describe("withoutSecret", () => {
       removed: true,
     })
     expect(cleaned[0]).toEqual(messages[0])
-    expect(JSON.stringify(cleaned)).not.toContain("pz_secret")
+    expect(JSON.stringify(cleaned)).not.toContain("te_secret")
   })
 })
 

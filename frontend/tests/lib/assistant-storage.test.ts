@@ -41,7 +41,7 @@ describe("the saved chat", () => {
       choice: { page: null, company: "c1" },
     })
     expect(readChat(false).messages).toHaveLength(1)
-    expect(localStorage.getItem("prepza:assistant:visitor")).toBeNull()
+    expect(localStorage.getItem("testee:assistant:visitor")).toBeNull()
   })
 
   it("adds a change to what's saved", () => {
@@ -55,7 +55,7 @@ describe("the saved chat", () => {
   })
 
   it("reads nothing from a broken or blocked store", () => {
-    localStorage.setItem("prepza:assistant", "{broken")
+    localStorage.setItem("testee:assistant", "{broken")
     expect(readChat(true)).toEqual({})
 
     vi.stubGlobal("localStorage", {

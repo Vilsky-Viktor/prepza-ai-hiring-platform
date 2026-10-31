@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/tooltip"
 import { HERO_VIDEO_ID } from "@/config/landing"
 
-/** A play icon, named in its tooltip, that opens prepza's video in a window on the page, played
+/** A play icon, named in its tooltip, that opens testee's video in a window on the page, played
  * by YouTube's no-cookie player, which loads only once the window opens. The size of the page's
  * info button beside it; a blue ring keeps pulsing out of it to draw the eye (hidden with reduced
  * motion). */

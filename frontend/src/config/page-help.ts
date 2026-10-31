@@ -1,5 +1,5 @@
 // Every page where the assistant's panel opens, by its guide's key (rounds serves each guide from
-// /help/pages/<key>; prepza_common's PAGE_KEYS lists the same). Each page registers its key, with
+// /help/pages/<key>; testee_common's PAGE_KEYS lists the same). Each page registers its key, with
 // its info button (PageHelp) or PageKey; the admin zone's pages have none.
 export const PAGE_HELP_KEYS = [
   "landing",

@@ -20,7 +20,7 @@ export const generateMetadata = async () => ({
 })
 
 /** AI apps' page, laid out like Slack's: back to the integrations tab, the title and whether
- * any app is connected; how to add prepza to Claude and ChatGPT; the user's connected apps.
+ * any app is connected; how to add testee to Claude and ChatGPT; the user's connected apps.
  * Connections are the user's own, so every company shows the same ones, to everyone in it. */
 export default async function AiAppsPage({
   params,

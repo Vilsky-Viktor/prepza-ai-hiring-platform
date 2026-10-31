@@ -93,7 +93,7 @@ export function ClaudeSteps() {
           <Chips items={CLAUDE_CONNECTOR_PATH} path />
         </li>
         <li>{t("claudePaste", { name: MCP_NAME })}</li>
-        <li>{t("allowOnPrepza")}</li>
+        <li>{t("allowOnTestee")}</li>
       </ol>
       <div className="space-y-2">
         <p className="text-base text-muted-foreground">{t("claudeCode")}</p>
@@ -125,7 +125,7 @@ export function ChatGptSteps() {
         <span className="block">{t("chatgptPaste", { name: MCP_NAME })}</span>
         <Chips items={[CHATGPT_AUTH]} />
       </li>
-      <li>{t("allowOnPrepza")}</li>
+      <li>{t("allowOnTestee")}</li>
     </ol>
   )
 }

@@ -41,7 +41,7 @@ export async function generateMetadata() {
   }
 }
 
-/** prepza's news, newest first, in the page's language: posts are written in English and
+/** testee's news, newest first, in the page's language: posts are written in English and
  * translated after they're saved; one not translated yet shows in English. The first page is
  * rendered here, for search engines, read fresh so a change shows at once. */
 export default async function NewsPage() {

@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server"
 
 import { InfoCard } from "@/components/common/warning-card"
 
-/** While prepza is paused (the admin zone's emergency pause, from isPaused), the gray info card
+/** While testee is paused (the admin zone's emergency pause, from isPaused), the gray info card
  * says so; otherwise nothing. */
 export async function PausedNotice({
   paused,

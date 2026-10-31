@@ -1,6 +1,6 @@
 import { apiFetch } from "@/lib/api"
 
-/** Saves everything prepza holds about the user as prepza-data.json. */
+/** Saves everything testee holds about the user as testee-data.json. */
 export async function downloadMyData() {
   const data = await apiFetch<unknown>("/accounts/me/export")
   const url = URL.createObjectURL(
@@ -8,7 +8,7 @@ export async function downloadMyData() {
   )
   const link = document.createElement("a")
   link.href = url
-  link.download = "prepza-data.json"
+  link.download = "testee-data.json"
   link.click()
   URL.revokeObjectURL(url)
 }

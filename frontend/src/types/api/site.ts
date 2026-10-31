@@ -35,7 +35,7 @@ export interface paths {
     }
     /**
      * Get Guide
-     * @description Everything prepza's help chat (in the assistant) answers from, as text: how prepza works and how to use it,
+     * @description Everything testee's help chat (in the assistant) answers from, as text: how testee works and how to use it,
      *     the FAQ in the page's language, today's prices, the terms and the privacy policy; public.
      */
     get: operations["get_guide_help_guide_get"]
@@ -145,7 +145,7 @@ export interface paths {
     put?: never
     /**
      * Contact
-     * @description The contact page's message; notifications emails it to prepza's inbox. Public, so the
+     * @description The contact page's message; notifications emails it to testee's inbox. Public, so the
      *     sender shows they're a person.
      */
     post: operations["contact_help_contact_post"]

@@ -52,7 +52,7 @@ function shareTurn(at: number, candidate: number, line: string): ReportStep[] {
 /** The steps, with the two lines typed in the chat and the note typed last: the list; its PDF
  * downloaded; emailed to the manager; the best candidate's page shared to WhatsApp, with
  * `lines[0]`; back to the list, the flagged candidate's the same, with `lines[1]`; then the
- * notes, `note` typed and posted; last, the Slack channel prepza posts to, scrolled to its
+ * notes, `note` typed and posted; last, the Slack channel testee posts to, scrolled to its
  * newest message: the still frame. */
 export function reportSteps(
   best: number,

@@ -61,7 +61,7 @@ describe("pageMetadata", () => {
 describe("pageMetadata's link preview", () => {
   function servedUnder(locale: string | null) {
     vi.mocked(headers).mockResolvedValue(
-      new Headers(locale ? { "x-prepza-locale": locale } : {}) as never
+      new Headers(locale ? { "x-testee-locale": locale } : {}) as never
     )
   }
 
@@ -111,13 +111,13 @@ describe("linkLocale", () => {
   }
 
   it("follows the address's language", async () => {
-    served({ "x-prepza-locale": "de" })
+    served({ "x-testee-locale": "de" })
 
     expect(await linkLocale("de")).toBe("de")
   })
 
   it("keeps a plain address's links plain, whatever the interface", async () => {
-    served({ "x-prepza-plain": "1" })
+    served({ "x-testee-plain": "1" })
 
     expect(await linkLocale("de")).toBeNull()
   })

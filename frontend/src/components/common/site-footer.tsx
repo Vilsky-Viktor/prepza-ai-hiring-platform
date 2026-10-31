@@ -32,7 +32,7 @@ export async function SiteFooter() {
             </span>
             <LanguageSwitch />
           </div>
-          {/* prepza's social accounts; links come once the accounts exist. */}
+          {/* testee's social accounts; links come once the accounts exist. */}
           <div className="flex items-center gap-5 max-sm:gap-8">
             <span role="img" aria-label="LinkedIn" className={SOCIAL}>
               <LinkedInIcon className="size-6 max-sm:size-8" />

@@ -10,7 +10,7 @@ import { TOKEN_COOKIE } from "@/config/auth"
 import { serverFetch } from "@/lib/server-api"
 import { translatedTitle } from "@/lib/site"
 import { companyHeaderProps } from "@/lib/company-header"
-import type { Company, PrepzaBrand } from "@/types/company"
+import type { Company, TesteeBrand } from "@/types/company"
 
 export const generateMetadata = () => translatedTitle("company", "brand")
 
@@ -39,12 +39,12 @@ export default async function BrandPage({
     )
   }
 
-  const [company, prepza] = await Promise.all([
+  const [company, testee] = await Promise.all([
     serverFetch<Company>(`/companies/companies/${companyId}`),
-    serverFetch<PrepzaBrand>("/companies/brand/prepza"),
+    serverFetch<TesteeBrand>("/companies/brand/testee"),
   ])
 
-  if (!company?.candidate_colors || !prepza) {
+  if (!company?.candidate_colors || !testee) {
     redirect("/companies")
   }
 
@@ -89,8 +89,8 @@ export default async function BrandPage({
           saved={company.brand_colors ?? null}
           current={company.candidate_colors}
           problems={company.brand_problems ?? {}}
-          style={company.brand_style ?? prepza.style}
-          prepza={prepza}
+          style={company.brand_style ?? testee.style}
+          testee={testee}
           page={page}
         />
       </CompanyHeader>

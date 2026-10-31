@@ -4,7 +4,7 @@ import { SITE_NAME } from "@/config/seo"
 import { moneyAmount } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
 
-// schema.org structured data for search engines and AI answers: who makes prepza, what it is and
+// schema.org structured data for search engines and AI answers: who makes testee, what it is and
 // costs, and where a page sits. `site` is the site's address (lib/site.ts siteUrl).
 
 const CONTEXT = "https://schema.org"
@@ -35,7 +35,7 @@ export function organizationData(site: string, description: string) {
   ]
 }
 
-/** prepza as a product with its price per candidate, cheapest to dearest, for the pricing
+/** testee as a product with its price per candidate, cheapest to dearest, for the pricing
  * page: only properties schema.org defines for an AggregateOffer, and no rating until real
  * reviews exist. */
 export function softwareData(
@@ -134,7 +134,7 @@ export function techArticleData(
 }
 
 /** The news page as a blog in its language, with its posts (as the page shows them) as blog
- * posts by prepza, each at its place on the page. */
+ * posts by testee, each at its place on the page. */
 export function newsData(
   site: string,
   page: { title: string; description: string; path: string; language: string },

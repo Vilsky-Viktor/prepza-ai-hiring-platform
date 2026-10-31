@@ -13,7 +13,7 @@ import {
 import type { OpenApi } from "@/types/openapi"
 
 const SPEC: OpenApi = {
-  info: { title: "prepza API", version: "1" },
+  info: { title: "testee API", version: "1" },
   paths: {
     "/interviews": {
       get: {

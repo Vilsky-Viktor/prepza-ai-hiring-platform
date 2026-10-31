@@ -1,11 +1,11 @@
-// The company that runs prepza: the site's footer, contact page and structured data name it. Mirrors
-// OPERATOR in packages/common/src/prepza_common/config/constants.py (tests/config/operator.test.ts
+// The company that runs testee: the site's footer, contact page and structured data name it. Mirrors
+// OPERATOR in packages/common/src/testee_common/config/constants.py (tests/config/operator.test.ts
 // keeps them equal), which the legal texts and the emails' footer use.
 export const OPERATOR = {
   name: "Arcolabs OÜ",
   registryCode: "17587452",
   address: "Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia",
-  email: "hello@prepza.ai",
+  email: "hello@testee.ai",
 }
 
 // OPERATOR's address in its parts, for structured data's PostalAddress

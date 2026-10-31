@@ -20,7 +20,7 @@ it("never opens an address that runs in the page, or one that isn't an address",
     " JavaScript:alert(1)",
     "data:text/html,<script>alert(1)</script>",
     "vbscript:msgbox",
-    "blob:https://prepza.ai/x",
+    "blob:https://testee.ai/x",
     "/relative",
     null,
   ]) {

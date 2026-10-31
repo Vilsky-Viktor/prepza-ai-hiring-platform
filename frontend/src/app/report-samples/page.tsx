@@ -22,14 +22,14 @@ export default function ReportSamplesPage() {
       <InterviewReport report={INTERVIEW_SAMPLE} />
       <ReportActions
         reportId={INTERVIEW_REPORT_ID}
-        fileName="prepza-sample-candidates"
+        fileName="testee-sample-candidates"
         emailPath=""
         summary=""
         pages
       />
       <ReportActions
         reportId={REPORT_ID}
-        fileName="prepza-sample-candidate-report"
+        fileName="testee-sample-candidate-report"
         emailPath=""
         summary=""
       />

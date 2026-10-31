@@ -80,7 +80,7 @@ beforeEach(() => {
   sockets = []
   vi.stubGlobal("WebSocket", FakeSocket)
   vi.stubGlobal("window", {
-    location: { protocol: "https:", host: "prepza.test" },
+    location: { protocol: "https:", host: "testee.test" },
   })
   vi.mocked(sendSpokenAnswer).mockResolvedValue(
     UPLOADED as Awaited<ReturnType<typeof sendSpokenAnswer>>
@@ -116,7 +116,7 @@ describe("liveListening", () => {
     const understood = await live.answer(new Blob(["sound"]))
 
     expect(socket.url).toBe(
-      "wss://prepza.test/api/rounds/sessions/s1/voice/stream"
+      "wss://testee.test/api/rounds/sessions/s1/voice/stream"
     )
     expect(socket.messages()).toEqual([
       { token: "token" },

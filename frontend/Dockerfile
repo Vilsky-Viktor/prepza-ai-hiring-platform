@@ -26,7 +26,7 @@ ARG SENTRY_RELEASE
 # Next's build cache stays in a cache mount, outside the image, so a rebuild on the same machine
 # (the browser tests' site, compose's frontend-test) compiles only what changed.
 RUN --mount=type=secret,id=sentry_auth_token,env=SENTRY_AUTH_TOKEN \
-    --mount=type=cache,id=prepza-frontend-build,target=/frontend/.next/cache,sharing=locked \
+    --mount=type=cache,id=testee-frontend-build,target=/frontend/.next/cache,sharing=locked \
     pnpm build
 
 # Development: docker-compose.yml mounts the source, and Next reloads on change.

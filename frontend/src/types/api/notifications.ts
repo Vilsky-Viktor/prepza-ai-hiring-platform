@@ -187,7 +187,7 @@ export interface paths {
     }
     /**
      * Start
-     * @description Where "Add to Slack" goes: Slack's page to approve prepza and pick a channel.
+     * @description Where "Add to Slack" goes: Slack's page to approve testee and pick a channel.
      */
     get: operations["start_slack_start_get"]
     put?: never

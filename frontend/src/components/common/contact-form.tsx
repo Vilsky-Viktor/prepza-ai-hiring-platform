@@ -26,7 +26,7 @@ const BORDERLESS =
   "border-transparent focus-visible:border-ring-gradient-field focus-visible:ring-0"
 const FIELD = `h-14 px-6 text-lg md:text-lg ${BORDERLESS}`
 
-/** The contact page's form; the rounds service emails it to prepza's inbox. */
+/** The contact page's form; the rounds service emails it to testee's inbox. */
 export function ContactForm() {
   const t = useTranslations("contact")
   useHumanCheck()

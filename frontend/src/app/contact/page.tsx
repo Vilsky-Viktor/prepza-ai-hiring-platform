@@ -31,7 +31,7 @@ export default async function ContactPage() {
             {/* What to quote, so support finds what the message is about at once. */}
             <p className="text-base text-muted-foreground">{t("idHint")}</p>
           </div>
-          {/* Who runs prepza, as labelled rows. */}
+          {/* Who runs testee, as labelled rows. */}
           <div className={`space-y-3 ${CARD}`}>
             <dl className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-6 gap-y-2 text-sm">
               {(

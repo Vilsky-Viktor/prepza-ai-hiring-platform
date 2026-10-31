@@ -75,7 +75,7 @@ export interface paths {
     }
     /**
      * Export Me
-     * @description Everything prepza holds about the user, as one JSON file to download.
+     * @description Everything testee holds about the user, as one JSON file to download.
      */
     get: operations["export_me_me_export_get"]
     put?: never
@@ -384,7 +384,7 @@ export interface components {
   schemas: {
     /**
      * AccountOut
-     * @description A prepza account, for the admin zone's support tab: `email` is None for an account
+     * @description A testee account, for the admin zone's support tab: `email` is None for an account
      *     without one (a company's guest candidate), `created_at` when Firebase doesn't say.
      */
     AccountOut: {

@@ -147,7 +147,7 @@ export interface paths {
     head?: never
     /**
      * Rename Company
-     * @description Owners and admins rename the company; names stay unique across prepza, ignoring case.
+     * @description Owners and admins rename the company; names stay unique across testee, ignoring case.
      */
     patch: operations["rename_company_companies__company_id__name_patch"]
     trace?: never
@@ -228,7 +228,7 @@ export interface paths {
      *     row for each candidate who finished with a grade, with their id, the email the company joins
      *     its own self-reported categories on, the interview, the day they finished, their grade, the
      *     pass mark, whether they passed and whether they scored above the interview's median. Only
-     *     one interview's (`interview_id`), or those finished from `from` and before `to`. prepza holds
+     *     one interview's (`interview_id`), or those finished from `from` and before `to`. testee holds
      *     no protected characteristics; for the owner only, counted per company a day, and recorded in
      *     the action log.
      */
@@ -1165,7 +1165,7 @@ export interface paths {
     patch?: never
     trace?: never
   }
-  "/brand/prepza": {
+  "/brand/testee": {
     parameters: {
       query?: never
       header?: never
@@ -1173,11 +1173,11 @@ export interface paths {
       cookie?: never
     }
     /**
-     * Prepza Brand
-     * @description prepza's own colors (by theme), fonts and rounding: where a company's start, and what they
+     * Testee Brand
+     * @description testee's own colors (by theme), fonts and rounding: where a company's start, and what they
      *     go back to.
      */
-    get: operations["prepza_brand_brand_prepza_get"]
+    get: operations["testee_brand_brand_testee_get"]
     put?: never
     post?: never
     delete?: never
@@ -1197,7 +1197,7 @@ export interface paths {
     /**
      * Set Brand Colors
      * @description Any of the company's owners and admins sets its colors for one theme, or goes back to
-     *     prepza's with none. Colors that would make any text hard to read are refused, so no
+     *     testee's with none. Colors that would make any text hard to read are refused, so no
      *     candidate is tested on a page they can't read.
      */
     put: operations["set_brand_colors_companies__company_id__brand_colors__theme__put"]
@@ -1392,7 +1392,7 @@ export interface paths {
     /**
      * Access
      * @description What the user may do in the company: ats, notifications and the api guard their pages
-     *     with it (prepza_common.auth.company_access), refusing what companies' own routes refuse: the
+     *     with it (testee_common.auth.company_access), refusing what companies' own routes refuse: the
      *     caller passes on the assistant's X-Assistant header. A company that doesn't exist is 404.
      */
     get: operations["access_internal_companies__company_id__access_get"]
@@ -1544,7 +1544,7 @@ export interface paths {
     /**
      * Resend Invite
      * @description Sends the invite again, as an owner or admin does on the candidate's page: refused for a
-     *     candidate who finished (409) or one prepza doesn't email (invited without a sign-in, 409);
+     *     candidate who finished (409) or one testee doesn't email (invited without a sign-in, 409);
      *     the invite keeps its return address and theme.
      */
     post: operations["resend_invite_internal_companies__company_id__interviews__interview_id__candidates__invite_id__resend_post"]
@@ -2349,7 +2349,7 @@ export interface paths {
     /**
      * Set Ai Apps
      * @description Owners and admins allow, or stop, members using the company's data from the AI apps they
-     *     connected. Never through an AI app or the assistant: a person decides, in prepza itself.
+     *     connected. Never through an AI app or the assistant: a person decides, in testee itself.
      */
     put: operations["set_ai_apps_companies__company_id__ai_apps_put"]
     post?: never
@@ -2371,7 +2371,7 @@ export interface paths {
      * Set Allowed Domains
      * @description Owners and admins set the sites that may embed the company's interviews with the SDK,
      *     and whether localhost may too; the saved list. Never through an AI app or the assistant: a
-     *     person decides, in prepza itself.
+     *     person decides, in testee itself.
      */
     put: operations["set_allowed_domains_companies__company_id__allowed_domains_put"]
     post?: never
@@ -2641,7 +2641,7 @@ export interface components {
       | "integrations"
     /**
      * BrandColorSets
-     * @description The colors a candidate's pages use, by theme: the company's, or prepza's where it has
+     * @description The colors a candidate's pages use, by theme: the company's, or testee's where it has
      *     none.
      */
     BrandColorSets: {
@@ -4049,11 +4049,6 @@ export interface components {
        */
       finished_at: string
     }
-    /** PrepzaBrand */
-    PrepzaBrand: {
-      colors: components["schemas"]["BrandColorSets"]
-      style: components["schemas"]["BrandStyle"]
-    }
     /**
      * PreviewOut
      * @description The first session of a member's preview, to open in the player.
@@ -4207,7 +4202,7 @@ export interface components {
     }
     /**
      * SavedBrandColors
-     * @description The sets a company saved, by theme; a theme without one uses prepza's.
+     * @description The sets a company saved, by theme; a theme without one uses testee's.
      */
     SavedBrandColors: {
       light?: components["schemas"]["BrandColors"] | null
@@ -4652,7 +4647,7 @@ export interface components {
     }
     /**
      * SupportSearchIn
-     * @description A link or path from prepza's site, an id (an account's, a company's, an interview's, a
+     * @description A link or path from testee's site, an id (an account's, a company's, an interview's, a
      *     candidate's or a Paddle transaction's), an email address, or part of a company's name.
      */
     SupportSearchIn: {
@@ -4733,6 +4728,11 @@ export interface components {
       companies: components["schemas"]["SupportUserCompanyOut"][]
       /** Top Ups */
       top_ups: components["schemas"]["SupportTopUpOut"][]
+    }
+    /** TesteeBrand */
+    TesteeBrand: {
+      colors: components["schemas"]["BrandColorSets"]
+      style: components["schemas"]["BrandStyle"]
     }
     /**
      * Theme
@@ -7119,7 +7119,7 @@ export interface operations {
       }
     }
   }
-  prepza_brand_brand_prepza_get: {
+  testee_brand_brand_testee_get: {
     parameters: {
       query?: never
       header?: never
@@ -7134,7 +7134,7 @@ export interface operations {
           [name: string]: unknown
         }
         content: {
-          "application/json": components["schemas"]["PrepzaBrand"]
+          "application/json": components["schemas"]["TesteeBrand"]
         }
       }
       /** @description Validation Error */

@@ -1,15 +1,15 @@
 /*
- * prepza embed, v1: a candidate's interview inside your own site.
+ * testee embed, v1: a candidate's interview inside your own site.
  *
  *   <div id="interview"></div>
- *   <script async src="https://prepza.ai/embed/v1.js"></script>
+ *   <script async src="https://testee.ai/embed/v1.js"></script>
  *   <script>
  *     // Calls made before the script has loaded wait for it.
- *     window.Prepza = window.Prepza || { q: [], embed: function (o) { this.q.push(o) } }
- *     Prepza.embed({
+ *     window.Testee = window.Testee || { q: [], embed: function (o) { this.q.push(o) } }
+ *     Testee.embed({
  *       element: "#interview",
  *       // The invite_url your server got from POST /v1/interviews/{id}/candidates.
- *       url: "https://prepza.ai/invite/3fTq9xLk2VbN7wZr8YcP1mHd5sJ4gAe6uQo0RiKtEy",
+ *       url: "https://testee.ai/invite/3fTq9xLk2VbN7wZr8YcP1mHd5sJ4gAe6uQo0RiKtEy",
  *       // Optional: "light" or "dark" always shows that theme, in your company's colors for it;
  *       // "default" (or none) the candidate's own.
  *       theme: "dark",
@@ -32,7 +32,7 @@
   "use strict"
 
   var VERSION = 1
-  var SOURCE = "prepza"
+  var SOURCE = "testee"
   var MIN_HEIGHT = 640
   // How long the frame has to say it's ready before onError({ code: "timeout" }).
   var READY_TIMEOUT_MS = 20000
@@ -46,21 +46,21 @@
     "onFinish",
     "onError",
   ]
-  var existing = window.Prepza
+  var existing = window.Testee
 
   // Included twice: the first copy stays.
   if (existing && existing.version) {
     return
   }
 
-  // prepza's address, where this copy was loaded from. An element named "currentScript" on the
+  // testee's address, where this copy was loaded from. An element named "currentScript" on the
   // page shadows document.currentScript (DOM clobbering), which would send the frame, and the
-  // invite's link, elsewhere: only a real script element counts; anything else is prepza.ai.
+  // invite's link, elsewhere: only a real script element counts; anything else is testee.ai.
   var current = document.currentScript
   var ORIGIN =
     current instanceof HTMLScriptElement
       ? new URL(current.src).origin
-      : "https://prepza.ai"
+      : "https://testee.ai"
 
   function call(callback, value) {
     if (typeof callback === "function") {
@@ -74,7 +74,7 @@
         Object.prototype.hasOwnProperty.call(options, name) &&
         OPTIONS.indexOf(name) === -1
       ) {
-        console.warn("Prepza.embed: unknown option " + name)
+        console.warn("Testee.embed: unknown option " + name)
       }
     }
   }
@@ -86,7 +86,7 @@
         : options.element
 
     if (!element) {
-      throw new Error("Prepza.embed: no element " + options.element)
+      throw new Error("Testee.embed: no element " + options.element)
     }
 
     warnUnknown(options)
@@ -151,7 +151,7 @@
     }
   }
 
-  window.Prepza = { version: VERSION, embed: embed }
+  window.Testee = { version: VERSION, embed: embed }
 
   // A queued call that throws (a missing element) still reaches the page's console, after the
   // other queued calls ran.

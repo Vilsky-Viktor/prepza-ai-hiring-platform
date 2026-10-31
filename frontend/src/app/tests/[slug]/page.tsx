@@ -105,7 +105,7 @@ export default async function RoleTestPage({ params }: Params) {
       <PageKey page="test" />
       <JsonLd
         data={breadcrumbData(siteUrl(), [
-          { name: "prepza", path: at("/") },
+          { name: "testee", path: at("/") },
           { name: t("title"), path: at("/tests") },
           { name: template.title, path: at(`/tests/${slug}`) },
         ])}

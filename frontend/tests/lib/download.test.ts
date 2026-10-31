@@ -52,7 +52,7 @@ describe("downloadFile", () => {
         new Response("candidate_id\n", {
           headers: {
             "Content-Disposition":
-              'attachment; filename="prepza-bias-audit-2026-10-30.csv"',
+              'attachment; filename="testee-bias-audit-2026-10-30.csv"',
           },
         })
     )
@@ -64,7 +64,7 @@ describe("downloadFile", () => {
     )
     expect(calls[0][1].headers).toEqual({ Authorization: "Bearer token" })
     expect(saved).toEqual([
-      { href: "blob:file", download: "prepza-bias-audit-2026-10-30.csv" },
+      { href: "blob:file", download: "testee-bias-audit-2026-10-30.csv" },
     ])
     expect(URL.revokeObjectURL).toHaveBeenCalledWith("blob:file")
   })

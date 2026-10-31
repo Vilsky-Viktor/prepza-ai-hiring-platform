@@ -80,8 +80,8 @@ export const CANCEL_DISTANCE_PX = 40
 // What the panel keeps across reloads, per browser: signed in, whether it was open and the
 // conversation it showed (localStorage; conversations themselves are on the server); signed
 // out, whether it was open and the visitor's messages (sessionStorage, this tab only).
-export const SAVED_CHAT_KEY = "prepza:assistant"
-export const SAVED_VISITOR_CHAT_KEY = "prepza:assistant:visitor"
+export const SAVED_CHAT_KEY = "testee:assistant"
+export const SAVED_VISITOR_CHAT_KEY = "testee:assistant:visitor"
 
 // The panel's width on wider screens, which the user drags: the default (28rem), the narrowest,
 // and the widest (900px, or 70% of the window when that's less); a key press moves it this far.
@@ -93,4 +93,4 @@ export const PANEL_WIDTH = {
   maxShare: 0.7,
   step: 16,
 }
-export const SAVED_PANEL_WIDTH_KEY = "prepza:assistant:width"
+export const SAVED_PANEL_WIDTH_KEY = "testee:assistant:width"

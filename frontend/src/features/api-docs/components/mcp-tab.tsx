@@ -117,7 +117,7 @@ export function McpApp({ site, app }: { site: string; app: string }) {
   )
 }
 
-/** A tool as the Objects tab shows a field: its name, what it does to prepza's data and the API
+/** A tool as the Objects tab shows a field: its name, what it does to testee's data and the API
  * key permission it needs, then what it does. */
 function ToolRow({ tool }: { tool: McpTool }) {
   return (

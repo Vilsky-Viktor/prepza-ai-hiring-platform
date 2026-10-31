@@ -87,7 +87,7 @@ export type BrandColorSets = Schemas["BrandColorSets"]
 export type SavedBrandColors = Schemas["SavedBrandColors"]
 export type Theme = keyof BrandColorSets
 export type BrandStyle = Schemas["BrandStyle"]
-export type PrepzaBrand = Schemas["PrepzaBrand"]
+export type TesteeBrand = Schemas["TesteeBrand"]
 export type Verification = Schemas["VerificationOut"]
 export type VerificationStatus = Schemas["VerificationStatus"]
 

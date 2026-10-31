@@ -28,7 +28,7 @@ export async function generateMetadata() {
 
 const TEXT = "text-base leading-relaxed text-muted-foreground"
 
-/** The trust page: how prepza keeps data secure and private, what it provides for the hiring
+/** The trust page: how testee keeps data secure and private, what it provides for the hiring
  * laws, who processes data for it and where, how long data is kept, and the legal documents. */
 export default async function TrustPage() {
   const t = await getTranslations("trust")

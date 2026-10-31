@@ -1,11 +1,11 @@
 // The Model Context Protocol's mark, for AI apps on the integrations tab and their page.
 export const MCP_MARK = "/integrations/mcp.svg"
 
-// Where AI apps reach prepza's MCP server, on the site's own address.
+// Where AI apps reach testee's MCP server, on the site's own address.
 export const MCP_PATH = "/mcp"
 
-// The name an AI app is given for prepza, in its connector settings and in Claude Code.
-export const MCP_NAME = "prepza"
+// The name an AI app is given for testee, in its connector settings and in Claude Code.
+export const MCP_NAME = "testee"
 
 // Claude's and ChatGPT's own menu names, as they show them (in English), shown in chips.
 export const CLAUDE_CONNECTOR_PATH = [

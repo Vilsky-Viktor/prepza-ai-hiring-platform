@@ -92,7 +92,7 @@ export function startHelpChat() {
   helpChat = crypto.randomUUID()
 }
 
-/** Asks prepza's help chat (signed-out visitors' assistant); the panel keeps the conversation
+/** Asks testee's help chat (signed-out visitors' assistant); the panel keeps the conversation
 and sends it whole, each reply with the signature the chat gave it (the chat reads no reply
 without one). Its events: {"delta"}, a {"block"} sign-in card when the visitor asks to sign in,
 and {"done"} with the reply's signature. Until the chat has a signed reply, a question shows

@@ -8,7 +8,7 @@ const scrub = (event: object) => sentryOptions().beforeSend(event as ErrorEvent)
 describe("sentryOptions", () => {
   it("keeps every link's secret token and email out of an error report", () => {
     const event = {
-      request: { url: "https://prepza.ai/unsubscribe?token=abc.def&x=1" },
+      request: { url: "https://testee.ai/unsubscribe?token=abc.def&x=1" },
       breadcrumbs: [
         { data: { url: "/api/notifications/unsubscribe/abc.def" } },
         {
@@ -20,7 +20,7 @@ describe("sentryOptions", () => {
     }
 
     expect(scrub(event)).toEqual({
-      request: { url: "https://prepza.ai/unsubscribe?token=[token]&x=1" },
+      request: { url: "https://testee.ai/unsubscribe?token=[token]&x=1" },
       breadcrumbs: [
         { data: { url: "/api/notifications/unsubscribe/[token]" } },
         { message: "Opened /embedded/[token] and /invite/[token] for [email]" },

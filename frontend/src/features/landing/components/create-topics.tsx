@@ -29,7 +29,7 @@ const EDITING = [
 ]
 const ASKING = ["asking", "aimApply", "apply", "applying"]
 
-/** The create demo's second panel at step `at`, as the topic review: prepza's loading mark until the first
+/** The create demo's second panel at step `at`, as the topic review: testee's loading mark until the first
  * topic shows; a topic's editor opened and a subtopic added; a change asked of the AI and
  * applied, adding a topic; then the topics approved. Every row keeps its place before it shows,
  * so the panel never changes size. */
@@ -44,7 +44,7 @@ export function CreateTopics({ at }: { at: { index: number; n: number } }) {
 
   return (
     <div className="flex min-w-0 flex-1 flex-col gap-3 p-2">
-      {/* Until the first topic shows, prepza's loading mark in the middle of the list's place. The whole
+      {/* Until the first topic shows, testee's loading mark in the middle of the list's place. The whole
           list keeps its place unseen, so the panel never grows as rows show. */}
       <div className="relative grid flex-1 grid-cols-[minmax(0,1fr)] items-start *:[grid-area:1/1]">
         {shown === 0 && (

@@ -5,22 +5,22 @@ export const DOCUMENTS = [
   {
     key: "instructions",
     format: "PDF",
-    href: "/documents/prepza-instructions-for-companies.pdf",
+    href: "/documents/testee-instructions-for-companies.pdf",
   },
   {
     key: "notices",
     format: "DOCX",
-    href: "/documents/prepza-candidate-notice-templates.docx",
+    href: "/documents/testee-candidate-notice-templates.docx",
   },
   {
     key: "dpia",
     format: "DOCX",
-    href: "/documents/prepza-dpia-template.docx",
+    href: "/documents/testee-dpia-template.docx",
   },
   {
     key: "dpa",
     format: "PDF",
-    href: "/documents/prepza-data-processing-agreement.pdf",
+    href: "/documents/testee-data-processing-agreement.pdf",
     online: "/dpa",
   },
 ] as const

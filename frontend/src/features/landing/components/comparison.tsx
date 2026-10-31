@@ -10,16 +10,16 @@ import { candidatePriceRange } from "@/lib/format"
 import type { Catalog } from "@/types/billing"
 
 const ICONS: Record<
-  Exclude<(typeof COMPARED)[number], "prepza">,
+  Exclude<(typeof COMPARED)[number], "testee">,
   LucideIcon
 > = {
   phone: PhoneIcon,
   subscription: CalendarSyncIcon,
 }
 
-/** prepza beside the usual ways to screen candidates: a card each with what it checks, what it
- * takes of your time and what you pay, prepza's last and ringed; then a link to the comparisons with other
- * tools. prepza's price range per candidate comes from billing's catalog. */
+/** testee beside the usual ways to screen candidates: a card each with what it checks, what it
+ * takes of your time and what you pay, testee's last and ringed; then a link to the comparisons with other
+ * tools. testee's price range per candidate comes from billing's catalog. */
 export async function ComparisonSection({ catalog }: { catalog: Catalog }) {
   const t = await getTranslations("landing.comparison")
   const locale = await getLocale()
@@ -36,7 +36,7 @@ export async function ComparisonSection({ catalog }: { catalog: Catalog }) {
         {/* On the section's grey band, the cards in the page's colour. */}
         <ul className="grid w-full gap-3 md:grid-cols-3">
           {COMPARED.map((key) => {
-            const ours = key === "prepza"
+            const ours = key === "testee"
             const Icon = ours ? null : ICONS[key]
 
             return (

@@ -1,6 +1,6 @@
 import type { Locale } from "@/config/i18n"
 
-export const SITE_NAME = "prepza."
+export const SITE_NAME = "testee."
 
 // Private areas: signed-in pages and personal links. They're served with "noindex" (proxy.ts),
 // so they stay out of search results even when a link to one is public (a job ad's link).
@@ -82,11 +82,11 @@ export const NEWS_FEED = "/news/rss.xml"
 
 // Set by proxy.ts on a request that came in under a language prefix: that language, which the
 // page then renders in and names as its canonical address.
-export const LOCALE_HEADER = "x-prepza-locale"
+export const LOCALE_HEADER = "x-testee-locale"
 
 // Set by proxy.ts on the plain address of a page that has language versions (/pricing): it is
 // the English page whatever language the visitor chose before, as its canonical and hreflang say.
-export const PLAIN_ADDRESS_HEADER = "x-prepza-plain"
+export const PLAIN_ADDRESS_HEADER = "x-testee-plain"
 
 // hreflang codes where a language's own code isn't the one search engines read: Filipino has no
 // two-letter code (Tagalog's stands for it), and Chinese names its script. Addresses keep their

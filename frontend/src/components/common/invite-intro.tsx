@@ -87,7 +87,7 @@ export function InviteIntro({
           </p>
         </div>
       )}
-      {/* Small and quiet, yet readable (4.5:1): prepza hasn't checked who this company is. */}
+      {/* Small and quiet, yet readable (4.5:1): testee hasn't checked who this company is. */}
       {company && !verifiedDomain && (
         <p className="text-xs text-muted-foreground">{t("unverified")}</p>
       )}
@@ -170,7 +170,7 @@ export function InviteIntro({
           t.rich("stay", {
             link: (chunks) => (
               // In a new tab: the interview stays open, also inside a company's site, whose
-              // frame shows nothing else of prepza.
+              // frame shows nothing else of testee.
               <Link
                 href="/privacy"
                 target="_blank"

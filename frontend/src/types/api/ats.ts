@@ -393,7 +393,7 @@ export interface paths {
     put?: never
     /**
      * Breezy Event
-     * @description The web hook prepza created in Breezy HR (candidates' stage changes), signed with its
+     * @description The web hook testee created in Breezy HR (candidates' stage changes), signed with its
      *     secret (the X-Hook-Signature header, checked on the body).
      */
     post: operations["breezy_event_webhooks_breezy__connection_id__post"]

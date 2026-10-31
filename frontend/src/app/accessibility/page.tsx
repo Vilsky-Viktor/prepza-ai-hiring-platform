@@ -19,7 +19,7 @@ export async function generateMetadata() {
   return pageMetadata(t("title"), t("description"), "/accessibility", true)
 }
 
-/** The accessibility statement: what prepza does for people with disabilities, what falls
+/** The accessibility statement: what testee does for people with disabilities, what falls
  * short, and how to tell us. */
 export default async function AccessibilityPage() {
   const t = await getTranslations("accessibility")

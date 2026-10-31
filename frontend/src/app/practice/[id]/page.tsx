@@ -102,7 +102,7 @@ export default async function PracticeTestPage({
       <PageKey page="practiceTest" />
       <JsonLd
         data={breadcrumbData(siteUrl(), [
-          { name: "prepza", path: at("/") },
+          { name: "testee", path: at("/") },
           { name: t("title"), path: at("/practice") },
           {
             name: template.title,

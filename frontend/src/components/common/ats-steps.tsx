@@ -110,7 +110,7 @@ export function RecruiteeSteps() {
   )
 }
 
-/** Where to make the API key in Breezy HR, step by step; prepza adds the web hook itself. */
+/** Where to make the API key in Breezy HR, step by step; testee adds the web hook itself. */
 export function BreezySteps() {
   const t = useTranslations("ats")
 

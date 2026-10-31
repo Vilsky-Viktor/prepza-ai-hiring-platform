@@ -25,5 +25,5 @@ export const SENTRY_TRACES_SAMPLE_RATE = 0.1
 export const TURNSTILE_SCRIPT =
   "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
 export const TURNSTILE_ORIGINS = ["https://challenges.cloudflare.com"]
-// The header a request carries its token in (services check it: prepza_common human_check).
+// The header a request carries its token in (services check it: testee_common human_check).
 export const HUMAN_CHECK_HEADER = "X-Human-Check"

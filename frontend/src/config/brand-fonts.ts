@@ -29,7 +29,7 @@ import { SITE_FONTS } from "@/config/fonts"
 import type { BrandStyle } from "@/types/company"
 
 // The fonts a company can pick for its candidates' pages (services/companies constants/brand.py
-// lists the same), one for the titles and one for the text, as the site has: prepza's own,
+// lists the same), one for the titles and one for the text, as the site has: testee's own,
 // Poppins and Geist (Poppins titles over Geist text, the default, which changes nothing), and the
 // most used web fonts, bundled with the site and not preloaded, so a page downloads only the ones
 // it uses. Each falls back to Geist for letters it lacks. next/font reads its options literally,

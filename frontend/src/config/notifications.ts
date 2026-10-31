@@ -26,7 +26,7 @@ export const MAX_BADGE_COUNT = 9
 export const RECONNECT_MS = 2000
 export const MAX_RECONNECT_MS = 60000
 
-// How each kind the services send (prepza_common.events.notifications.NotificationKind) looks: its
+// How each kind the services send (testee_common.events.notifications.NotificationKind) looks: its
 // icon, and whether it's a problem to act on (shown in red).
 export const NOTIFICATION_LOOKS: Record<
   string,
@@ -59,9 +59,9 @@ export const NOTIFICATION_LOOKS: Record<
 }
 // Sent on the window when the user joins a company: the bell reconnects with their companies
 // read again, so it hears the new one at once.
-export const COMPANIES_CHANGED = "prepza:companies-changed"
+export const COMPANIES_CHANGED = "testee:companies-changed"
 // A closed legal banner stays closed in this browser, for that document's version.
-export const LEGAL_BANNER_KEY = "prepza:legal-banner:{document}:{version}"
+export const LEGAL_BANNER_KEY = "testee:legal-banner:{document}:{version}"
 
 /** A notification's message values the service left out. "none" is what the messages'
  * selects read as "leave it out"; `role` is a member's ("admin" or "viewer"); `ats` is the ATS

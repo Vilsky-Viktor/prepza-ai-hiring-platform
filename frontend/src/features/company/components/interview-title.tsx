@@ -9,7 +9,7 @@ import type { InterviewDetail } from "@/types/company"
 
 /** An interview's title (editable by those who can), or what's happening while it has none
  * (generating, or failed), with how it's answered after its last word; under it its pinned
- * note, its status once ready and the id to quote when writing to prepza. */
+ * note, its status once ready and the id to quote when writing to testee. */
 export async function InterviewTitle({
   interview,
   canEdit,

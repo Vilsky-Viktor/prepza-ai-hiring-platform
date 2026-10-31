@@ -15,7 +15,7 @@ import { bdi, bdiText } from "@/lib/bidi"
 
 type Step = "suspend" | "delete" | "rename"
 
-/** What a superadmin can do about a company that impersonates another or abuses prepza:
+/** What a superadmin can do about a company that impersonates another or abuses testee:
  * suspend it (or lift that), rename it, or delete it, each after a confirmation. The page is
  * read again after a change; a deleted company leads back to the search. */
 export function CompanyActions({

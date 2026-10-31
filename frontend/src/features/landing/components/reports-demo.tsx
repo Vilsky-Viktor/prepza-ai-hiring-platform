@@ -82,7 +82,7 @@ function messagesAt(
 /** Reports and sharing, played by a pointer in one panel of a fixed size: the interview's
  * candidates, their PDF downloaded and emailed to the manager; the best candidate's page shared
  * to WhatsApp (its text summary, then a line typed); the flagged one's the same; then a note
- * posted on the interview's notes, and last the Slack channel with prepza's messages. Each screen fades out and the next in; the share dialog, the
+ * posted on the interview's notes, and last the Slack channel with testee's messages. Each screen fades out and the next in; the share dialog, the
  * download and the notices lie over them. With reduced motion, the Slack channel at its newest message. */
 export function ReportsDemo() {
   const t = useTranslations("landing.shareReports")

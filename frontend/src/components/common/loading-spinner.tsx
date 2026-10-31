@@ -2,7 +2,7 @@ import { cn } from "cn"
 
 import { AiPulse } from "@/components/common/ai-pulse"
 
-/** What a page shows while its content loads, named for screen readers (`label`): prepza's
+/** What a page shows while its content loads, named for screen readers (`label`): testee's
  * loading mark. `compact` for a part of a page, a dialog or a panel. */
 export function LoadingSpinner({
   label,

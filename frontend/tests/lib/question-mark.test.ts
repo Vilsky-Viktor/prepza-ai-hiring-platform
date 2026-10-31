@@ -10,7 +10,7 @@ describe("endsWithQuestionMark", () => {
   })
 
   it("finds it before trailing spaces", () => {
-    expect(endsWithQuestionMark("Why prepza? ")).toBe(true)
+    expect(endsWithQuestionMark("Why testee? ")).toBe(true)
   })
 
   it("leaves other titles alone, a question mark inside them too", () => {

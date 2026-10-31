@@ -17,7 +17,7 @@ import { AnswerModeSetting } from "@/features/company/components/answer-mode-swi
 /** The interview's settings tab: whether it's taken in click mode or voice mode (voice only in
 the languages the API names), the average time per question (each question gets its own, fitted
 to it by rounds), the pass mark, whether the company hired, and whether its questions stay out of
-prepza's shared question bank, one row each in a list like the topics'.
+testee's shared question bank, one row each in a list like the topics'.
 Every interview is timed, and candidates never see their scores. */
 export function InterviewSettings({
   interviewId,

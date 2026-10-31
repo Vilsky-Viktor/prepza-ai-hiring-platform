@@ -11,7 +11,7 @@ import {
 import { OPERATOR } from "@/config/operator"
 import type { Catalog } from "@/types/billing"
 
-const SITE = "https://prepza.example"
+const SITE = "https://testee.example"
 
 describe("softwareData", () => {
   it("offers the price per candidate from cheapest to dearest", () => {
@@ -33,12 +33,12 @@ describe("softwareData", () => {
 describe("breadcrumbData", () => {
   it("numbers each step from the home page with its full address", () => {
     const data = breadcrumbData(SITE, [
-      { name: "prepza", path: "/" },
+      { name: "testee", path: "/" },
       { name: "Skills tests", path: "/tests" },
     ])
 
     expect(data.itemListElement).toEqual([
-      { "@type": "ListItem", position: 1, name: "prepza", item: `${SITE}/` },
+      { "@type": "ListItem", position: 1, name: "testee", item: `${SITE}/` },
       {
         "@type": "ListItem",
         position: 2,
@@ -53,7 +53,7 @@ describe("organizationData", () => {
   it("names the brand without the logo's dot", () => {
     const [organization, website] = organizationData(SITE, "Tests.")
 
-    expect(organization.name).toBe("prepza")
+    expect(organization.name).toBe("testee")
     expect(website.url).toBe(SITE)
   })
 
@@ -115,11 +115,11 @@ describe("techArticleData", () => {
 })
 
 describe("newsData", () => {
-  it("lists the posts as the language's blog posts by prepza, each at its place", () => {
+  it("lists the posts as the language's blog posts by testee, each at its place", () => {
     const data = newsData(
       SITE,
       {
-        title: "prepza news",
+        title: "testee news",
         description: "What's new.",
         path: "/de/news",
         language: "de",
@@ -139,7 +139,7 @@ describe("newsData", () => {
       "@type": "Blog",
       url: `${SITE}/de/news`,
       inLanguage: "de",
-      publisher: { "@type": "Organization", name: "prepza" },
+      publisher: { "@type": "Organization", name: "testee" },
     })
     expect(data.blogPost).toEqual([
       {
@@ -150,8 +150,8 @@ describe("newsData", () => {
         datePublished: "2026-10-08",
         dateModified: "2026-10-08T09:30:00Z",
         inLanguage: "de",
-        author: { "@type": "Organization", name: "prepza", url: SITE },
-        publisher: { "@type": "Organization", name: "prepza", url: SITE },
+        author: { "@type": "Organization", name: "testee", url: SITE },
+        publisher: { "@type": "Organization", name: "testee", url: SITE },
       },
     ])
   })

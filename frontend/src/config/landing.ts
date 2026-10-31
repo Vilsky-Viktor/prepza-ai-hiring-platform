@@ -2,9 +2,9 @@
 // service's DEFAULT_PASS_MARK).
 export const DEMO_PASS_MARK = 70
 
-// Where "watch demos" on the home page leads: prepza's demo videos on YouTube.
-export const DEMOS_URL = "https://www.youtube.com/@prepza"
-// The YouTube video the hero's "video" button plays; a stand-in until prepza's own is up.
+// Where "watch demos" on the home page leads: testee's demo videos on YouTube.
+export const DEMOS_URL = "https://www.youtube.com/@testee"
+// The YouTube video the hero's "video" button plays; a stand-in until testee's own is up.
 export const HERO_VIDEO_ID = "aqz-KE-bpKQ"
 
 // How long a full interview takes from a job description to ready, rounded up for a safe promise

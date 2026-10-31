@@ -19,7 +19,7 @@ export async function generateMetadata() {
   return pageMetadata(t("title"), t("description"), "/features", true)
 }
 
-/** Every feature, for a company choosing prepza: the promise, the groups as tabs that stay in
+/** Every feature, for a company choosing testee: the promise, the groups as tabs that stay in
  * view, each group a landing section of rows (a text beside a picture of the real app) and
  * cards, and the start box at the end. Counts and prices come from the API, and the page shows
  * without them. */

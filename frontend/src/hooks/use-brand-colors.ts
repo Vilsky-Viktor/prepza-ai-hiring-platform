@@ -11,7 +11,7 @@ import type { BrandColorSets, BrandStyle, Theme } from "@/types/company"
 /** A company's colors, fonts and corner rounding over the whole page while it's open (a candidate's invitation, questions
  * and finished page), whatever the visitor's own theme: the set of the theme the address asks
  * for (`?theme=light`, `dark`, or `default`: the visitor's own; the SDK passes it so), else the
- * one its invite asked for through the API, else the visitor's own. prepza's again after. */
+ * one its invite asked for through the API, else the visitor's own. testee's again after. */
 export function useBrandColors(
   sets: BrandColorSets | null | undefined,
   inviteTheme?: Theme | null,

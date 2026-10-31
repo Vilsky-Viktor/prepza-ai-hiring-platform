@@ -18,7 +18,7 @@ import { openAddress } from "@/lib/navigation"
 
 /** Asks the signed-in user whether an AI app may use their account: who asks, what it can and
  * can't do, whether it may make changes (on unless the app asked only to read), a warning for an
- * app prepza doesn't know, and Deny or Allow; either answer goes back to the app. */
+ * app testee doesn't know, and Deny or Allow; either answer goes back to the app. */
 export function ConsentCard({
   requestId,
   request,

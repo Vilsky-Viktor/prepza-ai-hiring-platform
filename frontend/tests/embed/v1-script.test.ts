@@ -10,7 +10,7 @@ const SCRIPT = readFileSync(
   new URL("../../public/embed/v1.js", import.meta.url),
   "utf8"
 )
-const ORIGIN = "https://prepza.ai"
+const ORIGIN = "https://testee.ai"
 const URL_OF_INVITE = `${ORIGIN}/invite/abc`
 
 type Listener = (event: {
@@ -34,7 +34,7 @@ function page(
     "#interview": { appendChild: () => {} },
   }
   const window = {
-    Prepza: { q: queued },
+    Testee: { q: queued },
     location: { origin: "https://jobs.example.com" },
     addEventListener: (_: string, listener: Listener) =>
       listeners.push(listener),
@@ -62,7 +62,7 @@ function page(
 
   return {
     window: window as typeof window & {
-      Prepza: { embed: (o: object) => void }
+      Testee: { embed: (o: object) => void }
     },
     listeners,
     timers,
@@ -86,13 +86,13 @@ describe("the embed script", () => {
         return (error as Error).message
       }
     })
-    expect(thrown).toContain("Prepza.embed: no element #missing")
+    expect(thrown).toContain("Testee.embed: no element #missing")
   })
 
   it("passes a finished candidate's id only when it is a string", () => {
     const { window, listeners, frames } = page()
     const finished: unknown[] = []
-    window.Prepza.embed({
+    window.Testee.embed({
       element: "#interview",
       url: URL_OF_INVITE,
       onFinish: (value: unknown) => finished.push(value),
@@ -101,7 +101,7 @@ describe("the embed script", () => {
       listeners[0]({
         origin: ORIGIN,
         source: frames[0].contentWindow,
-        data: { source: "prepza", version: 1, type: "finished", candidateId },
+        data: { source: "testee", version: 1, type: "finished", candidateId },
       })
 
     message("cand-1")
@@ -124,14 +124,14 @@ describe("the embed script", () => {
     )
   })
 
-  it("frames prepza even when the page shadows document.currentScript", () => {
+  it("frames testee even when the page shadows document.currentScript", () => {
     // <img name="currentScript" src="https://evil.example/embed/v1.js">
     const clobbered = { src: "https://evil.example/embed/v1.js", nodeType: 1 }
     const { window, frames } = page([], clobbered)
-    window.Prepza.embed({ element: "#interview", url: URL_OF_INVITE })
+    window.Testee.embed({ element: "#interview", url: URL_OF_INVITE })
 
     expect((frames[0] as unknown as { src: string }).src).toMatch(
-      /^https:\/\/prepza\.ai\/embedded\//
+      /^https:\/\/testee\.ai\/embedded\//
     )
   })
 })

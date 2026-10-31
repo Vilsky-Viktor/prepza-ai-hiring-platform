@@ -100,9 +100,9 @@ export function CompanyHeader({
             editable={canEdit}
           />
         </div>
-        {/* Renamed in place, like a test's title; the name stays unique across prepza. Then the
+        {/* Renamed in place, like a test's title; the name stays unique across testee. Then the
             verified badge, the pending one while a superadmin reviews it, or the way to verify;
-            under the name, the id to quote when writing to prepza about the company. The logo
+            under the name, the id to quote when writing to testee about the company. The logo
             and the back arrow are centred on both lines. */}
         <div className="me-4 min-w-0 flex-1">
           <div className="flex min-w-0 items-center gap-3">

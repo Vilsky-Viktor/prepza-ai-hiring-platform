@@ -2,7 +2,7 @@ import { cn } from "cn"
 
 import { AI_CHIP_MASK } from "@/config/ai-mark"
 
-/** prepza's loading mark: the AI chip from the landing's quality loop, lit like the "ask Mira"
+/** testee's loading mark: the AI chip from the landing's quality loop, lit like the "ask Mira"
  * button's border (a bright arc of the primary colour circling over a faint one, shown only
  * through the chip's lines), and a rounded-square ring pulsing out of it. With reduced motion,
  * the arc and the ring stand still. `className` sizes it (e.g. `size-14`); `label` names it for

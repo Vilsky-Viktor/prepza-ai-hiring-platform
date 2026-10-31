@@ -82,7 +82,7 @@ export async function drawPreview(lines: string[], locale: Locale = "en") {
           color: PREVIEW_COLORS.logo,
         }}
       >
-        prepza
+        testee
         <span style={{ color: PREVIEW_COLORS.dot, fontSize: "1.5em" }}>.</span>
       </div>
       {/* The title as the site's headings: regular, grey, lines set tight. */}

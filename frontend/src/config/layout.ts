@@ -6,7 +6,7 @@ export const SCROLL_TOP_AFTER_PX = 800
 export const TIMED_PAGE = /^(\/[a-z]{2,3})?\/sessions\//
 
 // A company's invitation, shared test link and embedded interview, and a member's preview of its
-// invitation: like its interview, they show the company only, without prepza's header and footer.
+// invitation: like its interview, they show the company only, without testee's header and footer.
 export const COMPANY_INTERVIEW_PAGE =
   /^(\/[a-z]{2,3})?\/((invite|apply|embedded)\/|companies\/[^/]+\/interviews\/[^/]+\/try$)/
 

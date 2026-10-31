@@ -15,7 +15,7 @@ const FORMS = {
 }
 
 /** Copies the id of what a page shows (a company, an interview, a candidate, an account), to
- * quote when writing to prepza: support finds it from the id. "copy id" with a copy icon,
+ * quote when writing to testee: support finds it from the id. "copy id" with a copy icon,
  * which turns into a check for a moment once copied. */
 export function EntityId({
   id,

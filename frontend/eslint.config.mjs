@@ -18,6 +18,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // The MCP examples the developer docs show: their own packages, not the site's.
     "content/mcp/**",
+    // Voice mode's speech detector, copied from node_modules (scripts/copy-vad.mjs).
+    "public/vad/**",
   ]),
 ]);
 

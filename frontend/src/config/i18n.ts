@@ -1,4 +1,4 @@
-// Every supported language, in the order the backend lists them (prepza_common LANGUAGES).
+// Every supported language, in the order the backend lists them (testee_common LANGUAGES).
 export const LOCALES = [
   "en",
   "ru",
@@ -33,7 +33,7 @@ export const CJK_LOCALES: readonly Locale[] = ["ja", "zh", "ko"]
 
 export const DEFAULT_LOCALE = "en"
 
-export const LOCALE_COOKIE = "prepza_locale"
+export const LOCALE_COOKIE = "testee_locale"
 
 export const LOCALE_COOKIE_MAX_AGE = 60 * 60 * 24 * 365
 

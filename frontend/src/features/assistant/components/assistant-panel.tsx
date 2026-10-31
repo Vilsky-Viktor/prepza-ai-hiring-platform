@@ -32,7 +32,7 @@ import type { Company } from "@/types/company"
  * the whole screen on phones. Signed in, it answers with the user's data about the company
  * picked in its header (the page's company by default, or all companies), keeps a history and
  * takes voice; signed out, it answers about
- * prepza from the FAQ, and the conversation lives only here. */
+ * testee from the FAQ, and the conversation lives only here. */
 export function AssistantPanel({
   open,
   onOpenChange,

@@ -2,15 +2,15 @@
 // after each). The services enforce these; the fields stop typing at the same point, so nothing
 // is refused on sending.
 
-// prepza_common MAX_GOAL_LENGTH: a learner's goal or a job description.
+// testee_common MAX_GOAL_LENGTH: a learner's goal or a job description.
 export const MAX_GOAL_LENGTH = 10000
 // generation MAX_INSTRUCTIONS_LENGTH: changes described in words during topic review.
 export const MAX_INSTRUCTIONS_LENGTH = 500
 // generation MAX_TOPIC_NAME_LENGTH: a topic or subtopic edited during review.
 export const MAX_TOPIC_NAME_LENGTH = 50
-// prepza_common MAX_TITLE_LENGTH: a kit's or an interview's title.
+// testee_common MAX_TITLE_LENGTH: a kit's or an interview's title.
 export const MAX_TITLE_LENGTH = 70
-// prepza_common MAX_CANDIDATE_NAME_LENGTH: a candidate's name.
+// testee_common MAX_CANDIDATE_NAME_LENGTH: a candidate's name.
 export const MAX_CANDIDATE_NAME_LENGTH = 200
 // companies MAX_COMPANY_NAME_LENGTH: a company's name.
 export const MAX_COMPANY_NAME_LENGTH = 45
@@ -25,7 +25,7 @@ export const MAX_HELP_QUESTION_LENGTH = 1000
 // site MAX_CONTACT_NAME_LENGTH and MAX_CONTACT_MESSAGE_LENGTH: the contact form.
 export const MAX_CONTACT_NAME_LENGTH = 100
 export const MAX_CONTACT_MESSAGE_LENGTH = 5000
-// prepza_common MAX_NOTE_LENGTH: a note on an interview.
+// testee_common MAX_NOTE_LENGTH: a note on an interview.
 export const MAX_NOTE_LENGTH = 2000
 // A picker's search (languages, currencies): it only filters the list in the browser, and names
 // are short.
@@ -37,10 +37,10 @@ export const MAX_SEARCH_LENGTH = 254
 // companies MAX_BULK_TEXT_LENGTH: a pasted list of candidate emails, in characters, and an
 // uploaded one, in bytes (a larger file isn't read).
 export const MAX_BULK_TEXT_LENGTH = 50000
-// prepza_common MAX_NEWS_TITLE_LENGTH and MAX_NEWS_TEXT_LENGTH: a news post.
+// testee_common MAX_NEWS_TITLE_LENGTH and MAX_NEWS_TEXT_LENGTH: a news post.
 export const MAX_NEWS_TITLE_LENGTH = 120
 export const MAX_NEWS_TEXT_LENGTH = 500
-// prepza_common MAX_CAMPAIGN_SUBJECT_LENGTH, MAX_CAMPAIGN_TEXT_LENGTH and
+// testee_common MAX_CAMPAIGN_SUBJECT_LENGTH, MAX_CAMPAIGN_TEXT_LENGTH and
 // MAX_CAMPAIGN_BUTTON_LENGTH: a campaign email.
 export const MAX_CAMPAIGN_SUBJECT_LENGTH = 120
 export const MAX_CAMPAIGN_TEXT_LENGTH = 2000

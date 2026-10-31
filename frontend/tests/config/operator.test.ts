@@ -8,7 +8,7 @@ import { OPERATOR, OPERATOR_POSTAL_ADDRESS } from "@/config/operator"
 // footer, contact page and structured data from this mirror. They must say the same.
 const SHARED = readFileSync(
   new URL(
-    "../../../packages/common/src/prepza_common/config/constants.py",
+    "../../../packages/common/src/testee_common/config/constants.py",
     import.meta.url
   ),
   "utf8"

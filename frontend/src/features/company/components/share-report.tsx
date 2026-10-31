@@ -24,7 +24,7 @@ import { useOrigin } from "@/lib/origin"
 const CHAT_BUTTON =
   "size-12 shrink-0 text-muted-foreground hover:text-foreground"
 
-/** Sends a PDF report by email from prepza (a reply goes to the member), or a text
+/** Sends a PDF report by email from testee (a reply goes to the member), or a text
  * summary through a chat app (WhatsApp, Telegram, Viber, LINE), which can't carry a file. Laid out like "new candidate". */
 export function ShareReport({
   open,

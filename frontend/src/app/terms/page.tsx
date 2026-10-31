@@ -4,7 +4,7 @@ import { pageMetadata } from "@/lib/site"
 export const generateMetadata = () =>
   pageMetadata(
     "Terms of service",
-    "The terms for using prepza: accounts, companies, credits and payments, tests for candidates, acceptable use and liability.",
+    "The terms for using testee: accounts, companies, credits and payments, tests for candidates, acceptable use and liability.",
     "/terms"
   )
 

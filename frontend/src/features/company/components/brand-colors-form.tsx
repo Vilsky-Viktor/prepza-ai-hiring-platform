@@ -22,7 +22,7 @@ import { apiErrorMessage, apiFetch } from "@/lib/api"
 import type {
   BrandColorSets,
   BrandStyle,
-  PrepzaBrand,
+  TesteeBrand,
   SavedBrandColors,
   Theme,
 } from "@/types/company"
@@ -31,30 +31,30 @@ import type {
  * preview of those pages, then their fonts and corner rounding (the same in both themes). Save
  * keeps what's on screen: the theme's colors, the fonts and the rounding; it refuses colors whose
  * text would be hard to read (companies says which). Reset brings back what was last saved;
- * reset to prepza defaults, shown while anything saved isn't prepza's, goes back to prepza's
+ * reset to testee defaults, shown while anything saved isn't testee's, goes back to testee's
  * colors in both themes, fonts and rounding. Each part is a page of brand's in the side menu
  * (`page`): "general" holds the fonts and rounding (the logo is above it, on the page), each theme
  * its colors; save and reset act on what the page shows, and edits elsewhere are kept while
  * switching. A theme whose saved colors a check now refuses shows why above its colors (its
- * candidates see prepza's meanwhile) until colors that pass are saved. */
+ * candidates see testee's meanwhile) until colors that pass are saved. */
 export function BrandColorsForm({
   companyId,
   saved,
   current,
   problems,
   style,
-  prepza,
+  testee,
   page,
 }: {
   companyId: string
   saved: SavedBrandColors | null
-  // The colors the candidates' pages use now (the company's, or prepza's), and their fonts and
+  // The colors the candidates' pages use now (the company's, or testee's), and their fonts and
   // rounding.
   current: BrandColorSets
   // Why a theme's saved colors are refused now, by theme (companies says).
   problems: Record<string, string>
   style: BrandStyle
-  prepza: PrepzaBrand
+  testee: TesteeBrand
   page: "general" | Theme
 }) {
   const t = useTranslations("brand")
@@ -76,7 +76,7 @@ export function BrandColorsForm({
   const colorsChanged = !general && !same(shown, last.colors[theme])
   const lookChanged = general && !same(look, last.look)
   const changed = colorsChanged || lookChanged
-  const custom = own.light || own.dark || !same(last.look, prepza.style)
+  const custom = own.light || own.dark || !same(last.look, testee.style)
   // Gone once colors that pass are saved (the page refreshes).
   const problem = general ? undefined : problems[theme]
 
@@ -118,18 +118,18 @@ export function BrandColorsForm({
       }))
     }, t("saved"))
 
-  const resetToPrepza = () =>
+  const resetToTestee = () =>
     run(async () => {
       await put("brand-colors/light", { colors: null })
       await put("brand-colors/dark", { colors: null })
-      await put("brand-style", prepza.style)
-      setColors(prepza.colors)
-      setLook(prepza.style)
-      setLast({ colors: prepza.colors, look: prepza.style })
+      await put("brand-style", testee.style)
+      setColors(testee.colors)
+      setLook(testee.style)
+      setLast({ colors: testee.colors, look: testee.style })
       setOwn({ light: false, dark: false })
     }, t("resetDone"))
 
-  // Reset and save; under them, smaller, the way back to prepza's. At the top on the right and
+  // Reset and save; under them, smaller, the way back to testee's. At the top on the right and
   // again under the settings column (`centered`), centered; on a phone, centered with room above
   // and below.
   const actions = (centered = false) => (
@@ -168,10 +168,10 @@ export function BrandColorsForm({
           size="sm"
           className="h-8 px-4 font-light"
           disabled={saving}
-          data-testid="brand-reset-prepza"
-          onClick={resetToPrepza}
+          data-testid="brand-reset-testee"
+          onClick={resetToTestee}
         >
-          {t("resetPrepza")}
+          {t("resetTestee")}
         </Button>
       )}
     </div>

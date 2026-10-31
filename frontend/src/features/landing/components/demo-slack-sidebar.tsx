@@ -12,7 +12,7 @@ import {
 const ROW = "flex items-center gap-2 rounded-md px-2 py-1 truncate"
 
 /** Slack's side menu, small, for the landing: the workspace's name, its channels with the open
- * one highlighted, teammates with their status dots and the prepza app, white on Slack's
+ * one highlighted, teammates with their status dots and the testee app, white on Slack's
  * aubergine. Not on phones, where Slack shows the channel alone. */
 export function DemoSlackSidebar() {
   const { workspace, channels, people, background, current, active } =

@@ -6,7 +6,7 @@ import { AiPulse } from "@/components/common/ai-pulse"
 import { WritingProgress } from "@/components/common/writing-progress"
 
 /** The questions being written, as the generation page shows it (features/generation/
- * components/generation-progress.tsx) at its own size: prepza's loading mark, the page's title
+ * components/generation-progress.tsx) at its own size: testee's loading mark, the page's title
  * and note, and the real progress, `ready` of `topics` topics done, `questions` a topic. */
 export function DemoGeneration({
   topics,
