@@ -2,7 +2,7 @@
 
 The Support tab of the [Admin zone](admin-zone.md).
 
-For a complaint about an account, a company's top-ups or spending, an interview or a candidate, for someone who asks prepza to stop its emails, and for a company that impersonates another or abuses prepza. A search finds what the complaint is about; its page shows what support needs, and puts a company's credits right. A candidate's questions and answers are never shown: only facts about them.
+For a complaint about an account, a company's top-ups or spending, an interview or a candidate, for someone who asks testee to stop its emails, and for a company that impersonates another or abuses testee. A search finds what the complaint is about; its page shows what support needs, and puts a company's credits right. A candidate's questions and answers are never shown: only facts about them.
 
 - [Search](#search)
 - [An account's page](#an-accounts-page)
@@ -14,9 +14,9 @@ For a complaint about an account, a company's top-ups or spending, an interview 
 
 ## Search
 
-One box takes whatever the complaint gives (at most 300 characters), sent in the request body. It finds at most 20 results, each a prepza account, or a company, an interview or a candidate (an invite) with the company it belongs to:
+One box takes whatever the complaint gives (at most 300 characters), sent in the request body. It finds at most 20 results, each a testee account, or a company, an interview or a candidate (an invite) with the company it belongs to:
 
-- **a link or path from prepza's site,** on any host and under any language prefix: the deepest page it points at (`/companies/{id}`, `/interviews/{id}`, `/candidates/{invite id}`),
+- **a link or path from testee's site,** on any host and under any language prefix: the deepest page it points at (`/companies/{id}`, `/interviews/{id}`, `/candidates/{invite id}`),
 - **an id:** the company, interview or candidate invite that has it,
 - **a Paddle transaction** (`txn_…`, from a receipt): the company the top-up paid into, as billing knows it,
 - **an email address,** whatever its case: the account that signs in with it (accounts asks Firebase), then the companies with a member of that address and the candidates invited at it,
@@ -69,11 +69,11 @@ As the company's candidate list shows them, never their questions or answers:
 - when the address is on the suppression list (it bounced, marked an email as spam, or Resend stopped sending to it), since when and why, with **Take off the list**, as on an account's page,
 - the company emails stopped for the address (below).
 
-An undelivered invite shows as the status `undelivered`; prepza records nothing about a delivered one.
+An undelivered invite shows as the status `undelivered`; testee records nothing about a delivered one.
 
 ## Emails
 
-Stops the emails prepza sends to an address, for someone who asked by email rather than with a link (see [Unsubscribing](notifications.md#unsubscribing)). An address goes in the request body, never in a page or API address, which logs record.
+Stops the emails testee sends to an address, for someone who asked by email rather than with a link (see [Unsubscribing](notifications.md#unsubscribing)). An address goes in the request body, never in a page or API address, which logs record.
 
 - **An account's email settings,** on its page: as Settings → Emails shows them, each changed at once, and "Turn off all optional emails". Service emails can't be turned off. Product updates and offers can only be turned off here: consent to marketing is the user's own, so turning one on is refused ("Only the person can turn on product updates and offers."). An account without an address (a company's guest candidate) has none.
 - **Emails from companies,** on a candidate's page, for their address: the companies that invited the address (companies' invites) or whose emails it stopped, by name, each "Emails are sent", "All emails stopped" (by a superadmin), "They stopped all emails themselves" (from an email's link) or "Reminders stopped for N invites":

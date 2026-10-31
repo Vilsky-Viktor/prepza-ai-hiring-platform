@@ -1,6 +1,6 @@
 # ATS integrations
 
-A company can connect its applicant tracking system (ATS): Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR. Candidates the company moves into a chosen stage in the ATS get the prepza invite, and their results go back to the ATS.
+A company can connect its applicant tracking system (ATS): Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR. Candidates the company moves into a chosen stage in the ATS get the testee invite, and their results go back to the ATS.
 
 - [Connecting an ATS](#connecting-an-ats)
 - [Linking a job](#linking-a-job)
@@ -26,9 +26,9 @@ On a company's **Integrations** tab, an owner or admin connects an ATS with its 
 | Breezy HR | An API key (your name → My Settings → API Keys) | The key acts as the person who made it: an admin who sees every position. Breezy's API and web hooks come with its Pro plan |
 
 - A company connects or replaces an ATS connection at most 20 times an hour by default (`ATS_CONNECTS_PER_HOUR`, `429` past it), as each is checked with the ATS.
-- prepza checks the key with one read before saving it. A Teamtailor key is tried in each of Teamtailor's regions (EU, North America, Asia-Pacific) until one accepts it; the connection keeps that region.
+- testee checks the key with one read before saving it. A Teamtailor key is tried in each of Teamtailor's regions (EU, North America, Asia-Pacific) until one accepts it; the connection keeps that region.
 - The key is saved encrypted with `ATS_ENCRYPTION_KEY`, the ats service's Fernet key. An empty key turns integrations off. To replace it, list the new key and the old one, comma-separated, new first (see [infra/README.md](../../infra/README.md), step 8). After the key that sealed them is gone, saved keys can't be read: their connections are marked for reconnecting, and reconnecting starts afresh (Greenhouse gets a new web hook secret key to paste; Teamtailor's and Recruitee's are pasted again).
-- prepza never shows the key again.
+- testee never shows the key again.
 - Disconnecting deletes the key and the linked jobs at once.
 - A key the ATS stops accepting marks the connection for reconnecting. Only a refusal of the key counts (401 or 403; when connecting, also a wrong address): something deleted in the ATS, like one candidate, affects only that candidate.
 - While a connection waits for reconnecting, its web hooks still count, checked with the secrets it keeps: the candidates it sends wait, and results are kept. Within 10 minutes of reconnecting, the `recover` job invites those candidates and sends those results. Teamtailor's events are the exception when its key is refused: ats can't read the application, so the event is answered with an error.
@@ -43,13 +43,13 @@ On a company's **Integrations** tab, an owner or admin connects an ATS with its 
 ## The ATS pages
 
 - The Integrations tab has three groups, in this order: messaging (Slack), the API and AI apps (MCP) in one list, then the ATSs, each with a "connected" tag once connected.
-- Under a connected ATS's name, on its row and its page: the account it's connected as (Workable's and Recruitee's subdomain, Teamtailor's and Breezy HR's company name). Greenhouse names no account, so it shows the company's own name on prepza instead; no member's name is kept with a connection.
+- Under a connected ATS's name, on its row and its page: the account it's connected as (Workable's and Recruitee's subdomain, Teamtailor's and Breezy HR's company name). Greenhouse names no account, so it shows the company's own name on testee instead; no member's name is kept with a connection.
 - Each ATS opens its own page: `/companies/<id>/integrations/<workable, greenhouse, teamtailor, recruitee or breezy>`. Before it's connected, the page says so in place of the linked jobs.
 - The page lists its linked jobs. For each job:
   - how many of its candidates were invited (an icon and the number),
   - how many are waiting or weren't invited, above **Invite again**, which tries that job's again,
   - **Unlink**, after a confirmation. The job's candidates still waiting for the interview go with it, so none is invited or has credits set aside later; those already invited stay, for writing their results back.
-- Each ATS has one **Instructions** button, on its row and its page. Its dialog holds everything to know: the candidate flow, starting with a stage just for prepza, and, for a connected Greenhouse, Teamtailor or Recruitee, the web hook to set up (owners and admins only). The dialog opens by itself right after connecting any of those three.
+- Each ATS has one **Instructions** button, on its row and its page. Its dialog holds everything to know: the candidate flow, starting with a stage just for testee, and, for a connected Greenhouse, Teamtailor or Recruitee, the web hook to set up (owners and admins only). The dialog opens by itself right after connecting any of those three.
 - Every member sees these pages; viewers change nothing.
 
 ## Candidates from Workable
@@ -67,7 +67,7 @@ On a company's **Integrations** tab, an owner or admin connects an ATS with its 
 - An invite cut off midway can be claimed again after 10 minutes, by **Invite again**, a new event or the ats service's `recover` job, which runs every 10 minutes.
 - An event or **Invite again** invites at most 50 candidates, so it ends in time; the rest wait for the `recover` job. Not-invited candidates are put back to waiting a batch at a time (`DELETE_BATCH`), each batch its own transaction. The job invites until 20 seconds into its run (`RECOVER_INVITE_SECONDS`), taking every connection's candidates in turn (each one's oldest, then each one's second...), at most 500 read a run, so one company's backlog doesn't hold up the others; the rest wait for its next run.
 
-**The invite** is the usual one. Companies sends it as if whoever connected Workable sent it: their limits, the company's credits, the pause. If that member is no longer an owner or admin (removed, or made a viewer), companies refuses it and the connection is marked for reconnecting by a current editor. If that member deletes their prepza account, their connections stay without their id (`deleted-user`), marked for reconnecting; their data export lists the connections they made.
+**The invite** is the usual one. Companies sends it as if whoever connected Workable sent it: their limits, the company's credits, the pause. If that member is no longer an owner or admin (removed, or made a viewer), companies refuses it and the connection is marked for reconnecting by a current editor. If that member deletes their testee account, their connections stay without their id (`deleted-user`), marked for reconnecting; their data export lists the connections they made.
 
 - A candidate for an interview still being made waits, and is invited once it's ready (`interview.ready`).
 - A candidate refused (credits, limits, the pause) is kept as not invited, and every member of the company gets an `ats_not_invited` notification (several within 24 hours add up to one, see [Grouping](notifications.md#grouping)). **Invite again** puts that job's not-invited candidates back to waiting and invites them.
@@ -79,7 +79,7 @@ On a company's **Integrations** tab, an owner or admin connects an ATS with its 
 - after 365 days, by the same `recover` job,
 - with their interview (`interview.deleted`),
 - with their company (`company.deleted`),
-- when the company erases the candidate in prepza (`candidate.removed`),
+- when the company erases the candidate in testee (`candidate.removed`),
 - with the candidate's account. Account deletion and export include them.
 
 ## Candidates from Greenhouse
@@ -125,7 +125,7 @@ The company sets up Recruitee's web hook by hand too:
 
 ## Candidates from Breezy HR
 
-prepza sets up Breezy HR's web hook itself, so the company only pastes the key:
+testee sets up Breezy HR's web hook itself, so the company only pastes the key:
 
 - Connecting creates a web hook in Breezy (`candidateStatusUpdated`) at the connection's own address, `/api/ats/webhooks/breezy/<connection id>`, and keeps the signing secret Breezy gives then, once. Breezy refuses web hooks without its Pro plan; connecting then fails with that reason, and nothing is saved.
 - Reconnecting replaces the web hook; disconnecting, or deleting the company, deletes it in Breezy, as far as Breezy answers. If the new web hook can't be made, the earlier connection stays, with its linked jobs and candidates, marked for reconnecting.

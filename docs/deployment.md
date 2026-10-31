@@ -15,15 +15,15 @@ Production runs on Google Cloud in `europe-west1`, set up by Terraform in [`infr
 Every app Dockerfile (on Alpine) has a `prod` target, with the code built in and no reload. The API images are built from the repo root, because they include `packages/common`:
 
 ```bash
-docker build --target prod -f services/library/Dockerfile -t prepza-library .   # also generation, rounds, companies, billing, notifications, ats, api, assistant
-docker build --target prod -t prepza-frontend \
+docker build --target prod -f services/library/Dockerfile -t testee-library .   # also generation, rounds, companies, billing, notifications, ats, api, assistant
+docker build --target prod -t testee-frontend \
   --build-arg NEXT_PUBLIC_FIREBASE_API_KEY=... --build-arg NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=... \
   --build-arg NEXT_PUBLIC_FIREBASE_PROJECT_ID=... frontend
 ```
 
 Never set `FIREBASE_AUTH_EMULATOR_HOST` in production.
 
-Terraform passes none of generation's settings to Google Cloud; production runs on their defaults (see [Generation settings](generation.md#generation-settings) and [infra/README.md](../infra/README.md#notes)). The assistant runs on its defaults too (`ASSISTANT_MODEL`, `ASSISTANT_REASONING_EFFORT`, `ASSISTANT_RETENTION_DAYS`). It gets `SITE_URL` and `FIREBASE_WEB_API_KEY` (the `firebase_web_api_key` variable) for AI apps over MCP, whose endpoint and OAuth paths the load balancer sends to it at the site's root; its account needs to read Firebase accounts and sign as itself (`infra/terraform/iam.tf`, see [AI apps over MCP](features/mcp.md)). Usage limits, and the values tuned with them (seconds a question by level, generation's AI calls at once and a second, the multi-answer share, the questions generated per topic, the topics and subtopics a test has, the share of Resend's quota kept from bulk sends, the monthly AI budget), aren't settings: each starts at its default in `prepza_common.limits.limit_list` and a superadmin changes it in the admin zone's Controls tab ([Admin zone](features/admin-zone.md#limits)).
+Terraform passes none of generation's settings to Google Cloud; production runs on their defaults (see [Generation settings](generation.md#generation-settings) and [infra/README.md](../infra/README.md#notes)). The assistant runs on its defaults too (`ASSISTANT_MODEL`, `ASSISTANT_REASONING_EFFORT`, `ASSISTANT_RETENTION_DAYS`). It gets `SITE_URL` and `FIREBASE_WEB_API_KEY` (the `firebase_web_api_key` variable) for AI apps over MCP, whose endpoint and OAuth paths the load balancer sends to it at the site's root; its account needs to read Firebase accounts and sign as itself (`infra/terraform/iam.tf`, see [AI apps over MCP](features/mcp.md)). Usage limits, and the values tuned with them (seconds a question by level, generation's AI calls at once and a second, the multi-answer share, the questions generated per topic, the topics and subtopics a test has, the share of Resend's quota kept from bulk sends, the monthly AI budget), aren't settings: each starts at its default in `testee_common.limits.limit_list` and a superadmin changes it in the admin zone's Controls tab ([Admin zone](features/admin-zone.md#limits)).
 
 ## Migrations
 

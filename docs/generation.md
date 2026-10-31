@@ -1,6 +1,6 @@
 # Generation and question quality
 
-How prepza turns a job description into an interview, how questions are reused and checked, and the settings that shape it. The `generation` service runs it; the `library` service stores the results (see [Architecture](architecture.md)).
+How testee turns a job description into an interview, how questions are reused and checked, and the settings that shape it. The `generation` service runs it; the `library` service stores the results (see [Architecture](architecture.md)).
 
 - [Generation pipeline](#generation-pipeline)
 - [Reusing proven questions](#reusing-proven-questions)
@@ -80,7 +80,7 @@ A question that still comes back far over is dropped, and the topic's top-up wri
 
 ### Examples and their language
 
-On a topic about material written in a formal notation (instructions a machine runs, a lookup over stored records, commands, settings files, text-matching patterns), about a third of the questions show an example and ask what it produces, what it does, why it fails or which change fixes it. It's held both ways (`prepza_common.ai.examples`):
+On a topic about material written in a formal notation (instructions a machine runs, a lookup over stored records, commands, settings files, text-matching patterns), about a third of the questions show an example and ask what it produces, what it does, why it fails or which change fixes it. It's held both ways (`testee_common.ai.examples`):
 
 - each question call is asked for its share: exactly a third of its questions with an example when the subtopic is about such material, otherwise none (`QUESTIONS_REQUEST`);
 - each topic keeps 30–40% with an example (`MIN_EXAMPLE_SHARE`, `MAX_EXAMPLE_SHARE`; 27–36 of a template's 90), and each of a template's pools its share too (9–12 of the 30 practice questions, 18–24 of the 60 company ones, `pool_share`). A topic counts as being about such material when at least 15% of its questions came with an example in a notation the site colors (`FORMAL_SHARE`; a table's rows are `text` and don't count). Other topics, such as nursing or a language for travel, are never asked for examples and only held to the 40% ceiling;
@@ -88,7 +88,7 @@ On a topic about material written in a formal notation (instructions a machine r
 
 The model gives a question's example apart from its sentences, with the example's notation (`example_language`: one of `CodeLanguage` in `src/generation/constants/code.py`, shiki's names, or `text` for a table's rows or plain prose). One that shows several files gets the notation most of it is written in, never `text`. The stored question is its sentences, then the example in a fenced block tagged with it ("```python", `with_example`), so the site shows it in an editor with that language's colors (`components/common/code-editor.tsx`).
 
-Questions saved before examples were tagged get their language once from a job, which asks the model in batches of 20 (`TAG_BATCH_SIZE`) and tags each question's first untagged block through library (`GET /internal/code/untagged`, `PUT /internal/code/languages`). It only picks questions whose first block has no language, so running it again is safe. With `--text` it checks the blocks tagged `text` instead (`?text=true`, page by page): one the model names a notation for gets it (an example of several files used to be `text`), and genuine plain text, such as a table's rows, stays as it is. Its model calls (`CODE_TAGS_MODEL`) are one AI run, traced and priced as "code_tags", prepza's own cost:
+Questions saved before examples were tagged get their language once from a job, which asks the model in batches of 20 (`TAG_BATCH_SIZE`) and tags each question's first untagged block through library (`GET /internal/code/untagged`, `PUT /internal/code/languages`). It only picks questions whose first block has no language, so running it again is safe. With `--text` it checks the blocks tagged `text` instead (`?text=true`, page by page): one the model names a notation for gets it (an example of several files used to be `text`), and genuine plain text, such as a table's rows, stays as it is. Its model calls (`CODE_TAGS_MODEL`) are one AI run, traced and priced as "code_tags", testee's own cost:
 
 ```bash
 docker compose exec generation uv run --no-sync python -m generation.jobs.tag_code_languages
@@ -105,16 +105,16 @@ Each candidate's draw from a topic, and each practice round's, has the same shar
 
 ### Cost
 
-Every AI call is recorded by `prepza_common.ai.ai_usage.record`: its action (`ACTIONS` in `prepza_common.ai.ai_constants`: `interview_generation`, `template_generation`, `question_regeneration`, `question_verify`, `embeddings`, …), model, tokens and cost in USD at the prices in `ai_constants.MODEL_PRICES` (cached input at its own price, Batch API calls at half), who it was for and whether it ended `ok`, `cut` or `failed`. In generation, a run (a generation's topic draft or its questions, one regenerated question, a quality check) records once per model when it ends, failed runs too; a call that got no answer counts with estimated tokens. A retry or a resume records its own.
+Every AI call is recorded by `testee_common.ai.ai_usage.record`: its action (`ACTIONS` in `testee_common.ai.ai_constants`: `interview_generation`, `template_generation`, `question_regeneration`, `question_verify`, `embeddings`, …), model, tokens and cost in USD at the prices in `ai_constants.MODEL_PRICES` (cached input at its own price, Batch API calls at half), who it was for and whether it ended `ok`, `cut` or `failed`. In generation, a run (a generation's topic draft or its questions, one regenerated question, a quality check) records once per model when it ends, failed runs too; a call that got no answer counts with estimated tokens. A retry or a resume records its own.
 
-Each record is one log line ("AI used: …", the `prepza_ai_spend` metric and the **prepza AI spend high** alert) and an `ai.used` event that billing stores for the admin zone's AI costs page (see [Credits and payments](features/billing.md#ai-usage-and-limit-hits)).
+Each record is one log line ("AI used: …", the `testee_ai_spend` metric and the **testee AI spend high** alert) and an `ai.used` event that billing stores for the admin zone's AI costs page (see [Credits and payments](features/billing.md#ai-usage-and-limit-hits)).
 
 ## Reusing proven questions
 
 A new generation reuses proven questions on similar topics (topic embeddings, pgvector) from two sources:
 
 - **Templates' company questions** (pools in [Templates and practice](features/templates-and-practice.md#the-question-bank)), for templates and companies' interviews: of the same level and language, answered at least 5 times, never flagged. Practice questions are public, so they're never reused.
-- **The shared question bank**, for companies' interviews only (never a template, never practice, as practice is public): other companies' proven questions, as the terms (2026-10-23) let prepza reuse them. A company is never offered its own questions back.
+- **The shared question bank**, for companies' interviews only (never a template, never practice, as practice is public): other companies' proven questions, as the terms (2026-10-23) let testee reuse them. A company is never offered its own questions back.
 
 Reused questions fill at most half of a new interview's topic.
 
@@ -126,7 +126,7 @@ Library keeps the bank (`bank_questions`, `src/library/models/bank.py`): a copy 
 - **The filter** (generation's `src/generation/services/bank_filter.py`, daily at 03:30 UTC, `POST /internal/schedules/bank-filter` on generation-worker): library offers the proven questions not yet checked as they read now (`GET /internal/bank/candidates`, 50 a page, up to 1,000 a run), and flagged ones too, which only get a verdict for the evals. A question with an email or web address is kept out by code; then the model (`bank_filter_model`, `gpt-6.1-sol` at low effort) is asked whether its topic, text or options name or reveal anything about a specific organisation (its name, clients, staff, internal tools, projects, policies, figures, sites) or a private person, keeping it out when in doubt. Widely known products, standards, laws, places and public figures as the subject are fine. Verdicts go back to library (`PUT /internal/bank/checks`, `bank_checks`, keyed by the question and an md5 of its wording, so a reworded question is checked again), and the proven ones that passed join in the same save. A failed check is offered again the next day. The eval: `bank_filter_test.py` (see [evals/README.md](../evals/README.md)).
 - **Reuse:** a company's interview asks with its company (`company_id` in `POST /internal/reuse`); library adds the bank's questions within the topic distance and leaves out those whose source is that company's. The interview's copy is marked as the bank question's (`questions.bank_question_id`, not a foreign key, so the mark outlives the bank copy and a copy never joins the bank in its source's place).
 - **Taken out for everyone:** a flag or a report on the source or on any copy removes the bank copy at once, in the same save, and bars the source from joining again (`bank_checks.barred`). Copies already reused stay in their interviews.
-- **The opt-out:** checking "Keep these questions out of prepza's shared question bank" sends `interview.privacy_changed` (companies' outbox, with the interview's set and generation); library keeps the newest change per interview (`interview_privacy`), takes the interview's questions out of the bank and never lets them join; unchecking lets those that qualify join again at once. Copies already reused elsewhere stay.
+- **The opt-out:** checking "Keep these questions out of testee's shared question bank" sends `interview.privacy_changed` (companies' outbox, with the interview's set and generation); library keeps the newest change per interview (`interview_privacy`), takes the interview's questions out of the bank and never lets them join; unchecking lets those that qualify join again at once. Copies already reused elsewhere stay.
 - **Deletion never deletes a bank copy:** deleting an interview, a company (by its owner, by a superadmin, or with its owner's account) or an account removes the company's own questions, while each bank copy stays and keeps being reused; only its link to the source is cleared (`ON DELETE SET NULL`). The integration tests in `services/library/tests/integration/handlers/test_bank_deletions.py` check every path.
 - **The daily sweep** (library's `POST /internal/schedules/bank`): takes out a bank copy a flag, a report or an opt-out raced as it joined, 500 a day at most.
 
@@ -193,7 +193,7 @@ An approved pattern joins the list only through the eval gate (`evals/scripts/pa
 
 ## Generation settings
 
-Four values shape every generation. They aren't settings: each starts at its default in `prepza_common.limits.limit_list` and a superadmin changes it in the admin zone's Controls tab ([Admin zone](features/admin-zone.md#limits)), in effect within 30 seconds. A run takes its questions per topic when it starts and keeps them to its end, also through a retry or a resume; a change applies to generations started after it. The topic caps are read when the topics are drafted or revised, and when a review is sent.
+Four values shape every generation. They aren't settings: each starts at its default in `testee_common.limits.limit_list` and a superadmin changes it in the admin zone's Controls tab ([Admin zone](features/admin-zone.md#limits)), in effect within 30 seconds. A run takes its questions per topic when it starts and keeps them to its end, also through a retry or a resume; a change applies to generations started after it. The topic caps are read when the topics are drafted or revised, and when a review is sent.
 
 | Value | Default | Range | What it sets |
 |---|---|---|---|
@@ -206,7 +206,7 @@ These settings in `.env` trace generation to Langfuse. Terraform doesn't pass th
 
 | Setting | Default | What it sets |
 |---|---|---|
-| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Off; `https://cloud.langfuse.com` (EU) | Trace generation's AI calls to Langfuse, marked with the environment they come from (`ENVIRONMENT`, as Sentry's reports are), on only with both keys (`prepza_common.ai.tracing`). Each AI run (a generation's pipeline run through LangGraph, a regenerated question, a key check, a translation, ...) is one trace with every call it makes: named by its action and tagged with it and its subject's id (the generation's id for a generation), with no company names, job text or emails in its name or tags; the calls' inputs and outputs are traced. A generation's runs before and after its review share one trace. A batched key check, made outside LangChain through the Batch API, is reported to its question's verify trace with its tokens and cost at batch price (`tracing.traced_call`), and priced with its question's id. Langfuse prices a call from its model's definition and has none for our models, so generation, the assistant and rounds set them from `MODEL_PRICES` when they start (`prepza_common.ai.trace_prices`: fresh and cached input, output and reasoning tokens apart; a changed price replaces its definition; a failure is logged and tracing goes on without costs). The assistant and the help chat use the same keys ([Votes in Langfuse](features/assistant.md#votes-in-langfuse)). Nothing goes to LangSmith |
+| `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_HOST` | Off; `https://cloud.langfuse.com` (EU) | Trace generation's AI calls to Langfuse, marked with the environment they come from (`ENVIRONMENT`, as Sentry's reports are), on only with both keys (`testee_common.ai.tracing`). Each AI run (a generation's pipeline run through LangGraph, a regenerated question, a key check, a translation, ...) is one trace with every call it makes: named by its action and tagged with it and its subject's id (the generation's id for a generation), with no company names, job text or emails in its name or tags; the calls' inputs and outputs are traced. A generation's runs before and after its review share one trace. A batched key check, made outside LangChain through the Batch API, is reported to its question's verify trace with its tokens and cost at batch price (`tracing.traced_call`), and priced with its question's id. Langfuse prices a call from its model's definition and has none for our models, so generation, the assistant and rounds set them from `MODEL_PRICES` when they start (`testee_common.ai.trace_prices`: fresh and cached input, output and reasoning tokens apart; a changed price replaces its definition; a failure is logged and tracing goes on without costs). The assistant and the help chat use the same keys ([Votes in Langfuse](features/assistant.md#votes-in-langfuse)). Nothing goes to LangSmith |
 
 ## Text that names nothing to test
 
@@ -231,7 +231,7 @@ Each AI task has its own model and reasoning effort. The effort is `none`, `mini
 | Assistant's tools for a turn (the groups it's offered) | `ROUTING_MODEL` (`gpt-6-luna`) | `ROUTING_REASONING_EFFORT` (`none`) |
 | Assistant's voice messages to text | `TRANSCRIBE_MODEL` (`gpt-transcribe`) | None |
 
-Every service builds its chat models with `prepza_common.ai.llm.chat_model`, which leaves the temperature out at any effort but `none`.
+Every service builds its chat models with `testee_common.ai.llm.chat_model`, which leaves the temperature out at any effort but `none`.
 
 Every generation runs on `gpt-6.1-sol` at low. In testing ([evals/README.md](../evals/README.md)):
 
@@ -242,7 +242,7 @@ Every generation runs on `gpt-6.1-sol` at low. In testing ([evals/README.md](../
 
 ## Rate limits
 
-Each limit is one of `prepza_common.limits.limit_list.LIMITS`, with its default; a superadmin changes its number in the admin zone's Controls tab (see [Admin zone](features/admin-zone.md#limits)), and generation reads the current one (`limits.limit`). Its window stays as it is.
+Each limit is one of `testee_common.limits.limit_list.LIMITS`, with its default; a superadmin changes its number in the admin zone's Controls tab (see [Admin zone](features/admin-zone.md#limits)), and generation reads the current one (`limits.limit`). Its window stays as it is.
 
 | Limit | Name | Default |
 |---|---|---|
@@ -254,7 +254,7 @@ Each limit is one of `prepza_common.limits.limit_list.LIMITS`, with its default;
 | Question reports per user a day (library) | `REPORTS_PER_DAY` | 30 |
 | Thumbs (ratings) per user a day (library) | `RATINGS_PER_DAY` | 200 |
 
-Above them all, the daily AI spend cap for unpaid companies and people without a company (`AI_SPEND_UNPAID_DAY`, $15 a UTC day by default): once their AI calls of the day (generations, regenerations, the assistant and the help chat) have cost that much, generating for an unpaid company answers 503 ("AI features are paused for today…") until midnight UTC. Paid companies and prepza's own work (templates, quality checks, news) aren't counted or held to it. Billing adds each call's cost to the day's Redis counter (`spend:ai:unpaid:<date>`) as it stores it; with Redis down, nothing is refused.
+Above them all, the daily AI spend cap for unpaid companies and people without a company (`AI_SPEND_UNPAID_DAY`, $15 a UTC day by default): once their AI calls of the day (generations, regenerations, the assistant and the help chat) have cost that much, generating for an unpaid company answers 503 ("AI features are paused for today…") until midnight UTC. Paid companies and testee's own work (templates, quality checks, news) aren't counted or held to it. Billing adds each call's cost to the day's Redis counter (`spend:ai:unpaid:<date>`) as it stores it; with Redis down, nothing is refused.
 
 A company's new interview passes generation's refusals on to the person as generation gave them (its status, message and `Retry-After`: the account's generations a day, the day's budget, the AI spend cap), and an attempt generation refused or failed doesn't count towards the company's interviews a day.
 

@@ -53,7 +53,7 @@ production build of the frontend (`frontend-test`, the gateway's port 8082), nev
 ## Visual checks
 
 - `toHaveScreenshot` catches layout regressions assertions miss, but its baselines depend on
-  OS, browser and fonts and every intended change needs review. Not adopted: prepza takes
+  OS, browser and fonts and every intended change needs review. Not adopted: testee takes
   review screenshots (`shot`) without comparing them.
 
 ## Accessibility

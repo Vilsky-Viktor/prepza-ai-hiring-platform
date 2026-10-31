@@ -1,6 +1,6 @@
 # Templates and free practice
 
-Templates are ready-made interviews by role, made by prepza's superadmins (see [Admin zone](admin-zone.md#templates)). They are the question bank: companies copy them into interviews, and people preparing for a role practise free on their practice questions.
+Templates are ready-made interviews by role, made by testee's superadmins (see [Admin zone](admin-zone.md#templates)). They are the question bank: companies copy them into interviews, and people preparing for a role practise free on their practice questions.
 
 ## The question bank
 
@@ -69,7 +69,7 @@ A practice page is in English and in its template's language only (see [Public s
 
 A practice user can choose to be found by companies: the **Open to offers** card, under a finished practice round's results and in Settings. It is a separate, unticked switch, never bundled with the terms, and its text names exactly what is shared.
 
-- **What's shared:** the person's name (from their sign-in when they turn it on), the LinkedIn profile they enter, and their latest timed practice result on each subject a company's interview covers, with companies hiring on prepza (those that have topped up at least once), on those interviews' [Discover](interviews.md#discover) tab. Those companies may invite them to an interview, at their account's email.
+- **What's shared:** the person's name (from their sign-in when they turn it on), the LinkedIn profile they enter, and their latest timed practice result on each subject a company's interview covers, with companies hiring on testee (those that have topped up at least once), on those interviews' [Discover](interviews.md#discover) tab. Those companies may invite them to an interview, at their account's email.
 - **The LinkedIn profile:** required to turn it on; rounds accepts only a profile's address (`linkedin.com/in/<name>`, with or without `https://` and a country subdomain, kept as `https://www.linkedin.com/in/<name>`), and refuses anything else (422, `linkedin_invalid`). While it's on, the person can change the address and save it.
 - **Consent:** each time it's turned on or the profile changes, rounds logs the consent with its time and the version of the switch's wording (`CONSENT_VERSION`; the frontend sends the version it showed, and an older one is refused, 409, `consent_outdated`). Turning it off and a lapse are logged too (`offer_consents`).
 - **Withdrawal:** turning it off deletes the opt-in, so the person disappears from every company's tab at once.

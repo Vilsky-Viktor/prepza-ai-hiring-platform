@@ -24,7 +24,7 @@ paths:
 
 # Payments (Paddle Billing, prepaid credits)
 
-prepza sells prepaid credits through Paddle Billing, the merchant of record (MoR): Paddle is the
+testee sells prepaid credits through Paddle Billing, the merchant of record (MoR): Paddle is the
 seller on the invoice, collects and remits VAT and sales tax, screens fraud, runs disputes and
 holds the card data. billing makes every checkout, Paddle.js only shows it, web hooks grant.
 CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed at, not repeated.
@@ -115,7 +115,7 @@ CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed a
 
 - Paddle.js comes from Paddle's CDN through `@paddle/paddle-js`, initialised once; the CSP allows
   Paddle's origins (`frontend/src/config/security.ts`). Card details are typed only into Paddle's
-  frames, so prepza never sees them (PCI DSS SAQ A territory; Paddle is the merchant).
+  frames, so testee never sees them (PCI DSS SAQ A territory; Paddle is the merchant).
 - Open checkout by `transactionId` only, with the site's theme and language; a failed payment
   shows billing's advice and can be retried on the same transaction.
 
@@ -129,7 +129,7 @@ CLAUDE.md wins on conflict; rule 4 decides "not adopted". Overlaps are pointed a
   signatures alert, and so do "refund it" errors and what reconciliation had to apply or failed
   on (`monitoring_billing.tf`). Runbooks: `docs/runbooks.md` (Paddle down, A payment not
   credited).
-- Keep only Paddle's ids, amounts, currency, status and the buyer's prepza id; never card data,
+- Keep only Paddle's ids, amounts, currency, status and the buyer's testee id; never card data,
   addresses or tax ids (Paddle holds them as controller). Send Paddle the buyer's email only;
   logs carry transaction and adjustment ids, never emails or tokens.
 

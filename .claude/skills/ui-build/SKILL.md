@@ -1,9 +1,9 @@
 ---
 name: ui-build
-description: Build or change a page or piece of UI in prepza's design language - reuse the existing pages' layouts and shared components, keep it simple, and show it before writing its tests. Use for any new or changed screen.
+description: Build or change a page or piece of UI in testee's design language - reuse the existing pages' layouts and shared components, keep it simple, and show it before writing its tests. Use for any new or changed screen.
 ---
 
-# Build UI the prepza way
+# Build UI the testee way
 
 The main rule: every screen is simple, seamless, unambiguous and intuitive. Check each change
 against it. CLAUDE.md rules 5 to 7 apply in full.

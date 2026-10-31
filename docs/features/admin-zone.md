@@ -1,6 +1,6 @@
 # Admin zone
 
-The admin zone is for superadmins: prepza's own team, not a company's admins.
+The admin zone is for superadmins: testee's own team, not a company's admins.
 
 - Superadmins are the accounts in `SUPERADMIN_EMAILS`, signed in with Google (verified addresses; the ID token's sign-in provider is `google.com`, so Google's account security, two-step verification included, guards the zone). The same address signed in another way (GitHub, LinkedIn, a token a service signed for an AI app) isn't a superadmin.
 - Only they see the Admin zone in the account menu.
@@ -22,12 +22,12 @@ Ready-made interviews by role (see [Templates and practice](templates-and-practi
 
 The posts on the public [news page](site.md#news), newest first, like the templates list.
 
-- **New post** opens a dialog: a title (up to 120 characters), a date (today unless changed) and the text (up to 500 characters, with a live count of the characters left). The site service checks the limits (`MAX_NEWS_TITLE_LENGTH`, `MAX_NEWS_TEXT_LENGTH` in `prepza_common.config.constants`); the form only shows them.
+- **New post** opens a dialog: a title (up to 120 characters), a date (today unless changed) and the text (up to 500 characters, with a live count of the characters left). The site service checks the limits (`MAX_NEWS_TITLE_LENGTH`, `MAX_NEWS_TEXT_LENGTH` in `testee_common.config.constants`); the form only shows them.
 - Posts are written in English only. Each row's pencil opens the same dialog to edit it; its bin deletes it after asking. Its send button, **Send as a campaign**, makes a new product update campaign from the post (its title, text and a button to it) and opens it to check and send.
 - A published post goes in every user's bell (see [Notifications](notifications.md#the-bell)); deleting it takes it back.
 - Each row says "translated" once the post is in every other language, "translating…" until then.
 
-**Translation:** after a save, the site service sends the post's English and the languages it lacks to generation (`POST /internal/news/{id}/translate`), which queues one translation for each in its next OpenAI batch (the Batch API, half price; batches go out every 10 minutes and usually come back within an hour, at most 24 hours), with the translation model (meaning, not words: each language's hiring terms; "prepza" and product and ATS names kept). Each translation that comes back within the limits goes to site as a `news.translated` event (generation's outbox, so Pub/Sub retries it until site saves it, and dead-letters it after the subscription's attempts; the daily schedule then sends the language again).
+**Translation:** after a save, the site service sends the post's English and the languages it lacks to generation (`POST /internal/news/{id}/translate`), which queues one translation for each in its next OpenAI batch (the Batch API, half price; batches go out every 10 minutes and usually come back within an hour, at most 24 hours), with the translation model (meaning, not words: each language's hiring terms; "testee" and product and ATS names kept). Each translation that comes back within the limits goes to site as a `news.translated` event (generation's outbox, so Pub/Sub retries it until site saves it, and dead-letters it after the subscription's attempts; the daily schedule then sends the language again).
 
 - Until its translation is saved, a language shows the English post. A translation past the limits, or none, is asked for again in the next batch, up to 6 times, then given up; site's daily schedule (`news-translations`) sends every post that still lacks a language again. A language already waiting isn't queued twice.
 - A changed title or text deletes the post's translations and starts a new translation; a new date alone keeps them. Translations of an older text that arrive after an edit are dropped, and saving the same translation again replaces it.
@@ -40,7 +40,7 @@ Routes (site, under `/api/site/`): `GET/POST /superadmin/news`, `PUT/DELETE /sup
 
 Product updates and offers emailed to the users who chose them, and important notices to everyone they concern (how they're sent: [Notifications](notifications.md#campaigns)). The list looks like the news tab: each campaign's subject, kind, day and, once sent, its counts, with a badge for where it stands (draft, sending, sent, stopped). **New campaign** opens a dialog: the kind (product update, offer or important notice), its audience, a subject, the text in an editor with bold, italic, links and lists (stored as Markdown), and an optional button with a link to a page on the site. Notifications checks the limits, the audience and that the link is on the site.
 
-- **Important notice:** choosing it shows a warning that it reaches everyone in its audience whatever their email settings, can't be unsubscribed from, and is only for security incidents, planned downtime or changes to how prepza works, never to promote anything.
+- **Important notice:** choosing it shows a warning that it reaches everyone in its audience whatever their email settings, can't be unsubscribed from, and is only for security incidents, planned downtime or changes to how testee works, never to promote anything.
 - **Audience:** a ticked list in the style of Slack's notification kinds: **Everyone**, or any of **Companies** (people on a company's team), **Candidates** (people who took a company's interview) and **Learners** (people who used free practice). Under Companies, **Owners and admins only**, and for an important notice **Only these companies**, a picker like the ATS link's interview picker (the site's pill with a search as the menu's first row, ticking several; empty means all companies). Under the list, how many it would reach now, as notifications counts them, updated as the choice changes.
 
 A campaign's page shows its kind and audience as badges, the email exactly as it's sent, in any of the 23 languages, and, before sending, how many users would get it (an address, not suppressed, and the setting on for a product update or an offer). A draft can be edited (in English, which is translated again, or one language's own wording), deleted, tested (**Send a test to me**, to the superadmin's own address) and sent: **Send** asks to confirm with that number and starts at once; for an important notice it also shows the warning again and its button stays off until the superadmin ticks that the notice is about the service itself, not a promotion. Once sent it can't be changed; while it's going out, **Stop** skips everyone not sent yet. Its page then shows waiting, sent, skipped, failed, unsubscribed after it and spam complaints. At most `CAMPAIGNS_PER_KIND_DAY` product updates and offers of each kind go out a day (1 by default) and `NOTICES_PER_DAY` important notices (1 by default, at most 3), both limits in [Controls](#limits); one more is refused (429, "Today's limit of campaigns of this kind (1) is reached. Send the next one tomorrow.") and counted as a hit.
@@ -72,7 +72,7 @@ Companies waiting for review of their name and website (see [Companies](companie
 
 ## Support
 
-For a complaint about an account, a company's top-ups or spending, an interview or a candidate, for someone who asks prepza to stop its emails, and for a company that impersonates another or abuses prepza. A search finds what the complaint is about; its page shows what support needs, and puts a company's credits right. A candidate's questions and answers are never shown: only facts about them.
+For a complaint about an account, a company's top-ups or spending, an interview or a candidate, for someone who asks testee to stop its emails, and for a company that impersonates another or abuses testee. A search finds what the complaint is about; its page shows what support needs, and puts a company's credits right. A candidate's questions and answers are never shown: only facts about them.
 
 See [Admin zone: Support](admin-support.md): the search, the pages of an account, a company, an interview and a candidate, emails and logs.
 
@@ -115,7 +115,7 @@ Numbers show short from a thousand up, in the language's own way ("1.5K", "$12.3
 
 ### How it counts
 
-Companies, rounds and billing each count their own records, through the shared `prepza_common.db.stats`; accounts counts the sign-in accounts, which live in Firebase only, by when each was made (it reads them all, page by page; at `/accounts/superadmin/stats`):
+Companies, rounds and billing each count their own records, through the shared `testee_common.db.stats`; accounts counts the sign-in accounts, which live in Firebase only, by when each was made (it reads them all, page by page; at `/accounts/superadmin/stats`):
 
 ```
 GET /superadmin/stats?period=2026-10   # a month
@@ -130,7 +130,7 @@ So the numbers are what is stored now: deleted companies and candidates past ret
 What AI cost and why, for the same period as General (the choice is shared). Billing works it out from `ai_usage` and `limit_hits` (see [Credits and payments](billing.md#ai-usage-and-limit-hits)); the page only shows it:
 
 1. **Totals:** spend in USD, AI calls, input, cached input and output tokens, and this month's spend against the monthly budget (`MONTHLY_BUDGET` in Controls, see [Limits](#limits); at 0, the month's spend alone).
-2. **Who it was for:** paid companies, unpaid companies, people without a company and prepza's own work (templates, quality checks, batches, news), each with its spend and share.
+2. **Who it was for:** paid companies, unpaid companies, people without a company and testee's own work (templates, quality checks, batches, news), each with its spend and share.
 3. **By action:** each action's calls, spend, paid and unpaid spend, and what one cost: one interview generation, one assistant message, one minute of transcription.
 4. **By model:** calls, tokens and spend, with the share of input read from OpenAI's cache.
 5. **Companies and users that cost most:** 20 of each, by spend, each opening its support page.
@@ -176,7 +176,7 @@ The switch is one Redis key (`pause:on`, no expiry) that every service reads, at
 Maintenance mode closes the whole site:
 
 - Every page but the unsubscribe and legal pages (below) shows a maintenance screen. `proxy.ts` asks companies' public `GET /maintenance`, cached 10 seconds.
-- Every service's API answers every request with a 503 (`prepza_common.limits.maintenance`, a middleware in each `main.py`).
+- Every service's API answers every request with a 503 (`testee_common.limits.maintenance`, a middleware in each `main.py`).
 - Superadmins still use the site, with a warning above each page.
 
 These stay open, so no event, job or payment is lost:
@@ -211,7 +211,7 @@ POST /notifications/superadmin/legal-notices/{terms|privacy|dpa}
 
 ### Limits
 
-Every usage limit of ours, grouped by the service that enforces it (`prepza_common.limits.limit_list.LIMITS`): the assistant (its help chat's `HELP_*` limits too), companies, generation, rounds (practice and sessions), site (the contact form), library (question feedback), accounts (data downloads), the API, ATS integrations, notifications (Resend's emails a day, campaigns of each kind a day, important notices a day) and billing (the unpaid users' daily AI spend cap). Among them, generous hourly limits that only stop floods of costly actions, each skipped while Redis is down: web hook test events (`WEBHOOK_TESTS_PER_HOUR`, 30 a company), interviews copied from templates (`TEMPLATE_COPIES_PER_HOUR`, 30 a company), "Download my data" (`DATA_EXPORTS_PER_HOUR`, 5 a user, as each asks every service) and ATS connections made or replaced (`ATS_CONNECTS_PER_HOUR`, 20 a company). Members' previews of their interviews are limited per company a day, click mode's and voice mode's apart (`PREVIEWS_PER_COMPANY_DAY`, 20, skipped while Redis is down; `VOICE_PREVIEWS_PER_COMPANY_DAY`, 5, refused while Redis is down, as each voice preview costs reading aloud, transcription and matching). Each shows:
+Every usage limit of ours, grouped by the service that enforces it (`testee_common.limits.limit_list.LIMITS`): the assistant (its help chat's `HELP_*` limits too), companies, generation, rounds (practice and sessions), site (the contact form), library (question feedback), accounts (data downloads), the API, ATS integrations, notifications (Resend's emails a day, campaigns of each kind a day, important notices a day) and billing (the unpaid users' daily AI spend cap). Among them, generous hourly limits that only stop floods of costly actions, each skipped while Redis is down: web hook test events (`WEBHOOK_TESTS_PER_HOUR`, 30 a company), interviews copied from templates (`TEMPLATE_COPIES_PER_HOUR`, 30 a company), "Download my data" (`DATA_EXPORTS_PER_HOUR`, 5 a user, as each asks every service) and ATS connections made or replaced (`ATS_CONNECTS_PER_HOUR`, 20 a company). Members' previews of their interviews are limited per company a day, click mode's and voice mode's apart (`PREVIEWS_PER_COMPANY_DAY`, 20, skipped while Redis is down; `VOICE_PREVIEWS_PER_COMPANY_DAY`, 5, refused while Redis is down, as each voice preview costs reading aloud, transcription and matching). Each shows:
 
 - its name, window (an hour, a day, … or "at a time" for a count of what exists, such as API keys) and whom it counts (a user, a company, an address or everyone),
 - its default and its hits in the last 7 days, so a change's effect shows,

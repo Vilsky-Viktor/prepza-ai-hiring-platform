@@ -21,7 +21,7 @@ paths:
 - pnpm guards in `pnpm-workspace.yaml`: `minimumReleaseAge` (a day), `allowBuilds` (only listed
   packages run install scripts), `trustPolicy: no-downgrade`, `blockExoticSubdeps`; a pnpm
   version that supports them.
-- `prepza_common` is an editable path dependency without a pin (`.claude/rules/python-services.md`);
+- `testee_common` is an editable path dependency without a pin (`.claude/rules/python-services.md`);
   pinning applies to third-party code.
 - Dependabot watches every ecosystem (actions, docker, compose, npm, uv), grouped, majors by hand,
   with its cooldown; merge after CI passes, in a weekly batch.

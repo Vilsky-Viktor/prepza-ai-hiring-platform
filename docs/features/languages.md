@@ -1,6 +1,6 @@
 # Languages
 
-prepza works in 23 languages: the interface, error messages, generated interviews and emails.
+testee works in 23 languages: the interface, error messages, generated interviews and emails.
 
 ## Supported languages
 

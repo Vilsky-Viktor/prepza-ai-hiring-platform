@@ -1,6 +1,6 @@
 # Notifications and emails
 
-The `notifications` service sends prepza's emails and keeps the bell's notifications. Both are driven by events (see [Architecture](../architecture.md#events)).
+The `notifications` service sends testee's emails and keeps the bell's notifications. Both are driven by events (see [Architecture](../architecture.md#events)).
 
 - [The bell](#the-bell)
 - [Slack](#slack)
@@ -46,26 +46,26 @@ A member who accepts their team invite is announced to the owner, who invited th
 
 A company can send its notifications to one Slack channel too, from its integrations tab (Messaging, above the ATSs).
 
-- An owner or admin clicks "Add to Slack", allows prepza in Slack and picks the channel. Back on the company's Slack page, they choose which notifications go there. Each "Add to Slack" link works once, for 15 minutes, and only while whoever clicked it is still an owner or admin. By default: finished candidates, ATS candidates that weren't invited, undelivered invites, failed automatic top-ups and the team's notes; ready interviews and charged top-ups can be added. Channels connected before notes existed got them too.
-- prepza gets only an incoming web hook for that channel (the `incoming-webhook` scope): it can post there and can't read anything.
-- Each notification is posted once, in English, with a link back to prepza: a finished candidate, or an invite that wasn't delivered, opens the candidate's page; an ATS candidate who wasn't invited opens that ATS's page, where they're retried; the rest open their notification's page. What people wrote (titles, emails) shows as typed: a title like `<!channel>` doesn't ping anyone. Every notification is posted, also one the bell groups with others (see [Grouping](#grouping)); a redelivered event doesn't post again.
-- A message is a plain-text block, which Slack doesn't format, with an **Open in prepza** button (`helpers/slack.py`). What people wrote (a title, a candidate's name from an ATS) can't ping anyone (`<`, `>` and `&` are escaped), become a link (a dot inside a word gets an invisible zero-width space, so `www.evil-login.com` or an email isn't linked) or change the formatting.
+- An owner or admin clicks "Add to Slack", allows testee in Slack and picks the channel. Back on the company's Slack page, they choose which notifications go there. Each "Add to Slack" link works once, for 15 minutes, and only while whoever clicked it is still an owner or admin. By default: finished candidates, ATS candidates that weren't invited, undelivered invites, failed automatic top-ups and the team's notes; ready interviews and charged top-ups can be added. Channels connected before notes existed got them too.
+- testee gets only an incoming web hook for that channel (the `incoming-webhook` scope): it can post there and can't read anything.
+- Each notification is posted once, in English, with a link back to testee: a finished candidate, or an invite that wasn't delivered, opens the candidate's page; an ATS candidate who wasn't invited opens that ATS's page, where they're retried; the rest open their notification's page. What people wrote (titles, emails) shows as typed: a title like `<!channel>` doesn't ping anyone. Every notification is posted, also one the bell groups with others (see [Grouping](#grouping)); a redelivered event doesn't post again.
+- A message is a plain-text block, which Slack doesn't format, with an **Open in testee** button (`helpers/slack.py`). What people wrote (a title, a candidate's name from an ATS) can't ping anyone (`<`, `>` and `&` are escaped), become a link (a dot inside a word gets an invisible zero-width space, so `www.evil-login.com` or an email isn't linked) or change the formatting.
 - The bell gets the notification first, whatever happens in Slack. If Slack is busy or down (rate limited, a server error, a timeout), the event is retried with Pub/Sub's backoff and the retry posts the message; the bell doesn't get it twice.
 - If Slack says the web hook is gone (the app was removed or the channel deleted), the page shows "Reconnect". A message Slack refuses for good is logged and skipped.
-- Disconnecting, or deleting the company, removes the channel from prepza, and prepza's app from the workspace unless another company still posts there. Reconnecting to the same workspace keeps the app; reconnecting to another workspace removes it from the earlier one (again, unless another company uses it).
+- Disconnecting, or deleting the company, removes the channel from testee, and testee's app from the workspace unless another company still posts there. Reconnecting to the same workspace keeps the app; reconnecting to another workspace removes it from the earlier one (again, unless another company uses it).
 - Members who can't edit see the channel and its notifications without changing them.
-- The channel works while whoever connected it is still an owner or admin; once they're removed or made a viewer, it's marked for reconnecting by a current editor. If they delete their prepza account, the channel stays without their id (`deleted-user`), marked for reconnecting; their data export lists the channels they connected. Each time a channel stops working, the company gets a `connection_broken` notification in the bell (not in Slack, which is what broke).
+- The channel works while whoever connected it is still an owner or admin; once they're removed or made a viewer, it's marked for reconnecting by a current editor. If they delete their testee account, the channel stays without their id (`deleted-user`), marked for reconnecting; their data export lists the channels they connected. Each time a channel stops working, the company gets a `connection_broken` notification in the bell (not in Slack, which is what broke).
 
 ### Setting up Slack
 
 1. At api.slack.com/apps, create an app "From a manifest" with:
    ```yaml
    display_information:
-     name: prepza
-     description: Hiring notifications from prepza
+     name: testee
+     description: Hiring notifications from testee
    features:
      bot_user:
-       display_name: prepza
+       display_name: testee
        always_online: false
    oauth_config:
      redirect_urls:
@@ -78,8 +78,8 @@ A company can send its notifications to one Slack channel too, from its integrat
      socket_mode_enabled: false
      token_rotation_enabled: false
    ```
-   Slack asks for the bot user: bot scopes, `incoming-webhook` among them, need one. A publicly distributed app takes only `https` redirect URLs, so local development uses a second app, "prepza (dev)", made from the same manifest with only `http://localhost:8090/api/notifications/slack/callback`, not distributed: it works in your own workspace, and its keys go in the local `.env`.
-2. Under **Manage Distribution**, tick that the app has no hard-coded tokens or web hooks (prepza gets each company's through OAuth) and activate public distribution, so other companies' workspaces can add it.
+   Slack asks for the bot user: bot scopes, `incoming-webhook` among them, need one. A publicly distributed app takes only `https` redirect URLs, so local development uses a second app, "testee (dev)", made from the same manifest with only `http://localhost:8090/api/notifications/slack/callback`, not distributed: it works in your own workspace, and its keys go in the local `.env`.
+2. Under **Manage Distribution**, tick that the app has no hard-coded tokens or web hooks (testee gets each company's through OAuth) and activate public distribution, so other companies' workspaces can add it.
 3. Put its **Client ID** and **Client Secret** (Basic Information) in `.env` as `SLACK_CLIENT_ID` and `SLACK_CLIENT_SECRET`.
 4. Set `SLACK_ENCRYPTION_KEY`, the Fernet key that encrypts the web hooks:
    ```bash
@@ -92,7 +92,7 @@ Until all three are set, "Add to Slack" answers "Slack isn't set up yet" and not
 
 ### Erased candidates
 
-When a company erases a candidate (`candidate.removed` from companies), its notifications about them (their email and grade) go. When a candidate deletes their prepza account, every company's notifications about them go too (matched by their email when it's verified).
+When a company erases a candidate (`candidate.removed` from companies), its notifications about them (their email and grade) go. When a candidate deletes their testee account, every company's notifications about them go too (matched by their email when it's verified).
 
 ### Notes
 
@@ -117,16 +117,16 @@ The service sends, as HTML with a plain-text version:
 - to a candidate who started through a shareable link, their own invite link to continue,
 - team invites: the owner's invite to join the company as an admin or a viewer, with the join link, the role named in the email's language (see [Companies](companies.md)),
 - emailed reports, with the PDF attached, in the language of the member who sends them (the test's when theirs isn't known); the PDF is named in that language, its heading and then the candidate or the test, without characters that break a file name (`helpers/attachments.py`),
-- contact page messages, to `CONTACT_EMAIL` (hello@prepza.ai by default),
+- contact page messages, to `CONTACT_EMAIL` (hello@testee.ai by default),
 - to company members: the activity digest, reminders, and automatic top-up's billing emails (see [Emails to company members](#emails-to-company-members)).
 
-Invites and reminders from a company prepza hasn't verified say so in a small line at the bottom. Every invite and reminder names its interview: an interview without its title (its questions not made yet) takes no invite (409), and its reminders wait for the title. The bell and Slack name an interview without a title in words, without empty quotes, in every language.
+Invites and reminders from a company testee hasn't verified say so in a small line at the bottom. Every invite and reminder names its interview: an interview without its title (its questions not made yet) takes no invite (409), and its reminders wait for the title. The bell and Slack name an interview without a title in words, without empty quotes, in every language.
 
 `SITE_URL` is the site address that links in emails point to; emails link only there (no shorteners or tracking redirects).
 
 - **Three senders:** service emails come from `MAIL_FROM`, and the emails a user may turn off (the digest, reminders and campaigns) from `MAIL_FROM_UPDATES`, on a subdomain of its own, so spam complaints about them can't hurt the service emails' reputation. Candidates' emails (invites, reminders, a shareable link's own link), sent for many companies to addresses they supply, come from `MAIL_FROM_CANDIDATES` so they can be watched apart; while it's empty (today), from `MAIL_FROM`. The DNS records both need are in [infra/README.md](../../infra/README.md#email-deliverability).
-- **Replies** go to the member who shared a report (when their email is verified), to the visitor for contact messages, and otherwise to `CONTACT_EMAIL`, prepza's inbox, rather than to an unread no-reply address.
-- **Pacing:** every request to Resend, from an event, a scheduled run or a bulk send on any instance, takes a turn in one per-second count in Redis (`prepza_common.http.pacing`, 8 a second, `RESEND_PER_SECOND`), so a burst of invites or two runs at once stay under Resend's 10 a second a team; with Redis down, sending goes on unpaced and a 429 is retried as usual.
+- **Replies** go to the member who shared a report (when their email is verified), to the visitor for contact messages, and otherwise to `CONTACT_EMAIL`, testee's inbox, rather than to an unread no-reply address.
+- **Pacing:** every request to Resend, from an event, a scheduled run or a bulk send on any instance, takes a turn in one per-second count in Redis (`testee_common.http.pacing`, 8 a second, `RESEND_PER_SECOND`), so a burst of invites or two runs at once stay under Resend's 10 a second a team; with Redis down, sending goes on unpaced and a 429 is retried as usual.
 - **Headers:** every email has `Auto-Submitted: auto-generated` (no out-of-office replies); only those the recipient may stop carry the one-click unsubscribe headers (see [Unsubscribing](#unsubscribing)).
 
 ### Emails to company members
@@ -152,10 +152,10 @@ Each user chooses, in Settings > Emails, which emails they get beyond service em
 
 - the activity digest, one setting per kind: a candidate finished, an invite wasn't delivered, an ATS candidate wasn't invited, an interview is ready, the team's new notes; on by default, with one checkbox in Settings that turns all five on or off,
 - reminders (low credits, an interview with no candidates, topics waiting for review); on by default,
-- product updates and news: a soft opt-in for prepza's own users. The sign-in dialog offers an unticked "Don't send me product updates and news"; a first sign-in without it ticked turns updates on, with it ticked leaves them off. A later sign-in never turns them back on, and users who haven't signed in since (no stored preferences) have them off,
+- product updates and news: a soft opt-in for testee's own users. The sign-in dialog offers an unticked "Don't send me product updates and news"; a first sign-in without it ticked turns updates on, with it ticked leaves them off. A later sign-in never turns them back on, and users who haven't signed in since (no stored preferences) have them off,
 - offers and promotions: off until the user ticks them, in Settings or on the sign-in dialog. Signing in only turns them on: an unticked box there changes nothing.
 
-The sign-in dialog shows both checkboxes only on a browser where no one has signed in yet (a `prepza:signed-in-before` flag in local storage, set at every sign-in): an existing account's choices are in its Settings.
+The sign-in dialog shows both checkboxes only on a browser where no one has signed in yet (a `testee:signed-in-before` flag in local storage, set at every sign-in): an existing account's choices are in its Settings.
 
 Every change is logged and never edited (`email_consents`): the setting, on or off, where (`sign_in`, `settings`, `unsubscribe`, or `admin` with the superadmin's id in `changed_by`), on what basis (`choice`, or `soft_opt_in` for updates turned on at a first sign-in that showed the opt-out), the wording's version (`CONSENT_TEXT_VERSION` in `services/accounts/src/accounts/constants/emails.py`, changed whenever the checkboxes' wording changes) and the time. The account export includes both; deleting the account removes them.
 
@@ -163,8 +163,8 @@ Every change is logged and never edited (`email_consents`): the setting, on or o
 
 Emails carry signed unsubscribe links (`EMAIL_LINK_SECRET`, an HMAC-SHA256; `services/notifications/src/notifications/helpers/unsubscribe.py`). A link names what it stops and whom, never expires, and can't be made for anyone else:
 
-- optional emails to a prepza user (the activity digest or one of its kinds, reminders, updates, offers) name the user and the email; they show "Unsubscribe" and "Change your email settings" (Settings) under the footer, and carry the one-click headers (`List-Unsubscribe`, `List-Unsubscribe-Post: List-Unsubscribe=One-Click`) that mail clients show as their own unsubscribe button. `optional_email` in `services/notifications/src/notifications/helpers/emails.py` builds such an email from a template and the type,
-- a candidate's invite, and the link sent to someone who started through a shareable link, link to "Don't email me for <company>", and their one-click headers stop the company's emails; a reminder links to that and to "Don't send me reminders for this interview", and its one-click headers stop that interview's reminders. These links name the candidate's address as its keyed hash (HMAC with `PERSON_HASH_KEY`, `prepza_common.auth.person_hash`; links end up in request logs), the company, and for reminders the invite. Opt-outs keep the same keyed hash; a link sent before the hashes were keyed carries the plain SHA-256, keyed when it's used.
+- optional emails to a testee user (the activity digest or one of its kinds, reminders, updates, offers) name the user and the email; they show "Unsubscribe" and "Change your email settings" (Settings) under the footer, and carry the one-click headers (`List-Unsubscribe`, `List-Unsubscribe-Post: List-Unsubscribe=One-Click`) that mail clients show as their own unsubscribe button. `optional_email` in `services/notifications/src/notifications/helpers/emails.py` builds such an email from a template and the type,
+- a candidate's invite, and the link sent to someone who started through a shareable link, link to "Don't email me for <company>", and their one-click headers stop the company's emails; a reminder links to that and to "Don't send me reminders for this interview", and its one-click headers stop that interview's reminders. These links name the candidate's address as its keyed hash (HMAC with `PERSON_HASH_KEY`, `testee_common.auth.person_hash`; links end up in request logs), the company, and for reminders the invite. Opt-outs keep the same keyed hash; a link sent before the hashes were keyed carries the plain SHA-256, keyed when it's used.
 
 A link opens `/unsubscribe?token=…` (no sign-in, not indexed): it says what stops ("You won't get the activity digest anymore", "You won't get reminders for this interview anymore", "You won't get emails from Acme anymore") and changes nothing until "Confirm", since mail scanners open links. Then it says "You're unsubscribed", with "Email settings" for a signed-in user. The page reads the link at `GET /api/notifications/unsubscribe/{token}` and confirms with a `POST` there; mail clients' one-click `POST` (body `List-Unsubscribe=One-Click`) goes to the same address and needs nothing more. Repeating either changes nothing.
 
@@ -180,7 +180,7 @@ Changing `EMAIL_LINK_SECRET` breaks the links in emails already sent; opt-outs a
 Without `RESEND_API_KEY`, emails go to `SMTP_HOST` and `SMTP_PORT`: Mailpit locally (http://localhost:8125). To send real emails through [Resend](https://resend.com):
 
 1. Verify your domain at resend.com/domains.
-2. In `.env`, set `RESEND_API_KEY` (with full access: a sending-only key sends, but can't take an address off Resend's suppression list), `MAIL_FROM` with an address on that domain, for example `prepza. <no-reply@yourdomain.com>`, and `MAIL_FROM_UPDATES` with one on a subdomain verified too, for example `prepza. <updates@mail.yourdomain.com>`. Keep click and open tracking off for both domains in Resend.
+2. In `.env`, set `RESEND_API_KEY` (with full access: a sending-only key sends, but can't take an address off Resend's suppression list), `MAIL_FROM` with an address on that domain, for example `testee. <no-reply@yourdomain.com>`, and `MAIL_FROM_UPDATES` with one on a subdomain verified too, for example `testee. <updates@mail.yourdomain.com>`. Keep click and open tracking off for both domains in Resend.
 3. Restart the service: it reads `.env` only when it starts.
 
 With `RESEND_API_KEY` set, a message sent from the local contact page reaches the real `CONTACT_EMAIL` inbox.
@@ -189,7 +189,7 @@ With `RESEND_API_KEY` set, a message sent from the local contact page reaches th
 
 Legal notices and campaigns go through one bulk sender (`services/bulk.py`); who a send goes to is worked out by `services/audiences.py`:
 
-- **Recipients are worked out a page at a time** (5,000 ids, `prepza_common.db.paging`) and saved (`bulk_sends`, one row a send; `bulk_recipients`, one row per user, unique per send): the first page when a send starts, the rest by the runs, each going on after the last id saved (`bulk_sends.prepared_after`) until its time is up. The send's row is locked while a page is saved, and a page another run saved already is left alone, so two runs at once save each user once. Each run then takes the next pending rows rather than reading every account again; addresses, languages and settings are read 100 at a time just before sending, so a changed address or a deleted account counts. Guest candidates are never recipients.
+- **Recipients are worked out a page at a time** (5,000 ids, `testee_common.db.paging`) and saved (`bulk_sends`, one row a send; `bulk_recipients`, one row per user, unique per send): the first page when a send starts, the rest by the runs, each going on after the last id saved (`bulk_sends.prepared_after`) until its time is up. The send's row is locked while a page is saved, and a page another run saved already is left alone, so two runs at once save each user once. Each run then takes the next pending rows rather than reading every account again; addresses, languages and settings are read 100 at a time just before sending, so a changed address or a deleted account counts. Guest candidates are never recipients.
 - **Schedule:** `POST /internal/schedules/bulk` every minute from 8:00 to 18:59 UTC (`infra/terraform/jobs.tf`, `scripts/local/crontab`). A run sends for 40 seconds, one email every 0.6 seconds, about 2,400 an hour, so a large send finishes the same day.
 - **Never twice:** a row is claimed under a lock (`FOR UPDATE SKIP LOCKED`), so two runs at once never send the same one; Resend's idempotency key is `bulk/<send>/<user>`. A run that dies halfway leaves its row pending, and the next run sends it under the same key.
 - **Failures:** a failed send is tried again in two later runs, then marked `failed` with the reason; one Resend refuses for good fails at once. A 429 from Resend stops the run, and the next one goes on.
@@ -207,7 +207,7 @@ Until the new version applies, the site shows a thin banner above the page to wh
 
 Product updates, offers and important notices, written by a superadmin in the admin zone (see [Campaigns](admin-zone.md#campaigns)) and sent at once, without scheduling:
 
-- **Kinds:** a product update (`updates`) and an offer (`promotions`) are optional emails, reaching only users with that setting on (checked again when each email goes out; promotions never reach soft opt-in users, as their setting stays off until they tick it). An **important notice** (`notices`) is a service email about prepza itself (a security incident, a vulnerability needing action, a breach notification, planned downtime, a change to how it works): it goes whatever the email settings and can't be unsubscribed from, but never to a suppressed address or a deleted account, and never carries promotion.
+- **Kinds:** a product update (`updates`) and an offer (`promotions`) are optional emails, reaching only users with that setting on (checked again when each email goes out; promotions never reach soft opt-in users, as their setting stays off until they tick it). An **important notice** (`notices`) is a service email about testee itself (a security incident, a vulnerability needing action, a breach notification, planned downtime, a change to how it works): it goes whatever the email settings and can't be unsubscribed from, but never to a suppressed address or a deleted account, and never carries promotion.
 - **Audience** (every kind): everyone, or any of these groups, someone in several getting one email (`bulk_recipients` is unique per send and user):
   - **Companies:** everyone who joined a company's team (companies' `GET /internal/companies/member-ids`), or with "owners and admins only" its owners and admins; for an important notice, optionally only some companies (up to 50, `MAX_NOTICE_COMPANIES`; their members from `POST /internal/companies/members`), for an incident that affects them.
   - **Candidates:** accounts that took a company's interview, from rounds' interview sessions (a member's own try, a preview, doesn't count; guest candidates never); rounds' `GET /internal/users/ids?group=candidates`.
@@ -222,7 +222,7 @@ Product updates, offers and important notices, written by a superadmin in the ad
 
 #### The suppression list
 
-Resend's `email.bounced`, `email.complained` and `email.suppressed` (Resend's own list holds the address after an earlier bounce or complaint) for any email, a candidate's invite included (an address that bounced or complained does so whichever company writes), put the address on prepza's own suppression list (`suppressed_addresses`), kept as its keyed hash with the reason and the date, never in the clear. Only a permanent bounce (Resend's `bounce.type` `Permanent`) suppresses at once; a temporary one (a full mailbox, a server down) is counted (`soft_bounces`, once per email, kept 14 days), and the third within 14 days suppresses the address too (`soft_bounced`). Nothing is sent to those addresses: bulk sends skip them (`suppressed`), and every other email checks the list before it goes (`services/delivery.py`), except the contact page's messages to prepza's own inbox. A candidate's invite or reminder skipped so shows as undelivered, as with a bounce; any other email is logged. A complaint also turns that email's setting off, as before. A superadmin sees it, and takes it off the list, on the account's support page: off Resend's own suppression list first (`DELETE /suppressions/{address}`; one not on it is fine), then off prepza's. When Resend keeps it, the address stays on both, the request answers 502 and the page says the action failed, to try again.
+Resend's `email.bounced`, `email.complained` and `email.suppressed` (Resend's own list holds the address after an earlier bounce or complaint) for any email, a candidate's invite included (an address that bounced or complained does so whichever company writes), put the address on testee's own suppression list (`suppressed_addresses`), kept as its keyed hash with the reason and the date, never in the clear. Only a permanent bounce (Resend's `bounce.type` `Permanent`) suppresses at once; a temporary one (a full mailbox, a server down) is counted (`soft_bounces`, once per email, kept 14 days), and the third within 14 days suppresses the address too (`soft_bounced`). Nothing is sent to those addresses: bulk sends skip them (`suppressed`), and every other email checks the list before it goes (`services/delivery.py`), except the contact page's messages to testee's own inbox. A candidate's invite or reminder skipped so shows as undelivered, as with a bounce; any other email is logged. A complaint also turns that email's setting off, as before. A superadmin sees it, and takes it off the list, on the account's support page: off Resend's own suppression list first (`DELETE /suppressions/{address}`; one not on it is fine), then off testee's. When Resend keeps it, the address stays on both, the request answers 502 and the page says the action failed, to try again.
 
 ### Failed sends
 

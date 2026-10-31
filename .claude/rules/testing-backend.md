@@ -43,7 +43,7 @@ Shared test rules are in `testing.md`; CLAUDE.md wins on any conflict.
   schema (`deploy.yml`), so no test runs a downgrade.
 - Race tests prove the race: the second transaction is seen waiting on the lock (poll
   `pg_locks`, or a barrier) before the first commits. A sleep only hopes so and passes on a
-  slow machine without racing. `prepza_common.db.lock_waits.race` does it: the first call's commit
+  slow machine without racing. `testee_common.db.lock_waits.race` does it: the first call's commit
   is held (`hold_first_commit`) until the second waits in `pg_stat_activity`.
 
 ## Redis, Pub/Sub and events

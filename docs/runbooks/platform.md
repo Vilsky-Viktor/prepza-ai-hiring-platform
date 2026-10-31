@@ -17,7 +17,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## Site or API down
 
-**How you notice:** **prepza <name> is down** (a page): the site's `/` or an API's `/ready` failed its uptime check from more than one of the three regions (Europe, the USA, Asia-Pacific), by an error, a timeout or a page without the expected text ([monitoring.tf](../../infra/terraform/monitoring.tf)). `/ready` fails when the service can't reach its database; Redis isn't checked. Users can't load pages, or the part that API serves fails.
+**How you notice:** **testee <name> is down** (a page): the site's `/` or an API's `/ready` failed its uptime check from more than one of the three regions (Europe, the USA, Asia-Pacific), by an error, a timeout or a page without the expected text ([monitoring.tf](../../infra/terraform/monitoring.tf)). `/ready` fails when the service can't reach its database; Redis isn't checked. Users can't load pages, or the part that API serves fails.
 
 **What the system does by itself:** Cloud Run replaces an instance that crashes, and a new one gets traffic only once `/ready` answers (the startup probe, [services.tf](../../infra/terraform/services.tf)). Nothing restarts an instance that answers but fails.
 
@@ -35,13 +35,13 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## API errors burning the budget
 
-**How you notice:** **prepza API errors burning the budget fast** (a page) or **prepza API errors burning the budget** (a ticket): the public APIs, every backend but the site's pages, measured at the load balancer, answer too many requests with a 5xx for the objective, 99.5% over 28 days ([monitoring_slo.tf](../../infra/terraform/monitoring_slo.tf)). The fast one spends 2% of the month's error budget in an hour; the slow one would spend it all by the period's end.
+**How you notice:** **testee API errors burning the budget fast** (a page) or **testee API errors burning the budget** (a ticket): the public APIs, every backend but the site's pages, measured at the load balancer, answer too many requests with a 5xx for the objective, 99.5% over 28 days ([monitoring_slo.tf](../../infra/terraform/monitoring_slo.tf)). The fast one spends 2% of the month's error budget in an hour; the slow one would spend it all by the period's end.
 
-**What the system does by itself:** nothing beyond each service's own retries. **prepza server errors** names the service with the most ([Server errors](#server-errors)).
+**What the system does by itself:** nothing beyond each service's own retries. **testee server errors** names the service with the most ([Server errors](#server-errors)).
 
 **What to do**
 
-1. Find the backend: Cloud Monitoring → **SLOs** → `prepza`, or the load balancer's 5xx by backend:
+1. Find the backend: Cloud Monitoring → **SLOs** → `testee`, or the load balancer's 5xx by backend:
    ```bash
    gcloud logging read 'resource.type="http_load_balancer" AND httpRequest.status>=500' --freshness=1h --limit=50 --format='value(resource.labels.backend_service_name,httpRequest.status,httpRequest.requestUrl)'
    ```
@@ -52,7 +52,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## Candidate answers slow
 
-**How you notice:** **prepza candidate answers slow** (a page) or **prepza candidate answers slowing** (a ticket): fewer than 95% of the interview service's (rounds) requests answer within 2 seconds at the load balancer, over 28 days ([monitoring_slo.tf](../../infra/terraform/monitoring_slo.tf)). Candidates wait at every question.
+**How you notice:** **testee candidate answers slow** (a page) or **testee candidate answers slowing** (a ticket): fewer than 95% of the interview service's (rounds) requests answer within 2 seconds at the load balancer, over 28 days ([monitoring_slo.tf](../../infra/terraform/monitoring_slo.tf)). Candidates wait at every question.
 
 **What the system does by itself:** Cloud Run adds rounds instances up to its `max` (`locals.tf`); nothing else.
 
@@ -66,7 +66,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## Server errors
 
-**How you notice:** **prepza server errors** (a ticket): one Cloud Run service answered more than 5% of its requests with a 5xx for 10 minutes ([monitoring.tf](../../infra/terraform/monitoring.tf)). It names the service, the site's pages included, which the API objective leaves out.
+**How you notice:** **testee server errors** (a ticket): one Cloud Run service answered more than 5% of its requests with a 5xx for 10 minutes ([monitoring.tf](../../infra/terraform/monitoring.tf)). It names the service, the site's pages included, which the API objective leaves out.
 
 **What the system does by itself:** nothing.
 
@@ -76,9 +76,9 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## Events waiting or dead-lettered
 
-**How you notice:** **prepza events waiting** (a ticket): a consumer's subscription (`<service>-events`) or the funnel's has held an event unhandled for over 15 minutes ([monitoring_backlog.tf](../../infra/terraform/monitoring_backlog.tf)). **prepza events dead-lettered** (a page): an event failed 50 deliveries and waits in `events-dead-letter` ([monitoring.tf](../../infra/terraform/monitoring.tf)). What that consumer does (emails, credits, the action log) happens late or not at all.
+**How you notice:** **testee events waiting** (a ticket): a consumer's subscription (`<service>-events`) or the funnel's has held an event unhandled for over 15 minutes ([monitoring_backlog.tf](../../infra/terraform/monitoring_backlog.tf)). **testee events dead-lettered** (a page): an event failed 50 deliveries and waits in `events-dead-letter` ([monitoring.tf](../../infra/terraform/monitoring.tf)). What that consumer does (emails, credits, the action log) happens late or not at all.
 
-**What the system does by itself:** Pub/Sub retries each push with backoff (10 seconds to 10 minutes) for 50 attempts, several hours, then moves it to `events-dead-letter`, which keeps it 7 days ([pubsub.tf](../../infra/terraform/pubsub.tf)). Consumers are idempotent, so a retry or replay changes nothing twice. An event no retry can handle (data its handler needs missing or malformed, ids nothing knows, another service answering 400, 404, 410 or 422) is logged as an error, "Dropped event … no retry can handle it", and acknowledged instead ([unhandleable.py](../../packages/common/src/prepza_common/events/unhandleable.py)): it shows in Sentry, not in `events-dead-letter`.
+**What the system does by itself:** Pub/Sub retries each push with backoff (10 seconds to 10 minutes) for 50 attempts, several hours, then moves it to `events-dead-letter`, which keeps it 7 days ([pubsub.tf](../../infra/terraform/pubsub.tf)). Consumers are idempotent, so a retry or replay changes nothing twice. An event no retry can handle (data its handler needs missing or malformed, ids nothing knows, another service answering 400, 404, 410 or 422) is logged as an error, "Dropped event … no retry can handle it", and acknowledged instead ([unhandleable.py](../../packages/common/src/testee_common/events/unhandleable.py)): it shows in Sentry, not in `events-dead-letter`.
 
 **What to do**
 
@@ -90,7 +90,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## A scheduled job failed
 
-**How you notice:** **prepza scheduled job failed** (a ticket): Cloud Scheduler logged a failed run, with the job's name ([monitoring.tf](../../infra/terraform/monitoring.tf), the jobs in [jobs.tf](../../infra/terraform/jobs.tf)).
+**How you notice:** **testee scheduled job failed** (a ticket): Cloud Scheduler logged a failed run, with the job's name ([monitoring.tf](../../infra/terraform/monitoring.tf), the jobs in [jobs.tf](../../infra/terraform/jobs.tf)).
 
 **What the system does by itself:** a daily job is retried 3 times; a frequent one (every minute or few) just runs again next time. The email runs aren't retried: the next run and the catch-up hour send what's left ([infra/README.md](../../infra/README.md)).
 
@@ -107,7 +107,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## A web hook signature refused
 
-**How you notice:** **prepza web hook signature refused** (a page): Paddle's or Resend's web hook failed its signature check; the log line names the service ([monitoring.tf](../../infra/terraform/monitoring.tf)). Usually the secret is wrong, so every event is refused: paid top-ups get no credits, bounces aren't recorded.
+**How you notice:** **testee web hook signature refused** (a page): Paddle's or Resend's web hook failed its signature check; the log line names the service ([monitoring.tf](../../infra/terraform/monitoring.tf)). Usually the secret is wrong, so every event is refused: paid top-ups get no credits, bounces aren't recorded.
 
 **What the system does by itself:** the event is refused with a 401 and the provider retries it (Paddle for about two days, Resend's Svix for about a day); billing's daily reconciliation applies the payments whose web hooks never came ([A payment not credited](providers.md#a-payment-not-credited)).
 
@@ -117,9 +117,9 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## Emails bouncing
 
-**How you notice:** **prepza emails bouncing** (a page): more than `email_bounce_alert_hourly` (default 20) emails bounced, failed or were marked as spam in an hour ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)). Resend may suspend sending for every email if it goes on.
+**How you notice:** **testee emails bouncing** (a page): more than `email_bounce_alert_hourly` (default 20) emails bounced, failed or were marked as spam in an hour ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)). Resend may suspend sending for every email if it goes on.
 
-**What the system does by itself:** a hard bounce or a complaint puts the address on prepza's suppression list, the invite shows as undelivered, and a complaint about optional mail turns it off ([Notifications and emails](../features/notifications.md)).
+**What the system does by itself:** a hard bounce or a complaint puts the address on testee's suppression list, the invite shows as undelivered, and a complaint about optional mail turns it off ([Notifications and emails](../features/notifications.md)).
 
 **What to do**
 
@@ -131,7 +131,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## The database under strain
 
-**How you notice:** a ticket: **prepza database connections high** (over 80% of `max_connections`), **prepza database CPU high** (over 80% for 15 minutes), **prepza database memory high** (over 90% for 15 minutes) or **prepza database disk filling** (over 85%) ([monitoring_database.tf](../../infra/terraform/monitoring_database.tf)). Users feel it only once requests slow down or fail, which the uptime checks and the objectives page.
+**How you notice:** a ticket: **testee database connections high** (over 80% of `max_connections`), **testee database CPU high** (over 80% for 15 minutes), **testee database memory high** (over 90% for 15 minutes) or **testee database disk filling** (over 85%) ([monitoring_database.tf](../../infra/terraform/monitoring_database.tf)). Users feel it only once requests slow down or fail, which the uptime checks and the objectives page.
 
 **What the system does by itself:** each service's pool is bounded, so connections can't run away; storage grows by itself within its limit; Cloud SQL keeps serving under load, more slowly.
 
@@ -144,7 +144,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 ## A failed backup
 
-**How you notice:** **prepza database backup failed** (a ticket): Cloud SQL logged a failed backup run ([monitoring_database.tf](../../infra/terraform/monitoring_database.tf)). Nothing changes for users; point-in-time recovery still covers 7 days.
+**How you notice:** **testee database backup failed** (a ticket): Cloud SQL logged a failed backup run ([monitoring_database.tf](../../infra/terraform/monitoring_database.tf)). Nothing changes for users; point-in-time recovery still covers 7 days.
 
 **What the system does by itself:** the next day's automated backup runs as usual.
 
@@ -152,10 +152,10 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 1. Check the instance's backups and start one by hand:
    ```bash
-   gcloud sql backups list --instance=prepza --limit=5
-   gcloud sql backups create --instance=prepza
+   gcloud sql backups list --instance=testee --limit=5
+   gcloud sql backups create --instance=testee
    ```
-2. Once the automated backups succeed again, delete the one made by hand (`gcloud sql backups delete <id> --instance=prepza`), at most 14 days later, so backups last no longer than the privacy policy says.
+2. Once the automated backups succeed again, delete the one made by hand (`gcloud sql backups delete <id> --instance=testee`), at most 14 days later, so backups last no longer than the privacy policy says.
 
 **Resolved when** an automated backup succeeds and the hand-made one is deleted.
 
@@ -163,9 +163,9 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 **How you notice**
 
-- **prepza generation queue backed up:** over 50 tasks queued for 15 minutes ([monitoring_backlog.tf](../../infra/terraform/monitoring_backlog.tf)).
-- **prepza generations failing:** over 2 generations failed in an hour; the sweep's "stuck generations as failed" counts too ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)).
-- **prepza generation tasks failing:** over 20% of task attempts failed for 30 minutes; Cloud Tasks drops a task after its last attempt ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)).
+- **testee generation queue backed up:** over 50 tasks queued for 15 minutes ([monitoring_backlog.tf](../../infra/terraform/monitoring_backlog.tf)).
+- **testee generations failing:** over 2 generations failed in an hour; the sweep's "stuck generations as failed" counts too ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)).
+- **testee generation tasks failing:** over 20% of task attempts failed for 30 minutes; Cloud Tasks drops a task after its last attempt ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)).
 - Users: a generation's page keeps showing its progress and never ends, and a user reports it.
 
 **What the system does by itself**
@@ -197,7 +197,7 @@ What to do when the site or an API is down or slow, work waits or stops, the dat
 
 **How you notice**
 
-- **prepza migration failed:** a Cloud Run job (a `<db>-migrate` job or `db-roles`) finished as failed ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)). The **Deploy** run also fails in GitHub Actions, at its **Migrations** step (or **Database users**).
+- **testee migration failed:** a Cloud Run job (a `<db>-migrate` job or `db-roles`) finished as failed ([monitoring_log_alerts.tf](../../infra/terraform/monitoring_log_alerts.tf)). The **Deploy** run also fails in GitHub Actions, at its **Migrations** step (or **Database users**).
 - Users see nothing: the services step hasn't run, so every service still runs the previous version ([infra/README.md](../../infra/README.md#deploys)).
 
 **What the system does by itself**

@@ -1,6 +1,6 @@
 # Development
 
-How to run prepza locally, the settings it reads, and the everyday commands.
+How to run testee locally, the settings it reads, and the everyday commands.
 
 - [Running locally](#running-locally)
 - [Local addresses](#local-addresses)
@@ -67,12 +67,12 @@ Settings are described with the feature they shape:
 
 ## Databases and migrations
 
-- Each service connects as its own Postgres user (named after its database), which owns only that database, as in production: the short-lived `db-roles` container (the job in `database/roles`, its own small image) creates the users and moves ownership to them before any migration; it's safe to repeat. `prepza` is the admin; the integration tests use it to make their `<service>_test` databases.
+- Each service connects as its own Postgres user (named after its database), which owns only that database, as in production: the short-lived `db-roles` container (the job in `database/roles`, its own small image) creates the users and moves ownership to them before any migration; it's safe to repeat. `testee` is the admin; the integration tests use it to make their `<service>_test` databases.
 - Each API's database migrations run once, in a short-lived `*-migrate` container, before the API starts.
 - A Postgres volume made before a database was added needs that database created once, for example:
 
   ```bash
-  docker compose exec postgres createdb -U prepza ats
+  docker compose exec postgres createdb -U testee ats
   ```
 
   The next `docker compose up` gives it to its service's user.
@@ -100,7 +100,7 @@ gateway, the scheduler); each API service and its migrations extend `base.yml`. 
 The frontend keeps its `node_modules` in a volume. After a frontend dependency changes:
 
 1. run `docker compose build frontend`,
-2. remove the `prepza_frontend-modules` volume,
+2. remove the `testee_frontend-modules` volume,
 3. start again.
 
 Paddle and Resend reach local webhooks only through a tunnel, for example `cloudflared tunnel --url http://localhost:8090`.
@@ -133,7 +133,7 @@ The MCP server is at http://localhost:8090/mcp ([AI apps over MCP](features/mcp.
 
 ```bash
 # Claude Code
-claude mcp add --transport http prepza http://localhost:8090/mcp
+claude mcp add --transport http testee http://localhost:8090/mcp
 
 # MCP Inspector (in the browser): Streamable HTTP, URL http://localhost:8090/mcp, then Connect
 npx @modelcontextprotocol/inspector

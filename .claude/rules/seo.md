@@ -27,7 +27,7 @@ paths:
 ## Metadata
 
 - Through `pageMetadata()` only: a unique, descriptive title (the brand after a delimiter; the
-  layout adds " · prepza.") and a unique description that leads with the key fact (snippets are
+  layout adds " · testee.") and a unique description that leads with the key fact (snippets are
   cut near 155 characters); an absolute self-canonical in the page's own language;
   `metadataBase` in the root layout; metadata always in `<head>` (`htmlLimitedBots`).
 - A page's `openGraph` replaces the layout's whole object: set every field. Link previews have

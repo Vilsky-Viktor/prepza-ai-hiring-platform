@@ -72,4 +72,4 @@ The **licensor** is the individual or entity offering these terms, and the **sof
 
 **Use** means anything you do with the software requiring one of your licenses.
 
-Required Notice: Copyright 2026 prepza
+Required Notice: Copyright 2026 testee

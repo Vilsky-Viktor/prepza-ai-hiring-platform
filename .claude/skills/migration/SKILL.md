@@ -68,7 +68,7 @@ scripts/integration.sh <svc>
 
 `alembic check` reports nothing on a freshly migrated database, and each service's
 `tests/integration/test_migrations.py` runs it there: a model and its migration change together.
-The same file asserts that `prepza_common.db.schema_rules.problems` finds nothing: a rule of
+The same file asserts that `testee_common.db.schema_rules.problems` finds nothing: a rule of
 `.claude/rules/database.md` it checks can't be broken by a new table.
 Objects managed outside the models are skipped in `migrations/env.py` (library's
 `topics.embedding`, notifications' `legal_notices`). On the dev database it can also list tables

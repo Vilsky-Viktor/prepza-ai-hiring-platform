@@ -8,7 +8,7 @@ paths:
 
 # Personal data
 
-prepza is the controller for its users' accounts and the processor for candidates' data, which
+testee is the controller for its users' accounts and the processor for candidates' data, which
 belongs to the company. Every retention, export and deletion of a candidate's data is something
 the company can explain to the candidate. What is processed, why and for how long is in the
 privacy policy (`services/site/src/site_content/constants/privacy.py`) and the records of
@@ -41,7 +41,7 @@ line, a trace, a third-party call) does all of this in the same change:
 
 - Pseudonymised data is still personal data: it needs a retention and a place in erasure and in
   the records.
-- A hash that stands for a person (an email, an id) is keyed (`prepza_common.auth.person_hash` with
+- A hash that stands for a person (an email, an id) is keyed (`testee_common.auth.person_hash` with
   `PERSON_HASH_KEY`, or `analytics` with its salt; both in Secret Manager), never a plain SHA-256
   anyone can recompute. The key lives apart from the data.
 
@@ -94,7 +94,7 @@ line, a trace, a third-party call) does all of this in the same change:
 
 - High-risk AI duties (EU AI Act: logs kept at least six months), NYC Local Law 144 (bias audit,
   notice of data, source and retention), California, Colorado and Illinois rules on automated
-  hiring decide what companies must keep and tell candidates. prepza helps companies keep what
+  hiring decide what companies must keep and tell candidates. testee helps companies keep what
   their law requires with exports they can keep (reports, audit exports), not by storing longer by
   default. A change to retention of candidates' results is checked against them first.
 

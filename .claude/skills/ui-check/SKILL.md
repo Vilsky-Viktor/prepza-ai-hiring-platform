@@ -44,5 +44,5 @@ themselves.
 
 ## Share
 
-Copy each screenshot the user should see to `~/Desktop/prepza-screenshots/` with a descriptive
+Copy each screenshot the user should see to `~/Desktop/testee-screenshots/` with a descriptive
 name (`k11-expired-invite.png`) and send it with SendUserFile, saying where it is.

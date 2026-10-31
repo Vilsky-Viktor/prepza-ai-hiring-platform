@@ -3,8 +3,8 @@ paths:
   - "frontend/messages/**"
   - "frontend/content/**"
   - "frontend/src/i18n/**"
-  - "packages/common/src/prepza_common/i18n/messages/**"
-  - "packages/common/src/prepza_common/i18n/i18n.py"
+  - "packages/common/src/testee_common/i18n/messages/**"
+  - "packages/common/src/testee_common/i18n/i18n.py"
   - "services/billing/src/billing/services/catalog.py"
 ---
 
@@ -19,7 +19,7 @@ in `frontend/messages` (rules 9, 12, 14).
 - Front matter: `title`, `seoTitle` (≤ 60 characters), `description` (≤ 155), `updated`
   (YYYY-MM-DD); the body starts with `# <title>`.
 - Translations keep the original's sections, facts, numbers and links and change in the same
-  change; facts about prepza match what the backend returns.
+  change; facts about testee match what the backend returns.
 - Message keys nested by feature, camelCase, naming the purpose (`billing.topUpTitle`); every
   key in all 23 files; `pnpm check:messages` passes.
 - A counted noun is an ICU plural, never `{count} candidates`; whole sentences, never joined

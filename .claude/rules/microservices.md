@@ -43,7 +43,7 @@ timeouts: `python-services.md`; scaling: `scalability.md`; tables: `database.md`
 - A change across services is a saga: each step a local transaction with its event in the
   outbox, a compensation for a step that can fail after others committed. No two-phase commit.
 - One owner per fact: a value two services need (a legal version, a limit) is written by one
-  and read by the rest through its API, its event or `prepza_common` constants, never kept twice.
+  and read by the rest through its API, its event or `testee_common` constants, never kept twice.
 
 ## 3. Independent deployability
 
@@ -78,7 +78,7 @@ timeouts: `python-services.md`; scaling: `scalability.md`; tables: `database.md`
   model and a line in `docs/architecture.md`'s table of consumers. Facts every holder reacts to
   go as events (choreography); a sequence where a step may refuse and the starter must know runs
   as calls from one owner (orchestration).
-- `prepza_common` holds generic code and published contracts: event names and payload models,
+- `testee_common` holds generic code and published contracts: event names and payload models,
   error codes, thin clients of one route shared by several callers. Never a business rule,
   a decision or a table of one service (`python-services.md`, Shared library).
 
@@ -99,7 +99,7 @@ timeouts: `python-services.md`; scaling: `scalability.md`; tables: `database.md`
 ## 7. Centralized observability (tracing, correlation ids, logging)
 
 - The Cloud trace id is the correlation id; there is no second one. Every log line carries it
-  (`prepza_common.observability.logging`), every call passes it on (`prepza_common.http.http`),
+  (`testee_common.observability.logging`), every call passes it on (`testee_common.http.http`),
   and every event carries it from the outbox row as a message attribute, so a consumer's lines
   join the action that caused them.
 - Logs go to stdout as one-line JSON for Cloud Logging; errors to Sentry tagged with the

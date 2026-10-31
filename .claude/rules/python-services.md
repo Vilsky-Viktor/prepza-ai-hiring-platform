@@ -41,7 +41,7 @@ and `jobs/` are their own folders in the package.
 - **Repositories** are module functions taking `session: AsyncSession` first: queries, writes
   and locks (`FOR UPDATE`, `ON CONFLICT`), returning models. No commit, no decisions; pure
   calculations come from `helpers/`. The one exception is batched work, each batch its own
-  transaction (`prepza_common.db.db.delete_in_batches` takes the session factory; scalability.md).
+  transaction (`testee_common.db.db.delete_in_batches` takes the session factory; scalability.md).
 - Imports go one way: `api` → `services` → `repositories` → `models`; `helpers`, `constants`
   and `schemas` from anywhere.
 - Never commit in a `yield` dependency: its exit runs after the response.
@@ -62,10 +62,10 @@ like a route and calls services, never repositories with their own commit.
 
 ## Shared library
 
-`packages/common` (`prepza_common`) holds only what two or more services use (rule 10). Services
+`packages/common` (`testee_common`) holds only what two or more services use (rule 10). Services
 install it as an editable path dependency from the same commit: no releases, no version pins.
 
-- Layout: `src/prepza_common/` with `py.typed` and modules grouped by area (`ai/`, `auth/`,
+- Layout: `src/testee_common/` with `py.typed` and modules grouped by area (`ai/`, `auth/`,
   `db/`, `events/`, `http/`, `i18n/`, `limits/`, and `config/` for the shared constants and
   settings base, `observability/` for logs, Sentry and scrubbing, `redis/` for the Redis client,
   lock and the per-instance cache), one concern per module; `tests/unit/` mirrors it (repo-wide
@@ -84,7 +84,7 @@ install it as an editable path dependency from the same commit: no releases, no 
   published only once committed, and every consumer is idempotent on the event's id (delivery is
   at least once; rule 11).
 - Every call has a timeout set from the callee's latency, through the shared client
-  (`prepza_common.http.http`). Retry only idempotent calls, at one layer only, with exponential
+  (`testee_common.http.http`). Retry only idempotent calls, at one layer only, with exponential
   backoff and jitter and a cap on attempts; never two back-to-back retries. A side-effecting
   call carries an idempotency key.
 - Deadlines, overload answers and scaling limits: `.claude/rules/scalability.md`.
@@ -109,7 +109,7 @@ install it as an editable path dependency from the same commit: no releases, no 
 ## Redis
 
 - Connect and command timeouts, retries with backoff and jitter on connection errors and a
-  health check (`prepza_common.redis.redis_client`). The service keeps working, degraded, while Redis
+  health check (`testee_common.redis.redis_client`). The service keeps working, degraded, while Redis
   is down: limits keep their last values, switches their last state.
 - Test fakes for Redis or other shared clients live once beside the shared library's tests and
   are imported by services, never copied (rule 10).

@@ -1,6 +1,6 @@
 # Testing
 
-prepza has unit, integration, browser, end-to-end and load tests, plus offline evals of model quality. CI runs most of them on every pull request (see [CI](#ci)).
+testee has unit, integration, browser, end-to-end and load tests, plus offline evals of model quality. CI runs most of them on every pull request (see [CI](#ci)).
 
 - [Test suites](#test-suites)
 - [Unit tests and lint](#unit-tests-and-lint)
@@ -58,7 +58,7 @@ Besides the helpers, vitest checks rules the code must keep: `tests/messages/num
 
 ## Integration tests
 
-Each service's `tests/integration` runs against the running stack's real Postgres and Redis, in a `<service>_test` database created and dropped for the run. Every test starts clean (`prepza_common.db.clean_start`): before it, the tables the migrations left empty are truncated, Redis database 15 is flushed and work an earlier test left running is ended; rows the migrations seed stay. Nothing outside the `_test` databases and Redis database 15 is touched. `db-roles` (the database users job, `database/roles`) runs with them: its test makes and drops its own throwaway database and users.
+Each service's `tests/integration` runs against the running stack's real Postgres and Redis, in a `<service>_test` database created and dropped for the run. Every test starts clean (`testee_common.db.clean_start`): before it, the tables the migrations left empty are truncated, Redis database 15 is flushed and work an earlier test left running is ended; rows the migrations seed stay. Nothing outside the `_test` databases and Redis database 15 is touched. `db-roles` (the database users job, `database/roles`) runs with them: its test makes and drops its own throwaway database and users.
 
 ```bash
 ./scripts/integration.sh            # or: ./scripts/integration.sh rounds library

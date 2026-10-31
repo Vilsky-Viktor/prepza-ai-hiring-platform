@@ -8,14 +8,14 @@ description: Add or change a user-facing text in all 23 languages, frontend mess
 For a change a user sees, translate only after the user has approved the UI in English (CLAUDE.md
 rule 14).
 
-prepza speaks 23 languages (`frontend/src/config/i18n.ts` `LOCALES`). A text changed in English
+testee speaks 23 languages (`frontend/src/config/i18n.ts` `LOCALES`). A text changed in English
 must change in all of them in the same commit.
 
 ## Where texts live
 
 - **Frontend:** `frontend/messages/<locale>.json`, nested by namespace (`invite.extraTime`).
   `en.json` is the source.
-- **Backend:** `packages/common/src/prepza_common/i18n/messages/<locale>.py`, a `MESSAGES` dict from
+- **Backend:** `packages/common/src/testee_common/i18n/messages/<locale>.py`, a `MESSAGES` dict from
   the exact English text to its translation. Every message a service raises must be there:
   each service's `tests/unit/test_translations.py` fails otherwise.
 

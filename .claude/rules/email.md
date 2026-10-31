@@ -1,7 +1,7 @@
 ---
 paths:
   - "services/notifications/**"
-  - "packages/common/src/prepza_common/events/notifications.py"
+  - "packages/common/src/testee_common/events/notifications.py"
 ---
 
 # Email
@@ -68,12 +68,12 @@ reminders, campaigns) through Resend, to a global audience in each recipient's l
 
 - Resend's webhooks are verified with Svix on the raw body, with a 5-minute window, and handled
   idempotently: `email.bounced` (permanent), `email.complained`, `email.suppressed` and
-  `email.failed` update prepza's records (an invite shows as undelivered);
+  `email.failed` update testee's records (an invite shows as undelivered);
   `email.delivery_delayed` is temporary.
-- Nothing is sent to a suppressed address: every send path checks prepza's suppression list, not
+- Nothing is sent to a suppressed address: every send path checks testee's suppression list, not
   only bulk sends. Hard bounces and complaints suppress at once; repeated soft bounces over two
   weeks too.
-- Removing an address from prepza's list also removes it from Resend's, or says it stays there.
+- Removing an address from testee's list also removes it from Resend's, or says it stays there.
 
 ## Consent and law
 

@@ -13,7 +13,7 @@ paths:
 # The hosted embed script
 
 Companies show a guest candidate's interview on their own site with
-`https://prepza.ai/embed/v1.js` and `Prepza.embed({element, url, theme, title, onReady, onStart,
+`https://testee.ai/embed/v1.js` and `Testee.embed({element, url, theme, title, onReady, onStart,
 onFinish, onError})`, which frames `/embedded/{token}`. The script, its options, callbacks and messages
 are a contract with customers' pages: any change to them is integrator-visible (rule 14) and
 updates `docs/features/api.md` and the API description's snippet (rule 9). CLAUDE.md wins on any
@@ -29,9 +29,9 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
 - One file, no dependencies, no build step, ES5-level syntax plus `URL`; small (a few KB).
   Not adopted: a loader that injects content-hashed files (one small file needs no second
   request; adopt it if the script grows).
-- `"use strict"` in an IIFE; exactly one global, `window.Prepza`; nothing on built-in
+- `"use strict"` in an IIFE; exactly one global, `window.Testee`; nothing on built-in
   prototypes; options read key by key, never merged into objects (prototype pollution).
-- Including the script twice is harmless: a second copy keeps the first `Prepza` (it carries
+- Including the script twice is harmless: a second copy keeps the first `Testee` (it carries
   `version`). Calls made before it loads go to the documented one-line stub's queue (`q`),
   which the script replays (the Intercom and Cal.com pattern), so the snippet loads it `async`.
 - Feature detection, never user-agent sniffing; what's missing degrades (no resize, a fixed
@@ -50,7 +50,7 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
 - The proxy skips `/embed/`: the script is served as it is, also during maintenance (the frame
   then shows the maintenance screen), with no per-request work.
 - The docs give integrators the async snippet with its stub, the CSP lines they need
-  (`script-src https://prepza.ai`, `frame-src https://prepza.ai`), why not to pin it with SRI,
+  (`script-src https://testee.ai`, `frame-src https://testee.ai`), why not to pin it with SRI,
   and a dated "Changes to v1" list.
 
 ## Who may frame it
@@ -66,7 +66,7 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
   the candidate's link; `?origin=` and `Referer` can only refuse sooner, never allow (the
   browser enforces the policy).
 - The script reads its own address only from a real `HTMLScriptElement` (`document.currentScript`
-  can be clobbered by a page element named `currentScript`), else prepza.ai.
+  can be clobbered by a page element named `currentScript`), else testee.ai.
 - Not adopted: a separate embed origin (the frame's storage is partitioned per top-level site
   anyway and its sign-in is a guest's, apart from the main app's); `sandbox` on our own frame
   (it would only restrict our page; parents protect themselves); `loading="lazy"` (the interview
@@ -78,14 +78,14 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
 ## Messages
 
 - The frame posts only to the exact origin the script gave it (`?origin=`, checked by
-  `originOf`), never `"*"`; the script accepts a message only when `event.origin` is prepza's,
+  `originOf`), never `"*"`; the script accepts a message only when `event.origin` is testee's,
   `event.source` is its own frame's window (so several embeds per page don't mix) and
-  `source` is `"prepza"`.
-- Every message is `{source: "prepza", version: 1, type, ...data}`; unknown types are ignored
+  `source` is `"testee"`.
+- Every message is `{source: "testee", version: 1, type, ...data}`; unknown types are ignored
   (forward compatible); payloads are type-checked before use (a height is a finite number,
   clamped to at least the minimum), never put in `innerHTML` or evaluated.
 - No secrets in messages: only what the company may see (the candidate's id when finished, the
-  height). Tokens never cross the frame boundary; the guest token comes from prepza's API
+  height). Tokens never cross the frame boundary; the guest token comes from testee's API
   inside the frame.
 - Handshake: the frame says `ready` first; the parent attaches its listener before inserting
   the frame. The frame listens to nothing from the parent; a parent-to-frame message would need
@@ -94,7 +94,7 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
 ## Storage and sign-in inside the frame
 
 - Assume no third-party cookies (Safari and Firefox block or partition them; Chrome lets users
-  block them; CHIPS and the Storage Access API exist but a guest has never visited prepza first)
+  block them; CHIPS and the Storage Access API exist but a guest has never visited testee first)
   and partitioned, wipeable storage (Chrome 115+, Firefox, Safari).
 - The guest signs in with a custom token from the API (`signInWithCustomToken`), kept in memory
   in a frame (`lib/firebase.ts`: partitioned storage stalled WebKit's sign-in); never
@@ -111,14 +111,14 @@ conflict; CSP and headers are `security.md`'s, caching `performance.md`'s.
   candidate's pages, which meet `accessibility.md`; no focus is taken on load and nothing traps
   focus; the theme passes through (`theme`), and color scheme and reduced motion follow the
   candidate's settings inside.
-- `Prepza.embed` takes one options object and returns `{destroy}`, which removes the frame, the
+- `Testee.embed` takes one options object and returns `{destroy}`, which removes the frame, the
   listener and the timer; several embeds per page work. A missing element throws, as v1 always
   did; an unknown option gets a console warning; callbacks are called only when functions.
 - Errors: an iframe's `error` event never fires, so no `ready` within 20 s is
   `onError({code: "timeout"})` (a refused domain or the network); the frame sends `error` with a
   stable code when the invite reads as gone (`invite_unavailable`) or can't be read
   (`load_failed`). New codes are additions.
-- Not adopted (rule 4, no need yet): `minHeight`/`maxHeight`, a declarative `data-prepza-url`
+- Not adopted (rule 4, no need yet): `minHeight`/`maxHeight`, a declarative `data-testee-url`
   element and a `lang` option (the frame follows the candidate's own language).
 
 ## Testing

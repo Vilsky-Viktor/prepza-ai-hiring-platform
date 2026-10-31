@@ -12,7 +12,7 @@
    arbitrary line; the pieces stay in the folder their layout rule gives them.
    - Exempt: generated files (lockfiles, OpenAPI snapshots, `frontend/src/types/api/`), data
      (`frontend/messages/`, the services' translated messages in
-     `prepza_common/i18n/messages/`, page guides, the email texts in `templates/languages/`,
+     `testee_common/i18n/messages/`, page guides, the email texts in `templates/languages/`,
      `evals/datasets/`, fixtures), binary files and articles in `frontend/content/`. Tests
      are not exempt; they split by area.
    - Functions: complexity at most 15 (Ruff `C901`, ESLint `complexity`), at most 12 branches
@@ -92,7 +92,7 @@
 
 10. **No duplicated functionality or logic.** Before writing something, look for code
     that already does it and reuse it. Logic repeated across services goes into a
-    shared library (`packages/common`, `prepza_common`); repeated frontend logic into
+    shared library (`packages/common`, `testee_common`); repeated frontend logic into
     one helper or component. A logically grouped domain that several services keep
     reimplementing gets its own service.
 

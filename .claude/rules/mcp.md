@@ -49,7 +49,7 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
 
 ## Authorization
 
-- prepza is both the authorization server (the site's root) and the resource (`/mcp`), from the
+- testee is both the authorization server (the site's root) and the resource (`/mcp`), from the
   MCP SDK's building blocks. OAuth 2.1, authorization code with PKCE `S256` only, advertised in
   `code_challenge_methods_supported`.
 - A call without a valid token is `401` with `WWW-Authenticate: Bearer resource_metadata=…`;
@@ -58,7 +58,7 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   address users enter.
 - Resource indicators (RFC 8707): an `/authorize` or token request for another resource is
   `invalid_target`; tokens are opaque, issued for `/mcp` only, so the audience check is
-  "issued here". The server accepts only its own tokens (`pzm_`) or a company API key (`pz_`)
+  "issued here". The server accepts only its own tokens (`tem_`) or a company API key (`te_`)
   checked by the api service, and never passes either to another service: services are called
   with a Firebase ID token minted for the user (no token passthrough).
 - Tokens only in the `Authorization` header, never a query string; stored as SHA-256 hashes.
@@ -67,22 +67,22 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
 - Registration: Client ID Metadata Documents (an HTTPS URL with a path as `client_id`;
   preferred by Claude and ChatGPT, advertised as `client_id_metadata_document_supported`) and,
   deprecated in 2026-07-28 but kept for apps that use it, dynamic client registration (RFC 7591).
-  A document is read through `prepza_common.http.public_urls` (HTTPS, public addresses, pinned, no
+  A document is read through `testee_common.http.public_urls` (HTTPS, public addresses, pinned, no
   redirects, 5 s, 4,000 bytes), must name itself by its URL, have no secret and return only to
   app addresses; its copy is kept a day, and serves while its site is down.
 - Redirect URIs match exactly what was registered, but a loopback one on any port (RFC 8252);
   schemes that run in the browser are refused; `/authorize` never redirects anywhere but the
   consent page (no open redirect).
-- Consent: prepza's own page names the app by the site it returns to (not its claimed name),
+- Consent: testee's own page names the app by the site it returns to (not its claimed name),
   shows the redirect host and warns for unknown ones; only the browser that started the request
-  may allow it (`prepza_connect` cookie: `HttpOnly`, `SameSite=Lax`, `Secure`, short-lived);
+  may allow it (`testee_connect` cookie: `HttpOnly`, `SameSite=Lax`, `Secure`, short-lived);
   codes are single-use, 5 minutes, bound to app, redirect URI and PKCE challenge; the page
   can't be framed. This is the confused-deputy defence.
 - Every authorization answer names the issuer (`iss`, RFC 9207), advertised as
   `authorization_response_iss_parameter_supported` (the SDK's client then requires it).
-- Scopes: `prepza` (everything, reading included) and `prepza:read`; the user may allow a full
+- Scopes: `testee` (everything, reading included) and `testee:read`; the user may allow a full
   request as read only. Read-only connections list only reads; a write is an `isError` result.
-  Connections from before keep `prepza`. Not adopted: a `403 insufficient_scope` step-up inside
+  Connections from before keep `testee`. Not adopted: a `403 insufficient_scope` step-up inside
   a tool call (hosts don't re-authorize mid-call; reconnecting does it). Never change a scope's
   meaning silently; `offline_access` is not listed.
 - Non-interactive agents use a company API key with the `mcp` permission (`api.md` keys); it
@@ -109,7 +109,7 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   bind every result to a schema the spec then requires).
 - Annotations on every tool, all four explicit (the defaults are destructive and open world):
   `readOnlyHint` for reads, `destructiveHint` for what can't be undone, `idempotentHint` for
-  repeat-safe writes, `openWorldHint: false` (prepza only). Hosts decide confirmations from them
+  repeat-safe writes, `openWorldHint: false` (testee only). Hosts decide confirmations from them
   (Claude, VS Code skip it for reads; ChatGPT's review requires three); they are hints, never the
   security: every call is authorized server-side.
 - Writes run at once: the host's own approval is the confirmation, and the server still applies
@@ -128,7 +128,7 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   switch to on-demand discovery past a few percent of it) and some clients cap active tools (the
   reported 40 in Cursor and 128 in VS Code are unverified). Prefer fewer tools that each do a
   whole job, split by read and write; no catch-all `api_request` tool.
-- ChatGPT's deep research wants read-only `search` and `fetch` tools; not offered (prepza's data
+- ChatGPT's deep research wants read-only `search` and `fetch` tools; not offered (testee's data
   is private, per company).
 
 ## Security and operations
@@ -148,7 +148,7 @@ the HTTP rules are `api.md`'s, tool-writing rules `ai.md`'s, security `security.
   consent, PKCE, both protocol eras, tools as the user, API keys and their allowed IPs, refresh,
   revoke, disconnect.
 - The conformance suite (`npx @modelcontextprotocol/conformance server --url …`) targets an
-  unauthenticated reference server and has no auth option, so against prepza only its
+  unauthenticated reference server and has no auth option, so against testee only its
   rebinding refusal applies; `e2e_tests/mcp.py` covers the protocol instead. Check new tools in
   MCP Inspector (`--cli --method tools/list` with a token), Claude and ChatGPT themselves.
 
