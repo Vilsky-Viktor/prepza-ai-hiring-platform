@@ -1,5 +1,5 @@
 {
-  "name": "prepza-page-tests",
+  "name": "testee-page-tests",
   "private": true,
   "type": "module",
   "devDependencies": {

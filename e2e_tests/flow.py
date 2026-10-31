@@ -21,11 +21,11 @@ from pathlib import Path
 
 API = os.getenv("E2E_API", "http://localhost:8090/api")
 AUTH = os.getenv("E2E_AUTH", "http://localhost:9199")
-POSTGRES = os.getenv("E2E_POSTGRES", "prepza-postgres-1")
+POSTGRES = os.getenv("E2E_POSTGRES", "testee-postgres-1")
 KIT_TEXT = "Junior Python developer: Python basics, functions and lists."
 INTERVIEW_TEXT = "Backend developer: SQL basics, joins and indexes."
 GENERATION_TIMEOUT = 15 * 60
-# Cloudflare Turnstile's dummy token: the local test secret passes it (prepza_common human_check).
+# Cloudflare Turnstile's dummy token: the local test secret passes it (testee_common human_check).
 HUMAN_CHECK_TOKEN = "XXXX.DUMMY.TOKEN.XXXX"
 
 
@@ -165,7 +165,7 @@ def invite_token(invite_id: str) -> str:
     """The token in the invite link the candidate is emailed."""
     query = f"SELECT token FROM candidate_invites WHERE id = '{invite_id}'"
     result = subprocess.run(
-        ["docker", "exec", POSTGRES, "psql", "-U", "prepza", "-d", "companies", "-tAc", query],
+        ["docker", "exec", POSTGRES, "psql", "-U", "testee", "-d", "companies", "-tAc", query],
         capture_output=True,
         text=True,
         check=True,
@@ -194,7 +194,7 @@ def take_interview(session_id: str, token: str) -> int:
 
 def company() -> None:
     _, owner = sign_up("owner", verified=True, owner=True)
-    # Company names are unique across prepza, so each run gets its own.
+    # Company names are unique across testee, so each run gets its own.
     name = f"E2E Inc {uuid.uuid4().hex[:8]}"
     company_id = api("POST", "/companies/companies", owner, {"name": name})["id"]
     credits = f"/companies/companies/{company_id}/credits"
@@ -223,7 +223,9 @@ def company() -> None:
     step(f"candidate invited; {CANDIDATE_CREDITS} credits set aside")
 
     token = invite_token(invite["id"])
-    sessions = api("POST", f"/companies/invites/{token}/start", candidate, {"pledged": True})["sessions"]
+    sessions = api("POST", f"/companies/invites/{token}/start", candidate, {"pledged": True})[
+        "sessions"
+    ]
     answered = take_interview(sessions[0]["id"], candidate)
 
     step(f"candidate took the interview from the invite link: {answered} answers")

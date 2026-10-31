@@ -26,7 +26,7 @@ export async function api<T>(page: Page, method: string, path: string, body?: un
   return (text ? JSON.parse(text) : null) as T
 }
 
-/** A throwaway company; names are unique across prepza, so each gets a random part. */
+/** A throwaway company; names are unique across testee, so each gets a random part. */
 export async function createCompany(page: Page, name = `E2E ${randomId()}`) {
   const company = await api<{ id: string }>(page, "POST", "/companies/companies", { name })
   // The bell keeps a user's companies for a minute; the site's create dialog has it read them

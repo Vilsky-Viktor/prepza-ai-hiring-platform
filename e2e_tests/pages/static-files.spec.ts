@@ -15,7 +15,7 @@ test("logos and pictures are kept a day, documents an hour", async ({ request })
   }
 
   const document = await request.get(
-    `${REQUEST_URL}/examples/prepza-candidates-example.csv`,
+    `${REQUEST_URL}/examples/testee-candidates-example.csv`,
   );
   expect(document.headers()["cache-control"]).toBe(
     "public, max-age=3600, stale-while-revalidate=86400",

@@ -13,7 +13,7 @@ test("an owner rolls a web hook's secret and sees the new one once", async ({ si
     owner,
     "POST",
     `/v1/manage/webhooks?company_id=${company.id}`,
-    { url: "https://example.com/prepza-webhook" }
+    { url: "https://example.com/testee-webhook" }
   )
 
   await visit(owner, `/companies/${company.id}/integrations/api?tab=webhooks`)

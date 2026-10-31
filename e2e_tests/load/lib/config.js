@@ -26,7 +26,7 @@ export const CANDIDATES_PER_COMPANY = 3
 export const DASHBOARD_COMPANIES = Number(__ENV.COMPANIES || 3)
 
 export const PASSWORD = "load-test-secret"
-// Cloudflare Turnstile's dummy token, which the local test secret passes (prepza_common
+// Cloudflare Turnstile's dummy token, which the local test secret passes (testee_common
 // human_check): sent as the browser sends its token, so a first company and a link start work.
 export const HUMAN_CHECK_TOKEN = "XXXX.DUMMY.TOKEN.XXXX"
 // Every throwaway account's email carries this, with the run's own id after it.

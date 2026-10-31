@@ -48,7 +48,7 @@ test("superadmin sees a month's stats, a year's and all time, kept after a reloa
   const superadmin = await signInSuperadmin()
   await visit(superadmin, "/superadmin/stats/general")
   // A fresh start: this month.
-  await superadmin.evaluate(() => localStorage.removeItem("prepza_stats_period"))
+  await superadmin.evaluate(() => localStorage.removeItem("testee_stats_period"))
   await visit(superadmin, "/superadmin/stats/general")
   const now = new Date()
   const thisMonth = now.toLocaleString("en-US", {

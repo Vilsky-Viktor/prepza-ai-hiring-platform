@@ -142,7 +142,7 @@ test("a practice page starts under its tags on a phone", { tag: "@phone-only" },
   expect(start.y).toBeGreaterThan(tags.y + tags.height);
 });
 
-// The header's logo link is named by what it shows ("p." on a phone, the whole logo on a wider
+// The header's logo link is named by what it shows ("t." on a phone, the whole logo on a wider
 // screen) and then where it leads, so a voice user can say what they see (WCAG 2.5.3).
 test("the header's logo link is named by its visible text", { tag: "@phone" }, async ({ page }) => {
   await page.goto("/");

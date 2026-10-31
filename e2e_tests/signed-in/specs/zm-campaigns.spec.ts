@@ -15,7 +15,7 @@ type Campaign = { id: string; kind: string; subject: string; status: string }
 type Notice = { document: string; version: string }
 
 const PATH = "/notifications/superadmin/campaigns"
-const LINK = "https://prepza.ai/pricing"
+const LINK = "https://testee.ai/pricing"
 
 /** Deletes the drafts a run left whose subject starts with `subject`. */
 async function deleteDrafts(page: Page, subject: string) {

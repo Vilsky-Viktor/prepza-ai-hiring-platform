@@ -39,7 +39,7 @@ test("the owner exports finished candidates' outcomes for a bias audit", async (
   const downloaded = owner.waitForEvent("download")
   await dialog.locator('button[type="submit"]').click()
   const file = await downloaded
-  expect(file.suggestedFilename()).toMatch(/^prepza-bias-audit-\d{4}-\d{2}-\d{2}\.csv$/)
+  expect(file.suggestedFilename()).toMatch(/^testee-bias-audit-\d{4}-\d{2}-\d{2}\.csv$/)
   const saved = test.info().outputPath(file.suggestedFilename())
   await file.saveAs(saved)
   const [header, ...rows] = (await readFile(saved, "utf8")).trim().split(/\r?\n/)

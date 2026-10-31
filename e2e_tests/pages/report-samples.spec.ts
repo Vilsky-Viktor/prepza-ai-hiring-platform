@@ -20,14 +20,14 @@ test("the report samples download a ZIP of the two PDF reports", async ({ page }
   const downloaded = page.waitForEvent("download")
   await link.click()
   const file = await downloaded
-  expect(file.suggestedFilename()).toBe("prepza-report-samples.zip")
+  expect(file.suggestedFilename()).toBe("testee-report-samples.zip")
   const path = test.info().outputPath(file.suggestedFilename())
   await file.saveAs(path)
 
   const entries = zipEntries(await readFile(path))
   expect([...entries.keys()].sort()).toEqual([
-    "prepza-sample-candidate-report.pdf",
-    "prepza-sample-candidates.pdf",
+    "testee-sample-candidate-report.pdf",
+    "testee-sample-candidates.pdf",
   ])
 
   for (const pdf of entries.values()) {

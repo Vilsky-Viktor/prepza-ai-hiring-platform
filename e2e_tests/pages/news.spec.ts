@@ -30,8 +30,8 @@ for (const [path, language] of [
     // Titled with the site's name after it, named once (the heading names it too).
     const heading = (await page.getByRole("heading", { level: 1 }).textContent()) ?? "";
     expect(heading).not.toBe("");
-    await expect(page).toHaveTitle(/^.+ · prepza\.$/);
-    expect((await page.title()).split("prepza")).toHaveLength(2);
+    await expect(page).toHaveTitle(/^.+ · testee\.$/);
+    expect((await page.title()).split("testee")).toHaveLength(2);
     await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
 
     const description =
@@ -70,7 +70,7 @@ for (const [path, language] of [
     );
     expect(blog).toMatchObject({
       inLanguage: language,
-      publisher: { name: "prepza" },
+      publisher: { name: "testee" },
     });
     expect(Array.isArray(blog.blogPost)).toBe(true);
 

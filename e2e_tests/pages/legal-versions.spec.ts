@@ -34,7 +34,7 @@ test("the terms show since when they apply", async ({ page }) => {
 
 // Each document in the page's language, with a link to the binding English.
 test("the terms show in the page's language with a link to the binding English", async ({ page, baseURL }) => {
-  await page.context().addCookies([{ name: "prepza_locale", value: "de", url: baseURL! }]);
+  await page.context().addCookies([{ name: "testee_locale", value: "de", url: baseURL! }]);
   await page.goto("/terms");
   await loaded(page);
   const text = page.locator("main div[lang]");
@@ -48,7 +48,7 @@ test("the terms show in the page's language with a link to the binding English",
   await expect(page).toHaveURL(/\/terms\?language=en$/, { timeout: 15_000 });
   await expect(text).toHaveAttribute("lang", "en");
 
-  await page.context().addCookies([{ name: "prepza_locale", value: "ar", url: baseURL! }]);
+  await page.context().addCookies([{ name: "testee_locale", value: "ar", url: baseURL! }]);
   await page.goto("/privacy");
   await expect(text).toHaveAttribute("dir", "rtl");
   await shot(page, "privacy-ar");

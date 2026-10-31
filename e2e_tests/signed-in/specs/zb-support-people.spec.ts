@@ -22,7 +22,7 @@ async function accountEmails(page: Page, userId: string) {
   return emailBoxes(page)
 }
 
-// Someone asked prepza by email to stop its emails: a superadmin searches the address, turns its
+// Someone asked testee by email to stop its emails: a superadmin searches the address, turns its
 // account's optional emails off on the account's page and, on the candidate's page, stops one
 // inviting company's emails, then resumes them. Only the person turns marketing on, and a stop
 // they made from an email's link stays theirs.

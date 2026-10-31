@@ -154,7 +154,7 @@ def main(pid: int, source: str) -> int:
     common = subprocess.run(
         ["git", "rev-parse", "--git-common-dir"], capture_output=True, text=True, check=True
     ).stdout.strip()
-    slots = Path(common).resolve() / "prepza-browser-runs"
+    slots = Path(common).resolve() / "testee-browser-runs"
     queue = slots / "queue"
     most = int(os.environ.get("BROWSER_RUNS", "2"))
     poll = float(os.environ.get("BROWSER_POLL_SECONDS", "5"))

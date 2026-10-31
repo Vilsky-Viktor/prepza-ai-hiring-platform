@@ -56,7 +56,7 @@ def tool_list(access: str) -> None:
             "clientInfo": {"name": "e2e", "version": "1"},
         },
     )
-    check(status == 200 and started["serverInfo"]["name"] == "prepza", f"initialize {started}")
+    check(status == 200 and started["serverInfo"]["name"] == "testee", f"initialize {started}")
     status, listed = rpc(access, "tools/list")
     names = {item["name"] for item in listed["tools"]}
     check(status == 200 and "get_me" in names and not names & EXCLUDED, f"{len(names)} tools")

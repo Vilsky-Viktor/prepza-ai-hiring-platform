@@ -18,7 +18,7 @@ const SECTIONS = [
   "pricing",
   "help",
 ];
-const DEMOS = "https://www.youtube.com/@prepza";
+const DEMOS = "https://www.youtube.com/@testee";
 
 type Catalog = {
   currency: string;
@@ -245,7 +245,7 @@ test("the reports section lists four facts under its picture", async ({ page }) 
   await expect(notes.locator("li")).toHaveCount(4);
 });
 
-test("the comparison shows prepza's price range from the catalog", async ({ page }) => {
+test("the comparison shows testee's price range from the catalog", async ({ page }) => {
   test.setTimeout(120_000);
   const prices = await catalog(page);
   await page.goto("/");
@@ -257,7 +257,7 @@ test("the comparison shows prepza's price range from the catalog", async ({ page
       prices.candidate_cents_min % 100 === 0 && prices.candidate_cents_max % 100 === 0 ? 0 : 2,
   }).formatRange(prices.candidate_cents_min / 100, prices.candidate_cents_max / 100);
 
-  // prepza is the last of the three, with the range.
+  // testee is the last of the three, with the range.
   const cards = section.locator("li");
   await expect(cards).toHaveCount(3);
   await expect(cards.last()).toContainText(range);

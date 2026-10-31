@@ -24,8 +24,8 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   const interviewId = await createInterview(owner, company.id)
 
   const saved = () => api<Saved>(owner, "GET", `/companies/companies/${company.id}`)
-  const prepzaStyle = (
-    await api<{ style: Saved["brand_style"] }>(owner, "GET", "/companies/brand/prepza")
+  const testeeStyle = (
+    await api<{ style: Saved["brand_style"] }>(owner, "GET", "/companies/brand/testee")
   ).style
   // A color's hex code: the `index`th in its group (page, primary, secondary, dialogs, borders).
   const field = (group: string, index: number) =>
@@ -46,7 +46,7 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
 
   const save = owner.getByTestId("brand-save").first()
   const reset = owner.getByTestId("brand-reset").first()
-  const resetToPrepza = owner.getByTestId("brand-reset-prepza").first()
+  const resetToTestee = owner.getByTestId("brand-reset-testee").first()
   const style = owner.getByTestId("brand-style")
   const brand = `/companies/${company.id}/brand`
   // Brand's pages in the side menu: general (brand's own address), then each theme's colors.
@@ -66,7 +66,7 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   await open("?page=light")
   await expect(field("page", 0)).toBeVisible()
   await expect(style).toHaveCount(0)
-  await shot(owner, "prepza-colors")
+  await shot(owner, "testee-colors")
 
   // The preview follows the colors as they're typed; edits are kept while moving between brand's
   // pages, until saved or the page is left.
@@ -90,8 +90,8 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
 
       return [current.brand_colors?.light?.background, current.brand_style]
     })
-    // The fonts and rounding, untouched on general, stay prepza's.
-    .toEqual(["#101418", prepzaStyle])
+    // The fonts and rounding, untouched on general, stay testee's.
+    .toEqual(["#101418", testeeStyle])
 
   // The titles' and the text's fonts and the cards' and buttons' rounding on general, the same in
   // both themes; the preview sets its title and its text in them.
@@ -115,15 +115,15 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   await expect
     .poll(async () => (await saved()).brand_style)
     .toEqual({ heading_font: "lora", text_font: "inter", radius: 4, button_radius: 8 })
-  // Saved colors of its own: the way back to prepza's shows, reset waits for a change.
-  await expect(resetToPrepza).toBeVisible()
+  // Saved colors of its own: the way back to testee's shows, reset waits for a change.
+  await expect(resetToTestee).toBeVisible()
   await expect(reset).toBeDisabled()
   await owner.setViewportSize({ width: 390, height: 900 })
   await shot(owner, "saved-phone")
   await owner.setViewportSize({ width: 1280, height: 1300 })
 
-  // Back to prepza's defaults and saved again: colors, fonts and rounding.
-  await resetToPrepza.click()
+  // Back to testee's defaults and saved again: colors, fonts and rounding.
+  await resetToTestee.click()
   await expect
     .poll(async () => {
       const colors = (await saved()).brand_colors
@@ -131,13 +131,13 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
       return [colors?.light ?? null, colors?.dark ?? null]
     })
     .toEqual([null, null])
-  await expect(resetToPrepza).toHaveCount(0)
+  await expect(resetToTestee).toHaveCount(0)
   await subPage("?page=light").click()
   await fillDark()
   await save.click()
-  await expect(resetToPrepza).toBeVisible()
+  await expect(resetToTestee).toBeVisible()
 
-  // The dark set is its own page, prepza's until changed.
+  // The dark set is its own page, testee's until changed.
   await subPage("?page=dark").click()
   await expect(owner).toHaveURL(new RegExp(`${brand}\\?page=dark$`))
   await open("?page=dark")
@@ -154,11 +154,11 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
   await expect(candidate.getByRole("main").getByRole("button")).toBeVisible()
   await expect(candidate.locator("html")).toHaveCSS("--background", "#101418")
   await shot(candidate, "invitation")
-  // prepza's rounding (the font and rounding were reset to it), drawn at exactly its px: buttons,
+  // testee's rounding (the font and rounding were reset to it), drawn at exactly its px: buttons,
   // and cards (rounded-xl), from which the page's other corners scale.
   await expect(candidate.getByRole("main").getByRole("button").first()).toHaveCSS(
     "border-top-left-radius",
-    `${prepzaStyle.button_radius}px`
+    `${testeeStyle.button_radius}px`
   )
   const cardCorner = await candidate.evaluate(() => {
     const card = document.createElement("div")
@@ -169,9 +169,9 @@ test("an owner sets the company's colors and its candidates see them", async ({ 
 
     return corner
   })
-  expect(cardCorner).toBe(`${prepzaStyle.radius}px`)
+  expect(cardCorner).toBe(`${testeeStyle.radius}px`)
 
-  // Asked for the dark theme in the address: prepza's dark set, as the company has none.
+  // Asked for the dark theme in the address: testee's dark set, as the company has none.
   await visit(candidate, `/invite/${await inviteToken(email)}?theme=dark`)
   await expect(candidate.locator("html")).toHaveCSS("--background", "#0a0a0a")
 })
@@ -183,12 +183,12 @@ test("saved colors a check now refuses stay in the brand settings with why", asy
 }) => {
   const owner = await signInAs(ownerEmail())
   const company = await createCompany(owner)
-  const prepza = await api<{ colors: { light: Record<string, string> } }>(
+  const testee = await api<{ colors: { light: Record<string, string> } }>(
     owner,
     "GET",
-    "/companies/brand/prepza"
+    "/companies/brand/testee"
   )
-  const colors = { ...prepza.colors.light, foreground: "#1a1a1a", muted: "#767676", muted_foreground: "#000000" }
+  const colors = { ...testee.colors.light, foreground: "#1a1a1a", muted: "#767676", muted_foreground: "#000000" }
   await saveLightColors(company.id, colors)
   const problem = owner.getByTestId("brand-problem")
 
@@ -197,7 +197,7 @@ test("saved colors a check now refuses stay in the brand settings with why", asy
   await expect(problem).toContainText(
     "The page's text is too hard to read on the secondary fill behind the questions."
   )
-  // The saved secondary fill, not prepza's.
+  // The saved secondary fill, not testee's.
   await expect(
     owner.getByTestId("brand-secondary").locator("input:not([type=color])").first()
   ).toHaveValue("#767676")

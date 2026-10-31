@@ -1,5 +1,5 @@
 {
-  "name": "prepza-signed-in-tests",
+  "name": "testee-signed-in-tests",
   "private": true,
   "type": "module",
   "devDependencies": {

@@ -11,7 +11,7 @@ test("an owner tests a web hook and reads its delivery log", async ({ signInAs }
   const company = await createCompany(owner)
   // A public address that doesn't take events: the log says what it answered.
   await api(owner, "POST", `/v1/manage/webhooks?company_id=${company.id}`, {
-    url: "https://example.com/prepza-webhook",
+    url: "https://example.com/testee-webhook",
   })
 
   await visit(owner, `/companies/${company.id}/integrations/api?tab=webhooks`)
@@ -27,7 +27,7 @@ test("an owner tests a web hook and reads its delivery log", async ({ signInAs }
   await shot(owner, "log")
   await owner.keyboard.press("Escape")
 
-  // Our key can't read the web hook's secret: the log says it's on prepza's side, not theirs.
+  // Our key can't read the web hook's secret: the log says it's on testee's side, not theirs.
   await sealWebhookSecretsElsewhere(company.id)
   await owner.getByRole("button", { name: "Send test event" }).click()
   await expect(
@@ -35,7 +35,7 @@ test("an owner tests a web hook and reads its delivery log", async ({ signInAs }
   ).toContainText("The endpoint didn't take the test event.", { timeout: 30_000 })
   await openDialog(owner, owner.getByRole("button", { name: "Delivery log" }))
   await expect(
-    owner.getByRole("dialog").getByText("Not sent: a problem on prepza's side.")
+    owner.getByRole("dialog").getByText("Not sent: a problem on testee's side.")
   ).toBeVisible()
   await shot(owner, "log-unreadable")
 })

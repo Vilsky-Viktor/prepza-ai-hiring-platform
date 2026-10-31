@@ -67,7 +67,7 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   await create.click()
   // The key, shown this once in a field to copy.
   const shown = owner.getByRole("dialog").getByRole("textbox")
-  await expect(shown).toHaveValue(/^pz_/)
+  await expect(shown).toHaveValue(/^te_/)
   await shot(owner, "key-shown")
   const key = await shown.inputValue()
   await owner.keyboard.press("Escape")
@@ -84,7 +84,7 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   expect(invited.status()).toBe(201)
   expect(await invited.json()).toMatchObject({ status: "invited", progress: 0 })
   const refused = await owner.request.get(`${API_URL}/v1/interviews`, {
-    headers: { Authorization: "Bearer pz_wrong" },
+    headers: { Authorization: "Bearer te_wrong" },
   })
   expect(refused.status()).toBe(401)
   // What the key wasn't given is refused, naming the permission it lacks.
@@ -113,25 +113,25 @@ test("an owner makes an API key and adds a web hook", async ({ signInAs }) => {
   // Only HTTPS addresses on the internet: anything else is refused, in a red toast.
   await openDialog(owner, action)
   await expect(expiry).toHaveCount(0)
-  await owner.getByRole("dialog").getByRole("textbox").fill("http://example.com/prepza")
+  await owner.getByRole("dialog").getByRole("textbox").fill("http://example.com/testee")
   await create.click()
   await expect(owner.locator('[data-sonner-toast][data-type="error"]')).toContainText(
     "Use an HTTPS address that's reachable from the internet"
   )
   await shot(owner, "webhook-refused")
-  await owner.getByRole("dialog").getByRole("textbox").fill("https://example.com/prepza")
+  await owner.getByRole("dialog").getByRole("textbox").fill("https://example.com/testee")
   await create.click()
   // Its signing secret, shown this once.
   await expect(owner.getByRole("dialog").getByRole("textbox")).toHaveValue(/^whsec_/)
   await shot(owner, "secret-shown")
   await owner.keyboard.press("Escape")
-  await expect(owner.getByText("https://example.com/prepza", { exact: true }).filter({ visible: true })).toBeVisible()
+  await expect(owner.getByText("https://example.com/testee", { exact: true }).filter({ visible: true })).toBeVisible()
   await shot(owner, "filled")
   await visit(owner, tab)
   await shot(owner, "list-filled")
 
   // A web hook that stopped taking events, after days of retries, is paused, and says so.
-  await markWebhookFailing("https://example.com/prepza", company.id)
+  await markWebhookFailing("https://example.com/testee", company.id)
   await visit(owner, `${tab}/api?tab=webhooks`)
   await expect(owner.getByText(/^Paused: it didn't answer for 3 days/).filter({ visible: true })).toBeVisible()
   await shot(owner, "webhook-failing")

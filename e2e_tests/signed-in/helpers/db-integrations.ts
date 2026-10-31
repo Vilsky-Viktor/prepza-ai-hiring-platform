@@ -92,7 +92,7 @@ export async function addAtsConnection(
 }
 
 /** A Slack channel for a throwaway company, saved straight into the notifications database (a
- * real one needs prepza's Slack app and a workspace). Its web hook is a placeholder: nothing is
+ * real one needs testee's Slack app and a workspace). Its web hook is a placeholder: nothing is
  * posted with it. Deleting the company deletes it. */
 export async function addSlackConnection(companyId: string) {
   await withDatabase("notifications", (client) =>

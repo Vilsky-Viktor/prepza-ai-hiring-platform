@@ -82,7 +82,7 @@ test("the play icon is named in its tooltip and its ring holds still with reduce
 });
 
 // The facts under the start box, a dot between each two: first the any-job fact, then the
-// languages (as many as prepza speaks), the time to ready and no subscription.
+// languages (as many as testee speaks), the time to ready and no subscription.
 test("the facts under the start box start with the any-job fact", async ({ page }) => {
   test.setTimeout(120_000);
   await page.goto("/");

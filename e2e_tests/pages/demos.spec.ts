@@ -2,9 +2,9 @@ import { expect, test } from "@playwright/test";
 
 import { loaded } from "./helpers/waits";
 
-const DEMOS = "https://www.youtube.com/@prepza";
+const DEMOS = "https://www.youtube.com/@testee";
 
-// The home page's closing screen links to prepza's demo videos on YouTube, in a new tab, with a
+// The home page's closing screen links to testee's demo videos on YouTube, in a new tab, with a
 // tooltip on hover.
 test("the home page links to the demo videos", async ({ page }) => {
   test.setTimeout(120_000);

@@ -1,12 +1,12 @@
 import { expect, test } from "@playwright/test";
 
-// The company that runs prepza, as the footer and the contact page name it: its legal facts are
+// The company that runs testee, as the footer and the contact page name it: its legal facts are
 // data, not wording.
 const OPERATOR = {
   name: "Arcolabs OÜ",
   registryCode: "17587452",
   address: "Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia",
-  email: "hello@prepza.ai",
+  email: "hello@testee.ai",
 };
 
 async function hrefs(links: import("@playwright/test").Locator) {
@@ -57,7 +57,7 @@ test("the footer groups its links by product, resources and company", { tag: "@p
 
 // The legal operator is within reach of every page: the footer names it, and the contact page
 // gives its registry code, address and email.
-test("the footer and the contact page name the company that runs prepza", async ({ page }) => {
+test("the footer and the contact page name the company that runs testee", async ({ page }) => {
   await page.goto("/contact");
   await expect(page.getByRole("contentinfo")).toContainText(
     `© ${new Date().getFullYear()} ${OPERATOR.name}`

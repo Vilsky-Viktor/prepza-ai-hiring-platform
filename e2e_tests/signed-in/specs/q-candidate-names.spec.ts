@@ -63,7 +63,7 @@ test("owner invites candidates with names three ways and finds one by name", asy
   await owner.getByTestId("new-candidate").filter({ visible: true }).click()
   await tabs.nth(2).click()
 
-  for (const file of ["prepza-candidates-example.csv", "prepza-candidates-example.txt"]) {
+  for (const file of ["testee-candidates-example.csv", "testee-candidates-example.txt"]) {
     const download = owner.waitForEvent("download")
     await dialog.locator(`a[download][href$="/${file}"]`).click()
     expect((await download).suggestedFilename()).toBe(file)

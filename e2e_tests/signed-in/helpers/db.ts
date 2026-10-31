@@ -11,7 +11,7 @@ export async function withDatabase<T>(
 ) {
   const client = new pg.Client({
     host: POSTGRES_HOST,
-    user: "prepza",
+    user: "testee",
     password: env("POSTGRES_PASSWORD"),
     database,
   });

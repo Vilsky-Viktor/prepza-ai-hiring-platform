@@ -38,7 +38,7 @@ fi
 source="$(e2e_tests/test_frontend.sh --source)"
 browser_slot="$(python3 e2e_tests/browser_lock.py "$$" "$source$alone")"
 # The browsers' container is named after this script, so stopping the script stops it too.
-container="prepza-browser-tests-$$"
+container="testee-browser-tests-$$"
 trap 'rm -rf "$browser_slot"; docker rm -f "$container" >/dev/null 2>&1 || true' EXIT
 e2e_tests/test_frontend.sh "$source"
 # The backend services healthy before the run; afterwards, those that restarted during it are

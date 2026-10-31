@@ -3,7 +3,7 @@ import { expect, type Page, test } from "@playwright/test";
 import { shot } from "./helpers/screenshots";
 import { loaded } from "./helpers/waits";
 
-const KEPT = "prepza_ref";
+const KEPT = "testee_ref";
 
 async function referral(page: Page) {
   return (await page.context().cookies()).find((cookie) => cookie.name === KEPT);

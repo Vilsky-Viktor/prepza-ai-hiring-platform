@@ -52,7 +52,7 @@ test("the home page has a title, a description, a preview image and its company 
 }) => {
   await page.goto("/");
 
-  await expect(page).toHaveTitle(/· prepza\.$/);
+  await expect(page).toHaveTitle(/· testee\.$/);
   expect(await head(page, 'meta[name="description"]', "content")).toBeTruthy();
   expect(await head(page, 'meta[property="og:image"]', "content")).toBeTruthy();
   const data = await page

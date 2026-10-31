@@ -5,12 +5,12 @@
 # named "Load <run> <n>" and candidates at delivered+load-<run>-candidate-<n>@resend.dev.
 set -euo pipefail
 
-postgres="${E2E_POSTGRES:-prepza-postgres-1}"
+postgres="${E2E_POSTGRES:-testee-postgres-1}"
 companies="name ~ '^Load [a-z0-9]+ [0-9]+\$'"
 candidates="email ~ '^delivered\\+load-[a-z0-9]+-candidate-[0-9]+@resend\\.dev\$'"
 
 sql() {
-  docker exec "$postgres" psql -U prepza -d "$1" -tAc "$2"
+  docker exec "$postgres" psql -U testee -d "$1" -tAc "$2"
 }
 
 # Quoted and comma-separated; '' when there's none, which matches nothing.

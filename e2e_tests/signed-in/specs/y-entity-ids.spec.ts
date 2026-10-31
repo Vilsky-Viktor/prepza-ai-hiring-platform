@@ -6,7 +6,7 @@ import { shot } from "../helpers/screenshots"
 import { ownerEmail, throwawayEmail } from "../helpers/users"
 
 // Each page a complaint may be about has "copy id", so a user can quote its ID when writing to
-// prepza: a company, an interview and a candidate, each copying its own.
+// testee: a company, an interview and a candidate, each copying its own.
 test("the company, interview and candidate pages copy their IDs", async ({ signInAs }) => {
   const owner = await signInAs(ownerEmail())
   await owner.context().grantPermissions(["clipboard-read", "clipboard-write"])

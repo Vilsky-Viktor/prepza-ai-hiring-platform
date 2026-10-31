@@ -7,7 +7,7 @@ import { shot } from "../helpers/screenshots"
 import { ownerEmail, throwawayEmail } from "../helpers/users"
 
 // The company's own site, on one of its allowed domains: it embeds the interview with
-// the hosted script and hears when the candidate has finished. It calls Prepza.embed before the
+// the hosted script and hears when the candidate has finished. It calls Testee.embed before the
 // script has loaded (the documented stub queues it) and includes the script twice by mistake.
 // The dev server compiles a page on its first request in each browser; a poll waits that long.
 const LOADED = { timeout: 60_000 }
@@ -20,12 +20,12 @@ function sitePage(siteUrl: string, inviteUrl: string) {
     <script>
       window.events = []
       window.messages = []
-      // prepza's messages only: a browser or its dev tools may post others.
+      // testee's messages only: a browser or its dev tools may post others.
       window.addEventListener("message", (event) => {
-        if (event.data && event.data.source === "prepza") window.messages.push(event.data)
+        if (event.data && event.data.source === "testee") window.messages.push(event.data)
       })
-      window.Prepza = window.Prepza || { q: [], embed: function (o) { this.q.push(o) } }
-      Prepza.embed({
+      window.Testee = window.Testee || { q: [], embed: function (o) { this.q.push(o) } }
+      Testee.embed({
         element: "#interview",
         url: ${JSON.stringify(inviteUrl)},
         theme: "dark",
@@ -109,12 +109,12 @@ test("a company's own site embeds a candidate's interview and hears it finish", 
   await site.goto(`${SITE}/apply`)
   const frame = site.frameLocator("iframe")
 
-  // No sign-in, no prepza header or footer: the invitation, then the questions in place.
+  // No sign-in, no testee header or footer: the invitation, then the questions in place.
   // The invitation's one button starts it.
   const start = frame.getByRole("main").getByRole("button")
   await expect(start).toBeVisible()
   await expect(frame.locator("header, footer")).toHaveCount(0)
-  // The SDK asked for the dark theme: prepza's dark colors, as the company has none of its own.
+  // The SDK asked for the dark theme: testee's dark colors, as the company has none of its own.
   await expect(frame.locator("html")).toHaveCSS("--background", "#0a0a0a")
   await shot(site, "invitation")
   // The frame fits its content and stops: a page sized by the screen (the frame's own height)

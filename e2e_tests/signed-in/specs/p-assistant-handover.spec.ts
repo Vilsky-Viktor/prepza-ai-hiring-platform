@@ -3,11 +3,11 @@ import { CONVERSATION, events, openPanel } from "../helpers/assistant";
 import { shot } from "../helpers/screenshots";
 import { ownerEmail } from "../helpers/users";
 
-// The assistant's panel signed in: when a call fails on prepza's side, the answer hands the
+// The assistant's panel signed in: when a call fails on testee's side, the answer hands the
 // user over to a person with a link to the contact page. The answer is stubbed in the browser
 // (no OpenAI in tests, and no local service has to go down).
 
-test("a call that failed on prepza's side links the contact page", async ({ signInAs }) => {
+test("a call that failed on testee's side links the contact page", async ({ signInAs }) => {
   const owner = await signInAs(ownerEmail());
   await owner.route("**/api/assistant/chat", (route) =>
     route.fulfill({

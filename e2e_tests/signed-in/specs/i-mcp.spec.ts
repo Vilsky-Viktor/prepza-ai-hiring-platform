@@ -111,7 +111,7 @@ test("the MCP server's instructions fill a phone's screen", async ({ signInAs })
 
 // An AI app sends the user to /connect to allow it. A request the API doesn't know (expired or
 // already answered) says so, with nothing to answer; a real one shows who asks, with a warning
-// for an app prepza doesn't know, and Deny (the first button) sends the browser back to the app.
+// for an app testee doesn't know, and Deny (the first button) sends the browser back to the app.
 // Real requests come from an app's OAuth, so that one is answered in the browser.
 test("the consent page asks before an AI app may use the account", async ({ signInAs }) => {
   const email = throwawayEmail("mcp-consent")
@@ -142,7 +142,7 @@ test("the consent page asks before an AI app may use the account", async ({ sign
   await expect(main.getByRole("heading", { level: 1 })).toContainText("E2E App")
   await expect(main).toContainText("e2e.example.com")
   await expect(main).toContainText(email)
-  // The warning for an app prepza doesn't know, and Deny and Allow.
+  // The warning for an app testee doesn't know, and Deny and Allow.
   await expect(main.getByRole("status")).toBeVisible()
   await expect(main.getByRole("button")).toHaveCount(2)
   await shot(user, "consent")
@@ -207,7 +207,7 @@ test("the consent page asks before an AI app may use the account", async ({ sign
 })
 
 // Allow completes the connection for real: an app on the user's computer registers and asks
-// prepza through /authorize, as Claude Code does; Allow sends the browser back to the app with a
+// testee through /authorize, as Claude Code does; Allow sends the browser back to the app with a
 // code and the state it sent, and the app exchanges the code for its tokens. The app's own page
 // isn't there, so the browser's return to it is answered by the test.
 test("Allow on the consent page connects the AI app", async ({ signInAs }) => {
@@ -268,9 +268,9 @@ test("Allow on the consent page connects the AI app", async ({ signInAs }) => {
     const tokens = await exchange()
     expect(tokens.status()).toBe(200)
     const granted = await tokens.json()
-    expect(granted.access_token).toMatch(/^pzm_/)
+    expect(granted.access_token).toMatch(/^tem_/)
     // Allowed with changes on (the default): everything.
-    expect(granted.scope).toBe("prepza")
+    expect(granted.scope).toBe("testee")
     expect((await exchange()).status()).toBe(400)
 
     // The user sees the app connected.

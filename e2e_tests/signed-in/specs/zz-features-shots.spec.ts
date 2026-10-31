@@ -84,7 +84,7 @@ test("features page: the company's screens", async ({ signInAs }) => {
     for (const input of document.querySelectorAll("input")) {
       input.value = input.value.replace(location.origin, site)
     }
-  }, "https://prepza.ai")
+  }, "https://testee.ai")
   await pair(owner, "settings")
 
   await visit(owner, `${base}?tab=candidates`)
@@ -166,7 +166,7 @@ test("features page: a candidate's question", async ({ signInAs }) => {
     for (let node = walker.nextNode(); node; node = walker.nextNode()) {
       node.textContent = node.textContent!.replace(/^https?:\/\/[^/]+/, site)
     }
-  }, "https://prepza.ai")
+  }, "https://testee.ai")
   await pair(mail, "email")
 })
 

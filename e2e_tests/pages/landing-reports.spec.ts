@@ -5,7 +5,7 @@ import { loaded } from "./helpers/waits";
 
 // The home page's "see who's best" section: one frame playing the candidates list, its PDF
 // downloaded and emailed, two candidates' pages shared to a chat, a note posted and the Slack
-// channel prepza posts to. On phones, what it does as cards.
+// channel testee posts to. On phones, what it does as cards.
 
 // Steps the demo reaches, in order (frontend/src/config/reports-demo-steps.ts), each lasting
 // over a second and a half: the PDF downloaded, then emailed; each candidate's summary in the

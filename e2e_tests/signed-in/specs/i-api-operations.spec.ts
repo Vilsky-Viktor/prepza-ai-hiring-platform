@@ -100,7 +100,7 @@ test("the API invites, updates, reminds, finds and removes a candidate", async (
   const credits = await (await call("GET", "/credits")).json();
   expect(credits.reserved).toBeGreaterThan(0);
 
-  // Invited without prepza's emails: there's no email to send again.
+  // Invited without testee's emails: there's no email to send again.
   const guest = await call("POST", candidates, {
     email: throwawayEmail("api-guest"),
     sign_in: false,

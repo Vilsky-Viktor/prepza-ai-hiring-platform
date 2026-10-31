@@ -4,7 +4,7 @@ import { REQUEST_URL } from "./helpers/env";
 import { loaded, settled } from "./helpers/waits";
 
 // The home page's info button, beside the demos (under the promise on phones), opens a guide to
-// how prepza works in a dialog that closes again.
+// how testee works in a dialog that closes again.
 test("the home page's info button opens its guide", async ({ page }) => {
   // The local dev server compiles the home page on first open.
   test.setTimeout(120_000);

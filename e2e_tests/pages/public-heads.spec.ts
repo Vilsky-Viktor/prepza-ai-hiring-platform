@@ -30,8 +30,8 @@ const LOCALIZED = [
 ];
 // Pages with one address.
 const SINGLE = ["/privacy", "/terms", "/dpa", "/api-docs"];
-// Pages whose own title names prepza, so their head names it twice: a comparison, by design
-// ("prepza vs TestGorilla").
+// Pages whose own title names testee, so their head names it twice: a comparison, by design
+// ("testee vs TestGorilla").
 const NAMES_SITE_TWICE = /^(\/[a-z]{2,3})?\/compare\/[^/]+$/;
 // hreflang codes: two letters, a script where one is named, and the default.
 const HREFLANG = /^([a-z]{2}(-[A-Z][a-z]{3})?|x-default)$/;
@@ -85,11 +85,11 @@ async function readHead(request: APIRequestContext, path: string): Promise<Head>
 function checkHead(head: Head, address: string) {
   const one = (key: string) => head.meta[key]?.[0];
 
-  expect(head.title, address).toMatch(/^.+ · prepza\.$/);
+  expect(head.title, address).toMatch(/^.+ · testee\.$/);
 
   // The page's own title, then the site's name once.
   if (!NAMES_SITE_TWICE.test(new URL(address).pathname)) {
-    expect(head.title.match(/prepza/g), address).toHaveLength(1);
+    expect(head.title.match(/testee/g), address).toHaveLength(1);
   }
 
   expect(one("description"), address).toBeTruthy();

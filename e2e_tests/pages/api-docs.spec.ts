@@ -73,7 +73,7 @@ test("the developer docs show the web hooks and their events", async ({ page }) 
     "/api-docs?tab=webhooks",
   );
   const code = page.locator("main code");
-  await expect(code.filter({ hasText: /^Prepza-Signature$/ }).first()).toBeVisible();
+  await expect(code.filter({ hasText: /^Testee-Signature$/ }).first()).toBeVisible();
   await expect(code.filter({ hasText: /^candidate\.finished$/ }).first()).toBeVisible();
   // A finished candidate's results never change, so nothing is sent after it.
   await expect(code.filter({ hasText: /^candidate\.rescored$/ })).toHaveCount(0);
@@ -85,7 +85,7 @@ test("the developer docs show the web hooks and their events", async ({ page }) 
 // The script and how to embed the interview.
 test("the developer docs show the SDK", async ({ page }) => {
   await page.goto("/api-docs?tab=sdk");
-  await expect(page.locator("main pre").first()).toContainText("Prepza.embed(");
+  await expect(page.locator("main pre").first()).toContainText("Testee.embed(");
 });
 
 test("the developer docs show the objects", async ({ page }) => {

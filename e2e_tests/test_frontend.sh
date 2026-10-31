@@ -36,7 +36,7 @@ else
   compose=(docker-compose)
 fi
 
-lock="$(git rev-parse --git-common-dir)/prepza-browser-runs/build"
+lock="$(git rev-parse --git-common-dir)/testee-browser-runs/build"
 mkdir -p "$(dirname "$lock")"
 
 # The build lock holds the builder's pid; a lock whose builder is gone is taken over.
@@ -57,7 +57,7 @@ container="$("${compose[@]}" --profile test ps -q frontend-test 2>/dev/null || t
 built=""
 
 if [[ -n "$container" ]]; then
-  built="$(docker inspect -f '{{index .Config.Labels "prepza.frontend-source"}} {{.State.Running}}' "$container")"
+  built="$(docker inspect -f '{{index .Config.Labels "testee.frontend-source"}} {{.State.Running}}' "$container")"
 fi
 
 if [[ "$built" != "$source true" ]]; then

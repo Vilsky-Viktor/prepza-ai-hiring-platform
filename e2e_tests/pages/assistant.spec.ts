@@ -36,7 +36,7 @@ function welcomeQuestions(panel: Locator) {
   return panel.getByRole("list").getByRole("button");
 }
 
-test("a visitor asks the assistant about prepza", { tag: "@phone" }, async ({ page }) => {
+test("a visitor asks the assistant about testee", { tag: "@phone" }, async ({ page }) => {
   await helpAnswers(page, [{ delta: "Each candidate costs " }, { delta: "**$1–3**." }]);
   const panel = await openPanel(page);
 
@@ -193,9 +193,9 @@ test("a reload brings a visitor's chat back, but not an old one, and a closed pa
   await expect(again.getByRole("list").getByText("A hiring test.")).toBeVisible();
 
   await page.evaluate(() => {
-    const kept = JSON.parse(sessionStorage.getItem("prepza:assistant:visitor") ?? "{}");
+    const kept = JSON.parse(sessionStorage.getItem("testee:assistant:visitor") ?? "{}");
     kept.lastAt = new Date(Date.now() - 31 * 60_000).toISOString();
-    sessionStorage.setItem("prepza:assistant:visitor", JSON.stringify(kept));
+    sessionStorage.setItem("testee:assistant:visitor", JSON.stringify(kept));
   });
   await page.reload();
   await loaded(page);

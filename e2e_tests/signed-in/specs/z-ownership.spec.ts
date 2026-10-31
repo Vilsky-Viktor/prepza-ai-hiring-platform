@@ -90,7 +90,7 @@ test("the owner makes an admin the owner, and an account owning a shared company
     ann,
     "POST",
     `/v1/manage/webhooks?company_id=${company.id}`,
-    { url: "https://example.com/prepza" }
+    { url: "https://example.com/testee" }
   )
   const deleted = ann.waitForResponse(
     (response) => response.url().endsWith("/accounts/me") && response.request().method() === "DELETE",

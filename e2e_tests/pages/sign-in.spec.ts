@@ -11,7 +11,7 @@ test("the sign-in card asks about emails only on a browser not signed in before"
   await expect(offers).toBeVisible();
 
   await page.evaluate(() =>
-    localStorage.setItem("prepza:signed-in-before", "1"),
+    localStorage.setItem("testee:signed-in-before", "1"),
   );
   await page.reload();
   await expect(page.getByTestId("sign-in-google")).toBeVisible();

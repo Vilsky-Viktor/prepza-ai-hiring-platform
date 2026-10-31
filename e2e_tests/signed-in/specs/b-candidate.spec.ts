@@ -102,7 +102,7 @@ test("candidate takes the interview from the invite link", async ({
   await expect(footer).toHaveCount(0);
   await expect(candidate.locator("button[aria-pressed]")).toHaveCount(0);
   await shot(candidate, "done");
-  // A company's interview shows the company only: no prepza header or footer, finished too.
+  // A company's interview shows the company only: no testee header or footer, finished too.
   await expect(candidate.locator("header, footer")).toHaveCount(0);
 
   // The invite link now says the interview is finished, in an info card instead of the start.

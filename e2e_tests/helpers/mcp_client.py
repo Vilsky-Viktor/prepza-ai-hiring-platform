@@ -136,7 +136,7 @@ def authorize(client_id: str, challenge: str) -> tuple[str, str]:
     request_id = location.split("request=", 1)[1]
     # The browser that asked is marked; only it may allow the request.
     marked = headers.get("Set-Cookie", "").split(";", 1)[0]
-    check(marked == f"prepza_connect={request_id}", f"authorize marks the browser: {marked}")
+    check(marked == f"testee_connect={request_id}", f"authorize marks the browser: {marked}")
 
     return request_id, marked
 
@@ -174,7 +174,7 @@ def exchange(client_id: str, code: str, verifier: str) -> dict:
     status, _, wrong = post_form(f"{SITE}/token", {**fields, "code_verifier": "x" * 50})
     check(status == 400 and wrong["error"] == "invalid_grant", f"a wrong verifier -> {status}")
     status, _, tokens = post_form(f"{SITE}/token", fields)
-    check(status == 200 and tokens["access_token"].startswith("pzm_"), f"token -> {status}")
+    check(status == 200 and tokens["access_token"].startswith("tem_"), f"token -> {status}")
     status, _, _ = post_form(f"{SITE}/token", fields)
     check(status == 400, f"the code a second time -> {status}")
 

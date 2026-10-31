@@ -7,7 +7,7 @@ import { shot } from "../helpers/screenshots"
 import { ownerEmail, throwawayEmail } from "../helpers/users"
 
 // A candidate a company's own platform sent through the API without a sign-in opens the link,
-// takes the interview without signing in to prepza, and goes back to that platform at the end.
+// takes the interview without signing in to testee, and goes back to that platform at the end.
 test("a candidate invited through the API goes back to the company's platform", async ({
   browser,
   signInAs,
@@ -45,7 +45,7 @@ test("a candidate invited through the API goes back to the company's platform", 
   const context = await browser.newContext()
   const candidate = await context.newPage()
   await visit(candidate, `/invite/${await inviteToken(email)}`)
-  // The company only: no prepza header or footer.
+  // The company only: no testee header or footer.
   await expect(candidate.locator("header, footer")).toHaveCount(0)
   // Its one button starts the interview, with no sign-in asked for.
   await expect(candidate.getByText(company.name).first()).toBeVisible()
@@ -61,7 +61,7 @@ test("a candidate invited through the API goes back to the company's platform", 
   const back = candidate.getByRole("main").locator("a")
   await expect(back).toHaveAttribute(
     "href",
-    `https://jobs.acme-e2e.com/done?step=2&prepza_invite=${candidateId}`
+    `https://jobs.acme-e2e.com/done?step=2&testee_invite=${candidateId}`
   )
   await expect(back).toContainText(company.name)
   await expect(candidate.locator("header, footer")).toHaveCount(0)

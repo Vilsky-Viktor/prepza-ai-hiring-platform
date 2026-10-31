@@ -17,7 +17,7 @@ const STALE = "6 hours";
 async function withDatabase<T>(database: string, work: (client: pg.Client) => Promise<T>) {
   const client = new pg.Client({
     host: POSTGRES_HOST,
-    user: "prepza",
+    user: "testee",
     password: env("POSTGRES_PASSWORD"),
     database,
   });
@@ -46,7 +46,7 @@ export async function addTemplate(language: string, topics: number): Promise<Tem
     const set = await client.query(
       `INSERT INTO sets (id, kind, owner_type, owner_id, title, slug, source_text, level,
          language, requirements, topic_count, created_at)
-       VALUES (gen_random_uuid(), 'template', 'platform', 'prepza', $1, $2, 'E2E', 'basic', $3,
+       VALUES (gen_random_uuid(), 'template', 'platform', 'testee', $1, $2, 'E2E', 'basic', $3,
          '[]', $4, now())
        RETURNING id`,
       [title, slug, language, topics],

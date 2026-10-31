@@ -160,7 +160,7 @@ for (const { ats, fields, key } of [
   })
 }
 
-// Breezy HR connects with one key: prepza adds the web hook in Breezy itself, so it connects
+// Breezy HR connects with one key: testee adds the web hook in Breezy itself, so it connects
 // without a dialog to follow, and its Instructions are the candidate flow alone.
 test("an owner connects Breezy HR with one key", async ({ signInAs }) => {
   const page = await openAtsPage(signInAs, "breezy")

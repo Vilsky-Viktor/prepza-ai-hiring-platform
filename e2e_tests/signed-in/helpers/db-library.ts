@@ -17,7 +17,7 @@ export async function addTemplate(
     const set = await client.query(
       `INSERT INTO sets (id, kind, owner_type, owner_id, title, source_text, level, language,
          requirements, topic_count, created_at)
-       VALUES (gen_random_uuid(), 'template', 'platform', 'prepza', $1, 'E2E', $2, 'de',
+       VALUES (gen_random_uuid(), 'template', 'platform', 'testee', $1, 'E2E', $2, 'de',
          '[]', 1, now())
        RETURNING id`,
       [title, level],
@@ -112,7 +112,7 @@ export async function multiAnswerTemplate(
     const set = await client.query(
       `INSERT INTO sets (id, kind, owner_type, owner_id, title, source_text, level, language,
          requirements, topic_count, created_at)
-       VALUES (gen_random_uuid(), 'template', 'platform', 'prepza', $1, 'E2E', 'basic', 'de',
+       VALUES (gen_random_uuid(), 'template', 'platform', 'testee', $1, 'E2E', 'basic', 'de',
          '[]', 1, now())
        RETURNING id`,
       [title],
