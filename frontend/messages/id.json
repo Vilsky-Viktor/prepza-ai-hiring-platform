@@ -12,7 +12,7 @@
     "account": "Akunmu",
     "accountNote": "Sebutkan ID ini saat kamu menulis kepada kami tentang akunmu.",
     "yourData": "Datamu",
-    "yourDataNote": "Unduh semua yang disimpan prepza. tentangmu, atau hapus akunmu.",
+    "yourDataNote": "Unduh semua yang disimpan testee. tentangmu, atau hapus akunmu.",
     "download": "Unduh dataku",
     "downloadFailed": "Datamu tidak bisa disiapkan. Coba lagi.",
     "delete": "Hapus akun",
@@ -20,7 +20,7 @@
     "noLanguage": "Bahasa tidak ditemukan.",
     "emails": {
       "title": "Email",
-      "note": "Pilih email mana yang dikirim prepza. kepadamu.",
+      "note": "Pilih email mana yang dikirim testee. kepadamu.",
       "failed": "Pengaturan email-mu gagal disimpan. Coba lagi.",
       "digest": "Ringkasan aktivitas",
       "digestNote": "Satu email sehari tentang apa yang terjadi di perusahaanmu.",
@@ -34,7 +34,7 @@
       "reminders": "Pengingat",
       "remindersNote": "Kredit hampir habis, wawancara tanpa kandidat, topik yang menunggu peninjauan.",
       "updates": "Pembaruan produk dan berita",
-      "updatesNote": "Fitur baru dan berita dari prepza.",
+      "updatesNote": "Fitur baru dan berita dari testee.",
       "promotions": "Penawaran dan promosi",
       "promotionsNote": "Diskon dan penawaran khusus.",
       "alwaysSent": "Email layanan, seperti undangan, laporan kandidat, masalah pembayaran, dan perubahan ketentuan kami, selalu dikirim."
@@ -82,7 +82,7 @@
   "signIn": {
     "title": "Masuk",
     "continueWith": "Lanjutkan dengan <name>{provider}</name>",
-    "link": "Email ini sudah punya akun prepza. Lanjutkan dengan cara kamu masuk sebelumnya, dan {provider} akan ditautkan ke akun tersebut.",
+    "link": "Email ini sudah punya akun testee. Lanjutkan dengan cara kamu masuk sebelumnya, dan {provider} akan ditautkan ke akun tersebut.",
     "consent": "Dengan masuk, kamu menyatakan berusia 16 tahun ke atas, menyetujui <terms>Ketentuan</terms>, dan telah membaca <privacy>Kebijakan privasi</privacy>.",
     "failed": "Gagal masuk. Coba lagi.",
     "verify": "Kami mengirimkan tautan untuk memverifikasi email-mu. Buka tautannya untuk mengikuti wawancara dan membuat perusahaan.",
@@ -256,7 +256,7 @@
     "pauseText": "Selama aktif, tidak ada yang bisa memulai wawancara, sesi latihan, atau pratinjau baru, dan tidak ada soal yang dibuat, dibuat ulang, atau diperiksa. Kandidat yang sudah dalam wawancara bisa menyelesaikannya.",
     "pauseFailed": "Tidak dapat mengubah jeda. Coba lagi.",
     "maintenanceTitle": "Mode pemeliharaan",
-    "maintenanceText": "Selama aktif, setiap halaman menampilkan bahwa prepza sedang dalam pemeliharaan dan layanan menolak setiap permintaan, kecuali dari superadmin. Pembayaran, email, dan tugas terjadwal tetap berjalan.",
+    "maintenanceText": "Selama aktif, setiap halaman menampilkan bahwa testee sedang dalam pemeliharaan dan layanan menolak setiap permintaan, kecuali dari superadmin. Pembayaran, email, dan tugas terjadwal tetap berjalan.",
     "maintenanceFailed": "Tidak dapat mengubah mode pemeliharaan. Coba lagi.",
     "maintenanceConfirmTitle": "Aktifkan mode pemeliharaan?",
     "maintenanceRunning": "{count, plural, =0 {Tidak ada kandidat yang sedang wawancara sekarang.} other {Kandidat yang sedang wawancara sekarang: #. Waktu mereka berhenti selama mode pemeliharaan aktif.}}",
@@ -279,13 +279,13 @@
     "emails": "Email",
     "emailSearch": "Alamat email",
     "emailSearchAction": "Cari",
-    "emailsIntro": "Cari alamat email untuk melihat dan menghentikan email yang dikirim prepza ke alamat itu, untuk orang yang memintanya kepada kami lewat email.",
-    "account": "Akun prepza",
+    "emailsIntro": "Cari alamat email untuk melihat dan menghentikan email yang dikirim testee ke alamat itu, untuk orang yang memintanya kepada kami lewat email.",
+    "account": "Akun testee",
     "accountText": "<bdi>{email}</bdi> punya akun. Perubahan di sini dicatat atas namamu.",
-    "noAccount": "Tidak ada akun prepza yang memakai alamat ini.",
+    "noAccount": "Tidak ada akun testee yang memakai alamat ini.",
     "turnOffAll": "Matikan semua email opsional",
     "companyEmails": "Email dari perusahaan",
-    "companyEmailsText": "Undangan dan pengingat yang dikirim perusahaan ke alamat ini lewat prepza. Perubahan di sini dicatat atas namamu.",
+    "companyEmailsText": "Undangan dan pengingat yang dikirim perusahaan ke alamat ini lewat testee. Perubahan di sini dicatat atas namamu.",
     "noCompanies": "Belum ada perusahaan yang mengundang alamat ini.",
     "companySending": "Email dikirim",
     "companyStopped": "Semua email dihentikan",
@@ -342,7 +342,7 @@
     "legalSend": "Email perubahannya",
     "legalConfirmTitle": "Email perubahan pada {document}?",
     "legalAudience": {
-      "everyone": "Semua pemilik akun prepza menerimanya mulai jam pengiriman berikutnya (08.00–18.00 UTC), berisi bahwa versi baru berlaku mulai <time>{date}</time>, dan melihatnya di notifikasi mereka. Dikirim sekali dan tidak bisa ditarik kembali.",
+      "everyone": "Semua pemilik akun testee menerimanya mulai jam pengiriman berikutnya (08.00–18.00 UTC), berisi bahwa versi baru berlaku mulai <time>{date}</time>, dan melihatnya di notifikasi mereka. Dikirim sekali dan tidak bisa ditarik kembali.",
       "company_editors": "Pemilik dan admin setiap perusahaan menerimanya mulai jam pengiriman berikutnya (08.00–18.00 UTC), berisi bahwa versi baru berlaku mulai <time>{date}</time>, dan melihatnya di notifikasi mereka. Dikirim sekali dan tidak bisa ditarik kembali."
     },
     "legalAsked": "Perubahan akan diemail mulai jam pengiriman berikutnya.",
@@ -427,7 +427,7 @@
       "promotions": "Penawaran",
       "notices": "Pemberitahuan penting"
     },
-    "campaignNoticeWarning": "Pemberitahuan penting sampai ke semua orang dalam audiensnya, apa pun pengaturan email mereka, dan tidak bisa dihentikan langganannya. Gunakan hanya untuk insiden keamanan, waktu henti terjadwal, atau perubahan cara kerja prepza, jangan pernah untuk mempromosikan apa pun.",
+    "campaignNoticeWarning": "Pemberitahuan penting sampai ke semua orang dalam audiensnya, apa pun pengaturan email mereka, dan tidak bisa dihentikan langganannya. Gunakan hanya untuk insiden keamanan, waktu henti terjadwal, atau perubahan cara kerja testee, jangan pernah untuk mempromosikan apa pun.",
     "campaignAudience": "Audiens",
     "campaignAudienceEveryone": "Semua orang",
     "campaignAudienceEveryoneNote": {
@@ -457,7 +457,7 @@
     "campaignTextPlaceholder": "Tulis teks di sini… Tekan Enter untuk paragraf baru.",
     "campaignButton": "Teks tombol (opsional)",
     "campaignLink": "Tautan tombol",
-    "campaignLinkPlaceholder": "Tautan tombol di prepza, misalnya /pricing (opsional)",
+    "campaignLinkPlaceholder": "Tautan tombol di testee, misalnya /pricing (opsional)",
     "campaignSaveFailed": "Kampanye tidak dapat disimpan. Silakan coba lagi.",
     "noCampaigns": "Belum ada kampanye.",
     "campaignStatus": {
@@ -537,7 +537,7 @@
       "paid": "Perusahaan yang sudah membayar",
       "unpaid": "Perusahaan yang belum membayar",
       "no_company": "Tanpa perusahaan",
-      "prepza": "prepza"
+      "testee": "testee"
     },
     "aiActionsTitle": "Per tindakan",
     "aiActions": {
@@ -703,7 +703,7 @@
       "1209600": "per tinjauan topik"
     },
     "limitKinds": {
-      "ours": "prepza",
+      "ours": "testee",
       "openai": "OpenAI",
       "resend": "Resend",
       "firebase": "Firebase",
@@ -1036,7 +1036,7 @@
     "pickTitle": "Pilih perusahaan",
     "pickText": "Tes disalin ke perusahaan yang kamu pilih, gratis dan siap dikirim ke kandidat.",
     "removeCredits": "{credits, plural, other {# kreditnya}}{candidates, plural, =0 {} other { (sekitar # kandidat)}} akan hilang dan tidak dikembalikan.",
-    "suspended": "Perusahaan ini ditangguhkan: untuk saat ini tidak bisa diubah. Hubungi hello@prepza.ai untuk tahu lebih lanjut."
+    "suspended": "Perusahaan ini ditangguhkan: untuk saat ini tidak bisa diubah. Hubungi hello@testee.ai untuk tahu lebih lanjut."
   },
   "candidates": {
     "scorecard": "Scorecard",
@@ -1137,7 +1137,7 @@
     "passMark": "Nilai lulus",
     "passMarkLabel": "Nilai lulus dalam persen",
     "markHired": "Tandai diterima",
-    "keepPrivate": "Jangan masukkan pertanyaan ini ke bank soal bersama prepza",
+    "keepPrivate": "Jangan masukkan pertanyaan ini ke bank soal bersama testee",
     "keepPrivateHelp": "Pertanyaan yang sudah dipakai ulang di wawancara lain tetap di sana",
     "answerMode": "Mode wawancara",
     "answerModeHelp": "Dalam mode klik, kandidat membaca setiap soal dan mengetuk jawabannya. Dalam mode suara, Mira, pewawancara AI, membacakan setiap soal dan kandidat menjawab dengan suara atau ketukan",
@@ -1251,7 +1251,7 @@
     "mismatch": "Email tidak cocok. Masuk dengan email undangan untuk memulai.",
     "title": "Undangan wawancara",
     "theCompany": "perusahaan",
-    "unverified": "prepza belum memverifikasi perusahaan ini."
+    "unverified": "testee belum memverifikasi perusahaan ini."
   },
   "members": {
     "joined": "Bergabung",
@@ -1286,7 +1286,7 @@
     "unavailable": "Harga belum tersedia saat ini. Silakan coba lagi dalam satu menit.",
     "title": "Harga",
     "intro": "Bayar per kandidat. Membuat wawancara gratis, dan tidak ada langganan.",
-    "description": "Harga prepza: membuat wawancara gratis, dan Anda hanya membayar untuk setiap kandidat yang menjawab. Tanpa langganan atau biaya per pengguna, dan kredit tidak pernah kedaluwarsa.",
+    "description": "Harga testee: membuat wawancara gratis, dan Anda hanya membayar untuk setiap kandidat yang menjawab. Tanpa langganan atau biaya per pengguna, dan kredit tidak pernah kedaluwarsa.",
     "test": "Membuat wawancara",
     "free": "Gratis",
     "candidate": "Setiap kandidat yang menjawab minimal satu soal",
@@ -1320,14 +1320,14 @@
   "docs": {
     "title": "Dokumen hukum",
     "metaTitle": "Dokumen kepatuhan untuk rekrutmen",
-    "intro": "Dokumen untuk perusahaan yang menilai kandidat dengan prepza: petunjuk, templat, dan perjanjian pemrosesan data.",
+    "intro": "Dokumen untuk perusahaan yang menilai kandidat dengan testee: petunjuk, templat, dan perjanjian pemrosesan data.",
     "englishOnly": "Dokumen ini hanya tersedia dalam bahasa Inggris.",
     "download": "Unduh {format}",
     "readOnline": "Baca online",
     "items": {
       "instructions": {
         "title": "Petunjuk untuk perusahaan",
-        "description": "Arti nilai, tinjauan oleh manusia, memilih nilai lulus, waktu tambahan, dan kapan tidak memakai prepza."
+        "description": "Arti nilai, tinjauan oleh manusia, memilih nilai lulus, waktu tambahan, dan kapan tidak memakai testee."
       },
       "notices": {
         "title": "Templat pemberitahuan kandidat",
@@ -1335,11 +1335,11 @@
       },
       "dpia": {
         "title": "Templat DPIA",
-        "description": "Penilaian dampak perlindungan data dengan bagian prepza yang sudah diisi, untuk kamu lengkapi."
+        "description": "Penilaian dampak perlindungan data dengan bagian testee yang sudah diisi, untuk kamu lengkapi."
       },
       "dpa": {
         "title": "Perjanjian pemrosesan data",
-        "description": "Cara prepza memproses data kandidatmu atas namamu. Ini bagian dari ketentuan."
+        "description": "Cara testee memproses data kandidatmu atas namamu. Ini bagian dari ketentuan."
       }
     }
   },
@@ -1396,7 +1396,7 @@
     "more": "Cara kerjanya",
     "demos": "Video",
     "demosTooltip": "Tonton demo di YouTube",
-    "videoTooltip": "Lihat cara kerja prepza",
+    "videoTooltip": "Lihat cara kerja testee",
     "watchVideo": "Tonton video",
     "howItWorks": "Cara kerjanya",
     "askAgent": "tanya Mira",
@@ -1553,7 +1553,7 @@
         },
         "help": {
           "title": "Bantuan",
-          "text": "Jawaban cara melakukan sesuatu dari panduan prepza, dalam bahasamu."
+          "text": "Jawaban cara melakukan sesuatu dari panduan testee, dalam bahasamu."
         },
         "actions": {
           "title": "Tindakan",
@@ -1633,8 +1633,8 @@
         "time": "Tes yang harus dipilih atau ditulis untuk setiap posisi",
         "cost": "Biaya bulanan, sedang merekrut atau tidak"
       },
-      "prepza": {
-        "name": "prepza",
+      "testee": {
+        "name": "testee",
         "checks": "Ditulis AI khusus untuk posisimu",
         "time": "~10 mnt per posisi, tanpa waktu per kandidat",
         "cost": "{price} per kandidat yang menjawab"
@@ -1670,13 +1670,13 @@
   "faq": {
     "title": "Pertanyaan yang sering diajukan",
     "intro": "Tidak menemukan jawabannya? Tanyakan ke Mira, asisten AI (tombol di bagian atas halaman), atau kirim pesan ke alamat di kebijakan privasi.",
-    "description": "Jawaban tentang prepza: cara wawancara dibuat dari deskripsi pekerjaan, apa yang dilihat kandidat, harga dan kredit, hasil, integrasi ATS, bahasa, dan data Anda."
+    "description": "Jawaban tentang testee: cara wawancara dibuat dari deskripsi pekerjaan, apa yang dilihat kandidat, harga dan kredit, hasil, integrasi ATS, bahasa, dan data Anda."
   },
   "contact": {
     "title": "Hubungi kami",
     "intro": "Ada pertanyaan, ide, tawaran kemitraan, atau ada yang tidak berfungsi? Tulis pesan untuk kami dan kami akan membalas lewat email.",
     "idHint": "Menulis tentang perusahaan, wawancara, kandidat, atau akunmu? Tempelkan ID-nya: “salin id” ada di bawah namanya, dan ID akunmu ada di menu akun.",
-    "description": "Hubungi tim prepza: pertanyaan tentang tes seleksi karyawan, ide, tawaran kemitraan, atau ada yang tidak berfungsi. Kami membalas lewat email.",
+    "description": "Hubungi tim testee: pertanyaan tentang tes seleksi karyawan, ide, tawaran kemitraan, atau ada yang tidak berfungsi. Kami membalas lewat email.",
     "name": "Nama",
     "email": "Email",
     "message": "Pesan",
@@ -1694,23 +1694,23 @@
   },
   "about": {
     "title": "Tentang kami",
-    "intro": "prepza membantu perusahaan menemukan orang yang benar-benar menguasai pekerjaannya: wawancara yang adil dan berbatas waktu, dibuat dari deskripsi pekerjaanmu, dengan harga yang terjangkau bagi tim mana pun. Dan siapa pun yang sedang bersiap untuk wawancara bisa berlatih gratis.",
-    "description": "prepza mengubah deskripsi pekerjaan menjadi wawancara yang adil dan berbatas waktu dalam hitungan menit, dengan harga terjangkau bagi tim mana pun. Siapa saja juga bisa berlatih wawancara gratis.",
+    "intro": "testee membantu perusahaan menemukan orang yang benar-benar menguasai pekerjaannya: wawancara yang adil dan berbatas waktu, dibuat dari deskripsi pekerjaanmu, dengan harga yang terjangkau bagi tim mana pun. Dan siapa pun yang sedang bersiap untuk wawancara bisa berlatih gratis.",
+    "description": "testee mengubah deskripsi pekerjaan menjadi wawancara yang adil dan berbatas waktu dalam hitungan menit, dengan harga terjangkau bagi tim mana pun. Siapa saja juga bisa berlatih wawancara gratis.",
     "company": {
       "title": "Mengapa kami ada",
       "problem": "Rekrutmen sering bergantung pada CV dan percakapan yang menyenangkan, dan keduanya bisa menyesatkan. Alat asesmen yang membantu dipatok dengan harga untuk perusahaan besar, dengan paket tahunan dan biaya per pengguna, sehingga kebanyakan tim tidak memakainya.",
-      "approach": "prepza mengubah deskripsi pekerjaan menjadi wawancara berbatas waktu dalam hitungan menit, untuk posisi apa pun. Setiap kandidat mendapat soalnya sendiri, kamu melihat siapa yang menguasai pekerjaan dan alasannya, dan kamu hanya membayar untuk kandidat yang benar-benar mengikutinya.",
+      "approach": "testee mengubah deskripsi pekerjaan menjadi wawancara berbatas waktu dalam hitungan menit, untuk posisi apa pun. Setiap kandidat mendapat soalnya sendiri, kamu melihat siapa yang menguasai pekerjaan dan alasannya, dan kamu hanya membayar untuk kandidat yang benar-benar mengikutinya.",
       "practice": "Kami juga ingin persiapan wawancara gratis untuk semua orang. Siapa pun bisa mengikuti wawancara latihan kami untuk suatu posisi, melihat nilainya dan semua jawaban yang benar, lalu berlatih lagi, tanpa biaya."
     },
     "founder": {
-      "quote": "Merekrut dengan baik seharusnya bukan hak istimewa perusahaan besar dengan anggaran besar. Aku membangun prepza agar tim mana pun bisa mengubah deskripsi pekerjaan menjadi wawancara yang adil dalam hitungan menit, melihat siapa yang benar-benar menguasai pekerjaan, dan hanya membayar untuk kandidat yang mengikutinya. Semoga prepza membantumu menemukan orang yang tepat lebih cepat.",
-      "role": "Pendiri tunggal prepza"
+      "quote": "Merekrut dengan baik seharusnya bukan hak istimewa perusahaan besar dengan anggaran besar. Aku membangun testee agar tim mana pun bisa mengubah deskripsi pekerjaan menjadi wawancara yang adil dalam hitungan menit, melihat siapa yang benar-benar menguasai pekerjaan, dan hanya membayar untuk kandidat yang mengikutinya. Semoga testee membantumu menemukan orang yang tepat lebih cepat.",
+      "role": "Pendiri tunggal testee"
     }
   },
   "news": {
-    "title": "Berita prepza",
-    "description": "Yang baru di prepza: fitur baru, peningkatan, dan pembaruan.",
-    "metaDescription": "Berita prepza: fitur, bahasa, dan peningkatan baru pada tes keterampilan, wawancara AI, dan latihan gratis begitu dirilis. Ikuti di sini atau lewat RSS.",
+    "title": "Berita testee",
+    "description": "Yang baru di testee: fitur baru, peningkatan, dan pembaruan.",
+    "metaDescription": "Berita testee: fitur, bahasa, dan peningkatan baru pada tes keterampilan, wawancara AI, dan latihan gratis begitu dirilis. Ikuti di sini atau lewat RSS.",
     "empty": "Belum ada berita.",
     "rss": "Feed RSS"
   },
@@ -1746,8 +1746,8 @@
       "legal_dpa": "Perjanjian pemrosesan data baru berlaku mulai <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "Ketentuan prepza berubah pada <time>{date}</time>.",
-      "privacy": "Kebijakan privasi prepza berubah pada <time>{date}</time>.",
+      "terms": "Ketentuan testee berubah pada <time>{date}</time>.",
+      "privacy": "Kebijakan privasi testee berubah pada <time>{date}</time>.",
       "dpa": "Perjanjian pemrosesan data berubah pada <time>{date}</time>."
     },
     "readLegal": "Baca versi baru",
@@ -1769,7 +1769,7 @@
     "sent": "Laporan dikirim ke <bdi>{email}</bdi>",
     "sendFailed": "Laporan tidak bisa dikirim.",
     "orSummary": "Atau kirim lewat",
-    "via": "Dikirim dari prepza",
+    "via": "Dikirim dari testee",
     "candidatesFileName": "Kandidat {title}",
     "candidateCount": "{count, plural, other {# kandidat}}",
     "passMark": "nilai lulus {mark}",
@@ -1815,7 +1815,7 @@
   },
   "openToOffers": {
     "title": "Terbuka untuk tawaran kerja",
-    "text": "Perusahaan yang merekrut lewat prepza akan melihat nama, profil LinkedIn, dan hasil latihan terbarumu, serta bisa mengundangmu ke wawancara. Matikan kapan saja.",
+    "text": "Perusahaan yang merekrut lewat testee akan melihat nama, profil LinkedIn, dan hasil latihan terbarumu, serta bisa mengundangmu ke wawancara. Matikan kapan saja.",
     "linkedin": "Profil LinkedIn",
     "linkedinHint": "linkedin.com/in/nama-kamu",
     "save": "Simpan",
@@ -1846,8 +1846,8 @@
   },
   "maintenance": {
     "title": "Sedang dalam pemeliharaan",
-    "text": "prepza sedang dalam pemeliharaan. Kami akan segera kembali.",
-    "notice": "Mode pemeliharaan aktif: hanya superadmin yang dapat menggunakan prepza sekarang."
+    "text": "testee sedang dalam pemeliharaan. Kami akan segera kembali.",
+    "notice": "Mode pemeliharaan aktif: hanya superadmin yang dapat menggunakan testee sekarang."
   },
   "content": {
     "updated": "Terakhir diperbarui",
@@ -1857,7 +1857,7 @@
     "startButton": "Buat tes"
   },
   "compare": {
-    "title": "Bandingkan prepza",
+    "title": "Bandingkan testee",
     "metaTitle": "Perbandingan alat tes seleksi karyawan",
     "intro": "Perbandingan bersumber dengan alat tes seleksi karyawan lainnya: cara tesnya dibuat, berapa biayanya, dan kapan masing-masing lebih cocok."
   },
@@ -1882,7 +1882,7 @@
   "ats": {
     "statusConnected": "terhubung",
     "flowTitle": "Cara kandidat masuk dari {ats}",
-    "flowStage": "Di {ats}, tambahkan tahap khusus untuk prepza ke pipeline lowongan, misalnya “Tes keterampilan prepza”, supaya tidak pernah tercampur dengan alat lain yang kamu pakai.",
+    "flowStage": "Di {ats}, tambahkan tahap khusus untuk testee ke pipeline lowongan, misalnya “Tes keterampilan testee”, supaya tidak pernah tercampur dengan alat lain yang kamu pakai.",
     "flowLink": "Di sini, tautkan lowongan dan pilih tahap itu.",
     "flowMove": "Saat kamu siap menguji kandidat, pindahkan dia ke tahap itu.",
     "flowInvite": "Kami akan mengundangnya ke wawancara yang tertaut untukmu, sama seperti kalau kamu mengundangnya sendiri. Kredit dan batasnya berlaku sama.",
@@ -1974,7 +1974,7 @@
     "connected": "Slack sudah terhubung.",
     "disconnectFailed": "Slack tidak bisa diputuskan.",
     "disconnectTitle": "Putuskan Slack?",
-    "disconnectText": "Notifikasi perusahaanmu tidak lagi dikirim ke channel, dan aplikasi prepza dihapus dari Slack-mu.",
+    "disconnectText": "Notifikasi perusahaanmu tidak lagi dikirim ke channel, dan aplikasi testee dihapus dari Slack-mu.",
     "notConnected": "Slack belum terhubung. Tambahkan untuk menerima notifikasi perusahaanmu di channel pilihanmu.",
     "kindsTitle": "Notifikasi di Slack",
     "kindsText": "Channel menerimanya begitu terjadi. Semua orang tetap melihatnya di ikon lonceng.",
@@ -1989,10 +1989,10 @@
       "auto_top_up_failed": "Isi ulang otomatis gagal"
     },
     "instructionsTitle": "Cara Slack menerima notifikasimu",
-    "stepAdd": "Klik “Tambahkan ke Slack”: Slack terbuka dan memintamu mengizinkan prepza di workspace-mu.",
+    "stepAdd": "Klik “Tambahkan ke Slack”: Slack terbuka dan memintamu mengizinkan testee di workspace-mu.",
     "stepChannel": "Pilih channel tempat timmu akan melihatnya, misalnya #hiring, lalu izinkan.",
     "stepKinds": "Kembali ke sini, pilih notifikasi mana yang dikirim ke sana: kandidat yang selesai, undangan yang tidak terkirim, dan lainnya.",
-    "stepPrivacy": "prepza hanya bisa memposting ke channel itu. prepza tidak bisa membaca Slack-mu, dan memutuskannya akan menghapus prepza."
+    "stepPrivacy": "testee hanya bisa memposting ke channel itu. testee tidak bisa membaca Slack-mu, dan memutuskannya akan menghapus testee."
   },
   "api": {
     "name": "API",
@@ -2029,12 +2029,12 @@
     "removeKeyTitle": "Hapus kunci ini?",
     "removeKeyText": "Semua yang memakai “<bdi>{name}</bdi>” akan langsung berhenti berfungsi.",
     "webhooksTitle": "Webhook",
-    "webhooksText": "prepza memberi tahu alamat-alamat ini saat kandidat mulai, selesai (beserta hasilnya), atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap. Setiap permintaan ditandatangani dengan secret alamat tersebut.",
+    "webhooksText": "testee memberi tahu alamat-alamat ini saat kandidat mulai, selesai (beserta hasilnya), atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap. Setiap permintaan ditandatangani dengan secret alamat tersebut.",
     "noWebhooks": "Belum ada webhook.",
     "failing": "Dijeda: alamat ini tidak merespons selama 3 hari, jadi tidak ada event yang dikirim ke sini. Event uji yang diterima akan mengaktifkannya lagi.",
     "addWebhook": "Tambah webhook",
     "addWebhookTitle": "Webhook baru",
-    "webhookUrl": "Alamat HTTPS, mis. https://example.com/prepza",
+    "webhookUrl": "Alamat HTTPS, mis. https://example.com/testee",
     "webhookCreatedTitle": "Secret webhook-mu",
     "webhookCreatedText": "Gunakan untuk memeriksa tanda tangan setiap permintaan (lihat dokumentasi pengembang). Salin sekarang: secret ini tidak akan ditampilkan lagi.",
     "copySecret": "Salin secret",
@@ -2057,7 +2057,7 @@
     "results": {
       "delivered": "Terkirim",
       "skipped": "Dilewati",
-      "unreadable": "Tidak terkirim: ada masalah di pihak prepza.",
+      "unreadable": "Tidak terkirim: ada masalah di pihak testee.",
       "answered": "Dijawab {status}",
       "error": "Gagal: {error}"
     },
@@ -2175,12 +2175,12 @@
     "radius": "Kelengkungan kartu",
     "buttonRadius": "Kelengkungan tombol",
     "reset": "Atur ulang",
-    "resetPrepza": "Kembalikan ke bawaan prepza",
+    "resetTestee": "Kembalikan ke bawaan testee",
     "themes": {
       "light": "Tema terang",
       "dark": "Tema gelap"
     },
-    "resetDone": "Kembali ke bawaan prepza",
+    "resetDone": "Kembali ke bawaan testee",
     "failed": "Brand tidak dapat disimpan.",
     "preview": "Pratinjau",
     "sampleTitle": "Manajer HR",
@@ -2192,7 +2192,7 @@
   },
   "apiDocs": {
     "title": "Dokumentasi pengembang",
-    "description": "Dokumentasi pengembang prepza: dapatkan kunci API, buat wawancara, undang dan kelola kandidat, baca hasilnya, terima lewat webhook, dan sematkan wawancara dengan SDK.",
+    "description": "Dokumentasi pengembang testee: dapatkan kunci API, buat wawancara, undang dan kelola kandidat, baca hasilnya, terima lewat webhook, dan sematkan wawancara dengan SDK.",
     "tabs": {
       "api": "API",
       "webhooks": "Webhook",
@@ -2254,8 +2254,8 @@
     "deleteTitle": "Hapus obrolan ini?",
     "deleteText": "Obrolan dan jawabannya dihapus permanen.",
     "emptyTitle": "Hai, saya Mira, asisten AI-mu",
-    "emptyText": "Kandidat, wawancara, kredit, integrasi, dan cara kerja prepza, dari apa yang bisa kamu lihat di perusahaanmu. AI bisa keliru; yang berlaku adalah halaman yang ditautkannya.",
-    "emptyTitleFaq": "Hai, saya Mira, asisten AI prepza",
+    "emptyText": "Kandidat, wawancara, kredit, integrasi, dan cara kerja testee, dari apa yang bisa kamu lihat di perusahaanmu. AI bisa keliru; yang berlaku adalah halaman yang ditautkannya.",
+    "emptyTitleFaq": "Hai, saya Mira, asisten AI testee",
     "pageQuestion": "Apa yang bisa saya lakukan di halaman ini?",
     "pages": {
       "open": "Buka",
@@ -2294,9 +2294,9 @@
     },
     "welcome": {
       "signed_out": {
-        "text": "Cara kerja prepza, biayanya, dan apa yang dilihat kandidat, dijawab dari tanya jawab prepza. Masuk untuk bertanya tentang perusahaan dan kandidatmu.",
+        "text": "Cara kerja testee, biayanya, dan apa yang dilihat kandidat, dijawab dari tanya jawab testee. Masuk untuk bertanya tentang perusahaan dan kandidatmu.",
         "questions": {
-          "what": "Apa itu prepza?",
+          "what": "Apa itu testee?",
           "pricing": "Berapa biayanya?",
           "takeTest": "Bagaimana kandidat mengerjakan tes?",
           "account": "Apakah kandidat perlu akun?"
@@ -2471,7 +2471,7 @@
       "chargeback_reversed": "Chargeback dibatalkan",
       "referral": "Hadiah referal",
       "referral_reversed": "Hadiah referal ditarik",
-      "adjustment": "Penyesuaian oleh prepza"
+      "adjustment": "Penyesuaian oleh testee"
     },
     "automatic": "Isi ulang otomatis",
     "invoice": "Faktur",
@@ -2482,16 +2482,16 @@
   },
   "aiApps": {
     "name": "Server MCP",
-    "rowText": "Hubungkan Claude, ChatGPT, dan aplikasi AI lainnya ke prepza.",
+    "rowText": "Hubungkan Claude, ChatGPT, dan aplikasi AI lainnya ke testee.",
     "title": "Aplikasi AI",
     "subtitle": "Aplikasi bertindak sebagai kamu, di setiap perusahaan tempatmu bergabung, dengan hak aksesmu.",
-    "instructionsTitle": "Hubungkan aplikasi AI ke prepza",
+    "instructionsTitle": "Hubungkan aplikasi AI ke testee",
     "serverTitle": "Alamat server",
     "serverText": "Tempel di aplikasi AI-mu sebagai custom connector (server MCP).",
     "addTo": "Tambahkan ke <app>{name}</app>",
     "claudeOpen": "Di Claude, buka:",
     "claudePaste": "Beri nama {name}, tempel alamat server, lalu pilih “Add”.",
-    "allowOnPrepza": "Pilih “Connect”, lalu “Izinkan” di halaman prepza yang terbuka.",
+    "allowOnTestee": "Pilih “Connect”, lalu “Izinkan” di halaman testee yang terbuka.",
     "claudeCode": "Di Claude Code, jalankan:",
     "copyCommand": "Salin perintah",
     "commandCopied": "Perintah tersalin",
@@ -2504,7 +2504,7 @@
     "lastUsed": "terakhir dipakai <time>{date}</time>",
     "neverUsed": "belum dipakai",
     "disconnectTitle": "Putuskan <bdi>{client}</bdi>?",
-    "disconnectText": "<bdi>{client}</bdi> berhenti bekerja dengan prepza sampai kamu menghubungkannya lagi.",
+    "disconnectText": "<bdi>{client}</bdi> berhenti bekerja dengan testee sampai kamu menghubungkannya lagi.",
     "disconnectFailed": "Aplikasi tidak bisa diputuskan. Coba lagi.",
     "allowTitle": "Izinkan aplikasi AI di perusahaan ini",
     "allowText": "Anggota bisa memakai wawancara dan kandidat perusahaan ini dari aplikasi AI yang mereka hubungkan. Jika nonaktif, aplikasi AI tidak bisa membaca atau mengubah apa pun di sini.",
@@ -2512,22 +2512,22 @@
   },
   "connect": {
     "pageTitle": "Hubungkan aplikasi AI",
-    "title": "Hubungkan <name><bdi>{client}</bdi></name> ke prepza",
-    "titleAny": "Hubungkan aplikasi AI ke prepza",
-    "signInText": "Masuk untuk memilih apakah aplikasi ini boleh memakai akun prepza-mu.",
+    "title": "Hubungkan <name><bdi>{client}</bdi></name> ke testee",
+    "titleAny": "Hubungkan aplikasi AI ke testee",
+    "signInText": "Masuk untuk memilih apakah aplikasi ini boleh memakai akun testee-mu.",
     "signIn": "Masuk untuk melanjutkan",
-    "who": "<bdi>{client}</bdi> (<bdi>{host}</bdi>) ingin memakai akun prepza-mu, <bdi>{email}</bdi>.",
+    "who": "<bdi>{client}</bdi> (<bdi>{host}</bdi>) ingin memakai akun testee-mu, <bdi>{email}</bdi>.",
     "canTitle": "Aplikasi ini bisa",
     "canRead": "Membaca perusahaan, wawancara, dan hasil kandidatmu.",
     "canChange": "Membuat perubahan yang kamu minta. Sebagian besar aplikasi AI meminta konfirmasimu dulu.",
     "canShare": "Meneruskan apa yang dibacanya ke penyedia aplikasi, sesuai ketentuan aplikasi tersebut.",
     "cantTitle": "Aplikasi ini tidak bisa",
-    "cantChange": "Mengubah apa pun di prepza.",
+    "cantChange": "Mengubah apa pun di testee.",
     "cantSecrets": "Melihat kata sandi atau kunci API-mu.",
     "cantDelete": "Menghapus akunmu atau perusahaan.",
     "changesTitle": "Izinkan perubahan",
     "changesText": "Matikan agar aplikasi ini hanya bisa membaca.",
-    "unknown": "prepza tidak mengenal aplikasi ini. Izinkan hanya jika kamu sendiri yang mulai menghubungkannya.",
+    "unknown": "testee tidak mengenal aplikasi ini. Izinkan hanya jika kamu sendiri yang mulai menghubungkannya.",
     "deny": "Tolak",
     "allow": "Izinkan",
     "footnote": "Putuskan kapan saja di Integrasi → Aplikasi AI sebuah perusahaan.",
@@ -2536,8 +2536,8 @@
   },
   "accessibility": {
     "title": "Aksesibilitas",
-    "description": "Cara prepza bekerja bagi penyandang disabilitas, apa yang masih kurang, dan cara memberi tahu kami.",
-    "intro": "Kami ingin semua orang bisa memakai prepza: untuk mengikuti wawancara yang dikirim perusahaan kepadamu, untuk berlatih, dan untuk menjalankan rekrutmen perusahaan. Kami menargetkan level AA dari Pedoman Aksesibilitas Konten Web (WCAG) 2.2.",
+    "description": "Cara testee bekerja bagi penyandang disabilitas, apa yang masih kurang, dan cara memberi tahu kami.",
+    "intro": "Kami ingin semua orang bisa memakai testee: untuk mengikuti wawancara yang dikirim perusahaan kepadamu, untuk berlatih, dan untuk menjalankan rekrutmen perusahaan. Kami menargetkan level AA dari Pedoman Aksesibilitas Konten Web (WCAG) 2.2.",
     "done": {
       "title": "Yang kami lakukan",
       "themes": "Tema terang dan gelap: mengikuti pengaturan perangkatmu secara bawaan, atau terang atau gelap jika kamu memilih salah satunya.",
@@ -2551,24 +2551,24 @@
     "limits": {
       "title": "Yang masih kurang",
       "timed": "Pertanyaan wawancara diberi batas waktu, sesuai kebutuhan penilaian perusahaan. Jika butuh waktu lebih, minta waktu tambahan kepada perusahaan sebelum kamu mulai.",
-      "audit": "prepza belum diaudit secara independen, jadi beberapa bagian mungkin belum memenuhi WCAG 2.2 AA.",
+      "audit": "testee belum diaudit secara independen, jadi beberapa bagian mungkin belum memenuhi WCAG 2.2 AA.",
       "providers": "Pembayaran kredit (halaman pembayaran Paddle) dan pemeriksaan “Saya bukan robot” (Cloudflare Turnstile) dijalankan oleh penyedia tersebut, dengan aksesibilitas mereka sendiri."
     },
     "feedback": {
       "title": "Beri tahu kami",
-      "text": "Jika ada yang sulit kamu gunakan di prepza, atau kamu membutuhkannya dalam bentuk lain, tulis ke <email></email>. Kami menjawab dalam 14 hari.",
+      "text": "Jika ada yang sulit kamu gunakan di testee, atau kamu membutuhkannya dalam bentuk lain, tulis ke <email></email>. Kami menjawab dalam 14 hari.",
       "authority": "Jika kamu tidak puas dengan jawaban kami, kamu bisa menghubungi Otoritas Perlindungan Konsumen dan Regulasi Teknis Estonia (TTJA)."
     },
     "reviewed": "Terakhir ditinjau: <time>{date}</time>."
   },
   "trust": {
     "title": "Kepercayaan dan keamanan",
-    "description": "Cara prepza menjaga data rekrutmen tetap aman dan privat: hosting di UE, subprosesor, retensi, serta apa yang kami sediakan untuk GDPR, EU AI Act, Inggris, dan AS.",
-    "intro": "Apa yang dilakukan prepza untuk menjaga keamanan datamu dan data kandidatmu, di mana data disimpan, siapa yang memprosesnya, berapa lama disimpan, dan apa yang kami berikan kepada perusahaan untuk hukum rekrutmen yang mereka ikuti.",
+    "description": "Cara testee menjaga data rekrutmen tetap aman dan privat: hosting di UE, subprosesor, retensi, serta apa yang kami sediakan untuk GDPR, EU AI Act, Inggris, dan AS.",
+    "intro": "Apa yang dilakukan testee untuk menjaga keamanan datamu dan data kandidatmu, di mana data disimpan, siapa yang memprosesnya, berapa lama disimpan, dan apa yang kami berikan kepada perusahaan untuk hukum rekrutmen yang mereka ikuti.",
     "security": {
       "title": "Keamanan",
-      "signIn": "Kamu masuk dengan Google, LinkedIn, atau GitHub melalui Firebase Authentication, jadi prepza tidak menyimpan kata sandi. Status masuk diperiksa di server pada setiap permintaan.",
-      "encryption": "Data dienkripsi saat dikirim (TLS 1.2 atau lebih baru) dan saat disimpan. Kunci dan token yang dihubungkan perusahaan (ATS-nya, Slack, webhook) disimpan dalam bentuk terenkripsi, dan kunci API prepza hanya sebagai hash satu arah.",
+      "signIn": "Kamu masuk dengan Google, LinkedIn, atau GitHub melalui Firebase Authentication, jadi testee tidak menyimpan kata sandi. Status masuk diperiksa di server pada setiap permintaan.",
+      "encryption": "Data dienkripsi saat dikirim (TLS 1.2 atau lebih baru) dan saat disimpan. Kunci dan token yang dihubungkan perusahaan (ATS-nya, Slack, webhook) disimpan dalam bentuk terenkripsi, dan kunci API testee hanya sebagai hash satu arah.",
       "access": "Setiap permintaan diperiksa terhadap perusahaan dan peran orang yang mengirimnya. Setiap layanan hanya bisa mengakses databasenya sendiri, dan panggilan antarlayanan ditandatangani.",
       "limits": "Batas penggunaan melindungi setiap tindakan yang memakan biaya atau bisa disalahgunakan, dan pemeriksaan “Saya bukan robot” menjaga formulir publik, tautan iklan lowongan, dan pembuatan perusahaan pertama.",
       "logs": "Laporan error tidak memuat alamat email, dan log server hanya disimpan sebentar.",
@@ -2578,29 +2578,29 @@
     },
     "privacy": {
       "title": "Privasi",
-      "roles": "prepza adalah pengendali data untuk akun orang yang menggunakannya, dan pemroses data kandidat, yang menjadi milik perusahaan yang mengundang mereka.",
+      "roles": "testee adalah pengendali data untuk akun orang yang menggunakannya, dan pemroses data kandidat, yang menjadi milik perusahaan yang mengundang mereka.",
       "noSelling": "Kami tidak menjual data pribadi atau membagikannya untuk iklan. Tidak ada cookie iklan atau analitik.",
-      "noInference": "prepza tidak mengumpulkan data tentang jenis kelamin, usia, asal, atau disabilitas kandidat, dan tidak menyimpulkan hal semacam itu.",
+      "noInference": "testee tidak mengumpulkan data tentang jenis kelamin, usia, asal, atau disabilitas kandidat, dan tidak menyimpulkan hal semacam itu.",
       "voice": "Dalam mode suara, jawaban lisan kandidat diubah menjadi teks dan dicocokkan dengan pilihan yang ada, lalu pilihan yang cocok disebutkan kepadanya dan ditampilkan di layar; jawaban dengan beberapa pilihan dikonfirmasi lebih dulu. Ucapannya tidak direkam atau disimpan, dan suaranya tidak dianalisis dengan cara lain apa pun.",
       "ai": "OpenAI, yang menulis soal-soalnya, diminta untuk tidak menyimpan apa yang diterimanya; OpenAI menyimpan data paling lama 30 hari, hanya untuk memeriksa penyalahgunaan, dan tidak memakainya untuk melatih modelnya.",
       "rights": "Siapa pun bisa mengunduh atau menghapus datanya sendiri di Pengaturan, tanpa perlu menulis kepada kami."
     },
     "compliance": {
       "title": "Kepatuhan",
-      "aiAct": "Berdasarkan EU AI Act, prepza diperlakukan sebagai sistem AI berisiko tinggi, yang kewajibannya berlaku mulai <time>{date}</time>. Petunjuk kami untuk perusahaan adalah petunjuk penggunaannya.",
-      "humanReview": "prepza tidak membuat keputusan apa pun tentang kandidat: orang-orang di perusahaan meninjau hasilnya dan memutuskan, dan kandidat bisa meminta seseorang untuk meninjau hasil mereka.",
-      "dpa": "Perjanjian pemrosesan data adalah bagian dari ketentuan, tanpa perlu ditandatangani. Perjanjian ini mencakup GDPR, UK GDPR, dan undang-undang privasi negara bagian AS seperti milik California, dengan prepza sebagai penyedia layanan (service provider) perusahaan.",
+      "aiAct": "Berdasarkan EU AI Act, testee diperlakukan sebagai sistem AI berisiko tinggi, yang kewajibannya berlaku mulai <time>{date}</time>. Petunjuk kami untuk perusahaan adalah petunjuk penggunaannya.",
+      "humanReview": "testee tidak membuat keputusan apa pun tentang kandidat: orang-orang di perusahaan meninjau hasilnya dan memutuskan, dan kandidat bisa meminta seseorang untuk meninjau hasil mereka.",
+      "dpa": "Perjanjian pemrosesan data adalah bagian dari ketentuan, tanpa perlu ditandatangani. Perjanjian ini mencakup GDPR, UK GDPR, dan undang-undang privasi negara bagian AS seperti milik California, dengan testee sebagai penyedia layanan (service provider) perusahaan.",
       "documents": "Perusahaan mendapatkan <link>petunjuk penggunaan, templat DPIA, dan templat pemberitahuan kandidat</link>, dengan versi untuk New York City, Illinois, dan Colorado.",
-      "nyc": "New York City: sebelum memakai prepza untuk posisi di sana, pemberi kerja memenuhi apa yang diwajibkan Local Law 144: audit bias independen dalam satu tahun sebelum penggunaan, ringkasannya dipublikasikan, dan pemberitahuan kepada kandidat paling lambat 10 hari kerja sebelum mereka dinilai. Audit bias independen milik prepza sendiri dilakukan sebelum <time>{date}</time>, lalu setiap tahun setelahnya."
+      "nyc": "New York City: sebelum memakai testee untuk posisi di sana, pemberi kerja memenuhi apa yang diwajibkan Local Law 144: audit bias independen dalam satu tahun sebelum penggunaan, ringkasannya dipublikasikan, dan pemberitahuan kepada kandidat paling lambat 10 hari kerja sebelum mereka dinilai. Audit bias independen milik testee sendiri dilakukan sebelum <time>{date}</time>, lalu setiap tahun setelahnya."
     },
     "residency": {
       "title": "Tempat data disimpan",
-      "storage": "prepza berjalan di Google Cloud di UE, di Belgia, tempat databasenya disimpan. Penghitung batas penggunaan disimpan di Upstash, juga di Belgia, dan email dikirim melalui Resend di Irlandia.",
+      "storage": "testee berjalan di Google Cloud di UE, di Belgia, tempat databasenya disimpan. Penghitung batas penggunaan disimpan di Upstash, juga di Belgia, dan email dikirim melalui Resend di Irlandia.",
       "transfers": "Tiga penyedia menangani data di Amerika Serikat: Google untuk proses masuk, OpenAI, dan Cloudflare untuk pemeriksaan “Saya bukan robot”. Transfer ini dilindungi oleh EU-US Data Privacy Framework atau klausul kontrak standar Komisi Eropa, dan untuk Inggris oleh UK Extension serta UK International Data Transfer Addendum."
     },
     "subprocessors": {
       "title": "Subprosesor",
-      "intro": "Penyedia yang memproses data untuk prepza, sebagaimana tercantum dalam <link>perjanjian pemrosesan data</link>:",
+      "intro": "Penyedia yang memproses data untuk testee, sebagaimana tercantum dalam <link>perjanjian pemrosesan data</link>:",
       "changes": "Kami mengirim email kepada pemilik dan admin perusahaan paling lambat 14 hari sebelum menambahkan subprosesor baru."
     },
     "retention": {
@@ -2617,7 +2617,7 @@
     },
     "accessibility": {
       "title": "Aksesibilitas",
-      "text": "prepza berupaya memenuhi level AA dari Web Content Accessibility Guidelines (WCAG) 2.2. <link>Pernyataan aksesibilitas</link> kami menjelaskan apa yang sudah berfungsi, apa yang belum, dan cara memberi tahu kami."
+      "text": "testee berupaya memenuhi level AA dari Web Content Accessibility Guidelines (WCAG) 2.2. <link>Pernyataan aksesibilitas</link> kami menjelaskan apa yang sudah berfungsi, apa yang belum, dan cara memberi tahu kami."
     },
     "links": {
       "title": "Dokumen hukum",
@@ -2635,7 +2635,7 @@
     "open": "Ekspor audit bias",
     "title": "Ekspor untuk audit bias",
     "description": "File CSV berisi setiap kandidat yang telah selesai: nilainya, nilai lulus, apakah dia lulus, dan apakah skornya di atas median. Auditor independenmu menghitung tingkat dan rasio dampak (impact ratio) dari file ini.",
-    "privacy": "prepza tidak menyimpan data jenis kelamin, ras, atau etnis. Tambahkan jawaban yang diisi sendiri oleh kandidatmu berdasarkan email mereka, lalu hapus kolom email sebelum kamu membagikan file tersebut.",
+    "privacy": "testee tidak menyimpan data jenis kelamin, ras, atau etnis. Tambahkan jawaban yang diisi sendiri oleh kandidatmu berdasarkan email mereka, lalu hapus kolom email sebelum kamu membagikan file tersebut.",
     "interview": "Wawancara",
     "allInterviews": "Semua wawancara",
     "download": "Unduh CSV",
@@ -2744,7 +2744,7 @@
   },
   "featuresPage": {
     "title": "Fitur: wawancara AI untuk rekrutmen, dari awal sampai akhir",
-    "description": "Semua fitur prepza: wawancara dari deskripsi pekerjaan, mode klik dan suara, tanda integritas, laporan, integrasi ATS dan API, serta kepatuhan.",
+    "description": "Semua fitur testee: wawancara dari deskripsi pekerjaan, mode klik dan suara, tanda integritas, laporan, integrasi ATS dan API, serta kepatuhan.",
     "hero": {
       "title": "Dari deskripsi pekerjaan\nsampai rekrutan yang tepat",
       "text": "Wawancara berbatas waktu yang ditulis untuk posisimu, kandidat dari mana saja, dan gambaran jelas siapa yang terbaik. Semua fitur sudah termasuk.",
@@ -2781,7 +2781,7 @@
       },
       "decide": {
         "title": "Lihat siapa yang terbaik",
-        "text": "Nilai, setiap jawaban, dan tanda integritas untuk tiap kandidat. Manusia yang memutuskan; prepza menunjukkan apa yang perlu diperhatikan."
+        "text": "Nilai, setiap jawaban, dan tanda integritas untuk tiap kandidat. Manusia yang memutuskan; testee menunjukkan apa yang perlu diperhatikan."
       },
       "connect": {
         "title": "Bekerja dengan alatmu",
@@ -2829,7 +2829,7 @@
       },
       "brand": {
         "title": "Merekmu, bukan merek kami",
-        "text": "Atur logo, warna untuk mode terang dan gelap, font, dan sudut, dengan pratinjau langsung. Kandidat hanya melihat perusahaanmu, tanpa header atau footer prepza.",
+        "text": "Atur logo, warna untuk mode terang dan gelap, font, dan sudut, dengan pratinjau langsung. Kandidat hanya melihat perusahaanmu, tanpa header atau footer testee.",
         "alt": "Tab merek: logo, font, dan sudut, dengan pratinjau langsung wawancara."
       },
       "candidates": {
@@ -2844,7 +2844,7 @@
       },
       "share": {
         "title": "Bagikan laporan dalam hitungan detik",
-        "text": "Unduh PDF untuk satu kandidat atau seluruh wawancara, kirim lewat email dari prepza, atau kirim ringkasan singkat lewat aplikasi pesan.",
+        "text": "Unduh PDF untuk satu kandidat atau seluruh wawancara, kirim lewat email dari testee, atau kirim ringkasan singkat lewat aplikasi pesan.",
         "alt": "Dialog berbagi laporan kandidat: alamat email untuk mengirim PDF, atau ringkasan di WhatsApp, Telegram, Viber, atau LINE."
       },
       "notes": {
@@ -2899,7 +2899,7 @@
       "atsList": "Workable, Greenhouse, Teamtailor, Recruitee, dan Breezy HR",
       "results": "Kandidat diundang otomatis, hasilnya dikirim balik",
       "docs": "Dokumentasi pengembang untuk API, webhook, SDK, dan MCP",
-      "noInference": "prepza tidak pernah menanyakan atau menebak karakteristik yang dilindungi hukum",
+      "noInference": "testee tidak pernah menanyakan atau menebak karakteristik yang dilindungi hukum",
       "owner": "Hanya pemilik yang bisa mengekspor, dan tercatat di log tindakan",
       "askTime": "Siapa pun yang butuh waktu lebih diminta menghubungi sebelum mulai",
       "peopleDecide": "Diberi tahu bahwa orang di perusahaanmu meninjau hasilnya dan memutuskan",

@@ -1,7 +1,7 @@
 ---
 title: "KI-Interviews: was sie sind und wie du sie fair einsetzt"
 seoTitle: "KI im Recruiting: KI-Interviews, Risiken und fairer Einsatz"
-description: "KI im Recruiting: was KI-Interviewer, Chatbots, Videoanalyse und generierte Tests leisten, wo Risiken liegen und was rechtlich gilt. Mit prepzas Ansatz."
+description: "KI im Recruiting: was KI-Interviewer, Chatbots, Videoanalyse und generierte Tests leisten, wo Risiken liegen und was rechtlich gilt. Mit testees Ansatz."
 updated: "2026-10-29"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 „KI-Interview“ bedeutet je nach Anbieter sehr Unterschiedliches. Manche Tools führen ein Gespräch mit den Kandidaten. Manche zeichnen Videos auf und bewerten sie. Manche nutzen KI nur, um die Fragen zu schreiben, und bewerten die Antworten dann nach festen Regeln. Für ein Recruiting-Team ist der Unterschied wichtig: Er bestimmt, was du Kandidaten erklären kannst, was schiefgehen kann und was das Gesetz von dir erwartet.
 
-Diese Seite ordnet die wichtigsten Arten von KI-Interview-Tools ein, erklärt den Ansatz von prepza und fasst die rechtlichen Grundlagen zusammen.
+Diese Seite ordnet die wichtigsten Arten von KI-Interview-Tools ein, erklärt den Ansatz von testee und fasst die rechtlichen Grundlagen zusammen.
 
 ## Drei Arten von KI-Interview-Tools
 
@@ -29,11 +29,11 @@ Hier nehmen Kandidaten ihre Antworten vor der Kamera auf. Manche Produkte transk
 
 ### Generierte Tests
 
-In diesem Modell übernimmt die KI die Schreibarbeit: Sie liest die Stellenbeschreibung, schlägt vor, was geprüft werden soll, und entwirft Fragen. Die Kandidaten beantworten dann Fragen mit eindeutig richtigen und falschen Antworten, und die Bewertung folgt festen Regeln. Dieses Modell nutzt prepza.
+In diesem Modell übernimmt die KI die Schreibarbeit: Sie liest die Stellenbeschreibung, schlägt vor, was geprüft werden soll, und entwirft Fragen. Die Kandidaten beantworten dann Fragen mit eindeutig richtigen und falschen Antworten, und die Bewertung folgt festen Regeln. Dieses Modell nutzt testee.
 
-## Der Ansatz von prepza
+## Der Ansatz von testee
 
-prepza nutzt KI, um aus deiner Stellenbeschreibung ein Interview zu Fachkenntnissen zu schreiben. Menschen behalten die Kontrolle darüber, was geprüft wird, und über jede Entscheidung.
+testee nutzt KI, um aus deiner Stellenbeschreibung ein Interview zu Fachkenntnissen zu schreiben. Menschen behalten die Kontrolle darüber, was geprüft wird, und über jede Entscheidung.
 
 1. **Die KI liest deine Stellenbeschreibung** und erkennt, was ein Kandidat wissen muss: die Anforderungen, das Niveau und eine Reihe von Themen mit Unterthemen.
 2. **Du prüfst die Themen.** Behalte sie, wähle sie ab, benenne sie um oder bearbeite sie, oder sag der KI in normalem Text, was sie ändern soll. Keine Frage wird geschrieben, bevor du zustimmst.
@@ -42,16 +42,16 @@ prepza nutzt KI, um aus deiner Stellenbeschreibung ein Interview zu Fachkenntnis
 5. **Antworten werden anhand eines Lösungsschlüssels bewertet.** Die KI schreibt die Schlüssel. Eine Stichprobe der Schlüssel jedes Themas wird vor der Freigabe geprüft, die übrigen, sobald eine Frage markiert wird. Die Bewertung selbst folgt festen Regeln, und keine KI liest oder beurteilt die Antwort eines Kandidaten. Wird ein Schlüssel später korrigiert, gilt die Korrektur für Kandidaten, die danach beginnen; frühere Ergebnisse ändern sich nicht. Tempo, Verlassen der Seite und Kopierversuche werden dir als Hinweise angezeigt; sie ändern die Punktzahl nicht.
 6. **Menschen entscheiden.** Du siehst eine Rangliste und eine Auswertung pro Kandidat, mit jeder Antwort und ihrer Dauer. Eine Person in deinem Unternehmen prüft die Ergebnisse und trifft die Einstellungsentscheidung.
 
-Was prepza nicht tut:
+Was testee nicht tut:
 
 - Keine Video-, Stimm- oder Gesichtsanalyse.
 - Keine Ableitung von Persönlichkeit oder Emotionen.
-- Keine automatischen Absagen. prepza lehnt keine Kandidaten ab und verschickt keine Absagen; dein Team entscheidet.
-- Deine Daten werden nicht zum Training von KI-Modellen genutzt. Der KI-Anbieter von prepza, OpenAI, trainiert laut seinen Bedingungen nicht mit API-Daten.
+- Keine automatischen Absagen. testee lehnt keine Kandidaten ab und verschickt keine Absagen; dein Team entscheidet.
+- Deine Daten werden nicht zum Training von KI-Modellen genutzt. Der KI-Anbieter von testee, OpenAI, trainiert laut seinen Bedingungen nicht mit API-Daten.
 
 ### Die Fragen werden mit der Zeit besser
 
-Von KI geschriebene Fragen können falsch oder unklar sein, besonders in einem neuen Interview. prepza achtet darauf: Antworten, Bewertungen und Meldungen der Kandidaten markieren schwache Fragen, und ein KI-Prüfer korrigiert oder ersetzt sie. Wenn du eine Frage mit falschem Lösungsschlüssel entdeckst, markiere sie, und sie geht sofort an den Prüfer.
+Von KI geschriebene Fragen können falsch oder unklar sein, besonders in einem neuen Interview. testee achtet darauf: Antworten, Bewertungen und Meldungen der Kandidaten markieren schwache Fragen, und ein KI-Prüfer korrigiert oder ersetzt sie. Wenn du eine Frage mit falschem Lösungsschlüssel entdeckst, markiere sie, und sie geht sofort an den Prüfer.
 
 Du kannst dein eigenes Interview auch vorab als Kandidat ausprobieren, bevor du jemanden einlädst: dieselben Fragen unter Zeitvorgabe, kostenlos und ohne dass es in deinen Ergebnissen erscheint.
 
@@ -71,7 +71,7 @@ Nichts davon macht einen Test automatisch fair. Die Fragen müssen weiterhin zur
 
 ### Was Multiple-Choice nicht leisten kann
 
-Sei dir der Grenzen bewusst. Ein Multiple-Choice-Test prüft Wissen. Fragen zum Lesen von Code zeigen, ob jemand Code versteht, nicht ob er ihn schreiben kann. Ein solcher Test zeigt nicht, wie jemand schreibt, mit Kunden spricht oder ein System von Anfang bis Ende entwirft. Dafür kombinierst du prepza mit einer Arbeitsprobe oder einem strukturierten Interview für deine Shortlist. Für praktisches Programmieren nutzt du eine Entwicklerplattform oder deine eigene Übung neben prepza; siehe [Alternativen zu HackerRank](/compare/hackerrank-alternatives) und [Entwickler interviewen im KI-Zeitalter](/guides/interviewing-in-the-age-of-ai).
+Sei dir der Grenzen bewusst. Ein Multiple-Choice-Test prüft Wissen. Fragen zum Lesen von Code zeigen, ob jemand Code versteht, nicht ob er ihn schreiben kann. Ein solcher Test zeigt nicht, wie jemand schreibt, mit Kunden spricht oder ein System von Anfang bis Ende entwirft. Dafür kombinierst du testee mit einer Arbeitsprobe oder einem strukturierten Interview für deine Shortlist. Für praktisches Programmieren nutzt du eine Entwicklerplattform oder deine eigene Übung neben testee; siehe [Alternativen zu HackerRank](/compare/hackerrank-alternatives) und [Entwickler interviewen im KI-Zeitalter](/guides/interviewing-in-the-age-of-ai).
 
 ## Rechtliche Grundlagen für KI-Interview-Tools
 
@@ -79,7 +79,7 @@ Dies ist eine Zusammenfassung mit Stand Oktober 2026, keine Rechtsberatung. Klä
 
 ### KI-Verordnung der EU
 
-KI-Systeme, die „bestimmungsgemäß für die Einstellung oder Auswahl natürlicher Personen verwendet werden sollen, insbesondere um gezielte Stellenanzeigen zu schalten, Bewerbungen zu sichten oder zu filtern und Bewerber zu bewerten“, sind nach [Anhang III, Nummer 4 Buchstabe a](https://artificialintelligenceact.eu/annex/3/) der KI-Verordnung Hochrisiko-Systeme. Tools, die Kandidaten bewerten oder in eine Rangfolge bringen, fallen sehr wahrscheinlich darunter. prepzas eigene Analyse kommt zu dem Schluss, dass prepza sehr wahrscheinlich ein Hochrisiko-System ist und die Pflichten ab dem 2. Dezember 2027 gelten.
+KI-Systeme, die „bestimmungsgemäß für die Einstellung oder Auswahl natürlicher Personen verwendet werden sollen, insbesondere um gezielte Stellenanzeigen zu schalten, Bewerbungen zu sichten oder zu filtern und Bewerber zu bewerten“, sind nach [Anhang III, Nummer 4 Buchstabe a](https://artificialintelligenceact.eu/annex/3/) der KI-Verordnung Hochrisiko-Systeme. Tools, die Kandidaten bewerten oder in eine Rangfolge bringen, fallen sehr wahrscheinlich darunter. testees eigene Analyse kommt zu dem Schluss, dass testee sehr wahrscheinlich ein Hochrisiko-System ist und die Pflichten ab dem 2. Dezember 2027 gelten.
 
 Der Hochrisiko-Status bringt Pflichten auf beiden Seiten mit sich:
 
@@ -90,7 +90,7 @@ Fristen und Einzelheiten findest du unter [Ist KI im Recruiting in der EU erlaub
 
 ### DSGVO
 
-Interviewergebnisse sind personenbezogene Daten, nach der EU-DSGVO (GDPR) ebenso wie nach der UK GDPR. Rechne mit einem Auftragsverarbeitungsvertrag (AVV), einer Information für Kandidaten, einer begrenzten Speicherdauer und einem Weg für Kandidaten, auf ihre Daten zuzugreifen oder sie löschen zu lassen. [Artikel 22](https://gdpr-info.eu/art-22-gdpr/) beschränkt zudem Entscheidungen, die ausschließlich auf automatisierter Verarbeitung beruhen und Menschen erheblich beeinträchtigen; lass die Ergebnisse also von einer Person prüfen, bevor du danach handelst. prepza wird in der EU gehostet (einige Unterauftragsverarbeiter sitzen in den USA; siehe die [Datenschutzerklärung](/privacy)), löscht Kandidatendaten 12 Monate nach der Einladung und enthält einen Auftragsverarbeitungsvertrag sowie eine Anleitung für Unternehmen.
+Interviewergebnisse sind personenbezogene Daten, nach der EU-DSGVO (GDPR) ebenso wie nach der UK GDPR. Rechne mit einem Auftragsverarbeitungsvertrag (AVV), einer Information für Kandidaten, einer begrenzten Speicherdauer und einem Weg für Kandidaten, auf ihre Daten zuzugreifen oder sie löschen zu lassen. [Artikel 22](https://gdpr-info.eu/art-22-gdpr/) beschränkt zudem Entscheidungen, die ausschließlich auf automatisierter Verarbeitung beruhen und Menschen erheblich beeinträchtigen; lass die Ergebnisse also von einer Person prüfen, bevor du danach handelst. testee wird in der EU gehostet (einige Unterauftragsverarbeiter sitzen in den USA; siehe die [Datenschutzerklärung](/privacy)), löscht Kandidatendaten 12 Monate nach der Einladung und enthält einen Auftragsverarbeitungsvertrag sowie eine Anleitung für Unternehmen.
 
 ### USA
 

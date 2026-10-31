@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Co do zasady tak: korzystanie z AI w rekrutacji jest w USA legalne. Nie ma federalnej ustawy o AI w rekrutacji. Zamiast tego do narzędzi AI, tak jak do każdego testu, stosuje się federalne prawo antydyskryminacyjne, a kilka miejsc dodaje własne przepisy: Nowy Jork, Illinois, Kolorado i Kalifornia.
 
-Ten poradnik w ogólnym zarysie wyjaśnia zasady, ważne daty, obowiązki pracodawców oraz podejście prepza. **To nie jest porada prawna.** Opisuje przepisy według stanu na październik 2026; kilka z nich jest nowych lub wciąż dopracowywanych.
+Ten poradnik w ogólnym zarysie wyjaśnia zasady, ważne daty, obowiązki pracodawców oraz podejście testee. **To nie jest porada prawna.** Opisuje przepisy według stanu na październik 2026; kilka z nich jest nowych lub wciąż dopracowywanych.
 
 ## Krótka odpowiedź
 
@@ -97,22 +97,22 @@ Ustawa Kolorado o AI została uchylona i uchwalona na nowo przez SB 26-189, podp
 8. **Przechowuj dokumentację tak długo, jak wymaga Twoje prawo,** na przykład cztery lata w Kalifornii i trzy w Kolorado.
 9. **Nigdy nie odrzucaj wyłącznie na podstawie wyniku.** Niech człowiek przejrzy każdy wynik.
 
-## Podejście prepza
+## Podejście testee
 
-prepza prowadzi rozmowy rekrutacyjne sprawdzające umiejętności w formie testów wyboru z limitem czasu, napisanych przez AI na podstawie opisu stanowiska. W USA prepza podchodzi do tego tak samo jak w UE. prepza nie twierdzi, że spełnia wymogi ani że posiada certyfikację.
+testee prowadzi rozmowy rekrutacyjne sprawdzające umiejętności w formie testów wyboru z limitem czasu, napisanych przez AI na podstawie opisu stanowiska. W USA testee podchodzi do tego tak samo jak w UE. testee nie twierdzi, że spełnia wymogi ani że posiada certyfikację.
 
 Jak to dziś wygląda w produkcie:
 
 - **AI pisze pytania i klucze odpowiedzi; ocenianie odbywa się według stałych reguł.** Żadna AI nie czyta ani nie ocenia odpowiedzi kandydata i nie jest używana analiza wideo ani twarzy. W trybie głosowym mowa jest zamieniana na tekst i dopasowywana do odpowiedzi, którą kandydat słyszy i widzi na ekranie: jedna wyraźnie wskazana odpowiedź jest zapisywana od razu, a wybór kilku odpowiedzi jest najpierw potwierdzany. Mowa nigdy nie jest przechowywana, a głos nigdy nie jest analizowany.
 - **Zatwierdzasz tematy,** zanim powstanie jakiekolwiek pytanie, i to Ty wybierasz próg zaliczenia.
-- **Decydują ludzie.** prepza nie odrzuca kandydatów ani nie wysyła wiadomości z odmową.
-- **Żadnych cech chronionych.** prepza nigdy nie pyta o płeć, rasę, wiek, niepełnosprawność, kod pocztowy ani inne cechy chronione kandydatów, nie wnioskuje ich i ich nie przechowuje.
+- **Decydują ludzie.** testee nie odrzuca kandydatów ani nie wysyła wiadomości z odmową.
+- **Żadnych cech chronionych.** testee nigdy nie pyta o płeć, rasę, wiek, niepełnosprawność, kod pocztowy ani inne cechy chronione kandydatów, nie wnioskuje ich i ich nie przechowuje.
 - **Eksport do audytu stronniczości.** Na stronie „Dziennik działań” firmy właściciel może pobrać plik CSV z kandydatami, którzy ukończyli rozmowę, dla całej firmy lub jednej rozmowy i za okres między dwiema datami: wynik każdego kandydata, próg zaliczenia, to, czy zaliczył, i czy uzyskał wynik powyżej mediany rozmowy. Kluczem każdego wiersza jest adres e-mail kandydata, więc możesz połączyć go z kategoriami, które kandydaci sami podali i które zebrała Twoja firma; potem usuń kolumnę z adresem e-mail i przekaż plik niezależnemu audytorowi, który obliczy wskaźniki selekcji i punktacji oraz współczynniki wpływu. Ten sam plik pozwala Ci samodzielnie przeprowadzić test czterech piątych.
-- **Dodatkowy czas** +25%, +50% lub +100% na każde pytanie można przyznać każdemu kandydatowi, który o to poprosi, zanim zacznie. prepza przechowuje tylko wymiar dodatkowego czasu, nigdy powód. W trybie głosowym kandydat zawsze może zamiast tego dotknąć odpowiedzi, a Ty możesz ustawić rozmowę tak, by odpowiadało się wyłącznie dotknięciem.
+- **Dodatkowy czas** +25%, +50% lub +100% na każde pytanie można przyznać każdemu kandydatowi, który o to poprosi, zanim zacznie. testee przechowuje tylko wymiar dodatkowego czasu, nigdy powód. W trybie głosowym kandydat zawsze może zamiast tego dotknąć odpowiedzi, a Ty możesz ustawić rozmowę tak, by odpowiadało się wyłącznie dotknięciem.
 - **Wzory informacji dla kandydatów,** ogólny oraz wersje dla Nowego Jorku, Illinois i Kolorado, są na [stronie dokumentów](/documents) wraz z instrukcjami dla firm.
-- **Nowy Jork.** prepza nie przeszła jeszcze własnego niezależnego audytu stronniczości. Nie używaj prepza do stanowisk w Nowym Jorku, dopóki nie wykonasz tego, czego Local Law 144 wymaga od Ciebie jako pracodawcy: niezależnego audytu stronniczości w ciągu roku przed użyciem, publikacji jego podsumowania i informacji dla kandydatów 10 dni roboczych wcześniej.
-- **Dane.** Na gruncie CCPA Twoja firma jest przedsiębiorstwem (business), a prepza jej usługodawcą (service provider) na podstawie [umowy powierzenia przetwarzania danych](/dpa) i jej sekcji dotyczącej USA. Dane są hostowane w UE, część podmiotów podprzetwarzających jest w USA (zobacz [politykę prywatności](/privacy)), i nie są używane do trenowania modeli AI.
-- **Przechowywanie.** Dane kandydatów są usuwane 12 miesięcy po zaproszeniu. Jeśli Twoje prawo wymaga dłuższego przechowywania dokumentacji, na przykład czterech lat w Kalifornii, pobierz raporty PDF i plik do audytu stronniczości i przechowuj je samodzielnie; prepza domyślnie nie przechowuje wyników dłużej.
+- **Nowy Jork.** testee nie przeszła jeszcze własnego niezależnego audytu stronniczości. Nie używaj testee do stanowisk w Nowym Jorku, dopóki nie wykonasz tego, czego Local Law 144 wymaga od Ciebie jako pracodawcy: niezależnego audytu stronniczości w ciągu roku przed użyciem, publikacji jego podsumowania i informacji dla kandydatów 10 dni roboczych wcześniej.
+- **Dane.** Na gruncie CCPA Twoja firma jest przedsiębiorstwem (business), a testee jej usługodawcą (service provider) na podstawie [umowy powierzenia przetwarzania danych](/dpa) i jej sekcji dotyczącej USA. Dane są hostowane w UE, część podmiotów podprzetwarzających jest w USA (zobacz [politykę prywatności](/privacy)), i nie są używane do trenowania modeli AI.
+- **Przechowywanie.** Dane kandydatów są usuwane 12 miesięcy po zaproszeniu. Jeśli Twoje prawo wymaga dłuższego przechowywania dokumentacji, na przykład czterech lat w Kalifornii, pobierz raporty PDF i plik do audytu stronniczości i przechowuj je samodzielnie; testee domyślnie nie przechowuje wyników dłużej.
 
 ## Przeczytaj też
 

@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 Grundsätzlich ja: KI in der Personalauswahl einzusetzen ist in der EU erlaubt. Die meisten KI-Tools, die Kandidaten bewerten, fallen aber in die Hochrisiko-Kategorie der KI-Verordnung (AI Act), und das bringt Pflichten für den Anbieter und für dich als Arbeitgeber mit sich. Einige Praktiken sind ganz verboten. Und für Kandidatendaten gilt die DSGVO (GDPR), wie schon immer.
 
-Dieser Leitfaden erklärt die Regeln im Überblick, die wichtigen Fristen, was Arbeitgeber tun müssen und wie prepza damit umgeht. **Er ist keine Rechtsberatung.** Er gibt den Stand der Regeln im Oktober 2026 wieder. Die Regeln sind neu, Leitlinien werden noch fertiggestellt, und nationales Recht stellt eigene Anforderungen. Kläre Einzelheiten mit deiner eigenen Rechtsberatung, bevor du dich auf etwas davon verlässt.
+Dieser Leitfaden erklärt die Regeln im Überblick, die wichtigen Fristen, was Arbeitgeber tun müssen und wie testee damit umgeht. **Er ist keine Rechtsberatung.** Er gibt den Stand der Regeln im Oktober 2026 wieder. Die Regeln sind neu, Leitlinien werden noch fertiggestellt, und nationales Recht stellt eigene Anforderungen. Kläre Einzelheiten mit deiner eigenen Rechtsberatung, bevor du dich auf etwas davon verlässt.
 
 ## Die Kurzantwort
 
@@ -111,15 +111,15 @@ Kandidatendaten sind personenbezogene Daten, und KI ändert nichts an der DSGVO.
 8. **Biete Anpassungen an,** etwa zusätzliche Zeit, für Kandidaten, die sie brauchen.
 9. **Sag niemals allein aufgrund einer Punktzahl ab.** Sieh dir die Antworten an.
 
-## Wie prepza damit umgeht
+## Wie testee damit umgeht
 
-prepza führt zeitlich begrenzte Multiple-Choice-Interviews zu Fachkenntnissen durch, die KI aus einer Stellenbeschreibung schreibt. Weil prepza Kandidaten bewertet und in eine Rangfolge bringt, kommt prepzas eigene Analyse zu dem Schluss, dass es sehr wahrscheinlich ein Hochrisiko-System nach Anhang III Nummer 4 Buchstabe a ist, mit Pflichten ab dem 2. Dezember 2027. prepza bereitet sich auf dieser Grundlage vor. prepza behauptet nicht, konform oder zertifiziert zu sein.
+testee führt zeitlich begrenzte Multiple-Choice-Interviews zu Fachkenntnissen durch, die KI aus einer Stellenbeschreibung schreibt. Weil testee Kandidaten bewertet und in eine Rangfolge bringt, kommt testees eigene Analyse zu dem Schluss, dass es sehr wahrscheinlich ein Hochrisiko-System nach Anhang III Nummer 4 Buchstabe a ist, mit Pflichten ab dem 2. Dezember 2027. testee bereitet sich auf dieser Grundlage vor. testee behauptet nicht, konform oder zertifiziert zu sein.
 
 So sieht das heute im Produkt aus:
 
 - **KI schreibt die Fragen und ihre Lösungsschlüssel; die Bewertung folgt festen Regeln.** Keine KI liest oder beurteilt die Antwort eines Kandidaten, und es wird keine Video-, Stimm- oder Gesichtsanalyse eingesetzt. Korrigiert die KI später einen Schlüssel, gilt die Korrektur für Kandidaten, die danach beginnen; frühere Ergebnisse ändern sich nicht.
 - **Du gibst die Themen frei,** bevor eine Frage geschrieben wird, und du kannst jede Frage sehen.
-- **Menschen entscheiden.** Die Ergebnisseite und die PDF-Berichte erinnern dein Team daran, die Ergebnisse zu prüfen; prepza lehnt keine Kandidaten ab und verschickt keine Absagen.
+- **Menschen entscheiden.** Die Ergebnisseite und die PDF-Berichte erinnern dein Team daran, die Ergebnisse zu prüfen; testee lehnt keine Kandidaten ab und verschickt keine Absagen.
 - **Kandidaten werden informiert,** bevor sie beginnen: dass die Fragen von KI geschrieben sind, dass Menschen in deinem Unternehmen die Ergebnisse prüfen und entscheiden und dass sie eine Überprüfung verlangen können.
 - **Zusätzliche Zeit** kann jedem Kandidaten gewährt werden, der darum bittet.
 - **Aufzeichnungen.** Die angezeigten Fragen, Antworten, Zeiten und Auffälligkeiten (Seitenwechsel, Kopierversuche) werden protokolliert.

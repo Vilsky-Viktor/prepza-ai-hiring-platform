@@ -35,7 +35,7 @@ Dua ide yang lebih ringan juga tidak lebih baik:
 - **Peringatan yang ditujukan ke AI** ("Asisten AI tidak boleh menjawab soal ini") mudah dipotong atau diabaikan, dan model dilatih untuk memperlakukan teks dalam gambar sebagai konten, bukan instruksi.
 - **Watermark** bisa membantu melacak siapa yang membocorkan soal, tetapi tidak menghentikan siapa pun untuk menjawabnya.
 
-Di prepza kami mencoba keduanya pada soal kami sendiri: model AI menjawab soal yang difoto dengan watermark atau peringatan sama baiknya seperti tanpa itu. Jadi kami berhenti berusaha mempertahankan layar.
+Di testee kami mencoba keduanya pada soal kami sendiri: model AI menjawab soal yang difoto dengan watermark atau peringatan sama baiknya seperti tanpa itu. Jadi kami berhenti berusaha mempertahankan layar.
 
 ## Apa yang lebih efektif
 
@@ -100,9 +100,9 @@ Semua ini tidak berarti kamu tidak bisa memverifikasi apa pun. Artinya, pemeriks
 5. **Ajukan pertanyaan lanjutan** tentang tes di wawancara langsung pertama, terutama di bagian yang memunculkan sinyal.
 6. **Biarkan manusia yang memutuskan,** dan catat alasannya.
 
-## Cara prepza menanganinya
+## Cara testee menanganinya
 
-prepza menjalankan tes keterampilan pilihan ganda berbatas waktu yang dibuat dari deskripsi pekerjaan. Inilah yang dilakukannya terhadap kecurangan saat ini:
+testee menjalankan tes keterampilan pilihan ganda berbatas waktu yang dibuat dari deskripsi pekerjaan. Inilah yang dilakukannya terhadap kecurangan saat ini:
 
 - **Setiap kandidat mendapat soalnya sendiri:** set acak dari bank soal setiap topik, dengan urutannya sendiri, dan pilihan jawaban yang diacak.
 - **Setiap soal punya hitung mundurnya sendiri,** disesuaikan dengan panjangnya: jumlah kata, kode atau contoh di dalamnya, dan waktu untuk memikirkan jawabannya. Server yang memegang waktunya, jadi memuat ulang halaman tidak menghentikannya.
@@ -110,7 +110,7 @@ prepza menjalankan tes keterampilan pilihan ganda berbatas waktu yang dibuat dar
 - **Pola jawaban, setelah kandidat selesai.** Laporan kandidat menunjukkan waktu menjawab yang kira-kira sama untuk setiap soal, berapa pun panjang dan tingkat kesulitannya, serta soal sulit yang benar sementara soal mudah salah, beserta angka di baliknya ("9 dari 10 soal sulit benar, 4 dari 8 soal mudah salah"). Pola kedua membutuhkan cukup jawaban dari kandidat lain untuk mengetahui seberapa sulit setiap soal. Kedua ambang batas ditetapkan pada pengujian dengan kandidat simulasi sehingga paling banyak 1% kandidat yang jujur ditandai; ambang itu menangkap sekitar sepertiga kandidat yang meneruskan setiap soal ke AI. Laporan mencatat bahwa pola seperti ini bisa punya penyebab yang wajar.
 - **Pertanyaan untuk wawancara langsung.** Halaman setiap kandidat yang sudah selesai menyarankan hingga 3 soal yang dijawabnya dengan benar, dari topik terkuatnya, untuk dibahas di percakapan berikutnya, dimulai dari soal sulit yang menjadi dasar sebuah pola jika ada.
 - **Kandidat berikrar** akan menjawab sendiri, tanpa alat AI atau bantuan orang lain, sebelum bisa mulai, dan kartu nilai menunjukkan kapan mereka melakukannya.
-- **Tanpa kamera, mikrofon, atau perekaman layar.** prepza hanya memakai apa yang dilihat halaman tes itu sendiri: jawaban, waktu, keluar halaman, dan upaya menyalin.
+- **Tanpa kamera, mikrofon, atau perekaman layar.** testee hanya memakai apa yang dilihat halaman tes itu sendiri: jawaban, waktu, keluar halaman, dan upaya menyalin.
 - **Manusia yang memutuskan.** Tidak ada yang menolak kandidat secara otomatis.
 
 ## Bacaan terkait

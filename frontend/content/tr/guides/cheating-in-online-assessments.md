@@ -35,7 +35,7 @@ Daha hafif iki fikir de daha iyi sonuç vermiyor:
 - **Yapay zekâya yönelik uyarılar** ("Yapay zekâ asistanları bu soruyu yanıtlamamalıdır") kolayca kırpılabilir veya yok sayılabilir; modeller de görüntülerdeki metni talimat olarak değil içerik olarak ele almak üzere eğitilir.
 - **Filigranlar** bir soruyu kimin sızdırdığını izlemeye yardımcı olabilir ama kimsenin onu yanıtlamasını engellemez.
 
-prepza'da ikisini de kendi sorularımızda denedik: yapay zekâ modelleri filigranlı veya uyarılı fotoğraflanmış soruları, bunlar olmadan nasıl yanıtlıyorsa öyle yanıtladı. Bu yüzden ekranı korumaya çalışmayı bıraktık.
+testee'de ikisini de kendi sorularımızda denedik: yapay zekâ modelleri filigranlı veya uyarılı fotoğraflanmış soruları, bunlar olmadan nasıl yanıtlıyorsa öyle yanıtladı. Bu yüzden ekranı korumaya çalışmayı bıraktık.
 
 ## Daha iyi işleyenler
 
@@ -100,9 +100,9 @@ Bunların hiçbiri hiçbir şeyi doğrulayamayacağınız anlamına gelmiyor. En
 5. **İlk canlı mülakatta** test hakkında **takip soruları sorun,** özellikle bir sinyalin çıktığı yerlerde.
 6. **Kararı bir insan versin** ve nedenini yazsın.
 
-## prepza bunu nasıl ele alıyor
+## testee bunu nasıl ele alıyor
 
-prepza, bir iş tanımından oluşturulan süreli, çoktan seçmeli beceri testleri yürütür. Bugün kopyaya karşı yaptıkları:
+testee, bir iş tanımından oluşturulan süreli, çoktan seçmeli beceri testleri yürütür. Bugün kopyaya karşı yaptıkları:
 
 - **Her aday kendi sorularını alır:** her konunun soru bankasından rastgele bir set, kendi sırasında ve seçenekleri karıştırılmış olarak.
 - **Her sorunun kendi geri sayımı vardır** ve uzunluğuna göre ayarlanır: kelimeleri, varsa kod veya örnek ve cevabı bulmak için gereken süre. Süreyi sunucu tutar; bu yüzden sayfayı yenilemek onu durdurmaz.
@@ -110,7 +110,7 @@ prepza, bir iş tanımından oluşturulan süreli, çoktan seçmeli beceri testl
 - **Aday bitirdiğinde cevap örüntüleri.** Adayın raporu, uzunluğu ve zorluğu ne olursa olsun her soruda yaklaşık aynı kalan cevap sürelerini ve kolay sorular yanlışken zor soruların doğru olmasını, dayandığı sayılarla birlikte gösterir ("10 zor sorudan 9 tanesi doğru, 8 kolay sorudan 4 tanesi yanlış"). İkincisi, her sorunun ne kadar zor olduğunu bilmek için diğer adaylardan yeterli cevap gerektirir. İki eşik de simüle edilmiş adaylarla yapılan bir testte, dürüst adayların en fazla %1'i işaretlenecek şekilde ayarlandı; her soruyu bir yapay zekâya aktaranların yaklaşık üçte birini yakaladılar. Rapor, bu tür örüntülerin masum nedenleri olabileceğini belirtir.
 - **Canlı mülakat için sorular.** Testi bitiren her adayın sayfası, en güçlü konularından doğru yanıtladığı en fazla 3 soruyu bir sonraki görüşmede konuşmak için önerir; bir örüntü varsa onun arkasındaki zor sorularla başlar.
 - **Adaylar başlayabilmek için** soruları yapay zekâ araçları veya başkalarının yardımı olmadan kendileri yanıtlayacaklarını **taahhüt eder** ve değerlendirme kartı bunu ne zaman yaptıklarını gösterir.
-- **Kamera, mikrofon veya ekran kaydı yok.** prepza yalnızca test sayfasının kendisinin gördüklerini kullanır: cevaplar, süreler, sayfadan ayrılmalar ve kopyalama girişimleri.
+- **Kamera, mikrofon veya ekran kaydı yok.** testee yalnızca test sayfasının kendisinin gördüklerini kullanır: cevaplar, süreler, sayfadan ayrılmalar ve kopyalama girişimleri.
 - **Kararı insanlar verir.** Hiçbir şey bir adayı otomatik olarak reddetmez.
 
 ## İlgili yazılar

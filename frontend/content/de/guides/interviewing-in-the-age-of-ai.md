@@ -66,9 +66,9 @@ Sag Kandidaten vorab, welche Tools in jeder Phase erlaubt sind. Eine klare Regel
 
 Die ausführliche Schritt-für-Schritt-Version findest du unter [Entwickler einstellen](/guides/hiring-engineers).
 
-## Wo prepza passt
+## Wo testee passt
 
-prepza eignet sich gut für Schritt 2. Es macht aus deiner Stellenbeschreibung ein zeitlich begrenztes Multiple-Choice-Interview zum Fachwissen, und du prüfst die vorgeschlagenen Themen, bevor eine Frage geschrieben wird, sodass der Test deinen Stack abdeckt und nichts anderes.
+testee eignet sich gut für Schritt 2. Es macht aus deiner Stellenbeschreibung ein zeitlich begrenztes Multiple-Choice-Interview zum Fachwissen, und du prüfst die vorgeschlagenen Themen, bevor eine Frage geschrieben wird, sodass der Test deinen Stack abdeckt und nichts anderes.
 
 - **Konzepte und Theorie aus der Stellenbeschreibung:** Datenbanken, APIs, Architektur, das Verhalten eines Frameworks, Sicherheitspraktiken.
 - **Fragen zum Lesen von Code:** ein kurzes Stück Code mit Fragen dazu, was es ausgibt oder zurückgibt, was es tut, warum es fehlschlägt oder welche Änderung es behebt. Das ist dieselbe Review-Fähigkeit, von der KI-gestützte Arbeit abhängt.
@@ -76,7 +76,7 @@ prepza eignet sich gut für Schritt 2. Es macht aus deiner Stellenbeschreibung e
 - **Hinweise auf Auffälligkeiten:** Auswertungen markieren Antworten, die zu schnell kamen, um die Frage gelesen zu haben, Momente, in denen der Kandidat die Seite verlassen hat, und Kopierversuche. Sobald ein Kandidat fertig ist, weist sein Bericht außerdem auf Antwortmuster hin, die das Weitergeben von Fragen an eine KI oft hinterlässt: ungefähr gleich viel Zeit bei jeder Frage, egal wie lang oder schwierig sie ist, oder schwere Fragen richtig, während leichte falsch waren. Ein Hinweis oder ein Muster ist ein Grund, genauer hinzusehen, kein Beweis für Schummeln.
 - **Fragen für das Live-Gespräch:** Der Bericht schlägt bis zu 3 Fragen vor, die der Kandidat richtig beantwortet hat, aus seinen stärksten Themen, um sie in einem Live-Gespräch durchzugehen, wo keine KI für ihn antworten kann.
 
-Was prepza nicht tut: Kandidaten schreiben, starten oder debuggen in prepza keinen Code, und prepza beobachtet nicht, wie sie einen KI-Assistenten nutzen. Das gehört in die praktische Phase, intern oder auf einer Entwicklerplattform durchgeführt, die den Wissenstest ergänzt. Unter [Fachtests nach Stelle](/tests) findest du fertige Tests als Ausgangspunkt, und unter [KI-Interviews](/ai-interviews), wie prepza KI nutzt und was es Menschen überlässt.
+Was testee nicht tut: Kandidaten schreiben, starten oder debuggen in testee keinen Code, und testee beobachtet nicht, wie sie einen KI-Assistenten nutzen. Das gehört in die praktische Phase, intern oder auf einer Entwicklerplattform durchgeführt, die den Wissenstest ergänzt. Unter [Fachtests nach Stelle](/tests) findest du fertige Tests als Ausgangspunkt, und unter [KI-Interviews](/ai-interviews), wie testee KI nutzt und was es Menschen überlässt.
 
 ## Fairness und Candidate Experience
 

@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Un test di competenze con buone domande può comunque dare risultati scarsi. Con troppo tempo i candidati cercano ogni risposta; con troppo poco misuri la velocità di lettura. Con poche domande il punteggio dipende dalla fortuna; con troppe i candidati validi si arrendono a metà.
 
-Questa guida tratta quattro impostazioni di un test a scelta multipla a tempo: il tempo per domanda, il numero di domande, la durata totale e il tempo extra per i candidati che ne hanno bisogno. I consigli valgono per qualsiasi test di conoscenze a tempo; l'ultima sezione mostra come prepza gestisce ciascuna di esse.
+Questa guida tratta quattro impostazioni di un test a scelta multipla a tempo: il tempo per domanda, il numero di domande, la durata totale e il tempo extra per i candidati che ne hanno bisogno. I consigli valgono per qualsiasi test di conoscenze a tempo; l'ultima sezione mostra come testee gestisce ciascuna di esse.
 
 ## In breve
 
@@ -95,9 +95,9 @@ Molti paesi impongono ai datori di lavoro di adottare accomodamenti ragionevoli 
 
 **Questa sezione è un'indicazione pratica, non una consulenza legale.** Ciò che devi offrire, e ciò che puoi chiedere, dipende da dove assumi. Verifica i tuoi obblighi secondo la normativa sulla parità di trattamento e sulla disabilità che si applica a te.
 
-## Come prepza gestisce i tempi e il tempo extra
+## Come testee gestisce i tempi e il tempo extra
 
-In prepza, un colloquio è un test di competenze a scelta multipla e a tempo, creato dalla tua descrizione del ruolo.
+In testee, un colloquio è un test di competenze a scelta multipla e a tempo, creato dalla tua descrizione del ruolo.
 
 ### Tempo per domanda
 

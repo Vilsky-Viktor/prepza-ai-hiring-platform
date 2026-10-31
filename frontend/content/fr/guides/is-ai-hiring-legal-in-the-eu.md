@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 En règle générale, oui : utiliser l'IA dans le recrutement est légal dans l'UE. Mais la plupart des outils d'IA qui évaluent les candidats entrent dans la catégorie à haut risque du Règlement sur l'IA (AI Act), ce qui entraîne des obligations pour le fournisseur et pour vous, l'employeur. Quelques pratiques sont purement et simplement interdites. Et le RGPD (GDPR) s'applique aux données des candidats, comme il l'a toujours fait.
 
-Ce guide présente les règles dans leurs grandes lignes, les dates à retenir, ce que les employeurs doivent faire et la façon dont prepza aborde le sujet. **Il ne constitue pas un conseil juridique.** Il reflète les règles en vigueur en octobre 2026. Ces règles sont récentes, les lignes directrices sont encore en cours de finalisation et le droit national ajoute ses propres exigences. Vérifiez auprès de votre propre conseil juridique avant de vous fonder sur ces informations.
+Ce guide présente les règles dans leurs grandes lignes, les dates à retenir, ce que les employeurs doivent faire et la façon dont testee aborde le sujet. **Il ne constitue pas un conseil juridique.** Il reflète les règles en vigueur en octobre 2026. Ces règles sont récentes, les lignes directrices sont encore en cours de finalisation et le droit national ajoute ses propres exigences. Vérifiez auprès de votre propre conseil juridique avant de vous fonder sur ces informations.
 
 ## La réponse courte
 
@@ -111,15 +111,15 @@ Les données des candidats sont des données personnelles, et l'IA ne change rie
 8. **Proposez des aménagements,** comme du temps supplémentaire, aux candidats qui en ont besoin.
 9. **N'écartez jamais un candidat sur la seule base d'un score.** Regardez les réponses.
 
-## L'approche de prepza
+## L'approche de testee
 
-prepza fait passer des entretiens de compétences chronométrés à choix multiples, rédigés par l'IA à partir d'une fiche de poste. Comme il note et classe les candidats, l'analyse menée par prepza conclut qu'il est très probablement à haut risque au sens de l'annexe III, point 4 a), avec des obligations applicables à partir du 2 décembre 2027. prepza se prépare sur cette base. prepza ne prétend être ni conforme ni certifié.
+testee fait passer des entretiens de compétences chronométrés à choix multiples, rédigés par l'IA à partir d'une fiche de poste. Comme il note et classe les candidats, l'analyse menée par testee conclut qu'il est très probablement à haut risque au sens de l'annexe III, point 4 a), avec des obligations applicables à partir du 2 décembre 2027. testee se prépare sur cette base. testee ne prétend être ni conforme ni certifié.
 
 Ce que cela donne aujourd'hui dans le produit :
 
 - **L'IA rédige les questions et leurs corrigés ; la notation suit des règles fixes.** Aucune IA ne lit ni ne juge la réponse d'un candidat, et aucune analyse vidéo, vocale ou faciale n'est utilisée. Si l'IA rectifie un corrigé par la suite, la rectification s'applique aux candidats qui commencent après elle ; les résultats passés ne changent pas.
 - **Vous validez les thèmes** avant qu'une question ne soit rédigée, et vous pouvez voir chaque question.
-- **Des personnes décident.** La page de résultats et les rapports PDF rappellent à votre équipe d'examiner les résultats ; prepza ne rejette pas de candidats et n'envoie pas de messages de refus.
+- **Des personnes décident.** La page de résultats et les rapports PDF rappellent à votre équipe d'examiner les résultats ; testee ne rejette pas de candidats et n'envoie pas de messages de refus.
 - **Les candidats sont informés** avant de commencer que les questions sont rédigées par l'IA, que des personnes de votre entreprise examinent les résultats et décident, et qu'ils peuvent demander un réexamen.
 - **Du temps supplémentaire** peut être accordé à tout candidat qui le demande.
 - **Traçabilité.** Les questions affichées, les réponses, les temps et les événements d'intégrité sont enregistrés.

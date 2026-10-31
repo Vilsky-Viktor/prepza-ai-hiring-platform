@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 HackerRank, geliştirici işe alımı için bir platformdur. Ekim 2026 itibarıyla sitesi eleme testlerini, ortak bir çalışma alanında canlı eşli programlama mülakatlarını ve gerçek hayattan bir görev üzerinde çalışan bir yapay zekâ mülakatçısını tanımlıyor ([hackerrank.com](https://www.hackerrank.com/)). Adayların kod yazıp çalıştırmasına ihtiyacınız varsa, böyle bir platform tam da bunun için tasarlanmıştır.
 
-prepza onun yerine geçmez. Farklı bir iş yapar: iş tanımınızdan yazılmış, kod okuma soruları da içeren, adayın bilgisini ölçen süreli ve çoktan seçmeli bir test. İkisi birbirini iyi tamamlar. Yaygın bir kurulum şöyledir: her başvuru sahibi için hızlı bir bilgi elemesi olarak prepza, ardından geçenler için bir geliştirici platformunun kodlama testi veya canlı kodlama mülakatı. prepza ayrıca aynı çeyrekte işe aldığınız diğer pozisyonları de kapsar; örneğin bir müşteri temsilcisi, bir ön muhasebeci veya bir destek uzmanı.
+testee onun yerine geçmez. Farklı bir iş yapar: iş tanımınızdan yazılmış, kod okuma soruları da içeren, adayın bilgisini ölçen süreli ve çoktan seçmeli bir test. İkisi birbirini iyi tamamlar. Yaygın bir kurulum şöyledir: her başvuru sahibi için hızlı bir bilgi elemesi olarak testee, ardından geçenler için bir geliştirici platformunun kodlama testi veya canlı kodlama mülakatı. testee ayrıca aynı çeyrekte işe aldığınız diğer pozisyonları de kapsar; örneğin bir müşteri temsilcisi, bir ön muhasebeci veya bir destek uzmanı.
 
 Bu sayfa her araç türünün nerede uygun olduğunu anlatır. Bilgiler, Ekim 2026 itibarıyla her sağlayıcının kendi sayfalarına bağlanmıştır; satın almadan önce kontrol edin.
 
@@ -25,7 +25,7 @@ Bu sayfa her araç türünün nerede uygun olduğunu anlatır. Bilgiler, Ekim 20
 | Araç | En güçlü olduğu alan | Mühendislik dışındaki pozisyonlar | Testte kod | Fiyatlandırma modeli (Ekim 2026 itibarıyla) |
 | --- | --- | --- | --- | --- |
 | **HackerRank** | Geliştiriciler için kodlama testleri, canlı kodlama mülakatları ve bir yapay zekâ mülakatçısı ([site](https://www.hackerrank.com/)) | Odak noktası değil | Adaylar kod yazar ve çalıştırır | Bkz. [fiyat sayfası](https://www.hackerrank.com/pricing/) |
-| **prepza** | İş tanımınızdan süreli, çoktan seçmeli beceri mülakatları | Her pozisyon | Kod okuma soruları (kodun ne yaptığı veya ne çıktı verdiği); kod yazma veya çalıştırma yok | Aday başına, abonelik yok ([fiyatlar](/pricing)) |
+| **testee** | İş tanımınızdan süreli, çoktan seçmeli beceri mülakatları | Her pozisyon | Kod okuma soruları (kodun ne yaptığı veya ne çıktı verdiği); kod yazma veya çalıştırma yok | Aday başına, abonelik yok ([fiyatlar](/pricing)) |
 | **TestGorilla** | Geniş test kütüphanesi: pozisyona özel beceriler, bilişsel, kişilik, dil, programlama | Evet | Programlama testleri; üst planında özel kodlama görevleri | Ücretsiz plan ve yıllık planlar ([fiyat sayfası](https://www.testgorilla.com/pricing/)) |
 | **CodeSignal** | Teknik değerlendirmeler ve yapay zekâ mülakatçıları | Üst planlarda satış, müşteri başarısı ve pazarlama | Kodlama değerlendirmeleri | Kredili aylık veya yıllık planlar ([fiyat sayfası](https://codesignal.com/pricing/)) |
 | **Bryq** | Bilişsel, kişilik ve beceri değerlendirmeleri | Evet | Odak noktası değil | Aylık veya yıllık planlar ([fiyat sayfası](https://www.bryq.com/pricing)) |
@@ -33,11 +33,11 @@ Bu sayfa her araç türünün nerede uygun olduğunu anlatır. Bilgiler, Ekim 20
 
 ## Hangisi nerede uygun
 
-### prepza: iş tanımından yazılan bir bilgi elemesi
+### testee: iş tanımından yazılan bir bilgi elemesi
 
-prepza iş tanımınızı okur, adayın bilmesi gerekenleri çıkarır ve konular önerir. Sorular yazılmadan önce bunları gözden geçirirsiniz (tutar, işaretini kaldırır, yeniden adlandırır, düzenler veya değişiklikleri düz metinle anlatırsınız). Her konu için çoktan seçmeli sorulardan oluşan bir havuz hazırlanır ve her aday, her sorusunda geri sayım olan kendine ait rastgele bir set alır.
+testee iş tanımınızı okur, adayın bilmesi gerekenleri çıkarır ve konular önerir. Sorular yazılmadan önce bunları gözden geçirirsiniz (tutar, işaretini kaldırır, yeniden adlandırır, düzenler veya değişiklikleri düz metinle anlatırsınız). Her konu için çoktan seçmeli sorulardan oluşan bir havuz hazırlanır ve her aday, her sorusunda geri sayım olan kendine ait rastgele bir set alır.
 
-Bir backend geliştirici için de bir bordro uzmanı için de aynı şekilde çalışır. Bir geliştirici için prepza veritabanlarını, API'leri, sistem tasarımını veya bir framework'ü test edebilir. Bir konu kod, SQL, kabuk komutları veya yapılandırma içerdiğinde birçok soru kısa bir örnek gösterir ve bunun ne yazdırdığını veya döndürdüğünü, ne yaptığını, neden hata verdiğini ya da hangi değişikliğin sorunu düzelttiğini sorar. Adaylar dört yanıttan birini seçer. prepza'da kod yazmaz, çalıştırmaz veya hata ayıklamazlar; canlı bir kodlama ortamı da yoktur.
+Bir backend geliştirici için de bir bordro uzmanı için de aynı şekilde çalışır. Bir geliştirici için testee veritabanlarını, API'leri, sistem tasarımını veya bir framework'ü test edebilir. Bir konu kod, SQL, kabuk komutları veya yapılandırma içerdiğinde birçok soru kısa bir örnek gösterir ve bunun ne yazdırdığını veya döndürdüğünü, ne yaptığını, neden hata verdiğini ya da hangi değişikliğin sorunu düzelttiğini sorar. Adaylar dört yanıttan birini seçer. testee'de kod yazmaz, çalıştırmaz veya hata ayıklamazlar; canlı bir kodlama ortamı da yoktur.
 
 - **Fiyatlandırma:** en az bir soruyu yanıtlayan aday başına; daha büyük kredi yüklemelerinde aday başına daha ucuz. Abonelik yoktur ve krediler süresiz geçerlidir. Bkz. [fiyatlar](/pricing).
 - **Ayrıca:** yanıtlar ve sürelerle değerlendirme kartları; çok hızlı yanıtlar, sayfadan ayrılma ve kopyalama girişimleri için işaretler; PDF raporlar; e-postayla veya iş ilanı bağlantısıyla davetler; otomatik hatırlatmalar ve 23 dil.
@@ -47,26 +47,26 @@ Bir backend geliştirici için de bir bordro uzmanı için de aynı şekilde ça
 
 TestGorilla'nın kütüphanesi pozisyona özel beceriler, programlama, yazılım becerileri, dil, bilişsel yetenek, durumsal muhakeme, kişilik ve klavye hızı testlerini kapsar ([test kütüphanesi, Ekim 2026 itibarıyla](https://www.testgorilla.com/test-library/)). Üst planı yapay zekâ mülakatları, özel kodlama görevleri, iş simülasyonları ve ATS entegrasyonları ekler ([fiyat sayfası](https://www.testgorilla.com/pricing/)).
 
-- **prepza'dan daha iyi olduğu alanlar:** beceri testlerini bilişsel ve kişilik testleriyle birleştirmek, kodlama görevleri ve düzenli, yüksek hacimli işe alım.
-- Bkz. [prepza ve TestGorilla](/compare/testgorilla).
+- **testee'den daha iyi olduğu alanlar:** beceri testlerini bilişsel ve kişilik testleriyle birleştirmek, kodlama görevleri ve düzenli, yüksek hacimli işe alım.
+- Bkz. [testee ve TestGorilla](/compare/testgorilla).
 
 ### CodeSignal: önce teknik, üst planlarda go-to-market pozisyonları
 
 CodeSignal'ın planları ürün, tasarım ve mühendislik için teknik değerlendirmeleri ve yapay zekâ mülakatçılarını kapsar. Üst planlar satış, müşteri başarısı ve pazarlama için go-to-market değerlendirmeleri ve yapay zekâ mülakatçıları ekler ([fiyat sayfası, Ekim 2026 itibarıyla](https://codesignal.com/pricing/)).
 
-- **prepza'dan daha iyi olduğu alanlar:** uygulamalı kodlama değerlendirmesini ve yapay zekâ yönetimli mülakatları aynı araçta isteyen ekipler.
+- **testee'den daha iyi olduğu alanlar:** uygulamalı kodlama değerlendirmesini ve yapay zekâ yönetimli mülakatları aynı araçta isteyen ekipler.
 
 ### Bryq: psikometri
 
 Bryq'nun planları bilişsel ve kişilik değerlendirmelerini, beceri değerlendirmelerini, sınırsız daveti ve bir yapay zekâ ilan oluşturucuyu içerir; kültür uyumu ek özellik olarak listelenir ([fiyat sayfası, Ekim 2026 itibarıyla](https://www.bryq.com/pricing)).
 
-- **prepza'dan daha iyi olduğu alanlar:** bilişsel yetenek ve kişiliğe göre işe alım yapan ekipler.
+- **testee'den daha iyi olduğu alanlar:** bilişsel yetenek ve kişiliğe göre işe alım yapan ekipler.
 
 ### Alooba: veri pozisyonları
 
 Alooba, veri analizi testleri dahil 500'den fazla beceride 400'den fazla pozisyon için eleme testi listeler; üst planlar analitik ve SQL kodlama testleri ekler ([fiyat sayfası, Ekim 2026 itibarıyla](https://www.alooba.com/pricing/)).
 
-- **prepza'dan daha iyi olduğu alanlar:** uygulamalı veri testleri gerektiren analitik ve veri pozisyonları.
+- **testee'den daha iyi olduğu alanlar:** uygulamalı veri testleri gerektiren analitik ve veri pozisyonları.
 
 ## HackerRank'in daha uygun olduğu durumlar
 
@@ -85,13 +85,13 @@ Diyelim ki bir çeyrekte 1 geliştirici, 2 satış temsilcisi ve 3 destek uzman�
 
 | Aşama | Geliştirici pozisyonu | Satış ve destek pozisyonları |
 | --- | --- | --- |
-| Eleme | prepza: 15 başvuru sahibinin tamamı için teknoloji yığını bilgisi ve kod okuma soruları | prepza: her iş tanımından bir bilgi testi |
+| Eleme | testee: 15 başvuru sahibinin tamamı için teknoloji yığını bilgisi ve kod okuma soruları | testee: her iş tanımından bir bilgi testi |
 | Uygulamalı | Geçen 3–5 kişi için bir geliştirici platformunun kodlama testi veya canlı kodlama mülakatı | Kısa liste için rol canlandırma veya iş örneği |
 | Karar | Yapılandırılmış mülakatlar ve bir insanın değerlendirmesi | Yapılandırılmış mülakatlar ve bir insanın değerlendirmesi |
 
-Eleme, mühendislerin mülakat zamanını teknoloji yığınını zaten bilen kişilere ayırır. Kodlama aşaması, prepza'nın test etmediği bir şeyi, yani çalışan kod yazıp yazamadıklarını gösterir. Toplam maliyetiniz hacminize ve geliştirici platformunun planına bağlıdır; bkz. [İşe alım öncesi test maliyetleri nasıl karşılaştırılır](/compare/cheapest-pre-employment-test).
+Eleme, mühendislerin mülakat zamanını teknoloji yığınını zaten bilen kişilere ayırır. Kodlama aşaması, testee'nin test etmediği bir şeyi, yani çalışan kod yazıp yazamadıklarını gösterir. Toplam maliyetiniz hacminize ve geliştirici platformunun planına bağlıdır; bkz. [İşe alım öncesi test maliyetleri nasıl karşılaştırılır](/compare/cheapest-pre-employment-test).
 
-## prepza'nın yapmadıkları
+## testee'nin yapmadıkları
 
 Karşılaştırmayı adil tutmak için:
 
@@ -101,7 +101,7 @@ Karşılaştırmayı adil tutmak için:
 
 Eksiksiz bir mühendislik işe alım süreci için [Mühendis işe alımı nasıl yapılır](/guides/hiring-engineers) rehberine bakın.
 
-*HackerRank, sahibinin ticari markasıdır. prepza, HackerRank veya bu sayfada adı geçen başka herhangi bir şirketle bağlantılı değildir ve bu şirketler tarafından onaylanmamıştır.*
+*HackerRank, sahibinin ticari markasıdır. testee, HackerRank veya bu sayfada adı geçen başka herhangi bir şirketle bağlantılı değildir ve bu şirketler tarafından onaylanmamıştır.*
 
 ## İlgili sayfalar
 

@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Co do zasady tak: korzystanie z AI w rekrutacji jest w Wielkiej Brytanii legalne. Wielka Brytania nie ma jednej ustawy o AI, takiej jak unijny AI Act. Zamiast tego do narzędzi AI, tak jak do każdego testu, stosuje się ustawę o równości z 2010 roku (Equality Act 2010) i brytyjskie RODO (UK GDPR), a od 5 lutego 2026 UK GDPR zawiera nowe przepisy o decyzjach podejmowanych wyłącznie w sposób zautomatyzowany.
 
-Ten poradnik w ogólnym zarysie wyjaśnia zasady, obowiązki pracodawców oraz podejście prepza. **To nie jest porada prawna.** Opisuje przepisy według stanu na październik 2026; część z nich jest nowa, a wytyczne regulatora w ich sprawie wciąż są aktualizowane.
+Ten poradnik w ogólnym zarysie wyjaśnia zasady, obowiązki pracodawców oraz podejście testee. **To nie jest porada prawna.** Opisuje przepisy według stanu na październik 2026; część z nich jest nowa, a wytyczne regulatora w ich sprawie wciąż są aktualizowane.
 
 ## Krótka odpowiedź
 
@@ -99,21 +99,21 @@ Jeśli dostawca przesyła dane brytyjskich kandydatów do Stanów Zjednoczonych,
 8. **Monitoruj rzetelność** na własnych wynikach, z danymi, które kandydaci przekazali Ci sami, nigdy z danymi wywnioskowanymi.
 9. **Nigdy nie odrzucaj wyłącznie na podstawie wyniku.** Spójrz na odpowiedzi.
 
-## Podejście prepza
+## Podejście testee
 
-prepza prowadzi rozmowy rekrutacyjne sprawdzające umiejętności w formie testów wyboru z limitem czasu, napisanych przez AI na podstawie opisu stanowiska. W Wielkiej Brytanii prepza podchodzi do tego tak samo jak w UE. prepza nie twierdzi, że spełnia wymogi ani że posiada certyfikację.
+testee prowadzi rozmowy rekrutacyjne sprawdzające umiejętności w formie testów wyboru z limitem czasu, napisanych przez AI na podstawie opisu stanowiska. W Wielkiej Brytanii testee podchodzi do tego tak samo jak w UE. testee nie twierdzi, że spełnia wymogi ani że posiada certyfikację.
 
 Jak to dziś wygląda w produkcie:
 
 - **AI pisze pytania i klucze odpowiedzi; ocenianie odbywa się według stałych reguł.** Żadna AI nie czyta ani nie ocenia odpowiedzi kandydata i nie jest używana analiza wideo ani twarzy. W trybie głosowym mowa jest zamieniana na tekst i dopasowywana do odpowiedzi, którą kandydat słyszy i widzi na ekranie: jedna wyraźnie wskazana odpowiedź jest zapisywana od razu, a wybór kilku odpowiedzi jest najpierw potwierdzany. Mowa nigdy nie jest przechowywana, a głos nigdy nie jest analizowany.
 - **Zatwierdzasz tematy,** zanim powstanie jakiekolwiek pytanie, i to Ty wybierasz próg zaliczenia.
-- **Decydują ludzie.** Strona wyników i raporty PDF przypominają Twojemu zespołowi o przejrzeniu wyników; prepza nie odrzuca kandydatów ani nie wysyła wiadomości z odmową.
+- **Decydują ludzie.** Strona wyników i raporty PDF przypominają Twojemu zespołowi o przejrzeniu wyników; testee nie odrzuca kandydatów ani nie wysyła wiadomości z odmową.
 - **Kandydaci są informowani,** zanim zaczną, że pytania pisze AI, że wyniki przeglądają i decyzje podejmują ludzie w Twojej firmie oraz że mogą poprosić o weryfikację.
-- **Żadnych cech chronionych.** prepza nigdy nie pyta o płeć, pochodzenie etniczne, wiek, niepełnosprawność ani inne cechy chronione kandydatów, nie wnioskuje ich i ich nie przechowuje.
+- **Żadnych cech chronionych.** testee nigdy nie pyta o płeć, pochodzenie etniczne, wiek, niepełnosprawność ani inne cechy chronione kandydatów, nie wnioskuje ich i ich nie przechowuje.
 - **Monitorowanie rzetelności.** Właściciel Twojej firmy może pobrać plik do audytu stronniczości na stronie „Dziennik działań” firmy: dla każdego kandydata, który ukończył rozmowę, jego wynik, próg zaliczenia, to, czy zaliczył, i czy uzyskał wynik powyżej mediany rozmowy, z adresem e-mail jako kluczem. Połącz go z odpowiedziami, których kandydaci udzielili Ci we własnym formularzu dotyczącym równych szans, a potem usuń adres e-mail.
-- **Dodatkowy czas** +25%, +50% lub +100% na każde pytanie można przyznać każdemu kandydatowi, który o to poprosi, zanim zacznie. prepza przechowuje tylko wymiar dodatkowego czasu, nigdy powód.
+- **Dodatkowy czas** +25%, +50% lub +100% na każde pytanie można przyznać każdemu kandydatowi, który o to poprosi, zanim zacznie. testee przechowuje tylko wymiar dodatkowego czasu, nigdy powód.
 - **Dokumenty.** Wzory informacji dla kandydatów, instrukcje dla firm i wzór DPIA są na [stronie dokumentów](/documents).
-- **Dane.** Twoja firma jest administratorem, a prepza podmiotem przetwarzającym na podstawie [umowy powierzenia przetwarzania danych](/dpa), która obejmuje prawo brytyjskie. Dane są hostowane w UE i nie są używane do trenowania modeli AI; przekazywanie danych brytyjskich kandydatów do amerykańskich podmiotów podprzetwarzających opiera się na brytyjsko-amerykańskim „pomoście danych” lub brytyjskim aneksie (zobacz [politykę prywatności](/privacy)). Dane kandydatów są usuwane 12 miesięcy po zaproszeniu.
+- **Dane.** Twoja firma jest administratorem, a testee podmiotem przetwarzającym na podstawie [umowy powierzenia przetwarzania danych](/dpa), która obejmuje prawo brytyjskie. Dane są hostowane w UE i nie są używane do trenowania modeli AI; przekazywanie danych brytyjskich kandydatów do amerykańskich podmiotów podprzetwarzających opiera się na brytyjsko-amerykańskim „pomoście danych” lub brytyjskim aneksie (zobacz [politykę prywatności](/privacy)). Dane kandydatów są usuwane 12 miesięcy po zaproszeniu.
 
 ## Przeczytaj też
 

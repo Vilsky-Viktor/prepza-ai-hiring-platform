@@ -38,9 +38,9 @@ Kalau ada dua atau tiga orang yang terlibat dalam rekrutmen, sepakati daftar ini
 
 Tes penyaringan yang baik itu singkat, berkaitan dengan pekerjaan, dan sama untuk semua orang.
 
-Dengan prepza:
+Dengan testee:
 
-1. **Tempel deskripsi pekerjaan.** prepza mengambil apa yang wajib diketahui kandidat dan mengusulkan topik.
+1. **Tempel deskripsi pekerjaan.** testee mengambil apa yang wajib diketahui kandidat dan mengusulkan topik.
 2. **Tinjau topiknya berdasarkan daftarmu dari langkah 1.** Hapus centang apa pun yang bukan persyaratan sebenarnya, ganti nama topik, ubah subtopik, atau jelaskan perubahan dengan teks biasa ("tambahkan topik tentang dasar-dasar penggajian"). Soal baru ditulis setelah kamu menyetujuinya.
 3. **Atur panjangnya.** Secara default setiap topik berisi 10 soal, masing-masing dengan hitung mundurnya sendiri, rata-rata 60 detik, atau 75 detik pada tes sulit. Tiga topik berarti paling lama 30 menit untuk seorang kandidat (sekitar 38 pada tes sulit), dan biasanya kurang. Batasi pada yang kamu butuhkan.
 4. **Tetapkan nilai lulus.** Default-nya 70%. Anggap ini sebagai panduan untuk membaca hasil, bukan batas otomatis.
@@ -63,7 +63,7 @@ Lakukan pemeriksaan ya-atau-tidak yang cepat hanya untuk syarat wajib: izin kerj
 
 Lalu undang semua yang tersisa:
 
-- **Tempel daftar email atau unggah file.** prepza menerima hingga 100 email sekaligus dan melewati siapa pun yang sudah mulai.
+- **Tempel daftar email atau unggah file.** testee menerima hingga 100 email sekaligus dan melewati siapa pun yang sudah mulai.
 - **Atau pakai satu tautan.** Kalau lowongannya belum kamu pasang, sertakan tautan wawancara yang bisa dibagikan di iklan lowongan. Pelamar bisa langsung mengerjakan tes dan muncul di daftarmu, berurutan sesuai peringkat. Matikan tautannya setelah posisinya terisi.
 - **Atau biarkan ATS-mu yang mengirim undangan.** Kalau pelamarmu ada di Workable, Greenhouse, Teamtailor, Recruitee, atau Breezy HR, hubungkan sekali saja: memindahkan kandidat ke suatu tahap langsung mengirim undangan, dan hasilnya kembali ke ATS. Lihat [cara menghubungkan tes keterampilan ke ATS-mu](/guides/ats-integration-skills-tests).
 
@@ -71,7 +71,7 @@ Sebelum mulai, kandidat melihat apa yang akan terjadi: timer, bahwa orang di per
 
 ### Agar tes selesai di hari yang sama
 
-Tes yang jelas dan singkat lebih mudah diselesaikan segera setelah undangan. Sebutkan di email atau iklan lowonganmu berapa lama tesnya dan kapan batas waktunya. prepza otomatis mengirim pengingat kepada siapa pun yang belum mulai setelah 3 hari; untuk rencana di hari yang sama, kamu juga bisa mengirim ulang undangan sendiri.
+Tes yang jelas dan singkat lebih mudah diselesaikan segera setelah undangan. Sebutkan di email atau iklan lowonganmu berapa lama tesnya dan kapan batas waktunya. testee otomatis mengirim pengingat kepada siapa pun yang belum mulai setelah 3 hari; untuk rencana di hari yang sama, kamu juga bisa mengirim ulang undangan sendiri.
 
 Tidak semua orang akan selesai di hari pertama. Tidak apa-apa: tinjau yang sudah selesai dan lihat lagi yang tertinggal keesokan paginya.
 
@@ -81,11 +81,11 @@ Sekarang pembacaan yang teliti dimulai, tetapi pada kelompok yang lebih kecil da
 
 1. **Urutkan berdasarkan nilai,** yang terbaik lebih dulu, dari menu urutan daftar: daftar dibuka dengan kandidat terbaru di atas.
 2. **Buka setiap scorecard** di kelompok teratas. Lihat jawabannya, bukan hanya angkanya: topik mana yang kuat, mana yang lemah, berapa lama setiap jawaban.
-3. **Periksa tanda peringatannya.** prepza menandai jawaban yang terlalu cepat untuk sempat membaca soalnya, saat kandidat meninggalkan halaman, dan percobaan menyalin. Setelah kandidat selesai, halamannya juga menunjukkan pola jawaban yang tidak biasa (waktu yang kira-kira sama di setiap soal, atau soal sulit benar sementara soal mudah salah) dan menyarankan soal untuk ditanyakan di wawancara berikutnya. Tanda adalah alasan untuk melihat lebih teliti, bukan bukti kecurangan. Orang yang meninggalkan halaman sekali mungkin saja terganggu notifikasi yang muncul.
+3. **Periksa tanda peringatannya.** testee menandai jawaban yang terlalu cepat untuk sempat membaca soalnya, saat kandidat meninggalkan halaman, dan percobaan menyalin. Setelah kandidat selesai, halamannya juga menunjukkan pola jawaban yang tidak biasa (waktu yang kira-kira sama di setiap soal, atau soal sulit benar sementara soal mudah salah) dan menyarankan soal untuk ditanyakan di wawancara berikutnya. Tanda adalah alasan untuk melihat lebih teliti, bukan bukti kecurangan. Orang yang meninggalkan halaman sekali mungkin saja terganggu notifikasi yang muncul.
 4. **Lihat yang sedikit di bawah nilai lulus.** Skor dari set soal acak yang berbeda tidak bisa dibandingkan secara persis, jadi selisih beberapa poin bisa berasal dari soal yang terambil. Seseorang dengan skor 65% yang jawabannya kuat di topik yang paling penting mungkin layak diwawancarai.
 5. **Sekarang baca CV** orang-orang yang sedang kamu pertimbangkan. Kamu membaca 15 CV dengan teliti, bukan membaca sekilas 100 CV.
 
-Untuk membagikan hasil kepada hiring manager, unduh laporan PDF untuk satu kandidat atau seluruh daftar, atau kirim lewat email dari prepza.
+Untuk membagikan hasil kepada hiring manager, unduh laporan PDF untuk satu kandidat atau seluruh daftar, atau kirim lewat email dari testee.
 
 ## Langkah 5: Putuskan (akhir hari)
 
@@ -103,7 +103,7 @@ Tuliskan kenapa setiap orang masuk daftar. Hanya butuh satu menit per kandidat d
 
 ## Berapa biayanya
 
-Dengan prepza, kamu hanya membayar untuk kandidat yang menjawab setidaknya satu soal: $5 per kandidat pada isi ulang $50, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. Untuk 100 pelamar, itu $500 dengan harga $5 per kandidat, atau $400 dari dua kali isi ulang $200 dengan harga $4 per kandidat, tanpa langganan. Harga di sini dalam dolar AS, dan dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya (lihat [harga](/pricing)); PPN (VAT) atau pajak penjualan ditangani saat checkout. Membuat tes gratis, dan 3 kandidat pertama dari perusahaan pertamamu gratis.
+Dengan testee, kamu hanya membayar untuk kandidat yang menjawab setidaknya satu soal: $5 per kandidat pada isi ulang $50, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. Untuk 100 pelamar, itu $500 dengan harga $5 per kandidat, atau $400 dari dua kali isi ulang $200 dengan harga $4 per kandidat, tanpa langganan. Harga di sini dalam dolar AS, dan dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya (lihat [harga](/pricing)); PPN (VAT) atau pajak penjualan ditangani saat checkout. Membuat tes gratis, dan 3 kandidat pertama dari perusahaan pertamamu gratis.
 
 ## Bacaan terkait
 

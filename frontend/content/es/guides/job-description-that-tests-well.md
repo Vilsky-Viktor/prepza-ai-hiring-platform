@@ -102,9 +102,9 @@ Cada línea nombra algo sobre lo que se puede preguntar, el nivel está indicado
 - Los requisitos excluyentes se dejan para el filtrado de CV.
 - No hay expresiones sobre la persona que te imaginas, solo sobre el trabajo.
 
-## Cómo usa prepza una descripción del puesto
+## Cómo usa testee una descripción del puesto
 
-prepza es un ejemplo de herramienta que crea una prueba de habilidades de opción múltiple con tiempo límite a partir de una descripción del puesto. Esto es lo que hace con el texto, para que veas cómo se aplican los consejos anteriores:
+testee es un ejemplo de herramienta que crea una prueba de habilidades de opción múltiple con tiempo límite a partir de una descripción del puesto. Esto es lo que hace con el texto, para que veas cómo se aplican los consejos anteriores:
 
 - **Lee cada requisito.** La IA identifica cada habilidad, herramienta, concepto, titulación y tarea diaria, en todas las secciones, incluidas las marcadas como preferentes o «se valorará». Las frases sobre cultura, los beneficios y los eslóganes se dejan fuera.
 - **Los ejemplos intercambiables se convierten en uno.** «Herramientas como A, B o similares» se mantiene como tipo de herramienta, con la que prefiere el texto (o la más usada) como ejemplo. Los elementos unidos por «y» siguen separados. Así que, si necesitas una herramienta concreta, nombra solo esa.

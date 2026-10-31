@@ -30,7 +30,7 @@ Trang này giải thích các lựa chọn thay cho gói đăng ký, chúng so v
 
 | Công cụ | Mô hình giá (tính đến tháng 10/2026) | Cam kết |
 | --- | --- | --- |
-| **prepza** | Credit trả trước, tính phí theo mỗi ứng viên có trả lời ([bảng giá](/pricing)) | Không có; credit không hết hạn |
+| **testee** | Credit trả trước, tính phí theo mỗi ứng viên có trả lời ([bảng giá](/pricing)) | Không có; credit không hết hạn |
 | **TestGorilla** | Gói miễn phí, hoặc gói trả phí thanh toán theo năm ([trang bảng giá](https://www.testgorilla.com/pricing/)) | Theo năm với gói trả phí |
 | **CodeSignal** | Gói kèm credit ([trang bảng giá](https://codesignal.com/pricing/)) | Theo tháng hoặc theo năm |
 | **Bryq** | Gói với số lời mời không giới hạn ([trang bảng giá](https://www.bryq.com/pricing)) | Theo tháng hoặc theo năm |
@@ -41,9 +41,9 @@ Một số công cụ trên có thanh toán theo tháng, không phải hợp đ�
 
 Các công cụ này cũng kiểm tra những thứ khác nhau. Một gói đăng ký nền tảng trắc nghiệm tâm lý hoặc lập trình và một bài kiểm tra kiến thức trả theo ứng viên có thể cùng nằm trong một quy trình tuyển dụng, mỗi thứ đảm nhận giai đoạn riêng.
 
-## Cách tính giá của prepza
+## Cách tính giá của testee
 
-prepza không có gói đăng ký và không có hợp đồng. Bạn mua credit khi cần và dùng chúng cho ứng viên.
+testee không có gói đăng ký và không có hợp đồng. Bạn mua credit khi cần và dùng chúng cho ứng viên.
 
 - **Credit không hết hạn.**
 - **Một ứng viên tốn 500 credit,** chỉ bị trừ khi họ trả lời ít nhất một câu hỏi. Nếu một ứng viên được mời không bao giờ bắt đầu, credit sẽ được hoàn lại. Lời mời không được bắt đầu trong 30 ngày sẽ hết hạn và hoàn lại credit.
@@ -52,7 +52,7 @@ prepza không có gói đăng ký và không có hợp đồng. Bạn mua credit
 - **Không tính phí theo người dùng.** Thêm quản trị viên và người xem vào công ty của bạn miễn phí.
 - **Credit chào mừng:** 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí.
 
-Giá ở đây tính bằng đô la Mỹ, và bằng đồng tiền địa phương ở Canada, Úc, Israel, Ba Lan, Thụy Sĩ, Nhật Bản, Hàn Quốc, Đài Loan, Hồng Kông, Thái Lan, Singapore, Ấn Độ, phần còn lại của châu Âu và Vương quốc Anh (xem [bảng giá](/pricing)). Thanh toán qua Paddle, đơn vị xử lý VAT và thuế bán hàng và hiển thị số tiền cuối cùng khi thanh toán; prepza không lưu thông tin thẻ. Bạn có thể bật tính năng tự động nạp để nạp thêm credit khi sắp hết, nhưng đó là tùy chọn.
+Giá ở đây tính bằng đô la Mỹ, và bằng đồng tiền địa phương ở Canada, Úc, Israel, Ba Lan, Thụy Sĩ, Nhật Bản, Hàn Quốc, Đài Loan, Hồng Kông, Thái Lan, Singapore, Ấn Độ, phần còn lại của châu Âu và Vương quốc Anh (xem [bảng giá](/pricing)). Thanh toán qua Paddle, đơn vị xử lý VAT và thuế bán hàng và hiển thị số tiền cuối cùng khi thanh toán; testee không lưu thông tin thẻ. Bạn có thể bật tính năng tự động nạp để nạp thêm credit khi sắp hết, nhưng đó là tùy chọn.
 
 ## Bạn nhận được gì cho mỗi ứng viên
 
@@ -60,7 +60,7 @@ Giá ở đây tính bằng đô la Mỹ, và bằng đồng tiền địa phư�
 - Các chủ đề bạn duyệt và chỉnh sửa trước khi bất kỳ câu hỏi nào được viết.
 - Bộ câu hỏi ngẫu nhiên riêng cho mỗi ứng viên, với đồng hồ đếm ngược cho mọi câu hỏi. Với vị trí kỹ thuật, câu hỏi có thể đưa ra các ví dụ code ngắn và hỏi chúng làm gì hoặc in ra gì.
 - Bảng điểm với mọi câu trả lời và thời gian, kèm cảnh báo về trả lời quá nhanh, rời khỏi trang và cố sao chép.
-- Báo cáo PDF bạn có thể tải xuống hoặc gửi email từ prepza.
+- Báo cáo PDF bạn có thể tải xuống hoặc gửi email từ testee.
 - Lời mời qua email, danh sách dán vào, tệp tải lên hoặc một liên kết trong tin tuyển dụng, cùng lời nhắc tự động.
 
 ## Khi nào gói đăng ký có lợi hơn
@@ -68,7 +68,7 @@ Giá ở đây tính bằng đô la Mỹ, và bằng đồng tiền địa phư�
 Trả tiền theo ứng viên không phải lúc nào cũng rẻ hơn. Gói đăng ký có thể phù hợp hơn khi:
 
 - **Bạn kiểm tra hàng trăm ứng viên mỗi năm.** Một gói cố định, nhất là gói có số lời mời không giới hạn, có thể rẻ hơn tính theo mỗi ứng viên khi số lượng lớn. Chia chi phí một năm của gói cho giá mỗi ứng viên của bạn để tìm điểm hòa vốn; [Cách so sánh chi phí bài kiểm tra](/compare/cheapest-pre-employment-test) hướng dẫn chi tiết.
-- **Bạn cần những bài kiểm tra prepza không có.** Năng lực nhận thức, tính cách, lập trình thực hành (viết và chạy code) và câu hỏi video có trong gói của các nền tảng khác. Bạn có thể dùng một trong số đó cùng với prepza.
+- **Bạn cần những bài kiểm tra testee không có.** Năng lực nhận thức, tính cách, lập trình thực hành (viết và chạy code) và câu hỏi video có trong gói của các nền tảng khác. Bạn có thể dùng một trong số đó cùng với testee.
 - **Một gói miễn phí đã đủ cho bạn.** Một số nhà cung cấp có gói miễn phí với vài bài kiểm tra; nếu các bài đó phù hợp với vị trí, có thể bạn không cần trả tiền gì cả.
 
 ## Câu hỏi nên đặt cho mọi nhà cung cấp trả theo mức dùng
@@ -80,22 +80,22 @@ Trả tiền theo ứng viên không phải lúc nào cũng rẻ hơn. Gói đă
 5. Dữ liệu ứng viên được xử lý thế nào, và được lưu trữ ở đâu?
 6. Có mức mua tối thiểu không?
 
-Với prepza: không, không, không, có (cả hai), lưu trữ tại EU với dữ liệu ứng viên bị xóa sau 12 tháng kể từ lời mời (một số bên xử lý phụ ở Mỹ; xem [chính sách quyền riêng tư](/privacy)), và mức nạp nhỏ nhất được ghi trên trang [bảng giá](/pricing).
+Với testee: không, không, không, có (cả hai), lưu trữ tại EU với dữ liệu ứng viên bị xóa sau 12 tháng kể từ lời mời (một số bên xử lý phụ ở Mỹ; xem [chính sách quyền riêng tư](/privacy)), và mức nạp nhỏ nhất được ghi trên trang [bảng giá](/pricing).
 
 ## Ví dụ minh họa
 
 Một công ty 25 người tuyển dụng hai lần trong năm nay: một nhân viên hỗ trợ khách hàng vào mùa xuân (40 ứng viên được kiểm tra) và một quản lý văn phòng vào mùa thu (25 ứng viên được kiểm tra).
 
-- **Trả tiền theo ứng viên:** 65 ứng viên × giá mỗi ứng viên, trừ đi các ứng viên miễn phí, chỉ trả vào những tháng bạn tuyển. Với prepza, đó là 62 ứng viên trả phí sau 3 ứng viên miễn phí.
+- **Trả tiền theo ứng viên:** 65 ứng viên × giá mỗi ứng viên, trừ đi các ứng viên miễn phí, chỉ trả vào những tháng bạn tuyển. Với testee, đó là 62 ứng viên trả phí sau 3 ứng viên miễn phí.
 - **Gói đăng ký thanh toán theo năm:** chi phí một năm của gói, dù bạn dùng bao nhiêu.
 
-Hãy đưa giá thật từ trang bảng giá của từng nhà cung cấp, và [của prepza](/pricing), vào cả hai dòng. Với nhu cầu tuyển dụng không thường xuyên như thế này, khoản cam kết có thể tốn hơn chính việc kiểm tra; với tuyển dụng đều đặn, gói đăng ký có thể có lợi hơn.
+Hãy đưa giá thật từ trang bảng giá của từng nhà cung cấp, và [của testee](/pricing), vào cả hai dòng. Với nhu cầu tuyển dụng không thường xuyên như thế này, khoản cam kết có thể tốn hơn chính việc kiểm tra; với tuyển dụng đều đặn, gói đăng ký có thể có lợi hơn.
 
-*Tên sản phẩm thuộc về chủ sở hữu của chúng. prepza không liên kết với và không được chứng thực bởi bất kỳ công ty nào được nêu tên trên trang này.*
+*Tên sản phẩm thuộc về chủ sở hữu của chúng. testee không liên kết với và không được chứng thực bởi bất kỳ công ty nào được nêu tên trên trang này.*
 
 ## Trang liên quan
 
 - [Cách so sánh chi phí bài kiểm tra](/compare/cheapest-pre-employment-test)
 - [Các lựa chọn thay thế TestGorilla](/compare/testgorilla-alternatives)
-- [prepza và TestGorilla](/compare/testgorilla)
+- [testee và TestGorilla](/compare/testgorilla)
 - [Hướng dẫn kiểm tra trước tuyển dụng](/pre-employment-testing)

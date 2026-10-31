@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Bài kiểm tra trước tuyển dụng là một bước đánh giá có cấu trúc mà mọi ứng viên cho một vị trí đều làm trước khi bạn quyết định phỏng vấn hoặc tuyển ai. Bạn cũng có thể gặp các tên gọi khác như bài đánh giá ứng viên, bài test đầu vào hay bài kiểm tra kỹ năng. Ý tưởng là như nhau: hỏi mọi người cùng loại câu hỏi, chấm điểm theo cùng một cách, và so sánh mọi người dựa trên bằng chứng thay vì dựa trên việc CV của họ được viết ra sao.
 
-Hướng dẫn này trình bày các loại bài kiểm tra chính, khi nào chúng hữu ích, những điều cơ bản về công bằng và pháp lý, và những gì cần tìm ở một công cụ. Cuối bài là cách prepza thực hiện, và những gì prepza không làm.
+Hướng dẫn này trình bày các loại bài kiểm tra chính, khi nào chúng hữu ích, những điều cơ bản về công bằng và pháp lý, và những gì cần tìm ở một công cụ. Cuối bài là cách testee thực hiện, và những gì testee không làm.
 
 ## Bài kiểm tra trước tuyển dụng là gì
 
@@ -25,7 +25,7 @@ Một bài kiểm tra tốt kiểm tra những gì vị trí thực sự cần, 
 | Mẫu công việc và mô phỏng công việc | Làm thử một phần công việc thật | Bài tập, tình huống, viết code | Kiểm tra giai đoạn cuối cho danh sách rút gọn |
 | Ngoại ngữ và đánh máy | Mức độ thành thạo và tốc độ | Bài kiểm tra có chấm điểm | Vị trí tiếp xúc khách hàng và hành chính |
 
-**prepza bao quát những gì:** bài kiểm tra kỹ năng và kiến thức chuyên môn, dưới dạng phỏng vấn trắc nghiệm có tính giờ được viết từ mô tả công việc của bạn. Với vị trí kỹ thuật, điều đó bao gồm câu hỏi đọc code: một đoạn code ngắn và câu hỏi về việc nó làm gì hoặc in ra gì. prepza không có bài kiểm tra năng lực nhận thức, bảng câu hỏi tính cách, bài tập để ứng viên viết hoặc chạy code, hay phỏng vấn video. Nếu bạn cần những thứ đó, hãy dùng một nền tảng cung cấp chúng, riêng lẻ hoặc cùng với prepza: bài kiểm tra kiến thức trước, rồi bài kiểm tra chuyên sâu cho danh sách rút gọn. Xem [prepza và TestGorilla](/compare/testgorilla) và [các lựa chọn thay thế TestGorilla](/compare/testgorilla-alternatives).
+**testee bao quát những gì:** bài kiểm tra kỹ năng và kiến thức chuyên môn, dưới dạng phỏng vấn trắc nghiệm có tính giờ được viết từ mô tả công việc của bạn. Với vị trí kỹ thuật, điều đó bao gồm câu hỏi đọc code: một đoạn code ngắn và câu hỏi về việc nó làm gì hoặc in ra gì. testee không có bài kiểm tra năng lực nhận thức, bảng câu hỏi tính cách, bài tập để ứng viên viết hoặc chạy code, hay phỏng vấn video. Nếu bạn cần những thứ đó, hãy dùng một nền tảng cung cấp chúng, riêng lẻ hoặc cùng với testee: bài kiểm tra kiến thức trước, rồi bài kiểm tra chuyên sâu cho danh sách rút gọn. Xem [testee và TestGorilla](/compare/testgorilla) và [các lựa chọn thay thế TestGorilla](/compare/testgorilla-alternatives).
 
 ### Vì sao bài kiểm tra kỹ năng là bước đầu hợp lý
 
@@ -87,11 +87,11 @@ Những câu hỏi đáng hỏi mọi nhà cung cấp:
 
 Để so sánh giá, xem [cách so sánh chi phí bài kiểm tra](/compare/cheapest-pre-employment-test) và [bài kiểm tra trước tuyển dụng không cần gói đăng ký](/compare/pre-employment-tests-without-subscription).
 
-## Cách prepza thực hiện
+## Cách testee thực hiện
 
-prepza biến mô tả công việc thành một buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ.
+testee biến mô tả công việc thành một buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ.
 
-1. **Dán mô tả công việc.** Mọi vị trí, bằng bất kỳ ngôn ngữ nào trong 23 ngôn ngữ. prepza chọn ra những gì ứng viên phải biết và đề xuất chủ đề.
+1. **Dán mô tả công việc.** Mọi vị trí, bằng bất kỳ ngôn ngữ nào trong 23 ngôn ngữ. testee chọn ra những gì ứng viên phải biết và đề xuất chủ đề.
 2. **Duyệt các chủ đề.** Bỏ chọn những gì bạn không cần, đổi tên một chủ đề, sửa chủ đề con, hoặc mô tả thay đổi bằng lời. Câu hỏi chỉ được viết sau khi bạn duyệt. Bạn cũng có thể bắt đầu từ một mẫu có sẵn cho vị trí của mình.
 3. **Mời ứng viên.** Gửi lời mời qua email, dán danh sách, tải tệp lên, hoặc đặt một liên kết chia sẻ trong tin tuyển dụng. Lời nhắc được gửi tự động.
 4. **Đọc kết quả.** Điểm số được xếp hạng, kèm bảng điểm cho từng ứng viên.
@@ -103,4 +103,4 @@ prepza biến mô tả công việc thành một buổi phỏng vấn kỹ năng
 
 Giá tính theo ứng viên có trả lời, không có gói đăng ký: $2–5 mỗi ứng viên tùy mức nạp (bằng đồng tiền địa phương ở Canada, Úc, Israel, Ba Lan, Thụy Sĩ, Nhật Bản, Hàn Quốc, Đài Loan, Hồng Kông, Thái Lan, Singapore, Ấn Độ, phần còn lại của châu Âu và Vương quốc Anh), và 3 ứng viên đầu tiên của bạn được miễn phí. Dữ liệu được lưu trữ tại EU (một số bên xử lý phụ ở Mỹ; xem [chính sách quyền riêng tư](/privacy)), có kèm thỏa thuận xử lý dữ liệu và hướng dẫn cho công ty.
 
-prepza không phải bộ công cụ trắc nghiệm tâm lý, nền tảng để viết và chạy code, hay công cụ phỏng vấn video, và prepza hoạt động song song với các công cụ đó. Để xem prepza so với các công cụ tuyển dụng AI khác ra sao, đọc [Phỏng vấn AI](/ai-interviews). Với vị trí kỹ thuật, xem [Cách tuyển kỹ sư phần mềm](/guides/hiring-engineers).
+testee không phải bộ công cụ trắc nghiệm tâm lý, nền tảng để viết và chạy code, hay công cụ phỏng vấn video, và testee hoạt động song song với các công cụ đó. Để xem testee so với các công cụ tuyển dụng AI khác ra sao, đọc [Phỏng vấn AI](/ai-interviews). Với vị trí kỹ thuật, xem [Cách tuyển kỹ sư phần mềm](/guides/hiring-engineers).

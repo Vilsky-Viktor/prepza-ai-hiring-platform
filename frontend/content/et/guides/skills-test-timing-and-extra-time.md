@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Ka heade küsimustega oskustest võib anda kehvi tulemusi. Liiga palju aega ja kandidaadid otsivad iga vastuse üles; liiga vähe ja sa mõõdad lugemiskiirust. Liiga vähe küsimusi ja tulemus sõltub õnnest; liiga palju ja head kandidaadid loobuvad poole pealt.
 
-See juhend käsitleb ajapiiranguga valikvastustega testi nelja seadet: aega küsimuse kohta, küsimuste arvu, kogupikkust ja lisaaega kandidaatidele, kes seda vajavad. Nõuanded kehtivad iga ajapiiranguga teadmiste testi kohta; viimane osa näitab, kuidas prepza igaüht neist käsitleb.
+See juhend käsitleb ajapiiranguga valikvastustega testi nelja seadet: aega küsimuse kohta, küsimuste arvu, kogupikkust ja lisaaega kandidaatidele, kes seda vajavad. Nõuanded kehtivad iga ajapiiranguga teadmiste testi kohta; viimane osa näitab, kuidas testee igaüht neist käsitleb.
 
 ## Lühidalt
 
@@ -95,9 +95,9 @@ Paljudes riikides peavad tööandjad tegema puudega kandideerijatele mõistlikke
 
 **See osa on praktiline juhis, mitte õigusnõuanne.** See, mida pead pakkuma ja mida tohid küsida, sõltub sellest, kus sa värbad. Kontrolli oma kohustusi sinu suhtes kehtiva võrdse kohtlemise ja puuetega inimeste õigusi käsitleva õiguse järgi.
 
-## Kuidas prepza käsitleb aega ja lisaaega
+## Kuidas testee käsitleb aega ja lisaaega
 
-prepzas on intervjuu ajapiiranguga valikvastustega oskustest, mis luuakse sinu töökuulutuse põhjal.
+testees on intervjuu ajapiiranguga valikvastustega oskustest, mis luuakse sinu töökuulutuse põhjal.
 
 ### Aeg küsimuse kohta
 

@@ -1,7 +1,7 @@
 ---
 title: "Phỏng vấn AI: là gì và cách dùng công bằng"
 seoTitle: "AI trong tuyển dụng: phỏng vấn AI, rủi ro và cách dùng"
-description: "Ứng dụng AI trong tuyển dụng: chatbot phỏng vấn AI, phân tích video, bài kiểm tra tạo tự động. Cách prepza dùng trắc nghiệm tính giờ và điều cần tuân thủ."
+description: "Ứng dụng AI trong tuyển dụng: chatbot phỏng vấn AI, phân tích video, bài kiểm tra tạo tự động. Cách testee dùng trắc nghiệm tính giờ và điều cần tuân thủ."
 updated: "2026-10-29"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 "Phỏng vấn AI" mang những ý nghĩa rất khác nhau tùy nhà cung cấp. Một số công cụ trò chuyện với ứng viên. Một số quay video và chấm điểm. Một số chỉ dùng AI để viết câu hỏi, rồi chấm câu trả lời theo quy tắc cố định. Với nhóm tuyển dụng, sự khác biệt này quan trọng: nó thay đổi những gì bạn có thể giải thích với ứng viên, những gì có thể sai sót, và những gì pháp luật yêu cầu ở bạn.
 
-Trang này phân loại các loại công cụ phỏng vấn AI chính, giải thích cách tiếp cận của prepza và trình bày những điều cơ bản về tuân thủ.
+Trang này phân loại các loại công cụ phỏng vấn AI chính, giải thích cách tiếp cận của testee và trình bày những điều cơ bản về tuân thủ.
 
 ## Ba loại công cụ phỏng vấn AI
 
@@ -29,11 +29,11 @@ Các công cụ này gần với một buổi phỏng vấn thật nhất. Một
 
 ### Bài kiểm tra được tạo tự động
 
-Trong mô hình này, AI làm phần việc viết: đọc mô tả công việc, đề xuất nội dung cần kiểm tra và soạn câu hỏi. Sau đó ứng viên trả lời những câu hỏi có đáp án đúng sai rõ ràng, và việc chấm điểm theo quy tắc cố định. Đây là mô hình prepza sử dụng.
+Trong mô hình này, AI làm phần việc viết: đọc mô tả công việc, đề xuất nội dung cần kiểm tra và soạn câu hỏi. Sau đó ứng viên trả lời những câu hỏi có đáp án đúng sai rõ ràng, và việc chấm điểm theo quy tắc cố định. Đây là mô hình testee sử dụng.
 
-## Cách tiếp cận của prepza
+## Cách tiếp cận của testee
 
-prepza dùng AI để viết một buổi phỏng vấn kỹ năng từ mô tả công việc của bạn. Con người vẫn nắm quyền kiểm soát nội dung được kiểm tra và mọi quyết định.
+testee dùng AI để viết một buổi phỏng vấn kỹ năng từ mô tả công việc của bạn. Con người vẫn nắm quyền kiểm soát nội dung được kiểm tra và mọi quyết định.
 
 1. **AI đọc mô tả công việc của bạn** và chọn ra những gì ứng viên phải biết: các yêu cầu, cấp độ và một bộ chủ đề kèm chủ đề con.
 2. **Bạn duyệt các chủ đề.** Giữ, bỏ chọn, đổi tên hoặc chỉnh sửa, hoặc bảo AI bằng lời cần thay đổi gì. Không câu hỏi nào được viết cho đến khi bạn duyệt.
@@ -42,16 +42,16 @@ prepza dùng AI để viết một buổi phỏng vấn kỹ năng từ mô tả
 5. **Câu trả lời được chấm theo đáp án.** AI viết đáp án. Một phần đáp án của mỗi chủ đề được kiểm tra trước khi phát hành, phần còn lại được kiểm tra khi câu hỏi bị đánh dấu. Bản thân việc chấm điểm theo quy tắc cố định, và không có AI nào đọc hay đánh giá câu trả lời của ứng viên. Nếu sau này một đáp án được sửa, bản sửa áp dụng cho các ứng viên bắt đầu sau đó; kết quả trước đó không thay đổi. Tốc độ, việc rời trang và các lần cố sao chép được hiển thị cho bạn như các tín hiệu; chúng không làm thay đổi điểm số.
 6. **Con người quyết định.** Bạn thấy một danh sách xếp hạng và bảng điểm cho từng ứng viên, với mọi câu trả lời và thời gian trả lời. Một người ở công ty bạn xem kết quả và đưa ra quyết định tuyển dụng.
 
-Những gì prepza không làm:
+Những gì testee không làm:
 
 - Không phân tích video, giọng nói hay khuôn mặt.
 - Không suy đoán tính cách hay cảm xúc.
-- Không tự động loại ứng viên. prepza không loại ứng viên và không gửi thư từ chối; nhóm của bạn quyết định.
-- Dữ liệu của bạn không được dùng để huấn luyện mô hình AI. Nhà cung cấp AI của prepza, OpenAI, không huấn luyện trên dữ liệu API theo điều khoản của họ.
+- Không tự động loại ứng viên. testee không loại ứng viên và không gửi thư từ chối; nhóm của bạn quyết định.
+- Dữ liệu của bạn không được dùng để huấn luyện mô hình AI. Nhà cung cấp AI của testee, OpenAI, không huấn luyện trên dữ liệu API theo điều khoản của họ.
 
 ### Câu hỏi được cải thiện theo thời gian
 
-Câu hỏi do AI viết có thể sai hoặc không rõ ràng, nhất là trong một buổi phỏng vấn mới. prepza theo dõi điều đó: câu trả lời, đánh giá và báo cáo của ứng viên giúp phát hiện câu hỏi yếu, và một trình kiểm định AI sẽ sửa hoặc thay thế chúng. Nếu bạn phát hiện một câu hỏi có đáp án sai, hãy đánh dấu nó, và câu hỏi sẽ được chuyển ngay cho trình kiểm định.
+Câu hỏi do AI viết có thể sai hoặc không rõ ràng, nhất là trong một buổi phỏng vấn mới. testee theo dõi điều đó: câu trả lời, đánh giá và báo cáo của ứng viên giúp phát hiện câu hỏi yếu, và một trình kiểm định AI sẽ sửa hoặc thay thế chúng. Nếu bạn phát hiện một câu hỏi có đáp án sai, hãy đánh dấu nó, và câu hỏi sẽ được chuyển ngay cho trình kiểm định.
 
 Bạn cũng có thể xem trước buổi phỏng vấn của mình với tư cách ứng viên trước khi mời bất kỳ ai: cùng các câu hỏi có tính giờ, miễn phí và không tính vào kết quả của bạn.
 
@@ -71,7 +71,7 @@ Không điều nào ở trên khiến một bài kiểm tra mặc nhiên công b
 
 ### Những gì trắc nghiệm không làm được
 
-Hãy rõ ràng về các giới hạn. Một bài kiểm tra trắc nghiệm kiểm tra kiến thức. Câu hỏi đọc code cho thấy ai đó có hiểu code hay không, không phải họ có viết được code hay không. Một bài kiểm tra như thế này không cho thấy ai đó viết lách, nói chuyện với khách hàng hay thiết kế trọn vẹn một hệ thống ra sao. Với những điều đó, hãy kết hợp prepza với một mẫu công việc hoặc một buổi phỏng vấn có cấu trúc cho danh sách rút gọn. Với lập trình thực hành, hãy dùng một nền tảng dành cho lập trình viên hoặc bài tập của riêng bạn cùng với prepza; xem [các lựa chọn thay thế HackerRank](/compare/hackerrank-alternatives) và [Phỏng vấn kỹ sư trong thời đại AI](/guides/interviewing-in-the-age-of-ai).
+Hãy rõ ràng về các giới hạn. Một bài kiểm tra trắc nghiệm kiểm tra kiến thức. Câu hỏi đọc code cho thấy ai đó có hiểu code hay không, không phải họ có viết được code hay không. Một bài kiểm tra như thế này không cho thấy ai đó viết lách, nói chuyện với khách hàng hay thiết kế trọn vẹn một hệ thống ra sao. Với những điều đó, hãy kết hợp testee với một mẫu công việc hoặc một buổi phỏng vấn có cấu trúc cho danh sách rút gọn. Với lập trình thực hành, hãy dùng một nền tảng dành cho lập trình viên hoặc bài tập của riêng bạn cùng với testee; xem [các lựa chọn thay thế HackerRank](/compare/hackerrank-alternatives) và [Phỏng vấn kỹ sư trong thời đại AI](/guides/interviewing-in-the-age-of-ai).
 
 ## Những điều cơ bản về tuân thủ cho công cụ phỏng vấn AI
 
@@ -79,7 +79,7 @@ Hãy rõ ràng về các giới hạn. Một bài kiểm tra trắc nghiệm ki�
 
 ### Đạo luật AI của EU
 
-Các hệ thống AI "dự định được sử dụng để tuyển dụng hoặc tuyển chọn thể nhân, đặc biệt là để đăng quảng cáo việc làm có mục tiêu, phân tích và lọc hồ sơ ứng tuyển, và đánh giá ứng viên" thuộc nhóm rủi ro cao theo [Phụ lục III, điểm 4(a)](https://artificialintelligenceact.eu/annex/3/) của Đạo luật AI. Các công cụ chấm điểm hoặc xếp hạng ứng viên rất có thể thuộc phạm vi này. Phân tích của chính prepza kết luận rằng prepza rất có thể thuộc nhóm rủi ro cao, với các nghĩa vụ áp dụng từ ngày 2/12/2027. Các trích dẫn luật EU ở đây là bản dịch không chính thức.
+Các hệ thống AI "dự định được sử dụng để tuyển dụng hoặc tuyển chọn thể nhân, đặc biệt là để đăng quảng cáo việc làm có mục tiêu, phân tích và lọc hồ sơ ứng tuyển, và đánh giá ứng viên" thuộc nhóm rủi ro cao theo [Phụ lục III, điểm 4(a)](https://artificialintelligenceact.eu/annex/3/) của Đạo luật AI. Các công cụ chấm điểm hoặc xếp hạng ứng viên rất có thể thuộc phạm vi này. Phân tích của chính testee kết luận rằng testee rất có thể thuộc nhóm rủi ro cao, với các nghĩa vụ áp dụng từ ngày 2/12/2027. Các trích dẫn luật EU ở đây là bản dịch không chính thức.
 
 Nhóm rủi ro cao kéo theo nghĩa vụ cho cả hai bên:
 
@@ -90,7 +90,7 @@ Các mốc thời gian và chi tiết có trong [Dùng AI trong tuyển dụng c
 
 ### GDPR
 
-Kết quả phỏng vấn là dữ liệu cá nhân, theo cả GDPR của EU lẫn UK GDPR. Hãy chuẩn bị thỏa thuận xử lý dữ liệu, thông báo cho ứng viên, thời hạn lưu giữ có giới hạn và cách để ứng viên truy cập hoặc xóa dữ liệu của mình. [Điều 22](https://gdpr-info.eu/art-22-gdpr/) cũng hạn chế các quyết định chỉ dựa trên xử lý tự động có ảnh hưởng đáng kể đến con người, nên hãy để một người xem kết quả trước khi hành động dựa trên chúng. prepza được lưu trữ tại EU (một số bên xử lý phụ ở Mỹ; xem [chính sách quyền riêng tư](/privacy)), xóa dữ liệu ứng viên sau 12 tháng kể từ lời mời, và có kèm thỏa thuận xử lý dữ liệu cùng hướng dẫn cho công ty.
+Kết quả phỏng vấn là dữ liệu cá nhân, theo cả GDPR của EU lẫn UK GDPR. Hãy chuẩn bị thỏa thuận xử lý dữ liệu, thông báo cho ứng viên, thời hạn lưu giữ có giới hạn và cách để ứng viên truy cập hoặc xóa dữ liệu của mình. [Điều 22](https://gdpr-info.eu/art-22-gdpr/) cũng hạn chế các quyết định chỉ dựa trên xử lý tự động có ảnh hưởng đáng kể đến con người, nên hãy để một người xem kết quả trước khi hành động dựa trên chúng. testee được lưu trữ tại EU (một số bên xử lý phụ ở Mỹ; xem [chính sách quyền riêng tư](/privacy)), xóa dữ liệu ứng viên sau 12 tháng kể từ lời mời, và có kèm thỏa thuận xử lý dữ liệu cùng hướng dẫn cho công ty.
 
 ### Hoa Kỳ
 

@@ -102,9 +102,9 @@ Elke regel noemt iets waar een vraag naar kan vragen, het niveau staat erin en d
 - Harde eisen blijven voor de cv-screening.
 - Geen formuleringen over de persoon die je voor je ziet, alleen over het werk.
 
-## Hoe prepza een functieomschrijving gebruikt
+## Hoe testee een functieomschrijving gebruikt
 
-prepza is een voorbeeld van een tool die uit een functieomschrijving een getimede meerkeuze-vaardigheidstest maakt. Dit doet het met de tekst, zodat je ziet hoe het advies hierboven uitpakt:
+testee is een voorbeeld van een tool die uit een functieomschrijving een getimede meerkeuze-vaardigheidstest maakt. Dit doet het met de tekst, zodat je ziet hoe het advies hierboven uitpakt:
 
 - **Het leest elke eis.** AI haalt elke vaardigheid, tool, elk begrip, elke kwalificatie en elke dagelijkse taak eruit, uit elke sectie, ook de secties die als wenselijk of "een pré" zijn gemarkeerd. Uitspraken over cultuur, secundaire arbeidsvoorwaarden en slogans blijven buiten beschouwing.
 - **Uitwisselbare voorbeelden worden er één.** "Tools zoals A, B of vergelijkbaar" blijft over als het soort tool, met de tool die de tekst voorkeur geeft (of de meest gebruikte) als voorbeeld. Items die met "en" verbonden zijn, blijven apart. Heb je dus één specifieke tool nodig, noem dan alleen die.

@@ -72,7 +72,7 @@ Dobry test wiedzy jest:
 - **Krótki:** kilka tematów po ok. 10 pytań, tak by mocni kandydaci z innymi ofertami wciąż go ukończyli.
 - **Taki sam dla wszystkich:** te same tematy, ta sama liczba pytań i te same limity czasu.
 
-Tu pasuje prepza. Zamienia Twój opis stanowiska w rozmowę na czas sprawdzającą wiedzę, z pytaniami wyboru. Przeglądasz proponowane tematy, zanim powstanie jakiekolwiek pytanie, więc test obejmuje Twój stos technologiczny i nic poza nim. Na stanowisku programistycznym może to obejmować:
+Tu pasuje testee. Zamienia Twój opis stanowiska w rozmowę na czas sprawdzającą wiedzę, z pytaniami wyboru. Przeglądasz proponowane tematy, zanim powstanie jakiekolwiek pytanie, więc test obejmuje Twój stos technologiczny i nic poza nim. Na stanowisku programistycznym może to obejmować:
 
 - **Pytania o czytanie kodu:** krótki fragment kodu i pytania o to, co wypisze lub zwróci, co robi, dlaczego nie działa albo która zmiana go naprawi.
 - **SQL:** mała tabela i zapytanie oraz pytanie, które wiersze zostaną zwrócone.
@@ -80,7 +80,7 @@ Tu pasuje prepza. Zamienia Twój opis stanowiska w rozmowę na czas sprawdzając
 
 Każdy kandydat dostaje własny, losowy zestaw pytań z odliczaniem czasu przy każdym z nich. Widzisz kartę wyników z każdą odpowiedzią i czasem, jaki zajęła, oraz oznaczenia zbyt szybkich odpowiedzi, opuszczania strony, prób kopiowania i nietypowych wzorców w odpowiedziach i czasach. Oznaczenie to powód, by przyjrzeć się bliżej, a nie dowód czegokolwiek. Raport podsuwa też pytania, na które kandydat odpowiedział poprawnie, by dopytać o nie na kolejnej rozmowie.
 
-Czego prepza nie robi: kandydaci nie piszą, nie uruchamiają ani nie debugują kodu w prepza. Czytanie kodu i pisanie go to różne umiejętności, więc kolejny krok wciąż ma znaczenie. Gotowe testy na start znajdziesz w [testach umiejętności według roli](/tests).
+Czego testee nie robi: kandydaci nie piszą, nie uruchamiają ani nie debugują kodu w testee. Czytanie kodu i pisanie go to różne umiejętności, więc kolejny krok wciąż ma znaczenie. Gotowe testy na start znajdziesz w [testach umiejętności według roli](/tests).
 
 ## Krok 4: Zadanie domowe lub live coding
 
@@ -128,7 +128,7 @@ Ustrukturyzowany proces jest też uczciwszy, ale tylko wtedy, gdy prowadzisz go 
 
 - **Spójne pytania** na każdym etapie, dla każdego kandydata na to samo stanowisko.
 - **Klucze oceny spisane z góry,** by wszystkich oceniać według tych samych kryteriów.
-- **Racjonalne usprawnienia:** zaproponuj dodatkowy czas lub inną formę kandydatom, którzy o to poproszą, np. z powodu niepełnosprawności. W prepza możesz dać kandydatowi dodatkowy czas, zanim zacznie.
+- **Racjonalne usprawnienia:** zaproponuj dodatkowy czas lub inną formę kandydatom, którzy o to poproszą, np. z powodu niepełnosprawności. W testee możesz dać kandydatowi dodatkowy czas, zanim zacznie.
 - **Monitoruj wyniki.** Różne metody dają różne różnice w wynikach między grupami. Sackett i współpracownicy stwierdzili większe średnie różnice w testach wiedzy zawodowej i próbkach pracy niż w ustrukturyzowanych rozmowach, co jest kolejnym powodem, by łączyć metody. Obserwuj odsetek osób przechodzących każdy etap.
 - **Decydują ludzie.** Wynik wspiera decyzję, ale jej nie podejmuje. Przejrzyj odpowiedzi, zanim kogokolwiek odrzucisz.
 

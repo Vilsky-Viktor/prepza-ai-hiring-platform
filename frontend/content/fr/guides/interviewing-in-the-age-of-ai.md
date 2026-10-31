@@ -66,9 +66,9 @@ Indiquez dès le départ aux candidats quels outils sont autorisés à chaque é
 
 Pour la version complète étape par étape, voir [Comment recruter des développeurs](/guides/hiring-engineers).
 
-## La place de prepza
+## La place de testee
 
-prepza est bien adapté à l'étape 2. Il transforme votre fiche de poste en entretien de connaissances chronométré à choix multiples, et vous vérifiez les thèmes proposés avant qu'une question ne soit rédigée, pour que le test couvre votre stack et rien d'autre.
+testee est bien adapté à l'étape 2. Il transforme votre fiche de poste en entretien de connaissances chronométré à choix multiples, et vous vérifiez les thèmes proposés avant qu'une question ne soit rédigée, pour que le test couvre votre stack et rien d'autre.
 
 - **Concepts et théorie tirés de la fiche de poste :** bases de données, API, architecture, comportement d'un framework, pratiques de sécurité.
 - **Questions de lecture de code :** un court extrait de code, avec des questions sur ce qu'il affiche ou renvoie, ce qu'il fait, pourquoi il échoue ou quelle modification le corrige. C'est la même compétence de relecture dont dépend le travail assisté par IA.
@@ -76,7 +76,7 @@ prepza est bien adapté à l'étape 2. Il transforme votre fiche de poste en ent
 - **Signaux d'intégrité :** les fiches d'évaluation signalent les réponses trop rapides pour que la question ait été lue, les moments où le candidat a quitté la page et les tentatives de copie. Une fois qu'un candidat a terminé, son rapport relève aussi les schémas de réponse que laisse souvent le fait de soumettre les questions à une IA et d'en recopier les réponses : à peu près le même temps sur chaque question, quelles que soient sa longueur ou sa difficulté, ou des questions difficiles réussies alors que des faciles sont ratées. Une alerte ou un schéma est une raison de regarder de plus près, pas une preuve de triche.
 - **Des questions pour l'entretien en direct :** le rapport suggère jusqu'à 3 questions auxquelles le candidat a bien répondu, dans ses thèmes les plus solides, à reprendre lors d'un entretien en direct, où aucune IA ne peut répondre à sa place.
 
-Ce que prepza ne fait pas : les candidats n'écrivent, n'exécutent ni ne déboguent de code dans prepza, et prepza n'observe pas leur usage d'un assistant IA. Cela relève de l'étape pratique, menée en interne ou sur une plateforme pour développeurs, qui complète le test de connaissances. Voir les [tests de compétences par poste](/tests) pour des tests prêts à l'emploi, et [Entretiens IA](/ai-interviews) pour savoir comment prepza utilise l'IA et ce qu'il laisse aux personnes.
+Ce que testee ne fait pas : les candidats n'écrivent, n'exécutent ni ne déboguent de code dans testee, et testee n'observe pas leur usage d'un assistant IA. Cela relève de l'étape pratique, menée en interne ou sur une plateforme pour développeurs, qui complète le test de connaissances. Voir les [tests de compétences par poste](/tests) pour des tests prêts à l'emploi, et [Entretiens IA](/ai-interviews) pour savoir comment testee utilise l'IA et ce qu'il laisse aux personnes.
 
 ## Équité et expérience candidat
 

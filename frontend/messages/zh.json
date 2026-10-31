@@ -12,7 +12,7 @@
     "account": "你的账户",
     "accountNote": "就账户问题联系我们时，请提供这个 ID。",
     "yourData": "你的数据",
-    "yourDataNote": "下载 prepza. 保存的所有关于你的数据，或删除你的账户。",
+    "yourDataNote": "下载 testee. 保存的所有关于你的数据，或删除你的账户。",
     "download": "下载我的数据",
     "downloadFailed": "无法准备你的数据，请重试。",
     "delete": "删除账户",
@@ -20,7 +20,7 @@
     "noLanguage": "未找到语言。",
     "emails": {
       "title": "邮件",
-      "note": "选择 prepza. 给你发送哪些邮件。",
+      "note": "选择 testee. 给你发送哪些邮件。",
       "failed": "无法保存邮件设置，请重试。",
       "digest": "动态摘要",
       "digestNote": "每天一封邮件，告诉你公司里发生的事。",
@@ -34,7 +34,7 @@
       "reminders": "提醒",
       "remindersNote": "点数不足、没有候选人的面试、等待审核的主题。",
       "updates": "产品更新与新闻",
-      "updatesNote": "prepza. 的新功能和新闻。",
+      "updatesNote": "testee. 的新功能和新闻。",
       "promotions": "优惠与促销",
       "promotionsNote": "折扣和特别优惠。",
       "alwaysSent": "服务类邮件，例如邀请、候选人报告、付款问题和条款变更，始终会发送。"
@@ -82,7 +82,7 @@
   "signIn": {
     "title": "登录",
     "continueWith": "继续使用 <name>{provider}</name>",
-    "link": "此邮箱已有 prepza 账户。请用你之前的登录方式继续，{provider} 将关联到该账户。",
+    "link": "此邮箱已有 testee 账户。请用你之前的登录方式继续，{provider} 将关联到该账户。",
     "consent": "登录即表示你确认已年满 16 周岁、同意<terms>条款</terms>，并已阅读<privacy>隐私政策</privacy>。",
     "failed": "登录失败，请重试。",
     "verify": "我们已向你发送一个验证邮箱的链接。打开链接后，即可参加面试和创建公司。",
@@ -256,7 +256,7 @@
     "pauseText": "开启期间，任何人都无法开始新的面试、练习或预览，也不会生成、重新生成或检查任何题目。已在面试中的候选人可以完成面试。",
     "pauseFailed": "无法更改暂停状态，请重试。",
     "maintenanceTitle": "维护模式",
-    "maintenanceText": "开启期间，每个页面都会显示 prepza 正在维护，除超级管理员外，服务会拒绝所有请求。付款、邮件和定时任务会继续运行。",
+    "maintenanceText": "开启期间，每个页面都会显示 testee 正在维护，除超级管理员外，服务会拒绝所有请求。付款、邮件和定时任务会继续运行。",
     "maintenanceFailed": "无法更改维护模式，请重试。",
     "maintenanceConfirmTitle": "开启维护模式？",
     "maintenanceRunning": "{count, plural, =0 {当前没有候选人正在面试。} other {当前正在面试的候选人：# 位。维护模式开启期间，他们的时间暂停。}}",
@@ -279,13 +279,13 @@
     "emails": "邮件",
     "emailSearch": "邮箱地址",
     "emailSearchAction": "查找",
-    "emailsIntro": "为通过邮件向我们提出请求的人查找邮箱地址，查看并停止 prepza 发往该地址的邮件。",
-    "account": "prepza 账号",
+    "emailsIntro": "为通过邮件向我们提出请求的人查找邮箱地址，查看并停止 testee 发往该地址的邮件。",
+    "account": "testee 账号",
     "accountText": "<bdi>{email}</bdi> 有账号。在这里做的更改会以你的名义记录。",
-    "noAccount": "没有 prepza 账号使用这个地址。",
+    "noAccount": "没有 testee 账号使用这个地址。",
     "turnOffAll": "关闭所有可选邮件",
     "companyEmails": "来自公司的邮件",
-    "companyEmailsText": "公司通过 prepza 发往该地址的邀请和提醒。在这里做的更改会以你的名义记录。",
+    "companyEmailsText": "公司通过 testee 发往该地址的邀请和提醒。在这里做的更改会以你的名义记录。",
     "noCompanies": "没有公司邀请过这个地址。",
     "companySending": "邮件正常发送",
     "companyStopped": "已停止所有邮件",
@@ -342,7 +342,7 @@
     "legalSend": "邮件告知变更",
     "legalConfirmTitle": "通过邮件告知{document}的变更？",
     "legalAudience": {
-      "everyone": "所有拥有 prepza 账户的人将从下一个发送时段（UTC 8:00 至 18:00）起收到邮件，告知新版本自 <time>{date}</time> 起适用，并会在通知中看到。邮件只发送一次，无法撤回。",
+      "everyone": "所有拥有 testee 账户的人将从下一个发送时段（UTC 8:00 至 18:00）起收到邮件，告知新版本自 <time>{date}</time> 起适用，并会在通知中看到。邮件只发送一次，无法撤回。",
       "company_editors": "每家公司的所有者和管理员将从下一个发送时段（UTC 8:00 至 18:00）起收到邮件，告知新版本自 <time>{date}</time> 起适用，并会在通知中看到。邮件只发送一次，无法撤回。"
     },
     "legalAsked": "将从下一个发送时段起通过邮件告知变更。",
@@ -427,7 +427,7 @@
       "promotions": "优惠",
       "notices": "重要通知"
     },
-    "campaignNoticeWarning": "重要通知会发送给受众中的所有人，无论其邮件设置如何，且无法退订。仅在发生安全事件、计划停机或 prepza 的运作方式发生变化时使用，切勿用于推广任何内容。",
+    "campaignNoticeWarning": "重要通知会发送给受众中的所有人，无论其邮件设置如何，且无法退订。仅在发生安全事件、计划停机或 testee 的运作方式发生变化时使用，切勿用于推广任何内容。",
     "campaignAudience": "受众",
     "campaignAudienceEveryone": "所有人",
     "campaignAudienceEveryoneNote": {
@@ -457,7 +457,7 @@
     "campaignTextPlaceholder": "在此输入正文… 按 Enter 键开始新段落。",
     "campaignButton": "按钮文字（可选）",
     "campaignLink": "按钮链接",
-    "campaignLinkPlaceholder": "prepza 上的按钮链接，例如 /pricing（可选）",
+    "campaignLinkPlaceholder": "testee 上的按钮链接，例如 /pricing（可选）",
     "campaignSaveFailed": "无法保存群发邮件，请重试。",
     "noCampaigns": "暂无群发邮件。",
     "campaignStatus": {
@@ -537,7 +537,7 @@
       "paid": "付费公司",
       "unpaid": "未付费公司",
       "no_company": "无公司",
-      "prepza": "prepza"
+      "testee": "testee"
     },
     "aiActionsTitle": "按操作",
     "aiActions": {
@@ -595,7 +595,7 @@
     "aiUsersTitle": "成本最高的用户",
     "aiByMonthTitle": "按月",
     "aiByDayTitle": "按天",
-    "limitsOursTitle": "触及的 prepza 限额",
+    "limitsOursTitle": "触及的 testee 限额",
     "limitsProvidersTitle": "服务商的限额",
     "limitsNoHits": "此时段内没有触及任何限额。",
     "limitNames": {
@@ -703,7 +703,7 @@
       "1209600": "每次主题审核"
     },
     "limitKinds": {
-      "ours": "prepza",
+      "ours": "testee",
       "openai": "OpenAI",
       "resend": "Resend",
       "firebase": "Firebase",
@@ -1036,7 +1036,7 @@
     "pickTitle": "选择公司",
     "pickText": "测试会免费复制到你选择的公司，可立即发送给候选人。",
     "removeCredits": "其 {credits, plural, other {# 点数}}{candidates, plural, =0 {} other {（约 # 位候选人）}}将会作废，且不予退款。",
-    "suspended": "此公司已被暂停，目前无法更改。如需了解详情，请联系 hello@prepza.ai。"
+    "suspended": "此公司已被暂停，目前无法更改。如需了解详情，请联系 hello@testee.ai。"
   },
   "candidates": {
     "scorecard": "评分卡",
@@ -1137,7 +1137,7 @@
     "passMark": "及格线",
     "passMarkLabel": "及格线（百分比）",
     "markHired": "标记为已录用",
-    "keepPrivate": "不将这些题目加入 prepza 的共享题库",
+    "keepPrivate": "不将这些题目加入 testee 的共享题库",
     "keepPrivateHelp": "已在其他面试中复用的题目会保留在那里",
     "answerMode": "面试模式",
     "answerModeHelp": "在点选模式下，候选人阅读每道题并点选答案。在语音模式下，AI 面试官米拉会朗读每道题，候选人可通过语音或点选作答",
@@ -1251,7 +1251,7 @@
     "mismatch": "邮箱不匹配。请使用受邀邮箱登录后开始。",
     "title": "面试邀请",
     "theCompany": "该公司",
-    "unverified": "prepza 尚未验证此公司。"
+    "unverified": "testee 尚未验证此公司。"
   },
   "members": {
     "joined": "已加入",
@@ -1286,7 +1286,7 @@
     "unavailable": "目前无法获取价格，请一分钟后重试。",
     "title": "价格",
     "intro": "按候选人付费。生成面试免费，没有订阅。",
-    "description": "prepza 价格：生成面试免费，只为每位作答的候选人付费。没有订阅，也不按用户数收费，点数永不过期。",
+    "description": "testee 价格：生成面试免费，只为每位作答的候选人付费。没有订阅，也不按用户数收费，点数永不过期。",
     "test": "生成面试",
     "free": "免费",
     "candidate": "每位至少回答一道题的候选人",
@@ -1320,14 +1320,14 @@
   "docs": {
     "title": "法律文件",
     "metaTitle": "招聘合规文档",
-    "intro": "供使用 prepza 评估候选人的公司使用的文档：使用说明、模板和数据处理协议。",
+    "intro": "供使用 testee 评估候选人的公司使用的文档：使用说明、模板和数据处理协议。",
     "englishOnly": "这些文档仅提供英文版本。",
     "download": "下载 {format}",
     "readOnline": "在线阅读",
     "items": {
       "instructions": {
         "title": "公司使用说明",
-        "description": "分数的含义、人工审核、如何设定及格线、额外时间，以及不应使用 prepza 的场合。"
+        "description": "分数的含义、人工审核、如何设定及格线、额外时间，以及不应使用 testee 的场合。"
       },
       "notices": {
         "title": "候选人告知模板",
@@ -1335,11 +1335,11 @@
       },
       "dpia": {
         "title": "DPIA 模板",
-        "description": "已填好 prepza 部分的数据保护影响评估，其余部分由你填写。"
+        "description": "已填好 testee 部分的数据保护影响评估，其余部分由你填写。"
       },
       "dpa": {
         "title": "数据处理协议",
-        "description": "prepza 如何代表你处理候选人的数据。它是条款的一部分。"
+        "description": "testee 如何代表你处理候选人的数据。它是条款的一部分。"
       }
     }
   },
@@ -1396,7 +1396,7 @@
     "more": "如何运作",
     "demos": "视频",
     "demosTooltip": "在 YouTube 上观看演示",
-    "videoTooltip": "了解 prepza 如何运作",
+    "videoTooltip": "了解 testee 如何运作",
     "watchVideo": "观看视频",
     "howItWorks": "使用方式",
     "askAgent": "问问米拉",
@@ -1553,7 +1553,7 @@
         },
         "help": {
           "title": "帮助",
-          "text": "根据 prepza 的指南解答操作问题，用你的语言回答。"
+          "text": "根据 testee 的指南解答操作问题，用你的语言回答。"
         },
         "actions": {
           "title": "操作",
@@ -1633,8 +1633,8 @@
         "time": "每个职位都要挑选或编写测试",
         "cost": "无论是否招聘都要付月费"
       },
-      "prepza": {
-        "name": "prepza",
+      "testee": {
+        "name": "testee",
         "checks": "由 AI 专门为你的职位编写",
         "time": "每个职位约 10 分钟，候选人零耗时",
         "cost": "每位作答的候选人 {price}"
@@ -1670,13 +1670,13 @@
   "faq": {
     "title": "常见问题",
     "intro": "没找到答案？问问 AI 助手米拉（页面顶部的按钮），或发邮件到隐私政策中列出的地址。",
-    "description": "关于 prepza 的解答：如何根据职位描述生成面试、候选人会看到什么、价格与点数、结果、ATS 集成、支持的语言以及你的数据。"
+    "description": "关于 testee 的解答：如何根据职位描述生成面试、候选人会看到什么、价格与点数、结果、ATS 集成、支持的语言以及你的数据。"
   },
   "contact": {
     "title": "联系我们",
     "intro": "有问题、想法、合作意向，或者遇到故障？给我们留言，我们会通过电子邮件回复。",
     "idHint": "要咨询某个公司、面试、候选人或你的账户？请粘贴它的 ID：“复制 id”在名称下方，你的账户 ID 在账户菜单中。",
-    "description": "联系 prepza 团队：关于招聘测评的问题、想法、合作意向或遇到的故障，都可以给我们留言。我们会通过电子邮件回复。",
+    "description": "联系 testee 团队：关于招聘测评的问题、想法、合作意向或遇到的故障，都可以给我们留言。我们会通过电子邮件回复。",
     "name": "姓名",
     "email": "电子邮件",
     "message": "留言",
@@ -1694,23 +1694,23 @@
   },
   "about": {
     "title": "关于我们",
-    "intro": "prepza 帮助公司找到真正懂这份工作的人：根据你的职位描述生成公平的限时面试，价格任何团队都负担得起。任何准备面试的人也都可以免费练习。",
-    "description": "prepza 几分钟内就能把职位描述变成公平、限时的面试，价格任何团队都负担得起；任何人都可以免费练习面试。",
+    "intro": "testee 帮助公司找到真正懂这份工作的人：根据你的职位描述生成公平的限时面试，价格任何团队都负担得起。任何准备面试的人也都可以免费练习。",
+    "description": "testee 几分钟内就能把职位描述变成公平、限时的面试，价格任何团队都负担得起；任何人都可以免费练习面试。",
     "company": {
       "title": "我们为何而做",
       "problem": "招聘往往依赖一份简历和一次愉快的交谈，而两者都可能误导人。真正有用的测评工具按大公司定价，要签年度套餐、按席位收费，所以大多数团队只能放弃。",
-      "approach": "prepza 能在几分钟内把任何职位的职位描述变成限时面试。每位候选人都有自己的题目，你能看出谁懂这份工作以及原因，而且只为真正参加面试的候选人付费。",
+      "approach": "testee 能在几分钟内把任何职位的职位描述变成限时面试。每位候选人都有自己的题目，你能看出谁懂这份工作以及原因，而且只为真正参加面试的候选人付费。",
       "practice": "我们也希望每个人都能免费准备面试。任何人都可以参加我们针对某个职位的练习面试，查看自己的成绩和所有正确答案，并免费再次练习。"
     },
     "founder": {
-      "quote": "好的招聘不应该是预算充足的大公司的特权。我做 prepza，是为了让任何团队都能在几分钟内把职位描述变成公平的面试，看出谁真正懂这份工作，并且只为参加面试的候选人付费。希望它能帮你更快找到合适的人。",
-      "role": "prepza 独立创始人"
+      "quote": "好的招聘不应该是预算充足的大公司的特权。我做 testee，是为了让任何团队都能在几分钟内把职位描述变成公平的面试，看出谁真正懂这份工作，并且只为参加面试的候选人付费。希望它能帮你更快找到合适的人。",
+      "role": "testee 独立创始人"
     }
   },
   "news": {
-    "title": "prepza 新闻",
-    "description": "prepza 的最新动态：新功能、改进和更新。",
-    "metaDescription": "prepza 新闻：技能测试、AI 面试和免费练习的新功能、新语言与改进，第一时间发布。可在此页面或通过 RSS 关注。",
+    "title": "testee 新闻",
+    "description": "testee 的最新动态：新功能、改进和更新。",
+    "metaDescription": "testee 新闻：技能测试、AI 面试和免费练习的新功能、新语言与改进，第一时间发布。可在此页面或通过 RSS 关注。",
     "empty": "暂无新闻。",
     "rss": "RSS 订阅"
   },
@@ -1746,8 +1746,8 @@
       "legal_dpa": "新数据处理协议自 <time>{date}</time> 起适用。"
     },
     "legalBanner": {
-      "terms": "prepza 的条款将于 <time>{date}</time> 变更。",
-      "privacy": "prepza 的隐私政策将于 <time>{date}</time> 变更。",
+      "terms": "testee 的条款将于 <time>{date}</time> 变更。",
+      "privacy": "testee 的隐私政策将于 <time>{date}</time> 变更。",
       "dpa": "数据处理协议将于 <time>{date}</time> 变更。"
     },
     "readLegal": "阅读新版本",
@@ -1769,7 +1769,7 @@
     "sent": "报告已发送至 <bdi>{email}</bdi>",
     "sendFailed": "无法发送报告。",
     "orSummary": "或通过以下方式发送",
-    "via": "由 prepza 发送",
+    "via": "由 testee 发送",
     "candidatesFileName": "候选人 {title}",
     "candidateCount": "{count, plural, other {# 位候选人}}",
     "passMark": "及格线 {mark}",
@@ -1815,7 +1815,7 @@
   },
   "openToOffers": {
     "title": "接受工作邀约",
-    "text": "通过 prepza 招聘的公司将看到你的姓名、LinkedIn 个人资料和最近的练习结果，并可能邀请你参加面试。你可以随时关闭。",
+    "text": "通过 testee 招聘的公司将看到你的姓名、LinkedIn 个人资料和最近的练习结果，并可能邀请你参加面试。你可以随时关闭。",
     "linkedin": "LinkedIn 个人资料",
     "linkedinHint": "linkedin.com/in/zhang-san",
     "save": "保存",
@@ -1846,8 +1846,8 @@
   },
   "maintenance": {
     "title": "正在维护",
-    "text": "prepza 正在维护中，我们很快回来。",
-    "notice": "维护模式已开启：目前只有超级管理员可以使用 prepza。"
+    "text": "testee 正在维护中，我们很快回来。",
+    "notice": "维护模式已开启：目前只有超级管理员可以使用 testee。"
   },
   "content": {
     "updated": "最后更新",
@@ -1857,7 +1857,7 @@
     "startButton": "创建测试"
   },
   "compare": {
-    "title": "对比 prepza",
+    "title": "对比 testee",
     "metaTitle": "招聘前测评工具对比",
     "intro": "与其他招聘前测评工具的对比，均注明来源：测试如何生成、费用多少，以及各自更适合什么场景。"
   },
@@ -1882,7 +1882,7 @@
   "ats": {
     "statusConnected": "已连接",
     "flowTitle": "候选人如何从 {ats} 进入",
-    "flowStage": "在 {ats} 中，为该职位的招聘流程添加一个 prepza 专用阶段，例如“prepza 技能测试”，这样就不会和你的其他工具混在一起。",
+    "flowStage": "在 {ats} 中，为该职位的招聘流程添加一个 testee 专用阶段，例如“testee 技能测试”，这样就不会和你的其他工具混在一起。",
     "flowLink": "在这里关联该职位并选择这个阶段。",
     "flowMove": "准备好测评某位候选人时，把候选人移到这个阶段。",
     "flowInvite": "我们会替你邀请候选人参加关联的面试，就像你亲自邀请一样。点数和限额照常计算。",
@@ -1974,7 +1974,7 @@
     "connected": "Slack 已连接。",
     "disconnectFailed": "无法断开 Slack。",
     "disconnectTitle": "断开 Slack？",
-    "disconnectText": "公司的通知将不再发送到该频道，prepza 应用也会从你的 Slack 中移除。",
+    "disconnectText": "公司的通知将不再发送到该频道，testee 应用也会从你的 Slack 中移除。",
     "notConnected": "Slack 尚未连接。添加后，即可在你选择的频道中接收公司的通知。",
     "kindsTitle": "Slack 中的通知",
     "kindsText": "这些通知一发生就会发到频道。所有人仍可在铃铛中看到它们。",
@@ -1989,10 +1989,10 @@
       "auto_top_up_failed": "自动充值失败"
     },
     "instructionsTitle": "Slack 如何接收你的通知",
-    "stepAdd": "点击“添加到 Slack”：Slack 会打开，并请你允许 prepza 访问你的工作区。",
+    "stepAdd": "点击“添加到 Slack”：Slack 会打开，并请你允许 testee 访问你的工作区。",
     "stepChannel": "选择团队查看通知的频道，例如 #hiring，然后点击允许。",
     "stepKinds": "回到这里，选择哪些通知发送到该频道：候选人完成面试、邀请未送达等。",
-    "stepPrivacy": "prepza 只能在该频道发消息。它无法读取你的 Slack，断开连接后即会被移除。"
+    "stepPrivacy": "testee 只能在该频道发消息。它无法读取你的 Slack，断开连接后即会被移除。"
   },
   "api": {
     "name": "API",
@@ -2029,12 +2029,12 @@
     "removeKeyTitle": "删除此密钥？",
     "removeKeyText": "所有使用“<bdi>{name}</bdi>”的地方都会立即停止工作。",
     "webhooksTitle": "Webhook",
-    "webhooksText": "当候选人开始、完成（附带结果）、邀请未能送达、邀请过期或被移除时，以及面试准备就绪时，prepza 会通知这些地址，每个请求都用该地址的签名密钥签名。",
+    "webhooksText": "当候选人开始、完成（附带结果）、邀请未能送达、邀请过期或被移除时，以及面试准备就绪时，testee 会通知这些地址，每个请求都用该地址的签名密钥签名。",
     "noWebhooks": "还没有 Webhook。",
     "failing": "已暂停：3 天未响应，因此不再向其发送事件。测试事件被接受后即恢复。",
     "addWebhook": "添加 Webhook",
     "addWebhookTitle": "新建 Webhook",
-    "webhookUrl": "HTTPS 地址，例如 https://example.com/prepza",
+    "webhookUrl": "HTTPS 地址，例如 https://example.com/testee",
     "webhookCreatedTitle": "你的 Webhook 签名密钥",
     "webhookCreatedText": "用它校验每个请求的签名（参见开发者文档）。请立即复制：它不会再次显示。",
     "copySecret": "复制签名密钥",
@@ -2057,7 +2057,7 @@
     "results": {
       "delivered": "已送达",
       "skipped": "已跳过",
-      "unreadable": "未发送：prepza 方面的问题。",
+      "unreadable": "未发送：testee 方面的问题。",
       "answered": "返回 {status}",
       "error": "失败：{error}"
     },
@@ -2175,12 +2175,12 @@
     "radius": "卡片圆角",
     "buttonRadius": "按钮圆角",
     "reset": "重置",
-    "resetPrepza": "重置为 prepza 默认设置",
+    "resetTestee": "重置为 testee 默认设置",
     "themes": {
       "light": "浅色主题",
       "dark": "深色主题"
     },
-    "resetDone": "已恢复 prepza 默认设置",
+    "resetDone": "已恢复 testee 默认设置",
     "failed": "无法保存品牌设置。",
     "preview": "预览",
     "sampleTitle": "人力资源经理",
@@ -2192,7 +2192,7 @@
   },
   "apiDocs": {
     "title": "开发者文档",
-    "description": "prepza 开发者文档：获取 API 密钥、创建面试、邀请和管理候选人、读取他们的结果、通过 Webhook 接收，并使用 SDK 嵌入面试。",
+    "description": "testee 开发者文档：获取 API 密钥、创建面试、邀请和管理候选人、读取他们的结果、通过 Webhook 接收，并使用 SDK 嵌入面试。",
     "tabs": {
       "api": "API",
       "webhooks": "Webhook",
@@ -2254,8 +2254,8 @@
     "deleteTitle": "删除此对话？",
     "deleteText": "此对话及其回答将被永久删除。",
     "emptyTitle": "你好，我是米拉，你的 AI 助手",
-    "emptyText": "候选人、面试、点数、集成以及 prepza 的使用方式，依据你在公司中能看到的内容作答。AI 可能出错；以其链接的页面为准。",
-    "emptyTitleFaq": "你好，我是米拉，prepza 的 AI 助手",
+    "emptyText": "候选人、面试、点数、集成以及 testee 的使用方式，依据你在公司中能看到的内容作答。AI 可能出错；以其链接的页面为准。",
+    "emptyTitleFaq": "你好，我是米拉，testee 的 AI 助手",
     "pageQuestion": "我在这个页面上能做什么？",
     "pages": {
       "open": "打开",
@@ -2294,9 +2294,9 @@
     },
     "welcome": {
       "signed_out": {
-        "text": "prepza 如何运作、费用多少、候选人会看到什么，依据 prepza 的常见问题作答。登录后可询问你的公司和候选人。",
+        "text": "testee 如何运作、费用多少、候选人会看到什么，依据 testee 的常见问题作答。登录后可询问你的公司和候选人。",
         "questions": {
-          "what": "prepza 是什么？",
+          "what": "testee 是什么？",
           "pricing": "费用是多少？",
           "takeTest": "候选人如何参加测试？",
           "account": "候选人需要注册账户吗？"
@@ -2471,7 +2471,7 @@
       "chargeback_reversed": "拒付撤销",
       "referral": "推荐奖励",
       "referral_reversed": "推荐奖励已收回",
-      "adjustment": "prepza 调整"
+      "adjustment": "testee 调整"
     },
     "automatic": "自动充值",
     "invoice": "发票",
@@ -2482,16 +2482,16 @@
   },
   "aiApps": {
     "name": "MCP 服务器",
-    "rowText": "将 Claude、ChatGPT 等 AI 应用连接到 prepza。",
+    "rowText": "将 Claude、ChatGPT 等 AI 应用连接到 testee。",
     "title": "AI 应用",
     "subtitle": "它们以你的身份、按你的权限，在你所在的每家公司中操作。",
-    "instructionsTitle": "将 AI 应用连接到 prepza",
+    "instructionsTitle": "将 AI 应用连接到 testee",
     "serverTitle": "服务器地址",
     "serverText": "在你的 AI 应用中把它粘贴为自定义连接器（MCP 服务器）。",
     "addTo": "添加到 <app>{name}</app>",
     "claudeOpen": "在 Claude 中打开：",
     "claudePaste": "命名为 {name}，粘贴服务器地址，然后选择“Add”。",
-    "allowOnPrepza": "选择“Connect”，然后在打开的 prepza 页面上选择“允许”。",
+    "allowOnTestee": "选择“Connect”，然后在打开的 testee 页面上选择“允许”。",
     "claudeCode": "在 Claude Code 中运行：",
     "copyCommand": "复制命令",
     "commandCopied": "命令已复制",
@@ -2504,7 +2504,7 @@
     "lastUsed": "上次使用 <time>{date}</time>",
     "neverUsed": "尚未使用",
     "disconnectTitle": "断开 <bdi>{client}</bdi>？",
-    "disconnectText": "在你重新连接之前，<bdi>{client}</bdi> 将无法使用 prepza。",
+    "disconnectText": "在你重新连接之前，<bdi>{client}</bdi> 将无法使用 testee。",
     "disconnectFailed": "无法断开该应用，请重试。",
     "allowTitle": "允许在此公司使用 AI 应用",
     "allowText": "成员可以在已连接的 AI 应用中使用此公司的面试和候选人。关闭后，AI 应用无法在这里读取或更改任何内容。",
@@ -2512,22 +2512,22 @@
   },
   "connect": {
     "pageTitle": "连接 AI 应用",
-    "title": "将 <name><bdi>{client}</bdi></name> 连接到 prepza",
-    "titleAny": "将 AI 应用连接到 prepza",
-    "signInText": "登录后选择是否允许它使用你的 prepza 账户。",
+    "title": "将 <name><bdi>{client}</bdi></name> 连接到 testee",
+    "titleAny": "将 AI 应用连接到 testee",
+    "signInText": "登录后选择是否允许它使用你的 testee 账户。",
     "signIn": "登录以继续",
-    "who": "<bdi>{client}</bdi>（<bdi>{host}</bdi>）想要使用你的 prepza 账户 <bdi>{email}</bdi>。",
+    "who": "<bdi>{client}</bdi>（<bdi>{host}</bdi>）想要使用你的 testee 账户 <bdi>{email}</bdi>。",
     "canTitle": "它可以",
     "canRead": "读取你的公司、面试和候选人的结果。",
     "canChange": "进行你要求的更改。大多数 AI 应用会先请你确认。",
     "canShare": "按该应用的条款，将读取的内容传给应用的提供方。",
     "cantTitle": "它不能",
-    "cantChange": "更改 prepza 中的任何内容。",
+    "cantChange": "更改 testee 中的任何内容。",
     "cantSecrets": "查看你的密码或 API 密钥。",
     "cantDelete": "删除你的账户或公司。",
     "changesTitle": "允许更改",
     "changesText": "关闭后，它只能读取。",
-    "unknown": "prepza 不认识这个应用。只有在你自己发起连接时才允许它。",
+    "unknown": "testee 不认识这个应用。只有在你自己发起连接时才允许它。",
     "deny": "拒绝",
     "allow": "允许",
     "footnote": "随时可在公司的“集成 → AI 应用”中断开它。",
@@ -2536,8 +2536,8 @@
   },
   "accessibility": {
     "title": "无障碍",
-    "description": "prepza 如何服务残障人士、哪些方面尚有不足，以及如何告诉我们。",
-    "intro": "我们希望每个人都能使用 prepza：参加企业发给你的面试、练习，以及管理企业的招聘。我们的目标是达到《Web 内容无障碍指南》（WCAG）2.2 的 AA 级。",
+    "description": "testee 如何服务残障人士、哪些方面尚有不足，以及如何告诉我们。",
+    "intro": "我们希望每个人都能使用 testee：参加企业发给你的面试、练习，以及管理企业的招聘。我们的目标是达到《Web 内容无障碍指南》（WCAG）2.2 的 AA 级。",
     "done": {
       "title": "我们做了什么",
       "themes": "浅色和深色主题：默认跟随你设备的设置，也可以选择浅色或深色。",
@@ -2551,24 +2551,24 @@
     "limits": {
       "title": "尚有不足",
       "timed": "面试题目有时间限制，这是企业评估的要求。如果你需要更多时间，请在开始前向企业申请额外时间。",
-      "audit": "prepza 尚未经过独立审核，因此部分内容可能未达到 WCAG 2.2 AA。",
+      "audit": "testee 尚未经过独立审核，因此部分内容可能未达到 WCAG 2.2 AA。",
       "providers": "购买点数的付款（Paddle 的付款页面）和“我不是机器人”验证（Cloudflare Turnstile）由相应服务商运营，无障碍情况以其自身为准。"
     },
     "feedback": {
       "title": "告诉我们",
-      "text": "如果你在 prepza 上有难以使用的地方，或需要其他形式的内容，请写信至 <email></email>。我们会在 14 天内回复。",
+      "text": "如果你在 testee 上有难以使用的地方，或需要其他形式的内容，请写信至 <email></email>。我们会在 14 天内回复。",
       "authority": "如果你对我们的答复不满意，可以联系爱沙尼亚消费者保护和技术监管局（TTJA）。"
     },
     "reviewed": "最近审核：<time>{date}</time>"
   },
   "trust": {
     "title": "信任与安全",
-    "description": "prepza 如何保障招聘数据的安全与隐私：欧盟托管、次级处理者、保存期限，以及我们为 GDPR、欧盟《人工智能法案》、英国和美国提供的支持。",
-    "intro": "prepza 为保护你和你的候选人的数据安全所做的工作：数据存储在哪里、由谁处理、保存多久，以及我们为公司所遵守的招聘相关法律提供的支持。",
+    "description": "testee 如何保障招聘数据的安全与隐私：欧盟托管、次级处理者、保存期限，以及我们为 GDPR、欧盟《人工智能法案》、英国和美国提供的支持。",
+    "intro": "testee 为保护你和你的候选人的数据安全所做的工作：数据存储在哪里、由谁处理、保存多久，以及我们为公司所遵守的招聘相关法律提供的支持。",
     "security": {
       "title": "安全",
-      "signIn": "你通过 Firebase Authentication 使用 Google、LinkedIn 或 GitHub 登录，因此 prepza 不存储任何密码。每个请求的登录状态都会在服务器上验证。",
-      "encryption": "数据在传输中（TLS 1.2 或更高版本）和存储时均经过加密。公司接入的密钥和令牌（其招聘管理系统、Slack、Webhook）以加密形式存储，prepza 的 API 密钥则仅以单向哈希形式存储。",
+      "signIn": "你通过 Firebase Authentication 使用 Google、LinkedIn 或 GitHub 登录，因此 testee 不存储任何密码。每个请求的登录状态都会在服务器上验证。",
+      "encryption": "数据在传输中（TLS 1.2 或更高版本）和存储时均经过加密。公司接入的密钥和令牌（其招聘管理系统、Slack、Webhook）以加密形式存储，testee 的 API 密钥则仅以单向哈希形式存储。",
       "access": "每个请求都会根据公司和发出请求者的角色进行检查。每项服务只能访问自己的数据库，服务之间的调用都经过签名。",
       "limits": "所有会产生费用或可能被滥用的操作都受频率限制保护，公开表单、招聘广告链接和创建第一家公司则由“我不是机器人”验证把关。",
       "logs": "错误报告不包含电子邮件地址，服务器日志只保留很短的时间。",
@@ -2578,29 +2578,29 @@
     },
     "privacy": {
       "title": "隐私",
-      "roles": "prepza 是其用户账户的控制者，也是候选人数据的处理者；这些数据属于邀请候选人的公司。",
+      "roles": "testee 是其用户账户的控制者，也是候选人数据的处理者；这些数据属于邀请候选人的公司。",
       "noSelling": "我们不出售个人数据，也不为广告共享个人数据。没有广告或分析 Cookie。",
-      "noInference": "prepza 不收集有关候选人性别、年龄、出身或残障的数据，也不推断任何此类信息。",
+      "noInference": "testee 不收集有关候选人性别、年龄、出身或残障的数据，也不推断任何此类信息。",
       "voice": "在语音模式下，候选人的口头回答会被转换为文字并与选项匹配，匹配到的选项会读给候选人听并显示在屏幕上；选择多个选项时会先确认。语音不会被录音或存储，声音也不会以任何其他方式被分析。",
       "ai": "负责编写题目的 OpenAI 被要求不存储所收到的内容；它最多保留数据 30 天，仅用于检查滥用行为，且不会将其用于训练模型。",
       "rights": "任何人都可以在“设置”中下载或删除自己的数据，无需写信给我们。"
     },
     "compliance": {
       "title": "合规",
-      "aiAct": "根据欧盟《人工智能法案》，prepza 被视为高风险 AI 系统，相关义务自 <time>{date}</time> 起适用。我们的公司使用说明即为该系统的使用说明。",
-      "humanReview": "prepza 不对候选人做出任何决定：由公司的人员审核结果并作出决定，候选人也可以要求由人工审核自己的结果。",
-      "dpa": "数据处理协议是条款的一部分，无需签署。它涵盖 GDPR、英国 GDPR，以及美国各州的隐私法律（例如加利福尼亚州的法律），在这些法律下 prepza 是公司的服务提供商。",
+      "aiAct": "根据欧盟《人工智能法案》，testee 被视为高风险 AI 系统，相关义务自 <time>{date}</time> 起适用。我们的公司使用说明即为该系统的使用说明。",
+      "humanReview": "testee 不对候选人做出任何决定：由公司的人员审核结果并作出决定，候选人也可以要求由人工审核自己的结果。",
+      "dpa": "数据处理协议是条款的一部分，无需签署。它涵盖 GDPR、英国 GDPR，以及美国各州的隐私法律（例如加利福尼亚州的法律），在这些法律下 testee 是公司的服务提供商。",
       "documents": "公司可获得<link>使用说明、DPIA 模板和候选人告知模板</link>，并有适用于纽约市、伊利诺伊州和科罗拉多州的版本。",
-      "nyc": "纽约市：在将 prepza 用于当地职位之前，雇主须完成 Local Law 144 的要求：在使用前一年内进行独立的偏见审计、公布审计摘要，并在评估前至少 10 个工作日告知候选人。prepza 自身的独立偏见审计将于 <time>{date}</time> 之前完成，此后每年进行一次。"
+      "nyc": "纽约市：在将 testee 用于当地职位之前，雇主须完成 Local Law 144 的要求：在使用前一年内进行独立的偏见审计、公布审计摘要，并在评估前至少 10 个工作日告知候选人。testee 自身的独立偏见审计将于 <time>{date}</time> 之前完成，此后每年进行一次。"
     },
     "residency": {
       "title": "数据存储位置",
-      "storage": "prepza 运行在欧盟比利时的 Google Cloud 上，其数据库也存储在那里。频率限制计数器保存在同样位于比利时的 Upstash，邮件则通过爱尔兰的 Resend 发送。",
+      "storage": "testee 运行在欧盟比利时的 Google Cloud 上，其数据库也存储在那里。频率限制计数器保存在同样位于比利时的 Upstash，邮件则通过爱尔兰的 Resend 发送。",
       "transfers": "有三家服务商在美国处理数据：用于登录的 Google、OpenAI，以及用于“我不是机器人”验证的 Cloudflare。这些传输受欧盟-美国数据隐私框架或欧盟委员会的标准合同条款保障；对于英国，则受英国扩展和英国国际数据传输附录（UK International Data Transfer Addendum）保障。"
     },
     "subprocessors": {
       "title": "次级处理者",
-      "intro": "为 prepza 处理数据的服务商，以<link>数据处理协议</link>中的列表为准：",
+      "intro": "为 testee 处理数据的服务商，以<link>数据处理协议</link>中的列表为准：",
       "changes": "在新增次级处理者之前，我们会至少提前 14 天通过邮件通知公司的所有者和管理员。"
     },
     "retention": {
@@ -2617,7 +2617,7 @@
     },
     "accessibility": {
       "title": "无障碍",
-      "text": "prepza 致力于达到《Web 内容无障碍指南》（WCAG）2.2 的 AA 级。我们的<link>无障碍声明</link>说明了哪些功能可用、哪些尚有不足，以及如何告诉我们。"
+      "text": "testee 致力于达到《Web 内容无障碍指南》（WCAG）2.2 的 AA 级。我们的<link>无障碍声明</link>说明了哪些功能可用、哪些尚有不足，以及如何告诉我们。"
     },
     "links": {
       "title": "法律文件",
@@ -2635,7 +2635,7 @@
     "open": "偏见审计导出",
     "title": "导出用于偏见审计的数据",
     "description": "一个 CSV 文件，包含每位完成面试的候选人：其分数、及格线、是否通过，以及得分是否高于中位数。你的独立审计师会据此计算选拔率和影响比。",
-    "privacy": "prepza 不持有任何关于性别、种族或族裔的数据。请按电子邮件地址添加候选人自行申报的回答，然后在分享文件前删除电子邮件地址这一列。",
+    "privacy": "testee 不持有任何关于性别、种族或族裔的数据。请按电子邮件地址添加候选人自行申报的回答，然后在分享文件前删除电子邮件地址这一列。",
     "interview": "面试",
     "allInterviews": "所有面试",
     "download": "下载 CSV",
@@ -2744,7 +2744,7 @@
   },
   "featuresPage": {
     "title": "功能：AI 招聘面试，覆盖全流程",
-    "description": "prepza 的全部功能：根据职位描述生成面试、点选和语音模式、诚信标记、报告、ATS 与 API 集成，以及合规。",
+    "description": "testee 的全部功能：根据职位描述生成面试、点选和语音模式、诚信标记、报告、ATS 与 API 集成，以及合规。",
     "hero": {
       "title": "从职位描述\n到录用合适的人",
       "text": "为你的职位编写的限时面试，来自各个渠道的候选人，一眼看清谁最优秀。所有功能均已包含。",
@@ -2781,7 +2781,7 @@
       },
       "decide": {
         "title": "看清谁最优秀",
-        "text": "每位候选人的成绩、全部答案和诚信标记。由人来做决定；prepza 指出值得关注的地方。"
+        "text": "每位候选人的成绩、全部答案和诚信标记。由人来做决定；testee 指出值得关注的地方。"
       },
       "connect": {
         "title": "与你的工具协同",
@@ -2829,7 +2829,7 @@
       },
       "brand": {
         "title": "你的品牌，而不是我们的",
-        "text": "设置你的标志、浅色和深色模式的颜色、字体和圆角，并实时预览。候选人只会看到你的公司，看不到 prepza 的页眉或页脚。",
+        "text": "设置你的标志、浅色和深色模式的颜色、字体和圆角，并实时预览。候选人只会看到你的公司，看不到 testee 的页眉或页脚。",
         "alt": "品牌标签页：标志、字体和圆角，以及面试的实时预览。"
       },
       "candidates": {
@@ -2844,7 +2844,7 @@
       },
       "share": {
         "title": "几秒内分享报告",
-        "text": "下载单个候选人或整场面试的 PDF，从 prepza 通过邮件发送，或通过聊天应用发送简短摘要。",
+        "text": "下载单个候选人或整场面试的 PDF，从 testee 通过邮件发送，或通过聊天应用发送简短摘要。",
         "alt": "候选人报告的分享对话框：接收 PDF 的邮箱地址，或通过 WhatsApp、Telegram、Viber 或 LINE 发送的摘要。"
       },
       "notes": {
@@ -2899,7 +2899,7 @@
       "atsList": "Workable、Greenhouse、Teamtailor、Recruitee 和 Breezy HR",
       "results": "自动邀请候选人，并回传结果",
       "docs": "API、Webhook、SDK 和 MCP 的开发者文档",
-      "noInference": "prepza 绝不询问或推测受法律保护的个人特征",
+      "noInference": "testee 绝不询问或推测受法律保护的个人特征",
       "owner": "只有所有者可以导出，且会记入操作记录",
       "askTime": "提醒需要更多时间的人在开始前提出",
       "peopleDecide": "告知候选人由你公司的人员审核结果并做出决定",

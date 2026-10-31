@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Värbamistest on struktureeritud kontroll, mille iga ametikohale kandideerija läbib enne, kui otsustad, kelle intervjuule kutsuda või tööle võtta. Seda nimetatakse ka kandidaatide hindamiseks, eelhindamiseks või oskuste testiks. Mõte on sama: esita kõigile sama tüüpi küsimused, hinda kõiki ühtemoodi ja võrdle inimesi tõendite, mitte CV sõnastuse põhjal.
 
-See juhend käsitleb peamisi testiliike, seda, millal need aitavad, õigluse ja õiguse põhitõdesid ning mida tööriistalt oodata. Lõpus kirjeldame, kuidas seda teeb prepza ja mida prepza ei tee.
+See juhend käsitleb peamisi testiliike, seda, millal need aitavad, õigluse ja õiguse põhitõdesid ning mida tööriistalt oodata. Lõpus kirjeldame, kuidas seda teeb testee ja mida testee ei tee.
 
 ## Mis on värbamistest
 
@@ -25,7 +25,7 @@ Hea test kontrollib seda, mida roll päriselt vajab, toimub kõigile samades tin
 | Proovitööd ja töösimulatsioonid | Osa päristööst | Ülesanded, juhtumianalüüsid, koodi kirjutamine | Lõppvaliku hilisemaks kontrolliks |
 | Keel ja trükkimine | Oskustase ja kiirus | Hinnatavad testid | Kliendisuhtluse ja administratiivsetele rollidele |
 
-**Mida prepza katab:** oskuste ja erialaste teadmiste testid ajapiiranguga valikvastustega intervjuudena, mis on kirjutatud sinu töökuulutuse põhjal. Tehniliste rollide puhul on nende hulgas koodi lugemise küsimused: lühike koodinäide ja küsimus selle kohta, mida see teeb või väljastab. prepza ei paku kognitiivsete võimete teste, isiksuseküsimustikke, ülesandeid, kus kandidaadid koodi kirjutavad või käivitavad, ega videointervjuusid. Kui neid vajad, kasuta platvormi, mis neid pakub, eraldi või prepza kõrval: kõigepealt teadmiste kontroll, siis lõppvaliku jaoks spetsialiseeritud test. Vaata [prepza ja TestGorilla](/compare/testgorilla) ja [TestGorilla alternatiivid](/compare/testgorilla-alternatives).
+**Mida testee katab:** oskuste ja erialaste teadmiste testid ajapiiranguga valikvastustega intervjuudena, mis on kirjutatud sinu töökuulutuse põhjal. Tehniliste rollide puhul on nende hulgas koodi lugemise küsimused: lühike koodinäide ja küsimus selle kohta, mida see teeb või väljastab. testee ei paku kognitiivsete võimete teste, isiksuseküsimustikke, ülesandeid, kus kandidaadid koodi kirjutavad või käivitavad, ega videointervjuusid. Kui neid vajad, kasuta platvormi, mis neid pakub, eraldi või testee kõrval: kõigepealt teadmiste kontroll, siis lõppvaliku jaoks spetsialiseeritud test. Vaata [testee ja TestGorilla](/compare/testgorilla) ja [TestGorilla alternatiivid](/compare/testgorilla-alternatives).
 
 ### Miks oskustest on mõistlik esimene samm
 
@@ -87,11 +87,11 @@ Küsimused, mida tasub igalt pakkujalt küsida:
 
 Hindade võrdluse leiad lehtedelt [kuidas testide hindu võrrelda](/compare/cheapest-pre-employment-test) ja [värbamistestid ilma tellimuseta](/compare/pre-employment-tests-without-subscription).
 
-## Kuidas seda teeb prepza
+## Kuidas seda teeb testee
 
-prepza muudab töökuulutuse ajapiiranguga valikvastustega oskuste intervjuuks.
+testee muudab töökuulutuse ajapiiranguga valikvastustega oskuste intervjuuks.
 
-1. **Kleebi töökuulutus.** Iga roll, ükskõik milline 23 keelest. prepza toob välja, mida kandidaat peab teadma, ja pakub teemad.
+1. **Kleebi töökuulutus.** Iga roll, ükskõik milline 23 keelest. testee toob välja, mida kandidaat peab teadma, ja pakub teemad.
 2. **Vaata teemad üle.** Eemalda linnuke sellelt, mida pole vaja, nimeta teema ümber, muuda selle alateemasid või kirjelda muudatusi tavalise tekstiga. Küsimused kirjutatakse alles pärast sinu heakskiitu. Võid alustada ka oma rolli valmis mallist.
 3. **Kutsu kandidaadid.** Saada kutsed e-postiga, kleebi nimekiri, laadi üles fail või pane töökuulutusse üks jagatav link. Meeldetuletused lähevad välja automaatselt.
 4. **Loe tulemusi.** Tulemused saabuvad järjestatuna, iga kandidaadi kohta on hindamisleht.
@@ -103,4 +103,4 @@ prepza muudab töökuulutuse ajapiiranguga valikvastustega oskuste intervjuuks.
 
 Maksad iga vastanud kandidaadi eest, ilma tellimuseta: 2–5 $ kandidaadi kohta sõltuvalt juurdelaadimise suurusest (Kanadas, Austraalias, Iisraelis, Poolas, Šveitsis, Jaapanis, Lõuna-Koreas, Taiwanis, Hongkongis, Tais, Singapuris, Indias, ülejäänud Euroopas ja Ühendkuningriigis kohalikus valuutas), ja sinu esimesed 3 kandidaati on tasuta. Andmeid hoitakse ELis (mõned volitatud alamtöötlejad asuvad USAs; vaata [privaatsuspoliitikat](/privacy)) ning andmetöötlusleping ja juhised ettevõtetele on hinnas.
 
-prepza ei ole psühhomeetriliste testide komplekt, koodi kirjutamise ja käivitamise platvorm ega videointervjuu tööriist ning töötab nende kõrval. Kuidas see võrreldes teiste värbamise AI-tööriistadega välja näeb, loe lehelt [AI-intervjuud](/ai-interviews). Inseneride värbamise kohta vaata [Kuidas värvata insenere](/guides/hiring-engineers).
+testee ei ole psühhomeetriliste testide komplekt, koodi kirjutamise ja käivitamise platvorm ega videointervjuu tööriist ning töötab nende kõrval. Kuidas see võrreldes teiste värbamise AI-tööriistadega välja näeb, loe lehelt [AI-intervjuud](/ai-interviews). Inseneride värbamise kohta vaata [Kuidas värvata insenere](/guides/hiring-engineers).

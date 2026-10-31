@@ -30,7 +30,7 @@ Bu sayfa aboneliğe alternatifleri, bunların abonelik planlarıyla nasıl karş
 
 | Araç | Fiyatlandırma modeli (Ekim 2026 itibarıyla) | Taahhüt |
 | --- | --- | --- |
-| **prepza** | Ön ödemeli krediler, yanıt veren aday başına düşülür ([fiyatlar](/pricing)) | Yok; krediler süresiz geçerlidir |
+| **testee** | Ön ödemeli krediler, yanıt veren aday başına düşülür ([fiyatlar](/pricing)) | Yok; krediler süresiz geçerlidir |
 | **TestGorilla** | Ücretsiz plan veya yıllık faturalandırılan ücretli planlar ([fiyat sayfası](https://www.testgorilla.com/pricing/)) | Ücretli planlarda yıllık |
 | **CodeSignal** | Kredili planlar ([fiyat sayfası](https://codesignal.com/pricing/)) | Aylık veya yıllık |
 | **Bryq** | Sınırsız davetli planlar ([fiyat sayfası](https://www.bryq.com/pricing)) | Aylık veya yıllık |
@@ -41,9 +41,9 @@ Bu araçların bazıları aylık faturalandırma sunar; bu uzun bir sözleşme d
 
 Bu araçlar ayrıca farklı şeyleri ölçer. Bir psikometri veya kodlama platformuna abonelik ile aday başına ücretli bir bilgi testi aynı işe alım sürecinde, her biri kendi aşamasını üstlenerek yer alabilir.
 
-## prepza'nın fiyatlandırması nasıl işler
+## testee'nin fiyatlandırması nasıl işler
 
-prepza'da abonelik ve sözleşme yoktur. İhtiyaç duyduğunuzda kredi satın alır ve adaylar için harcarsınız.
+testee'de abonelik ve sözleşme yoktur. İhtiyaç duyduğunuzda kredi satın alır ve adaylar için harcarsınız.
 
 - **Krediler süresiz geçerlidir.**
 - **Bir aday 500 kredidir;** yalnızca en az bir soruyu yanıtladığında düşülür. Davet edilen bir aday hiç başlamazsa krediler geri gelir. 30 gün içinde başlanmayan bir davetin süresi dolar ve kredileri iade edilir.
@@ -52,7 +52,7 @@ prepza'da abonelik ve sözleşme yoktur. İhtiyaç duyduğunuzda kredi satın al
 - **Kullanıcı başı ücret yok.** Şirketinize ücretsiz olarak yönetici ve görüntüleyici ekleyin.
 - **Hoş geldin kredileri:** ilk şirketinizin ilk 3 adayı ücretsizdir.
 
-Fiyatlar burada ABD doları, Kanada, Avustralya, İsrail, Polonya, İsviçre, Japonya, Güney Kore, Tayvan, Hong Kong, Tayland, Singapur, Hindistan, Avrupa'nın geri kalanı ve Birleşik Krallık'ta ise yerel para birimi cinsindendir (bkz. [fiyatlar](/pricing)). Ödemeler, KDV ve satış vergisini hesaplayan ve nihai tutarı ödeme adımında gösteren Paddle üzerinden yapılır; prepza kart bilgisi saklamaz. Bakiyeniz azaldığında onu dolduran otomatik yüklemeyi açabilirsiniz, ancak bu isteğe bağlıdır.
+Fiyatlar burada ABD doları, Kanada, Avustralya, İsrail, Polonya, İsviçre, Japonya, Güney Kore, Tayvan, Hong Kong, Tayland, Singapur, Hindistan, Avrupa'nın geri kalanı ve Birleşik Krallık'ta ise yerel para birimi cinsindendir (bkz. [fiyatlar](/pricing)). Ödemeler, KDV ve satış vergisini hesaplayan ve nihai tutarı ödeme adımında gösteren Paddle üzerinden yapılır; testee kart bilgisi saklamaz. Bakiyeniz azaldığında onu dolduran otomatik yüklemeyi açabilirsiniz, ancak bu isteğe bağlıdır.
 
 ## Her aday için neler alırsınız
 
@@ -60,7 +60,7 @@ Fiyatlar burada ABD doları, Kanada, Avustralya, İsrail, Polonya, İsviçre, Ja
 - Herhangi bir soru yazılmadan önce gözden geçirip düzenlediğiniz konular.
 - Her adaya, her sorusunda geri sayım olan kendine ait rastgele bir soru seti. Teknik pozisyonlarda sorular kısa kod örnekleri gösterip bunların ne yaptığını veya ne çıktı verdiğini sorabilir.
 - Her yanıtı ve süresini gösteren bir değerlendirme kartı; ayrıca çok hızlı yanıtlar, sayfadan ayrılma ve kopyalama girişimleri için işaretler.
-- İndirebileceğiniz veya prepza'dan e-postayla gönderebileceğiniz bir PDF rapor.
+- İndirebileceğiniz veya testee'den e-postayla gönderebileceğiniz bir PDF rapor.
 - E-postayla, yapıştırılan bir listeyle, yüklenen bir dosyayla veya tek bir iş ilanı bağlantısıyla davetler ve otomatik hatırlatmalar.
 
 ## Aboneliğin daha avantajlı olduğu durumlar
@@ -68,7 +68,7 @@ Fiyatlar burada ABD doları, Kanada, Avustralya, İsrail, Polonya, İsviçre, Ja
 Aday başına ödeme her zaman daha ucuz değildir. Abonelik şu durumlarda size daha uygun olabilir:
 
 - **Yılda yüzlerce aday test ediyorsanız.** Sabit bir plan, özellikle sınırsız davetli olanı, yüksek hacimde aday başına daha ucuza gelebilir. Başabaş noktasını bulmak için planın yıllık maliyetini aday başı fiyatınıza bölün; [İşe alım öncesi test maliyetleri nasıl karşılaştırılır](/compare/cheapest-pre-employment-test) sayfası bunu adım adım anlatır.
-- **prepza'nın sunmadığı testlere ihtiyacınız varsa.** Bilişsel yetenek, kişilik, uygulamalı kodlama (kod yazma ve çalıştırma) ve video soruları diğer platformların planlarıyla gelir. Bunlardan birini prepza'nın yanında kullanabilirsiniz.
+- **testee'nin sunmadığı testlere ihtiyacınız varsa.** Bilişsel yetenek, kişilik, uygulamalı kodlama (kod yazma ve çalıştırma) ve video soruları diğer platformların planlarıyla gelir. Bunlardan birini testee'nin yanında kullanabilirsiniz.
 - **Ücretsiz bir plan ihtiyacınızı karşılıyorsa.** Bazı sağlayıcılar birkaç test içeren ücretsiz planlar sunar; bu testler pozisyonunuza uyuyorsa hiç ödeme yapmanız gerekmeyebilir.
 
 ## Kullandıkça öde modelli her sağlayıcıya sorulacak sorular
@@ -80,22 +80,22 @@ Aday başına ödeme her zaman daha ucuz değildir. Abonelik şu durumlarda size
 5. Aday verilerine ne oluyor ve nerede barındırılıyor?
 6. Asgari satın alma tutarı var mı?
 
-prepza için: hayır, hayır, hayır, evet (ikisi de), AB'de barındırılıyor ve aday verileri davetten 12 ay sonra siliniyor (bazı alt işleyenler ABD'de; bkz. [gizlilik politikası](/privacy)); en küçük yükleme tutarı [fiyatlar](/pricing) sayfasında listelenir.
+testee için: hayır, hayır, hayır, evet (ikisi de), AB'de barındırılıyor ve aday verileri davetten 12 ay sonra siliniyor (bazı alt işleyenler ABD'de; bkz. [gizlilik politikası](/privacy)); en küçük yükleme tutarı [fiyatlar](/pricing) sayfasında listelenir.
 
 ## Örnek bir hesaplama
 
 25 kişilik bir şirket bu yıl iki kez işe alım yapıyor: ilkbaharda bir müşteri destek uzmanı (40 başvuru sahibi test edildi) ve sonbaharda bir ofis yöneticisi (25 kişi test edildi).
 
-- **Aday başına ödeme:** 65 aday × aday başı fiyat, varsa ücretsiz adaylar düşülerek; yalnızca işe alım yaptığınız aylarda ödenir. prepza ile bu, 3 ücretsiz adaydan sonra 62 ücretli aday demektir.
+- **Aday başına ödeme:** 65 aday × aday başı fiyat, varsa ücretsiz adaylar düşülerek; yalnızca işe alım yaptığınız aylarda ödenir. testee ile bu, 3 ücretsiz adaydan sonra 62 ücretli aday demektir.
 - **Yıllık faturalandırılan bir abonelik:** ne kadar kullanırsanız kullanın, planın yıllık maliyeti.
 
-Her sağlayıcının fiyat sayfasındaki ve [prepza'nın](/pricing) gerçek fiyatlarını iki satıra da yerleştirin. Bunun gibi ara sıra yapılan işe alımlarda taahhüt, testin kendisinden daha pahalıya gelebilir; düzenli işe alımlarda ise plan öne geçebilir.
+Her sağlayıcının fiyat sayfasındaki ve [testee'nin](/pricing) gerçek fiyatlarını iki satıra da yerleştirin. Bunun gibi ara sıra yapılan işe alımlarda taahhüt, testin kendisinden daha pahalıya gelebilir; düzenli işe alımlarda ise plan öne geçebilir.
 
-*Ürün adları sahiplerine aittir. prepza, bu sayfada adı geçen hiçbir şirketle bağlantılı değildir ve bu şirketler tarafından onaylanmamıştır.*
+*Ürün adları sahiplerine aittir. testee, bu sayfada adı geçen hiçbir şirketle bağlantılı değildir ve bu şirketler tarafından onaylanmamıştır.*
 
 ## İlgili sayfalar
 
 - [İşe alım öncesi test maliyetleri nasıl karşılaştırılır](/compare/cheapest-pre-employment-test)
 - [TestGorilla alternatifleri](/compare/testgorilla-alternatives)
-- [prepza ve TestGorilla](/compare/testgorilla)
+- [testee ve TestGorilla](/compare/testgorilla)
 - [İşe alım öncesi test rehberi](/pre-employment-testing)

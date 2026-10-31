@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Üldiselt jah: AI kasutamine värbamisel on USAs seaduslik. Föderaalset AI seadust värbamise kohta ei ole. Selle asemel kohaldub AI-tööriistadele, nagu igale testile, föderaalne diskrimineerimisvastane õigus, ning mõned kohad lisavad omad reeglid: New York City, Illinois, Colorado ja California.
 
-See juhend selgitab üldjoontes reegleid, olulisi kuupäevi, seda, mida tööandjad peavad tegema, ja kuidas prepza sellele läheneb. **See ei ole õigusnõuanne.** See kajastab reegleid 2026. aasta oktoobri seisuga; mitu neist on uued või alles valmimas.
+See juhend selgitab üldjoontes reegleid, olulisi kuupäevi, seda, mida tööandjad peavad tegema, ja kuidas testee sellele läheneb. **See ei ole õigusnõuanne.** See kajastab reegleid 2026. aasta oktoobri seisuga; mitu neist on uued või alles valmimas.
 
 ## Lühike vastus
 
@@ -97,22 +97,22 @@ Colorado AI seadus tunnistati kehtetuks ja võeti uuesti vastu SB 26-189-ga, mis
 8. **Säilita dokumente nii kaua, kui sinu õigus nõuab,** näiteks Californias neli aastat ja Colorados kolm.
 9. **Ära kunagi lükka tagasi ainult tulemuse põhjal.** Lase inimesel iga tulemus üle vaadata.
 
-## Kuidas prepza sellele läheneb
+## Kuidas testee sellele läheneb
 
-prepza viib läbi ajapiiranguga valikvastustega oskuste intervjuusid, mille AI kirjutab töökuulutuse põhjal. USAs läheneb prepza samamoodi kui ELis. prepza ei väida, et ta vastab nõuetele või on sertifitseeritud.
+testee viib läbi ajapiiranguga valikvastustega oskuste intervjuusid, mille AI kirjutab töökuulutuse põhjal. USAs läheneb testee samamoodi kui ELis. testee ei väida, et ta vastab nõuetele või on sertifitseeritud.
 
 Kuidas see tootes täna välja näeb:
 
 - **AI kirjutab küsimused ja nende vastusevõtmed; hindamine käib kindlate reeglite järgi.** Ükski AI ei loe ega hinda kandidaadi vastust ning video- ega näoanalüüsi ei kasutata. Häälerežiimis muudetakse kõne tekstiks ja sobitatakse vastusevariandiga, mis kandidaadile välja öeldakse ja ekraanil näidatakse: üks selgelt nimetatud variant võetakse vastuseks kohe, mitme variandi valik kinnitatakse kõigepealt. Kõnet ei salvestata kunagi ja häält ei analüüsita kunagi.
 - **Sina kiidad teemad heaks** enne, kui ühtegi küsimust kirjutatakse, ja sina valid läbimise läve.
-- **Otsustavad inimesed.** prepza ei lükka kandidaate tagasi ega saada äraütlemiskirju.
-- **Kaitstud tunnuseid ei koguta.** prepza ei küsi, ei tuleta ega salvesta kunagi kandidaatide sugu, rassi, vanust, puuet, postiindeksit ega muid kaitstud tunnuseid.
+- **Otsustavad inimesed.** testee ei lükka kandidaate tagasi ega saada äraütlemiskirju.
+- **Kaitstud tunnuseid ei koguta.** testee ei küsi, ei tuleta ega salvesta kunagi kandidaatide sugu, rassi, vanust, puuet, postiindeksit ega muid kaitstud tunnuseid.
 - **Eksport kallutatuse auditi jaoks.** Ettevõtte toimingute logi lehel saab omanik alla laadida CSV-faili lõpetanud kandidaatidest, kogu ettevõtte või ühe intervjuu kohta ja kahe kuupäeva vahel: iga kandidaadi hinne, läbimise lävi, kas ta sooritas ja kas tema tulemus oli intervjuu mediaanist kõrgem. Iga rida on seotud kandidaadi e-posti aadressiga, et saaksid selle ühendada enesemääratletud kategooriatega, mille ise kogusid; seejärel eemalda e-posti veerg ja anna fail oma sõltumatule audiitorile, kes arvutab valiku- ja tulemusmäärad ning mõjusuhted. Sama failiga saad ise teha neli viiendikku kontrolli.
-- **Lisaaega** +25%, +50% või +100% iga küsimuse kohta saab anda igale kandidaadile, kes seda palub, enne kui ta alustab. prepza salvestab ainult lisaaja suuruse, mitte kunagi põhjust. Häälerežiimis saab kandidaat alati selle asemel vastusevarianti puudutada ja sa saad seadistada intervjuu nii, et vastata saab ainult puudutades.
+- **Lisaaega** +25%, +50% või +100% iga küsimuse kohta saab anda igale kandidaadile, kes seda palub, enne kui ta alustab. testee salvestab ainult lisaaja suuruse, mitte kunagi põhjust. Häälerežiimis saab kandidaat alati selle asemel vastusevarianti puudutada ja sa saad seadistada intervjuu nii, et vastata saab ainult puudutades.
 - **Kandidaatide teavituse mallid,** üldine ning versioonid New York City, Illinoisi ja Colorado jaoks, on [dokumentide lehel](/documents) koos ettevõtetele mõeldud juhistega.
-- **New York City.** prepzal ei ole veel olnud oma sõltumatut kallutatuse auditit. Ära kasuta prepzat New York City töökohtade jaoks enne, kui oled teinud selle, mida Local Law 144 sinult tööandjana nõuab: sõltumatu kallutatuse audit kasutamisele eelneva aasta jooksul, selle avaldatud kokkuvõte ja teade kandidaatidele 10 tööpäeva ette.
-- **Andmed.** CCPA mõttes on sinu ettevõte ettevõte (business) ja prepza selle teenusepakkuja (service provider) [andmetöötluslepingu](/dpa) ja selle USA osa alusel. Andmeid majutatakse ELis, mõned volitatud alamtöötlejad asuvad USAs (vaata [privaatsuspoliitikat](/privacy)), ja neid ei kasutata AI-mudelite treenimiseks.
-- **Säilitamine.** Kandidaatide andmed kustutatakse 12 kuud pärast kutset. Kui sinu õigus nõuab dokumentide pikemat säilitamist, näiteks Californias neli aastat, laadi PDF-aruanded ja kallutatuse auditi fail alla ja säilita need ise; prepza ei säilita tulemusi vaikimisi kauem.
+- **New York City.** testeel ei ole veel olnud oma sõltumatut kallutatuse auditit. Ära kasuta testeed New York City töökohtade jaoks enne, kui oled teinud selle, mida Local Law 144 sinult tööandjana nõuab: sõltumatu kallutatuse audit kasutamisele eelneva aasta jooksul, selle avaldatud kokkuvõte ja teade kandidaatidele 10 tööpäeva ette.
+- **Andmed.** CCPA mõttes on sinu ettevõte ettevõte (business) ja testee selle teenusepakkuja (service provider) [andmetöötluslepingu](/dpa) ja selle USA osa alusel. Andmeid majutatakse ELis, mõned volitatud alamtöötlejad asuvad USAs (vaata [privaatsuspoliitikat](/privacy)), ja neid ei kasutata AI-mudelite treenimiseks.
+- **Säilitamine.** Kandidaatide andmed kustutatakse 12 kuud pärast kutset. Kui sinu õigus nõuab dokumentide pikemat säilitamist, näiteks Californias neli aastat, laadi PDF-aruanded ja kallutatuse auditi fail alla ja säilita need ise; testee ei säilita tulemusi vaikimisi kauem.
 
 ## Loe ka
 

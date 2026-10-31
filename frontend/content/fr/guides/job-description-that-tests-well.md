@@ -102,9 +102,9 @@ Chaque ligne nomme un élément sur lequel une question peut porter, le niveau e
 - Les exigences impératives sont laissées au tri des CV.
 - Aucune formulation sur la personne que vous imaginez, uniquement sur le travail.
 
-## Comment prepza utilise une fiche de poste
+## Comment testee utilise une fiche de poste
 
-prepza est un exemple d'outil qui construit un test de compétences chronométré à choix multiples à partir d'une fiche de poste. Voici ce qu'il fait du texte, pour que vous voyiez comment les conseils ci-dessus se traduisent en pratique :
+testee est un exemple d'outil qui construit un test de compétences chronométré à choix multiples à partir d'une fiche de poste. Voici ce qu'il fait du texte, pour que vous voyiez comment les conseils ci-dessus se traduisent en pratique :
 
 - **Il lit chaque exigence.** L'IA repère chaque compétence, outil, notion, qualification et mission quotidienne, dans chaque section, y compris celles marquées comme souhaitées ou « un plus ». Les déclarations sur la culture, les avantages et les slogans sont écartés.
 - **Les exemples interchangeables n'en font qu'un.** « Des outils comme A, B ou équivalent » est conservé comme type d'outil, avec en exemple celui que le texte privilégie (ou le plus répandu). Les éléments reliés par « et » restent distincts. Si vous avez besoin d'un outil précis, ne nommez donc que celui-là.

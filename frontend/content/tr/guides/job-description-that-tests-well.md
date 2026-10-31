@@ -102,9 +102,9 @@ Her satır bir sorunun sorabileceği bir şeyi adlandırıyor, seviye belirtilmi
 - Kesin gereklilikler CV taramasına bırakılmış.
 - Hayal ettiğiniz kişiyle ilgili hiçbir ifade yok, yalnızca işle ilgili ifadeler var.
 
-## prepza bir iş tanımını nasıl kullanır
+## testee bir iş tanımını nasıl kullanır
 
-prepza, bir iş tanımından süreli, çoktan seçmeli bir beceri testi oluşturan araçlardan biridir. Yukarıdaki tavsiyelerin nasıl işlediğini görebilmeniz için metinle yaptıkları şunlardır:
+testee, bir iş tanımından süreli, çoktan seçmeli bir beceri testi oluşturan araçlardan biridir. Yukarıdaki tavsiyelerin nasıl işlediğini görebilmeniz için metinle yaptıkları şunlardır:
 
 - **Her gerekliliği okur.** Yapay zekâ; tercih edilen ya da tercih sebebi olarak işaretlenenler dahil her bölümden her beceriyi, aracı, kavramı, niteliği ve günlük görevi çıkarır. Kültür ifadeleri, yan haklar ve sloganlar dışarıda bırakılır.
 - **Birbirinin yerine geçen örnekler teke iner.** “A, B veya benzeri araçlar”, aracın türü olarak tutulur; örnek olarak metnin tercih ettiği (ya da en yaygın kullanılan) araç alınır. “Ve” ile bağlanan öğeler ayrı kalır. Yani belirli tek bir araca ihtiyacınız varsa yalnızca onu adlandırın.

@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 Co do zasady tak: korzystanie z AI w rekrutacji jest w UE legalne. Jednak większość narzędzi AI, które oceniają kandydatów, należy do kategorii wysokiego ryzyka w akcie w sprawie sztucznej inteligencji (AI Act), co nakłada obowiązki na dostawcę i na Ciebie jako pracodawcę. Niektóre praktyki są całkowicie zakazane. A do danych kandydatów, jak zawsze, stosuje się RODO (GDPR).
 
-Ten poradnik w ogólnym zarysie wyjaśnia zasady, ważne daty, obowiązki pracodawców oraz podejście prepza. **To nie jest porada prawna.** Opisuje przepisy według stanu na październik 2026. Przepisy są nowe, wytyczne wciąż są dopracowywane, a prawo krajowe dodaje własne wymogi. Zanim oprzesz się na czymkolwiek z tego tekstu, skonsultuj się z własnym prawnikiem.
+Ten poradnik w ogólnym zarysie wyjaśnia zasady, ważne daty, obowiązki pracodawców oraz podejście testee. **To nie jest porada prawna.** Opisuje przepisy według stanu na październik 2026. Przepisy są nowe, wytyczne wciąż są dopracowywane, a prawo krajowe dodaje własne wymogi. Zanim oprzesz się na czymkolwiek z tego tekstu, skonsultuj się z własnym prawnikiem.
 
 ## Krótka odpowiedź
 
@@ -111,15 +111,15 @@ Dane kandydatów są danymi osobowymi, a AI nie zmienia RODO. Najważniejsze kwe
 8. **Zapewnij racjonalne usprawnienia,** takie jak dodatkowy czas, kandydatom, którzy ich potrzebują.
 9. **Nigdy nie odrzucaj kandydata wyłącznie na podstawie wyniku.** Przejrzyj odpowiedzi.
 
-## Podejście prepza
+## Podejście testee
 
-prepza prowadzi rozmowy rekrutacyjne sprawdzające umiejętności w formie testów wyboru z limitem czasu, napisanych przez AI na podstawie opisu stanowiska. Ponieważ prepza punktuje kandydatów i tworzy ich ranking, z jej własnej analizy wynika, że jest bardzo prawdopodobnie systemem wysokiego ryzyka w rozumieniu załącznika III pkt 4 lit. a), z obowiązkami stosowanymi od 2 grudnia 2027. Na tej podstawie się przygotowuje. prepza nie twierdzi, że spełnia wymogi ani że posiada certyfikację.
+testee prowadzi rozmowy rekrutacyjne sprawdzające umiejętności w formie testów wyboru z limitem czasu, napisanych przez AI na podstawie opisu stanowiska. Ponieważ testee punktuje kandydatów i tworzy ich ranking, z jej własnej analizy wynika, że jest bardzo prawdopodobnie systemem wysokiego ryzyka w rozumieniu załącznika III pkt 4 lit. a), z obowiązkami stosowanymi od 2 grudnia 2027. Na tej podstawie się przygotowuje. testee nie twierdzi, że spełnia wymogi ani że posiada certyfikację.
 
 Jak to dziś wygląda w produkcie:
 
 - **AI pisze pytania i klucze odpowiedzi; ocenianie odbywa się według stałych reguł.** Żadna AI nie czyta ani nie ocenia odpowiedzi kandydata i nie jest używana analiza wideo, głosu ani twarzy. Jeśli AI później poprawi klucz, poprawka dotyczy kandydatów, którzy zaczną po niej; wcześniejsze wyniki się nie zmieniają.
 - **Zatwierdzasz tematy,** zanim powstanie jakiekolwiek pytanie, i widzisz każde pytanie.
-- **Decydują ludzie.** Strona wyników i raporty PDF przypominają Twojemu zespołowi o przejrzeniu wyników; prepza nie odrzuca kandydatów ani nie wysyła wiadomości z odmową.
+- **Decydują ludzie.** Strona wyników i raporty PDF przypominają Twojemu zespołowi o przejrzeniu wyników; testee nie odrzuca kandydatów ani nie wysyła wiadomości z odmową.
 - **Kandydaci są informowani,** zanim zaczną, że pytania pisze AI, że wyniki przeglądają i decyzje podejmują ludzie w Twojej firmie oraz że mogą poprosić o weryfikację.
 - **Dodatkowy czas** można przyznać każdemu kandydatowi, który o to poprosi.
 - **Rejestry.** Zapisywane są wyświetlone pytania, odpowiedzi, czasy i zdarzenia dotyczące rzetelności.

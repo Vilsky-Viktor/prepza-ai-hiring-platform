@@ -66,9 +66,9 @@ Tell candidates up front which tools are allowed at each stage. A clear rule is 
 
 For the full step-by-step version, see [How to hire engineers](/guides/hiring-engineers).
 
-## Where prepza fits
+## Where testee fits
 
-prepza is well suited to step 2. It turns your job description into a timed multiple-choice knowledge interview, and you review the proposed topics before any question is written, so the test covers your stack and nothing else.
+testee is well suited to step 2. It turns your job description into a timed multiple-choice knowledge interview, and you review the proposed topics before any question is written, so the test covers your stack and nothing else.
 
 - **Concepts and theory from the job description:** databases, APIs, architecture, a framework's behavior, security practices.
 - **Code-reading questions:** a short piece of code with questions about what it prints or returns, what it does, why it fails or which change fixes it. That's the same reviewing skill AI-assisted work depends on.
@@ -76,7 +76,7 @@ prepza is well suited to step 2. It turns your job description into a timed mult
 - **Integrity signals:** scorecards flag answers too fast to have read the question, times the candidate left the page, and copy attempts. Once a candidate finishes, their report also points out answer patterns that relaying questions to an AI tends to leave: about the same time on every question whatever its length or difficulty, or hard questions right while easy ones were wrong. A flag or a pattern is a reason to look closer, not proof of cheating.
 - **Questions for the live interview:** the report suggests up to 3 questions the candidate got right, from their strongest topics, to talk through in a live interview, where no AI can answer for them.
 
-What prepza doesn't do: candidates don't write, run or debug code in prepza, and it doesn't watch them use an AI assistant. That belongs in the hands-on stage, run in-house or on a developer platform, which complements the knowledge screen. See [skills tests by role](/tests) for ready-made tests to start from, and [AI interviews](/ai-interviews) for how prepza uses AI and what it leaves to people.
+What testee doesn't do: candidates don't write, run or debug code in testee, and it doesn't watch them use an AI assistant. That belongs in the hands-on stage, run in-house or on a developer platform, which complements the knowledge screen. See [skills tests by role](/tests) for ready-made tests to start from, and [AI interviews](/ai-interviews) for how testee uses AI and what it leaves to people.
 
 ## Fairness and candidate experience
 

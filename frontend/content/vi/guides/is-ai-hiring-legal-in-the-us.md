@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Nói chung là có: dùng AI trong tuyển dụng là hợp pháp ở Mỹ. Không có luật liên bang nào về AI trong tuyển dụng. Thay vào đó, luật chống phân biệt đối xử liên bang áp dụng cho công cụ AI như với mọi bài kiểm tra khác, và một vài nơi bổ sung quy định riêng: Thành phố New York, Illinois, Colorado và California.
 
-Hướng dẫn này giải thích các quy định ở mức tổng quan, các mốc thời gian quan trọng, những gì bên tuyển dụng phải làm, và cách prepza tiếp cận vấn đề. **Đây không phải tư vấn pháp lý.** Nội dung phản ánh các quy định tính đến tháng 10/2026, một số trong đó còn mới hoặc vẫn đang được hoàn thiện.
+Hướng dẫn này giải thích các quy định ở mức tổng quan, các mốc thời gian quan trọng, những gì bên tuyển dụng phải làm, và cách testee tiếp cận vấn đề. **Đây không phải tư vấn pháp lý.** Nội dung phản ánh các quy định tính đến tháng 10/2026, một số trong đó còn mới hoặc vẫn đang được hoàn thiện.
 
 ## Câu trả lời ngắn
 
@@ -97,22 +97,22 @@ Luật AI của Colorado đã bị bãi bỏ và ban hành lại bằng SB 26-18
 8. **Lưu hồ sơ lâu như luật của bạn yêu cầu,** ví dụ bốn năm ở California và ba năm ở Colorado.
 9. **Không bao giờ loại chỉ dựa trên điểm số.** Hãy để con người xem xét từng kết quả.
 
-## Cách prepza tiếp cận vấn đề này
+## Cách testee tiếp cận vấn đề này
 
-prepza tổ chức các buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ, do AI viết từ mô tả công việc. Cách tiếp cận của prepza ở Mỹ giống như ở EU. prepza không tuyên bố đã tuân thủ hay được chứng nhận.
+testee tổ chức các buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ, do AI viết từ mô tả công việc. Cách tiếp cận của testee ở Mỹ giống như ở EU. testee không tuyên bố đã tuân thủ hay được chứng nhận.
 
 Hiện nay điều đó thể hiện trong sản phẩm như sau:
 
 - **AI viết câu hỏi và đáp án; việc chấm điểm theo quy tắc cố định.** Không có AI nào đọc hay đánh giá câu trả lời của ứng viên, và không dùng phân tích video hay khuôn mặt. Ở chế độ giọng nói, lời nói được chuyển thành văn bản và khớp với một lựa chọn, lựa chọn đó được đọc lại cho ứng viên và hiển thị trên màn hình: một lựa chọn duy nhất được nói rõ sẽ được ghi nhận ngay, còn khi chọn nhiều lựa chọn thì phải xác nhận trước. Lời nói không bao giờ được lưu và giọng nói không bao giờ bị phân tích.
 - **Bạn duyệt các chủ đề** trước khi bất kỳ câu hỏi nào được viết, và bạn chọn điểm đạt.
-- **Con người quyết định.** prepza không loại ứng viên và không gửi thư từ chối.
-- **Không có đặc điểm được bảo vệ.** prepza không bao giờ hỏi, suy đoán hay lưu giới tính, chủng tộc, tuổi tác, khuyết tật, mã bưu chính hay các đặc điểm được bảo vệ khác của ứng viên.
+- **Con người quyết định.** testee không loại ứng viên và không gửi thư từ chối.
+- **Không có đặc điểm được bảo vệ.** testee không bao giờ hỏi, suy đoán hay lưu giới tính, chủng tộc, tuổi tác, khuyết tật, mã bưu chính hay các đặc điểm được bảo vệ khác của ứng viên.
 - **Xuất dữ liệu cho kiểm toán thiên lệch.** Trên trang Nhật ký thao tác của công ty, chủ sở hữu có thể tải một tệp CSV gồm các ứng viên đã hoàn thành, cho toàn công ty hoặc một buổi phỏng vấn và trong khoảng giữa hai ngày: điểm của từng ứng viên, điểm đạt, họ có đạt hay không và có cao hơn trung vị của buổi phỏng vấn hay không. Mỗi dòng gắn với email của ứng viên, nên bạn có thể ghép nó với các nhóm do ứng viên tự khai báo mà bạn đã tự thu thập; sau đó xóa cột email và đưa tệp cho kiểm toán viên độc lập, người sẽ tính tỷ lệ tuyển chọn, tỷ lệ điểm và tỷ số tác động. Cũng với tệp này, bạn có thể tự kiểm tra theo quy tắc bốn phần năm.
-- **Thời gian thêm** +25%, +50% hoặc +100% cho mỗi câu hỏi có thể được cấp cho bất kỳ ứng viên nào yêu cầu, trước khi họ bắt đầu. prepza chỉ lưu mức thời gian thêm, không bao giờ lưu lý do. Ở chế độ giọng nói, ứng viên luôn có thể chạm vào một lựa chọn thay vì nói, và bạn có thể đặt một buổi phỏng vấn chỉ cho trả lời bằng cách chạm.
+- **Thời gian thêm** +25%, +50% hoặc +100% cho mỗi câu hỏi có thể được cấp cho bất kỳ ứng viên nào yêu cầu, trước khi họ bắt đầu. testee chỉ lưu mức thời gian thêm, không bao giờ lưu lý do. Ở chế độ giọng nói, ứng viên luôn có thể chạm vào một lựa chọn thay vì nói, và bạn có thể đặt một buổi phỏng vấn chỉ cho trả lời bằng cách chạm.
 - **Mẫu thông báo cho ứng viên,** một mẫu chung và các phiên bản cho Thành phố New York, Illinois và Colorado, có trên [trang tài liệu](/documents), cùng hướng dẫn cho công ty.
-- **Thành phố New York.** prepza chưa có cuộc kiểm toán thiên lệch độc lập của riêng mình. Đừng dùng prepza cho công việc ở Thành phố New York cho đến khi bạn đã làm những gì Local Law 144 yêu cầu ở bạn với tư cách bên tuyển dụng: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt, và thông báo cho ứng viên trước 10 ngày làm việc.
-- **Dữ liệu.** Theo CCPA, công ty bạn là doanh nghiệp (business) và prepza là nhà cung cấp dịch vụ (service provider) của công ty, theo [thỏa thuận xử lý dữ liệu](/dpa) và phần về Mỹ trong đó. Dữ liệu được lưu trữ tại EU, với một số bên xử lý phụ ở Mỹ (xem [chính sách quyền riêng tư](/privacy)), và không được dùng để huấn luyện mô hình AI.
-- **Thời hạn lưu.** Dữ liệu ứng viên được xóa sau 12 tháng kể từ lời mời. Nếu luật của bạn yêu cầu lưu hồ sơ lâu hơn, như bốn năm ở California, hãy tải báo cáo PDF và tệp kiểm toán thiên lệch và tự lưu giữ; theo mặc định prepza không lưu kết quả lâu hơn.
+- **Thành phố New York.** testee chưa có cuộc kiểm toán thiên lệch độc lập của riêng mình. Đừng dùng testee cho công việc ở Thành phố New York cho đến khi bạn đã làm những gì Local Law 144 yêu cầu ở bạn với tư cách bên tuyển dụng: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt, và thông báo cho ứng viên trước 10 ngày làm việc.
+- **Dữ liệu.** Theo CCPA, công ty bạn là doanh nghiệp (business) và testee là nhà cung cấp dịch vụ (service provider) của công ty, theo [thỏa thuận xử lý dữ liệu](/dpa) và phần về Mỹ trong đó. Dữ liệu được lưu trữ tại EU, với một số bên xử lý phụ ở Mỹ (xem [chính sách quyền riêng tư](/privacy)), và không được dùng để huấn luyện mô hình AI.
+- **Thời hạn lưu.** Dữ liệu ứng viên được xóa sau 12 tháng kể từ lời mời. Nếu luật của bạn yêu cầu lưu hồ sơ lâu hơn, như bốn năm ở California, hãy tải báo cáo PDF và tệp kiểm toán thiên lệch và tự lưu giữ; theo mặc định testee không lưu kết quả lâu hơn.
 
 ## Đọc thêm
 

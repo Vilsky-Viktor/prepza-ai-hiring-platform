@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Secara umum, ya: memakai AI dalam rekrutmen itu legal di AS. Tidak ada undang-undang AI federal untuk perekrutan. Sebagai gantinya, hukum antidiskriminasi federal berlaku untuk alat AI sama seperti untuk tes apa pun, dan beberapa tempat menambahkan aturannya sendiri: New York City, Illinois, Colorado, dan California.
 
-Panduan ini menjelaskan aturannya secara garis besar, tanggal-tanggal yang penting, apa yang harus dilakukan pemberi kerja, dan pendekatan prepza. **Ini bukan nasihat hukum.** Isinya mencerminkan aturan per Oktober 2026, dan beberapa di antaranya masih baru atau masih difinalisasi.
+Panduan ini menjelaskan aturannya secara garis besar, tanggal-tanggal yang penting, apa yang harus dilakukan pemberi kerja, dan pendekatan testee. **Ini bukan nasihat hukum.** Isinya mencerminkan aturan per Oktober 2026, dan beberapa di antaranya masih baru atau masih difinalisasi.
 
 ## Jawaban singkatnya
 
@@ -97,22 +97,22 @@ Undang-undang AI Colorado dicabut dan diberlakukan ulang melalui SB 26-189, dita
 8. **Simpan catatan selama yang diwajibkan hukummu,** misalnya empat tahun di California dan tiga di Colorado.
 9. **Jangan pernah menolak berdasarkan skor saja.** Pastikan ada orang yang meninjau setiap hasil.
 
-## Pendekatan prepza
+## Pendekatan testee
 
-prepza menjalankan wawancara keterampilan pilihan ganda berbatas waktu yang ditulis AI dari deskripsi pekerjaan. Pendekatannya di AS sama dengan di UE. prepza tidak mengklaim sudah patuh atau tersertifikasi.
+testee menjalankan wawancara keterampilan pilihan ganda berbatas waktu yang ditulis AI dari deskripsi pekerjaan. Pendekatannya di AS sama dengan di UE. testee tidak mengklaim sudah patuh atau tersertifikasi.
 
 Seperti apa wujudnya di produk saat ini:
 
 - **AI menulis soal dan kunci jawabannya; penilaian mengikuti aturan tetap.** Tidak ada AI yang membaca atau menilai jawaban kandidat, dan tidak ada analisis video atau wajah. Dalam mode suara, ucapan diubah menjadi teks dan dicocokkan dengan sebuah pilihan, yang disebutkan kepada kandidat dan ditampilkan di layar: satu pilihan yang disebut dengan jelas langsung dicatat, sedangkan jawaban dengan beberapa pilihan dikonfirmasi lebih dulu. Ucapan tidak pernah disimpan dan suaranya tidak pernah dianalisis.
 - **Kamu menyetujui topiknya** sebelum ada soal yang ditulis, dan kamu yang memilih nilai lulus.
-- **Manusia yang memutuskan.** prepza tidak menolak kandidat atau mengirim pesan penolakan.
-- **Tanpa karakteristik yang dilindungi.** prepza tidak pernah menanyakan, menyimpulkan, atau menyimpan jenis kelamin, ras, usia, disabilitas, kode pos, atau karakteristik lain yang dilindungi milik kandidat.
+- **Manusia yang memutuskan.** testee tidak menolak kandidat atau mengirim pesan penolakan.
+- **Tanpa karakteristik yang dilindungi.** testee tidak pernah menanyakan, menyimpulkan, atau menyimpan jenis kelamin, ras, usia, disabilitas, kode pos, atau karakteristik lain yang dilindungi milik kandidat.
 - **Ekspor untuk audit bias.** Di halaman Log tindakan perusahaan, pemilik bisa mengunduh file CSV berisi kandidat yang sudah selesai, untuk seluruh perusahaan atau satu wawancara dan di antara dua tanggal: nilai setiap kandidat, nilai lulus, apakah ia lulus, dan apakah skornya di atas median wawancara. Setiap baris memakai email kandidat sebagai kunci, sehingga kamu bisa menggabungkannya dengan kategori yang dilaporkan sendiri oleh kandidat yang kamu kumpulkan sendiri; lalu hapus kolom email dan serahkan file itu kepada auditor independenmu, yang menghitung tingkat seleksi dan tingkat skor serta rasio dampak. File yang sama memungkinkanmu melakukan pemeriksaan empat per lima sendiri.
-- **Tambahan waktu** +25%, +50%, atau +100% untuk setiap soal bisa diberikan kepada kandidat mana pun yang memintanya, sebelum ia mulai. prepza hanya menyimpan besarnya, tidak pernah alasannya. Dalam mode suara, kandidat selalu bisa mengetuk pilihan sebagai gantinya, dan kamu bisa mengatur wawancara agar hanya dijawab dengan mengetuk.
+- **Tambahan waktu** +25%, +50%, atau +100% untuk setiap soal bisa diberikan kepada kandidat mana pun yang memintanya, sebelum ia mulai. testee hanya menyimpan besarnya, tidak pernah alasannya. Dalam mode suara, kandidat selalu bisa mengetuk pilihan sebagai gantinya, dan kamu bisa mengatur wawancara agar hanya dijawab dengan mengetuk.
 - **Templat pemberitahuan untuk kandidat,** satu yang umum dan versi untuk New York City, Illinois, dan Colorado, ada di [halaman dokumen](/documents), bersama petunjuk untuk perusahaan.
-- **New York City.** prepza belum menjalani audit bias independennya sendiri. Jangan pakai prepza untuk pekerjaan di New York City sampai kamu melakukan apa yang diwajibkan Local Law 144 kepadamu sebagai pemberi kerja: audit bias independen dalam setahun sebelum dipakai, ringkasannya dipublikasikan, dan pemberitahuan kepada kandidat 10 hari kerja sebelumnya.
-- **Data.** Menurut CCPA, perusahaanmu adalah bisnis (business) dan prepza penyedia layanannya (service provider), berdasarkan [perjanjian pemrosesan data](/dpa) dan bagian AS-nya. Data di-hosting di UE, dengan beberapa sub-pemroses di AS (lihat [kebijakan privasi](/privacy)), dan tidak dipakai untuk melatih model AI.
-- **Masa penyimpanan.** Data kandidat dihapus 12 bulan setelah undangan. Jika hukummu mewajibkan catatan disimpan lebih lama, seperti empat tahun di California, unduh laporan PDF dan file audit bias lalu simpan sendiri; secara bawaan prepza tidak menyimpan hasil lebih lama.
+- **New York City.** testee belum menjalani audit bias independennya sendiri. Jangan pakai testee untuk pekerjaan di New York City sampai kamu melakukan apa yang diwajibkan Local Law 144 kepadamu sebagai pemberi kerja: audit bias independen dalam setahun sebelum dipakai, ringkasannya dipublikasikan, dan pemberitahuan kepada kandidat 10 hari kerja sebelumnya.
+- **Data.** Menurut CCPA, perusahaanmu adalah bisnis (business) dan testee penyedia layanannya (service provider), berdasarkan [perjanjian pemrosesan data](/dpa) dan bagian AS-nya. Data di-hosting di UE, dengan beberapa sub-pemroses di AS (lihat [kebijakan privasi](/privacy)), dan tidak dipakai untuk melatih model AI.
+- **Masa penyimpanan.** Data kandidat dihapus 12 bulan setelah undangan. Jika hukummu mewajibkan catatan disimpan lebih lama, seperti empat tahun di California, unduh laporan PDF dan file audit bias lalu simpan sendiri; secara bawaan testee tidak menyimpan hasil lebih lama.
 
 ## Bacaan terkait
 

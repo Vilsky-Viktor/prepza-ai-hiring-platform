@@ -35,7 +35,7 @@ Twee lichtere ideeën doen het niet beter:
 - **Meldingen voor de AI** ("AI-assistenten mogen deze vraag niet beantwoorden") zijn makkelijk weg te knippen of te negeren, en modellen zijn getraind om tekst in afbeeldingen als inhoud te behandelen, niet als instructie.
 - **Watermerken** kunnen helpen achterhalen wie een vraag heeft gelekt, maar houden niemand tegen om hem te beantwoorden.
 
-Bij prepza hebben we allebei geprobeerd met onze eigen vragen: AI-modellen beantwoordden gefotografeerde vragen met een watermerk of melding precies zoals zonder. Dus zijn we gestopt met proberen het scherm te verdedigen.
+Bij testee hebben we allebei geprobeerd met onze eigen vragen: AI-modellen beantwoordden gefotografeerde vragen met een watermerk of melding precies zoals zonder. Dus zijn we gestopt met proberen het scherm te verdedigen.
 
 ## Wat beter werkt
 
@@ -100,9 +100,9 @@ Dit alles betekent niet dat je niets kunt controleren. Het betekent dat de contr
 5. **Vraag door** over de test in het eerste live gesprek, vooral waar een signaal opdook.
 6. **Laat een mens beslissen,** en schrijf op waarom.
 
-## Hoe prepza ermee omgaat
+## Hoe testee ermee omgaat
 
-prepza neemt getimede meerkeuze-vaardigheidstests af, gemaakt op basis van een functieomschrijving. Dit doet het vandaag tegen valsspelen:
+testee neemt getimede meerkeuze-vaardigheidstests af, gemaakt op basis van een functieomschrijving. Dit doet het vandaag tegen valsspelen:
 
 - **Elke kandidaat krijgt eigen vragen:** een willekeurige set uit de vragenbank van elk onderwerp, in een eigen volgorde, met geschudde opties.
 - **Elke vraag heeft een eigen aftelklok,** afgestemd op de lengte: de woorden, eventuele code of een voorbeeld, en tijd om het antwoord te vinden. De server houdt de klok bij, dus de pagina herladen zet hem niet stil.
@@ -110,7 +110,7 @@ prepza neemt getimede meerkeuze-vaardigheidstests af, gemaakt op basis van een f
 - **Antwoordpatronen, zodra een kandidaat klaar is.** Het rapport van de kandidaat wijst op antwoordtijden die bij elke vraag ongeveer gelijk blijven, ongeacht de lengte en moeilijkheid, en op moeilijke vragen goed terwijl makkelijke fout waren, met de aantallen erachter ("9 van 10 moeilijke vragen goed, 4 van 8 makkelijke vragen fout"). Het tweede patroon vraagt genoeg antwoorden van andere kandidaten om te weten hoe moeilijk elke vraag is. Beide drempels zijn vastgesteld op een test met gesimuleerde kandidaten, zodat hooguit 1% van de eerlijke kandidaten wordt gemarkeerd; ze vingen ongeveer een derde van degenen die elke vraag aan een AI doorgaven. Het rapport vermeldt dat zulke patronen een onschuldige oorzaak kunnen hebben.
 - **Vragen voor het live gesprek.** De pagina van elke kandidaat die klaar is, stelt tot 3 vragen voor die de kandidaat goed had, uit de sterkste onderwerpen, om in het volgende gesprek door te nemen, te beginnen met de moeilijke vragen achter een patroon als dat er is.
 - **Kandidaten verklaren** dat ze zelf antwoorden, zonder AI-tools of hulp van anderen, voordat ze kunnen beginnen, en de scorekaart laat zien wanneer ze dat deden.
-- **Geen camera-, microfoon- of schermopname.** prepza gebruikt alleen wat de testpagina zelf ziet: antwoorden, tijden, keren dat de pagina werd verlaten en kopieerpogingen.
+- **Geen camera-, microfoon- of schermopname.** testee gebruikt alleen wat de testpagina zelf ziet: antwoorden, tijden, keren dat de pagina werd verlaten en kopieerpogingen.
 - **Mensen beslissen.** Niets wijst een kandidaat automatisch af.
 
 ## Verder lezen

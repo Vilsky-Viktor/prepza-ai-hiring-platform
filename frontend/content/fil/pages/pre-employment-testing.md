@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Ang pre-employment test ay isang structured na pagsusuri na kinukuha ng bawat aplikante sa isang role bago ka magdesisyon kung sino ang iinterview-hin o iha-hire. Maaaring tinatawag din itong pre-employment assessment, pre-hire assessment o skills assessment test. Iisa ang ideya: tanungin ang lahat ng parehong uri ng tanong, i-score sila sa parehong paraan, at ikumpara ang mga tao batay sa ebidensya sa halip na sa dating ng kanilang CV.
 
-Tinatalakay ng gabay na ito ang mga pangunahing uri ng test, kung kailan sila nakakatulong, ang basics ng pagkapatas at batas, at kung ano ang hahanapin sa isang tool. Nagtatapos ito sa kung paano ito ginagawa ng prepza, at kung ano ang hindi ginagawa ng prepza.
+Tinatalakay ng gabay na ito ang mga pangunahing uri ng test, kung kailan sila nakakatulong, ang basics ng pagkapatas at batas, at kung ano ang hahanapin sa isang tool. Nagtatapos ito sa kung paano ito ginagawa ng testee, at kung ano ang hindi ginagawa ng testee.
 
 ## Ano ang pre-employment test
 
@@ -25,7 +25,7 @@ Ang mahusay na test ay sumusuri sa talagang kailangan ng role, tumatakbo sa pare
 | Work samples at job simulations | Paggawa ng bahagi ng totoong trabaho | Mga task, case study, pagsulat ng code | Huling-stage na pagsusuri para sa shortlist |
 | Language at typing | Kahusayan at bilis | Mga gradong test | Mga customer-facing at admin role |
 
-**Ang saklaw ng prepza:** skills at job knowledge tests, bilang timed multiple-choice interviews na isinulat mula sa iyong job description. Para sa mga technical role, kasama rito ang code-reading questions: isang maikling code example at tanong tungkol sa ginagawa o inilalabas nito. Hindi nag-aalok ang prepza ng cognitive ability tests, personality questionnaires, mga exercise kung saan sumusulat o nagpapatakbo ng code ang aplikante, o video interviews. Kung kailangan mo ang mga iyon, gumamit ng platform na mayroon nito, mag-isa man o katabi ng prepza: knowledge screen muna, saka ang specialist test para sa shortlist. Tingnan ang [prepza at TestGorilla](/compare/testgorilla) at [Mga alternatibo sa TestGorilla](/compare/testgorilla-alternatives).
+**Ang saklaw ng testee:** skills at job knowledge tests, bilang timed multiple-choice interviews na isinulat mula sa iyong job description. Para sa mga technical role, kasama rito ang code-reading questions: isang maikling code example at tanong tungkol sa ginagawa o inilalabas nito. Hindi nag-aalok ang testee ng cognitive ability tests, personality questionnaires, mga exercise kung saan sumusulat o nagpapatakbo ng code ang aplikante, o video interviews. Kung kailangan mo ang mga iyon, gumamit ng platform na mayroon nito, mag-isa man o katabi ng testee: knowledge screen muna, saka ang specialist test para sa shortlist. Tingnan ang [testee at TestGorilla](/compare/testgorilla) at [Mga alternatibo sa TestGorilla](/compare/testgorilla-alternatives).
 
 ### Bakit makatwirang unang hakbang ang skills tests
 
@@ -87,11 +87,11 @@ Mga tanong na sulit itanong sa kahit anong vendor:
 
 Para sa paghahambing ng presyo, tingnan ang [paano ikumpara ang gastos ng mga test](/compare/cheapest-pre-employment-test) at [pre-employment tests na walang subscription](/compare/pre-employment-tests-without-subscription).
 
-## Paano ito ginagawa ng prepza
+## Paano ito ginagawa ng testee
 
-Ginagawang timed multiple-choice skills interview ng prepza ang isang job description.
+Ginagawang timed multiple-choice skills interview ng testee ang isang job description.
 
-1. **I-paste ang job description.** Anumang role, sa alinman sa 23 wika. Kinukuha ng prepza ang dapat malaman ng aplikante at nagmumungkahi ng mga topic.
+1. **I-paste ang job description.** Anumang role, sa alinman sa 23 wika. Kinukuha ng testee ang dapat malaman ng aplikante at nagmumungkahi ng mga topic.
 2. **I-review ang mga topic.** I-uncheck ang hindi mo kailangan, palitan ang pangalan ng topic, i-edit ang mga subtopic nito, o ilarawan ang pagbabago sa simpleng text. Isinusulat lang ang mga tanong pagkatapos mong aprubahan. Puwede ka ring magsimula sa handang template para sa iyong role.
 3. **Imbitahan ang mga aplikante.** Magpadala ng imbitasyon sa email, mag-paste ng listahan, mag-upload ng file, o maglagay ng iisang shareable link sa iyong job ad. Kusang naipapadala ang mga paalala.
 4. **Basahin ang mga resulta.** Dumarating ang mga score nang naka-rank, may scorecard para sa bawat aplikante.
@@ -103,4 +103,4 @@ Ginagawang timed multiple-choice skills interview ng prepza ang isang job descri
 
 Bawat aplikanteng sumasagot ang presyo, walang subscription: $2–5 bawat aplikante depende sa laki ng iyong top-up (nasa lokal na currency sa Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, iba pang bahagi ng Europe at UK), at libre ang unang 3 aplikante mo. Naka-host ang data sa EU (may ilang sub-processor sa US; tingnan ang [privacy policy](/privacy)), at kasama ang data processing agreement at ang mga instruksyon para sa mga kumpanya.
 
-Ang prepza ay hindi psychometric suite, hindi platform para sa pagsulat at pagpapatakbo ng code, at hindi video interview tool, at gumagana ito kasabay ng mga iyon. Para sa paghahambing nito sa ibang AI hiring tools, basahin ang [AI interviews](/ai-interviews). Para sa mga engineering role, tingnan ang [Paano mag-hire ng mga engineer](/guides/hiring-engineers).
+Ang testee ay hindi psychometric suite, hindi platform para sa pagsulat at pagpapatakbo ng code, at hindi video interview tool, at gumagana ito kasabay ng mga iyon. Para sa paghahambing nito sa ibang AI hiring tools, basahin ang [AI interviews](/ai-interviews). Para sa mga engineering role, tingnan ang [Paano mag-hire ng mga engineer](/guides/hiring-engineers).

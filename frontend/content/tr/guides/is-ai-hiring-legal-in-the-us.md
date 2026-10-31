@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Genel olarak evet: ABD'de işe alımda yapay zekâ kullanmak yasaldır. İşe alımda yapay zekâya ilişkin federal bir yasa yoktur. Bunun yerine federal ayrımcılık karşıtı hukuk, her test gibi yapay zekâ araçlarına da uygulanır ve birkaç yer kendi kurallarını ekler: New York City, Illinois, Colorado ve California.
 
-Bu rehber kuralları üst düzeyde, önemli tarihleri, işverenlerin yapması gerekenleri ve prepza'nın konuya yaklaşımını açıklar. **Hukuki tavsiye değildir.** Ekim 2026 itibarıyla geçerli kuralları yansıtır; bunların birçoğu yenidir veya hâlâ kesinleşmektedir.
+Bu rehber kuralları üst düzeyde, önemli tarihleri, işverenlerin yapması gerekenleri ve testee'nin konuya yaklaşımını açıklar. **Hukuki tavsiye değildir.** Ekim 2026 itibarıyla geçerli kuralları yansıtır; bunların birçoğu yenidir veya hâlâ kesinleşmektedir.
 
 ## Kısa yanıt
 
@@ -97,22 +97,22 @@ Colorado'nun yapay zekâ yasası, 14 Mayıs 2026'da imzalanan ve 1 Ocak 2027'den
 8. **Kayıtları hukukunuzun gerektirdiği süre boyunca saklayın;** örneğin California'da dört, Colorado'da üç yıl.
 9. **Asla yalnızca puana bakarak reddetmeyin.** Her sonucu bir insanın incelemesini sağlayın.
 
-## prepza'nın yaklaşımı
+## testee'nin yaklaşımı
 
-prepza, bir iş tanımından yapay zekâ tarafından yazılmış süreli, çoktan seçmeli beceri mülakatları yürütür. ABD'deki yaklaşımı AB'dekiyle aynıdır. prepza uyumlu veya sertifikalı olduğunu iddia etmiyor.
+testee, bir iş tanımından yapay zekâ tarafından yazılmış süreli, çoktan seçmeli beceri mülakatları yürütür. ABD'deki yaklaşımı AB'dekiyle aynıdır. testee uyumlu veya sertifikalı olduğunu iddia etmiyor.
 
 Bunun bugün üründeki karşılığı:
 
 - **Soruları ve cevap anahtarlarını yapay zekâ yazar; değerlendirme sabit kurallara göre yapılır.** Hiçbir yapay zekâ adayın yanıtını okumaz veya yargılamaz; video veya yüz analizi kullanılmaz. Sesli modda konuşma metne dönüştürülür ve bir seçenekle eşleştirilir; bu seçenek adaya söylenir ve ekranda gösterilir: açıkça söylenen tek bir seçenek hemen cevap olarak kaydedilir, birden çok seçenekli bir seçim ise önce onaylatılır. Konuşma asla saklanmaz ve ses asla analiz edilmez.
 - **Konuları siz onaylarsınız;** bu, herhangi bir soru yazılmadan önce olur ve geçme notunu siz seçersiniz.
-- **Kararı insanlar verir.** prepza adayları reddetmez veya ret mesajı göndermez.
-- **Korunan özellik yok.** prepza adayların cinsiyetini, ırkını, yaşını, engelliliğini, posta kodunu veya diğer korunan özelliklerini asla sormaz, çıkarsamaz veya saklamaz.
+- **Kararı insanlar verir.** testee adayları reddetmez veya ret mesajı göndermez.
+- **Korunan özellik yok.** testee adayların cinsiyetini, ırkını, yaşını, engelliliğini, posta kodunu veya diğer korunan özelliklerini asla sormaz, çıkarsamaz veya saklamaz.
 - **Yanlılık denetimi için dışa aktarım.** Şirketin İşlem kaydı sayfasında şirket sahibi, tüm şirket veya tek bir mülakat için ve iki tarih arasında, mülakatı bitiren adayların bir CSV dosyasını indirebilir: her adayın notu, geçme notu, geçip geçmediği ve mülakatın medyanının üzerinde puan alıp almadığı. Her satır adayın e-posta adresiyle eşleştirilir; böylece onu kendi topladığınız, adayların kendi beyan ettiği kategorilerle birleştirebilirsiniz; ardından e-posta sütununu silin ve dosyayı seçilme ve puan oranlarını ve etki oranlarını hesaplayacak bağımsız denetçinize verin. Aynı dosyayla beşte dört kontrolünü kendiniz de yapabilirsiniz.
-- **Ek süre:** isteyen her adaya, başlamadan önce, her soru için +%25, +%50 veya +%100 ek süre verilebilir. prepza yalnızca miktarı saklar, nedenini asla saklamaz. Sesli modda aday her zaman bunun yerine bir seçeneğe dokunabilir; bir mülakatı yalnızca dokunarak yanıtlanacak şekilde de ayarlayabilirsiniz.
+- **Ek süre:** isteyen her adaya, başlamadan önce, her soru için +%25, +%50 veya +%100 ek süre verilebilir. testee yalnızca miktarı saklar, nedenini asla saklamaz. Sesli modda aday her zaman bunun yerine bir seçeneğe dokunabilir; bir mülakatı yalnızca dokunarak yanıtlanacak şekilde de ayarlayabilirsiniz.
 - **Aday aydınlatma metni şablonları,** genel bir şablon ve New York City, Illinois ve Colorado sürümleri, şirketler için talimatlarla birlikte [belgeler sayfasında](/documents) yer alır.
-- **New York City.** prepza henüz kendi bağımsız yanlılık denetiminden geçmedi. Local Law 144'ün işveren olarak sizden istediklerini yapana kadar prepza'yı New York City'deki işler için kullanmayın: kullanımdan önceki bir yıl içinde bağımsız bir yanlılık denetimi, özetinin yayımlanması ve 10 iş günü önceden adaylara bildirim.
-- **Veriler.** CCPA kapsamında şirketiniz işletme (business), prepza ise [veri işleme sözleşmesi](/dpa) ve onun ABD bölümü kapsamında hizmet sağlayıcısıdır (service provider). Veriler AB'de barındırılır, bazı alt işleyenler ABD'dedir (bkz. [gizlilik politikası](/privacy)) ve yapay zekâ modellerini eğitmek için kullanılmaz.
-- **Saklama.** Aday verileri davetten 12 ay sonra silinir. Hukukunuz kayıtları daha uzun süre saklamanızı istiyorsa, örneğin California'daki dört yıl gibi, PDF raporları ve yanlılık denetimi dosyasını indirip kendiniz saklayın; prepza varsayılan olarak sonuçları daha uzun süre saklamaz.
+- **New York City.** testee henüz kendi bağımsız yanlılık denetiminden geçmedi. Local Law 144'ün işveren olarak sizden istediklerini yapana kadar testee'yi New York City'deki işler için kullanmayın: kullanımdan önceki bir yıl içinde bağımsız bir yanlılık denetimi, özetinin yayımlanması ve 10 iş günü önceden adaylara bildirim.
+- **Veriler.** CCPA kapsamında şirketiniz işletme (business), testee ise [veri işleme sözleşmesi](/dpa) ve onun ABD bölümü kapsamında hizmet sağlayıcısıdır (service provider). Veriler AB'de barındırılır, bazı alt işleyenler ABD'dedir (bkz. [gizlilik politikası](/privacy)) ve yapay zekâ modellerini eğitmek için kullanılmaz.
+- **Saklama.** Aday verileri davetten 12 ay sonra silinir. Hukukunuz kayıtları daha uzun süre saklamanızı istiyorsa, örneğin California'daki dört yıl gibi, PDF raporları ve yanlılık denetimi dosyasını indirip kendiniz saklayın; testee varsayılan olarak sonuçları daha uzun süre saklamaz.
 
 ## İlgili yazılar
 

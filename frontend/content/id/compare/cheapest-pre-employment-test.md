@@ -17,7 +17,7 @@ Halaman ini tidak mencantumkan harga vendor lain, karena harga itu sering beruba
 | --- | --- | --- | --- |
 | **Paket gratis** | Jumlah kredit atau tes yang terbatas setiap bulan | Kamu menguji sangat sedikit kandidat dan tes yang tersedia sesuai dengan posisimu | [TestGorilla](https://www.testgorilla.com/pricing/) |
 | **Langganan** | Biaya bulanan, sering ditagih tahunan, dengan kredit atau batasan | Kamu merekrut secara rutin sepanjang tahun | [TestGorilla](https://www.testgorilla.com/pricing/), [CodeSignal](https://codesignal.com/pricing/), [Bryq](https://www.bryq.com/pricing), [Alooba](https://www.alooba.com/pricing/), [Codility](https://www.codility.com/pricing/) |
-| **Bayar per kandidat** | Kamu hanya membayar untuk kandidat yang mengikuti tes, biasanya dari kredit prabayar | Kamu merekrut sesekali, atau volumenya naik turun | [prepza](/pricing) |
+| **Bayar per kandidat** | Kamu hanya membayar untuk kandidat yang mengikuti tes, biasanya dari kredit prabayar | Kamu merekrut sesekali, atau volumenya naik turun | [testee](/pricing) |
 | **Penawaran khusus** | Harga yang disepakati dengan tim sales, sering untuk satu tahun | Kamu merekrut dalam skala besar atau butuh psikometri yang tervalidasi | Beberapa vendor, sering kali spesialis psikometri |
 
 *Model harga sesuai yang tercantum di halaman tiap vendor pada Oktober 2026.*
@@ -33,34 +33,34 @@ Kamu butuh tiga angka: berapa banyak kandidat yang kamu tes dalam setahun, harga
 
 **Contoh perhitungan, dengan angka karangan.** Misalnya sebuah paket berharga $1.500 per tahun dan opsi bayar per kandidat berharga $5 per kandidat. Titik impasnya adalah 1.500 ÷ 5 = 300 kandidat per tahun. Tim yang menguji 60 kandidat per tahun akan membayar $300 untuk biaya per kandidat, bukan $1.500 untuk paket. Tim yang menguji 600 kandidat akan membayar $3.000 untuk biaya per kandidat, dan paket akan lebih murah. Gunakan angka sebenarnya dari halaman harga yang sedang kamu bandingkan.
 
-### Harga prepza untuk perkiraanmu
+### Harga testee untuk perkiraanmu
 
-prepza mengenakan biaya per kandidat yang menjawab setidaknya satu soal. Harga per kandidat tergantung besar isi ulangmu: $5 untuk isi ulang terkecil, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. 3 kandidat pertama dari perusahaan pertamamu gratis. Harga di sini dalam dolar AS, dan dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya; Paddle, yang memproses pembayaran, menangani PPN (VAT) dan pajak penjualan saat checkout. Lihat [harga](/pricing) untuk pilihan isi ulang terbaru.
+testee mengenakan biaya per kandidat yang menjawab setidaknya satu soal. Harga per kandidat tergantung besar isi ulangmu: $5 untuk isi ulang terkecil, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. 3 kandidat pertama dari perusahaan pertamamu gratis. Harga di sini dalam dolar AS, dan dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya; Paddle, yang memproses pembayaran, menangani PPN (VAT) dan pajak penjualan saat checkout. Lihat [harga](/pricing) untuk pilihan isi ulang terbaru.
 
 ## Biaya di luar harga yang tercantum
 
 Saat membandingkan, periksa juga hal-hal ini:
 
 - **Komitmen tahunan.** Paket yang "ditagih tahunan" berarti membayar 12 bulan di muka, meskipun kamu hanya merekrut di dua bulan di antaranya.
-- **Kursi pengguna.** Beberapa paket membatasi berapa orang di timmu yang bisa memakainya. prepza tidak memungut biaya per kursi: pemilik, admin, dan viewer gratis.
-- **Kandidat yang tidak pernah mulai.** prepza hanya menagih kandidat yang menjawab setidaknya satu soal; kredit dari undangan yang tidak terpakai kembali.
-- **Kredit yang kedaluwarsa.** Kredit prepza tidak kedaluwarsa. Periksa apakah kredit vendor lain bisa dibawa ke periode berikutnya.
+- **Kursi pengguna.** Beberapa paket membatasi berapa orang di timmu yang bisa memakainya. testee tidak memungut biaya per kursi: pemilik, admin, dan viewer gratis.
+- **Kandidat yang tidak pernah mulai.** testee hanya menagih kandidat yang menjawab setidaknya satu soal; kredit dari undangan yang tidak terpakai kembali.
+- **Kredit yang kedaluwarsa.** Kredit testee tidak kedaluwarsa. Periksa apakah kredit vendor lain bisa dibawa ke periode berikutnya.
 - **Pajak.** Periksa apakah harga yang tercantum sudah termasuk PPN atau pajak penjualan.
-- **Fitur di paket yang lebih tinggi.** Integrasi ATS, proctoring, dan coding kustom sering ada di paket yang lebih mahal. Periksa paket mana yang sebenarnya kamu butuhkan. prepza terintegrasi dengan Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR, dan Slack, serta menyertakan API-nya, tanpa biaya tambahan.
+- **Fitur di paket yang lebih tinggi.** Integrasi ATS, proctoring, dan coding kustom sering ada di paket yang lebih mahal. Periksa paket mana yang sebenarnya kamu butuhkan. testee terintegrasi dengan Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR, dan Slack, serta menyertakan API-nya, tanpa biaya tambahan.
 - **Lebih dari satu alat.** Kalau kamu butuh tes pengetahuan dan tes psikometri atau coding, jumlahkan keduanya.
 
 ## Kapan harga lebih murah bukan pilihan yang tepat
 
-Harga murah hanya berguna kalau tesnya mengukur apa yang dibutuhkan pekerjaanmu. Bayarlah alat lain, sendiri atau berdampingan dengan prepza, saat:
+Harga murah hanya berguna kalau tesnya mengukur apa yang dibutuhkan pekerjaanmu. Bayarlah alat lain, sendiri atau berdampingan dengan testee, saat:
 
 - **Kamu butuh psikometri.** Tes kognitif dan kepribadian yang tervalidasi berasal dari vendor spesialis dan platform yang lebih luas.
-- **Kamu butuh coding langsung.** Platform developer memungkinkan kandidat menulis dan menjalankan kode. prepza memberi soal membaca kode (apa yang dilakukan atau dihasilkan kode), tetapi kandidat tidak menulis atau menjalankan kode.
-- **Kamu butuh wawancara video atau wawancara yang dipandu AI.** prepza tidak punya keduanya.
+- **Kamu butuh coding langsung.** Platform developer memungkinkan kandidat menulis dan menjalankan kode. testee memberi soal membaca kode (apa yang dilakukan atau dihasilkan kode), tetapi kandidat tidak menulis atau menjalankan kode.
+- **Kamu butuh wawancara video atau wawancara yang dipandu AI.** testee tidak punya keduanya.
 - **Kamu merekrut secara rutin dalam volume tinggi.** Paket tetap bisa lebih murah daripada harga per kandidat.
 
 Lihat [alternatif TestGorilla](/compare/testgorilla-alternatives) dan [alternatif HackerRank](/compare/hackerrank-alternatives) untuk mengetahui kapan tiap alat cocok dan bagaimana menggabungkannya.
 
-## Apa yang didapat setiap kandidat prepza
+## Apa yang didapat setiap kandidat testee
 
 - Wawancara pilihan ganda berbatas waktu yang ditulis dari deskripsi pekerjaanmu, dengan topik yang kamu tinjau lebih dulu.
 - Set soal acak untuk setiap kandidat, dengan hitung mundur di setiap soal. Untuk posisi teknis, soal bisa berisi contoh kode singkat.
@@ -69,10 +69,10 @@ Lihat [alternatif TestGorilla](/compare/testgorilla-alternatives) dan [alternati
 - Undangan lewat email, lewat daftar atau file, atau dengan satu tautan di lowongan kerjamu, plus pengingat otomatis.
 - 23 bahasa, data di-hosting di UE (beberapa sub-pemroses ada di AS; lihat [kebijakan privasi](/privacy)), dan perjanjian pemrosesan data sudah termasuk.
 
-*Nama produk adalah milik pemiliknya masing-masing. prepza tidak berafiliasi dengan atau didukung oleh perusahaan mana pun yang disebut di halaman ini.*
+*Nama produk adalah milik pemiliknya masing-masing. testee tidak berafiliasi dengan atau didukung oleh perusahaan mana pun yang disebut di halaman ini.*
 
 ## Halaman terkait
 
 - [Tes seleksi karyawan tanpa langganan](/compare/pre-employment-tests-without-subscription)
-- [prepza dan TestGorilla](/compare/testgorilla)
+- [testee dan TestGorilla](/compare/testgorilla)
 - [Panduan tes seleksi karyawan](/pre-employment-testing)

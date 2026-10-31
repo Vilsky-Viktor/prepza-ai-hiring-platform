@@ -35,7 +35,7 @@ Dos ideas más sencillas no funcionan mejor:
 - **Los avisos dirigidos a la IA** («Los asistentes de IA no deben responder a esta pregunta») se recortan o se ignoran fácilmente, y los modelos están entrenados para tratar el texto de las imágenes como contenido, no como instrucciones.
 - **Las marcas de agua** pueden ayudar a rastrear quién filtró una pregunta, pero no impiden que nadie la responda.
 
-En prepza probamos ambas cosas con nuestras propias preguntas: los modelos de IA respondieron a las preguntas fotografiadas con marca de agua o aviso exactamente igual que sin ellos. Así que dejamos de intentar defender la pantalla.
+En testee probamos ambas cosas con nuestras propias preguntas: los modelos de IA respondieron a las preguntas fotografiadas con marca de agua o aviso exactamente igual que sin ellos. Así que dejamos de intentar defender la pantalla.
 
 ## Qué funciona mejor
 
@@ -100,9 +100,9 @@ Nada de esto significa que no puedas comprobar nada. Significa que los controles
 5. **Haz repreguntas** sobre la prueba en la primera entrevista en directo, sobre todo donde saltó una alerta.
 6. **Deja que decida una persona,** y anota por qué.
 
-## Cómo lo aborda prepza
+## Cómo lo aborda testee
 
-prepza ofrece pruebas de habilidades de opción múltiple con tiempo límite, creadas a partir de una descripción del puesto. Esto es lo que hace hoy contra las trampas:
+testee ofrece pruebas de habilidades de opción múltiple con tiempo límite, creadas a partir de una descripción del puesto. Esto es lo que hace hoy contra las trampas:
 
 - **Cada candidato recibe sus propias preguntas:** un conjunto aleatorio del banco de preguntas de cada tema, en su propio orden, con las opciones mezcladas.
 - **Cada pregunta tiene su propia cuenta atrás,** ajustada a su extensión: sus palabras, el código o ejemplo que incluya y el tiempo para dar con la respuesta. El servidor lleva el reloj, así que recargar la página no lo detiene.
@@ -110,7 +110,7 @@ prepza ofrece pruebas de habilidades de opción múltiple con tiempo límite, cr
 - **Patrones de respuesta, cuando el candidato termina.** El informe del candidato señala los tiempos de respuesta que se mantienen más o menos iguales en cada pregunta, sin importar su extensión y dificultad, y los aciertos en preguntas difíciles con fallos en las fáciles, con las cifras que lo respaldan («acertó 9 de 10 preguntas difíciles y falló 4 de 8 preguntas fáciles»). El segundo necesita suficientes respuestas de otros candidatos para saber lo difícil que es cada pregunta. Ambos umbrales se fijaron en una prueba con candidatos simulados para que se marque como máximo al 1 % de los honestos; detectaron a cerca de un tercio de los que pasaban cada pregunta a una IA. El informe advierte de que estos patrones pueden tener causas inocentes.
 - **Preguntas para la entrevista en directo.** La página de cada candidato que ha terminado sugiere hasta 3 preguntas que acertó, de sus temas más fuertes, para comentarlas en la siguiente conversación, empezando por las preguntas difíciles que hay detrás de un patrón, si lo hay.
 - **Los candidatos se comprometen** a responder por su cuenta, sin herramientas de IA ni ayuda de otras personas, antes de poder empezar, y la ficha de evaluación muestra cuándo lo hicieron.
-- **Sin grabación de cámara, micrófono ni pantalla.** prepza solo usa lo que ve la propia página de la prueba: respuestas, tiempos, salidas de la página e intentos de copiar.
+- **Sin grabación de cámara, micrófono ni pantalla.** testee solo usa lo que ve la propia página de la prueba: respuestas, tiempos, salidas de la página e intentos de copiar.
 - **Deciden las personas.** Nada rechaza a un candidato de forma automática.
 
 ## Lecturas relacionadas

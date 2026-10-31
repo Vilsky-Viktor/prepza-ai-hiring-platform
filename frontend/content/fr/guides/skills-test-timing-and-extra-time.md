@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Un test de compétences aux bonnes questions peut quand même donner de mauvais résultats. Trop de temps, et les candidats cherchent chaque réponse ; trop peu, et vous mesurez la vitesse de lecture. Trop peu de questions, et le score dépend de la chance ; trop, et les bons candidats abandonnent à mi-parcours.
 
-Ce guide couvre quatre réglages d'un test chronométré à choix multiples : le temps par question, le nombre de questions, la durée totale et le temps supplémentaire pour les candidats qui en ont besoin. Les conseils valent pour tout test de connaissances chronométré ; la dernière section montre comment prepza gère chacun d'eux.
+Ce guide couvre quatre réglages d'un test chronométré à choix multiples : le temps par question, le nombre de questions, la durée totale et le temps supplémentaire pour les candidats qui en ont besoin. Les conseils valent pour tout test de connaissances chronométré ; la dernière section montre comment testee gère chacun d'eux.
 
 ## L'essentiel
 
@@ -95,9 +95,9 @@ De nombreux pays imposent aux employeurs de prévoir des aménagements raisonnab
 
 **Cette section donne des repères pratiques, pas un conseil juridique.** Ce que vous devez proposer, et ce que vous pouvez demander, dépend du lieu où vous recrutez. Vérifiez vos propres obligations au regard du droit de l'égalité de traitement et du handicap qui s'applique à vous.
 
-## Comment prepza gère le chronométrage et le temps supplémentaire
+## Comment testee gère le chronométrage et le temps supplémentaire
 
-Dans prepza, un entretien est un test de compétences chronométré à choix multiples, créé à partir de votre fiche de poste.
+Dans testee, un entretien est un test de compétences chronométré à choix multiples, créé à partir de votre fiche de poste.
 
 ### Temps par question
 

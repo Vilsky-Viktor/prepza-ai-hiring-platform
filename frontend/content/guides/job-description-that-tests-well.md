@@ -102,9 +102,9 @@ Every line names something a question can ask about, the level is stated, and th
 - Hard requirements are left for the CV screen.
 - No wording about the person you imagine, only about the work.
 
-## How prepza uses a job description
+## How testee uses a job description
 
-prepza is one example of a tool that builds a timed multiple-choice skills test from a job description. Here is what it does with the text, so you can see how the advice above plays out:
+testee is one example of a tool that builds a timed multiple-choice skills test from a job description. Here is what it does with the text, so you can see how the advice above plays out:
 
 - **It reads every requirement.** AI picks out each skill, tool, concept, qualification and day-to-day duty, from every section, including the ones marked preferred or nice to have. Culture statements, perks and slogans are left out.
 - **Interchangeable examples become one.** "Tools such as A, B or similar" is kept as the kind of tool, with the one the text prefers (or the most widely used) as the example. Items joined by "and" stay separate. So if you need one specific tool, name only that one.

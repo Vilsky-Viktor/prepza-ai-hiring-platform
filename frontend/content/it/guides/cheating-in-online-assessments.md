@@ -35,7 +35,7 @@ Due idee più leggere non vanno meglio:
 - **Gli avvisi rivolti all'IA** ("Gli assistenti IA non devono rispondere a questa domanda") si ritagliano o si ignorano facilmente, e i modelli sono addestrati a trattare il testo nelle immagini come contenuto, non come istruzioni.
 - **Le filigrane** possono aiutare a risalire a chi ha diffuso una domanda, ma non impediscono a nessuno di rispondere.
 
-In prepza abbiamo provato entrambe le cose sulle nostre domande: i modelli di IA hanno risposto alle domande fotografate con filigrana o avviso esattamente come senza. Così abbiamo smesso di cercare di difendere lo schermo.
+In testee abbiamo provato entrambe le cose sulle nostre domande: i modelli di IA hanno risposto alle domande fotografate con filigrana o avviso esattamente come senza. Così abbiamo smesso di cercare di difendere lo schermo.
 
 ## Cosa funziona meglio
 
@@ -100,9 +100,9 @@ Niente di tutto ciò significa che non puoi verificare nulla. Significa che i co
 5. **Fai domande di verifica** sul test nel primo colloquio dal vivo, soprattutto dove è scattato un segnale.
 6. **Lascia decidere una persona,** e annota perché.
 
-## Come lo gestisce prepza
+## Come lo gestisce testee
 
-prepza propone test di competenze a scelta multipla e a tempo, creati a partire da una descrizione del ruolo. Ecco cosa fa oggi contro gli imbrogli:
+testee propone test di competenze a scelta multipla e a tempo, creati a partire da una descrizione del ruolo. Ecco cosa fa oggi contro gli imbrogli:
 
 - **Ogni candidato riceve le proprie domande:** un set casuale dalla banca di domande di ogni argomento, nel proprio ordine, con le opzioni mescolate.
 - **Ogni domanda ha il proprio conto alla rovescia,** adattato alla sua lunghezza: le sue parole, l'eventuale codice o esempio e il tempo per arrivare alla risposta. Il server tiene il tempo, quindi ricaricare la pagina non lo ferma.
@@ -110,7 +110,7 @@ prepza propone test di competenze a scelta multipla e a tempo, creati a partire 
 - **Andamento delle risposte, una volta che il candidato ha finito.** Il report del candidato indica i tempi di risposta che restano più o meno uguali su ogni domanda, a prescindere da lunghezza e difficoltà, e le domande difficili giuste mentre quelle facili erano sbagliate, con i numeri che lo motivano ("risposta giusta a 9 su 10 domande difficili, sbagliata a 4 su 8 domande facili"). Il secondo richiede abbastanza risposte di altri candidati per sapere quanto è difficile ogni domanda. Entrambe le soglie sono state fissate su un test con candidati simulati in modo che venga segnalato al massimo l'1% di quelli onesti; hanno individuato circa un terzo di quelli che passavano ogni domanda a un'IA. Il report precisa che questi andamenti possono avere cause innocenti.
 - **Domande per il colloquio dal vivo.** La pagina di ogni candidato che ha finito suggerisce fino a 3 domande a cui ha risposto correttamente, dai suoi argomenti più forti, da approfondire nella conversazione successiva, partendo dalle domande difficili alla base di un andamento, se c'è.
 - **I candidati si impegnano** a rispondere in autonomia, senza strumenti di IA né l'aiuto di altre persone, prima di poter iniziare, e la scheda di valutazione mostra quando lo hanno fatto.
-- **Nessuna registrazione di fotocamera, microfono o schermo.** prepza usa solo ciò che vede la pagina del test: risposte, tempi, uscite dalla pagina e tentativi di copia.
+- **Nessuna registrazione di fotocamera, microfono o schermo.** testee usa solo ciò che vede la pagina del test: risposte, tempi, uscite dalla pagina e tentativi di copia.
 - **Decidono le persone.** Niente scarta un candidato in automatico.
 
 ## Letture correlate

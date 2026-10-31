@@ -12,7 +12,7 @@
     "account": "Je account",
     "accountNote": "Vermeld deze ID als je ons over je account schrijft.",
     "yourData": "Je gegevens",
-    "yourDataNote": "Download alles wat prepza. over je bewaart, of verwijder je account.",
+    "yourDataNote": "Download alles wat testee. over je bewaart, of verwijder je account.",
     "download": "Mijn gegevens downloaden",
     "downloadFailed": "Je gegevens konden niet worden voorbereid. Probeer het opnieuw.",
     "delete": "Account verwijderen",
@@ -20,7 +20,7 @@
     "noLanguage": "Geen taal gevonden.",
     "emails": {
       "title": "E-mails",
-      "note": "Kies welke e-mails prepza. je stuurt.",
+      "note": "Kies welke e-mails testee. je stuurt.",
       "failed": "Je e-mailinstellingen konden niet worden opgeslagen. Probeer het opnieuw.",
       "digest": "Activiteitenoverzicht",
       "digestNote": "Eén e-mail per dag over wat er in je bedrijven is gebeurd.",
@@ -34,7 +34,7 @@
       "reminders": "Herinneringen",
       "remindersNote": "Weinig credits, interviews zonder kandidaten, onderwerpen die op beoordeling wachten.",
       "updates": "Productupdates en nieuws",
-      "updatesNote": "Nieuwe functies en nieuws van prepza.",
+      "updatesNote": "Nieuwe functies en nieuws van testee.",
       "promotions": "Aanbiedingen en acties",
       "promotionsNote": "Kortingen en speciale aanbiedingen.",
       "alwaysSent": "Service-e-mails, zoals uitnodigingen, kandidaatrapporten, betalingsproblemen en wijzigingen in onze voorwaarden, worden altijd verstuurd."
@@ -82,7 +82,7 @@
   "signIn": {
     "title": "Inloggen",
     "continueWith": "Doorgaan met <name>{provider}</name>",
-    "link": "Dit e-mailadres heeft al een prepza-account. Ga verder zoals je eerder hebt ingelogd, dan wordt {provider} eraan gekoppeld.",
+    "link": "Dit e-mailadres heeft al een testee-account. Ga verder zoals je eerder hebt ingelogd, dan wordt {provider} eraan gekoppeld.",
     "consent": "Door in te loggen bevestig je dat je 16 jaar of ouder bent, ga je akkoord met de <terms>Voorwaarden</terms> en heb je het <privacy>Privacybeleid</privacy> gelezen.",
     "failed": "Inloggen is mislukt. Probeer het opnieuw.",
     "verify": "We hebben je een link gestuurd om je e-mailadres te verifiëren. Open hem om interviews te doen en bedrijven aan te maken.",
@@ -256,7 +256,7 @@
     "pauseText": "Zolang die aan staat, kan niemand een nieuw interview, oefenronde of voorbeeld starten, en worden er geen vragen gegenereerd, opnieuw gegenereerd of gecontroleerd. Kandidaten die al met een interview bezig zijn, kunnen het afmaken.",
     "pauseFailed": "De pauze kon niet worden gewijzigd. Probeer het opnieuw.",
     "maintenanceTitle": "Onderhoudsmodus",
-    "maintenanceText": "Zolang die aan staat, toont elke pagina dat prepza in onderhoud is en weigeren de services elk verzoek, behalve van superadmins. Betalingen, e-mails en geplande taken blijven werken.",
+    "maintenanceText": "Zolang die aan staat, toont elke pagina dat testee in onderhoud is en weigeren de services elk verzoek, behalve van superadmins. Betalingen, e-mails en geplande taken blijven werken.",
     "maintenanceFailed": "Kon de onderhoudsmodus niet wijzigen. Probeer het opnieuw.",
     "maintenanceConfirmTitle": "Onderhoudsmodus aanzetten?",
     "maintenanceRunning": "{count, plural, =0 {Er is nu geen kandidaat in een interview.} one {Kandidaten nu in een interview: #. Hun tijd staat stil zolang de onderhoudsmodus aan staat.} other {Kandidaten nu in een interview: #. Hun tijd staat stil zolang de onderhoudsmodus aan staat.}}",
@@ -279,13 +279,13 @@
     "emails": "E-mails",
     "emailSearch": "E-mailadres",
     "emailSearchAction": "Zoeken",
-    "emailsIntro": "Zoek een e-mailadres om de e-mails te zien en te stoppen die prepza ernaar stuurt, voor iemand die ons dat per e-mail vroeg.",
-    "account": "prepza-account",
+    "emailsIntro": "Zoek een e-mailadres om de e-mails te zien en te stoppen die testee ernaar stuurt, voor iemand die ons dat per e-mail vroeg.",
+    "account": "testee-account",
     "accountText": "<bdi>{email}</bdi> heeft een account. Wijzigingen hier worden als de jouwe vastgelegd.",
-    "noAccount": "Geen prepza-account gebruikt dit adres.",
+    "noAccount": "Geen testee-account gebruikt dit adres.",
     "turnOffAll": "Alle optionele e-mails uitzetten",
     "companyEmails": "E-mails van bedrijven",
-    "companyEmailsText": "Uitnodigingen en herinneringen die bedrijven via prepza naar dit adres sturen. Wijzigingen hier worden als de jouwe vastgelegd.",
+    "companyEmailsText": "Uitnodigingen en herinneringen die bedrijven via testee naar dit adres sturen. Wijzigingen hier worden als de jouwe vastgelegd.",
     "noCompanies": "Geen bedrijf heeft dit adres uitgenodigd.",
     "companySending": "E-mails worden verstuurd",
     "companyStopped": "Alle e-mails gestopt",
@@ -342,7 +342,7 @@
     "legalSend": "Wijziging mailen",
     "legalConfirmTitle": "De wijziging in {document} mailen?",
     "legalAudience": {
-      "everyone": "Iedereen met een prepza-account krijgt hem vanaf het volgende verzenduur (8:00 tot 18:00 UTC), met de melding dat de nieuwe versie geldt vanaf <time>{date}</time>, en ziet hem bij zijn meldingen. Hij gaat één keer uit en kan niet worden teruggedraaid.",
+      "everyone": "Iedereen met een testee-account krijgt hem vanaf het volgende verzenduur (8:00 tot 18:00 UTC), met de melding dat de nieuwe versie geldt vanaf <time>{date}</time>, en ziet hem bij zijn meldingen. Hij gaat één keer uit en kan niet worden teruggedraaid.",
       "company_editors": "De eigenaren en beheerders van elk bedrijf krijgen hem vanaf het volgende verzenduur (8:00 tot 18:00 UTC), met de melding dat de nieuwe versie geldt vanaf <time>{date}</time>, en zien hem bij hun meldingen. Hij gaat één keer uit en kan niet worden teruggedraaid."
     },
     "legalAsked": "De wijziging wordt vanaf het volgende verzenduur gemaild.",
@@ -427,7 +427,7 @@
       "promotions": "Aanbieding",
       "notices": "Belangrijke mededeling"
     },
-    "campaignNoticeWarning": "Een belangrijke mededeling bereikt iedereen in de doelgroep, wat hun e-mailinstellingen ook zijn, en ontvangers kunnen zich er niet voor afmelden. Gebruik hem alleen voor beveiligingsincidenten, gepland onderhoud of wijzigingen in hoe prepza werkt, nooit om iets te promoten.",
+    "campaignNoticeWarning": "Een belangrijke mededeling bereikt iedereen in de doelgroep, wat hun e-mailinstellingen ook zijn, en ontvangers kunnen zich er niet voor afmelden. Gebruik hem alleen voor beveiligingsincidenten, gepland onderhoud of wijzigingen in hoe testee werkt, nooit om iets te promoten.",
     "campaignAudience": "Doelgroep",
     "campaignAudienceEveryone": "Iedereen",
     "campaignAudienceEveryoneNote": {
@@ -457,7 +457,7 @@
     "campaignTextPlaceholder": "Typ hier de tekst… Druk op Enter voor een nieuwe alinea.",
     "campaignButton": "Knoptekst (optioneel)",
     "campaignLink": "Knoplink",
-    "campaignLinkPlaceholder": "Knoplink op prepza, zoals /pricing (optioneel)",
+    "campaignLinkPlaceholder": "Knoplink op testee, zoals /pricing (optioneel)",
     "campaignSaveFailed": "De campagne kon niet worden opgeslagen. Probeer het opnieuw.",
     "noCampaigns": "Nog geen campagnes.",
     "campaignStatus": {
@@ -537,7 +537,7 @@
       "paid": "Betalende bedrijven",
       "unpaid": "Niet-betalende bedrijven",
       "no_company": "Zonder bedrijf",
-      "prepza": "prepza"
+      "testee": "testee"
     },
     "aiActionsTitle": "Per actie",
     "aiActions": {
@@ -703,7 +703,7 @@
       "1209600": "per onderwerpbeoordeling"
     },
     "limitKinds": {
-      "ours": "prepza",
+      "ours": "testee",
       "openai": "OpenAI",
       "resend": "Resend",
       "firebase": "Firebase",
@@ -1036,7 +1036,7 @@
     "pickTitle": "Kies een bedrijf",
     "pickText": "De test wordt gratis gekopieerd naar het bedrijf dat je kiest, klaar om naar kandidaten te sturen.",
     "removeCredits": "De {credits, plural, one {# credit} other {# credits}}{candidates, plural, =0 {} one { (ongeveer # kandidaat)} other { (ongeveer # kandidaten)}} gaan verloren en worden niet terugbetaald.",
-    "suspended": "Dit bedrijf is geschorst en kan voorlopig niet worden gewijzigd. Neem contact op met hello@prepza.ai voor meer informatie."
+    "suspended": "Dit bedrijf is geschorst en kan voorlopig niet worden gewijzigd. Neem contact op met hello@testee.ai voor meer informatie."
   },
   "candidates": {
     "scorecard": "Scorekaart",
@@ -1137,7 +1137,7 @@
     "passMark": "Slaaggrens",
     "passMarkLabel": "Slaaggrens in procenten",
     "markHired": "Markeren als aangenomen",
-    "keepPrivate": "Deze vragen buiten de gedeelde vragenbank van prepza houden",
+    "keepPrivate": "Deze vragen buiten de gedeelde vragenbank van testee houden",
     "keepPrivateHelp": "Vragen die al in andere interviews worden hergebruikt, blijven daar",
     "answerMode": "Interviewmodus",
     "answerModeHelp": "In klikmodus lezen kandidaten elke vraag en tikken ze hun antwoord aan. In spraakmodus leest Mira, een AI-interviewer, elke vraag voor en antwoorden kandidaten met hun stem of door te tikken",
@@ -1251,7 +1251,7 @@
     "mismatch": "Het e-mailadres komt niet overeen. Log in met het adres van de uitnodiging om te starten.",
     "title": "Uitnodiging voor een interview",
     "theCompany": "het bedrijf",
-    "unverified": "prepza heeft dit bedrijf niet geverifieerd."
+    "unverified": "testee heeft dit bedrijf niet geverifieerd."
   },
   "members": {
     "joined": "Lid",
@@ -1286,7 +1286,7 @@
     "unavailable": "De prijzen zijn nu niet beschikbaar. Probeer het over een minuut opnieuw.",
     "title": "Prijzen",
     "intro": "Betaal per kandidaat. Interviews genereren is gratis, en er zijn geen abonnementen.",
-    "description": "Prijzen van prepza: interviews genereren is gratis, en je betaalt alleen voor elke kandidaat die antwoordt. Geen abonnementen of kosten per gebruiker, en credits verlopen nooit.",
+    "description": "Prijzen van testee: interviews genereren is gratis, en je betaalt alleen voor elke kandidaat die antwoordt. Geen abonnementen of kosten per gebruiker, en credits verlopen nooit.",
     "test": "Een interview genereren",
     "free": "Gratis",
     "candidate": "Elke kandidaat die minstens één vraag beantwoordt",
@@ -1320,14 +1320,14 @@
   "docs": {
     "title": "Juridische documenten",
     "metaTitle": "Compliancedocumenten voor werving en selectie",
-    "intro": "Documenten voor bedrijven die kandidaten beoordelen met prepza: instructies, sjablonen en de verwerkersovereenkomst.",
+    "intro": "Documenten voor bedrijven die kandidaten beoordelen met testee: instructies, sjablonen en de verwerkersovereenkomst.",
     "englishOnly": "Deze documenten zijn alleen in het Engels beschikbaar.",
     "download": "{format} downloaden",
     "readOnline": "Online lezen",
     "items": {
       "instructions": {
         "title": "Instructies voor bedrijven",
-        "description": "Wat een score betekent, menselijke beoordeling, het kiezen van de slaaggrens, extra tijd en waar je prepza niet voor gebruikt."
+        "description": "Wat een score betekent, menselijke beoordeling, het kiezen van de slaaggrens, extra tijd en waar je testee niet voor gebruikt."
       },
       "notices": {
         "title": "Sjablonen voor kandidaatberichten",
@@ -1335,11 +1335,11 @@
       },
       "dpia": {
         "title": "DPIA-sjabloon",
-        "description": "Een gegevensbeschermingseffectbeoordeling waarin het deel van prepza al is ingevuld, om zelf aan te vullen."
+        "description": "Een gegevensbeschermingseffectbeoordeling waarin het deel van testee al is ingevuld, om zelf aan te vullen."
       },
       "dpa": {
         "title": "Verwerkersovereenkomst",
-        "description": "Hoe prepza de gegevens van je kandidaten voor jou verwerkt. Ze maakt deel uit van de voorwaarden."
+        "description": "Hoe testee de gegevens van je kandidaten voor jou verwerkt. Ze maakt deel uit van de voorwaarden."
       }
     }
   },
@@ -1396,7 +1396,7 @@
     "more": "Hoe het werkt",
     "demos": "Video",
     "demosTooltip": "Demo's bekijken op YouTube",
-    "videoTooltip": "Bekijk hoe prepza werkt",
+    "videoTooltip": "Bekijk hoe testee werkt",
     "watchVideo": "Video bekijken",
     "howItWorks": "Hoe het werkt",
     "askAgent": "vraag Mira",
@@ -1553,7 +1553,7 @@
         },
         "help": {
           "title": "Hulp",
-          "text": "Uitleg uit de gidsen van prepza, in jouw taal."
+          "text": "Uitleg uit de gidsen van testee, in jouw taal."
         },
         "actions": {
           "title": "Acties",
@@ -1633,8 +1633,8 @@
         "time": "Voor elke functie tests kiezen of schrijven",
         "cost": "Maandelijkse kosten, of je nu werft of niet"
       },
-      "prepza": {
-        "name": "prepza",
+      "testee": {
+        "name": "testee",
         "checks": "Door AI geschreven, speciaal voor jouw functie",
         "time": "~10 min per functie, niets per kandidaat",
         "cost": "{price} per kandidaat die antwoordt"
@@ -1670,13 +1670,13 @@
   "faq": {
     "title": "Veelgestelde vragen",
     "intro": "Staat je antwoord er niet bij? Vraag het Mira, de AI-assistent (de knop bovenaan de pagina), of schrijf ons op het adres in het privacybeleid.",
-    "description": "Antwoorden over prepza: hoe interviews uit een vacaturetekst ontstaan, wat kandidaten zien, prijzen en credits, resultaten, ATS-koppelingen, talen en je gegevens."
+    "description": "Antwoorden over testee: hoe interviews uit een vacaturetekst ontstaan, wat kandidaten zien, prijzen en credits, resultaten, ATS-koppelingen, talen en je gegevens."
   },
   "contact": {
     "title": "Neem contact op",
     "intro": "Vragen, ideeën, samenwerking of werkt er iets niet? Schrijf ons en we antwoorden per e-mail.",
     "idHint": "Schrijf je over een bedrijf, een interview, een kandidaat of je account? Plak de ID: “id kopiëren” staat onder de naam, en die van je account in je accountmenu.",
-    "description": "Neem contact op met het prepza-team: vragen over selectietesten, ideeën, samenwerkingsvoorstellen of iets dat niet werkt. We antwoorden per e-mail.",
+    "description": "Neem contact op met het testee-team: vragen over selectietesten, ideeën, samenwerkingsvoorstellen of iets dat niet werkt. We antwoorden per e-mail.",
     "name": "Naam",
     "email": "E-mail",
     "message": "Bericht",
@@ -1694,23 +1694,23 @@
   },
   "about": {
     "title": "Over ons",
-    "intro": "prepza helpt bedrijven mensen te vinden die het vak echt kennen: een eerlijk interview met tijdslimiet, gemaakt op basis van je functieomschrijving, voor een prijs die elk team kan betalen. En wie zich voorbereidt op een sollicitatiegesprek, kan gratis oefenen.",
-    "description": "prepza maakt van een vacaturetekst in een paar minuten een eerlijk interview met tijdslimiet, voor een prijs die elk team kan betalen, en iedereen kan gratis oefenen voor sollicitatiegesprekken.",
+    "intro": "testee helpt bedrijven mensen te vinden die het vak echt kennen: een eerlijk interview met tijdslimiet, gemaakt op basis van je functieomschrijving, voor een prijs die elk team kan betalen. En wie zich voorbereidt op een sollicitatiegesprek, kan gratis oefenen.",
+    "description": "testee maakt van een vacaturetekst in een paar minuten een eerlijk interview met tijdslimiet, voor een prijs die elk team kan betalen, en iedereen kan gratis oefenen voor sollicitatiegesprekken.",
     "company": {
       "title": "Waarom we bestaan",
       "problem": "Werving leunt vaak op een cv en een goed gesprek, en allebei kunnen ze misleiden. De beoordelingstools die wel helpen, zijn geprijsd voor grote bedrijven, met jaarabonnementen en kosten per gebruiker, dus de meeste teams doen het zonder.",
-      "approach": "prepza maakt in een paar minuten van een functieomschrijving een interview met tijdslimiet, voor elke functie. Elke kandidaat krijgt eigen vragen, je ziet wie het vak kent en waarom, en je betaalt alleen voor kandidaten die het interview echt doen.",
+      "approach": "testee maakt in een paar minuten van een functieomschrijving een interview met tijdslimiet, voor elke functie. Elke kandidaat krijgt eigen vragen, je ziet wie het vak kent en waarom, en je betaalt alleen voor kandidaten die het interview echt doen.",
       "practice": "We willen ook dat voorbereiden op een sollicitatiegesprek voor iedereen gratis is. Iedereen kan onze oefeninterviews voor een functie doen, de eigen score en elk juist antwoord zien en opnieuw oefenen, zonder kosten."
     },
     "founder": {
-      "quote": "Goed aannemen zou geen voorrecht moeten zijn van grote bedrijven met grote budgetten. Ik heb prepza gebouwd zodat elk team in een paar minuten van een functieomschrijving een eerlijk interview kan maken, kan zien wie het vak echt kent en alleen betaalt voor de kandidaten die het interview doen. Ik hoop dat het je helpt sneller de juiste mensen te vinden.",
-      "role": "Solo-oprichter van prepza"
+      "quote": "Goed aannemen zou geen voorrecht moeten zijn van grote bedrijven met grote budgetten. Ik heb testee gebouwd zodat elk team in een paar minuten van een functieomschrijving een eerlijk interview kan maken, kan zien wie het vak echt kent en alleen betaalt voor de kandidaten die het interview doen. Ik hoop dat het je helpt sneller de juiste mensen te vinden.",
+      "role": "Solo-oprichter van testee"
     }
   },
   "news": {
-    "title": "prepza-nieuws",
-    "description": "Wat er nieuw is bij prepza: nieuwe functies, verbeteringen en updates.",
-    "metaDescription": "prepza-nieuws: nieuwe functies, talen en verbeteringen in vaardigheidstests, AI-interviews en gratis oefenen, zodra ze live gaan. Volg het hier of via RSS.",
+    "title": "testee-nieuws",
+    "description": "Wat er nieuw is bij testee: nieuwe functies, verbeteringen en updates.",
+    "metaDescription": "testee-nieuws: nieuwe functies, talen en verbeteringen in vaardigheidstests, AI-interviews en gratis oefenen, zodra ze live gaan. Volg het hier of via RSS.",
     "empty": "Nog geen nieuws.",
     "rss": "RSS-feed"
   },
@@ -1746,8 +1746,8 @@
       "legal_dpa": "Een nieuwe verwerkersovereenkomst geldt vanaf <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "De voorwaarden van prepza veranderen op <time>{date}</time>.",
-      "privacy": "Het privacybeleid van prepza verandert op <time>{date}</time>.",
+      "terms": "De voorwaarden van testee veranderen op <time>{date}</time>.",
+      "privacy": "Het privacybeleid van testee verandert op <time>{date}</time>.",
       "dpa": "De verwerkersovereenkomst verandert op <time>{date}</time>."
     },
     "readLegal": "Lees de nieuwe versie",
@@ -1769,7 +1769,7 @@
     "sent": "Rapport verstuurd naar <bdi>{email}</bdi>",
     "sendFailed": "Het rapport kon niet worden verstuurd.",
     "orSummary": "Of verstuur via",
-    "via": "Verstuurd vanuit prepza",
+    "via": "Verstuurd vanuit testee",
     "candidatesFileName": "Kandidaten {title}",
     "candidateCount": "{count, plural, one {# kandidaat} other {# kandidaten}}",
     "passMark": "slaaggrens {mark}",
@@ -1815,7 +1815,7 @@
   },
   "openToOffers": {
     "title": "Open voor nieuwe kansen",
-    "text": "Bedrijven die via prepza werven, zien je naam, je LinkedIn-profiel en je nieuwste oefenresultaten en kunnen je uitnodigen voor een interview. Je kunt het op elk moment uitzetten.",
+    "text": "Bedrijven die via testee werven, zien je naam, je LinkedIn-profiel en je nieuwste oefenresultaten en kunnen je uitnodigen voor een interview. Je kunt het op elk moment uitzetten.",
     "linkedin": "LinkedIn-profiel",
     "linkedinHint": "linkedin.com/in/jouw-naam",
     "save": "Opslaan",
@@ -1846,8 +1846,8 @@
   },
   "maintenance": {
     "title": "In onderhoud",
-    "text": "prepza is in onderhoud. We zijn snel terug.",
-    "notice": "De onderhoudsmodus staat aan: alleen superadmins kunnen prepza nu gebruiken."
+    "text": "testee is in onderhoud. We zijn snel terug.",
+    "notice": "De onderhoudsmodus staat aan: alleen superadmins kunnen testee nu gebruiken."
   },
   "content": {
     "updated": "Laatst bijgewerkt",
@@ -1857,7 +1857,7 @@
     "startButton": "Test maken"
   },
   "compare": {
-    "title": "Vergelijk prepza",
+    "title": "Vergelijk testee",
     "metaTitle": "Tools voor selectietests vergeleken",
     "intro": "Vergelijkingen met bronnen met andere tools voor selectietests: hoe de tests worden gemaakt, wat ze kosten en wanneer welke beter past."
   },
@@ -1882,7 +1882,7 @@
   "ats": {
     "statusConnected": "gekoppeld",
     "flowTitle": "Hoe kandidaten uit {ats} binnenkomen",
-    "flowStage": "Voeg in {ats} aan de pipeline van de vacature een fase toe alleen voor prepza, bijvoorbeeld “prepza-vaardighedentest”, zodat die nooit door je andere tools heen loopt.",
+    "flowStage": "Voeg in {ats} aan de pipeline van de vacature een fase toe alleen voor testee, bijvoorbeeld “testee-vaardighedentest”, zodat die nooit door je andere tools heen loopt.",
     "flowLink": "Koppel hier de vacature en kies die fase.",
     "flowMove": "Wil je een kandidaat testen, verplaats de kandidaat dan naar die fase.",
     "flowInvite": "Wij nodigen de kandidaat voor je uit voor het gekoppelde interview, net alsof je dat zelf deed. Credits en limieten werken hetzelfde.",
@@ -1974,7 +1974,7 @@
     "connected": "Slack is gekoppeld.",
     "disconnectFailed": "Slack kon niet worden ontkoppeld.",
     "disconnectTitle": "Slack ontkoppelen?",
-    "disconnectText": "De meldingen van je bedrijf gaan niet meer naar het kanaal, en de app van prepza wordt uit je Slack verwijderd.",
+    "disconnectText": "De meldingen van je bedrijf gaan niet meer naar het kanaal, en de app van testee wordt uit je Slack verwijderd.",
     "notConnected": "Slack is nog niet gekoppeld. Voeg het toe om de meldingen van je bedrijf te krijgen in een kanaal dat je kiest.",
     "kindsTitle": "Meldingen in Slack",
     "kindsText": "Het kanaal krijgt deze zodra ze gebeuren. Iedereen ziet ze ook nog steeds bij de bel.",
@@ -1989,10 +1989,10 @@
       "auto_top_up_failed": "Een automatische opwaardering is mislukt"
     },
     "instructionsTitle": "Zo krijgt Slack je meldingen",
-    "stepAdd": "Klik op “Toevoegen aan Slack”: Slack opent en vraagt je prepza toe te staan in je workspace.",
+    "stepAdd": "Klik op “Toevoegen aan Slack”: Slack opent en vraagt je testee toe te staan in je workspace.",
     "stepChannel": "Kies het kanaal waarin je team ze moet zien, bijvoorbeeld #hiring, en sta toe.",
     "stepKinds": "Kies daarna hier welke meldingen daarheen gaan: een kandidaat die klaar is, een uitnodiging die niet is bezorgd en meer.",
-    "stepPrivacy": "prepza kan alleen in dat kanaal posten. Het kan je Slack niet lezen, en ontkoppelen verwijdert het."
+    "stepPrivacy": "testee kan alleen in dat kanaal posten. Het kan je Slack niet lezen, en ontkoppelen verwijdert het."
   },
   "api": {
     "name": "API",
@@ -2029,12 +2029,12 @@
     "removeKeyTitle": "Deze sleutel verwijderen?",
     "removeKeyText": "Alles wat “<bdi>{name}</bdi>” gebruikt, werkt meteen niet meer.",
     "webhooksTitle": "Webhooks",
-    "webhooksText": "prepza laat deze adressen weten wanneer een kandidaat begint of klaar is (met de resultaten), wanneer de uitnodiging een kandidaat niet bereikt of verloopt, wanneer een kandidaat wordt verwijderd en wanneer een interview klaarstaat. Elk verzoek is ondertekend met het secret van het adres.",
+    "webhooksText": "testee laat deze adressen weten wanneer een kandidaat begint of klaar is (met de resultaten), wanneer de uitnodiging een kandidaat niet bereikt of verloopt, wanneer een kandidaat wordt verwijderd en wanneer een interview klaarstaat. Elk verzoek is ondertekend met het secret van het adres.",
     "noWebhooks": "Nog geen webhooks.",
     "failing": "Gepauzeerd: hij reageerde 3 dagen niet, dus er worden geen gebeurtenissen naar verstuurd. Een aangenomen testgebeurtenis zet hem weer aan.",
     "addWebhook": "Webhook toevoegen",
     "addWebhookTitle": "Nieuwe webhook",
-    "webhookUrl": "HTTPS-adres, bijv. https://example.com/prepza",
+    "webhookUrl": "HTTPS-adres, bijv. https://example.com/testee",
     "webhookCreatedTitle": "Het secret van je webhook",
     "webhookCreatedText": "Gebruik het om de handtekening van elk verzoek te controleren (zie de ontwikkelaarsdocumentatie). Kopieer het nu: het wordt niet opnieuw getoond.",
     "copySecret": "Secret kopiëren",
@@ -2057,7 +2057,7 @@
     "results": {
       "delivered": "Afgeleverd",
       "skipped": "Overgeslagen",
-      "unreadable": "Niet verzonden: een probleem bij prepza.",
+      "unreadable": "Niet verzonden: een probleem bij testee.",
       "answered": "Antwoordde {status}",
       "error": "Mislukt: {error}"
     },
@@ -2175,12 +2175,12 @@
     "radius": "Afronding van kaarten",
     "buttonRadius": "Afronding van knoppen",
     "reset": "Herstellen",
-    "resetPrepza": "Terug naar de prepza-standaard",
+    "resetTestee": "Terug naar de testee-standaard",
     "themes": {
       "light": "Licht thema",
       "dark": "Donker thema"
     },
-    "resetDone": "Terug naar de standaardinstellingen van prepza",
+    "resetDone": "Terug naar de standaardinstellingen van testee",
     "failed": "De huisstijl kon niet worden opgeslagen.",
     "preview": "Voorbeeld",
     "sampleTitle": "HR-manager",
@@ -2192,7 +2192,7 @@
   },
   "apiDocs": {
     "title": "Ontwikkelaarsdocumentatie",
-    "description": "De ontwikkelaarsdocumentatie van prepza: vraag een API-sleutel aan, maak interviews aan, nodig kandidaten uit en beheer ze, lees hun resultaten, ontvang ze via een webhook en sluit het interview in met de SDK.",
+    "description": "De ontwikkelaarsdocumentatie van testee: vraag een API-sleutel aan, maak interviews aan, nodig kandidaten uit en beheer ze, lees hun resultaten, ontvang ze via een webhook en sluit het interview in met de SDK.",
     "tabs": {
       "api": "API",
       "webhooks": "Webhooks",
@@ -2254,8 +2254,8 @@
     "deleteTitle": "Deze chat verwijderen?",
     "deleteText": "De chat en de antwoorden worden definitief verwijderd.",
     "emptyTitle": "Hoi, ik ben Mira, je AI-assistent",
-    "emptyText": "Kandidaten, interviews, credits, koppelingen en hoe prepza werkt, op basis van wat je in je bedrijven ziet. De AI kan zich vergissen; de pagina's waarnaar hij linkt zijn leidend.",
-    "emptyTitleFaq": "Hoi, ik ben Mira, de AI-assistent van prepza",
+    "emptyText": "Kandidaten, interviews, credits, koppelingen en hoe testee werkt, op basis van wat je in je bedrijven ziet. De AI kan zich vergissen; de pagina's waarnaar hij linkt zijn leidend.",
+    "emptyTitleFaq": "Hoi, ik ben Mira, de AI-assistent van testee",
     "pageQuestion": "Wat kan ik op deze pagina doen?",
     "pages": {
       "open": "Openen",
@@ -2294,9 +2294,9 @@
     },
     "welcome": {
       "signed_out": {
-        "text": "Hoe prepza werkt, wat het kost en wat kandidaten zien, beantwoord vanuit de veelgestelde vragen van prepza. Log in om vragen te stellen over je bedrijven en kandidaten.",
+        "text": "Hoe testee werkt, wat het kost en wat kandidaten zien, beantwoord vanuit de veelgestelde vragen van testee. Log in om vragen te stellen over je bedrijven en kandidaten.",
         "questions": {
-          "what": "Wat is prepza?",
+          "what": "Wat is testee?",
           "pricing": "Wat kost het?",
           "takeTest": "Hoe maken kandidaten een test?",
           "account": "Hebben kandidaten een account nodig?"
@@ -2471,7 +2471,7 @@
       "chargeback_reversed": "Terugboeking teruggedraaid",
       "referral": "Doorverwijsbeloning",
       "referral_reversed": "Doorverwijsbeloning ingetrokken",
-      "adjustment": "Correctie door prepza"
+      "adjustment": "Correctie door testee"
     },
     "automatic": "Automatisch opwaarderen",
     "invoice": "Factuur",
@@ -2482,16 +2482,16 @@
   },
   "aiApps": {
     "name": "MCP-server",
-    "rowText": "Koppel Claude, ChatGPT en andere AI-apps aan prepza.",
+    "rowText": "Koppel Claude, ChatGPT en andere AI-apps aan testee.",
     "title": "AI-apps",
     "subtitle": "Ze handelen namens jou, in elk bedrijf waar je lid van bent, met jouw rechten.",
-    "instructionsTitle": "Een AI-app aan prepza koppelen",
+    "instructionsTitle": "Een AI-app aan testee koppelen",
     "serverTitle": "Serveradres",
     "serverText": "Plak het in je AI-app als aangepaste connector (een MCP-server).",
     "addTo": "Toevoegen aan <app>{name}</app>",
     "claudeOpen": "Open in Claude:",
     "claudePaste": "Noem hem {name}, plak het serveradres en kies “Add”.",
-    "allowOnPrepza": "Kies “Connect” en daarna “Toestaan” op de prepza-pagina die opent.",
+    "allowOnTestee": "Kies “Connect” en daarna “Toestaan” op de testee-pagina die opent.",
     "claudeCode": "Voer in Claude Code uit:",
     "copyCommand": "Opdracht kopiëren",
     "commandCopied": "Opdracht gekopieerd",
@@ -2504,7 +2504,7 @@
     "lastUsed": "laatst gebruikt op <time>{date}</time>",
     "neverUsed": "nog niet gebruikt",
     "disconnectTitle": "<bdi>{client}</bdi> ontkoppelen?",
-    "disconnectText": "<bdi>{client}</bdi> werkt niet meer met prepza totdat je het opnieuw koppelt.",
+    "disconnectText": "<bdi>{client}</bdi> werkt niet meer met testee totdat je het opnieuw koppelt.",
     "disconnectFailed": "De app kon niet worden ontkoppeld. Probeer het opnieuw.",
     "allowTitle": "AI-apps toestaan in dit bedrijf",
     "allowText": "Leden kunnen de interviews en kandidaten van dit bedrijf gebruiken vanuit de AI-apps die ze hebben gekoppeld. Uit: AI-apps kunnen hier niets lezen of wijzigen.",
@@ -2512,22 +2512,22 @@
   },
   "connect": {
     "pageTitle": "Een AI-app koppelen",
-    "title": "<name><bdi>{client}</bdi></name> aan prepza koppelen",
-    "titleAny": "Een AI-app aan prepza koppelen",
-    "signInText": "Log in om te kiezen of de app je prepza-account mag gebruiken.",
+    "title": "<name><bdi>{client}</bdi></name> aan testee koppelen",
+    "titleAny": "Een AI-app aan testee koppelen",
+    "signInText": "Log in om te kiezen of de app je testee-account mag gebruiken.",
     "signIn": "Log in om verder te gaan",
-    "who": "<bdi>{client}</bdi> (<bdi>{host}</bdi>) wil je prepza-account gebruiken, <bdi>{email}</bdi>.",
+    "who": "<bdi>{client}</bdi> (<bdi>{host}</bdi>) wil je testee-account gebruiken, <bdi>{email}</bdi>.",
     "canTitle": "De app kan",
     "canRead": "Je bedrijven, interviews en de resultaten van kandidaten lezen.",
     "canChange": "De wijzigingen doen die je vraagt. De meeste AI-apps vragen je eerst om te bevestigen.",
     "canShare": "Wat hij leest doorgeven aan de aanbieder van de app, onder de voorwaarden van die app.",
     "cantTitle": "De app kan niet",
-    "cantChange": "Iets in prepza wijzigen.",
+    "cantChange": "Iets in testee wijzigen.",
     "cantSecrets": "Je wachtwoord of API-sleutels zien.",
     "cantDelete": "Je account of een bedrijf verwijderen.",
     "changesTitle": "Wijzigingen toestaan",
     "changesText": "Zet dit uit zodat de app alleen kan lezen.",
-    "unknown": "prepza kent deze app niet. Sta hem alleen toe als je zelf bent begonnen met koppelen.",
+    "unknown": "testee kent deze app niet. Sta hem alleen toe als je zelf bent begonnen met koppelen.",
     "deny": "Weigeren",
     "allow": "Toestaan",
     "footnote": "Ontkoppel hem wanneer je wilt in Integraties → AI-apps van een bedrijf.",
@@ -2536,8 +2536,8 @@
   },
   "accessibility": {
     "title": "Toegankelijkheid",
-    "description": "Hoe prepza werkt voor mensen met een beperking, wat nog tekortschiet en hoe je het ons laat weten.",
-    "intro": "We willen dat iedereen prepza kan gebruiken: om een interview te doen dat een bedrijf je stuurt, om te oefenen en om de werving van een bedrijf te regelen. We streven naar niveau AA van de Richtlijnen voor Toegankelijkheid van Webcontent (WCAG) 2.2.",
+    "description": "Hoe testee werkt voor mensen met een beperking, wat nog tekortschiet en hoe je het ons laat weten.",
+    "intro": "We willen dat iedereen testee kan gebruiken: om een interview te doen dat een bedrijf je stuurt, om te oefenen en om de werving van een bedrijf te regelen. We streven naar niveau AA van de Richtlijnen voor Toegankelijkheid van Webcontent (WCAG) 2.2.",
     "done": {
       "title": "Wat we doen",
       "themes": "Een licht en een donker thema: standaard de instelling van je apparaat, of licht of donker als je er een kiest.",
@@ -2551,24 +2551,24 @@
     "limits": {
       "title": "Wat nog tekortschiet",
       "timed": "Interviewvragen hebben een tijdslimiet, zoals de beoordeling van het bedrijf vereist. Heb je meer tijd nodig, vraag het bedrijf dan om extra tijd voordat je begint.",
-      "audit": "prepza is nog niet onafhankelijk getoetst, dus sommige onderdelen voldoen mogelijk niet aan WCAG 2.2 AA.",
+      "audit": "testee is nog niet onafhankelijk getoetst, dus sommige onderdelen voldoen mogelijk niet aan WCAG 2.2 AA.",
       "providers": "Betalen voor credits (de betaalpagina van Paddle) en de controle “Ik ben geen robot” (Cloudflare Turnstile) worden door die aanbieders verzorgd, met hun eigen toegankelijkheid."
     },
     "feedback": {
       "title": "Laat het ons weten",
-      "text": "Is iets op prepza lastig voor je om te gebruiken, of heb je het in een andere vorm nodig? Schrijf naar <email></email>. We antwoorden binnen 14 dagen.",
+      "text": "Is iets op testee lastig voor je om te gebruiken, of heb je het in een andere vorm nodig? Schrijf naar <email></email>. We antwoorden binnen 14 dagen.",
       "authority": "Ben je niet tevreden met ons antwoord, dan kun je contact opnemen met de Estse Autoriteit voor Consumentenbescherming en Technische Regulering (TTJA)."
     },
     "reviewed": "Laatst herzien: <time>{date}</time>."
   },
   "trust": {
     "title": "Vertrouwen en beveiliging",
-    "description": "Hoe prepza wervingsgegevens veilig en privé houdt: hosting in de EU, subverwerkers, bewaartermijnen en wat we bieden voor de GDPR, de EU AI Act, het VK en de VS.",
-    "intro": "Wat prepza doet om jouw gegevens en die van je kandidaten veilig te houden, waar ze worden opgeslagen, wie ze verwerkt, hoe lang ze worden bewaard en wat we bedrijven bieden voor de wervingswetten die ze volgen.",
+    "description": "Hoe testee wervingsgegevens veilig en privé houdt: hosting in de EU, subverwerkers, bewaartermijnen en wat we bieden voor de GDPR, de EU AI Act, het VK en de VS.",
+    "intro": "Wat testee doet om jouw gegevens en die van je kandidaten veilig te houden, waar ze worden opgeslagen, wie ze verwerkt, hoe lang ze worden bewaard en wat we bedrijven bieden voor de wervingswetten die ze volgen.",
     "security": {
       "title": "Beveiliging",
-      "signIn": "Je logt in met Google, LinkedIn of GitHub via Firebase Authentication, dus prepza slaat geen wachtwoorden op. Bij elk verzoek wordt de login op de server gecontroleerd.",
-      "encryption": "Gegevens zijn versleuteld tijdens verzending (TLS 1.2 of hoger) en in opslag. Sleutels en tokens die een bedrijf koppelt (zijn sollicitantvolgsysteem, Slack, webhooks) worden versleuteld opgeslagen, en prepza-API-sleutels alleen als eenrichtingshash.",
+      "signIn": "Je logt in met Google, LinkedIn of GitHub via Firebase Authentication, dus testee slaat geen wachtwoorden op. Bij elk verzoek wordt de login op de server gecontroleerd.",
+      "encryption": "Gegevens zijn versleuteld tijdens verzending (TLS 1.2 of hoger) en in opslag. Sleutels en tokens die een bedrijf koppelt (zijn sollicitantvolgsysteem, Slack, webhooks) worden versleuteld opgeslagen, en testee-API-sleutels alleen als eenrichtingshash.",
       "access": "Elk verzoek wordt gecontroleerd aan de hand van het bedrijf en de rol van degene die het doet. Elke dienst kan alleen bij zijn eigen database, en aanroepen tussen diensten zijn ondertekend.",
       "limits": "Snelheidslimieten beschermen elke actie die geld kost of misbruikt kan worden, en een controle “Ik ben geen robot” beveiligt openbare formulieren, links in vacatures en het aanmaken van een eerste bedrijf.",
       "logs": "Foutrapporten bevatten geen e-mailadressen, en serverlogs worden kort bewaard.",
@@ -2578,29 +2578,29 @@
     },
     "privacy": {
       "title": "Privacy",
-      "roles": "prepza is verwerkingsverantwoordelijke voor de accounts van de mensen die het gebruiken, en verwerker van de gegevens van kandidaten, die toebehoren aan het bedrijf dat hen uitnodigt.",
+      "roles": "testee is verwerkingsverantwoordelijke voor de accounts van de mensen die het gebruiken, en verwerker van de gegevens van kandidaten, die toebehoren aan het bedrijf dat hen uitnodigt.",
       "noSelling": "We verkopen geen persoonsgegevens en delen ze niet voor advertenties. Er zijn geen advertentie- of analysecookies.",
-      "noInference": "prepza verzamelt geen gegevens over geslacht, leeftijd, afkomst of beperking van kandidaten, en leidt daar ook niets over af.",
+      "noInference": "testee verzamelt geen gegevens over geslacht, leeftijd, afkomst of beperking van kandidaten, en leidt daar ook niets over af.",
       "voice": "In de spraakmodus wordt het gesproken antwoord van een kandidaat omgezet in tekst en gekoppeld aan de opties, en de gekoppelde optie krijgt de kandidaat te horen en op het scherm te zien; een keuze van meerdere opties wordt eerst bevestigd. De spraak wordt niet opgenomen of opgeslagen, en de stem wordt op geen enkele andere manier geanalyseerd.",
       "ai": "OpenAI, dat de vragen schrijft, krijgt de opdracht niets op te slaan van wat het ontvangt; het bewaart de gegevens hooguit 30 dagen, alleen om op misbruik te controleren, en gebruikt ze niet om zijn modellen te trainen.",
       "rights": "Iedereen kan zijn eigen gegevens downloaden of verwijderen in Instellingen, zonder ons te hoeven schrijven."
     },
     "compliance": {
       "title": "Naleving",
-      "aiAct": "Onder de EU AI Act geldt prepza als een AI-systeem met een hoog risico, waarvan de verplichtingen gelden vanaf <time>{date}</time>. Onze instructies voor bedrijven zijn de gebruiksaanwijzing ervan.",
-      "humanReview": "prepza neemt geen besluit over een kandidaat: mensen bij het bedrijf beoordelen de resultaten en beslissen, en kandidaten kunnen vragen om een beoordeling van hun resultaat door een mens.",
-      "dpa": "De verwerkersovereenkomst maakt deel uit van de voorwaarden; je hoeft niets te ondertekenen. Ze dekt de GDPR, de UK GDPR en privacywetten van Amerikaanse staten zoals die van Californië, waaronder prepza de dienstverlener van het bedrijf is.",
+      "aiAct": "Onder de EU AI Act geldt testee als een AI-systeem met een hoog risico, waarvan de verplichtingen gelden vanaf <time>{date}</time>. Onze instructies voor bedrijven zijn de gebruiksaanwijzing ervan.",
+      "humanReview": "testee neemt geen besluit over een kandidaat: mensen bij het bedrijf beoordelen de resultaten en beslissen, en kandidaten kunnen vragen om een beoordeling van hun resultaat door een mens.",
+      "dpa": "De verwerkersovereenkomst maakt deel uit van de voorwaarden; je hoeft niets te ondertekenen. Ze dekt de GDPR, de UK GDPR en privacywetten van Amerikaanse staten zoals die van Californië, waaronder testee de dienstverlener van het bedrijf is.",
       "documents": "Bedrijven krijgen <link>instructies voor gebruik, een DPIA-sjabloon en sjablonen voor kandidaatberichten</link>, met versies voor New York City, Illinois en Colorado.",
-      "nyc": "New York City: voordat de werkgever prepza gebruikt voor een functie daar, doet hij wat Local Law 144 van hem vraagt: een onafhankelijke bias-audit binnen het jaar voor gebruik, de publicatie van de samenvatting ervan en een bericht aan kandidaten minstens 10 werkdagen voordat ze worden beoordeeld. De eigen onafhankelijke bias-audit van prepza wordt uitgevoerd vóór <time>{date}</time>, en daarna elk jaar."
+      "nyc": "New York City: voordat de werkgever testee gebruikt voor een functie daar, doet hij wat Local Law 144 van hem vraagt: een onafhankelijke bias-audit binnen het jaar voor gebruik, de publicatie van de samenvatting ervan en een bericht aan kandidaten minstens 10 werkdagen voordat ze worden beoordeeld. De eigen onafhankelijke bias-audit van testee wordt uitgevoerd vóór <time>{date}</time>, en daarna elk jaar."
     },
     "residency": {
       "title": "Waar gegevens worden opgeslagen",
-      "storage": "prepza draait op Google Cloud in de EU, in België, waar ook de database staat. Tellers voor snelheidslimieten staan bij Upstash, ook in België, en e-mails worden verstuurd via Resend in Ierland.",
+      "storage": "testee draait op Google Cloud in de EU, in België, waar ook de database staat. Tellers voor snelheidslimieten staan bij Upstash, ook in België, en e-mails worden verstuurd via Resend in Ierland.",
       "transfers": "Drie aanbieders verwerken gegevens in de Verenigde Staten: Google voor het inloggen, OpenAI en Cloudflare voor de controle “Ik ben geen robot”. Deze doorgiften vallen onder het EU-VS-kader voor gegevensbescherming (EU-US Data Privacy Framework) of de standaardcontractbepalingen van de Europese Commissie, en voor het VK onder de UK Extension en het Britse addendum voor internationale gegevensdoorgifte (UK International Data Transfer Addendum)."
     },
     "subprocessors": {
       "title": "Subverwerkers",
-      "intro": "De aanbieders die gegevens verwerken voor prepza, zoals de <link>verwerkersovereenkomst</link> ze noemt:",
+      "intro": "De aanbieders die gegevens verwerken voor testee, zoals de <link>verwerkersovereenkomst</link> ze noemt:",
       "changes": "We mailen de eigenaren en beheerders van bedrijven minstens 14 dagen voordat we een nieuwe subverwerker toevoegen."
     },
     "retention": {
@@ -2617,7 +2617,7 @@
     },
     "accessibility": {
       "title": "Toegankelijkheid",
-      "text": "prepza streeft naar niveau AA van de Web Content Accessibility Guidelines (WCAG) 2.2. Onze <link>toegankelijkheidsverklaring</link> vertelt wat werkt, wat tekortschiet en hoe je het ons laat weten."
+      "text": "testee streeft naar niveau AA van de Web Content Accessibility Guidelines (WCAG) 2.2. Onze <link>toegankelijkheidsverklaring</link> vertelt wat werkt, wat tekortschiet en hoe je het ons laat weten."
     },
     "links": {
       "title": "Juridische documenten",
@@ -2635,7 +2635,7 @@
     "open": "Export voor bias-audit",
     "title": "Exporteren voor een bias-audit",
     "description": "Een CSV-bestand met elke kandidaat die klaar is: de score, de slaaggrens, of de kandidaat geslaagd is en of de score boven de mediaan ligt. Je onafhankelijke auditor berekent daaruit de selectiepercentages en impactratio's.",
-    "privacy": "prepza heeft geen gegevens over geslacht, ras of etniciteit. Voeg de antwoorden toe die je kandidaten zelf hebben opgegeven, op basis van hun e-mailadres, en verwijder daarna de kolom met e-mailadressen voordat je het bestand deelt.",
+    "privacy": "testee heeft geen gegevens over geslacht, ras of etniciteit. Voeg de antwoorden toe die je kandidaten zelf hebben opgegeven, op basis van hun e-mailadres, en verwijder daarna de kolom met e-mailadressen voordat je het bestand deelt.",
     "interview": "Interview",
     "allInterviews": "Alle interviews",
     "download": "CSV downloaden",
@@ -2744,7 +2744,7 @@
   },
   "featuresPage": {
     "title": "Functionaliteiten: AI-interviews voor werving, van begin tot eind",
-    "description": "Alle functionaliteiten van prepza: interviews vanuit een functieomschrijving, klik- en spraakmodus, integriteitssignalen, rapporten, ATS- en API-koppelingen en compliance.",
+    "description": "Alle functionaliteiten van testee: interviews vanuit een functieomschrijving, klik- en spraakmodus, integriteitssignalen, rapporten, ATS- en API-koppelingen en compliance.",
     "hero": {
       "title": "Van functieomschrijving\nnaar de juiste aanname",
       "text": "Een interview met tijdslimiet, geschreven voor je functie, kandidaten van overal en een helder beeld van wie de beste is. Alle functionaliteiten zijn inbegrepen.",
@@ -2781,7 +2781,7 @@
       },
       "decide": {
         "title": "Zie wie de beste is",
-        "text": "Scores, elk antwoord en integriteitssignalen voor elke kandidaat. Een mens beslist; prepza laat zien waar je op moet letten."
+        "text": "Scores, elk antwoord en integriteitssignalen voor elke kandidaat. Een mens beslist; testee laat zien waar je op moet letten."
       },
       "connect": {
         "title": "Werkt met je eigen tools",
@@ -2829,7 +2829,7 @@
       },
       "brand": {
         "title": "Jouw merk, niet het onze",
-        "text": "Stel je logo, kleuren voor licht en donker, lettertypen en hoeken in, met een live voorbeeld. Kandidaten zien alleen jouw bedrijf, zonder de kop- en voettekst van prepza.",
+        "text": "Stel je logo, kleuren voor licht en donker, lettertypen en hoeken in, met een live voorbeeld. Kandidaten zien alleen jouw bedrijf, zonder de kop- en voettekst van testee.",
         "alt": "Het tabblad merk: het logo, de lettertypen en de hoeken, met een live voorbeeld van het interview."
       },
       "candidates": {
@@ -2844,7 +2844,7 @@
       },
       "share": {
         "title": "Deel rapporten in seconden",
-        "text": "Download een pdf voor één kandidaat of het hele interview, mail hem vanuit prepza, of stuur een korte samenvatting via een berichtenapp.",
+        "text": "Download een pdf voor één kandidaat of het hele interview, mail hem vanuit testee, of stuur een korte samenvatting via een berichtenapp.",
         "alt": "Het deelvenster voor het rapport van een kandidaat: een e-mailadres om de pdf naar te sturen, of een samenvatting in WhatsApp, Telegram, Viber of LINE."
       },
       "notes": {
@@ -2899,7 +2899,7 @@
       "atsList": "Workable, Greenhouse, Teamtailor, Recruitee en Breezy HR",
       "results": "Kandidaten automatisch uitgenodigd, resultaten teruggestuurd",
       "docs": "Ontwikkelaarsdocumentatie voor de API, webhooks, de SDK en MCP",
-      "noInference": "prepza vraagt nooit naar beschermde kenmerken en leidt ze nooit af",
+      "noInference": "testee vraagt nooit naar beschermde kenmerken en leidt ze nooit af",
       "owner": "Alleen de eigenaar exporteert, en dat staat in de actielog",
       "askTime": "Wie meer tijd nodig heeft, wordt gevraagd dat vóór de start te melden",
       "peopleDecide": "Ze horen dat mensen in je bedrijf de resultaten bekijken en beslissen",

@@ -38,9 +38,9 @@ If two or three people are involved in the hire, agree on this list now. It's mu
 
 A good screening test is short, job-related and the same for everyone.
 
-With prepza:
+With testee:
 
-1. **Paste the job description.** prepza picks out what a candidate must know and proposes topics.
+1. **Paste the job description.** testee picks out what a candidate must know and proposes topics.
 2. **Review the topics against your list from step 1.** Uncheck anything that isn't a real requirement, rename topics, edit subtopics, or describe changes in plain text ("add a topic on payroll basics"). Questions are written only after you approve.
 3. **Set the length.** By default each topic asks 10 questions, each with its own countdown, 60 seconds on average, or 75 on a hard test. Three topics means at most 30 minutes for a candidate (about 38 on a hard test), and usually less. Keep it to what you need.
 4. **Set a pass mark.** The default is 70%. Treat it as a guide for reading results, not an automatic cut.
@@ -63,7 +63,7 @@ Do a fast yes-or-no pass on the hard requirements only: right to work, required 
 
 Then invite everyone left:
 
-- **Paste a list of emails or upload a file.** prepza takes up to 100 emails at once and skips anyone who already started.
+- **Paste a list of emails or upload a file.** testee takes up to 100 emails at once and skips anyone who already started.
 - **Or use one link.** If you haven't posted the job yet, put the interview's shareable link in the ad. Applicants can take the test right away and appear in your list, ranked. Turn the link off once the role is filled.
 - **Or let your ATS send them.** If your applicants are in Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR, connect it once: moving a candidate to a stage sends the invite, and results go back to the ATS. See [how to connect skills tests to your ATS](/guides/ats-integration-skills-tests).
 
@@ -71,7 +71,7 @@ Before they start, candidates see what to expect: the timer, that a person at yo
 
 ### Getting tests done the same day
 
-A clear, short test is easier to finish soon after the invite. Say in your email or job ad how long it takes and when you need it by. prepza sends a reminder automatically to anyone who hasn't started after 3 days; for a same-day plan, you can also resend an invite yourself.
+A clear, short test is easier to finish soon after the invite. Say in your email or job ad how long it takes and when you need it by. testee sends a reminder automatically to anyone who hasn't started after 3 days; for a same-day plan, you can also resend an invite yourself.
 
 Not everyone will finish on day one. That's fine: review whoever has finished and look again at the stragglers the next morning.
 
@@ -81,11 +81,11 @@ Now the careful reading starts, but on a smaller, ranked group.
 
 1. **Sort by grade,** best first, from the list's sort menu: the list opens with the newest candidates first.
 2. **Open each scorecard** in the top group. Look at the answers, not just the number: which topics were strong, which were weak, how long each answer took.
-3. **Check the integrity flags.** prepza flags answers too fast to have read the question, times the candidate left the page, and copy attempts. Once a candidate finishes, their page also points out unusual answer patterns (about the same time on every question, or hard questions right while easy ones were wrong) and suggests questions to ask in the next interview. A flag is a reason to look closer, not proof of cheating. Someone who left the page once might have had a notification pop up.
+3. **Check the integrity flags.** testee flags answers too fast to have read the question, times the candidate left the page, and copy attempts. Once a candidate finishes, their page also points out unusual answer patterns (about the same time on every question, or hard questions right while easy ones were wrong) and suggests questions to ask in the next interview. A flag is a reason to look closer, not proof of cheating. Someone who left the page once might have had a notification pop up.
 4. **Look just below the pass mark.** Scores from different random question sets aren't exactly comparable, so a few points can come from the draw. Someone at 65% with strong answers in the topics that matter most may be worth an interview.
 5. **Now read the CVs** of the people you're considering. You're reading 15 CVs carefully instead of skimming 100.
 
-To share results with a hiring manager, download a PDF report for one candidate or the whole list, or email it from prepza.
+To share results with a hiring manager, download a PDF report for one candidate or the whole list, or email it from testee.
 
 ## Step 5: Decide (end of day)
 
@@ -103,7 +103,7 @@ Write down why each person made the list. It takes a minute per candidate and he
 
 ## What it costs
 
-With prepza, you pay only for candidates who answer at least one question: $5 each on the $50 top-up, $4 from a $200 top-up, $3 from a $600 top-up and $2 from a $1,000 top-up. For 100 applicants that's $500 at $5 each, or $400 in two $200 top-ups at $4 each, with no subscription. Prices are in US dollars here, and in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, the rest of Europe and the UK (see [pricing](/pricing)); VAT or sales tax is handled at checkout. Generating the test is free, and your first company's first 3 candidates are free.
+With testee, you pay only for candidates who answer at least one question: $5 each on the $50 top-up, $4 from a $200 top-up, $3 from a $600 top-up and $2 from a $1,000 top-up. For 100 applicants that's $500 at $5 each, or $400 in two $200 top-ups at $4 each, with no subscription. Prices are in US dollars here, and in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, the rest of Europe and the UK (see [pricing](/pricing)); VAT or sales tax is handled at checkout. Generating the test is free, and your first company's first 3 candidates are free.
 
 ## Related reading
 

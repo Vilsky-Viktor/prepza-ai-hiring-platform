@@ -72,7 +72,7 @@ Ein guter Wissenstest ist:
 - **Kurz:** einige Themen mit jeweils etwa 10 Fragen, damit auch starke Kandidaten mit anderen Angeboten ihn zu Ende bringen.
 - **Für alle gleich:** dieselben Themen, dieselbe Anzahl Fragen und dieselben Zeitlimits.
 
-Hier passt prepza. Es macht aus deiner Stellenbeschreibung ein zeitlich begrenztes Multiple-Choice-Interview zum Fachwissen. Du prüfst die vorgeschlagenen Themen, bevor eine Frage geschrieben wird, sodass der Test deinen Stack abdeckt und nichts anderes. Für eine Entwicklerstelle kann das umfassen:
+Hier passt testee. Es macht aus deiner Stellenbeschreibung ein zeitlich begrenztes Multiple-Choice-Interview zum Fachwissen. Du prüfst die vorgeschlagenen Themen, bevor eine Frage geschrieben wird, sodass der Test deinen Stack abdeckt und nichts anderes. Für eine Entwicklerstelle kann das umfassen:
 
 - **Fragen zum Lesen von Code:** ein kurzes Stück Code mit Fragen dazu, was es ausgibt oder zurückgibt, was es tut, warum es fehlschlägt oder welche Änderung es behebt.
 - **SQL:** eine kleine Tabelle und eine Abfrage, mit der Frage, welche Zeilen zurückkommen.
@@ -80,7 +80,7 @@ Hier passt prepza. Es macht aus deiner Stellenbeschreibung ein zeitlich begrenzt
 
 Jeder Kandidat erhält einen eigenen zufälligen Fragensatz mit einem Countdown bei jeder Frage. Du siehst eine Auswertung mit jeder Antwort und ihrer Dauer sowie Hinweisen auf zu schnelle Antworten, das Verlassen der Seite, Kopierversuche und ungewöhnliche Muster in den Antworten und Antwortzeiten. Ein Hinweis ist ein Grund, genauer hinzusehen, kein Beweis für irgendetwas. Der Bericht schlägt außerdem richtig beantwortete Fragen vor, nach denen du im nächsten Gespräch fragen kannst.
 
-Was prepza nicht tut: Kandidaten schreiben, starten oder debuggen in prepza keinen Code. Code lesen und Code schreiben sind unterschiedliche Fähigkeiten, deshalb bleibt der nächste Schritt wichtig. Unter [Fachtests nach Stelle](/tests) findest du fertige Tests als Ausgangspunkt.
+Was testee nicht tut: Kandidaten schreiben, starten oder debuggen in testee keinen Code. Code lesen und Code schreiben sind unterschiedliche Fähigkeiten, deshalb bleibt der nächste Schritt wichtig. Unter [Fachtests nach Stelle](/tests) findest du fertige Tests als Ausgangspunkt.
 
 ## Schritt 4: Take-Home-Aufgabe oder Live-Coding
 
@@ -128,7 +128,7 @@ Ein strukturierter Prozess ist auch ein fairerer, aber nur, wenn du ihn konseque
 
 - **Einheitliche Fragen** in jeder Phase, für alle Kandidaten derselben Stelle.
 - **Vorab geschriebene Bewertungsraster,** damit Menschen nach denselben Kriterien beurteilt werden.
-- **Anpassungen:** Biete Kandidaten, die darum bitten, zusätzliche Zeit oder ein anderes Format an, zum Beispiel wegen einer Behinderung. In prepza kannst du einem Kandidaten vor dem Start zusätzliche Zeit geben.
+- **Anpassungen:** Biete Kandidaten, die darum bitten, zusätzliche Zeit oder ein anderes Format an, zum Beispiel wegen einer Behinderung. In testee kannst du einem Kandidaten vor dem Start zusätzliche Zeit geben.
 - **Ergebnisse beobachten.** Verschiedene Methoden zeigen unterschiedliche Punktunterschiede zwischen Gruppen. Sackett et al. fanden bei Fachwissenstests und Arbeitsproben im Durchschnitt größere Unterschiede als bei strukturierten Interviews; ein weiterer Grund, Methoden zu kombinieren. Beobachte die Bestehensquoten in jeder Phase.
 - **Menschen entscheiden.** Eine Punktzahl stützt eine Entscheidung; sie trifft sie nicht. Sieh dir die Antworten an, bevor du jemandem absagst.
 

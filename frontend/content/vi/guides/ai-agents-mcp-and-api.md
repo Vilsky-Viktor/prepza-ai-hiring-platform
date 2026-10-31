@@ -1,7 +1,7 @@
 ---
 title: "Agent AI, MCP và API: là gì và cách dùng trong tuyển dụng"
 seoTitle: "Agent AI, MCP và API trong tuyển dụng: là gì và cách dùng"
-description: "Agent AI, MCP và API là gì, cách dùng an toàn trong tuyển dụng, và cách vận hành prepza từ trợ lý AI của nó, từ Claude, ChatGPT hoặc nền tảng của bạn."
+description: "Agent AI, MCP và API là gì, cách dùng an toàn trong tuyển dụng, và cách vận hành testee từ trợ lý AI của nó, từ Claude, ChatGPT hoặc nền tảng của bạn."
 updated: "2026-10-22"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-22"
 
 Hầu hết mọi người làm quen với AI lần đầu qua một cửa sổ chat: bạn hỏi, AI trả lời. Agent AI tiến thêm một bước. Nó có thể tra cứu trong các công cụ của bạn và, khi bạn yêu cầu, thực hiện việc trong đó: tạo một buổi phỏng vấn, mời cả một danh sách ứng viên, cho bạn biết ai đạt điểm cao nhất tuần trước. Model Context Protocol (MCP) là tiêu chuẩn cho phép ứng dụng chat AI bạn đang dùng, như Claude hay ChatGPT, kết nối với những công cụ như vậy. Còn API là cách lâu đời hơn và chính xác hơn để phần mềm giao tiếp với phần mềm, không có AI ở giữa.
 
-Hướng dẫn này giải thích cả ba bằng ngôn ngữ dễ hiểu: chúng hữu ích gì trong tuyển dụng, cần lưu ý điều gì, và cách dùng chúng với prepza.
+Hướng dẫn này giải thích cả ba bằng ngôn ngữ dễ hiểu: chúng hữu ích gì trong tuyển dụng, cần lưu ý điều gì, và cách dùng chúng với testee.
 
 ## Agent AI là gì
 
@@ -42,10 +42,10 @@ API (giao diện lập trình ứng dụng) là một tập hợp các yêu cầ
 
 | | Mira, trợ lý AI (trong ứng dụng) | MCP (trong Claude hoặc ChatGPT) | API |
 | --- | --- | --- | --- |
-| Ai sử dụng | Bạn, trong prepza | Bạn, trong chat AI của bạn | Mã của nền tảng bạn |
+| Ai sử dụng | Bạn, trong testee | Bạn, trong chat AI của bạn | Mã của nền tảng bạn |
 | Cách yêu cầu | Bằng lời của chính bạn | Bằng lời của chính bạn | Các yêu cầu cố định do lập trình viên viết |
 | Ai duyệt thay đổi | Bạn, trên một thẻ | Bạn, trong ứng dụng AI của bạn | Mã của bạn, theo đúng cách đã viết |
-| Phù hợp nhất cho | Câu hỏi và việc nhanh | Kết hợp prepza với các công cụ và tệp khác của bạn | Tự động hóa chạy mà không cần ai theo dõi |
+| Phù hợp nhất cho | Câu hỏi và việc nhanh | Kết hợp testee với các công cụ và tệp khác của bạn | Tự động hóa chạy mà không cần ai theo dõi |
 | Đăng nhập với tư cách | Bạn | Bạn | Một khóa của công ty |
 
 Hãy dùng Mira hoặc MCP khi có người trực tiếp tham gia. Hãy dùng API khi hệ thống của bạn cần tự mời ứng viên và thu thập kết quả, ví dụ từ trang tuyển dụng hoặc một công cụ nhân sự nội bộ.
@@ -57,7 +57,7 @@ Tuyển dụng có rất nhiều bước nhỏ, lặp đi lặp lại, nằm r�
 - **Câu hỏi về quy trình tuyển dụng của bạn.** "Những ứng viên Senior Backend nào đã đạt trong tuần này?", "Ai chưa bắt đầu buổi phỏng vấn?", "Điểm trung bình của chúng ta cho vị trí data analyst là bao nhiêu?"
 - **Thiết lập.** "Tạo buổi phỏng vấn từ mô tả công việc này", "Đặt điểm đạt là 70%", "Cho ứng viên này thêm 50% thời gian."
 - **Việc hàng loạt.** "Mời 12 người này tham gia buổi phỏng vấn frontend", dán thẳng từ email hoặc bảng tính.
-- **Kết hợp nhiều nguồn.** Trong Claude hoặc ChatGPT, bạn có thể kết hợp prepza với các công cụ và tệp khác đã kết nối: so sánh mô tả công việc trong tài liệu của bạn với các chủ đề của buổi phỏng vấn, hoặc soạn tin nhắn cho các ứng viên lọt vào danh sách rút gọn.
+- **Kết hợp nhiều nguồn.** Trong Claude hoặc ChatGPT, bạn có thể kết hợp testee với các công cụ và tệp khác đã kết nối: so sánh mô tả công việc trong tài liệu của bạn với các chủ đề của buổi phỏng vấn, hoặc soạn tin nhắn cho các ứng viên lọt vào danh sách rút gọn.
 
 Điều nó không nên làm là đưa ra quyết định tuyển dụng. Điểm số hỗ trợ đánh giá của con người, không thay thế nó. Hãy để agent sắp xếp, tóm tắt và chuẩn bị, còn quyết định thì để con người đưa ra. Xem [Dùng AI trong tuyển dụng có hợp pháp ở EU không?](/guides/is-ai-hiring-legal-in-the-eu) để hiểu vì sao điều đó cũng quan trọng về mặt pháp lý.
 
@@ -77,29 +77,29 @@ Kết nối AI với dữ liệu tuyển dụng cần được cân nhắc cẩn
 
 Trước khi kết nối bất kỳ ứng dụng AI nào với dữ liệu công việc, hãy xem chính sách của công ty bạn về công cụ AI, và cho ứng viên biết trong thông báo quyền riêng tư những dịch vụ nào xử lý dữ liệu của họ.
 
-## Ba cách làm việc với prepza ngoài các trang của nó
+## Ba cách làm việc với testee ngoài các trang của nó
 
 ### 1. Mira, trợ lý AI tích hợp sẵn
 
-Chọn **hỏi Mira** ở thanh đầu trang của bất kỳ trang nào. Mira, trợ lý AI của prepza, biết các công ty, buổi phỏng vấn, ứng viên, credit và tích hợp của bạn, cũng như cách prepza hoạt động. Nó trả lời bằng ngôn ngữ của bạn, và bạn có thể gõ hoặc nói.
+Chọn **hỏi Mira** ở thanh đầu trang của bất kỳ trang nào. Mira, trợ lý AI của testee, biết các công ty, buổi phỏng vấn, ứng viên, credit và tích hợp của bạn, cũng như cách testee hoạt động. Nó trả lời bằng ngôn ngữ của bạn, và bạn có thể gõ hoặc nói.
 
 - **Nó trả lời từ dữ liệu của bạn**, với cùng phạm vi bạn thấy: quản trị viên thấy những gì quản trị viên thấy, người xem thấy những gì người xem thấy.
 - **Nó biết bạn đang ở trang nào.** Hỏi "Tôi có thể làm gì trên trang này?" để xem hướng dẫn của trang đó, hoặc "Ai là người giỏi nhất ở đây?" trong danh sách ứng viên của một buổi phỏng vấn, và nó trả lời về buổi phỏng vấn đó mà không hỏi lại là buổi nào.
 - **Nó chuẩn bị thay đổi, bạn xác nhận.** Khi được yêu cầu mời ứng viên, nó hiển thị một thẻ ghi đúng những gì sẽ xảy ra, chẳng hạn "Mời 12 ứng viên tham gia Backend developer". Không có gì chạy cho đến khi bạn chọn xác nhận.
 - **Nó cho thấy nguồn.** Bên dưới câu trả lời, bạn thấy các ứng viên hoặc buổi phỏng vấn nó đã dùng và đường dẫn đến trang gốc.
-- **Nó bám sát chủ đề.** Nó trả lời về prepza và việc tuyển dụng với prepza, và từ chối những câu hỏi khác.
+- **Nó bám sát chủ đề.** Nó trả lời về testee và việc tuyển dụng với testee, và từ chối những câu hỏi khác.
 
-### 2. prepza trong Claude hoặc ChatGPT, qua MCP
+### 2. testee trong Claude hoặc ChatGPT, qua MCP
 
-Nếu bạn đã làm việc trong Claude hoặc ChatGPT, bạn có thể đưa prepza vào đó. Máy chủ MCP của prepza cung cấp cùng các công cụ như Mira, trợ lý tích hợp sẵn.
+Nếu bạn đã làm việc trong Claude hoặc ChatGPT, bạn có thể đưa testee vào đó. Máy chủ MCP của testee cung cấp cùng các công cụ như Mira, trợ lý tích hợp sẵn.
 
 **Cách kết nối:**
 
-1. Trong prepza, mở tab **Tích hợp** của một công ty và chọn **Ứng dụng AI**. Sao chép địa chỉ máy chủ: `https://prepza.ai/mcp`.
-2. **Trong Claude:** mở Settings, rồi Connectors, và thêm một custom connector với địa chỉ đó. **Trong Claude Code:** chạy `claude mcp add --transport http prepza https://prepza.ai/mcp`. **Trong ChatGPT:** thêm nó dưới dạng custom connector trong phần cài đặt ứng dụng và connector.
-3. Ứng dụng AI của bạn mở trang đăng nhập của prepza. Đăng nhập, kiểm tra ứng dụng nào đang yêu cầu, rồi chọn **Cho phép**. Để ứng dụng chỉ có thể đọc, hãy tắt **Cho phép thay đổi** trước.
+1. Trong testee, mở tab **Tích hợp** của một công ty và chọn **Ứng dụng AI**. Sao chép địa chỉ máy chủ: `https://testee.ai/mcp`.
+2. **Trong Claude:** mở Settings, rồi Connectors, và thêm một custom connector với địa chỉ đó. **Trong Claude Code:** chạy `claude mcp add --transport http testee https://testee.ai/mcp`. **Trong ChatGPT:** thêm nó dưới dạng custom connector trong phần cài đặt ứng dụng và connector.
+3. Ứng dụng AI của bạn mở trang đăng nhập của testee. Đăng nhập, kiểm tra ứng dụng nào đang yêu cầu, rồi chọn **Cho phép**. Để ứng dụng chỉ có thể đọc, hãy tắt **Cho phép thay đổi** trước.
 
-Từ đó trở đi, hãy hỏi trong chat như khi hỏi một đồng nghiệp: "Trong prepza, ba ứng viên hàng đầu cho Product designer là ai?" Hầu hết ứng dụng AI sẽ hỏi bạn trước khi thay đổi, và cảnh báo trước bất kỳ thao tác nào không thể hoàn tác: prepza cho chúng biết thao tác nào thay đổi hoặc xóa dữ liệu.
+Từ đó trở đi, hãy hỏi trong chat như khi hỏi một đồng nghiệp: "Trong testee, ba ứng viên hàng đầu cho Product designer là ai?" Hầu hết ứng dụng AI sẽ hỏi bạn trước khi thay đổi, và cảnh báo trước bất kỳ thao tác nào không thể hoàn tác: testee cho chúng biết thao tác nào thay đổi hoặc xóa dữ liệu.
 
 **Những gì vẫn giống như trong ứng dụng:**
 
@@ -115,13 +115,13 @@ Từ đó trở đi, hãy hỏi trong chat như khi hỏi một đồng nghiệp
 
 ### 3. Nền tảng riêng của bạn, qua API
 
-Để tự động hóa không cần AI, prepza có API, được mô tả trong [tài liệu cho nhà phát triển](/api-docs).
+Để tự động hóa không cần AI, testee có API, được mô tả trong [tài liệu cho nhà phát triển](/api-docs).
 
 1. Chủ sở hữu hoặc quản trị viên mở tab **Tích hợp** của một công ty, rồi **API**, và chọn **Khóa mới**. Đặt tên theo nền tảng sẽ dùng nó, chọn thời điểm hết hạn và chỉ đánh dấu những gì nó cần: khóa của bảng điều khiển chỉ đọc, khóa của trang tuyển dụng còn mời ứng viên. Sau này bạn có thể thêm hoặc bớt quyền. Khóa chỉ hiển thị một lần; hãy lưu ở nơi an toàn.
 2. Nền tảng của bạn gửi yêu cầu bằng khóa đó: liệt kê các buổi phỏng vấn của công ty, liệt kê hoặc xem ứng viên cùng điểm, kết quả đạt hay không và các cảnh báo về tính trung thực, và mời ứng viên.
-3. Thêm một **webhook**: một địa chỉ trên nền tảng của bạn mà prepza gọi tới, có chữ ký, khi một ứng viên bắt đầu, làm xong, không nhận được lời mời, hết hạn lời mời hoặc bị xóa khỏi buổi phỏng vấn, và khi một buổi phỏng vấn sẵn sàng, để bạn không phải hỏi đi hỏi lại. Trang API có thể gửi cho webhook này một sự kiện thử nghiệm và hiển thị nhật ký gửi của nó.
+3. Thêm một **webhook**: một địa chỉ trên nền tảng của bạn mà testee gọi tới, có chữ ký, khi một ứng viên bắt đầu, làm xong, không nhận được lời mời, hết hạn lời mời hoặc bị xóa khỏi buổi phỏng vấn, và khi một buổi phỏng vấn sẵn sàng, để bạn không phải hỏi đi hỏi lại. Trang API có thể gửi cho webhook này một sự kiện thử nghiệm và hiển thị nhật ký gửi của nó.
 
-Mỗi ứng viên đi kèm đường dẫn đến toàn bộ kết quả trong prepza và, cho đến khi làm xong, đường dẫn mời riêng của họ, để nền tảng của bạn có thể gửi nó trong tin nhắn của chính mình nếu bạn muốn. Khi nền tảng của bạn đã biết ứng viên là ai, hãy mời họ mà không cần đăng nhập: prepza không gửi email nào, và ứng viên làm bài phỏng vấn từ đường dẫn mà không cần đăng nhập vào prepza, vì vậy chỉ gửi đường dẫn cho chính họ. Lời mời cũng có thể đưa ứng viên quay lại trang web của bạn (bất kỳ địa chỉ https nào) bằng một nút trên trang hoàn thành, và đặt giao diện sáng hoặc tối theo màu của công ty bạn. Với SDK của prepza, chính trang của bạn có thể hiển thị buổi phỏng vấn, nhưng chỉ trên các trang web mà công ty bạn cho phép trên trang API. API và webhook không phụ thuộc vào các trang web đó: thay vào đó, mỗi khóa có thể được giới hạn ở địa chỉ IP của các máy chủ của bạn. Việc xác minh chỉ thêm huy hiệu công ty đã xác minh.
+Mỗi ứng viên đi kèm đường dẫn đến toàn bộ kết quả trong testee và, cho đến khi làm xong, đường dẫn mời riêng của họ, để nền tảng của bạn có thể gửi nó trong tin nhắn của chính mình nếu bạn muốn. Khi nền tảng của bạn đã biết ứng viên là ai, hãy mời họ mà không cần đăng nhập: testee không gửi email nào, và ứng viên làm bài phỏng vấn từ đường dẫn mà không cần đăng nhập vào testee, vì vậy chỉ gửi đường dẫn cho chính họ. Lời mời cũng có thể đưa ứng viên quay lại trang web của bạn (bất kỳ địa chỉ https nào) bằng một nút trên trang hoàn thành, và đặt giao diện sáng hoặc tối theo màu của công ty bạn. Với SDK của testee, chính trang của bạn có thể hiển thị buổi phỏng vấn, nhưng chỉ trên các trang web mà công ty bạn cho phép trên trang API. API và webhook không phụ thuộc vào các trang web đó: thay vào đó, mỗi khóa có thể được giới hạn ở địa chỉ IP của các máy chủ của bạn. Việc xác minh chỉ thêm huy hiệu công ty đã xác minh.
 
 Quy tắc vẫn như mọi nơi khác: điểm số hỗ trợ quyết định của con người, nên đừng tự động loại ứng viên dựa trên điểm.
 
@@ -131,18 +131,18 @@ Hãy bắt đầu từ việc ai làm và làm thường xuyên đến đâu.
 
 | Tình huống của bạn | Dùng |
 | --- | --- |
-| Bạn đang ở trong prepza và muốn câu trả lời nhanh: ai đã đạt, ai chưa bắt đầu, còn bao nhiêu credit | Mira, trợ lý tích hợp sẵn |
+| Bạn đang ở trong testee và muốn câu trả lời nhanh: ai đã đạt, ai chưa bắt đầu, còn bao nhiêu credit | Mira, trợ lý tích hợp sẵn |
 | Bạn muốn thiết lập một việc bằng vài lời: buổi phỏng vấn từ mô tả công việc, điểm đạt, thêm thời gian | Mira, trợ lý tích hợp sẵn |
-| Bạn đã làm việc cả ngày trong Claude hoặc ChatGPT và muốn có prepza ở đó | MCP |
-| Công việc cần prepza cùng thứ khác: tài liệu của bạn, bản nháp email, một công cụ đã kết nối khác | MCP |
+| Bạn đã làm việc cả ngày trong Claude hoặc ChatGPT và muốn có testee ở đó | MCP |
+| Công việc cần testee cùng thứ khác: tài liệu của bạn, bản nháp email, một công cụ đã kết nối khác | MCP |
 | Một recruiter đang di chuyển muốn kiểm tra quy trình tuyển dụng từ ứng dụng AI trên điện thoại | MCP |
 | Trang tuyển dụng hoặc hệ thống nhân sự của bạn cần tự mời ứng viên, không cần ai nhấp | API |
 | Kết quả cần về cơ sở dữ liệu hoặc bảng điều khiển của bạn ngay khi ứng viên làm xong | API, kèm webhook |
-| ATS của bạn là một trong những hệ thống prepza kết nối được (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Không cách nào trong số này: hãy kết nối ATS ở tab Tích hợp. Xem [Cách kết nối bài kiểm tra kỹ năng với ATS](/guides/ats-integration-skills-tests) |
+| ATS của bạn là một trong những hệ thống testee kết nối được (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Không cách nào trong số này: hãy kết nối ATS ở tab Tích hợp. Xem [Cách kết nối bài kiểm tra kỹ năng với ATS](/guides/ats-integration-skills-tests) |
 
 Một nguyên tắc đơn giản:
 
-- **Một người hỏi và kiểm tra từng thay đổi:** Mira trong prepza, hoặc MCP nếu người đó làm việc cả ngày trong Claude hay ChatGPT.
+- **Một người hỏi và kiểm tra từng thay đổi:** Mira trong testee, hoặc MCP nếu người đó làm việc cả ngày trong Claude hay ChatGPT.
 - **Phần mềm tự hành động, lần nào cũng như nhau:** API.
 - **Mới bắt đầu:** hãy thử Mira, trợ lý tích hợp sẵn, trước. Nó không cần thiết lập, và những gì bạn học được cũng áp dụng cho MCP.
 

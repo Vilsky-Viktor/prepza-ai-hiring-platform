@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 In generale, sì: usare l'IA nella selezione del personale è legale nel Regno Unito. Il Regno Unito non ha un'unica legge sull'IA come il regolamento sull'intelligenza artificiale dell'UE (EU AI Act). Si applicano invece l'Equality Act 2010 e il GDPR britannico (UK GDPR), agli strumenti di IA come a qualsiasi altro test, e dal 5 febbraio 2026 il GDPR britannico contiene nuove regole sulle decisioni basate unicamente su un trattamento automatizzato.
 
-Questa guida spiega le regole a grandi linee, cosa devono fare i datori di lavoro e come se ne occupa prepza. **Non costituisce consulenza legale.** Riflette le regole in vigore a ottobre 2026; alcune sono nuove e le linee guida dell'autorità di controllo al riguardo sono ancora in fase di aggiornamento.
+Questa guida spiega le regole a grandi linee, cosa devono fare i datori di lavoro e come se ne occupa testee. **Non costituisce consulenza legale.** Riflette le regole in vigore a ottobre 2026; alcune sono nuove e le linee guida dell'autorità di controllo al riguardo sono ancora in fase di aggiornamento.
 
 ## La risposta breve
 
@@ -99,21 +99,21 @@ Se un fornitore invia dati di candidati del Regno Unito negli Stati Uniti, può 
 8. **Monitora l'equità** dei tuoi risultati con dati che i candidati ti hanno fornito di persona, mai con dati dedotti.
 9. **Non scartare mai in base al solo punteggio.** Guarda le risposte.
 
-## Come se ne occupa prepza
+## Come se ne occupa testee
 
-prepza svolge colloqui di competenze a scelta multipla e a tempo, scritti dall'IA a partire da una descrizione del ruolo. Nel Regno Unito il suo approccio è lo stesso che nell'UE. prepza non dichiara di essere conforme o certificato.
+testee svolge colloqui di competenze a scelta multipla e a tempo, scritti dall'IA a partire da una descrizione del ruolo. Nel Regno Unito il suo approccio è lo stesso che nell'UE. testee non dichiara di essere conforme o certificato.
 
 Ecco cosa significa oggi nel prodotto:
 
 - **L'IA scrive le domande e le relative chiavi di correzione; la correzione segue regole fisse.** Nessuna IA legge o giudica la risposta di un candidato, e non si usa alcuna analisi di video o volto. Nella modalità vocale, il parlato viene trasformato in testo e abbinato a un'opzione, che viene detta al candidato e mostrata sullo schermo: una sola opzione indicata chiaramente viene registrata subito, una scelta di più opzioni viene prima confermata. Il parlato non viene mai conservato e la voce non viene mai analizzata.
 - **Approvi tu gli argomenti** prima che venga scritta qualsiasi domanda, e scegli tu la soglia di superamento.
-- **Decidono le persone.** La pagina dei risultati e i report PDF ricordano al tuo team di esaminare i risultati; prepza non scarta candidati né invia messaggi di rifiuto.
+- **Decidono le persone.** La pagina dei risultati e i report PDF ricordano al tuo team di esaminare i risultati; testee non scarta candidati né invia messaggi di rifiuto.
 - **I candidati vengono informati** prima di iniziare che le domande sono scritte dall'IA, che persone della tua azienda esaminano i risultati e decidono, e che possono chiedere un riesame.
-- **Nessuna caratteristica protetta.** prepza non chiede, non deduce e non conserva mai sesso, origine etnica, età, disabilità o altre caratteristiche protette dei candidati.
+- **Nessuna caratteristica protetta.** testee non chiede, non deduce e non conserva mai sesso, origine etnica, età, disabilità o altre caratteristiche protette dei candidati.
 - **Monitoraggio dell'equità.** Il proprietario della tua azienda può scaricare un file per un audit sui bias dalla pagina Registro attività dell'azienda: per ogni candidato che ha terminato, il voto, la soglia di superamento, se ha superato il test e se ha ottenuto un punteggio sopra la mediana del colloquio, con l'email come chiave. Abbinalo alle risposte che i candidati ti hanno dato nel tuo modulo sulle pari opportunità, poi rimuovi l'email.
-- **Più tempo**, +25%, +50% o +100% su ogni domanda, può essere concesso a qualsiasi candidato che lo chieda, prima che inizi. prepza conserva solo l'entità, mai il motivo.
+- **Più tempo**, +25%, +50% o +100% su ogni domanda, può essere concesso a qualsiasi candidato che lo chieda, prima che inizi. testee conserva solo l'entità, mai il motivo.
 - **Documenti.** I modelli di informativa per i candidati, le istruzioni per le aziende e un modello di DPIA sono nella [pagina dei documenti](/documents).
-- **Dati.** La tua azienda è il titolare del trattamento e prepza il responsabile, secondo l'[accordo sul trattamento dei dati](/dpa), che copre il diritto britannico. I dati sono ospitati nell'UE e non vengono usati per addestrare modelli di IA; i trasferimenti di dati di candidati del Regno Unito a sub-responsabili negli Stati Uniti si basano sul ponte per i dati Regno Unito–USA o sull'addendum britannico (vedi l'[informativa sulla privacy](/privacy)). I dati dei candidati vengono cancellati 12 mesi dopo l'invito.
+- **Dati.** La tua azienda è il titolare del trattamento e testee il responsabile, secondo l'[accordo sul trattamento dei dati](/dpa), che copre il diritto britannico. I dati sono ospitati nell'UE e non vengono usati per addestrare modelli di IA; i trasferimenti di dati di candidati del Regno Unito a sub-responsabili negli Stati Uniti si basano sul ponte per i dati Regno Unito–USA o sull'addendum britannico (vedi l'[informativa sulla privacy](/privacy)). I dati dei candidati vengono cancellati 12 mesi dopo l'invito.
 
 ## Letture correlate
 

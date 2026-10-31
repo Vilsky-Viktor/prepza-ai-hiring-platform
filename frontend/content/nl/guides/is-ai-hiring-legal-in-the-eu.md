@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 Over het algemeen wel: AI gebruiken bij werving en selectie is legaal in de EU. Maar de meeste AI-tools die kandidaten beoordelen vallen onder de hoogrisicocategorie van de AI-verordening (EU AI Act), en dat brengt verplichtingen mee voor de leverancier en voor jou, de werkgever. Een paar praktijken zijn helemaal verboden. En de AVG (GDPR) is van toepassing op kandidaatgegevens, zoals altijd.
 
-Deze gids legt de regels op hoofdlijnen uit, de data die ertoe doen, wat werkgevers moeten doen en hoe prepza ermee omgaat. **Dit is geen juridisch advies.** Het geeft de regels weer zoals ze in oktober 2026 gelden. De regels zijn nieuw, richtsnoeren worden nog afgerond en nationaal recht voegt eigen eisen toe. Overleg met je eigen jurist voordat je hierop vertrouwt.
+Deze gids legt de regels op hoofdlijnen uit, de data die ertoe doen, wat werkgevers moeten doen en hoe testee ermee omgaat. **Dit is geen juridisch advies.** Het geeft de regels weer zoals ze in oktober 2026 gelden. De regels zijn nieuw, richtsnoeren worden nog afgerond en nationaal recht voegt eigen eisen toe. Overleg met je eigen jurist voordat je hierop vertrouwt.
 
 ## Het korte antwoord
 
@@ -111,15 +111,15 @@ Kandidaatgegevens zijn persoonsgegevens, en AI verandert niets aan de AVG. De ke
 8. **Bied aanpassingen aan,** zoals extra tijd, aan kandidaten die die nodig hebben.
 9. **Wijs nooit af op alleen een score.** Bekijk de antwoorden.
 
-## Hoe prepza hiermee omgaat
+## Hoe testee hiermee omgaat
 
-prepza neemt getimede meerkeuze-vaardigheidstests af die door AI worden geschreven op basis van een functieomschrijving. Omdat het kandidaten scoort en rangschikt, concludeert prepza in zijn eigen analyse dat het zeer waarschijnlijk hoog risico is onder bijlage III, punt 4, onder a), met verplichtingen vanaf 2 december 2027. Het bereidt zich op die basis voor. prepza claimt niet dat het compliant of gecertificeerd is.
+testee neemt getimede meerkeuze-vaardigheidstests af die door AI worden geschreven op basis van een functieomschrijving. Omdat het kandidaten scoort en rangschikt, concludeert testee in zijn eigen analyse dat het zeer waarschijnlijk hoog risico is onder bijlage III, punt 4, onder a), met verplichtingen vanaf 2 december 2027. Het bereidt zich op die basis voor. testee claimt niet dat het compliant of gecertificeerd is.
 
 Zo ziet dat er vandaag in het product uit:
 
 - **AI schrijft de vragen en de antwoordsleutels; het nakijken volgt vaste regels.** Geen AI leest of beoordeelt het antwoord van een kandidaat, en er wordt geen video-, stem- of gezichtsanalyse gebruikt. Als AI later een sleutel corrigeert, geldt de correctie voor kandidaten die daarna beginnen; eerdere resultaten veranderen niet.
 - **Jij keurt de onderwerpen goed** voordat er ook maar één vraag wordt geschreven, en je kunt elke vraag zien.
-- **Mensen beslissen.** De resultatenpagina en de pdf-rapporten herinneren je team eraan de resultaten te beoordelen; prepza wijst geen kandidaten af en stuurt geen afwijzingsberichten.
+- **Mensen beslissen.** De resultatenpagina en de pdf-rapporten herinneren je team eraan de resultaten te beoordelen; testee wijst geen kandidaten af en stuurt geen afwijzingsberichten.
 - **Kandidaten krijgen te horen,** voordat ze beginnen, dat de vragen door AI zijn geschreven, dat mensen bij jouw bedrijf de resultaten beoordelen en beslissen, en dat ze om een herbeoordeling kunnen vragen.
 - **Extra tijd** kan worden gegeven aan elke kandidaat die erom vraagt.
 - **Vastlegging.** De getoonde vragen, antwoorden, tijden en integriteitsgebeurtenissen worden vastgelegd.

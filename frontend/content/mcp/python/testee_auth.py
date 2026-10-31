@@ -1,4 +1,4 @@
-# Signs your agent in to prepza's MCP server, shared by the examples.
+# Signs your agent in to testee's MCP server, shared by the examples.
 # pip install "mcp==1.30.0"
 import asyncio
 import json
@@ -11,9 +11,9 @@ from urllib.parse import parse_qs, urlparse
 from mcp.client.auth import OAuthClientProvider, TokenStorage
 from mcp.shared.auth import OAuthClientInformationFull, OAuthClientMetadata, OAuthToken
 
-PREPZA_MCP = os.environ.get("PREPZA_MCP", "https://prepza.ai/mcp")
+TESTEE_MCP = os.environ.get("TESTEE_MCP", "https://testee.ai/mcp")
 REDIRECT = "http://localhost:8765/callback"
-STORE = Path("prepza-tokens.json")
+STORE = Path("testee-tokens.json")
 
 
 class FileStorage(TokenStorage):
@@ -44,7 +44,7 @@ class FileStorage(TokenStorage):
 
 
 def wait_for_code() -> tuple[str, str | None]:
-    """The code prepza's consent page sends back to this computer once you allow the agent."""
+    """The code testee's consent page sends back to this computer once you allow the agent."""
     found = {}
 
     class Callback(BaseHTTPRequestHandler):
@@ -52,7 +52,7 @@ def wait_for_code() -> tuple[str, str | None]:
             found.update(parse_qs(urlparse(self.path).query))
             self.send_response(200)
             self.end_headers()
-            self.wfile.write(b"Signed in to prepza. You can close this tab.")
+            self.wfile.write(b"Signed in to testee. You can close this tab.")
 
     HTTPServer(("localhost", 8765), Callback).handle_request()
 
@@ -68,16 +68,16 @@ async def callback() -> tuple[str, str | None]:
 
 
 def connection() -> dict:
-    """With PREPZA_API_KEY set, the agent signs in with that company API key (a server, no
+    """With TESTEE_API_KEY set, the agent signs in with that company API key (a server, no
     browser); otherwise as you, allowing it once in the browser."""
-    key = os.environ.get("PREPZA_API_KEY")
+    key = os.environ.get("TESTEE_API_KEY")
 
     if key:
         return {"headers": {"Authorization": f"Bearer {key}"}}
 
     metadata = OAuthClientMetadata(client_name="My agent", redirect_uris=[REDIRECT])
     provider = OAuthClientProvider(
-        server_url=PREPZA_MCP,
+        server_url=TESTEE_MCP,
         client_metadata=metadata,
         storage=FileStorage(),
         redirect_handler=open_browser,

@@ -66,9 +66,9 @@ Powiedz kandydatom z góry, jakie narzędzia są dozwolone na każdym etapie. Ja
 
 Pełną wersję krok po kroku znajdziesz w poradniku [Jak rekrutować programistów](/guides/hiring-engineers).
 
-## Gdzie pasuje prepza
+## Gdzie pasuje testee
 
-prepza dobrze sprawdza się w kroku 2. Zamienia Twój opis stanowiska w rozmowę na czas sprawdzającą wiedzę, z pytaniami wyboru, a Ty przeglądasz proponowane tematy, zanim powstanie jakiekolwiek pytanie, więc test obejmuje Twój stos technologiczny i nic poza nim.
+testee dobrze sprawdza się w kroku 2. Zamienia Twój opis stanowiska w rozmowę na czas sprawdzającą wiedzę, z pytaniami wyboru, a Ty przeglądasz proponowane tematy, zanim powstanie jakiekolwiek pytanie, więc test obejmuje Twój stos technologiczny i nic poza nim.
 
 - **Pojęcia i teoria z opisu stanowiska:** bazy danych, API, architektura, zachowanie frameworka, praktyki bezpieczeństwa.
 - **Pytania o czytanie kodu:** krótki fragment kodu i pytania o to, co wypisze lub zwróci, co robi, dlaczego nie działa albo która zmiana go naprawi. To ta sama umiejętność przeglądania kodu, od której zależy praca z AI.
@@ -76,7 +76,7 @@ prepza dobrze sprawdza się w kroku 2. Zamienia Twój opis stanowiska w rozmowę
 - **Sygnały dotyczące rzetelności:** karty wyników oznaczają odpowiedzi zbyt szybkie, by kandydat zdążył przeczytać pytanie, momenty opuszczenia strony i próby kopiowania. Gdy kandydat skończy, jego raport wskazuje też wzorce odpowiedzi, jakie zwykle zostawia przekazywanie pytań AI i przepisywanie jej odpowiedzi: mniej więcej tyle samo czasu przy każdym pytaniu bez względu na jego długość czy trudność albo poprawne odpowiedzi na trudne pytania przy błędnych na łatwe. Oznaczenie czy wzorzec to powód, by przyjrzeć się bliżej, a nie dowód oszustwa.
 - **Pytania na rozmowę na żywo:** raport podsuwa do 3 pytań, na które kandydat odpowiedział poprawnie, z jego najmocniejszych tematów, do omówienia na rozmowie na żywo, gdzie AI nie odpowie za niego.
 
-Czego prepza nie robi: kandydaci nie piszą, nie uruchamiają ani nie debugują kodu w prepza, a prepza nie obserwuje, jak korzystają z asystenta AI. To należy do etapu praktycznego, prowadzonego we własnym zakresie lub na platformie dla programistów, który uzupełnia test wiedzy. Gotowe testy na start znajdziesz w [testach umiejętności według roli](/tests), a o tym, jak prepza korzysta z AI i co zostawia ludziom, przeczytasz na stronie [Rozmowy rekrutacyjne z AI](/ai-interviews).
+Czego testee nie robi: kandydaci nie piszą, nie uruchamiają ani nie debugują kodu w testee, a testee nie obserwuje, jak korzystają z asystenta AI. To należy do etapu praktycznego, prowadzonego we własnym zakresie lub na platformie dla programistów, który uzupełnia test wiedzy. Gotowe testy na start znajdziesz w [testach umiejętności według roli](/tests), a o tym, jak testee korzysta z AI i co zostawia ludziom, przeczytasz na stronie [Rozmowy rekrutacyjne z AI](/ai-interviews).
 
 ## Uczciwość i doświadczenie kandydata
 

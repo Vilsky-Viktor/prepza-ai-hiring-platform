@@ -72,7 +72,7 @@ Uma boa triagem de conhecimentos é:
 - **Curta:** poucos tópicos com cerca de 10 perguntas cada, para que bons candidatos com outras propostas ainda a concluam.
 - **Igual para todos:** os mesmos tópicos, o mesmo número de perguntas e os mesmos limites de tempo.
 
-É aqui que a prepza se encaixa. Ela transforma a sua descrição da vaga numa entrevista de conhecimentos de múltipla escolha cronometrada. Você revisa os tópicos propostos antes de qualquer pergunta ser escrita, então o teste cobre a sua stack e nada mais. Para uma vaga de engenharia, isso pode incluir:
+É aqui que a testee se encaixa. Ela transforma a sua descrição da vaga numa entrevista de conhecimentos de múltipla escolha cronometrada. Você revisa os tópicos propostos antes de qualquer pergunta ser escrita, então o teste cobre a sua stack e nada mais. Para uma vaga de engenharia, isso pode incluir:
 
 - **Perguntas de leitura de código:** um pequeno trecho de código com perguntas sobre o que ele imprime ou retorna, o que faz, por que falha ou qual mudança o corrige.
 - **SQL:** uma tabela pequena e uma consulta, com a pergunta de quais linhas voltam.
@@ -80,7 +80,7 @@ Uma boa triagem de conhecimentos é:
 
 Cada candidato recebe seu próprio conjunto aleatório de perguntas, com contagem regressiva em cada uma. Você vê uma ficha de avaliação com cada resposta e quanto tempo levou, além de alertas para respostas rápidas demais, saídas da página, tentativas de cópia e padrões incomuns nas respostas e nos tempos. Um alerta é um motivo para olhar com mais atenção, não prova de nada. O relatório também sugere perguntas que o candidato acertou, para explorar na próxima entrevista.
 
-O que a prepza não faz: os candidatos não escrevem, executam nem depuram código na prepza. Ler código e escrever código são habilidades diferentes, então a próxima etapa continua importante. Veja os [testes de habilidades por cargo](/tests) para começar com testes prontos.
+O que a testee não faz: os candidatos não escrevem, executam nem depuram código na testee. Ler código e escrever código são habilidades diferentes, então a próxima etapa continua importante. Veja os [testes de habilidades por cargo](/tests) para começar com testes prontos.
 
 ## Passo 4: Desafio para casa ou live coding
 
@@ -128,7 +128,7 @@ Um processo estruturado também é mais justo, mas só se você o aplicar de for
 
 - **Perguntas consistentes** em cada etapa, para todos os candidatos da mesma vaga.
 - **Rubricas escritas com antecedência,** para que todos sejam avaliados pelos mesmos critérios.
-- **Adaptações:** ofereça tempo extra ou outro formato aos candidatos que pedirem, por exemplo por causa de uma deficiência. Na prepza, você pode dar tempo extra a um candidato antes de ele começar.
+- **Adaptações:** ofereça tempo extra ou outro formato aos candidatos que pedirem, por exemplo por causa de uma deficiência. Na testee, você pode dar tempo extra a um candidato antes de ele começar.
 - **Acompanhe os resultados.** Métodos diferentes mostram diferenças de pontuação diferentes entre grupos. Sackett et al. encontraram diferenças médias maiores em testes de conhecimentos da função e amostras de trabalho do que em entrevistas estruturadas, o que é mais um motivo para combinar métodos. Acompanhe as taxas de aprovação em cada etapa.
 - **Pessoas decidem.** Uma pontuação apoia uma decisão; ela não toma a decisão. Olhe as respostas antes de reprovar alguém.
 

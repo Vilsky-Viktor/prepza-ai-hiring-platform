@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Genel olarak evet: Birleşik Krallık'ta işe alımda yapay zekâ kullanmak yasaldır. Birleşik Krallık'ın AB'nin Yapay Zekâ Yasası gibi tek bir yapay zekâ yasası yoktur. Bunun yerine 2010 Eşitlik Yasası (Equality Act 2010) ve UK GDPR, her test gibi yapay zekâ araçlarına da uygulanır; 5 Şubat 2026'dan bu yana UK GDPR'da yalnızca otomatik yollarla verilen kararlara ilişkin yeni kurallar vardır.
 
-Bu rehber kuralları üst düzeyde, işverenlerin yapması gerekenleri ve prepza'nın konuya yaklaşımını açıklar. **Hukuki tavsiye değildir.** Ekim 2026 itibarıyla geçerli kuralları yansıtır; bazıları yenidir ve düzenleyici kurumun bunlara ilişkin kılavuzları hâlâ güncellenmektedir.
+Bu rehber kuralları üst düzeyde, işverenlerin yapması gerekenleri ve testee'nin konuya yaklaşımını açıklar. **Hukuki tavsiye değildir.** Ekim 2026 itibarıyla geçerli kuralları yansıtır; bazıları yenidir ve düzenleyici kurumun bunlara ilişkin kılavuzları hâlâ güncellenmektedir.
 
 ## Kısa yanıt
 
@@ -99,21 +99,21 @@ Bir sağlayıcı Birleşik Krallık'taki adayların verilerini Amerika Birleşik
 8. **Adaleti** kendi sonuçlarınız üzerinde, adayların size kendilerinin verdiği verilerle izleyin; asla çıkarsanan verilerle değil.
 9. **Asla yalnızca puana bakarak reddetmeyin.** Yanıtlara bakın.
 
-## prepza'nın yaklaşımı
+## testee'nin yaklaşımı
 
-prepza, bir iş tanımından yapay zekâ tarafından yazılmış süreli, çoktan seçmeli beceri mülakatları yürütür. Birleşik Krallık'taki yaklaşımı AB'dekiyle aynıdır. prepza uyumlu veya sertifikalı olduğunu iddia etmiyor.
+testee, bir iş tanımından yapay zekâ tarafından yazılmış süreli, çoktan seçmeli beceri mülakatları yürütür. Birleşik Krallık'taki yaklaşımı AB'dekiyle aynıdır. testee uyumlu veya sertifikalı olduğunu iddia etmiyor.
 
 Bunun bugün üründeki karşılığı:
 
 - **Soruları ve cevap anahtarlarını yapay zekâ yazar; değerlendirme sabit kurallara göre yapılır.** Hiçbir yapay zekâ adayın yanıtını okumaz veya yargılamaz; video veya yüz analizi kullanılmaz. Sesli modda konuşma metne dönüştürülür ve bir seçenekle eşleştirilir; bu seçenek adaya söylenir ve ekranda gösterilir: açıkça söylenen tek bir seçenek hemen cevap olarak kaydedilir, birden çok seçenekli bir seçim ise önce onaylatılır. Konuşma asla saklanmaz ve ses asla analiz edilmez.
 - **Konuları siz onaylarsınız;** bu, herhangi bir soru yazılmadan önce olur ve geçme notunu siz seçersiniz.
-- **Kararı insanlar verir.** Sonuçlar sayfası ve PDF raporlar ekibinize sonuçları incelemesini hatırlatır; prepza adayları reddetmez veya ret mesajı göndermez.
+- **Kararı insanlar verir.** Sonuçlar sayfası ve PDF raporlar ekibinize sonuçları incelemesini hatırlatır; testee adayları reddetmez veya ret mesajı göndermez.
 - **Adaylar başlamadan önce bilgilendirilir:** soruların yapay zekâ tarafından yazıldığı, sonuçları şirketinizdeki kişilerin inceleyip karar verdiği ve yeniden inceleme talep edebilecekleri.
-- **Korunan özellik yok.** prepza adayların cinsiyetini, etnik kökenini, yaşını, engelliliğini veya diğer korunan özelliklerini asla sormaz, çıkarsamaz veya saklamaz.
+- **Korunan özellik yok.** testee adayların cinsiyetini, etnik kökenini, yaşını, engelliliğini veya diğer korunan özelliklerini asla sormaz, çıkarsamaz veya saklamaz.
 - **Adaletin izlenmesi.** Şirketinizin sahibi, şirketin İşlem kaydı sayfasından bir yanlılık denetimi dosyası indirebilir: mülakatı bitiren her adayın notu, geçme notu, geçip geçmediği ve mülakatın medyanının üzerinde puan alıp almadığı, e-posta adresine göre eşleştirilmiş şekilde. Bunu adayların kendi fırsat eşitliği formunuzda size verdiği yanıtlarla birleştirin, ardından e-posta adresini silin.
-- **Ek süre:** isteyen her adaya, başlamadan önce, her soru için +%25, +%50 veya +%100 ek süre verilebilir. prepza yalnızca miktarı saklar, nedenini asla saklamaz.
+- **Ek süre:** isteyen her adaya, başlamadan önce, her soru için +%25, +%50 veya +%100 ek süre verilebilir. testee yalnızca miktarı saklar, nedenini asla saklamaz.
 - **Belgeler.** Aday aydınlatma metni şablonları, şirketler için talimatlar ve bir DPIA şablonu [belgeler sayfasında](/documents) yer alır.
-- **Veriler.** Şirketiniz veri sorumlusu, prepza ise Birleşik Krallık hukukunu kapsayan [veri işleme sözleşmesi](/dpa) kapsamında veri işleyendir. Veriler AB'de barındırılır ve yapay zekâ modellerini eğitmek için kullanılmaz; Birleşik Krallık'taki adayların verilerinin ABD'deki alt işleyenlere aktarımı, Birleşik Krallık–ABD veri köprüsüne veya Birleşik Krallık ekine dayanır (bkz. [gizlilik politikası](/privacy)). Aday verileri davetten 12 ay sonra silinir.
+- **Veriler.** Şirketiniz veri sorumlusu, testee ise Birleşik Krallık hukukunu kapsayan [veri işleme sözleşmesi](/dpa) kapsamında veri işleyendir. Veriler AB'de barındırılır ve yapay zekâ modellerini eğitmek için kullanılmaz; Birleşik Krallık'taki adayların verilerinin ABD'deki alt işleyenlere aktarımı, Birleşik Krallık–ABD veri köprüsüne veya Birleşik Krallık ekine dayanır (bkz. [gizlilik politikası](/privacy)). Aday verileri davetten 12 ay sonra silinir.
 
 ## İlgili yazılar
 

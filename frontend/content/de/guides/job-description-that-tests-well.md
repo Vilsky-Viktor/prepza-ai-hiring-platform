@@ -102,9 +102,9 @@ Jede Zeile nennt etwas, wonach eine Frage fragen kann, das Niveau ist angegeben,
 - Harte Anforderungen bleiben der Sichtung der Lebensläufe überlassen.
 - Keine Formulierung über die Person, die du dir vorstellst, nur über die Arbeit.
 
-## Wie prepza eine Stellenbeschreibung nutzt
+## Wie testee eine Stellenbeschreibung nutzt
 
-prepza ist ein Beispiel für ein Tool, das aus einer Stellenbeschreibung einen Multiple-Choice-Fachtest mit Zeitlimit erstellt. So geht es mit dem Text um, damit du siehst, wie sich die Tipps oben auswirken:
+testee ist ein Beispiel für ein Tool, das aus einer Stellenbeschreibung einen Multiple-Choice-Fachtest mit Zeitlimit erstellt. So geht es mit dem Text um, damit du siehst, wie sich die Tipps oben auswirken:
 
 - **Es liest jede Anforderung.** KI erkennt jede Fähigkeit, jedes Tool, jedes Konzept, jede Qualifikation und jede tägliche Aufgabe, aus jedem Abschnitt, auch aus denen, die als wünschenswert oder „von Vorteil“ markiert sind. Aussagen zur Kultur, Benefits und Slogans bleiben außen vor.
 - **Austauschbare Beispiele werden zu einem.** „Tools wie A, B oder vergleichbare“ bleibt als Art des Tools erhalten, mit dem Tool, das der Text bevorzugt (oder dem am weitesten verbreiteten), als Beispiel. Mit „und“ verbundene Punkte bleiben getrennt. Wenn du also ein bestimmtes Tool brauchst, nenne nur dieses.

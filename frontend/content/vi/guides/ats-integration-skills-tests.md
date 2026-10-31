@@ -83,20 +83,20 @@ Trước khi bật cho một vị trí đang tuyển thật:
 - **Khóa gắn với người sắp nghỉ việc.** Một số khóa ATS hoạt động dưới danh nghĩa người đã tạo ra chúng. Khi tài khoản người đó bị đóng, kết nối dừng lại. Hãy dùng một tài khoản sẽ còn tồn tại, và kết nối lại khi mọi người đổi vai trò.
 - **Quên ứng viên ngoài ATS.** Ứng viên được giới thiệu và ứng viên ứng tuyển trực tiếp không bao giờ vào ATS vẫn cần lời mời. Hãy giữ cả cách mời thủ công.
 
-## Cách prepza thực hiện
+## Cách testee thực hiện
 
-prepza kết nối với **Workable, Greenhouse, Teamtailor, Recruitee và Breezy HR**, theo đúng quy trình ở trên.
+testee kết nối với **Workable, Greenhouse, Teamtailor, Recruitee và Breezy HR**, theo đúng quy trình ở trên.
 
-- **Khóa của bạn, bạn kiểm soát.** Chủ sở hữu hoặc quản trị viên kết nối ATS trong tab Tích hợp của công ty bằng một khóa do công ty bạn tạo trong ATS. prepza kiểm tra khóa trước khi lưu, lưu trữ ở dạng mã hóa và không bao giờ hiển thị lại. Ngắt kết nối sẽ xóa ngay khóa và các tin tuyển dụng đã liên kết.
-- **Liên kết một tin tuyển dụng với một buổi phỏng vấn.** Chọn một tin tuyển dụng trong ATS và giai đoạn kích hoạt lời mời, rồi liên kết với một buổi phỏng vấn có sẵn trong prepza hoặc tạo buổi mới từ nội dung tin tuyển dụng trong ATS. Bạn xem lại các chủ đề trước khi bất kỳ câu hỏi nào được viết.
+- **Khóa của bạn, bạn kiểm soát.** Chủ sở hữu hoặc quản trị viên kết nối ATS trong tab Tích hợp của công ty bằng một khóa do công ty bạn tạo trong ATS. testee kiểm tra khóa trước khi lưu, lưu trữ ở dạng mã hóa và không bao giờ hiển thị lại. Ngắt kết nối sẽ xóa ngay khóa và các tin tuyển dụng đã liên kết.
+- **Liên kết một tin tuyển dụng với một buổi phỏng vấn.** Chọn một tin tuyển dụng trong ATS và giai đoạn kích hoạt lời mời, rồi liên kết với một buổi phỏng vấn có sẵn trong testee hoặc tạo buổi mới từ nội dung tin tuyển dụng trong ATS. Bạn xem lại các chủ đề trước khi bất kỳ câu hỏi nào được viết.
 - **Chuyển ứng viên là lời mời được gửi.** Mỗi ứng viên chỉ được mời một lần cho mỗi buổi phỏng vấn, kể cả khi ATS gửi cùng một sự kiện hai lần.
-- **Kết quả trở lại ATS.** Khi ứng viên làm xong, prepza thêm một ghi chú hoặc bình luận vào hồ sơ của họ trong ATS, gồm điểm, có đạt hay không, các cảnh báo về tính trung thực (rời khỏi trang, cố sao chép, chọn câu trả lời quá nhanh để kịp đọc câu hỏi) và đường dẫn đến bảng điểm với mọi câu trả lời.
-- **Lỗi không bị bỏ qua.** Nếu không mời được một ứng viên, chẳng hạn vì công ty hết credit, chạm giới hạn email hoặc prepza đã tạm dừng lời mời, mọi thành viên của công ty đều nhận được thông báo ghi rõ tên ATS. Những ứng viên chưa được mời vì thiếu credit sẽ được mời tự động sau khi nạp credit, và các ứng viên đang chờ của bất kỳ tin tuyển dụng nào cũng có thể được mời lại chỉ với một cú nhấp.
-- **Slack, nếu bạn dùng.** prepza có thể đăng thông báo, chẳng hạn một ứng viên đã làm xong hoặc một ứng viên từ ATS không mời được, lên kênh Slack do bạn chọn.
-- **Nền tảng riêng của bạn.** Nếu ATS của bạn không có trong danh sách, [API](/api-docs) của prepza cho phép bạn mời ứng viên bằng khóa API và nhận một webhook có chữ ký khi ứng viên bắt đầu, làm xong, không nhận được lời mời, hết hạn lời mời hoặc bị xóa khỏi buổi phỏng vấn, và khi một buổi phỏng vấn sẵn sàng.
+- **Kết quả trở lại ATS.** Khi ứng viên làm xong, testee thêm một ghi chú hoặc bình luận vào hồ sơ của họ trong ATS, gồm điểm, có đạt hay không, các cảnh báo về tính trung thực (rời khỏi trang, cố sao chép, chọn câu trả lời quá nhanh để kịp đọc câu hỏi) và đường dẫn đến bảng điểm với mọi câu trả lời.
+- **Lỗi không bị bỏ qua.** Nếu không mời được một ứng viên, chẳng hạn vì công ty hết credit, chạm giới hạn email hoặc testee đã tạm dừng lời mời, mọi thành viên của công ty đều nhận được thông báo ghi rõ tên ATS. Những ứng viên chưa được mời vì thiếu credit sẽ được mời tự động sau khi nạp credit, và các ứng viên đang chờ của bất kỳ tin tuyển dụng nào cũng có thể được mời lại chỉ với một cú nhấp.
+- **Slack, nếu bạn dùng.** testee có thể đăng thông báo, chẳng hạn một ứng viên đã làm xong hoặc một ứng viên từ ATS không mời được, lên kênh Slack do bạn chọn.
+- **Nền tảng riêng của bạn.** Nếu ATS của bạn không có trong danh sách, [API](/api-docs) của testee cho phép bạn mời ứng viên bằng khóa API và nhận một webhook có chữ ký khi ứng viên bắt đầu, làm xong, không nhận được lời mời, hết hạn lời mời hoặc bị xóa khỏi buổi phỏng vấn, và khi một buổi phỏng vấn sẵn sàng.
 - **Dữ liệu được lưu trong thời hạn xác định.** Ứng viên được lưu từ ATS sẽ bị xóa sau 365 ngày, hoặc sớm hơn cùng với buổi phỏng vấn hoặc công ty của họ.
 
-Một số ATS cần một bước ở phía họ. Greenhouse, Teamtailor và Recruitee yêu cầu bạn thêm webhook thủ công; hộp thoại Hướng dẫn của prepza hiển thị địa chỉ và chỗ dán khóa bí mật. prepza tự thiết lập webhook cho Workable và Breezy HR.
+Một số ATS cần một bước ở phía họ. Greenhouse, Teamtailor và Recruitee yêu cầu bạn thêm webhook thủ công; hộp thoại Hướng dẫn của testee hiển thị địa chỉ và chỗ dán khóa bí mật. testee tự thiết lập webhook cho Workable và Breezy HR.
 
 Giá tính theo ứng viên, không có gói đăng ký: bạn chỉ trả tiền cho những ứng viên trả lời ít nhất một câu hỏi, $5 mỗi người với gói nạp $50, $4 từ gói nạp $200, $3 từ gói nạp $600 và $2 từ gói nạp $1.000. Giá ở đây tính bằng đô la Mỹ, và bằng đồng tiền địa phương ở Canada, Úc, Israel, Ba Lan, Thụy Sĩ, Nhật Bản, Hàn Quốc, Đài Loan, Hồng Kông, Thái Lan, Singapore, Ấn Độ, phần còn lại của châu Âu và Vương quốc Anh; VAT hoặc thuế bán hàng được xử lý khi thanh toán. Kết nối ATS và tạo buổi phỏng vấn là miễn phí, và 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí. Xem [bảng giá](/pricing).
 

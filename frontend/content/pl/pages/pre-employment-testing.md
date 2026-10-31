@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Test rekrutacyjny to ustrukturyzowane sprawdzenie, które przechodzi każdy kandydat na dane stanowisko, zanim zdecydujesz, kogo zaprosić na rozmowę lub zatrudnić. Możesz spotkać też nazwy takie jak ocena przed zatrudnieniem, test przedrekrutacyjny czy test kompetencji. Idea jest ta sama: zadać wszystkim pytania tego samego rodzaju, ocenić je w ten sam sposób i porównywać ludzi na podstawie dowodów, a nie tego, jak brzmi ich CV.
 
-Ten przewodnik omawia główne rodzaje testów, sytuacje, w których pomagają, podstawy uczciwości i prawa oraz to, na co zwrócić uwagę przy wyborze narzędzia. Na końcu opisuje, jak robi to prepza i czego prepza nie robi.
+Ten przewodnik omawia główne rodzaje testów, sytuacje, w których pomagają, podstawy uczciwości i prawa oraz to, na co zwrócić uwagę przy wyborze narzędzia. Na końcu opisuje, jak robi to testee i czego testee nie robi.
 
 ## Czym jest test rekrutacyjny
 
@@ -25,7 +25,7 @@ Dobry test sprawdza to, czego naprawdę wymaga stanowisko, odbywa się w tych sa
 | Próbki pracy i symulacje stanowiska | Wykonanie fragmentu prawdziwej pracy | Zadania, studia przypadków, pisanie kodu | Sprawdzeń na późnym etapie dla krótkiej listy |
 | Język i pisanie na klawiaturze | Biegłość i szybkość | Oceniane testy | Stanowisk z kontaktem z klientem i administracyjnych |
 
-**Co obejmuje prepza:** testy umiejętności i wiedzy zawodowej w formie rozmów z pytaniami zamkniętymi i limitem czasu, napisanych na podstawie Twojego opisu stanowiska. W przypadku stanowisk technicznych obejmuje to pytania o czytanie kodu: krótki fragment kodu i pytanie o to, co robi lub co wypisze. prepza nie oferuje testów zdolności poznawczych, kwestionariuszy osobowości, zadań, w których kandydaci piszą lub uruchamiają kod, ani rozmów wideo. Jeśli ich potrzebujesz, użyj platformy, która je oferuje, samodzielnie lub obok prepza: najpierw sprawdzenie wiedzy, potem specjalistyczny test dla krótkiej listy. Zobacz [prepza i TestGorilla](/compare/testgorilla) oraz [Alternatywy dla TestGorilla](/compare/testgorilla-alternatives).
+**Co obejmuje testee:** testy umiejętności i wiedzy zawodowej w formie rozmów z pytaniami zamkniętymi i limitem czasu, napisanych na podstawie Twojego opisu stanowiska. W przypadku stanowisk technicznych obejmuje to pytania o czytanie kodu: krótki fragment kodu i pytanie o to, co robi lub co wypisze. testee nie oferuje testów zdolności poznawczych, kwestionariuszy osobowości, zadań, w których kandydaci piszą lub uruchamiają kod, ani rozmów wideo. Jeśli ich potrzebujesz, użyj platformy, która je oferuje, samodzielnie lub obok testee: najpierw sprawdzenie wiedzy, potem specjalistyczny test dla krótkiej listy. Zobacz [testee i TestGorilla](/compare/testgorilla) oraz [Alternatywy dla TestGorilla](/compare/testgorilla-alternatives).
 
 ### Dlaczego testy umiejętności to rozsądny pierwszy krok
 
@@ -87,11 +87,11 @@ Pytania, które warto zadać każdemu dostawcy:
 
 Porównania cen znajdziesz w artykułach [jak porównać koszty testów](/compare/cheapest-pre-employment-test) i [testy rekrutacyjne bez subskrypcji](/compare/pre-employment-tests-without-subscription).
 
-## Jak robi to prepza
+## Jak robi to testee
 
-prepza zamienia opis stanowiska w rozmowę sprawdzającą umiejętności z pytaniami zamkniętymi i limitem czasu.
+testee zamienia opis stanowiska w rozmowę sprawdzającą umiejętności z pytaniami zamkniętymi i limitem czasu.
 
-1. **Wklej opis stanowiska.** Dowolne stanowisko, dowolny z 23 języków. prepza wyodrębnia, co kandydat musi wiedzieć, i proponuje tematy.
+1. **Wklej opis stanowiska.** Dowolne stanowisko, dowolny z 23 języków. testee wyodrębnia, co kandydat musi wiedzieć, i proponuje tematy.
 2. **Przejrzyj tematy.** Odznacz to, czego nie potrzebujesz, zmień nazwę tematu, edytuj jego podtematy lub opisz zmiany zwykłym tekstem. Pytania powstają dopiero po Twojej akceptacji. Możesz też zacząć od gotowego szablonu dla swojego stanowiska.
 3. **Zaproś kandydatów.** Wyślij zaproszenia e-mailem, wklej listę, prześlij plik lub umieść jeden link do udostępnienia w ogłoszeniu o pracę. Przypomnienia wysyłane są automatycznie.
 4. **Przeczytaj wyniki.** Wyniki pojawiają się w rankingu, z kartą wyników dla każdego kandydata.
@@ -99,8 +99,8 @@ prepza zamienia opis stanowiska w rozmowę sprawdzającą umiejętności z pytan
 - **Każdy kandydat dostaje własny losowy zestaw** z puli każdego tematu, z odliczaniem czasu kontrolowanym po stronie serwera przy każdym pytaniu. Każdemu, kto o to poprosi, możesz dać dodatkowy czas.
 - **Karty wyników** pokazują każdą odpowiedź, to, czy była poprawna, i ile czasu zajęła, z oznaczeniami zbyt szybkich odpowiedzi, opuszczenia strony, prób kopiowania i nietypowych wzorców odpowiedzi, a także pytania, o które warto dopytać na rozmowie na żywo. Oznaczenia nie zmieniają wyniku.
 - **Odpowiedzi są oceniane według klucza odpowiedzi**, który pisze AI; próbka kluczy z każdego tematu jest sprawdzana przed udostępnieniem, a pozostałe, gdy pytanie zostanie oznaczone. Żadna AI nie czyta ani nie ocenia odpowiedzi kandydata. Raport PDF obejmuje jednego kandydata lub całą listę.
-- **Współpracuje z Twoimi narzędziami:** kandydaci, których przenosisz na etap w Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR, dostają rozmowę, a ich wyniki wracają do ATS. Slack powiadamia, gdy kandydat skończy test, a [API](/api-docs) łączy prepza z Twoją własną platformą. Zobacz [Jak połączyć testy umiejętności z ATS](/guides/ats-integration-skills-tests).
+- **Współpracuje z Twoimi narzędziami:** kandydaci, których przenosisz na etap w Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR, dostają rozmowę, a ich wyniki wracają do ATS. Slack powiadamia, gdy kandydat skończy test, a [API](/api-docs) łączy testee z Twoją własną platformą. Zobacz [Jak połączyć testy umiejętności z ATS](/guides/ats-integration-skills-tests).
 
 Cena naliczana jest za kandydata, który odpowiada, bez subskrypcji: $2–5 za kandydata w zależności od wielkości doładowania (w Kanadzie, Australii, Izraelu, Polsce, Szwajcarii, Japonii, Korei Południowej, na Tajwanie, w Hongkongu, Tajlandii, Singapurze, Indiach, pozostałej części Europy i Wielkiej Brytanii w walucie lokalnej), a pierwszych 3 kandydatów masz za darmo. Dane są hostowane w UE (niektórzy podprzetwarzający są w USA; zobacz [politykę prywatności](/privacy)), a umowa powierzenia przetwarzania danych i instrukcje dla firm są w cenie.
 
-prepza nie jest pakietem testów psychometrycznych, platformą do pisania i uruchamiania kodu ani narzędziem do rozmów wideo i działa obok nich. Jak wypada na tle innych narzędzi rekrutacyjnych z AI, przeczytasz w artykule [Rozmowy rekrutacyjne z AI](/ai-interviews). W przypadku stanowisk inżynierskich zobacz [Jak zatrudniać inżynierów](/guides/hiring-engineers).
+testee nie jest pakietem testów psychometrycznych, platformą do pisania i uruchamiania kodu ani narzędziem do rozmów wideo i działa obok nich. Jak wypada na tle innych narzędzi rekrutacyjnych z AI, przeczytasz w artykule [Rozmowy rekrutacyjne z AI](/ai-interviews). W przypadku stanowisk inżynierskich zobacz [Jak zatrudniać inżynierów](/guides/hiring-engineers).

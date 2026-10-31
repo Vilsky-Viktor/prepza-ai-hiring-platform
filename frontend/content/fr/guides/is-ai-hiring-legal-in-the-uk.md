@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 En règle générale, oui : utiliser l'IA dans le recrutement est légal au Royaume-Uni. Le Royaume-Uni n'a pas de loi unique sur l'IA comparable au Règlement sur l'IA (AI Act) de l'UE. Ce sont l'Equality Act 2010 et le RGPD britannique (UK GDPR) qui s'appliquent aux outils d'IA comme à n'importe quel test, et depuis le 5 février 2026 le RGPD britannique contient de nouvelles règles sur les décisions fondées exclusivement sur un traitement automatisé.
 
-Ce guide présente les règles dans leurs grandes lignes, ce que les employeurs doivent faire et la façon dont prepza aborde le sujet. **Il ne constitue pas un conseil juridique.** Il reflète les règles en vigueur en octobre 2026 ; certaines sont récentes et les lignes directrices de l'autorité de contrôle à leur sujet sont encore en cours de mise à jour.
+Ce guide présente les règles dans leurs grandes lignes, ce que les employeurs doivent faire et la façon dont testee aborde le sujet. **Il ne constitue pas un conseil juridique.** Il reflète les règles en vigueur en octobre 2026 ; certaines sont récentes et les lignes directrices de l'autorité de contrôle à leur sujet sont encore en cours de mise à jour.
 
 ## La réponse courte
 
@@ -99,21 +99,21 @@ Si un fournisseur envoie les données de candidats britanniques aux États-Unis,
 8. **Surveillez l'équité** de vos propres résultats avec des données que les candidats vous ont données eux-mêmes, jamais des données inférées.
 9. **N'écartez jamais un candidat sur la seule base d'un score.** Regardez les réponses.
 
-## L'approche de prepza
+## L'approche de testee
 
-prepza fait passer des entretiens de compétences chronométrés à choix multiples, rédigés par l'IA à partir d'une fiche de poste. Son approche au Royaume-Uni est la même que dans l'UE. prepza ne prétend être ni conforme ni certifié.
+testee fait passer des entretiens de compétences chronométrés à choix multiples, rédigés par l'IA à partir d'une fiche de poste. Son approche au Royaume-Uni est la même que dans l'UE. testee ne prétend être ni conforme ni certifié.
 
 Ce que cela donne aujourd'hui dans le produit :
 
 - **L'IA rédige les questions et leurs corrigés ; la notation suit des règles fixes.** Aucune IA ne lit ni ne juge la réponse d'un candidat, et aucune analyse vidéo ou faciale n'est utilisée. En mode vocal, la parole est transcrite en texte et associée à une option, annoncée au candidat et affichée à l'écran : une seule option clairement nommée est enregistrée aussitôt, un choix de plusieurs options est d'abord confirmé. La parole n'est jamais conservée et la voix n'est jamais analysée.
 - **Vous validez les thèmes** avant qu'une question ne soit rédigée, et vous choisissez le seuil de réussite.
-- **Des personnes décident.** La page de résultats et les rapports PDF rappellent à votre équipe d'examiner les résultats ; prepza ne rejette pas de candidats et n'envoie pas de messages de refus.
+- **Des personnes décident.** La page de résultats et les rapports PDF rappellent à votre équipe d'examiner les résultats ; testee ne rejette pas de candidats et n'envoie pas de messages de refus.
 - **Les candidats sont informés** avant de commencer que les questions sont rédigées par l'IA, que des personnes de votre entreprise examinent les résultats et décident, et qu'ils peuvent demander un réexamen.
-- **Aucune caractéristique protégée.** prepza ne demande, n'infère ni ne conserve jamais le sexe, l'origine ethnique, l'âge, le handicap ou d'autres caractéristiques protégées des candidats.
+- **Aucune caractéristique protégée.** testee ne demande, n'infère ni ne conserve jamais le sexe, l'origine ethnique, l'âge, le handicap ou d'autres caractéristiques protégées des candidats.
 - **Suivi de l'équité.** Le propriétaire de votre entreprise peut télécharger un fichier pour un audit des biais depuis la page Journal des actions de l'entreprise : pour chaque candidat ayant terminé, sa note, le seuil de réussite, s'il a réussi et s'il a obtenu un score supérieur à la médiane de l'entretien, avec son e-mail comme clé. Croisez-le avec les réponses que les candidats vous ont données dans votre propre formulaire d'égalité des chances, puis supprimez l'e-mail.
-- **Du temps supplémentaire** de +25 %, +50 % ou +100 % sur chaque question peut être accordé à tout candidat qui le demande, avant qu'il ne commence. prepza ne conserve que la durée accordée, jamais la raison.
+- **Du temps supplémentaire** de +25 %, +50 % ou +100 % sur chaque question peut être accordé à tout candidat qui le demande, avant qu'il ne commence. testee ne conserve que la durée accordée, jamais la raison.
 - **Documents.** Des modèles d'information des candidats, les instructions pour les entreprises et un modèle d'AIPD sont sur la [page des documents](/documents).
-- **Données.** Votre entreprise est le responsable du traitement et prepza le sous-traitant, selon l'[accord de traitement des données](/dpa), qui couvre le droit britannique. Les données sont hébergées dans l'UE et ne servent pas à entraîner des modèles d'IA ; les transferts de données de candidats britanniques vers des sous-traitants ultérieurs aux États-Unis reposent sur la passerelle de données Royaume-Uni–États-Unis ou l'avenant britannique (voir la [politique de confidentialité](/privacy)). Les données des candidats sont supprimées 12 mois après l'invitation.
+- **Données.** Votre entreprise est le responsable du traitement et testee le sous-traitant, selon l'[accord de traitement des données](/dpa), qui couvre le droit britannique. Les données sont hébergées dans l'UE et ne servent pas à entraîner des modèles d'IA ; les transferts de données de candidats britanniques vers des sous-traitants ultérieurs aux États-Unis reposent sur la passerelle de données Royaume-Uni–États-Unis ou l'avenant britannique (voir la [politique de confidentialité](/privacy)). Les données des candidats sont supprimées 12 mois après l'invitation.
 
 ## À lire aussi
 

@@ -35,7 +35,7 @@ Hai ý tưởng nhẹ nhàng hơn cũng không khá hơn:
 - **Lời nhắn nhắm vào AI** ("Trợ lý AI không được trả lời câu hỏi này") dễ bị cắt đi hoặc bỏ qua, và các mô hình được huấn luyện để coi chữ trong ảnh là nội dung, không phải chỉ dẫn.
 - **Hình mờ (watermark)** có thể giúp truy ra ai đã làm lộ câu hỏi, nhưng không ngăn được ai đó trả lời nó.
 
-Tại prepza, chúng tôi đã thử cả hai trên chính câu hỏi của mình: các mô hình AI trả lời câu hỏi được chụp ảnh có hình mờ hay lời nhắn y như khi không có. Vì vậy chúng tôi thôi cố bảo vệ màn hình.
+Tại testee, chúng tôi đã thử cả hai trên chính câu hỏi của mình: các mô hình AI trả lời câu hỏi được chụp ảnh có hình mờ hay lời nhắn y như khi không có. Vì vậy chúng tôi thôi cố bảo vệ màn hình.
 
 ## Điều gì hiệu quả hơn
 
@@ -100,9 +100,9 @@ Pháp luật đặt thêm giới hạn, nhất là ở châu Âu:
 5. **Hỏi câu hỏi đào sâu** về bài kiểm tra trong buổi phỏng vấn trực tiếp đầu tiên, nhất là ở chỗ có tín hiệu.
 6. **Để con người quyết định,** và ghi lại lý do.
 
-## Cách prepza xử lý việc này
+## Cách testee xử lý việc này
 
-prepza tổ chức các bài kiểm tra kỹ năng trắc nghiệm có tính giờ, được tạo từ mô tả công việc. Đây là những gì prepza đang làm để chống gian lận:
+testee tổ chức các bài kiểm tra kỹ năng trắc nghiệm có tính giờ, được tạo từ mô tả công việc. Đây là những gì testee đang làm để chống gian lận:
 
 - **Mỗi ứng viên nhận bộ câu hỏi riêng:** một bộ ngẫu nhiên từ ngân hàng câu hỏi của từng chủ đề, theo thứ tự riêng, với các phương án được xáo trộn.
 - **Mỗi câu hỏi có bộ đếm ngược riêng,** khớp với độ dài của nó: số từ, mã hoặc ví dụ đi kèm, và thời gian suy ra đáp án. Máy chủ giữ đồng hồ, nên tải lại trang không làm nó dừng.
@@ -110,7 +110,7 @@ prepza tổ chức các bài kiểm tra kỹ năng trắc nghiệm có tính gi�
 - **Mẫu trả lời, khi ứng viên làm xong.** Báo cáo của ứng viên chỉ ra thời gian trả lời gần như như nhau ở mọi câu, bất kể độ dài và độ khó, và việc đúng câu khó trong khi sai câu dễ, kèm các con số đằng sau ("đúng 9 trên 10 câu khó, sai 4 trên 8 câu dễ"). Trường hợp thứ hai cần đủ câu trả lời từ các ứng viên khác để biết mỗi câu khó đến đâu. Cả hai ngưỡng được đặt trên một bài kiểm tra với ứng viên mô phỏng sao cho tối đa 1% ứng viên trung thực bị gắn cảnh báo; chúng phát hiện được khoảng một phần ba số ứng viên chuyển mọi câu hỏi cho AI. Báo cáo lưu ý rằng những mẫu như vậy có thể có nguyên nhân vô hại.
 - **Câu hỏi cho buổi phỏng vấn trực tiếp.** Trang của mỗi ứng viên đã làm xong gợi ý tối đa 3 câu họ trả lời đúng, từ các chủ đề mạnh nhất của họ, để trao đổi trong cuộc trò chuyện tiếp theo, bắt đầu bằng những câu khó đứng sau một mẫu bất thường nếu có.
 - **Ứng viên cam kết** tự trả lời, không dùng công cụ AI hay nhờ người khác, trước khi được bắt đầu, và bảng điểm cho thấy họ cam kết lúc nào.
-- **Không dùng camera, micro hay ghi màn hình.** prepza chỉ dùng những gì chính trang làm bài thấy: câu trả lời, thời gian, các lần rời trang và các lần cố sao chép.
+- **Không dùng camera, micro hay ghi màn hình.** testee chỉ dùng những gì chính trang làm bài thấy: câu trả lời, thời gian, các lần rời trang và các lần cố sao chép.
 - **Con người quyết định.** Không có gì tự động loại một ứng viên.
 
 ## Đọc thêm

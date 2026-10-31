@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Una prueba de habilidades con buenas preguntas puede dar malos resultados igualmente. Con demasiado tiempo, los candidatos buscan todas las respuestas; con demasiado poco, mides la velocidad de lectura. Con muy pocas preguntas, la puntuación depende de la suerte; con demasiadas, los buenos candidatos abandonan a mitad.
 
-Esta guía trata cuatro ajustes de una prueba de opción múltiple con tiempo límite: el tiempo por pregunta, el número de preguntas, la duración total y el tiempo extra para los candidatos que lo necesitan. Los consejos sirven para cualquier prueba de conocimientos con tiempo límite; la última sección muestra cómo gestiona prepza cada uno.
+Esta guía trata cuatro ajustes de una prueba de opción múltiple con tiempo límite: el tiempo por pregunta, el número de preguntas, la duración total y el tiempo extra para los candidatos que lo necesitan. Los consejos sirven para cualquier prueba de conocimientos con tiempo límite; la última sección muestra cómo gestiona testee cada uno.
 
 ## En resumen
 
@@ -95,9 +95,9 @@ Muchos países obligan a las empresas a realizar ajustes razonables para los can
 
 **Esta sección es una orientación práctica, no asesoramiento jurídico.** Lo que debes ofrecer, y lo que puedes preguntar, depende de dónde contrates. Comprueba tus propias obligaciones según la normativa de igualdad y discapacidad que te sea aplicable.
 
-## Cómo gestiona prepza el tiempo y el tiempo extra
+## Cómo gestiona testee el tiempo y el tiempo extra
 
-En prepza, una entrevista es una prueba de habilidades de opción múltiple con tiempo límite, creada a partir de tu descripción del puesto.
+En testee, una entrevista es una prueba de habilidades de opción múltiple con tiempo límite, creada a partir de tu descripción del puesto.
 
 ### Tiempo por pregunta
 

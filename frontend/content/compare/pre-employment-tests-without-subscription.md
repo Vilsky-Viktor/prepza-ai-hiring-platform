@@ -30,7 +30,7 @@ This page explains the alternatives to a subscription, how they compare with sub
 
 | Tool | Pricing model (as of October 2026) | Commitment |
 | --- | --- | --- |
-| **prepza** | Prepaid credits, charged per candidate who answers ([pricing](/pricing)) | None; credits don't expire |
+| **testee** | Prepaid credits, charged per candidate who answers ([pricing](/pricing)) | None; credits don't expire |
 | **TestGorilla** | Free plan, or paid plans billed annually ([pricing page](https://www.testgorilla.com/pricing/)) | Annual for paid plans |
 | **CodeSignal** | Plans with credits ([pricing page](https://codesignal.com/pricing/)) | Monthly or annual |
 | **Bryq** | Plans with unlimited invitations ([pricing page](https://www.bryq.com/pricing)) | Monthly or annual |
@@ -41,9 +41,9 @@ Some of these tools offer monthly billing, which is not a long contract but is s
 
 These tools also test different things. A subscription to a psychometric or coding platform and a per-candidate knowledge test can sit in the same hiring process, each covering its own stage.
 
-## How prepza's pricing works
+## How testee's pricing works
 
-prepza has no subscription and no contract. You buy credits when you need them and spend them on candidates.
+testee has no subscription and no contract. You buy credits when you need them and spend them on candidates.
 
 - **Credits don't expire.**
 - **A candidate costs 500 credits,** charged only when they answer at least one question. If an invited candidate never starts, the credits come back. An invite not started within 30 days expires and returns its credits.
@@ -52,7 +52,7 @@ prepza has no subscription and no contract. You buy credits when you need them a
 - **No seat fees.** Add admins and viewers to your company at no cost.
 - **Welcome credits:** your first company's first 3 candidates are free.
 
-Prices are in US dollars here, and in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, the rest of Europe and the UK (see [pricing](/pricing)). Payments go through Paddle, which handles VAT and sales tax and shows the final amount at checkout; prepza stores no card details. You can turn on an automatic top-up that refills your balance when it runs low, but it's optional.
+Prices are in US dollars here, and in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, the rest of Europe and the UK (see [pricing](/pricing)). Payments go through Paddle, which handles VAT and sales tax and shows the final amount at checkout; testee stores no card details. You can turn on an automatic top-up that refills your balance when it runs low, but it's optional.
 
 ## What you get for each candidate
 
@@ -60,7 +60,7 @@ Prices are in US dollars here, and in the local currency in Canada, Australia, I
 - Topics you review and edit before any question is written.
 - Each candidate's own random set of questions, with a countdown on every question. For technical roles, questions can show short code examples and ask what they do or output.
 - A scorecard with every answer and its timing, plus flags for too-fast answers, leaving the page and copy attempts.
-- A PDF report you can download or email from prepza.
+- A PDF report you can download or email from testee.
 - Invites by email, a pasted list, an uploaded file or one job-ad link, with automatic reminders.
 
 ## Where a subscription is the better deal
@@ -68,7 +68,7 @@ Prices are in US dollars here, and in the local currency in Canada, Australia, I
 Pay-per-candidate isn't always cheaper. A subscription may suit you better when:
 
 - **You test hundreds of candidates a year.** A flat plan, especially one with unlimited invitations, can cost less per candidate at high volume. Divide the plan's yearly cost by your price per candidate to find the break-even point; [How to compare test costs](/compare/cheapest-pre-employment-test) walks through it.
-- **You need tests prepza doesn't offer.** Cognitive ability, personality, hands-on coding (writing and running code) and video questions come with other platforms' plans. You can use one of them next to prepza.
+- **You need tests testee doesn't offer.** Cognitive ability, personality, hands-on coding (writing and running code) and video questions come with other platforms' plans. You can use one of them next to testee.
 - **A free plan covers you.** Some vendors offer free plans with a few tests; if those tests fit your role, you may not need to pay at all.
 
 ## Questions to ask any pay-as-you-go vendor
@@ -80,22 +80,22 @@ Pay-per-candidate isn't always cheaper. A subscription may suit you better when:
 5. What happens to candidate data, and where is it hosted?
 6. Is there a minimum purchase?
 
-For prepza: no, no, no, yes (both), hosted in the EU with candidate data deleted 12 months after the invite (some sub-processors are in the US; see the [privacy policy](/privacy)), and the smallest top-up is listed on the [pricing](/pricing) page.
+For testee: no, no, no, yes (both), hosted in the EU with candidate data deleted 12 months after the invite (some sub-processors are in the US; see the [privacy policy](/privacy)), and the smallest top-up is listed on the [pricing](/pricing) page.
 
 ## A worked example
 
 A 25-person company hires twice this year: a customer support agent in spring (40 applicants tested) and an office manager in autumn (25 tested).
 
-- **Pay per candidate:** 65 candidates × the price per candidate, minus any free candidates, paid only in the months you hire. With prepza, that's 62 paid candidates after the 3 free ones.
+- **Pay per candidate:** 65 candidates × the price per candidate, minus any free candidates, paid only in the months you hire. With testee, that's 62 paid candidates after the 3 free ones.
 - **A subscription billed annually:** the plan's yearly cost, whatever you use.
 
-Put the real prices from each vendor's pricing page, and [prepza's](/pricing), into both lines. For occasional hiring like this, the commitment can cost more than the testing; for steady hiring, the plan can come out ahead.
+Put the real prices from each vendor's pricing page, and [testee's](/pricing), into both lines. For occasional hiring like this, the commitment can cost more than the testing; for steady hiring, the plan can come out ahead.
 
-*Product names belong to their owners. prepza is not affiliated with or endorsed by any company named on this page.*
+*Product names belong to their owners. testee is not affiliated with or endorsed by any company named on this page.*
 
 ## Related pages
 
 - [How to compare test costs](/compare/cheapest-pre-employment-test)
 - [TestGorilla alternatives](/compare/testgorilla-alternatives)
-- [prepza and TestGorilla](/compare/testgorilla)
+- [testee and TestGorilla](/compare/testgorilla)
 - [Pre-employment testing guide](/pre-employment-testing)

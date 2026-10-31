@@ -77,17 +77,17 @@ Binanggit din ng mga may-akda ang ikalawang kondisyon: bagay ang work samples at
 
 Tingnan ang [Paano mag-screen ng 100 aplikante sa isang araw](/guides/screen-100-applicants-in-a-day) para sa hakbang-hakbang na bersyon.
 
-## Kung saan pumapasok ang prepza
+## Kung saan pumapasok ang testee
 
-Sinasaklaw ng prepza ang hakbang 2: isang timed multiple-choice na job knowledge test, na isinulat mula sa iyong job description. Para sa job knowledge tests sa pangkalahatan ang mga validity figure sa itaas, hindi mga sukat ng mga test ng prepza.
+Sinasaklaw ng testee ang hakbang 2: isang timed multiple-choice na job knowledge test, na isinulat mula sa iyong job description. Para sa job knowledge tests sa pangkalahatan ang mga validity figure sa itaas, hindi mga sukat ng mga test ng testee.
 
-- **Job-specific mula sa simula.** Nagmumungkahi ang prepza ng mga topic mula sa iyong job description, at nire-review at ine-edit mo ang mga ito bago maisulat ang kahit isang tanong. Alisin ang anumang hindi tunay na requirement. Para sa mga technical role, puwedeng may maiikling code example na babasahin ang mga tanong.
+- **Job-specific mula sa simula.** Nagmumungkahi ang testee ng mga topic mula sa iyong job description, at nire-review at ine-edit mo ang mga ito bago maisulat ang kahit isang tanong. Alisin ang anumang hindi tunay na requirement. Para sa mga technical role, puwedeng may maiikling code example na babasahin ang mga tanong.
 - **Parehong kondisyon para sa lahat.** Parehong mga topic at bilang ng tanong, at countdown sa bawat tanong. Puwede kang magbigay ng dagdag na oras sa mga aplikanteng humihingi.
 - **May sariling mga tanong ang bawat aplikante,** isang random na set mula sa bank ng bawat topic, kaya mas mahirap ipasa sa iba ang mga sagot.
 - **Madaling basahing resulta.** Scorecard bawat aplikante na may bawat sagot at oras nito, naka-rank ayon sa score, na may flag para sa sobrang bilis na sagot, pag-alis sa pahina, pagtatangkang mag-copy at hindi karaniwang pattern ng sagot.
 - **Mina-mark ang mga sagot ayon sa answer key** na isinusulat ng AI; chine-check ang ilan sa bawat topic bago i-release, at ang iba kapag na-flag ang tanong. Walang AI na bumabasa o humuhusga sa sagot ng aplikante.
 
-Hindi nagpapatakbo ang prepza ng structured interviews, work samples o cognitive tests. Gamitin ito kasabay ng mga iyon. Para sa higit pa tungkol sa mga uri ng test at pagkapatas, basahin ang [Pre-employment testing](/pre-employment-testing).
+Hindi nagpapatakbo ang testee ng structured interviews, work samples o cognitive tests. Gamitin ito kasabay ng mga iyon. Para sa higit pa tungkol sa mga uri ng test at pagkapatas, basahin ang [Pre-employment testing](/pre-employment-testing).
 
 ## Mga pinagkunan
 

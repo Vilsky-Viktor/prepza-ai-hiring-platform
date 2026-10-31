@@ -35,7 +35,7 @@ Hindi rin mas mabuti ang dalawang mas magaang ideya:
 - **Mga paalala na para sa AI** ("Hindi dapat sagutin ng mga AI assistant ang tanong na ito") ay madaling i-crop o balewalain, at sinanay ang mga model na ituring ang text sa larawan bilang content, hindi instructions.
 - **Mga watermark** ay puwedeng makatulong na matunton kung sino ang nag-leak ng tanong, pero hindi nito napipigilan ang sinuman na sagutin ito.
 
-Sa prepza, sinubukan namin pareho sa sarili naming mga tanong: sinagot ng mga AI model ang mga nakunang tanong na may watermark o paalala gaya ng pagsagot nila kapag wala. Kaya tumigil na kami sa pagtatanggol sa screen.
+Sa testee, sinubukan namin pareho sa sarili naming mga tanong: sinagot ng mga AI model ang mga nakunang tanong na may watermark o paalala gaya ng pagsagot nila kapag wala. Kaya tumigil na kami sa pagtatanggol sa screen.
 
 ## Ano ang mas epektibo
 
@@ -100,9 +100,9 @@ Hindi ibig sabihin nito na wala kang mabe-verify. Ibig sabihin, ang mga check na
 5. **Magtanong ng mga follow-up** tungkol sa test sa unang live na interview, lalo na kung saan may lumabas na signal.
 6. **Hayaang tao ang magpasya,** at isulat kung bakit.
 
-## Paano ito hinahawakan ng prepza
+## Paano ito hinahawakan ng testee
 
-Nagpapatakbo ang prepza ng mga timed na multiple-choice skills test na ginawa mula sa isang job description. Ito ang ginagawa nito laban sa pandaraya ngayon:
+Nagpapatakbo ang testee ng mga timed na multiple-choice skills test na ginawa mula sa isang job description. Ito ang ginagawa nito laban sa pandaraya ngayon:
 
 - **May sariling mga tanong ang bawat aplikante:** isang random na set mula sa question bank ng bawat topic, sa sarili niyang pagkakasunod-sunod, na naka-shuffle ang mga opsyon.
 - **May sariling countdown ang bawat tanong,** na tugma sa haba nito: ang mga salita nito, anumang code o halimbawa, at oras para pag-isipan ang sagot. Server ang may hawak ng orasan, kaya hindi ito tumitigil kapag ni-reload ang page.
@@ -110,7 +110,7 @@ Nagpapatakbo ang prepza ng mga timed na multiple-choice skills test na ginawa mu
 - **Mga pattern ng sagot, kapag tapos na ang aplikante.** Itinuturo ng report ng aplikante ang mga oras ng pagsagot na halos pareho sa bawat tanong, gaano man ito kahaba o kahirap, at ang tama sa mahihirap na tanong habang mali sa madadali, kasama ang mga bilang sa likod nito ("tama ang 9 sa 10 mahihirap na tanong, mali ang 4 sa 8 madadaling tanong"). Kailangan ng pangalawa ang sapat na sagot mula sa ibang aplikante para malaman kung gaano kahirap ang bawat tanong. Itinakda ang dalawang threshold sa isang test na may simulated na mga aplikante para hindi hihigit sa 1% ng mga tapat ang ma-flag; nahuli nila ang mga isang katlo ng mga nagpapasa ng bawat tanong sa AI. Sinasabi ng report na puwedeng may inosenteng dahilan ang ganitong mga pattern.
 - **Mga tanong para sa live na interview.** Nagmumungkahi ang page ng bawat aplikanteng tapos na ng hanggang 3 tanong na tama ang sagot niya, mula sa pinakamalakas niyang mga topic, para pag-usapan sa susunod na pag-uusap, simula sa mahihirap na tanong sa likod ng isang pattern kung mayroon.
 - **Nangangako ang mga aplikante** na sasagot nang mag-isa, nang walang AI tool o ibang tao, bago sila makapagsimula, at ipinapakita ng scorecard kung kailan nila ito ginawa.
-- **Walang camera, mikropono o screen recording.** Ang nakikita lang ng test page mismo ang ginagamit ng prepza: mga sagot, oras, pag-alis sa page at mga pagtatangkang kumopya.
+- **Walang camera, mikropono o screen recording.** Ang nakikita lang ng test page mismo ang ginagamit ng testee: mga sagot, oras, pag-alis sa page at mga pagtatangkang kumopya.
 - **Tao ang nagpapasya.** Walang awtomatikong nagre-reject sa aplikante.
 
 ## Kaugnay na babasahin

@@ -1,7 +1,7 @@
 ---
 title: "AI-agents, MCP en API's: wat het zijn en hoe je ze inzet bij werving en selectie"
 seoTitle: "AI-agents, MCP en API's bij werving: zo zet je ze in"
-description: "Wat een AI-agent, MCP en API zijn, hoe je ze veilig inzet bij werving en hoe je prepza bedient via de eigen AI-assistent, Claude, ChatGPT of je platform."
+description: "Wat een AI-agent, MCP en API zijn, hoe je ze veilig inzet bij werving en hoe je testee bedient via de eigen AI-assistent, Claude, ChatGPT of je platform."
 updated: "2026-10-22"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-22"
 
 De meeste mensen leerden AI eerst kennen als chatvenster: jij vraagt, het antwoordt. Een AI-agent gaat een stap verder. Die kan dingen opzoeken in je tools en er, als je erom vraagt, ook dingen in doen: een interview aanmaken, een lijst kandidaten uitnodigen, vertellen wie vorige week het hoogst scoorde. Het Model Context Protocol (MCP) is de standaard waarmee de AI-chat die je al gebruikt, zoals Claude of ChatGPT, verbinding maakt met zulke tools. En een API is de oudere, preciezere manier waarop software met software praat, zonder AI ertussen.
 
-Deze gids legt alle drie in gewone taal uit: waar ze goed voor zijn bij werving en selectie, waar je op moet letten en hoe je ze met prepza gebruikt.
+Deze gids legt alle drie in gewone taal uit: waar ze goed voor zijn bij werving en selectie, waar je op moet letten en hoe je ze met testee gebruikt.
 
 ## Wat een AI-agent is
 
@@ -42,10 +42,10 @@ Een API (application programming interface) is een set vaste verzoeken die het e
 
 | | Mira, de AI-assistent (in de app) | MCP (in Claude of ChatGPT) | API |
 | --- | --- | --- | --- |
-| Wie het gebruikt | Jij, in prepza | Jij, in je AI-chat | De code van je platform |
+| Wie het gebruikt | Jij, in testee | Jij, in je AI-chat | De code van je platform |
 | Hoe je vraagt | In je eigen woorden | In je eigen woorden | Vaste verzoeken die een developer schrijft |
 | Wie wijzigingen goedkeurt | Jij, op een kaart | Jij, in je AI-app | Je code, zoals die geschreven is |
-| Het meest geschikt voor | Snelle vragen en taken | prepza combineren met je andere tools en bestanden | Automatisering die draait zonder dat iemand meekijkt |
+| Het meest geschikt voor | Snelle vragen en taken | testee combineren met je andere tools en bestanden | Automatisering die draait zonder dat iemand meekijkt |
 | Meldt zich aan als | Jij | Jij | Een bedrijfssleutel |
 
 Gebruik Mira of MCP als er een mens bij betrokken is. Gebruik de API als je eigen systeem zelf kandidaten moet uitnodigen en resultaten moet ophalen, bijvoorbeeld vanuit een vacaturesite of een interne HR-tool.
@@ -57,7 +57,7 @@ Werving en selectie bestaat uit veel kleine, terugkerende stappen, verspreid ove
 - **Vragen over je pipeline.** "Welke kandidaten voor Senior Backend zijn deze week geslaagd?", "Wie is nog niet aan het interview begonnen?", "Wat is onze gemiddelde score voor de functie van data-analist?"
 - **Dingen inrichten.** "Maak een interview op basis van deze vacaturetekst", "Zet de slaaggrens op 70%", "Geef deze kandidaat 50% extra tijd."
 - **Bulkwerk.** "Nodig deze 12 mensen uit voor het frontend-interview", rechtstreeks geplakt uit een e-mail of spreadsheet.
-- **Bronnen combineren.** In Claude of ChatGPT kun je prepza combineren met je andere gekoppelde tools en bestanden: een vacaturetekst uit je documenten vergelijken met de onderwerpen van het interview, of een bericht opstellen aan de kandidaten op de shortlist.
+- **Bronnen combineren.** In Claude of ChatGPT kun je testee combineren met je andere gekoppelde tools en bestanden: een vacaturetekst uit je documenten vergelijken met de onderwerpen van het interview, of een bericht opstellen aan de kandidaten op de shortlist.
 
 Wat de agent niet moet doen, is de selectiebeslissing nemen. Een score ondersteunt het oordeel van een mens, maar vervangt het niet. Laat de agent sorteren, samenvatten en voorbereiden, en laat de beslissing bij een mens. Zie [Is AI bij werving en selectie legaal in de EU?](/guides/is-ai-hiring-legal-in-the-eu) voor waarom dat ook juridisch belangrijk is.
 
@@ -77,29 +77,29 @@ Een AI koppelen aan je wervingsgegevens verdient dezelfde zorg als een collega t
 
 Controleer voordat je een AI-app aan werkgegevens koppelt het beleid van je bedrijf voor AI-tools, en vertel kandidaten in je privacyverklaring welke diensten hun gegevens verwerken.
 
-## Drie manieren om met prepza te werken buiten de pagina's zelf
+## Drie manieren om met testee te werken buiten de pagina's zelf
 
 ### 1. Mira, de ingebouwde AI-assistent
 
-Kies **vraag Mira** in de kop van elke pagina. Mira, de AI-assistent van prepza, kent je bedrijven, interviews, kandidaten, credits en integraties, en weet hoe prepza werkt. Ze antwoordt in jouw taal, en je kunt typen of spreken.
+Kies **vraag Mira** in de kop van elke pagina. Mira, de AI-assistent van testee, kent je bedrijven, interviews, kandidaten, credits en integraties, en weet hoe testee werkt. Ze antwoordt in jouw taal, en je kunt typen of spreken.
 
 - **Hij antwoordt vanuit je gegevens,** met hetzelfde zicht als jij: een beheerder ziet wat een beheerder ziet, een kijker wat een kijker ziet.
 - **Hij weet op welke pagina je bent.** Vraag "Wat kan ik op deze pagina doen?" voor de uitleg bij die pagina, of "Wie is hier de beste?" bij de kandidaten van een interview, en hij antwoordt over dat interview zonder te vragen welk.
 - **Hij bereidt wijzigingen voor, jij bevestigt ze.** Vraag je hem kandidaten uit te nodigen, dan toont hij een kaart met precies wat er gaat gebeuren, zoals "12 kandidaten uitnodigen voor Backend developer". Er gebeurt niets totdat je Bevestigen kiest.
 - **Hij laat zijn bronnen zien.** Onder een antwoord zie je de kandidaten of interviews die hij gebruikte en een link naar de pagina waar ze vandaan komen.
-- **Hij blijft bij het onderwerp.** Hij beantwoordt vragen over prepza en werven met prepza, en slaat de rest af.
+- **Hij blijft bij het onderwerp.** Hij beantwoordt vragen over testee en werven met testee, en slaat de rest af.
 
-### 2. prepza in Claude of ChatGPT, via MCP
+### 2. testee in Claude of ChatGPT, via MCP
 
-Werkt je team al in Claude of ChatGPT, dan kun je prepza daarheen halen. De MCP-server van prepza biedt dezelfde tools als Mira, de ingebouwde assistent.
+Werkt je team al in Claude of ChatGPT, dan kun je testee daarheen halen. De MCP-server van testee biedt dezelfde tools als Mira, de ingebouwde assistent.
 
 **Zo koppel je:**
 
-1. Open in prepza het tabblad **Integraties** van een bedrijf en kies **AI-apps**. Kopieer het serveradres: `https://prepza.ai/mcp`.
-2. **In Claude:** open Instellingen, dan Connectors, en voeg een aangepaste connector toe met dat adres. **In Claude Code:** voer `claude mcp add --transport http prepza https://prepza.ai/mcp` uit. **In ChatGPT:** voeg het toe als aangepaste connector in de instellingen voor apps en connectors.
-3. Je AI-app opent de aanmelding van prepza. Meld je aan, controleer welke app erom vraagt, en kies **Toestaan**. Mag de app alleen lezen, zet dan eerst **Wijzigingen toestaan** uit.
+1. Open in testee het tabblad **Integraties** van een bedrijf en kies **AI-apps**. Kopieer het serveradres: `https://testee.ai/mcp`.
+2. **In Claude:** open Instellingen, dan Connectors, en voeg een aangepaste connector toe met dat adres. **In Claude Code:** voer `claude mcp add --transport http testee https://testee.ai/mcp` uit. **In ChatGPT:** voeg het toe als aangepaste connector in de instellingen voor apps en connectors.
+3. Je AI-app opent de aanmelding van testee. Meld je aan, controleer welke app erom vraagt, en kies **Toestaan**. Mag de app alleen lezen, zet dan eerst **Wijzigingen toestaan** uit.
 
-Vanaf dan vraag je in je chat wat je ook een collega zou vragen: "Wie zijn in prepza de drie beste kandidaten voor Product designer?" De meeste AI-apps vragen je om toestemming voor een wijziging en waarschuwen je voor alles wat niet ongedaan kan worden gemaakt: prepza vertelt ze welke acties iets wijzigen of verwijderen.
+Vanaf dan vraag je in je chat wat je ook een collega zou vragen: "Wie zijn in testee de drie beste kandidaten voor Product designer?" De meeste AI-apps vragen je om toestemming voor een wijziging en waarschuwen je voor alles wat niet ongedaan kan worden gemaakt: testee vertelt ze welke acties iets wijzigen of verwijderen.
 
 **Wat hetzelfde blijft als in de app:**
 
@@ -115,13 +115,13 @@ Vanaf dan vraag je in je chat wat je ook een collega zou vragen: "Wie zijn in pr
 
 ### 3. Je eigen platform, via de API
 
-Voor automatisering zonder AI heeft prepza een API, beschreven in de [ontwikkelaarsdocumentatie](/api-docs).
+Voor automatisering zonder AI heeft testee een API, beschreven in de [ontwikkelaarsdocumentatie](/api-docs).
 
 1. Een eigenaar of beheerder opent het tabblad **Integraties** van een bedrijf, dan **API**, en kiest **Nieuwe sleutel**. Geef hem de naam van het platform dat hem gaat gebruiken, kies wanneer hij verloopt en vink alleen aan wat hij nodig heeft: de sleutel van een dashboard leest alleen, die van een vacaturesite nodigt ook uit. Rechten kun je later toevoegen of intrekken. De sleutel wordt één keer getoond; bewaar hem op een veilige plek.
 2. Je platform stuurt verzoeken met die sleutel: de interviews van het bedrijf ophalen, kandidaten ophalen of opvragen met hun score, of ze geslaagd zijn en hun integriteitssignalen, en een kandidaat uitnodigen.
-3. Voeg een **webhook** toe: een adres op je platform dat prepza ondertekend aanroept wanneer een kandidaat begint of klaar is, wanneer de uitnodiging een kandidaat niet bereikt of verloopt, wanneer een kandidaat wordt verwijderd en wanneer een interview klaarstaat, zodat je niet steeds hoeft te vragen. Op de API-pagina kun je er een testgebeurtenis naartoe sturen en zie je het afleverlogboek.
+3. Voeg een **webhook** toe: een adres op je platform dat testee ondertekend aanroept wanneer een kandidaat begint of klaar is, wanneer de uitnodiging een kandidaat niet bereikt of verloopt, wanneer een kandidaat wordt verwijderd en wanneer een interview klaarstaat, zodat je niet steeds hoeft te vragen. Op de API-pagina kun je er een testgebeurtenis naartoe sturen en zie je het afleverlogboek.
 
-Bij elke kandidaat zit een link naar de volledige resultaten in prepza en, tot de kandidaat klaar is, een eigen uitnodigingslink, zodat je platform die in een eigen bericht kan versturen als je dat liever hebt. Weet je platform al wie de kandidaat is, nodig de kandidaat dan uit zonder inloggen: prepza verstuurt geen e-mails en de kandidaat doet het interview via de link zonder bij prepza in te loggen, dus stuur de link alleen naar die kandidaat. Een uitnodiging kan de kandidaat ook terugsturen naar je website (elk https-adres) met een knop op de pagina na afloop, en een licht of donker thema in de kleuren van je bedrijf instellen. Met de SDK van prepza kan je eigen pagina het interview zelf tonen, maar alleen op de sites die je bedrijf op zijn API-pagina toestaat. De API en webhooks hangen niet van die sites af: in plaats daarvan kun je elke sleutel beperken tot de IP-adressen van je servers. Verificatie voegt alleen de badge van een geverifieerd bedrijf toe.
+Bij elke kandidaat zit een link naar de volledige resultaten in testee en, tot de kandidaat klaar is, een eigen uitnodigingslink, zodat je platform die in een eigen bericht kan versturen als je dat liever hebt. Weet je platform al wie de kandidaat is, nodig de kandidaat dan uit zonder inloggen: testee verstuurt geen e-mails en de kandidaat doet het interview via de link zonder bij testee in te loggen, dus stuur de link alleen naar die kandidaat. Een uitnodiging kan de kandidaat ook terugsturen naar je website (elk https-adres) met een knop op de pagina na afloop, en een licht of donker thema in de kleuren van je bedrijf instellen. Met de SDK van testee kan je eigen pagina het interview zelf tonen, maar alleen op de sites die je bedrijf op zijn API-pagina toestaat. De API en webhooks hangen niet van die sites af: in plaats daarvan kun je elke sleutel beperken tot de IP-adressen van je servers. Verificatie voegt alleen de badge van een geverifieerd bedrijf toe.
 
 Dezelfde regel geldt als overal: de score ondersteunt de beslissing van een mens, dus wijs kandidaten er niet automatisch op af.
 
@@ -131,18 +131,18 @@ Ga uit van wie het werk doet en hoe vaak.
 
 | Jouw situatie | Gebruik |
 | --- | --- |
-| Je zit in prepza en wilt snel antwoord: wie is geslaagd, wie is nog niet begonnen, hoeveel credits er nog zijn | Mira, de ingebouwde assistent |
+| Je zit in testee en wilt snel antwoord: wie is geslaagd, wie is nog niet begonnen, hoeveel credits er nog zijn | Mira, de ingebouwde assistent |
 | Je wilt iets in een paar woorden inrichten: een interview op basis van een vacaturetekst, een slaaggrens, extra tijd | Mira, de ingebouwde assistent |
-| Je werkt al de hele dag in Claude of ChatGPT en wilt prepza daar ook | MCP |
-| De taak vraagt om prepza plus iets anders: je documenten, e-mailconcepten, een andere gekoppelde tool | MCP |
+| Je werkt al de hele dag in Claude of ChatGPT en wilt testee daar ook | MCP |
+| De taak vraagt om testee plus iets anders: je documenten, e-mailconcepten, een andere gekoppelde tool | MCP |
 | Een recruiter onderweg wil de pipeline checken vanuit de AI-app op de telefoon | MCP |
 | Je vacaturesite of HR-systeem moet zelf kandidaten uitnodigen, zonder dat iemand klikt | De API |
 | Resultaten moeten in je eigen database of dashboard terechtkomen zodra kandidaten klaar zijn | De API, met een webhook |
-| Je ATS is er een waarmee prepza koppelt (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Geen van deze: koppel het ATS op het tabblad Integraties. Zie [Zo koppel je vaardigheidstests aan je ATS](/guides/ats-integration-skills-tests) |
+| Je ATS is er een waarmee testee koppelt (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Geen van deze: koppel het ATS op het tabblad Integraties. Zie [Zo koppel je vaardigheidstests aan je ATS](/guides/ats-integration-skills-tests) |
 
 Een eenvoudige vuistregel:
 
-- **Een mens vraagt en controleert elke wijziging:** Mira in prepza, of MCP als die persoon de hele dag in Claude of ChatGPT werkt.
+- **Een mens vraagt en controleert elke wijziging:** Mira in testee, of MCP als die persoon de hele dag in Claude of ChatGPT werkt.
 - **Software handelt zelfstandig, elke keer op dezelfde manier:** de API.
 - **Net begonnen:** probeer eerst Mira, de ingebouwde assistent. Daarvoor hoef je niets in te stellen, en wat je leert neem je mee naar MCP.
 

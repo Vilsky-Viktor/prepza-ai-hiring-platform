@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Un test de recrutement est une évaluation structurée que passent tous les candidats à un poste avant que vous ne décidiez qui recevoir en entretien ou embaucher. On parle aussi de test pré-embauche, d'évaluation des candidats ou de test de compétences. Le principe est le même : poser à chacun le même type de questions, les noter de la même façon et comparer les personnes sur des éléments concrets plutôt que sur l'impression que laisse leur CV.
 
-Ce guide présente les principaux types de tests, les situations où ils sont utiles, les bases en matière d'équité et de droit, et ce qu'il faut regarder dans un outil. Il se termine par la façon dont prepza procède, et ce que prepza ne fait pas.
+Ce guide présente les principaux types de tests, les situations où ils sont utiles, les bases en matière d'équité et de droit, et ce qu'il faut regarder dans un outil. Il se termine par la façon dont testee procède, et ce que testee ne fait pas.
 
 ## Ce qu'est un test de recrutement
 
@@ -25,7 +25,7 @@ Un bon test vérifie ce dont le poste a réellement besoin, se déroule dans les
 | Mises en situation et simulations | Réaliser une partie du vrai travail | Exercices, études de cas, écriture de code | Vérifications en fin de processus pour une liste restreinte |
 | Langue et dactylographie | Niveau et vitesse | Tests notés | Postes en contact avec la clientèle et postes administratifs |
 
-**Ce que couvre prepza :** des tests de compétences et de connaissances métier, sous forme d'entretiens chronométrés à choix multiples rédigés à partir de votre fiche de poste. Pour les postes techniques, cela inclut des questions de lecture de code : un court exemple de code et une question sur ce qu'il fait ou affiche. prepza ne propose pas de tests d'aptitudes cognitives, de questionnaires de personnalité, d'exercices où les candidats écrivent ou exécutent du code, ni d'entretiens vidéo. Si vous en avez besoin, utilisez une plateforme qui les propose, seule ou en complément de prepza : d'abord un test de connaissances, puis le test spécialisé pour la liste restreinte. Voir [prepza et TestGorilla](/compare/testgorilla) et [Alternatives à TestGorilla](/compare/testgorilla-alternatives).
+**Ce que couvre testee :** des tests de compétences et de connaissances métier, sous forme d'entretiens chronométrés à choix multiples rédigés à partir de votre fiche de poste. Pour les postes techniques, cela inclut des questions de lecture de code : un court exemple de code et une question sur ce qu'il fait ou affiche. testee ne propose pas de tests d'aptitudes cognitives, de questionnaires de personnalité, d'exercices où les candidats écrivent ou exécutent du code, ni d'entretiens vidéo. Si vous en avez besoin, utilisez une plateforme qui les propose, seule ou en complément de testee : d'abord un test de connaissances, puis le test spécialisé pour la liste restreinte. Voir [testee et TestGorilla](/compare/testgorilla) et [Alternatives à TestGorilla](/compare/testgorilla-alternatives).
 
 ### Pourquoi les tests de compétences sont une première étape judicieuse
 
@@ -87,11 +87,11 @@ Questions à poser à tout fournisseur :
 
 Pour comparer les prix, voir [comment comparer le coût des tests](/compare/cheapest-pre-employment-test) et [tests de recrutement sans abonnement](/compare/pre-employment-tests-without-subscription).
 
-## Comment prepza procède
+## Comment testee procède
 
-prepza transforme une fiche de poste en entretien de compétences chronométré à choix multiples.
+testee transforme une fiche de poste en entretien de compétences chronométré à choix multiples.
 
-1. **Collez la fiche de poste.** N'importe quel poste, dans l'une des 23 langues. prepza repère ce qu'un candidat doit savoir et propose des thèmes.
+1. **Collez la fiche de poste.** N'importe quel poste, dans l'une des 23 langues. testee repère ce qu'un candidat doit savoir et propose des thèmes.
 2. **Vérifiez les thèmes.** Décochez ce dont vous n'avez pas besoin, renommez un thème, modifiez ses sous-thèmes ou décrivez vos changements en texte libre. Les questions ne sont rédigées qu'après votre validation. Vous pouvez aussi partir d'un modèle prêt à l'emploi pour votre poste.
 3. **Invitez les candidats.** Envoyez les invitations par e-mail, collez une liste, importez un fichier ou placez un lien de partage dans votre offre d'emploi. Les relances partent automatiquement.
 4. **Lisez les résultats.** Les scores arrivent classés, avec une fiche d'évaluation pour chaque candidat.
@@ -103,4 +103,4 @@ prepza transforme une fiche de poste en entretien de compétences chronométré 
 
 La tarification se fait par candidat qui répond, sans abonnement : 2 à 5 $ par candidat selon le montant de votre recharge (dans la devise locale au Canada, en Australie, en Israël, en Pologne, en Suisse, au Japon, en Corée du Sud, à Taïwan, à Hong Kong, en Thaïlande, à Singapour, en Inde, dans le reste de l'Europe et au Royaume-Uni), et vos 3 premiers candidats sont gratuits. Les données sont hébergées dans l'UE (certains sous-traitants ultérieurs sont aux États-Unis ; voir la [politique de confidentialité](/privacy)), et l'accord de traitement des données ainsi que les instructions pour les entreprises sont inclus.
 
-prepza n'est ni une suite psychométrique, ni une plateforme pour écrire et exécuter du code, ni un outil d'entretien vidéo, et fonctionne à leurs côtés. Pour sa comparaison avec d'autres outils de recrutement par IA, lisez [Entretiens IA](/ai-interviews). Pour les postes d'ingénieurs, voir [Comment recruter des développeurs](/guides/hiring-engineers).
+testee n'est ni une suite psychométrique, ni une plateforme pour écrire et exécuter du code, ni un outil d'entretien vidéo, et fonctionne à leurs côtés. Pour sa comparaison avec d'autres outils de recrutement par IA, lisez [Entretiens IA](/ai-interviews). Pour les postes d'ingénieurs, voir [Comment recruter des développeurs](/guides/hiring-engineers).

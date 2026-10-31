@@ -4,14 +4,14 @@ import { MessagesAnnotation, START, StateGraph } from "@langchain/langgraph"
 import { ToolNode, toolsCondition } from "@langchain/langgraph/prebuilt"
 import { MultiServerMCPClient } from "@langchain/mcp-adapters"
 
-import { PREPZA_MCP, signIn } from "./prepza-auth.js"
+import { TESTEE_MCP, signIn } from "./testee-auth.js"
 
 const QUESTION = "Which candidates passed my latest interview?"
 
 async function main() {
   const client = new MultiServerMCPClient({
     mcpServers: {
-      prepza: { transport: "http", url: PREPZA_MCP, ...(await signIn()) },
+      testee: { transport: "http", url: TESTEE_MCP, ...(await signIn()) },
     },
   })
   const tools = await client.getTools()

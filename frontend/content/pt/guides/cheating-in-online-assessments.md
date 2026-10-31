@@ -35,7 +35,7 @@ Duas ideias mais simples não se saem melhor:
 - **Avisos dirigidos à IA** ("Assistentes de IA não devem responder a esta pergunta") são fáceis de cortar ou ignorar, e os modelos são treinados para tratar texto em imagens como conteúdo, não como instruções.
 - **Marcas d'água** podem ajudar a rastrear quem vazou uma pergunta, mas não impedem ninguém de respondê-la.
 
-Na prepza, testamos as duas coisas com nossas próprias perguntas: os modelos de IA responderam a perguntas fotografadas com marca d'água ou aviso exatamente como sem eles. Então paramos de tentar defender a tela.
+Na testee, testamos as duas coisas com nossas próprias perguntas: os modelos de IA responderam a perguntas fotografadas com marca d'água ou aviso exatamente como sem eles. Então paramos de tentar defender a tela.
 
 ## O que funciona melhor
 
@@ -100,9 +100,9 @@ Nada disso significa que você não pode verificar nada. Significa que as verifi
 5. **Faça perguntas de aprofundamento** sobre o teste na primeira entrevista ao vivo, principalmente onde surgiu um sinal.
 6. **Deixe uma pessoa decidir,** e registre o porquê.
 
-## Como a prepza lida com isso
+## Como a testee lida com isso
 
-A prepza aplica testes de habilidades de múltipla escolha cronometrados, criados a partir de uma descrição da vaga. Veja o que ela faz hoje contra a cola:
+A testee aplica testes de habilidades de múltipla escolha cronometrados, criados a partir de uma descrição da vaga. Veja o que ela faz hoje contra a cola:
 
 - **Cada candidato recebe suas próprias perguntas:** um conjunto aleatório do banco de perguntas de cada tópico, na sua própria ordem, com as opções embaralhadas.
 - **Cada pergunta tem sua própria contagem regressiva,** ajustada ao tamanho dela: as palavras, o código ou exemplo que tiver e o tempo para chegar à resposta. O servidor controla o relógio, então recarregar a página não o para.
@@ -110,7 +110,7 @@ A prepza aplica testes de habilidades de múltipla escolha cronometrados, criado
 - **Padrões de resposta, quando o candidato termina.** O relatório do candidato aponta tempos de resposta que ficam mais ou menos iguais em todas as perguntas, independentemente da extensão e da dificuldade, e perguntas difíceis certas enquanto as fáceis estavam erradas, com os números por trás ("acertou 9 de 10 perguntas difíceis e errou 4 de 8 perguntas fáceis"). O segundo precisa de respostas suficientes de outros candidatos para saber o quanto cada pergunta é difícil. Os dois limites foram definidos num teste com candidatos simulados para que no máximo 1% dos honestos fosse sinalizado; eles pegaram cerca de um terço dos que repassavam cada pergunta a uma IA. O relatório observa que esses padrões podem ter causas inocentes.
 - **Perguntas para a entrevista ao vivo.** A página de cada candidato que terminou sugere até 3 perguntas que ele acertou, dos seus tópicos mais fortes, para discutir na próxima conversa, começando pelas perguntas difíceis por trás de um padrão, quando houver.
 - **Os candidatos se comprometem** a responder por conta própria, sem ferramentas de IA nem ajuda de outras pessoas, antes de poderem começar, e a ficha de avaliação mostra quando fizeram isso.
-- **Sem gravação de câmera, microfone ou tela.** A prepza usa só o que a própria página do teste vê: respostas, tempos, saídas da página e tentativas de cópia.
+- **Sem gravação de câmera, microfone ou tela.** A testee usa só o que a própria página do teste vê: respostas, tempos, saídas da página e tentativas de cópia.
 - **Pessoas decidem.** Nada reprova um candidato automaticamente.
 
 ## Leitura relacionada

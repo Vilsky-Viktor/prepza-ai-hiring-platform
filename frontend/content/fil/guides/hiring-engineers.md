@@ -72,7 +72,7 @@ Ang mahusay na knowledge screen ay:
 - **Maikli:** ilang topic na may humigit-kumulang 10 tanong bawat isa, para matapos pa rin ito ng malalakas na aplikanteng may ibang offer.
 - **Pareho para sa lahat:** parehong mga topic, parehong bilang ng tanong at parehong time limits.
 
-Dito pumapasok ang prepza. Ginagawa nitong timed multiple-choice na knowledge interview ang iyong job description. Nire-review mo ang mga iminungkahing topic bago maisulat ang kahit isang tanong, kaya ang iyong stack lang ang sinasaklaw ng test. Para sa isang engineering role, puwedeng kasama rito ang:
+Dito pumapasok ang testee. Ginagawa nitong timed multiple-choice na knowledge interview ang iyong job description. Nire-review mo ang mga iminungkahing topic bago maisulat ang kahit isang tanong, kaya ang iyong stack lang ang sinasaklaw ng test. Para sa isang engineering role, puwedeng kasama rito ang:
 
 - **Code-reading questions:** maikling piraso ng code na may mga tanong tungkol sa ipi-print o ibabalik nito, ano ang ginagawa nito, bakit ito pumapalya o aling pagbabago ang aayos dito.
 - **SQL:** isang maliit na table at isang query, na may tanong kung aling mga row ang lalabas.
@@ -80,7 +80,7 @@ Dito pumapasok ang prepza. Ginagawa nitong timed multiple-choice na knowledge in
 
 Bawat aplikante ay may sariling random na set ng tanong na may countdown sa bawat isa. Makikita mo ang scorecard na may bawat sagot at kung gaano ito katagal, kasama ang mga flag para sa sobrang bilis na sagot, pag-alis sa pahina, pagtatangkang mag-copy at hindi karaniwang pattern sa mga sagot at oras nila. Ang flag ay dahilan para tumingin nang mas mabuti, hindi patunay ng kahit ano. Nagmumungkahi rin ang report ng mga tanong na tama ang sagot nila para itanong sa susunod na interview.
 
-Ang hindi ginagawa ng prepza: hindi sumusulat, nagpapatakbo o nagde-debug ng code ang mga aplikante sa prepza. Magkaibang skill ang pagbasa at pagsulat ng code, kaya mahalaga pa rin ang susunod na hakbang. Tingnan ang [skills tests ayon sa role](/tests) para sa mga handang test na puwedeng simulan.
+Ang hindi ginagawa ng testee: hindi sumusulat, nagpapatakbo o nagde-debug ng code ang mga aplikante sa testee. Magkaibang skill ang pagbasa at pagsulat ng code, kaya mahalaga pa rin ang susunod na hakbang. Tingnan ang [skills tests ayon sa role](/tests) para sa mga handang test na puwedeng simulan.
 
 ## Hakbang 4: Take-home o live coding
 
@@ -128,7 +128,7 @@ Mas patas din ang isang structured na proseso, pero kung pare-pareho lang ang pa
 
 - **Pare-parehong mga tanong** sa bawat stage, para sa bawat aplikante sa parehong role.
 - **Rubrics na isinulat nang maaga,** para hinuhusgahan ang mga tao sa parehong pamantayan.
-- **Accommodations:** mag-alok ng dagdag na oras o ibang format sa mga aplikanteng humihingi, halimbawa dahil sa kapansanan. Sa prepza, puwede mong bigyan ng dagdag na oras ang isang aplikante bago siya magsimula.
+- **Accommodations:** mag-alok ng dagdag na oras o ibang format sa mga aplikanteng humihingi, halimbawa dahil sa kapansanan. Sa testee, puwede mong bigyan ng dagdag na oras ang isang aplikante bago siya magsimula.
 - **Bantayan ang mga resulta.** Iba-iba ang score gap sa pagitan ng mga grupo sa iba't ibang paraan. Nakita nina Sackett et al. ang mas malalaking average na pagkakaiba para sa job knowledge tests at work samples kaysa sa structured interviews, na isa pang dahilan para pagsamahin ang mga paraan. Bantayan ang pass rates sa bawat stage.
 - **Tao ang nagdedesisyon.** Sinusuportahan ng score ang desisyon; hindi ito ang gumagawa nito. Tingnan ang mga sagot bago ka mag-reject ng kahit sino.
 

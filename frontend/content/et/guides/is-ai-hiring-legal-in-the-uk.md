@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Üldiselt jah: AI kasutamine värbamisel on Ühendkuningriigis seaduslik. Ühendkuningriigis ei ole ühtset AI seadust nagu ELi tehisintellekti määrus (AI Act). Selle asemel kohalduvad AI-tööriistadele, nagu igale testile, Equality Act 2010 ja Ühendkuningriigi isikuandmete kaitse üldmäärus (UK GDPR), ning alates 5. veebruarist 2026 on UK GDPR-is uued reeglid otsustele, mis tehakse üksnes automatiseeritult.
 
-See juhend selgitab üldjoontes reegleid, seda, mida tööandjad peavad tegema, ja kuidas prepza sellele läheneb. **See ei ole õigusnõuanne.** See kajastab reegleid 2026. aasta oktoobri seisuga; mõned neist on uued ja järelevalveasutuse juhiseid nende kohta alles uuendatakse.
+See juhend selgitab üldjoontes reegleid, seda, mida tööandjad peavad tegema, ja kuidas testee sellele läheneb. **See ei ole õigusnõuanne.** See kajastab reegleid 2026. aasta oktoobri seisuga; mõned neist on uued ja järelevalveasutuse juhiseid nende kohta alles uuendatakse.
 
 ## Lühike vastus
 
@@ -99,21 +99,21 @@ Kui pakkuja saadab Ühendkuningriigi kandidaatide andmeid Ameerika Ühendriikide
 8. **Jälgi õiglust** oma tulemustes andmetega, mille kandidaadid on sulle ise andnud, mitte kunagi tuletatud andmetega.
 9. **Ära kunagi lükka tagasi ainult tulemuse põhjal.** Vaata vastuseid.
 
-## Kuidas prepza sellele läheneb
+## Kuidas testee sellele läheneb
 
-prepza viib läbi ajapiiranguga valikvastustega oskuste intervjuusid, mille AI kirjutab töökuulutuse põhjal. Ühendkuningriigis läheneb prepza samamoodi kui ELis. prepza ei väida, et ta vastab nõuetele või on sertifitseeritud.
+testee viib läbi ajapiiranguga valikvastustega oskuste intervjuusid, mille AI kirjutab töökuulutuse põhjal. Ühendkuningriigis läheneb testee samamoodi kui ELis. testee ei väida, et ta vastab nõuetele või on sertifitseeritud.
 
 Kuidas see tootes täna välja näeb:
 
 - **AI kirjutab küsimused ja nende vastusevõtmed; hindamine käib kindlate reeglite järgi.** Ükski AI ei loe ega hinda kandidaadi vastust ning video- ega näoanalüüsi ei kasutata. Häälerežiimis muudetakse kõne tekstiks ja sobitatakse vastusevariandiga, mis kandidaadile välja öeldakse ja ekraanil näidatakse: üks selgelt nimetatud variant võetakse vastuseks kohe, mitme variandi valik kinnitatakse kõigepealt. Kõnet ei salvestata kunagi ja häält ei analüüsita kunagi.
 - **Sina kiidad teemad heaks** enne, kui ühtegi küsimust kirjutatakse, ja sina valid läbimise läve.
-- **Otsustavad inimesed.** Tulemuste leht ja PDF-aruanded tuletavad sinu meeskonnale meelde tulemused üle vaadata; prepza ei lükka kandidaate tagasi ega saada äraütlemiskirju.
+- **Otsustavad inimesed.** Tulemuste leht ja PDF-aruanded tuletavad sinu meeskonnale meelde tulemused üle vaadata; testee ei lükka kandidaate tagasi ega saada äraütlemiskirju.
 - **Kandidaatidele öeldakse** enne alustamist, et küsimused on kirjutanud AI, et tulemused vaatavad üle ja otsuse teevad inimesed sinu ettevõttest ning et nad võivad taotleda ülevaatust.
-- **Kaitstud tunnuseid ei koguta.** prepza ei küsi, ei tuleta ega salvesta kunagi kandidaatide sugu, etnilist päritolu, vanust, puuet ega muid kaitstud tunnuseid.
+- **Kaitstud tunnuseid ei koguta.** testee ei küsi, ei tuleta ega salvesta kunagi kandidaatide sugu, etnilist päritolu, vanust, puuet ega muid kaitstud tunnuseid.
 - **Õigluse jälgimine.** Sinu ettevõtte omanik saab ettevõtte toimingute logi lehelt alla laadida faili kallutatuse auditi jaoks: iga lõpetanud kandidaadi hinne, läbimise lävi, kas ta sooritas ja kas tema tulemus oli intervjuu mediaanist kõrgem, seotud e-posti aadressiga. Ühenda see vastustega, mille kandidaadid andsid sinu enda võrdsete võimaluste vormis, ja eemalda seejärel e-posti aadress.
-- **Lisaaega** +25%, +50% või +100% iga küsimuse kohta saab anda igale kandidaadile, kes seda palub, enne kui ta alustab. prepza salvestab ainult lisaaja suuruse, mitte kunagi põhjust.
+- **Lisaaega** +25%, +50% või +100% iga küsimuse kohta saab anda igale kandidaadile, kes seda palub, enne kui ta alustab. testee salvestab ainult lisaaja suuruse, mitte kunagi põhjust.
 - **Dokumendid.** Kandidaatide teavituse mallid, ettevõtetele mõeldud juhised ja mõjuhinnangu (DPIA) mall on [dokumentide lehel](/documents).
-- **Andmed.** Sinu ettevõte on vastutav töötleja ja prepza volitatud töötleja [andmetöötluslepingu](/dpa) alusel, mis hõlmab Ühendkuningriigi õigust. Andmeid majutatakse ELis ja neid ei kasutata AI-mudelite treenimiseks; Ühendkuningriigi kandidaatide andmete edastamine USAs asuvatele volitatud alamtöötlejatele tugineb Ühendkuningriigi ja USA andmesillale või Ühendkuningriigi lisale (vaata [privaatsuspoliitikat](/privacy)). Kandidaatide andmed kustutatakse 12 kuud pärast kutset.
+- **Andmed.** Sinu ettevõte on vastutav töötleja ja testee volitatud töötleja [andmetöötluslepingu](/dpa) alusel, mis hõlmab Ühendkuningriigi õigust. Andmeid majutatakse ELis ja neid ei kasutata AI-mudelite treenimiseks; Ühendkuningriigi kandidaatide andmete edastamine USAs asuvatele volitatud alamtöötlejatele tugineb Ühendkuningriigi ja USA andmesillale või Ühendkuningriigi lisale (vaata [privaatsuspoliitikat](/privacy)). Kandidaatide andmed kustutatakse 12 kuud pärast kutset.
 
 ## Loe ka
 

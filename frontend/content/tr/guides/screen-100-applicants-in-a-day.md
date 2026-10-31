@@ -38,9 +38,9 @@ Kimseyi test etmeden önce, bu pozisyondaki bir kişinin ilk gün bilmesi gereke
 
 İyi bir eleme testi kısa, işle ilgili ve herkes için aynıdır.
 
-prepza ile:
+testee ile:
 
-1. **İş tanımını yapıştırın.** prepza adayın bilmesi gerekenleri çıkarır ve konular önerir.
+1. **İş tanımını yapıştırın.** testee adayın bilmesi gerekenleri çıkarır ve konular önerir.
 2. **Konuları 1. adımdaki listenizle karşılaştırarak gözden geçirin.** Gerçek bir gereklilik olmayan her şeyin işaretini kaldırın, konuları yeniden adlandırın, alt konuları düzenleyin veya değişiklikleri düz metinle anlatın (“bordronun temelleri üzerine bir konu ekle”). Sorular ancak siz onayladıktan sonra yazılır.
 3. **Uzunluğu belirleyin.** Varsayılan olarak her konu, her biri kendi geri sayımına sahip, ortalama 60 saniyelik (zor bir testte 75 saniyelik) 10 soru sorar. Üç konu, bir aday için en fazla 30 dakika (zor bir testte yaklaşık 38), genellikle daha az demektir. İhtiyacınız olanla sınırlı tutun.
 4. **Bir geçme notu belirleyin.** Varsayılan %70'tir. Bunu otomatik bir kesme noktası olarak değil, sonuçları okumak için bir kılavuz olarak görün.
@@ -63,7 +63,7 @@ Yalnızca kesin gereklilikler üzerinde hızlı bir evet-hayır geçişi yapın:
 
 Ardından kalan herkesi davet edin:
 
-- **Bir e-posta listesi yapıştırın veya bir dosya yükleyin.** prepza aynı anda 100'e kadar e-posta alır ve zaten başlamış olanları atlar.
+- **Bir e-posta listesi yapıştırın veya bir dosya yükleyin.** testee aynı anda 100'e kadar e-posta alır ve zaten başlamış olanları atlar.
 - **Ya da tek bir bağlantı kullanın.** İlanı henüz yayınlamadıysanız, mülakatın paylaşılabilir bağlantısını ilana koyun. Başvuru sahipleri testi hemen çözebilir ve listenizde sıralı olarak görünür. Pozisyon dolduğunda bağlantıyı kapatın.
 - **Ya da davetleri ATS'niz göndersin.** Başvuru sahipleriniz Workable, Greenhouse, Teamtailor, Recruitee veya Breezy HR'daysa, onu bir kez bağlayın: bir adayı bir aşamaya taşımak daveti gönderir ve sonuçlar ATS'ye geri döner. Bkz. [Beceri testleri ATS'nize nasıl bağlanır](/guides/ats-integration-skills-tests).
 
@@ -71,7 +71,7 @@ Adaylar başlamadan önce ne bekleyeceklerini görür: zamanlayıcıyı, sonuçl
 
 ### Testlerin aynı gün tamamlanmasını sağlamak
 
-Net ve kısa bir testi davetten kısa süre sonra bitirmek daha kolaydır. E-postanızda veya iş ilanınızda testin ne kadar sürdüğünü ve ne zamana kadar tamamlanması gerektiğini belirtin. prepza, 3 gün sonra hâlâ başlamamış olan herkese otomatik olarak bir hatırlatma gönderir; aynı gün planı için daveti kendiniz de yeniden gönderebilirsiniz.
+Net ve kısa bir testi davetten kısa süre sonra bitirmek daha kolaydır. E-postanızda veya iş ilanınızda testin ne kadar sürdüğünü ve ne zamana kadar tamamlanması gerektiğini belirtin. testee, 3 gün sonra hâlâ başlamamış olan herkese otomatik olarak bir hatırlatma gönderir; aynı gün planı için daveti kendiniz de yeniden gönderebilirsiniz.
 
 Herkes ilk gün bitirmeyecek. Sorun değil: bitirenleri inceleyin ve geride kalanlara ertesi sabah tekrar bakın.
 
@@ -81,11 +81,11 @@ Dikkatli okuma şimdi başlıyor, ama daha küçük ve sıralı bir grup üzerin
 
 1. **Nota göre sıralayın,** en iyisi en üstte, listenin sıralama menüsünden: liste en yeni adaylarla açılır.
 2. **En üstteki gruptaki her değerlendirme kartını açın.** Yalnızca sayıya değil, yanıtlara bakın: hangi konular güçlü, hangileri zayıf, her yanıt ne kadar sürdü.
-3. **Güvenilirlik işaretlerini kontrol edin.** prepza, soruyu okumaya yetmeyecek kadar hızlı verilen yanıtları, adayın sayfadan ayrıldığı anları ve kopyalama girişimlerini işaretler. Aday bitirdiğinde sayfası olağan dışı yanıt örüntülerini de gösterir (her soruda yaklaşık aynı süre veya kolay sorular yanlışken zor soruların doğru olması) ve bir sonraki mülakatta sorulacak sorular önerir. İşaret, daha yakından bakmak için bir nedendir, kopya çekildiğinin kanıtı değildir. Sayfadan bir kez ayrılan birinin ekranına bir bildirim düşmüş olabilir.
+3. **Güvenilirlik işaretlerini kontrol edin.** testee, soruyu okumaya yetmeyecek kadar hızlı verilen yanıtları, adayın sayfadan ayrıldığı anları ve kopyalama girişimlerini işaretler. Aday bitirdiğinde sayfası olağan dışı yanıt örüntülerini de gösterir (her soruda yaklaşık aynı süre veya kolay sorular yanlışken zor soruların doğru olması) ve bir sonraki mülakatta sorulacak sorular önerir. İşaret, daha yakından bakmak için bir nedendir, kopya çekildiğinin kanıtı değildir. Sayfadan bir kez ayrılan birinin ekranına bir bildirim düşmüş olabilir.
 4. **Geçme notunun hemen altına bakın.** Farklı rastgele soru setlerinden gelen puanlar tam olarak karşılaştırılabilir değildir; birkaç puanlık fark çekilen sorulardan kaynaklanabilir. En önemli konularda güçlü yanıtlar vermiş %65'lik biri mülakata değer olabilir.
 5. **Şimdi değerlendirdiğiniz kişilerin CV'lerini okuyun.** 100 CV'ye göz gezdirmek yerine 15 CV'yi dikkatle okuyorsunuz.
 
-Sonuçları bir işe alım yöneticisiyle paylaşmak için tek bir aday veya tüm liste için PDF rapor indirin ya da prepza'dan e-postayla gönderin.
+Sonuçları bir işe alım yöneticisiyle paylaşmak için tek bir aday veya tüm liste için PDF rapor indirin ya da testee'den e-postayla gönderin.
 
 ## 5. adım: Karar verin (gün sonu)
 
@@ -103,7 +103,7 @@ Her kişinin listeye neden girdiğini not edin. Aday başına bir dakika sürer 
 
 ## Maliyeti ne kadar
 
-prepza ile yalnızca en az bir soruyu yanıtlayan adaylar için ödeme yaparsınız: $50'lık yüklemede aday başına $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. 100 başvuru sahibi için bu, aday başı $5 ile $500 ya da aday başı $4 ile iki adet $200'lık yüklemeyle $400 demektir; abonelik yoktur. Fiyatlar burada ABD doları, Kanada, Avustralya, İsrail, Polonya, İsviçre, Japonya, Güney Kore, Tayvan, Hong Kong, Tayland, Singapur, Hindistan, Avrupa'nın geri kalanı ve Birleşik Krallık'ta ise yerel para birimi cinsindendir (bkz. [fiyatlar](/pricing)); KDV veya satış vergisi ödeme adımında hesaplanır. Testi oluşturmak ücretsizdir ve ilk şirketinizin ilk 3 adayı ücretsizdir.
+testee ile yalnızca en az bir soruyu yanıtlayan adaylar için ödeme yaparsınız: $50'lık yüklemede aday başına $5, $200'lık yüklemeden itibaren $4, $600'lık yüklemeden itibaren $3 ve $1.000'lık yüklemeden itibaren $2. 100 başvuru sahibi için bu, aday başı $5 ile $500 ya da aday başı $4 ile iki adet $200'lık yüklemeyle $400 demektir; abonelik yoktur. Fiyatlar burada ABD doları, Kanada, Avustralya, İsrail, Polonya, İsviçre, Japonya, Güney Kore, Tayvan, Hong Kong, Tayland, Singapur, Hindistan, Avrupa'nın geri kalanı ve Birleşik Krallık'ta ise yerel para birimi cinsindendir (bkz. [fiyatlar](/pricing)); KDV veya satış vergisi ödeme adımında hesaplanır. Testi oluşturmak ücretsizdir ve ilk şirketinizin ilk 3 adayı ücretsizdir.
 
 ## İlgili yazılar
 

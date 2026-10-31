@@ -30,7 +30,7 @@ Questa pagina spiega le alternative a un abbonamento, come si confrontano con i 
 
 | Strumento | Modello di prezzo (a ottobre 2026) | Vincolo |
 | --- | --- | --- |
-| **prepza** | Crediti prepagati, addebitati per candidato che risponde ([prezzi](/pricing)) | Nessuno; i crediti non scadono |
+| **testee** | Crediti prepagati, addebitati per candidato che risponde ([prezzi](/pricing)) | Nessuno; i crediti non scadono |
 | **TestGorilla** | Piano gratuito, oppure piani a pagamento fatturati annualmente ([pagina prezzi](https://www.testgorilla.com/pricing/)) | Annuale per i piani a pagamento |
 | **CodeSignal** | Piani con crediti ([pagina prezzi](https://codesignal.com/pricing/)) | Mensile o annuale |
 | **Bryq** | Piani con inviti illimitati ([pagina prezzi](https://www.bryq.com/pricing)) | Mensile o annuale |
@@ -41,9 +41,9 @@ Alcuni di questi strumenti offrono la fatturazione mensile, che non è un contra
 
 Questi strumenti valutano anche cose diverse. Un abbonamento a una piattaforma psicometrica o di coding e un test di conoscenze pagato per candidato possono convivere nello stesso processo di selezione, ciascuno nella propria fase.
 
-## Come funzionano i prezzi di prepza
+## Come funzionano i prezzi di testee
 
-prepza non ha abbonamenti né contratti. Compri crediti quando ti servono e li spendi sui candidati.
+testee non ha abbonamenti né contratti. Compri crediti quando ti servono e li spendi sui candidati.
 
 - **I crediti non scadono.**
 - **Un candidato costa 500 crediti,** addebitati solo quando risponde ad almeno una domanda. Se un candidato invitato non inizia mai, i crediti tornano indietro. Un invito non iniziato entro 30 giorni scade e restituisce i suoi crediti.
@@ -52,7 +52,7 @@ prepza non ha abbonamenti né contratti. Compri crediti quando ti servono e li s
 - **Nessun costo per postazione.** Aggiungi amministratori e visualizzatori alla tua azienda senza costi.
 - **Crediti di benvenuto:** i primi 3 candidati della tua prima azienda sono gratis.
 
-I prezzi sono qui in dollari statunitensi, e nella valuta locale in Canada, Australia, Israele, Polonia, Svizzera, Giappone, Corea del Sud, Taiwan, Hong Kong, Thailandia, Singapore, India, nel resto d'Europa e nel Regno Unito (vedi i [prezzi](/pricing)). I pagamenti passano da Paddle, che gestisce IVA e imposte sulle vendite e mostra l'importo finale al momento del pagamento; prepza non conserva i dati delle carte. Puoi attivare una ricarica automatica che rabbocca il saldo quando si sta esaurendo, ma è facoltativa.
+I prezzi sono qui in dollari statunitensi, e nella valuta locale in Canada, Australia, Israele, Polonia, Svizzera, Giappone, Corea del Sud, Taiwan, Hong Kong, Thailandia, Singapore, India, nel resto d'Europa e nel Regno Unito (vedi i [prezzi](/pricing)). I pagamenti passano da Paddle, che gestisce IVA e imposte sulle vendite e mostra l'importo finale al momento del pagamento; testee non conserva i dati delle carte. Puoi attivare una ricarica automatica che rabbocca il saldo quando si sta esaurendo, ma è facoltativa.
 
 ## Cosa ottieni per ogni candidato
 
@@ -60,7 +60,7 @@ I prezzi sono qui in dollari statunitensi, e nella valuta locale in Canada, Aust
 - Argomenti che rivedi e modifichi prima che venga scritta qualsiasi domanda.
 - Un set casuale di domande per ogni candidato, con un conto alla rovescia su ogni domanda. Per i ruoli tecnici, le domande possono mostrare brevi esempi di codice e chiedere cosa fanno o cosa stampano.
 - Una scheda di valutazione con ogni risposta e il relativo tempo, più segnalazioni per risposte troppo rapide, uscite dalla pagina e tentativi di copia.
-- Un report PDF che puoi scaricare o inviare via email da prepza.
+- Un report PDF che puoi scaricare o inviare via email da testee.
 - Inviti via email, con un elenco incollato, un file caricato o un unico link nell'annuncio di lavoro, con promemoria automatici.
 
 ## Quando un abbonamento conviene di più
@@ -68,7 +68,7 @@ I prezzi sono qui in dollari statunitensi, e nella valuta locale in Canada, Aust
 Il pagamento per candidato non è sempre più economico. Un abbonamento potrebbe fare più al caso tuo quando:
 
 - **Valuti centinaia di candidati all'anno.** Un piano a tariffa fissa, soprattutto con inviti illimitati, può costare meno per candidato con volumi alti. Dividi il costo annuo del piano per il tuo prezzo per candidato per trovare il punto di pareggio; [Come confrontare i costi dei test](/compare/cheapest-pre-employment-test) lo spiega passo per passo.
-- **Ti servono test che prepza non offre.** Abilità cognitive, personalità, coding pratico (scrivere ed eseguire codice) e domande video arrivano con i piani di altre piattaforme. Puoi usarne una insieme a prepza.
+- **Ti servono test che testee non offre.** Abilità cognitive, personalità, coding pratico (scrivere ed eseguire codice) e domande video arrivano con i piani di altre piattaforme. Puoi usarne una insieme a testee.
 - **Ti basta un piano gratuito.** Alcuni fornitori offrono piani gratuiti con pochi test; se quei test vanno bene per il tuo ruolo, potresti non dover pagare nulla.
 
 ## Domande da fare a qualsiasi fornitore a consumo
@@ -80,22 +80,22 @@ Il pagamento per candidato non è sempre più economico. Un abbonamento potrebbe
 5. Cosa succede ai dati dei candidati, e dove sono ospitati?
 6. C'è un acquisto minimo?
 
-Per prepza: no, no, no, sì (entrambe le cose), ospitati nell'UE con i dati dei candidati cancellati 12 mesi dopo l'invito (alcuni sub-responsabili si trovano negli Stati Uniti; vedi l'[informativa sulla privacy](/privacy)), e la ricarica minima è indicata nella pagina dei [prezzi](/pricing).
+Per testee: no, no, no, sì (entrambe le cose), ospitati nell'UE con i dati dei candidati cancellati 12 mesi dopo l'invito (alcuni sub-responsabili si trovano negli Stati Uniti; vedi l'[informativa sulla privacy](/privacy)), e la ricarica minima è indicata nella pagina dei [prezzi](/pricing).
 
 ## Un esempio pratico
 
 Un'azienda di 25 persone assume due volte quest'anno: un addetto all'assistenza clienti in primavera (40 candidati valutati) e un office manager in autunno (25 valutati).
 
-- **Pagamento per candidato:** 65 candidati × il prezzo per candidato, meno gli eventuali candidati gratuiti, pagati solo nei mesi in cui assumi. Con prepza, sono 62 candidati a pagamento dopo i 3 gratuiti.
+- **Pagamento per candidato:** 65 candidati × il prezzo per candidato, meno gli eventuali candidati gratuiti, pagati solo nei mesi in cui assumi. Con testee, sono 62 candidati a pagamento dopo i 3 gratuiti.
 - **Un abbonamento fatturato annualmente:** il costo annuo del piano, qualunque sia l'uso.
 
-Inserisci in entrambe le righe i prezzi reali dalla pagina prezzi di ogni fornitore, e da [quella di prepza](/pricing). Per assunzioni occasionali come queste, il vincolo può costare più dei test; per assunzioni costanti, il piano può risultare più conveniente.
+Inserisci in entrambe le righe i prezzi reali dalla pagina prezzi di ogni fornitore, e da [quella di testee](/pricing). Per assunzioni occasionali come queste, il vincolo può costare più dei test; per assunzioni costanti, il piano può risultare più conveniente.
 
-*I nomi dei prodotti appartengono ai rispettivi proprietari. prepza non è affiliata né approvata da alcuna azienda citata in questa pagina.*
+*I nomi dei prodotti appartengono ai rispettivi proprietari. testee non è affiliata né approvata da alcuna azienda citata in questa pagina.*
 
 ## Pagine correlate
 
 - [Come confrontare i costi dei test](/compare/cheapest-pre-employment-test)
 - [Alternative a TestGorilla](/compare/testgorilla-alternatives)
-- [prepza e TestGorilla](/compare/testgorilla)
+- [testee e TestGorilla](/compare/testgorilla)
 - [Guida ai test pre-assunzione](/pre-employment-testing)

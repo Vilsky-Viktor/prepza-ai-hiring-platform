@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 Genel olarak evet: AB'de işe alımda yapay zekâ kullanmak yasaldır. Ancak adayları değerlendiren yapay zekâ araçlarının çoğu, Yapay Zekâ Yasası'nın yüksek risk kategorisine girer ve bu, hem sağlayıcıya hem de işveren olarak size yükümlülükler getirir. Bazı uygulamalar ise doğrudan yasaktır. GDPR de her zaman olduğu gibi aday verilerine uygulanır.
 
-Bu rehber kuralları üst düzeyde, önemli tarihleri, işverenlerin yapması gerekenleri ve prepza'nın konuya yaklaşımını açıklar. **Hukuki tavsiye değildir.** Ekim 2026 itibarıyla geçerli kuralları yansıtır. Kurallar yenidir, kılavuzlar hâlâ kesinleşmektedir ve ulusal mevzuat kendi gerekliliklerini ekler. Bunlardan herhangi birine dayanmadan önce kendi hukuk danışmanınıza danışın.
+Bu rehber kuralları üst düzeyde, önemli tarihleri, işverenlerin yapması gerekenleri ve testee'nin konuya yaklaşımını açıklar. **Hukuki tavsiye değildir.** Ekim 2026 itibarıyla geçerli kuralları yansıtır. Kurallar yenidir, kılavuzlar hâlâ kesinleşmektedir ve ulusal mevzuat kendi gerekliliklerini ekler. Bunlardan herhangi birine dayanmadan önce kendi hukuk danışmanınıza danışın.
 
 ## Kısa yanıt
 
@@ -113,15 +113,15 @@ Aday verileri kişisel veridir ve yapay zekâ GDPR'ı değiştirmez. Temel nokta
 8. **İhtiyaç duyan adaylara ek süre gibi makul düzenlemeler sunun.**
 9. **Asla yalnızca puana göre reddetmeyin.** Yanıtlara bakın.
 
-## prepza'nın yaklaşımı
+## testee'nin yaklaşımı
 
-prepza, bir iş tanımından yapay zekâ tarafından yazılmış süreli, çoktan seçmeli beceri mülakatları yürütür. Adayları puanlayıp sıraladığı için prepza'nın kendi analizi, Ek III, madde 4(a) kapsamında büyük olasılıkla yüksek riskli olduğu ve yükümlülüklerin 2 Aralık 2027'den itibaren uygulanacağı sonucuna varıyor. prepza buna göre hazırlanıyor. prepza uyumlu veya sertifikalı olduğunu iddia etmiyor.
+testee, bir iş tanımından yapay zekâ tarafından yazılmış süreli, çoktan seçmeli beceri mülakatları yürütür. Adayları puanlayıp sıraladığı için testee'nin kendi analizi, Ek III, madde 4(a) kapsamında büyük olasılıkla yüksek riskli olduğu ve yükümlülüklerin 2 Aralık 2027'den itibaren uygulanacağı sonucuna varıyor. testee buna göre hazırlanıyor. testee uyumlu veya sertifikalı olduğunu iddia etmiyor.
 
 Bunun bugün üründeki karşılığı:
 
 - **Soruları ve cevap anahtarlarını yapay zekâ yazar; değerlendirme sabit kurallara göre yapılır.** Hiçbir yapay zekâ adayın yanıtını okumaz veya yargılamaz; video, ses veya yüz analizi kullanılmaz. Yapay zekâ bir anahtarı sonradan düzeltirse düzeltme, sonrasında başlayan adaylar için geçerli olur; geçmiş sonuçlar değişmez.
 - **Konuları siz onaylarsınız;** bu, herhangi bir soru yazılmadan önce olur ve her soruyu görebilirsiniz.
-- **Kararı insanlar verir.** Sonuçlar sayfası ve PDF raporlar ekibinize sonuçları incelemesini hatırlatır; prepza adayları reddetmez veya ret mesajı göndermez.
+- **Kararı insanlar verir.** Sonuçlar sayfası ve PDF raporlar ekibinize sonuçları incelemesini hatırlatır; testee adayları reddetmez veya ret mesajı göndermez.
 - **Adaylar başlamadan önce bilgilendirilir:** soruların yapay zekâ tarafından yazıldığı, sonuçları şirketinizdeki kişilerin inceleyip karar verdiği ve yeniden inceleme talep edebilecekleri.
 - **Ek süre,** isteyen her adaya verilebilir.
 - **Kayıtlar.** Gösterilen sorular, yanıtlar, süreler ve güvenilirlik olayları kaydedilir.

@@ -77,17 +77,17 @@ Các tác giả cũng nêu một điều kiện thứ hai: mẫu công việc v�
 
 Xem [Cách sàng lọc 100 ứng viên trong một ngày](/guides/screen-100-applicants-in-a-day) để có phiên bản từng bước.
 
-## prepza phù hợp ở đâu
+## testee phù hợp ở đâu
 
-prepza đảm nhận bước 2: một bài kiểm tra kiến thức chuyên môn trắc nghiệm có tính giờ, được viết từ mô tả công việc của bạn. Các số liệu độ hiệu lực ở trên là cho bài kiểm tra kiến thức chuyên môn nói chung, không phải phép đo các bài kiểm tra của prepza.
+testee đảm nhận bước 2: một bài kiểm tra kiến thức chuyên môn trắc nghiệm có tính giờ, được viết từ mô tả công việc của bạn. Các số liệu độ hiệu lực ở trên là cho bài kiểm tra kiến thức chuyên môn nói chung, không phải phép đo các bài kiểm tra của testee.
 
-- **Gắn với công việc ngay từ thiết kế.** prepza đề xuất chủ đề từ mô tả công việc của bạn, và bạn xem lại, chỉnh sửa chúng trước khi bất kỳ câu hỏi nào được viết. Bỏ bất cứ thứ gì không phải yêu cầu thực sự. Với vị trí kỹ thuật, câu hỏi có thể kèm các ví dụ code ngắn để đọc.
+- **Gắn với công việc ngay từ thiết kế.** testee đề xuất chủ đề từ mô tả công việc của bạn, và bạn xem lại, chỉnh sửa chúng trước khi bất kỳ câu hỏi nào được viết. Bỏ bất cứ thứ gì không phải yêu cầu thực sự. Với vị trí kỹ thuật, câu hỏi có thể kèm các ví dụ code ngắn để đọc.
 - **Điều kiện như nhau cho mọi người.** Cùng chủ đề và số câu hỏi, và đồng hồ đếm ngược cho mọi câu hỏi. Bạn có thể cho thêm thời gian với ứng viên có yêu cầu.
 - **Mỗi ứng viên nhận câu hỏi của riêng mình,** một bộ ngẫu nhiên từ ngân hàng câu hỏi của mỗi chủ đề, nên khó chia sẻ đáp án hơn.
 - **Kết quả dễ đọc.** Một bảng điểm cho mỗi ứng viên với từng câu trả lời và thời gian, xếp hạng theo điểm, kèm cảnh báo về trả lời quá nhanh, rời khỏi trang, cố sao chép và mẫu trả lời bất thường.
 - **Câu trả lời được chấm theo đáp án** do AI viết; một phần đáp án của mỗi chủ đề được kiểm tra trước khi phát hành, phần còn lại khi câu hỏi bị đánh dấu. Không có AI nào đọc hay đánh giá câu trả lời của ứng viên.
 
-prepza không tổ chức phỏng vấn có cấu trúc, mẫu công việc hay bài kiểm tra nhận thức. Hãy dùng prepza cùng với các phương pháp đó. Để tìm hiểu thêm về các loại bài kiểm tra và tính công bằng, đọc [Kiểm tra trước tuyển dụng](/pre-employment-testing).
+testee không tổ chức phỏng vấn có cấu trúc, mẫu công việc hay bài kiểm tra nhận thức. Hãy dùng testee cùng với các phương pháp đó. Để tìm hiểu thêm về các loại bài kiểm tra và tính công bằng, đọc [Kiểm tra trước tuyển dụng](/pre-employment-testing).
 
 ## Nguồn tham khảo
 

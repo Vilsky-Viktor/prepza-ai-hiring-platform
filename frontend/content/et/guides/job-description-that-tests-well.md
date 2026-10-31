@@ -102,9 +102,9 @@ Iga rida nimetab midagi, mille kohta saab küsida, tase on kirjas ja „kasuks t
 - Kohustuslikud tingimused on jäetud CV-de sõelumiseks.
 - Pole sõnastust inimese kohta, keda ette kujutad, ainult töö kohta.
 
-## Kuidas prepza töökuulutust kasutab
+## Kuidas testee töökuulutust kasutab
 
-prepza on üks näide tööriistast, mis loob töökuulutuse põhjal ajapiiranguga valikvastustega oskustesti. Siin on, mida see tekstiga teeb, et näeksid, kuidas eespool toodud nõuanded toimivad:
+testee on üks näide tööriistast, mis loob töökuulutuse põhjal ajapiiranguga valikvastustega oskustesti. Siin on, mida see tekstiga teeb, et näeksid, kuidas eespool toodud nõuanded toimivad:
 
 - **See loeb iga nõuet.** AI leiab iga oskuse, tööriista, mõiste, kvalifikatsiooni ja igapäevase ülesande igast jaotisest, ka neist, mis on märgitud eelistatuks või „kasuks tuleb“. Kultuurilaused, hüved ja loosungid jäetakse välja.
 - **Asendatavad näited muutuvad üheks.** „Tööriistad nagu A, B või sarnased“ jäetakse tööriista liigina, näiteks see, mida tekst eelistab (või kõige laialdasemalt kasutatav). Sõnaga „ja“ ühendatud asjad jäävad eraldi. Nii et kui vajad üht kindlat tööriista, nimeta ainult seda.

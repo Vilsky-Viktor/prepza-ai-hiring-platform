@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 Secara umum, ya: memakai AI dalam rekrutmen itu legal di UE. Tetapi sebagian besar alat AI yang mengevaluasi kandidat masuk kategori berisiko tinggi dalam AI Act UE (EU AI Act), yang membawa kewajiban bagi vendor dan bagi kamu sebagai pemberi kerja. Beberapa praktik dilarang sepenuhnya. Dan GDPR berlaku untuk data kandidat, seperti selama ini.
 
-Panduan ini menjelaskan aturannya secara garis besar, tanggal-tanggal yang penting, apa yang harus dilakukan pemberi kerja, dan pendekatan prepza. **Ini bukan nasihat hukum.** Isinya mencerminkan aturan per Oktober 2026. Aturannya masih baru, panduannya masih difinalisasi, dan hukum nasional menambahkan persyaratannya sendiri. Konsultasikan dengan penasihat hukummu sendiri sebelum mengandalkan isi panduan ini.
+Panduan ini menjelaskan aturannya secara garis besar, tanggal-tanggal yang penting, apa yang harus dilakukan pemberi kerja, dan pendekatan testee. **Ini bukan nasihat hukum.** Isinya mencerminkan aturan per Oktober 2026. Aturannya masih baru, panduannya masih difinalisasi, dan hukum nasional menambahkan persyaratannya sendiri. Konsultasikan dengan penasihat hukummu sendiri sebelum mengandalkan isi panduan ini.
 
 ## Jawaban singkatnya
 
@@ -113,15 +113,15 @@ Data kandidat adalah data pribadi, dan AI tidak mengubah GDPR. Pokok-pokoknya:
 8. **Tawarkan akomodasi,** seperti tambahan waktu, kepada kandidat yang membutuhkannya.
 9. **Jangan pernah menolak berdasarkan skor saja.** Lihat jawabannya.
 
-## Pendekatan prepza
+## Pendekatan testee
 
-prepza menjalankan wawancara keterampilan pilihan ganda berbatas waktu yang ditulis AI dari deskripsi pekerjaan. Karena prepza memberi skor dan memeringkat kandidat, analisis prepza sendiri menyimpulkan bahwa prepza sangat mungkin tergolong berisiko tinggi menurut Lampiran III, poin 4(a), dengan kewajiban yang berlaku mulai 2 Desember 2027. prepza bersiap atas dasar itu. prepza tidak mengklaim sudah patuh atau tersertifikasi.
+testee menjalankan wawancara keterampilan pilihan ganda berbatas waktu yang ditulis AI dari deskripsi pekerjaan. Karena testee memberi skor dan memeringkat kandidat, analisis testee sendiri menyimpulkan bahwa testee sangat mungkin tergolong berisiko tinggi menurut Lampiran III, poin 4(a), dengan kewajiban yang berlaku mulai 2 Desember 2027. testee bersiap atas dasar itu. testee tidak mengklaim sudah patuh atau tersertifikasi.
 
 Seperti apa wujudnya di produk saat ini:
 
 - **AI menulis soal dan kunci jawabannya; penilaian mengikuti aturan tetap.** Tidak ada AI yang membaca atau menilai jawaban kandidat, dan tidak ada analisis video, suara, atau wajah. Kalau AI mengoreksi sebuah kunci jawaban belakangan, koreksinya berlaku untuk kandidat yang mulai setelahnya; hasil sebelumnya tidak berubah.
 - **Kamu menyetujui topiknya** sebelum ada soal yang ditulis, dan kamu bisa melihat setiap soal.
-- **Manusia yang memutuskan.** Halaman hasil dan laporan PDF mengingatkan timmu untuk meninjau hasil; prepza tidak menolak kandidat atau mengirim pesan penolakan.
+- **Manusia yang memutuskan.** Halaman hasil dan laporan PDF mengingatkan timmu untuk meninjau hasil; testee tidak menolak kandidat atau mengirim pesan penolakan.
 - **Kandidat diberi tahu** sebelum mulai bahwa soal ditulis oleh AI, bahwa orang di perusahaanmu yang meninjau hasil dan memutuskan, dan bahwa mereka bisa meminta peninjauan.
 - **Tambahan waktu** bisa diberikan kepada kandidat mana pun yang memintanya.
 - **Catatan.** Soal yang ditampilkan, jawaban, waktu, dan tanda peringatan tercatat.

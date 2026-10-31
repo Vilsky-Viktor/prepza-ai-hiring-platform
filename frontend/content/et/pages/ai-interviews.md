@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 „AI-intervjuu“ tähendab eri pakkujate juures väga erinevaid asju. Mõni tööriist peab kandidaadiga vestlust. Mõni salvestab video ja hindab seda. Mõni kasutab AI-d ainult küsimuste kirjutamiseks ja hindab vastuseid kindlate reeglite järgi. Värbamismeeskonnale on vahe oluline: sellest sõltub, mida saad kandidaadile selgitada, mis võib valesti minna ja mida seadus sinult ootab.
 
-Sellel lehel jagame AI-intervjuu tööriistad põhiliikideks, selgitame prepza lähenemist ja võtame kokku õiguslikud põhitõed.
+Sellel lehel jagame AI-intervjuu tööriistad põhiliikideks, selgitame testee lähenemist ja võtame kokku õiguslikud põhitõed.
 
 ## Kolm liiki AI-intervjuu tööriistu
 
@@ -29,11 +29,11 @@ Siin salvestavad kandidaadid vastused kaamera ees. Mõni toode ainult transkribe
 
 ### Loodud testid
 
-Selles mudelis teeb AI kirjutamistöö: loeb töökuulutust, pakub välja, mida testida, ja koostab küsimuste mustandid. Seejärel vastavad kandidaadid küsimustele, millel on selgelt õiged ja valed vastused, ja hindamine käib kindlate reeglite järgi. Seda mudelit kasutab prepza.
+Selles mudelis teeb AI kirjutamistöö: loeb töökuulutust, pakub välja, mida testida, ja koostab küsimuste mustandid. Seejärel vastavad kandidaadid küsimustele, millel on selgelt õiged ja valed vastused, ja hindamine käib kindlate reeglite järgi. Seda mudelit kasutab testee.
 
-## prepza lähenemine
+## testee lähenemine
 
-prepza kirjutab AI abil sinu töökuulutuse põhjal oskuste intervjuu. Mida testitakse ja mis otsused tehakse, jääb inimeste kontrolli alla.
+testee kirjutab AI abil sinu töökuulutuse põhjal oskuste intervjuu. Mida testitakse ja mis otsused tehakse, jääb inimeste kontrolli alla.
 
 1. **AI loeb sinu töökuulutust** ja toob välja, mida kandidaat peab teadma: nõuded, taseme ning teemad koos alateemadega.
 2. **Sina vaatad teemad üle.** Jäta alles, eemalda linnuke, nimeta ümber või muuda neid või kirjuta AI-le tavalise tekstiga, mida muuta. Ühtegi küsimust ei kirjutata enne, kui oled teemad heaks kiitnud.
@@ -42,16 +42,16 @@ prepza kirjutab AI abil sinu töökuulutuse põhjal oskuste intervjuu. Mida test
 5. **Vastuseid kontrollitakse vastusevõtme järgi.** AI kirjutab võtmed; igast teemast kontrollitakse enne avaldamist valim võtmeid, ülejäänuid siis, kui küsimusest teatatakse. Hindamine ise käib kindlate reeglite järgi ja ükski AI ei loe ega hinda kandidaadi vastust. Kui võtit hiljem parandatakse, kehtib parandus kandidaatidele, kes alustavad pärast seda; varasemad tulemused ei muutu. Kiirust, lehelt lahkumisi ja kopeerimiskatseid näidatakse sulle signaalidena; tulemust need ei muuda.
 6. **Otsustavad inimesed.** Näed järjestatud nimekirja ja iga kandidaadi hindamislehte koos kõigi vastuste ja ajakuluga. Tulemused vaatab üle ja värbamisotsuse teeb inimene sinu ettevõttest.
 
-Mida prepza ei tee:
+Mida testee ei tee:
 
 - Ei analüüsi videot, häält ega nägu.
 - Ei tee järeldusi isiksuse ega emotsioonide kohta.
-- Ei lükka kandidaate automaatselt tagasi. prepza ei lükka kandidaate tagasi ega saada äraütlemiskirju; otsustab sinu meeskond.
-- Sinu andmeid ei kasutata AI-mudelite treenimiseks. prepza AI-teenuse pakkuja OpenAI ei treeni oma tingimuste kohaselt mudeleid API kaudu saadud andmetel.
+- Ei lükka kandidaate automaatselt tagasi. testee ei lükka kandidaate tagasi ega saada äraütlemiskirju; otsustab sinu meeskond.
+- Sinu andmeid ei kasutata AI-mudelite treenimiseks. testee AI-teenuse pakkuja OpenAI ei treeni oma tingimuste kohaselt mudeleid API kaudu saadud andmetel.
 
 ### Küsimused paranevad aja jooksul
 
-AI kirjutatud küsimused võivad olla valed või ebaselged, eriti uues intervjuus. prepza jälgib seda: kandidaatide vastused, hinnangud ja teated toovad esile nõrgad küsimused ning AI-kontrollija parandab või asendab need. Kui märkad vale vastusevõtmega küsimust, märgi see ja see läheb kohe kontrollijale.
+AI kirjutatud küsimused võivad olla valed või ebaselged, eriti uues intervjuus. testee jälgib seda: kandidaatide vastused, hinnangud ja teated toovad esile nõrgad küsimused ning AI-kontrollija parandab või asendab need. Kui märkad vale vastusevõtmega küsimust, märgi see ja see läheb kohe kontrollijale.
 
 Enne kellegi kutsumist saad oma intervjuu ka ise kandidaadina läbi teha: samad ajapiiranguga küsimused, tasuta ja sinu tulemustesse need ei lähe.
 
@@ -71,7 +71,7 @@ Enne kellegi kutsumist saad oma intervjuu ka ise kandidaadina läbi teha: samad 
 
 ### Mida valikvastustega test ei suuda
 
-Ole piirangutest teadlik. Valikvastustega test kontrollib teadmisi. Koodi lugemise küsimused näitavad, kas inimene saab koodist aru, mitte seda, kas ta oskab seda kirjutada. Selline test ei näita, kuidas keegi kirjutab, kliendiga räägib või süsteemi algusest lõpuni kavandab. Selleks kombineeri prepza lõppvaliku jaoks proovitöö või struktureeritud intervjuuga. Praktilise programmeerimise jaoks kasuta prepza kõrval arendajate platvormi või oma ülesannet; vaata [HackerRanki alternatiivid](/compare/hackerrank-alternatives) ja [Inseneride intervjueerimine AI ajastul](/guides/interviewing-in-the-age-of-ai).
+Ole piirangutest teadlik. Valikvastustega test kontrollib teadmisi. Koodi lugemise küsimused näitavad, kas inimene saab koodist aru, mitte seda, kas ta oskab seda kirjutada. Selline test ei näita, kuidas keegi kirjutab, kliendiga räägib või süsteemi algusest lõpuni kavandab. Selleks kombineeri testee lõppvaliku jaoks proovitöö või struktureeritud intervjuuga. Praktilise programmeerimise jaoks kasuta testee kõrval arendajate platvormi või oma ülesannet; vaata [HackerRanki alternatiivid](/compare/hackerrank-alternatives) ja [Inseneride intervjueerimine AI ajastul](/guides/interviewing-in-the-age-of-ai).
 
 ## AI-intervjuu tööriistade õiguslikud põhitõed
 
@@ -79,7 +79,7 @@ See on kokkuvõte 2026. aasta oktoobri seisuga, mitte õigusnõuanne. Konsulteer
 
 ### ELi tehisintellekti määrus (AI Act)
 
-AI-süsteemid, mis on „ette nähtud kasutamiseks füüsiliste isikute töölevõtmiseks või valimiseks, eelkõige sihipäraste töökuulutuste avaldamiseks, tööle kandideerimise taotluste analüüsimiseks ja filtreerimiseks ning kandidaatide hindamiseks“, on määruse [III lisa punkti 4 alapunkti a](https://artificialintelligenceact.eu/annex/3/) kohaselt suure riskiga. Tööriistad, mis hindavad või järjestavad kandidaate, kuuluvad sinna väga tõenäoliselt. prepza enda analüüsi järeldus on, et prepza on väga tõenäoliselt suure riskiga süsteem ja kohustused kehtivad alates 2. detsembrist 2027.
+AI-süsteemid, mis on „ette nähtud kasutamiseks füüsiliste isikute töölevõtmiseks või valimiseks, eelkõige sihipäraste töökuulutuste avaldamiseks, tööle kandideerimise taotluste analüüsimiseks ja filtreerimiseks ning kandidaatide hindamiseks“, on määruse [III lisa punkti 4 alapunkti a](https://artificialintelligenceact.eu/annex/3/) kohaselt suure riskiga. Tööriistad, mis hindavad või järjestavad kandidaate, kuuluvad sinna väga tõenäoliselt. testee enda analüüsi järeldus on, et testee on väga tõenäoliselt suure riskiga süsteem ja kohustused kehtivad alates 2. detsembrist 2027.
 
 Suure riskiga staatus tähendab kohustusi mõlemale poolele:
 
@@ -90,7 +90,7 @@ Kuupäevad ja üksikasjad leiad artiklist [Kas AI kasutamine värbamisel on ELis
 
 ### Isikuandmete kaitse üldmäärus (GDPR)
 
-Intervjuu tulemused on isikuandmed nii ELi isikuandmete kaitse üldmääruse kui ka UK GDPR-i järgi. Oota andmetöötluslepingut, teadet kandidaatidele, piiratud säilitusaega ja võimalust, et kandidaadid saaksid oma andmetega tutvuda või neid kustutada. [Artikkel 22](https://gdpr-info.eu/art-22-gdpr/) piirab ka üksnes automatiseeritud töötlusel põhinevaid otsuseid, mis inimesi oluliselt mõjutavad, nii et lase tulemused enne nende põhjal tegutsemist inimesel üle vaadata. prepza majutatakse ELis (mõned volitatud alamtöötlejad asuvad USAs; vaata [privaatsuspoliitikat](/privacy)), kustutab kandidaatide andmed 12 kuud pärast kutset ning sisaldab andmetöötluslepingut ja juhiseid ettevõtetele.
+Intervjuu tulemused on isikuandmed nii ELi isikuandmete kaitse üldmääruse kui ka UK GDPR-i järgi. Oota andmetöötluslepingut, teadet kandidaatidele, piiratud säilitusaega ja võimalust, et kandidaadid saaksid oma andmetega tutvuda või neid kustutada. [Artikkel 22](https://gdpr-info.eu/art-22-gdpr/) piirab ka üksnes automatiseeritud töötlusel põhinevaid otsuseid, mis inimesi oluliselt mõjutavad, nii et lase tulemused enne nende põhjal tegutsemist inimesel üle vaadata. testee majutatakse ELis (mõned volitatud alamtöötlejad asuvad USAs; vaata [privaatsuspoliitikat](/privacy)), kustutab kandidaatide andmed 12 kuud pärast kutset ning sisaldab andmetöötluslepingut ja juhiseid ettevõtetele.
 
 ### Ameerika Ühendriigid
 

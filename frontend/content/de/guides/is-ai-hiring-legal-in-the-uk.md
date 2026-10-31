@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Grundsätzlich ja: KI in der Personalauswahl einzusetzen ist im Vereinigten Königreich erlaubt. Das Vereinigte Königreich hat kein einheitliches KI-Gesetz wie die KI-Verordnung (AI Act) der EU. Stattdessen gelten der Equality Act 2010 und die UK-DSGVO (UK GDPR) für KI-Tools genauso wie für jeden anderen Test, und seit dem 5. Februar 2026 enthält die UK-DSGVO neue Regeln für Entscheidungen, die ausschließlich automatisiert getroffen werden.
 
-Dieser Leitfaden erklärt die Regeln im Überblick, was Arbeitgeber tun müssen und wie prepza damit umgeht. **Er ist keine Rechtsberatung.** Er gibt den Stand der Regeln im Oktober 2026 wieder; einige davon sind neu, und die Leitlinien der Aufsichtsbehörde dazu werden noch überarbeitet.
+Dieser Leitfaden erklärt die Regeln im Überblick, was Arbeitgeber tun müssen und wie testee damit umgeht. **Er ist keine Rechtsberatung.** Er gibt den Stand der Regeln im Oktober 2026 wieder; einige davon sind neu, und die Leitlinien der Aufsichtsbehörde dazu werden noch überarbeitet.
 
 ## Die Kurzantwort
 
@@ -99,21 +99,21 @@ Wenn ein Anbieter Daten britischer Kandidaten in die Vereinigten Staaten übermi
 8. **Überwache die Fairness** deiner eigenen Ergebnisse mit Daten, die Kandidaten dir selbst gegeben haben, nie mit abgeleiteten Daten.
 9. **Sag niemals allein aufgrund einer Punktzahl ab.** Sieh dir die Antworten an.
 
-## Wie prepza damit umgeht
+## Wie testee damit umgeht
 
-prepza führt zeitlich begrenzte Multiple-Choice-Interviews zu Fachkenntnissen durch, die KI aus einer Stellenbeschreibung schreibt. Im Vereinigten Königreich geht prepza genauso vor wie in der EU. prepza behauptet nicht, konform oder zertifiziert zu sein.
+testee führt zeitlich begrenzte Multiple-Choice-Interviews zu Fachkenntnissen durch, die KI aus einer Stellenbeschreibung schreibt. Im Vereinigten Königreich geht testee genauso vor wie in der EU. testee behauptet nicht, konform oder zertifiziert zu sein.
 
 So sieht das heute im Produkt aus:
 
 - **KI schreibt die Fragen und ihre Lösungsschlüssel; die Bewertung folgt festen Regeln.** Keine KI liest oder beurteilt die Antwort eines Kandidaten, und es wird keine Video- oder Gesichtsanalyse eingesetzt. Im Sprachmodus wird Sprache in Text umgewandelt und einer Antwortoption zugeordnet, die dem Kandidaten genannt und auf dem Bildschirm angezeigt wird: Eine eindeutig genannte einzelne Option wird sofort übernommen, eine Auswahl mehrerer Optionen wird zuerst bestätigt. Die Sprache wird nie gespeichert, und die Stimme wird nie analysiert.
 - **Du gibst die Themen frei,** bevor eine Frage geschrieben wird, und du wählst die Bestehensgrenze.
-- **Menschen entscheiden.** Die Ergebnisseite und die PDF-Berichte erinnern dein Team daran, die Ergebnisse zu prüfen; prepza lehnt keine Kandidaten ab und verschickt keine Absagen.
+- **Menschen entscheiden.** Die Ergebnisseite und die PDF-Berichte erinnern dein Team daran, die Ergebnisse zu prüfen; testee lehnt keine Kandidaten ab und verschickt keine Absagen.
 - **Kandidaten werden informiert,** bevor sie beginnen: dass die Fragen von KI geschrieben sind, dass Menschen in deinem Unternehmen die Ergebnisse prüfen und entscheiden und dass sie eine Überprüfung verlangen können.
-- **Keine geschützten Merkmale.** prepza fragt nie nach Geschlecht, ethnischer Herkunft, Alter, Behinderung oder anderen geschützten Merkmalen von Kandidaten, leitet sie nicht ab und speichert sie nicht.
+- **Keine geschützten Merkmale.** testee fragt nie nach Geschlecht, ethnischer Herkunft, Alter, Behinderung oder anderen geschützten Merkmalen von Kandidaten, leitet sie nicht ab und speichert sie nicht.
 - **Fairness-Überwachung.** Der Inhaber deines Unternehmens kann auf der Seite „Aktionsprotokoll“ des Unternehmens eine Datei für ein Bias-Audit herunterladen: für jeden Kandidaten, der fertig ist, die Note, die Bestehensgrenze, ob er bestanden hat und ob er über dem Median des Interviews lag, zugeordnet über die E-Mail-Adresse. Verknüpfe sie mit den Antworten, die Kandidaten dir in deinem eigenen Formular zur Chancengleichheit gegeben haben, und entferne dann die E-Mail-Adresse.
-- **Zusätzliche Zeit** von +25 %, +50 % oder +100 % bei jeder Frage kann jedem Kandidaten gewährt werden, der darum bittet, bevor er beginnt. prepza speichert nur den Umfang, nie den Grund.
+- **Zusätzliche Zeit** von +25 %, +50 % oder +100 % bei jeder Frage kann jedem Kandidaten gewährt werden, der darum bittet, bevor er beginnt. testee speichert nur den Umfang, nie den Grund.
 - **Dokumente.** Vorlagen für die Kandidateninformation, die Anleitung für Unternehmen und eine DSFA-Vorlage findest du auf der [Dokumente-Seite](/documents).
-- **Daten.** Dein Unternehmen ist der Verantwortliche und prepza der Auftragsverarbeiter, nach dem [Auftragsverarbeitungsvertrag](/dpa), der britisches Recht abdeckt. Die Daten werden in der EU gehostet und nicht zum Training von KI-Modellen genutzt; Übermittlungen von Daten britischer Kandidaten an Unterauftragsverarbeiter in den USA stützen sich auf die britisch-amerikanische Datenbrücke oder den britischen Zusatz (siehe die [Datenschutzerklärung](/privacy)). Kandidatendaten werden 12 Monate nach der Einladung gelöscht.
+- **Daten.** Dein Unternehmen ist der Verantwortliche und testee der Auftragsverarbeiter, nach dem [Auftragsverarbeitungsvertrag](/dpa), der britisches Recht abdeckt. Die Daten werden in der EU gehostet und nicht zum Training von KI-Modellen genutzt; Übermittlungen von Daten britischer Kandidaten an Unterauftragsverarbeiter in den USA stützen sich auf die britisch-amerikanische Datenbrücke oder den britischen Zusatz (siehe die [Datenschutzerklärung](/privacy)). Kandidatendaten werden 12 Monate nach der Einladung gelöscht.
 
 ## Weiterlesen
 

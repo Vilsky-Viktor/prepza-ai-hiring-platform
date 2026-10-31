@@ -102,9 +102,9 @@ Setiap baris menyebut sesuatu yang bisa ditanyakan dalam soal, levelnya disebutk
 - Syarat mutlak diserahkan ke tahap penyaringan CV.
 - Tidak ada kata-kata tentang orang yang kamu bayangkan, hanya tentang pekerjaannya.
 
-## Cara prepza memakai deskripsi pekerjaan
+## Cara testee memakai deskripsi pekerjaan
 
-prepza adalah salah satu contoh alat yang membuat tes keterampilan pilihan ganda berbatas waktu dari deskripsi pekerjaan. Berikut yang dilakukannya terhadap teks, supaya kamu bisa melihat bagaimana saran di atas berlaku dalam praktik:
+testee adalah salah satu contoh alat yang membuat tes keterampilan pilihan ganda berbatas waktu dari deskripsi pekerjaan. Berikut yang dilakukannya terhadap teks, supaya kamu bisa melihat bagaimana saran di atas berlaku dalam praktik:
 
 - **Ia membaca setiap persyaratan.** AI mengambil setiap skill, tool, konsep, kualifikasi, dan tugas harian dari setiap bagian, termasuk yang ditandai sebagai diutamakan atau nilai tambah. Pernyataan budaya, benefit, dan slogan dikeluarkan.
 - **Contoh yang bisa saling menggantikan dijadikan satu.** "Tool seperti A, B, atau sejenisnya" disimpan sebagai jenis tool, dengan tool yang diutamakan teks (atau yang paling banyak dipakai) sebagai contoh. Item yang digabung dengan "dan" tetap terpisah. Jadi kalau kamu butuh satu tool tertentu, sebutkan hanya tool itu.

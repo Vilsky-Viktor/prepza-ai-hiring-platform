@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 In general, yes: using AI in hiring is legal in the US. There is no federal AI law for hiring. Instead, federal anti-discrimination law applies to AI tools as it does to any test, and a few places add rules of their own: New York City, Illinois, Colorado and California.
 
-This guide explains the rules at a high level, the dates that matter, what employers have to do, and how prepza approaches it. **It is not legal advice.** It reflects the rules as of October 2026, several of which are new or still being finalized.
+This guide explains the rules at a high level, the dates that matter, what employers have to do, and how testee approaches it. **It is not legal advice.** It reflects the rules as of October 2026, several of which are new or still being finalized.
 
 ## The short answer
 
@@ -97,22 +97,22 @@ Colorado's AI law was repealed and re-enacted by SB 26-189, signed on 14 May 202
 8. **Keep records as long as your law requires,** for example four years in California and three in Colorado.
 9. **Never reject on a score alone.** Have a person review each result.
 
-## How prepza approaches this
+## How testee approaches this
 
-prepza runs timed multiple-choice skills interviews written by AI from a job description. Its approach in the US is the same as in the EU. prepza does not claim to be compliant or certified.
+testee runs timed multiple-choice skills interviews written by AI from a job description. Its approach in the US is the same as in the EU. testee does not claim to be compliant or certified.
 
 What that looks like in the product today:
 
 - **AI writes the questions and their answer keys; marking follows fixed rules.** No AI reads or judges a candidate's answer, and no video or face analysis is used. In voice mode, speech is turned into text and matched to an option, which is said back to the candidate and shown on screen: one clearly named option is saved at once, and a choice of several options is confirmed first. Speech is never stored and the voice is never analysed.
 - **You approve the topics** before any question is written, and you choose the passing grade.
-- **People decide.** prepza doesn't reject candidates or send rejection messages.
-- **No protected characteristics.** prepza never asks for, infers or stores candidates' sex, race, age, disability, zip code or other protected characteristics.
+- **People decide.** testee doesn't reject candidates or send rejection messages.
+- **No protected characteristics.** testee never asks for, infers or stores candidates' sex, race, age, disability, zip code or other protected characteristics.
 - **A bias-audit export.** On the company's Action log page, the owner can download a CSV file of the candidates who finished, for the whole company or one interview and between two dates: each candidate's grade, the passing grade, whether they passed and whether they scored above the interview's median. Each row is keyed by the candidate's email, so you can join it with the self-reported categories you collected yourself; then remove the email column and give the file to your independent auditor, who works out the selection and scoring rates and the impact ratios. The same file lets you run the four-fifths check yourself.
-- **Extra time** of +25%, +50% or +100% on every question can be given to any candidate who asks, before they start. prepza stores only the amount, never the reason. In voice mode, a candidate can always tap an option instead, and you can set an interview to answering by tapping only.
+- **Extra time** of +25%, +50% or +100% on every question can be given to any candidate who asks, before they start. testee stores only the amount, never the reason. In voice mode, a candidate can always tap an option instead, and you can set an interview to answering by tapping only.
 - **Candidate notice templates,** a general one and versions for New York City, Illinois and Colorado, are on the [documents page](/documents), with the instructions for companies.
-- **New York City.** prepza hasn't had its own independent bias audit yet. Don't use prepza for New York City jobs until you've done what Local Law 144 asks of you as the employer: an independent bias audit within the year before use, its summary published, and a notice to candidates 10 business days before.
-- **Data.** Your company is the business and prepza its service provider under the CCPA, under the [data processing agreement](/dpa) and its US section. Data is hosted in the EU, with some sub-processors in the US (see the [privacy policy](/privacy)), and isn't used to train AI models.
-- **Retention.** Candidate data is deleted 12 months after the invite. Where your law asks you to keep records longer, such as California's four years, download the PDF reports and the bias-audit file and keep them yourself; prepza doesn't keep results longer by default.
+- **New York City.** testee hasn't had its own independent bias audit yet. Don't use testee for New York City jobs until you've done what Local Law 144 asks of you as the employer: an independent bias audit within the year before use, its summary published, and a notice to candidates 10 business days before.
+- **Data.** Your company is the business and testee its service provider under the CCPA, under the [data processing agreement](/dpa) and its US section. Data is hosted in the EU, with some sub-processors in the US (see the [privacy policy](/privacy)), and isn't used to train AI models.
+- **Retention.** Candidate data is deleted 12 months after the invite. Where your law asks you to keep records longer, such as California's four years, download the PDF reports and the bias-audit file and keep them yourself; testee doesn't keep results longer by default.
 
 ## Related reading
 

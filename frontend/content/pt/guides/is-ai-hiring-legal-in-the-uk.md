@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Em geral, sim: usar IA no recrutamento e seleção é legal no Reino Unido. O Reino Unido não tem uma lei única de IA como o Regulamento de IA da UE. Em vez disso, a Equality Act 2010 (lei britânica de igualdade) e o UK GDPR se aplicam às ferramentas de IA como a qualquer teste, e desde 5 de fevereiro de 2026 o UK GDPR tem novas regras sobre decisões tomadas exclusivamente por meios automatizados.
 
-Este guia explica as regras em linhas gerais, o que os empregadores precisam fazer e como a prepza lida com isso. **Não é aconselhamento jurídico.** Ele reflete as regras de outubro de 2026; algumas são novas, e as orientações do regulador sobre elas ainda estão sendo atualizadas.
+Este guia explica as regras em linhas gerais, o que os empregadores precisam fazer e como a testee lida com isso. **Não é aconselhamento jurídico.** Ele reflete as regras de outubro de 2026; algumas são novas, e as orientações do regulador sobre elas ainda estão sendo atualizadas.
 
 ## A resposta curta
 
@@ -99,21 +99,21 @@ Se um fornecedor enviar dados de candidatos britânicos para os Estados Unidos, 
 8. **Monitore a justiça** nos seus próprios resultados com dados que os candidatos lhe deram, nunca com dados inferidos.
 9. **Nunca reprove só pela pontuação.** Olhe as respostas.
 
-## Como a prepza lida com isso
+## Como a testee lida com isso
 
-A prepza aplica entrevistas de habilidades de múltipla escolha cronometradas, escritas por IA a partir de uma descrição da vaga. Sua abordagem no Reino Unido é a mesma da UE. A prepza não afirma estar em conformidade nem ser certificada.
+A testee aplica entrevistas de habilidades de múltipla escolha cronometradas, escritas por IA a partir de uma descrição da vaga. Sua abordagem no Reino Unido é a mesma da UE. A testee não afirma estar em conformidade nem ser certificada.
 
 Como isso aparece no produto hoje:
 
 - **A IA escreve as perguntas e os gabaritos; a correção segue regras fixas.** Nenhuma IA lê ou julga a resposta de um candidato, e não há análise de vídeo ou rosto. No modo de voz, a fala é transformada em texto e associada a uma opção, que é dita ao candidato e mostrada na tela: uma única opção dita com clareza é registrada na hora, e uma escolha de várias opções é confirmada primeiro. A fala nunca é armazenada e a voz nunca é analisada.
 - **Você aprova os tópicos** antes de qualquer pergunta ser escrita, e escolhe a nota de aprovação.
-- **Pessoas decidem.** A página de resultados e os relatórios em PDF lembram a sua equipe de revisar os resultados; a prepza não reprova candidatos nem envia mensagens de reprovação.
+- **Pessoas decidem.** A página de resultados e os relatórios em PDF lembram a sua equipe de revisar os resultados; a testee não reprova candidatos nem envia mensagens de reprovação.
 - **Os candidatos são informados** antes de começar de que as perguntas são escritas por IA, de que pessoas da sua empresa revisam os resultados e decidem, e de que eles podem pedir uma revisão.
-- **Nenhuma característica protegida.** A prepza nunca pede, infere ou armazena sexo, etnia, idade, deficiência ou outras características protegidas dos candidatos.
+- **Nenhuma característica protegida.** A testee nunca pede, infere ou armazena sexo, etnia, idade, deficiência ou outras características protegidas dos candidatos.
 - **Monitoramento de justiça.** O proprietário da sua empresa pode baixar um arquivo de auditoria de viés na página Registro de ações da empresa: para cada candidato que terminou, a nota, a nota de aprovação, se foi aprovado e se ficou acima da mediana da entrevista, identificado pelo e-mail. Cruze-o com as respostas que os candidatos deram no seu próprio formulário de igualdade de oportunidades e depois remova o e-mail.
-- **Tempo extra** de +25%, +50% ou +100% em cada pergunta pode ser dado a qualquer candidato que pedir, antes de começar. A prepza armazena só o acréscimo, nunca o motivo.
+- **Tempo extra** de +25%, +50% ou +100% em cada pergunta pode ser dado a qualquer candidato que pedir, antes de começar. A testee armazena só o acréscimo, nunca o motivo.
 - **Documentos.** Modelos de aviso aos candidatos, as instruções para empresas e um modelo de DPIA estão na [página de documentos](/documents).
-- **Dados.** Sua empresa é a controladora e a prepza a operadora, nos termos do [acordo de tratamento de dados](/dpa), que cobre a lei britânica. Os dados são hospedados na UE e não são usados para treinar modelos de IA; as transferências de dados de candidatos britânicos para suboperadores nos EUA se apoiam na ponte de dados Reino Unido–EUA ou no adendo britânico (veja a [política de privacidade](/privacy)). Os dados dos candidatos são excluídos 12 meses após o convite.
+- **Dados.** Sua empresa é a controladora e a testee a operadora, nos termos do [acordo de tratamento de dados](/dpa), que cobre a lei britânica. Os dados são hospedados na UE e não são usados para treinar modelos de IA; as transferências de dados de candidatos britânicos para suboperadores nos EUA se apoiam na ponte de dados Reino Unido–EUA ou no adendo britânico (veja a [política de privacidade](/privacy)). Os dados dos candidatos são excluídos 12 meses após o convite.
 
 ## Leitura relacionada
 

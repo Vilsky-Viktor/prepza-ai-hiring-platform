@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Tes keterampilan dengan soal yang bagus tetap bisa memberi hasil yang buruk. Waktu terlalu banyak, kandidat mencari setiap jawaban; terlalu sedikit, yang kamu ukur adalah kecepatan membaca. Soal terlalu sedikit, skornya bergantung pada keberuntungan; terlalu banyak, kandidat yang bagus menyerah di tengah jalan.
 
-Panduan ini membahas empat pengaturan tes pilihan ganda berbatas waktu: waktu per soal, jumlah soal, total durasi, dan waktu tambahan bagi kandidat yang membutuhkannya. Sarannya berlaku untuk tes pengetahuan berbatas waktu apa pun; bagian terakhir menunjukkan cara prepza menangani masing-masing.
+Panduan ini membahas empat pengaturan tes pilihan ganda berbatas waktu: waktu per soal, jumlah soal, total durasi, dan waktu tambahan bagi kandidat yang membutuhkannya. Sarannya berlaku untuk tes pengetahuan berbatas waktu apa pun; bagian terakhir menunjukkan cara testee menangani masing-masing.
 
 ## Versi singkatnya
 
@@ -95,9 +95,9 @@ Banyak negara mewajibkan pemberi kerja menyediakan akomodasi yang layak bagi pel
 
 **Bagian ini adalah panduan praktis, bukan nasihat hukum.** Apa yang wajib kamu sediakan, dan apa yang boleh kamu tanyakan, bergantung pada tempat kamu merekrut. Periksa kewajibanmu sendiri berdasarkan hukum kesetaraan dan disabilitas yang berlaku untukmu.
 
-## Cara prepza menangani waktu dan waktu tambahan
+## Cara testee menangani waktu dan waktu tambahan
 
-Di prepza, wawancara adalah tes keterampilan pilihan ganda berbatas waktu yang dibuat dari deskripsi pekerjaanmu.
+Di testee, wawancara adalah tes keterampilan pilihan ganda berbatas waktu yang dibuat dari deskripsi pekerjaanmu.
 
 ### Waktu per soal
 

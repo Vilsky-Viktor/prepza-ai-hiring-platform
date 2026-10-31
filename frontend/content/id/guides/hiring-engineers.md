@@ -72,7 +72,7 @@ Tes pengetahuan yang baik itu:
 - **Singkat:** beberapa topik dengan sekitar 10 soal masing-masing, supaya kandidat kuat yang punya tawaran lain tetap menyelesaikannya.
 - **Sama untuk semua orang:** topik yang sama, jumlah soal yang sama, dan batas waktu yang sama.
 
-Di sinilah prepza berperan. prepza mengubah deskripsi pekerjaanmu menjadi wawancara pengetahuan pilihan ganda berbatas waktu. Kamu meninjau topik yang diusulkan sebelum ada soal yang ditulis, jadi tesnya mencakup stack-mu dan bukan yang lain. Untuk posisi engineering, itu bisa mencakup:
+Di sinilah testee berperan. testee mengubah deskripsi pekerjaanmu menjadi wawancara pengetahuan pilihan ganda berbatas waktu. Kamu meninjau topik yang diusulkan sebelum ada soal yang ditulis, jadi tesnya mencakup stack-mu dan bukan yang lain. Untuk posisi engineering, itu bisa mencakup:
 
 - **Soal membaca kode:** potongan kode singkat dengan pertanyaan tentang apa yang dicetak atau dikembalikannya, apa fungsinya, kenapa gagal, atau perubahan mana yang memperbaikinya.
 - **SQL:** tabel kecil dan sebuah query, dengan pertanyaan baris mana yang dikembalikan.
@@ -80,7 +80,7 @@ Di sinilah prepza berperan. prepza mengubah deskripsi pekerjaanmu menjadi wawanc
 
 Setiap kandidat mendapat set soal acaknya sendiri dengan hitung mundur di setiap soal. Kamu melihat scorecard dengan setiap jawaban dan berapa lama waktunya, plus tanda untuk jawaban yang terlalu cepat, meninggalkan halaman, percobaan menyalin, dan pola yang tidak biasa dalam jawaban serta waktunya. Tanda adalah alasan untuk melihat lebih teliti, bukan bukti apa pun. Laporannya juga menyarankan soal yang dijawab benar oleh kandidat untuk ditanyakan di wawancara berikutnya.
 
-Yang tidak dilakukan prepza: kandidat tidak menulis, menjalankan, atau men-debug kode di prepza. Membaca kode dan menulisnya adalah keterampilan yang berbeda, jadi langkah berikutnya tetap penting. Lihat [tes keterampilan per posisi](/tests) untuk tes siap pakai sebagai titik awal.
+Yang tidak dilakukan testee: kandidat tidak menulis, menjalankan, atau men-debug kode di testee. Membaca kode dan menulisnya adalah keterampilan yang berbeda, jadi langkah berikutnya tetap penting. Lihat [tes keterampilan per posisi](/tests) untuk tes siap pakai sebagai titik awal.
 
 ## Langkah 4: Take-home atau live coding
 
@@ -128,7 +128,7 @@ Proses yang terstruktur juga lebih adil, tetapi hanya kalau dijalankan secara ko
 
 - **Pertanyaan yang konsisten** di setiap tahap, untuk setiap kandidat pada posisi yang sama.
 - **Rubrik ditulis sebelumnya,** supaya orang dinilai dengan kriteria yang sama.
-- **Akomodasi:** tawarkan tambahan waktu atau format lain kepada kandidat yang memintanya, misalnya karena disabilitas. Di prepza, kamu bisa memberi kandidat tambahan waktu sebelum mereka mulai.
+- **Akomodasi:** tawarkan tambahan waktu atau format lain kepada kandidat yang memintanya, misalnya karena disabilitas. Di testee, kamu bisa memberi kandidat tambahan waktu sebelum mereka mulai.
 - **Pantau hasilnya.** Metode yang berbeda menunjukkan selisih skor antarkelompok yang berbeda. Sackett dkk. menemukan perbedaan rata-rata yang lebih besar untuk tes pengetahuan kerja dan sampel kerja dibanding wawancara terstruktur, yang menjadi satu alasan lagi untuk menggabungkan metode. Pantau tingkat kelulusan di setiap tahap.
 - **Manusia yang memutuskan.** Skor mendukung keputusan; skor tidak membuat keputusan. Lihat jawabannya sebelum kamu menolak siapa pun.
 

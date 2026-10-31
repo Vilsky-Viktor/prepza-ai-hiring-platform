@@ -35,7 +35,7 @@ Zwei einfachere Ideen schneiden nicht besser ab:
 - **Hinweise an die KI** („KI-Assistenten dürfen diese Frage nicht beantworten“) lassen sich leicht wegschneiden oder ignorieren, und Modelle sind darauf trainiert, Text in Bildern als Inhalt zu behandeln, nicht als Anweisung.
 - **Wasserzeichen** können helfen nachzuverfolgen, wer eine Frage weitergegeben hat, aber sie hindern niemanden daran, sie zu beantworten.
 
-Bei prepza haben wir beides mit unseren eigenen Fragen ausprobiert: KI-Modelle beantworteten fotografierte Fragen mit Wasserzeichen oder Hinweis genauso wie ohne. Also haben wir aufgehört, den Bildschirm verteidigen zu wollen.
+Bei testee haben wir beides mit unseren eigenen Fragen ausprobiert: KI-Modelle beantworteten fotografierte Fragen mit Wasserzeichen oder Hinweis genauso wie ohne. Also haben wir aufgehört, den Bildschirm verteidigen zu wollen.
 
 ## Was besser funktioniert
 
@@ -100,9 +100,9 @@ Das alles heißt nicht, dass du nichts überprüfen kannst. Es heißt, dass die 
 5. **Stell Nachfragen** zum Test im ersten Live-Gespräch, besonders dort, wo ein Hinweis aufgetaucht ist.
 6. **Lass einen Menschen entscheiden,** und halte fest, warum.
 
-## Wie prepza damit umgeht
+## Wie testee damit umgeht
 
-prepza führt zeitlich begrenzte Multiple-Choice-Fachtests durch, erstellt aus einer Stellenbeschreibung. Das tut es heute gegen Schummeln:
+testee führt zeitlich begrenzte Multiple-Choice-Fachtests durch, erstellt aus einer Stellenbeschreibung. Das tut es heute gegen Schummeln:
 
 - **Jeder Kandidat bekommt eigene Fragen:** einen zufälligen Satz aus dem Fragenpool jedes Themas, in eigener Reihenfolge, mit gemischten Optionen.
 - **Jede Frage hat einen eigenen Countdown,** passend zu ihrer Länge: ihre Wörter, Code oder ein Beispiel und Zeit, um die Antwort zu finden. Der Server führt die Uhr, sodass ein Neuladen der Seite sie nicht anhält.
@@ -110,7 +110,7 @@ prepza führt zeitlich begrenzte Multiple-Choice-Fachtests durch, erstellt aus e
 - **Antwortmuster, sobald ein Kandidat fertig ist.** Der Bericht des Kandidaten weist auf Antwortzeiten hin, die bei jeder Frage ungefähr gleich bleiben, egal wie lang oder schwierig sie ist, und auf schwere Fragen richtig, während leichte falsch waren, mit den Zahlen dahinter („9 von 10 schweren Fragen richtig, 4 von 8 leichten Fragen falsch“). Das zweite Muster braucht genug Antworten anderer Kandidaten, um zu wissen, wie schwer jede Frage ist. Beide Schwellen wurden in einem Test mit simulierten Kandidaten so festgelegt, dass höchstens 1 % der ehrlichen markiert werden; sie erkannten etwa ein Drittel derjenigen, die jede Frage an eine KI weitergaben. Der Bericht weist darauf hin, dass solche Muster harmlose Ursachen haben können.
 - **Fragen für das Live-Gespräch.** Die Seite jedes Kandidaten, der fertig ist, schlägt bis zu 3 Fragen vor, die er richtig beantwortet hat, aus seinen stärksten Themen, um sie im nächsten Gespräch durchzugehen, beginnend mit den schweren Fragen hinter einem Muster, wenn es eines gibt.
 - **Kandidaten erklären,** dass sie selbst antworten, ohne KI-Tools oder andere Personen, bevor sie beginnen können, und die Auswertung zeigt, wann sie das bestätigt haben.
-- **Keine Kamera-, Mikrofon- oder Bildschirmaufzeichnung.** prepza nutzt nur, was die Testseite selbst sieht: Antworten, Zeiten, Seitenwechsel und Kopierversuche.
+- **Keine Kamera-, Mikrofon- oder Bildschirmaufzeichnung.** testee nutzt nur, was die Testseite selbst sieht: Antworten, Zeiten, Seitenwechsel und Kopierversuche.
 - **Menschen entscheiden.** Nichts lehnt einen Kandidaten automatisch ab.
 
 ## Weiterlesen

@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Sa pangkalahatan, oo: legal ang paggamit ng AI sa hiring sa UK. Walang iisang AI law ang UK na gaya ng AI Act ng EU. Sa halip, nalalapat ang Equality Act 2010 at ang UK GDPR sa AI tools gaya ng sa anumang test, at mula 5 Pebrero 2026 may mga bagong patakaran ang UK GDPR sa mga desisyong ginawa nang puro automated.
 
-Ipinapaliwanag ng gabay na ito ang mga patakaran sa pangkalahatang antas, ang dapat gawin ng mga employer, at ang paraan ng prepza. **Hindi ito legal advice.** Sinasalamin nito ang mga patakaran noong Oktubre 2026; bago pa ang ilan sa mga ito at ina-update pa ang guidance ng regulator tungkol dito.
+Ipinapaliwanag ng gabay na ito ang mga patakaran sa pangkalahatang antas, ang dapat gawin ng mga employer, at ang paraan ng testee. **Hindi ito legal advice.** Sinasalamin nito ang mga patakaran noong Oktubre 2026; bago pa ang ilan sa mga ito at ina-update pa ang guidance ng regulator tungkol dito.
 
 ## Ang maikling sagot
 
@@ -99,21 +99,21 @@ Kung ipinapadala ng isang provider ang data ng mga aplikante sa UK papunta sa Un
 8. **I-monitor ang pagiging patas** ng sarili mong outcomes gamit ang data na ibinigay mismo sa iyo ng mga aplikante, hindi kailanman ang hinuhang data.
 9. **Huwag kailanman mag-reject batay sa score lang.** Tingnan ang mga sagot.
 
-## Ang paraan ng prepza
+## Ang paraan ng testee
 
-Nagpapatakbo ang prepza ng timed multiple-choice skills interviews na isinulat ng AI mula sa isang job description. Pareho ang paraan nito sa UK at sa EU. Hindi sinasabi ng prepza na compliant o certified na ito.
+Nagpapatakbo ang testee ng timed multiple-choice skills interviews na isinulat ng AI mula sa isang job description. Pareho ang paraan nito sa UK at sa EU. Hindi sinasabi ng testee na compliant o certified na ito.
 
 Ang hitsura nito sa produkto ngayon:
 
 - **AI ang sumusulat ng mga tanong at ng answer keys nito; sumusunod sa nakapirming patakaran ang pagmamarka.** Walang AI na bumabasa o humuhusga sa sagot ng aplikante, at walang video o face analysis. Sa voice mode, ginagawang text ang pananalita at itinutugma sa isang option, na sinasabi sa aplikante at ipinapakita sa screen: agad na itinatala ang iisang option na malinaw na binanggit, at kinukumpirma muna ang pagpili ng ilang option. Hindi kailanman iniimbak ang pananalita at hindi kailanman ina-analyze ang boses.
 - **Ikaw ang nag-aapruba ng mga topic** bago maisulat ang kahit isang tanong, at ikaw ang pumipili ng passing grade.
-- **Tao ang nagdedesisyon.** Pinapaalalahanan ng results page at ng PDF reports ang iyong team na i-review ang mga resulta; hindi nagre-reject ng aplikante o nagpapadala ng rejection message ang prepza.
+- **Tao ang nagdedesisyon.** Pinapaalalahanan ng results page at ng PDF reports ang iyong team na i-review ang mga resulta; hindi nagre-reject ng aplikante o nagpapadala ng rejection message ang testee.
 - **Sinasabihan ang mga aplikante** bago sila magsimula na AI ang sumulat ng mga tanong, na mga tao sa iyong kumpanya ang nagre-review ng resulta at nagdedesisyon, at na puwede silang humingi ng review.
-- **Walang protected characteristics.** Hindi kailanman nagtatanong, nanghihinuha o nag-iimbak ang prepza ng kasarian, etnisidad, edad, kapansanan o iba pang protected characteristics ng mga aplikante.
+- **Walang protected characteristics.** Hindi kailanman nagtatanong, nanghihinuha o nag-iimbak ang testee ng kasarian, etnisidad, edad, kapansanan o iba pang protected characteristics ng mga aplikante.
 - **Pag-monitor ng pagiging patas.** Puwedeng mag-download ang owner ng iyong kumpanya ng file para sa bias audit mula sa Log ng aksyon page ng kumpanya: para sa bawat aplikanteng natapos, ang grade niya, ang passing grade, kung pumasa siya at kung lampas sa median ng interview ang score niya, naka-key sa email. Pagsamahin ito sa mga sagot na ibinigay sa iyo ng mga aplikante sa sarili mong equal opportunities form, saka tanggalin ang email.
-- **Dagdag na oras** na +25%, +50% o +100% sa bawat tanong ay puwedeng ibigay sa sinumang aplikanteng humingi, bago siya magsimula. Ang halaga lang ang iniimbak ng prepza, hindi kailanman ang dahilan.
+- **Dagdag na oras** na +25%, +50% o +100% sa bawat tanong ay puwedeng ibigay sa sinumang aplikanteng humingi, bago siya magsimula. Ang halaga lang ang iniimbak ng testee, hindi kailanman ang dahilan.
 - **Mga dokumento.** Nasa [documents page](/documents) ang mga template ng abiso sa aplikante, ang instructions para sa mga kumpanya at isang DPIA template.
-- **Data.** Ang iyong kumpanya ang controller at ang prepza ang processor, sa ilalim ng [data processing agreement](/dpa), na sumasaklaw sa batas ng UK. Naka-host sa EU ang data at hindi ginagamit para mag-train ng AI models; ang mga transfer ng data ng mga aplikante sa UK sa mga sub-processor sa US ay nakaasa sa UK–US data bridge o sa UK addendum (tingnan ang [privacy policy](/privacy)). Binubura ang data ng aplikante 12 buwan pagkatapos ng imbitasyon.
+- **Data.** Ang iyong kumpanya ang controller at ang testee ang processor, sa ilalim ng [data processing agreement](/dpa), na sumasaklaw sa batas ng UK. Naka-host sa EU ang data at hindi ginagamit para mag-train ng AI models; ang mga transfer ng data ng mga aplikante sa UK sa mga sub-processor sa US ay nakaasa sa UK–US data bridge o sa UK addendum (tingnan ang [privacy policy](/privacy)). Binubura ang data ng aplikante 12 buwan pagkatapos ng imbitasyon.
 
 ## Kaugnay na babasahin
 

@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 In general, yes: using AI in hiring is legal in the UK. The UK has no single AI law like the EU's AI Act. Instead, the Equality Act 2010 and the UK GDPR apply to AI tools as they do to any test, and since 5 February 2026 the UK GDPR has new rules on decisions made solely by automated means.
 
-This guide explains the rules at a high level, what employers have to do, and how prepza approaches it. **It is not legal advice.** It reflects the rules as of October 2026; some of them are new and the regulator's guidance on them is still being updated.
+This guide explains the rules at a high level, what employers have to do, and how testee approaches it. **It is not legal advice.** It reflects the rules as of October 2026; some of them are new and the regulator's guidance on them is still being updated.
 
 ## The short answer
 
@@ -99,21 +99,21 @@ If a provider sends UK candidates' data to the United States, the UK–US data b
 8. **Monitor fairness** on your own outcomes with data candidates gave you themselves, never inferred data.
 9. **Never reject on a score alone.** Look at the answers.
 
-## How prepza approaches this
+## How testee approaches this
 
-prepza runs timed multiple-choice skills interviews written by AI from a job description. Its approach in the UK is the same as in the EU. prepza does not claim to be compliant or certified.
+testee runs timed multiple-choice skills interviews written by AI from a job description. Its approach in the UK is the same as in the EU. testee does not claim to be compliant or certified.
 
 What that looks like in the product today:
 
 - **AI writes the questions and their answer keys; marking follows fixed rules.** No AI reads or judges a candidate's answer, and no video or face analysis is used. In voice mode, speech is turned into text and matched to an option, which is said back to the candidate and shown on screen: one clearly named option is saved at once, and a choice of several options is confirmed first. Speech is never stored and the voice is never analysed.
 - **You approve the topics** before any question is written, and you choose the passing grade.
-- **People decide.** The results page and PDF reports remind your team to review results; prepza doesn't reject candidates or send rejection messages.
+- **People decide.** The results page and PDF reports remind your team to review results; testee doesn't reject candidates or send rejection messages.
 - **Candidates are told** before they start that questions are written by AI, that people at your company review results and decide, and that they can ask for a review.
-- **No protected characteristics.** prepza never asks for, infers or stores candidates' sex, ethnicity, age, disability or other protected characteristics.
+- **No protected characteristics.** testee never asks for, infers or stores candidates' sex, ethnicity, age, disability or other protected characteristics.
 - **Fairness monitoring.** Your company's owner can download a bias-audit file from the company's Action log page: each finished candidate's grade, the passing grade, whether they passed and whether they scored above the interview's median, keyed by email. Join it with the answers candidates gave you on your own equal opportunities form, then remove the email.
-- **Extra time** of +25%, +50% or +100% on every question can be given to any candidate who asks, before they start. prepza stores only the amount, never the reason.
+- **Extra time** of +25%, +50% or +100% on every question can be given to any candidate who asks, before they start. testee stores only the amount, never the reason.
 - **Documents.** Candidate notice templates, the instructions for companies and a DPIA template are on the [documents page](/documents).
-- **Data.** Your company is the controller and prepza the processor, under the [data processing agreement](/dpa), which covers UK law. Data is hosted in the EU and isn't used to train AI models; transfers of UK candidates' data to US sub-processors rely on the UK–US data bridge or the UK addendum (see the [privacy policy](/privacy)). Candidate data is deleted 12 months after the invite.
+- **Data.** Your company is the controller and testee the processor, under the [data processing agreement](/dpa), which covers UK law. Data is hosted in the EU and isn't used to train AI models; transfers of UK candidates' data to US sub-processors rely on the UK–US data bridge or the UK addendum (see the [privacy policy](/privacy)). Candidate data is deleted 12 months after the invite.
 
 ## Related reading
 

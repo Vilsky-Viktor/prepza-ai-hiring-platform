@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Nói chung là có: dùng AI trong tuyển dụng là hợp pháp ở Vương quốc Anh. Vương quốc Anh không có một đạo luật AI riêng như Đạo luật AI của EU. Thay vào đó, Luật Bình đẳng 2010 (Equality Act 2010) và UK GDPR áp dụng cho công cụ AI như với mọi bài kiểm tra khác, và từ ngày 5/2/2026, UK GDPR có quy định mới về các quyết định được đưa ra hoàn toàn bằng phương tiện tự động.
 
-Hướng dẫn này giải thích các quy định ở mức tổng quan, những gì bên tuyển dụng phải làm, và cách prepza tiếp cận vấn đề. **Đây không phải tư vấn pháp lý.** Nội dung phản ánh các quy định tính đến tháng 10/2026; một số quy định còn mới và hướng dẫn của cơ quan quản lý về chúng vẫn đang được cập nhật.
+Hướng dẫn này giải thích các quy định ở mức tổng quan, những gì bên tuyển dụng phải làm, và cách testee tiếp cận vấn đề. **Đây không phải tư vấn pháp lý.** Nội dung phản ánh các quy định tính đến tháng 10/2026; một số quy định còn mới và hướng dẫn của cơ quan quản lý về chúng vẫn đang được cập nhật.
 
 ## Câu trả lời ngắn
 
@@ -99,21 +99,21 @@ Nếu một nhà cung cấp gửi dữ liệu của ứng viên ở Vương qu�
 8. **Giám sát công bằng** trên kết quả của chính bạn bằng dữ liệu ứng viên tự cung cấp, không bao giờ bằng dữ liệu suy đoán.
 9. **Không bao giờ loại chỉ dựa trên điểm số.** Hãy xem các câu trả lời.
 
-## Cách prepza tiếp cận vấn đề này
+## Cách testee tiếp cận vấn đề này
 
-prepza tổ chức các buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ, do AI viết từ mô tả công việc. Cách tiếp cận của prepza ở Vương quốc Anh giống như ở EU. prepza không tuyên bố đã tuân thủ hay được chứng nhận.
+testee tổ chức các buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ, do AI viết từ mô tả công việc. Cách tiếp cận của testee ở Vương quốc Anh giống như ở EU. testee không tuyên bố đã tuân thủ hay được chứng nhận.
 
 Hiện nay điều đó thể hiện trong sản phẩm như sau:
 
 - **AI viết câu hỏi và đáp án; việc chấm điểm theo quy tắc cố định.** Không có AI nào đọc hay đánh giá câu trả lời của ứng viên, và không dùng phân tích video hay khuôn mặt. Ở chế độ giọng nói, lời nói được chuyển thành văn bản và khớp với một lựa chọn, lựa chọn đó được đọc lại cho ứng viên và hiển thị trên màn hình: một lựa chọn duy nhất được nói rõ sẽ được ghi nhận ngay, còn khi chọn nhiều lựa chọn thì phải xác nhận trước. Lời nói không bao giờ được lưu và giọng nói không bao giờ bị phân tích.
 - **Bạn duyệt các chủ đề** trước khi bất kỳ câu hỏi nào được viết, và bạn chọn điểm đạt.
-- **Con người quyết định.** Trang kết quả và báo cáo PDF nhắc nhóm của bạn xem xét kết quả; prepza không loại ứng viên và không gửi thư từ chối.
+- **Con người quyết định.** Trang kết quả và báo cáo PDF nhắc nhóm của bạn xem xét kết quả; testee không loại ứng viên và không gửi thư từ chối.
 - **Ứng viên được thông báo** trước khi bắt đầu rằng câu hỏi do AI viết, rằng người của công ty bạn xem xét kết quả và quyết định, và rằng họ có thể yêu cầu xem xét lại.
-- **Không có đặc điểm được bảo vệ.** prepza không bao giờ hỏi, suy đoán hay lưu giới tính, dân tộc, tuổi tác, khuyết tật hay các đặc điểm được bảo vệ khác của ứng viên.
+- **Không có đặc điểm được bảo vệ.** testee không bao giờ hỏi, suy đoán hay lưu giới tính, dân tộc, tuổi tác, khuyết tật hay các đặc điểm được bảo vệ khác của ứng viên.
 - **Giám sát công bằng.** Chủ sở hữu công ty bạn có thể tải tệp dùng cho kiểm toán thiên lệch từ trang Nhật ký thao tác của công ty: với mỗi ứng viên đã hoàn thành, điểm của họ, điểm đạt, họ có đạt hay không và có cao hơn trung vị của buổi phỏng vấn hay không, gắn với email. Hãy ghép tệp này với câu trả lời ứng viên đã đưa cho bạn trong biểu mẫu cơ hội bình đẳng của riêng bạn, rồi xóa email.
-- **Thời gian thêm** +25%, +50% hoặc +100% cho mỗi câu hỏi có thể được cấp cho bất kỳ ứng viên nào yêu cầu, trước khi họ bắt đầu. prepza chỉ lưu mức thời gian thêm, không bao giờ lưu lý do.
+- **Thời gian thêm** +25%, +50% hoặc +100% cho mỗi câu hỏi có thể được cấp cho bất kỳ ứng viên nào yêu cầu, trước khi họ bắt đầu. testee chỉ lưu mức thời gian thêm, không bao giờ lưu lý do.
 - **Tài liệu.** Mẫu thông báo cho ứng viên, hướng dẫn cho công ty và mẫu DPIA có trên [trang tài liệu](/documents).
-- **Dữ liệu.** Công ty bạn là bên kiểm soát và prepza là bên xử lý, theo [thỏa thuận xử lý dữ liệu](/dpa), có bao gồm luật của Vương quốc Anh. Dữ liệu được lưu trữ tại EU và không được dùng để huấn luyện mô hình AI; việc chuyển dữ liệu của ứng viên ở Vương quốc Anh cho các bên xử lý phụ ở Mỹ dựa trên cầu nối dữ liệu Anh–Mỹ hoặc phụ lục của Vương quốc Anh (xem [chính sách quyền riêng tư](/privacy)). Dữ liệu ứng viên được xóa sau 12 tháng kể từ lời mời.
+- **Dữ liệu.** Công ty bạn là bên kiểm soát và testee là bên xử lý, theo [thỏa thuận xử lý dữ liệu](/dpa), có bao gồm luật của Vương quốc Anh. Dữ liệu được lưu trữ tại EU và không được dùng để huấn luyện mô hình AI; việc chuyển dữ liệu của ứng viên ở Vương quốc Anh cho các bên xử lý phụ ở Mỹ dựa trên cầu nối dữ liệu Anh–Mỹ hoặc phụ lục của Vương quốc Anh (xem [chính sách quyền riêng tư](/privacy)). Dữ liệu ứng viên được xóa sau 12 tháng kể từ lời mời.
 
 ## Đọc thêm
 

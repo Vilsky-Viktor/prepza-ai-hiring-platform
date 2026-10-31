@@ -72,7 +72,7 @@ Een goede kennistest is:
 - **Kort:** een paar onderwerpen met elk ongeveer 10 vragen, zodat sterke kandidaten met andere aanbiedingen hem toch afmaken.
 - **Voor iedereen gelijk:** dezelfde onderwerpen, hetzelfde aantal vragen en dezelfde tijdslimieten.
 
-Hier past prepza. Het maakt van je functieomschrijving een getimede meerkeuze-kennistest. Je bekijkt de voorgestelde onderwerpen voordat er ook maar één vraag wordt geschreven, zodat de test je stack dekt en niets anders. Voor een technische functie kan dat omvatten:
+Hier past testee. Het maakt van je functieomschrijving een getimede meerkeuze-kennistest. Je bekijkt de voorgestelde onderwerpen voordat er ook maar één vraag wordt geschreven, zodat de test je stack dekt en niets anders. Voor een technische functie kan dat omvatten:
 
 - **Vragen over code lezen:** een kort stuk code met vragen over wat het print of teruggeeft, wat het doet, waarom het faalt of welke wijziging het oplost.
 - **SQL:** een kleine tabel en een query, met de vraag welke rijen terugkomen.
@@ -80,7 +80,7 @@ Hier past prepza. Het maakt van je functieomschrijving een getimede meerkeuze-ke
 
 Elke kandidaat krijgt een eigen willekeurige set vragen, met een aftelklok bij elke vraag. Je ziet een scorekaart met elk antwoord en hoe lang het duurde, plus signalen bij te snelle antwoorden, het verlaten van de pagina, kopieerpogingen en ongebruikelijke patronen in de antwoorden en antwoordtijden. Een signaal is een reden om beter te kijken, geen bewijs van iets. Het rapport stelt ook vragen voor die de kandidaat goed had, om in het volgende gesprek op door te vragen.
 
-Wat prepza niet doet: kandidaten schrijven, draaien of debuggen geen code in prepza. Code lezen en code schrijven zijn verschillende vaardigheden, dus de volgende stap blijft belangrijk. Zie [vaardigheidstests per functie](/tests) voor kant-en-klare tests om mee te beginnen.
+Wat testee niet doet: kandidaten schrijven, draaien of debuggen geen code in testee. Code lezen en code schrijven zijn verschillende vaardigheden, dus de volgende stap blijft belangrijk. Zie [vaardigheidstests per functie](/tests) voor kant-en-klare tests om mee te beginnen.
 
 ## Stap 4: thuisopdracht of live coding
 
@@ -128,7 +128,7 @@ Een gestructureerd proces is ook eerlijker, maar alleen als je het consequent ui
 
 - **Consistente vragen** in elke fase, voor elke kandidaat voor dezelfde functie.
 - **Vooraf geschreven beoordelingsschalen,** zodat mensen op dezelfde criteria worden beoordeeld.
-- **Aanpassingen:** bied extra tijd of een andere vorm aan kandidaten die erom vragen, bijvoorbeeld vanwege een beperking. In prepza kun je een kandidaat extra tijd geven voordat hij of zij begint.
+- **Aanpassingen:** bied extra tijd of een andere vorm aan kandidaten die erom vragen, bijvoorbeeld vanwege een beperking. In testee kun je een kandidaat extra tijd geven voordat hij of zij begint.
 - **Monitor de uitkomsten.** Verschillende methoden laten verschillende scoreverschillen tussen groepen zien. Sackett et al. vonden gemiddeld grotere verschillen bij vakkennistests en werkproeven dan bij gestructureerde interviews, nog een reden om methoden te combineren. Houd de slagingspercentages per fase in de gaten.
 - **Mensen beslissen.** Een score ondersteunt een besluit; hij neemt het niet. Bekijk de antwoorden voordat je iemand afwijst.
 

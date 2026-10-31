@@ -38,9 +38,9 @@ Jeśli w rekrutację zaangażowane są dwie lub trzy osoby, uzgodnijcie tę list
 
 Dobry test do preselekcji jest krótki, związany ze stanowiskiem i taki sam dla wszystkich.
 
-Z prepza:
+Z testee:
 
-1. **Wklej opis stanowiska.** prepza wyłuskuje, co kandydat musi wiedzieć, i proponuje tematy.
+1. **Wklej opis stanowiska.** testee wyłuskuje, co kandydat musi wiedzieć, i proponuje tematy.
 2. **Porównaj tematy ze swoją listą z kroku 1.** Odznacz wszystko, co nie jest prawdziwym wymaganiem, zmieniaj nazwy tematów, edytuj podtematy albo opisz zmiany zwykłym tekstem („dodaj temat o podstawach płac”). Pytania powstają dopiero po Twojej akceptacji.
 3. **Ustaw długość.** Domyślnie każdy temat zawiera 10 pytań, każde z własnym odliczaniem, średnio 60 sekund, a w trudnym teście 75 sekund. Trzy tematy to dla kandydata najwyżej 30 minut (w trudnym teście około 38), a zwykle mniej. Ogranicz test do tego, czego potrzebujesz.
 4. **Ustaw próg zaliczenia.** Domyślnie to 70%. Traktuj go jako wskazówkę przy czytaniu wyników, a nie automatyczne odcięcie.
@@ -63,7 +63,7 @@ Zrób szybki przegląd typu tak/nie wyłącznie pod kątem twardych wymagań: pr
 
 Potem zaproś wszystkich pozostałych:
 
-- **Wklej listę adresów e-mail lub prześlij plik.** prepza przyjmuje do 100 adresów naraz i pomija każdego, kto już zaczął.
+- **Wklej listę adresów e-mail lub prześlij plik.** testee przyjmuje do 100 adresów naraz i pomija każdego, kto już zaczął.
 - **Albo użyj jednego linku.** Jeśli jeszcze nie opublikowałeś ogłoszenia, umieść w nim link do udostępnienia rozmowy. Kandydaci mogą od razu rozwiązać test i pojawiają się na Twojej liście w rankingu. Wyłącz link, gdy stanowisko zostanie obsadzone.
 - **Albo pozwól, by zaproszenia wysłał Twój ATS.** Jeśli Twoi kandydaci są w Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR, połącz go raz: przeniesienie kandydata na etap wysyła zaproszenie, a wyniki wracają do ATS. Zobacz [Jak połączyć testy umiejętności z ATS](/guides/ats-integration-skills-tests).
 
@@ -71,7 +71,7 @@ Przed rozpoczęciem kandydaci widzą, czego się spodziewać: licznik czasu, inf
 
 ### Jak sprawić, by testy zostały rozwiązane tego samego dnia
 
-Jasny, krótki test łatwiej ukończyć wkrótce po otrzymaniu zaproszenia. Napisz w e-mailu lub ogłoszeniu, ile trwa i do kiedy potrzebujesz wyników. prepza automatycznie wysyła przypomnienie każdemu, kto nie zaczął w ciągu 3 dni; przy planie jednodniowym możesz też samodzielnie wysłać zaproszenie ponownie.
+Jasny, krótki test łatwiej ukończyć wkrótce po otrzymaniu zaproszenia. Napisz w e-mailu lub ogłoszeniu, ile trwa i do kiedy potrzebujesz wyników. testee automatycznie wysyła przypomnienie każdemu, kto nie zaczął w ciągu 3 dni; przy planie jednodniowym możesz też samodzielnie wysłać zaproszenie ponownie.
 
 Nie wszyscy skończą pierwszego dnia. To nic: przejrzyj tych, którzy skończyli, a do maruderów wróć następnego ranka.
 
@@ -81,11 +81,11 @@ Teraz zaczyna się uważna lektura, ale w mniejszej, uszeregowanej grupie.
 
 1. **Posortuj według wyniku,** od najlepszych, w menu sortowania listy: lista otwiera się od najnowszych kandydatów.
 2. **Otwórz kartę wyników** każdej osoby z czołówki. Patrz na odpowiedzi, nie tylko na liczbę: które tematy wypadły mocno, które słabo, ile trwała każda odpowiedź.
-3. **Sprawdź oznaczenia dotyczące rzetelności.** prepza oznacza odpowiedzi udzielone zbyt szybko, by zdążyć przeczytać pytanie, sytuacje, w których kandydat opuścił stronę, oraz próby kopiowania. Gdy kandydat skończy, jego strona wskazuje też nietypowe wzorce odpowiedzi (mniej więcej tyle samo czasu przy każdym pytaniu albo poprawne odpowiedzi na trudne pytania przy błędnych na łatwe) i podsuwa pytania do zadania na kolejnej rozmowie. Oznaczenie to powód, by przyjrzeć się bliżej, a nie dowód oszustwa. Ktoś, kto raz opuścił stronę, mógł dostać wyskakujące powiadomienie.
+3. **Sprawdź oznaczenia dotyczące rzetelności.** testee oznacza odpowiedzi udzielone zbyt szybko, by zdążyć przeczytać pytanie, sytuacje, w których kandydat opuścił stronę, oraz próby kopiowania. Gdy kandydat skończy, jego strona wskazuje też nietypowe wzorce odpowiedzi (mniej więcej tyle samo czasu przy każdym pytaniu albo poprawne odpowiedzi na trudne pytania przy błędnych na łatwe) i podsuwa pytania do zadania na kolejnej rozmowie. Oznaczenie to powód, by przyjrzeć się bliżej, a nie dowód oszustwa. Ktoś, kto raz opuścił stronę, mógł dostać wyskakujące powiadomienie.
 4. **Spójrz tuż poniżej progu zaliczenia.** Wyniki z różnych losowych zestawów pytań nie są w pełni porównywalne, więc kilka punktów może wynikać z losowania. Ktoś z wynikiem 65% i mocnymi odpowiedziami w najważniejszych tematach może zasługiwać na rozmowę kwalifikacyjną.
 5. **Teraz przeczytaj CV** osób, które bierzesz pod uwagę. Uważnie czytasz 15 CV zamiast pobieżnie przeglądać 100.
 
-Aby udostępnić wyniki menedżerowi rekrutującemu, pobierz raport PDF dla jednego kandydata lub całej listy albo wyślij go e-mailem z prepza.
+Aby udostępnić wyniki menedżerowi rekrutującemu, pobierz raport PDF dla jednego kandydata lub całej listy albo wyślij go e-mailem z testee.
 
 ## Krok 5: Zdecyduj (koniec dnia)
 
@@ -103,7 +103,7 @@ Zapisz, dlaczego każda osoba trafiła na listę. Zajmuje to minutę na kandydat
 
 ## Ile to kosztuje
 
-W prepza płacisz tylko za kandydatów, którzy odpowiedzą na co najmniej jedno pytanie: $5 za kandydata przy doładowaniu $50, $4 od doładowania $200, $3 od doładowania $600 i $2 od doładowania $1000. Przy 100 kandydatach to $500 po $5 za kandydata albo $400 z dwóch doładowań po $200, po $4 za kandydata, bez subskrypcji. Ceny są tu w dolarach amerykańskich, a w Kanadzie, Australii, Izraelu, Polsce, Szwajcarii, Japonii, Korei Południowej, na Tajwanie, w Hongkongu, Tajlandii, Singapurze, Indiach, pozostałej części Europy i Wielkiej Brytanii w walucie lokalnej (zobacz [cennik](/pricing)); VAT lub podatek od sprzedaży jest naliczany przy płatności. Wygenerowanie testu jest bezpłatne, a pierwszych 3 kandydatów Twojej pierwszej firmy jest za darmo.
+W testee płacisz tylko za kandydatów, którzy odpowiedzą na co najmniej jedno pytanie: $5 za kandydata przy doładowaniu $50, $4 od doładowania $200, $3 od doładowania $600 i $2 od doładowania $1000. Przy 100 kandydatach to $500 po $5 za kandydata albo $400 z dwóch doładowań po $200, po $4 za kandydata, bez subskrypcji. Ceny są tu w dolarach amerykańskich, a w Kanadzie, Australii, Izraelu, Polsce, Szwajcarii, Japonii, Korei Południowej, na Tajwanie, w Hongkongu, Tajlandii, Singapurze, Indiach, pozostałej części Europy i Wielkiej Brytanii w walucie lokalnej (zobacz [cennik](/pricing)); VAT lub podatek od sprzedaży jest naliczany przy płatności. Wygenerowanie testu jest bezpłatne, a pierwszych 3 kandydatów Twojej pierwszej firmy jest za darmo.
 
 ## Przeczytaj też
 

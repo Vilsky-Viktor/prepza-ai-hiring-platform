@@ -17,7 +17,7 @@ Sellel lehel ei ole teiste pakkujate hindu, sest need muutuvad sageli. Selgitame
 | --- | --- | --- | --- |
 | **Tasuta pakett** | Piiratud arv krediite või teste kuus | Testid väga vähe kandidaate ja kaasasolevad testid sobivad sinu rolliga | [TestGorilla](https://www.testgorilla.com/pricing/) |
 | **Tellimus** | Kuutasu, sageli aastase arveldusega, krediitide või limiitidega | Värbad ühtlaselt aasta läbi | [TestGorilla](https://www.testgorilla.com/pricing/), [CodeSignal](https://codesignal.com/pricing/), [Bryq](https://www.bryq.com/pricing), [Alooba](https://www.alooba.com/pricing/), [Codility](https://www.codility.com/pricing/) |
-| **Tasu kandidaadi kohta** | Maksad ainult testi tegevate kandidaatide eest, tavaliselt ettemakstud krediitidest | Värbad aeg-ajalt või sinu maht kõigub | [prepza](/pricing) |
+| **Tasu kandidaadi kohta** | Maksad ainult testi tegevate kandidaatide eest, tavaliselt ettemakstud krediitidest | Värbad aeg-ajalt või sinu maht kõigub | [testee](/pricing) |
 | **Individuaalne hinnapakkumine** | Müügiga kokku lepitud hind, sageli aastaks | Värbad suures mahus või vajad valideeritud psühhomeetrilisi teste | Mõned pakkujad, sageli psühhomeetria spetsialistid |
 
 *Hinnamudelid pakkujate lehtedel 2026. aasta oktoobri seisuga.*
@@ -33,34 +33,34 @@ Vajad kolme arvu: mitu kandidaati aastas testid, hind kandidaadi kohta kandidaad
 
 **Näide väljamõeldud arvudega.** Oletame, et pakett maksab 1500 $ aastas ja kandidaadipõhine variant 5 $ kandidaadi kohta. Tasuvuspunkt on 1500 ÷ 5 = 300 kandidaati aastas. Meeskond, kes testib aastas 60 kandidaati, maksaks kandidaatide eest 300 $, mitte paketi eest 1500 $. Meeskond, kes testib 600, maksaks kandidaatide eest 3000 $ ja pakett tuleks odavam. Kasuta võrreldavate hinnalehtede tegelikke arve.
 
-### prepza hinnad sinu arvutuse jaoks
+### testee hinnad sinu arvutuse jaoks
 
-prepza võtab tasu iga kandidaadi eest, kes vastab vähemalt ühele küsimusele. Hind kandidaadi kohta sõltub juurdelaadimise suurusest: väikseima juurdelaadimise puhul 5 $, alates 200 $ juurdelaadimisest 4 $, alates 600 $ juurdelaadimisest 3 $ ja alates 1000 $ juurdelaadimisest 2 $. Sinu esimese ettevõtte esimesed 3 kandidaati on tasuta. Hinnad on siin USA dollarites, Kanadas, Austraalias, Iisraelis, Poolas, Šveitsis, Jaapanis, Lõuna-Koreas, Taiwanis, Hongkongis, Tais, Singapuris, Indias, ülejäänud Euroopas ja Ühendkuningriigis aga kohalikus valuutas; makseid töötlev Paddle arvestab käibemaksu ja müügimaksu maksmise ajal. Kehtivad juurdelaadimised leiad [hinnalehelt](/pricing).
+testee võtab tasu iga kandidaadi eest, kes vastab vähemalt ühele küsimusele. Hind kandidaadi kohta sõltub juurdelaadimise suurusest: väikseima juurdelaadimise puhul 5 $, alates 200 $ juurdelaadimisest 4 $, alates 600 $ juurdelaadimisest 3 $ ja alates 1000 $ juurdelaadimisest 2 $. Sinu esimese ettevõtte esimesed 3 kandidaati on tasuta. Hinnad on siin USA dollarites, Kanadas, Austraalias, Iisraelis, Poolas, Šveitsis, Jaapanis, Lõuna-Koreas, Taiwanis, Hongkongis, Tais, Singapuris, Indias, ülejäänud Euroopas ja Ühendkuningriigis aga kohalikus valuutas; makseid töötlev Paddle arvestab käibemaksu ja müügimaksu maksmise ajal. Kehtivad juurdelaadimised leiad [hinnalehelt](/pricing).
 
 ## Kulud lisaks hinnasildile
 
 Võrdlemisel kontrolli ka neid:
 
 - **Aastane kohustus.** „Aastase arveldusega“ pakett tähendab 12 kuu eest ettemaksmist, isegi kui värbad neist ainult kahel.
-- **Kasutajakohad.** Mõni pakett piirab, mitu sinu meeskonna liiget seda kasutada saab. prepza ei võta kasutajakohtade eest tasu: omanikud, administraatorid ja vaatajad on tasuta.
-- **Kandidaadid, kes ei alusta.** prepza võtab tasu ainult kandidaatide eest, kes vastavad vähemalt ühele küsimusele; kasutamata kutse krediidid tulevad tagasi.
-- **Aeguvad krediidid.** prepza krediidid ei aegu. Kontrolli, kas teiste pakkujate krediidid kanduvad üle.
+- **Kasutajakohad.** Mõni pakett piirab, mitu sinu meeskonna liiget seda kasutada saab. testee ei võta kasutajakohtade eest tasu: omanikud, administraatorid ja vaatajad on tasuta.
+- **Kandidaadid, kes ei alusta.** testee võtab tasu ainult kandidaatide eest, kes vastavad vähemalt ühele küsimusele; kasutamata kutse krediidid tulevad tagasi.
+- **Aeguvad krediidid.** testee krediidid ei aegu. Kontrolli, kas teiste pakkujate krediidid kanduvad üle.
 - **Maksud.** Kontrolli, kas avaldatud hind sisaldab käibemaksu või müügimaksu.
-- **Kallimate pakettide funktsioonid.** ATS-integratsioonid, järelevalve (proctoring) ja kohandatud programmeerimisülesanded on sageli kallimates pakettides. Kontrolli, millist paketti sul tegelikult vaja oleks. prepza ühendub ilma lisatasuta Workable'i, Greenhouse'i, Teamtailori, Recruitee, Breezy HR-i ja Slackiga ning pakub ka oma API-t.
+- **Kallimate pakettide funktsioonid.** ATS-integratsioonid, järelevalve (proctoring) ja kohandatud programmeerimisülesanded on sageli kallimates pakettides. Kontrolli, millist paketti sul tegelikult vaja oleks. testee ühendub ilma lisatasuta Workable'i, Greenhouse'i, Teamtailori, Recruitee, Breezy HR-i ja Slackiga ning pakub ka oma API-t.
 - **Rohkem kui üks tööriist.** Kui vajad nii teadmiste testi kui ka psühhomeetrilist või programmeerimistesti, liida mõlemad kokku.
 
 ## Millal madalam hind ei ole õige valik
 
-Madal hind aitab ainult siis, kui test mõõdab seda, mida sinu töö vajab. Maksa teise tööriista eest, eraldi või prepza kõrval, kui:
+Madal hind aitab ainult siis, kui test mõõdab seda, mida sinu töö vajab. Maksa teise tööriista eest, eraldi või testee kõrval, kui:
 
 - **Vajad psühhomeetriat.** Valideeritud kognitiivsete võimete ja isiksuse teste pakuvad spetsialiseerunud pakkujad ja laiemad platvormid.
-- **Vajad praktilist programmeerimist.** Arendajate platvormidel saavad kandidaadid koodi kirjutada ja käivitada. prepza esitab koodi lugemise küsimusi (mida kood teeb või väljastab), kuid kandidaadid koodi ei kirjuta ega käivita.
-- **Vajad videointervjuusid või AI juhitud intervjuusid.** prepzas pole kumbagi.
+- **Vajad praktilist programmeerimist.** Arendajate platvormidel saavad kandidaadid koodi kirjutada ja käivitada. testee esitab koodi lugemise küsimusi (mida kood teeb või väljastab), kuid kandidaadid koodi ei kirjuta ega käivita.
+- **Vajad videointervjuusid või AI juhitud intervjuusid.** testees pole kumbagi.
 - **Värbad ühtlaselt ja suures mahus.** Fikseeritud pakett võib tulla odavam kui hind kandidaadi kohta.
 
 Vaata lehti [TestGorilla alternatiivid](/compare/testgorilla-alternatives) ja [HackerRanki alternatiivid](/compare/hackerrank-alternatives), et näha, kuhu iga tööriist sobib ja kuidas neid kombineerida.
 
-## Mida sisaldab iga prepza kandidaat
+## Mida sisaldab iga testee kandidaat
 
 - Ajapiiranguga valikvastustega intervjuu, mis on kirjutatud sinu töökuulutuse põhjal ja mille teemad vaatad esmalt üle.
 - Igale kandidaadile oma juhuslik küsimuste komplekt ja iga küsimuse juures taimer. Tehniliste rollide puhul võivad küsimused sisaldada lühikesi koodinäiteid.
@@ -69,10 +69,10 @@ Vaata lehti [TestGorilla alternatiivid](/compare/testgorilla-alternatives) ja [H
 - Kutsed e-postiga, nimekirja või failina või ühe lingiga töökuulutuses, lisaks automaatsed meeldetuletused.
 - 23 keelt, andmeid hoitakse ELis (mõned volitatud alamtöötlejad asuvad USAs; vaata [privaatsuspoliitikat](/privacy)) ja andmetöötlusleping on hinnas.
 
-*Tootenimed kuuluvad nende omanikele. prepza ei ole seotud ühegi sellel lehel nimetatud ettevõttega ega ole nende poolt heaks kiidetud.*
+*Tootenimed kuuluvad nende omanikele. testee ei ole seotud ühegi sellel lehel nimetatud ettevõttega ega ole nende poolt heaks kiidetud.*
 
 ## Seotud lehed
 
 - [Värbamistestid ilma tellimuseta](/compare/pre-employment-tests-without-subscription)
-- [prepza ja TestGorilla](/compare/testgorilla)
+- [testee ja TestGorilla](/compare/testgorilla)
 - [Kandidaatide testimise juhend](/pre-employment-testing)

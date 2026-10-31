@@ -102,9 +102,9 @@ Każda linijka nazywa coś, o co można zapytać, poziom jest podany, a to, co �
 - Twarde wymagania zostają na etap selekcji CV.
 - Żadnych sformułowań o osobie, którą sobie wyobrażasz, tylko o pracy.
 
-## Jak prepza korzysta z opisu stanowiska
+## Jak testee korzysta z opisu stanowiska
 
-prepza to przykład narzędzia, które na podstawie opisu stanowiska buduje test umiejętności jednokrotnego lub wielokrotnego wyboru z limitem czasu. Oto co robi z tekstem, żebyś widział, jak powyższe rady sprawdzają się w praktyce:
+testee to przykład narzędzia, które na podstawie opisu stanowiska buduje test umiejętności jednokrotnego lub wielokrotnego wyboru z limitem czasu. Oto co robi z tekstem, żebyś widział, jak powyższe rady sprawdzają się w praktyce:
 
 - **Czyta każde wymaganie.** AI wyłapuje każdą umiejętność, narzędzie, pojęcie, kwalifikację i codzienny obowiązek, z każdej sekcji, także z tych oznaczonych jako preferowane lub „mile widziane”. Deklaracje o kulturze, benefity i hasła są pomijane.
 - **Wymienne przykłady stają się jednym.** „Narzędzia takie jak A, B lub podobne” zostaje jako rodzaj narzędzia, z tym, które tekst preferuje (albo najpopularniejszym), jako przykładem. Pozycje połączone „i” pozostają osobno. Jeśli więc potrzebujesz jednego konkretnego narzędzia, wymień tylko je.

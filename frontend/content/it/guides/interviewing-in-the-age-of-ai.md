@@ -66,9 +66,9 @@ Spiega subito ai candidati quali strumenti sono consentiti in ogni fase. Una reg
 
 Per la versione completa passo per passo, vedi [Come assumere sviluppatori](/guides/hiring-engineers).
 
-## Dove si inserisce prepza
+## Dove si inserisce testee
 
-prepza è adatto al passo 2. Trasforma la tua descrizione del ruolo in un colloquio di conoscenze a scelta multipla e a tempo, e tu rivedi gli argomenti proposti prima che venga scritta qualsiasi domanda, così il test copre il tuo stack e nient'altro.
+testee è adatto al passo 2. Trasforma la tua descrizione del ruolo in un colloquio di conoscenze a scelta multipla e a tempo, e tu rivedi gli argomenti proposti prima che venga scritta qualsiasi domanda, così il test copre il tuo stack e nient'altro.
 
 - **Concetti e teoria dalla descrizione del ruolo:** database, API, architettura, il comportamento di un framework, pratiche di sicurezza.
 - **Domande di lettura del codice:** un breve frammento di codice con domande su cosa stampa o restituisce, cosa fa, perché fallisce o quale modifica lo corregge. È la stessa capacità di revisione su cui si basa il lavoro assistito dall'IA.
@@ -76,7 +76,7 @@ prepza è adatto al passo 2. Trasforma la tua descrizione del ruolo in un colloq
 - **Segnalazioni di comportamenti sospetti:** le schede di valutazione segnalano le risposte troppo rapide per aver letto la domanda, le volte in cui il candidato ha lasciato la pagina e i tentativi di copia. Quando un candidato ha finito, il suo report indica anche gli andamenti delle risposte che di solito lascia chi passa le domande a un'IA e ne copia le risposte: più o meno lo stesso tempo per ogni domanda, a prescindere da lunghezza e difficoltà, oppure domande difficili giuste e domande facili sbagliate. Una segnalazione o un andamento è un motivo per guardare meglio, non la prova di un imbroglio.
 - **Domande per il colloquio dal vivo:** il report suggerisce fino a 3 domande a cui il candidato ha risposto correttamente, dai suoi argomenti più forti, da approfondire in un colloquio dal vivo, dove nessuna IA può rispondere al suo posto.
 
-Cosa non fa prepza: in prepza i candidati non scrivono, non eseguono e non fanno debug del codice, e prepza non li osserva mentre usano un assistente IA. Questo appartiene alla fase pratica, svolta internamente o su una piattaforma per sviluppatori, che completa il test di conoscenze. Vedi i [test di selezione per ruolo](/tests) per test pronti da cui partire, e [colloqui con IA](/ai-interviews) per come prepza usa l'IA e cosa lascia alle persone.
+Cosa non fa testee: in testee i candidati non scrivono, non eseguono e non fanno debug del codice, e testee non li osserva mentre usano un assistente IA. Questo appartiene alla fase pratica, svolta internamente o su una piattaforma per sviluppatori, che completa il test di conoscenze. Vedi i [test di selezione per ruolo](/tests) per test pronti da cui partire, e [colloqui con IA](/ai-interviews) per come testee usa l'IA e cosa lascia alle persone.
 
 ## Equità ed esperienza del candidato
 

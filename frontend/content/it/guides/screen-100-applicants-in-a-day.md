@@ -38,9 +38,9 @@ Se nell'assunzione sono coinvolte due o tre persone, mettetevi d'accordo su ques
 
 Un buon test di screening è breve, legato al lavoro e uguale per tutti.
 
-Con prepza:
+Con testee:
 
-1. **Incolla la descrizione del ruolo.** prepza individua ciò che un candidato deve sapere e propone gli argomenti.
+1. **Incolla la descrizione del ruolo.** testee individua ciò che un candidato deve sapere e propone gli argomenti.
 2. **Confronta gli argomenti con la tua lista del passo 1.** Deseleziona tutto ciò che non è un requisito reale, rinomina gli argomenti, modifica i sottoargomenti o descrivi le modifiche a parole ("aggiungi un argomento sulle basi delle buste paga"). Le domande vengono scritte solo dopo la tua approvazione.
 3. **Imposta la durata.** Di default ogni argomento pone 10 domande, ciascuna con il proprio conto alla rovescia, di 60 secondi in media, o di 75 secondi in un test difficile. Tre argomenti significano al massimo 30 minuti per un candidato (circa 38 in un test difficile), e di solito meno. Limitati a ciò che ti serve.
 4. **Imposta una soglia di superamento.** Il default è il 70%. Trattala come una guida per leggere i risultati, non come un taglio automatico.
@@ -63,7 +63,7 @@ Fai un passaggio rapido sì/no solo sui requisiti indispensabili: permesso di la
 
 Poi invita tutti quelli rimasti:
 
-- **Incolla un elenco di email o carica un file.** prepza accetta fino a 100 email alla volta e salta chi ha già iniziato.
+- **Incolla un elenco di email o carica un file.** testee accetta fino a 100 email alla volta e salta chi ha già iniziato.
 - **Oppure usa un unico link.** Se non hai ancora pubblicato l'annuncio, inserisci il link condivisibile del colloquio nell'annuncio. I candidati possono fare subito il test e compaiono nella tua lista, in classifica. Disattiva il link quando la posizione è coperta.
 - **Oppure lascia che sia il tuo ATS a invitarli.** Se i tuoi candidati sono su Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR, collegalo una volta: spostare un candidato in una fase invia l'invito, e i risultati tornano nell'ATS. Vedi [Come collegare i test di competenze al tuo ATS](/guides/ats-integration-skills-tests).
 
@@ -71,7 +71,7 @@ Prima di iniziare, i candidati vedono cosa aspettarsi: il timer, il fatto che un
 
 ### Far completare i test in giornata
 
-Un test chiaro e breve è più facile da completare subito dopo l'invito. Indica nella tua email o nell'annuncio quanto dura e entro quando ti serve. prepza invia automaticamente un promemoria a chi non ha iniziato dopo 3 giorni; per un piano in giornata, puoi anche reinviare tu stesso un invito.
+Un test chiaro e breve è più facile da completare subito dopo l'invito. Indica nella tua email o nell'annuncio quanto dura e entro quando ti serve. testee invia automaticamente un promemoria a chi non ha iniziato dopo 3 giorni; per un piano in giornata, puoi anche reinviare tu stesso un invito.
 
 Non tutti finiranno il primo giorno. Va bene così: esamina chi ha finito e riguarda i ritardatari la mattina dopo.
 
@@ -81,11 +81,11 @@ Ora inizia la lettura attenta, ma su un gruppo più piccolo e già in classifica
 
 1. **Ordina per punteggio,** dal migliore, dal menu di ordinamento dell'elenco: l'elenco si apre con i candidati più recenti.
 2. **Apri ogni scheda di valutazione** del gruppo di testa. Guarda le risposte, non solo il numero: quali argomenti erano forti, quali deboli, quanto tempo ha richiesto ogni risposta.
-3. **Controlla le segnalazioni di comportamenti sospetti.** prepza segnala le risposte troppo rapide per aver letto la domanda, le volte in cui il candidato ha lasciato la pagina e i tentativi di copia. Quando un candidato ha finito, la sua pagina indica anche andamenti insoliti delle risposte (più o meno lo stesso tempo per ogni domanda, oppure domande difficili giuste e facili sbagliate) e suggerisce domande da fare nel colloquio successivo. Una segnalazione è un motivo per guardare meglio, non la prova di un imbroglio. Chi ha lasciato la pagina una volta potrebbe aver ricevuto una notifica.
+3. **Controlla le segnalazioni di comportamenti sospetti.** testee segnala le risposte troppo rapide per aver letto la domanda, le volte in cui il candidato ha lasciato la pagina e i tentativi di copia. Quando un candidato ha finito, la sua pagina indica anche andamenti insoliti delle risposte (più o meno lo stesso tempo per ogni domanda, oppure domande difficili giuste e facili sbagliate) e suggerisce domande da fare nel colloquio successivo. Una segnalazione è un motivo per guardare meglio, non la prova di un imbroglio. Chi ha lasciato la pagina una volta potrebbe aver ricevuto una notifica.
 4. **Guarda appena sotto la soglia di superamento.** I punteggi ottenuti con set di domande casuali diversi non sono esattamente confrontabili, quindi qualche punto può dipendere dall'estrazione. Qualcuno al 65% con risposte forti negli argomenti più importanti può valere un colloquio.
 5. **Ora leggi i CV** delle persone che stai considerando. Leggi con attenzione 15 CV invece di scorrerne 100.
 
-Per condividere i risultati con un hiring manager, scarica un report PDF per un candidato o per l'intera lista, oppure invialo via email da prepza.
+Per condividere i risultati con un hiring manager, scarica un report PDF per un candidato o per l'intera lista, oppure invialo via email da testee.
 
 ## Passo 5: decidi (fine giornata)
 
@@ -103,7 +103,7 @@ Annota perché ogni persona è entrata nella rosa. Richiede un minuto per candid
 
 ## Quanto costa
 
-Con prepza paghi solo per i candidati che rispondono ad almeno una domanda: $5 ciascuno con la ricarica da $50, $4 da una ricarica di $200, $3 da una ricarica di $600 e $2 da una ricarica di $1.000. Per 100 candidati sono $500 a $5 ciascuno, oppure $400 con due ricariche da $200 a $4 ciascuno, senza abbonamento. I prezzi sono qui in dollari statunitensi, e nella valuta locale in Canada, Australia, Israele, Polonia, Svizzera, Giappone, Corea del Sud, Taiwan, Hong Kong, Thailandia, Singapore, India, nel resto d'Europa e nel Regno Unito (vedi i [prezzi](/pricing)); IVA o sales tax vengono gestite al pagamento. Generare il test è gratuito, e i primi 3 candidati della tua prima azienda sono gratis.
+Con testee paghi solo per i candidati che rispondono ad almeno una domanda: $5 ciascuno con la ricarica da $50, $4 da una ricarica di $200, $3 da una ricarica di $600 e $2 da una ricarica di $1.000. Per 100 candidati sono $500 a $5 ciascuno, oppure $400 con due ricariche da $200 a $4 ciascuno, senza abbonamento. I prezzi sono qui in dollari statunitensi, e nella valuta locale in Canada, Australia, Israele, Polonia, Svizzera, Giappone, Corea del Sud, Taiwan, Hong Kong, Thailandia, Singapore, India, nel resto d'Europa e nel Regno Unito (vedi i [prezzi](/pricing)); IVA o sales tax vengono gestite al pagamento. Generare il test è gratuito, e i primi 3 candidati della tua prima azienda sono gratis.
 
 ## Letture correlate
 

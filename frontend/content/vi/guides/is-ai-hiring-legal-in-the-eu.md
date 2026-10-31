@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 Nói chung là có: dùng AI trong tuyển dụng là hợp pháp ở EU. Nhưng phần lớn công cụ AI đánh giá ứng viên thuộc nhóm rủi ro cao của Đạo luật AI của EU (EU AI Act), kéo theo nghĩa vụ cho nhà cung cấp và cho bạn, bên tuyển dụng. Một số cách làm bị cấm hoàn toàn. Và GDPR áp dụng cho dữ liệu ứng viên, như từ trước đến nay.
 
-Hướng dẫn này giải thích các quy định ở mức tổng quan, các mốc thời gian quan trọng, những gì bên tuyển dụng phải làm, và cách prepza tiếp cận vấn đề. **Đây không phải tư vấn pháp lý.** Nội dung phản ánh các quy định tính đến tháng 10/2026. Các quy định còn mới, hướng dẫn vẫn đang được hoàn thiện, và luật của từng quốc gia có thêm yêu cầu riêng. Hãy hỏi ý kiến luật sư của bạn trước khi dựa vào bất kỳ nội dung nào ở đây.
+Hướng dẫn này giải thích các quy định ở mức tổng quan, các mốc thời gian quan trọng, những gì bên tuyển dụng phải làm, và cách testee tiếp cận vấn đề. **Đây không phải tư vấn pháp lý.** Nội dung phản ánh các quy định tính đến tháng 10/2026. Các quy định còn mới, hướng dẫn vẫn đang được hoàn thiện, và luật của từng quốc gia có thêm yêu cầu riêng. Hãy hỏi ý kiến luật sư của bạn trước khi dựa vào bất kỳ nội dung nào ở đây.
 
 ## Câu trả lời ngắn
 
@@ -113,15 +113,15 @@ Dữ liệu ứng viên là dữ liệu cá nhân, và AI không thay đổi GDP
 8. **Điều chỉnh hợp lý,** chẳng hạn thêm thời gian, cho ứng viên cần đến.
 9. **Không bao giờ loại ứng viên chỉ dựa trên điểm số.** Hãy xem các câu trả lời.
 
-## Cách prepza tiếp cận vấn đề này
+## Cách testee tiếp cận vấn đề này
 
-prepza tổ chức các buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ, do AI viết từ mô tả công việc. Vì prepza chấm điểm và xếp hạng ứng viên, phân tích của chính prepza kết luận rằng prepza rất có thể thuộc nhóm rủi ro cao theo Phụ lục III, điểm 4(a), với các nghĩa vụ áp dụng từ ngày 2/12/2027. prepza đang chuẩn bị trên cơ sở đó. prepza không tuyên bố đã tuân thủ hay được chứng nhận.
+testee tổ chức các buổi phỏng vấn kỹ năng trắc nghiệm có tính giờ, do AI viết từ mô tả công việc. Vì testee chấm điểm và xếp hạng ứng viên, phân tích của chính testee kết luận rằng testee rất có thể thuộc nhóm rủi ro cao theo Phụ lục III, điểm 4(a), với các nghĩa vụ áp dụng từ ngày 2/12/2027. testee đang chuẩn bị trên cơ sở đó. testee không tuyên bố đã tuân thủ hay được chứng nhận.
 
 Hiện nay điều đó thể hiện trong sản phẩm như sau:
 
 - **AI viết câu hỏi và đáp án; việc chấm điểm theo quy tắc cố định.** Không có AI nào đọc hay đánh giá câu trả lời của ứng viên, và không dùng phân tích video, giọng nói hay khuôn mặt. Nếu sau này AI sửa một đáp án, bản sửa áp dụng cho các ứng viên bắt đầu sau đó; kết quả trước đó không thay đổi.
 - **Bạn duyệt các chủ đề** trước khi bất kỳ câu hỏi nào được viết, và bạn xem được mọi câu hỏi.
-- **Con người quyết định.** Trang kết quả và báo cáo PDF nhắc nhóm của bạn xem xét kết quả; prepza không loại ứng viên và không gửi thư từ chối.
+- **Con người quyết định.** Trang kết quả và báo cáo PDF nhắc nhóm của bạn xem xét kết quả; testee không loại ứng viên và không gửi thư từ chối.
 - **Ứng viên được thông báo** trước khi bắt đầu rằng câu hỏi do AI viết, rằng người của công ty bạn xem xét kết quả và quyết định, và rằng họ có thể yêu cầu xem xét lại.
 - **Thời gian thêm** có thể được cấp cho bất kỳ ứng viên nào yêu cầu.
 - **Hồ sơ lưu trữ.** Các câu hỏi đã hiển thị, câu trả lời, thời gian và các lần rời trang hay sao chép đều được ghi lại.

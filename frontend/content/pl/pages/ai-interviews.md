@@ -1,7 +1,7 @@
 ---
 title: "Rozmowy rekrutacyjne z AI: czym są i jak korzystać z nich uczciwie"
 seoTitle: "AI w rekrutacji: rozmowy z AI, ryzyka i uczciwe użycie"
-description: "Narzędzia AI w rekrutacji: chatboty, analiza wideo i generowane testy. Co mówi prawo, jakie są ryzyka i jak działa podejście prepza."
+description: "Narzędzia AI w rekrutacji: chatboty, analiza wideo i generowane testy. Co mówi prawo, jakie są ryzyka i jak działa podejście testee."
 updated: "2026-10-29"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 „Rozmowa rekrutacyjna z AI” oznacza zupełnie różne rzeczy w zależności od dostawcy. Niektóre narzędzia prowadzą z kandydatem rozmowę. Inne nagrywają wideo i je oceniają. Jeszcze inne używają AI tylko do napisania pytań, a odpowiedzi oceniają według stałych reguł. Dla zespołu rekrutacyjnego ta różnica ma znaczenie: wpływa na to, co możesz wyjaśnić kandydatowi, co może pójść nie tak i czego wymaga od Ciebie prawo.
 
-Ta strona porządkuje główne rodzaje narzędzi do rozmów rekrutacyjnych z AI, wyjaśnia podejście prepza i omawia podstawy zgodności z przepisami.
+Ta strona porządkuje główne rodzaje narzędzi do rozmów rekrutacyjnych z AI, wyjaśnia podejście testee i omawia podstawy zgodności z przepisami.
 
 ## Trzy rodzaje narzędzi do rozmów rekrutacyjnych z AI
 
@@ -29,11 +29,11 @@ Tutaj kandydaci nagrywają odpowiedzi przed kamerą. Niektóre produkty tylko tw
 
 ### Generowane testy
 
-W tym modelu AI wykonuje pracę autorską: czyta opis stanowiska, proponuje, co sprawdzić, i przygotowuje pytania. Kandydaci odpowiadają następnie na pytania z jednoznacznie poprawnymi i błędnymi odpowiedziami, a ocena odbywa się według stałych reguł. Z tego modelu korzysta prepza.
+W tym modelu AI wykonuje pracę autorską: czyta opis stanowiska, proponuje, co sprawdzić, i przygotowuje pytania. Kandydaci odpowiadają następnie na pytania z jednoznacznie poprawnymi i błędnymi odpowiedziami, a ocena odbywa się według stałych reguł. Z tego modelu korzysta testee.
 
-## Podejście prepza
+## Podejście testee
 
-prepza używa AI do napisania rozmowy sprawdzającej umiejętności na podstawie Twojego opisu stanowiska. To ludzie decydują o tym, co jest sprawdzane, i podejmują każdą decyzję.
+testee używa AI do napisania rozmowy sprawdzającej umiejętności na podstawie Twojego opisu stanowiska. To ludzie decydują o tym, co jest sprawdzane, i podejmują każdą decyzję.
 
 1. **AI czyta Twój opis stanowiska** i wyodrębnia, co kandydat musi wiedzieć: wymagania, poziom oraz zestaw tematów z podtematami.
 2. **Przeglądasz tematy.** Zostaw je, odznacz, zmień nazwę lub edytuj albo napisz AI zwykłym tekstem, co zmienić. Żadne pytanie nie powstaje, dopóki tego nie zatwierdzisz.
@@ -42,16 +42,16 @@ prepza używa AI do napisania rozmowy sprawdzającej umiejętności na podstawie
 5. **Odpowiedzi są oceniane według klucza odpowiedzi.** AI pisze klucze. Próbka kluczy z każdego tematu jest sprawdzana przed udostępnieniem, a pozostałe, gdy pytanie zostanie oznaczone. Samo ocenianie odbywa się według stałych reguł i żadna AI nie czyta ani nie ocenia odpowiedzi kandydata. Jeśli klucz zostanie później poprawiony, poprawka dotyczy kandydatów, którzy zaczną po niej; wcześniejsze wyniki się nie zmieniają. Tempo odpowiedzi, opuszczanie strony i próby kopiowania widzisz jako sygnały; nie zmieniają one wyniku.
 6. **Decydują ludzie.** Widzisz ranking i kartę wyników każdego kandydata z każdą odpowiedzią i czasem jej udzielenia. Wyniki przegląda i decyzję o zatrudnieniu podejmuje osoba z Twojej firmy.
 
-Czego prepza nie robi:
+Czego testee nie robi:
 
 - Żadnej analizy wideo, głosu ani twarzy.
 - Żadnego wnioskowania o osobowości ani emocjach.
-- Żadnych automatycznych odrzuceń. prepza nie odrzuca kandydatów ani nie wysyła wiadomości z odmową; decyduje Twój zespół.
-- Twoje dane nie służą do trenowania modeli AI. Dostawca AI, z którego korzysta prepza, OpenAI, zgodnie ze swoimi warunkami nie trenuje modeli na danych z API.
+- Żadnych automatycznych odrzuceń. testee nie odrzuca kandydatów ani nie wysyła wiadomości z odmową; decyduje Twój zespół.
+- Twoje dane nie służą do trenowania modeli AI. Dostawca AI, z którego korzysta testee, OpenAI, zgodnie ze swoimi warunkami nie trenuje modeli na danych z API.
 
 ### Pytania z czasem stają się lepsze
 
-Pytania napisane przez AI mogą być błędne lub niejasne, zwłaszcza w nowej rozmowie. prepza tego pilnuje: odpowiedzi kandydatów, ich oceny i zgłoszenia wskazują słabe pytania, a weryfikator AI je poprawia lub zastępuje. Jeśli zauważysz pytanie z błędnym kluczem odpowiedzi, oznacz je, a od razu trafi do weryfikatora.
+Pytania napisane przez AI mogą być błędne lub niejasne, zwłaszcza w nowej rozmowie. testee tego pilnuje: odpowiedzi kandydatów, ich oceny i zgłoszenia wskazują słabe pytania, a weryfikator AI je poprawia lub zastępuje. Jeśli zauważysz pytanie z błędnym kluczem odpowiedzi, oznacz je, a od razu trafi do weryfikatora.
 
 Zanim kogokolwiek zaprosisz, możesz też odbyć własną rozmowę jako kandydat: te same pytania z limitem czasu, bezpłatnie i bez wpływu na Twoje wyniki.
 
@@ -71,7 +71,7 @@ Nic z tego nie sprawia, że test jest uczciwy sam z siebie. Pytania nadal muszą
 
 ### Czego test wyboru nie sprawdzi
 
-Jasno określ ograniczenia. Test wyboru sprawdza wiedzę. Pytania o czytanie kodu pokazują, czy ktoś rozumie kod, a nie czy potrafi go napisać. Taki test nie pokazuje, jak ktoś pisze, rozmawia z klientem ani jak projektuje system od początku do końca. Do tego połącz prepza z próbką pracy lub ustrukturyzowaną rozmową kwalifikacyjną dla krótkiej listy. Do praktycznego kodowania użyj platformy dla programistów lub własnego zadania obok prepza; zobacz [Alternatywy dla HackerRank](/compare/hackerrank-alternatives) i [Rozmowy z inżynierami w erze AI](/guides/interviewing-in-the-age-of-ai).
+Jasno określ ograniczenia. Test wyboru sprawdza wiedzę. Pytania o czytanie kodu pokazują, czy ktoś rozumie kod, a nie czy potrafi go napisać. Taki test nie pokazuje, jak ktoś pisze, rozmawia z klientem ani jak projektuje system od początku do końca. Do tego połącz testee z próbką pracy lub ustrukturyzowaną rozmową kwalifikacyjną dla krótkiej listy. Do praktycznego kodowania użyj platformy dla programistów lub własnego zadania obok testee; zobacz [Alternatywy dla HackerRank](/compare/hackerrank-alternatives) i [Rozmowy z inżynierami w erze AI](/guides/interviewing-in-the-age-of-ai).
 
 ## Podstawy zgodności z prawem dla narzędzi do rozmów rekrutacyjnych z AI
 
@@ -79,7 +79,7 @@ To podsumowanie według stanu na październik 2026. To nie jest porada prawna. S
 
 ### Akt w sprawie sztucznej inteligencji (UE)
 
-Systemy AI „przeznaczone do wykorzystywania do celów rekrutacji lub wyboru osób fizycznych, w szczególności do celów umieszczania ukierunkowanych ogłoszeń o pracę, analizowania i filtrowania podań o pracę oraz do oceny kandydatów” są systemami wysokiego ryzyka zgodnie z [załącznikiem III pkt 4 lit. a](https://artificialintelligenceact.eu/annex/3/) aktu w sprawie sztucznej inteligencji. Narzędzia, które oceniają kandydatów lub tworzą ich ranking, są bardzo prawdopodobnie objęte tym przepisem. Własna analiza prepza prowadzi do wniosku, że prepza bardzo prawdopodobnie jest systemem wysokiego ryzyka, a obowiązki mają zastosowanie od 2 grudnia 2027 r.
+Systemy AI „przeznaczone do wykorzystywania do celów rekrutacji lub wyboru osób fizycznych, w szczególności do celów umieszczania ukierunkowanych ogłoszeń o pracę, analizowania i filtrowania podań o pracę oraz do oceny kandydatów” są systemami wysokiego ryzyka zgodnie z [załącznikiem III pkt 4 lit. a](https://artificialintelligenceact.eu/annex/3/) aktu w sprawie sztucznej inteligencji. Narzędzia, które oceniają kandydatów lub tworzą ich ranking, są bardzo prawdopodobnie objęte tym przepisem. Własna analiza testee prowadzi do wniosku, że testee bardzo prawdopodobnie jest systemem wysokiego ryzyka, a obowiązki mają zastosowanie od 2 grudnia 2027 r.
 
 Status wysokiego ryzyka oznacza obowiązki po obu stronach:
 
@@ -90,7 +90,7 @@ Terminy i szczegóły znajdziesz w artykule [Czy rekrutacja z AI jest legalna w 
 
 ### RODO
 
-Wyniki rozmów to dane osobowe, zarówno w rozumieniu unijnego RODO (GDPR), jak i brytyjskiego UK GDPR. Przygotuj się na umowę powierzenia przetwarzania danych, informację dla kandydatów, ograniczony okres przechowywania i możliwość dostępu kandydatów do ich danych lub ich usunięcia. [Art. 22](https://gdpr-info.eu/art-22-gdpr/) ogranicza też decyzje opierające się wyłącznie na zautomatyzowanym przetwarzaniu, które istotnie wpływają na ludzi, więc zanim podejmiesz działanie, niech wyniki przejrzy człowiek. prepza jest hostowana w UE (niektórzy podprzetwarzający są w USA; zobacz [politykę prywatności](/privacy)), usuwa dane kandydatów po 12 miesiącach od zaproszenia oraz zapewnia firmom umowę powierzenia przetwarzania danych i instrukcje.
+Wyniki rozmów to dane osobowe, zarówno w rozumieniu unijnego RODO (GDPR), jak i brytyjskiego UK GDPR. Przygotuj się na umowę powierzenia przetwarzania danych, informację dla kandydatów, ograniczony okres przechowywania i możliwość dostępu kandydatów do ich danych lub ich usunięcia. [Art. 22](https://gdpr-info.eu/art-22-gdpr/) ogranicza też decyzje opierające się wyłącznie na zautomatyzowanym przetwarzaniu, które istotnie wpływają na ludzi, więc zanim podejmiesz działanie, niech wyniki przejrzy człowiek. testee jest hostowana w UE (niektórzy podprzetwarzający są w USA; zobacz [politykę prywatności](/privacy)), usuwa dane kandydatów po 12 miesiącach od zaproszenia oraz zapewnia firmom umowę powierzenia przetwarzania danych i instrukcje.
 
 ### Stany Zjednoczone
 

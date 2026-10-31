@@ -1,7 +1,7 @@
 ---
 title: "Yapay zekâ mülakatları: nedir ve adil şekilde nasıl kullanılır"
 seoTitle: "Yapay Zekâ ile İşe Alım ve Mülakat: Riskler, Adil Kullanım"
-description: "Yapay zekâ ile işe alım: mülakat araçları, sohbet botları, video analizi ve otomatik testler ne yapar; riskler, uyum esasları ve prepza'nın yaklaşımı."
+description: "Yapay zekâ ile işe alım: mülakat araçları, sohbet botları, video analizi ve otomatik testler ne yapar; riskler, uyum esasları ve testee'nin yaklaşımı."
 updated: "2026-10-29"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 “Yapay zekâ mülakatı”, sağlayıcıya göre çok farklı şeyler ifade eder. Bazı araçlar adayla sohbet eder. Bazıları video kaydedip puanlar. Bazıları ise yapay zekâyı yalnızca soruları yazmak için kullanır, ardından yanıtları sabit kurallara göre puanlar. Bir işe alım ekibi için bu fark önemlidir: adaya neyi açıklayabileceğinizi, neyin ters gidebileceğini ve yasanın sizden ne beklediğini değiştirir.
 
-Bu sayfa başlıca yapay zekâ mülakat aracı türlerini sınıflandırır, prepza'nın benimsediği yaklaşımı açıklar ve uyumla ilgili temel konuları ele alır.
+Bu sayfa başlıca yapay zekâ mülakat aracı türlerini sınıflandırır, testee'nin benimsediği yaklaşımı açıklar ve uyumla ilgili temel konuları ele alır.
 
 ## Üç tür yapay zekâ mülakat aracı
 
@@ -29,11 +29,11 @@ Burada adaylar yanıtlarını kamera karşısında kaydeder. Bazı ürünler yal
 
 ### Otomatik oluşturulan testler
 
-Bu modelde yazma işini yapay zekâ yapar: iş tanımını okur, neyin test edileceğini önerir ve soruları taslak olarak hazırlar. Adaylar ardından doğru ve yanlış yanıtları net olan soruları yanıtlar ve puanlama sabit kurallara göre yapılır. prepza'nın kullandığı model budur.
+Bu modelde yazma işini yapay zekâ yapar: iş tanımını okur, neyin test edileceğini önerir ve soruları taslak olarak hazırlar. Adaylar ardından doğru ve yanlış yanıtları net olan soruları yanıtlar ve puanlama sabit kurallara göre yapılır. testee'nin kullandığı model budur.
 
-## prepza'nın yaklaşımı
+## testee'nin yaklaşımı
 
-prepza, iş tanımınızdan bir beceri mülakatı yazmak için yapay zekâ kullanır. Neyin test edileceği ve her karar insanların kontrolünde kalır.
+testee, iş tanımınızdan bir beceri mülakatı yazmak için yapay zekâ kullanır. Neyin test edileceği ve her karar insanların kontrolünde kalır.
 
 1. **Yapay zekâ iş tanımınızı okur** ve adayın bilmesi gerekenleri çıkarır: gereklilikler, seviye ve alt konularıyla birlikte bir konu seti.
 2. **Konuları siz gözden geçirirsiniz.** Tutun, işaretini kaldırın, yeniden adlandırın veya düzenleyin ya da neyin değişeceğini yapay zekâya düz metinle söyleyin. Siz onaylamadan hiçbir soru yazılmaz.
@@ -42,16 +42,16 @@ prepza, iş tanımınızdan bir beceri mülakatı yazmak için yapay zekâ kulla
 5. **Yanıtlar cevap anahtarına göre değerlendirilir.** Anahtarları yapay zekâ yazar; her konudan bir örneklem yayından önce kontrol edilir, diğerleri ise bir soru bildirildiğinde. Değerlendirmenin kendisi sabit kurallara göre yapılır ve hiçbir yapay zekâ adayın yanıtını okumaz veya yargılamaz. Bir anahtar sonradan düzeltilirse düzeltme, sonrasında başlayan adaylar için geçerli olur; geçmiş sonuçlar değişmez. Hız, sayfadan ayrılmalar ve kopyalama girişimleri size sinyal olarak gösterilir; puanı değiştirmez.
 6. **Kararı insanlar verir.** Sıralı bir liste ve her aday için her yanıtı ve süresini gösteren bir değerlendirme kartı görürsünüz. Şirketinizden bir kişi sonuçları inceler ve işe alım kararını verir.
 
-prepza'nın yapmadıkları:
+testee'nin yapmadıkları:
 
 - Video, ses veya yüz analizi yok.
 - Kişilik veya duygu çıkarımı yok.
-- Otomatik ret yok. prepza adayları reddetmez veya ret mesajı göndermez; kararı ekibiniz verir.
-- Verileriniz yapay zekâ modellerini eğitmek için kullanılmaz. prepza'nın yapay zekâ sağlayıcısı OpenAI, kendi koşulları gereği API verileriyle model eğitmez.
+- Otomatik ret yok. testee adayları reddetmez veya ret mesajı göndermez; kararı ekibiniz verir.
+- Verileriniz yapay zekâ modellerini eğitmek için kullanılmaz. testee'nin yapay zekâ sağlayıcısı OpenAI, kendi koşulları gereği API verileriyle model eğitmez.
 
 ### Sorular zamanla iyileşir
 
-Yapay zekânın yazdığı sorular, özellikle yeni bir mülakatta, hatalı veya belirsiz olabilir. prepza bunu izler: adayların yanıtları, puanlamaları ve bildirimleri zayıf soruları işaretler; bir yapay zekâ doğrulayıcı da bunları düzeltir veya değiştirir. Cevap anahtarı yanlış olan bir soru fark ederseniz işaretleyin; soru hemen doğrulayıcıya gider.
+Yapay zekânın yazdığı sorular, özellikle yeni bir mülakatta, hatalı veya belirsiz olabilir. testee bunu izler: adayların yanıtları, puanlamaları ve bildirimleri zayıf soruları işaretler; bir yapay zekâ doğrulayıcı da bunları düzeltir veya değiştirir. Cevap anahtarı yanlış olan bir soru fark ederseniz işaretleyin; soru hemen doğrulayıcıya gider.
 
 Kimseyi davet etmeden önce kendi mülakatınızı aday gözüyle de önizleyebilirsiniz: aynı süreli sorular, ücretsiz ve sonuçlarınıza dahil edilmeden.
 
@@ -71,7 +71,7 @@ Bunların hiçbiri bir testi kendiliğinden adil yapmaz. Soruların yine işe uy
 
 ### Çoktan seçmeli testin yapamadıkları
 
-Sınırlar konusunda net olun. Çoktan seçmeli bir test bilgiyi ölçer. Kod okuma soruları birinin kodu anlayıp anlamadığını gösterir, kod yazıp yazamadığını değil. Böyle bir test, birinin nasıl yazdığını, bir müşteriyle nasıl konuştuğunu veya bir sistemi baştan sona nasıl tasarladığını göstermez. Bunlar için kısa listeniz adına prepza'yı bir iş örneği veya yapılandırılmış bir mülakatla birleştirin. Uygulamalı kodlama için prepza'nın yanında bir geliştirici platformu veya kendi alıştırmanızı kullanın; bkz. [HackerRank alternatifleri](/compare/hackerrank-alternatives) ve [Yapay zekâ çağında mühendislerle mülakat](/guides/interviewing-in-the-age-of-ai).
+Sınırlar konusunda net olun. Çoktan seçmeli bir test bilgiyi ölçer. Kod okuma soruları birinin kodu anlayıp anlamadığını gösterir, kod yazıp yazamadığını değil. Böyle bir test, birinin nasıl yazdığını, bir müşteriyle nasıl konuştuğunu veya bir sistemi baştan sona nasıl tasarladığını göstermez. Bunlar için kısa listeniz adına testee'yi bir iş örneği veya yapılandırılmış bir mülakatla birleştirin. Uygulamalı kodlama için testee'nin yanında bir geliştirici platformu veya kendi alıştırmanızı kullanın; bkz. [HackerRank alternatifleri](/compare/hackerrank-alternatives) ve [Yapay zekâ çağında mühendislerle mülakat](/guides/interviewing-in-the-age-of-ai).
 
 ## Yapay zekâ mülakat araçları için uyum esasları
 
@@ -79,7 +79,7 @@ Bu, Ekim 2026 itibarıyla bir özettir, hukuki tavsiye değildir. Kendi hukuk da
 
 ### AB Yapay Zekâ Yasası (EU AI Act)
 
-“Gerçek kişilerin işe alımı veya seçimi için, özellikle hedefli iş ilanları yayınlamak, iş başvurularını analiz etmek ve filtrelemek ve adayları değerlendirmek amacıyla kullanılması öngörülen” yapay zekâ sistemleri, Yapay Zekâ Yasası'nın [Ek III, madde 4(a)](https://artificialintelligenceact.eu/annex/3/) hükmüne göre yüksek risklidir. Adayları puanlayan veya sıralayan araçlar büyük olasılıkla bu kapsamdadır. prepza'nın kendi analizi, prepza'nın büyük olasılıkla yüksek riskli olduğu ve yükümlülüklerin 2 Aralık 2027'den itibaren uygulanacağı sonucuna varıyor. Buradaki AB mevzuatından alıntılar resmi olmayan çevirilerdir.
+“Gerçek kişilerin işe alımı veya seçimi için, özellikle hedefli iş ilanları yayınlamak, iş başvurularını analiz etmek ve filtrelemek ve adayları değerlendirmek amacıyla kullanılması öngörülen” yapay zekâ sistemleri, Yapay Zekâ Yasası'nın [Ek III, madde 4(a)](https://artificialintelligenceact.eu/annex/3/) hükmüne göre yüksek risklidir. Adayları puanlayan veya sıralayan araçlar büyük olasılıkla bu kapsamdadır. testee'nin kendi analizi, testee'nin büyük olasılıkla yüksek riskli olduğu ve yükümlülüklerin 2 Aralık 2027'den itibaren uygulanacağı sonucuna varıyor. Buradaki AB mevzuatından alıntılar resmi olmayan çevirilerdir.
 
 Yüksek riskli statü, iki taraf için de yükümlülükler anlamına gelir:
 
@@ -90,7 +90,7 @@ Tarihler ve ayrıntılar [AB'de yapay zekâ ile işe alım yasal mı?](/guides/i
 
 ### GDPR
 
-Mülakat sonuçları, hem AB GDPR'ı hem de Birleşik Krallık GDPR'ı (UK GDPR) kapsamında kişisel veridir. Bir veri işleme sözleşmesi, bir aday aydınlatma metni, sınırlı saklama süresi ve adayların verilerine erişebileceği veya silebileceği bir yol bekleyin. [Madde 22](https://gdpr-info.eu/art-22-gdpr/) ayrıca kişileri önemli ölçüde etkileyen ve yalnızca otomatik işlemeye dayanan kararları sınırlar; bu nedenle sonuçlara göre harekete geçmeden önce bir kişinin sonuçları incelemesini sağlayın. prepza AB'de barındırılır (bazı alt işleyenler ABD'dedir; bkz. [gizlilik politikası](/privacy)), aday verilerini davetten 12 ay sonra siler ve bir veri işleme sözleşmesi ile şirketler için talimatlar içerir.
+Mülakat sonuçları, hem AB GDPR'ı hem de Birleşik Krallık GDPR'ı (UK GDPR) kapsamında kişisel veridir. Bir veri işleme sözleşmesi, bir aday aydınlatma metni, sınırlı saklama süresi ve adayların verilerine erişebileceği veya silebileceği bir yol bekleyin. [Madde 22](https://gdpr-info.eu/art-22-gdpr/) ayrıca kişileri önemli ölçüde etkileyen ve yalnızca otomatik işlemeye dayanan kararları sınırlar; bu nedenle sonuçlara göre harekete geçmeden önce bir kişinin sonuçları incelemesini sağlayın. testee AB'de barındırılır (bazı alt işleyenler ABD'dedir; bkz. [gizlilik politikası](/privacy)), aday verilerini davetten 12 ay sonra siler ve bir veri işleme sözleşmesi ile şirketler için talimatlar içerir.
 
 ### Amerika Birleşik Devletleri
 

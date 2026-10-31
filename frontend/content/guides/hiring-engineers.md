@@ -72,7 +72,7 @@ A good knowledge screen is:
 - **Short:** a few topics with about 10 questions each, so strong candidates with other offers still finish it.
 - **The same for everyone:** the same topics, the same number of questions and the same time limits.
 
-This is where prepza fits. It turns your job description into a timed multiple-choice knowledge interview. You review the proposed topics before any question is written, so the test covers your stack and nothing else. For an engineering role, that can include:
+This is where testee fits. It turns your job description into a timed multiple-choice knowledge interview. You review the proposed topics before any question is written, so the test covers your stack and nothing else. For an engineering role, that can include:
 
 - **Code-reading questions:** a short piece of code with questions about what it prints or returns, what it does, why it fails or which change fixes it.
 - **SQL:** a small table and a query, with the question of which rows come back.
@@ -80,7 +80,7 @@ This is where prepza fits. It turns your job description into a timed multiple-c
 
 Each candidate gets their own random set of questions with a countdown on every one. You see a scorecard with every answer and how long it took, plus flags for too-fast answers, leaving the page, copy attempts and unusual patterns in their answers and times. A flag is a reason to look closer, not proof of anything. The report also suggests questions they got right to ask about in the next interview.
 
-What prepza doesn't do: candidates don't write, run or debug code in prepza. Reading code and writing it are different skills, so the next step still matters. See [skills tests by role](/tests) for ready-made tests to start from.
+What testee doesn't do: candidates don't write, run or debug code in testee. Reading code and writing it are different skills, so the next step still matters. See [skills tests by role](/tests) for ready-made tests to start from.
 
 ## Step 4: Take-home or live coding
 
@@ -128,7 +128,7 @@ A structured process is also a fairer one, but only if you run it consistently:
 
 - **Consistent questions** at every stage, for every candidate for the same role.
 - **Rubrics written in advance,** so people are judged on the same criteria.
-- **Accommodations:** offer extra time or another format to candidates who ask, for example because of a disability. In prepza, you can give a candidate extra time before they start.
+- **Accommodations:** offer extra time or another format to candidates who ask, for example because of a disability. In testee, you can give a candidate extra time before they start.
 - **Monitor outcomes.** Different methods show different score gaps between groups. Sackett et al. found larger average differences for job knowledge tests and work samples than for structured interviews, which is one more reason to combine methods. Watch pass rates at each stage.
 - **People decide.** A score supports a decision; it doesn't make it. Look at the answers before you reject anyone.
 

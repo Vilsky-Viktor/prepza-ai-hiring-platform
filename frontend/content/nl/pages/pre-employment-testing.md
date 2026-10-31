@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Een selectietest is een gestructureerde check die elke sollicitant voor een functie doet voordat je beslist wie je uitnodigt voor een gesprek of aanneemt. Je ziet het ook wel een pre-employment test, een assessment of een vaardigheidstest noemen. Het idee is hetzelfde: stel iedereen dezelfde soort vragen, scoor ze op dezelfde manier en vergelijk mensen op bewijs in plaats van op hoe hun cv leest.
 
-Deze gids behandelt de belangrijkste soorten tests, wanneer ze helpen, de basis van eerlijkheid en wetgeving, en waar je op let bij een tool. Hij eindigt met hoe prepza het doet, en wat prepza niet doet.
+Deze gids behandelt de belangrijkste soorten tests, wanneer ze helpen, de basis van eerlijkheid en wetgeving, en waar je op let bij een tool. Hij eindigt met hoe testee het doet, en wat testee niet doet.
 
 ## Wat een selectietest is
 
@@ -25,7 +25,7 @@ Een goede test toetst wat de functie echt vraagt, draait voor iedereen onder dez
 | Werkproeven en functiesimulaties | Een stukje van het echte werk doen | Opdrachten, casussen, code schrijven | Checks in een late fase voor een shortlist |
 | Taal en typen | Beheersing en snelheid | Beoordeelde tests | Klantgerichte en administratieve functies |
 
-**Wat prepza dekt:** tests van vaardigheden en vakkennis, als interviews met tijdslimiet en meerkeuzevragen, geschreven op basis van je functieomschrijving. Voor technische functies horen daar vragen over code lezen bij: een kort codevoorbeeld en een vraag over wat het doet of uitvoert. prepza biedt geen tests van cognitieve vaardigheden, geen persoonlijkheidsvragenlijsten, geen opdrachten waarin kandidaten code schrijven of draaien, en geen video-interviews. Heb je die nodig, gebruik dan een platform dat ze biedt, los of naast prepza: eerst een kennisscreening, daarna de specialistische test voor de shortlist. Zie [prepza en TestGorilla](/compare/testgorilla) en [Alternatieven voor TestGorilla](/compare/testgorilla-alternatives).
+**Wat testee dekt:** tests van vaardigheden en vakkennis, als interviews met tijdslimiet en meerkeuzevragen, geschreven op basis van je functieomschrijving. Voor technische functies horen daar vragen over code lezen bij: een kort codevoorbeeld en een vraag over wat het doet of uitvoert. testee biedt geen tests van cognitieve vaardigheden, geen persoonlijkheidsvragenlijsten, geen opdrachten waarin kandidaten code schrijven of draaien, en geen video-interviews. Heb je die nodig, gebruik dan een platform dat ze biedt, los of naast testee: eerst een kennisscreening, daarna de specialistische test voor de shortlist. Zie [testee en TestGorilla](/compare/testgorilla) en [Alternatieven voor TestGorilla](/compare/testgorilla-alternatives).
 
 ### Waarom vaardigheidstests een verstandige eerste stap zijn
 
@@ -87,11 +87,11 @@ Vragen die het waard zijn om elke leverancier te stellen:
 
 Voor prijsvergelijkingen, zie [hoe je de kosten van tests vergelijkt](/compare/cheapest-pre-employment-test) en [selectietests zonder abonnement](/compare/pre-employment-tests-without-subscription).
 
-## Hoe prepza het doet
+## Hoe testee het doet
 
-prepza maakt van een functieomschrijving een interview over vaardigheden, met tijdslimiet en meerkeuzevragen.
+testee maakt van een functieomschrijving een interview over vaardigheden, met tijdslimiet en meerkeuzevragen.
 
-1. **Plak de functieomschrijving.** Elke functie, in elk van 23 talen. prepza haalt eruit wat een kandidaat moet weten en stelt onderwerpen voor.
+1. **Plak de functieomschrijving.** Elke functie, in elk van 23 talen. testee haalt eruit wat een kandidaat moet weten en stelt onderwerpen voor.
 2. **Bekijk de onderwerpen.** Vink uit wat je niet nodig hebt, hernoem een onderwerp, bewerk de subonderwerpen of beschrijf wijzigingen in gewone taal. Vragen worden pas geschreven nadat jij akkoord geeft. Je kunt ook beginnen met een kant-en-klaar sjabloon voor je functie.
 3. **Nodig kandidaten uit.** Stuur uitnodigingen per e-mail, plak een lijst, upload een bestand of zet één deelbare link in je vacature. Herinneringen gaan automatisch.
 4. **Lees de resultaten.** Scores komen gerangschikt binnen, met een scorekaart voor elke kandidaat.
@@ -103,4 +103,4 @@ prepza maakt van een functieomschrijving een interview over vaardigheden, met ti
 
 Je betaalt per kandidaat die antwoordt, zonder abonnement: $2–5 per kandidaat, afhankelijk van de grootte van je opwaardering (in de lokale valuta in Canada, Australië, Israël, Polen, Zwitserland, Japan, Zuid-Korea, Taiwan, Hongkong, Thailand, Singapore, India, de rest van Europa en het Verenigd Koninkrijk), en je eerste 3 kandidaten zijn gratis. Gegevens worden gehost in de EU (sommige subverwerkers zitten in de VS; zie het [privacybeleid](/privacy)), en de verwerkersovereenkomst en instructies voor bedrijven zijn inbegrepen.
 
-prepza is geen psychometrische suite, geen platform om code te schrijven en te draaien, en geen tool voor video-interviews, en werkt er wel naast. Hoe het zich verhoudt tot andere AI-tools voor werving lees je in [AI-interviews](/ai-interviews). Voor technische functies, zie [Developers werven](/guides/hiring-engineers).
+testee is geen psychometrische suite, geen platform om code te schrijven en te draaien, en geen tool voor video-interviews, en werkt er wel naast. Hoe het zich verhoudt tot andere AI-tools voor werving lees je in [AI-interviews](/ai-interviews). Voor technische functies, zie [Developers werven](/guides/hiring-engineers).

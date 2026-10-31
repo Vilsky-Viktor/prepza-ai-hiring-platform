@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Ein Einstellungstest ist eine strukturierte Prüfung, die alle Bewerber für eine Stelle absolvieren, bevor du entscheidest, wen du zum Gespräch einlädst oder einstellst. Man spricht auch von Eignungstest, Bewerbertest, Pre-Employment-Assessment oder Kompetenztest. Die Idee ist immer dieselbe: Allen werden dieselbe Art von Fragen gestellt, alle werden gleich bewertet, und du vergleichst Menschen anhand von Belegen statt anhand dessen, wie sich ihr Lebenslauf liest.
 
-Dieser Leitfaden behandelt die wichtigsten Testarten, wann sie helfen, die Grundlagen zu Fairness und Recht und worauf du bei einem Tool achten solltest. Am Ende steht, wie prepza es umsetzt und was prepza nicht leistet.
+Dieser Leitfaden behandelt die wichtigsten Testarten, wann sie helfen, die Grundlagen zu Fairness und Recht und worauf du bei einem Tool achten solltest. Am Ende steht, wie testee es umsetzt und was testee nicht leistet.
 
 ## Was ein Einstellungstest ist
 
@@ -25,7 +25,7 @@ Ein guter Test prüft, was die Stelle tatsächlich verlangt, läuft für alle un
 | Arbeitsproben und Jobsimulationen | Einen Ausschnitt der echten Arbeit erledigen | Aufgaben, Fallstudien, Code schreiben | Prüfungen in späten Phasen für eine Shortlist |
 | Sprache und Tippen | Sprachniveau und Tippgeschwindigkeit | Bewertete Tests | Stellen mit Kundenkontakt und in der Verwaltung |
 
-**Was prepza abdeckt:** Fachtests zu Kenntnissen und Fachwissen, als zeitlich begrenzte Multiple-Choice-Interviews, die aus deiner Stellenbeschreibung erstellt werden. Für technische Stellen gehören dazu Fragen zum Lesen von Code: ein kurzes Codebeispiel und eine Frage dazu, was es tut oder ausgibt. prepza bietet keine kognitiven Fähigkeitstests, keine Persönlichkeitsfragebögen, keine Übungen, in denen Kandidaten Code schreiben oder ausführen, und keine Videointerviews. Wenn du so etwas brauchst, nutze eine Plattform, die es anbietet, allein oder neben prepza: zuerst ein Wissenstest, dann der Spezialtest für die Shortlist. Siehe [prepza und TestGorilla](/compare/testgorilla) und [Alternativen zu TestGorilla](/compare/testgorilla-alternatives).
+**Was testee abdeckt:** Fachtests zu Kenntnissen und Fachwissen, als zeitlich begrenzte Multiple-Choice-Interviews, die aus deiner Stellenbeschreibung erstellt werden. Für technische Stellen gehören dazu Fragen zum Lesen von Code: ein kurzes Codebeispiel und eine Frage dazu, was es tut oder ausgibt. testee bietet keine kognitiven Fähigkeitstests, keine Persönlichkeitsfragebögen, keine Übungen, in denen Kandidaten Code schreiben oder ausführen, und keine Videointerviews. Wenn du so etwas brauchst, nutze eine Plattform, die es anbietet, allein oder neben testee: zuerst ein Wissenstest, dann der Spezialtest für die Shortlist. Siehe [testee und TestGorilla](/compare/testgorilla) und [Alternativen zu TestGorilla](/compare/testgorilla-alternatives).
 
 ### Warum Fachtests ein sinnvoller erster Schritt sind
 
@@ -87,11 +87,11 @@ Fragen, die du jedem Anbieter stellen solltest:
 
 Für Preisvergleiche siehe [Kosten von Einstellungstests vergleichen](/compare/cheapest-pre-employment-test) und [Einstellungstests ohne Abo](/compare/pre-employment-tests-without-subscription).
 
-## Wie prepza es umsetzt
+## Wie testee es umsetzt
 
-prepza macht aus einer Stellenbeschreibung ein zeitlich begrenztes Multiple-Choice-Interview zu Fachkenntnissen.
+testee macht aus einer Stellenbeschreibung ein zeitlich begrenztes Multiple-Choice-Interview zu Fachkenntnissen.
 
-1. **Stellenbeschreibung einfügen.** Jede Stelle, jede von 23 Sprachen. prepza erkennt, was ein Kandidat wissen muss, und schlägt Themen vor.
+1. **Stellenbeschreibung einfügen.** Jede Stelle, jede von 23 Sprachen. testee erkennt, was ein Kandidat wissen muss, und schlägt Themen vor.
 2. **Themen prüfen.** Entferne Häkchen bei Themen, die du nicht brauchst, benenne ein Thema um, bearbeite seine Unterthemen oder beschreib Änderungen in normalem Text. Fragen werden erst geschrieben, wenn du zugestimmt hast. Du kannst auch mit einer fertigen Vorlage für deine Stelle beginnen.
 3. **Kandidaten einladen.** Versende Einladungen per E-Mail, füge eine Liste ein, lade eine Datei hoch oder setz einen Link zum Teilen in deine Stellenanzeige. Erinnerungen gehen automatisch raus.
 4. **Ergebnisse lesen.** Die Punktzahlen kommen als Rangliste, mit einer Auswertung (Scorecard) für jeden Kandidaten.
@@ -103,4 +103,4 @@ prepza macht aus einer Stellenbeschreibung ein zeitlich begrenztes Multiple-Choi
 
 Bezahlt wird pro Kandidat, der antwortet, ohne Abo: 2–5 $ pro Kandidat je nach Höhe deiner Aufladung (in Kanada, Australien, Israel, Polen, der Schweiz, Japan, Südkorea, Taiwan, Hongkong, Thailand, Singapur, Indien, im übrigen Europa und im Vereinigten Königreich in der Landeswährung), und deine ersten 3 Kandidaten sind kostenlos. Die Daten werden in der EU gehostet (einige Unterauftragsverarbeiter sitzen in den USA; siehe die [Datenschutzerklärung](/privacy)), und der Auftragsverarbeitungsvertrag sowie die Anleitung für Unternehmen sind enthalten.
 
-prepza ist keine psychometrische Testsuite, keine Plattform zum Schreiben und Ausführen von Code und kein Videointerview-Tool, und es funktioniert neben solchen Tools. Wie es sich mit anderen KI-Recruiting-Tools vergleicht, liest du unter [KI-Interviews](/ai-interviews). Für technische Stellen siehe [Entwickler einstellen](/guides/hiring-engineers).
+testee ist keine psychometrische Testsuite, keine Plattform zum Schreiben und Ausführen von Code und kein Videointerview-Tool, und es funktioniert neben solchen Tools. Wie es sich mit anderen KI-Recruiting-Tools vergleicht, liest du unter [KI-Interviews](/ai-interviews). Für technische Stellen siehe [Entwickler einstellen](/guides/hiring-engineers).

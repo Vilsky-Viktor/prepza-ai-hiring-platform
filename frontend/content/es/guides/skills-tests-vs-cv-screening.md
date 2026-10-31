@@ -77,17 +77,17 @@ Los autores señalan también una segunda condición: las muestras de trabajo y 
 
 Consulta [Cómo filtrar 100 candidatos en un día](/guides/screen-100-applicants-in-a-day) para una versión paso a paso.
 
-## Dónde encaja prepza
+## Dónde encaja testee
 
-prepza cubre el paso 2: una prueba de conocimientos del puesto de opción múltiple con tiempo límite, redactada a partir de tu descripción del puesto. Las cifras de validez anteriores corresponden a las pruebas de conocimientos del puesto en general, no a mediciones de las pruebas de prepza.
+testee cubre el paso 2: una prueba de conocimientos del puesto de opción múltiple con tiempo límite, redactada a partir de tu descripción del puesto. Las cifras de validez anteriores corresponden a las pruebas de conocimientos del puesto en general, no a mediciones de las pruebas de testee.
 
-- **Específica del puesto por diseño.** prepza propone temas a partir de tu descripción del puesto, y tú los revisas y editas antes de que se redacte ninguna pregunta. Elimina lo que no sea un requisito real. Para puestos técnicos, las preguntas pueden incluir breves ejemplos de código para leer.
+- **Específica del puesto por diseño.** testee propone temas a partir de tu descripción del puesto, y tú los revisas y editas antes de que se redacte ninguna pregunta. Elimina lo que no sea un requisito real. Para puestos técnicos, las preguntas pueden incluir breves ejemplos de código para leer.
 - **Las mismas condiciones para todos.** Los mismos temas y número de preguntas, y una cuenta atrás en cada pregunta. Puedes dar tiempo extra a los candidatos que lo pidan.
 - **Cada candidato recibe sus propias preguntas,** un conjunto aleatorio del banco de cada tema, así que es más difícil compartir respuestas.
 - **Resultados fáciles de leer.** Una ficha de evaluación por candidato con cada respuesta y su tiempo, ordenada por puntuación, con alertas de respuestas demasiado rápidas, salidas de la página, intentos de copiar y patrones de respuesta inusuales.
 - **Respuestas corregidas con una clave de respuestas** que redacta la IA; una muestra de las claves de cada tema se revisa antes de publicarse, y el resto cuando se marca una pregunta. Ninguna IA lee ni juzga la respuesta de un candidato.
 
-prepza no hace entrevistas estructuradas, muestras de trabajo ni pruebas cognitivas. Úsalo junto con ellas. Para saber más sobre tipos de pruebas y equidad, lee [Pruebas de selección de personal](/pre-employment-testing).
+testee no hace entrevistas estructuradas, muestras de trabajo ni pruebas cognitivas. Úsalo junto con ellas. Para saber más sobre tipos de pruebas y equidad, lee [Pruebas de selección de personal](/pre-employment-testing).
 
 ## Fuentes
 

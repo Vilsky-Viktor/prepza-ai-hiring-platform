@@ -38,9 +38,9 @@ Nếu có hai hoặc ba người tham gia tuyển dụng, hãy thống nhất da
 
 Một bài kiểm tra sàng lọc tốt thì ngắn, gắn với công việc và giống nhau cho mọi người.
 
-Với prepza:
+Với testee:
 
-1. **Dán mô tả công việc.** prepza chọn ra những gì ứng viên phải biết và đề xuất chủ đề.
+1. **Dán mô tả công việc.** testee chọn ra những gì ứng viên phải biết và đề xuất chủ đề.
 2. **Đối chiếu các chủ đề với danh sách ở bước 1.** Bỏ chọn những gì không phải yêu cầu thực sự, đổi tên chủ đề, sửa chủ đề con, hoặc mô tả thay đổi bằng lời ("thêm một chủ đề về cơ bản tính lương"). Câu hỏi chỉ được viết sau khi bạn duyệt.
 3. **Đặt độ dài.** Mặc định mỗi chủ đề có 10 câu hỏi, mỗi câu có đồng hồ đếm ngược riêng, trung bình 60 giây, hoặc 75 giây với bài kiểm tra khó. Ba chủ đề nghĩa là tối đa 30 phút cho một ứng viên (khoảng 38 phút với bài kiểm tra khó), và thường ít hơn. Chỉ giữ những gì bạn cần.
 4. **Đặt điểm đạt.** Mặc định là 70%. Hãy coi đó là mốc tham khảo khi đọc kết quả, không phải ngưỡng loại tự động.
@@ -63,7 +63,7 @@ Lướt nhanh có/không chỉ theo các yêu cầu bắt buộc: quyền làm v
 
 Sau đó mời tất cả những người còn lại:
 
-- **Dán danh sách email hoặc tải tệp lên.** prepza nhận tối đa 100 email một lần và bỏ qua những ai đã bắt đầu.
+- **Dán danh sách email hoặc tải tệp lên.** testee nhận tối đa 100 email một lần và bỏ qua những ai đã bắt đầu.
 - **Hoặc dùng một liên kết.** Nếu bạn chưa đăng tin tuyển dụng, hãy đặt liên kết chia sẻ của buổi phỏng vấn vào tin. Ứng viên có thể làm bài ngay và xuất hiện trong danh sách của bạn, đã xếp hạng. Tắt liên kết khi đã tuyển đủ.
 - **Hoặc để ATS của bạn gửi lời mời.** Nếu ứng viên của bạn nằm trong Workable, Greenhouse, Teamtailor, Recruitee hoặc Breezy HR, hãy kết nối một lần: chuyển ứng viên sang một giai đoạn sẽ gửi lời mời, và kết quả được gửi về ATS. Xem [cách kết nối bài kiểm tra kỹ năng với ATS](/guides/ats-integration-skills-tests).
 
@@ -71,7 +71,7 @@ Trước khi bắt đầu, ứng viên thấy những gì cần biết: đồng 
 
 ### Để bài kiểm tra được làm xong trong ngày
 
-Một bài kiểm tra rõ ràng, ngắn gọn dễ được làm xong ngay sau khi nhận lời mời. Hãy ghi trong email hoặc tin tuyển dụng bài làm mất bao lâu và hạn chót là khi nào. prepza tự động gửi lời nhắc cho những ai chưa bắt đầu sau 3 ngày; với kế hoạch trong ngày, bạn cũng có thể tự gửi lại lời mời.
+Một bài kiểm tra rõ ràng, ngắn gọn dễ được làm xong ngay sau khi nhận lời mời. Hãy ghi trong email hoặc tin tuyển dụng bài làm mất bao lâu và hạn chót là khi nào. testee tự động gửi lời nhắc cho những ai chưa bắt đầu sau 3 ngày; với kế hoạch trong ngày, bạn cũng có thể tự gửi lại lời mời.
 
 Không phải ai cũng làm xong trong ngày đầu tiên. Không sao: hãy xem những người đã làm xong và xem lại những người làm muộn vào sáng hôm sau.
 
@@ -81,11 +81,11 @@ Giờ là lúc đọc kỹ, nhưng với một nhóm nhỏ hơn, đã xếp hạ
 
 1. **Sắp xếp theo điểm,** cao nhất trước, trong menu sắp xếp của danh sách: danh sách mở ra với ứng viên mới nhất trước.
 2. **Mở bảng điểm của từng người** trong nhóm dẫn đầu. Xem các câu trả lời, không chỉ con số: chủ đề nào mạnh, chủ đề nào yếu, mỗi câu mất bao lâu.
-3. **Kiểm tra các cảnh báo.** prepza đánh dấu các câu trả lời quá nhanh để kịp đọc câu hỏi, số lần ứng viên rời khỏi trang và các lần cố sao chép. Khi ứng viên làm xong, trang của họ còn chỉ ra những mẫu trả lời bất thường (mọi câu hỏi tốn gần như cùng một khoảng thời gian, hoặc câu khó thì đúng trong khi câu dễ lại sai) và gợi ý những câu nên hỏi trong buổi phỏng vấn tiếp theo. Một cảnh báo là lý do để xem kỹ hơn, không phải bằng chứng gian lận. Người rời trang một lần có thể chỉ vì một thông báo bật lên.
+3. **Kiểm tra các cảnh báo.** testee đánh dấu các câu trả lời quá nhanh để kịp đọc câu hỏi, số lần ứng viên rời khỏi trang và các lần cố sao chép. Khi ứng viên làm xong, trang của họ còn chỉ ra những mẫu trả lời bất thường (mọi câu hỏi tốn gần như cùng một khoảng thời gian, hoặc câu khó thì đúng trong khi câu dễ lại sai) và gợi ý những câu nên hỏi trong buổi phỏng vấn tiếp theo. Một cảnh báo là lý do để xem kỹ hơn, không phải bằng chứng gian lận. Người rời trang một lần có thể chỉ vì một thông báo bật lên.
 4. **Xem cả những người ngay dưới điểm đạt.** Điểm từ các bộ câu hỏi ngẫu nhiên khác nhau không hoàn toàn so sánh được, nên vài điểm chênh lệch có thể do may rủi khi chọn câu hỏi. Một người đạt 65% nhưng trả lời tốt ở các chủ đề quan trọng nhất có thể đáng được phỏng vấn.
 5. **Bây giờ mới đọc CV** của những người bạn đang cân nhắc. Bạn đọc kỹ 15 CV thay vì lướt qua 100.
 
-Để chia sẻ kết quả với hiring manager, hãy tải báo cáo PDF cho một ứng viên hoặc cả danh sách, hoặc gửi email trực tiếp từ prepza.
+Để chia sẻ kết quả với hiring manager, hãy tải báo cáo PDF cho một ứng viên hoặc cả danh sách, hoặc gửi email trực tiếp từ testee.
 
 ## Bước 5: Quyết định (cuối ngày)
 
@@ -103,7 +103,7 @@ Ghi lại lý do mỗi người được chọn. Mỗi ứng viên chỉ mất m
 
 ## Chi phí
 
-Với prepza, bạn chỉ trả tiền cho những ứng viên trả lời ít nhất một câu hỏi: $5 mỗi người với gói nạp $50, $4 từ gói nạp $200, $3 từ gói nạp $600 và $2 từ gói nạp $1.000. Với 100 ứng viên, chi phí là $500 ở mức $5 mỗi người, hoặc $400 với hai gói nạp $200 ở mức $4 mỗi người, không có gói đăng ký. Giá ở đây tính bằng đô la Mỹ, và bằng đồng tiền địa phương ở Canada, Úc, Israel, Ba Lan, Thụy Sĩ, Nhật Bản, Hàn Quốc, Đài Loan, Hồng Kông, Thái Lan, Singapore, Ấn Độ, phần còn lại của châu Âu và Vương quốc Anh (xem [bảng giá](/pricing)); VAT hoặc thuế bán hàng được xử lý khi thanh toán. Tạo bài kiểm tra là miễn phí, và 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí.
+Với testee, bạn chỉ trả tiền cho những ứng viên trả lời ít nhất một câu hỏi: $5 mỗi người với gói nạp $50, $4 từ gói nạp $200, $3 từ gói nạp $600 và $2 từ gói nạp $1.000. Với 100 ứng viên, chi phí là $500 ở mức $5 mỗi người, hoặc $400 với hai gói nạp $200 ở mức $4 mỗi người, không có gói đăng ký. Giá ở đây tính bằng đô la Mỹ, và bằng đồng tiền địa phương ở Canada, Úc, Israel, Ba Lan, Thụy Sĩ, Nhật Bản, Hàn Quốc, Đài Loan, Hồng Kông, Thái Lan, Singapore, Ấn Độ, phần còn lại của châu Âu và Vương quốc Anh (xem [bảng giá](/pricing)); VAT hoặc thuế bán hàng được xử lý khi thanh toán. Tạo bài kiểm tra là miễn phí, và 3 ứng viên đầu tiên của công ty đầu tiên của bạn được miễn phí.
 
 ## Đọc thêm
 

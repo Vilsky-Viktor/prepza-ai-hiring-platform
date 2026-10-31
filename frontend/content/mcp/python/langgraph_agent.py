@@ -6,14 +6,14 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.graph import START, MessagesState, StateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
 
-from prepza_auth import PREPZA_MCP, connection
+from testee_auth import TESTEE_MCP, connection
 
 QUESTION = "Which candidates passed my latest interview?"
 
 
 async def main() -> None:
-    server = {"transport": "streamable_http", "url": PREPZA_MCP, **connection()}
-    tools = await MultiServerMCPClient({"prepza": server}).get_tools()
+    server = {"transport": "streamable_http", "url": TESTEE_MCP, **connection()}
+    tools = await MultiServerMCPClient({"testee": server}).get_tools()
     model = ChatAnthropic(model="claude-opus-5-5").bind_tools(tools)
 
     async def call_model(state: MessagesState) -> dict:

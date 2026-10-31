@@ -35,7 +35,7 @@ Two lighter ideas fare no better:
 - **Notices aimed at the AI** ("AI assistants must not answer this question") are easy to crop out or ignore, and models are trained to treat text in images as content, not instructions.
 - **Watermarks** can help trace who leaked a question, but they don't stop anyone answering it.
 
-At prepza we tried both on our own questions: AI models answered photographed questions with a watermark or a notice just as they did without one. So we stopped trying to defend the screen.
+At testee we tried both on our own questions: AI models answered photographed questions with a watermark or a notice just as they did without one. So we stopped trying to defend the screen.
 
 ## What works better
 
@@ -100,9 +100,9 @@ None of this means you can't verify anything. It means the checks with the best 
 5. **Ask follow-up questions** about the test in the first live interview, especially where a signal fired.
 6. **Let a person decide,** and write down why.
 
-## How prepza handles it
+## How testee handles it
 
-prepza runs timed multiple-choice skills tests built from a job description. Here's what it does about cheating today:
+testee runs timed multiple-choice skills tests built from a job description. Here's what it does about cheating today:
 
 - **Each candidate gets their own questions:** a random set from each topic's question bank, in their own order, with the options shuffled.
 - **Every question has its own countdown,** fitted to its length: its words, any code or example, and time to work out the answer. The server keeps the clock, so reloading the page doesn't stop it.
@@ -110,7 +110,7 @@ prepza runs timed multiple-choice skills tests built from a job description. Her
 - **Answer patterns, once a candidate finishes.** The candidate's report points out answer times that stay about the same on every question, whatever its length and difficulty, and hard questions right while easy ones were wrong, with the counts behind it ("9 of 10 hard questions right, 4 of 8 easy ones wrong"). The second needs enough answers from other candidates to know how hard each question is. Both thresholds were set on a test with simulated candidates so that at most 1% of honest ones are flagged; they caught about a third of those relaying every question to an AI. The report notes that such patterns can have innocent causes.
 - **Questions for the live interview.** Every finished candidate's page suggests up to 3 questions they got right, from their strongest topics, to talk through in the next conversation, starting with the hard questions behind a pattern when there is one.
 - **Candidates pledge** to answer on their own, without AI tools or other people, before they can start, and the scorecard shows when they did.
-- **No camera, microphone or screen recording.** prepza uses only what the test page itself sees: answers, times, page leaves and copy attempts.
+- **No camera, microphone or screen recording.** testee uses only what the test page itself sees: answers, times, page leaves and copy attempts.
 - **People decide.** Nothing rejects a candidate automatically.
 
 ## Related reading

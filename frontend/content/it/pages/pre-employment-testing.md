@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Un test pre-assunzione è una verifica strutturata che ogni candidato a un ruolo svolge prima che tu decida chi chiamare a colloquio o assumere. Potresti trovarlo anche come test di selezione del personale, test preselettivo o test di valutazione delle competenze. L'idea è la stessa: fare a tutti lo stesso tipo di domande, valutarle allo stesso modo e confrontare le persone sui fatti invece che su come appare il loro CV.
 
-Questa guida presenta i principali tipi di test, quando sono utili, le basi di equità e di legge e cosa cercare in uno strumento. Si chiude con il modo in cui lo fa prepza, e con ciò che prepza non fa.
+Questa guida presenta i principali tipi di test, quando sono utili, le basi di equità e di legge e cosa cercare in uno strumento. Si chiude con il modo in cui lo fa testee, e con ciò che testee non fa.
 
 ## Cos'è un test pre-assunzione
 
@@ -25,7 +25,7 @@ Un buon test verifica ciò di cui il ruolo ha davvero bisogno, si svolge nelle s
 | Prove pratiche e simulazioni di lavoro | Svolgere una parte del lavoro reale | Compiti, casi di studio, scrittura di codice | Verifiche nelle fasi finali per una rosa ristretta |
 | Lingua e dattilografia | Padronanza e velocità | Test con punteggio | Ruoli a contatto con i clienti e amministrativi |
 
-**Cosa copre prepza:** test di competenze e conoscenze professionali, sotto forma di colloqui a scelta multipla a tempo scritti a partire dalla tua descrizione del ruolo. Per i ruoli tecnici includono domande di lettura del codice: un breve esempio di codice e una domanda su cosa fa o cosa stampa. prepza non offre test di abilità cognitive, questionari di personalità, esercizi in cui i candidati scrivono o eseguono codice, né videocolloqui. Se ti servono, usa una piattaforma che li offre, da sola o insieme a prepza: prima una verifica delle conoscenze, poi il test specialistico per la rosa ristretta. Vedi [prepza e TestGorilla](/compare/testgorilla) e [Alternative a TestGorilla](/compare/testgorilla-alternatives).
+**Cosa copre testee:** test di competenze e conoscenze professionali, sotto forma di colloqui a scelta multipla a tempo scritti a partire dalla tua descrizione del ruolo. Per i ruoli tecnici includono domande di lettura del codice: un breve esempio di codice e una domanda su cosa fa o cosa stampa. testee non offre test di abilità cognitive, questionari di personalità, esercizi in cui i candidati scrivono o eseguono codice, né videocolloqui. Se ti servono, usa una piattaforma che li offre, da sola o insieme a testee: prima una verifica delle conoscenze, poi il test specialistico per la rosa ristretta. Vedi [testee e TestGorilla](/compare/testgorilla) e [Alternative a TestGorilla](/compare/testgorilla-alternatives).
 
 ### Perché i test di competenze sono un primo passo sensato
 
@@ -87,11 +87,11 @@ Domande da fare a qualsiasi fornitore:
 
 Per confrontare i prezzi, vedi [come confrontare i costi dei test](/compare/cheapest-pre-employment-test) e [test pre-assunzione senza abbonamento](/compare/pre-employment-tests-without-subscription).
 
-## Come funziona prepza
+## Come funziona testee
 
-prepza trasforma una descrizione del ruolo in un colloquio sulle competenze a scelta multipla e a tempo.
+testee trasforma una descrizione del ruolo in un colloquio sulle competenze a scelta multipla e a tempo.
 
-1. **Incolla la descrizione del ruolo.** Qualsiasi ruolo, in una qualsiasi di 23 lingue. prepza individua ciò che un candidato deve sapere e propone gli argomenti.
+1. **Incolla la descrizione del ruolo.** Qualsiasi ruolo, in una qualsiasi di 23 lingue. testee individua ciò che un candidato deve sapere e propone gli argomenti.
 2. **Rivedi gli argomenti.** Deseleziona ciò che non ti serve, rinomina un argomento, modifica i suoi sottoargomenti o descrivi le modifiche in linguaggio semplice. Le domande vengono scritte solo dopo la tua approvazione. Puoi anche partire da un modello pronto per il tuo ruolo.
 3. **Invita i candidati.** Invia gli inviti via email, incolla un elenco, carica un file o metti un unico link condivisibile nel tuo annuncio di lavoro. I promemoria partono in automatico.
 4. **Leggi i risultati.** I punteggi arrivano in classifica, con una scheda di valutazione per ogni candidato.
@@ -103,4 +103,4 @@ prepza trasforma una descrizione del ruolo in un colloquio sulle competenze a sc
 
 Il prezzo è per candidato che risponde, senza abbonamento: $2–5 per candidato a seconda dell'importo della ricarica (nella valuta locale in Canada, Australia, Israele, Polonia, Svizzera, Giappone, Corea del Sud, Taiwan, Hong Kong, Thailandia, Singapore, India, nel resto d'Europa e nel Regno Unito), e i tuoi primi 3 candidati sono gratis. I dati sono ospitati nell'UE (alcuni sub-responsabili si trovano negli Stati Uniti; vedi l'[informativa sulla privacy](/privacy)), e l'accordo sul trattamento dei dati e le istruzioni per le aziende sono inclusi.
 
-prepza non è una suite psicometrica, una piattaforma per scrivere ed eseguire codice né uno strumento di videocolloqui, e funziona insieme a questi. Per capire come si confronta con altri strumenti di assunzione basati sull'IA, leggi [Colloqui con IA](/ai-interviews). Per i ruoli di ingegneria, vedi [Come assumere sviluppatori](/guides/hiring-engineers).
+testee non è una suite psicometrica, una piattaforma per scrivere ed eseguire codice né uno strumento di videocolloqui, e funziona insieme a questi. Per capire come si confronta con altri strumenti di assunzione basati sull'IA, leggi [Colloqui con IA](/ai-interviews). Per i ruoli di ingegneria, vedi [Come assumere sviluppatori](/guides/hiring-engineers).

@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Secara umum, ya: memakai AI dalam rekrutmen itu legal di Inggris Raya. Inggris Raya tidak punya satu undang-undang AI seperti AI Act UE (EU AI Act). Sebagai gantinya, Equality Act 2010 dan GDPR Inggris Raya (UK GDPR) berlaku untuk alat AI sama seperti untuk tes apa pun, dan sejak 5 Februari 2026 UK GDPR punya aturan baru tentang keputusan yang semata-mata dibuat secara otomatis.
 
-Panduan ini menjelaskan aturannya secara garis besar, apa yang harus dilakukan pemberi kerja, dan pendekatan prepza. **Ini bukan nasihat hukum.** Isinya mencerminkan aturan per Oktober 2026; sebagian aturan itu masih baru dan panduan regulator tentangnya masih diperbarui.
+Panduan ini menjelaskan aturannya secara garis besar, apa yang harus dilakukan pemberi kerja, dan pendekatan testee. **Ini bukan nasihat hukum.** Isinya mencerminkan aturan per Oktober 2026; sebagian aturan itu masih baru dan panduan regulator tentangnya masih diperbarui.
 
 ## Jawaban singkatnya
 
@@ -99,21 +99,21 @@ Jika penyedia mengirim data kandidat Inggris Raya ke Amerika Serikat, jembatan d
 8. **Pantau keadilan** hasilmu sendiri dengan data yang diberikan kandidat sendiri kepadamu, jangan pernah dengan data yang disimpulkan.
 9. **Jangan pernah menolak berdasarkan skor saja.** Lihat jawabannya.
 
-## Pendekatan prepza
+## Pendekatan testee
 
-prepza menjalankan wawancara keterampilan pilihan ganda berbatas waktu yang ditulis AI dari deskripsi pekerjaan. Pendekatannya di Inggris Raya sama dengan di UE. prepza tidak mengklaim sudah patuh atau tersertifikasi.
+testee menjalankan wawancara keterampilan pilihan ganda berbatas waktu yang ditulis AI dari deskripsi pekerjaan. Pendekatannya di Inggris Raya sama dengan di UE. testee tidak mengklaim sudah patuh atau tersertifikasi.
 
 Seperti apa wujudnya di produk saat ini:
 
 - **AI menulis soal dan kunci jawabannya; penilaian mengikuti aturan tetap.** Tidak ada AI yang membaca atau menilai jawaban kandidat, dan tidak ada analisis video atau wajah. Dalam mode suara, ucapan diubah menjadi teks dan dicocokkan dengan sebuah pilihan, yang disebutkan kepada kandidat dan ditampilkan di layar: satu pilihan yang disebut dengan jelas langsung dicatat, sedangkan jawaban dengan beberapa pilihan dikonfirmasi lebih dulu. Ucapan tidak pernah disimpan dan suaranya tidak pernah dianalisis.
 - **Kamu menyetujui topiknya** sebelum ada soal yang ditulis, dan kamu yang memilih nilai lulus.
-- **Manusia yang memutuskan.** Halaman hasil dan laporan PDF mengingatkan timmu untuk meninjau hasil; prepza tidak menolak kandidat atau mengirim pesan penolakan.
+- **Manusia yang memutuskan.** Halaman hasil dan laporan PDF mengingatkan timmu untuk meninjau hasil; testee tidak menolak kandidat atau mengirim pesan penolakan.
 - **Kandidat diberi tahu** sebelum mulai bahwa soal ditulis oleh AI, bahwa orang di perusahaanmu yang meninjau hasil dan memutuskan, dan bahwa mereka bisa meminta peninjauan.
-- **Tanpa karakteristik yang dilindungi.** prepza tidak pernah menanyakan, menyimpulkan, atau menyimpan jenis kelamin, etnis, usia, disabilitas, atau karakteristik lain yang dilindungi milik kandidat.
+- **Tanpa karakteristik yang dilindungi.** testee tidak pernah menanyakan, menyimpulkan, atau menyimpan jenis kelamin, etnis, usia, disabilitas, atau karakteristik lain yang dilindungi milik kandidat.
 - **Pemantauan keadilan.** Pemilik perusahaanmu bisa mengunduh file untuk audit bias dari halaman Log tindakan perusahaan: untuk setiap kandidat yang sudah selesai, nilainya, nilai lulus, apakah ia lulus, dan apakah skornya di atas median wawancara, dengan email sebagai kunci. Gabungkan dengan jawaban yang diberikan kandidat di formulir kesempatan yang setara milikmu sendiri, lalu hapus emailnya.
-- **Tambahan waktu** +25%, +50%, atau +100% untuk setiap soal bisa diberikan kepada kandidat mana pun yang memintanya, sebelum ia mulai. prepza hanya menyimpan besarnya, tidak pernah alasannya.
+- **Tambahan waktu** +25%, +50%, atau +100% untuk setiap soal bisa diberikan kepada kandidat mana pun yang memintanya, sebelum ia mulai. testee hanya menyimpan besarnya, tidak pernah alasannya.
 - **Dokumen.** Templat pemberitahuan untuk kandidat, petunjuk untuk perusahaan, dan templat DPIA ada di [halaman dokumen](/documents).
-- **Data.** Perusahaanmu adalah pengendali dan prepza pemrosesnya, berdasarkan [perjanjian pemrosesan data](/dpa), yang mencakup hukum Inggris Raya. Data di-hosting di UE dan tidak dipakai untuk melatih model AI; transfer data kandidat Inggris Raya ke sub-pemroses di AS bersandar pada jembatan data Inggris Raya–AS atau adendum Inggris Raya (lihat [kebijakan privasi](/privacy)). Data kandidat dihapus 12 bulan setelah undangan.
+- **Data.** Perusahaanmu adalah pengendali dan testee pemrosesnya, berdasarkan [perjanjian pemrosesan data](/dpa), yang mencakup hukum Inggris Raya. Data di-hosting di UE dan tidak dipakai untuk melatih model AI; transfer data kandidat Inggris Raya ke sub-pemroses di AS bersandar pada jembatan data Inggris Raya–AS atau adendum Inggris Raya (lihat [kebijakan privasi](/privacy)). Data kandidat dihapus 12 bulan setelah undangan.
 
 ## Bacaan terkait
 

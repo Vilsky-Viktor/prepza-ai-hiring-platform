@@ -1,7 +1,7 @@
 ---
 title: "AI-interviews: wat ze zijn en hoe je ze eerlijk inzet"
 seoTitle: "AI in werving en selectie: AI-interviews, risico's en regels"
-description: "AI in werving en selectie: wat AI-interviewtools doen (chatbots, video-analyse, gegenereerde assessments), hoe prepza werkt en de juridische basis."
+description: "AI in werving en selectie: wat AI-interviewtools doen (chatbots, video-analyse, gegenereerde assessments), hoe testee werkt en de juridische basis."
 updated: "2026-10-29"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 "AI-interview" betekent per leverancier iets heel anders. Sommige tools voeren een gesprek met de kandidaat. Sommige nemen video op en geven die een score. Sommige gebruiken AI alleen om de vragen te schrijven en scoren de antwoorden daarna volgens vaste regels. Voor een selectieteam maakt dat verschil uit: het bepaalt wat je aan een kandidaat kunt uitleggen, wat er mis kan gaan en wat de wet van je verwacht.
 
-Deze pagina zet de belangrijkste soorten AI-interviewtools op een rij, legt de aanpak van prepza uit en behandelt de juridische basis.
+Deze pagina zet de belangrijkste soorten AI-interviewtools op een rij, legt de aanpak van testee uit en behandelt de juridische basis.
 
 ## Drie soorten AI-interviewtools
 
@@ -29,11 +29,11 @@ Hier nemen kandidaten hun antwoorden op met de camera. Sommige producten maken a
 
 ### Gegenereerde assessments
 
-In dit model doet AI het schrijfwerk: het leest de functieomschrijving, stelt voor wat er getoetst wordt en schrijft conceptvragen. Kandidaten beantwoorden daarna vragen met duidelijke goede en foute antwoorden, en de score volgt vaste regels. Dit is het model dat prepza gebruikt.
+In dit model doet AI het schrijfwerk: het leest de functieomschrijving, stelt voor wat er getoetst wordt en schrijft conceptvragen. Kandidaten beantwoorden daarna vragen met duidelijke goede en foute antwoorden, en de score volgt vaste regels. Dit is het model dat testee gebruikt.
 
-## De aanpak van prepza
+## De aanpak van testee
 
-prepza gebruikt AI om op basis van je functieomschrijving een interview over vaardigheden te schrijven. Mensen houden de regie over wat er getoetst wordt en over elk besluit.
+testee gebruikt AI om op basis van je functieomschrijving een interview over vaardigheden te schrijven. Mensen houden de regie over wat er getoetst wordt en over elk besluit.
 
 1. **AI leest je functieomschrijving** en haalt eruit wat een kandidaat moet weten: de eisen, het niveau en een set onderwerpen met subonderwerpen.
 2. **Jij bekijkt de onderwerpen.** Houd ze, vink ze uit, hernoem of bewerk ze, of vertel de AI in gewone taal wat er anders moet. Er wordt geen vraag geschreven tot jij akkoord geeft.
@@ -42,16 +42,16 @@ prepza gebruikt AI om op basis van je functieomschrijving een interview over vaa
 5. **Antwoorden worden nagekeken met een antwoordsleutel.** AI schrijft de sleutels. Een steekproef van de sleutels van elk onderwerp wordt vóór vrijgave gecontroleerd, de rest zodra een vraag wordt gemarkeerd. Het nakijken zelf volgt vaste regels, en geen AI leest of beoordeelt het antwoord van een kandidaat. Wordt een sleutel later gecorrigeerd, dan geldt de correctie voor kandidaten die daarna beginnen; eerdere resultaten veranderen niet. Snelheid, het verlaten van de pagina en kopieerpogingen zie je als signalen; ze veranderen de score niet.
 6. **Mensen beslissen.** Je ziet een gerangschikte lijst en per kandidaat een scorekaart, met elk antwoord en de tijd die het kostte. Iemand in je bedrijf bekijkt de resultaten en neemt het wervingsbesluit.
 
-Wat prepza niet doet:
+Wat testee niet doet:
 
 - Geen analyse van video, stem of gezicht.
 - Geen afleiding van persoonlijkheid of emoties.
-- Geen automatische afwijzingen. prepza wijst geen kandidaten af en stuurt geen afwijzingen; je team beslist.
-- Je gegevens worden niet gebruikt om AI-modellen te trainen. De AI-leverancier van prepza, OpenAI, traint volgens zijn voorwaarden niet op API-gegevens.
+- Geen automatische afwijzingen. testee wijst geen kandidaten af en stuurt geen afwijzingen; je team beslist.
+- Je gegevens worden niet gebruikt om AI-modellen te trainen. De AI-leverancier van testee, OpenAI, traint volgens zijn voorwaarden niet op API-gegevens.
 
 ### Vragen worden steeds beter
 
-Door AI geschreven vragen kunnen fout of onduidelijk zijn, vooral in een nieuw interview. prepza let daarop: antwoorden, beoordelingen en meldingen van kandidaten wijzen zwakke vragen aan, en een AI-controleur verbetert of vervangt ze. Zie je een vraag met een foute antwoordsleutel, markeer die dan; ze gaat direct naar de controleur.
+Door AI geschreven vragen kunnen fout of onduidelijk zijn, vooral in een nieuw interview. testee let daarop: antwoorden, beoordelingen en meldingen van kandidaten wijzen zwakke vragen aan, en een AI-controleur verbetert of vervangt ze. Zie je een vraag met een foute antwoordsleutel, markeer die dan; ze gaat direct naar de controleur.
 
 Je kunt je eigen interview ook als kandidaat proberen voordat je iemand uitnodigt: dezelfde vragen met tijdslimiet, gratis, en buiten je resultaten gehouden.
 
@@ -71,7 +71,7 @@ Niets hiervan maakt een test vanzelf eerlijk. De vragen moeten nog steeds bij de
 
 ### Wat meerkeuze niet kan
 
-Wees duidelijk over de grenzen. Een meerkeuzetest toetst kennis. Vragen over code lezen laten zien of iemand code begrijpt, niet of hij of zij die kan schrijven. Een test als deze laat niet zien hoe iemand schrijft, met een klant praat of een systeem van begin tot eind ontwerpt. Combineer prepza daarvoor met een werkproef of een gestructureerd interview voor je shortlist. Gebruik voor echt programmeren een developerplatform of je eigen opdracht naast prepza; zie [Alternatieven voor HackerRank](/compare/hackerrank-alternatives) en [Developers interviewen in het tijdperk van AI](/guides/interviewing-in-the-age-of-ai).
+Wees duidelijk over de grenzen. Een meerkeuzetest toetst kennis. Vragen over code lezen laten zien of iemand code begrijpt, niet of hij of zij die kan schrijven. Een test als deze laat niet zien hoe iemand schrijft, met een klant praat of een systeem van begin tot eind ontwerpt. Combineer testee daarvoor met een werkproef of een gestructureerd interview voor je shortlist. Gebruik voor echt programmeren een developerplatform of je eigen opdracht naast testee; zie [Alternatieven voor HackerRank](/compare/hackerrank-alternatives) en [Developers interviewen in het tijdperk van AI](/guides/interviewing-in-the-age-of-ai).
 
 ## Juridische basis voor AI-interviewtools
 
@@ -79,7 +79,7 @@ Dit is een samenvatting per oktober 2026, geen juridisch advies. Overleg met je 
 
 ### AI-verordening
 
-AI-systemen "die bedoeld zijn om te worden gebruikt voor het werven of selecteren van natuurlijke personen, met name voor het plaatsen van gerichte vacatures, het analyseren en filteren van sollicitaties, en het beoordelen van kandidaten" zijn hoog risico volgens [bijlage III, punt 4, onder a)](https://artificialintelligenceact.eu/annex/3/) van de AI-verordening. Tools die kandidaten scoren of rangschikken vallen daar zeer waarschijnlijk onder. De eigen analyse van prepza concludeert dat prepza zeer waarschijnlijk hoog risico is, met verplichtingen vanaf 2 december 2027.
+AI-systemen "die bedoeld zijn om te worden gebruikt voor het werven of selecteren van natuurlijke personen, met name voor het plaatsen van gerichte vacatures, het analyseren en filteren van sollicitaties, en het beoordelen van kandidaten" zijn hoog risico volgens [bijlage III, punt 4, onder a)](https://artificialintelligenceact.eu/annex/3/) van de AI-verordening. Tools die kandidaten scoren of rangschikken vallen daar zeer waarschijnlijk onder. De eigen analyse van testee concludeert dat testee zeer waarschijnlijk hoog risico is, met verplichtingen vanaf 2 december 2027.
 
 Hoog risico betekent verplichtingen aan beide kanten:
 
@@ -90,7 +90,7 @@ De data en de details staan in [Is werven met AI legaal in de EU?](/guides/is-ai
 
 ### AVG
 
-Interviewresultaten zijn persoonsgegevens, onder de AVG (GDPR) van de EU en de UK GDPR. Reken op een verwerkersovereenkomst, een bericht aan kandidaten, een beperkte bewaartermijn en een manier waarop kandidaten hun gegevens kunnen inzien of laten verwijderen. [Artikel 22](https://gdpr-info.eu/art-22-gdpr/) beperkt ook besluiten die uitsluitend op geautomatiseerde verwerking berusten en mensen in aanmerkelijke mate treffen, dus laat een mens de resultaten bekijken voordat je ernaar handelt. prepza wordt gehost in de EU (sommige subverwerkers zitten in de VS; zie het [privacybeleid](/privacy)), verwijdert kandidaatgegevens 12 maanden na de uitnodiging, en levert een verwerkersovereenkomst en instructies voor bedrijven mee.
+Interviewresultaten zijn persoonsgegevens, onder de AVG (GDPR) van de EU en de UK GDPR. Reken op een verwerkersovereenkomst, een bericht aan kandidaten, een beperkte bewaartermijn en een manier waarop kandidaten hun gegevens kunnen inzien of laten verwijderen. [Artikel 22](https://gdpr-info.eu/art-22-gdpr/) beperkt ook besluiten die uitsluitend op geautomatiseerde verwerking berusten en mensen in aanmerkelijke mate treffen, dus laat een mens de resultaten bekijken voordat je ernaar handelt. testee wordt gehost in de EU (sommige subverwerkers zitten in de VS; zie het [privacybeleid](/privacy)), verwijdert kandidaatgegevens 12 maanden na de uitnodiging, en levert een verwerkersovereenkomst en instructies voor bedrijven mee.
 
 ### Verenigde Staten
 

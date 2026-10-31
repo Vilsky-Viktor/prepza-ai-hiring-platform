@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 In generale, sì: usare l'IA nella selezione del personale è legale negli Stati Uniti. Non esiste una legge federale sull'IA nelle assunzioni. Si applica invece la normativa federale antidiscriminazione, agli strumenti di IA come a qualsiasi altro test, e alcune giurisdizioni aggiungono regole proprie: New York City, Illinois, Colorado e California.
 
-Questa guida spiega le regole a grandi linee, le date che contano, cosa devono fare i datori di lavoro e come se ne occupa prepza. **Non costituisce consulenza legale.** Riflette le regole in vigore a ottobre 2026, diverse delle quali sono nuove o ancora in via di definizione.
+Questa guida spiega le regole a grandi linee, le date che contano, cosa devono fare i datori di lavoro e come se ne occupa testee. **Non costituisce consulenza legale.** Riflette le regole in vigore a ottobre 2026, diverse delle quali sono nuove o ancora in via di definizione.
 
 ## La risposta breve
 
@@ -97,22 +97,22 @@ La legge del Colorado sull'IA è stata abrogata e riemanata con la SB 26-189, fi
 8. **Conserva la documentazione per il tempo richiesto dalla tua legge,** ad esempio quattro anni in California e tre in Colorado.
 9. **Non scartare mai in base al solo punteggio.** Fai esaminare ogni risultato da una persona.
 
-## Come se ne occupa prepza
+## Come se ne occupa testee
 
-prepza svolge colloqui di competenze a scelta multipla e a tempo, scritti dall'IA a partire da una descrizione del ruolo. Negli Stati Uniti il suo approccio è lo stesso che nell'UE. prepza non dichiara di essere conforme o certificato.
+testee svolge colloqui di competenze a scelta multipla e a tempo, scritti dall'IA a partire da una descrizione del ruolo. Negli Stati Uniti il suo approccio è lo stesso che nell'UE. testee non dichiara di essere conforme o certificato.
 
 Ecco cosa significa oggi nel prodotto:
 
 - **L'IA scrive le domande e le relative chiavi di correzione; la correzione segue regole fisse.** Nessuna IA legge o giudica la risposta di un candidato, e non si usa alcuna analisi di video o volto. Nella modalità vocale, il parlato viene trasformato in testo e abbinato a un'opzione, che viene detta al candidato e mostrata sullo schermo: una sola opzione indicata chiaramente viene registrata subito, una scelta di più opzioni viene prima confermata. Il parlato non viene mai conservato e la voce non viene mai analizzata.
 - **Approvi tu gli argomenti** prima che venga scritta qualsiasi domanda, e scegli tu la soglia di superamento.
-- **Decidono le persone.** prepza non scarta candidati né invia messaggi di rifiuto.
-- **Nessuna caratteristica protetta.** prepza non chiede, non deduce e non conserva mai sesso, razza, età, disabilità, codice postale o altre caratteristiche protette dei candidati.
+- **Decidono le persone.** testee non scarta candidati né invia messaggi di rifiuto.
+- **Nessuna caratteristica protetta.** testee non chiede, non deduce e non conserva mai sesso, razza, età, disabilità, codice postale o altre caratteristiche protette dei candidati.
 - **Un'esportazione per l'audit sui bias.** Nella pagina Registro attività dell'azienda, il proprietario può scaricare un file CSV dei candidati che hanno terminato, per tutta l'azienda o per un colloquio e tra due date: il voto di ogni candidato, la soglia di superamento, se ha superato il test e se ha ottenuto un punteggio sopra la mediana del colloquio. Ogni riga ha come chiave l'email del candidato, così puoi abbinarla alle categorie autodichiarate che hai raccolto tu; poi rimuovi la colonna dell'email e consegna il file al tuo auditor indipendente, che calcola i tassi di selezione e di punteggio e gli impact ratio. Con lo stesso file puoi fare tu stesso il controllo dei quattro quinti.
-- **Più tempo**, +25%, +50% o +100% su ogni domanda, può essere concesso a qualsiasi candidato che lo chieda, prima che inizi. prepza conserva solo l'entità, mai il motivo. Nella modalità vocale, un candidato può sempre toccare un'opzione al suo posto, e puoi impostare un colloquio in modo che si risponda solo toccando.
+- **Più tempo**, +25%, +50% o +100% su ogni domanda, può essere concesso a qualsiasi candidato che lo chieda, prima che inizi. testee conserva solo l'entità, mai il motivo. Nella modalità vocale, un candidato può sempre toccare un'opzione al suo posto, e puoi impostare un colloquio in modo che si risponda solo toccando.
 - **Modelli di informativa per i candidati,** uno generale e versioni per New York City, Illinois e Colorado, sono nella [pagina dei documenti](/documents), insieme alle istruzioni per le aziende.
-- **New York City.** prepza non ha ancora avuto un proprio audit sui bias indipendente. Non usare prepza per posizioni a New York City finché non hai fatto ciò che la Local Law 144 chiede a te come datore di lavoro: un audit sui bias indipendente nell'anno precedente l'uso, la sua sintesi pubblicata e un avviso ai candidati 10 giorni lavorativi prima.
-- **Dati.** Ai sensi del CCPA la tua azienda è il business e prepza il suo service provider, secondo l'[accordo sul trattamento dei dati](/dpa) e la sua sezione sugli Stati Uniti. I dati sono ospitati nell'UE, con alcuni sub-responsabili negli Stati Uniti (vedi l'[informativa sulla privacy](/privacy)), e non vengono usati per addestrare modelli di IA.
-- **Conservazione.** I dati dei candidati vengono cancellati 12 mesi dopo l'invito. Se la tua legge ti chiede di conservare la documentazione più a lungo, come i quattro anni della California, scarica i report PDF e il file per l'audit sui bias e conservali tu; prepza non conserva i risultati più a lungo per impostazione predefinita.
+- **New York City.** testee non ha ancora avuto un proprio audit sui bias indipendente. Non usare testee per posizioni a New York City finché non hai fatto ciò che la Local Law 144 chiede a te come datore di lavoro: un audit sui bias indipendente nell'anno precedente l'uso, la sua sintesi pubblicata e un avviso ai candidati 10 giorni lavorativi prima.
+- **Dati.** Ai sensi del CCPA la tua azienda è il business e testee il suo service provider, secondo l'[accordo sul trattamento dei dati](/dpa) e la sua sezione sugli Stati Uniti. I dati sono ospitati nell'UE, con alcuni sub-responsabili negli Stati Uniti (vedi l'[informativa sulla privacy](/privacy)), e non vengono usati per addestrare modelli di IA.
+- **Conservazione.** I dati dei candidati vengono cancellati 12 mesi dopo l'invito. Se la tua legge ti chiede di conservare la documentazione più a lungo, come i quattro anni della California, scarica i report PDF e il file per l'audit sui bias e conservali tu; testee non conserva i risultati più a lungo per impostazione predefinita.
 
 ## Letture correlate
 

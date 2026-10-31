@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 En règle générale, oui : utiliser l'IA dans le recrutement est légal aux États-Unis. Il n'existe pas de loi fédérale sur l'IA dans le recrutement. C'est le droit fédéral de la non-discrimination qui s'applique aux outils d'IA comme à n'importe quel test, et quelques territoires ajoutent leurs propres règles : la ville de New York, l'Illinois, le Colorado et la Californie.
 
-Ce guide présente les règles dans leurs grandes lignes, les dates à retenir, ce que les employeurs doivent faire et la façon dont prepza aborde le sujet. **Il ne constitue pas un conseil juridique.** Il reflète les règles en vigueur en octobre 2026, dont plusieurs sont récentes ou encore en cours de finalisation.
+Ce guide présente les règles dans leurs grandes lignes, les dates à retenir, ce que les employeurs doivent faire et la façon dont testee aborde le sujet. **Il ne constitue pas un conseil juridique.** Il reflète les règles en vigueur en octobre 2026, dont plusieurs sont récentes ou encore en cours de finalisation.
 
 ## La réponse courte
 
@@ -97,22 +97,22 @@ La loi du Colorado sur l'IA a été abrogée et réadoptée par la SB 26-189, si
 8. **Conservez les dossiers aussi longtemps que votre droit l'exige,** par exemple quatre ans en Californie et trois dans le Colorado.
 9. **N'écartez jamais un candidat sur la seule base d'un score.** Faites examiner chaque résultat par une personne.
 
-## L'approche de prepza
+## L'approche de testee
 
-prepza fait passer des entretiens de compétences chronométrés à choix multiples, rédigés par l'IA à partir d'une fiche de poste. Son approche aux États-Unis est la même que dans l'UE. prepza ne prétend être ni conforme ni certifié.
+testee fait passer des entretiens de compétences chronométrés à choix multiples, rédigés par l'IA à partir d'une fiche de poste. Son approche aux États-Unis est la même que dans l'UE. testee ne prétend être ni conforme ni certifié.
 
 Ce que cela donne aujourd'hui dans le produit :
 
 - **L'IA rédige les questions et leurs corrigés ; la notation suit des règles fixes.** Aucune IA ne lit ni ne juge la réponse d'un candidat, et aucune analyse vidéo ou faciale n'est utilisée. En mode vocal, la parole est transcrite en texte et associée à une option, annoncée au candidat et affichée à l'écran : une seule option clairement nommée est enregistrée aussitôt, un choix de plusieurs options est d'abord confirmé. La parole n'est jamais conservée et la voix n'est jamais analysée.
 - **Vous validez les thèmes** avant qu'une question ne soit rédigée, et vous choisissez le seuil de réussite.
-- **Des personnes décident.** prepza ne rejette pas de candidats et n'envoie pas de messages de refus.
-- **Aucune caractéristique protégée.** prepza ne demande, n'infère ni ne conserve jamais le sexe, la race, l'âge, le handicap, le code postal ou d'autres caractéristiques protégées des candidats.
+- **Des personnes décident.** testee ne rejette pas de candidats et n'envoie pas de messages de refus.
+- **Aucune caractéristique protégée.** testee ne demande, n'infère ni ne conserve jamais le sexe, la race, l'âge, le handicap, le code postal ou d'autres caractéristiques protégées des candidats.
 - **Un export pour l'audit des biais.** Sur la page Journal des actions de l'entreprise, le propriétaire peut télécharger un fichier CSV des candidats ayant terminé, pour toute l'entreprise ou un seul entretien et entre deux dates : la note de chaque candidat, le seuil de réussite, s'il a réussi et s'il a obtenu un score supérieur à la médiane de l'entretien. Chaque ligne a pour clé l'e-mail du candidat, pour que vous puissiez la croiser avec les catégories auto-déclarées que vous avez recueillies vous-même ; supprimez ensuite la colonne de l'e-mail et remettez le fichier à votre auditeur indépendant, qui calcule les taux de sélection et de notation et les ratios d'impact. Le même fichier vous permet de faire vous-même le contrôle des quatre cinquièmes.
-- **Du temps supplémentaire** de +25 %, +50 % ou +100 % sur chaque question peut être accordé à tout candidat qui le demande, avant qu'il ne commence. prepza ne conserve que la durée accordée, jamais la raison. En mode vocal, un candidat peut toujours toucher une option à la place, et vous pouvez configurer un entretien pour qu'on n'y réponde qu'en touchant les options.
+- **Du temps supplémentaire** de +25 %, +50 % ou +100 % sur chaque question peut être accordé à tout candidat qui le demande, avant qu'il ne commence. testee ne conserve que la durée accordée, jamais la raison. En mode vocal, un candidat peut toujours toucher une option à la place, et vous pouvez configurer un entretien pour qu'on n'y réponde qu'en touchant les options.
 - **Des modèles d'information des candidats,** un général et des versions pour la ville de New York, l'Illinois et le Colorado, sont sur la [page des documents](/documents), avec les instructions pour les entreprises.
-- **Ville de New York.** prepza n'a pas encore fait réaliser son propre audit des biais indépendant. N'utilisez pas prepza pour des postes à New York avant d'avoir fait ce que la Local Law 144 vous demande en tant qu'employeur : un audit des biais indépendant dans l'année précédant l'utilisation, son résumé publié, et une information des candidats 10 jours ouvrables avant.
-- **Données.** Au sens du CCPA, votre entreprise est l'entreprise (business) et prepza son prestataire de services (service provider), selon l'[accord de traitement des données](/dpa) et sa section consacrée aux États-Unis. Les données sont hébergées dans l'UE, certains sous-traitants ultérieurs étant aux États-Unis (voir la [politique de confidentialité](/privacy)), et ne servent pas à entraîner des modèles d'IA.
-- **Conservation.** Les données des candidats sont supprimées 12 mois après l'invitation. Si votre droit vous impose de conserver les dossiers plus longtemps, comme les quatre ans en Californie, téléchargez les rapports PDF et le fichier d'audit des biais et conservez-les vous-même ; prepza ne conserve pas les résultats plus longtemps par défaut.
+- **Ville de New York.** testee n'a pas encore fait réaliser son propre audit des biais indépendant. N'utilisez pas testee pour des postes à New York avant d'avoir fait ce que la Local Law 144 vous demande en tant qu'employeur : un audit des biais indépendant dans l'année précédant l'utilisation, son résumé publié, et une information des candidats 10 jours ouvrables avant.
+- **Données.** Au sens du CCPA, votre entreprise est l'entreprise (business) et testee son prestataire de services (service provider), selon l'[accord de traitement des données](/dpa) et sa section consacrée aux États-Unis. Les données sont hébergées dans l'UE, certains sous-traitants ultérieurs étant aux États-Unis (voir la [politique de confidentialité](/privacy)), et ne servent pas à entraîner des modèles d'IA.
+- **Conservation.** Les données des candidats sont supprimées 12 mois après l'invitation. Si votre droit vous impose de conserver les dossiers plus longtemps, comme les quatre ans en Californie, téléchargez les rapports PDF et le fichier d'audit des biais et conservez-les vous-même ; testee ne conserve pas les résultats plus longtemps par défaut.
 
 ## À lire aussi
 

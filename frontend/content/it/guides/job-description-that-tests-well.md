@@ -102,9 +102,9 @@ Ogni riga nomina qualcosa su cui si può fare una domanda, il livello è dichiar
 - I requisiti vincolanti sono lasciati allo screening dei CV.
 - Nessuna formulazione sulla persona che immagini, solo sul lavoro.
 
-## Come prepza usa una descrizione del ruolo
+## Come testee usa una descrizione del ruolo
 
-prepza è un esempio di strumento che costruisce un test di competenze a scelta multipla e a tempo a partire da una descrizione del ruolo. Ecco cosa fa con il testo, così puoi vedere come si traducono in pratica i consigli sopra:
+testee è un esempio di strumento che costruisce un test di competenze a scelta multipla e a tempo a partire da una descrizione del ruolo. Ecco cosa fa con il testo, così puoi vedere come si traducono in pratica i consigli sopra:
 
 - **Legge ogni requisito.** L'IA individua ogni competenza, strumento, concetto, titolo e attività quotidiana, da ogni sezione, comprese quelle segnate come preferenziali o "gradite". Dichiarazioni sulla cultura, benefit e slogan restano fuori.
 - **Gli esempi intercambiabili diventano uno.** "Strumenti come A, B o simili" resta come tipo di strumento, con quello che il testo preferisce (o il più diffuso) come esempio. Le voci unite da "e" restano separate. Quindi, se ti serve uno strumento specifico, nomina solo quello.

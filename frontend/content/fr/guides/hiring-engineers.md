@@ -72,7 +72,7 @@ Un bon test de connaissances est :
 - **Court :** quelques thèmes d'environ 10 questions chacun, pour que les bons candidats qui ont d'autres propositions le terminent quand même.
 - **Identique pour tous :** les mêmes thèmes, le même nombre de questions et les mêmes limites de temps.
 
-C'est là que se place prepza. Il transforme votre fiche de poste en entretien de connaissances chronométré à choix multiples. Vous vérifiez les thèmes proposés avant qu'une question ne soit rédigée, pour que le test couvre votre stack et rien d'autre. Pour un poste d'ingénieur, cela peut inclure :
+C'est là que se place testee. Il transforme votre fiche de poste en entretien de connaissances chronométré à choix multiples. Vous vérifiez les thèmes proposés avant qu'une question ne soit rédigée, pour que le test couvre votre stack et rien d'autre. Pour un poste d'ingénieur, cela peut inclure :
 
 - **Des questions de lecture de code :** un court extrait de code, avec des questions sur ce qu'il affiche ou renvoie, ce qu'il fait, pourquoi il échoue ou quelle modification le corrige.
 - **Du SQL :** une petite table et une requête, avec la question de savoir quelles lignes sont renvoyées.
@@ -80,7 +80,7 @@ C'est là que se place prepza. Il transforme votre fiche de poste en entretien d
 
 Chaque candidat reçoit sa propre série aléatoire de questions avec un compte à rebours pour chacune. Vous voyez une fiche d'évaluation avec chaque réponse et le temps qu'elle a pris, ainsi que des alertes pour les réponses trop rapides, les sorties de la page, les tentatives de copie et les schémas inhabituels dans ses réponses et ses temps. Une alerte est une raison de regarder de plus près, pas une preuve. Le rapport suggère aussi des questions auxquelles il a bien répondu, à aborder lors de l'entretien suivant.
 
-Ce que prepza ne fait pas : les candidats n'écrivent, n'exécutent ni ne déboguent de code dans prepza. Lire du code et en écrire sont des compétences différentes, l'étape suivante reste donc importante. Voir les [tests de compétences par poste](/tests) pour des tests prêts à l'emploi.
+Ce que testee ne fait pas : les candidats n'écrivent, n'exécutent ni ne déboguent de code dans testee. Lire du code et en écrire sont des compétences différentes, l'étape suivante reste donc importante. Voir les [tests de compétences par poste](/tests) pour des tests prêts à l'emploi.
 
 ## Étape 4 : exercice à la maison ou code en direct
 
@@ -128,7 +128,7 @@ Un processus structuré est aussi plus équitable, mais seulement si vous l'appl
 
 - **Des questions identiques** à chaque étape, pour chaque candidat au même poste.
 - **Des grilles rédigées à l'avance,** pour que chacun soit jugé sur les mêmes critères.
-- **Des aménagements :** proposez du temps supplémentaire ou un autre format aux candidats qui le demandent, par exemple en raison d'un handicap. Dans prepza, vous pouvez accorder du temps supplémentaire à un candidat avant qu'il ne commence.
+- **Des aménagements :** proposez du temps supplémentaire ou un autre format aux candidats qui le demandent, par exemple en raison d'un handicap. Dans testee, vous pouvez accorder du temps supplémentaire à un candidat avant qu'il ne commence.
 - **Surveillez les résultats.** Les méthodes font apparaître des écarts de score différents entre groupes. Sackett et al. ont constaté des différences moyennes plus importantes pour les tests de connaissances métier et les mises en situation que pour les entretiens structurés, une raison de plus de combiner les méthodes. Suivez les taux de réussite à chaque étape.
 - **Des personnes décident.** Un score étaye une décision ; il ne la prend pas. Regardez les réponses avant d'écarter qui que ce soit.
 

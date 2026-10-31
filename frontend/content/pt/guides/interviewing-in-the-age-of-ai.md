@@ -66,9 +66,9 @@ Diga aos candidatos logo no início quais ferramentas são permitidas em cada et
 
 Para a versão completa passo a passo, veja [Como contratar engenheiros](/guides/hiring-engineers).
 
-## Onde a prepza se encaixa
+## Onde a testee se encaixa
 
-A prepza é bem adequada para o passo 2. Ela transforma a sua descrição da vaga numa entrevista de conhecimentos de múltipla escolha cronometrada, e você revisa os tópicos propostos antes de qualquer pergunta ser escrita, então o teste cobre a sua stack e nada mais.
+A testee é bem adequada para o passo 2. Ela transforma a sua descrição da vaga numa entrevista de conhecimentos de múltipla escolha cronometrada, e você revisa os tópicos propostos antes de qualquer pergunta ser escrita, então o teste cobre a sua stack e nada mais.
 
 - **Conceitos e teoria a partir da descrição da vaga:** bancos de dados, APIs, arquitetura, o comportamento de um framework, práticas de segurança.
 - **Perguntas de leitura de código:** um pequeno trecho de código com perguntas sobre o que ele imprime ou retorna, o que faz, por que falha ou qual mudança o corrige. É a mesma habilidade de revisão de que depende o trabalho assistido por IA.
@@ -76,7 +76,7 @@ A prepza é bem adequada para o passo 2. Ela transforma a sua descrição da vag
 - **Sinais de integridade:** as fichas de avaliação sinalizam respostas rápidas demais para a pergunta ter sido lida, as vezes em que o candidato saiu da página e as tentativas de cópia. Quando o candidato termina, o relatório também aponta padrões de resposta que costumam aparecer quando alguém repassa as perguntas a uma IA e copia as respostas dela: mais ou menos o mesmo tempo em cada pergunta, independentemente da extensão ou da dificuldade, ou perguntas difíceis certas enquanto as fáceis estavam erradas. Um alerta ou padrão é um motivo para olhar com mais atenção, não prova de cola.
 - **Perguntas para a entrevista ao vivo:** o relatório sugere até 3 perguntas que o candidato acertou, dos seus temas mais fortes, para discutir em uma entrevista ao vivo, onde nenhuma IA pode responder por ele.
 
-O que a prepza não faz: os candidatos não escrevem, executam nem depuram código na prepza, e ela não observa como eles usam um assistente de IA. Isso fica para a etapa prática, feita internamente ou numa plataforma para desenvolvedores, que complementa a triagem de conhecimentos. Veja os [testes de habilidades por cargo](/tests) para começar com testes prontos, e [Entrevistas com IA](/ai-interviews) para ver como a prepza usa a IA e o que deixa para as pessoas.
+O que a testee não faz: os candidatos não escrevem, executam nem depuram código na testee, e ela não observa como eles usam um assistente de IA. Isso fica para a etapa prática, feita internamente ou numa plataforma para desenvolvedores, que complementa a triagem de conhecimentos. Veja os [testes de habilidades por cargo](/tests) para começar com testes prontos, e [Entrevistas com IA](/ai-interviews) para ver como a testee usa a IA e o que deixa para as pessoas.
 
 ## Imparcialidade e experiência do candidato
 

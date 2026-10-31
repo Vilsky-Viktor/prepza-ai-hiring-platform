@@ -72,7 +72,7 @@ Hea teadmiste kontroll on:
 - **Lühike:** mõni teema, igas umbes 10 küsimust, et ka teiste pakkumistega tugevad kandidaadid selle lõpetaksid.
 - **Kõigile sama:** samad teemad, sama arv küsimusi ja samad ajapiirangud.
 
-Siia sobib prepza. See muudab sinu töökuulutuse ajapiiranguga valikvastustega teadmiste intervjuuks. Vaatad pakutud teemad üle enne, kui ühtegi küsimust kirjutatakse, nii et test katab sinu tehnoloogiapaki ja mitte midagi muud. Inseneri rolli puhul võib see sisaldada:
+Siia sobib testee. See muudab sinu töökuulutuse ajapiiranguga valikvastustega teadmiste intervjuuks. Vaatad pakutud teemad üle enne, kui ühtegi küsimust kirjutatakse, nii et test katab sinu tehnoloogiapaki ja mitte midagi muud. Inseneri rolli puhul võib see sisaldada:
 
 - **Koodi lugemise küsimusi:** lühike koodilõik ja küsimused selle kohta, mida see prindib või tagastab, mida see teeb, miks see ebaõnnestub või milline muudatus selle parandab.
 - **SQL-i:** väike tabel ja päring koos küsimusega, millised read tagastatakse.
@@ -80,7 +80,7 @@ Siia sobib prepza. See muudab sinu töökuulutuse ajapiiranguga valikvastustega 
 
 Iga kandidaat saab oma juhusliku küsimuste komplekti ja igal küsimusel on taimer. Näed hindamislehte iga vastuse ja selle ajakuluga ning märkeid liiga kiirete vastuste, lehelt lahkumise, kopeerimiskatsete ning vastuste ja ajakulu ebatavaliste mustrite kohta. Märge on põhjus lähemalt vaadata, mitte tõend. Aruanne soovitab ka küsimusi, millele kandidaat vastas õigesti, et neist järgmisel intervjuul küsida.
 
-Mida prepza ei tee: kandidaadid ei kirjuta, käivita ega siluta prepzas koodi. Koodi lugemine ja kirjutamine on erinevad oskused, nii et järgmine samm on endiselt oluline. Valmis teste, millest alustada, leiad lehelt [oskustestid rollide kaupa](/tests).
+Mida testee ei tee: kandidaadid ei kirjuta, käivita ega siluta testees koodi. Koodi lugemine ja kirjutamine on erinevad oskused, nii et järgmine samm on endiselt oluline. Valmis teste, millest alustada, leiad lehelt [oskustestid rollide kaupa](/tests).
 
 ## 4. samm: koduülesanne või reaalajas kodeerimine
 
@@ -128,7 +128,7 @@ Struktureeritud protsess on ka õiglasem, kuid ainult siis, kui viid selle läbi
 
 - **Järjepidevad küsimused** igas etapis, kõigile sama rolli kandidaatidele.
 - **Eelnevalt kirjutatud hindamisjuhendid,** et inimesi hinnataks samade kriteeriumide järgi.
-- **Kohandused:** paku lisaaega või muud vormi kandidaatidele, kes seda paluvad, näiteks puude tõttu. prepzas saad kandidaadile enne alustamist lisaaega anda.
+- **Kohandused:** paku lisaaega või muud vormi kandidaatidele, kes seda paluvad, näiteks puude tõttu. testees saad kandidaadile enne alustamist lisaaega anda.
 - **Jälgi tulemusi.** Eri meetodid näitavad rühmade vahel erinevaid tulemuste lõhesid. Sackett et al. leidsid erialaste teadmiste testide ja proovitööde puhul suuremaid keskmisi erinevusi kui struktureeritud intervjuude puhul, mis on veel üks põhjus meetodeid kombineerida. Jälgi läbimise määrasid igas etapis.
 - **Otsustavad inimesed.** Tulemus toetab otsust, kuid ei tee seda. Enne kellegi tagasilükkamist vaata vastuseid.
 

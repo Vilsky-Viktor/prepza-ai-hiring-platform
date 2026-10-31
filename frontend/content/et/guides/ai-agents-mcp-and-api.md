@@ -1,7 +1,7 @@
 ---
 title: "AI-agendid, MCP ja API-d: mis need on ja kuidas neid värbamisel kasutada"
 seoTitle: "AI-agendid, MCP ja API-d värbamisel: kuidas neid kasutada"
-description: "Mis on AI-agent, MCP ja API, kuidas neid värbamisel turvaliselt kasutada ja prepzat juhtida selle AI-assistendi, Claude'i, ChatGPT või oma platvormi kaudu."
+description: "Mis on AI-agent, MCP ja API, kuidas neid värbamisel turvaliselt kasutada ja testeed juhtida selle AI-assistendi, Claude'i, ChatGPT või oma platvormi kaudu."
 updated: "2026-10-22"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-22"
 
 Enamik inimesi kohtus AI-ga esimest korda vestlusaknas: sina küsid, see vastab. AI-agent läheb sammu kaugemale. See oskab sinu tööriistadest asju järele vaadata ja sinu palvel neis ka midagi teha: luua intervjuu, kutsuda nimekirja kandidaate, öelda, kes sai eelmisel nädalal kõrgeima tulemuse. Model Context Protocol (MCP) on standard, mille abil sinu juba kasutatav AI-vestlus, näiteks Claude või ChatGPT, saab selliste tööriistadega ühenduse luua. API on aga vanem ja täpsem viis, kuidas tarkvara räägib tarkvaraga, ilma et vahel oleks AI-d.
 
-See juhend selgitab lihtsate sõnadega kõiki kolme: milleks need värbamisel head on, millele tähelepanu pöörata ja kuidas neid prepzaga kasutada.
+See juhend selgitab lihtsate sõnadega kõiki kolme: milleks need värbamisel head on, millele tähelepanu pöörata ja kuidas neid testeega kasutada.
 
 ## Mis on AI-agent
 
@@ -42,10 +42,10 @@ API (rakendusliides) on kogum kindlaid päringuid, mida üks programm saab teise
 
 | | Mira, AI-assistent (rakenduses) | MCP (Claude'is või ChatGPT-s) | API |
 | --- | --- | --- | --- |
-| Kes seda kasutab | Sina, prepzas | Sina, oma AI-vestluses | Sinu platvormi kood |
+| Kes seda kasutab | Sina, testees | Sina, oma AI-vestluses | Sinu platvormi kood |
 | Kuidas küsid | Oma sõnadega | Oma sõnadega | Kindlad päringud, mille kirjutab arendaja |
 | Kes muudatused kinnitab | Sina, kaardil | Sina, oma AI-rakenduses | Sinu kood, nii nagu see on kirjutatud |
-| Sobib kõige paremini | Kiireteks küsimusteks ja ülesanneteks | prepza kombineerimiseks sinu teiste tööriistade ja failidega | Automaatikaks, mis töötab ilma, et keegi jälgiks |
+| Sobib kõige paremini | Kiireteks küsimusteks ja ülesanneteks | testee kombineerimiseks sinu teiste tööriistade ja failidega | Automaatikaks, mis töötab ilma, et keegi jälgiks |
 | Logib sisse kui | Sina | Sina | Ettevõtte võti |
 
 Kasuta Mirat või MCP-d, kui protsessis osaleb inimene. Kasuta API-t, kui sinu enda süsteem peab ise kandidaate kutsuma ja tulemusi koguma, näiteks karjäärilehelt või sisemisest personalitööriistast.
@@ -57,7 +57,7 @@ Värbamine koosneb paljudest väikestest korduvatest sammudest, mis on laiali er
 - **Küsimused sinu värbamistoru kohta.** „Millised kandidaadid läbisid sel nädalal Senior Backendi?“, „Kes pole veel oma intervjuud alustanud?“, „Milline on meie keskmine hinne andmeanalüütiku ametikohal?“
 - **Seadistamine.** „Loo selle töökuulutuse põhjal intervjuu“, „Sea läbimise läveks 70%“, „Anna sellele kandidaadile 50% lisaaega.“
 - **Hulgitöö.** „Kutsu need 12 inimest frontendi intervjuule“, kleebituna otse e-kirjast või tabelist.
-- **Allikate kombineerimine.** Claude'is või ChatGPT-s saad prepzat kombineerida oma teiste ühendatud tööriistade ja failidega: võrrelda dokumentides olevat töökuulutust intervjuu teemadega või koostada sõnumi lõppvooru kandidaatidele.
+- **Allikate kombineerimine.** Claude'is või ChatGPT-s saad testeed kombineerida oma teiste ühendatud tööriistade ja failidega: võrrelda dokumentides olevat töökuulutust intervjuu teemadega või koostada sõnumi lõppvooru kandidaatidele.
 
 Mida ta tegema ei peaks, on värbamisotsuse tegemine. Hinne toetab inimese otsustust, aga ei asenda seda. Lase agendil sorteerida, kokku võtta ja ette valmistada ning jäta otsus inimesele. Vaata [Kas AI kasutamine värbamisel on ELis seaduslik?](/guides/is-ai-hiring-legal-in-the-eu), miks see on oluline ka õiguslikult.
 
@@ -77,29 +77,29 @@ AI ühendamine oma värbamisandmetega nõuab sama hoolt kui kolleegile ligipää
 
 Enne kui ühendad mõne AI-rakenduse tööandmetega, kontrolli oma ettevõtte AI-tööriistade poliitikat ja ütle kandidaatidele oma privaatsusteates, millised teenused nende andmeid töötlevad.
 
-## Kolm viisi töötada prepzaga väljaspool selle lehti
+## Kolm viisi töötada testeega väljaspool selle lehti
 
 ### 1. Mira, sisseehitatud AI-assistent
 
-Vali mis tahes lehe päises **küsi Miralt**. Mira, prepza AI-assistent, tunneb sinu ettevõtteid, intervjuusid, kandidaate, krediite ja integratsioone ning teab, kuidas prepza töötab. Ta vastab sinu keeles ning sa võid kirjutada või rääkida.
+Vali mis tahes lehe päises **küsi Miralt**. Mira, testee AI-assistent, tunneb sinu ettevõtteid, intervjuusid, kandidaate, krediite ja integratsioone ning teab, kuidas testee töötab. Ta vastab sinu keeles ning sa võid kirjutada või rääkida.
 
 - **Ta vastab sinu andmete põhjal,** sama vaatega kui sinul: administraator näeb seda, mida administraator, vaataja seda, mida vaataja.
 - **Ta teab, millisel lehel sa oled.** Küsi „Mida ma sellel lehel teha saan?“, et saada selle lehe juhend, või intervjuu kandidaatide juures „Kes on siin parim?“, ja ta vastab just selle intervjuu kohta, küsimata, millist sa mõtled.
 - **Ta valmistab muudatused ette, sina kinnitad.** Kui palud tal kandidaate kutsuda, näitab ta kaarti, kus on täpselt kirjas, mis juhtub, näiteks „Kutsu 12 kandidaati intervjuule Backend developer“. Midagi ei käivitu enne, kui valid Kinnita.
 - **Ta näitab oma allikaid.** Vastuse all näed kandidaate või intervjuusid, mida ta kasutas, ja linki lehele, kust need pärinevad.
-- **Ta püsib teemas.** Ta vastab küsimustele prepza ja sellega värbamise kohta ning ütleb ülejäänust ära.
+- **Ta püsib teemas.** Ta vastab küsimustele testee ja sellega värbamise kohta ning ütleb ülejäänust ära.
 
-### 2. prepza Claude'is või ChatGPT-s, MCP kaudu
+### 2. testee Claude'is või ChatGPT-s, MCP kaudu
 
-Kui sinu meeskond juba töötab Claude'is või ChatGPT-s, saad prepza sinna tuua. prepza MCP-server pakub samu tööriistu mis Mira, sisseehitatud assistent.
+Kui sinu meeskond juba töötab Claude'is või ChatGPT-s, saad testee sinna tuua. testee MCP-server pakub samu tööriistu mis Mira, sisseehitatud assistent.
 
 **Ühendamiseks:**
 
-1. Ava prepzas ettevõtte vahekaart **Integratsioonid** ja vali **AI-rakendused**. Kopeeri serveri aadress: `https://prepza.ai/mcp`.
-2. **Claude'is:** ava Seaded, siis Konnektorid, ja lisa selle aadressiga kohandatud konnektor. **Claude Code'is:** käivita `claude mcp add --transport http prepza https://prepza.ai/mcp`. **ChatGPT-s:** lisa see kohandatud konnektorina rakenduste ja konnektorite seadetes.
-3. Sinu AI-rakendus avab prepza sisselogimise. Logi sisse, kontrolli, milline rakendus luba küsib, ja vali **Luba**. Kui see tohib ainult lugeda, lülita enne välja **Luba muudatused**.
+1. Ava testees ettevõtte vahekaart **Integratsioonid** ja vali **AI-rakendused**. Kopeeri serveri aadress: `https://testee.ai/mcp`.
+2. **Claude'is:** ava Seaded, siis Konnektorid, ja lisa selle aadressiga kohandatud konnektor. **Claude Code'is:** käivita `claude mcp add --transport http testee https://testee.ai/mcp`. **ChatGPT-s:** lisa see kohandatud konnektorina rakenduste ja konnektorite seadetes.
+3. Sinu AI-rakendus avab testee sisselogimise. Logi sisse, kontrolli, milline rakendus luba küsib, ja vali **Luba**. Kui see tohib ainult lugeda, lülita enne välja **Luba muudatused**.
 
-Edaspidi küsi oma vestluses nii, nagu küsiksid kolleegilt: „Kes on prepzas kolm parimat kandidaati Product designeri ametikohale?“ Enamik AI-rakendusi küsib sinult enne muudatust ja hoiatab enne kõike, mida ei saa tagasi võtta: prepza ütleb neile, millised toimingud midagi muudavad või kustutavad.
+Edaspidi küsi oma vestluses nii, nagu küsiksid kolleegilt: „Kes on testees kolm parimat kandidaati Product designeri ametikohale?“ Enamik AI-rakendusi küsib sinult enne muudatust ja hoiatab enne kõike, mida ei saa tagasi võtta: testee ütleb neile, millised toimingud midagi muudavad või kustutavad.
 
 **Mis jääb samaks nagu rakenduses:**
 
@@ -115,13 +115,13 @@ Edaspidi küsi oma vestluses nii, nagu küsiksid kolleegilt: „Kes on prepzas k
 
 ### 3. Sinu oma platvorm, API kaudu
 
-Automaatikaks ilma AI-ta on prepzal API, mida kirjeldab selle [arendajate dokumentatsioon](/api-docs).
+Automaatikaks ilma AI-ta on testeel API, mida kirjeldab selle [arendajate dokumentatsioon](/api-docs).
 
 1. Omanik või administraator avab ettevõtte vahekaardi **Integratsioonid**, siis **API**, ja valib **Uus võti**. Pane sellele nimeks platvorm, mis seda kasutama hakkab, vali, millal see aegub, ja märgi ainult see, mida see vajab: töölaua võti ainult loeb, karjäärilehe võti ka kutsub. Õigusi saad hiljem lisada või ära võtta. Võtit näidatakse ainult üks kord; hoia seda turvalises kohas.
 2. Sinu platvorm saadab selle võtmega päringuid: näitab ettevõtte intervjuusid, näitab või loeb kandidaate koos nende hinde, läbimise ja aususe märgetega ning kutsub kandidaadi.
-3. Lisa **webhook**: aadress sinu platvormil, mida prepza kutsub allkirjastatult kui kandidaat alustab, lõpetab, kutse ei jõua temani, tema kutse aegub või ta eemaldatakse, ning kui intervjuu on valmis, et sa ei peaks pidevalt järele küsima. API lehelt saad sellele saata testsündmuse ja näha selle saatmislogi.
+3. Lisa **webhook**: aadress sinu platvormil, mida testee kutsub allkirjastatult kui kandidaat alustab, lõpetab, kutse ei jõua temani, tema kutse aegub või ta eemaldatakse, ning kui intervjuu on valmis, et sa ei peaks pidevalt järele küsima. API lehelt saad sellele saata testsündmuse ja näha selle saatmislogi.
 
-Iga kandidaadiga tuleb kaasa link tema täielikele tulemustele prepzas ja, kuni ta pole lõpetanud, tema enda kutselink, nii et sinu platvorm saab selle soovi korral saata oma sõnumis. Kui sinu platvorm juba teab, kes kandidaat on, kutsu ta ilma sisselogimiseta: prepza ei saada e-kirju ja kandidaat teeb intervjuu lingi kaudu ilma prepzasse sisse logimata, nii et saada link ainult talle. Kutse võib ka viia kandidaadi lõpetamislehel oleva nupuga tagasi sinu saidile (ükskõik millisele https-aadressile) ning määrata heleda või tumeda teema sinu ettevõtte värvides. Sinu enda leht saab prepza SDK abil intervjuu ise kuvada, kuid ainult saitidel, mille sinu ettevõte on oma API lehel lubanud. API ja webhookid ei sõltu neist saitidest: selle asemel saab iga võtme piirata sinu serverite IP-aadressidega. Kinnitamine lisab ainult kinnitatud ettevõtte märgi.
+Iga kandidaadiga tuleb kaasa link tema täielikele tulemustele testees ja, kuni ta pole lõpetanud, tema enda kutselink, nii et sinu platvorm saab selle soovi korral saata oma sõnumis. Kui sinu platvorm juba teab, kes kandidaat on, kutsu ta ilma sisselogimiseta: testee ei saada e-kirju ja kandidaat teeb intervjuu lingi kaudu ilma testeesse sisse logimata, nii et saada link ainult talle. Kutse võib ka viia kandidaadi lõpetamislehel oleva nupuga tagasi sinu saidile (ükskõik millisele https-aadressile) ning määrata heleda või tumeda teema sinu ettevõtte värvides. Sinu enda leht saab testee SDK abil intervjuu ise kuvada, kuid ainult saitidel, mille sinu ettevõte on oma API lehel lubanud. API ja webhookid ei sõltu neist saitidest: selle asemel saab iga võtme piirata sinu serverite IP-aadressidega. Kinnitamine lisab ainult kinnitatud ettevõtte märgi.
 
 Kehtib sama reegel kui mujal: hinne toetab inimese otsust, nii et ära lükka kandidaate selle põhjal automaatselt tagasi.
 
@@ -131,18 +131,18 @@ Lähtu sellest, kes tööd teeb ja kui sageli.
 
 | Sinu olukord | Kasuta |
 | --- | --- |
-| Oled prepzas ja tahad kiiret vastust: kes läbis, kes pole alustanud, palju krediiti on alles | Mirat, sisseehitatud assistenti |
+| Oled testees ja tahad kiiret vastust: kes läbis, kes pole alustanud, palju krediiti on alles | Mirat, sisseehitatud assistenti |
 | Tahad paari sõnaga midagi seadistada: intervjuu töökuulutuse põhjal, läbimise lävi, lisaaeg | Mirat, sisseehitatud assistenti |
-| Töötad niikuinii terve päeva Claude'is või ChatGPT-s ja tahad prepzat ka sinna | MCP-d |
-| Ülesanne vajab prepzat ja veel midagi: sinu dokumente, e-kirjade mustandeid, mõnda teist ühendatud tööriista | MCP-d |
+| Töötad niikuinii terve päeva Claude'is või ChatGPT-s ja tahad testeed ka sinna | MCP-d |
+| Ülesanne vajab testeed ja veel midagi: sinu dokumente, e-kirjade mustandeid, mõnda teist ühendatud tööriista | MCP-d |
 | Liikvel olev värbaja tahab värbamistoru telefonis oleva AI-rakenduse kaudu üle vaadata | MCP-d |
 | Sinu karjäärileht või personalisüsteem peab kandidaate ise kutsuma, ilma et keegi klõpsaks | API-t |
 | Tulemused peavad jõudma sinu enda andmebaasi või töölauale kohe, kui kandidaadid lõpetavad | API-t koos webhookiga |
-| Sinu ATS on üks neist, millega prepza ühendub (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Mitte ühtki neist: ühenda ATS vahekaardil Integratsioonid. Vaata [Kuidas ühendada oskustestid oma ATS-süsteemiga](/guides/ats-integration-skills-tests) |
+| Sinu ATS on üks neist, millega testee ühendub (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Mitte ühtki neist: ühenda ATS vahekaardil Integratsioonid. Vaata [Kuidas ühendada oskustestid oma ATS-süsteemiga](/guides/ats-integration-skills-tests) |
 
 Lihtne rusikareegel:
 
-- **Inimene küsib ja kontrollib iga muudatust:** Mira prepzas või MCP, kui see inimene töötab niikuinii Claude'is või ChatGPT-s.
+- **Inimene küsib ja kontrollib iga muudatust:** Mira testees või MCP, kui see inimene töötab niikuinii Claude'is või ChatGPT-s.
 - **Tarkvara tegutseb iseseisvalt, iga kord samamoodi:** API.
 - **Alustuseks:** proovi esmalt Mirat, sisseehitatud assistenti. Ta ei vaja seadistamist ja see, mida õpid, kehtib ka MCP puhul.
 

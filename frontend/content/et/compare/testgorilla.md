@@ -1,25 +1,25 @@
 ---
-title: "prepza ja TestGorilla: kuhu kumbki sobib ja kuidas kasutada mõlemat"
-seoTitle: "prepza vs TestGorilla: võrdlus ja koos kasutamine"
-description: "Kuidas prepza ja TestGorilla erinevad testide koostamise, testitava sisu ja hinna poolest, kuhu kumbki paremini sobib ja kuidas neid koos kasutada."
+title: "testee ja TestGorilla: kuhu kumbki sobib ja kuidas kasutada mõlemat"
+seoTitle: "testee vs TestGorilla: võrdlus ja koos kasutamine"
+description: "Kuidas testee ja TestGorilla erinevad testide koostamise, testitava sisu ja hinna poolest, kuhu kumbki paremini sobib ja kuidas neid koos kasutada."
 updated: "2026-10-29"
 ---
 
-# prepza ja TestGorilla: kuhu kumbki sobib ja kuidas kasutada mõlemat
+# testee ja TestGorilla: kuhu kumbki sobib ja kuidas kasutada mõlemat
 
-prepzat ja TestGorillat on loomulik võrrelda, kuid tegelikult ei ole need konkurendid. TestGorilla pakub suurt valmis testide kogu, sealhulgas kognitiivseid, isiksuse-, keele- ja programmeerimisteste. prepza teeb üht asja: kirjutab sinu töökuulutuse põhjal ajapiiranguga valikvastustega teadmiste intervjuu. Paljud värbamisprotsessid võiksid kasutada mõlemat, näiteks prepzat kiire rollipõhise teadmiste kontrollina ja TestGorillat lõppvaliku kognitiivsete või isiksustestide jaoks.
+testeed ja TestGorillat on loomulik võrrelda, kuid tegelikult ei ole need konkurendid. TestGorilla pakub suurt valmis testide kogu, sealhulgas kognitiivseid, isiksuse-, keele- ja programmeerimisteste. testee teeb üht asja: kirjutab sinu töökuulutuse põhjal ajapiiranguga valikvastustega teadmiste intervjuu. Paljud värbamisprotsessid võiksid kasutada mõlemat, näiteks testeed kiire rollipõhise teadmiste kontrollina ja TestGorillat lõppvaliku kognitiivsete või isiksustestide jaoks.
 
 See leht selgitab, mille poolest need erinevad, kuhu kumbki paremini sobib ja kuidas neid kombineerida. TestGorilla faktid pärinevad selle enda lehtedelt 2026. aasta oktoobri seisuga ja võivad muutuda; kontrolli linke enne otsustamist.
 
 ## Lühidalt
 
 - **TestGorilla sobib,** kui vajad kognitiivsete võimete, isiksuse, keele või praktilise programmeerimise teste, videoküsimusi või veebikaamera hetktõmmiseid.
-- **prepza sobib,** kui tahad teadmiste testi, mis on kirjutatud täpselt sinu töökuulutuse põhjal, sh koodi lugemise küsimustega tehniliste rollide jaoks, ja eelistad maksta kandidaadi, mitte paketi eest.
+- **testee sobib,** kui tahad teadmiste testi, mis on kirjutatud täpselt sinu töökuulutuse põhjal, sh koodi lugemise küsimustega tehniliste rollide jaoks, ja eelistad maksta kandidaadi, mitte paketi eest.
 - **Mõlemad sobivad,** kui tahad igale kandideerijale rollipõhist teadmiste kontrolli ja selle läbinutele laiemaid teste.
 
 ## Kõrvuti
 
-| | prepza | TestGorilla |
+| | testee | TestGorilla |
 | --- | --- | --- |
 | Kuidas test koostatakse | Kirjutatakse sinu töökuulutuse põhjal; vaatad teemad üle enne küsimuste kirjutamist. Saadaval ka rollipõhised valmis mallid | Pannakse kokku valmis testide kogust; omaküsimused tasulistes pakettides ([hinnaleht](https://www.testgorilla.com/pricing/)) |
 | Testiliigid | Ajapiiranguga valikvastustega oskuste ja teadmiste intervjuud, tehniliste teemade puhul koodi lugemise küsimustega | Kognitiivsed võimed, keel, isiksus ja kultuur, programmeerimine, rollipõhised oskused, situatsioonipõhine otsustamine, tarkvaraoskused, trükkimine ([testikogu](https://www.testgorilla.com/test-library/)) |
@@ -40,15 +40,15 @@ See leht selgitab, mille poolest need erinevad, kuhu kumbki paremini sobib ja ku
 
 **TestGorilla** alustab oma testikogust. Valid rolliga sobivad testid (näiteks rollipõhise oskuste testi pluss kognitiivse testi pluss isiksusetesti) ja ühendad need hindamiseks. Testikogu on jagatud kategooriatesse, nagu rollipõhised oskused, programmeerimisoskused, tarkvaraoskused, keel, kognitiivsed võimed, situatsioonipõhine otsustamine, isiksus ja kultuur ning trükkimine ([testikogu](https://www.testgorilla.com/test-library/)).
 
-**prepza** alustab sinu töökuulutusest. See toob välja, mida kandidaat peab teadma, ja pakub teemad koos alateemadega. Jätad need alles, eemaldad linnukese, nimetad ümber või muudad neid või kirjeldad muudatusi tavalise tekstiga. Alles siis kirjutatakse küsimused: iga teema jaoks valikvastustega küsimuste pank, enamikus üks õige ja kolm usutavat valet vastust, umbes iga kümnes on „vali kõik õiged“ küsimus 2 või 3 õige vastusega. Näed iga küsimust ja saad ükskõik millise neist uuesti luua. Tehnilistes teemades näitavad paljud küsimused lühikest koodinäidet, päringut või käsku ja küsivad, mida see väljastab, mida see teeb, miks see ebaõnnestub või milline muudatus selle parandab.
+**testee** alustab sinu töökuulutusest. See toob välja, mida kandidaat peab teadma, ja pakub teemad koos alateemadega. Jätad need alles, eemaldad linnukese, nimetad ümber või muudad neid või kirjeldad muudatusi tavalise tekstiga. Alles siis kirjutatakse küsimused: iga teema jaoks valikvastustega küsimuste pank, enamikus üks õige ja kolm usutavat valet vastust, umbes iga kümnes on „vali kõik õiged“ küsimus 2 või 3 õige vastusega. Näed iga küsimust ja saad ükskõik millise neist uuesti luua. Tehnilistes teemades näitavad paljud küsimused lühikest koodinäidet, päringut või käsku ja küsivad, mida see väljastab, mida see teeb, miks see ebaõnnestub või milline muudatus selle parandab.
 
-Praktiline erinevus: valmis test on muutumatu ja seda on kasutatud palju kordi, kuid see pole kirjutatud sinu rolli jaoks. prepza intervjuu on kirjutatud sinu rolli jaoks, sh selle nišiosad, kuid see on iga kord uus. AI kirjutatud küsimustes võib olla vigu, seega kontrollib prepza enne avaldamist igast teemast valimi vastusevõtmeid, ülejäänuid siis, kui küsimusest teatatakse, ja parandab küsimusi kandidaatide vastuste põhjal ning sina saad iga küsimuse märkida.
+Praktiline erinevus: valmis test on muutumatu ja seda on kasutatud palju kordi, kuid see pole kirjutatud sinu rolli jaoks. testee intervjuu on kirjutatud sinu rolli jaoks, sh selle nišiosad, kuid see on iga kord uus. AI kirjutatud küsimustes võib olla vigu, seega kontrollib testee enne avaldamist igast teemast valimi vastusevõtmeid, ülejäänuid siis, kui küsimusest teatatakse, ja parandab küsimusi kandidaatide vastuste põhjal ning sina saad iga küsimuse märkida.
 
 ## Kuidas hinnastus toimib
 
 **TestGorilla** pakub kuise limiidiga tasuta paketti ja aastase arveldusega tasulisi pakette, kõrgemates pakettides on rohkem funktsioone. Kehtivad paketid ja hinnad leiad selle [hinnalehelt](https://www.testgorilla.com/pricing/).
 
-**prepza** võtab tasu kandidaadi kohta:
+**testee** võtab tasu kandidaadi kohta:
 
 - Intervjuu loomine on tasuta.
 - Maksad iga kandidaadi eest, kes vastab vähemalt ühele küsimusele. Kutsutud kandidaadid, kes ei alusta, ei maksa midagi; nende krediidid tulevad tagasi.
@@ -58,7 +58,7 @@ Kumb mudel on odavam, sõltub sellest, mitu kandidaati aastas testid ja millisei
 
 ## Kandidaadikogemus
 
-**prepza:** kandidaadid näevad enne alustamist, mida oodata: et küsimused on kirjutanud AI, et tulemused vaatavad üle ja otsuse teevad inimesed sinu ettevõttest ning et nad võivad paluda rohkem aega või oma tulemuse ülevaatamist. Igal küsimusel on oma taimer. Kandidaadid ei näe oma tulemust ega seda, millised vastused olid õiged. Kaamerat ei kasutata. Intervjuulehtedel on näha ainult sinu ettevõte, sinu logo ja värvidega, kui need lisad, ilma prepza päise ja jaluseta.
+**testee:** kandidaadid näevad enne alustamist, mida oodata: et küsimused on kirjutanud AI, et tulemused vaatavad üle ja otsuse teevad inimesed sinu ettevõttest ning et nad võivad paluda rohkem aega või oma tulemuse ülevaatamist. Igal küsimusel on oma taimer. Kandidaadid ei näe oma tulemust ega seda, millised vastused olid õiged. Kaamerat ei kasutata. Intervjuulehtedel on näha ainult sinu ettevõte, sinu logo ja värvidega, kui need lisad, ilma testee päise ja jaluseta.
 
 **TestGorilla:** kõrgemas paketis hõlmab järelevalve veebikaamera hetktõmmiseid, keelatud kopeerimist/kleepimist ja täisekraanirežiimi ([hinnaleht](https://www.testgorilla.com/pricing/)). See annab sulle rohkem jälgimisvõimalusi. Kas kaamerat kasutada, on kompromiss järelevalve ja kandidaatide privaatsuse vahel ning kaamerapildid on täiendavad isikuandmed, mida tuleb kaitsta.
 
@@ -66,32 +66,32 @@ Kumb mudel on odavam, sõltub sellest, mitu kandidaati aastas testid ja millisei
 
 Lähtu sellest, mida on vaja testida. TestGorilla sobib paremini, kui:
 
-- **Tahad psühhomeetriat.** Kognitiivsete võimete, isiksuse ja kultuuri teste prepza ei paku.
-- **Vajad praktilist programmeerimist või töösimulatsioone.** prepza esitab koodi lugemise küsimusi, kuid kandidaadid koodi ei kirjuta ega käivita.
-- **Tahad videovastuseid või AI juhitud intervjuusid.** prepzas pole kumbagi.
+- **Tahad psühhomeetriat.** Kognitiivsete võimete, isiksuse ja kultuuri teste testee ei paku.
+- **Vajad praktilist programmeerimist või töösimulatsioone.** testee esitab koodi lugemise küsimusi, kuid kandidaadid koodi ei kirjuta ega käivita.
+- **Tahad videovastuseid või AI juhitud intervjuusid.** testees pole kumbagi.
 - **Värbad suurtes ja ühtlastes mahtudes,** kus fikseeritud pakett tuleb odavam.
 - **Eelistad valmis teste, mida on palju kordi kasutatud,** iga rolli jaoks kirjutatud testidele.
 
-## Millal sobib paremini prepza
+## Millal sobib paremini testee
 
 - **Sinu roll on spetsiifiline.** Sinu töökuulutuse põhjal kirjutatud test katab selle, mida sinu meeskond päriselt kasutab.
 - **Värbad aeg-ajalt.** Kandidaadipõhine tasu väldib mõne töölevõtu pärast aastast kohustust.
 - **Tahad üle vaadata, mida testitakse,** enne kui ühtegi küsimust kirjutatakse.
 - **Tahad, et iga kandidaat saaks oma juhusliku küsimuste komplekti,** et vastuseid oleks raskem jagada.
-- **Eelistad kaamerajälgimiseta lahendust.** prepza ei analüüsi videot, häält ega nägu.
+- **Eelistad kaamerajälgimiseta lahendust.** testee ei analüüsi videot, häält ega nägu.
 - **Värbad paljudes keeltes.** Intervjuud, liides ja e-kirjad töötavad 23 keeles.
 
 ## Mõlema kasutamine
 
 Need kaks võivad olla samas värbamisprotsessis:
 
-1. **Kõik kandideerijad** teevad lühikese prepza teadmiste intervjuu, mis on kirjutatud töökuulutuse põhjal.
+1. **Kõik kandideerijad** teevad lühikese testee teadmiste intervjuu, mis on kirjutatud töökuulutuse põhjal.
 2. **Läbinud** teevad TestGorilla kognitiivsed, isiksuse- või keeletestid või programmeerimisülesande.
 3. **Otsustavad inimesed,** kasutades mõlemat tulemust koos CV ja struktureeritud intervjuuga.
 
-prepzal pole lepingut ja selle krediidid ei aegu, nii et selle lisamine protsessi, kus juba kasutatakse teist tööriista, ei lisa püsikulu.
+testeel pole lepingut ja selle krediidid ei aegu, nii et selle lisamine protsessi, kus juba kasutatakse teist tööriista, ei lisa püsikulu.
 
-*TestGorilla on oma omaniku kaubamärk. prepza ei ole seotud TestGorillaga ega ole selle poolt heaks kiidetud.*
+*TestGorilla on oma omaniku kaubamärk. testee ei ole seotud TestGorillaga ega ole selle poolt heaks kiidetud.*
 
 ## Seotud lehed
 

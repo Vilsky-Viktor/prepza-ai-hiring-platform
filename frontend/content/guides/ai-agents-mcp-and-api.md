@@ -1,7 +1,7 @@
 ---
 title: "AI agents, MCP and APIs: what they are and how to use them in hiring"
 seoTitle: "AI Agents, MCP and APIs in Hiring: How to Use Them"
-description: "What an AI agent, MCP and an API are, how to use them safely in hiring, and how to run prepza from its AI assistant, Claude, ChatGPT or your own platform."
+description: "What an AI agent, MCP and an API are, how to use them safely in hiring, and how to run testee from its AI assistant, Claude, ChatGPT or your own platform."
 updated: "2026-10-22"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-22"
 
 Most people first met AI as a chat window: you ask, it answers. An AI agent goes one step further. It can look things up in your tools and, when you ask, do things in them: create an interview, invite a list of candidates, tell you who scored highest last week. The Model Context Protocol (MCP) is the standard that lets the AI chat you already use, such as Claude or ChatGPT, connect to tools like these. And an API is the older, more precise way for software to talk to software, without AI in between.
 
-This guide explains all three in plain terms, what they're good for in hiring, what to watch out for, and how to use them with prepza.
+This guide explains all three in plain terms, what they're good for in hiring, what to watch out for, and how to use them with testee.
 
 ## What an AI agent is
 
@@ -42,10 +42,10 @@ An API (application programming interface) is a set of fixed requests one progra
 
 | | Mira, the AI assistant (in the app) | MCP (in Claude or ChatGPT) | API |
 | --- | --- | --- | --- |
-| Who uses it | You, in prepza | You, in your AI chat | Your platform's code |
+| Who uses it | You, in testee | You, in your AI chat | Your platform's code |
 | How you ask | In your own words | In your own words | Fixed requests a developer writes |
 | Who approves changes | You, on a card | You, in your AI app | Your code, as written |
-| Best for | Quick questions and tasks | Mixing prepza with your other tools and files | Automation that runs without anyone watching |
+| Best for | Quick questions and tasks | Mixing testee with your other tools and files | Automation that runs without anyone watching |
 | Signs in as | You | You | A company key |
 
 Use Mira or MCP when a person is in the loop. Use the API when your own system should invite candidates and collect results by itself, for example from a careers site or an internal HR tool.
@@ -57,7 +57,7 @@ Hiring has a lot of small, repetitive steps spread across tools. An agent is goo
 - **Questions about your pipeline.** "Which candidates for Senior Backend passed this week?", "Who hasn't started their interview yet?", "What's our average grade for the data analyst role?"
 - **Setting things up.** "Create an interview from this job description", "Set the pass mark to 70%", "Give this candidate 50% extra time."
 - **Bulk work.** "Invite these 12 people to the frontend interview", pasted straight from an email or a spreadsheet.
-- **Combining sources.** In Claude or ChatGPT you can mix prepza with your other connected tools and files: compare a job description in your documents with the interview's topics, or draft a message to the shortlisted candidates.
+- **Combining sources.** In Claude or ChatGPT you can mix testee with your other connected tools and files: compare a job description in your documents with the interview's topics, or draft a message to the shortlisted candidates.
 
 What it should not do is make the hiring decision. A grade supports a person's judgment; it doesn't replace it. Ask the agent to sort, summarize and prepare, and keep the decision with a person. See [Is AI hiring legal in the EU?](/guides/is-ai-hiring-legal-in-the-eu) for why that matters legally, too.
 
@@ -77,29 +77,29 @@ Connecting an AI to your hiring data deserves the same care as giving a colleagu
 
 Before connecting any AI app to work data, check your company's policy on AI tools, and tell candidates in your privacy notice which services process their data.
 
-## Three ways to work with prepza beyond its pages
+## Three ways to work with testee beyond its pages
 
 ### 1. Mira, the built-in AI assistant
 
-Select **ask Mira** in the header of any page. Mira, prepza's AI assistant, knows your companies, interviews, candidates, credits and integrations, and how prepza works. It answers in your language, and you can type or speak.
+Select **ask Mira** in the header of any page. Mira, testee's AI assistant, knows your companies, interviews, candidates, credits and integrations, and how testee works. It answers in your language, and you can type or speak.
 
 - **It answers from your data**, with the same view you have: an admin sees what an admin sees, a viewer what a viewer sees.
 - **It knows the page you're on.** Ask "What can I do on this page?" for that page's guide, or "Who's best here?" on an interview's candidates, and it answers about that interview without asking which.
 - **It prepares changes, you confirm them.** Asked to invite candidates, it shows a card with exactly what will happen, such as "Invite 12 candidates to Backend developer". Nothing runs until you select confirm.
 - **It shows its sources.** Under an answer you get the candidates or interviews it used and a link to the page they came from.
-- **It stays on topic.** It answers about prepza and hiring with it, and declines the rest.
+- **It stays on topic.** It answers about testee and hiring with it, and declines the rest.
 
-### 2. prepza in Claude or ChatGPT, through MCP
+### 2. testee in Claude or ChatGPT, through MCP
 
-If your team already works in Claude or ChatGPT, you can bring prepza there. prepza's MCP server offers the same tools as Mira, the built-in assistant.
+If your team already works in Claude or ChatGPT, you can bring testee there. testee's MCP server offers the same tools as Mira, the built-in assistant.
 
 **To connect:**
 
-1. In prepza, open a company's **Integrations** tab and select **AI apps**. Copy the server address: `https://prepza.ai/mcp`.
-2. **In Claude:** open Settings, then Connectors, and add a custom connector with that address. **In Claude Code:** run `claude mcp add --transport http prepza https://prepza.ai/mcp`. **In ChatGPT:** add it as a custom connector in its settings for apps and connectors.
-3. Your AI app opens prepza's sign-in. Sign in, check which app is asking, and select **Allow**. To let it only read, turn off **Allow changes** first.
+1. In testee, open a company's **Integrations** tab and select **AI apps**. Copy the server address: `https://testee.ai/mcp`.
+2. **In Claude:** open Settings, then Connectors, and add a custom connector with that address. **In Claude Code:** run `claude mcp add --transport http testee https://testee.ai/mcp`. **In ChatGPT:** add it as a custom connector in its settings for apps and connectors.
+3. Your AI app opens testee's sign-in. Sign in, check which app is asking, and select **Allow**. To let it only read, turn off **Allow changes** first.
 
-From then on, ask in your chat as you would ask a colleague: "In prepza, who are the top three candidates for Product designer?" Most AI apps ask you before a change and warn you before anything that can't be undone: prepza tells them which actions change or delete something.
+From then on, ask in your chat as you would ask a colleague: "In testee, who are the top three candidates for Product designer?" Most AI apps ask you before a change and warn you before anything that can't be undone: testee tells them which actions change or delete something.
 
 **What stays the same as in the app:**
 
@@ -115,13 +115,13 @@ From then on, ask in your chat as you would ask a colleague: "In prepza, who are
 
 ### 3. Your own platform, through the API
 
-For automation without AI, prepza has an API, described in its [developer docs](/api-docs).
+For automation without AI, testee has an API, described in its [developer docs](/api-docs).
 
 1. An owner or admin opens a company's **Integrations** tab, then **API**, and selects **New key**. Name it after the platform that will use it, choose when it expires, and tick only what it needs: a dashboard's key only reads, a careers site's key also invites. You can add or take away permissions later. The key is shown once; store it somewhere safe.
 2. Your platform sends requests with that key: list the company's interviews, list or read candidates with their grade, whether they passed and their integrity signals, and invite a candidate.
-3. Add a **web hook**: an address on your platform that prepza calls, signed, when a candidate starts, finishes, isn't reached, expires or is removed, and when an interview is ready, so you don't have to keep asking. The API page can send it a test event and shows its delivery log.
+3. Add a **web hook**: an address on your platform that testee calls, signed, when a candidate starts, finishes, isn't reached, expires or is removed, and when an interview is ready, so you don't have to keep asking. The API page can send it a test event and shows its delivery log.
 
-Each candidate comes with a link to their full results in prepza and, until they finish, their own invite link, so your platform can send it in its own message if you prefer. When your platform already knows who the candidate is, invite them without sign-in: prepza sends no emails, and the candidate takes the interview from the link without signing in to prepza, so send the link only to them. An invite can also bring the candidate back to your site (any https address) with a button on the finished page, and set a light or dark theme in your company's colors. With prepza's SDK, your own page can show the interview itself, but only on the sites your company allows on its API page. The API and web hooks don't depend on those sites: each key can instead be limited to your servers' IP addresses. Verification only adds the verified badge.
+Each candidate comes with a link to their full results in testee and, until they finish, their own invite link, so your platform can send it in its own message if you prefer. When your platform already knows who the candidate is, invite them without sign-in: testee sends no emails, and the candidate takes the interview from the link without signing in to testee, so send the link only to them. An invite can also bring the candidate back to your site (any https address) with a button on the finished page, and set a light or dark theme in your company's colors. With testee's SDK, your own page can show the interview itself, but only on the sites your company allows on its API page. The API and web hooks don't depend on those sites: each key can instead be limited to your servers' IP addresses. Verification only adds the verified badge.
 
 The same rule holds as everywhere else: the grade supports a person's decision, so don't reject candidates automatically on it.
 
@@ -131,18 +131,18 @@ Start from who does the work and how often.
 
 | Your situation | Use |
 | --- | --- |
-| You're in prepza and want a quick answer: who passed, who hasn't started, how many credits are left | Mira, the built-in assistant |
+| You're in testee and want a quick answer: who passed, who hasn't started, how many credits are left | Mira, the built-in assistant |
 | You want to set something up in a few words: an interview from a job description, a pass mark, extra time | Mira, the built-in assistant |
-| You already work in Claude or ChatGPT all day and want prepza there too | MCP |
-| The task needs prepza plus something else: your documents, email drafts, another connected tool | MCP |
+| You already work in Claude or ChatGPT all day and want testee there too | MCP |
+| The task needs testee plus something else: your documents, email drafts, another connected tool | MCP |
 | A recruiter on the go wants to check the pipeline from the AI app on their phone | MCP |
 | Your careers site or HR system should invite candidates by itself, with nobody clicking | The API |
 | Results should land in your own database or dashboard as soon as candidates finish | The API, with a web hook |
-| Your ATS is one prepza connects to (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | None of these: connect the ATS on the Integrations tab. See [How to connect skills tests to your ATS](/guides/ats-integration-skills-tests) |
+| Your ATS is one testee connects to (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | None of these: connect the ATS on the Integrations tab. See [How to connect skills tests to your ATS](/guides/ats-integration-skills-tests) |
 
 A simple rule of thumb:
 
-- **A person asks, and checks each change:** Mira in prepza, or MCP if that person lives in Claude or ChatGPT.
+- **A person asks, and checks each change:** Mira in testee, or MCP if that person lives in Claude or ChatGPT.
 - **Software acts on its own, the same way every time:** the API.
 - **Starting out:** try Mira, the built-in assistant, first. It needs no setup, and what you learn carries over to MCP.
 

@@ -102,9 +102,9 @@ Bawat linya ay nagpapangalan ng bagay na puwedeng itanong, nakasaad ang level, a
 - Iniwan para sa CV screening ang mahigpit na requirement.
 - Walang salita tungkol sa taong iniisip mo, tungkol lang sa trabaho.
 
-## Paano ginagamit ng prepza ang job description
+## Paano ginagamit ng testee ang job description
 
-Isang halimbawa ang prepza ng tool na gumagawa ng timed multiple-choice na skills test mula sa job description. Ito ang ginagawa nito sa teksto, para makita mo kung paano gumagana ang payo sa itaas:
+Isang halimbawa ang testee ng tool na gumagawa ng timed multiple-choice na skills test mula sa job description. Ito ang ginagawa nito sa teksto, para makita mo kung paano gumagana ang payo sa itaas:
 
 - **Binabasa nito ang bawat requirement.** Pinipili ng AI ang bawat skill, tool, concept, qualification at araw-araw na duty, mula sa bawat section, kasama ang mga may markang preferred o nice to have. Tinatanggal ang mga pahayag tungkol sa culture, perks at slogans.
 - **Nagiging isa ang mga halimbawang puwedeng ipagpalit.** Ang "tools gaya ng A, B o katulad" ay itinatabi bilang uri ng tool, na ang tool na mas gusto ng teksto (o ang pinakalaganap) ang halimbawa. Nananatiling hiwalay ang mga item na pinagdugtong ng "at". Kaya kung isang partikular na tool ang kailangan mo, iyon lang ang pangalanan.

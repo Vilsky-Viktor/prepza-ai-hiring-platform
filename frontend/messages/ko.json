@@ -12,7 +12,7 @@
     "account": "내 계정",
     "accountNote": "계정에 관해 문의할 때 이 ID를 알려 주세요.",
     "yourData": "내 데이터",
-    "yourDataNote": "prepza.가 보관하는 내 데이터를 모두 다운로드하거나 계정을 삭제할 수 있습니다.",
+    "yourDataNote": "testee.가 보관하는 내 데이터를 모두 다운로드하거나 계정을 삭제할 수 있습니다.",
     "download": "내 데이터 다운로드",
     "downloadFailed": "데이터를 준비하지 못했습니다. 다시 시도해 주세요.",
     "delete": "계정 삭제",
@@ -20,7 +20,7 @@
     "noLanguage": "언어를 찾을 수 없습니다.",
     "emails": {
       "title": "이메일",
-      "note": "prepza.에서 받을 이메일을 선택하세요.",
+      "note": "testee.에서 받을 이메일을 선택하세요.",
       "failed": "이메일 설정을 저장하지 못했습니다. 다시 시도해 주세요.",
       "digest": "활동 요약",
       "digestNote": "회사에서 있었던 일을 하루 한 번 이메일로 알려 드립니다.",
@@ -34,7 +34,7 @@
       "reminders": "리마인더",
       "remindersNote": "크레딧 부족, 지원자가 없는 면접, 검토를 기다리는 주제.",
       "updates": "제품 업데이트 및 소식",
-      "updatesNote": "prepza.의 새 기능과 소식.",
+      "updatesNote": "testee.의 새 기능과 소식.",
       "promotions": "혜택 및 프로모션",
       "promotionsNote": "할인 및 특별 혜택.",
       "alwaysSent": "초대, 지원자 보고서, 결제 문제, 약관 변경 등 서비스 이메일은 항상 발송됩니다."
@@ -82,7 +82,7 @@
   "signIn": {
     "title": "로그인",
     "continueWith": "<name>{provider}</name> 계정으로 계속",
-    "link": "이 이메일에는 이미 prepza 계정이 있습니다. 이전에 로그인한 방법으로 계속하면 {provider}이(가) 해당 계정에 연결됩니다.",
+    "link": "이 이메일에는 이미 testee 계정이 있습니다. 이전에 로그인한 방법으로 계속하면 {provider}이(가) 해당 계정에 연결됩니다.",
     "consent": "로그인하면 만 16세 이상임을 확인하고, <terms>이용약관</terms>에 동의하며, <privacy>개인정보처리방침</privacy>을 읽은 것으로 간주됩니다.",
     "failed": "로그인하지 못했습니다. 다시 시도해 주세요.",
     "verify": "이메일 인증 링크를 보냈습니다. 링크를 열면 면접을 보고 회사를 만들 수 있습니다.",
@@ -256,7 +256,7 @@
     "pauseText": "켜져 있는 동안에는 누구도 새 면접, 연습, 미리보기를 시작할 수 없으며 문제 생성, 재생성, 검토도 이루어지지 않습니다. 이미 면접 중인 지원자는 끝까지 마칠 수 있습니다.",
     "pauseFailed": "일시 중지를 변경하지 못했습니다. 다시 시도해 주세요.",
     "maintenanceTitle": "점검 모드",
-    "maintenanceText": "켜져 있는 동안 모든 페이지에 prepza가 점검 중이라고 표시되고, 슈퍼 관리자를 제외한 모든 요청이 거부됩니다. 결제, 이메일, 예약된 작업은 계속 작동합니다.",
+    "maintenanceText": "켜져 있는 동안 모든 페이지에 testee가 점검 중이라고 표시되고, 슈퍼 관리자를 제외한 모든 요청이 거부됩니다. 결제, 이메일, 예약된 작업은 계속 작동합니다.",
     "maintenanceFailed": "점검 모드를 변경하지 못했습니다. 다시 시도해 주세요.",
     "maintenanceConfirmTitle": "점검 모드를 켤까요?",
     "maintenanceRunning": "{count, plural, =0 {지금 면접 중인 지원자가 없습니다.} other {지금 면접 중인 지원자: #명. 점검 모드가 켜져 있는 동안 시간이 멈춥니다.}}",
@@ -279,13 +279,13 @@
     "emails": "이메일",
     "emailSearch": "이메일 주소",
     "emailSearchAction": "찾기",
-    "emailsIntro": "이메일로 요청한 사람을 위해 이메일 주소를 찾아 prepza가 그 주소로 보내는 이메일을 확인하고 중지하세요.",
-    "account": "prepza 계정",
+    "emailsIntro": "이메일로 요청한 사람을 위해 이메일 주소를 찾아 testee가 그 주소로 보내는 이메일을 확인하고 중지하세요.",
+    "account": "testee 계정",
     "accountText": "<bdi>{email}</bdi>에 계정이 있습니다. 여기서 한 변경은 내 작업으로 기록됩니다.",
-    "noAccount": "이 주소를 쓰는 prepza 계정이 없습니다.",
+    "noAccount": "이 주소를 쓰는 testee 계정이 없습니다.",
     "turnOffAll": "선택 이메일 모두 끄기",
     "companyEmails": "회사에서 보내는 이메일",
-    "companyEmailsText": "회사가 prepza를 통해 이 주소로 보내는 초대와 리마인더입니다. 여기서 한 변경은 내 작업으로 기록됩니다.",
+    "companyEmailsText": "회사가 testee를 통해 이 주소로 보내는 초대와 리마인더입니다. 여기서 한 변경은 내 작업으로 기록됩니다.",
     "noCompanies": "이 주소를 초대한 회사가 없습니다.",
     "companySending": "이메일이 발송됩니다",
     "companyStopped": "모든 이메일 중지됨",
@@ -342,7 +342,7 @@
     "legalSend": "변경 사항 이메일로 알리기",
     "legalConfirmTitle": "{document} 변경 사항을 이메일로 알릴까요?",
     "legalAudience": {
-      "everyone": "prepza 계정이 있는 모든 사람이 다음 발송 시간(UTC 8:00~18:00)부터 새 버전이 <time>{date}</time>부터 적용된다는 안내를 받으며, 알림에서도 볼 수 있습니다. 한 번만 발송되며 취소할 수 없습니다.",
+      "everyone": "testee 계정이 있는 모든 사람이 다음 발송 시간(UTC 8:00~18:00)부터 새 버전이 <time>{date}</time>부터 적용된다는 안내를 받으며, 알림에서도 볼 수 있습니다. 한 번만 발송되며 취소할 수 없습니다.",
       "company_editors": "모든 회사의 소유자와 관리자가 다음 발송 시간(UTC 8:00~18:00)부터 새 버전이 <time>{date}</time>부터 적용된다는 안내를 받으며, 알림에서도 볼 수 있습니다. 한 번만 발송되며 취소할 수 없습니다."
     },
     "legalAsked": "다음 발송 시간부터 변경 사항이 이메일로 발송됩니다.",
@@ -427,7 +427,7 @@
       "promotions": "혜택",
       "notices": "중요 공지"
     },
-    "campaignNoticeWarning": "중요 공지는 이메일 설정과 관계없이 대상자 모두에게 전달되며 수신 거부할 수 없습니다. 보안 사고, 예정된 서비스 중단, prepza 작동 방식의 변경에만 사용하고, 무언가를 홍보하는 데는 절대 사용하지 마세요.",
+    "campaignNoticeWarning": "중요 공지는 이메일 설정과 관계없이 대상자 모두에게 전달되며 수신 거부할 수 없습니다. 보안 사고, 예정된 서비스 중단, testee 작동 방식의 변경에만 사용하고, 무언가를 홍보하는 데는 절대 사용하지 마세요.",
     "campaignAudience": "대상",
     "campaignAudienceEveryone": "모두",
     "campaignAudienceEveryoneNote": {
@@ -457,7 +457,7 @@
     "campaignTextPlaceholder": "여기에 본문 입력… Enter를 누르면 새 단락이 시작됩니다.",
     "campaignButton": "버튼 텍스트(선택)",
     "campaignLink": "버튼 링크",
-    "campaignLinkPlaceholder": "prepza 내 버튼 링크(예: /pricing, 선택)",
+    "campaignLinkPlaceholder": "testee 내 버튼 링크(예: /pricing, 선택)",
     "campaignSaveFailed": "캠페인을 저장하지 못했습니다. 다시 시도해 주세요.",
     "noCampaigns": "아직 캠페인이 없습니다.",
     "campaignStatus": {
@@ -537,7 +537,7 @@
       "paid": "유료 회사",
       "unpaid": "무료 회사",
       "no_company": "회사 없음",
-      "prepza": "prepza"
+      "testee": "testee"
     },
     "aiActionsTitle": "작업별",
     "aiActions": {
@@ -595,7 +595,7 @@
     "aiUsersTitle": "비용이 가장 많은 사용자",
     "aiByMonthTitle": "월별",
     "aiByDayTitle": "일별",
-    "limitsOursTitle": "도달한 prepza 한도",
+    "limitsOursTitle": "도달한 testee 한도",
     "limitsProvidersTitle": "외부 서비스 한도",
     "limitsNoHits": "이 기간에 도달한 한도가 없습니다.",
     "limitNames": {
@@ -703,7 +703,7 @@
       "1209600": "주제 검토마다"
     },
     "limitKinds": {
-      "ours": "prepza",
+      "ours": "testee",
       "openai": "OpenAI",
       "resend": "Resend",
       "firebase": "Firebase",
@@ -1036,7 +1036,7 @@
     "pickTitle": "회사 선택",
     "pickText": "테스트가 선택한 회사에 무료로 복사되며, 바로 지원자에게 보낼 수 있습니다.",
     "removeCredits": "이 회사의 {credits, plural, other {# 크레딧}}{candidates, plural, =0 {} other {(지원자 약 #명분)}}은 사라지며 환불되지 않습니다.",
-    "suspended": "이 회사는 정지되어 지금은 변경할 수 없습니다. 자세한 내용은 hello@prepza.ai로 문의하세요."
+    "suspended": "이 회사는 정지되어 지금은 변경할 수 없습니다. 자세한 내용은 hello@testee.ai로 문의하세요."
   },
   "candidates": {
     "scorecard": "평가표",
@@ -1137,7 +1137,7 @@
     "passMark": "합격 기준",
     "passMarkLabel": "합격 기준(%)",
     "markHired": "채용됨으로 표시",
-    "keepPrivate": "이 질문들을 prepza 공유 문제 은행에서 제외",
+    "keepPrivate": "이 질문들을 testee 공유 문제 은행에서 제외",
     "keepPrivateHelp": "다른 면접에서 이미 재사용된 질문은 그대로 남습니다",
     "answerMode": "면접 모드",
     "answerModeHelp": "클릭 모드에서는 지원자가 각 문제를 읽고 답을 탭합니다. 음성 모드에서는 AI 면접관 미라가 각 문제를 소리 내어 읽어 주고, 지원자는 음성이나 탭으로 답합니다",
@@ -1251,7 +1251,7 @@
     "mismatch": "이메일이 일치하지 않습니다. 초대받은 이메일로 로그인해서 시작하세요.",
     "title": "면접 초대",
     "theCompany": "회사",
-    "unverified": "prepza는 이 회사를 인증하지 않았습니다."
+    "unverified": "testee는 이 회사를 인증하지 않았습니다."
   },
   "members": {
     "joined": "참여함",
@@ -1286,7 +1286,7 @@
     "unavailable": "지금은 가격을 확인할 수 없습니다. 1분 후에 다시 시도해 주세요.",
     "title": "요금",
     "intro": "지원자당 결제. 면접 생성은 무료이며 구독은 없습니다.",
-    "description": "prepza 가격: 면접 생성은 무료이며, 답변한 지원자에 대해서만 결제합니다. 구독이나 사용자당 요금이 없고 크레딧은 만료되지 않습니다.",
+    "description": "testee 가격: 면접 생성은 무료이며, 답변한 지원자에 대해서만 결제합니다. 구독이나 사용자당 요금이 없고 크레딧은 만료되지 않습니다.",
     "test": "면접 생성",
     "free": "무료",
     "candidate": "한 문제 이상 답한 지원자 1명당",
@@ -1320,14 +1320,14 @@
   "docs": {
     "title": "법률 문서",
     "metaTitle": "채용 컴플라이언스 문서",
-    "intro": "prepza로 지원자를 평가하는 회사를 위한 문서입니다. 이용 안내, 템플릿, 데이터 처리 계약이 있습니다.",
+    "intro": "testee로 지원자를 평가하는 회사를 위한 문서입니다. 이용 안내, 템플릿, 데이터 처리 계약이 있습니다.",
     "englishOnly": "이 문서들은 영어로만 제공됩니다.",
     "download": "{format} 다운로드",
     "readOnline": "온라인으로 읽기",
     "items": {
       "instructions": {
         "title": "회사를 위한 이용 안내",
-        "description": "점수의 의미, 사람의 검토, 합격 기준 정하기, 추가 시간, prepza를 쓰지 말아야 할 경우."
+        "description": "점수의 의미, 사람의 검토, 합격 기준 정하기, 추가 시간, testee를 쓰지 말아야 할 경우."
       },
       "notices": {
         "title": "지원자 안내문 템플릿",
@@ -1335,11 +1335,11 @@
       },
       "dpia": {
         "title": "DPIA 템플릿",
-        "description": "prepza 부분이 채워진 개인정보 영향평가 템플릿으로, 나머지를 직접 작성합니다."
+        "description": "testee 부분이 채워진 개인정보 영향평가 템플릿으로, 나머지를 직접 작성합니다."
       },
       "dpa": {
         "title": "데이터 처리 계약",
-        "description": "prepza가 회사를 대신해 지원자 데이터를 처리하는 방식입니다. 이용약관의 일부입니다."
+        "description": "testee가 회사를 대신해 지원자 데이터를 처리하는 방식입니다. 이용약관의 일부입니다."
       }
     }
   },
@@ -1396,7 +1396,7 @@
     "more": "이용 방법",
     "demos": "동영상",
     "demosTooltip": "YouTube에서 데모 보기",
-    "videoTooltip": "prepza 사용 방법 보기",
+    "videoTooltip": "testee 사용 방법 보기",
     "watchVideo": "동영상 보기",
     "howItWorks": "이용 방법",
     "askAgent": "미라에게 묻기",
@@ -1553,7 +1553,7 @@
         },
         "help": {
           "title": "도움말",
-          "text": "prepza 가이드를 바탕으로 한 사용법 답변을 원하는 언어로."
+          "text": "testee 가이드를 바탕으로 한 사용법 답변을 원하는 언어로."
         },
         "actions": {
           "title": "작업",
@@ -1633,8 +1633,8 @@
         "time": "직무마다 테스트를 고르거나 직접 작성",
         "cost": "채용 여부와 관계없이 매월 요금"
       },
-      "prepza": {
-        "name": "prepza",
+      "testee": {
+        "name": "testee",
         "checks": "AI가 해당 직무에 딱 맞게 작성",
         "time": "직무당 약 10분, 지원자당 0분",
         "cost": "답변한 지원자당 {price}"
@@ -1670,13 +1670,13 @@
   "faq": {
     "title": "자주 묻는 질문",
     "intro": "답을 찾지 못하셨나요? AI 어시스턴트 미라(페이지 위쪽 버튼)에게 물어보거나 개인정보 처리방침에 있는 주소로 문의하세요.",
-    "description": "prepza에 대한 답변: 채용 공고로 면접을 만드는 방법, 지원자에게 보이는 화면, 가격과 크레딧, 결과, ATS 연동, 지원 언어, 데이터 처리."
+    "description": "testee에 대한 답변: 채용 공고로 면접을 만드는 방법, 지원자에게 보이는 화면, 가격과 크레딧, 결과, ATS 연동, 지원 언어, 데이터 처리."
   },
   "contact": {
     "title": "문의하기",
     "intro": "질문, 아이디어, 제휴 제안이 있거나 문제가 생겼나요? 메시지를 보내 주시면 이메일로 답변드릴게요.",
     "idHint": "회사, 면접, 지원자 또는 내 계정에 관해 문의하시나요? 해당 ID를 붙여 넣어 주세요. “id 복사”는 이름 아래에 있고, 계정 ID는 계정 메뉴에 있습니다.",
-    "description": "prepza 팀에 문의하세요. 채용 역량 테스트에 관한 질문, 아이디어, 제휴 제안이나 문제가 있으면 메시지를 보내 주세요. 이메일로 답변드립니다.",
+    "description": "testee 팀에 문의하세요. 채용 역량 테스트에 관한 질문, 아이디어, 제휴 제안이나 문제가 있으면 메시지를 보내 주세요. 이메일로 답변드립니다.",
     "name": "이름",
     "email": "이메일",
     "message": "메시지",
@@ -1694,23 +1694,23 @@
   },
   "about": {
     "title": "회사 소개",
-    "intro": "prepza는 기업이 업무를 제대로 아는 사람을 찾도록 돕습니다. 채용 공고로 만든 공정한 시간 제한 면접을 어느 팀이나 부담 없는 가격에 제공합니다. 그리고 면접을 준비하는 사람은 누구나 무료로 연습할 수 있습니다.",
-    "description": "prepza는 채용 공고를 몇 분 만에 공정한 시간 제한 면접으로 바꿔 줍니다. 어느 팀이든 감당할 수 있는 가격으로요. 그리고 누구나 무료로 면접을 연습할 수 있습니다.",
+    "intro": "testee는 기업이 업무를 제대로 아는 사람을 찾도록 돕습니다. 채용 공고로 만든 공정한 시간 제한 면접을 어느 팀이나 부담 없는 가격에 제공합니다. 그리고 면접을 준비하는 사람은 누구나 무료로 연습할 수 있습니다.",
+    "description": "testee는 채용 공고를 몇 분 만에 공정한 시간 제한 면접으로 바꿔 줍니다. 어느 팀이든 감당할 수 있는 가격으로요. 그리고 누구나 무료로 면접을 연습할 수 있습니다.",
     "company": {
       "title": "우리가 존재하는 이유",
       "problem": "채용은 흔히 이력서와 좋은 대화에 의존하지만, 둘 다 판단을 흐릴 수 있습니다. 도움이 되는 평가 도구는 연간 요금제와 사용자별 요금 등 대기업에 맞춘 가격이라, 대부분의 팀은 쓰지 못합니다.",
-      "approach": "prepza는 어떤 직무든 채용 공고를 몇 분 만에 시간 제한 면접으로 바꿉니다. 지원자마다 고유한 문제를 받고, 누가 업무를 아는지와 그 이유를 볼 수 있으며, 실제로 면접을 본 지원자에 대해서만 결제합니다.",
+      "approach": "testee는 어떤 직무든 채용 공고를 몇 분 만에 시간 제한 면접으로 바꿉니다. 지원자마다 고유한 문제를 받고, 누가 업무를 아는지와 그 이유를 볼 수 있으며, 실제로 면접을 본 지원자에 대해서만 결제합니다.",
       "practice": "누구나 무료로 면접을 준비할 수 있기를 바랍니다. 누구나 직무별 연습 면접을 보고, 점수와 모든 정답을 확인하고, 비용 없이 다시 연습할 수 있습니다."
     },
     "founder": {
-      "quote": "좋은 채용은 예산이 넉넉한 대기업만의 특권이어서는 안 됩니다. 저는 어느 팀이든 채용 공고를 몇 분 만에 공정한 면접으로 바꾸고, 업무를 제대로 아는 사람을 확인하고, 면접을 본 지원자에 대해서만 비용을 낼 수 있도록 prepza를 만들었습니다. 여러분이 맞는 사람을 더 빨리 찾는 데 도움이 되길 바랍니다.",
-      "role": "prepza 1인 창업자"
+      "quote": "좋은 채용은 예산이 넉넉한 대기업만의 특권이어서는 안 됩니다. 저는 어느 팀이든 채용 공고를 몇 분 만에 공정한 면접으로 바꾸고, 업무를 제대로 아는 사람을 확인하고, 면접을 본 지원자에 대해서만 비용을 낼 수 있도록 testee를 만들었습니다. 여러분이 맞는 사람을 더 빨리 찾는 데 도움이 되길 바랍니다.",
+      "role": "testee 1인 창업자"
     }
   },
   "news": {
-    "title": "prepza 소식",
-    "description": "prepza의 새로운 소식: 새 기능, 개선 사항, 업데이트.",
-    "metaDescription": "prepza 소식: 역량 테스트, AI 면접, 무료 연습의 새 기능, 언어, 개선 사항을 출시 즉시 전해 드립니다. 이 페이지나 RSS로 받아 보세요.",
+    "title": "testee 소식",
+    "description": "testee의 새로운 소식: 새 기능, 개선 사항, 업데이트.",
+    "metaDescription": "testee 소식: 역량 테스트, AI 면접, 무료 연습의 새 기능, 언어, 개선 사항을 출시 즉시 전해 드립니다. 이 페이지나 RSS로 받아 보세요.",
     "empty": "아직 소식이 없습니다.",
     "rss": "RSS 피드"
   },
@@ -1746,8 +1746,8 @@
       "legal_dpa": "새 데이터 처리 계약이 <time>{date}</time>부터 적용됩니다."
     },
     "legalBanner": {
-      "terms": "prepza 이용약관이 <time>{date}</time>에 변경됩니다.",
-      "privacy": "prepza 개인정보 처리방침이 <time>{date}</time>에 변경됩니다.",
+      "terms": "testee 이용약관이 <time>{date}</time>에 변경됩니다.",
+      "privacy": "testee 개인정보 처리방침이 <time>{date}</time>에 변경됩니다.",
       "dpa": "데이터 처리 계약이 <time>{date}</time>에 변경됩니다."
     },
     "readLegal": "새 버전 읽기",
@@ -1769,7 +1769,7 @@
     "sent": "<bdi>{email}</bdi>(으)로 보고서를 보냈습니다",
     "sendFailed": "보고서를 보내지 못했습니다.",
     "orSummary": "또는 다음으로 보내기",
-    "via": "prepza에서 보냄",
+    "via": "testee에서 보냄",
     "candidatesFileName": "지원자 {title}",
     "candidateCount": "{count, plural, other {지원자 #명}}",
     "passMark": "합격 기준 {mark}",
@@ -1815,7 +1815,7 @@
   },
   "openToOffers": {
     "title": "포지션 제안 받기",
-    "text": "prepza로 채용하는 회사가 내 이름, LinkedIn 프로필, 최근 연습 결과를 보고 면접에 초대할 수 있습니다. 언제든지 끌 수 있습니다.",
+    "text": "testee로 채용하는 회사가 내 이름, LinkedIn 프로필, 최근 연습 결과를 보고 면접에 초대할 수 있습니다. 언제든지 끌 수 있습니다.",
     "linkedin": "LinkedIn 프로필",
     "linkedinHint": "linkedin.com/in/hong-gildong",
     "save": "저장",
@@ -1846,8 +1846,8 @@
   },
   "maintenance": {
     "title": "점검 중",
-    "text": "prepza는 점검 중입니다. 곧 돌아오겠습니다.",
-    "notice": "점검 모드가 켜져 있습니다: 지금은 슈퍼 관리자만 prepza를 사용할 수 있습니다."
+    "text": "testee는 점검 중입니다. 곧 돌아오겠습니다.",
+    "notice": "점검 모드가 켜져 있습니다: 지금은 슈퍼 관리자만 testee를 사용할 수 있습니다."
   },
   "content": {
     "updated": "최종 업데이트",
@@ -1857,7 +1857,7 @@
     "startButton": "테스트 만들기"
   },
   "compare": {
-    "title": "prepza 비교",
+    "title": "testee 비교",
     "metaTitle": "채용 전 테스트 도구 비교",
     "intro": "다른 채용 전 테스트 도구와의 출처 기반 비교: 테스트를 만드는 방식, 비용, 각각이 더 잘 맞는 경우."
   },
@@ -1882,7 +1882,7 @@
   "ats": {
     "statusConnected": "연동됨",
     "flowTitle": "{ats}에서 지원자가 들어오는 방식",
-    "flowStage": "{ats}에서 채용 공고의 채용 프로세스에 prepza 전용 전형 단계를 추가하세요. 예를 들어 “prepza 역량 테스트”처럼 두면 다른 도구와 섞이지 않습니다.",
+    "flowStage": "{ats}에서 채용 공고의 채용 프로세스에 testee 전용 전형 단계를 추가하세요. 예를 들어 “testee 역량 테스트”처럼 두면 다른 도구와 섞이지 않습니다.",
     "flowLink": "여기에서 채용 공고를 연결하고 그 단계를 선택하세요.",
     "flowMove": "지원자를 평가할 준비가 되면, 그 단계로 옮기세요.",
     "flowInvite": "직접 초대하신 것과 똑같이, 연결된 면접에 저희가 대신 초대해 드립니다. 크레딧과 한도도 동일하게 적용됩니다.",
@@ -1974,7 +1974,7 @@
     "connected": "Slack이 연동되었습니다.",
     "disconnectFailed": "Slack 연동을 해제하지 못했습니다.",
     "disconnectTitle": "Slack 연동을 해제할까요?",
-    "disconnectText": "회사 알림이 더 이상 채널로 전송되지 않으며, prepza 앱이 Slack에서 삭제됩니다.",
+    "disconnectText": "회사 알림이 더 이상 채널로 전송되지 않으며, testee 앱이 Slack에서 삭제됩니다.",
     "notConnected": "아직 Slack 연동 전입니다. 추가하면 선택한 채널에서 회사 알림을 받을 수 있습니다.",
     "kindsTitle": "Slack 알림",
     "kindsText": "알림이 발생하는 즉시 채널로 전송됩니다. 모든 구성원은 계속 종 모양 아이콘에서도 볼 수 있습니다.",
@@ -1989,10 +1989,10 @@
       "auto_top_up_failed": "자동 충전 실패"
     },
     "instructionsTitle": "Slack으로 알림을 받는 방법",
-    "stepAdd": "“Slack에 추가”를 클릭하세요. Slack이 열리고 워크스페이스에서 prepza를 허용할지 묻습니다.",
+    "stepAdd": "“Slack에 추가”를 클릭하세요. Slack이 열리고 워크스페이스에서 testee를 허용할지 묻습니다.",
     "stepChannel": "팀이 알림을 확인할 채널(예: #hiring)을 선택하고 허용하세요.",
     "stepKinds": "이 화면으로 돌아와 그 채널로 보낼 알림을 선택하세요. 지원자의 면접 완료, 전달되지 않은 초대 등이 있습니다.",
-    "stepPrivacy": "prepza는 해당 채널에만 게시할 수 있습니다. Slack의 내용을 읽을 수 없으며, 연동을 해제하면 삭제됩니다."
+    "stepPrivacy": "testee는 해당 채널에만 게시할 수 있습니다. Slack의 내용을 읽을 수 없으며, 연동을 해제하면 삭제됩니다."
   },
   "api": {
     "name": "API",
@@ -2029,12 +2029,12 @@
     "removeKeyTitle": "이 키를 삭제할까요?",
     "removeKeyText": "“<bdi>{name}</bdi>”을(를) 사용하는 모든 곳이 즉시 작동을 멈춥니다.",
     "webhooksTitle": "웹훅",
-    "webhooksText": "지원자가 응시를 시작하거나 마칠 때(결과 포함), 초대가 전달되지 않거나 만료될 때, 지원자가 삭제될 때, 그리고 면접이 준비되었을 때 prepza가 이 주소들에 알리며, 각 요청은 주소의 시크릿으로 서명됩니다.",
+    "webhooksText": "지원자가 응시를 시작하거나 마칠 때(결과 포함), 초대가 전달되지 않거나 만료될 때, 지원자가 삭제될 때, 그리고 면접이 준비되었을 때 testee가 이 주소들에 알리며, 각 요청은 주소의 시크릿으로 서명됩니다.",
     "noWebhooks": "아직 웹훅이 없습니다.",
     "failing": "일시 중지됨: 3일 동안 응답이 없어 이벤트를 보내지 않습니다. 테스트 이벤트를 받으면 다시 시작됩니다.",
     "addWebhook": "웹훅 추가",
     "addWebhookTitle": "새 웹훅",
-    "webhookUrl": "HTTPS 주소 (예: https://example.com/prepza)",
+    "webhookUrl": "HTTPS 주소 (예: https://example.com/testee)",
     "webhookCreatedTitle": "웹훅 시크릿",
     "webhookCreatedText": "각 요청의 서명을 확인하는 데 사용하세요(개발자 문서 참고). 지금 복사하세요. 다시 표시되지 않습니다.",
     "copySecret": "시크릿 복사",
@@ -2057,7 +2057,7 @@
     "results": {
       "delivered": "전달됨",
       "skipped": "건너뜀",
-      "unreadable": "전송 안 됨: prepza 측 문제입니다.",
+      "unreadable": "전송 안 됨: testee 측 문제입니다.",
       "answered": "응답 {status}",
       "error": "실패: {error}"
     },
@@ -2175,12 +2175,12 @@
     "radius": "카드 둥글기",
     "buttonRadius": "버튼 둥글기",
     "reset": "초기화",
-    "resetPrepza": "prepza 기본값으로 초기화",
+    "resetTestee": "testee 기본값으로 초기화",
     "themes": {
       "light": "라이트 테마",
       "dark": "다크 테마"
     },
-    "resetDone": "prepza 기본값으로 되돌렸습니다",
+    "resetDone": "testee 기본값으로 되돌렸습니다",
     "failed": "브랜드를 저장할 수 없습니다.",
     "preview": "미리보기",
     "sampleTitle": "HR 매니저",
@@ -2192,7 +2192,7 @@
   },
   "apiDocs": {
     "title": "개발자 문서",
-    "description": "prepza 개발자 문서입니다. API 키를 발급받고, 면접을 만들고, 지원자를 초대하고 관리하고, 결과를 조회하거나 웹훅으로 받고, SDK로 면접을 삽입하는 방법을 설명합니다.",
+    "description": "testee 개발자 문서입니다. API 키를 발급받고, 면접을 만들고, 지원자를 초대하고 관리하고, 결과를 조회하거나 웹훅으로 받고, SDK로 면접을 삽입하는 방법을 설명합니다.",
     "tabs": {
       "api": "API",
       "webhooks": "웹훅",
@@ -2254,8 +2254,8 @@
     "deleteTitle": "이 채팅을 삭제할까요?",
     "deleteText": "채팅과 답변이 영구적으로 삭제됩니다.",
     "emptyTitle": "안녕하세요, AI 어시스턴트 미라입니다",
-    "emptyText": "지원자, 면접, 크레딧, 연동, prepza 사용법을 회사에서 볼 수 있는 정보로 답합니다. AI는 틀릴 수 있으며, 링크된 페이지의 내용이 기준입니다.",
-    "emptyTitleFaq": "안녕하세요, prepza의 AI 어시스턴트 미라입니다",
+    "emptyText": "지원자, 면접, 크레딧, 연동, testee 사용법을 회사에서 볼 수 있는 정보로 답합니다. AI는 틀릴 수 있으며, 링크된 페이지의 내용이 기준입니다.",
+    "emptyTitleFaq": "안녕하세요, testee의 AI 어시스턴트 미라입니다",
     "pageQuestion": "이 페이지에서 무엇을 할 수 있나요?",
     "pages": {
       "open": "열기",
@@ -2294,9 +2294,9 @@
     },
     "welcome": {
       "signed_out": {
-        "text": "prepza의 작동 방식, 요금, 지원자가 보는 화면에 대해 prepza의 자주 묻는 질문을 바탕으로 답합니다. 회사와 지원자에 대해 물으려면 로그인하세요.",
+        "text": "testee의 작동 방식, 요금, 지원자가 보는 화면에 대해 testee의 자주 묻는 질문을 바탕으로 답합니다. 회사와 지원자에 대해 물으려면 로그인하세요.",
         "questions": {
-          "what": "prepza는 무엇인가요?",
+          "what": "testee는 무엇인가요?",
           "pricing": "요금은 얼마인가요?",
           "takeTest": "지원자는 테스트를 어떻게 보나요?",
           "account": "지원자에게 계정이 필요한가요?"
@@ -2471,7 +2471,7 @@
       "chargeback_reversed": "지불 거절 취소",
       "referral": "추천 보상",
       "referral_reversed": "추천 보상 회수",
-      "adjustment": "prepza 조정"
+      "adjustment": "testee 조정"
     },
     "automatic": "자동 충전",
     "invoice": "인보이스",
@@ -2482,16 +2482,16 @@
   },
   "aiApps": {
     "name": "MCP 서버",
-    "rowText": "Claude, ChatGPT 등 AI 앱을 prepza와 연동합니다.",
+    "rowText": "Claude, ChatGPT 등 AI 앱을 testee와 연동합니다.",
     "title": "AI 앱",
     "subtitle": "내가 속한 모든 회사에서 내 권한으로 나를 대신해 동작합니다.",
-    "instructionsTitle": "AI 앱을 prepza와 연동하기",
+    "instructionsTitle": "AI 앱을 testee와 연동하기",
     "serverTitle": "서버 주소",
     "serverText": "AI 앱에 사용자 지정 커넥터(MCP 서버)로 붙여 넣으세요.",
     "addTo": "<app>{name}</app>에 추가",
     "claudeOpen": "Claude에서 다음을 여세요:",
     "claudePaste": "이름을 {name}(으)로 지정하고 서버 주소를 붙여 넣은 뒤 “Add”를 선택하세요.",
-    "allowOnPrepza": "“Connect”를 선택한 다음, 열리는 prepza 페이지에서 “허용”을 선택하세요.",
+    "allowOnTestee": "“Connect”를 선택한 다음, 열리는 testee 페이지에서 “허용”을 선택하세요.",
     "claudeCode": "Claude Code에서 다음을 실행하세요:",
     "copyCommand": "명령어 복사",
     "commandCopied": "명령어 복사됨",
@@ -2504,7 +2504,7 @@
     "lastUsed": "마지막 사용 <time>{date}</time>",
     "neverUsed": "아직 사용 안 함",
     "disconnectTitle": "<bdi>{client}</bdi> 연동을 해제할까요?",
-    "disconnectText": "다시 연동할 때까지 <bdi>{client}</bdi>에서 prepza를 사용할 수 없습니다.",
+    "disconnectText": "다시 연동할 때까지 <bdi>{client}</bdi>에서 testee를 사용할 수 없습니다.",
     "disconnectFailed": "앱 연동을 해제하지 못했습니다. 다시 시도해 주세요.",
     "allowTitle": "이 회사에서 AI 앱 허용",
     "allowText": "멤버는 연결한 AI 앱에서 이 회사의 면접과 지원자를 사용할 수 있습니다. 끄면 AI 앱은 여기서 아무것도 읽거나 바꿀 수 없습니다.",
@@ -2512,22 +2512,22 @@
   },
   "connect": {
     "pageTitle": "AI 앱 연동",
-    "title": "<name><bdi>{client}</bdi></name>을(를) prepza와 연동",
-    "titleAny": "AI 앱을 prepza와 연동",
-    "signInText": "로그인하고 이 앱이 내 prepza 계정을 사용해도 되는지 선택하세요.",
+    "title": "<name><bdi>{client}</bdi></name>을(를) testee와 연동",
+    "titleAny": "AI 앱을 testee와 연동",
+    "signInText": "로그인하고 이 앱이 내 testee 계정을 사용해도 되는지 선택하세요.",
     "signIn": "로그인하고 계속하기",
-    "who": "<bdi>{client}</bdi>(<bdi>{host}</bdi>)에서 내 prepza 계정 <bdi>{email}</bdi>을(를) 사용하려고 합니다.",
+    "who": "<bdi>{client}</bdi>(<bdi>{host}</bdi>)에서 내 testee 계정 <bdi>{email}</bdi>을(를) 사용하려고 합니다.",
     "canTitle": "할 수 있는 일",
     "canRead": "회사, 면접, 지원자 결과 조회",
     "canChange": "요청한 변경 실행(대부분의 AI 앱은 실행 전에 먼저 확인)",
     "canShare": "읽은 내용을 해당 앱의 약관에 따라 앱 제공업체에 전달",
     "cantTitle": "할 수 없는 일",
-    "cantChange": "prepza의 내용 변경",
+    "cantChange": "testee의 내용 변경",
     "cantSecrets": "비밀번호나 API 키 보기",
     "cantDelete": "계정이나 회사 삭제",
     "changesTitle": "변경 허용",
     "changesText": "끄면 읽기만 할 수 있습니다.",
-    "unknown": "prepza가 모르는 앱입니다. 직접 연동을 시작한 경우에만 허용하세요.",
+    "unknown": "testee가 모르는 앱입니다. 직접 연동을 시작한 경우에만 허용하세요.",
     "deny": "거부",
     "allow": "허용",
     "footnote": "언제든 회사의 연동 → AI 앱에서 연동을 해제할 수 있습니다.",
@@ -2536,8 +2536,8 @@
   },
   "accessibility": {
     "title": "접근성",
-    "description": "장애가 있는 분들이 prepza를 어떻게 이용할 수 있는지, 아직 부족한 점, 그리고 알려 주시는 방법.",
-    "intro": "기업이 보낸 면접을 보고, 연습하고, 기업의 채용을 운영하는 일까지 누구나 prepza를 이용할 수 있기를 바랍니다. 웹 콘텐츠 접근성 지침(WCAG) 2.2의 AA 수준 충족을 목표로 합니다.",
+    "description": "장애가 있는 분들이 testee를 어떻게 이용할 수 있는지, 아직 부족한 점, 그리고 알려 주시는 방법.",
+    "intro": "기업이 보낸 면접을 보고, 연습하고, 기업의 채용을 운영하는 일까지 누구나 testee를 이용할 수 있기를 바랍니다. 웹 콘텐츠 접근성 지침(WCAG) 2.2의 AA 수준 충족을 목표로 합니다.",
     "done": {
       "title": "저희가 하는 일",
       "themes": "라이트 테마와 다크 테마. 기본은 기기 설정을 따르며, 라이트나 다크를 직접 고를 수도 있습니다.",
@@ -2551,24 +2551,24 @@
     "limits": {
       "title": "부족한 점",
       "timed": "면접 질문에는 기업의 평가에 필요한 제한 시간이 있습니다. 시간이 더 필요하면 시작하기 전에 기업에 추가 시간을 요청하세요.",
-      "audit": "prepza는 아직 독립적인 감사를 받지 않았으므로 일부가 WCAG 2.2 AA를 충족하지 못할 수 있습니다.",
+      "audit": "testee는 아직 독립적인 감사를 받지 않았으므로 일부가 WCAG 2.2 AA를 충족하지 못할 수 있습니다.",
       "providers": "크레딧 결제(Paddle 결제 화면)와 “로봇이 아닙니다” 확인(Cloudflare Turnstile)은 해당 제공업체가 운영하며, 접근성도 각 업체를 따릅니다."
     },
     "feedback": {
       "title": "알려 주세요",
-      "text": "prepza에서 이용하기 어려운 부분이 있거나 다른 형식이 필요하면 <email></email>로 연락해 주세요. 14일 이내에 답변해 드립니다.",
+      "text": "testee에서 이용하기 어려운 부분이 있거나 다른 형식이 필요하면 <email></email>로 연락해 주세요. 14일 이내에 답변해 드립니다.",
       "authority": "답변에 만족하지 않으시면 에스토니아 소비자보호기술규제청(TTJA)에 문의하실 수 있습니다."
     },
     "reviewed": "최종 검토일: <time>{date}</time>"
   },
   "trust": {
     "title": "신뢰와 보안",
-    "description": "prepza가 채용 데이터를 안전하고 비공개로 지키는 방법: EU 호스팅, 하위 프로세서, 보관 기간, 그리고 GDPR, EU AI Act, 영국과 미국을 위해 제공하는 것.",
-    "intro": "회사와 지원자의 데이터를 안전하게 지키기 위해 prepza가 하는 일, 데이터가 저장되는 곳, 데이터를 처리하는 곳, 보관 기간, 그리고 회사가 따르는 채용 관련 법을 위해 제공하는 것.",
+    "description": "testee가 채용 데이터를 안전하고 비공개로 지키는 방법: EU 호스팅, 하위 프로세서, 보관 기간, 그리고 GDPR, EU AI Act, 영국과 미국을 위해 제공하는 것.",
+    "intro": "회사와 지원자의 데이터를 안전하게 지키기 위해 testee가 하는 일, 데이터가 저장되는 곳, 데이터를 처리하는 곳, 보관 기간, 그리고 회사가 따르는 채용 관련 법을 위해 제공하는 것.",
     "security": {
       "title": "보안",
-      "signIn": "Firebase Authentication을 통해 Google, LinkedIn 또는 GitHub로 로그인하므로 prepza는 비밀번호를 저장하지 않습니다. 모든 요청의 로그인은 서버에서 확인합니다.",
-      "encryption": "데이터는 전송 중(TLS 1.2 이상)과 저장 시 모두 암호화됩니다. 회사가 연결한 키와 토큰(채용 관리 시스템, Slack, 웹훅)은 암호화하여 저장하며, prepza API 키는 단방향 해시로만 저장합니다.",
+      "signIn": "Firebase Authentication을 통해 Google, LinkedIn 또는 GitHub로 로그인하므로 testee는 비밀번호를 저장하지 않습니다. 모든 요청의 로그인은 서버에서 확인합니다.",
+      "encryption": "데이터는 전송 중(TLS 1.2 이상)과 저장 시 모두 암호화됩니다. 회사가 연결한 키와 토큰(채용 관리 시스템, Slack, 웹훅)은 암호화하여 저장하며, testee API 키는 단방향 해시로만 저장합니다.",
       "access": "모든 요청은 회사와 요청한 사람의 역할을 기준으로 확인합니다. 각 서비스는 자신의 데이터베이스에만 접근하며, 서비스 간 호출에는 서명이 붙습니다.",
       "limits": "비용이 드는 작업이나 악용될 수 있는 작업은 모두 속도 제한으로 보호하며, 공개 양식, 채용 공고 링크, 첫 회사 만들기는 “로봇이 아닙니다” 확인으로 보호합니다.",
       "logs": "오류 보고에는 이메일 주소를 남기지 않으며, 서버 로그는 짧은 기간만 보관합니다.",
@@ -2578,29 +2578,29 @@
     },
     "privacy": {
       "title": "개인정보",
-      "roles": "prepza는 이용자 계정에 대해서는 컨트롤러이고, 지원자 데이터에 대해서는 프로세서입니다. 지원자 데이터는 지원자를 초대한 회사의 것입니다.",
+      "roles": "testee는 이용자 계정에 대해서는 컨트롤러이고, 지원자 데이터에 대해서는 프로세서입니다. 지원자 데이터는 지원자를 초대한 회사의 것입니다.",
       "noSelling": "당사는 개인정보를 판매하거나 광고 목적으로 공유하지 않습니다. 광고나 분석용 쿠키도 없습니다.",
-      "noInference": "prepza는 지원자의 성별, 나이, 출신, 장애에 관한 데이터를 수집하지 않으며, 이를 추론하지도 않습니다.",
+      "noInference": "testee는 지원자의 성별, 나이, 출신, 장애에 관한 데이터를 수집하지 않으며, 이를 추론하지도 않습니다.",
       "voice": "음성 모드에서는 지원자가 말한 답변을 텍스트로 바꾸어 선택지와 맞추고, 맞춘 선택지를 지원자에게 말해 주고 화면에 보여 줍니다. 여러 선택지를 고른 경우에는 먼저 확인합니다. 말한 내용은 녹음하거나 저장하지 않으며, 목소리를 다른 방식으로 분석하지도 않습니다.",
       "ai": "문제를 작성하는 OpenAI에는 받은 데이터를 저장하지 말라고 지시합니다. OpenAI는 악용 여부를 확인하기 위해서만 데이터를 최대 30일 보관하며, 모델 학습에는 사용하지 않습니다.",
       "rights": "누구나 당사에 연락하지 않고도 설정에서 자신의 데이터를 내려받거나 삭제할 수 있습니다."
     },
     "compliance": {
       "title": "규정 준수",
-      "aiAct": "EU AI Act에 따라 prepza는 고위험 AI 시스템으로 취급되며, 관련 의무는 <time>{date}</time>부터 적용됩니다. 회사를 위한 이용 안내가 그 사용 지침입니다.",
-      "humanReview": "prepza는 지원자에 대해 어떤 결정도 내리지 않습니다. 회사의 담당자가 결과를 검토하고 결정하며, 지원자는 자신의 결과를 사람이 검토하도록 요청할 수 있습니다.",
-      "dpa": "데이터 처리 계약은 이용약관의 일부이므로 따로 서명할 필요가 없습니다. GDPR, 영국 GDPR, 그리고 prepza가 회사의 서비스 제공자가 되는 캘리포니아주 법 등 미국 주의 개인정보 보호법을 다룹니다.",
+      "aiAct": "EU AI Act에 따라 testee는 고위험 AI 시스템으로 취급되며, 관련 의무는 <time>{date}</time>부터 적용됩니다. 회사를 위한 이용 안내가 그 사용 지침입니다.",
+      "humanReview": "testee는 지원자에 대해 어떤 결정도 내리지 않습니다. 회사의 담당자가 결과를 검토하고 결정하며, 지원자는 자신의 결과를 사람이 검토하도록 요청할 수 있습니다.",
+      "dpa": "데이터 처리 계약은 이용약관의 일부이므로 따로 서명할 필요가 없습니다. GDPR, 영국 GDPR, 그리고 testee가 회사의 서비스 제공자가 되는 캘리포니아주 법 등 미국 주의 개인정보 보호법을 다룹니다.",
       "documents": "회사는 <link>이용 안내, DPIA 템플릿, 지원자 안내문 템플릿</link>을 받으며, 뉴욕시, 일리노이주, 콜로라도주용 버전도 있습니다.",
-      "nyc": "뉴욕시: 그곳의 직무에 prepza를 사용하기 전에 고용주는 Local Law 144가 요구하는 일을 합니다. 사용 전 일 년 이내의 독립적인 편향 감사, 그 요약의 공개, 그리고 평가 최소 10영업일 전 지원자에 대한 안내입니다. prepza 자체의 독립적인 편향 감사는 <time>{date}</time>까지 실시하며, 그 후에도 매년 실시합니다."
+      "nyc": "뉴욕시: 그곳의 직무에 testee를 사용하기 전에 고용주는 Local Law 144가 요구하는 일을 합니다. 사용 전 일 년 이내의 독립적인 편향 감사, 그 요약의 공개, 그리고 평가 최소 10영업일 전 지원자에 대한 안내입니다. testee 자체의 독립적인 편향 감사는 <time>{date}</time>까지 실시하며, 그 후에도 매년 실시합니다."
     },
     "residency": {
       "title": "데이터 저장 위치",
-      "storage": "prepza는 EU 벨기에의 Google Cloud에서 운영되며, 데이터베이스도 그곳에 저장됩니다. 속도 제한 카운터는 역시 벨기에에 있는 Upstash에 보관되고, 이메일은 아일랜드의 Resend를 통해 발송됩니다.",
+      "storage": "testee는 EU 벨기에의 Google Cloud에서 운영되며, 데이터베이스도 그곳에 저장됩니다. 속도 제한 카운터는 역시 벨기에에 있는 Upstash에 보관되고, 이메일은 아일랜드의 Resend를 통해 발송됩니다.",
       "transfers": "미국에서 데이터를 처리하는 제공업체는 세 곳입니다. 로그인을 위한 Google, OpenAI, 그리고 “로봇이 아닙니다” 확인을 위한 Cloudflare입니다. 이러한 이전은 EU-미국 데이터 프라이버시 프레임워크 또는 유럽연합 집행위원회의 표준계약조항의 적용을 받으며, 영국의 경우 영국 확장과 영국 국제 데이터 이전 부록(UK International Data Transfer Addendum)의 적용을 받습니다."
     },
     "subprocessors": {
       "title": "하위 프로세서",
-      "intro": "<link>데이터 처리 계약</link>에 나열된, prepza를 위해 데이터를 처리하는 제공업체입니다:",
+      "intro": "<link>데이터 처리 계약</link>에 나열된, testee를 위해 데이터를 처리하는 제공업체입니다:",
       "changes": "새로운 하위 프로세서를 추가하기 최소 14일 전에 회사의 소유자와 관리자에게 이메일로 알립니다."
     },
     "retention": {
@@ -2617,7 +2617,7 @@
     },
     "accessibility": {
       "title": "접근성",
-      "text": "prepza는 웹 콘텐츠 접근성 지침(WCAG) 2.2의 AA 수준을 충족하는 것을 목표로 합니다. <link>접근성 안내</link>에 잘 작동하는 것, 부족한 점, 그리고 알려 주시는 방법이 있습니다."
+      "text": "testee는 웹 콘텐츠 접근성 지침(WCAG) 2.2의 AA 수준을 충족하는 것을 목표로 합니다. <link>접근성 안내</link>에 잘 작동하는 것, 부족한 점, 그리고 알려 주시는 방법이 있습니다."
     },
     "links": {
       "title": "법률 문서",
@@ -2635,7 +2635,7 @@
     "open": "편향 감사용 내보내기",
     "title": "편향 감사용으로 내보내기",
     "description": "면접을 마친 모든 지원자의 CSV 파일입니다. 점수, 합격 기준, 합격 여부, 중앙값보다 높은 점수를 받았는지가 담겨 있습니다. 독립 감사인이 이 파일로 선발률과 영향 비율을 계산합니다.",
-    "privacy": "prepza는 성별, 인종, 민족에 관한 데이터를 보유하지 않습니다. 지원자가 직접 밝힌 답변을 이메일을 기준으로 추가한 뒤, 파일을 공유하기 전에 이메일 열을 삭제하세요.",
+    "privacy": "testee는 성별, 인종, 민족에 관한 데이터를 보유하지 않습니다. 지원자가 직접 밝힌 답변을 이메일을 기준으로 추가한 뒤, 파일을 공유하기 전에 이메일 열을 삭제하세요.",
     "interview": "면접",
     "allInterviews": "모든 면접",
     "download": "CSV 다운로드",
@@ -2744,7 +2744,7 @@
   },
   "featuresPage": {
     "title": "기능: 채용을 위한 AI 면접, 처음부터 끝까지",
-    "description": "prepza의 모든 기능: 채용 공고로 만드는 면접, 클릭·음성 모드, 부정행위 의심 표시, 보고서, ATS·API 연동, 컴플라이언스.",
+    "description": "testee의 모든 기능: 채용 공고로 만드는 면접, 클릭·음성 모드, 부정행위 의심 표시, 보고서, ATS·API 연동, 컴플라이언스.",
     "hero": {
       "title": "채용 공고에서\n꼭 맞는 인재 채용까지",
       "text": "직무에 맞춰 만든 시간 제한 면접, 어디서든 모이는 지원자, 누가 가장 잘했는지 한눈에 보이는 화면. 모든 기능이 포함되어 있습니다.",
@@ -2781,7 +2781,7 @@
       },
       "decide": {
         "title": "누가 가장 잘했는지 확인",
-        "text": "지원자별 점수, 모든 답변, 부정행위 의심 표시. 결정은 사람이 하고, prepza는 살펴볼 점을 보여 줍니다."
+        "text": "지원자별 점수, 모든 답변, 부정행위 의심 표시. 결정은 사람이 하고, testee는 살펴볼 점을 보여 줍니다."
       },
       "connect": {
         "title": "쓰던 도구와 함께",
@@ -2828,8 +2828,8 @@
         "alt": "음성 면접: 문제 옆의 AI 면접관 미라와, 지원자 차례임을 알리는 표시."
       },
       "brand": {
-        "title": "prepza가 아닌 우리 브랜드로",
-        "text": "로고, 라이트·다크 모드 색상, 글꼴, 모서리를 실시간 미리 보기와 함께 설정하세요. 지원자에게는 prepza의 헤더나 푸터 없이 우리 회사만 보입니다.",
+        "title": "testee가 아닌 우리 브랜드로",
+        "text": "로고, 라이트·다크 모드 색상, 글꼴, 모서리를 실시간 미리 보기와 함께 설정하세요. 지원자에게는 testee의 헤더나 푸터 없이 우리 회사만 보입니다.",
         "alt": "브랜드 탭: 로고, 글꼴, 모서리와 면접의 실시간 미리 보기."
       },
       "candidates": {
@@ -2844,7 +2844,7 @@
       },
       "share": {
         "title": "몇 초 만에 보고서 공유",
-        "text": "지원자 한 명 또는 면접 전체의 PDF를 다운로드하거나, prepza에서 이메일로 보내거나, 메신저로 짧은 요약을 보내세요.",
+        "text": "지원자 한 명 또는 면접 전체의 PDF를 다운로드하거나, testee에서 이메일로 보내거나, 메신저로 짧은 요약을 보내세요.",
         "alt": "지원자 보고서 공유 대화 상자: PDF를 받을 이메일 주소, 또는 WhatsApp, Telegram, Viber, LINE으로 보내는 요약."
       },
       "notes": {
@@ -2899,7 +2899,7 @@
       "atsList": "Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR",
       "results": "지원자는 자동으로 초대되고 결과는 다시 전송",
       "docs": "API, 웹훅, SDK, MCP 개발자 문서",
-      "noInference": "prepza는 법으로 보호되는 특성을 묻거나 추측하지 않음",
+      "noInference": "testee는 법으로 보호되는 특성을 묻거나 추측하지 않음",
       "owner": "내보내기는 소유자만 가능하며 작업 기록에 남음",
       "askTime": "시간이 더 필요한 사람은 시작 전에 문의하도록 안내",
       "peopleDecide": "회사 담당자가 결과를 검토하고 결정한다고 안내",

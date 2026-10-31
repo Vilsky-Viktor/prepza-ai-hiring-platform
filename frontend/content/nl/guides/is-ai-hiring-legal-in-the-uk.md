@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Over het algemeen wel: AI gebruiken bij werving en selectie is legaal in het Verenigd Koninkrijk. Het VK heeft geen aparte AI-wet zoals de AI-verordening van de EU. In plaats daarvan gelden de Equality Act 2010 (de Britse gelijkebehandelingswet) en de UK GDPR (de Britse AVG) voor AI-tools zoals voor elke test, en sinds 5 februari 2026 heeft de UK GDPR nieuwe regels voor besluiten die uitsluitend geautomatiseerd worden genomen.
 
-Deze gids legt de regels op hoofdlijnen uit, wat werkgevers moeten doen en hoe prepza ermee omgaat. **Dit is geen juridisch advies.** Het geeft de regels weer zoals ze in oktober 2026 gelden; een deel ervan is nieuw en de richtsnoeren van de toezichthouder daarover worden nog bijgewerkt.
+Deze gids legt de regels op hoofdlijnen uit, wat werkgevers moeten doen en hoe testee ermee omgaat. **Dit is geen juridisch advies.** Het geeft de regels weer zoals ze in oktober 2026 gelden; een deel ervan is nieuw en de richtsnoeren van de toezichthouder daarover worden nog bijgewerkt.
 
 ## Het korte antwoord
 
@@ -99,21 +99,21 @@ Als een aanbieder gegevens van Britse kandidaten naar de Verenigde Staten stuurt
 8. **Monitor eerlijkheid** op je eigen uitkomsten met gegevens die kandidaten je zelf hebben gegeven, nooit met afgeleide gegevens.
 9. **Wijs nooit af op alleen een score.** Bekijk de antwoorden.
 
-## Hoe prepza hiermee omgaat
+## Hoe testee hiermee omgaat
 
-prepza neemt getimede meerkeuze-vaardigheidstests af die door AI worden geschreven op basis van een functieomschrijving. In het VK gaat prepza er op dezelfde manier mee om als in de EU. prepza claimt niet dat het compliant of gecertificeerd is.
+testee neemt getimede meerkeuze-vaardigheidstests af die door AI worden geschreven op basis van een functieomschrijving. In het VK gaat testee er op dezelfde manier mee om als in de EU. testee claimt niet dat het compliant of gecertificeerd is.
 
 Zo ziet dat er vandaag in het product uit:
 
 - **AI schrijft de vragen en de antwoordsleutels; het nakijken volgt vaste regels.** Geen AI leest of beoordeelt het antwoord van een kandidaat, en er wordt geen video- of gezichtsanalyse gebruikt. In de spraakmodus wordt spraak omgezet in tekst en gekoppeld aan een antwoordoptie, die de kandidaat te horen krijgt en op het scherm ziet: één duidelijk genoemde optie wordt meteen vastgelegd, een keuze van meerdere opties wordt eerst bevestigd. De spraak wordt nooit opgeslagen en de stem wordt nooit geanalyseerd.
 - **Jij keurt de onderwerpen goed** voordat er ook maar één vraag wordt geschreven, en jij kiest de slaaggrens.
-- **Mensen beslissen.** De resultatenpagina en de pdf-rapporten herinneren je team eraan de resultaten te beoordelen; prepza wijst geen kandidaten af en stuurt geen afwijzingsberichten.
+- **Mensen beslissen.** De resultatenpagina en de pdf-rapporten herinneren je team eraan de resultaten te beoordelen; testee wijst geen kandidaten af en stuurt geen afwijzingsberichten.
 - **Kandidaten krijgen te horen,** voordat ze beginnen, dat de vragen door AI zijn geschreven, dat mensen bij jouw bedrijf de resultaten beoordelen en beslissen, en dat ze om een herbeoordeling kunnen vragen.
-- **Geen beschermde kenmerken.** prepza vraagt, leidt af of bewaart nooit het geslacht, de etniciteit, de leeftijd, een beperking of andere beschermde kenmerken van kandidaten.
+- **Geen beschermde kenmerken.** testee vraagt, leidt af of bewaart nooit het geslacht, de etniciteit, de leeftijd, een beperking of andere beschermde kenmerken van kandidaten.
 - **Eerlijkheid monitoren.** De eigenaar van je bedrijf kan op de pagina Actielog van het bedrijf een bestand voor een bias-audit downloaden: per kandidaat die klaar is het cijfer, de slaaggrens, of de kandidaat geslaagd is en of die boven de mediaan van het interview scoorde, met het e-mailadres als sleutel. Koppel het aan de antwoorden die kandidaten je gaven op je eigen formulier over gelijke kansen, en verwijder daarna het e-mailadres.
-- **Extra tijd** van +25%, +50% of +100% per vraag kan worden gegeven aan elke kandidaat die erom vraagt, voordat die begint. prepza bewaart alleen de hoeveelheid, nooit de reden.
+- **Extra tijd** van +25%, +50% of +100% per vraag kan worden gegeven aan elke kandidaat die erom vraagt, voordat die begint. testee bewaart alleen de hoeveelheid, nooit de reden.
 - **Documenten.** Sjablonen voor de informatie aan kandidaten, de instructies voor bedrijven en een DPIA-sjabloon staan op de [documentenpagina](/documents).
-- **Gegevens.** Je bedrijf is de verwerkingsverantwoordelijke en prepza de verwerker, onder de [verwerkersovereenkomst](/dpa), die het Britse recht dekt. Gegevens worden gehost in de EU en niet gebruikt om AI-modellen te trainen; doorgifte van gegevens van Britse kandidaten aan Amerikaanse subverwerkers steunt op de UK–US data bridge of het Britse addendum (zie het [privacybeleid](/privacy)). Kandidaatgegevens worden 12 maanden na de uitnodiging verwijderd.
+- **Gegevens.** Je bedrijf is de verwerkingsverantwoordelijke en testee de verwerker, onder de [verwerkersovereenkomst](/dpa), die het Britse recht dekt. Gegevens worden gehost in de EU en niet gebruikt om AI-modellen te trainen; doorgifte van gegevens van Britse kandidaten aan Amerikaanse subverwerkers steunt op de UK–US data bridge of het Britse addendum (zie het [privacybeleid](/privacy)). Kandidaatgegevens worden 12 maanden na de uitnodiging verwijderd.
 
 ## Verder lezen
 

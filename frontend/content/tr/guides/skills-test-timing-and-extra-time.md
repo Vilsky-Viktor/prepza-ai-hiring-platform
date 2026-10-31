@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 İyi sorulardan oluşan bir beceri testi bile zayıf sonuçlar verebilir. Süre fazla olursa adaylar her cevabı arar; az olursa okuma hızını ölçersiniz. Soru az olursa puan şansa göre değişir; çok olursa iyi adaylar yarıda bırakır.
 
-Bu rehber, süreli çoktan seçmeli bir testin dört ayarını ele alıyor: soru başına süre, soru sayısı, toplam uzunluk ve ihtiyacı olan adaylar için ek süre. Öneriler her süreli bilgi testi için geçerlidir; son bölüm prepza'nın her birini nasıl ele aldığını gösterir.
+Bu rehber, süreli çoktan seçmeli bir testin dört ayarını ele alıyor: soru başına süre, soru sayısı, toplam uzunluk ve ihtiyacı olan adaylar için ek süre. Öneriler her süreli bilgi testi için geçerlidir; son bölüm testee'nin her birini nasıl ele aldığını gösterir.
 
 ## Kısaca
 
@@ -95,9 +95,9 @@ Birçok ülke, işverenlerin engelli adaylar için testler dahil makul düzenlem
 
 **Bu bölüm pratik bir rehberdir, hukuki tavsiye değildir.** Ne sunmanız gerektiği ve neyi sorabileceğiniz, nerede işe alım yaptığınıza bağlıdır. Size uygulanan eşitlik ve engellilik mevzuatı kapsamındaki yükümlülüklerinizi kontrol edin.
 
-## prepza süreyi ve ek süreyi nasıl ele alır
+## testee süreyi ve ek süreyi nasıl ele alır
 
-prepza'da mülakat, iş tanımınızdan oluşturulan süreli, çoktan seçmeli bir beceri testidir.
+testee'de mülakat, iş tanımınızdan oluşturulan süreli, çoktan seçmeli bir beceri testidir.
 
 ### Soru başına süre
 

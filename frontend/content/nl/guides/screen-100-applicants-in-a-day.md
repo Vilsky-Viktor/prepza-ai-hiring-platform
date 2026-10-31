@@ -38,9 +38,9 @@ Zijn er twee of drie mensen bij de werving betrokken, spreek deze lijst dan nu a
 
 Een goede selectietest is kort, functiegericht en voor iedereen gelijk.
 
-Met prepza:
+Met testee:
 
-1. **Plak de functieomschrijving.** prepza haalt eruit wat een kandidaat moet weten en stelt onderwerpen voor.
+1. **Plak de functieomschrijving.** testee haalt eruit wat een kandidaat moet weten en stelt onderwerpen voor.
 2. **Leg de onderwerpen naast je lijst uit stap 1.** Vink alles uit wat geen echte eis is, hernoem onderwerpen, pas subonderwerpen aan of beschrijf wijzigingen in gewone tekst ("voeg een onderwerp toe over de basis van salarisadministratie"). Vragen worden pas geschreven nadat jij hebt goedgekeurd.
 3. **Stel de lengte in.** Standaard stelt elk onderwerp 10 vragen, elk met een eigen aftelklok, gemiddeld 60 seconden, of 75 seconden bij een moeilijke test. Drie onderwerpen betekent maximaal 30 minuten voor een kandidaat (ongeveer 38 bij een moeilijke test), en meestal minder. Houd het bij wat je nodig hebt.
 4. **Stel een slaaggrens in.** De standaard is 70%. Zie die als richtlijn om resultaten te lezen, niet als automatische afkapgrens.
@@ -63,7 +63,7 @@ Loop snel met ja/nee alleen de harde eisen na: werkvergunning, vereiste vergunni
 
 Nodig daarna iedereen uit die overblijft:
 
-- **Plak een lijst met e-mailadressen of upload een bestand.** prepza neemt tot 100 e-mailadressen tegelijk en slaat iedereen over die al begonnen is.
+- **Plak een lijst met e-mailadressen of upload een bestand.** testee neemt tot 100 e-mailadressen tegelijk en slaat iedereen over die al begonnen is.
 - **Of gebruik één link.** Heb je de vacature nog niet geplaatst, zet dan de deelbare link van het interview in de vacaturetekst. Sollicitanten kunnen de test meteen maken en verschijnen gerangschikt in je lijst. Zet de link uit zodra de functie is vervuld.
 - **Of laat je ATS ze uitnodigen.** Staan je sollicitanten in Workable, Greenhouse, Teamtailor, Recruitee of Breezy HR, koppel het dan één keer: een kandidaat naar een fase verplaatsen verstuurt de uitnodiging, en de resultaten gaan terug naar het ATS. Zie [Zo koppel je vaardigheidstests aan je ATS](/guides/ats-integration-skills-tests).
 
@@ -71,7 +71,7 @@ Voordat ze beginnen, zien kandidaten wat ze kunnen verwachten: de timer, dat iem
 
 ### Tests dezelfde dag afgerond krijgen
 
-Een duidelijke, korte test is makkelijker snel na de uitnodiging af te ronden. Zet in je e-mail of vacaturetekst hoe lang hij duurt en wanneer je hem binnen wilt hebben. prepza stuurt automatisch een herinnering aan iedereen die na 3 dagen nog niet is begonnen; voor een plan op dezelfde dag kun je ook zelf een uitnodiging opnieuw sturen.
+Een duidelijke, korte test is makkelijker snel na de uitnodiging af te ronden. Zet in je e-mail of vacaturetekst hoe lang hij duurt en wanneer je hem binnen wilt hebben. testee stuurt automatisch een herinnering aan iedereen die na 3 dagen nog niet is begonnen; voor een plan op dezelfde dag kun je ook zelf een uitnodiging opnieuw sturen.
 
 Niet iedereen rondt hem op dag één af. Dat is prima: bekijk wie klaar is en kijk de volgende ochtend nog eens naar de achterblijvers.
 
@@ -81,11 +81,11 @@ Nu begint het zorgvuldige lezen, maar bij een kleinere, gerangschikte groep.
 
 1. **Sorteer op score,** de beste eerst, via het sorteermenu van de lijst: de lijst opent met de nieuwste kandidaten bovenaan.
 2. **Open elke scorekaart** in de topgroep. Kijk naar de antwoorden, niet alleen naar het getal: welke onderwerpen sterk waren, welke zwak, hoe lang elk antwoord duurde.
-3. **Controleer de integriteitssignalen.** prepza markeert antwoorden die te snel waren om de vraag te hebben gelezen, momenten waarop de kandidaat de pagina verliet, en kopieerpogingen. Zodra een kandidaat klaar is, toont de pagina van die kandidaat ook ongebruikelijke antwoordpatronen (ongeveer even lang bij elke vraag, of moeilijke vragen goed terwijl makkelijke fout waren) en vragen om in het volgende gesprek te stellen. Een signaal is een reden om beter te kijken, geen bewijs van valsspelen. Iemand die één keer de pagina verliet, kreeg misschien een melding.
+3. **Controleer de integriteitssignalen.** testee markeert antwoorden die te snel waren om de vraag te hebben gelezen, momenten waarop de kandidaat de pagina verliet, en kopieerpogingen. Zodra een kandidaat klaar is, toont de pagina van die kandidaat ook ongebruikelijke antwoordpatronen (ongeveer even lang bij elke vraag, of moeilijke vragen goed terwijl makkelijke fout waren) en vragen om in het volgende gesprek te stellen. Een signaal is een reden om beter te kijken, geen bewijs van valsspelen. Iemand die één keer de pagina verliet, kreeg misschien een melding.
 4. **Kijk net onder de slaaggrens.** Scores van verschillende willekeurige vragensets zijn niet precies vergelijkbaar, dus een paar punten kunnen van de trekking komen. Iemand met 65% en sterke antwoorden op de belangrijkste onderwerpen kan een gesprek waard zijn.
 5. **Lees nu de cv's** van de mensen die je overweegt. Je leest 15 cv's zorgvuldig in plaats van er 100 door te bladeren.
 
-Om resultaten te delen met een hiring manager download je een pdf-rapport voor één kandidaat of de hele lijst, of je mailt het vanuit prepza.
+Om resultaten te delen met een hiring manager download je een pdf-rapport voor één kandidaat of de hele lijst, of je mailt het vanuit testee.
 
 ## Stap 5: beslis (eind van de dag)
 
@@ -103,7 +103,7 @@ Schrijf op waarom elke persoon op de lijst staat. Dat kost een minuut per kandid
 
 ## Wat het kost
 
-Met prepza betaal je alleen voor kandidaten die minstens één vraag beantwoorden: $5 per kandidaat bij de opwaardering van $50, $4 vanaf een opwaardering van $200, $3 vanaf een opwaardering van $600 en $2 vanaf een opwaardering van $1.000. Voor 100 sollicitanten is dat $500 tegen $5 per kandidaat, of $400 in twee opwaarderingen van $200 tegen $4 per kandidaat, zonder abonnement. Prijzen zijn hier in Amerikaanse dollars, en in de lokale valuta in Canada, Australië, Israël, Polen, Zwitserland, Japan, Zuid-Korea, Taiwan, Hongkong, Thailand, Singapore, India, de rest van Europa en het Verenigd Koninkrijk (zie [prijzen](/pricing)); btw of sales tax wordt bij het afrekenen geregeld. De test genereren is gratis, en de eerste 3 kandidaten van je eerste bedrijf zijn gratis.
+Met testee betaal je alleen voor kandidaten die minstens één vraag beantwoorden: $5 per kandidaat bij de opwaardering van $50, $4 vanaf een opwaardering van $200, $3 vanaf een opwaardering van $600 en $2 vanaf een opwaardering van $1.000. Voor 100 sollicitanten is dat $500 tegen $5 per kandidaat, of $400 in twee opwaarderingen van $200 tegen $4 per kandidaat, zonder abonnement. Prijzen zijn hier in Amerikaanse dollars, en in de lokale valuta in Canada, Australië, Israël, Polen, Zwitserland, Japan, Zuid-Korea, Taiwan, Hongkong, Thailand, Singapore, India, de rest van Europa en het Verenigd Koninkrijk (zie [prijzen](/pricing)); btw of sales tax wordt bij het afrekenen geregeld. De test genereren is gratis, en de eerste 3 kandidaten van je eerste bedrijf zijn gratis.
 
 ## Verder lezen
 

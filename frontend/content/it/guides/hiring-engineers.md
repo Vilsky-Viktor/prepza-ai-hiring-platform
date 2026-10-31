@@ -72,7 +72,7 @@ Un buon test di conoscenze è:
 - **Breve:** pochi argomenti con circa 10 domande ciascuno, così anche i candidati forti che hanno altre offerte lo portano a termine.
 - **Uguale per tutti:** stessi argomenti, stesso numero di domande e stessi limiti di tempo.
 
-Qui entra in gioco prepza. Trasforma la tua descrizione del ruolo in un colloquio di conoscenze a scelta multipla e a tempo. Rivedi gli argomenti proposti prima che venga scritta qualsiasi domanda, così il test copre il tuo stack e nient'altro. Per un ruolo tecnico, può includere:
+Qui entra in gioco testee. Trasforma la tua descrizione del ruolo in un colloquio di conoscenze a scelta multipla e a tempo. Rivedi gli argomenti proposti prima che venga scritta qualsiasi domanda, così il test copre il tuo stack e nient'altro. Per un ruolo tecnico, può includere:
 
 - **Domande di lettura del codice:** un breve frammento di codice con domande su cosa stampa o restituisce, cosa fa, perché fallisce o quale modifica lo corregge.
 - **SQL:** una piccola tabella e una query, con la domanda su quali righe vengono restituite.
@@ -80,7 +80,7 @@ Qui entra in gioco prepza. Trasforma la tua descrizione del ruolo in un colloqui
 
 Ogni candidato riceve il proprio set casuale di domande, con un conto alla rovescia su ognuna. Vedi una scheda di valutazione con ogni risposta e il tempo impiegato, più segnalazioni per risposte troppo rapide, uscite dalla pagina, tentativi di copia e andamenti insoliti nelle risposte e nei tempi. Una segnalazione è un motivo per guardare meglio, non la prova di qualcosa. Il report suggerisce anche domande a cui il candidato ha risposto correttamente, da approfondire nel colloquio successivo.
 
-Cosa non fa prepza: in prepza i candidati non scrivono, non eseguono e non fanno debug del codice. Leggere codice e scriverlo sono competenze diverse, quindi il passo successivo resta importante. Vedi i [test di selezione per ruolo](/tests) per test pronti da cui partire.
+Cosa non fa testee: in testee i candidati non scrivono, non eseguono e non fanno debug del codice. Leggere codice e scriverlo sono competenze diverse, quindi il passo successivo resta importante. Vedi i [test di selezione per ruolo](/tests) per test pronti da cui partire.
 
 ## Passo 4: esercizio a casa o live coding
 
@@ -128,7 +128,7 @@ Un processo strutturato è anche più equo, ma solo se lo applichi in modo coere
 
 - **Domande coerenti** in ogni fase, per ogni candidato allo stesso ruolo.
 - **Griglie di valutazione scritte in anticipo,** così le persone vengono giudicate con gli stessi criteri.
-- **Accomodamenti:** offri più tempo o un altro formato ai candidati che lo chiedono, ad esempio per una disabilità. In prepza puoi dare a un candidato più tempo prima che inizi.
+- **Accomodamenti:** offri più tempo o un altro formato ai candidati che lo chiedono, ad esempio per una disabilità. In testee puoi dare a un candidato più tempo prima che inizi.
 - **Monitora i risultati.** Metodi diversi mostrano divari di punteggio diversi tra i gruppi. Sackett et al. hanno rilevato differenze medie maggiori per i test di conoscenze professionali e le prove pratiche che per i colloqui strutturati, un motivo in più per combinare i metodi. Tieni d'occhio i tassi di superamento in ogni fase.
 - **Decidono le persone.** Un punteggio supporta una decisione; non la prende. Guarda le risposte prima di scartare qualcuno.
 

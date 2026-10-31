@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Een vaardigheidstest met goede vragen kan toch slechte resultaten opleveren. Te veel tijd, en kandidaten zoeken elk antwoord op; te weinig, en je meet leessnelheid. Te weinig vragen, en de score hangt af van geluk; te veel, en goede kandidaten haken halverwege af.
 
-Deze gids behandelt vier instellingen van een meerkeuzetest met tijdslimiet: de tijd per vraag, het aantal vragen, de totale duur en extra tijd voor kandidaten die dat nodig hebben. Het advies geldt voor elke kennistest met tijdslimiet; het laatste deel laat zien hoe prepza met elk ervan omgaat.
+Deze gids behandelt vier instellingen van een meerkeuzetest met tijdslimiet: de tijd per vraag, het aantal vragen, de totale duur en extra tijd voor kandidaten die dat nodig hebben. Het advies geldt voor elke kennistest met tijdslimiet; het laatste deel laat zien hoe testee met elk ervan omgaat.
 
 ## De korte versie
 
@@ -95,9 +95,9 @@ Veel landen verplichten werkgevers om redelijke aanpassingen te treffen voor sol
 
 **Dit deel is praktische informatie, geen juridisch advies.** Wat je moet bieden en wat je mag vragen, hangt af van waar je werft. Controleer je eigen verplichtingen onder de wetgeving over gelijke behandeling en handicap die voor jou geldt.
 
-## Hoe prepza omgaat met tijd en extra tijd
+## Hoe testee omgaat met tijd en extra tijd
 
-In prepza is een interview een meerkeuze-vaardigheidstest met tijdslimiet, gemaakt op basis van je functieomschrijving.
+In testee is een interview een meerkeuze-vaardigheidstest met tijdslimiet, gemaakt op basis van je functieomschrijving.
 
 ### Tijd per vraag
 

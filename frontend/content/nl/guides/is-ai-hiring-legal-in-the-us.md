@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Over het algemeen wel: AI gebruiken bij werving en selectie is legaal in de VS. Er is geen federale AI-wet voor werving. In plaats daarvan geldt het federale antidiscriminatierecht voor AI-tools zoals voor elke test, en een paar plaatsen voegen eigen regels toe: New York City, Illinois, Colorado en Californië.
 
-Deze gids legt de regels op hoofdlijnen uit, de data die ertoe doen, wat werkgevers moeten doen en hoe prepza ermee omgaat. **Dit is geen juridisch advies.** Het geeft de regels weer zoals ze in oktober 2026 gelden; een aantal daarvan is nieuw of wordt nog afgerond.
+Deze gids legt de regels op hoofdlijnen uit, de data die ertoe doen, wat werkgevers moeten doen en hoe testee ermee omgaat. **Dit is geen juridisch advies.** Het geeft de regels weer zoals ze in oktober 2026 gelden; een aantal daarvan is nieuw of wordt nog afgerond.
 
 ## Het korte antwoord
 
@@ -97,22 +97,22 @@ De AI-wet van Colorado werd ingetrokken en opnieuw vastgesteld door SB 26-189, o
 8. **Bewaar gegevens zo lang als jouw recht vereist,** bijvoorbeeld vier jaar in Californië en drie in Colorado.
 9. **Wijs nooit af op alleen een score.** Laat een mens elk resultaat beoordelen.
 
-## Hoe prepza hiermee omgaat
+## Hoe testee hiermee omgaat
 
-prepza neemt getimede meerkeuze-vaardigheidstests af die door AI worden geschreven op basis van een functieomschrijving. In de VS gaat prepza er op dezelfde manier mee om als in de EU. prepza claimt niet dat het compliant of gecertificeerd is.
+testee neemt getimede meerkeuze-vaardigheidstests af die door AI worden geschreven op basis van een functieomschrijving. In de VS gaat testee er op dezelfde manier mee om als in de EU. testee claimt niet dat het compliant of gecertificeerd is.
 
 Zo ziet dat er vandaag in het product uit:
 
 - **AI schrijft de vragen en de antwoordsleutels; het nakijken volgt vaste regels.** Geen AI leest of beoordeelt het antwoord van een kandidaat, en er wordt geen video- of gezichtsanalyse gebruikt. In de spraakmodus wordt spraak omgezet in tekst en gekoppeld aan een antwoordoptie, die de kandidaat te horen krijgt en op het scherm ziet: één duidelijk genoemde optie wordt meteen vastgelegd, een keuze van meerdere opties wordt eerst bevestigd. De spraak wordt nooit opgeslagen en de stem wordt nooit geanalyseerd.
 - **Jij keurt de onderwerpen goed** voordat er ook maar één vraag wordt geschreven, en jij kiest de slaaggrens.
-- **Mensen beslissen.** prepza wijst geen kandidaten af en stuurt geen afwijzingsberichten.
-- **Geen beschermde kenmerken.** prepza vraagt, leidt af of bewaart nooit het geslacht, het ras, de leeftijd, een beperking, de postcode of andere beschermde kenmerken van kandidaten.
+- **Mensen beslissen.** testee wijst geen kandidaten af en stuurt geen afwijzingsberichten.
+- **Geen beschermde kenmerken.** testee vraagt, leidt af of bewaart nooit het geslacht, het ras, de leeftijd, een beperking, de postcode of andere beschermde kenmerken van kandidaten.
 - **Een export voor een bias-audit.** Op de pagina Actielog van het bedrijf kan de eigenaar een csv-bestand downloaden van de kandidaten die klaar zijn, voor het hele bedrijf of één interview en tussen twee data: per kandidaat het cijfer, de slaaggrens, of de kandidaat geslaagd is en of die boven de mediaan van het interview scoorde. Elke rij heeft het e-mailadres van de kandidaat als sleutel, zodat je hem kunt koppelen aan de zelfgerapporteerde categorieën die je zelf hebt verzameld; verwijder daarna de kolom met e-mailadressen en geef het bestand aan je onafhankelijke auditor, die de selectie- en scorepercentages en de impact ratios berekent. Met hetzelfde bestand kun je de vier-vijfdencheck zelf uitvoeren.
-- **Extra tijd** van +25%, +50% of +100% per vraag kan worden gegeven aan elke kandidaat die erom vraagt, voordat die begint. prepza bewaart alleen de hoeveelheid, nooit de reden. In de spraakmodus kan een kandidaat altijd in plaats daarvan op een optie tikken, en je kunt een interview instellen op alleen antwoorden door te tikken.
+- **Extra tijd** van +25%, +50% of +100% per vraag kan worden gegeven aan elke kandidaat die erom vraagt, voordat die begint. testee bewaart alleen de hoeveelheid, nooit de reden. In de spraakmodus kan een kandidaat altijd in plaats daarvan op een optie tikken, en je kunt een interview instellen op alleen antwoorden door te tikken.
 - **Sjablonen voor de informatie aan kandidaten,** een algemene en versies voor New York City, Illinois en Colorado, staan op de [documentenpagina](/documents), samen met de instructies voor bedrijven.
-- **New York City.** prepza heeft nog geen eigen onafhankelijke bias-audit gehad. Gebruik prepza niet voor banen in New York City totdat je hebt gedaan wat Local Law 144 van jou als werkgever vraagt: een onafhankelijke bias-audit binnen het jaar vóór gebruik, de samenvatting gepubliceerd en een melding aan kandidaten 10 werkdagen vooraf.
-- **Gegevens.** Je bedrijf is onder de CCPA de business en prepza zijn service provider, onder de [verwerkersovereenkomst](/dpa) en het Amerikaanse deel daarvan. Gegevens worden gehost in de EU, met sommige subverwerkers in de VS (zie het [privacybeleid](/privacy)), en worden niet gebruikt om AI-modellen te trainen.
-- **Bewaartermijn.** Kandidaatgegevens worden 12 maanden na de uitnodiging verwijderd. Waar jouw recht vraagt om gegevens langer te bewaren, zoals vier jaar in Californië, download je de pdf-rapporten en het bestand voor de bias-audit en bewaar je ze zelf; prepza bewaart resultaten standaard niet langer.
+- **New York City.** testee heeft nog geen eigen onafhankelijke bias-audit gehad. Gebruik testee niet voor banen in New York City totdat je hebt gedaan wat Local Law 144 van jou als werkgever vraagt: een onafhankelijke bias-audit binnen het jaar vóór gebruik, de samenvatting gepubliceerd en een melding aan kandidaten 10 werkdagen vooraf.
+- **Gegevens.** Je bedrijf is onder de CCPA de business en testee zijn service provider, onder de [verwerkersovereenkomst](/dpa) en het Amerikaanse deel daarvan. Gegevens worden gehost in de EU, met sommige subverwerkers in de VS (zie het [privacybeleid](/privacy)), en worden niet gebruikt om AI-modellen te trainen.
+- **Bewaartermijn.** Kandidaatgegevens worden 12 maanden na de uitnodiging verwijderd. Waar jouw recht vraagt om gegevens langer te bewaren, zoals vier jaar in Californië, download je de pdf-rapporten en het bestand voor de bias-audit en bewaar je ze zelf; testee bewaart resultaten standaard niet langer.
 
 ## Verder lezen
 

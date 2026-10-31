@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 In general, yes: using AI in hiring is legal in the EU. But most AI tools that evaluate candidates fall into the AI Act's high-risk category, which brings duties for the vendor and for you, the employer. A few practices are banned outright. And the GDPR applies to candidate data, as it always has.
 
-This guide explains the rules at a high level, the dates that matter, what employers have to do, and how prepza approaches it. **It is not legal advice.** It reflects the rules as of October 2026. The rules are new, guidance is still being finalized, and national law adds its own requirements. Check with your own counsel before relying on any of this.
+This guide explains the rules at a high level, the dates that matter, what employers have to do, and how testee approaches it. **It is not legal advice.** It reflects the rules as of October 2026. The rules are new, guidance is still being finalized, and national law adds its own requirements. Check with your own counsel before relying on any of this.
 
 ## The short answer
 
@@ -111,15 +111,15 @@ Candidate data is personal data, and AI doesn't change the GDPR. The essentials:
 8. **Offer accommodations,** such as extra time, to candidates who need them.
 9. **Never reject on a score alone.** Look at the answers.
 
-## How prepza approaches this
+## How testee approaches this
 
-prepza runs timed multiple-choice skills interviews written by AI from a job description. Because it scores and ranks candidates, prepza's own analysis concludes that it is very likely high-risk under Annex III, point 4(a), with obligations applying from 2 December 2027. It is preparing on that basis. prepza does not claim to be compliant or certified.
+testee runs timed multiple-choice skills interviews written by AI from a job description. Because it scores and ranks candidates, testee's own analysis concludes that it is very likely high-risk under Annex III, point 4(a), with obligations applying from 2 December 2027. It is preparing on that basis. testee does not claim to be compliant or certified.
 
 What that looks like in the product today:
 
 - **AI writes the questions and their answer keys; marking follows fixed rules.** No AI reads or judges a candidate's answer, and no video, voice or face analysis is used. If AI corrects a key later, the fix applies to candidates who start after it; past results don't change.
 - **You approve the topics** before any question is written, and you can see every question.
-- **People decide.** The results page and PDF reports remind your team to review results; prepza doesn't reject candidates or send rejection messages.
+- **People decide.** The results page and PDF reports remind your team to review results; testee doesn't reject candidates or send rejection messages.
 - **Candidates are told** before they start that questions are written by AI, that people at your company review results and decide, and that they can ask for a review.
 - **Extra time** can be given to any candidate who asks.
 - **Records.** The questions shown, answers, timings and integrity events are recorded.

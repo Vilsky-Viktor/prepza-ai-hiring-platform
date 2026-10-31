@@ -38,9 +38,9 @@ Si en la contratación participan dos o tres personas, acordad esta lista ahora.
 
 Una buena prueba de filtrado es breve, está relacionada con el puesto y es igual para todos.
 
-Con prepza:
+Con testee:
 
-1. **Pega la descripción del puesto.** prepza extrae lo que un candidato debe saber y propone temas.
+1. **Pega la descripción del puesto.** testee extrae lo que un candidato debe saber y propone temas.
 2. **Revisa los temas frente a tu lista del paso 1.** Desmarca lo que no sea un requisito real, cambia el nombre de los temas, edita los subtemas o describe los cambios en texto libre («añade un tema sobre nóminas básicas»). Las preguntas se redactan solo después de tu aprobación.
 3. **Fija la duración.** Por defecto, cada tema tiene 10 preguntas, cada una con su propia cuenta atrás, de 60 segundos de media, o de 75 segundos en una prueba difícil. Tres temas significan como máximo 30 minutos por candidato (unos 38 en una prueba difícil), y normalmente menos. Limítala a lo que necesitas.
 4. **Fija una nota de aprobado.** Por defecto es el 70 %. Úsala como guía para leer los resultados, no como un corte automático.
@@ -63,7 +63,7 @@ Haz un repaso rápido de sí o no solo sobre los requisitos imprescindibles: per
 
 Después, invita a todos los que queden:
 
-- **Pega una lista de correos electrónicos o sube un archivo.** prepza admite hasta 100 correos a la vez y omite a quien ya haya empezado.
+- **Pega una lista de correos electrónicos o sube un archivo.** testee admite hasta 100 correos a la vez y omite a quien ya haya empezado.
 - **O usa un único enlace.** Si aún no has publicado la oferta, pon en ella el enlace para compartir de la entrevista. Los candidatos pueden hacer la prueba al momento y aparecen en tu lista, ordenados. Desactiva el enlace cuando se cubra el puesto.
 - **O deja que tu ATS los invite.** Si tus candidatos están en Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR, conéctalo una vez: mover a un candidato a una etapa envía la invitación, y los resultados vuelven al ATS. Consulta [Cómo conectar las pruebas de habilidades a tu ATS](/guides/ats-integration-skills-tests).
 
@@ -71,7 +71,7 @@ Antes de empezar, los candidatos ven qué esperar: el temporizador, que una pers
 
 ### Conseguir que las pruebas se hagan el mismo día
 
-Una prueba clara y breve es más fácil de terminar poco después de la invitación. Indica en tu correo o en la oferta de empleo cuánto dura y para cuándo la necesitas. prepza envía automáticamente un recordatorio a quien no haya empezado al cabo de 3 días; para un plan de un solo día, también puedes reenviar tú mismo una invitación.
+Una prueba clara y breve es más fácil de terminar poco después de la invitación. Indica en tu correo o en la oferta de empleo cuánto dura y para cuándo la necesitas. testee envía automáticamente un recordatorio a quien no haya empezado al cabo de 3 días; para un plan de un solo día, también puedes reenviar tú mismo una invitación.
 
 No todos terminarán el primer día. No pasa nada: revisa a quienes hayan terminado y vuelve a mirar a los rezagados a la mañana siguiente.
 
@@ -81,11 +81,11 @@ Ahora empieza la lectura atenta, pero sobre un grupo más pequeño y ordenado.
 
 1. **Ordena por nota,** de mejor a peor, desde el menú de orden de la lista: la lista se abre con los candidatos más recientes primero.
 2. **Abre cada ficha de evaluación** del grupo de cabeza. Mira las respuestas, no solo el número: qué temas fueron fuertes, cuáles débiles, cuánto tardó cada respuesta.
-3. **Revisa las alertas de integridad.** prepza marca las respuestas demasiado rápidas como para haber leído la pregunta, las veces que el candidato salió de la página y los intentos de copiar. Cuando un candidato termina, su página también señala patrones de respuesta inusuales (más o menos el mismo tiempo en cada pregunta, o aciertos en las preguntas difíciles y fallos en las fáciles) y sugiere preguntas para hacerle en la siguiente entrevista. Una alerta es un motivo para mirar con más atención, no una prueba de trampa. Alguien que salió de la página una vez puede haber recibido una notificación.
+3. **Revisa las alertas de integridad.** testee marca las respuestas demasiado rápidas como para haber leído la pregunta, las veces que el candidato salió de la página y los intentos de copiar. Cuando un candidato termina, su página también señala patrones de respuesta inusuales (más o menos el mismo tiempo en cada pregunta, o aciertos en las preguntas difíciles y fallos en las fáciles) y sugiere preguntas para hacerle en la siguiente entrevista. Una alerta es un motivo para mirar con más atención, no una prueba de trampa. Alguien que salió de la página una vez puede haber recibido una notificación.
 4. **Mira justo por debajo de la nota de aprobado.** Las puntuaciones de distintos conjuntos aleatorios de preguntas no son exactamente comparables, así que unos pocos puntos pueden deberse al azar. Alguien con un 65 % y respuestas sólidas en los temas que más importan puede merecer una entrevista.
 5. **Ahora lee los CV** de las personas que estás considerando. Lees 15 CV con atención en lugar de ojear 100.
 
-Para compartir los resultados con un responsable de contratación, descarga un informe en PDF de un candidato o de toda la lista, o envíalo por correo desde prepza.
+Para compartir los resultados con un responsable de contratación, descarga un informe en PDF de un candidato o de toda la lista, o envíalo por correo desde testee.
 
 ## Paso 5: Decide (final del día)
 
@@ -103,7 +103,7 @@ Anota por qué cada persona entró en la lista. Lleva un minuto por candidato y 
 
 ## Cuánto cuesta
 
-Con prepza, solo pagas por los candidatos que responden al menos una pregunta: $5 cada uno con la recarga de $50, $4 a partir de una recarga de $200, $3 a partir de una recarga de $600 y $2 a partir de una recarga de $1000. Para 100 candidatos son $500 a $5 cada uno, o $400 en dos recargas de $200 a $4 cada uno, sin suscripción. Los precios están aquí en dólares estadounidenses, y en la moneda local en Canadá, Australia, Israel, Polonia, Suiza, Japón, Corea del Sur, Taiwán, Hong Kong, Tailandia, Singapur, India, el resto de Europa y el Reino Unido (consulta los [precios](/pricing)); el IVA o los impuestos sobre las ventas se gestionan al pagar. Generar la prueba es gratis, y los 3 primeros candidatos de tu primera empresa son gratis.
+Con testee, solo pagas por los candidatos que responden al menos una pregunta: $5 cada uno con la recarga de $50, $4 a partir de una recarga de $200, $3 a partir de una recarga de $600 y $2 a partir de una recarga de $1000. Para 100 candidatos son $500 a $5 cada uno, o $400 en dos recargas de $200 a $4 cada uno, sin suscripción. Los precios están aquí en dólares estadounidenses, y en la moneda local en Canadá, Australia, Israel, Polonia, Suiza, Japón, Corea del Sur, Taiwán, Hong Kong, Tailandia, Singapur, India, el resto de Europa y el Reino Unido (consulta los [precios](/pricing)); el IVA o los impuestos sobre las ventas se gestionan al pagar. Generar la prueba es gratis, y los 3 primeros candidatos de tu primera empresa son gratis.
 
 ## Lecturas relacionadas
 

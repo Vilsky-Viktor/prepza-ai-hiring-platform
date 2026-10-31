@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Test umiejętności z dobrymi pytaniami wciąż może dawać słabe wyniki. Przy zbyt dużej ilości czasu kandydaci sprawdzają każdą odpowiedź; przy zbyt małej mierzysz szybkość czytania. Przy zbyt małej liczbie pytań wynik zależy od szczęścia; przy zbyt dużej dobrzy kandydaci rezygnują w połowie.
 
-Ten poradnik omawia cztery ustawienia testu wyboru z limitem czasu: czas na pytanie, liczbę pytań, łączną długość i dodatkowy czas dla kandydatów, którzy go potrzebują. Wskazówki dotyczą każdego testu wiedzy z limitem czasu; ostatnia część pokazuje, jak prepza podchodzi do każdego z nich.
+Ten poradnik omawia cztery ustawienia testu wyboru z limitem czasu: czas na pytanie, liczbę pytań, łączną długość i dodatkowy czas dla kandydatów, którzy go potrzebują. Wskazówki dotyczą każdego testu wiedzy z limitem czasu; ostatnia część pokazuje, jak testee podchodzi do każdego z nich.
 
 ## W skrócie
 
@@ -95,9 +95,9 @@ Wiele państw wymaga od pracodawców zapewnienia racjonalnych usprawnień kandyd
 
 **Ta część to praktyczne wskazówki, a nie porada prawna.** To, co musisz zapewnić, i o co możesz pytać, zależy od tego, gdzie rekrutujesz. Sprawdź swoje obowiązki wynikające z przepisów o równym traktowaniu i o niepełnosprawności, które Cię dotyczą.
 
-## Jak prepza podchodzi do czasu i dodatkowego czasu
+## Jak testee podchodzi do czasu i dodatkowego czasu
 
-W prepza rozmowa to test umiejętności w formie testu wyboru z limitem czasu, utworzony na podstawie opisu stanowiska.
+W testee rozmowa to test umiejętności w formie testu wyboru z limitem czasu, utworzony na podstawie opisu stanowiska.
 
 ### Czas na pytanie
 

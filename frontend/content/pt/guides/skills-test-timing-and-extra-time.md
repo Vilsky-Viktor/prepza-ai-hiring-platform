@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Um teste de habilidades com boas perguntas ainda pode dar resultados ruins. Com tempo demais, os candidatos pesquisam cada resposta; com tempo de menos, você mede a velocidade de leitura. Com poucas perguntas, a pontuação depende da sorte; com perguntas demais, bons candidatos desistem no meio.
 
-Este guia trata de quatro configurações de um teste de múltipla escolha cronometrado: o tempo por pergunta, o número de perguntas, a duração total e o tempo extra para candidatos que precisam. As recomendações valem para qualquer teste de conhecimentos cronometrado; a última seção mostra como a prepza lida com cada uma.
+Este guia trata de quatro configurações de um teste de múltipla escolha cronometrado: o tempo por pergunta, o número de perguntas, a duração total e o tempo extra para candidatos que precisam. As recomendações valem para qualquer teste de conhecimentos cronometrado; a última seção mostra como a testee lida com cada uma.
 
 ## Resumo
 
@@ -95,9 +95,9 @@ Muitos países exigem que os empregadores façam adaptações razoáveis para ca
 
 **Esta seção é uma orientação prática, não aconselhamento jurídico.** O que você deve oferecer, e o que pode perguntar, depende de onde você contrata. Verifique suas próprias obrigações segundo a legislação de igualdade e de deficiência que se aplica a você.
 
-## Como a prepza lida com o tempo e o tempo extra
+## Como a testee lida com o tempo e o tempo extra
 
-Na prepza, uma entrevista é um teste de habilidades de múltipla escolha cronometrado, criado a partir da sua descrição da vaga.
+Na testee, uma entrevista é um teste de habilidades de múltipla escolha cronometrado, criado a partir da sua descrição da vaga.
 
 ### Tempo por pergunta
 

@@ -12,7 +12,7 @@
     "account": "Ang iyong account",
     "accountNote": "Ibigay ang ID na ito kapag sumulat ka sa amin tungkol sa iyong account.",
     "yourData": "Ang iyong data",
-    "yourDataNote": "I-download ang lahat ng hawak ng prepza. tungkol sa iyo, o burahin ang iyong account.",
+    "yourDataNote": "I-download ang lahat ng hawak ng testee. tungkol sa iyo, o burahin ang iyong account.",
     "download": "I-download ang aking data",
     "downloadFailed": "Hindi maihanda ang iyong data. Pakisubukang muli.",
     "delete": "Burahin ang account",
@@ -20,7 +20,7 @@
     "noLanguage": "Walang nahanap na wika.",
     "emails": {
       "title": "Mga email",
-      "note": "Piliin kung aling mga email ang ipapadala sa iyo ng prepza.",
+      "note": "Piliin kung aling mga email ang ipapadala sa iyo ng testee.",
       "failed": "Hindi na-save ang mga setting ng email mo. Pakisubukan ulit.",
       "digest": "Buod ng aktibidad",
       "digestNote": "Isang email bawat araw tungkol sa nangyari sa mga kumpanya mo.",
@@ -34,7 +34,7 @@
       "reminders": "Mga paalala",
       "remindersNote": "Kaunti na lang ang credit, mga interview na walang aplikante, mga topic na naghihintay ng review.",
       "updates": "Mga update at balita tungkol sa produkto",
-      "updatesNote": "Mga bagong feature at balita mula sa prepza.",
+      "updatesNote": "Mga bagong feature at balita mula sa testee.",
       "promotions": "Mga alok at promo",
       "promotionsNote": "Mga discount at espesyal na alok.",
       "alwaysSent": "Laging ipinapadala ang mga email ng serbisyo, gaya ng mga imbitasyon, report ng aplikante, problema sa bayad at pagbabago sa aming mga tuntunin."
@@ -82,7 +82,7 @@
   "signIn": {
     "title": "Mag-sign in",
     "continueWith": "Magpatuloy gamit ang <name>{provider}</name>",
-    "link": "May prepza account na ang email na ito. Magpatuloy sa paraang ginamit mo dati, at maili-link dito ang {provider}.",
+    "link": "May testee account na ang email na ito. Magpatuloy sa paraang ginamit mo dati, at maili-link dito ang {provider}.",
     "consent": "Sa pag-sign in, kinukumpirma mong 16 taong gulang ka o higit pa, sumasang-ayon ka sa <terms>Mga tuntunin</terms>, at nabasa mo ang <privacy>Patakaran sa privacy</privacy>.",
     "failed": "Hindi nakapag-sign in. Pakisubukang muli.",
     "verify": "Nagpadala kami sa iyo ng link para i-verify ang iyong email. Buksan ito para makasagot ng mga interview at makagawa ng mga kumpanya.",
@@ -256,7 +256,7 @@
     "pauseText": "Habang naka-on ito, walang makakapagsimula ng bagong interview, practice round o preview, at walang tanong na gagawin, gagawing muli o susuriin. Matatapos ng mga aplikanteng nasa interview na ang kanila.",
     "pauseFailed": "Hindi mabago ang pause. Pakisubukang muli.",
     "maintenanceTitle": "Maintenance mode",
-    "maintenanceText": "Habang naka-on ito, ipinapakita ng bawat page na nasa maintenance ang prepza at tinatanggihan ng mga serbisyo ang bawat request, maliban sa mga superadmin. Patuloy na gumagana ang mga bayad, email at naka-iskedyul na gawain.",
+    "maintenanceText": "Habang naka-on ito, ipinapakita ng bawat page na nasa maintenance ang testee at tinatanggihan ng mga serbisyo ang bawat request, maliban sa mga superadmin. Patuloy na gumagana ang mga bayad, email at naka-iskedyul na gawain.",
     "maintenanceFailed": "Hindi mabago ang maintenance mode. Subukang muli.",
     "maintenanceConfirmTitle": "I-on ang maintenance mode?",
     "maintenanceRunning": "{count, plural, =0 {Walang aplikanteng nasa interview ngayon.} one {Mga aplikanteng nasa interview ngayon: #. Hihinto ang oras nila habang naka-on ang maintenance mode.} other {Mga aplikanteng nasa interview ngayon: #. Hihinto ang oras nila habang naka-on ang maintenance mode.}}",
@@ -279,13 +279,13 @@
     "emails": "Mga email",
     "emailSearch": "Email address",
     "emailSearchAction": "Hanapin",
-    "emailsIntro": "Maghanap ng email address para makita at mapahinto ang mga email na ipinapadala ng prepza rito, para sa taong humiling nito sa amin sa email.",
-    "account": "prepza account",
+    "emailsIntro": "Maghanap ng email address para makita at mapahinto ang mga email na ipinapadala ng testee rito, para sa taong humiling nito sa amin sa email.",
+    "account": "testee account",
     "accountText": "May account ang <bdi>{email}</bdi>. Naitatala bilang iyo ang mga pagbabagong ginawa rito.",
-    "noAccount": "Walang prepza account na gumagamit ng address na ito.",
+    "noAccount": "Walang testee account na gumagamit ng address na ito.",
     "turnOffAll": "I-off ang lahat ng opsyonal na email",
     "companyEmails": "Mga email mula sa mga kumpanya",
-    "companyEmailsText": "Mga imbitasyon at paalala na ipinapadala ng mga kumpanya sa address na ito sa pamamagitan ng prepza. Naitatala bilang iyo ang mga pagbabagong ginawa rito.",
+    "companyEmailsText": "Mga imbitasyon at paalala na ipinapadala ng mga kumpanya sa address na ito sa pamamagitan ng testee. Naitatala bilang iyo ang mga pagbabagong ginawa rito.",
     "noCompanies": "Walang kumpanyang nag-imbita sa address na ito.",
     "companySending": "Ipinapadala ang mga email",
     "companyStopped": "Nakahinto ang lahat ng email",
@@ -342,7 +342,7 @@
     "legalSend": "I-email ang pagbabago",
     "legalConfirmTitle": "I-email ang pagbabago sa {document}?",
     "legalAudience": {
-      "everyone": "Matatanggap ito ng lahat ng may prepza account simula sa susunod na oras ng pagpapadala (8:00 hanggang 18:00 UTC), at sinasabing magkakabisa ang bagong bersyon mula <time>{date}</time>; makikita rin nila ito sa kanilang mga notification. Isang beses itong ipapadala at hindi na mababawi.",
+      "everyone": "Matatanggap ito ng lahat ng may testee account simula sa susunod na oras ng pagpapadala (8:00 hanggang 18:00 UTC), at sinasabing magkakabisa ang bagong bersyon mula <time>{date}</time>; makikita rin nila ito sa kanilang mga notification. Isang beses itong ipapadala at hindi na mababawi.",
       "company_editors": "Matatanggap ito ng mga may-ari at admin ng bawat kumpanya simula sa susunod na oras ng pagpapadala (8:00 hanggang 18:00 UTC), at sinasabing magkakabisa ang bagong bersyon mula <time>{date}</time>; makikita rin nila ito sa kanilang mga notification. Isang beses itong ipapadala at hindi na mababawi."
     },
     "legalAsked": "Ie-email ang pagbabago simula sa susunod na oras ng pagpapadala.",
@@ -427,7 +427,7 @@
       "promotions": "Alok",
       "notices": "Mahalagang abiso"
     },
-    "campaignNoticeWarning": "Naaabot ng mahalagang abiso ang lahat sa audience nito, anuman ang kanilang email settings, at hindi ito maa-unsubscribe. Gamitin lang ito para sa mga security incident, nakaplanong downtime o pagbabago sa kung paano gumagana ang prepza, hindi kailanman para mag-promote ng anuman.",
+    "campaignNoticeWarning": "Naaabot ng mahalagang abiso ang lahat sa audience nito, anuman ang kanilang email settings, at hindi ito maa-unsubscribe. Gamitin lang ito para sa mga security incident, nakaplanong downtime o pagbabago sa kung paano gumagana ang testee, hindi kailanman para mag-promote ng anuman.",
     "campaignAudience": "Audience",
     "campaignAudienceEveryone": "Lahat",
     "campaignAudienceEveryoneNote": {
@@ -457,7 +457,7 @@
     "campaignTextPlaceholder": "Ilagay dito ang teksto… Pindutin ang Enter para sa bagong talata.",
     "campaignButton": "Teksto ng button (opsyonal)",
     "campaignLink": "Link ng button",
-    "campaignLinkPlaceholder": "Link ng button sa prepza, gaya ng /pricing (opsyonal)",
+    "campaignLinkPlaceholder": "Link ng button sa testee, gaya ng /pricing (opsyonal)",
     "campaignSaveFailed": "Hindi ma-save ang campaign. Pakisubukang muli.",
     "noCampaigns": "Wala pang campaign.",
     "campaignStatus": {
@@ -537,7 +537,7 @@
       "paid": "Mga bayad na kumpanya",
       "unpaid": "Mga hindi bayad na kumpanya",
       "no_company": "Walang kumpanya",
-      "prepza": "prepza"
+      "testee": "testee"
     },
     "aiActionsTitle": "Ayon sa gawain",
     "aiActions": {
@@ -703,7 +703,7 @@
       "1209600": "bawat review ng mga topic"
     },
     "limitKinds": {
-      "ours": "prepza",
+      "ours": "testee",
       "openai": "OpenAI",
       "resend": "Resend",
       "firebase": "Firebase",
@@ -1036,7 +1036,7 @@
     "pickTitle": "Pumili ng kumpanya",
     "pickText": "Kokopyahin nang libre ang test sa kumpanyang pipiliin mo, handa nang ipadala sa mga aplikante.",
     "removeCredits": "Mawawala ang {credits, plural, one {# credit} other {# credits}} nito{candidates, plural, =0 {} one { (mga # aplikante)} other { (mga # aplikante)}} at hindi ito ire-refund.",
-    "suspended": "Naka-suspend ang kumpanyang ito kaya hindi ito mababago sa ngayon. Makipag-ugnayan sa hello@prepza.ai para sa higit pang detalye."
+    "suspended": "Naka-suspend ang kumpanyang ito kaya hindi ito mababago sa ngayon. Makipag-ugnayan sa hello@testee.ai para sa higit pang detalye."
   },
   "candidates": {
     "scorecard": "Scorecard",
@@ -1137,7 +1137,7 @@
     "passMark": "Passing grade",
     "passMarkLabel": "Passing grade sa porsiyento",
     "markHired": "Markahan bilang na-hire",
-    "keepPrivate": "Huwag isama ang mga tanong na ito sa shared question bank ng prepza",
+    "keepPrivate": "Huwag isama ang mga tanong na ito sa shared question bank ng testee",
     "keepPrivateHelp": "Mananatili roon ang mga tanong na nagamit na sa ibang interview",
     "answerMode": "Mode ng interview",
     "answerModeHelp": "Sa click mode, binabasa ng mga aplikante ang bawat tanong at tina-tap ang sagot nila. Sa voice mode, binabasa nang malakas ni Mira, isang AI interviewer, ang bawat tanong at sumasagot ang mga aplikante gamit ang boses o pag-tap",
@@ -1251,7 +1251,7 @@
     "mismatch": "Hindi tugma ang email. Mag-sign in gamit ang email ng imbitasyon para magsimula.",
     "title": "Imbitasyon sa interview",
     "theCompany": "kumpanya",
-    "unverified": "Hindi pa na-verify ng prepza ang kumpanyang ito."
+    "unverified": "Hindi pa na-verify ng testee ang kumpanyang ito."
   },
   "members": {
     "joined": "Sumali na",
@@ -1286,7 +1286,7 @@
     "unavailable": "Hindi available ang mga presyo ngayon. Pakisubukang muli pagkalipas ng isang minuto.",
     "title": "Presyo",
     "intro": "Magbayad bawat aplikante. Libre ang paggawa ng interview, at walang subscription.",
-    "description": "Presyo ng prepza: libre ang paggawa ng interview, at nagbabayad ka lang para sa bawat aplikanteng sumasagot. Walang subscription o bayad kada user, at hindi nag-e-expire ang credits.",
+    "description": "Presyo ng testee: libre ang paggawa ng interview, at nagbabayad ka lang para sa bawat aplikanteng sumasagot. Walang subscription o bayad kada user, at hindi nag-e-expire ang credits.",
     "test": "Paggawa ng interview",
     "free": "Libre",
     "candidate": "Bawat aplikanteng sumagot ng kahit isang tanong",
@@ -1320,14 +1320,14 @@
   "docs": {
     "title": "Mga legal na dokumento",
     "metaTitle": "Mga dokumento sa compliance para sa hiring",
-    "intro": "Mga dokumento para sa mga kumpanyang nag-a-assess ng mga aplikante gamit ang prepza: mga tagubilin, mga template at ang data processing agreement.",
+    "intro": "Mga dokumento para sa mga kumpanyang nag-a-assess ng mga aplikante gamit ang testee: mga tagubilin, mga template at ang data processing agreement.",
     "englishOnly": "Available lang ang mga dokumentong ito sa English.",
     "download": "I-download ang {format}",
     "readOnline": "Basahin online",
     "items": {
       "instructions": {
         "title": "Mga tagubilin para sa mga kumpanya",
-        "description": "Ano ang ibig sabihin ng grade, pagsusuri ng tao, pagpili ng passing grade, dagdag na oras, at kung saan hindi dapat gamitin ang prepza."
+        "description": "Ano ang ibig sabihin ng grade, pagsusuri ng tao, pagpili ng passing grade, dagdag na oras, at kung saan hindi dapat gamitin ang testee."
       },
       "notices": {
         "title": "Mga template ng abiso sa aplikante",
@@ -1335,11 +1335,11 @@
       },
       "dpia": {
         "title": "Template ng DPIA",
-        "description": "Isang data protection impact assessment na napunan na ang bahagi ng prepza, para kumpletuhin mo."
+        "description": "Isang data protection impact assessment na napunan na ang bahagi ng testee, para kumpletuhin mo."
       },
       "dpa": {
         "title": "Data processing agreement",
-        "description": "Kung paano pinoproseso ng prepza ang data ng iyong mga aplikante para sa iyo. Bahagi ito ng mga tuntunin."
+        "description": "Kung paano pinoproseso ng testee ang data ng iyong mga aplikante para sa iyo. Bahagi ito ng mga tuntunin."
       }
     }
   },
@@ -1396,7 +1396,7 @@
     "more": "Paano ito gumagana",
     "demos": "Video",
     "demosTooltip": "Panoorin ang mga demo sa YouTube",
-    "videoTooltip": "Panoorin kung paano gumagana ang prepza",
+    "videoTooltip": "Panoorin kung paano gumagana ang testee",
     "watchVideo": "Panoorin ang video",
     "howItWorks": "Paano ito gumagana",
     "askAgent": "magtanong kay Mira",
@@ -1553,7 +1553,7 @@
         },
         "help": {
           "title": "Tulong",
-          "text": "Mga sagot kung paano gawin mula sa mga gabay ng prepza, sa iyong wika."
+          "text": "Mga sagot kung paano gawin mula sa mga gabay ng testee, sa iyong wika."
         },
         "actions": {
           "title": "Mga aksyon",
@@ -1633,8 +1633,8 @@
         "time": "Mga test na pipiliin o isusulat para sa bawat role",
         "cost": "Buwanang bayad, nagha-hire ka man o hindi"
       },
-      "prepza": {
-        "name": "prepza",
+      "testee": {
+        "name": "testee",
         "checks": "Isinulat ng AI para mismo sa iyong role",
         "time": "~10 min bawat role, wala bawat aplikante",
         "cost": "{price} bawat aplikanteng sumasagot"
@@ -1670,13 +1670,13 @@
   "faq": {
     "title": "Mga madalas itanong",
     "intro": "Hindi mo makita ang sagot? Itanong kay Mira, ang AI assistant (ang button sa itaas ng page), o sumulat sa amin sa address na nasa privacy policy.",
-    "description": "Mga sagot tungkol sa prepza: paano ginagawa ang interview mula sa job description, ano ang nakikita ng mga aplikante, presyo at credits, resulta, ATS integration, mga wika at ang data mo."
+    "description": "Mga sagot tungkol sa testee: paano ginagawa ang interview mula sa job description, ano ang nakikita ng mga aplikante, presyo at credits, resulta, ATS integration, mga wika at ang data mo."
   },
   "contact": {
     "title": "Makipag-ugnayan sa amin",
     "intro": "May tanong, ideya, alok na partnership, o may hindi gumagana? Sumulat sa amin at sasagot kami sa email.",
     "idHint": "Sumusulat tungkol sa isang kumpanya, interview, aplikante o sa iyong account? I-paste ang ID nito: nasa ilalim ng pangalan nito ang “kopyahin ang id”, at nasa menu ng account mo ang ID ng iyong account.",
-    "description": "Makipag-ugnayan sa team ng prepza: mga tanong tungkol sa pre-employment assessment, mga ideya, alok na partnership, o may hindi gumagana. Sumasagot kami sa email.",
+    "description": "Makipag-ugnayan sa team ng testee: mga tanong tungkol sa pre-employment assessment, mga ideya, alok na partnership, o may hindi gumagana. Sumasagot kami sa email.",
     "name": "Pangalan",
     "email": "Email",
     "message": "Mensahe",
@@ -1694,23 +1694,23 @@
   },
   "about": {
     "title": "Tungkol sa amin",
-    "intro": "Tinutulungan ng prepza ang mga kumpanya na makahanap ng mga taong talagang marunong sa trabaho: isang patas na timed interview mula sa iyong job description, sa presyong kaya ng kahit anong team. At ang sinumang naghahanda para sa interview ay puwedeng mag-practice nang libre.",
-    "description": "Ginagawa ng prepza ang job description na patas at may orasang interview sa loob ng ilang minuto, sa presyong kaya ng anumang team. Libre ring mag-practice ng interview ang kahit sino.",
+    "intro": "Tinutulungan ng testee ang mga kumpanya na makahanap ng mga taong talagang marunong sa trabaho: isang patas na timed interview mula sa iyong job description, sa presyong kaya ng kahit anong team. At ang sinumang naghahanda para sa interview ay puwedeng mag-practice nang libre.",
+    "description": "Ginagawa ng testee ang job description na patas at may orasang interview sa loob ng ilang minuto, sa presyong kaya ng anumang team. Libre ring mag-practice ng interview ang kahit sino.",
     "company": {
       "title": "Bakit kami narito",
       "problem": "Madalas nakasalalay ang hiring sa isang CV at isang magandang usapan, at puwedeng makapanlinlang ang dalawa. Ang mga assessment tool na nakakatulong ay naka-presyo para sa malalaking kumpanya, may annual plan at bayad bawat seat, kaya karamihan ng team ay wala nito.",
-      "approach": "Ginagawang timed interview ng prepza ang isang job description sa loob ng ilang minuto, para sa kahit anong role. Bawat aplikante ay may sariling mga tanong, nakikita mo kung sino ang marunong sa trabaho at bakit, at magbabayad ka lang para sa mga aplikanteng talagang sumagot nito.",
+      "approach": "Ginagawang timed interview ng testee ang isang job description sa loob ng ilang minuto, para sa kahit anong role. Bawat aplikante ay may sariling mga tanong, nakikita mo kung sino ang marunong sa trabaho at bakit, at magbabayad ka lang para sa mga aplikanteng talagang sumagot nito.",
       "practice": "Gusto rin naming maging libre para sa lahat ang paghahanda para sa interview. Kahit sino ay puwedeng sumagot ng aming mga practice interview para sa isang role, makita ang kanilang grade at bawat tamang sagot, at mag-practice ulit, nang walang bayad."
     },
     "founder": {
-      "quote": "Hindi dapat pribilehiyo lang ng malalaking kumpanya na may malaking budget ang mahusay na hiring. Ginawa ko ang prepza para kahit anong team ay magawang patas na interview ang isang job description sa loob ng ilang minuto, makita kung sino ang talagang marunong sa trabaho, at magbayad lang para sa mga aplikanteng sumagot nito. Sana ay matulungan ka nitong mahanap nang mas mabilis ang mga tamang tao.",
-      "role": "Solo founder ng prepza"
+      "quote": "Hindi dapat pribilehiyo lang ng malalaking kumpanya na may malaking budget ang mahusay na hiring. Ginawa ko ang testee para kahit anong team ay magawang patas na interview ang isang job description sa loob ng ilang minuto, makita kung sino ang talagang marunong sa trabaho, at magbayad lang para sa mga aplikanteng sumagot nito. Sana ay matulungan ka nitong mahanap nang mas mabilis ang mga tamang tao.",
+      "role": "Solo founder ng testee"
     }
   },
   "news": {
-    "title": "Mga balita ng prepza",
-    "description": "Ano'ng bago sa prepza: mga bagong feature, pagpapahusay at update.",
-    "metaDescription": "Mga balita ng prepza: bagong feature, wika at pagpapahusay sa skills test, AI interview at libreng practice, sa paglabas nila. Sundan dito o sa RSS.",
+    "title": "Mga balita ng testee",
+    "description": "Ano'ng bago sa testee: mga bagong feature, pagpapahusay at update.",
+    "metaDescription": "Mga balita ng testee: bagong feature, wika at pagpapahusay sa skills test, AI interview at libreng practice, sa paglabas nila. Sundan dito o sa RSS.",
     "empty": "Wala pang balita.",
     "rss": "RSS feed"
   },
@@ -1746,8 +1746,8 @@
       "legal_dpa": "Magkakabisa ang bagong kasunduan sa pagproseso ng data sa <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "Magbabago ang mga tuntunin ng prepza sa <time>{date}</time>.",
-      "privacy": "Magbabago ang patakaran sa privacy ng prepza sa <time>{date}</time>.",
+      "terms": "Magbabago ang mga tuntunin ng testee sa <time>{date}</time>.",
+      "privacy": "Magbabago ang patakaran sa privacy ng testee sa <time>{date}</time>.",
       "dpa": "Magbabago ang kasunduan sa pagproseso ng data sa <time>{date}</time>."
     },
     "readLegal": "Basahin ang bagong bersyon",
@@ -1769,7 +1769,7 @@
     "sent": "Naipadala ang report sa <bdi>{email}</bdi>",
     "sendFailed": "Hindi maipadala ang report.",
     "orSummary": "O ipadala gamit ang",
-    "via": "Ipinadala mula sa prepza",
+    "via": "Ipinadala mula sa testee",
     "candidatesFileName": "Mga aplikante {title}",
     "candidateCount": "{count, plural, one {# aplikante} other {# aplikante}}",
     "passMark": "passing grade {mark}",
@@ -1815,7 +1815,7 @@
   },
   "openToOffers": {
     "title": "Open to offers",
-    "text": "Makikita ng mga kumpanyang nagha-hire sa prepza ang pangalan mo, LinkedIn profile at pinakabagong mga resulta ng practice, at puwede ka nilang imbitahan sa isang interview. I-off ito kahit kailan.",
+    "text": "Makikita ng mga kumpanyang nagha-hire sa testee ang pangalan mo, LinkedIn profile at pinakabagong mga resulta ng practice, at puwede ka nilang imbitahan sa isang interview. I-off ito kahit kailan.",
     "linkedin": "LinkedIn profile",
     "linkedinHint": "linkedin.com/in/pangalan-mo",
     "save": "I-save",
@@ -1846,8 +1846,8 @@
   },
   "maintenance": {
     "title": "Nasa maintenance",
-    "text": "Kasalukuyang nasa maintenance ang prepza. Babalik kami agad.",
-    "notice": "Naka-on ang maintenance mode: mga superadmin lang ang makakagamit ng prepza ngayon."
+    "text": "Kasalukuyang nasa maintenance ang testee. Babalik kami agad.",
+    "notice": "Naka-on ang maintenance mode: mga superadmin lang ang makakagamit ng testee ngayon."
   },
   "content": {
     "updated": "Huling na-update",
@@ -1857,7 +1857,7 @@
     "startButton": "Gumawa ng test"
   },
   "compare": {
-    "title": "Ikumpara ang prepza",
+    "title": "Ikumpara ang testee",
     "metaTitle": "Paghahambing ng mga pre-employment testing tool",
     "intro": "Mga paghahambing na may sources sa ibang pre-employment testing tool: paano ginagawa ang mga test, magkano ang mga ito at kailan mas bagay ang bawat isa."
   },
@@ -1882,7 +1882,7 @@
   "ats": {
     "statusConnected": "naka-connect",
     "flowTitle": "Paano dumarating ang mga aplikante mula sa {ats}",
-    "flowStage": "Sa {ats}, magdagdag ng stage para lang sa prepza sa pipeline ng job, halimbawa “prepza skills test”, para hindi ito kailanman mahalo sa iba mong tool.",
+    "flowStage": "Sa {ats}, magdagdag ng stage para lang sa testee sa pipeline ng job, halimbawa “testee skills test”, para hindi ito kailanman mahalo sa iba mong tool.",
     "flowLink": "Dito, i-link ang job at piliin ang stage na iyon.",
     "flowMove": "Kapag handa ka nang i-test ang isang aplikante, ilipat siya sa stage na iyon.",
     "flowInvite": "Kami na ang mag-iimbita sa kanya sa naka-link na interview para sa iyo, gaya ng kung ikaw mismo ang nag-imbita. Pareho rin ang takbo ng credits at limit.",
@@ -1974,7 +1974,7 @@
     "connected": "Naka-connect na ang Slack.",
     "disconnectFailed": "Hindi ma-disconnect ang Slack.",
     "disconnectTitle": "I-disconnect ang Slack?",
-    "disconnectText": "Hindi na mapupunta sa channel ang mga notification ng kumpanya mo, at aalisin ang app ng prepza sa Slack mo.",
+    "disconnectText": "Hindi na mapupunta sa channel ang mga notification ng kumpanya mo, at aalisin ang app ng testee sa Slack mo.",
     "notConnected": "Hindi pa naka-connect ang Slack. Idagdag ito para makuha ang mga notification ng kumpanya mo sa channel na pipiliin mo.",
     "kindsTitle": "Mga notification sa Slack",
     "kindsText": "Matatanggap ito ng channel habang nangyayari. Makikita pa rin ito ng lahat sa bell.",
@@ -1989,10 +1989,10 @@
       "auto_top_up_failed": "Pumalya ang isang awtomatikong top-up"
     },
     "instructionsTitle": "Paano natatanggap ng Slack ang mga notification mo",
-    "stepAdd": "I-click ang “Idagdag sa Slack”: magbubukas ang Slack at hihilingin sa iyong payagan ang prepza sa workspace mo.",
+    "stepAdd": "I-click ang “Idagdag sa Slack”: magbubukas ang Slack at hihilingin sa iyong payagan ang testee sa workspace mo.",
     "stepChannel": "Piliin ang channel kung saan dapat makita ng team mo ang mga ito, halimbawa #hiring, at payagan.",
     "stepKinds": "Pagbalik dito, piliin kung aling mga notification ang mapupunta roon: aplikanteng nakatapos, imbitasyong hindi naihatid at iba pa.",
-    "stepPrivacy": "Sa channel na iyon lang makakapag-post ang prepza. Hindi nito mababasa ang Slack mo, at maaalis ito kapag nag-disconnect ka."
+    "stepPrivacy": "Sa channel na iyon lang makakapag-post ang testee. Hindi nito mababasa ang Slack mo, at maaalis ito kapag nag-disconnect ka."
   },
   "api": {
     "name": "API",
@@ -2029,12 +2029,12 @@
     "removeKeyTitle": "Burahin ang key na ito?",
     "removeKeyText": "Agad na hihinto ang anumang gumagamit ng “<bdi>{name}</bdi>”.",
     "webhooksTitle": "Mga webhook",
-    "webhooksText": "Sinasabihan ng prepza ang mga address na ito kapag nagsimula, natapos (kasama ang mga resulta niya), hindi naabot ng imbitasyon, nag-expire ang imbitasyon, o tinanggal ang isang aplikante, at kapag handa na ang isang interview; naka-sign ang bawat request gamit ang secret ng address.",
+    "webhooksText": "Sinasabihan ng testee ang mga address na ito kapag nagsimula, natapos (kasama ang mga resulta niya), hindi naabot ng imbitasyon, nag-expire ang imbitasyon, o tinanggal ang isang aplikante, at kapag handa na ang isang interview; naka-sign ang bawat request gamit ang secret ng address.",
     "noWebhooks": "Wala pang webhook.",
     "failing": "Naka-pause: hindi ito sumagot nang 3 araw, kaya walang event na ipinapadala rito. Kapag tinanggap nito ang isang test event, aandar itong muli.",
     "addWebhook": "Magdagdag ng webhook",
     "addWebhookTitle": "Bagong webhook",
-    "webhookUrl": "HTTPS address, hal. https://example.com/prepza",
+    "webhookUrl": "HTTPS address, hal. https://example.com/testee",
     "webhookCreatedTitle": "Ang secret ng webhook mo",
     "webhookCreatedText": "Gamitin ito para i-check ang signature ng bawat request (tingnan ang dokumentasyon para sa mga developer). Kopyahin ito ngayon: hindi na ito ipapakita ulit.",
     "copySecret": "Kopyahin ang secret",
@@ -2057,7 +2057,7 @@
     "results": {
       "delivered": "Naihatid",
       "skipped": "Nilaktawan",
-      "unreadable": "Hindi naipadala: may problema sa panig ng prepza.",
+      "unreadable": "Hindi naipadala: may problema sa panig ng testee.",
       "answered": "Sumagot ng {status}",
       "error": "Nabigo: {error}"
     },
@@ -2175,12 +2175,12 @@
     "radius": "Pag-ikot ng mga card",
     "buttonRadius": "Pag-ikot ng mga button",
     "reset": "I-reset",
-    "resetPrepza": "I-reset sa mga default ng prepza",
+    "resetTestee": "I-reset sa mga default ng testee",
     "themes": {
       "light": "Light na tema",
       "dark": "Dark na tema"
     },
-    "resetDone": "Bumalik sa mga default ng prepza",
+    "resetDone": "Bumalik sa mga default ng testee",
     "failed": "Hindi ma-save ang brand.",
     "preview": "Preview",
     "sampleTitle": "HR Manager",
@@ -2192,7 +2192,7 @@
   },
   "apiDocs": {
     "title": "Dokumentasyon para sa mga developer",
-    "description": "Ang dokumentasyon ng prepza para sa mga developer: kumuha ng API key, gumawa ng mga interview, mag-imbita at mamahala ng mga aplikante, basahin ang mga resulta nila, tanggapin ang mga ito sa webhook at i-embed ang interview gamit ang SDK.",
+    "description": "Ang dokumentasyon ng testee para sa mga developer: kumuha ng API key, gumawa ng mga interview, mag-imbita at mamahala ng mga aplikante, basahin ang mga resulta nila, tanggapin ang mga ito sa webhook at i-embed ang interview gamit ang SDK.",
     "tabs": {
       "api": "API",
       "webhooks": "Mga webhook",
@@ -2254,8 +2254,8 @@
     "deleteTitle": "Burahin ang chat na ito?",
     "deleteText": "Permanenteng mabubura ang chat at ang mga sagot nito.",
     "emptyTitle": "Hi, ako si Mira, ang iyong AI assistant",
-    "emptyText": "Mga aplikante, interview, credits, integration at kung paano gumagana ang prepza, mula sa nakikita mo sa mga kumpanya mo. Puwedeng magkamali ang AI; ang mga page na ini-link nito ang masusunod.",
-    "emptyTitleFaq": "Hi, ako si Mira, ang AI assistant ng prepza",
+    "emptyText": "Mga aplikante, interview, credits, integration at kung paano gumagana ang testee, mula sa nakikita mo sa mga kumpanya mo. Puwedeng magkamali ang AI; ang mga page na ini-link nito ang masusunod.",
+    "emptyTitleFaq": "Hi, ako si Mira, ang AI assistant ng testee",
     "pageQuestion": "Ano ang magagawa ko sa page na ito?",
     "pages": {
       "open": "Buksan",
@@ -2294,9 +2294,9 @@
     },
     "welcome": {
       "signed_out": {
-        "text": "Kung paano gumagana ang prepza, magkano ito at ano ang nakikita ng mga aplikante, na sinasagot mula sa FAQ ng prepza. Mag-sign in para magtanong tungkol sa mga kumpanya at aplikante mo.",
+        "text": "Kung paano gumagana ang testee, magkano ito at ano ang nakikita ng mga aplikante, na sinasagot mula sa FAQ ng testee. Mag-sign in para magtanong tungkol sa mga kumpanya at aplikante mo.",
         "questions": {
-          "what": "Ano ang prepza?",
+          "what": "Ano ang testee?",
           "pricing": "Magkano ito?",
           "takeTest": "Paano kumukuha ng test ang mga aplikante?",
           "account": "Kailangan ba ng account ng mga aplikante?"
@@ -2471,7 +2471,7 @@
       "chargeback_reversed": "Binawing chargeback",
       "referral": "Referral reward",
       "referral_reversed": "Binawing referral reward",
-      "adjustment": "Adjustment ng prepza"
+      "adjustment": "Adjustment ng testee"
     },
     "automatic": "Awtomatikong top-up",
     "invoice": "Invoice",
@@ -2482,16 +2482,16 @@
   },
   "aiApps": {
     "name": "MCP server",
-    "rowText": "Ikonekta ang Claude, ChatGPT at iba pang AI app sa prepza.",
+    "rowText": "Ikonekta ang Claude, ChatGPT at iba pang AI app sa testee.",
     "title": "Mga AI app",
     "subtitle": "Kumikilos sila bilang ikaw, sa bawat kumpanyang kasali ka, gamit ang mga pahintulot mo.",
-    "instructionsTitle": "Ikonekta ang isang AI app sa prepza",
+    "instructionsTitle": "Ikonekta ang isang AI app sa testee",
     "serverTitle": "Address ng server",
     "serverText": "I-paste ito sa AI app mo bilang custom connector (isang MCP server).",
     "addTo": "Idagdag ito sa <app>{name}</app>",
     "claudeOpen": "Sa Claude, buksan ang:",
     "claudePaste": "Pangalanan itong {name}, i-paste ang address ng server at piliin ang “Add”.",
-    "allowOnPrepza": "Piliin ang “Connect”, pagkatapos ay “Payagan” sa page ng prepza na magbubukas.",
+    "allowOnTestee": "Piliin ang “Connect”, pagkatapos ay “Payagan” sa page ng testee na magbubukas.",
     "claudeCode": "Sa Claude Code, patakbuhin ang:",
     "copyCommand": "Kopyahin ang command",
     "commandCopied": "Nakopya ang command",
@@ -2504,7 +2504,7 @@
     "lastUsed": "huling ginamit noong <time>{date}</time>",
     "neverUsed": "hindi pa nagagamit",
     "disconnectTitle": "I-disconnect ang <bdi>{client}</bdi>?",
-    "disconnectText": "Hihinto ang <bdi>{client}</bdi> sa paggana sa prepza hanggang i-connect mo ulit ito.",
+    "disconnectText": "Hihinto ang <bdi>{client}</bdi> sa paggana sa testee hanggang i-connect mo ulit ito.",
     "disconnectFailed": "Hindi ma-disconnect ang app. Pakisubukang muli.",
     "allowTitle": "Payagan ang mga AI app sa kumpanyang ito",
     "allowText": "Magagamit ng mga miyembro ang mga interview at aplikante ng kumpanyang ito sa mga AI app na ikinonekta nila. Kapag naka-off, walang mababasa o mababago ang mga AI app dito.",
@@ -2512,22 +2512,22 @@
   },
   "connect": {
     "pageTitle": "Ikonekta ang isang AI app",
-    "title": "Ikonekta ang <name><bdi>{client}</bdi></name> sa prepza",
-    "titleAny": "Ikonekta ang isang AI app sa prepza",
-    "signInText": "Mag-sign in para piliin kung puwede nitong gamitin ang prepza account mo.",
+    "title": "Ikonekta ang <name><bdi>{client}</bdi></name> sa testee",
+    "titleAny": "Ikonekta ang isang AI app sa testee",
+    "signInText": "Mag-sign in para piliin kung puwede nitong gamitin ang testee account mo.",
     "signIn": "Mag-sign in para magpatuloy",
-    "who": "Gustong gamitin ng <bdi>{client}</bdi> (<bdi>{host}</bdi>) ang prepza account mo, <bdi>{email}</bdi>.",
+    "who": "Gustong gamitin ng <bdi>{client}</bdi> (<bdi>{host}</bdi>) ang testee account mo, <bdi>{email}</bdi>.",
     "canTitle": "Kaya nitong",
     "canRead": "Basahin ang mga kumpanya, interview at resulta ng mga aplikante mo.",
     "canChange": "Gawin ang mga pagbabagong hinihiling mo. Karamihan sa mga AI app ay humihingi muna ng kumpirmasyon mo.",
     "canShare": "Ipasa ang nababasa nito sa provider ng app, ayon sa mga tuntunin ng app na iyon.",
     "cantTitle": "Hindi nito kayang",
-    "cantChange": "Baguhin ang anuman sa prepza.",
+    "cantChange": "Baguhin ang anuman sa testee.",
     "cantSecrets": "Makita ang password o mga API key mo.",
     "cantDelete": "Burahin ang account mo o ang isang kumpanya.",
     "changesTitle": "Payagan ang mga pagbabago",
     "changesText": "I-off para makapagbasa lang ito.",
-    "unknown": "Hindi kilala ng prepza ang app na ito. Payagan lang ito kung ikaw mismo ang nagsimulang mag-connect nito.",
+    "unknown": "Hindi kilala ng testee ang app na ito. Payagan lang ito kung ikaw mismo ang nagsimulang mag-connect nito.",
     "deny": "Tanggihan",
     "allow": "Payagan",
     "footnote": "I-disconnect ito anumang oras sa Mga integration → Mga AI app ng isang kumpanya.",
@@ -2536,8 +2536,8 @@
   },
   "accessibility": {
     "title": "Accessibility",
-    "description": "Paano gumagana ang prepza para sa mga taong may kapansanan, ano pa ang kulang, at paano kami sasabihan.",
-    "intro": "Gusto naming magamit ng lahat ang prepza: para kumuha ng interview na ipinadala sa iyo ng isang kumpanya, para mag-practice, at para patakbuhin ang hiring ng isang kumpanya. Layunin naming maabot ang level AA ng Web Content Accessibility Guidelines (WCAG) 2.2.",
+    "description": "Paano gumagana ang testee para sa mga taong may kapansanan, ano pa ang kulang, at paano kami sasabihan.",
+    "intro": "Gusto naming magamit ng lahat ang testee: para kumuha ng interview na ipinadala sa iyo ng isang kumpanya, para mag-practice, at para patakbuhin ang hiring ng isang kumpanya. Layunin naming maabot ang level AA ng Web Content Accessibility Guidelines (WCAG) 2.2.",
     "done": {
       "title": "Ang ginagawa namin",
       "themes": "Light at dark na tema: ang setting ng device mo bilang default, o light o dark kung pipili ka ng isa.",
@@ -2551,24 +2551,24 @@
     "limits": {
       "title": "Ang kulang pa",
       "timed": "May takdang oras ang mga tanong sa interview, ayon sa hinihingi ng assessment ng kumpanya. Kung kailangan mo ng mas maraming oras, humingi ng dagdag na oras sa kumpanya bago ka magsimula.",
-      "audit": "Hindi pa independiyenteng na-audit ang prepza, kaya maaaring may mga bahaging hindi pa umaabot sa WCAG 2.2 AA.",
+      "audit": "Hindi pa independiyenteng na-audit ang testee, kaya maaaring may mga bahaging hindi pa umaabot sa WCAG 2.2 AA.",
       "providers": "Ang pagbabayad para sa credits (checkout ng Paddle) at ang “Hindi ako robot” na check (Cloudflare Turnstile) ay pinapatakbo ng mga provider na iyon, ayon sa sarili nilang accessibility."
     },
     "feedback": {
       "title": "Sabihin sa amin",
-      "text": "Kung may bagay sa prepza na mahirap mong gamitin, o kailangan mo ito sa ibang anyo, sumulat sa <email></email>. Sumasagot kami sa loob ng 14 na araw.",
+      "text": "Kung may bagay sa testee na mahirap mong gamitin, o kailangan mo ito sa ibang anyo, sumulat sa <email></email>. Sumasagot kami sa loob ng 14 na araw.",
       "authority": "Kung hindi ka kuntento sa sagot namin, puwede kang makipag-ugnayan sa Consumer Protection and Technical Regulatory Authority ng Estonia (TTJA)."
     },
     "reviewed": "Huling sinuri: <time>{date}</time>."
   },
   "trust": {
     "title": "Tiwala at seguridad",
-    "description": "Kung paano pinananatiling ligtas at pribado ng prepza ang data sa hiring: hosting sa EU, mga sub-processor, retention, at ang ibinibigay namin para sa GDPR, EU AI Act, UK at US.",
-    "intro": "Ang ginagawa ng prepza para panatilihing ligtas ang data mo at ng iyong mga aplikante, kung saan ito naka-store, sino ang nagpoproseso nito, gaano katagal ito iniingatan, at ang ibinibigay namin sa mga kumpanya para sa mga batas sa hiring na sinusunod nila.",
+    "description": "Kung paano pinananatiling ligtas at pribado ng testee ang data sa hiring: hosting sa EU, mga sub-processor, retention, at ang ibinibigay namin para sa GDPR, EU AI Act, UK at US.",
+    "intro": "Ang ginagawa ng testee para panatilihing ligtas ang data mo at ng iyong mga aplikante, kung saan ito naka-store, sino ang nagpoproseso nito, gaano katagal ito iniingatan, at ang ibinibigay namin sa mga kumpanya para sa mga batas sa hiring na sinusunod nila.",
     "security": {
       "title": "Seguridad",
-      "signIn": "Nagsa-sign in ka gamit ang Google, LinkedIn o GitHub sa pamamagitan ng Firebase Authentication, kaya walang password na sine-save ang prepza. Sinusuri sa server ang sign-in ng bawat request.",
-      "encryption": "Naka-encrypt ang data habang ipinapadala (TLS 1.2 o mas bago) at habang naka-store. Naka-encrypt na sine-save ang mga key at token na ikinokonekta ng isang kumpanya (ang applicant tracking system nito, Slack, mga webhook), at ang mga prepza API key ay bilang one-way hash lang.",
+      "signIn": "Nagsa-sign in ka gamit ang Google, LinkedIn o GitHub sa pamamagitan ng Firebase Authentication, kaya walang password na sine-save ang testee. Sinusuri sa server ang sign-in ng bawat request.",
+      "encryption": "Naka-encrypt ang data habang ipinapadala (TLS 1.2 o mas bago) at habang naka-store. Naka-encrypt na sine-save ang mga key at token na ikinokonekta ng isang kumpanya (ang applicant tracking system nito, Slack, mga webhook), at ang mga testee API key ay bilang one-way hash lang.",
       "access": "Sinusuri ang bawat request batay sa kumpanya at sa role ng taong gumagawa nito. Sariling database lang ang naaabot ng bawat serbisyo, at naka-sign ang mga tawag sa pagitan ng mga serbisyo.",
       "limits": "Pinoprotektahan ng mga rate limit ang bawat aksyong may gastos o puwedeng abusuhin, at binabantayan ng “Hindi ako robot” na check ang mga pampublikong form, mga link ng job ad at ang paggawa ng unang kumpanya.",
       "logs": "Walang email address sa mga error report, at sandali lang iniingatan ang mga server log.",
@@ -2578,29 +2578,29 @@
     },
     "privacy": {
       "title": "Privacy",
-      "roles": "Ang prepza ang controller ng mga account ng mga taong gumagamit nito, at processor ng data ng mga aplikante, na pag-aari ng kumpanyang nag-iimbita sa kanila.",
+      "roles": "Ang testee ang controller ng mga account ng mga taong gumagamit nito, at processor ng data ng mga aplikante, na pag-aari ng kumpanyang nag-iimbita sa kanila.",
       "noSelling": "Hindi kami nagbebenta ng personal na data o nagbabahagi nito para sa advertising. Walang advertising o analytics cookie.",
-      "noInference": "Walang kinokolektang data ang prepza tungkol sa kasarian, edad, pinagmulan o kapansanan ng mga aplikante, at wala itong hinihinuha na ganoon.",
+      "noInference": "Walang kinokolektang data ang testee tungkol sa kasarian, edad, pinagmulan o kapansanan ng mga aplikante, at wala itong hinihinuha na ganoon.",
       "voice": "Sa voice mode, ginagawang text ang binigkas na sagot ng aplikante at itinutugma sa mga opsyon, at sinasabi sa kanya at ipinapakita sa screen ang opsyong natugma; kinukumpirma muna ang pagpili ng ilang opsyon. Hindi nire-record o sine-save ang kanyang pananalita, at hindi sinusuri ang boses sa anumang ibang paraan.",
       "ai": "Ang OpenAI, na sumusulat ng mga tanong, ay sinabihang huwag i-store ang natatanggap nito; iniingatan nito ang data nang hanggang 30 araw lang, para lang tingnan kung may pang-aabuso, at hindi ito ginagamit para i-train ang mga model nito.",
       "rights": "Kahit sino ay puwedeng mag-download o magbura ng sarili niyang data sa Mga setting, nang hindi na sumusulat sa amin."
     },
     "compliance": {
       "title": "Compliance",
-      "aiAct": "Sa ilalim ng EU AI Act, itinuturing ang prepza na high-risk AI system, na ang mga tungkulin ay nalalapat mula <time>{date}</time>. Ang aming mga tagubilin para sa mga kumpanya ang mga instructions for use nito.",
-      "humanReview": "Walang desisyong ginagawa ang prepza tungkol sa isang aplikante: ang mga tao sa kumpanya ang nagsusuri ng mga resulta at nagpapasya, at puwedeng humiling ang mga aplikante na suriin ng isang tao ang kanilang resulta.",
-      "dpa": "Bahagi ng mga tuntunin ang data processing agreement, at walang kailangang pirmahan. Saklaw nito ang GDPR, ang UK GDPR at ang mga batas sa privacy ng mga estado ng US gaya ng sa California, kung saan ang prepza ang service provider ng kumpanya.",
+      "aiAct": "Sa ilalim ng EU AI Act, itinuturing ang testee na high-risk AI system, na ang mga tungkulin ay nalalapat mula <time>{date}</time>. Ang aming mga tagubilin para sa mga kumpanya ang mga instructions for use nito.",
+      "humanReview": "Walang desisyong ginagawa ang testee tungkol sa isang aplikante: ang mga tao sa kumpanya ang nagsusuri ng mga resulta at nagpapasya, at puwedeng humiling ang mga aplikante na suriin ng isang tao ang kanilang resulta.",
+      "dpa": "Bahagi ng mga tuntunin ang data processing agreement, at walang kailangang pirmahan. Saklaw nito ang GDPR, ang UK GDPR at ang mga batas sa privacy ng mga estado ng US gaya ng sa California, kung saan ang testee ang service provider ng kumpanya.",
       "documents": "Nakakatanggap ang mga kumpanya ng <link>mga instructions for use, template ng DPIA at mga template ng abiso sa aplikante</link>, na may mga bersyon para sa New York City, Illinois at Colorado.",
-      "nyc": "New York City: bago gamitin ang prepza para sa isang posisyon doon, ginagawa ng employer ang hinihingi sa kanya ng Local Law 144: isang independiyenteng bias audit sa loob ng isang taon bago ang paggamit, ang paglalathala ng buod nito, at abiso sa mga aplikante nang hindi bababa sa 10 business day bago sila i-assess. Ang sariling independiyenteng bias audit ng prepza ay gagawin bago ang <time>{date}</time>, at taon-taon pagkatapos noon."
+      "nyc": "New York City: bago gamitin ang testee para sa isang posisyon doon, ginagawa ng employer ang hinihingi sa kanya ng Local Law 144: isang independiyenteng bias audit sa loob ng isang taon bago ang paggamit, ang paglalathala ng buod nito, at abiso sa mga aplikante nang hindi bababa sa 10 business day bago sila i-assess. Ang sariling independiyenteng bias audit ng testee ay gagawin bago ang <time>{date}</time>, at taon-taon pagkatapos noon."
     },
     "residency": {
       "title": "Kung saan naka-store ang data",
-      "storage": "Tumatakbo ang prepza sa Google Cloud sa EU, sa Belgium, kung saan naka-store ang database nito. Ang mga rate-limit counter ay nasa Upstash, sa Belgium din, at ipinapadala ang mga email sa pamamagitan ng Resend sa Ireland.",
+      "storage": "Tumatakbo ang testee sa Google Cloud sa EU, sa Belgium, kung saan naka-store ang database nito. Ang mga rate-limit counter ay nasa Upstash, sa Belgium din, at ipinapadala ang mga email sa pamamagitan ng Resend sa Ireland.",
       "transfers": "Tatlong provider ang humahawak ng data sa United States: ang Google para sa sign-in, ang OpenAI, at ang Cloudflare para sa “Hindi ako robot” na check. Saklaw ang mga paglilipat na ito ng EU-US Data Privacy Framework o ng standard contractual clauses ng European Commission, at para sa UK, ng UK Extension at ng UK International Data Transfer Addendum."
     },
     "subprocessors": {
       "title": "Mga sub-processor",
-      "intro": "Ang mga provider na nagpoproseso ng data para sa prepza, ayon sa listahan ng <link>data processing agreement</link>:",
+      "intro": "Ang mga provider na nagpoproseso ng data para sa testee, ayon sa listahan ng <link>data processing agreement</link>:",
       "changes": "Ine-email namin ang mga may-ari at admin ng mga kumpanya nang hindi bababa sa 14 na araw bago magdagdag ng bagong sub-processor."
     },
     "retention": {
@@ -2617,7 +2617,7 @@
     },
     "accessibility": {
       "title": "Accessibility",
-      "text": "Layunin ng prepza na maabot ang level AA ng Web Content Accessibility Guidelines (WCAG) 2.2. Sinasabi ng aming <link>accessibility statement</link> kung ano ang gumagana, ano ang kulang pa, at kung paano kami sasabihan."
+      "text": "Layunin ng testee na maabot ang level AA ng Web Content Accessibility Guidelines (WCAG) 2.2. Sinasabi ng aming <link>accessibility statement</link> kung ano ang gumagana, ano ang kulang pa, at kung paano kami sasabihan."
     },
     "links": {
       "title": "Mga legal na dokumento",
@@ -2635,7 +2635,7 @@
     "open": "Bias audit export",
     "title": "Mag-export para sa bias audit",
     "description": "Isang CSV file ng bawat aplikanteng natapos: ang kanilang grade, ang passing grade, kung pumasa sila at kung lampas sa median ang score nila. Mula rito kinukuwenta ng iyong independiyenteng auditor ang mga rate at impact ratio.",
-    "privacy": "Walang data ang prepza tungkol sa kasarian, lahi o etnisidad. Idagdag ang mga sariling sagot ng iyong mga aplikante batay sa kanilang email, saka alisin ang column ng email bago mo ibahagi ang file.",
+    "privacy": "Walang data ang testee tungkol sa kasarian, lahi o etnisidad. Idagdag ang mga sariling sagot ng iyong mga aplikante batay sa kanilang email, saka alisin ang column ng email bago mo ibahagi ang file.",
     "interview": "Interview",
     "allInterviews": "Lahat ng interview",
     "download": "I-download ang CSV",
@@ -2744,7 +2744,7 @@
   },
   "featuresPage": {
     "title": "Mga feature: AI interview para sa hiring, mula umpisa hanggang dulo",
-    "description": "Lahat ng feature ng prepza: interview mula sa job description, click at voice mode, mga integrity flag, report, integration sa ATS at API, at compliance.",
+    "description": "Lahat ng feature ng testee: interview mula sa job description, click at voice mode, mga integrity flag, report, integration sa ATS at API, at compliance.",
     "hero": {
       "title": "Mula sa job description\nhanggang sa tamang hire",
       "text": "Isang timed interview na ginawa para sa role mo, mga aplikante mula kahit saan, at malinaw na makikita kung sino ang pinakamagaling. Kasama ang lahat ng feature.",
@@ -2781,7 +2781,7 @@
       },
       "decide": {
         "title": "Tingnan kung sino ang pinakamagaling",
-        "text": "Grade, bawat sagot at mga integrity flag para sa bawat aplikante. Tao ang nagpapasya; ipinapakita ng prepza kung ano ang dapat tingnan."
+        "text": "Grade, bawat sagot at mga integrity flag para sa bawat aplikante. Tao ang nagpapasya; ipinapakita ng testee kung ano ang dapat tingnan."
       },
       "connect": {
         "title": "Gumagana kasama ng mga tool mo",
@@ -2829,7 +2829,7 @@
       },
       "brand": {
         "title": "Ang brand mo, hindi amin",
-        "text": "Itakda ang logo mo, mga kulay para sa light at dark, mga font at mga sulok, na may live preview. Ang kumpanya mo lang ang nakikita ng mga aplikante, walang header o footer ng prepza.",
+        "text": "Itakda ang logo mo, mga kulay para sa light at dark, mga font at mga sulok, na may live preview. Ang kumpanya mo lang ang nakikita ng mga aplikante, walang header o footer ng testee.",
         "alt": "Ang tab ng brand: ang logo, mga font at mga sulok, na may live preview ng interview."
       },
       "candidates": {
@@ -2844,7 +2844,7 @@
       },
       "share": {
         "title": "I-share ang mga report sa ilang segundo",
-        "text": "Mag-download ng PDF para sa isang aplikante o sa buong interview, i-email ito mula sa prepza, o magpadala ng maikling buod sa messaging app.",
+        "text": "Mag-download ng PDF para sa isang aplikante o sa buong interview, i-email ito mula sa testee, o magpadala ng maikling buod sa messaging app.",
         "alt": "Ang share dialog para sa report ng isang aplikante: isang email address na padadalhan ng PDF, o isang buod sa WhatsApp, Telegram, Viber o LINE."
       },
       "notes": {
@@ -2899,7 +2899,7 @@
       "atsList": "Workable, Greenhouse, Teamtailor, Recruitee at Breezy HR",
       "results": "Awtomatikong naiimbitahan ang mga aplikante, ibinabalik ang mga resulta",
       "docs": "Dokumentasyon para sa developer ng API, mga webhook, SDK at MCP",
-      "noInference": "Hindi kailanman nagtatanong o nanghuhula ang prepza ng mga katangiang protektado ng batas",
+      "noInference": "Hindi kailanman nagtatanong o nanghuhula ang testee ng mga katangiang protektado ng batas",
       "owner": "Ang may-ari lang ang nakakapag-export, at nakatala ito sa log ng aksyon",
       "askTime": "Sinasabihan ang sinumang nangangailangan ng mas maraming oras na magtanong bago magsimula",
       "peopleDecide": "Sinasabihan na mga tao sa kumpanya mo ang nagrerebyu ng resulta at nagpapasya",

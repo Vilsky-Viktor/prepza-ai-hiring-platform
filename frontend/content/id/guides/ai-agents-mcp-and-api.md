@@ -1,7 +1,7 @@
 ---
 title: "Agen AI, MCP, dan API: apa itu dan cara memakainya dalam rekrutmen"
 seoTitle: "Agen AI, MCP, dan API dalam Rekrutmen: Cara Memakainya"
-description: "Apa itu agen AI, MCP, dan API, cara memakainya dengan aman di rekrutmen, dan cara menjalankan prepza dari asisten AI-nya, Claude, ChatGPT, atau platformmu."
+description: "Apa itu agen AI, MCP, dan API, cara memakainya dengan aman di rekrutmen, dan cara menjalankan testee dari asisten AI-nya, Claude, ChatGPT, atau platformmu."
 updated: "2026-10-22"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-22"
 
 Kebanyakan orang pertama kali mengenal AI sebagai jendela chat: kamu bertanya, AI menjawab. Agen AI melangkah lebih jauh. Agen bisa mencari informasi di alat-alat yang kamu pakai dan, saat kamu memintanya, melakukan sesuatu di sana: membuat wawancara, mengundang sederet kandidat, memberi tahu siapa yang nilainya tertinggi minggu lalu. Model Context Protocol (MCP) adalah standar yang memungkinkan chat AI yang sudah kamu pakai, seperti Claude atau ChatGPT, terhubung ke alat-alat seperti itu. Sementara API adalah cara yang lebih lama dan lebih presisi bagi satu perangkat lunak untuk berkomunikasi dengan perangkat lunak lain, tanpa AI di tengahnya.
 
-Panduan ini menjelaskan ketiganya dengan bahasa sederhana: apa gunanya dalam rekrutmen, apa yang perlu diwaspadai, dan cara memakainya bersama prepza.
+Panduan ini menjelaskan ketiganya dengan bahasa sederhana: apa gunanya dalam rekrutmen, apa yang perlu diwaspadai, dan cara memakainya bersama testee.
 
 ## Apa itu agen AI
 
@@ -42,10 +42,10 @@ API (application programming interface) adalah sekumpulan permintaan tetap yang 
 
 | | Mira, asisten AI (di aplikasi) | MCP (di Claude atau ChatGPT) | API |
 | --- | --- | --- | --- |
-| Siapa yang memakainya | Kamu, di prepza | Kamu, di chat AI-mu | Kode platformmu |
+| Siapa yang memakainya | Kamu, di testee | Kamu, di chat AI-mu | Kode platformmu |
 | Cara meminta | Dengan kata-katamu sendiri | Dengan kata-katamu sendiri | Permintaan tetap yang ditulis developer |
 | Siapa yang menyetujui perubahan | Kamu, di sebuah kartu | Kamu, di aplikasi AI-mu | Kodemu, sesuai yang ditulis |
-| Paling cocok untuk | Pertanyaan dan tugas singkat | Menggabungkan prepza dengan alat dan file lainnya | Otomatisasi yang berjalan tanpa ada yang mengawasi |
+| Paling cocok untuk | Pertanyaan dan tugas singkat | Menggabungkan testee dengan alat dan file lainnya | Otomatisasi yang berjalan tanpa ada yang mengawasi |
 | Masuk sebagai | Kamu | Kamu | Kunci perusahaan |
 
 Pakai Mira atau MCP saat ada orang yang terlibat langsung. Pakai API saat sistemmu sendiri perlu mengundang kandidat dan mengumpulkan hasil secara mandiri, misalnya dari situs karier atau alat HR internal.
@@ -57,7 +57,7 @@ Rekrutmen terdiri dari banyak langkah kecil yang berulang dan tersebar di berbag
 - **Pertanyaan tentang pipeline-mu.** "Kandidat Senior Backend mana yang lulus minggu ini?", "Siapa yang belum memulai wawancaranya?", "Berapa rata-rata nilai kita untuk posisi data analyst?"
 - **Menyiapkan sesuatu.** "Buat wawancara dari deskripsi pekerjaan ini", "Atur batas lulus ke 70%", "Beri kandidat ini tambahan waktu 50%."
 - **Pekerjaan massal.** "Undang 12 orang ini ke wawancara frontend", langsung ditempel dari email atau spreadsheet.
-- **Menggabungkan sumber.** Di Claude atau ChatGPT, kamu bisa memadukan prepza dengan alat dan file lain yang terhubung: membandingkan deskripsi pekerjaan di dokumenmu dengan topik wawancara, atau menyusun draf pesan untuk kandidat yang masuk shortlist.
+- **Menggabungkan sumber.** Di Claude atau ChatGPT, kamu bisa memadukan testee dengan alat dan file lain yang terhubung: membandingkan deskripsi pekerjaan di dokumenmu dengan topik wawancara, atau menyusun draf pesan untuk kandidat yang masuk shortlist.
 
 Yang tidak boleh dilakukannya adalah membuat keputusan rekrutmen. Nilai mendukung penilaian seseorang, bukan menggantikannya. Mintalah agen untuk mengurutkan, merangkum, dan menyiapkan, dan biarkan keputusan tetap di tangan manusia. Lihat [Apakah rekrutmen dengan AI legal di UE?](/guides/is-ai-hiring-legal-in-the-eu) untuk alasan mengapa hal itu juga penting secara hukum.
 
@@ -77,29 +77,29 @@ Menghubungkan AI ke data rekrutmenmu perlu kehati-hatian yang sama seperti membe
 
 Sebelum menghubungkan aplikasi AI apa pun ke data kerja, cek kebijakan perusahaanmu tentang alat AI, dan beri tahu kandidat di pemberitahuan privasimu layanan apa saja yang memproses data mereka.
 
-## Tiga cara bekerja dengan prepza di luar halamannya
+## Tiga cara bekerja dengan testee di luar halamannya
 
 ### 1. Mira, asisten AI bawaan
 
-Pilih **tanya Mira** di header halaman mana pun. Mira, asisten AI prepza, mengenal perusahaan, wawancara, kandidat, kredit, dan integrasimu, serta cara kerja prepza. Ia menjawab dalam bahasamu, dan kamu bisa mengetik atau berbicara.
+Pilih **tanya Mira** di header halaman mana pun. Mira, asisten AI testee, mengenal perusahaan, wawancara, kandidat, kredit, dan integrasimu, serta cara kerja testee. Ia menjawab dalam bahasamu, dan kamu bisa mengetik atau berbicara.
 
 - **Ia menjawab dari datamu**, dengan akses yang sama seperti kamu: admin melihat apa yang dilihat admin, pelihat melihat apa yang dilihat pelihat.
 - **Ia tahu halaman yang sedang kamu buka.** Tanyakan "Apa yang bisa saya lakukan di halaman ini?" untuk panduan halaman itu, atau "Siapa yang terbaik di sini?" di kandidat sebuah wawancara, dan ia menjawab tentang wawancara itu tanpa bertanya yang mana.
 - **Ia menyiapkan perubahan, kamu yang mengonfirmasi.** Saat diminta mengundang kandidat, ia menampilkan kartu berisi persis apa yang akan terjadi, misalnya "Undang 12 kandidat ke Backend developer". Tidak ada yang dijalankan sampai kamu memilih konfirmasi.
 - **Ia menunjukkan sumbernya.** Di bawah jawaban, kamu melihat kandidat atau wawancara yang dipakainya dan tautan ke halaman asalnya.
-- **Ia tetap pada topik.** Ia menjawab tentang prepza dan rekrutmen dengan prepza, dan menolak hal lainnya.
+- **Ia tetap pada topik.** Ia menjawab tentang testee dan rekrutmen dengan testee, dan menolak hal lainnya.
 
-### 2. prepza di Claude atau ChatGPT, lewat MCP
+### 2. testee di Claude atau ChatGPT, lewat MCP
 
-Kalau kamu sudah bekerja di Claude atau ChatGPT, kamu bisa membawa prepza ke sana. Server MCP prepza menyediakan alat yang sama dengan Mira, asisten bawaan.
+Kalau kamu sudah bekerja di Claude atau ChatGPT, kamu bisa membawa testee ke sana. Server MCP testee menyediakan alat yang sama dengan Mira, asisten bawaan.
 
 **Cara menghubungkan:**
 
-1. Di prepza, buka tab **Integrasi** sebuah perusahaan dan pilih **Aplikasi AI**. Salin alamat servernya: `https://prepza.ai/mcp`.
-2. **Di Claude:** buka Settings, lalu Connectors, dan tambahkan custom connector dengan alamat itu. **Di Claude Code:** jalankan `claude mcp add --transport http prepza https://prepza.ai/mcp`. **Di ChatGPT:** tambahkan sebagai custom connector di pengaturan aplikasi dan konektornya.
-3. Aplikasi AI-mu membuka halaman masuk prepza. Masuk, cek aplikasi mana yang meminta akses, lalu pilih **Izinkan**. Agar aplikasi ini hanya bisa membaca, matikan dulu **Izinkan perubahan**.
+1. Di testee, buka tab **Integrasi** sebuah perusahaan dan pilih **Aplikasi AI**. Salin alamat servernya: `https://testee.ai/mcp`.
+2. **Di Claude:** buka Settings, lalu Connectors, dan tambahkan custom connector dengan alamat itu. **Di Claude Code:** jalankan `claude mcp add --transport http testee https://testee.ai/mcp`. **Di ChatGPT:** tambahkan sebagai custom connector di pengaturan aplikasi dan konektornya.
+3. Aplikasi AI-mu membuka halaman masuk testee. Masuk, cek aplikasi mana yang meminta akses, lalu pilih **Izinkan**. Agar aplikasi ini hanya bisa membaca, matikan dulu **Izinkan perubahan**.
 
-Setelah itu, bertanyalah di chat seperti kamu bertanya kepada rekan kerja: "Di prepza, siapa tiga kandidat teratas untuk Product designer?" Sebagian besar aplikasi AI bertanya kepadamu sebelum melakukan perubahan, dan memperingatkanmu sebelum melakukan apa pun yang tidak bisa dibatalkan: prepza memberi tahu aplikasi tersebut tindakan mana yang mengubah atau menghapus sesuatu.
+Setelah itu, bertanyalah di chat seperti kamu bertanya kepada rekan kerja: "Di testee, siapa tiga kandidat teratas untuk Product designer?" Sebagian besar aplikasi AI bertanya kepadamu sebelum melakukan perubahan, dan memperingatkanmu sebelum melakukan apa pun yang tidak bisa dibatalkan: testee memberi tahu aplikasi tersebut tindakan mana yang mengubah atau menghapus sesuatu.
 
 **Yang tetap sama seperti di aplikasi:**
 
@@ -115,13 +115,13 @@ Setelah itu, bertanyalah di chat seperti kamu bertanya kepada rekan kerja: "Di p
 
 ### 3. Platformmu sendiri, lewat API
 
-Untuk otomatisasi tanpa AI, prepza punya API, yang dijelaskan di [dokumentasi pengembang](/api-docs)-nya.
+Untuk otomatisasi tanpa AI, testee punya API, yang dijelaskan di [dokumentasi pengembang](/api-docs)-nya.
 
 1. Pemilik atau admin membuka tab **Integrasi** sebuah perusahaan, lalu **API**, dan memilih **Kunci baru**. Beri nama sesuai platform yang akan memakainya, pilih kapan kunci itu kedaluwarsa, dan centang hanya yang dibutuhkannya: kunci dasbor hanya membaca, kunci situs karier juga mengundang. Hak akses bisa ditambah atau dikurangi nanti. Kunci hanya ditampilkan sekali; simpan di tempat yang aman.
 2. Platformmu mengirim permintaan dengan kunci itu: menampilkan daftar wawancara perusahaan, menampilkan daftar atau membaca kandidat beserta nilainya, lulus atau tidak, dan tanda integritasnya, serta mengundang kandidat.
-3. Tambahkan **webhook**: alamat di platformmu yang dipanggil prepza, dengan tanda tangan, saat kandidat mulai, selesai, atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap, sehingga kamu tidak perlu terus-menerus bertanya. Halaman API dapat mengirim event uji ke webhook ini dan menampilkan log pengirimannya.
+3. Tambahkan **webhook**: alamat di platformmu yang dipanggil testee, dengan tanda tangan, saat kandidat mulai, selesai, atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap, sehingga kamu tidak perlu terus-menerus bertanya. Halaman API dapat mengirim event uji ke webhook ini dan menampilkan log pengirimannya.
 
-Setiap kandidat dilengkapi tautan ke hasil lengkapnya di prepza dan, sampai ia selesai, tautan undangannya sendiri, sehingga platformmu bisa mengirimkannya lewat pesannya sendiri jika kamu mau. Jika platformmu sudah tahu siapa kandidatnya, undang ia tanpa login: prepza tidak mengirim email apa pun, dan kandidat mengikuti wawancara dari tautan itu tanpa login ke prepza, jadi kirim tautannya hanya kepadanya. Undangan juga bisa membawa kandidat kembali ke situsmu (alamat https apa pun) lewat tombol di halaman selesai, dan mengatur tema terang atau gelap dengan warna perusahaanmu. Dengan SDK prepza, halamanmu sendiri bisa menampilkan wawancaranya langsung, tetapi hanya di situs yang diizinkan perusahaanmu di halaman API-nya. API dan webhook tidak bergantung pada situs-situs itu: sebagai gantinya, setiap kunci bisa dibatasi ke alamat IP servermu. Verifikasi hanya menambahkan lencana perusahaan terverifikasi.
+Setiap kandidat dilengkapi tautan ke hasil lengkapnya di testee dan, sampai ia selesai, tautan undangannya sendiri, sehingga platformmu bisa mengirimkannya lewat pesannya sendiri jika kamu mau. Jika platformmu sudah tahu siapa kandidatnya, undang ia tanpa login: testee tidak mengirim email apa pun, dan kandidat mengikuti wawancara dari tautan itu tanpa login ke testee, jadi kirim tautannya hanya kepadanya. Undangan juga bisa membawa kandidat kembali ke situsmu (alamat https apa pun) lewat tombol di halaman selesai, dan mengatur tema terang atau gelap dengan warna perusahaanmu. Dengan SDK testee, halamanmu sendiri bisa menampilkan wawancaranya langsung, tetapi hanya di situs yang diizinkan perusahaanmu di halaman API-nya. API dan webhook tidak bergantung pada situs-situs itu: sebagai gantinya, setiap kunci bisa dibatasi ke alamat IP servermu. Verifikasi hanya menambahkan lencana perusahaan terverifikasi.
 
 Aturannya sama seperti di tempat lain: nilai mendukung keputusan seseorang, jadi jangan menolak kandidat secara otomatis berdasarkan nilai itu.
 
@@ -131,18 +131,18 @@ Mulailah dari siapa yang mengerjakannya dan seberapa sering.
 
 | Situasimu | Pakai |
 | --- | --- |
-| Kamu sedang di prepza dan ingin jawaban cepat: siapa yang lulus, siapa yang belum mulai, berapa kredit yang tersisa | Mira, asisten bawaan |
+| Kamu sedang di testee dan ingin jawaban cepat: siapa yang lulus, siapa yang belum mulai, berapa kredit yang tersisa | Mira, asisten bawaan |
 | Kamu ingin menyiapkan sesuatu dengan beberapa kata: wawancara dari deskripsi pekerjaan, batas lulus, tambahan waktu | Mira, asisten bawaan |
-| Kamu sudah bekerja di Claude atau ChatGPT seharian dan ingin prepza ada di sana juga | MCP |
-| Tugasnya butuh prepza plus hal lain: dokumenmu, draf email, alat lain yang terhubung | MCP |
+| Kamu sudah bekerja di Claude atau ChatGPT seharian dan ingin testee ada di sana juga | MCP |
+| Tugasnya butuh testee plus hal lain: dokumenmu, draf email, alat lain yang terhubung | MCP |
 | Rekruter yang sedang di perjalanan ingin mengecek pipeline dari aplikasi AI di ponselnya | MCP |
 | Situs karier atau sistem HR-mu perlu mengundang kandidat sendiri, tanpa ada yang mengklik | API |
 | Hasil perlu masuk ke database atau dasbormu sendiri begitu kandidat selesai | API, dengan webhook |
-| ATS-mu termasuk yang terhubung dengan prepza (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Bukan salah satunya: hubungkan ATS di tab Integrasi. Lihat [Cara menghubungkan tes keterampilan ke ATS-mu](/guides/ats-integration-skills-tests) |
+| ATS-mu termasuk yang terhubung dengan testee (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Bukan salah satunya: hubungkan ATS di tab Integrasi. Lihat [Cara menghubungkan tes keterampilan ke ATS-mu](/guides/ats-integration-skills-tests) |
 
 Patokan sederhananya:
 
-- **Seseorang bertanya, dan mengecek setiap perubahan:** Mira di prepza, atau MCP kalau orang itu sehari-hari bekerja di Claude atau ChatGPT.
+- **Seseorang bertanya, dan mengecek setiap perubahan:** Mira di testee, atau MCP kalau orang itu sehari-hari bekerja di Claude atau ChatGPT.
 - **Perangkat lunak bertindak sendiri, dengan cara yang sama setiap kali:** API.
 - **Baru mulai:** coba Mira, asisten bawaan, dulu. Tidak perlu pengaturan apa pun, dan apa yang kamu pelajari juga berlaku di MCP.
 

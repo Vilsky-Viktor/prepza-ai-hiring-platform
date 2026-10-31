@@ -83,20 +83,20 @@ Sebelum mengaktifkannya untuk lowongan sungguhan:
 - **Kunci yang terikat pada orang yang keluar.** Beberapa kunci ATS bertindak atas nama orang yang membuatnya. Saat akun orang itu ditutup, koneksinya berhenti. Gunakan akun yang akan tetap ada, dan hubungkan ulang saat ada pergantian peran.
 - **Melupakan kandidat di luar ATS.** Kandidat rujukan dan pelamar langsung yang tidak pernah masuk ATS tetap perlu diundang. Sediakan juga cara manual untuk mengundang mereka.
 
-## Cara prepza melakukannya
+## Cara testee melakukannya
 
-prepza terhubung dengan **Workable, Greenhouse, Teamtailor, Recruitee, dan Breezy HR**, dan mengikuti alur di atas.
+testee terhubung dengan **Workable, Greenhouse, Teamtailor, Recruitee, dan Breezy HR**, dan mengikuti alur di atas.
 
-- **Kuncimu, kendalimu.** Pemilik atau admin menghubungkan ATS di tab Integrasi perusahaan dengan kunci yang dibuat perusahaanmu di ATS. prepza mengeceknya sebelum menyimpan, menyimpannya dalam bentuk terenkripsi, dan tidak pernah menampilkannya lagi. Memutus koneksi langsung menghapus kunci dan lowongan yang ditautkan.
-- **Tautkan lowongan ke wawancara.** Pilih lowongan di ATS dan tahap yang memicu undangan, lalu tautkan ke wawancara prepza yang sudah ada atau buat yang baru dari teks lowongan di ATS. Kamu meninjau topiknya sebelum satu soal pun ditulis.
+- **Kuncimu, kendalimu.** Pemilik atau admin menghubungkan ATS di tab Integrasi perusahaan dengan kunci yang dibuat perusahaanmu di ATS. testee mengeceknya sebelum menyimpan, menyimpannya dalam bentuk terenkripsi, dan tidak pernah menampilkannya lagi. Memutus koneksi langsung menghapus kunci dan lowongan yang ditautkan.
+- **Tautkan lowongan ke wawancara.** Pilih lowongan di ATS dan tahap yang memicu undangan, lalu tautkan ke wawancara testee yang sudah ada atau buat yang baru dari teks lowongan di ATS. Kamu meninjau topiknya sebelum satu soal pun ditulis.
 - **Pindahkan kandidat, undangan terkirim.** Setiap kandidat diundang sekali per wawancara, meskipun ATS mengirim peristiwa yang sama dua kali.
-- **Hasil kembali ke ATS.** Saat kandidat selesai, prepza menambahkan catatan atau komentar padanya di ATS berisi nilainya, lulus atau tidak, tanda integritas jika ada (meninggalkan halaman, upaya menyalin, jawaban yang dipilih terlalu cepat untuk sempat membaca soal), dan tautan ke scorecard-nya beserta semua jawaban.
-- **Kegagalan tidak luput dari perhatian.** Jika kandidat tidak bisa diundang, misalnya karena kredit perusahaan habis, batas email tercapai, atau undangan dijeda sementara oleh prepza, semua anggota perusahaan mendapat notifikasi yang menyebut nama ATS-nya. Kandidat yang tidak terundang karena kredit habis akan diundang otomatis setelah isi ulang, dan kandidat yang menunggu di lowongan mana pun bisa diundang lagi dengan satu klik.
-- **Slack, jika kamu memakainya.** prepza bisa mengirim notifikasi, misalnya kandidat yang sudah selesai atau kandidat dari ATS yang tidak bisa diundang, ke channel Slack pilihanmu.
-- **Platformmu sendiri.** Jika ATS-mu tidak ada di daftar, [API](/api-docs) prepza memungkinkanmu mengundang kandidat dengan kunci API dan menerima webhook bertanda tangan saat kandidat mulai, selesai, atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap.
+- **Hasil kembali ke ATS.** Saat kandidat selesai, testee menambahkan catatan atau komentar padanya di ATS berisi nilainya, lulus atau tidak, tanda integritas jika ada (meninggalkan halaman, upaya menyalin, jawaban yang dipilih terlalu cepat untuk sempat membaca soal), dan tautan ke scorecard-nya beserta semua jawaban.
+- **Kegagalan tidak luput dari perhatian.** Jika kandidat tidak bisa diundang, misalnya karena kredit perusahaan habis, batas email tercapai, atau undangan dijeda sementara oleh testee, semua anggota perusahaan mendapat notifikasi yang menyebut nama ATS-nya. Kandidat yang tidak terundang karena kredit habis akan diundang otomatis setelah isi ulang, dan kandidat yang menunggu di lowongan mana pun bisa diundang lagi dengan satu klik.
+- **Slack, jika kamu memakainya.** testee bisa mengirim notifikasi, misalnya kandidat yang sudah selesai atau kandidat dari ATS yang tidak bisa diundang, ke channel Slack pilihanmu.
+- **Platformmu sendiri.** Jika ATS-mu tidak ada di daftar, [API](/api-docs) testee memungkinkanmu mengundang kandidat dengan kunci API dan menerima webhook bertanda tangan saat kandidat mulai, selesai, atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap.
 - **Data disimpan untuk jangka waktu tertentu.** Kandidat yang disimpan dari ATS dihapus setelah 365 hari, atau lebih awal bersama wawancara atau perusahaannya.
 
-Beberapa ATS memerlukan satu langkah di sisi mereka. Greenhouse, Teamtailor, dan Recruitee memintamu menambahkan webhook secara manual; dialog Petunjuk di prepza menampilkan alamatnya dan tempat menempel secret-nya. prepza mengatur sendiri webhook Workable dan Breezy HR.
+Beberapa ATS memerlukan satu langkah di sisi mereka. Greenhouse, Teamtailor, dan Recruitee memintamu menambahkan webhook secara manual; dialog Petunjuk di testee menampilkan alamatnya dan tempat menempel secret-nya. testee mengatur sendiri webhook Workable dan Breezy HR.
 
 Harganya per kandidat, tanpa langganan: kamu hanya membayar untuk kandidat yang menjawab setidaknya satu soal, $5 per kandidat pada isi ulang $50, $4 mulai dari isi ulang $200, $3 mulai dari isi ulang $600, dan $2 mulai dari isi ulang $1.000. Harga di sini dalam dolar AS, dan dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya; PPN (VAT) atau pajak penjualan ditangani saat checkout. Menghubungkan ATS dan membuat wawancara gratis, dan 3 kandidat pertama dari perusahaan pertamamu gratis. Lihat [harga](/pricing).
 

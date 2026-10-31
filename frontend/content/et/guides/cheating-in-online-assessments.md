@@ -35,7 +35,7 @@ Kaks kergemat ideed ei toimi paremini:
 - **AI-le suunatud teated** („AI-assistendid ei tohi sellele küsimusele vastata“) on lihtne välja lõigata või eirata ning mudeleid on õpetatud käsitlema piltidel olevat teksti sisuna, mitte juhistena.
 - **Vesimärgid** võivad aidata jälgida, kes küsimuse lekitas, kuid ei takista kellelgi sellele vastamast.
 
-prepzas proovisime mõlemat oma küsimustel: AI-mudelid vastasid vesimärgi või teatega pildistatud küsimustele täpselt samamoodi nagu ilma selleta. Seega loobusime ekraani kaitsmisest.
+testees proovisime mõlemat oma küsimustel: AI-mudelid vastasid vesimärgi või teatega pildistatud küsimustele täpselt samamoodi nagu ilma selleta. Seega loobusime ekraani kaitsmisest.
 
 ## Mis toimib paremini
 
@@ -100,9 +100,9 @@ See kõik ei tähenda, et midagi ei saa kontrollida. See tähendab, et parima ta
 5. **Esita testi kohta lisaküsimusi** esimesel reaalajas intervjuul, eriti seal, kus tekkis märge.
 6. **Las otsustab inimene** ja kirjutab üles, miks.
 
-## Kuidas prepza sellega toime tuleb
+## Kuidas testee sellega toime tuleb
 
-prepza viib läbi ajapiiranguga valikvastustega oskusteste, mis koostatakse töökuulutuse põhjal. Spikerdamise vastu teeb see täna järgmist:
+testee viib läbi ajapiiranguga valikvastustega oskusteste, mis koostatakse töökuulutuse põhjal. Spikerdamise vastu teeb see täna järgmist:
 
 - **Iga kandidaat saab oma küsimused:** juhusliku komplekti iga teema küsimustepangast, omas järjekorras ja segatud vastusevariantidega.
 - **Igal küsimusel on oma pöördloendus,** mis sobitatakse selle pikkusega: sõnad, kood või näide ja aeg vastuse väljamõtlemiseks. Aega peab server, nii et lehe uuesti laadimine seda ei peata.
@@ -110,7 +110,7 @@ prepza viib läbi ajapiiranguga valikvastustega oskusteste, mis koostatakse tö�
 - **Vastuste mustrid, kui kandidaat on lõpetanud.** Kandidaadi aruanne toob välja vastamisajad, mis jäävad igal küsimusel umbes samaks olenemata selle pikkusest ja raskusest, ning rasked küsimused õigesti, kui lihtsad olid valesti, koos numbritega, millel see põhineb („10 raskest küsimusest 9 õigesti, 8 lihtsast 4 valesti“). Teine vajab piisavalt teiste kandidaatide vastuseid, et teada, kui raske iga küsimus on. Mõlemad lävendid seati simuleeritud kandidaatidega testil nii, et märgitakse kõige rohkem 1% ausatest; need tabasid umbes kolmandiku neist, kes edastasid iga küsimuse AI-le. Aruanne märgib, et sellistel mustritel võib olla süütu seletus.
 - **Küsimused reaalajas intervjuuks.** Iga lõpetanud kandidaadi lehel soovitatakse kuni 3 küsimust, millele ta vastas õigesti, tema tugevaimatest teemadest, et neid järgmises vestluses arutada, alustades mustri taga olevatest rasketest küsimustest, kui muster on olemas.
 - **Kandidaadid lubavad** enne alustamist vastata ise, ilma AI-tööriistade ja teiste inimesteta, ning hindamisleht näitab, millal nad seda tegid.
-- **Ei kaamerat, mikrofoni ega ekraanisalvestust.** prepza kasutab ainult seda, mida testileht ise näeb: vastuseid, aegu, lehelt lahkumisi ja kopeerimiskatseid.
+- **Ei kaamerat, mikrofoni ega ekraanisalvestust.** testee kasutab ainult seda, mida testileht ise näeb: vastuseid, aegu, lehelt lahkumisi ja kopeerimiskatseid.
 - **Otsustavad inimesed.** Miski ei lükka kandidaati automaatselt tagasi.
 
 ## Loe ka

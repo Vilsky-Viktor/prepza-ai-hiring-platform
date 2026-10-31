@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Una prueba de selección es una evaluación estructurada que hacen todos los candidatos a un puesto antes de que decidas a quién entrevistar o contratar. También la verás como prueba preempleo, evaluación de candidatos o test de competencias. La idea es la misma: hacer a todos el mismo tipo de preguntas, puntuarlas de la misma forma y comparar a las personas con evidencias y no por cómo se lee su CV.
 
-Esta guía cubre los principales tipos de pruebas, cuándo ayudan, lo básico de equidad y legalidad, y qué buscar en una herramienta. Termina explicando cómo lo hace prepza y qué no hace prepza.
+Esta guía cubre los principales tipos de pruebas, cuándo ayudan, lo básico de equidad y legalidad, y qué buscar en una herramienta. Termina explicando cómo lo hace testee y qué no hace testee.
 
 ## Qué es una prueba de selección
 
@@ -25,7 +25,7 @@ Una buena prueba comprueba lo que el puesto realmente necesita, se realiza en la
 | Muestras de trabajo y simulaciones del puesto | Hacer una parte del trabajo real | Tareas, casos prácticos, escribir código | Comprobaciones en fases avanzadas para la lista corta |
 | Idiomas y mecanografía | Nivel y velocidad | Pruebas calificadas | Puestos de atención al cliente y administrativos |
 
-**Lo que cubre prepza:** pruebas de habilidades y conocimientos del puesto, en forma de entrevistas de opción múltiple con tiempo límite redactadas a partir de tu descripción del puesto. Para puestos técnicos, eso incluye preguntas de lectura de código: un breve ejemplo de código y una pregunta sobre qué hace o qué imprime. prepza no ofrece pruebas de aptitud cognitiva, cuestionarios de personalidad, ejercicios en los que los candidatos escriban o ejecuten código, ni entrevistas en video. Si los necesitas, usa una plataforma que los ofrezca, sola o junto con prepza: primero un filtro de conocimientos y después la prueba especializada para la lista corta. Consulta [prepza y TestGorilla](/compare/testgorilla) y [Alternativas a TestGorilla](/compare/testgorilla-alternatives).
+**Lo que cubre testee:** pruebas de habilidades y conocimientos del puesto, en forma de entrevistas de opción múltiple con tiempo límite redactadas a partir de tu descripción del puesto. Para puestos técnicos, eso incluye preguntas de lectura de código: un breve ejemplo de código y una pregunta sobre qué hace o qué imprime. testee no ofrece pruebas de aptitud cognitiva, cuestionarios de personalidad, ejercicios en los que los candidatos escriban o ejecuten código, ni entrevistas en video. Si los necesitas, usa una plataforma que los ofrezca, sola o junto con testee: primero un filtro de conocimientos y después la prueba especializada para la lista corta. Consulta [testee y TestGorilla](/compare/testgorilla) y [Alternativas a TestGorilla](/compare/testgorilla-alternatives).
 
 ### Por qué las pruebas de habilidades son un primer paso sensato
 
@@ -87,11 +87,11 @@ Preguntas que vale la pena hacer a cualquier proveedor:
 
 Para comparar precios, consulta [cómo comparar el coste de las pruebas](/compare/cheapest-pre-employment-test) y [pruebas de selección sin suscripción](/compare/pre-employment-tests-without-subscription).
 
-## Cómo lo hace prepza
+## Cómo lo hace testee
 
-prepza convierte una descripción del puesto en una entrevista de habilidades de opción múltiple con tiempo límite.
+testee convierte una descripción del puesto en una entrevista de habilidades de opción múltiple con tiempo límite.
 
-1. **Pega la descripción del puesto.** Cualquier puesto, en cualquiera de 23 idiomas. prepza extrae lo que un candidato debe saber y propone temas.
+1. **Pega la descripción del puesto.** Cualquier puesto, en cualquiera de 23 idiomas. testee extrae lo que un candidato debe saber y propone temas.
 2. **Revisa los temas.** Desmarca lo que no necesites, cambia el nombre de un tema, edita sus subtemas o describe los cambios en texto libre. Las preguntas se redactan solo después de tu aprobación. También puedes empezar desde una plantilla lista para tu puesto.
 3. **Invita a los candidatos.** Envía invitaciones por correo electrónico, pega una lista, sube un archivo o pon un único enlace para compartir en tu oferta de empleo. Los recordatorios se envían automáticamente.
 4. **Lee los resultados.** Las puntuaciones llegan ordenadas, con una ficha de evaluación para cada candidato.
@@ -103,4 +103,4 @@ prepza convierte una descripción del puesto en una entrevista de habilidades de
 
 El precio es por candidato que responde, sin suscripción: $2–5 por candidato según el tamaño de tu recarga (en la moneda local en Canadá, Australia, Israel, Polonia, Suiza, Japón, Corea del Sur, Taiwán, Hong Kong, Tailandia, Singapur, India, el resto de Europa y el Reino Unido), y tus 3 primeros candidatos son gratis. Los datos se alojan en la UE (algunos subencargados están en EE. UU.; consulta la [política de privacidad](/privacy)), y se incluyen el contrato de encargo del tratamiento y las instrucciones para empresas.
 
-prepza no es una suite psicométrica, ni una plataforma para escribir y ejecutar código, ni una herramienta de entrevistas en video, y funciona junto a ellas. Para ver cómo se compara con otras herramientas de contratación con IA, lee [Entrevistas con IA](/ai-interviews). Para puestos de ingeniería, consulta [Cómo contratar ingenieros](/guides/hiring-engineers).
+testee no es una suite psicométrica, ni una plataforma para escribir y ejecutar código, ni una herramienta de entrevistas en video, y funciona junto a ellas. Para ver cómo se compara con otras herramientas de contratación con IA, lee [Entrevistas con IA](/ai-interviews). Para puestos de ingeniería, consulta [Cómo contratar ingenieros](/guides/hiring-engineers).

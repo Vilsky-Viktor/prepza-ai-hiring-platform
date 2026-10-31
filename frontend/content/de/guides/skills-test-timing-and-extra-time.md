@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Ein Fachtest mit guten Fragen kann trotzdem schlechte Ergebnisse liefern. Bei zu viel Zeit schlagen Kandidaten jede Antwort nach; bei zu wenig misst du die Lesegeschwindigkeit. Bei zu wenigen Fragen hängt das Ergebnis vom Glück ab; bei zu vielen geben gute Kandidaten auf halber Strecke auf.
 
-Dieser Leitfaden behandelt vier Einstellungen eines Multiple-Choice-Tests mit Zeitlimit: die Zeit pro Frage, die Anzahl der Fragen, die Gesamtdauer und zusätzliche Zeit für Kandidaten, die sie brauchen. Die Empfehlungen gelten für jeden Wissenstest mit Zeitlimit; der letzte Abschnitt zeigt, wie prepza mit jeder davon umgeht.
+Dieser Leitfaden behandelt vier Einstellungen eines Multiple-Choice-Tests mit Zeitlimit: die Zeit pro Frage, die Anzahl der Fragen, die Gesamtdauer und zusätzliche Zeit für Kandidaten, die sie brauchen. Die Empfehlungen gelten für jeden Wissenstest mit Zeitlimit; der letzte Abschnitt zeigt, wie testee mit jeder davon umgeht.
 
 ## Das Wichtigste in Kürze
 
@@ -95,9 +95,9 @@ Viele Länder verpflichten Arbeitgeber, für Bewerber mit Behinderung angemessen
 
 **Dieser Abschnitt ist eine praktische Orientierung, keine Rechtsberatung.** Was du anbieten musst und was du fragen darfst, hängt davon ab, wo du einstellst. Prüf deine eigenen Pflichten nach dem Gleichbehandlungs- und Behindertenrecht, das für dich gilt.
 
-## Wie prepza mit Zeit und zusätzlicher Zeit umgeht
+## Wie testee mit Zeit und zusätzlicher Zeit umgeht
 
-In prepza ist ein Interview ein Multiple-Choice-Fachtest mit Zeitlimit, erstellt aus deiner Stellenbeschreibung.
+In testee ist ein Interview ein Multiple-Choice-Fachtest mit Zeitlimit, erstellt aus deiner Stellenbeschreibung.
 
 ### Zeit pro Frage
 

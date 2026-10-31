@@ -3,23 +3,23 @@ import { Anthropic } from "@llamaindex/anthropic"
 import { mcp } from "@llamaindex/tools"
 import { agent } from "@llamaindex/workflow"
 
-import { PREPZA_MCP, signIn } from "./prepza-auth.js"
+import { TESTEE_MCP, signIn } from "./testee-auth.js"
 
 const QUESTION = "Which candidates passed my latest interview?"
 
 async function main() {
   const { authProvider, headers } = await signIn()
   const server = mcp({
-    url: PREPZA_MCP,
+    url: TESTEE_MCP,
     authProvider,
     requestInit: { headers },
   })
-  const prepza = agent({
+  const testee = agent({
     // A model this package knows takes tools: it doesn't yet know Claude's 5 models.
     llm: new Anthropic({ model: "claude-sonnet-4-6" }),
     tools: await server.tools(),
   })
-  const result = await prepza.run(QUESTION)
+  const result = await testee.run(QUESTION)
   console.log(result.data.result)
   await server.cleanup()
 }

@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 A pre-employment test is a structured check that every applicant for a role takes before you decide who to interview or hire. You may also see it called a pre-employment assessment, a pre-hire assessment or a skills assessment test. The idea is the same: ask everyone the same kind of questions, score them the same way, and compare people on evidence instead of on how their CV reads.
 
-This guide covers the main types of tests, when they help, the fairness and legal basics, and what to look for in a tool. It ends with how prepza does it, and what prepza does not do.
+This guide covers the main types of tests, when they help, the fairness and legal basics, and what to look for in a tool. It ends with how testee does it, and what testee does not do.
 
 ## What a pre-employment test is
 
@@ -25,7 +25,7 @@ A good test checks what the role actually needs, runs under the same conditions 
 | Work samples and job simulations | Doing a slice of the real job | Tasks, case studies, writing code | Late-stage checks for a short list |
 | Language and typing | Proficiency and speed | Graded tests | Customer-facing and admin roles |
 
-**What prepza covers:** skills and job knowledge tests, as timed multiple-choice interviews written from your job description. For technical roles, that includes code-reading questions: a short code example and a question about what it does or outputs. prepza does not offer cognitive ability tests, personality questionnaires, exercises where candidates write or run code, or video interviews. If you need those, use a platform that offers them, alone or next to prepza: a knowledge screen first, then the specialist test for the short list. See [prepza and TestGorilla](/compare/testgorilla) and [TestGorilla alternatives](/compare/testgorilla-alternatives).
+**What testee covers:** skills and job knowledge tests, as timed multiple-choice interviews written from your job description. For technical roles, that includes code-reading questions: a short code example and a question about what it does or outputs. testee does not offer cognitive ability tests, personality questionnaires, exercises where candidates write or run code, or video interviews. If you need those, use a platform that offers them, alone or next to testee: a knowledge screen first, then the specialist test for the short list. See [testee and TestGorilla](/compare/testgorilla) and [TestGorilla alternatives](/compare/testgorilla-alternatives).
 
 ### Why skills tests are a sensible first step
 
@@ -87,11 +87,11 @@ Questions worth asking any vendor:
 
 For price comparisons, see [how to compare test costs](/compare/cheapest-pre-employment-test) and [pre-employment tests without a subscription](/compare/pre-employment-tests-without-subscription).
 
-## How prepza does it
+## How testee does it
 
-prepza turns a job description into a timed multiple-choice skills interview.
+testee turns a job description into a timed multiple-choice skills interview.
 
-1. **Paste the job description.** Any role, any of 23 languages. prepza picks out what a candidate must know and proposes topics.
+1. **Paste the job description.** Any role, any of 23 languages. testee picks out what a candidate must know and proposes topics.
 2. **Review the topics.** Uncheck what you don't need, rename a topic, edit its subtopics, or describe changes in plain text. Questions are written only after you approve. You can also start from a ready-made template for your role.
 3. **Invite candidates.** Send invites by email, paste a list, upload a file, or put one shareable link in your job ad. Reminders go out automatically.
 4. **Read the results.** Scores come in ranked, with a scorecard for each candidate.
@@ -103,4 +103,4 @@ prepza turns a job description into a timed multiple-choice skills interview.
 
 Pricing is per candidate who answers, with no subscription: $2–5 per candidate depending on your top-up size (in the local currency in Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, the rest of Europe and the UK), and your first 3 candidates are free. Data is hosted in the EU (some sub-processors are in the US; see the [privacy policy](/privacy)), and the data processing agreement and instructions for companies are included.
 
-prepza is not a psychometric suite, a platform for writing and running code, or a video interview tool, and it works alongside them. For how it compares with other AI hiring tools, read [AI interviews](/ai-interviews). For engineering roles, see [How to hire engineers](/guides/hiring-engineers).
+testee is not a psychometric suite, a platform for writing and running code, or a video interview tool, and it works alongside them. For how it compares with other AI hiring tools, read [AI interviews](/ai-interviews). For engineering roles, see [How to hire engineers](/guides/hiring-engineers).

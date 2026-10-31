@@ -1,26 +1,26 @@
-# Using prepza responsibly: instructions for companies
+# Using testee responsibly: instructions for companies
 
-Version of 2026-10-30. Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Estonia; hello@prepza.ai.
+Version of 2026-10-30. Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Estonia; hello@testee.ai.
 
-For owners and admins of a company on prepza. These are prepza's instructions for use under the
+For owners and admins of a company on testee. These are testee's instructions for use under the
 EU AI Act (Art. 13). Your own duties as an employer, under the employment and data protection law
 that applies to you, stay yours.
 
-## 1. What prepza is and is for
+## 1. What testee is and is for
 
 - **Provider:** Arcolabs OÜ, above. **You** (the company that tests candidates) are the deployer.
 - **Intended purpose:** testing job candidates' knowledge for one role with a timed
   multiple-choice interview, to help the people at your company decide whom to take further. AI
   writes the questions from your job description (up to half of a topic may be proven questions
-  from prepza's own templates, never ones shown publicly for practice); you review the topics; each
+  from testee's own templates, never ones shown publicly for practice); you review the topics; each
   candidate's answers are marked against a fixed answer key.
 - **High-risk AI system.** Under the EU AI Act, a system used to evaluate candidates is high-risk
-  (Annex III point 4(a)), and prepza is treated as one. Its obligations apply from 2027-12-02;
-  before then prepza signs its EU declaration of conformity and is registered in the EU database,
+  (Annex III point 4(a)), and testee is treated as one. Its obligations apply from 2027-12-02;
+  before then testee signs its EU declaration of conformity and is registered in the EU database,
   and from 2027-11-02 the CE marking is shown in the site footer, linked to the declaration.
 - **Not for:** see section 11.
 
-## 2. What a prepza grade is
+## 2. What a testee grade is
 
 - The **percentage of points earned**, over every question the candidate was shown. Each question
   is worth one point:
@@ -47,7 +47,7 @@ that applies to you, stay yours.
 
 - **Declared accuracy:** a correct answer key for **at least 98% of questions**, single-answer and
   "select all that apply" alike (for the latter, every option correctly marked right or wrong).
-  Measured in prepza's offline evaluations, checked by an AI judge: 99% for single-answer
+  Measured in testee's offline evaluations, checked by an AI judge: 99% for single-answer
   questions (240 questions in 8 fields, 2026-10-04; 98% had exactly one defensible answer) and
   98.5% for "select all that apply" questions (268 of them on 48 subtopics, 2026-10-17). The key
   checker caught 60 of 60 single-answer and 263 of 263 "select all that apply" wrong keys planted
@@ -70,13 +70,13 @@ that applies to you, stay yours.
   before about 30 people have answered it.
 - **Language and reading speed:** when the interview is timed and not in the candidate's first
   language, it also tests those. Choose the interview's language with your candidates in mind.
-- **Groups of candidates:** prepza collects no data about candidates' sex, age, origin or
-  disability, so it can't measure results by group for you. An independent bias audit of prepza
-  is done before 2027-12-02 and every year after, and its summary published at prepza.ai/documents.
-- **Job performance:** prepza doesn't learn how hired candidates do in the job, so it doesn't
+- **Groups of candidates:** testee collects no data about candidates' sex, age, origin or
+  disability, so it can't measure results by group for you. An independent bias audit of testee
+  is done before 2027-12-02 and every year after, and its summary published at testee.ai/documents.
+- **Job performance:** testee doesn't learn how hired candidates do in the job, so it doesn't
   show that a grade predicts job performance.
 
-## 4. What prepza needs from you (input)
+## 4. What testee needs from you (input)
 
 - A job description, or a description of the role, that names what the job actually needs. Only
   what is in it becomes topics.
@@ -86,35 +86,35 @@ that applies to you, stay yours.
 
 ## 5. Human review: your duty
 
-People at your company make the hiring decision. prepza never tells a candidate they were rejected.
+People at your company make the hiring decision. testee never tells a candidate they were rejected.
 
-- **Give the review to people who understand prepza:** these instructions, especially sections 2,
+- **Give the review to people who understand testee:** these instructions, especially sections 2,
   3 and 7, are what they need to know.
-- **Before rejecting anyone on a prepza result, a person must open their scorecard** and look at the
+- **Before rejecting anyone on a testee result, a person must open their scorecard** and look at the
   answers, not just the grade, colour or rank.
 - Use the grade **alongside** other information (CV, work samples, interviews), not as the only
   gate.
-- If a question looks wrong, report it with **Wrong answer**: prepza checks its answer key again,
+- If a question looks wrong, report it with **Wrong answer**: testee checks its answer key again,
   usually within a day, and tells you when it's fixed. Take that into account for candidates who
   already answered it.
-- **Candidates can ask you for a human review** of their result (prepza tells them so on the invite
+- **Candidates can ask you for a human review** of their result (testee tells them so on the invite
   page, and reminds you on the results page and in PDF reports). Name who handles these requests,
   reply within a reasonable time, and be ready to explain what was tested and how the result was
   used.
 - In the EU, a decision based solely on automated processing that significantly affects a candidate
   is restricted (GDPR Art. 22). Rejecting automatically everyone below the passing grade can be
   one.
-- The same applies to results prepza sends to the tools you connect: your applicant tracking
+- The same applies to results testee sends to the tools you connect: your applicant tracking
   system, Slack, or your own systems through the API and web hooks receive the grade and whether
   it reached the passing grade. **Don't set them up to reject candidates automatically** on those
   results; the human review above applies there too.
-- **The assistant and AI apps.** prepza's in-app assistant acts only after the member confirms
+- **The assistant and AI apps.** testee's in-app assistant acts only after the member confirms
   each change. AI apps (Claude, ChatGPT and others) a member connects act with that member's
   access, and the data they read goes to that app's provider. Owners and admins can turn AI apps
   off for the company (Integrations → AI apps → **Allow AI apps**). The same human review applies
   to results read through them. Both answer with AI and can misstate or leave out part of a
   result: before acting on what they say about a candidate, check the candidate's scorecard, and
-  don't let them decide about a candidate. They don't change grades; they read what prepza
+  don't let them decide about a candidate. They don't change grades; they read what testee
   recorded.
 
 ## 6. Choosing a passing grade
@@ -145,7 +145,7 @@ IP address):
   needs at least 8 questions whose difficulty is known (a question's share of right answers once
   30 candidates have answered it).
 
-Both are set so that at most 1% of honest candidates show them in prepza's tests on made-up
+Both are set so that at most 1% of honest candidates show them in testee's tests on made-up
 candidates; they catch about a third of candidates who relay every question to an AI. A pattern
 can have innocent causes (a steady pace, gaps in what someone has learned, a lucky guess), so it's
 a reason to ask, never proof. Patterns don't make the candidate "flagged" in the list, the ATS or
@@ -160,19 +160,19 @@ words; they appear only on the candidate's page.
 
 - Tell candidates, before they start, how to ask for an accommodation (the candidate notice
   templates include this).
-- prepza's invite page tells candidates to ask you for more time before they start.
+- testee's invite page tells candidates to ask you for more time before they start.
 - For a candidate who asks, set **extra time: +25%, +50% or +100%** on every question's timer, on
   the candidate's page. It can be set or changed only **before the candidate starts**, so agree it
-  first. prepza stores only the amount, never the reason. Their grade is compared with the same
+  first. testee stores only the amount, never the reason. Their grade is compared with the same
   passing grade.
 - Candidates who come through your shareable link can't get extra time there: the page tells them
   to ask you for a personal invite first. Invite them by email instead.
 - If timed multiple choice doesn't suit the candidate's needs at all (for example some screen-reader
-  or motor impairments), offer an **alternative assessment** outside prepza. Don't ask for medical
+  or motor impairments), offer an **alternative assessment** outside testee. Don't ask for medical
   details beyond what you need.
 - You can also raise the average time per question for everyone in the interview's settings;
   each question's own time grows with it.
-- prepza's candidate pages are built to WCAG 2.2 AA.
+- testee's candidate pages are built to WCAG 2.2 AA.
 - **Voice mode** (an interview's setting, in English, Spanish, German, French, Portuguese or
   Italian) reads each question and its options aloud and lets candidates answer aloud. It can help
   some candidates (some visual or motor impairments, a phone), but speech recognition can mishear
@@ -180,51 +180,51 @@ words; they appear only on the candidate's page.
   shows it on screen ("B, saved." for a single answer; a choice of several options is confirmed
   first), only a reply that clearly names one option is saved without asking, and tapping an
   option always works. Tell candidates
-  before they start, and set an interview to click mode for anyone who prefers it. prepza turns
+  before they start, and set an interview to click mode for anyone who prefers it. testee turns
   the speech into text and options only, never stores it and never analyses the voice (no tone,
   emotion or confidence, which the EU AI Act forbids in hiring).
 - In the **UK**, the Equality Act 2010 asks you to make reasonable adjustments for disabled
   candidates; in the **US**, the ADA asks for reasonable accommodation. Extra time, an alternative
-  assessment and click or voice mode are the adjustments prepza gives you.
+  assessment and click or voice mode are the adjustments testee gives you.
 
 ## 9. Telling candidates
 
 Before you invite, tell candidates that they will take a timed AI-generated knowledge test, what it
 covers, how the result is used, that page leaves and copies are recorded, that they confirm answering
 on their own before they start, how long data is kept, and
-how to ask for an accommodation, an alternative or a human review. prepza's candidate notice
-templates (at prepza.ai/documents) are a starting point. prepza's invite page also tells candidates
-what to expect and links prepza's privacy policy, but the notice about **your** use of the results
+how to ask for an accommodation, an alternative or a human review. testee's candidate notice
+templates (at testee.ai/documents) are a starting point. testee's invite page also tells candidates
+what to expect and links testee's privacy policy, but the notice about **your** use of the results
 is yours to give.
 
 - **People you find on the Discover tab** chose to be open to offers and gave you no data
-  themselves: you got their name, LinkedIn profile and practice results from prepza. Tell them, at
+  themselves: you got their name, LinkedIn profile and practice results from testee. Tell them, at
   the latest in your invite, who you are, why you're contacting them, what you saw and their
   rights (GDPR and UK GDPR Art. 14). Use what you see only to consider them for your own jobs, and
   remember their results are practice, not a qualification.
-- Until prepza has verified your company, your invite pages and emails say so in a small line.
+- Until testee has verified your company, your invite pages and emails say so in a small line.
   Use **Verify company**: your website, and a sign-in with an email on its domain.
-- prepza's invite and reminder emails let candidates stop your company's emails, or that
+- testee's invite and reminder emails let candidates stop your company's emails, or that
   interview's reminders, with a link at the bottom. Once a candidate stops your company's emails,
-  prepza doesn't email them for your company again: an invite to them shows as undelivered in the
+  testee doesn't email them for your company again: an invite to them shows as undelivered in the
   candidate list, so reach them another way if you still need to.
 - **Candidates from your own platform.** Through the API your platform can invite a candidate with
-  `sign_in` false: prepza then sends them no emails, and they take the interview from their invite
-  link without signing in to prepza, so the notice and the link are yours to send, to that
+  `sign_in` false: testee then sends them no emails, and they take the interview from their invite
+  link without signing in to testee, so the notice and the link are yours to send, to that
   candidate only (anyone with the link can use it). The invite can also set a `return_url`, a
   **Back to** your company button on the finished page, and a `theme` (light, dark, or the
-  candidate's own). prepza's SDK (prepza.ai/embed/v1.js) shows the interview inside your own page.
+  candidate's own). testee's SDK (testee.ai/embed/v1.js) shows the interview inside your own page.
   The return button may lead to any https address. The embedded interview works only on the domains
   your company allows on its API page's SDK tab (localhost only when you allow it, to try it on your
   own computer); the API and web hooks don't depend on those domains: each key can be limited to
   your servers' IP addresses instead. Verification isn't
-  needed for them, nor for the API or AI apps: it only adds the verified badge. The candidate still sees prepza's invite page, in your company's logo and
+  needed for them, nor for the API or AI apps: it only adds the verified badge. The candidate still sees testee's invite page, in your company's logo and
   colors if you set them, before they start. Leaving the embedded interview, also for the rest of your page, counts
-  as a page leave. The developer docs (prepza.ai/api-docs) give the details.
+  as a page leave. The developer docs (testee.ai/api-docs) give the details.
 
 ## 10. Records, retention and data requests
 
-**Records (logs).** For each candidate prepza records every question shown and when, the picks,
+**Records (logs).** For each candidate testee records every question shown and when, the picks,
 right or wrong (or the points of a "select all that apply" question), the time taken, timeouts, page leaves (with how long they lasted) and copy attempts, start and finish (in voice mode, the options the candidate chose, never what they said): the
 scorecard and its PDF report show them, and the API returns the results. Answer patterns aren't
 stored: they're read from these records each time the results are opened. It also records when the
@@ -236,8 +236,8 @@ Slack, API keys and web hooks), with who acted, when, and whether they acted in 
 the assistant, an AI app, the API or an ATS. The owner reads it on the company's **Action log**
 tab, filtered by member, kind of action and days, or through the API
 (`GET /companies/{id}/audit`). Keep what your law requires: the EU AI Act asks you to keep
-these records at least six months, and prepza keeps them for you as below. Download PDF reports to
-keep them longer: some laws ask for more than prepza's 12 months, such as California's rules on
+these records at least six months, and testee keeps them for you as below. Download PDF reports to
+keep them longer: some laws ask for more than testee's 12 months, such as California's rules on
 automated-decision systems in employment (4 years, from 2025-10-01), Colorado's AI law (3 years,
 from 2027-01-01) and US federal rules on hiring records (1 year from the record or the decision).
 Team notes on an interview stay with it until you delete them or the interview.
@@ -257,23 +257,23 @@ Team notes on an interview stay with it until you delete them or the interview.
 - PDFs you download, and results sent to your applicant tracking system, Slack or your own systems,
   are yours to keep and delete under your own retention policy.
 
-**Data requests.** You are the controller of candidates' interview data; prepza is your processor
-under the data processing agreement at prepza.ai/dpa, which is part of the terms.
+**Data requests.** You are the controller of candidates' interview data; testee is your processor
+under the data processing agreement at testee.ai/dpa, which is part of the terms.
 
 - **Access:** open the candidate's **scorecard page** and download their **PDF report**. Together
-  they hold everything prepza keeps about the interview: each question, their answer (every option ticked), right or
+  they hold everything testee keeps about the interview: each question, their answer (every option ticked), right or
   wrong or the points it earned, time taken, page leaves and copy attempts, any answer patterns, and the grade. Send the PDF, with your own explanation of
   how it was used.
 - **Erasure or objection:** on the candidate's page, revoke an unused invite, or use **Delete
   candidate** for one who started or finished: their answers and results are deleted for good, also
-  from the bell and from prepza's record of them for your applicant tracking system, and credits
+  from the bell and from testee's record of them for your applicant tracking system, and credits
   still held come back (a finished candidate stays charged). Copies already sent to your applicant
   tracking system, Slack or your own systems are yours to delete there.
-- If a candidate writes to prepza instead, prepza passes the request on to you.
-- Candidates can also download what is linked to their own prepza account with **Download my data**
+- If a candidate writes to testee instead, testee passes the request on to you.
+- Candidates can also download what is linked to their own testee account with **Download my data**
   in Settings.
 
-## 11. Where not to use prepza
+## 11. Where not to use testee
 
 - As the **only** basis for a rejection without human review.
 - For skills a multiple-choice knowledge test can't measure (manual, interpersonal, creative work)
@@ -282,7 +282,7 @@ under the data processing agreement at prepza.ai/dpa, which is part of the terms
 - For candidates under 16.
 - For **New York City** roles, before you have done what Local Law 144 asks of you as the employer:
   a bias audit by an independent auditor within the year before use, its summary published, and a
-  notice to candidates at least 10 business days before they are assessed. prepza gives you the
+  notice to candidates at least 10 business days before they are assessed. testee gives you the
   bias-audit export for your auditor (the owner downloads it from the Action log page: each
   finished candidate's grade, passing grade, whether they passed and whether they scored above
   the interview's median, by email, for you to add your candidates' own self-reported categories
@@ -291,7 +291,7 @@ under the data processing agreement at prepza.ai/dpa, which is part of the terms
 - Where your local law requires a works council agreement, a regulator approval or a bias audit you
   haven't done.
 
-prepza treats itself as an automated employment decision tool under Local Law 144 whenever the
+testee treats itself as an automated employment decision tool under Local Law 144 whenever the
 grade or the passing grade is used to screen, rank or reject candidates: a numeric score that
 substantially assists a hiring decision. Used only as one input among others that people weigh more,
 it may not be one, but count on the duties above.
@@ -313,47 +313,47 @@ it may not be one, but count on the duties above.
 - **New York City:** section 11.
 - **Illinois** (Human Rights Act, from 2026-01-01): tell candidates when AI is used in
   recruitment or hiring decisions, and never use AI that discriminates by a protected class, or
-  zip codes as a proxy for one (prepza asks for neither). Use the Illinois notice template.
-- **Colorado** (its AI law, from 2027-01-01): before using prepza on Colorado candidates, give the
-  pre-use notice; after an adverse outcome, within 30 days, explain the decision and prepza's role,
+  zip codes as a proxy for one (testee asks for neither). Use the Illinois notice template.
+- **Colorado** (its AI law, from 2027-01-01): before using testee on Colorado candidates, give the
+  pre-use notice; after an adverse outcome, within 30 days, explain the decision and testee's role,
   the data used and its sources, and the candidate's rights to correct data and to ask for human
-  review and reconsideration; keep records 3 years. Use the Colorado notice template; prepza's
+  review and reconsideration; keep records 3 years. Use the Colorado notice template; testee's
   documentation for deployers is this document, the technical facts in section 3 and the DPIA
   template.
 - **California:** the Civil Rights Council's rules on automated-decision systems (from
   2025-10-01) make you answer for discrimination through such tools, value anti-bias testing,
   and ask you to keep their records 4 years; the privacy agency's rules on automated
   decision-making technology ask for a pre-use notice, and access and opt-out or appeal rights,
-  for significant decisions such as hiring, from 2027-01-01. prepza is your service provider under
+  for significant decisions such as hiring, from 2027-01-01. testee is your service provider under
   the CCPA (the data processing agreement's US section).
 
 ## 12. Your duties as a deployer under the EU AI Act
 
-From 2027-12-02, when you use prepza in the EU:
+From 2027-12-02, when you use testee in the EU:
 
 - use it as these instructions say, and give human review to people with the competence and
   authority for it (section 5);
 - make sure the job description and topics are relevant to the role (section 4);
-- watch how it works for you, and tell prepza at once of a serious problem (below);
+- watch how it works for you, and tell testee at once of a serious problem (below);
 - keep the records for at least six months (section 10);
 - tell your employees' representatives before you use it for hiring, where your law requires;
 - tell candidates that a high-risk AI system is used to assess them (section 9), and explain, on
   request, the role it played in a decision about them;
-- in voice mode, rely on what prepza does: speech turned into text only, never emotion
+- in voice mode, rely on what testee does: speech turned into text only, never emotion
   recognition, which Art. 5 forbids in the workplace and hiring;
-- use these instructions for your data protection impact assessment (prepza's DPIA template at
-  prepza.ai/documents).
+- use these instructions for your data protection impact assessment (testee's DPIA template at
+  testee.ai/documents).
 
 ## 13. Availability, changes and support
 
 - **What it needs:** a current web browser; candidates are best on a computer. Nothing to install.
-- **Maintenance:** prepza runs and updates it. During a maintenance break the site is closed and
-  candidates' timers stop, so no one loses time. In an emergency prepza can pause new interviews;
+- **Maintenance:** testee runs and updates it. During a maintenance break the site is closed and
+  candidates' timers stop, so no one loses time. In an emergency testee can pause new interviews;
   candidates already in one can finish.
-- **Lifetime and updates:** prepza is a hosted service with no set end of life: prepza maintains
+- **Lifetime and updates:** testee is a hosted service with no set end of life: testee maintains
   it for as long as it offers it, and updates it continuously, with nothing for you to install or
   do. A new AI model or prompt is released only after it meets the accuracy target in section 3.
-  If prepza ever stops offering the service, you are emailed in advance, with time to download
+  If testee ever stops offering the service, you are emailed in advance, with time to download
   your results.
 - **Changes:** questions are improved continuously (section 3); a fix applies only to candidates
   who start after it. A change to how grades are worked out or to these instructions is published
@@ -366,9 +366,9 @@ From 2027-12-02, when you use prepza in the EU:
 
 ## Reporting serious problems
 
-Tell prepza at once at hello@prepza.ai if a result may have harmed a candidate (for example a
+Tell testee at once at hello@testee.ai if a result may have harmed a candidate (for example a
 wrong answer key behind a rejection), you see signs of unfair results for a group of
-candidates, or anything looks like a security problem. prepza investigates, and reports serious
+candidates, or anything looks like a security problem. testee investigates, and reports serious
 incidents to the authorities when the law requires it.
 
-Questions: hello@prepza.ai.
+Questions: hello@testee.ai.

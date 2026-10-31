@@ -1,7 +1,7 @@
 ---
 title: "Agentes de IA, MCP e APIs: o que são e como usá-los no recrutamento"
 seoTitle: "Agentes de IA, MCP e APIs no recrutamento: como usar"
-description: "O que são agentes de IA, MCP e APIs, como usá-los com segurança no recrutamento e operar a prepza pela assistente de IA, Claude, ChatGPT ou sua plataforma."
+description: "O que são agentes de IA, MCP e APIs, como usá-los com segurança no recrutamento e operar a testee pela assistente de IA, Claude, ChatGPT ou sua plataforma."
 updated: "2026-10-22"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-22"
 
 A maioria das pessoas conheceu a IA como uma janela de chat: você pergunta, ela responde. Um agente de IA vai um passo além. Ele consegue consultar informações nas suas ferramentas e, quando você pede, fazer coisas nelas: criar uma entrevista, convidar uma lista de candidatos, dizer quem teve a nota mais alta na semana passada. O Model Context Protocol (MCP) é o padrão que permite que o chat de IA que você já usa, como o Claude ou o ChatGPT, se conecte a ferramentas como essas. E uma API é a forma mais antiga e mais precisa de um software conversar com outro, sem IA no meio.
 
-Este guia explica os três em termos simples, para que servem no recrutamento, com o que tomar cuidado e como usá-los com a prepza.
+Este guia explica os três em termos simples, para que servem no recrutamento, com o que tomar cuidado e como usá-los com a testee.
 
 ## O que é um agente de IA
 
@@ -42,10 +42,10 @@ Uma API (interface de programação de aplicações) é um conjunto de requisiç
 
 | | Mira, a assistente de IA (no app) | MCP (no Claude ou no ChatGPT) | API |
 | --- | --- | --- | --- |
-| Quem usa | Você, na prepza | Você, no seu chat de IA | O código da sua plataforma |
+| Quem usa | Você, na testee | Você, no seu chat de IA | O código da sua plataforma |
 | Como pedir | Com as suas palavras | Com as suas palavras | Requisições fixas escritas por um desenvolvedor |
 | Quem aprova as alterações | Você, em um card | Você, no seu app de IA | O seu código, como foi escrito |
-| Ideal para | Perguntas e tarefas rápidas | Combinar a prepza com as suas outras ferramentas e arquivos | Automações que rodam sem ninguém acompanhando |
+| Ideal para | Perguntas e tarefas rápidas | Combinar a testee com as suas outras ferramentas e arquivos | Automações que rodam sem ninguém acompanhando |
 | Entra como | Você | Você | Uma chave da empresa |
 
 Use a Mira ou o MCP quando houver uma pessoa acompanhando. Use a API quando o seu próprio sistema precisar convidar candidatos e coletar os resultados sozinho, por exemplo a partir de um site de carreiras ou de uma ferramenta interna de RH.
@@ -57,7 +57,7 @@ O recrutamento tem muitas etapas pequenas e repetitivas espalhadas por várias f
 - **Perguntas sobre o seu funil.** "Quais candidatos para Senior Backend foram aprovados esta semana?", "Quem ainda não começou a entrevista?", "Qual é a nossa nota média para a vaga de analista de dados?"
 - **Configurações.** "Crie uma entrevista a partir desta descrição da vaga", "Defina a nota de aprovação em 70%", "Dê a este candidato 50% de tempo extra."
 - **Tarefas em massa.** "Convide estas 12 pessoas para a entrevista de frontend", colado direto de um e-mail ou de uma planilha.
-- **Combinar fontes.** No Claude ou no ChatGPT, você pode usar a prepza junto com as suas outras ferramentas e arquivos conectados: comparar uma descrição de vaga dos seus documentos com os tópicos da entrevista, ou rascunhar uma mensagem para os candidatos pré-selecionados.
+- **Combinar fontes.** No Claude ou no ChatGPT, você pode usar a testee junto com as suas outras ferramentas e arquivos conectados: comparar uma descrição de vaga dos seus documentos com os tópicos da entrevista, ou rascunhar uma mensagem para os candidatos pré-selecionados.
 
 O que ele não deve fazer é tomar a decisão de contratação. Uma nota apoia o julgamento de uma pessoa; não o substitui. Peça ao agente para ordenar, resumir e preparar, e deixe a decisão com uma pessoa. Veja [O uso de IA no recrutamento é legal na UE?](/guides/is-ai-hiring-legal-in-the-eu) para entender por que isso também importa do ponto de vista legal.
 
@@ -77,29 +77,29 @@ Conectar uma IA aos seus dados de recrutamento merece o mesmo cuidado que dar ac
 
 Antes de conectar qualquer app de IA a dados de trabalho, confira a política da sua empresa sobre ferramentas de IA e informe os candidatos, no seu aviso de privacidade, sobre quais serviços tratam os dados deles.
 
-## Três formas de trabalhar com a prepza além das páginas dela
+## Três formas de trabalhar com a testee além das páginas dela
 
 ### 1. Mira, a assistente de IA integrada
 
-Selecione **perguntar à Mira** no cabeçalho de qualquer página. A Mira, assistente de IA da prepza, conhece as suas empresas, entrevistas, candidatos, créditos e integrações, e sabe como a prepza funciona. Ela responde no seu idioma, e você pode digitar ou falar.
+Selecione **perguntar à Mira** no cabeçalho de qualquer página. A Mira, assistente de IA da testee, conhece as suas empresas, entrevistas, candidatos, créditos e integrações, e sabe como a testee funciona. Ela responde no seu idioma, e você pode digitar ou falar.
 
 - **Ele responde com os seus dados**, com a mesma visão que você tem: um administrador vê o que um administrador vê, um visualizador o que um visualizador vê.
 - **Ele sabe em que página você está.** Pergunte "O que posso fazer nesta página?" para ver o guia dessa página, ou "Quem é o melhor aqui?" nos candidatos de uma entrevista, e ele responde sobre essa entrevista sem perguntar qual.
 - **Ele prepara as alterações, você as confirma.** Se você pedir para convidar candidatos, ele mostra um card com exatamente o que vai acontecer, como "Convidar 12 candidatos para Backend developer". Nada é executado até você selecionar Confirmar.
 - **Ele mostra as fontes.** Abaixo de uma resposta aparecem os candidatos ou as entrevistas que ele usou e um link para a página de onde vieram.
-- **Ele não foge do assunto.** Responde sobre a prepza e sobre recrutar com ela, e recusa o resto.
+- **Ele não foge do assunto.** Responde sobre a testee e sobre recrutar com ela, e recusa o resto.
 
-### 2. A prepza no Claude ou no ChatGPT, via MCP
+### 2. A testee no Claude ou no ChatGPT, via MCP
 
-Se a sua equipe já trabalha no Claude ou no ChatGPT, você pode levar a prepza para lá. O servidor MCP da prepza oferece as mesmas ferramentas que a Mira, a assistente integrada.
+Se a sua equipe já trabalha no Claude ou no ChatGPT, você pode levar a testee para lá. O servidor MCP da testee oferece as mesmas ferramentas que a Mira, a assistente integrada.
 
 **Para conectar:**
 
-1. Na prepza, abra a aba **Integrações** de uma empresa e selecione **Apps de IA**. Copie o endereço do servidor: `https://prepza.ai/mcp`.
-2. **No Claude:** abra Configurações, depois Conectores, e adicione um conector personalizado com esse endereço. **No Claude Code:** execute `claude mcp add --transport http prepza https://prepza.ai/mcp`. **No ChatGPT:** adicione-o como conector personalizado nas configurações de apps e conectores.
-3. O seu app de IA abre o login da prepza. Faça login, confira qual app está pedindo acesso e selecione **Permitir**. Para que ele possa apenas ler, desative antes **Permitir alterações**.
+1. Na testee, abra a aba **Integrações** de uma empresa e selecione **Apps de IA**. Copie o endereço do servidor: `https://testee.ai/mcp`.
+2. **No Claude:** abra Configurações, depois Conectores, e adicione um conector personalizado com esse endereço. **No Claude Code:** execute `claude mcp add --transport http testee https://testee.ai/mcp`. **No ChatGPT:** adicione-o como conector personalizado nas configurações de apps e conectores.
+3. O seu app de IA abre o login da testee. Faça login, confira qual app está pedindo acesso e selecione **Permitir**. Para que ele possa apenas ler, desative antes **Permitir alterações**.
 
-A partir daí, pergunte no seu chat como perguntaria a um colega: "Na prepza, quem são os três melhores candidatos para Product designer?" A maioria dos apps de IA pergunta a você antes de uma alteração e avisa antes de qualquer ação que não possa ser desfeita: a prepza informa a eles quais ações alteram ou excluem algo.
+A partir daí, pergunte no seu chat como perguntaria a um colega: "Na testee, quem são os três melhores candidatos para Product designer?" A maioria dos apps de IA pergunta a você antes de uma alteração e avisa antes de qualquer ação que não possa ser desfeita: a testee informa a eles quais ações alteram ou excluem algo.
 
 **O que continua igual ao app:**
 
@@ -115,13 +115,13 @@ A partir daí, pergunte no seu chat como perguntaria a um colega: "Na prepza, qu
 
 ### 3. A sua própria plataforma, via API
 
-Para automações sem IA, a prepza tem uma API, descrita na [documentação para desenvolvedores](/api-docs).
+Para automações sem IA, a testee tem uma API, descrita na [documentação para desenvolvedores](/api-docs).
 
 1. Um proprietário ou administrador abre a aba **Integrações** de uma empresa, depois **API**, e seleciona **Nova chave**. Dê a ela o nome da plataforma que vai usá-la, escolha quando ela expira e marque só o que ela precisa: a chave de um painel só lê; a de um site de carreiras também convida. Depois você pode adicionar ou tirar permissões. A chave aparece só uma vez; guarde-a em um lugar seguro.
 2. A sua plataforma envia requisições com essa chave: listar as entrevistas da empresa, listar ou consultar candidatos com a nota, se foram aprovados e os alertas de integridade, e convidar um candidato.
-3. Adicione um **webhook**: um endereço na sua plataforma que a prepza chama, com assinatura, quando um candidato começa ou termina, quando o convite não chega até ele ou expira, quando ele é removido e quando uma entrevista fica pronta, para que você não precise ficar perguntando. A página da API pode enviar a ele um evento de teste e mostra o registro de entregas dele.
+3. Adicione um **webhook**: um endereço na sua plataforma que a testee chama, com assinatura, quando um candidato começa ou termina, quando o convite não chega até ele ou expira, quando ele é removido e quando uma entrevista fica pronta, para que você não precise ficar perguntando. A página da API pode enviar a ele um evento de teste e mostra o registro de entregas dele.
 
-Cada candidato vem com um link para os resultados completos na prepza e, até terminar, com o próprio link de convite, para que a sua plataforma possa enviá-lo em uma mensagem própria, se você preferir. Quando a sua plataforma já sabe quem é o candidato, convide-o sem login: a prepza não envia e-mails, e o candidato faz a entrevista pelo link sem entrar na prepza, então envie o link só para ele. Um convite também pode levar o candidato de volta ao seu site (qualquer endereço https) com um botão na página final e definir um tema claro ou escuro nas cores da sua empresa. Com o SDK da prepza, a sua própria página pode exibir a entrevista em si, mas só nos sites que a sua empresa permite na página da API. A API e os webhooks não dependem desses sites: em vez disso, cada chave pode ser limitada aos endereços IP dos seus servidores. A verificação só adiciona o selo de empresa verificada.
+Cada candidato vem com um link para os resultados completos na testee e, até terminar, com o próprio link de convite, para que a sua plataforma possa enviá-lo em uma mensagem própria, se você preferir. Quando a sua plataforma já sabe quem é o candidato, convide-o sem login: a testee não envia e-mails, e o candidato faz a entrevista pelo link sem entrar na testee, então envie o link só para ele. Um convite também pode levar o candidato de volta ao seu site (qualquer endereço https) com um botão na página final e definir um tema claro ou escuro nas cores da sua empresa. Com o SDK da testee, a sua própria página pode exibir a entrevista em si, mas só nos sites que a sua empresa permite na página da API. A API e os webhooks não dependem desses sites: em vez disso, cada chave pode ser limitada aos endereços IP dos seus servidores. A verificação só adiciona o selo de empresa verificada.
 
 Vale a mesma regra de sempre: a nota apoia a decisão de uma pessoa, então não reprove candidatos automaticamente com base nela.
 
@@ -131,18 +131,18 @@ Comece por quem faz o trabalho e com que frequência.
 
 | A sua situação | O que usar |
 | --- | --- |
-| Você está na prepza e quer uma resposta rápida: quem foi aprovado, quem não começou, quantos créditos restam | Mira, a assistente integrada |
+| Você está na testee e quer uma resposta rápida: quem foi aprovado, quem não começou, quantos créditos restam | Mira, a assistente integrada |
 | Você quer configurar algo em poucas palavras: uma entrevista a partir de uma descrição da vaga, uma nota de aprovação, tempo extra | Mira, a assistente integrada |
-| Você já trabalha no Claude ou no ChatGPT o dia todo e quer a prepza lá também | MCP |
-| A tarefa precisa da prepza e de outra coisa: os seus documentos, rascunhos de e-mail, outra ferramenta conectada | MCP |
+| Você já trabalha no Claude ou no ChatGPT o dia todo e quer a testee lá também | MCP |
+| A tarefa precisa da testee e de outra coisa: os seus documentos, rascunhos de e-mail, outra ferramenta conectada | MCP |
 | Um recrutador fora do escritório quer acompanhar o funil pelo app de IA no celular | MCP |
 | O seu site de carreiras ou sistema de RH deve convidar candidatos sozinho, sem ninguém clicar | A API |
 | Os resultados devem chegar ao seu próprio banco de dados ou painel assim que os candidatos terminam | A API, com um webhook |
-| O seu ATS é um dos que a prepza integra (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Nenhum deles: conecte o ATS na aba Integrações. Veja [Como integrar testes de habilidades ao seu ATS](/guides/ats-integration-skills-tests) |
+| O seu ATS é um dos que a testee integra (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR) | Nenhum deles: conecte o ATS na aba Integrações. Veja [Como integrar testes de habilidades ao seu ATS](/guides/ats-integration-skills-tests) |
 
 Uma regra prática:
 
-- **Uma pessoa pede e confere cada alteração:** a Mira na prepza, ou o MCP se essa pessoa vive no Claude ou no ChatGPT.
+- **Uma pessoa pede e confere cada alteração:** a Mira na testee, ou o MCP se essa pessoa vive no Claude ou no ChatGPT.
 - **Um software age sozinho, sempre do mesmo jeito:** a API.
 - **Para começar:** experimente primeiro a Mira, a assistente integrada. Ela não precisa de configuração, e o que você aprender vale também para o MCP.
 

@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 En general, sí: usar IA en la selección de personal es legal en la UE. Pero la mayoría de las herramientas de IA que evalúan candidatos entran en la categoría de alto riesgo del Reglamento de IA de la UE (EU AI Act), lo que conlleva obligaciones para el proveedor y para ti, el empleador. Algunas prácticas están directamente prohibidas. Y el RGPD (GDPR) se aplica a los datos de los candidatos, como siempre.
 
-Esta guía explica las normas a grandes rasgos, las fechas que importan, lo que deben hacer los empleadores y cómo lo aborda prepza. **No es asesoramiento jurídico.** Refleja las normas a fecha de octubre de 2026. Las normas son nuevas, las orientaciones aún se están ultimando y la legislación nacional añade sus propios requisitos. Consulta con tu propio asesor legal antes de basarte en nada de esto.
+Esta guía explica las normas a grandes rasgos, las fechas que importan, lo que deben hacer los empleadores y cómo lo aborda testee. **No es asesoramiento jurídico.** Refleja las normas a fecha de octubre de 2026. Las normas son nuevas, las orientaciones aún se están ultimando y la legislación nacional añade sus propios requisitos. Consulta con tu propio asesor legal antes de basarte en nada de esto.
 
 ## La respuesta corta
 
@@ -111,15 +111,15 @@ Los datos de los candidatos son datos personales, y la IA no cambia el RGPD. Lo 
 8. **Ofrece adaptaciones,** como tiempo extra, a los candidatos que las necesiten.
 9. **Nunca rechaces solo por una puntuación.** Mira las respuestas.
 
-## Cómo lo aborda prepza
+## Cómo lo aborda testee
 
-prepza ofrece entrevistas de habilidades de opción múltiple con tiempo límite redactadas por IA a partir de una descripción del puesto. Como puntúa y clasifica a los candidatos, el análisis propio de prepza concluye que muy probablemente es de alto riesgo según el anexo III, punto 4, letra a), con obligaciones aplicables desde el 2 de diciembre de 2027. Se está preparando sobre esa base. prepza no afirma cumplir la normativa ni estar certificado.
+testee ofrece entrevistas de habilidades de opción múltiple con tiempo límite redactadas por IA a partir de una descripción del puesto. Como puntúa y clasifica a los candidatos, el análisis propio de testee concluye que muy probablemente es de alto riesgo según el anexo III, punto 4, letra a), con obligaciones aplicables desde el 2 de diciembre de 2027. Se está preparando sobre esa base. testee no afirma cumplir la normativa ni estar certificado.
 
 Cómo se refleja hoy en el producto:
 
 - **La IA redacta las preguntas y sus claves de respuestas; la corrección sigue reglas fijas.** Ninguna IA lee ni juzga la respuesta de un candidato, y no se analiza video, voz ni rostros. Si la IA corrige una clave más adelante, la corrección se aplica a los candidatos que empiecen después; los resultados anteriores no cambian.
 - **Tú apruebas los temas** antes de que se redacte ninguna pregunta, y puedes ver todas las preguntas.
-- **Deciden las personas.** La página de resultados y los informes en PDF recuerdan a tu equipo que revise los resultados; prepza no rechaza candidatos ni envía mensajes de rechazo.
+- **Deciden las personas.** La página de resultados y los informes en PDF recuerdan a tu equipo que revise los resultados; testee no rechaza candidatos ni envía mensajes de rechazo.
 - **Se informa a los candidatos** antes de empezar de que las preguntas las redacta la IA, de que personas de tu empresa revisan los resultados y deciden, y de que pueden pedir una revisión.
 - **Tiempo extra** para cualquier candidato que lo pida.
 - **Registros.** Se registran las preguntas mostradas, las respuestas, los tiempos y los eventos de integridad.

@@ -12,7 +12,7 @@
     "account": "Tài khoản của bạn",
     "accountNote": "Hãy ghi ID này khi bạn viết cho chúng tôi về tài khoản của mình.",
     "yourData": "Dữ liệu của bạn",
-    "yourDataNote": "Tải xuống mọi thứ prepza. lưu về bạn, hoặc xóa tài khoản.",
+    "yourDataNote": "Tải xuống mọi thứ testee. lưu về bạn, hoặc xóa tài khoản.",
     "download": "Tải dữ liệu của tôi",
     "downloadFailed": "Không thể chuẩn bị dữ liệu của bạn. Vui lòng thử lại.",
     "delete": "Xóa tài khoản",
@@ -20,7 +20,7 @@
     "noLanguage": "Không tìm thấy ngôn ngữ.",
     "emails": {
       "title": "Email",
-      "note": "Chọn những email prepza. gửi cho bạn.",
+      "note": "Chọn những email testee. gửi cho bạn.",
       "failed": "Không lưu được cài đặt email. Vui lòng thử lại.",
       "digest": "Tóm tắt hoạt động",
       "digestNote": "Mỗi ngày một email về những gì đã diễn ra ở các công ty của bạn.",
@@ -34,7 +34,7 @@
       "reminders": "Lời nhắc",
       "remindersNote": "Sắp hết credit, buổi phỏng vấn chưa có ứng viên, chủ đề đang chờ xem xét.",
       "updates": "Cập nhật sản phẩm và tin tức",
-      "updatesNote": "Tính năng mới và tin tức từ prepza.",
+      "updatesNote": "Tính năng mới và tin tức từ testee.",
       "promotions": "Ưu đãi và khuyến mãi",
       "promotionsNote": "Giảm giá và ưu đãi đặc biệt.",
       "alwaysSent": "Email dịch vụ, như lời mời, báo cáo ứng viên, sự cố thanh toán và thay đổi điều khoản của chúng tôi, luôn được gửi."
@@ -82,7 +82,7 @@
   "signIn": {
     "title": "Đăng nhập",
     "continueWith": "Tiếp tục với <name>{provider}</name>",
-    "link": "Email này đã có tài khoản prepza. Hãy tiếp tục theo cách bạn đã đăng nhập trước đây, và {provider} sẽ được liên kết với tài khoản đó.",
+    "link": "Email này đã có tài khoản testee. Hãy tiếp tục theo cách bạn đã đăng nhập trước đây, và {provider} sẽ được liên kết với tài khoản đó.",
     "consent": "Khi đăng nhập, bạn xác nhận mình từ 16 tuổi trở lên, đồng ý với <terms>Điều khoản</terms> và đã đọc <privacy>Chính sách quyền riêng tư</privacy>.",
     "failed": "Đăng nhập không thành công. Vui lòng thử lại.",
     "verify": "Chúng tôi đã gửi cho bạn một liên kết để xác minh email. Hãy mở liên kết để tham gia phỏng vấn và tạo công ty.",
@@ -256,7 +256,7 @@
     "pauseText": "Khi bật, không ai có thể bắt đầu buổi phỏng vấn, vòng luyện tập hay bản xem trước mới, và không câu hỏi nào được tạo, tạo lại hay kiểm tra. Ứng viên đang làm phỏng vấn vẫn có thể hoàn thành.",
     "pauseFailed": "Không thể thay đổi trạng thái tạm dừng. Vui lòng thử lại.",
     "maintenanceTitle": "Chế độ bảo trì",
-    "maintenanceText": "Khi bật, mọi trang đều hiển thị rằng prepza đang được bảo trì và các dịch vụ từ chối mọi yêu cầu, trừ của quản trị viên cấp cao. Thanh toán, email và tác vụ theo lịch vẫn hoạt động.",
+    "maintenanceText": "Khi bật, mọi trang đều hiển thị rằng testee đang được bảo trì và các dịch vụ từ chối mọi yêu cầu, trừ của quản trị viên cấp cao. Thanh toán, email và tác vụ theo lịch vẫn hoạt động.",
     "maintenanceFailed": "Không thể thay đổi chế độ bảo trì. Hãy thử lại.",
     "maintenanceConfirmTitle": "Bật chế độ bảo trì?",
     "maintenanceRunning": "{count, plural, =0 {Hiện không có ứng viên nào đang làm phỏng vấn.} other {Hiện có # ứng viên đang làm phỏng vấn. Thời gian làm bài của họ dừng lại khi chế độ bảo trì đang bật.}}",
@@ -279,13 +279,13 @@
     "emails": "Email",
     "emailSearch": "Địa chỉ email",
     "emailSearchAction": "Tìm",
-    "emailsIntro": "Tìm một địa chỉ email để xem và dừng các email prepza gửi đến địa chỉ đó, cho người đã yêu cầu chúng tôi qua email.",
-    "account": "Tài khoản prepza",
+    "emailsIntro": "Tìm một địa chỉ email để xem và dừng các email testee gửi đến địa chỉ đó, cho người đã yêu cầu chúng tôi qua email.",
+    "account": "Tài khoản testee",
     "accountText": "<bdi>{email}</bdi> có tài khoản. Các thay đổi ở đây được ghi lại dưới tên bạn.",
-    "noAccount": "Không có tài khoản prepza nào dùng địa chỉ này.",
+    "noAccount": "Không có tài khoản testee nào dùng địa chỉ này.",
     "turnOffAll": "Tắt mọi email không bắt buộc",
     "companyEmails": "Email từ các công ty",
-    "companyEmailsText": "Lời mời và lời nhắc mà các công ty gửi đến địa chỉ này qua prepza. Các thay đổi ở đây được ghi lại dưới tên bạn.",
+    "companyEmailsText": "Lời mời và lời nhắc mà các công ty gửi đến địa chỉ này qua testee. Các thay đổi ở đây được ghi lại dưới tên bạn.",
     "noCompanies": "Chưa có công ty nào mời địa chỉ này.",
     "companySending": "Email vẫn được gửi",
     "companyStopped": "Đã dừng mọi email",
@@ -342,7 +342,7 @@
     "legalSend": "Gửi email về thay đổi",
     "legalConfirmTitle": "Gửi email về thay đổi của {document}?",
     "legalAudience": {
-      "everyone": "Mọi người có tài khoản prepza sẽ nhận được từ giờ gửi tiếp theo (8:00 đến 18:00 UTC), cho biết phiên bản mới áp dụng từ <time>{date}</time>, và thấy nó trong thông báo của mình. Chỉ gửi một lần và không thể thu hồi.",
+      "everyone": "Mọi người có tài khoản testee sẽ nhận được từ giờ gửi tiếp theo (8:00 đến 18:00 UTC), cho biết phiên bản mới áp dụng từ <time>{date}</time>, và thấy nó trong thông báo của mình. Chỉ gửi một lần và không thể thu hồi.",
       "company_editors": "Chủ sở hữu và quản trị viên của mọi công ty sẽ nhận được từ giờ gửi tiếp theo (8:00 đến 18:00 UTC), cho biết phiên bản mới áp dụng từ <time>{date}</time>, và thấy nó trong thông báo của mình. Chỉ gửi một lần và không thể thu hồi."
     },
     "legalAsked": "Thay đổi sẽ được gửi email từ giờ gửi tiếp theo.",
@@ -427,7 +427,7 @@
       "promotions": "Ưu đãi",
       "notices": "Thông báo quan trọng"
     },
-    "campaignNoticeWarning": "Thông báo quan trọng đến với mọi người trong đối tượng nhận, bất kể cài đặt email của họ, và không thể hủy đăng ký. Chỉ dùng cho sự cố bảo mật, thời gian ngừng hoạt động theo kế hoạch hoặc thay đổi về cách prepza hoạt động, không bao giờ dùng để quảng bá bất cứ điều gì.",
+    "campaignNoticeWarning": "Thông báo quan trọng đến với mọi người trong đối tượng nhận, bất kể cài đặt email của họ, và không thể hủy đăng ký. Chỉ dùng cho sự cố bảo mật, thời gian ngừng hoạt động theo kế hoạch hoặc thay đổi về cách testee hoạt động, không bao giờ dùng để quảng bá bất cứ điều gì.",
     "campaignAudience": "Đối tượng nhận",
     "campaignAudienceEveryone": "Mọi người",
     "campaignAudienceEveryoneNote": {
@@ -457,7 +457,7 @@
     "campaignTextPlaceholder": "Nhập nội dung ở đây… Nhấn Enter để bắt đầu đoạn mới.",
     "campaignButton": "Chữ trên nút (không bắt buộc)",
     "campaignLink": "Liên kết của nút",
-    "campaignLinkPlaceholder": "Liên kết của nút trên prepza, ví dụ /pricing (không bắt buộc)",
+    "campaignLinkPlaceholder": "Liên kết của nút trên testee, ví dụ /pricing (không bắt buộc)",
     "campaignSaveFailed": "Không lưu được chiến dịch. Vui lòng thử lại.",
     "noCampaigns": "Chưa có chiến dịch nào.",
     "campaignStatus": {
@@ -537,7 +537,7 @@
       "paid": "Công ty đã thanh toán",
       "unpaid": "Công ty chưa thanh toán",
       "no_company": "Không thuộc công ty nào",
-      "prepza": "prepza"
+      "testee": "testee"
     },
     "aiActionsTitle": "Theo thao tác",
     "aiActions": {
@@ -703,7 +703,7 @@
       "1209600": "mỗi lần xem xét chủ đề"
     },
     "limitKinds": {
-      "ours": "prepza",
+      "ours": "testee",
       "openai": "OpenAI",
       "resend": "Resend",
       "firebase": "Firebase",
@@ -1036,7 +1036,7 @@
     "pickTitle": "Chọn công ty",
     "pickText": "Bài kiểm tra được sao chép miễn phí vào công ty bạn chọn, sẵn sàng gửi cho ứng viên.",
     "removeCredits": "{credits, plural, other {# credit}} của công ty{candidates, plural, =0 {} other { (khoảng # ứng viên)}} sẽ mất và không được hoàn tiền.",
-    "suspended": "Công ty này đã bị tạm ngưng nên hiện không thể thay đổi. Liên hệ hello@prepza.ai để biết thêm."
+    "suspended": "Công ty này đã bị tạm ngưng nên hiện không thể thay đổi. Liên hệ hello@testee.ai để biết thêm."
   },
   "candidates": {
     "scorecard": "Bảng điểm",
@@ -1137,7 +1137,7 @@
     "passMark": "Điểm đạt",
     "passMarkLabel": "Điểm đạt tính bằng phần trăm",
     "markHired": "Đánh dấu đã tuyển",
-    "keepPrivate": "Không đưa các câu hỏi này vào ngân hàng câu hỏi dùng chung của prepza",
+    "keepPrivate": "Không đưa các câu hỏi này vào ngân hàng câu hỏi dùng chung của testee",
     "keepPrivateHelp": "Các câu hỏi đã được dùng lại trong buổi phỏng vấn khác vẫn ở đó",
     "answerMode": "Chế độ phỏng vấn",
     "answerModeHelp": "Ở chế độ nhấp, ứng viên đọc từng câu hỏi và chạm vào câu trả lời. Ở chế độ giọng nói, Mira, người phỏng vấn AI, đọc to từng câu hỏi và ứng viên trả lời bằng giọng nói hoặc bằng cách chạm",
@@ -1251,7 +1251,7 @@
     "mismatch": "Email không khớp. Đăng nhập bằng email được mời để bắt đầu.",
     "title": "Lời mời phỏng vấn",
     "theCompany": "công ty",
-    "unverified": "prepza chưa xác minh công ty này."
+    "unverified": "testee chưa xác minh công ty này."
   },
   "members": {
     "joined": "Đã tham gia",
@@ -1286,7 +1286,7 @@
     "unavailable": "Hiện chưa xem được giá. Vui lòng thử lại sau một phút.",
     "title": "Bảng giá",
     "intro": "Trả tiền theo ứng viên. Tạo buổi phỏng vấn là miễn phí, và không có gói đăng ký.",
-    "description": "Bảng giá prepza: tạo buổi phỏng vấn là miễn phí, và bạn chỉ trả tiền cho mỗi ứng viên có trả lời. Không có gói đăng ký hay phí theo người dùng, và credit không bao giờ hết hạn.",
+    "description": "Bảng giá testee: tạo buổi phỏng vấn là miễn phí, và bạn chỉ trả tiền cho mỗi ứng viên có trả lời. Không có gói đăng ký hay phí theo người dùng, và credit không bao giờ hết hạn.",
     "test": "Tạo một buổi phỏng vấn",
     "free": "Miễn phí",
     "candidate": "Mỗi ứng viên trả lời ít nhất một câu hỏi",
@@ -1320,14 +1320,14 @@
   "docs": {
     "title": "Tài liệu pháp lý",
     "metaTitle": "Tài liệu tuân thủ trong tuyển dụng",
-    "intro": "Tài liệu cho các công ty đánh giá ứng viên bằng prepza: hướng dẫn, mẫu và thỏa thuận xử lý dữ liệu.",
+    "intro": "Tài liệu cho các công ty đánh giá ứng viên bằng testee: hướng dẫn, mẫu và thỏa thuận xử lý dữ liệu.",
     "englishOnly": "Các tài liệu này chỉ có bằng tiếng Anh.",
     "download": "Tải {format}",
     "readOnline": "Đọc trực tuyến",
     "items": {
       "instructions": {
         "title": "Hướng dẫn cho công ty",
-        "description": "Ý nghĩa của điểm, việc con người xem xét, cách chọn điểm đạt, thời gian thêm và những trường hợp không nên dùng prepza."
+        "description": "Ý nghĩa của điểm, việc con người xem xét, cách chọn điểm đạt, thời gian thêm và những trường hợp không nên dùng testee."
       },
       "notices": {
         "title": "Mẫu thông báo cho ứng viên",
@@ -1335,11 +1335,11 @@
       },
       "dpia": {
         "title": "Mẫu DPIA",
-        "description": "Bản đánh giá tác động bảo vệ dữ liệu đã điền sẵn phần của prepza, để bạn hoàn thành."
+        "description": "Bản đánh giá tác động bảo vệ dữ liệu đã điền sẵn phần của testee, để bạn hoàn thành."
       },
       "dpa": {
         "title": "Thỏa thuận xử lý dữ liệu",
-        "description": "Cách prepza xử lý dữ liệu ứng viên thay cho bạn. Đây là một phần của điều khoản."
+        "description": "Cách testee xử lý dữ liệu ứng viên thay cho bạn. Đây là một phần của điều khoản."
       }
     }
   },
@@ -1396,7 +1396,7 @@
     "more": "Cách hoạt động",
     "demos": "Video",
     "demosTooltip": "Xem demo trên YouTube",
-    "videoTooltip": "Xem prepza hoạt động thế nào",
+    "videoTooltip": "Xem testee hoạt động thế nào",
     "watchVideo": "Xem video",
     "howItWorks": "Cách hoạt động",
     "askAgent": "hỏi Mira",
@@ -1553,7 +1553,7 @@
         },
         "help": {
           "title": "Trợ giúp",
-          "text": "Câu trả lời cách làm từ hướng dẫn của prepza, bằng ngôn ngữ của bạn."
+          "text": "Câu trả lời cách làm từ hướng dẫn của testee, bằng ngôn ngữ của bạn."
         },
         "actions": {
           "title": "Thao tác",
@@ -1633,8 +1633,8 @@
         "time": "Phải chọn hoặc viết bài kiểm tra cho từng vị trí",
         "cost": "Phí hằng tháng, dù có tuyển hay không"
       },
-      "prepza": {
-        "name": "prepza",
+      "testee": {
+        "name": "testee",
         "checks": "AI viết riêng cho vị trí của bạn",
         "time": "~10 phút mỗi vị trí, 0 phút mỗi ứng viên",
         "cost": "{price} mỗi ứng viên đã trả lời"
@@ -1670,13 +1670,13 @@
   "faq": {
     "title": "Câu hỏi thường gặp",
     "intro": "Không tìm thấy câu trả lời? Hãy hỏi Mira, trợ lý AI (nút ở đầu trang), hoặc viết cho chúng tôi theo địa chỉ trong chính sách quyền riêng tư.",
-    "description": "Giải đáp về prepza: cách tạo buổi phỏng vấn từ mô tả công việc, ứng viên thấy gì, giá và credit, kết quả, tích hợp ATS, ngôn ngữ và dữ liệu của bạn."
+    "description": "Giải đáp về testee: cách tạo buổi phỏng vấn từ mô tả công việc, ứng viên thấy gì, giá và credit, kết quả, tích hợp ATS, ngôn ngữ và dữ liệu của bạn."
   },
   "contact": {
     "title": "Liên hệ với chúng tôi",
     "intro": "Bạn có câu hỏi, ý tưởng, đề xuất hợp tác hoặc gặp sự cố? Hãy viết cho chúng tôi, chúng tôi sẽ trả lời qua email.",
     "idHint": "Bạn viết về một công ty, buổi phỏng vấn, ứng viên hay tài khoản của mình? Hãy dán ID của nó: “sao chép id” nằm dưới tên, còn ID tài khoản của bạn nằm trong menu tài khoản.",
-    "description": "Liên hệ đội ngũ prepza: câu hỏi về bài kiểm tra tuyển dụng, ý tưởng, đề xuất hợp tác hoặc sự cố. Chúng tôi trả lời qua email.",
+    "description": "Liên hệ đội ngũ testee: câu hỏi về bài kiểm tra tuyển dụng, ý tưởng, đề xuất hợp tác hoặc sự cố. Chúng tôi trả lời qua email.",
     "name": "Tên",
     "email": "Email",
     "message": "Tin nhắn",
@@ -1694,23 +1694,23 @@
   },
   "about": {
     "title": "Về chúng tôi",
-    "intro": "prepza giúp các công ty tìm được người thật sự thạo việc: một buổi phỏng vấn công bằng, có tính giờ, tạo từ mô tả công việc của bạn, với mức giá nhóm nào cũng chi trả được. Và ai đang chuẩn bị phỏng vấn cũng có thể luyện tập miễn phí.",
-    "description": "prepza biến mô tả công việc thành một buổi phỏng vấn công bằng, có giới hạn thời gian chỉ trong vài phút, với mức giá đội nào cũng chi trả được, và ai cũng có thể luyện phỏng vấn miễn phí.",
+    "intro": "testee giúp các công ty tìm được người thật sự thạo việc: một buổi phỏng vấn công bằng, có tính giờ, tạo từ mô tả công việc của bạn, với mức giá nhóm nào cũng chi trả được. Và ai đang chuẩn bị phỏng vấn cũng có thể luyện tập miễn phí.",
+    "description": "testee biến mô tả công việc thành một buổi phỏng vấn công bằng, có giới hạn thời gian chỉ trong vài phút, với mức giá đội nào cũng chi trả được, và ai cũng có thể luyện phỏng vấn miễn phí.",
     "company": {
       "title": "Vì sao chúng tôi tồn tại",
       "problem": "Tuyển dụng thường dựa vào CV và một cuộc trò chuyện tốt, và cả hai đều có thể gây hiểu lầm. Các công cụ đánh giá hữu ích lại có giá dành cho công ty lớn, với gói năm và phí theo người dùng, nên phần lớn các nhóm đành bỏ qua.",
-      "approach": "prepza biến mô tả công việc thành buổi phỏng vấn có tính giờ chỉ trong vài phút, cho mọi vị trí. Mỗi ứng viên nhận bộ câu hỏi riêng, bạn thấy ai thạo việc và vì sao, và bạn chỉ trả tiền cho những ứng viên thật sự tham gia.",
+      "approach": "testee biến mô tả công việc thành buổi phỏng vấn có tính giờ chỉ trong vài phút, cho mọi vị trí. Mỗi ứng viên nhận bộ câu hỏi riêng, bạn thấy ai thạo việc và vì sao, và bạn chỉ trả tiền cho những ứng viên thật sự tham gia.",
       "practice": "Chúng tôi cũng muốn việc chuẩn bị phỏng vấn là miễn phí cho tất cả mọi người. Ai cũng có thể làm các buổi phỏng vấn luyện tập của chúng tôi cho một vị trí, xem điểm và mọi đáp án đúng, rồi luyện tập lại, hoàn toàn miễn phí."
     },
     "founder": {
-      "quote": "Tuyển dụng tốt không nên là đặc quyền của các công ty lớn với ngân sách lớn. Tôi xây dựng prepza để bất kỳ nhóm nào cũng có thể biến mô tả công việc thành một buổi phỏng vấn công bằng trong vài phút, thấy ai thật sự thạo việc và chỉ trả tiền cho những ứng viên tham gia. Mong rằng nó giúp bạn tìm được đúng người nhanh hơn.",
-      "role": "Nhà sáng lập duy nhất của prepza"
+      "quote": "Tuyển dụng tốt không nên là đặc quyền của các công ty lớn với ngân sách lớn. Tôi xây dựng testee để bất kỳ nhóm nào cũng có thể biến mô tả công việc thành một buổi phỏng vấn công bằng trong vài phút, thấy ai thật sự thạo việc và chỉ trả tiền cho những ứng viên tham gia. Mong rằng nó giúp bạn tìm được đúng người nhanh hơn.",
+      "role": "Nhà sáng lập duy nhất của testee"
     }
   },
   "news": {
-    "title": "Tin tức prepza",
-    "description": "Có gì mới ở prepza: tính năng mới, cải tiến và cập nhật.",
-    "metaDescription": "Tin tức prepza: tính năng, ngôn ngữ và cải tiến mới cho bài kiểm tra kỹ năng, phỏng vấn AI và luyện tập miễn phí ngay khi ra mắt. Theo dõi tại đây hoặc qua RSS.",
+    "title": "Tin tức testee",
+    "description": "Có gì mới ở testee: tính năng mới, cải tiến và cập nhật.",
+    "metaDescription": "Tin tức testee: tính năng, ngôn ngữ và cải tiến mới cho bài kiểm tra kỹ năng, phỏng vấn AI và luyện tập miễn phí ngay khi ra mắt. Theo dõi tại đây hoặc qua RSS.",
     "empty": "Chưa có tin tức nào.",
     "rss": "Nguồn cấp RSS"
   },
@@ -1746,8 +1746,8 @@
       "legal_dpa": "Thỏa thuận xử lý dữ liệu mới áp dụng từ <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "Điều khoản của prepza thay đổi vào <time>{date}</time>.",
-      "privacy": "Chính sách quyền riêng tư của prepza thay đổi vào <time>{date}</time>.",
+      "terms": "Điều khoản của testee thay đổi vào <time>{date}</time>.",
+      "privacy": "Chính sách quyền riêng tư của testee thay đổi vào <time>{date}</time>.",
       "dpa": "Thỏa thuận xử lý dữ liệu thay đổi vào <time>{date}</time>."
     },
     "readLegal": "Đọc phiên bản mới",
@@ -1769,7 +1769,7 @@
     "sent": "Đã gửi báo cáo tới <bdi>{email}</bdi>",
     "sendFailed": "Không thể gửi báo cáo.",
     "orSummary": "Hoặc gửi qua",
-    "via": "Gửi từ prepza",
+    "via": "Gửi từ testee",
     "candidatesFileName": "Ứng viên {title}",
     "candidateCount": "{count, plural, other {# ứng viên}}",
     "passMark": "điểm đạt {mark}",
@@ -1815,7 +1815,7 @@
   },
   "openToOffers": {
     "title": "Sẵn sàng nhận cơ hội việc làm",
-    "text": "Các công ty tuyển dụng trên prepza sẽ thấy tên, hồ sơ LinkedIn và kết quả luyện tập mới nhất của bạn, và có thể mời bạn phỏng vấn. Bạn có thể tắt bất cứ lúc nào.",
+    "text": "Các công ty tuyển dụng trên testee sẽ thấy tên, hồ sơ LinkedIn và kết quả luyện tập mới nhất của bạn, và có thể mời bạn phỏng vấn. Bạn có thể tắt bất cứ lúc nào.",
     "linkedin": "Hồ sơ LinkedIn",
     "linkedinHint": "linkedin.com/in/nguyen-van-a",
     "save": "Lưu",
@@ -1846,8 +1846,8 @@
   },
   "maintenance": {
     "title": "Đang bảo trì",
-    "text": "prepza đang được bảo trì. Chúng tôi sẽ sớm trở lại.",
-    "notice": "Chế độ bảo trì đang bật: hiện chỉ quản trị viên cấp cao mới dùng được prepza."
+    "text": "testee đang được bảo trì. Chúng tôi sẽ sớm trở lại.",
+    "notice": "Chế độ bảo trì đang bật: hiện chỉ quản trị viên cấp cao mới dùng được testee."
   },
   "content": {
     "updated": "Cập nhật lần cuối",
@@ -1857,7 +1857,7 @@
     "startButton": "Tạo bài kiểm tra"
   },
   "compare": {
-    "title": "So sánh prepza",
+    "title": "So sánh testee",
     "metaTitle": "So sánh các công cụ kiểm tra trước tuyển dụng",
     "intro": "So sánh có dẫn nguồn với các công cụ kiểm tra trước tuyển dụng khác: bài kiểm tra được tạo thế nào, chi phí bao nhiêu và khi nào công cụ nào phù hợp hơn."
   },
@@ -1882,7 +1882,7 @@
   "ats": {
     "statusConnected": "đã kết nối",
     "flowTitle": "Ứng viên đến từ {ats} như thế nào",
-    "flowStage": "Trong {ats}, hãy thêm vào quy trình tuyển dụng của tin một giai đoạn riêng cho prepza, chẳng hạn “Kiểm tra kỹ năng prepza”, để không bao giờ lẫn với các công cụ khác của bạn.",
+    "flowStage": "Trong {ats}, hãy thêm vào quy trình tuyển dụng của tin một giai đoạn riêng cho testee, chẳng hạn “Kiểm tra kỹ năng testee”, để không bao giờ lẫn với các công cụ khác của bạn.",
     "flowLink": "Tại đây, hãy liên kết tin tuyển dụng và chọn giai đoạn đó.",
     "flowMove": "Khi bạn sẵn sàng kiểm tra một ứng viên, hãy chuyển họ vào giai đoạn đó.",
     "flowInvite": "Chúng tôi sẽ thay bạn mời họ vào buổi phỏng vấn đã liên kết, giống hệt như khi bạn tự mời. Credit và giới hạn vẫn áp dụng như thường.",
@@ -1974,7 +1974,7 @@
     "connected": "Slack đã được kết nối.",
     "disconnectFailed": "Không thể ngắt kết nối Slack.",
     "disconnectTitle": "Ngắt kết nối Slack?",
-    "disconnectText": "Thông báo của công ty bạn sẽ không còn được gửi vào kênh, và ứng dụng prepza sẽ bị gỡ khỏi Slack của bạn.",
+    "disconnectText": "Thông báo của công ty bạn sẽ không còn được gửi vào kênh, và ứng dụng testee sẽ bị gỡ khỏi Slack của bạn.",
     "notConnected": "Slack chưa được kết nối. Hãy thêm Slack để nhận thông báo của công ty trong kênh bạn chọn.",
     "kindsTitle": "Thông báo trong Slack",
     "kindsText": "Kênh nhận các thông báo này ngay khi chúng xảy ra. Mọi người vẫn thấy chúng ở biểu tượng chuông.",
@@ -1989,10 +1989,10 @@
       "auto_top_up_failed": "Một lần tự động nạp không thành công"
     },
     "instructionsTitle": "Cách Slack nhận thông báo của bạn",
-    "stepAdd": "Nhấp “Thêm vào Slack”: Slack sẽ mở ra và yêu cầu bạn cho phép prepza trong không gian làm việc của bạn.",
+    "stepAdd": "Nhấp “Thêm vào Slack”: Slack sẽ mở ra và yêu cầu bạn cho phép testee trong không gian làm việc của bạn.",
     "stepChannel": "Chọn kênh mà nhóm của bạn sẽ xem thông báo, ví dụ #hiring, rồi cho phép.",
     "stepKinds": "Quay lại đây, chọn những thông báo nào được gửi đến đó: ứng viên hoàn thành, lời mời chưa được gửi đến và nhiều hơn nữa.",
-    "stepPrivacy": "prepza chỉ có thể đăng vào kênh đó. prepza không thể đọc Slack của bạn, và ngắt kết nối sẽ gỡ prepza."
+    "stepPrivacy": "testee chỉ có thể đăng vào kênh đó. testee không thể đọc Slack của bạn, và ngắt kết nối sẽ gỡ testee."
   },
   "api": {
     "name": "API",
@@ -2029,12 +2029,12 @@
     "removeKeyTitle": "Xóa khóa này?",
     "removeKeyText": "Mọi thứ đang dùng “<bdi>{name}</bdi>” sẽ ngừng hoạt động ngay lập tức.",
     "webhooksTitle": "Webhook",
-    "webhooksText": "prepza báo cho các địa chỉ này khi ứng viên bắt đầu, hoàn thành (kèm kết quả), không nhận được lời mời, hết hạn lời mời hoặc bị xóa khỏi buổi phỏng vấn, và khi một buổi phỏng vấn sẵn sàng; mỗi yêu cầu được ký bằng khóa bí mật của địa chỉ đó.",
+    "webhooksText": "testee báo cho các địa chỉ này khi ứng viên bắt đầu, hoàn thành (kèm kết quả), không nhận được lời mời, hết hạn lời mời hoặc bị xóa khỏi buổi phỏng vấn, và khi một buổi phỏng vấn sẵn sàng; mỗi yêu cầu được ký bằng khóa bí mật của địa chỉ đó.",
     "noWebhooks": "Chưa có webhook nào.",
     "failing": "Đã tạm dừng: không phản hồi trong 3 ngày nên không có sự kiện nào được gửi tới. Một sự kiện thử nghiệm được nhận sẽ kích hoạt lại.",
     "addWebhook": "Thêm webhook",
     "addWebhookTitle": "Webhook mới",
-    "webhookUrl": "Địa chỉ HTTPS, ví dụ https://example.com/prepza",
+    "webhookUrl": "Địa chỉ HTTPS, ví dụ https://example.com/testee",
     "webhookCreatedTitle": "Khóa bí mật của webhook",
     "webhookCreatedText": "Dùng nó để kiểm tra chữ ký của mỗi yêu cầu (xem tài liệu cho nhà phát triển). Hãy sao chép ngay: khóa bí mật sẽ không được hiển thị lại.",
     "copySecret": "Sao chép khóa bí mật",
@@ -2057,7 +2057,7 @@
     "results": {
       "delivered": "Đã gửi tới",
       "skipped": "Đã bỏ qua",
-      "unreadable": "Chưa gửi: lỗi từ phía prepza.",
+      "unreadable": "Chưa gửi: lỗi từ phía testee.",
       "answered": "Phản hồi {status}",
       "error": "Thất bại: {error}"
     },
@@ -2175,12 +2175,12 @@
     "radius": "Độ bo góc thẻ",
     "buttonRadius": "Độ bo góc nút",
     "reset": "Đặt lại",
-    "resetPrepza": "Đặt lại về mặc định của prepza",
+    "resetTestee": "Đặt lại về mặc định của testee",
     "themes": {
       "light": "Giao diện sáng",
       "dark": "Giao diện tối"
     },
-    "resetDone": "Đã quay về mặc định của prepza",
+    "resetDone": "Đã quay về mặc định của testee",
     "failed": "Không thể lưu thương hiệu.",
     "preview": "Xem trước",
     "sampleTitle": "Quản lý nhân sự",
@@ -2192,7 +2192,7 @@
   },
   "apiDocs": {
     "title": "Tài liệu cho nhà phát triển",
-    "description": "Tài liệu cho nhà phát triển của prepza: lấy khóa API, tạo buổi phỏng vấn, mời và quản lý ứng viên, đọc kết quả, nhận kết quả qua webhook và nhúng buổi phỏng vấn bằng SDK.",
+    "description": "Tài liệu cho nhà phát triển của testee: lấy khóa API, tạo buổi phỏng vấn, mời và quản lý ứng viên, đọc kết quả, nhận kết quả qua webhook và nhúng buổi phỏng vấn bằng SDK.",
     "tabs": {
       "api": "API",
       "webhooks": "Webhook",
@@ -2254,8 +2254,8 @@
     "deleteTitle": "Xóa cuộc trò chuyện này?",
     "deleteText": "Cuộc trò chuyện và các câu trả lời sẽ bị xóa vĩnh viễn.",
     "emptyTitle": "Xin chào, tôi là Mira, trợ lý AI của bạn",
-    "emptyText": "Ứng viên, phỏng vấn, credit, tích hợp và cách prepza hoạt động, dựa trên những gì bạn thấy trong các công ty của mình. AI có thể sai; các trang mà nó liên kết mới là chính xác.",
-    "emptyTitleFaq": "Xin chào, tôi là Mira, trợ lý AI của prepza",
+    "emptyText": "Ứng viên, phỏng vấn, credit, tích hợp và cách testee hoạt động, dựa trên những gì bạn thấy trong các công ty của mình. AI có thể sai; các trang mà nó liên kết mới là chính xác.",
+    "emptyTitleFaq": "Xin chào, tôi là Mira, trợ lý AI của testee",
     "pageQuestion": "Tôi có thể làm gì trên trang này?",
     "pages": {
       "open": "Mở",
@@ -2294,9 +2294,9 @@
     },
     "welcome": {
       "signed_out": {
-        "text": "prepza hoạt động thế nào, chi phí bao nhiêu và ứng viên thấy gì, trả lời từ câu hỏi thường gặp của prepza. Đăng nhập để hỏi về công ty và ứng viên của bạn.",
+        "text": "testee hoạt động thế nào, chi phí bao nhiêu và ứng viên thấy gì, trả lời từ câu hỏi thường gặp của testee. Đăng nhập để hỏi về công ty và ứng viên của bạn.",
         "questions": {
-          "what": "prepza là gì?",
+          "what": "testee là gì?",
           "pricing": "Chi phí bao nhiêu?",
           "takeTest": "Ứng viên làm bài kiểm tra thế nào?",
           "account": "Ứng viên có cần tài khoản không?"
@@ -2471,7 +2471,7 @@
       "chargeback_reversed": "Hủy bồi hoàn thẻ",
       "referral": "Thưởng giới thiệu",
       "referral_reversed": "Thu hồi thưởng giới thiệu",
-      "adjustment": "Điều chỉnh từ prepza"
+      "adjustment": "Điều chỉnh từ testee"
     },
     "automatic": "Tự động nạp",
     "invoice": "Hóa đơn",
@@ -2482,16 +2482,16 @@
   },
   "aiApps": {
     "name": "Máy chủ MCP",
-    "rowText": "Kết nối Claude, ChatGPT và các ứng dụng AI khác với prepza.",
+    "rowText": "Kết nối Claude, ChatGPT và các ứng dụng AI khác với testee.",
     "title": "Ứng dụng AI",
     "subtitle": "Chúng hành động thay mặt bạn, trong mọi công ty bạn tham gia, với quyền của bạn.",
-    "instructionsTitle": "Kết nối ứng dụng AI với prepza",
+    "instructionsTitle": "Kết nối ứng dụng AI với testee",
     "serverTitle": "Địa chỉ máy chủ",
     "serverText": "Dán vào ứng dụng AI của bạn dưới dạng custom connector (máy chủ MCP).",
     "addTo": "Thêm vào <app>{name}</app>",
     "claudeOpen": "Trong Claude, mở:",
     "claudePaste": "Đặt tên là {name}, dán địa chỉ máy chủ rồi chọn “Add”.",
-    "allowOnPrepza": "Chọn “Connect”, rồi chọn “Cho phép” trên trang prepza vừa mở.",
+    "allowOnTestee": "Chọn “Connect”, rồi chọn “Cho phép” trên trang testee vừa mở.",
     "claudeCode": "Trong Claude Code, chạy:",
     "copyCommand": "Sao chép lệnh",
     "commandCopied": "Đã sao chép lệnh",
@@ -2504,7 +2504,7 @@
     "lastUsed": "dùng lần cuối <time>{date}</time>",
     "neverUsed": "chưa dùng",
     "disconnectTitle": "Ngắt kết nối <bdi>{client}</bdi>?",
-    "disconnectText": "<bdi>{client}</bdi> sẽ không hoạt động với prepza cho đến khi bạn kết nối lại.",
+    "disconnectText": "<bdi>{client}</bdi> sẽ không hoạt động với testee cho đến khi bạn kết nối lại.",
     "disconnectFailed": "Không thể ngắt kết nối ứng dụng. Vui lòng thử lại.",
     "allowTitle": "Cho phép ứng dụng AI trong công ty này",
     "allowText": "Thành viên có thể dùng các buổi phỏng vấn và ứng viên của công ty này từ ứng dụng AI họ đã kết nối. Khi tắt, ứng dụng AI không thể đọc hay thay đổi gì ở đây.",
@@ -2512,22 +2512,22 @@
   },
   "connect": {
     "pageTitle": "Kết nối ứng dụng AI",
-    "title": "Kết nối <name><bdi>{client}</bdi></name> với prepza",
-    "titleAny": "Kết nối ứng dụng AI với prepza",
-    "signInText": "Đăng nhập để chọn có cho ứng dụng này dùng tài khoản prepza của bạn hay không.",
+    "title": "Kết nối <name><bdi>{client}</bdi></name> với testee",
+    "titleAny": "Kết nối ứng dụng AI với testee",
+    "signInText": "Đăng nhập để chọn có cho ứng dụng này dùng tài khoản testee của bạn hay không.",
     "signIn": "Đăng nhập để tiếp tục",
-    "who": "<bdi>{client}</bdi> (<bdi>{host}</bdi>) muốn dùng tài khoản prepza của bạn, <bdi>{email}</bdi>.",
+    "who": "<bdi>{client}</bdi> (<bdi>{host}</bdi>) muốn dùng tài khoản testee của bạn, <bdi>{email}</bdi>.",
     "canTitle": "Ứng dụng có thể",
     "canRead": "Đọc các công ty, buổi phỏng vấn và kết quả ứng viên của bạn.",
     "canChange": "Thực hiện các thay đổi bạn yêu cầu. Hầu hết ứng dụng AI sẽ đề nghị bạn xác nhận trước.",
     "canShare": "Chuyển những gì nó đọc được đến nhà cung cấp của ứng dụng, theo điều khoản của ứng dụng đó.",
     "cantTitle": "Ứng dụng không thể",
-    "cantChange": "Thay đổi bất cứ điều gì trong prepza.",
+    "cantChange": "Thay đổi bất cứ điều gì trong testee.",
     "cantSecrets": "Xem mật khẩu hay khóa API của bạn.",
     "cantDelete": "Xóa tài khoản của bạn hay một công ty.",
     "changesTitle": "Cho phép thay đổi",
     "changesText": "Tắt để ứng dụng chỉ có thể đọc.",
-    "unknown": "prepza không biết ứng dụng này. Chỉ cho phép nếu chính bạn bắt đầu kết nối nó.",
+    "unknown": "testee không biết ứng dụng này. Chỉ cho phép nếu chính bạn bắt đầu kết nối nó.",
     "deny": "Từ chối",
     "allow": "Cho phép",
     "footnote": "Ngắt kết nối bất cứ lúc nào trong Tích hợp → Ứng dụng AI của một công ty.",
@@ -2536,8 +2536,8 @@
   },
   "accessibility": {
     "title": "Khả năng tiếp cận",
-    "description": "prepza hoạt động thế nào với người khuyết tật, điều gì còn thiếu sót và cách báo cho chúng tôi.",
-    "intro": "Chúng tôi muốn ai cũng dùng được prepza: để làm bài phỏng vấn một công ty gửi cho bạn, để luyện tập và để điều hành việc tuyển dụng của một công ty. Chúng tôi hướng tới mức AA của Hướng dẫn về Khả năng Tiếp cận Nội dung Web (WCAG) 2.2.",
+    "description": "testee hoạt động thế nào với người khuyết tật, điều gì còn thiếu sót và cách báo cho chúng tôi.",
+    "intro": "Chúng tôi muốn ai cũng dùng được testee: để làm bài phỏng vấn một công ty gửi cho bạn, để luyện tập và để điều hành việc tuyển dụng của một công ty. Chúng tôi hướng tới mức AA của Hướng dẫn về Khả năng Tiếp cận Nội dung Web (WCAG) 2.2.",
     "done": {
       "title": "Những gì chúng tôi làm",
       "themes": "Giao diện sáng và tối: mặc định theo cài đặt của thiết bị bạn, hoặc sáng hay tối nếu bạn chọn một trong hai.",
@@ -2551,24 +2551,24 @@
     "limits": {
       "title": "Những điểm còn thiếu sót",
       "timed": "Câu hỏi phỏng vấn có giới hạn thời gian, theo yêu cầu đánh giá của công ty. Nếu cần thêm thời gian, hãy đề nghị công ty cho thêm thời gian trước khi bắt đầu.",
-      "audit": "prepza chưa được kiểm định độc lập, nên một số phần có thể chưa đáp ứng WCAG 2.2 AA.",
+      "audit": "testee chưa được kiểm định độc lập, nên một số phần có thể chưa đáp ứng WCAG 2.2 AA.",
       "providers": "Việc thanh toán credit (trang thanh toán của Paddle) và bước kiểm tra “Tôi không phải là người máy” (Cloudflare Turnstile) do các nhà cung cấp đó vận hành, theo khả năng tiếp cận riêng của họ."
     },
     "feedback": {
       "title": "Báo cho chúng tôi",
-      "text": "Nếu có gì trên prepza khó dùng với bạn, hoặc bạn cần ở dạng khác, hãy viết tới <email></email>. Chúng tôi trả lời trong vòng 14 ngày.",
+      "text": "Nếu có gì trên testee khó dùng với bạn, hoặc bạn cần ở dạng khác, hãy viết tới <email></email>. Chúng tôi trả lời trong vòng 14 ngày.",
       "authority": "Nếu không hài lòng với câu trả lời của chúng tôi, bạn có thể liên hệ Cơ quan Bảo vệ Người tiêu dùng và Quản lý Kỹ thuật Estonia (TTJA)."
     },
     "reviewed": "Xem xét lần cuối: <time>{date}</time>."
   },
   "trust": {
     "title": "Tin cậy và bảo mật",
-    "description": "Cách prepza giữ dữ liệu tuyển dụng an toàn và riêng tư: lưu trữ tại EU, bên xử lý phụ, thời gian lưu giữ và những gì chúng tôi cung cấp cho GDPR, Đạo luật AI của EU, Vương quốc Anh và Hoa Kỳ.",
-    "intro": "Những gì prepza làm để giữ an toàn dữ liệu của bạn và của ứng viên, dữ liệu được lưu ở đâu, ai xử lý, được giữ bao lâu và những gì chúng tôi cung cấp cho các công ty theo luật tuyển dụng mà họ tuân thủ.",
+    "description": "Cách testee giữ dữ liệu tuyển dụng an toàn và riêng tư: lưu trữ tại EU, bên xử lý phụ, thời gian lưu giữ và những gì chúng tôi cung cấp cho GDPR, Đạo luật AI của EU, Vương quốc Anh và Hoa Kỳ.",
+    "intro": "Những gì testee làm để giữ an toàn dữ liệu của bạn và của ứng viên, dữ liệu được lưu ở đâu, ai xử lý, được giữ bao lâu và những gì chúng tôi cung cấp cho các công ty theo luật tuyển dụng mà họ tuân thủ.",
     "security": {
       "title": "Bảo mật",
-      "signIn": "Bạn đăng nhập bằng Google, LinkedIn hoặc GitHub thông qua Firebase Authentication, nên prepza không lưu mật khẩu nào. Việc đăng nhập của mọi yêu cầu đều được kiểm tra trên máy chủ.",
-      "encryption": "Dữ liệu được mã hóa khi truyền (TLS 1.2 trở lên) và khi lưu trữ. Khóa và token mà công ty kết nối (hệ thống theo dõi ứng viên, Slack, webhook) được lưu ở dạng mã hóa, còn khóa API của prepza chỉ được lưu dưới dạng hàm băm một chiều.",
+      "signIn": "Bạn đăng nhập bằng Google, LinkedIn hoặc GitHub thông qua Firebase Authentication, nên testee không lưu mật khẩu nào. Việc đăng nhập của mọi yêu cầu đều được kiểm tra trên máy chủ.",
+      "encryption": "Dữ liệu được mã hóa khi truyền (TLS 1.2 trở lên) và khi lưu trữ. Khóa và token mà công ty kết nối (hệ thống theo dõi ứng viên, Slack, webhook) được lưu ở dạng mã hóa, còn khóa API của testee chỉ được lưu dưới dạng hàm băm một chiều.",
       "access": "Mọi yêu cầu đều được kiểm tra theo công ty và vai trò của người gửi. Mỗi dịch vụ chỉ truy cập cơ sở dữ liệu của riêng mình, và các lệnh gọi giữa các dịch vụ đều được ký.",
       "limits": "Giới hạn tần suất bảo vệ mọi thao tác tốn tiền hoặc có thể bị lạm dụng, và bước kiểm tra “Tôi không phải là người máy” bảo vệ các biểu mẫu công khai, liên kết trong tin tuyển dụng và việc tạo công ty đầu tiên.",
       "logs": "Báo cáo lỗi không chứa địa chỉ email, và nhật ký máy chủ chỉ được giữ trong thời gian ngắn.",
@@ -2578,29 +2578,29 @@
     },
     "privacy": {
       "title": "Quyền riêng tư",
-      "roles": "prepza là bên kiểm soát dữ liệu đối với tài khoản của những người sử dụng nó, và là bên xử lý dữ liệu của ứng viên, vốn thuộc về công ty mời họ.",
+      "roles": "testee là bên kiểm soát dữ liệu đối với tài khoản của những người sử dụng nó, và là bên xử lý dữ liệu của ứng viên, vốn thuộc về công ty mời họ.",
       "noSelling": "Chúng tôi không bán dữ liệu cá nhân hay chia sẻ nó cho quảng cáo. Không có cookie quảng cáo hay phân tích.",
-      "noInference": "prepza không thu thập dữ liệu về giới tính, tuổi, nguồn gốc hay khuyết tật của ứng viên, và không suy đoán bất kỳ điều gì như vậy.",
+      "noInference": "testee không thu thập dữ liệu về giới tính, tuổi, nguồn gốc hay khuyết tật của ứng viên, và không suy đoán bất kỳ điều gì như vậy.",
       "voice": "Ở chế độ giọng nói, câu trả lời bằng lời của ứng viên được chuyển thành văn bản và khớp với các lựa chọn, lựa chọn khớp được đọc lại cho ứng viên và hiển thị trên màn hình; khi chọn nhiều lựa chọn thì phải xác nhận trước. Lời nói không được ghi âm hay lưu trữ, và giọng nói không được phân tích theo bất kỳ cách nào khác.",
       "ai": "OpenAI, bên viết câu hỏi, được yêu cầu không lưu những gì nhận được; OpenAI giữ dữ liệu tối đa 30 ngày, chỉ để kiểm tra hành vi lạm dụng, và không dùng nó để huấn luyện mô hình.",
       "rights": "Bất kỳ ai cũng có thể tải về hoặc xóa dữ liệu của chính mình trong Cài đặt mà không cần viết thư cho chúng tôi."
     },
     "compliance": {
       "title": "Tuân thủ",
-      "aiAct": "Theo Đạo luật AI của EU, prepza được xem là một hệ thống AI rủi ro cao, với các nghĩa vụ áp dụng từ <time>{date}</time>. Hướng dẫn cho công ty của chúng tôi chính là hướng dẫn sử dụng của hệ thống này.",
-      "humanReview": "prepza không đưa ra quyết định nào về ứng viên: những người ở công ty xem xét kết quả và quyết định, và ứng viên có thể yêu cầu một người xem xét lại kết quả của mình.",
-      "dpa": "Thỏa thuận xử lý dữ liệu là một phần của các điều khoản, không cần ký gì. Thỏa thuận bao gồm GDPR, UK GDPR và các luật về quyền riêng tư của các bang tại Hoa Kỳ như luật của California, theo đó prepza là nhà cung cấp dịch vụ của công ty.",
+      "aiAct": "Theo Đạo luật AI của EU, testee được xem là một hệ thống AI rủi ro cao, với các nghĩa vụ áp dụng từ <time>{date}</time>. Hướng dẫn cho công ty của chúng tôi chính là hướng dẫn sử dụng của hệ thống này.",
+      "humanReview": "testee không đưa ra quyết định nào về ứng viên: những người ở công ty xem xét kết quả và quyết định, và ứng viên có thể yêu cầu một người xem xét lại kết quả của mình.",
+      "dpa": "Thỏa thuận xử lý dữ liệu là một phần của các điều khoản, không cần ký gì. Thỏa thuận bao gồm GDPR, UK GDPR và các luật về quyền riêng tư của các bang tại Hoa Kỳ như luật của California, theo đó testee là nhà cung cấp dịch vụ của công ty.",
       "documents": "Các công ty nhận được <link>hướng dẫn sử dụng, mẫu DPIA và các mẫu thông báo cho ứng viên</link>, có phiên bản cho Thành phố New York, Illinois và Colorado.",
-      "nyc": "Thành phố New York: trước khi dùng prepza cho một vị trí tại đó, nhà tuyển dụng thực hiện những gì Local Law 144 yêu cầu: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt của nó và thông báo cho ứng viên ít nhất 10 ngày làm việc trước khi họ được đánh giá. Cuộc kiểm toán thiên lệch độc lập của chính prepza được thực hiện trước <time>{date}</time>, và sau đó hằng năm."
+      "nyc": "Thành phố New York: trước khi dùng testee cho một vị trí tại đó, nhà tuyển dụng thực hiện những gì Local Law 144 yêu cầu: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt của nó và thông báo cho ứng viên ít nhất 10 ngày làm việc trước khi họ được đánh giá. Cuộc kiểm toán thiên lệch độc lập của chính testee được thực hiện trước <time>{date}</time>, và sau đó hằng năm."
     },
     "residency": {
       "title": "Dữ liệu được lưu ở đâu",
-      "storage": "prepza chạy trên Google Cloud tại EU, ở Bỉ, nơi lưu cơ sở dữ liệu. Bộ đếm giới hạn tần suất được giữ tại Upstash, cũng ở Bỉ, và email được gửi qua Resend tại Ireland.",
+      "storage": "testee chạy trên Google Cloud tại EU, ở Bỉ, nơi lưu cơ sở dữ liệu. Bộ đếm giới hạn tần suất được giữ tại Upstash, cũng ở Bỉ, và email được gửi qua Resend tại Ireland.",
       "transfers": "Ba nhà cung cấp xử lý dữ liệu tại Hoa Kỳ: Google cho việc đăng nhập, OpenAI và Cloudflare cho bước kiểm tra “Tôi không phải là người máy”. Các hoạt động chuyển dữ liệu này được bảo đảm bởi EU-US Data Privacy Framework hoặc các điều khoản hợp đồng tiêu chuẩn của Ủy ban châu Âu, và đối với Vương quốc Anh là UK Extension và UK International Data Transfer Addendum."
     },
     "subprocessors": {
       "title": "Bên xử lý phụ",
-      "intro": "Các nhà cung cấp xử lý dữ liệu cho prepza, như được liệt kê trong <link>thỏa thuận xử lý dữ liệu</link>:",
+      "intro": "Các nhà cung cấp xử lý dữ liệu cho testee, như được liệt kê trong <link>thỏa thuận xử lý dữ liệu</link>:",
       "changes": "Chúng tôi gửi email cho chủ sở hữu và quản trị viên của các công ty ít nhất 14 ngày trước khi thêm một bên xử lý phụ mới."
     },
     "retention": {
@@ -2617,7 +2617,7 @@
     },
     "accessibility": {
       "title": "Khả năng tiếp cận",
-      "text": "prepza hướng tới đáp ứng mức AA của Hướng dẫn về khả năng tiếp cận nội dung web (WCAG) 2.2. <link>Tuyên bố về khả năng tiếp cận</link> của chúng tôi cho biết điều gì hoạt động tốt, điều gì còn thiếu sót và cách báo cho chúng tôi."
+      "text": "testee hướng tới đáp ứng mức AA của Hướng dẫn về khả năng tiếp cận nội dung web (WCAG) 2.2. <link>Tuyên bố về khả năng tiếp cận</link> của chúng tôi cho biết điều gì hoạt động tốt, điều gì còn thiếu sót và cách báo cho chúng tôi."
     },
     "links": {
       "title": "Tài liệu pháp lý",
@@ -2635,7 +2635,7 @@
     "open": "Xuất dữ liệu kiểm toán thiên lệch",
     "title": "Xuất dữ liệu cho kiểm toán thiên lệch",
     "description": "Một tệp CSV gồm mọi ứng viên đã hoàn thành: điểm, điểm đạt, việc họ có đạt hay không và có điểm cao hơn trung vị hay không. Kiểm toán viên độc lập của bạn sẽ tính tỷ lệ chọn và tỷ số tác động từ tệp này.",
-    "privacy": "prepza không lưu dữ liệu về giới tính, chủng tộc hay dân tộc. Hãy thêm các câu trả lời do chính ứng viên tự khai theo email của họ, rồi xóa cột email trước khi chia sẻ tệp.",
+    "privacy": "testee không lưu dữ liệu về giới tính, chủng tộc hay dân tộc. Hãy thêm các câu trả lời do chính ứng viên tự khai theo email của họ, rồi xóa cột email trước khi chia sẻ tệp.",
     "interview": "Buổi phỏng vấn",
     "allInterviews": "Tất cả buổi phỏng vấn",
     "download": "Tải CSV",
@@ -2744,7 +2744,7 @@
   },
   "featuresPage": {
     "title": "Tính năng: phỏng vấn AI cho tuyển dụng, trọn quy trình",
-    "description": "Mọi tính năng của prepza: phỏng vấn từ mô tả công việc, chế độ nhấp và giọng nói, cảnh báo hành vi bất thường, báo cáo, tích hợp ATS và API, và tuân thủ.",
+    "description": "Mọi tính năng của testee: phỏng vấn từ mô tả công việc, chế độ nhấp và giọng nói, cảnh báo hành vi bất thường, báo cáo, tích hợp ATS và API, và tuân thủ.",
     "hero": {
       "title": "Từ mô tả công việc\nđến đúng người cần tuyển",
       "text": "Buổi phỏng vấn có tính giờ được soạn cho vị trí của bạn, ứng viên từ mọi nơi, và cái nhìn rõ ràng ai giỏi nhất. Mọi tính năng đều có sẵn.",
@@ -2781,7 +2781,7 @@
       },
       "decide": {
         "title": "Xem ai giỏi nhất",
-        "text": "Điểm, mọi câu trả lời và cảnh báo hành vi bất thường của từng ứng viên. Con người quyết định; prepza cho thấy điều cần xem xét."
+        "text": "Điểm, mọi câu trả lời và cảnh báo hành vi bất thường của từng ứng viên. Con người quyết định; testee cho thấy điều cần xem xét."
       },
       "connect": {
         "title": "Làm việc cùng công cụ của bạn",
@@ -2829,7 +2829,7 @@
       },
       "brand": {
         "title": "Thương hiệu của bạn, không phải của chúng tôi",
-        "text": "Đặt logo, màu cho giao diện sáng và tối, phông chữ và góc bo, với bản xem trước trực tiếp. Ứng viên chỉ thấy công ty của bạn, không có đầu trang hay chân trang của prepza.",
+        "text": "Đặt logo, màu cho giao diện sáng và tối, phông chữ và góc bo, với bản xem trước trực tiếp. Ứng viên chỉ thấy công ty của bạn, không có đầu trang hay chân trang của testee.",
         "alt": "Thẻ thương hiệu: logo, phông chữ và góc bo, với bản xem trước trực tiếp của buổi phỏng vấn."
       },
       "candidates": {
@@ -2844,7 +2844,7 @@
       },
       "share": {
         "title": "Chia sẻ báo cáo trong vài giây",
-        "text": "Tải PDF của một ứng viên hoặc cả buổi phỏng vấn, gửi email từ prepza, hoặc gửi bản tóm tắt ngắn qua ứng dụng nhắn tin.",
+        "text": "Tải PDF của một ứng viên hoặc cả buổi phỏng vấn, gửi email từ testee, hoặc gửi bản tóm tắt ngắn qua ứng dụng nhắn tin.",
         "alt": "Hộp thoại chia sẻ báo cáo của ứng viên: địa chỉ email để gửi PDF, hoặc bản tóm tắt qua WhatsApp, Telegram, Viber hay LINE."
       },
       "notes": {
@@ -2899,7 +2899,7 @@
       "atsList": "Workable, Greenhouse, Teamtailor, Recruitee và Breezy HR",
       "results": "Ứng viên được mời tự động, kết quả được gửi lại",
       "docs": "Tài liệu cho nhà phát triển về API, webhook, SDK và MCP",
-      "noInference": "prepza không bao giờ hỏi hay suy đoán các đặc điểm được pháp luật bảo vệ",
+      "noInference": "testee không bao giờ hỏi hay suy đoán các đặc điểm được pháp luật bảo vệ",
       "owner": "Chỉ chủ sở hữu xuất được, và việc này có trong nhật ký thao tác",
       "askTime": "Ai cần thêm thời gian được nhắc liên hệ trước khi bắt đầu",
       "peopleDecide": "Ứng viên được biết nhân sự của công ty bạn xem xét kết quả và quyết định",

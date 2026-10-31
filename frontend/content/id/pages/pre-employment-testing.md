@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Tes seleksi karyawan adalah pemeriksaan terstruktur yang diikuti setiap pelamar untuk suatu posisi sebelum kamu memutuskan siapa yang akan diwawancarai atau direkrut. Kamu mungkin juga mengenalnya sebagai tes rekrutmen, asesmen pra-rekrutmen, atau tes keterampilan. Idenya sama: ajukan jenis pertanyaan yang sama kepada semua orang, nilai dengan cara yang sama, dan bandingkan orang berdasarkan bukti, bukan berdasarkan kesan dari CV mereka.
 
-Panduan ini membahas jenis-jenis tes utama, kapan tes membantu, dasar keadilan dan hukumnya, serta apa yang perlu dicari dari sebuah alat. Di bagian akhir dijelaskan cara prepza melakukannya, dan apa yang tidak dilakukan prepza.
+Panduan ini membahas jenis-jenis tes utama, kapan tes membantu, dasar keadilan dan hukumnya, serta apa yang perlu dicari dari sebuah alat. Di bagian akhir dijelaskan cara testee melakukannya, dan apa yang tidak dilakukan testee.
 
 ## Apa itu tes seleksi karyawan
 
@@ -25,7 +25,7 @@ Tes yang baik memeriksa apa yang benar-benar dibutuhkan posisi tersebut, dijalan
 | Sampel kerja dan simulasi kerja | Mengerjakan sebagian dari pekerjaan sebenarnya | Tugas, studi kasus, menulis kode | Pemeriksaan tahap akhir untuk shortlist |
 | Bahasa dan mengetik | Kemahiran dan kecepatan | Tes yang dinilai | Posisi yang berhadapan dengan pelanggan dan administrasi |
 
-**Yang dicakup prepza:** tes keterampilan dan pengetahuan kerja, dalam bentuk wawancara pilihan ganda berbatas waktu yang ditulis dari deskripsi pekerjaanmu. Untuk posisi teknis, ini termasuk soal membaca kode: contoh kode singkat dan pertanyaan tentang apa fungsinya atau hasilnya. prepza tidak menyediakan tes kemampuan kognitif, kuesioner kepribadian, latihan saat kandidat menulis atau menjalankan kode, atau wawancara video. Kalau kamu membutuhkannya, pakai platform yang menyediakannya, sendiri atau berdampingan dengan prepza: penyaringan pengetahuan lebih dulu, lalu tes spesialis untuk shortlist. Lihat [prepza dan TestGorilla](/compare/testgorilla) dan [alternatif TestGorilla](/compare/testgorilla-alternatives).
+**Yang dicakup testee:** tes keterampilan dan pengetahuan kerja, dalam bentuk wawancara pilihan ganda berbatas waktu yang ditulis dari deskripsi pekerjaanmu. Untuk posisi teknis, ini termasuk soal membaca kode: contoh kode singkat dan pertanyaan tentang apa fungsinya atau hasilnya. testee tidak menyediakan tes kemampuan kognitif, kuesioner kepribadian, latihan saat kandidat menulis atau menjalankan kode, atau wawancara video. Kalau kamu membutuhkannya, pakai platform yang menyediakannya, sendiri atau berdampingan dengan testee: penyaringan pengetahuan lebih dulu, lalu tes spesialis untuk shortlist. Lihat [testee dan TestGorilla](/compare/testgorilla) dan [alternatif TestGorilla](/compare/testgorilla-alternatives).
 
 ### Kenapa tes keterampilan adalah langkah pertama yang masuk akal
 
@@ -87,11 +87,11 @@ Pertanyaan yang layak diajukan kepada vendor mana pun:
 
 Untuk perbandingan harga, lihat [cara membandingkan biaya tes](/compare/cheapest-pre-employment-test) dan [tes seleksi karyawan tanpa langganan](/compare/pre-employment-tests-without-subscription).
 
-## Cara prepza melakukannya
+## Cara testee melakukannya
 
-prepza mengubah deskripsi pekerjaan menjadi wawancara keterampilan pilihan ganda berbatas waktu.
+testee mengubah deskripsi pekerjaan menjadi wawancara keterampilan pilihan ganda berbatas waktu.
 
-1. **Tempel deskripsi pekerjaan.** Posisi apa pun, dalam salah satu dari 23 bahasa. prepza mengambil apa yang wajib diketahui kandidat dan mengusulkan topik.
+1. **Tempel deskripsi pekerjaan.** Posisi apa pun, dalam salah satu dari 23 bahasa. testee mengambil apa yang wajib diketahui kandidat dan mengusulkan topik.
 2. **Tinjau topiknya.** Hapus centang yang tidak kamu perlukan, ganti nama topik, ubah subtopiknya, atau jelaskan perubahan dengan teks biasa. Soal baru ditulis setelah kamu menyetujuinya. Kamu juga bisa mulai dari templat siap pakai untuk posisimu.
 3. **Undang kandidat.** Kirim undangan lewat email, tempel daftar, unggah file, atau pasang satu tautan yang bisa dibagikan di lowongan kerjamu. Pengingat terkirim otomatis.
 4. **Baca hasilnya.** Skor masuk dalam urutan peringkat, dengan scorecard untuk setiap kandidat.
@@ -103,4 +103,4 @@ prepza mengubah deskripsi pekerjaan menjadi wawancara keterampilan pilihan ganda
 
 Harga dihitung per kandidat yang menjawab, tanpa langganan: $2–5 per kandidat tergantung besar isi ulangmu (dalam mata uang lokal di Kanada, Australia, Israel, Polandia, Swiss, Jepang, Korea Selatan, Taiwan, Hong Kong, Thailand, Singapura, India, bagian Eropa lainnya, dan Inggris Raya), dan 3 kandidat pertamamu gratis. Data di-hosting di UE (beberapa sub-pemroses ada di AS; lihat [kebijakan privasi](/privacy)), dan perjanjian pemrosesan data serta petunjuk untuk perusahaan sudah termasuk.
 
-prepza bukan paket psikometri, bukan platform untuk menulis dan menjalankan kode, dan bukan alat wawancara video, dan prepza bisa dipakai berdampingan dengan semua itu. Untuk perbandingannya dengan alat rekrutmen AI lain, baca [Wawancara AI](/ai-interviews). Untuk posisi engineering, lihat [Cara merekrut engineer](/guides/hiring-engineers).
+testee bukan paket psikometri, bukan platform untuk menulis dan menjalankan kode, dan bukan alat wawancara video, dan testee bisa dipakai berdampingan dengan semua itu. Untuk perbandingannya dengan alat rekrutmen AI lain, baca [Wawancara AI](/ai-interviews). Untuk posisi engineering, lihat [Cara merekrut engineer](/guides/hiring-engineers).

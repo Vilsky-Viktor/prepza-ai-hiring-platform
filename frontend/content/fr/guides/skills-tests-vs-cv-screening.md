@@ -77,17 +77,17 @@ Les auteurs notent aussi une seconde condition : les mises en situation et les t
 
 Voir [Comment présélectionner 100 candidats en une journée](/guides/screen-100-applicants-in-a-day) pour une version étape par étape.
 
-## La place de prepza
+## La place de testee
 
-prepza couvre l'étape 2 : un test chronométré à choix multiples sur les connaissances métier, rédigé à partir de votre fiche de poste. Les chiffres de validité ci-dessus concernent les tests de connaissances métier en général, pas des mesures des tests de prepza.
+testee couvre l'étape 2 : un test chronométré à choix multiples sur les connaissances métier, rédigé à partir de votre fiche de poste. Les chiffres de validité ci-dessus concernent les tests de connaissances métier en général, pas des mesures des tests de testee.
 
-- **Propre au poste par construction.** prepza propose des thèmes à partir de votre fiche de poste, et vous les vérifiez et modifiez avant qu'une question ne soit rédigée. Retirez tout ce qui n'est pas une vraie exigence. Pour les postes techniques, les questions peuvent inclure de courts exemples de code à lire.
+- **Propre au poste par construction.** testee propose des thèmes à partir de votre fiche de poste, et vous les vérifiez et modifiez avant qu'une question ne soit rédigée. Retirez tout ce qui n'est pas une vraie exigence. Pour les postes techniques, les questions peuvent inclure de courts exemples de code à lire.
 - **Les mêmes conditions pour tous.** Les mêmes thèmes et le même nombre de questions, et un compte à rebours pour chaque question. Vous pouvez accorder du temps supplémentaire aux candidats qui le demandent.
 - **Chaque candidat reçoit ses propres questions,** une série aléatoire tirée de la banque de chaque thème, pour que les réponses soient plus difficiles à partager.
 - **Des résultats lisibles.** Une fiche d'évaluation par candidat avec chaque réponse et son temps, classée par score, avec des alertes pour les réponses trop rapides, les sorties de la page, les tentatives de copie et les schémas de réponse inhabituels.
 - **Des réponses notées d'après un corrigé** que l'IA rédige ; un échantillon des corrigés de chaque thème est vérifié avant la mise en ligne, les autres dès qu'une question est signalée. Aucune IA ne lit ni ne juge la réponse d'un candidat.
 
-prepza ne mène pas d'entretiens structurés, de mises en situation ni de tests cognitifs. Utilisez-le en complément. Pour en savoir plus sur les types de tests et l'équité, lisez [Tests de recrutement](/pre-employment-testing).
+testee ne mène pas d'entretiens structurés, de mises en situation ni de tests cognitifs. Utilisez-le en complément. Pour en savoir plus sur les types de tests et l'équité, lisez [Tests de recrutement](/pre-employment-testing).
 
 ## Sources
 

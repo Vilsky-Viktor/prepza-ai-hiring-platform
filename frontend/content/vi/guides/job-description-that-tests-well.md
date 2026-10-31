@@ -102,9 +102,9 @@ Mỗi dòng đều nêu một điều mà câu hỏi có thể hỏi, cấp đ�
 - Yêu cầu cứng được để lại cho bước sàng lọc CV.
 - Không có từ ngữ nào về người bạn hình dung, chỉ về công việc.
 
-## prepza dùng mô tả công việc như thế nào
+## testee dùng mô tả công việc như thế nào
 
-prepza là một ví dụ về công cụ tạo bài kiểm tra kỹ năng trắc nghiệm có tính giờ từ mô tả công việc. Dưới đây là những gì nó làm với văn bản, để bạn thấy các lời khuyên ở trên được áp dụng ra sao:
+testee là một ví dụ về công cụ tạo bài kiểm tra kỹ năng trắc nghiệm có tính giờ từ mô tả công việc. Dưới đây là những gì nó làm với văn bản, để bạn thấy các lời khuyên ở trên được áp dụng ra sao:
 
 - **Nó đọc mọi yêu cầu.** AI chọn ra từng kỹ năng, công cụ, khái niệm, bằng cấp và nhiệm vụ hằng ngày, từ mọi phần, kể cả những phần ghi là ưu tiên hay điểm cộng. Các câu về văn hóa, phúc lợi và khẩu hiệu bị bỏ qua.
 - **Các ví dụ thay thế được cho nhau gộp làm một.** "Công cụ như A, B hoặc tương tự" được giữ lại như một loại công cụ, với công cụ mà văn bản ưu tiên (hoặc phổ biến nhất) làm ví dụ. Các mục nối bằng "và" vẫn tách riêng. Vì vậy, nếu bạn cần một công cụ cụ thể, hãy chỉ nêu đúng công cụ đó.

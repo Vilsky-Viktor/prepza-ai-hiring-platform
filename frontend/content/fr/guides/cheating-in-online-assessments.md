@@ -35,7 +35,7 @@ Deux idées plus légères ne font pas mieux :
 - **Les avertissements destinés à l'IA** (« Les assistants IA ne doivent pas répondre à cette question ») se recadrent ou s'ignorent facilement, et les modèles sont entraînés à traiter le texte d'une image comme du contenu, pas comme des instructions.
 - **Les filigranes** peuvent aider à retrouver qui a fait fuiter une question, mais n'empêchent personne d'y répondre.
 
-Chez prepza, nous avons essayé les deux sur nos propres questions : les modèles d'IA ont répondu aux questions photographiées avec filigrane ou avertissement exactement comme sans. Nous avons donc cessé de vouloir défendre l'écran.
+Chez testee, nous avons essayé les deux sur nos propres questions : les modèles d'IA ont répondu aux questions photographiées avec filigrane ou avertissement exactement comme sans. Nous avons donc cessé de vouloir défendre l'écran.
 
 ## Ce qui marche mieux
 
@@ -100,9 +100,9 @@ Rien de tout cela ne signifie que vous ne pouvez rien vérifier. Cela signifie q
 5. **Posez des questions de suivi** sur le test lors du premier entretien en direct, surtout là où un signal est apparu.
 6. **Laissez une personne décider,** et notez pourquoi.
 
-## Comment prepza s'y prend
+## Comment testee s'y prend
 
-prepza fait passer des tests de compétences chronométrés à choix multiples, créés à partir d'une fiche de poste. Voici ce qu'il fait aujourd'hui contre la triche :
+testee fait passer des tests de compétences chronométrés à choix multiples, créés à partir d'une fiche de poste. Voici ce qu'il fait aujourd'hui contre la triche :
 
 - **Chaque candidat a ses propres questions :** une série aléatoire tirée de la banque de questions de chaque thème, dans son propre ordre, avec les réponses proposées mélangées.
 - **Chaque question a son propre compte à rebours,** ajusté à sa longueur : ses mots, le code ou l'exemple éventuel, et le temps de trouver la réponse. Le serveur tient le chronomètre, donc recharger la page ne l'arrête pas.
@@ -110,7 +110,7 @@ prepza fait passer des tests de compétences chronométrés à choix multiples, 
 - **Des schémas de réponse, une fois qu'un candidat a terminé.** Le rapport du candidat relève des temps de réponse à peu près identiques sur chaque question, quelles que soient sa longueur et sa difficulté, ainsi que des questions difficiles réussies alors que des faciles sont ratées, avec les chiffres à l'appui (« bonne réponse à 9 sur 10 questions difficiles, mauvaise réponse à 4 sur 8 questions faciles »). Le second schéma suppose assez de réponses d'autres candidats pour savoir à quel point chaque question est difficile. Les deux seuils ont été fixés sur un test avec des candidats simulés, de sorte qu'au plus 1 % des candidats honnêtes soient signalés ; ils ont repéré environ un tiers de ceux qui soumettaient chaque question à une IA. Le rapport précise que ces schémas peuvent avoir des causes innocentes.
 - **Des questions pour l'entretien en direct.** La page de chaque candidat qui a terminé suggère jusqu'à 3 questions auxquelles il a bien répondu, dans ses thèmes les plus solides, à reprendre lors de la conversation suivante, en commençant par les questions difficiles à l'origine d'un schéma s'il y en a un.
 - **Les candidats s'engagent** à répondre par eux-mêmes, sans outils d'IA ni l'aide d'autres personnes, avant de pouvoir commencer, et la fiche d'évaluation indique quand ils l'ont fait.
-- **Ni caméra, ni micro, ni enregistrement d'écran.** prepza n'utilise que ce que la page de test voit elle-même : les réponses, les temps, les sorties de la page et les tentatives de copie.
+- **Ni caméra, ni micro, ni enregistrement d'écran.** testee n'utilise que ce que la page de test voit elle-même : les réponses, les temps, les sorties de la page et les tentatives de copie.
 - **Les personnes décident.** Rien n'écarte un candidat automatiquement.
 
 ## À lire aussi

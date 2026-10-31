@@ -77,17 +77,17 @@ Para penulis juga mencatat syarat kedua: sampel kerja dan tes pengetahuan cocok 
 
 Lihat [Cara menyaring 100 pelamar dalam sehari](/guides/screen-100-applicants-in-a-day) untuk versi langkah demi langkah.
 
-## Di mana prepza berperan
+## Di mana testee berperan
 
-prepza menangani langkah 2: tes pengetahuan kerja pilihan ganda berbatas waktu, yang ditulis dari deskripsi pekerjaanmu. Angka validitas di atas berlaku untuk tes pengetahuan kerja secara umum, bukan hasil pengukuran atas tes prepza.
+testee menangani langkah 2: tes pengetahuan kerja pilihan ganda berbatas waktu, yang ditulis dari deskripsi pekerjaanmu. Angka validitas di atas berlaku untuk tes pengetahuan kerja secara umum, bukan hasil pengukuran atas tes testee.
 
-- **Spesifik untuk pekerjaan sejak awal.** prepza mengusulkan topik dari deskripsi pekerjaanmu, dan kamu meninjau serta mengubahnya sebelum ada soal yang ditulis. Hapus apa pun yang bukan persyaratan sebenarnya. Untuk posisi teknis, soal bisa berisi contoh kode singkat untuk dibaca.
+- **Spesifik untuk pekerjaan sejak awal.** testee mengusulkan topik dari deskripsi pekerjaanmu, dan kamu meninjau serta mengubahnya sebelum ada soal yang ditulis. Hapus apa pun yang bukan persyaratan sebenarnya. Untuk posisi teknis, soal bisa berisi contoh kode singkat untuk dibaca.
 - **Kondisi yang sama untuk semua orang.** Topik dan jumlah soal yang sama, serta hitung mundur di setiap soal. Kamu bisa memberi tambahan waktu kepada kandidat yang memintanya.
 - **Setiap kandidat mendapat soalnya sendiri,** set acak dari bank soal tiap topik, sehingga jawaban lebih sulit dibagikan.
 - **Hasil yang mudah dibaca.** Scorecard per kandidat dengan setiap jawaban dan waktunya, diurutkan berdasarkan skor, dengan tanda untuk jawaban yang terlalu cepat, meninggalkan halaman, percobaan menyalin, dan pola jawaban yang tidak biasa.
 - **Jawaban dinilai berdasarkan kunci jawaban** yang ditulis AI; sebagian kunci di tiap topik diperiksa sebelum dirilis, sisanya saat soalnya ditandai. Tidak ada AI yang membaca atau menilai jawaban kandidat.
 
-prepza tidak menjalankan wawancara terstruktur, sampel kerja, atau tes kognitif. Pakai prepza berdampingan dengan semua itu. Untuk informasi lebih lanjut tentang jenis-jenis tes dan keadilan, baca [Tes seleksi karyawan](/pre-employment-testing).
+testee tidak menjalankan wawancara terstruktur, sampel kerja, atau tes kognitif. Pakai testee berdampingan dengan semua itu. Untuk informasi lebih lanjut tentang jenis-jenis tes dan keadilan, baca [Tes seleksi karyawan](/pre-employment-testing).
 
 ## Sumber
 

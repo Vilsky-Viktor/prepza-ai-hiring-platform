@@ -66,9 +66,9 @@ Adaylara her aşamada hangi araçlara izin verildiğini baştan söyleyin. Net b
 
 Adım adım eksiksiz sürüm için [Mühendis işe alımı nasıl yapılır](/guides/hiring-engineers) rehberine bakın.
 
-## prepza nerede devreye girer
+## testee nerede devreye girer
 
-prepza 2. adım için çok uygundur. İş tanımınızı süreli, çoktan seçmeli bir bilgi mülakatına dönüştürür ve herhangi bir soru yazılmadan önce önerilen konuları gözden geçirirsiniz; böylece test teknoloji yığınınızı kapsar, başka hiçbir şeyi değil.
+testee 2. adım için çok uygundur. İş tanımınızı süreli, çoktan seçmeli bir bilgi mülakatına dönüştürür ve herhangi bir soru yazılmadan önce önerilen konuları gözden geçirirsiniz; böylece test teknoloji yığınınızı kapsar, başka hiçbir şeyi değil.
 
 - **İş tanımından kavramlar ve teori:** veritabanları, API'ler, mimari, bir framework'ün davranışı, güvenlik uygulamaları.
 - **Kod okuma soruları:** kısa bir kod parçası ve bunun ne yazdırdığı veya döndürdüğü, ne yaptığı, neden hata verdiği ya da hangi değişikliğin sorunu düzelttiği üzerine sorular. Bu, yapay zekâ destekli işin dayandığı inceleme becerisinin ta kendisidir.
@@ -76,7 +76,7 @@ prepza 2. adım için çok uygundur. İş tanımınızı süreli, çoktan seçme
 - **Güvenilirlik sinyalleri:** değerlendirme kartları, soruyu okumaya yetmeyecek kadar hızlı verilen yanıtları, adayın sayfadan ayrıldığı anları ve kopyalama girişimlerini işaretler. Aday bitirdiğinde raporu, soruları bir yapay zekâya aktarıp onun yanıtlarını kopyalamanın genellikle bıraktığı yanıt örüntülerini de gösterir: uzunluğu ya da zorluğu ne olursa olsun her soruda yaklaşık aynı süre veya kolay sorular yanlışken zor soruların doğru olması. İşaret ya da örüntü, daha yakından bakmak için bir nedendir, kopya çekildiğinin kanıtı değildir.
 - **Canlı mülakat için sorular:** rapor, adayın en güçlü konularından doğru yanıtladığı en fazla 3 soruyu, hiçbir yapay zekânın onun yerine yanıt veremeyeceği canlı bir mülakatta konuşmak için önerir.
 
-prepza'nın yapmadıkları: adaylar prepza'da kod yazmaz, çalıştırmaz veya hata ayıklamaz ve prepza onların bir yapay zekâ asistanını kullanmasını izlemez. Bunun yeri, şirket içinde veya bir geliştirici platformunda yürütülen ve bilgi elemesini tamamlayan uygulamalı aşamadır. Başlangıç için hazır testler için [pozisyona göre beceri testleri](/tests) sayfasına, prepza'nın yapay zekâyı nasıl kullandığı ve neyi insanlara bıraktığı için [Yapay zekâ mülakatları](/ai-interviews) sayfasına bakın.
+testee'nin yapmadıkları: adaylar testee'de kod yazmaz, çalıştırmaz veya hata ayıklamaz ve testee onların bir yapay zekâ asistanını kullanmasını izlemez. Bunun yeri, şirket içinde veya bir geliştirici platformunda yürütülen ve bilgi elemesini tamamlayan uygulamalı aşamadır. Başlangıç için hazır testler için [pozisyona göre beceri testleri](/tests) sayfasına, testee'nin yapay zekâyı nasıl kullandığı ve neyi insanlara bıraktığı için [Yapay zekâ mülakatları](/ai-interviews) sayfasına bakın.
 
 ## Adillik ve aday deneyimi
 

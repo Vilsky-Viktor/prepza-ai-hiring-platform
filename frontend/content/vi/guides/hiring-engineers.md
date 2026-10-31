@@ -72,7 +72,7 @@ Một bài kiểm tra kiến thức tốt cần:
 - **Ngắn:** vài chủ đề, mỗi chủ đề khoảng 10 câu hỏi, để các ứng viên giỏi đang có offer khác vẫn làm hết.
 - **Giống nhau cho mọi người:** cùng chủ đề, cùng số câu hỏi và cùng giới hạn thời gian.
 
-Đây là chỗ prepza phát huy tác dụng. prepza biến mô tả công việc của bạn thành một buổi phỏng vấn kiến thức trắc nghiệm có tính giờ. Bạn duyệt các chủ đề được đề xuất trước khi bất kỳ câu hỏi nào được viết, nên bài kiểm tra chỉ bao quát stack của bạn. Với vị trí kỹ thuật, bài kiểm tra có thể gồm:
+Đây là chỗ testee phát huy tác dụng. testee biến mô tả công việc của bạn thành một buổi phỏng vấn kiến thức trắc nghiệm có tính giờ. Bạn duyệt các chủ đề được đề xuất trước khi bất kỳ câu hỏi nào được viết, nên bài kiểm tra chỉ bao quát stack của bạn. Với vị trí kỹ thuật, bài kiểm tra có thể gồm:
 
 - **Câu hỏi đọc code:** một đoạn code ngắn kèm câu hỏi nó in ra hoặc trả về gì, nó làm gì, vì sao nó lỗi, hoặc thay đổi nào sửa được nó.
 - **SQL:** một bảng nhỏ và một truy vấn, kèm câu hỏi những dòng nào được trả về.
@@ -80,7 +80,7 @@ Một bài kiểm tra kiến thức tốt cần:
 
 Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên của riêng mình, mỗi câu có đồng hồ đếm ngược. Bạn xem một bảng điểm với từng câu trả lời và thời gian trả lời, cùng các cảnh báo về trả lời quá nhanh, rời khỏi trang, cố sao chép và những điểm bất thường trong câu trả lời và thời gian trả lời. Một cảnh báo là lý do để xem kỹ hơn, không phải bằng chứng cho điều gì. Báo cáo cũng gợi ý những câu ứng viên đã trả lời đúng để hỏi lại trong buổi phỏng vấn tiếp theo.
 
-Những gì prepza không làm: ứng viên không viết, chạy hay debug code trong prepza. Đọc code và viết code là hai kỹ năng khác nhau, nên bước tiếp theo vẫn quan trọng. Xem [bài kiểm tra kỹ năng theo vị trí](/tests) để có sẵn bài kiểm tra làm điểm xuất phát.
+Những gì testee không làm: ứng viên không viết, chạy hay debug code trong testee. Đọc code và viết code là hai kỹ năng khác nhau, nên bước tiếp theo vẫn quan trọng. Xem [bài kiểm tra kỹ năng theo vị trí](/tests) để có sẵn bài kiểm tra làm điểm xuất phát.
 
 ## Bước 4: Bài tập về nhà hoặc lập trình trực tiếp
 
@@ -128,7 +128,7 @@ Một quy trình có cấu trúc cũng công bằng hơn, nhưng chỉ khi bạn
 
 - **Câu hỏi nhất quán** ở mọi giai đoạn, cho mọi ứng viên cùng một vị trí.
 - **Tiêu chí chấm viết sẵn từ trước,** để mọi người được đánh giá theo cùng tiêu chí.
-- **Điều chỉnh hợp lý:** cho thêm thời gian hoặc hình thức khác với ứng viên có yêu cầu, ví dụ do khuyết tật. Trong prepza, bạn có thể cho một ứng viên thêm thời gian trước khi họ bắt đầu.
+- **Điều chỉnh hợp lý:** cho thêm thời gian hoặc hình thức khác với ứng viên có yêu cầu, ví dụ do khuyết tật. Trong testee, bạn có thể cho một ứng viên thêm thời gian trước khi họ bắt đầu.
 - **Theo dõi kết quả.** Các phương pháp khác nhau cho thấy chênh lệch điểm giữa các nhóm khác nhau. Sackett và cộng sự nhận thấy chênh lệch trung bình ở bài kiểm tra kiến thức chuyên môn và mẫu công việc lớn hơn ở phỏng vấn có cấu trúc, thêm một lý do để kết hợp các phương pháp. Hãy theo dõi tỷ lệ đạt ở từng giai đoạn.
 - **Con người quyết định.** Điểm số hỗ trợ một quyết định; nó không đưa ra quyết định. Hãy xem các câu trả lời trước khi loại bất kỳ ai.
 

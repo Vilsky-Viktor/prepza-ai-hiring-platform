@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Em geral, sim: usar IA no recrutamento e seleção é legal nos EUA. Não há uma lei federal de IA para contratação. Em vez disso, a lei federal antidiscriminação se aplica às ferramentas de IA como a qualquer teste, e alguns lugares acrescentam regras próprias: a cidade de Nova York, Illinois, Colorado e Califórnia.
 
-Este guia explica as regras em linhas gerais, as datas que importam, o que os empregadores precisam fazer e como a prepza lida com isso. **Não é aconselhamento jurídico.** Ele reflete as regras de outubro de 2026, várias das quais são novas ou ainda estão sendo finalizadas.
+Este guia explica as regras em linhas gerais, as datas que importam, o que os empregadores precisam fazer e como a testee lida com isso. **Não é aconselhamento jurídico.** Ele reflete as regras de outubro de 2026, várias das quais são novas ou ainda estão sendo finalizadas.
 
 ## A resposta curta
 
@@ -97,22 +97,22 @@ A lei de IA do Colorado foi revogada e promulgada de novo pela SB 26-189, sancio
 8. **Guarde os registros pelo tempo que a sua lei exige,** por exemplo quatro anos na Califórnia e três no Colorado.
 9. **Nunca reprove só pela pontuação.** Faça com que uma pessoa revise cada resultado.
 
-## Como a prepza lida com isso
+## Como a testee lida com isso
 
-A prepza aplica entrevistas de habilidades de múltipla escolha cronometradas, escritas por IA a partir de uma descrição da vaga. Sua abordagem nos EUA é a mesma da UE. A prepza não afirma estar em conformidade nem ser certificada.
+A testee aplica entrevistas de habilidades de múltipla escolha cronometradas, escritas por IA a partir de uma descrição da vaga. Sua abordagem nos EUA é a mesma da UE. A testee não afirma estar em conformidade nem ser certificada.
 
 Como isso aparece no produto hoje:
 
 - **A IA escreve as perguntas e os gabaritos; a correção segue regras fixas.** Nenhuma IA lê ou julga a resposta de um candidato, e não há análise de vídeo ou rosto. No modo de voz, a fala é transformada em texto e associada a uma opção, que é dita ao candidato e mostrada na tela: uma única opção dita com clareza é registrada na hora, e uma escolha de várias opções é confirmada primeiro. A fala nunca é armazenada e a voz nunca é analisada.
 - **Você aprova os tópicos** antes de qualquer pergunta ser escrita, e escolhe a nota de aprovação.
-- **Pessoas decidem.** A prepza não reprova candidatos nem envia mensagens de reprovação.
-- **Nenhuma característica protegida.** A prepza nunca pede, infere ou armazena sexo, raça, idade, deficiência, CEP ou outras características protegidas dos candidatos.
+- **Pessoas decidem.** A testee não reprova candidatos nem envia mensagens de reprovação.
+- **Nenhuma característica protegida.** A testee nunca pede, infere ou armazena sexo, raça, idade, deficiência, CEP ou outras características protegidas dos candidatos.
 - **Uma exportação para auditoria de viés.** Na página Registro de ações da empresa, o proprietário pode baixar um arquivo CSV dos candidatos que terminaram, para a empresa toda ou uma entrevista e entre duas datas: a nota de cada candidato, a nota de aprovação, se foi aprovado e se ficou acima da mediana da entrevista. Cada linha é identificada pelo e-mail do candidato, para que você possa cruzá-la com as categorias autodeclaradas que você mesmo coletou; depois remova a coluna de e-mail e entregue o arquivo ao seu auditor independente, que calcula as taxas de seleção e de pontuação e as razões de impacto. O mesmo arquivo permite que você mesmo faça a checagem dos quatro quintos.
-- **Tempo extra** de +25%, +50% ou +100% em cada pergunta pode ser dado a qualquer candidato que pedir, antes de começar. A prepza armazena só o acréscimo, nunca o motivo. No modo de voz, o candidato sempre pode tocar numa opção em vez de falar, e você pode configurar uma entrevista para respostas só por toque.
+- **Tempo extra** de +25%, +50% ou +100% em cada pergunta pode ser dado a qualquer candidato que pedir, antes de começar. A testee armazena só o acréscimo, nunca o motivo. No modo de voz, o candidato sempre pode tocar numa opção em vez de falar, e você pode configurar uma entrevista para respostas só por toque.
 - **Modelos de aviso aos candidatos,** um geral e versões para a cidade de Nova York, Illinois e Colorado, estão na [página de documentos](/documents), com as instruções para empresas.
-- **Cidade de Nova York.** A prepza ainda não passou pela sua própria auditoria de viés independente. Não use a prepza para vagas na cidade de Nova York até ter feito o que a Local Law 144 exige de você como empregador: uma auditoria de viés independente no ano anterior ao uso, o resumo publicado e um aviso aos candidatos com 10 dias úteis de antecedência.
-- **Dados.** Pela CCPA, sua empresa é a empresa responsável (business) e a prepza o seu prestador de serviços (service provider), nos termos do [acordo de tratamento de dados](/dpa) e da sua seção sobre os EUA. Os dados são hospedados na UE, com alguns suboperadores nos EUA (veja a [política de privacidade](/privacy)), e não são usados para treinar modelos de IA.
-- **Retenção.** Os dados dos candidatos são excluídos 12 meses após o convite. Quando a sua lei exige guardar registros por mais tempo, como os quatro anos da Califórnia, baixe os relatórios em PDF e o arquivo de auditoria de viés e guarde-os você mesmo; por padrão, a prepza não guarda resultados por mais tempo.
+- **Cidade de Nova York.** A testee ainda não passou pela sua própria auditoria de viés independente. Não use a testee para vagas na cidade de Nova York até ter feito o que a Local Law 144 exige de você como empregador: uma auditoria de viés independente no ano anterior ao uso, o resumo publicado e um aviso aos candidatos com 10 dias úteis de antecedência.
+- **Dados.** Pela CCPA, sua empresa é a empresa responsável (business) e a testee o seu prestador de serviços (service provider), nos termos do [acordo de tratamento de dados](/dpa) e da sua seção sobre os EUA. Os dados são hospedados na UE, com alguns suboperadores nos EUA (veja a [política de privacidade](/privacy)), e não são usados para treinar modelos de IA.
+- **Retenção.** Os dados dos candidatos são excluídos 12 meses após o convite. Quando a sua lei exige guardar registros por mais tempo, como os quatro anos da Califórnia, baixe os relatórios em PDF e o arquivo de auditoria de viés e guarde-os você mesmo; por padrão, a testee não guarda resultados por mais tempo.
 
 ## Leitura relacionada
 

@@ -102,9 +102,9 @@ Cada linha diz algo sobre o que uma pergunta pode tratar, o nível está declara
 - Requisitos eliminatórios ficam para a triagem de currículos.
 - Nenhum termo sobre a pessoa que você imagina, só sobre o trabalho.
 
-## Como a prepza usa uma descrição de vaga
+## Como a testee usa uma descrição de vaga
 
-A prepza é um exemplo de ferramenta que cria um teste de habilidades cronometrado, de múltipla escolha, a partir de uma descrição de vaga. Veja o que ela faz com o texto, para entender como as dicas acima funcionam na prática:
+A testee é um exemplo de ferramenta que cria um teste de habilidades cronometrado, de múltipla escolha, a partir de uma descrição de vaga. Veja o que ela faz com o texto, para entender como as dicas acima funcionam na prática:
 
 - **Ela lê cada requisito.** A IA identifica cada habilidade, ferramenta, conceito, formação e atividade do dia a dia, em todas as seções, inclusive as marcadas como desejáveis ou diferenciais. Frases sobre cultura, benefícios e slogans ficam de fora.
 - **Exemplos intercambiáveis viram um só.** "Ferramentas como A, B ou similares" é mantido como o tipo de ferramenta, com a que o texto prefere (ou a mais usada) como exemplo. Itens ligados por "e" continuam separados. Então, se você precisa de uma ferramenta específica, cite só ela.

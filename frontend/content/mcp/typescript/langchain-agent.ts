@@ -2,14 +2,14 @@
 import { MultiServerMCPClient } from "@langchain/mcp-adapters"
 import { createAgent } from "langchain"
 
-import { PREPZA_MCP, signIn } from "./prepza-auth.js"
+import { TESTEE_MCP, signIn } from "./testee-auth.js"
 
 const QUESTION = "Which candidates passed my latest interview?"
 
 async function main() {
   const client = new MultiServerMCPClient({
     mcpServers: {
-      prepza: { transport: "http", url: PREPZA_MCP, ...(await signIn()) },
+      testee: { transport: "http", url: TESTEE_MCP, ...(await signIn()) },
     },
   })
   const tools = await client.getTools()

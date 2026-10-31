@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Một bài kiểm tra kỹ năng có câu hỏi tốt vẫn có thể cho kết quả kém. Cho quá nhiều thời gian thì ứng viên tra cứu mọi đáp án; quá ít thì bạn đang đo tốc độ đọc. Quá ít câu hỏi thì điểm số phụ thuộc vào may rủi; quá nhiều thì ứng viên giỏi bỏ cuộc giữa chừng.
 
-Hướng dẫn này nói về bốn thiết lập của một bài kiểm tra trắc nghiệm có giới hạn thời gian: thời gian mỗi câu, số câu hỏi, tổng thời lượng và thời gian cộng thêm cho ứng viên cần điều đó. Lời khuyên áp dụng cho mọi bài kiểm tra kiến thức có tính giờ; phần cuối cho thấy prepza xử lý từng thiết lập như thế nào.
+Hướng dẫn này nói về bốn thiết lập của một bài kiểm tra trắc nghiệm có giới hạn thời gian: thời gian mỗi câu, số câu hỏi, tổng thời lượng và thời gian cộng thêm cho ứng viên cần điều đó. Lời khuyên áp dụng cho mọi bài kiểm tra kiến thức có tính giờ; phần cuối cho thấy testee xử lý từng thiết lập như thế nào.
 
 ## Tóm tắt
 
@@ -95,9 +95,9 @@ Nhiều quốc gia yêu cầu người sử dụng lao động thực hiện đi
 
 **Phần này là hướng dẫn thực tế, không phải tư vấn pháp lý.** Bạn phải cung cấp gì và được hỏi gì tùy thuộc vào nơi bạn tuyển dụng. Hãy kiểm tra nghĩa vụ của chính bạn theo luật về bình đẳng và người khuyết tật áp dụng cho bạn.
 
-## Cách prepza xử lý thời gian và thời gian cộng thêm
+## Cách testee xử lý thời gian và thời gian cộng thêm
 
-Trong prepza, một buổi phỏng vấn là một bài kiểm tra kỹ năng trắc nghiệm có tính giờ, được tạo từ mô tả công việc của bạn.
+Trong testee, một buổi phỏng vấn là một bài kiểm tra kỹ năng trắc nghiệm có tính giờ, được tạo từ mô tả công việc của bạn.
 
 ### Thời gian mỗi câu
 

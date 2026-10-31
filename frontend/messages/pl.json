@@ -12,7 +12,7 @@
     "account": "Twoje konto",
     "accountNote": "Podaj to ID, gdy piszesz do nas w sprawie swojego konta.",
     "yourData": "Twoje dane",
-    "yourDataNote": "Pobierz wszystko, co prepza. przechowuje na Twój temat, albo usuń konto.",
+    "yourDataNote": "Pobierz wszystko, co testee. przechowuje na Twój temat, albo usuń konto.",
     "download": "Pobierz moje dane",
     "downloadFailed": "Nie udało się przygotować Twoich danych. Spróbuj ponownie.",
     "delete": "Usuń konto",
@@ -20,7 +20,7 @@
     "noLanguage": "Nie znaleziono języka.",
     "emails": {
       "title": "E-maile",
-      "note": "Wybierz, jakie e-maile wysyła Ci prepza.",
+      "note": "Wybierz, jakie e-maile wysyła Ci testee.",
       "failed": "Nie udało się zapisać ustawień e-maili. Spróbuj ponownie.",
       "digest": "Podsumowanie aktywności",
       "digestNote": "Jeden e-mail dziennie o tym, co wydarzyło się w Twoich firmach.",
@@ -34,7 +34,7 @@
       "reminders": "Przypomnienia",
       "remindersNote": "Mało kredytów, rozmowy bez kandydatów, tematy czekające na sprawdzenie.",
       "updates": "Nowości o produkcie i aktualności",
-      "updatesNote": "Nowe funkcje i aktualności od prepza.",
+      "updatesNote": "Nowe funkcje i aktualności od testee.",
       "promotions": "Oferty i promocje",
       "promotionsNote": "Rabaty i oferty specjalne.",
       "alwaysSent": "E-maile serwisowe, takie jak zaproszenia, raporty o kandydatach, problemy z płatnościami i zmiany naszego regulaminu, są wysyłane zawsze."
@@ -82,7 +82,7 @@
   "signIn": {
     "title": "Zaloguj się",
     "continueWith": "Kontynuuj z <name>{provider}</name>",
-    "link": "Ten adres e-mail ma już konto w prepza. Kontynuuj tak, jak logowałeś się wcześniej, a {provider} zostanie z nim połączony.",
+    "link": "Ten adres e-mail ma już konto w testee. Kontynuuj tak, jak logowałeś się wcześniej, a {provider} zostanie z nim połączony.",
     "consent": "Logując się, potwierdzasz, że masz co najmniej 16 lat, akceptujesz <terms>Regulamin</terms> i zapoznałeś się z <privacy>Polityką prywatności</privacy>.",
     "failed": "Nie udało się zalogować. Spróbuj ponownie.",
     "verify": "Wysłaliśmy Ci link do potwierdzenia adresu e-mail. Otwórz go, aby brać udział w rozmowach i tworzyć firmy.",
@@ -256,7 +256,7 @@
     "pauseText": "Gdy jest włączone, nikt nie może rozpocząć nowej rozmowy, podejścia ćwiczeniowego ani podglądu, a pytania nie są generowane, generowane ponownie ani sprawdzane. Kandydaci, którzy są już w trakcie rozmowy, mogą ją dokończyć.",
     "pauseFailed": "Nie udało się zmienić wstrzymania. Spróbuj ponownie.",
     "maintenanceTitle": "Tryb konserwacji",
-    "maintenanceText": "Gdy jest włączony, każda strona pokazuje, że prepza jest w trakcie konserwacji, a usługi odrzucają każde żądanie, z wyjątkiem żądań superadminów. Płatności, e-maile i zaplanowane zadania działają dalej.",
+    "maintenanceText": "Gdy jest włączony, każda strona pokazuje, że testee jest w trakcie konserwacji, a usługi odrzucają każde żądanie, z wyjątkiem żądań superadminów. Płatności, e-maile i zaplanowane zadania działają dalej.",
     "maintenanceFailed": "Nie udało się zmienić trybu konserwacji. Spróbuj ponownie.",
     "maintenanceConfirmTitle": "Włączyć tryb konserwacji?",
     "maintenanceRunning": "{count, plural, =0 {Żaden kandydat nie jest teraz w trakcie rozmowy.} one {Kandydaci w trakcie rozmowy: #. Ich czas stoi, dopóki tryb konserwacji jest włączony.} few {Kandydaci w trakcie rozmowy: #. Ich czas stoi, dopóki tryb konserwacji jest włączony.} many {Kandydaci w trakcie rozmowy: #. Ich czas stoi, dopóki tryb konserwacji jest włączony.} other {Kandydaci w trakcie rozmowy: #. Ich czas stoi, dopóki tryb konserwacji jest włączony.}}",
@@ -279,13 +279,13 @@
     "emails": "E-maile",
     "emailSearch": "Adres e-mail",
     "emailSearchAction": "Znajdź",
-    "emailsIntro": "Znajdź adres e-mail, by zobaczyć i zatrzymać e-maile, które prepza na niego wysyła – dla osoby, która poprosiła nas o to e-mailem.",
-    "account": "Konto prepza",
+    "emailsIntro": "Znajdź adres e-mail, by zobaczyć i zatrzymać e-maile, które testee na niego wysyła – dla osoby, która poprosiła nas o to e-mailem.",
+    "account": "Konto testee",
     "accountText": "<bdi>{email}</bdi> ma konto. Zmiany wprowadzone tutaj są zapisywane jako Twoje.",
-    "noAccount": "Żadne konto prepza nie używa tego adresu.",
+    "noAccount": "Żadne konto testee nie używa tego adresu.",
     "turnOffAll": "Wyłącz wszystkie opcjonalne e-maile",
     "companyEmails": "E-maile od firm",
-    "companyEmailsText": "Zaproszenia i przypomnienia, które firmy wysyłają na ten adres przez prepza. Zmiany wprowadzone tutaj są zapisywane jako Twoje.",
+    "companyEmailsText": "Zaproszenia i przypomnienia, które firmy wysyłają na ten adres przez testee. Zmiany wprowadzone tutaj są zapisywane jako Twoje.",
     "noCompanies": "Żadna firma nie zaprosiła tego adresu.",
     "companySending": "E-maile są wysyłane",
     "companyStopped": "Wszystkie e-maile zatrzymane",
@@ -342,7 +342,7 @@
     "legalSend": "Wyślij informację o zmianie",
     "legalConfirmTitle": "Wysłać e-mailem informację o zmianie: {document}?",
     "legalAudience": {
-      "everyone": "Każdy, kto ma konto w prepza, otrzyma ją od najbliższej godziny wysyłki (od 8:00 do 18:00 UTC), z informacją, że nowa wersja obowiązuje od <time>{date}</time>, i zobaczy ją w swoich powiadomieniach. Wysyłamy ją raz i nie można jej cofnąć.",
+      "everyone": "Każdy, kto ma konto w testee, otrzyma ją od najbliższej godziny wysyłki (od 8:00 do 18:00 UTC), z informacją, że nowa wersja obowiązuje od <time>{date}</time>, i zobaczy ją w swoich powiadomieniach. Wysyłamy ją raz i nie można jej cofnąć.",
       "company_editors": "Właściciele i administratorzy każdej firmy otrzymają ją od najbliższej godziny wysyłki (od 8:00 do 18:00 UTC), z informacją, że nowa wersja obowiązuje od <time>{date}</time>, i zobaczą ją w swoich powiadomieniach. Wysyłamy ją raz i nie można jej cofnąć."
     },
     "legalAsked": "Informacja o zmianie zostanie wysłana od najbliższej godziny wysyłki.",
@@ -427,7 +427,7 @@
       "promotions": "Oferta",
       "notices": "Ważne powiadomienie"
     },
-    "campaignNoticeWarning": "Ważne powiadomienie trafia do wszystkich odbiorców, niezależnie od ich ustawień e-maili, i nie można się z niego wypisać. Używaj go tylko w przypadku incydentów bezpieczeństwa, planowanych przerw w działaniu lub zmian w działaniu prepza, nigdy do promowania czegokolwiek.",
+    "campaignNoticeWarning": "Ważne powiadomienie trafia do wszystkich odbiorców, niezależnie od ich ustawień e-maili, i nie można się z niego wypisać. Używaj go tylko w przypadku incydentów bezpieczeństwa, planowanych przerw w działaniu lub zmian w działaniu testee, nigdy do promowania czegokolwiek.",
     "campaignAudience": "Odbiorcy",
     "campaignAudienceEveryone": "Wszyscy",
     "campaignAudienceEveryoneNote": {
@@ -457,7 +457,7 @@
     "campaignTextPlaceholder": "Tu wpisz treść… Naciśnij Enter, aby zacząć nowy akapit.",
     "campaignButton": "Tekst przycisku (opcjonalnie)",
     "campaignLink": "Link przycisku",
-    "campaignLinkPlaceholder": "Link przycisku w prepza, np. /pricing (opcjonalnie)",
+    "campaignLinkPlaceholder": "Link przycisku w testee, np. /pricing (opcjonalnie)",
     "campaignSaveFailed": "Nie udało się zapisać kampanii. Spróbuj ponownie.",
     "noCampaigns": "Na razie brak kampanii.",
     "campaignStatus": {
@@ -537,7 +537,7 @@
       "paid": "Płacące firmy",
       "unpaid": "Niepłacące firmy",
       "no_company": "Bez firmy",
-      "prepza": "prepza"
+      "testee": "testee"
     },
     "aiActionsTitle": "Według działania",
     "aiActions": {
@@ -703,7 +703,7 @@
       "1209600": "na przegląd tematów"
     },
     "limitKinds": {
-      "ours": "prepza",
+      "ours": "testee",
       "openai": "OpenAI",
       "resend": "Resend",
       "firebase": "Firebase",
@@ -1036,7 +1036,7 @@
     "pickTitle": "Wybierz firmę",
     "pickText": "Test zostanie skopiowany do wybranej firmy za darmo i od razu będzie gotowy do wysłania kandydatom.",
     "removeCredits": "Jej {credits, plural, one {# kredyt} few {# kredyty} many {# kredytów} other {# kredytu}}{candidates, plural, =0 {} one { (około # kandydat)} few { (około # kandydatów)} many { (około # kandydatów)} other { (około # kandydata)}} przepadną i nie są zwracane.",
-    "suspended": "Ta firma jest zawieszona: na razie nie można jej zmieniać. Aby dowiedzieć się więcej, napisz na hello@prepza.ai."
+    "suspended": "Ta firma jest zawieszona: na razie nie można jej zmieniać. Aby dowiedzieć się więcej, napisz na hello@testee.ai."
   },
   "candidates": {
     "scorecard": "Wyniki",
@@ -1137,7 +1137,7 @@
     "passMark": "Próg zaliczenia",
     "passMarkLabel": "Próg zaliczenia w procentach",
     "markHired": "Oznacz jako zatrudnionego",
-    "keepPrivate": "Nie dodawaj tych pytań do wspólnej bazy pytań prepza",
+    "keepPrivate": "Nie dodawaj tych pytań do wspólnej bazy pytań testee",
     "keepPrivateHelp": "Pytania już użyte ponownie w innych rozmowach tam pozostaną",
     "answerMode": "Tryb rozmowy",
     "answerModeHelp": "W trybie kliknięć kandydaci czytają każde pytanie i dotykają odpowiedzi. W trybie głosowym Mira, rekruterka AI, czyta każde pytanie na głos, a kandydaci odpowiadają głosem lub dotknięciem",
@@ -1251,7 +1251,7 @@
     "mismatch": "Adres e-mail się nie zgadza. Zaloguj się adresem z zaproszenia, aby rozpocząć.",
     "title": "Zaproszenie na rozmowę",
     "theCompany": "firma",
-    "unverified": "prepza nie zweryfikowała tej firmy."
+    "unverified": "testee nie zweryfikowała tej firmy."
   },
   "members": {
     "joined": "Dołączył(a)",
@@ -1286,7 +1286,7 @@
     "unavailable": "Ceny są teraz niedostępne. Spróbuj ponownie za minutę.",
     "title": "Cennik",
     "intro": "Płać za kandydata. Generowanie rozmów jest darmowe i nie ma abonamentu.",
-    "description": "Cennik prepza: generowanie rozmów jest darmowe, a płacisz tylko za każdego kandydata, który odpowiada. Bez abonamentu i opłat za użytkownika, a kredyty nie wygasają.",
+    "description": "Cennik testee: generowanie rozmów jest darmowe, a płacisz tylko za każdego kandydata, który odpowiada. Bez abonamentu i opłat za użytkownika, a kredyty nie wygasają.",
     "test": "Generowanie rozmowy",
     "free": "Za darmo",
     "candidate": "Każdy kandydat, który odpowie na co najmniej jedno pytanie",
@@ -1320,14 +1320,14 @@
   "docs": {
     "title": "Dokumenty prawne",
     "metaTitle": "Dokumenty zgodności z przepisami w rekrutacji",
-    "intro": "Dokumenty dla firm, które oceniają kandydatów w prepza: instrukcje, szablony i umowa powierzenia przetwarzania danych.",
+    "intro": "Dokumenty dla firm, które oceniają kandydatów w testee: instrukcje, szablony i umowa powierzenia przetwarzania danych.",
     "englishOnly": "Te dokumenty są dostępne tylko po angielsku.",
     "download": "Pobierz {format}",
     "readOnline": "Czytaj online",
     "items": {
       "instructions": {
         "title": "Instrukcje dla firm",
-        "description": "Co oznacza wynik, weryfikacja przez człowieka, wybór progu zaliczenia, dodatkowy czas i kiedy nie używać prepza."
+        "description": "Co oznacza wynik, weryfikacja przez człowieka, wybór progu zaliczenia, dodatkowy czas i kiedy nie używać testee."
       },
       "notices": {
         "title": "Szablony informacji dla kandydatów",
@@ -1335,11 +1335,11 @@
       },
       "dpia": {
         "title": "Szablon DPIA",
-        "description": "Ocena skutków dla ochrony danych z wypełnioną częścią prepza, do uzupełnienia przez Ciebie."
+        "description": "Ocena skutków dla ochrony danych z wypełnioną częścią testee, do uzupełnienia przez Ciebie."
       },
       "dpa": {
         "title": "Umowa powierzenia przetwarzania danych",
-        "description": "Jak prepza przetwarza dane Twoich kandydatów w Twoim imieniu. Jest częścią regulaminu."
+        "description": "Jak testee przetwarza dane Twoich kandydatów w Twoim imieniu. Jest częścią regulaminu."
       }
     }
   },
@@ -1396,7 +1396,7 @@
     "more": "Jak to działa",
     "demos": "Wideo",
     "demosTooltip": "Obejrzyj dema na YouTube",
-    "videoTooltip": "Zobacz, jak działa prepza",
+    "videoTooltip": "Zobacz, jak działa testee",
     "watchVideo": "Obejrzyj wideo",
     "howItWorks": "Jak to działa",
     "askAgent": "zapytaj Mirę",
@@ -1553,7 +1553,7 @@
         },
         "help": {
           "title": "Pomoc",
-          "text": "Odpowiedzi „jak to zrobić” z poradników prepza, w Twoim języku."
+          "text": "Odpowiedzi „jak to zrobić” z poradników testee, w Twoim języku."
         },
         "actions": {
           "title": "Działania",
@@ -1633,8 +1633,8 @@
         "time": "Testy do wybrania lub napisania dla każdej roli",
         "cost": "Miesięczna opłata, czy rekrutujesz, czy nie"
       },
-      "prepza": {
-        "name": "prepza",
+      "testee": {
+        "name": "testee",
         "checks": "Pisane przez AI specjalnie pod Twoją rolę",
         "time": "~10 min na rolę, zero na kandydata",
         "cost": "{price} za kandydata, który odpowiada"
@@ -1670,13 +1670,13 @@
   "faq": {
     "title": "Często zadawane pytania",
     "intro": "Nie ma tu Twojej odpowiedzi? Zapytaj Mirę, asystentkę AI (przycisk u góry strony), albo napisz do nas na adres z polityki prywatności.",
-    "description": "Odpowiedzi o prepza: jak rozmowa powstaje z opisu stanowiska, co widzą kandydaci, ceny i kredyty, wyniki, integracje z ATS, języki i Twoje dane."
+    "description": "Odpowiedzi o testee: jak rozmowa powstaje z opisu stanowiska, co widzą kandydaci, ceny i kredyty, wyniki, integracje z ATS, języki i Twoje dane."
   },
   "contact": {
     "title": "Skontaktuj się z nami",
     "intro": "Masz pytanie, pomysł, propozycję współpracy albo coś nie działa? Napisz do nas, a odpowiemy e-mailem.",
     "idHint": "Piszesz w sprawie firmy, rozmowy, kandydata albo swojego konta? Wklej jego ID: „kopiuj id” jest pod nazwą, a ID Twojego konta — w menu konta.",
-    "description": "Skontaktuj się z zespołem prepza: pytania o testy rekrutacyjne, pomysły, propozycje współpracy albo coś nie działa. Odpowiadamy e-mailem.",
+    "description": "Skontaktuj się z zespołem testee: pytania o testy rekrutacyjne, pomysły, propozycje współpracy albo coś nie działa. Odpowiadamy e-mailem.",
     "name": "Imię",
     "email": "E-mail",
     "message": "Wiadomość",
@@ -1694,23 +1694,23 @@
   },
   "about": {
     "title": "O nas",
-    "intro": "prepza pomaga firmom znaleźć ludzi, którzy naprawdę znają się na rzeczy: uczciwa rozmowa na czas, stworzona z Twojego opisu stanowiska, w cenie, na którą stać każdy zespół. A każdy, kto przygotowuje się do rozmowy kwalifikacyjnej, może ćwiczyć za darmo.",
-    "description": "prepza w kilka minut zamienia opis stanowiska w uczciwą rozmowę na czas, w cenie, na którą stać każdy zespół. A każdy może za darmo ćwiczyć przed rozmową kwalifikacyjną.",
+    "intro": "testee pomaga firmom znaleźć ludzi, którzy naprawdę znają się na rzeczy: uczciwa rozmowa na czas, stworzona z Twojego opisu stanowiska, w cenie, na którą stać każdy zespół. A każdy, kto przygotowuje się do rozmowy kwalifikacyjnej, może ćwiczyć za darmo.",
+    "description": "testee w kilka minut zamienia opis stanowiska w uczciwą rozmowę na czas, w cenie, na którą stać każdy zespół. A każdy może za darmo ćwiczyć przed rozmową kwalifikacyjną.",
     "company": {
       "title": "Po co istniejemy",
       "problem": "Rekrutacja często opiera się na CV i dobrej rozmowie, a jedno i drugie może zmylić. Narzędzia do oceny, które pomagają, są wycenione dla dużych firm, z planami rocznymi i opłatami za użytkownika, więc większość zespołów się bez nich obywa.",
-      "approach": "prepza w kilka minut zamienia opis stanowiska w rozmowę na czas, dla dowolnej roli. Każdy kandydat dostaje własne pytania, widzisz, kto zna się na rzeczy i dlaczego, a płacisz tylko za kandydatów, którzy faktycznie wezmą w niej udział.",
+      "approach": "testee w kilka minut zamienia opis stanowiska w rozmowę na czas, dla dowolnej roli. Każdy kandydat dostaje własne pytania, widzisz, kto zna się na rzeczy i dlaczego, a płacisz tylko za kandydatów, którzy faktycznie wezmą w niej udział.",
       "practice": "Chcemy też, by przygotowanie do rozmowy kwalifikacyjnej było darmowe dla wszystkich. Każdy może odbyć nasze próbne rozmowy dla danej roli, zobaczyć swój wynik i wszystkie poprawne odpowiedzi oraz ćwiczyć ponownie, bez żadnych kosztów."
     },
     "founder": {
-      "quote": "Dobra rekrutacja nie powinna być przywilejem dużych firm z dużymi budżetami. Zbudowałem prepza, aby każdy zespół mógł w kilka minut zamienić opis stanowiska w uczciwą rozmowę, zobaczyć, kto naprawdę zna się na rzeczy, i płacić tylko za kandydatów, którzy wezmą w niej udział. Mam nadzieję, że pomoże Ci szybciej znaleźć właściwych ludzi.",
-      "role": "Jedyny założyciel prepza"
+      "quote": "Dobra rekrutacja nie powinna być przywilejem dużych firm z dużymi budżetami. Zbudowałem testee, aby każdy zespół mógł w kilka minut zamienić opis stanowiska w uczciwą rozmowę, zobaczyć, kto naprawdę zna się na rzeczy, i płacić tylko za kandydatów, którzy wezmą w niej udział. Mam nadzieję, że pomoże Ci szybciej znaleźć właściwych ludzi.",
+      "role": "Jedyny założyciel testee"
     }
   },
   "news": {
-    "title": "Aktualności prepza",
-    "description": "Co nowego w prepza: nowe funkcje, ulepszenia i aktualizacje.",
-    "metaDescription": "Aktualności prepza: nowe funkcje, języki i ulepszenia testów umiejętności, rozmów z AI i darmowej praktyki, gdy tylko się pojawią. Śledź tutaj lub przez RSS.",
+    "title": "Aktualności testee",
+    "description": "Co nowego w testee: nowe funkcje, ulepszenia i aktualizacje.",
+    "metaDescription": "Aktualności testee: nowe funkcje, języki i ulepszenia testów umiejętności, rozmów z AI i darmowej praktyki, gdy tylko się pojawią. Śledź tutaj lub przez RSS.",
     "empty": "Na razie brak aktualności.",
     "rss": "Kanał RSS"
   },
@@ -1746,8 +1746,8 @@
       "legal_dpa": "Nowa umowa powierzenia przetwarzania danych obowiązuje od <time>{date}</time>."
     },
     "legalBanner": {
-      "terms": "Regulamin prepza zmienia się <time>{date}</time>.",
-      "privacy": "Polityka prywatności prepza zmienia się <time>{date}</time>.",
+      "terms": "Regulamin testee zmienia się <time>{date}</time>.",
+      "privacy": "Polityka prywatności testee zmienia się <time>{date}</time>.",
       "dpa": "Umowa powierzenia przetwarzania danych zmienia się <time>{date}</time>."
     },
     "readLegal": "Przeczytaj nową wersję",
@@ -1769,7 +1769,7 @@
     "sent": "Raport wysłany na <bdi>{email}</bdi>",
     "sendFailed": "Nie udało się wysłać raportu.",
     "orSummary": "Lub wyślij przez",
-    "via": "Wysłano z prepza",
+    "via": "Wysłano z testee",
     "candidatesFileName": "Kandydaci {title}",
     "candidateCount": "{count, plural, one {# kandydat} few {# kandydaci} many {# kandydatów} other {# kandydata}}",
     "passMark": "próg zaliczenia {mark}",
@@ -1815,7 +1815,7 @@
   },
   "openToOffers": {
     "title": "Rozważam oferty pracy",
-    "text": "Firmy, które rekrutują przez prepza, zobaczą Twoje imię i nazwisko, profil LinkedIn i najnowsze wyniki ćwiczeń oraz mogą zaprosić Cię na rozmowę. Możesz to wyłączyć w każdej chwili.",
+    "text": "Firmy, które rekrutują przez testee, zobaczą Twoje imię i nazwisko, profil LinkedIn i najnowsze wyniki ćwiczeń oraz mogą zaprosić Cię na rozmowę. Możesz to wyłączyć w każdej chwili.",
     "linkedin": "Profil LinkedIn",
     "linkedinHint": "linkedin.com/in/twoje-imie",
     "save": "Zapisz",
@@ -1846,8 +1846,8 @@
   },
   "maintenance": {
     "title": "Trwa konserwacja",
-    "text": "prepza jest w trakcie prac konserwacyjnych. Wkrótce wracamy.",
-    "notice": "Tryb konserwacji jest włączony: teraz z prepza mogą korzystać tylko superadmini."
+    "text": "testee jest w trakcie prac konserwacyjnych. Wkrótce wracamy.",
+    "notice": "Tryb konserwacji jest włączony: teraz z testee mogą korzystać tylko superadmini."
   },
   "content": {
     "updated": "Ostatnia aktualizacja",
@@ -1857,7 +1857,7 @@
     "startButton": "Utwórz test"
   },
   "compare": {
-    "title": "Porównaj prepza",
+    "title": "Porównaj testee",
     "metaTitle": "Porównanie narzędzi do testów rekrutacyjnych",
     "intro": "Porównania z innymi narzędziami do testów rekrutacyjnych, ze źródłami: jak powstają testy, ile kosztują i kiedy które pasuje lepiej."
   },
@@ -1882,7 +1882,7 @@
   "ats": {
     "statusConnected": "połączono",
     "flowTitle": "Jak kandydaci trafiają z {ats}",
-    "flowStage": "W {ats} dodaj do procesu rekrutacji tej oferty etap tylko dla prepza, np. „Test umiejętności prepza”, żeby nigdy nie mieszał się z innymi narzędziami.",
+    "flowStage": "W {ats} dodaj do procesu rekrutacji tej oferty etap tylko dla testee, np. „Test umiejętności testee”, żeby nigdy nie mieszał się z innymi narzędziami.",
     "flowLink": "Tutaj powiąż ofertę i wybierz ten etap.",
     "flowMove": "Gdy chcesz sprawdzić kandydata, przenieś go na ten etap.",
     "flowInvite": "Zaprosimy go za Ciebie na powiązaną rozmowę, tak jakby zaproszenie wyszło od Ciebie. Kredyty i limity działają tak samo.",
@@ -1974,7 +1974,7 @@
     "connected": "Slack jest połączony.",
     "disconnectFailed": "Nie udało się odłączyć Slacka.",
     "disconnectTitle": "Odłączyć Slacka?",
-    "disconnectText": "Powiadomienia Twojej firmy przestaną trafiać na kanał, a aplikacja prepza zostanie usunięta z Twojego Slacka.",
+    "disconnectText": "Powiadomienia Twojej firmy przestaną trafiać na kanał, a aplikacja testee zostanie usunięta z Twojego Slacka.",
     "notConnected": "Slack nie jest jeszcze połączony. Dodaj go, aby otrzymywać powiadomienia firmy na wybranym kanale.",
     "kindsTitle": "Powiadomienia w Slacku",
     "kindsText": "Kanał dostaje je od razu, gdy się pojawią. Wszyscy nadal widzą je też pod dzwonkiem.",
@@ -1989,10 +1989,10 @@
       "auto_top_up_failed": "Automatyczne doładowanie nie powiodło się"
     },
     "instructionsTitle": "Jak Slack otrzymuje Twoje powiadomienia",
-    "stepAdd": "Kliknij „Dodaj do Slacka”: Slack się otworzy i poprosi o zezwolenie na prepza w Twoim obszarze roboczym.",
+    "stepAdd": "Kliknij „Dodaj do Slacka”: Slack się otworzy i poprosi o zezwolenie na testee w Twoim obszarze roboczym.",
     "stepChannel": "Wybierz kanał, na którym Twój zespół ma je widzieć, np. #hiring, i zezwól.",
     "stepKinds": "Po powrocie tutaj wybierz, które powiadomienia mają tam trafiać: ukończona rozmowa kandydata, niedostarczone zaproszenie i inne.",
-    "stepPrivacy": "prepza może publikować tylko na tym kanale. Nie może czytać Twojego Slacka, a odłączenie go usuwa."
+    "stepPrivacy": "testee może publikować tylko na tym kanale. Nie może czytać Twojego Slacka, a odłączenie go usuwa."
   },
   "api": {
     "name": "API",
@@ -2029,12 +2029,12 @@
     "removeKeyTitle": "Usunąć ten klucz?",
     "removeKeyText": "Wszystko, co używa „<bdi>{name}</bdi>”, natychmiast przestanie działać.",
     "webhooksTitle": "Webhooki",
-    "webhooksText": "prepza powiadamia te adresy, gdy kandydat zaczyna lub kończy (wraz z wynikami), gdy zaproszenie do niego nie dotrze lub wygaśnie, gdy kandydat zostanie usunięty i gdy rozmowa jest gotowa. Każde żądanie jest podpisane sekretem danego adresu.",
+    "webhooksText": "testee powiadamia te adresy, gdy kandydat zaczyna lub kończy (wraz z wynikami), gdy zaproszenie do niego nie dotrze lub wygaśnie, gdy kandydat zostanie usunięty i gdy rozmowa jest gotowa. Każde żądanie jest podpisane sekretem danego adresu.",
     "noWebhooks": "Nie ma jeszcze webhooków.",
     "failing": "Wstrzymany: nie odpowiadał przez 3 dni, więc nie są do niego wysyłane żadne zdarzenia. Przyjęte zdarzenie testowe włącza go ponownie.",
     "addWebhook": "Dodaj webhook",
     "addWebhookTitle": "Nowy webhook",
-    "webhookUrl": "Adres HTTPS, np. https://example.com/prepza",
+    "webhookUrl": "Adres HTTPS, np. https://example.com/testee",
     "webhookCreatedTitle": "Sekret Twojego webhooka",
     "webhookCreatedText": "Użyj go do sprawdzania podpisu każdego żądania (zobacz dokumentację dla deweloperów). Skopiuj go teraz: nie zostanie pokazany ponownie.",
     "copySecret": "Kopiuj sekret",
@@ -2057,7 +2057,7 @@
     "results": {
       "delivered": "Dostarczono",
       "skipped": "Pominięto",
-      "unreadable": "Nie wysłano: problem po stronie prepza.",
+      "unreadable": "Nie wysłano: problem po stronie testee.",
       "answered": "Odpowiedź {status}",
       "error": "Błąd: {error}"
     },
@@ -2175,12 +2175,12 @@
     "radius": "Zaokrąglenie kart",
     "buttonRadius": "Zaokrąglenie przycisków",
     "reset": "Resetuj",
-    "resetPrepza": "Przywróć ustawienia domyślne prepza",
+    "resetTestee": "Przywróć ustawienia domyślne testee",
     "themes": {
       "light": "Jasny motyw",
       "dark": "Ciemny motyw"
     },
-    "resetDone": "Przywrócono ustawienia domyślne prepza",
+    "resetDone": "Przywrócono ustawienia domyślne testee",
     "failed": "Nie udało się zapisać identyfikacji wizualnej.",
     "preview": "Podgląd",
     "sampleTitle": "HR Manager",
@@ -2192,7 +2192,7 @@
   },
   "apiDocs": {
     "title": "Dokumentacja dla deweloperów",
-    "description": "Dokumentacja prepza dla deweloperów: uzyskaj klucz API, twórz rozmowy, zapraszaj kandydatów i zarządzaj nimi, odczytuj ich wyniki, otrzymuj je przez webhook i osadzaj rozmowę za pomocą SDK.",
+    "description": "Dokumentacja testee dla deweloperów: uzyskaj klucz API, twórz rozmowy, zapraszaj kandydatów i zarządzaj nimi, odczytuj ich wyniki, otrzymuj je przez webhook i osadzaj rozmowę za pomocą SDK.",
     "tabs": {
       "api": "API",
       "webhooks": "Webhooki",
@@ -2254,8 +2254,8 @@
     "deleteTitle": "Usunąć ten czat?",
     "deleteText": "Czat i jego odpowiedzi zostaną usunięte na zawsze.",
     "emptyTitle": "Cześć, jestem Mira, Twoja asystentka AI",
-    "emptyText": "Kandydaci, rozmowy, kredyty, integracje i to, jak działa prepza, na podstawie tego, co widzisz w swoich firmach. AI może się mylić; wiążące są strony, do których odsyła.",
-    "emptyTitleFaq": "Cześć, jestem Mira, asystentka AI prepza",
+    "emptyText": "Kandydaci, rozmowy, kredyty, integracje i to, jak działa testee, na podstawie tego, co widzisz w swoich firmach. AI może się mylić; wiążące są strony, do których odsyła.",
+    "emptyTitleFaq": "Cześć, jestem Mira, asystentka AI testee",
     "pageQuestion": "Co mogę zrobić na tej stronie?",
     "pages": {
       "open": "Otwórz",
@@ -2294,9 +2294,9 @@
     },
     "welcome": {
       "signed_out": {
-        "text": "Jak działa prepza, ile kosztuje i co widzą kandydaci — odpowiedzi z częstych pytań prepza. Zaloguj się, aby pytać o swoje firmy i kandydatów.",
+        "text": "Jak działa testee, ile kosztuje i co widzą kandydaci — odpowiedzi z częstych pytań testee. Zaloguj się, aby pytać o swoje firmy i kandydatów.",
         "questions": {
-          "what": "Czym jest prepza?",
+          "what": "Czym jest testee?",
           "pricing": "Ile to kosztuje?",
           "takeTest": "Jak kandydaci rozwiązują test?",
           "account": "Czy kandydaci potrzebują konta?"
@@ -2471,7 +2471,7 @@
       "chargeback_reversed": "Cofnięte obciążenie zwrotne",
       "referral": "Nagroda za polecenie",
       "referral_reversed": "Cofnięta nagroda za polecenie",
-      "adjustment": "Korekta od prepza"
+      "adjustment": "Korekta od testee"
     },
     "automatic": "Automatyczne doładowanie",
     "invoice": "Faktura",
@@ -2482,16 +2482,16 @@
   },
   "aiApps": {
     "name": "Serwer MCP",
-    "rowText": "Połącz Claude, ChatGPT i inne aplikacje AI z prepza.",
+    "rowText": "Połącz Claude, ChatGPT i inne aplikacje AI z testee.",
     "title": "Aplikacje AI",
     "subtitle": "Działają w Twoim imieniu, w każdej firmie, do której należysz, z Twoimi uprawnieniami.",
-    "instructionsTitle": "Połącz aplikację AI z prepza",
+    "instructionsTitle": "Połącz aplikację AI z testee",
     "serverTitle": "Adres serwera",
     "serverText": "Wklej go w swojej aplikacji AI jako własny konektor (serwer MCP).",
     "addTo": "Dodaj do <app>{name}</app>",
     "claudeOpen": "W Claude otwórz:",
     "claudePaste": "Nazwij go {name}, wklej adres serwera i wybierz „Add”.",
-    "allowOnPrepza": "Wybierz „Connect”, a potem „Zezwól” na stronie prepza, która się otworzy.",
+    "allowOnTestee": "Wybierz „Connect”, a potem „Zezwól” na stronie testee, która się otworzy.",
     "claudeCode": "W Claude Code uruchom:",
     "copyCommand": "Kopiuj polecenie",
     "commandCopied": "Skopiowano polecenie",
@@ -2504,7 +2504,7 @@
     "lastUsed": "ostatnio użyta <time>{date}</time>",
     "neverUsed": "jeszcze nieużyta",
     "disconnectTitle": "Odłączyć <bdi>{client}</bdi>?",
-    "disconnectText": "<bdi>{client}</bdi> przestanie działać z prepza, dopóki nie połączysz go ponownie.",
+    "disconnectText": "<bdi>{client}</bdi> przestanie działać z testee, dopóki nie połączysz go ponownie.",
     "disconnectFailed": "Nie udało się odłączyć aplikacji. Spróbuj ponownie.",
     "allowTitle": "Zezwól na aplikacje AI w tej firmie",
     "allowText": "Członkowie mogą korzystać z rozmów i kandydatów tej firmy w połączonych przez siebie aplikacjach AI. Gdy wyłączone, aplikacje AI nie mogą tu niczego odczytać ani zmienić.",
@@ -2512,22 +2512,22 @@
   },
   "connect": {
     "pageTitle": "Połącz aplikację AI",
-    "title": "Połącz <name><bdi>{client}</bdi></name> z prepza",
-    "titleAny": "Połącz aplikację AI z prepza",
-    "signInText": "Zaloguj się, aby zdecydować, czy może korzystać z Twojego konta prepza.",
+    "title": "Połącz <name><bdi>{client}</bdi></name> z testee",
+    "titleAny": "Połącz aplikację AI z testee",
+    "signInText": "Zaloguj się, aby zdecydować, czy może korzystać z Twojego konta testee.",
     "signIn": "Zaloguj się, aby kontynuować",
-    "who": "<bdi>{client}</bdi> (<bdi>{host}</bdi>) chce korzystać z Twojego konta prepza, <bdi>{email}</bdi>.",
+    "who": "<bdi>{client}</bdi> (<bdi>{host}</bdi>) chce korzystać z Twojego konta testee, <bdi>{email}</bdi>.",
     "canTitle": "Może",
     "canRead": "Odczytywać Twoje firmy, rozmowy i wyniki kandydatów.",
     "canChange": "Wprowadzać zmiany, o które poprosisz. Większość aplikacji AI najpierw prosi Cię o potwierdzenie.",
     "canShare": "Przekazywać to, co odczyta, dostawcy aplikacji na warunkach tej aplikacji.",
     "cantTitle": "Nie może",
-    "cantChange": "Zmienić niczego w prepza.",
+    "cantChange": "Zmienić niczego w testee.",
     "cantSecrets": "Widzieć Twojego hasła ani kluczy API.",
     "cantDelete": "Usunąć Twojego konta ani firmy.",
     "changesTitle": "Zezwól na zmiany",
     "changesText": "Wyłącz, aby aplikacja mogła tylko odczytywać.",
-    "unknown": "prepza nie zna tej aplikacji. Zezwól tylko wtedy, gdy to Ty rozpoczynasz jej łączenie.",
+    "unknown": "testee nie zna tej aplikacji. Zezwól tylko wtedy, gdy to Ty rozpoczynasz jej łączenie.",
     "deny": "Odmów",
     "allow": "Zezwól",
     "footnote": "Odłączysz ją w każdej chwili w zakładce Integracje → Aplikacje AI firmy.",
@@ -2536,8 +2536,8 @@
   },
   "accessibility": {
     "title": "Dostępność",
-    "description": "Jak prepza działa dla osób z niepełnosprawnościami, czego jeszcze brakuje i jak nam to zgłosić.",
-    "intro": "Chcemy, aby każdy mógł korzystać z prepza: przejść rozmowę, którą wysyła Ci firma, ćwiczyć i prowadzić rekrutację w firmie. Dążymy do spełnienia poziomu AA Wytycznych dla dostępności treści internetowych (WCAG) 2.2.",
+    "description": "Jak testee działa dla osób z niepełnosprawnościami, czego jeszcze brakuje i jak nam to zgłosić.",
+    "intro": "Chcemy, aby każdy mógł korzystać z testee: przejść rozmowę, którą wysyła Ci firma, ćwiczyć i prowadzić rekrutację w firmie. Dążymy do spełnienia poziomu AA Wytycznych dla dostępności treści internetowych (WCAG) 2.2.",
     "done": {
       "title": "Co robimy",
       "themes": "Jasny i ciemny motyw: domyślnie zgodny z ustawieniem Twojego urządzenia albo jasny lub ciemny, jeśli wybierzesz jeden z nich.",
@@ -2551,24 +2551,24 @@
     "limits": {
       "title": "Czego jeszcze brakuje",
       "timed": "Pytania w rozmowie mają limit czasu, bo wymaga tego ocena prowadzona przez firmę. Jeśli potrzebujesz więcej czasu, przed startem poproś firmę o dodatkowy czas.",
-      "audit": "prepza nie przeszła jeszcze niezależnego audytu, więc niektóre części mogą nie spełniać WCAG 2.2 AA.",
+      "audit": "testee nie przeszła jeszcze niezależnego audytu, więc niektóre części mogą nie spełniać WCAG 2.2 AA.",
       "providers": "Płatność za kredyty (strona płatności Paddle) i weryfikację „Nie jestem robotem” (Cloudflare Turnstile) obsługują ci dostawcy, z ich własną dostępnością."
     },
     "feedback": {
       "title": "Daj nam znać",
-      "text": "Jeśli coś w prepza jest dla Ciebie trudne w użyciu albo potrzebujesz tego w innej formie, napisz na <email></email>. Odpowiadamy w ciągu 14 dni.",
+      "text": "Jeśli coś w testee jest dla Ciebie trudne w użyciu albo potrzebujesz tego w innej formie, napisz na <email></email>. Odpowiadamy w ciągu 14 dni.",
       "authority": "Jeśli nasza odpowiedź Cię nie zadowala, możesz zwrócić się do Estońskiego Urzędu Ochrony Konsumentów i Regulacji Technicznych (TTJA)."
     },
     "reviewed": "Ostatni przegląd: <time>{date}</time>."
   },
   "trust": {
     "title": "Zaufanie i bezpieczeństwo",
-    "description": "Jak prepza chroni dane rekrutacyjne i ich poufność: hosting w UE, dalsze podmioty przetwarzające, okresy przechowywania i to, co zapewniamy w związku z RODO, unijnym AI Act, Wielką Brytanią i USA.",
-    "intro": "Co robi prepza, aby chronić Twoje dane i dane Twoich kandydatów, gdzie są przechowywane, kto je przetwarza, jak długo są przechowywane i co dajemy firmom w związku z przepisami o rekrutacji, których przestrzegają.",
+    "description": "Jak testee chroni dane rekrutacyjne i ich poufność: hosting w UE, dalsze podmioty przetwarzające, okresy przechowywania i to, co zapewniamy w związku z RODO, unijnym AI Act, Wielką Brytanią i USA.",
+    "intro": "Co robi testee, aby chronić Twoje dane i dane Twoich kandydatów, gdzie są przechowywane, kto je przetwarza, jak długo są przechowywane i co dajemy firmom w związku z przepisami o rekrutacji, których przestrzegają.",
     "security": {
       "title": "Bezpieczeństwo",
-      "signIn": "Logujesz się przez Google, LinkedIn lub GitHub za pomocą Firebase Authentication, więc prepza nie przechowuje żadnych haseł. Logowanie przy każdym żądaniu jest sprawdzane na serwerze.",
-      "encryption": "Dane są szyfrowane w trakcie przesyłania (TLS 1.2 lub nowszy) i w spoczynku. Klucze i tokeny, które firma podłącza (jej system ATS, Slack, webhooki), są przechowywane w postaci zaszyfrowanej, a klucze API prepza tylko jako jednokierunkowy skrót.",
+      "signIn": "Logujesz się przez Google, LinkedIn lub GitHub za pomocą Firebase Authentication, więc testee nie przechowuje żadnych haseł. Logowanie przy każdym żądaniu jest sprawdzane na serwerze.",
+      "encryption": "Dane są szyfrowane w trakcie przesyłania (TLS 1.2 lub nowszy) i w spoczynku. Klucze i tokeny, które firma podłącza (jej system ATS, Slack, webhooki), są przechowywane w postaci zaszyfrowanej, a klucze API testee tylko jako jednokierunkowy skrót.",
       "access": "Każde żądanie jest sprawdzane pod kątem firmy i roli osoby, która je wysyła. Każda usługa ma dostęp tylko do własnej bazy danych, a wywołania między usługami są podpisane.",
       "limits": "Limity częstotliwości chronią każde działanie, które kosztuje lub może zostać nadużyte, a weryfikacja „Nie jestem robotem” chroni publiczne formularze, linki z ogłoszeń o pracę i tworzenie pierwszej firmy.",
       "logs": "Raporty błędów nie zawierają adresów e-mail, a logi serwera są przechowywane krótko.",
@@ -2578,29 +2578,29 @@
     },
     "privacy": {
       "title": "Prywatność",
-      "roles": "prepza jest administratorem danych kont osób, które z niej korzystają, oraz podmiotem przetwarzającym dane kandydatów, które należą do firmy zapraszającej ich na rozmowę.",
+      "roles": "testee jest administratorem danych kont osób, które z niej korzystają, oraz podmiotem przetwarzającym dane kandydatów, które należą do firmy zapraszającej ich na rozmowę.",
       "noSelling": "Nie sprzedajemy danych osobowych ani nie udostępniamy ich w celach reklamowych. Nie używamy plików cookie reklamowych ani analitycznych.",
-      "noInference": "prepza nie zbiera danych o płci, wieku, pochodzeniu ani niepełnosprawności kandydatów i niczego takiego nie wnioskuje.",
+      "noInference": "testee nie zbiera danych o płci, wieku, pochodzeniu ani niepełnosprawności kandydatów i niczego takiego nie wnioskuje.",
       "voice": "W trybie głosowym wypowiedziana odpowiedź kandydata jest zamieniana na tekst i dopasowywana do opcji, a dopasowaną opcję kandydat słyszy i widzi na ekranie; wybór kilku opcji jest najpierw potwierdzany. Jego wypowiedź nie jest nagrywana ani przechowywana, a głos nie jest analizowany w żaden inny sposób.",
       "ai": "OpenAI, które pisze pytania, otrzymuje polecenie, aby nie przechowywać tego, co otrzymuje; przechowuje dane najwyżej 30 dni, wyłącznie w celu wykrywania nadużyć, i nie używa ich do trenowania swoich modeli.",
       "rights": "Każdy może pobrać lub usunąć swoje dane w Ustawieniach, bez pisania do nas."
     },
     "compliance": {
       "title": "Zgodność z przepisami",
-      "aiAct": "Na gruncie unijnego AI Act prepza jest traktowana jako system AI wysokiego ryzyka, którego obowiązki mają zastosowanie od <time>{date}</time>. Nasze instrukcje dla firm są jego instrukcją używania.",
-      "humanReview": "prepza nie podejmuje żadnych decyzji o kandydacie: osoby w firmie przeglądają wyniki i decydują, a kandydaci mogą poprosić, aby ich wynik sprawdził człowiek.",
-      "dpa": "Umowa powierzenia przetwarzania danych jest częścią regulaminu i nie trzeba niczego podpisywać. Obejmuje RODO, brytyjskie RODO (UK GDPR) oraz stanowe przepisy USA o prywatności, takie jak kalifornijskie, zgodnie z którymi prepza jest usługodawcą firmy.",
+      "aiAct": "Na gruncie unijnego AI Act testee jest traktowana jako system AI wysokiego ryzyka, którego obowiązki mają zastosowanie od <time>{date}</time>. Nasze instrukcje dla firm są jego instrukcją używania.",
+      "humanReview": "testee nie podejmuje żadnych decyzji o kandydacie: osoby w firmie przeglądają wyniki i decydują, a kandydaci mogą poprosić, aby ich wynik sprawdził człowiek.",
+      "dpa": "Umowa powierzenia przetwarzania danych jest częścią regulaminu i nie trzeba niczego podpisywać. Obejmuje RODO, brytyjskie RODO (UK GDPR) oraz stanowe przepisy USA o prywatności, takie jak kalifornijskie, zgodnie z którymi testee jest usługodawcą firmy.",
       "documents": "Firmy otrzymują <link>instrukcję używania, szablon DPIA i szablony informacji dla kandydatów</link>, w wersjach także dla Nowego Jorku, Illinois i Kolorado.",
-      "nyc": "Nowy Jork: zanim pracodawca użyje prepza do rekrutacji na stanowisko w tym mieście, robi to, czego wymaga od niego Local Law 144: przeprowadza niezależny audyt stronniczości w ciągu roku przed użyciem, publikuje jego podsumowanie i informuje kandydatów co najmniej 10 dni roboczych przed oceną. Własny niezależny audyt stronniczości prepza zostanie przeprowadzony przed <time>{date}</time>, a potem co roku."
+      "nyc": "Nowy Jork: zanim pracodawca użyje testee do rekrutacji na stanowisko w tym mieście, robi to, czego wymaga od niego Local Law 144: przeprowadza niezależny audyt stronniczości w ciągu roku przed użyciem, publikuje jego podsumowanie i informuje kandydatów co najmniej 10 dni roboczych przed oceną. Własny niezależny audyt stronniczości testee zostanie przeprowadzony przed <time>{date}</time>, a potem co roku."
     },
     "residency": {
       "title": "Gdzie są przechowywane dane",
-      "storage": "prepza działa w Google Cloud w UE, w Belgii, gdzie przechowywana jest jej baza danych. Liczniki limitów częstotliwości znajdują się w Upstash, również w Belgii, a e-maile są wysyłane przez Resend w Irlandii.",
+      "storage": "testee działa w Google Cloud w UE, w Belgii, gdzie przechowywana jest jej baza danych. Liczniki limitów częstotliwości znajdują się w Upstash, również w Belgii, a e-maile są wysyłane przez Resend w Irlandii.",
       "transfers": "Trzech dostawców przetwarza dane w Stanach Zjednoczonych: Google przy logowaniu, OpenAI oraz Cloudflare przy weryfikacji „Nie jestem robotem”. Te przekazania danych opierają się na Ramach ochrony danych UE-USA (EU-US Data Privacy Framework) lub standardowych klauzulach umownych Komisji Europejskiej, a w przypadku Wielkiej Brytanii na brytyjskim rozszerzeniu (UK Extension) i brytyjskim aneksie w sprawie międzynarodowego przekazywania danych (UK International Data Transfer Addendum)."
     },
     "subprocessors": {
       "title": "Dalsze podmioty przetwarzające",
-      "intro": "Dostawcy, którzy przetwarzają dane dla prepza, tak jak wymienia ich <link>umowa powierzenia przetwarzania danych</link>:",
+      "intro": "Dostawcy, którzy przetwarzają dane dla testee, tak jak wymienia ich <link>umowa powierzenia przetwarzania danych</link>:",
       "changes": "Informujemy e-mailem właścicieli i administratorów firm co najmniej 14 dni przed dodaniem nowego dalszego podmiotu przetwarzającego."
     },
     "retention": {
@@ -2617,7 +2617,7 @@
     },
     "accessibility": {
       "title": "Dostępność",
-      "text": "prepza dąży do spełnienia poziomu AA wytycznych dotyczących dostępności treści internetowych (WCAG) 2.2. Nasza <link>deklaracja dostępności</link> opisuje, co działa, czego jeszcze brakuje i jak nam to zgłosić."
+      "text": "testee dąży do spełnienia poziomu AA wytycznych dotyczących dostępności treści internetowych (WCAG) 2.2. Nasza <link>deklaracja dostępności</link> opisuje, co działa, czego jeszcze brakuje i jak nam to zgłosić."
     },
     "links": {
       "title": "Dokumenty prawne",
@@ -2635,7 +2635,7 @@
     "open": "Eksport do audytu stronniczości",
     "title": "Eksport danych do audytu stronniczości",
     "description": "Plik CSV z każdym kandydatem, który ukończył rozmowę: jego wynik, próg zaliczenia, czy zaliczył i czy uzyskał wynik powyżej mediany. Twój niezależny audytor obliczy na jego podstawie wskaźniki wyboru i współczynniki wpływu.",
-    "privacy": "prepza nie przechowuje danych o płci, rasie ani pochodzeniu etnicznym. Dodaj odpowiedzi, które kandydaci podali sami, według ich adresów e-mail, a potem usuń kolumnę z adresami e-mail, zanim udostępnisz plik.",
+    "privacy": "testee nie przechowuje danych o płci, rasie ani pochodzeniu etnicznym. Dodaj odpowiedzi, które kandydaci podali sami, według ich adresów e-mail, a potem usuń kolumnę z adresami e-mail, zanim udostępnisz plik.",
     "interview": "Rozmowa",
     "allInterviews": "Wszystkie rozmowy",
     "download": "Pobierz CSV",
@@ -2744,7 +2744,7 @@
   },
   "featuresPage": {
     "title": "Funkcje: rozmowy rekrutacyjne z AI, od początku do końca",
-    "description": "Wszystkie funkcje prepza: rozmowy z opisu stanowiska, tryb kliknięć i głosowy, ostrzeżenia o podejrzanych zachowaniach, raporty, integracje z ATS i API oraz zgodność z przepisami.",
+    "description": "Wszystkie funkcje testee: rozmowy z opisu stanowiska, tryb kliknięć i głosowy, ostrzeżenia o podejrzanych zachowaniach, raporty, integracje z ATS i API oraz zgodność z przepisami.",
     "hero": {
       "title": "Od opisu stanowiska\ndo trafnego zatrudnienia",
       "text": "Rozmowa na czas napisana pod Twoje stanowisko, kandydaci z dowolnego miejsca i jasny obraz tego, kto jest najlepszy. Wszystkie funkcje są w cenie.",
@@ -2781,7 +2781,7 @@
       },
       "decide": {
         "title": "Zobacz, kto jest najlepszy",
-        "text": "Wyniki, każda odpowiedź i ostrzeżenia o podejrzanych zachowaniach dla każdego kandydata. Decyduje człowiek; prepza pokazuje, na co zwrócić uwagę."
+        "text": "Wyniki, każda odpowiedź i ostrzeżenia o podejrzanych zachowaniach dla każdego kandydata. Decyduje człowiek; testee pokazuje, na co zwrócić uwagę."
       },
       "connect": {
         "title": "Działa z Twoimi narzędziami",
@@ -2829,7 +2829,7 @@
       },
       "brand": {
         "title": "Twoja marka, nie nasza",
-        "text": "Ustaw logo, kolory dla trybu jasnego i ciemnego, czcionki i narożniki, z podglądem na żywo. Kandydaci widzą tylko Twoją firmę, bez nagłówka i stopki prepza.",
+        "text": "Ustaw logo, kolory dla trybu jasnego i ciemnego, czcionki i narożniki, z podglądem na żywo. Kandydaci widzą tylko Twoją firmę, bez nagłówka i stopki testee.",
         "alt": "Karta marki: logo, czcionki i narożniki z podglądem rozmowy na żywo."
       },
       "candidates": {
@@ -2844,7 +2844,7 @@
       },
       "share": {
         "title": "Udostępniaj raporty w kilka sekund",
-        "text": "Pobierz PDF dla jednego kandydata lub całej rozmowy, wyślij go e-mailem z prepza albo prześlij krótkie podsumowanie przez komunikator.",
+        "text": "Pobierz PDF dla jednego kandydata lub całej rozmowy, wyślij go e-mailem z testee albo prześlij krótkie podsumowanie przez komunikator.",
         "alt": "Okno udostępniania raportu kandydata: adres e-mail, na który trafi PDF, albo podsumowanie przez WhatsApp, Telegram, Viber lub LINE."
       },
       "notes": {
@@ -2899,7 +2899,7 @@
       "atsList": "Workable, Greenhouse, Teamtailor, Recruitee i Breezy HR",
       "results": "Kandydaci zapraszani automatycznie, wyniki odsyłane z powrotem",
       "docs": "Dokumentacja dla deweloperów: API, webhooki, SDK i MCP",
-      "noInference": "prepza nigdy nie pyta o cechy chronione ani ich nie odgaduje",
+      "noInference": "testee nigdy nie pyta o cechy chronione ani ich nie odgaduje",
       "owner": "Eksportuje tylko właściciel, a eksport trafia do dziennika działań",
       "askTime": "Kto potrzebuje więcej czasu, dowiaduje się, że ma o to poprosić przed startem",
       "peopleDecide": "Kandydaci wiedzą, że wyniki sprawdzają i decyzję podejmują ludzie z Twojej firmy",

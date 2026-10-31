@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 In generale, sì: usare l'IA nella selezione del personale è legale nell'UE. Ma la maggior parte degli strumenti di IA che valutano i candidati rientra nella categoria ad alto rischio del regolamento sull'intelligenza artificiale (EU AI Act), che comporta obblighi per il fornitore e per te, il datore di lavoro. Alcune pratiche sono vietate del tutto. E il GDPR (regolamento generale sulla protezione dei dati) si applica ai dati dei candidati, come è sempre stato.
 
-Questa guida spiega le regole a grandi linee, le date che contano, cosa devono fare i datori di lavoro e come se ne occupa prepza. **Non costituisce consulenza legale.** Riflette le regole in vigore a ottobre 2026. Le regole sono nuove, le linee guida sono ancora in via di definizione e il diritto nazionale aggiunge requisiti propri. Consulta il tuo legale prima di fare affidamento su quanto scritto qui.
+Questa guida spiega le regole a grandi linee, le date che contano, cosa devono fare i datori di lavoro e come se ne occupa testee. **Non costituisce consulenza legale.** Riflette le regole in vigore a ottobre 2026. Le regole sono nuove, le linee guida sono ancora in via di definizione e il diritto nazionale aggiunge requisiti propri. Consulta il tuo legale prima di fare affidamento su quanto scritto qui.
 
 ## La risposta breve
 
@@ -111,15 +111,15 @@ I dati dei candidati sono dati personali, e l'IA non cambia il GDPR. L'essenzial
 8. **Offri accomodamenti,** come più tempo, ai candidati che ne hanno bisogno.
 9. **Non scartare mai qualcuno solo in base a un punteggio.** Guarda le risposte.
 
-## Come se ne occupa prepza
+## Come se ne occupa testee
 
-prepza svolge colloqui di competenze a scelta multipla e a tempo, scritti dall'IA a partire da una descrizione del ruolo. Poiché assegna punteggi e classifica i candidati, l'analisi di prepza conclude che è molto probabilmente ad alto rischio ai sensi dell'allegato III, punto 4, lettera a), con obblighi applicabili dal 2 dicembre 2027. Si sta preparando su questa base. prepza non dichiara di essere conforme o certificato.
+testee svolge colloqui di competenze a scelta multipla e a tempo, scritti dall'IA a partire da una descrizione del ruolo. Poiché assegna punteggi e classifica i candidati, l'analisi di testee conclude che è molto probabilmente ad alto rischio ai sensi dell'allegato III, punto 4, lettera a), con obblighi applicabili dal 2 dicembre 2027. Si sta preparando su questa base. testee non dichiara di essere conforme o certificato.
 
 Ecco cosa significa oggi nel prodotto:
 
 - **L'IA scrive le domande e le relative chiavi di correzione; la correzione segue regole fisse.** Nessuna IA legge o giudica la risposta di un candidato, e non si usa alcuna analisi di video, voce o volto. Se in seguito l'IA corregge una chiave, la correzione vale per i candidati che iniziano dopo; i risultati passati non cambiano.
 - **Approvi tu gli argomenti** prima che venga scritta qualsiasi domanda, e puoi vedere ogni domanda.
-- **Decidono le persone.** La pagina dei risultati e i report PDF ricordano al tuo team di esaminare i risultati; prepza non scarta candidati né invia messaggi di rifiuto.
+- **Decidono le persone.** La pagina dei risultati e i report PDF ricordano al tuo team di esaminare i risultati; testee non scarta candidati né invia messaggi di rifiuto.
 - **I candidati vengono informati** prima di iniziare che le domande sono scritte dall'IA, che le persone della tua azienda esaminano i risultati e decidono, e che possono chiedere una revisione.
 - **Più tempo** può essere concesso a qualsiasi candidato che lo chieda.
 - **Registrazioni.** Vengono registrati le domande mostrate, le risposte, i tempi e le segnalazioni di comportamenti sospetti.

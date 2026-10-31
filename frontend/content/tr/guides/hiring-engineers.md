@@ -72,7 +72,7 @@ Mühendislerinize en çok zaman kazandıran adım budur. Herhangi biri canlı bi
 - **Kısadır:** her biri yaklaşık 10 soruluk birkaç konu; böylece başka teklifleri olan güçlü adaylar da testi bitirir.
 - **Herkes için aynıdır:** aynı konular, aynı sayıda soru ve aynı süre sınırları.
 
-prepza burada devreye girer. İş tanımınızı süreli, çoktan seçmeli bir bilgi mülakatına dönüştürür. Herhangi bir soru yazılmadan önce önerilen konuları gözden geçirirsiniz; böylece test teknoloji yığınınızı kapsar, başka hiçbir şeyi değil. Bir mühendislik pozisyonu için bu şunları içerebilir:
+testee burada devreye girer. İş tanımınızı süreli, çoktan seçmeli bir bilgi mülakatına dönüştürür. Herhangi bir soru yazılmadan önce önerilen konuları gözden geçirirsiniz; böylece test teknoloji yığınınızı kapsar, başka hiçbir şeyi değil. Bir mühendislik pozisyonu için bu şunları içerebilir:
 
 - **Kod okuma soruları:** kısa bir kod parçası ve bunun ne yazdırdığı veya döndürdüğü, ne yaptığı, neden hata verdiği ya da hangi değişikliğin sorunu düzelttiği üzerine sorular.
 - **SQL:** küçük bir tablo ve bir sorgu; hangi satırların döneceği sorusuyla.
@@ -80,7 +80,7 @@ prepza burada devreye girer. İş tanımınızı süreli, çoktan seçmeli bir b
 
 Her aday, her sorusunda geri sayım olan kendine ait rastgele bir soru seti alır. Her yanıtı ve ne kadar sürdüğünü gösteren bir değerlendirme kartı görürsünüz; ayrıca çok hızlı yanıtlar, sayfadan ayrılma, kopyalama girişimleri ve yanıtlarla sürelerdeki olağan dışı örüntüler için işaretler. İşaret, daha yakından bakmak için bir nedendir, hiçbir şeyin kanıtı değildir. Rapor ayrıca bir sonraki mülakatta üzerine konuşmak için adayın doğru yanıtladığı soruları önerir.
 
-prepza'nın yapmadıkları: adaylar prepza'da kod yazmaz, çalıştırmaz veya hata ayıklamaz. Kod okumak ve yazmak farklı becerilerdir, bu nedenle sonraki adım hâlâ önemlidir. Başlangıç için hazır testler için [pozisyona göre beceri testleri](/tests) sayfasına bakın.
+testee'nin yapmadıkları: adaylar testee'de kod yazmaz, çalıştırmaz veya hata ayıklamaz. Kod okumak ve yazmak farklı becerilerdir, bu nedenle sonraki adım hâlâ önemlidir. Başlangıç için hazır testler için [pozisyona göre beceri testleri](/tests) sayfasına bakın.
 
 ## 4. adım: Ev ödevi veya canlı kodlama
 
@@ -128,7 +128,7 @@ Yapılandırılmış bir süreç aynı zamanda daha adildir, ama yalnızca tutar
 
 - **Tutarlı sorular:** her aşamada, aynı pozisyon için her adaya.
 - **Önceden yazılmış değerlendirme ölçütleri;** böylece insanlar aynı kriterlere göre değerlendirilir.
-- **Makul düzenlemeler:** örneğin bir engel nedeniyle talep eden adaylara ek süre veya başka bir format sunun. prepza'da bir adaya başlamadan önce ek süre verebilirsiniz.
+- **Makul düzenlemeler:** örneğin bir engel nedeniyle talep eden adaylara ek süre veya başka bir format sunun. testee'de bir adaya başlamadan önce ek süre verebilirsiniz.
 - **Sonuçları izleyin.** Farklı yöntemler gruplar arasında farklı puan açıkları gösterir. Sackett vd., mesleki bilgi testleri ve iş örnekleri için yapılandırılmış mülakatlara göre daha büyük ortalama farklar buldu; bu da yöntemleri birleştirmek için bir neden daha. Her aşamadaki geçme oranlarını izleyin.
 - **Kararı insanlar verir.** Puan bir kararı destekler; kararı vermez. Herhangi birini reddetmeden önce yanıtlara bakın.
 

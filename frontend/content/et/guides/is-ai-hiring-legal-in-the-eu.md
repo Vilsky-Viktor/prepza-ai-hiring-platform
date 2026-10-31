@@ -9,7 +9,7 @@ updated: "2026-10-07"
 
 Üldiselt jah: AI kasutamine värbamisel on ELis seaduslik. Kuid enamik kandidaate hindavaid AI-tööriistu kuulub ELi tehisintellekti määruse (AI Act) suure riski kategooriasse, mis toob kohustusi nii pakkujale kui ka sulle kui tööandjale. Mõned praktikad on täielikult keelatud. Ja kandidaatide andmetele kohaldub, nagu alati, isikuandmete kaitse üldmäärus (GDPR).
 
-See juhend selgitab üldjoontes reegleid, olulisi kuupäevi, seda, mida tööandjad peavad tegema, ja kuidas prepza sellele läheneb. **See ei ole õigusnõuanne.** See kajastab reegleid 2026. aasta oktoobri seisuga. Reeglid on uued, juhised alles valmivad ja riiklik õigus lisab omad nõuded. Enne millelegi siin toetumist konsulteeri oma juristiga.
+See juhend selgitab üldjoontes reegleid, olulisi kuupäevi, seda, mida tööandjad peavad tegema, ja kuidas testee sellele läheneb. **See ei ole õigusnõuanne.** See kajastab reegleid 2026. aasta oktoobri seisuga. Reeglid on uued, juhised alles valmivad ja riiklik õigus lisab omad nõuded. Enne millelegi siin toetumist konsulteeri oma juristiga.
 
 ## Lühike vastus
 
@@ -111,15 +111,15 @@ Kandidaatide andmed on isikuandmed ja AI ei muuda isikuandmete kaitse üldmäär
 8. **Paku kohandusi,** näiteks lisaaega, kandidaatidele, kes neid vajavad.
 9. **Ära kunagi lükka tagasi ainult tulemuse põhjal.** Vaata vastuseid.
 
-## Kuidas prepza sellele läheneb
+## Kuidas testee sellele läheneb
 
-prepza viib läbi ajapiiranguga valikvastustega oskuste intervjuusid, mille AI kirjutab töökuulutuse põhjal. Kuna prepza hindab ja järjestab kandidaate, on prepza enda analüüsi järeldus, et see on III lisa punkti 4 alapunkti a järgi väga tõenäoliselt suure riskiga süsteem, mille kohustused kehtivad alates 2. detsembrist 2027. prepza valmistub selle põhjal. prepza ei väida, et ta vastab nõuetele või on sertifitseeritud.
+testee viib läbi ajapiiranguga valikvastustega oskuste intervjuusid, mille AI kirjutab töökuulutuse põhjal. Kuna testee hindab ja järjestab kandidaate, on testee enda analüüsi järeldus, et see on III lisa punkti 4 alapunkti a järgi väga tõenäoliselt suure riskiga süsteem, mille kohustused kehtivad alates 2. detsembrist 2027. testee valmistub selle põhjal. testee ei väida, et ta vastab nõuetele või on sertifitseeritud.
 
 Kuidas see tootes täna välja näeb:
 
 - **AI kirjutab küsimused ja nende vastusevõtmed; hindamine käib kindlate reeglite järgi.** Ükski AI ei loe ega hinda kandidaadi vastust ning video-, hääle- ega näoanalüüsi ei kasutata. Kui AI hiljem võtit parandab, kehtib parandus kandidaatidele, kes alustavad pärast seda; varasemad tulemused ei muutu.
 - **Sina kiidad teemad heaks** enne, kui ühtegi küsimust kirjutatakse, ja näed iga küsimust.
-- **Otsustavad inimesed.** Hindamislehed ja PDF-aruanded tuletavad sinu meeskonnale meelde tulemused üle vaadata; prepza ei lükka kandidaate tagasi ega saada äraütlemiskirju.
+- **Otsustavad inimesed.** Hindamislehed ja PDF-aruanded tuletavad sinu meeskonnale meelde tulemused üle vaadata; testee ei lükka kandidaate tagasi ega saada äraütlemiskirju.
 - **Kandidaatidele öeldakse** enne alustamist, et küsimused on kirjutanud AI, et tulemused vaatavad üle ja otsuse teevad inimesed sinu ettevõttest ning et nad võivad taotleda ülevaatust.
 - **Lisaaega** saab anda igale kandidaadile, kes seda palub.
 - **Andmed salvestatakse.** Näidatud küsimused, vastused, ajakulu ja aususega seotud sündmused salvestatakse.

@@ -72,7 +72,7 @@ Un buen filtro de conocimientos es:
 - **Breve:** unos pocos temas con unas 10 preguntas cada uno, para que los candidatos fuertes con otras ofertas lo terminen igualmente.
 - **Igual para todos:** los mismos temas, el mismo número de preguntas y los mismos tiempos límite.
 
-Aquí es donde encaja prepza. Convierte tu descripción del puesto en una entrevista de conocimientos de opción múltiple con tiempo límite. Revisas los temas propuestos antes de que se redacte ninguna pregunta, así que la prueba cubre tu stack y nada más. Para un puesto de ingeniería, puede incluir:
+Aquí es donde encaja testee. Convierte tu descripción del puesto en una entrevista de conocimientos de opción múltiple con tiempo límite. Revisas los temas propuestos antes de que se redacte ninguna pregunta, así que la prueba cubre tu stack y nada más. Para un puesto de ingeniería, puede incluir:
 
 - **Preguntas de lectura de código:** un breve fragmento de código con preguntas sobre qué imprime o devuelve, qué hace, por qué falla o qué cambio lo corrige.
 - **SQL:** una tabla pequeña y una consulta, con la pregunta de qué filas devuelve.
@@ -80,7 +80,7 @@ Aquí es donde encaja prepza. Convierte tu descripción del puesto en una entrev
 
 Cada candidato recibe su propio conjunto aleatorio de preguntas con una cuenta atrás en cada una. Ves una ficha de evaluación con cada respuesta y cuánto tardó, además de alertas de respuestas demasiado rápidas, salidas de la página, intentos de copiar y patrones inusuales en sus respuestas y tiempos. Una alerta es un motivo para mirar con más atención, no una prueba de nada. El informe también sugiere preguntas que acertó, para preguntarle por ellas en la siguiente entrevista.
 
-Lo que prepza no hace: los candidatos no escriben, ejecutan ni depuran código en prepza. Leer código y escribirlo son habilidades distintas, así que el siguiente paso sigue siendo importante. Consulta las [pruebas de habilidades por puesto](/tests) para empezar desde pruebas ya preparadas.
+Lo que testee no hace: los candidatos no escriben, ejecutan ni depuran código en testee. Leer código y escribirlo son habilidades distintas, así que el siguiente paso sigue siendo importante. Consulta las [pruebas de habilidades por puesto](/tests) para empezar desde pruebas ya preparadas.
 
 ## Paso 4: Prueba para casa o programación en directo
 
@@ -128,7 +128,7 @@ Un proceso estructurado también es más justo, pero solo si lo aplicas de forma
 
 - **Preguntas coherentes** en cada fase, para todos los candidatos del mismo puesto.
 - **Rúbricas escritas de antemano,** para que todos sean juzgados con los mismos criterios.
-- **Adaptaciones:** ofrece tiempo extra u otro formato a los candidatos que lo pidan, por ejemplo por una discapacidad. En prepza, puedes dar tiempo extra a un candidato antes de que empiece.
+- **Adaptaciones:** ofrece tiempo extra u otro formato a los candidatos que lo pidan, por ejemplo por una discapacidad. En testee, puedes dar tiempo extra a un candidato antes de que empiece.
 - **Supervisa los resultados.** Los distintos métodos muestran diferencias de puntuación distintas entre grupos. Sackett et al. encontraron diferencias medias mayores en las pruebas de conocimientos del puesto y las muestras de trabajo que en las entrevistas estructuradas, lo que es un motivo más para combinar métodos. Vigila las tasas de aprobados en cada fase.
 - **Deciden las personas.** Una puntuación respalda una decisión; no la toma. Mira las respuestas antes de rechazar a nadie.
 

@@ -1,4 +1,4 @@
-// Signs your agent in to prepza's MCP server, shared by the examples.
+// Signs your agent in to testee's MCP server, shared by the examples.
 // npm install @modelcontextprotocol/sdk@1.32.1
 import { existsSync, readFileSync, writeFileSync } from "node:fs"
 import { createServer } from "node:http"
@@ -12,9 +12,9 @@ import type {
   OAuthTokens,
 } from "@modelcontextprotocol/sdk/shared/auth.js"
 
-export const PREPZA_MCP = process.env.PREPZA_MCP ?? "https://prepza.ai/mcp"
+export const TESTEE_MCP = process.env.TESTEE_MCP ?? "https://testee.ai/mcp"
 const REDIRECT = "http://localhost:8765/callback"
-const STORE = "prepza-tokens.json"
+const STORE = "testee-tokens.json"
 
 function kept(): Record<string, any> {
   return existsSync(STORE) ? JSON.parse(readFileSync(STORE, "utf8")) : {}
@@ -42,12 +42,12 @@ class FileProvider implements OAuthClientProvider {
   }
 }
 
-/** The code prepza's consent page sends back to this computer once you allow the agent. */
+/** The code testee's consent page sends back to this computer once you allow the agent. */
 function waitForCode(): Promise<string> {
   return new Promise((resolve) => {
     const server = createServer((request, response) => {
       const code = new URL(request.url ?? "", REDIRECT).searchParams.get("code")
-      response.end("Signed in to prepza. You can close this tab.")
+      response.end("Signed in to testee. You can close this tab.")
 
       if (code) {
         server.close()
@@ -57,13 +57,13 @@ function waitForCode(): Promise<string> {
   })
 }
 
-/** With PREPZA_API_KEY set, the agent signs in with that company API key (a server, no
+/** With TESTEE_API_KEY set, the agent signs in with that company API key (a server, no
  * browser); otherwise as you, allowing it once in the browser. */
 export async function signIn(): Promise<{
   authProvider?: OAuthClientProvider
   headers?: Record<string, string>
 }> {
-  const key = process.env.PREPZA_API_KEY
+  const key = process.env.TESTEE_API_KEY
 
   if (key) {
     return { headers: { Authorization: `Bearer ${key}` } }
@@ -71,9 +71,9 @@ export async function signIn(): Promise<{
 
   const provider = new FileProvider()
 
-  if ((await auth(provider, { serverUrl: PREPZA_MCP })) === "REDIRECT") {
+  if ((await auth(provider, { serverUrl: TESTEE_MCP })) === "REDIRECT") {
     const authorizationCode = await waitForCode()
-    await auth(provider, { serverUrl: PREPZA_MCP, authorizationCode })
+    await auth(provider, { serverUrl: TESTEE_MCP, authorizationCode })
   }
 
   return { authProvider: provider }

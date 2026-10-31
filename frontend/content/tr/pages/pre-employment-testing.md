@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 İşe alım öncesi test, bir pozisyona başvuran herkesin, kimi mülakata çağıracağınıza veya işe alacağınıza karar vermeden önce girdiği yapılandırılmış bir değerlendirmedir. Buna işe alım testi, aday değerlendirme testi, yetenek testi veya beceri değerlendirme testi dendiğini de görebilirsiniz. Fikir aynıdır: herkese aynı türde sorular sorun, hepsini aynı şekilde puanlayın ve insanları CV'lerinin nasıl göründüğüne göre değil, kanıtlara göre karşılaştırın.
 
-Bu rehber başlıca test türlerini, ne zaman işe yaradıklarını, adillik ve yasal esasları ve bir araçta nelere bakmanız gerektiğini ele alır. Sonunda prepza'nın bunu nasıl yaptığını ve neleri yapmadığını anlatır.
+Bu rehber başlıca test türlerini, ne zaman işe yaradıklarını, adillik ve yasal esasları ve bir araçta nelere bakmanız gerektiğini ele alır. Sonunda testee'nin bunu nasıl yaptığını ve neleri yapmadığını anlatır.
 
 ## İşe alım öncesi test nedir
 
@@ -25,7 +25,7 @@ Bu rehber başlıca test türlerini, ne zaman işe yaradıklarını, adillik ve 
 | İş örnekleri ve iş simülasyonları | Gerçek işin bir parçasını yapmak | Görevler, vaka çalışmaları, kod yazma | Kısa liste için son aşama kontrolleri |
 | Dil ve klavye | Yeterlilik ve hız | Puanlanan testler | Müşteriyle yüz yüze çalışılan ve idari pozisyonlar |
 
-**prepza'nın kapsadıkları:** iş tanımınızdan yazılan süreli, çoktan seçmeli mülakatlar biçiminde beceri ve mesleki bilgi testleri. Teknik pozisyonlarda buna kod okuma soruları da dahildir: kısa bir kod örneği ve bunun ne yaptığı veya ne çıktı verdiğiyle ilgili bir soru. prepza bilişsel yetenek testleri, kişilik envanterleri, adayların kod yazdığı veya çalıştırdığı alıştırmalar ya da video mülakatlar sunmaz. Bunlara ihtiyacınız varsa, bunları sunan bir platformu tek başına veya prepza'nın yanında kullanın: önce bir bilgi elemesi, ardından kısa liste için uzman testi. Bkz. [prepza ve TestGorilla](/compare/testgorilla) ve [TestGorilla alternatifleri](/compare/testgorilla-alternatives).
+**testee'nin kapsadıkları:** iş tanımınızdan yazılan süreli, çoktan seçmeli mülakatlar biçiminde beceri ve mesleki bilgi testleri. Teknik pozisyonlarda buna kod okuma soruları da dahildir: kısa bir kod örneği ve bunun ne yaptığı veya ne çıktı verdiğiyle ilgili bir soru. testee bilişsel yetenek testleri, kişilik envanterleri, adayların kod yazdığı veya çalıştırdığı alıştırmalar ya da video mülakatlar sunmaz. Bunlara ihtiyacınız varsa, bunları sunan bir platformu tek başına veya testee'nin yanında kullanın: önce bir bilgi elemesi, ardından kısa liste için uzman testi. Bkz. [testee ve TestGorilla](/compare/testgorilla) ve [TestGorilla alternatifleri](/compare/testgorilla-alternatives).
 
 ### Beceri testleri neden mantıklı bir ilk adımdır
 
@@ -87,11 +87,11 @@ Her sağlayıcıya sormaya değer sorular:
 
 Fiyat karşılaştırmaları için [işe alım öncesi test maliyetleri nasıl karşılaştırılır](/compare/cheapest-pre-employment-test) ve [abonelik gerektirmeyen işe alım öncesi testler](/compare/pre-employment-tests-without-subscription) sayfalarına bakın.
 
-## prepza bunu nasıl yapar
+## testee bunu nasıl yapar
 
-prepza bir iş tanımını süreli, çoktan seçmeli bir beceri mülakatına dönüştürür.
+testee bir iş tanımını süreli, çoktan seçmeli bir beceri mülakatına dönüştürür.
 
-1. **İş tanımını yapıştırın.** Her pozisyon, 23 dilin herhangi biri. prepza adayın bilmesi gerekenleri çıkarır ve konular önerir.
+1. **İş tanımını yapıştırın.** Her pozisyon, 23 dilin herhangi biri. testee adayın bilmesi gerekenleri çıkarır ve konular önerir.
 2. **Konuları gözden geçirin.** İhtiyacınız olmayanların işaretini kaldırın, bir konuyu yeniden adlandırın, alt konularını düzenleyin veya değişiklikleri düz metinle anlatın. Sorular ancak siz onayladıktan sonra yazılır. Pozisyonunuz için hazır bir şablondan da başlayabilirsiniz.
 3. **Adayları davet edin.** Davetleri e-postayla gönderin, bir liste yapıştırın, bir dosya yükleyin veya iş ilanınıza paylaşılabilir tek bir bağlantı koyun. Hatırlatmalar otomatik olarak gönderilir.
 4. **Sonuçları okuyun.** Puanlar, her aday için bir değerlendirme kartıyla birlikte sıralı olarak gelir.
@@ -103,4 +103,4 @@ prepza bir iş tanımını süreli, çoktan seçmeli bir beceri mülakatına dö
 
 Fiyatlandırma yanıt veren aday başınadır ve abonelik yoktur: kredi yükleme tutarınıza göre aday başına $2–5 (Kanada, Avustralya, İsrail, Polonya, İsviçre, Japonya, Güney Kore, Tayvan, Hong Kong, Tayland, Singapur, Hindistan, Avrupa'nın geri kalanı ve Birleşik Krallık'ta yerel para biriminde); ilk 3 adayınız ücretsizdir. Veriler AB'de barındırılır (bazı alt işleyenler ABD'dedir; bkz. [gizlilik politikası](/privacy)); veri işleme sözleşmesi ve şirketler için talimatlar dahildir.
 
-prepza bir psikometri paketi, kod yazma ve çalıştırma platformu veya video mülakat aracı değildir; bunlarla birlikte çalışır. Diğer yapay zekâ destekli işe alım araçlarıyla karşılaştırması için [Yapay zekâ mülakatları](/ai-interviews) sayfasını okuyun. Mühendislik pozisyonları için [Mühendis işe alımı nasıl yapılır](/guides/hiring-engineers) rehberine bakın.
+testee bir psikometri paketi, kod yazma ve çalıştırma platformu veya video mülakat aracı değildir; bunlarla birlikte çalışır. Diğer yapay zekâ destekli işe alım araçlarıyla karşılaştırması için [Yapay zekâ mülakatları](/ai-interviews) sayfasını okuyun. Mühendislik pozisyonları için [Mühendis işe alımı nasıl yapılır](/guides/hiring-engineers) rehberine bakın.

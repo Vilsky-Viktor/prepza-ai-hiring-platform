@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 A skills test with good questions can still give poor results. Too much time and candidates look up every answer; too little and you measure reading speed. Too few questions and the score swings on luck; too many and good candidates give up halfway.
 
-This guide covers four settings of a timed multiple-choice test: the time per question, the number of questions, the total length, and extra time for candidates who need it. The advice applies to any timed knowledge test; the last section shows how prepza handles each one.
+This guide covers four settings of a timed multiple-choice test: the time per question, the number of questions, the total length, and extra time for candidates who need it. The advice applies to any timed knowledge test; the last section shows how testee handles each one.
 
 ## The short version
 
@@ -95,9 +95,9 @@ Many countries require employers to make reasonable adjustments for disabled app
 
 **This section is practical guidance, not legal advice.** What you must offer, and what you may ask, depends on where you hire. Check your own obligations under the equality and disability law that applies to you.
 
-## How prepza handles timing and extra time
+## How testee handles timing and extra time
 
-In prepza, an interview is a timed multiple-choice skills test created from your job description.
+In testee, an interview is a timed multiple-choice skills test created from your job description.
 
 ### Time per question
 

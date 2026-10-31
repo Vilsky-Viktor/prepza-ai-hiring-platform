@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 Grundsätzlich ja: KI in der Personalauswahl einzusetzen ist in den USA erlaubt. Es gibt kein Bundesgesetz zu KI im Recruiting. Stattdessen gilt das Antidiskriminierungsrecht des Bundes für KI-Tools genauso wie für jeden anderen Test, und einige Orte haben eigene Regeln: New York City, Illinois, Colorado und Kalifornien.
 
-Dieser Leitfaden erklärt die Regeln im Überblick, die wichtigen Fristen, was Arbeitgeber tun müssen und wie prepza damit umgeht. **Er ist keine Rechtsberatung.** Er gibt den Stand der Regeln im Oktober 2026 wieder; mehrere davon sind neu oder werden noch fertiggestellt.
+Dieser Leitfaden erklärt die Regeln im Überblick, die wichtigen Fristen, was Arbeitgeber tun müssen und wie testee damit umgeht. **Er ist keine Rechtsberatung.** Er gibt den Stand der Regeln im Oktober 2026 wieder; mehrere davon sind neu oder werden noch fertiggestellt.
 
 ## Die Kurzantwort
 
@@ -97,22 +97,22 @@ Das KI-Gesetz von Colorado wurde durch SB 26-189 aufgehoben und neu erlassen, un
 8. **Bewahre Unterlagen so lange auf, wie dein Recht es verlangt,** zum Beispiel vier Jahre in Kalifornien und drei in Colorado.
 9. **Sag niemals allein aufgrund einer Punktzahl ab.** Lass jedes Ergebnis von einem Menschen prüfen.
 
-## Wie prepza damit umgeht
+## Wie testee damit umgeht
 
-prepza führt zeitlich begrenzte Multiple-Choice-Interviews zu Fachkenntnissen durch, die KI aus einer Stellenbeschreibung schreibt. In den USA geht prepza genauso vor wie in der EU. prepza behauptet nicht, konform oder zertifiziert zu sein.
+testee führt zeitlich begrenzte Multiple-Choice-Interviews zu Fachkenntnissen durch, die KI aus einer Stellenbeschreibung schreibt. In den USA geht testee genauso vor wie in der EU. testee behauptet nicht, konform oder zertifiziert zu sein.
 
 So sieht das heute im Produkt aus:
 
 - **KI schreibt die Fragen und ihre Lösungsschlüssel; die Bewertung folgt festen Regeln.** Keine KI liest oder beurteilt die Antwort eines Kandidaten, und es wird keine Video- oder Gesichtsanalyse eingesetzt. Im Sprachmodus wird Sprache in Text umgewandelt und einer Antwortoption zugeordnet, die dem Kandidaten genannt und auf dem Bildschirm angezeigt wird: Eine eindeutig genannte einzelne Option wird sofort übernommen, eine Auswahl mehrerer Optionen wird zuerst bestätigt. Die Sprache wird nie gespeichert, und die Stimme wird nie analysiert.
 - **Du gibst die Themen frei,** bevor eine Frage geschrieben wird, und du wählst die Bestehensgrenze.
-- **Menschen entscheiden.** prepza lehnt keine Kandidaten ab und verschickt keine Absagen.
-- **Keine geschützten Merkmale.** prepza fragt nie nach Geschlecht, ethnischer Herkunft, Alter, Behinderung, Postleitzahl oder anderen geschützten Merkmalen von Kandidaten, leitet sie nicht ab und speichert sie nicht.
+- **Menschen entscheiden.** testee lehnt keine Kandidaten ab und verschickt keine Absagen.
+- **Keine geschützten Merkmale.** testee fragt nie nach Geschlecht, ethnischer Herkunft, Alter, Behinderung, Postleitzahl oder anderen geschützten Merkmalen von Kandidaten, leitet sie nicht ab und speichert sie nicht.
 - **Ein Export für ein Bias-Audit.** Auf der Seite „Aktionsprotokoll“ des Unternehmens kann der Inhaber eine CSV-Datei der Kandidaten herunterladen, die fertig sind, für das ganze Unternehmen oder ein Interview und zwischen zwei Daten: die Note jedes Kandidaten, die Bestehensgrenze, ob er bestanden hat und ob er über dem Median des Interviews lag. Jede Zeile ist über die E-Mail-Adresse des Kandidaten zugeordnet, sodass du sie mit den selbst angegebenen Kategorien verknüpfen kannst, die du selbst erhoben hast; entferne dann die Spalte mit der E-Mail-Adresse und gib die Datei deinem unabhängigen Prüfer, der die Auswahl- und Bewertungsquoten und die Impact Ratios berechnet. Mit derselben Datei kannst du die Vier-Fünftel-Prüfung selbst durchführen.
-- **Zusätzliche Zeit** von +25 %, +50 % oder +100 % bei jeder Frage kann jedem Kandidaten gewährt werden, der darum bittet, bevor er beginnt. prepza speichert nur den Umfang, nie den Grund. Im Sprachmodus kann ein Kandidat stattdessen immer eine Option antippen, und du kannst ein Interview so einstellen, dass nur durch Antippen geantwortet wird.
+- **Zusätzliche Zeit** von +25 %, +50 % oder +100 % bei jeder Frage kann jedem Kandidaten gewährt werden, der darum bittet, bevor er beginnt. testee speichert nur den Umfang, nie den Grund. Im Sprachmodus kann ein Kandidat stattdessen immer eine Option antippen, und du kannst ein Interview so einstellen, dass nur durch Antippen geantwortet wird.
 - **Vorlagen für die Kandidateninformation,** eine allgemeine und Fassungen für New York City, Illinois und Colorado, findest du auf der [Dokumente-Seite](/documents), zusammen mit der Anleitung für Unternehmen.
-- **New York City.** prepza hatte noch kein eigenes unabhängiges Bias-Audit. Setze prepza nicht für Stellen in New York City ein, bevor du getan hast, was Local Law 144 von dir als Arbeitgeber verlangt: ein unabhängiges Bias-Audit innerhalb des Jahres vor dem Einsatz, seine veröffentlichte Zusammenfassung und eine Information an Kandidaten 10 Arbeitstage vorher.
-- **Daten.** Nach dem CCPA ist dein Unternehmen das Unternehmen (business) und prepza sein Dienstleister (service provider), gemäß dem [Auftragsverarbeitungsvertrag](/dpa) und seinem Abschnitt zu den USA. Die Daten werden in der EU gehostet, einige Unterauftragsverarbeiter sitzen in den USA (siehe die [Datenschutzerklärung](/privacy)), und sie werden nicht zum Training von KI-Modellen genutzt.
-- **Aufbewahrung.** Kandidatendaten werden 12 Monate nach der Einladung gelöscht. Wenn dein Recht verlangt, Unterlagen länger aufzubewahren, etwa die vier Jahre in Kalifornien, lade die PDF-Berichte und die Datei für das Bias-Audit herunter und bewahre sie selbst auf; prepza speichert Ergebnisse standardmäßig nicht länger.
+- **New York City.** testee hatte noch kein eigenes unabhängiges Bias-Audit. Setze testee nicht für Stellen in New York City ein, bevor du getan hast, was Local Law 144 von dir als Arbeitgeber verlangt: ein unabhängiges Bias-Audit innerhalb des Jahres vor dem Einsatz, seine veröffentlichte Zusammenfassung und eine Information an Kandidaten 10 Arbeitstage vorher.
+- **Daten.** Nach dem CCPA ist dein Unternehmen das Unternehmen (business) und testee sein Dienstleister (service provider), gemäß dem [Auftragsverarbeitungsvertrag](/dpa) und seinem Abschnitt zu den USA. Die Daten werden in der EU gehostet, einige Unterauftragsverarbeiter sitzen in den USA (siehe die [Datenschutzerklärung](/privacy)), und sie werden nicht zum Training von KI-Modellen genutzt.
+- **Aufbewahrung.** Kandidatendaten werden 12 Monate nach der Einladung gelöscht. Wenn dein Recht verlangt, Unterlagen länger aufzubewahren, etwa die vier Jahre in Kalifornien, lade die PDF-Berichte und die Datei für das Bias-Audit herunter und bewahre sie selbst auf; testee speichert Ergebnisse standardmäßig nicht länger.
 
 ## Weiterlesen
 

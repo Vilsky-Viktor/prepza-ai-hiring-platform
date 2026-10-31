@@ -17,7 +17,7 @@ Hindi inililista ng pahinang ito ang presyo ng ibang vendor, dahil madalas itong
 | --- | --- | --- | --- |
 | **Libreng plan** | Limitadong bilang ng credits o test bawat buwan | Napakakaunti ng aplikanteng tine-test mo at bagay sa iyong role ang mga kasamang test | [TestGorilla](https://www.testgorilla.com/pricing/) |
 | **Subscription** | Buwanang bayad, madalas sinisingil taun-taon, na may credits o limitasyon | Tuloy-tuloy kang nagha-hire buong taon | [TestGorilla](https://www.testgorilla.com/pricing/), [CodeSignal](https://codesignal.com/pricing/), [Bryq](https://www.bryq.com/pricing), [Alooba](https://www.alooba.com/pricing/), [Codility](https://www.codility.com/pricing/) |
-| **Bayad bawat aplikante** | Nagbabayad ka lang para sa mga aplikanteng kumuha ng test, kadalasan mula sa prepaid credits | Paminsan-minsan ka lang nagha-hire, o pabagu-bago ang volume mo | [prepza](/pricing) |
+| **Bayad bawat aplikante** | Nagbabayad ka lang para sa mga aplikanteng kumuha ng test, kadalasan mula sa prepaid credits | Paminsan-minsan ka lang nagha-hire, o pabagu-bago ang volume mo | [testee](/pricing) |
 | **Custom quote** | Presyong napagkasunduan sa sales, madalas para sa isang taon | Malakihan ang hiring mo o kailangan mo ng validated psychometrics | Ilang vendor, kadalasan mga psychometric specialist |
 
 *Mga pricing model ayon sa pahina ng bawat vendor noong Oktubre 2026.*
@@ -33,34 +33,34 @@ Tatlong numero ang kailangan mo: kung ilang aplikante ang tine-test mo sa isang 
 
 **Isang halimbawa, gamit ang gawa-gawang numero.** Sabihin nating $1,500 kada taon ang isang plan at $5 bawat aplikante ang isang pay-per-candidate na opsyon. Ang break-even point ay 1,500 ÷ 5 = 300 aplikante kada taon. Ang team na nagte-test ng 60 aplikante kada taon ay magbabayad ng $300 sa per-candidate fees sa halip na $1,500 para sa plan. Ang team na nagte-test ng 600 ay magbabayad ng $3,000 sa per-candidate fees, at mas mura ang plan. Gamitin ang totoong mga numero mula sa mga pricing page na ikinukumpara mo.
 
-### Mga presyo ng prepza para sa iyong tantiya
+### Mga presyo ng testee para sa iyong tantiya
 
-Naniningil ang prepza bawat aplikanteng sumagot ng kahit isang tanong. Nakadepende ang presyo bawat aplikante sa laki ng iyong top-up: $5 sa pinakamaliit na top-up, $4 simula sa $200 na top-up, $3 simula sa $600 na top-up at $2 simula sa $1,000 na top-up. Libre ang unang 3 aplikante ng iyong unang kumpanya. Nasa US dollars ang mga presyo rito, at nasa lokal na currency sa Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, iba pang bahagi ng Europe at UK; ang Paddle, na nagpoproseso ng mga bayad, ang humahawak sa VAT at sales tax sa checkout. Tingnan ang [presyo](/pricing) para sa kasalukuyang mga top-up.
+Naniningil ang testee bawat aplikanteng sumagot ng kahit isang tanong. Nakadepende ang presyo bawat aplikante sa laki ng iyong top-up: $5 sa pinakamaliit na top-up, $4 simula sa $200 na top-up, $3 simula sa $600 na top-up at $2 simula sa $1,000 na top-up. Libre ang unang 3 aplikante ng iyong unang kumpanya. Nasa US dollars ang mga presyo rito, at nasa lokal na currency sa Canada, Australia, Israel, Poland, Switzerland, Japan, South Korea, Taiwan, Hong Kong, Thailand, Singapore, India, iba pang bahagi ng Europe at UK; ang Paddle, na nagpoproseso ng mga bayad, ang humahawak sa VAT at sales tax sa checkout. Tingnan ang [presyo](/pricing) para sa kasalukuyang mga top-up.
 
 ## Mga gastos bukod sa nakalistang presyo
 
 Kapag nagkukumpara ka, tingnan din ang mga ito:
 
 - **Taunang commitment.** Ang plan na "sinisingil taun-taon" ay nangangahulugang babayaran mo nang paunang ang 12 buwan, kahit dalawang buwan ka lang magha-hire.
-- **Seats.** May mga plan na naglilimita kung ilang tao sa team mo ang puwedeng gumamit nito. Walang seat fees ang prepza: libre ang may-ari, mga admin at mga viewer.
-- **Mga aplikanteng hindi nagsimula.** Naniningil lang ang prepza para sa mga aplikanteng sumagot ng kahit isang tanong; bumabalik ang credits ng hindi nagamit na imbitasyon.
-- **Nag-e-expire na credits.** Hindi nag-e-expire ang credits ng prepza. Tingnan kung naililipat sa susunod na panahon ang credits ng ibang vendor.
+- **Seats.** May mga plan na naglilimita kung ilang tao sa team mo ang puwedeng gumamit nito. Walang seat fees ang testee: libre ang may-ari, mga admin at mga viewer.
+- **Mga aplikanteng hindi nagsimula.** Naniningil lang ang testee para sa mga aplikanteng sumagot ng kahit isang tanong; bumabalik ang credits ng hindi nagamit na imbitasyon.
+- **Nag-e-expire na credits.** Hindi nag-e-expire ang credits ng testee. Tingnan kung naililipat sa susunod na panahon ang credits ng ibang vendor.
 - **Buwis.** Tingnan kung kasama na sa nakalistang presyo ang VAT o sales tax.
-- **Mga feature sa mas matataas na plan.** Madalas nasa mas mahal na plan ang ATS integrations, proctoring at custom coding. Tingnan kung aling plan ang talagang kakailanganin mo. Kumokonekta ang prepza sa Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR at Slack, at kasama ang API nito, nang walang dagdag na bayad.
+- **Mga feature sa mas matataas na plan.** Madalas nasa mas mahal na plan ang ATS integrations, proctoring at custom coding. Tingnan kung aling plan ang talagang kakailanganin mo. Kumokonekta ang testee sa Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR at Slack, at kasama ang API nito, nang walang dagdag na bayad.
 - **Higit sa isang tool.** Kung kailangan mo ng knowledge test at psychometric o coding test, pagsamahin ang gastos ng dalawa.
 
 ## Kapag hindi tamang pagpipilian ang mas mababang presyo
 
-Nakakatulong lang ang mababang presyo kung sinusukat ng test ang talagang kailangan ng trabaho. Magbayad para sa ibang tool, mag-isa man o katabi ng prepza, kapag:
+Nakakatulong lang ang mababang presyo kung sinusukat ng test ang talagang kailangan ng trabaho. Magbayad para sa ibang tool, mag-isa man o katabi ng testee, kapag:
 
 - **Kailangan mo ng psychometrics.** Galing sa mga specialist vendor at mas malalawak na platform ang validated cognitive at personality tests.
-- **Kailangan mo ng hands-on coding.** Hinahayaan ng mga developer platform na sumulat at magpatakbo ng code ang mga aplikante. May code-reading questions ang prepza (ano ang ginagawa o inilalabas ng code), pero hindi sumusulat o nagpapatakbo ng code ang mga aplikante.
-- **Kailangan mo ng video o AI-led interviews.** Wala ang alinman sa dalawa sa prepza.
+- **Kailangan mo ng hands-on coding.** Hinahayaan ng mga developer platform na sumulat at magpatakbo ng code ang mga aplikante. May code-reading questions ang testee (ano ang ginagawa o inilalabas ng code), pero hindi sumusulat o nagpapatakbo ng code ang mga aplikante.
+- **Kailangan mo ng video o AI-led interviews.** Wala ang alinman sa dalawa sa testee.
 - **Tuloy-tuloy at marami ang hiring mo.** Puwedeng mas mura ang flat plan kaysa sa presyo bawat aplikante.
 
 Tingnan ang [Mga alternatibo sa TestGorilla](/compare/testgorilla-alternatives) at [Mga alternatibo sa HackerRank](/compare/hackerrank-alternatives) para makita kung saan bagay ang bawat tool at paano sila pagsamahin.
 
-## Kasama sa bawat aplikante sa prepza
+## Kasama sa bawat aplikante sa testee
 
 - Isang timed multiple-choice interview na isinulat mula sa iyong job description, na may mga topic na nire-review mo muna.
 - Sariling random na set ng tanong ang bawat aplikante, na may countdown sa bawat tanong. Para sa mga technical role, puwedeng may maiikling code example ang mga tanong.
@@ -69,10 +69,10 @@ Tingnan ang [Mga alternatibo sa TestGorilla](/compare/testgorilla-alternatives) 
 - Imbitasyon sa email, sa listahan o file, o gamit ang iisang link sa iyong job ad, kasama ang awtomatikong paalala.
 - 23 wika, data na naka-host sa EU (may ilang sub-processor sa US; tingnan ang [privacy policy](/privacy)), at kasama ang data processing agreement.
 
-*Pag-aari ng kani-kanilang may-ari ang mga pangalan ng produkto. Ang prepza ay hindi kaanib o ineendorso ng alinmang kumpanyang binanggit sa pahinang ito.*
+*Pag-aari ng kani-kanilang may-ari ang mga pangalan ng produkto. Ang testee ay hindi kaanib o ineendorso ng alinmang kumpanyang binanggit sa pahinang ito.*
 
 ## Mga kaugnay na pahina
 
 - [Pre-employment tests na walang subscription](/compare/pre-employment-tests-without-subscription)
-- [prepza at TestGorilla](/compare/testgorilla)
+- [testee at TestGorilla](/compare/testgorilla)
 - [Gabay sa pre-employment testing](/pre-employment-testing)

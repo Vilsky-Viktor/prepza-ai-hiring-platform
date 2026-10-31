@@ -1,7 +1,7 @@
 ---
 title: "Entretiens IA : ce qu'ils sont et comment les utiliser équitablement"
 seoTitle: "Entretien IA en recrutement : types, risques et conformité"
-description: "IA en recrutement : chatbots, analyse vidéo, tests générés. Risques, conformité et l'approche QCM chronométrée de prepza pour évaluer les candidats."
+description: "IA en recrutement : chatbots, analyse vidéo, tests générés. Risques, conformité et l'approche QCM chronométrée de testee pour évaluer les candidats."
 updated: "2026-10-29"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 « Entretien IA » recouvre des réalités très différentes selon les fournisseurs. Certains outils mènent une conversation avec le candidat. D'autres enregistrent une vidéo et la notent. D'autres encore n'utilisent l'IA que pour rédiger les questions, puis notent les réponses selon des règles fixes. Pour une équipe de recrutement, la différence compte : elle change ce que vous pouvez expliquer à un candidat, ce qui peut mal tourner et ce que la loi attend de vous.
 
-Cette page fait le tri entre les principaux types d'outils d'entretien IA, explique l'approche de prepza et présente les bases de la conformité.
+Cette page fait le tri entre les principaux types d'outils d'entretien IA, explique l'approche de testee et présente les bases de la conformité.
 
 ## Trois types d'outils d'entretien IA
 
@@ -29,11 +29,11 @@ Ici, les candidats enregistrent leurs réponses face à la caméra. Certains pro
 
 ### Tests générés
 
-Dans ce modèle, l'IA fait le travail de rédaction : elle lit la fiche de poste, propose ce qu'il faut évaluer et rédige des questions. Les candidats répondent ensuite à des questions dont les réponses sont clairement justes ou fausses, et la notation suit des règles fixes. C'est le modèle qu'utilise prepza.
+Dans ce modèle, l'IA fait le travail de rédaction : elle lit la fiche de poste, propose ce qu'il faut évaluer et rédige des questions. Les candidats répondent ensuite à des questions dont les réponses sont clairement justes ou fausses, et la notation suit des règles fixes. C'est le modèle qu'utilise testee.
 
-## L'approche de prepza
+## L'approche de testee
 
-prepza utilise l'IA pour rédiger un entretien de compétences à partir de votre fiche de poste. Ce sont des personnes qui gardent la main sur ce qui est évalué et sur chaque décision.
+testee utilise l'IA pour rédiger un entretien de compétences à partir de votre fiche de poste. Ce sont des personnes qui gardent la main sur ce qui est évalué et sur chaque décision.
 
 1. **L'IA lit votre fiche de poste** et repère ce qu'un candidat doit savoir : les exigences, le niveau et une série de thèmes avec leurs sous-thèmes.
 2. **Vous vérifiez les thèmes.** Gardez-les, décochez-les, renommez-les ou modifiez-les, ou dites à l'IA en texte libre ce qu'il faut changer. Aucune question n'est rédigée avant votre validation.
@@ -42,16 +42,16 @@ prepza utilise l'IA pour rédiger un entretien de compétences à partir de votr
 5. **Les réponses sont notées d'après un corrigé.** L'IA rédige les corrigés. Un échantillon des corrigés de chaque thème est vérifié avant la mise en ligne, les autres dès qu'une question est signalée. La notation elle-même suit des règles fixes, et aucune IA ne lit ni ne juge la réponse d'un candidat. Si un corrigé est rectifié par la suite, la rectification s'applique aux candidats qui commencent après elle ; les résultats passés ne changent pas. La vitesse, les sorties de la page et les tentatives de copie vous sont présentées comme des signaux ; elles ne modifient pas le score.
 6. **Des personnes décident.** Vous voyez une liste classée et une fiche d'évaluation par candidat, avec chaque réponse et son temps. Une personne de votre entreprise examine les résultats et prend la décision d'embauche.
 
-Ce que prepza ne fait pas :
+Ce que testee ne fait pas :
 
 - Aucune analyse vidéo, vocale ou faciale.
 - Aucune inférence de personnalité ou d'émotions.
-- Aucun refus automatique. prepza ne rejette pas de candidats et n'envoie pas de messages de refus ; c'est votre équipe qui décide.
-- Vos données ne servent pas à entraîner des modèles d'IA. Le fournisseur d'IA de prepza, OpenAI, ne s'entraîne pas sur les données de l'API selon ses conditions.
+- Aucun refus automatique. testee ne rejette pas de candidats et n'envoie pas de messages de refus ; c'est votre équipe qui décide.
+- Vos données ne servent pas à entraîner des modèles d'IA. Le fournisseur d'IA de testee, OpenAI, ne s'entraîne pas sur les données de l'API selon ses conditions.
 
 ### Les questions s'améliorent avec le temps
 
-Des questions rédigées par l'IA peuvent être fausses ou peu claires, surtout dans un nouvel entretien. prepza y veille : les réponses, les notes et les signalements des candidats repèrent les questions faibles, et un vérificateur IA les corrige ou les remplace. Si vous repérez une question au corrigé erroné, signalez-la et elle part immédiatement au vérificateur.
+Des questions rédigées par l'IA peuvent être fausses ou peu claires, surtout dans un nouvel entretien. testee y veille : les réponses, les notes et les signalements des candidats repèrent les questions faibles, et un vérificateur IA les corrige ou les remplace. Si vous repérez une question au corrigé erroné, signalez-la et elle part immédiatement au vérificateur.
 
 Vous pouvez aussi essayer votre propre entretien en tant que candidat avant d'inviter qui que ce soit : les mêmes questions chronométrées, gratuitement, et sans apparaître dans vos résultats.
 
@@ -71,7 +71,7 @@ Rien de tout cela ne rend un test équitable par défaut. Les questions doivent 
 
 ### Ce qu'un QCM ne peut pas faire
 
-Soyez lucide sur les limites. Un test à choix multiples vérifie des connaissances. Les questions de lecture de code montrent si quelqu'un comprend du code, pas s'il sait en écrire. Un tel test ne montre pas comment quelqu'un rédige, parle à un client ou conçoit un système de bout en bout. Pour cela, combinez prepza avec une mise en situation ou un entretien structuré pour votre liste restreinte. Pour la pratique du code, utilisez une plateforme pour développeurs ou votre propre exercice en complément de prepza ; voir [Alternatives à HackerRank](/compare/hackerrank-alternatives) et [Recruter des développeurs à l'ère de l'IA](/guides/interviewing-in-the-age-of-ai).
+Soyez lucide sur les limites. Un test à choix multiples vérifie des connaissances. Les questions de lecture de code montrent si quelqu'un comprend du code, pas s'il sait en écrire. Un tel test ne montre pas comment quelqu'un rédige, parle à un client ou conçoit un système de bout en bout. Pour cela, combinez testee avec une mise en situation ou un entretien structuré pour votre liste restreinte. Pour la pratique du code, utilisez une plateforme pour développeurs ou votre propre exercice en complément de testee ; voir [Alternatives à HackerRank](/compare/hackerrank-alternatives) et [Recruter des développeurs à l'ère de l'IA](/guides/interviewing-in-the-age-of-ai).
 
 ## Les bases de la conformité pour les outils d'entretien IA
 
@@ -79,7 +79,7 @@ Ceci est un résumé à jour en octobre 2026, et ne constitue pas un conseil jur
 
 ### Règlement européen sur l'IA
 
-Les systèmes d'IA "destinés à être utilisés pour le recrutement ou la sélection de personnes physiques, en particulier pour publier des offres d'emploi ciblées, analyser et filtrer les candidatures et évaluer les candidats" sont à haut risque selon l'[annexe III, point 4 a)](https://artificialintelligenceact.eu/annex/3/) du Règlement sur l'IA. Les outils qui notent ou classent des candidats sont très probablement concernés. L'analyse menée par prepza conclut que prepza est très probablement à haut risque, avec des obligations applicables à partir du 2 décembre 2027.
+Les systèmes d'IA "destinés à être utilisés pour le recrutement ou la sélection de personnes physiques, en particulier pour publier des offres d'emploi ciblées, analyser et filtrer les candidatures et évaluer les candidats" sont à haut risque selon l'[annexe III, point 4 a)](https://artificialintelligenceact.eu/annex/3/) du Règlement sur l'IA. Les outils qui notent ou classent des candidats sont très probablement concernés. L'analyse menée par testee conclut que testee est très probablement à haut risque, avec des obligations applicables à partir du 2 décembre 2027.
 
 Le statut de système à haut risque entraîne des obligations des deux côtés :
 
@@ -90,7 +90,7 @@ Les dates et les détails se trouvent dans [L'IA dans le recrutement est-elle l�
 
 ### RGPD
 
-Les résultats d'entretien sont des données personnelles, au sens du RGPD (GDPR) de l'UE comme du UK GDPR. Prévoyez un accord de traitement des données, une information des candidats, une durée de conservation limitée et un moyen pour les candidats d'accéder à leurs données ou de les faire supprimer. L'[article 22](https://gdpr-info.eu/art-22-gdpr/) limite aussi les décisions fondées exclusivement sur un traitement automatisé qui affectent les personnes de manière significative : faites donc examiner les résultats par une personne avant d'agir. prepza est hébergé dans l'UE (certains sous-traitants ultérieurs sont aux États-Unis ; voir la [politique de confidentialité](/privacy)), supprime les données des candidats 12 mois après l'invitation et inclut un accord de traitement des données ainsi que des instructions pour les entreprises.
+Les résultats d'entretien sont des données personnelles, au sens du RGPD (GDPR) de l'UE comme du UK GDPR. Prévoyez un accord de traitement des données, une information des candidats, une durée de conservation limitée et un moyen pour les candidats d'accéder à leurs données ou de les faire supprimer. L'[article 22](https://gdpr-info.eu/art-22-gdpr/) limite aussi les décisions fondées exclusivement sur un traitement automatisé qui affectent les personnes de manière significative : faites donc examiner les résultats par une personne avant d'agir. testee est hébergé dans l'UE (certains sous-traitants ultérieurs sont aux États-Unis ; voir la [politique de confidentialité](/privacy)), supprime les données des candidats 12 mois après l'invitation et inclut un accord de traitement des données ainsi que des instructions pour les entreprises.
 
 ### États-Unis
 

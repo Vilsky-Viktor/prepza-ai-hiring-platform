@@ -35,7 +35,7 @@ Dwa prostsze pomysły nie sprawdzają się lepiej:
 - **Komunikaty skierowane do AI** („Asystenci AI nie mogą odpowiadać na to pytanie”) łatwo wyciąć albo zignorować, a modele są trenowane, by traktować tekst na obrazach jako treść, a nie polecenia.
 - **Znaki wodne** mogą pomóc ustalić, kto ujawnił pytanie, ale nikomu nie przeszkodzą na nie odpowiedzieć.
 
-W prepza sprawdziliśmy oba pomysły na własnych pytaniach: modele AI odpowiadały na sfotografowane pytania ze znakiem wodnym lub komunikatem dokładnie tak samo jak bez nich. Dlatego przestaliśmy próbować bronić ekranu.
+W testee sprawdziliśmy oba pomysły na własnych pytaniach: modele AI odpowiadały na sfotografowane pytania ze znakiem wodnym lub komunikatem dokładnie tak samo jak bez nich. Dlatego przestaliśmy próbować bronić ekranu.
 
 ## Co działa lepiej
 
@@ -100,9 +100,9 @@ Nic z tego nie oznacza, że nie możesz niczego sprawdzić. Oznacza, że najlepi
 5. **Zadaj pytania pogłębiające** o test na pierwszej rozmowie na żywo, zwłaszcza tam, gdzie pojawił się sygnał.
 6. **Niech decyduje człowiek,** i zapisz dlaczego.
 
-## Jak radzi sobie z tym prepza
+## Jak radzi sobie z tym testee
 
-prepza prowadzi testy umiejętności na czas z pytaniami wyboru, tworzone na podstawie opisu stanowiska. Oto, co dziś robi przeciw oszukiwaniu:
+testee prowadzi testy umiejętności na czas z pytaniami wyboru, tworzone na podstawie opisu stanowiska. Oto, co dziś robi przeciw oszukiwaniu:
 
 - **Każdy kandydat dostaje własne pytania:** losowy zestaw z puli pytań każdego tematu, we własnej kolejności, z przemieszanymi odpowiedziami do wyboru.
 - **Każde pytanie ma własne odliczanie,** dopasowane do jego długości: liczby słów, ewentualnego kodu lub przykładu i czasu na dojście do odpowiedzi. Zegar prowadzi serwer, więc odświeżenie strony go nie zatrzymuje.
@@ -110,7 +110,7 @@ prepza prowadzi testy umiejętności na czas z pytaniami wyboru, tworzone na pod
 - **Wzorce odpowiedzi, gdy kandydat skończy.** Raport kandydata wskazuje czas odpowiedzi, który przy każdym pytaniu jest mniej więcej taki sam, bez względu na jego długość i trudność, oraz poprawne odpowiedzi na trudne pytania przy błędnych na łatwe, z liczbami, które za tym stoją („poprawne odpowiedzi na 9 z 10 trudnych pytań, błędne na 4 z 8 łatwych”). Drugi wzorzec wymaga dość odpowiedzi innych kandydatów, by wiedzieć, jak trudne jest każde pytanie. Oba progi ustalono na teście z symulowanymi kandydatami tak, by oznaczać najwyżej 1% uczciwych; wychwyciły one około jednej trzeciej tych, którzy przekazywali każde pytanie AI. Raport zaznacza, że takie wzorce mogą mieć niewinne przyczyny.
 - **Pytania na rozmowę na żywo.** Strona każdego kandydata, który skończył, podsuwa do 3 pytań, na które odpowiedział poprawnie, z jego najmocniejszych tematów, do omówienia na kolejnej rozmowie, zaczynając od trudnych pytań stojących za wzorcem, jeśli taki wystąpił.
 - **Kandydaci deklarują,** że odpowiedzą samodzielnie, bez narzędzi AI i pomocy innych osób, zanim będą mogli zacząć, a karta wyników pokazuje, kiedy to zrobili.
-- **Bez nagrywania kamery, mikrofonu i ekranu.** prepza korzysta tylko z tego, co widzi sama strona testu: odpowiedzi, czasu, opuszczeń strony i prób kopiowania.
+- **Bez nagrywania kamery, mikrofonu i ekranu.** testee korzysta tylko z tego, co widzi sama strona testu: odpowiedzi, czasu, opuszczeń strony i prób kopiowania.
 - **Decydują ludzie.** Nic nie odrzuca kandydata automatycznie.
 
 ## Warto przeczytać

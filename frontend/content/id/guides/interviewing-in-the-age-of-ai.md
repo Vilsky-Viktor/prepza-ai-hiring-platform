@@ -66,9 +66,9 @@ Beri tahu kandidat sejak awal alat apa saja yang diizinkan di setiap tahap. Atur
 
 Untuk versi lengkap langkah demi langkah, lihat [Cara merekrut engineer](/guides/hiring-engineers).
 
-## Di mana prepza berperan
+## Di mana testee berperan
 
-prepza sangat cocok untuk langkah 2. prepza mengubah deskripsi pekerjaanmu menjadi wawancara pengetahuan pilihan ganda berbatas waktu, dan kamu meninjau topik yang diusulkan sebelum ada soal yang ditulis, jadi tesnya mencakup stack-mu dan bukan yang lain.
+testee sangat cocok untuk langkah 2. testee mengubah deskripsi pekerjaanmu menjadi wawancara pengetahuan pilihan ganda berbatas waktu, dan kamu meninjau topik yang diusulkan sebelum ada soal yang ditulis, jadi tesnya mencakup stack-mu dan bukan yang lain.
 
 - **Konsep dan teori dari deskripsi pekerjaan:** database, API, arsitektur, perilaku framework, praktik keamanan.
 - **Soal membaca kode:** potongan kode singkat dengan pertanyaan tentang apa yang dicetak atau dikembalikannya, apa fungsinya, kenapa gagal, atau perubahan mana yang memperbaikinya. Itu adalah keterampilan meninjau yang sama yang diandalkan kerja berbantuan AI.
@@ -76,7 +76,7 @@ prepza sangat cocok untuk langkah 2. prepza mengubah deskripsi pekerjaanmu menja
 - **Tanda peringatan:** scorecard menandai jawaban yang terlalu cepat untuk sempat membaca soalnya, saat kandidat meninggalkan halaman, dan percobaan menyalin. Setelah kandidat selesai, laporannya juga menunjukkan pola jawaban yang biasanya muncul saat soal diteruskan ke AI dan jawabannya disalin: waktu yang kira-kira sama di setiap soal, berapa pun panjang atau tingkat kesulitannya, atau soal sulit dijawab benar sementara soal mudah salah. Tanda atau pola adalah alasan untuk melihat lebih teliti, bukan bukti kecurangan.
 - **Soal untuk wawancara langsung:** laporannya menyarankan hingga 3 soal yang dijawab benar oleh kandidat, dari topik terkuatnya, untuk dibahas dalam wawancara langsung, tempat tidak ada AI yang bisa menjawab untuknya.
 
-Yang tidak dilakukan prepza: kandidat tidak menulis, menjalankan, atau men-debug kode di prepza, dan prepza tidak mengamati mereka memakai asisten AI. Itu masuk ke tahap praktik langsung, yang dijalankan sendiri oleh timmu atau di platform developer, dan melengkapi tes pengetahuan. Lihat [tes keterampilan per posisi](/tests) untuk tes siap pakai sebagai titik awal, dan [Wawancara AI](/ai-interviews) untuk cara prepza memakai AI dan apa yang diserahkannya kepada manusia.
+Yang tidak dilakukan testee: kandidat tidak menulis, menjalankan, atau men-debug kode di testee, dan testee tidak mengamati mereka memakai asisten AI. Itu masuk ke tahap praktik langsung, yang dijalankan sendiri oleh timmu atau di platform developer, dan melengkapi tes pengetahuan. Lihat [tes keterampilan per posisi](/tests) untuk tes siap pakai sebagai titik awal, dan [Wawancara AI](/ai-interviews) untuk cara testee memakai AI dan apa yang diserahkannya kepada manusia.
 
 ## Keadilan dan pengalaman kandidat
 

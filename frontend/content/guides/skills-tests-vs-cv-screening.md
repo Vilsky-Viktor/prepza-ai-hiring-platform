@@ -77,17 +77,17 @@ The authors also note a second condition: work samples and knowledge tests suit 
 
 See [How to screen 100 applicants in a day](/guides/screen-100-applicants-in-a-day) for a step-by-step version.
 
-## How prepza fits
+## How testee fits
 
-prepza covers step 2: a timed multiple-choice job knowledge test, written from your job description. The validity figures above are for job knowledge tests in general, not measurements of prepza's tests.
+testee covers step 2: a timed multiple-choice job knowledge test, written from your job description. The validity figures above are for job knowledge tests in general, not measurements of testee's tests.
 
-- **Job-specific by design.** prepza proposes topics from your job description, and you review and edit them before any question is written. Remove anything that isn't a real requirement. For technical roles, questions can include short code examples to read.
+- **Job-specific by design.** testee proposes topics from your job description, and you review and edit them before any question is written. Remove anything that isn't a real requirement. For technical roles, questions can include short code examples to read.
 - **The same conditions for everyone.** The same topics and number of questions, and a countdown on every question. You can give extra time to candidates who ask.
 - **Each candidate gets their own questions,** a random set from each topic's bank, so answers are harder to share.
 - **Readable results.** A scorecard per candidate with every answer and its timing, ranked by score, with flags for too-fast answers, leaving the page, copy attempts and unusual answer patterns.
 - **Answers marked against an answer key** that AI writes; a sample of each topic's keys is checked before release, the rest when a question is flagged. No AI reads or judges a candidate's answer.
 
-prepza doesn't run structured interviews, work samples or cognitive tests. Use it alongside them. For more on testing types and fairness, read [Pre-employment testing](/pre-employment-testing).
+testee doesn't run structured interviews, work samples or cognitive tests. Use it alongside them. For more on testing types and fairness, read [Pre-employment testing](/pre-employment-testing).
 
 ## Sources
 

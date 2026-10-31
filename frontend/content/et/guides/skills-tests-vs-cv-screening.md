@@ -77,17 +77,17 @@ Autorid märgivad ka teist tingimust: proovitööd ja teadmiste testid sobivad v
 
 Samm-sammulise versiooni leiad juhendist [Kuidas sõeluda 100 kandidaati päevaga](/guides/screen-100-applicants-in-a-day).
 
-## Kuhu sobib prepza
+## Kuhu sobib testee
 
-prepza katab 2. sammu: ajapiiranguga valikvastustega erialaste teadmiste test, mis on kirjutatud sinu töökuulutuse põhjal. Eespool toodud valiidsuse näitajad kehtivad erialaste teadmiste testide kohta üldiselt, need ei ole prepza testide mõõtmised.
+testee katab 2. sammu: ajapiiranguga valikvastustega erialaste teadmiste test, mis on kirjutatud sinu töökuulutuse põhjal. Eespool toodud valiidsuse näitajad kehtivad erialaste teadmiste testide kohta üldiselt, need ei ole testee testide mõõtmised.
 
-- **Olemuselt tööspetsiifiline.** prepza pakub teemad sinu töökuulutuse põhjal ning sina vaatad need üle ja muudad neid enne, kui ühtegi küsimust kirjutatakse. Eemalda kõik, mis pole tegelik nõue. Tehniliste rollide puhul võivad küsimused sisaldada lühikesi loetavaid koodinäiteid.
+- **Olemuselt tööspetsiifiline.** testee pakub teemad sinu töökuulutuse põhjal ning sina vaatad need üle ja muudad neid enne, kui ühtegi küsimust kirjutatakse. Eemalda kõik, mis pole tegelik nõue. Tehniliste rollide puhul võivad küsimused sisaldada lühikesi loetavaid koodinäiteid.
 - **Kõigile samad tingimused.** Samad teemad ja küsimuste arv ning igal küsimusel taimer. Kandidaatidele, kes seda paluvad, saad anda lisaaega.
 - **Iga kandidaat saab oma küsimused,** juhusliku komplekti iga teema pangast, nii et vastuseid on raskem jagada.
 - **Loetavad tulemused.** Iga kandidaadi hindamisleht kõigi vastuste ja nende ajakuluga, järjestatud tulemuse järgi, märgetega liiga kiirete vastuste, lehelt lahkumise, kopeerimiskatsete ja ebatavaliste vastuste mustrite kohta.
 - **Vastuseid kontrollitakse vastusevõtme järgi,** mille AI kirjutab; igast teemast kontrollitakse enne avaldamist valim võtmeid, ülejäänuid siis, kui küsimusest teatatakse; ükski AI ei loe ega hinda kandidaadi vastust.
 
-prepza ei korralda struktureeritud intervjuusid, proovitöid ega kognitiivseid teste. Kasuta seda nende kõrval. Testiliikide ja õigluse kohta loe lähemalt lehelt [Kandidaatide testimine värbamisel](/pre-employment-testing).
+testee ei korralda struktureeritud intervjuusid, proovitöid ega kognitiivseid teste. Kasuta seda nende kõrval. Testiliikide ja õigluse kohta loe lähemalt lehelt [Kandidaatide testimine värbamisel](/pre-employment-testing).
 
 ## Allikad
 

@@ -77,17 +77,17 @@ Autorzy zwracają też uwagę na drugi warunek: próbki pracy i testy wiedzy pas
 
 Wersję krok po kroku znajdziesz w poradniku [Jak przeprowadzić selekcję 100 kandydatów w jeden dzień](/guides/screen-100-applicants-in-a-day).
 
-## Gdzie pasuje prepza
+## Gdzie pasuje testee
 
-prepza obejmuje krok 2: test wiedzy zawodowej w formie testu wyboru z limitem czasu, napisany na podstawie Twojego opisu stanowiska. Powyższe wartości trafności dotyczą testów wiedzy zawodowej ogólnie, a nie pomiarów testów prepza.
+testee obejmuje krok 2: test wiedzy zawodowej w formie testu wyboru z limitem czasu, napisany na podstawie Twojego opisu stanowiska. Powyższe wartości trafności dotyczą testów wiedzy zawodowej ogólnie, a nie pomiarów testów testee.
 
-- **Specyficzny dla stanowiska z założenia.** prepza proponuje tematy na podstawie Twojego opisu stanowiska, a Ty je przeglądasz i edytujesz, zanim powstanie jakiekolwiek pytanie. Usuń wszystko, co nie jest prawdziwym wymaganiem. Przy stanowiskach technicznych pytania mogą zawierać krótkie przykłady kodu do przeczytania.
+- **Specyficzny dla stanowiska z założenia.** testee proponuje tematy na podstawie Twojego opisu stanowiska, a Ty je przeglądasz i edytujesz, zanim powstanie jakiekolwiek pytanie. Usuń wszystko, co nie jest prawdziwym wymaganiem. Przy stanowiskach technicznych pytania mogą zawierać krótkie przykłady kodu do przeczytania.
 - **Te same warunki dla wszystkich.** Te same tematy i liczba pytań oraz odliczanie przy każdym pytaniu. Kandydatom, którzy o to poproszą, możesz dać dodatkowy czas.
 - **Każdy kandydat dostaje własne pytania,** losowy zestaw z puli każdego tematu, więc trudniej dzielić się odpowiedziami.
 - **Czytelne wyniki.** Karta wyników dla każdego kandydata z każdą odpowiedzią i czasem jej udzielenia, ranking według punktacji, z oznaczeniami zbyt szybkich odpowiedzi, opuszczenia strony, prób kopiowania i nietypowych wzorców odpowiedzi.
 - **Odpowiedzi oceniane według klucza odpowiedzi,** który pisze AI; próbka kluczy z każdego tematu jest sprawdzana przed udostępnieniem, a pozostałe, gdy pytanie zostanie oznaczone. Żadna AI nie czyta ani nie ocenia odpowiedzi kandydata.
 
-prepza nie prowadzi ustrukturyzowanych rozmów kwalifikacyjnych, próbek pracy ani testów poznawczych. Używaj jej razem z nimi. Więcej o rodzajach testów i uczciwości przeczytasz w poradniku [Testy rekrutacyjne](/pre-employment-testing).
+testee nie prowadzi ustrukturyzowanych rozmów kwalifikacyjnych, próbek pracy ani testów poznawczych. Używaj jej razem z nimi. Więcej o rodzajach testów i uczciwości przeczytasz w poradniku [Testy rekrutacyjne](/pre-employment-testing).
 
 ## Źródła
 

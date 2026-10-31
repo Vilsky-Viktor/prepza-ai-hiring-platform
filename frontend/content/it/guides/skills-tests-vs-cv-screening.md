@@ -77,17 +77,17 @@ Gli autori notano anche una seconda condizione: le prove pratiche e i test di co
 
 Vedi [Come fare lo screening di 100 candidati in un giorno](/guides/screen-100-applicants-in-a-day) per una versione passo per passo.
 
-## Dove si inserisce prepza
+## Dove si inserisce testee
 
-prepza copre il passo 2: un test di conoscenze professionali a scelta multipla e a tempo, scritto a partire dalla tua descrizione del ruolo. I valori di validità sopra si riferiscono ai test di conoscenze professionali in generale, non sono misurazioni dei test di prepza.
+testee copre il passo 2: un test di conoscenze professionali a scelta multipla e a tempo, scritto a partire dalla tua descrizione del ruolo. I valori di validità sopra si riferiscono ai test di conoscenze professionali in generale, non sono misurazioni dei test di testee.
 
-- **Specifico per il ruolo per costruzione.** prepza propone argomenti dalla tua descrizione del ruolo, e tu li rivedi e modifichi prima che venga scritta qualsiasi domanda. Rimuovi tutto ciò che non è un requisito reale. Per i ruoli tecnici, le domande possono includere brevi esempi di codice da leggere.
+- **Specifico per il ruolo per costruzione.** testee propone argomenti dalla tua descrizione del ruolo, e tu li rivedi e modifichi prima che venga scritta qualsiasi domanda. Rimuovi tutto ciò che non è un requisito reale. Per i ruoli tecnici, le domande possono includere brevi esempi di codice da leggere.
 - **Le stesse condizioni per tutti.** Stessi argomenti e stesso numero di domande, e un conto alla rovescia su ogni domanda. Puoi dare più tempo ai candidati che lo chiedono.
 - **Ogni candidato riceve le proprie domande,** un set casuale dalla banca di ogni argomento, così le risposte sono più difficili da condividere.
 - **Risultati leggibili.** Una scheda di valutazione per candidato con ogni risposta e il relativo tempo, in classifica per punteggio, con segnalazioni per risposte troppo rapide, uscite dalla pagina, tentativi di copia e andamenti insoliti delle risposte.
 - **Risposte corrette in base a una chiave di correzione** che l'IA scrive; un campione delle chiavi di ogni argomento viene verificato prima della pubblicazione, le altre quando una domanda viene segnalata. Nessuna IA legge o giudica la risposta di un candidato.
 
-prepza non conduce colloqui strutturati, prove pratiche o test cognitivi. Usalo insieme a questi. Per saperne di più sui tipi di test e sull'equità, leggi [Test pre-assunzione](/pre-employment-testing).
+testee non conduce colloqui strutturati, prove pratiche o test cognitivi. Usalo insieme a questi. Per saperne di più sui tipi di test e sull'equità, leggi [Test pre-assunzione](/pre-employment-testing).
 
 ## Fonti
 

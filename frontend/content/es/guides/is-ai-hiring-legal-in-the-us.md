@@ -9,7 +9,7 @@ updated: "2026-10-30"
 
 En general, sí: usar IA en la selección de personal es legal en Estados Unidos. No hay una ley federal de IA para la contratación. En su lugar, la legislación federal contra la discriminación se aplica a las herramientas de IA igual que a cualquier prueba, y algunos lugares añaden normas propias: la ciudad de Nueva York, Illinois, Colorado y California.
 
-Esta guía explica las normas a grandes rasgos, las fechas que importan, lo que deben hacer los empleadores y cómo lo aborda prepza. **No es asesoramiento jurídico.** Refleja las normas a fecha de octubre de 2026, varias de las cuales son nuevas o aún se están ultimando.
+Esta guía explica las normas a grandes rasgos, las fechas que importan, lo que deben hacer los empleadores y cómo lo aborda testee. **No es asesoramiento jurídico.** Refleja las normas a fecha de octubre de 2026, varias de las cuales son nuevas o aún se están ultimando.
 
 ## La respuesta corta
 
@@ -97,22 +97,22 @@ La ley de IA de Colorado se derogó y se volvió a promulgar mediante la SB 26-1
 8. **Conserva los registros el tiempo que exija tu legislación,** por ejemplo cuatro años en California y tres en Colorado.
 9. **Nunca rechaces solo por una puntuación.** Haz que una persona revise cada resultado.
 
-## Cómo lo aborda prepza
+## Cómo lo aborda testee
 
-prepza ofrece entrevistas de habilidades de opción múltiple con tiempo límite redactadas por IA a partir de una descripción del puesto. Su enfoque en EE. UU. es el mismo que en la UE. prepza no afirma cumplir la normativa ni estar certificado.
+testee ofrece entrevistas de habilidades de opción múltiple con tiempo límite redactadas por IA a partir de una descripción del puesto. Su enfoque en EE. UU. es el mismo que en la UE. testee no afirma cumplir la normativa ni estar certificado.
 
 Cómo se refleja hoy en el producto:
 
 - **La IA redacta las preguntas y sus claves de respuestas; la corrección sigue reglas fijas.** Ninguna IA lee ni juzga la respuesta de un candidato, y no se analiza video ni rostros. En el modo de voz, el habla se convierte en texto y se asocia a una opción, que se le dice al candidato y se muestra en pantalla: una sola opción nombrada con claridad se registra al instante, y una elección de varias opciones se confirma primero. El habla nunca se guarda y la voz nunca se analiza.
 - **Tú apruebas los temas** antes de que se redacte ninguna pregunta, y tú eliges la nota de aprobado.
-- **Deciden las personas.** prepza no rechaza candidatos ni envía mensajes de rechazo.
-- **Ninguna característica protegida.** prepza nunca pide, infiere ni guarda el sexo, la raza, la edad, la discapacidad, el código postal ni otras características protegidas de los candidatos.
+- **Deciden las personas.** testee no rechaza candidatos ni envía mensajes de rechazo.
+- **Ninguna característica protegida.** testee nunca pide, infiere ni guarda el sexo, la raza, la edad, la discapacidad, el código postal ni otras características protegidas de los candidatos.
 - **Una exportación para auditoría de sesgos.** En la página Registro de acciones de la empresa, el propietario puede descargar un archivo CSV de los candidatos que terminaron, de toda la empresa o de una entrevista y entre dos fechas: la nota de cada candidato, la nota de aprobado, si aprobó y si puntuó por encima de la mediana de la entrevista. Cada fila se identifica por el correo electrónico del candidato, para que puedas cruzarla con las categorías autodeclaradas que recogiste tú mismo; después elimina la columna del correo electrónico y entrega el archivo a tu auditor independiente, que calcula las tasas de selección y de puntuación y los ratios de impacto. Con el mismo archivo puedes hacer tú mismo la comprobación de los cuatro quintos.
-- **Tiempo extra** de +25 %, +50 % o +100 % en cada pregunta para cualquier candidato que lo pida, antes de empezar. prepza solo guarda la cantidad, nunca el motivo. En el modo de voz, el candidato siempre puede tocar una opción en su lugar, y puedes configurar una entrevista para que solo se responda tocando.
+- **Tiempo extra** de +25 %, +50 % o +100 % en cada pregunta para cualquier candidato que lo pida, antes de empezar. testee solo guarda la cantidad, nunca el motivo. En el modo de voz, el candidato siempre puede tocar una opción en su lugar, y puedes configurar una entrevista para que solo se responda tocando.
 - **Plantillas de aviso para candidatos,** una general y versiones para la ciudad de Nueva York, Illinois y Colorado, en la [página de documentos](/documents), junto con las instrucciones para empresas.
-- **Ciudad de Nueva York.** prepza aún no ha tenido su propia auditoría de sesgos independiente. No uses prepza para puestos en la ciudad de Nueva York hasta haber hecho lo que la Local Law 144 te exige como empleador: una auditoría de sesgos independiente dentro del año anterior al uso, su resumen publicado y un aviso a los candidatos 10 días hábiles antes.
-- **Datos.** Según la CCPA, tu empresa es la empresa (business) y prepza su proveedor de servicios (service provider), conforme al [contrato de encargo del tratamiento](/dpa) y su sección sobre EE. UU. Los datos se alojan en la UE, con algunos subencargados en EE. UU. (consulta la [política de privacidad](/privacy)), y no se usan para entrenar modelos de IA.
-- **Conservación.** Los datos de los candidatos se eliminan 12 meses después de la invitación. Si tu legislación te exige conservar los registros más tiempo, como los cuatro años de California, descarga los informes PDF y el archivo de auditoría de sesgos y consérvalos tú; prepza no conserva los resultados más tiempo por defecto.
+- **Ciudad de Nueva York.** testee aún no ha tenido su propia auditoría de sesgos independiente. No uses testee para puestos en la ciudad de Nueva York hasta haber hecho lo que la Local Law 144 te exige como empleador: una auditoría de sesgos independiente dentro del año anterior al uso, su resumen publicado y un aviso a los candidatos 10 días hábiles antes.
+- **Datos.** Según la CCPA, tu empresa es la empresa (business) y testee su proveedor de servicios (service provider), conforme al [contrato de encargo del tratamiento](/dpa) y su sección sobre EE. UU. Los datos se alojan en la UE, con algunos subencargados en EE. UU. (consulta la [política de privacidad](/privacy)), y no se usan para entrenar modelos de IA.
+- **Conservación.** Los datos de los candidatos se eliminan 12 meses después de la invitación. Si tu legislación te exige conservar los registros más tiempo, como los cuatro años de California, descarga los informes PDF y el archivo de auditoría de sesgos y consérvalos tú; testee no conserva los resultados más tiempo por defecto.
 
 ## Lecturas relacionadas
 

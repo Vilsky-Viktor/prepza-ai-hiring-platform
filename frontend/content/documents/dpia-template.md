@@ -1,13 +1,13 @@
-# Data protection impact assessment (DPIA): template for companies using prepza
+# Data protection impact assessment (DPIA): template for companies using testee
 
 Version: 2026-10-23\
-Operator: Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia; hello@prepza.ai
+Operator: Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia; hello@testee.ai
 
-For companies that invite candidates through prepza. Your company is the **controller** of
-candidates' interview data; Arcolabs OÜ (prepza) is your **processor**. Parts marked
-**[COMPANY]** are yours to complete. Parts already filled describe prepza as of the version date,
-matching the data processing agreement (prepza.ai/dpa) and privacy policy (prepza.ai/privacy) of
-the same date; if either changes, the current version applies, and prepza emails your owners and
+For companies that invite candidates through testee. Your company is the **controller** of
+candidates' interview data; Arcolabs OÜ (testee) is your **processor**. Parts marked
+**[COMPANY]** are yours to complete. Parts already filled describe testee as of the version date,
+matching the data processing agreement (testee.ai/dpa) and privacy policy (testee.ai/privacy) of
+the same date; if either changes, the current version applies, and testee emails your owners and
 admins about a significant change to the agreement at least 14 days before it applies.
 
 Whether you need a DPIA is your decision. Many EU supervisory authorities list systematic
@@ -19,7 +19,7 @@ check your authority's list.
 | Item | Answer |
 |---|---|
 | Controller | **[COMPANY]** name, address, DPO or privacy contact |
-| Processor | Arcolabs OÜ, registry code 17587452, Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia; hello@prepza.ai (no DPO is required; this address handles data protection) |
+| Processor | Arcolabs OÜ, registry code 17587452, Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia; hello@testee.ai (no DPO is required; this address handles data protection) |
 | Roles / vacancies covered | **[COMPANY]** |
 | Countries of candidates | **[COMPANY]** |
 | Assessment owner and date | **[COMPANY]** |
@@ -36,24 +36,24 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
    candidate and report any question whose answer looks wrong.
 3. You invite candidates by email (or share a link); if you connect them, your applicant tracking
    system (Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR) or your own systems (through
-   prepza's API) invite them too. Each invited candidate signs in (Google, LinkedIn or GitHub) with
+   testee's API) invite them too. Each invited candidate signs in (Google, LinkedIn or GitHub) with
    the invited email address, and gets a random subset of questions with a timer on each.
-4. prepza marks each answer against the question's answer key (a question is worth one point; a
+4. testee marks each answer against the question's answer key (a question is worth one point; a
    "select all that apply" question, about 1 in 10, earns part of it for each right option ticked
    and nothing with a wrong one) and shows you a grade, the percentage of points earned, green or red against the passing grade you set, ranked best first, with
    integrity signals.
    If you set an interview to **voice mode** (English, Spanish, German, French, Portuguese or
-   Italian), prepza reads each question and its options aloud and the candidate answers aloud:
+   Italian), testee reads each question and its options aloud and the candidate answers aloud:
    what the microphone picks up while they answer is turned into text by AI and matched to the
    options; a clear choice of one option is recorded at once as a tapped answer is, with the
    interviewer saying which ("B, saved."), and a choice of several options is confirmed first. The audio
    and its text are never stored, voices are never analysed (no tone, emotion or confidence), and
    the candidate can always tap an option instead. Marking is the same in both modes.
-5. You review results and decide. prepza sends candidates no decision. If you connect them, prepza
+5. You review results and decide. testee sends candidates no decision. If you connect them, testee
    also sends results to your applicant tracking system (as a note), your Slack channel (the
    notifications you choose) and your own systems (through the API and web hooks).
-6. Your team can ask prepza's assistant about interviews, candidates and results, in the app or
-   through an AI app a member connects to their own prepza account (such as Claude or ChatGPT).
+6. Your team can ask testee's assistant about interviews, candidates and results, in the app or
+   through an AI app a member connects to their own testee account (such as Claude or ChatGPT).
    It reads with that member's access and role, can summarise and compare candidates, and can
    act for them (inviting, changing a pass mark, revoking): in the app each action waits for their
    confirmation; through an AI app, whether to ask first is up to that app.
@@ -61,7 +61,7 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
    keys); candidates never see them.
 8. If you have topped up at least once, an interview's **Discover** tab lists people who chose to
    be open to offers and practised its subjects at its level: their name, LinkedIn profile and
-   latest timed practice results. prepza shows them with their consent, as their controller; what
+   latest timed practice results. testee shows them with their consent, as their controller; what
    you do with what you see, and anyone you invite from there, is yours as controller (see
    section 3, Information to candidates).
 
@@ -78,13 +78,13 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
 | Open to offers | For people on your Discover tab: name, LinkedIn profile address, latest timed practice results on your interview's subjects; never their email until you invite them |
 | Pledge | When the candidate confirmed, before starting, that they'd answer on their own, without AI tools or other people |
 | Feedback | Candidate's ratings and reports of questions (reports may include a free-text comment) |
-| Reports | PDFs made in your browser; if emailed through prepza, kept at most 7 days to send |
-| Email opt-outs | A one-way hash of the email address of a candidate who stops your emails (or one interview's reminders) through the link in prepza's invites and reminders |
+| Reports | PDFs made in your browser; if emailed through testee, kept at most 7 days to send |
+| Email opt-outs | A one-way hash of the email address of a candidate who stops your emails (or one interview's reminders) through the link in testee's invites and reminders |
 | Special categories | None requested. **[COMPANY]** confirm you do not add any (e.g. in job descriptions or notes) |
 
-**Data subjects.** Job candidates **[COMPANY: approx. number per year]**; your staff using prepza.
+**Data subjects.** Job candidates **[COMPANY: approx. number per year]**; your staff using testee.
 
-**Recipients and sub-processors** (per prepza's privacy policy and DPA at prepza.ai/dpa):
+**Recipients and sub-processors** (per testee's privacy policy and DPA at testee.ai/dpa):
 
 - Google Cloud (hosting, database, events; EU, Belgium, region europe-west1) and Google Firebase
   (sign-in; Google LLC, United States, under the EU-US Data Privacy Framework).
@@ -94,27 +94,27 @@ multiple-choice test, as one input to a hiring decision made by **[COMPANY: who]
   which can include candidates' emails, names, grades and integrity signals; voice messages
   turned into text. In voice mode: questions read aloud (no personal data), and a candidate's
   spoken answer turned into text and matched to the options, from the recording and then its
-  text with the question and options, never the answer key. prepza tells OpenAI not to store it; under OpenAI's API terms it keeps the
+  text with the question and options, never the answer key. testee tells OpenAI not to store it; under OpenAI's API terms it keeps the
   data for at most 30 days, only to check for abuse, and uses none of it for training. OpenAI
   Ireland Ltd, which transfers it to OpenAI in the United States under the European Commission's
   standard contractual clauses).
 - Resend (emails; EU, Ireland).
-- Google Workspace (prepza's email inbox: messages from companies and candidates, and requests passed on to the company; Google Ireland Ltd, mail may be stored outside the EU under the EU-US Data Privacy Framework and standard contractual clauses).
+- Google Workspace (testee's email inbox: messages from companies and candidates, and requests passed on to the company; Google Ireland Ltd, mail may be stored outside the EU under the EU-US Data Privacy Framework and standard contractual clauses).
 - Sentry (error reports, without email addresses; EU).
 - Langfuse (records of AI calls, to monitor and improve the quality of answers: what is sent to the AI and its answers, which can include candidates' data the AI handles, such as the results the assistant reads to answer a member, and votes on the assistant's answers; in voice mode only which options a spoken answer matched, never its words; kept 30 days; Langfuse GmbH, Germany, its EU cloud).
-- Cloudflare (the "I'm not a robot" check, Turnstile, when a candidate starts through a job ad's link: their browser's signals and address, from which prepza keeps only whether it passed; Cloudflare, Inc., United States, under the EU-US Data Privacy Framework).
+- Cloudflare (the "I'm not a robot" check, Turnstile, when a candidate starts through a job ad's link: their browser's signals and address, from which testee keeps only whether it passed; Cloudflare, Inc., United States, under the EU-US Data Privacy Framework).
 - Upstash (short-lived counters for limits and live updates; EU, Belgium).
 - Paddle (payments; receives no candidate data).
 
-**Tools you connect** (your own recipients, not prepza's sub-processors; delete the ones you don't
+**Tools you connect** (your own recipients, not testee's sub-processors; delete the ones you don't
 use): **[COMPANY: your applicant tracking system (Workable, Greenhouse, Teamtailor, Recruitee or
-Breezy HR), your Slack workspace, your own systems through prepza's API and web hooks]**. They
+Breezy HR), your Slack workspace, your own systems through testee's API and web hooks]**. They
 receive candidates' emails, grades, whether the grade reached the passing grade, integrity signals
-and a link to the results; your applicant tracking system also sends prepza the email and id of
+and a link to the results; your applicant tracking system also sends testee the email and id of
 each candidate you move to a linked stage, kept 12 months.
 
-**AI apps your members connect** (the member's own recipients, not prepza's sub-processors):
-an app such as Claude (Anthropic) or ChatGPT (OpenAI) that a member connects to their prepza
+**AI apps your members connect** (the member's own recipients, not testee's sub-processors):
+an app such as Claude (Anthropic) or ChatGPT (OpenAI) that a member connects to their testee
 account receives what that member asks it to read, within their role, including candidates'
 data, under the app provider's own terms. AI apps never see the in-app notifications, and can't
 delete an account or a company. Your owners and admins decide whether members may use your
@@ -126,9 +126,9 @@ those apps).
 **International transfers.** Three sub-processors handle data in the United States: Google
 Firebase (sign-in) and Cloudflare (the "I'm not a robot" check), under the EU-US Data Privacy
 Framework, and OpenAI, through OpenAI Ireland Ltd under the European Commission's standard
-contractual clauses. prepza gives a copy of the
+contractual clauses. testee gives a copy of the
 safeguards on request. Transfers to tools you connect are yours to cover. For candidates under
-UK data protection law, transfers from the UK to prepza in the EU need no safeguard (UK adequacy
+UK data protection law, transfers from the UK to testee in the EU need no safeguard (UK adequacy
 regulations), and the onward transfers rely on the UK Extension to the EU-US Data Privacy
 Framework (Google Firebase, Cloudflare) and the standard contractual clauses with the UK
 International Data Transfer Addendum (OpenAI).
@@ -146,7 +146,7 @@ Database backups: 14 days, then overwritten. **[COMPANY]**: your own retention o
 downloaded PDFs and notes, and of what reached your applicant tracking system, Slack and own
 systems.
 
-**Automated decision-making.** prepza computes a grade and ranking but makes no decision. Whether
+**Automated decision-making.** testee computes a grade and ranking but makes no decision. Whether
 your process is "solely automated" under GDPR Art. 22 depends on how you use it. **[COMPANY]**
 describe who reviews results and how (see section 5).
 
@@ -157,17 +157,17 @@ describe who reviews results and how (see section 5).
 | Lawful basis | **[COMPANY]** usually legitimate interest (Art. 6(1)(f)) or steps before a contract (Art. 6(1)(b)); record your balancing test |
 | Is the knowledge tested a genuine requirement of the role? | **[COMPANY]** you approved the topics; keep that record |
 | Could a less intrusive method work? | **[COMPANY]** |
-| Data minimisation | Only sign-in details and test data; no CV, video, voice recordings or demographics are kept by prepza; in voice mode, speech is turned into text and options in memory and never stored or analysed for anything else |
-| Information to candidates | For people you invite from the Discover tab, you got their data from prepza, not from them: tell them, at the latest in your first message (the invite), who you are, why you contacted them, what you saw (name, LinkedIn profile, practice results) and their rights (GDPR and UK GDPR Art. 14). Invite page tells candidates what to expect, whether prepza has verified your company, that leaving the page and copying are recorded, that questions are AI-written, that people at your company decide and can review their result, and to ask you for more time if needed. Invites and reminders have links to stop your emails or that interview's reminders. **[COMPANY]** add your notice (see prepza's candidate notice templates) |
-| Rights | Access: candidate's scorecard page and PDF report give you everything to answer; erasure: "Delete candidate" on the candidate's page (also deletes prepza's copy of what your applicant tracking system sent; delete it in your own tools yourself); a candidate who deletes their prepza account erases their answers and results too; objection: **[COMPANY]** process; stopping your emails: the link in prepza's invites and reminders, after which an invite to them shows as undelivered; candidates can also write to prepza, who passes requests on |
+| Data minimisation | Only sign-in details and test data; no CV, video, voice recordings or demographics are kept by testee; in voice mode, speech is turned into text and options in memory and never stored or analysed for anything else |
+| Information to candidates | For people you invite from the Discover tab, you got their data from testee, not from them: tell them, at the latest in your first message (the invite), who you are, why you contacted them, what you saw (name, LinkedIn profile, practice results) and their rights (GDPR and UK GDPR Art. 14). Invite page tells candidates what to expect, whether testee has verified your company, that leaving the page and copying are recorded, that questions are AI-written, that people at your company decide and can review their result, and to ask you for more time if needed. Invites and reminders have links to stop your emails or that interview's reminders. **[COMPANY]** add your notice (see testee's candidate notice templates) |
+| Rights | Access: candidate's scorecard page and PDF report give you everything to answer; erasure: "Delete candidate" on the candidate's page (also deletes testee's copy of what your applicant tracking system sent; delete it in your own tools yourself); a candidate who deletes their testee account erases their answers and results too; objection: **[COMPANY]** process; stopping your emails: the link in testee's invites and reminders, after which an invite to them shows as undelivered; candidates can also write to testee, who passes requests on |
 | Human review on request | **[COMPANY]** who handles it and how fast |
 | Accommodations | Extra time per candidate (+25%, +50% or +100%), set before they start, no reason stored; **[COMPANY]** alternative process |
 
 ## 4. Risks to candidates
 
-Likelihood and severity: **[COMPANY]** to rate. Starting points from prepza:
+Likelihood and severity: **[COMPANY]** to rate. Starting points from testee:
 
-| Risk | Typical source | prepza controls | Your controls **[COMPANY]** |
+| Risk | Typical source | testee controls | Your controls **[COMPANY]** |
 |---|---|---|---|
 | Unfair rejection from a wrong or ambiguous question | AI-written content | Your topic review and trial run; a sample of answer keys per topic checked before release; statistics and reports flag questions for a fix, and a fix applies to candidates who start after it (past results don't change) | |
 | Discrimination (age, disability, language, origin) | Time pressure, language, content | Knowledge questions only; questions flagged when too slow or not discriminating; extra time | |
@@ -180,7 +180,7 @@ Likelihood and severity: **[COMPANY]** to rate. Starting points from prepza:
 | Candidates' data in an AI app outside your control | A member connecting Claude, ChatGPT or another app | Only the member's own access; your owners and admins can turn AI apps off for your company; no access to the in-app notifications; deleting an account or a company is impossible through an app; connections end when disconnected or unused for 90 days; your action log marks what came through an app | |
 | Lack of transparency | Candidates don't see their grade | Privacy policy; invite page notice | |
 | Results reaching the wrong place through your tools | Applicant tracking system, Slack, API keys and web hooks | Only owners and admins connect them; keys, tokens, Slack web hooks and web hook secrets stored encrypted, API keys only as a hash; an applicant tracking system or Slack connection stops working when whoever made it is no longer an owner or admin, while API keys and web hooks belong to the company, act as themselves (every action named by its key in the action log) and work until deleted, keys also until they expire; web hooks only to public HTTPS addresses, signed; events from an applicant tracking system accepted only with its signature | |
-| Data breach | Hosting, sub-processors | Access controls, encryption by Google Cloud, error reports without emails, retention limits; prepza tells you within 48 hours where possible | |
+| Data breach | Hosting, sub-processors | Access controls, encryption by Google Cloud, error reports without emails, retention limits; testee tells you within 48 hours where possible | |
 | Excessive retention | | Automatic deletion after 12 months | |
 
 ## 5. Measures to reduce risk **[COMPANY]**
@@ -199,7 +199,7 @@ Likelihood and severity: **[COMPANY]** to rate. Starting points from prepza:
 - [ ] Downloaded PDFs kept no longer than your retention period
 - [ ] Decided whether members may use the assistant and AI apps ("Allow AI apps"), and under which terms
 - [ ] New York City roles: bias audit summary published and notice given 10 business days before
-  use (see prepza's instructions for companies)
+  use (see testee's instructions for companies)
 
 ## 6. Sign-off **[COMPANY]**
 

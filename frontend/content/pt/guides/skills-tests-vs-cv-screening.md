@@ -77,17 +77,17 @@ Os autores também apontam uma segunda condição: amostras de trabalho e testes
 
 Veja [Como fazer a triagem de 100 candidatos em um dia](/guides/screen-100-applicants-in-a-day) para uma versão passo a passo.
 
-## Onde a prepza se encaixa
+## Onde a testee se encaixa
 
-A prepza cobre o passo 2: um teste de conhecimentos da função, de múltipla escolha e cronometrado, escrito a partir da sua descrição da vaga. Os números de validade acima se referem a testes de conhecimentos da função em geral, não a medições dos testes da prepza.
+A testee cobre o passo 2: um teste de conhecimentos da função, de múltipla escolha e cronometrado, escrito a partir da sua descrição da vaga. Os números de validade acima se referem a testes de conhecimentos da função em geral, não a medições dos testes da testee.
 
-- **Específico da função por concepção.** A prepza propõe tópicos a partir da sua descrição da vaga, e você os revisa e edita antes de qualquer pergunta ser escrita. Remova o que não for um requisito real. Para vagas técnicas, as perguntas podem incluir pequenos exemplos de código para ler.
+- **Específico da função por concepção.** A testee propõe tópicos a partir da sua descrição da vaga, e você os revisa e edita antes de qualquer pergunta ser escrita. Remova o que não for um requisito real. Para vagas técnicas, as perguntas podem incluir pequenos exemplos de código para ler.
 - **As mesmas condições para todos.** Os mesmos tópicos e número de perguntas, e uma contagem regressiva em cada pergunta. Você pode dar tempo extra aos candidatos que pedirem.
 - **Cada candidato recebe suas próprias perguntas,** um conjunto aleatório do banco de cada tópico, o que dificulta compartilhar respostas.
 - **Resultados fáceis de ler.** Uma ficha de avaliação por candidato com cada resposta e seu tempo, ordenada por pontuação, com alertas para respostas rápidas demais, saídas da página, tentativas de cópia e padrões de resposta incomuns.
 - **Respostas corrigidas com base em um gabarito** que a IA escreve; uma amostra dos gabaritos de cada tópico é verificada antes da liberação, e os demais quando uma pergunta é sinalizada. Nenhuma IA lê ou julga a resposta de um candidato.
 
-A prepza não faz entrevistas estruturadas, amostras de trabalho nem testes cognitivos. Use-a junto com eles. Para saber mais sobre tipos de teste e imparcialidade, leia [Testes de seleção](/pre-employment-testing).
+A testee não faz entrevistas estruturadas, amostras de trabalho nem testes cognitivos. Use-a junto com eles. Para saber mais sobre tipos de teste e imparcialidade, leia [Testes de seleção](/pre-employment-testing).
 
 ## Fontes
 

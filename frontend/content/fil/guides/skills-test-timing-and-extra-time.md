@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 Puwede pa ring magbigay ng mahinang resulta ang skills test na may magagandang tanong. Kapag sobra ang oras, hinahanap ng mga aplikante ang bawat sagot; kapag kulang, bilis ng pagbasa ang nasusukat mo. Kapag kaunti ang tanong, swerte ang nagpapagalaw sa score; kapag sobrang dami, sumusuko sa kalagitnaan ang mahuhusay na aplikante.
 
-Tinatalakay ng gabay na ito ang apat na setting ng isang timed na multiple-choice test: ang oras bawat tanong, ang bilang ng tanong, ang kabuuang haba, at ang dagdag na oras para sa mga aplikanteng nangangailangan nito. Angkop ang payo sa anumang timed na knowledge test; ipinapakita ng huling seksyon kung paano hinahawakan ng prepza ang bawat isa.
+Tinatalakay ng gabay na ito ang apat na setting ng isang timed na multiple-choice test: ang oras bawat tanong, ang bilang ng tanong, ang kabuuang haba, at ang dagdag na oras para sa mga aplikanteng nangangailangan nito. Angkop ang payo sa anumang timed na knowledge test; ipinapakita ng huling seksyon kung paano hinahawakan ng testee ang bawat isa.
 
 ## Ang maikling bersyon
 
@@ -95,9 +95,9 @@ Maraming bansa ang nag-oobliga sa mga employer na magbigay ng reasonable accommo
 
 **Praktikal na gabay ang seksyong ito, hindi legal na payo.** Nakadepende sa kung saan ka nagha-hire kung ano ang dapat mong ibigay at kung ano ang puwede mong itanong. Alamin ang sarili mong mga obligasyon sa ilalim ng batas sa pagkakapantay-pantay at kapansanan na umiiral para sa iyo.
 
-## Paano hinahawakan ng prepza ang oras at dagdag na oras
+## Paano hinahawakan ng testee ang oras at dagdag na oras
 
-Sa prepza, ang interview ay isang timed na multiple-choice skills test na ginawa mula sa iyong job description.
+Sa testee, ang interview ay isang timed na multiple-choice skills test na ginawa mula sa iyong job description.
 
 ### Oras bawat tanong
 

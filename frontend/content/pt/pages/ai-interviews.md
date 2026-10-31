@@ -1,7 +1,7 @@
 ---
 title: "Entrevistas com IA: o que são e como usá-las de forma justa"
 seoTitle: "IA no recrutamento e seleção: entrevista com IA e riscos"
-description: "IA no recrutamento e seleção: o que fazem entrevistas com IA, chatbots, análise de vídeo e testes gerados, riscos, compliance e a abordagem da prepza."
+description: "IA no recrutamento e seleção: o que fazem entrevistas com IA, chatbots, análise de vídeo e testes gerados, riscos, compliance e a abordagem da testee."
 updated: "2026-10-29"
 ---
 
@@ -9,7 +9,7 @@ updated: "2026-10-29"
 
 "Entrevista com IA" significa coisas muito diferentes dependendo do fornecedor. Algumas ferramentas conversam com o candidato. Outras gravam vídeo e dão uma pontuação. Outras usam a IA só para escrever as perguntas e depois pontuam as respostas com regras fixas. Para uma equipe de recrutamento, a diferença importa: ela muda o que você consegue explicar a um candidato, o que pode dar errado e o que a lei espera de você.
 
-Esta página organiza os principais tipos de ferramentas de entrevista com IA, explica a abordagem da prepza e resume o básico de compliance.
+Esta página organiza os principais tipos de ferramentas de entrevista com IA, explica a abordagem da testee e resume o básico de compliance.
 
 ## Três tipos de ferramentas de entrevista com IA
 
@@ -29,11 +29,11 @@ Aqui os candidatos gravam as respostas diante da câmera. Alguns produtos apenas
 
 ### Testes gerados
 
-Nesse modelo, a IA faz o trabalho de redação: lê a descrição da vaga, propõe o que avaliar e rascunha as perguntas. Depois, os candidatos respondem perguntas com respostas claramente certas e erradas, e a pontuação segue regras fixas. Esse é o modelo que a prepza usa.
+Nesse modelo, a IA faz o trabalho de redação: lê a descrição da vaga, propõe o que avaliar e rascunha as perguntas. Depois, os candidatos respondem perguntas com respostas claramente certas e erradas, e a pontuação segue regras fixas. Esse é o modelo que a testee usa.
 
-## A abordagem da prepza
+## A abordagem da testee
 
-A prepza usa IA para escrever uma entrevista de habilidades a partir da sua descrição da vaga. As pessoas continuam no controle do que é avaliado e de cada decisão.
+A testee usa IA para escrever uma entrevista de habilidades a partir da sua descrição da vaga. As pessoas continuam no controle do que é avaliado e de cada decisão.
 
 1. **A IA lê a sua descrição da vaga** e identifica o que um candidato precisa saber: os requisitos, o nível e um conjunto de tópicos com subtópicos.
 2. **Você revisa os tópicos.** Mantenha, desmarque, renomeie ou edite, ou diga à IA em texto livre o que mudar. Nenhuma pergunta é escrita antes da sua aprovação.
@@ -42,16 +42,16 @@ A prepza usa IA para escrever uma entrevista de habilidades a partir da sua desc
 5. **As respostas são corrigidas com base em um gabarito.** A IA escreve os gabaritos. Uma amostra dos gabaritos de cada tópico é verificada antes da liberação, e os demais quando uma pergunta é sinalizada. A correção em si segue regras fixas, e nenhuma IA lê ou julga a resposta de um candidato. Se um gabarito for corrigido depois, a correção vale para os candidatos que começarem depois dela; os resultados anteriores não mudam. Velocidade, saídas da página e tentativas de cópia aparecem para você como sinais; elas não mudam a pontuação.
 6. **Pessoas decidem.** Você vê uma lista ordenada e uma ficha de avaliação por candidato, com cada resposta e seu tempo. Uma pessoa da sua empresa revisa os resultados e toma a decisão de contratação.
 
-O que a prepza não faz:
+O que a testee não faz:
 
 - Nenhuma análise de vídeo, voz ou rosto.
 - Nenhuma inferência de personalidade ou emoções.
-- Nenhuma reprovação automática. A prepza não reprova candidatos nem envia mensagens de reprovação; sua equipe decide.
-- Seus dados não são usados para treinar modelos de IA. O provedor de IA da prepza, a OpenAI, não treina com dados da API, segundo seus termos.
+- Nenhuma reprovação automática. A testee não reprova candidatos nem envia mensagens de reprovação; sua equipe decide.
+- Seus dados não são usados para treinar modelos de IA. O provedor de IA da testee, a OpenAI, não treina com dados da API, segundo seus termos.
 
 ### As perguntas melhoram com o tempo
 
-Perguntas escritas por IA podem estar erradas ou pouco claras, principalmente em uma entrevista nova. A prepza fica atenta a isso: as respostas, avaliações e reportes dos candidatos sinalizam perguntas fracas, e um verificador de IA as corrige ou substitui. Se você encontrar uma pergunta com o gabarito errado, marque-a, e ela vai para o verificador na hora.
+Perguntas escritas por IA podem estar erradas ou pouco claras, principalmente em uma entrevista nova. A testee fica atenta a isso: as respostas, avaliações e reportes dos candidatos sinalizam perguntas fracas, e um verificador de IA as corrige ou substitui. Se você encontrar uma pergunta com o gabarito errado, marque-a, e ela vai para o verificador na hora.
 
 Você também pode testar a sua própria entrevista como candidato antes de convidar alguém: as mesmas perguntas cronometradas, de graça e fora dos seus resultados.
 
@@ -71,7 +71,7 @@ Nada disso torna um teste justo automaticamente. As perguntas ainda precisam cor
 
 ### O que a múltipla escolha não consegue fazer
 
-Seja claro sobre os limites. Um teste de múltipla escolha verifica conhecimento. Perguntas de leitura de código mostram se alguém entende código, não se sabe escrevê-lo. Um teste assim não mostra como alguém escreve, conversa com um cliente ou projeta um sistema de ponta a ponta. Para isso, combine a prepza com uma amostra de trabalho ou uma entrevista estruturada para os finalistas. Para programação prática, use uma plataforma para desenvolvedores ou o seu próprio exercício junto com a prepza; veja [Alternativas ao HackerRank](/compare/hackerrank-alternatives) e [Entrevistando engenheiros na era da IA](/guides/interviewing-in-the-age-of-ai).
+Seja claro sobre os limites. Um teste de múltipla escolha verifica conhecimento. Perguntas de leitura de código mostram se alguém entende código, não se sabe escrevê-lo. Um teste assim não mostra como alguém escreve, conversa com um cliente ou projeta um sistema de ponta a ponta. Para isso, combine a testee com uma amostra de trabalho ou uma entrevista estruturada para os finalistas. Para programação prática, use uma plataforma para desenvolvedores ou o seu próprio exercício junto com a testee; veja [Alternativas ao HackerRank](/compare/hackerrank-alternatives) e [Entrevistando engenheiros na era da IA](/guides/interviewing-in-the-age-of-ai).
 
 ## O básico de compliance para ferramentas de entrevista com IA
 
@@ -79,7 +79,7 @@ Este é um resumo de outubro de 2026, não aconselhamento jurídico. Consulte o 
 
 ### Regulamento de IA da UE
 
-Os "sistemas de IA concebidos para serem utilizados no recrutamento ou na seleção de pessoas singulares, nomeadamente para colocar anúncios de emprego direcionados, analisar e filtrar candidaturas a ofertas de emprego e avaliar os candidatos" são de alto risco segundo o [Anexo III, ponto 4, alínea a)](https://artificialintelligenceact.eu/annex/3/), do Regulamento de IA. Ferramentas que pontuam ou classificam candidatos muito provavelmente estão incluídas. A análise própria da prepza conclui que a prepza muito provavelmente é de alto risco, com obrigações aplicáveis a partir de 2 de dezembro de 2027.
+Os "sistemas de IA concebidos para serem utilizados no recrutamento ou na seleção de pessoas singulares, nomeadamente para colocar anúncios de emprego direcionados, analisar e filtrar candidaturas a ofertas de emprego e avaliar os candidatos" são de alto risco segundo o [Anexo III, ponto 4, alínea a)](https://artificialintelligenceact.eu/annex/3/), do Regulamento de IA. Ferramentas que pontuam ou classificam candidatos muito provavelmente estão incluídas. A análise própria da testee conclui que a testee muito provavelmente é de alto risco, com obrigações aplicáveis a partir de 2 de dezembro de 2027.
 
 O status de alto risco traz obrigações para os dois lados:
 
@@ -90,7 +90,7 @@ As datas e os detalhes estão em [O uso de IA no recrutamento é legal na UE?](/
 
 ### GDPR
 
-Os resultados das entrevistas são dados pessoais, tanto pelo Regulamento Geral sobre a Proteção de Dados da UE (GDPR) quanto pelo UK GDPR. Conte com um acordo de tratamento de dados, um aviso aos candidatos, retenção limitada e uma forma de os candidatos acessarem ou excluírem seus dados. O [artigo 22](https://gdpr-info.eu/art-22-gdpr/) também limita decisões tomadas exclusivamente com base em tratamento automatizado que afetem as pessoas de forma significativa, então faça com que uma pessoa revise os resultados antes de agir. A prepza é hospedada na UE (alguns suboperadores estão nos EUA; veja a [política de privacidade](/privacy)), exclui os dados dos candidatos 12 meses após o convite e inclui um acordo de tratamento de dados e instruções para empresas.
+Os resultados das entrevistas são dados pessoais, tanto pelo Regulamento Geral sobre a Proteção de Dados da UE (GDPR) quanto pelo UK GDPR. Conte com um acordo de tratamento de dados, um aviso aos candidatos, retenção limitada e uma forma de os candidatos acessarem ou excluírem seus dados. O [artigo 22](https://gdpr-info.eu/art-22-gdpr/) também limita decisões tomadas exclusivamente com base em tratamento automatizado que afetem as pessoas de forma significativa, então faça com que uma pessoa revise os resultados antes de agir. A testee é hospedada na UE (alguns suboperadores estão nos EUA; veja a [política de privacidade](/privacy)), exclui os dados dos candidatos 12 meses após o convite e inclui um acordo de tratamento de dados e instruções para empresas.
 
 ### Estados Unidos
 

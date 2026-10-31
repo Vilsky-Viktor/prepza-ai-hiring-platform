@@ -38,9 +38,9 @@ Se duas ou três pessoas participam da contratação, combinem essa lista agora.
 
 Um bom teste de triagem é curto, relacionado à vaga e igual para todos.
 
-Com a prepza:
+Com a testee:
 
-1. **Cole a descrição da vaga.** A prepza identifica o que um candidato precisa saber e propõe tópicos.
+1. **Cole a descrição da vaga.** A testee identifica o que um candidato precisa saber e propõe tópicos.
 2. **Revise os tópicos comparando com a sua lista do passo 1.** Desmarque o que não for um requisito real, renomeie tópicos, edite subtópicos ou descreva as mudanças em texto livre ("adicione um tópico sobre o básico de folha de pagamento"). As perguntas só são escritas depois da sua aprovação.
 3. **Defina a duração.** Por padrão, cada tópico tem 10 perguntas, cada uma com sua própria contagem regressiva, de 60 segundos em média, ou 75 segundos em um teste difícil. Três tópicos significam no máximo 30 minutos por candidato (cerca de 38 em um teste difícil), e normalmente menos. Limite ao que você precisa.
 4. **Defina uma nota de aprovação.** O padrão é 70%. Use-a como guia para ler os resultados, não como corte automático.
@@ -63,7 +63,7 @@ Faça uma passada rápida de sim ou não só nos requisitos obrigatórios: autor
 
 Depois, convide todos que restarem:
 
-- **Cole uma lista de e-mails ou faça upload de um arquivo.** A prepza aceita até 100 e-mails de uma vez e pula quem já começou.
+- **Cole uma lista de e-mails ou faça upload de um arquivo.** A testee aceita até 100 e-mails de uma vez e pula quem já começou.
 - **Ou use um único link.** Se você ainda não publicou a vaga, coloque o link compartilhável da entrevista no anúncio. Os candidatos podem fazer o teste na hora e aparecem na sua lista, ordenados. Desative o link quando a vaga for preenchida.
 - **Ou deixe o seu ATS enviar os convites.** Se os seus candidatos estão no Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR, conecte-o uma vez: mover um candidato para uma etapa envia o convite, e os resultados voltam para o ATS. Veja [Como integrar testes de habilidades ao seu ATS](/guides/ats-integration-skills-tests).
 
@@ -71,7 +71,7 @@ Antes de começar, os candidatos veem o que esperar: o cronômetro, que uma pess
 
 ### Fazer os testes serem concluídos no mesmo dia
 
-Um teste claro e curto é mais fácil de concluir logo depois do convite. Diga no seu e-mail ou no anúncio da vaga quanto tempo ele leva e até quando você precisa dele. A prepza envia automaticamente um lembrete a quem não começou depois de 3 dias; para um plano de um dia, você também pode reenviar o convite manualmente.
+Um teste claro e curto é mais fácil de concluir logo depois do convite. Diga no seu e-mail ou no anúncio da vaga quanto tempo ele leva e até quando você precisa dele. A testee envia automaticamente um lembrete a quem não começou depois de 3 dias; para um plano de um dia, você também pode reenviar o convite manualmente.
 
 Nem todos vão terminar no primeiro dia. Tudo bem: revise quem já terminou e olhe de novo os retardatários na manhã seguinte.
 
@@ -81,11 +81,11 @@ Agora começa a leitura cuidadosa, mas de um grupo menor e ordenado.
 
 1. **Ordene por nota,** da maior para a menor, no menu de ordenação da lista: ela abre com os candidatos mais recentes primeiro.
 2. **Abra cada ficha de avaliação** do grupo de cima. Olhe as respostas, não só o número: quais tópicos foram fortes, quais foram fracos, quanto tempo levou cada resposta.
-3. **Verifique os alertas de integridade.** A prepza sinaliza respostas rápidas demais para a pergunta ter sido lida, as vezes em que o candidato saiu da página e as tentativas de cópia. Quando o candidato termina, a página dele também aponta padrões de resposta incomuns (mais ou menos o mesmo tempo em cada pergunta, ou perguntas difíceis certas enquanto as fáceis estavam erradas) e sugere perguntas para fazer na próxima entrevista. Um alerta é um motivo para olhar com mais atenção, não prova de cola. Quem saiu da página uma vez pode ter recebido uma notificação.
+3. **Verifique os alertas de integridade.** A testee sinaliza respostas rápidas demais para a pergunta ter sido lida, as vezes em que o candidato saiu da página e as tentativas de cópia. Quando o candidato termina, a página dele também aponta padrões de resposta incomuns (mais ou menos o mesmo tempo em cada pergunta, ou perguntas difíceis certas enquanto as fáceis estavam erradas) e sugere perguntas para fazer na próxima entrevista. Um alerta é um motivo para olhar com mais atenção, não prova de cola. Quem saiu da página uma vez pode ter recebido uma notificação.
 4. **Olhe logo abaixo da nota de aprovação.** Pontuações de conjuntos aleatórios de perguntas diferentes não são exatamente comparáveis, então alguns pontos podem vir do sorteio. Alguém com 65% e respostas fortes nos tópicos mais importantes pode valer uma entrevista.
 5. **Agora leia os currículos** das pessoas que você está considerando. Você lê 15 currículos com atenção em vez de passar os olhos por 100.
 
-Para compartilhar os resultados com um gestor, baixe um relatório em PDF de um candidato ou da lista inteira, ou envie por e-mail pela prepza.
+Para compartilhar os resultados com um gestor, baixe um relatório em PDF de um candidato ou da lista inteira, ou envie por e-mail pela testee.
 
 ## Passo 5: Decida (fim do dia)
 
@@ -103,7 +103,7 @@ Anote por que cada pessoa entrou na lista. Leva um minuto por candidato e ajuda 
 
 ## Quanto custa
 
-Com a prepza, você paga só pelos candidatos que respondem pelo menos uma pergunta: $5 cada na recarga de $50, $4 a partir de uma recarga de $200, $3 a partir de uma recarga de $600 e $2 a partir de uma recarga de $1.000. Para 100 candidatos, são $500 a $5 cada, ou $400 em duas recargas de $200 a $4 cada, sem assinatura. Os preços aqui são em dólares americanos, e na moeda local no Canadá, na Austrália, em Israel, na Polônia, na Suíça, no Japão, na Coreia do Sul, em Taiwan, em Hong Kong, na Tailândia, em Singapura, na Índia, no restante da Europa e no Reino Unido (veja os [preços](/pricing)); IVA ou impostos sobre vendas são tratados no checkout. Gerar o teste é gratuito, e os 3 primeiros candidatos da sua primeira empresa são gratuitos.
+Com a testee, você paga só pelos candidatos que respondem pelo menos uma pergunta: $5 cada na recarga de $50, $4 a partir de uma recarga de $200, $3 a partir de uma recarga de $600 e $2 a partir de uma recarga de $1.000. Para 100 candidatos, são $500 a $5 cada, ou $400 em duas recargas de $200 a $4 cada, sem assinatura. Os preços aqui são em dólares americanos, e na moeda local no Canadá, na Austrália, em Israel, na Polônia, na Suíça, no Japão, na Coreia do Sul, em Taiwan, em Hong Kong, na Tailândia, em Singapura, na Índia, no restante da Europa e no Reino Unido (veja os [preços](/pricing)); IVA ou impostos sobre vendas são tratados no checkout. Gerar o teste é gratuito, e os 3 primeiros candidatos da sua primeira empresa são gratuitos.
 
 ## Leitura relacionada
 
