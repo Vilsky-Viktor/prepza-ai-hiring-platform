@@ -1,6 +1,6 @@
-from prepza_common.config.constants import MAX_PAGE_SIZE
-from prepza_common.events.analytics import track
-from prepza_common.events.notifications import (
+from testee_common.config.constants import MAX_PAGE_SIZE
+from testee_common.events.analytics import track
+from testee_common.events.notifications import (
     NOTIFICATION_REQUESTED,
     NotificationKind,
     notification,

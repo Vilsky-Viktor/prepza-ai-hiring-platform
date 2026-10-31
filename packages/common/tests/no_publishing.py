@@ -14,7 +14,7 @@ import json
 
 import httpx
 import pytest
-from prepza_common.events import pubsub
+from testee_common.events import pubsub
 
 
 def publishes(request: httpx.Request) -> bool:

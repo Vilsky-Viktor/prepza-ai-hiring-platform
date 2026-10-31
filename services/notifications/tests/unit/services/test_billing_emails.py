@@ -5,7 +5,7 @@ it. The ones turned on and charged say what it charges, in the recipient's langu
 import asyncio
 
 import pytest
-from prepza_common.events.notifications import notification
+from testee_common.events.notifications import notification
 
 from notifications.config import settings
 from notifications.integrations import accounts, companies
@@ -48,7 +48,7 @@ def sent(monkeypatch):
     monkeypatch.setattr(companies, "members", members)
     monkeypatch.setattr(accounts, "recipients", recipients)
     monkeypatch.setattr(delivery, "send", send)
-    monkeypatch.setattr(settings, "site_url", "https://prepza.ai")
+    monkeypatch.setattr(settings, "site_url", "https://testee.ai")
 
     return found
 
@@ -56,11 +56,11 @@ def sent(monkeypatch):
 @pytest.mark.parametrize(
     ("kind", "data", "opens"),
     [
-        ("auto_top_up_failed", {}, "https://prepza.ai/top-up"),
-        ("auto_top_up_paused", {}, "https://prepza.ai/companies/c1/billing"),
-        ("auto_top_up_price_change", NOTICE, "https://prepza.ai/companies/c1/billing"),
-        ("auto_top_up_on", TURNED_ON, "https://prepza.ai/companies/c1/billing"),
-        ("auto_top_up_charged", CHARGED, "https://prepza.ai/companies/c1/billing"),
+        ("auto_top_up_failed", {}, "https://testee.ai/top-up"),
+        ("auto_top_up_paused", {}, "https://testee.ai/companies/c1/billing"),
+        ("auto_top_up_price_change", NOTICE, "https://testee.ai/companies/c1/billing"),
+        ("auto_top_up_on", TURNED_ON, "https://testee.ai/companies/c1/billing"),
+        ("auto_top_up_charged", CHARGED, "https://testee.ai/companies/c1/billing"),
     ],
 )
 def test_each_billing_notice_is_emailed_once_to_each_owner_and_admin(sent, kind, data, opens):

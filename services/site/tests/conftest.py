@@ -19,7 +19,7 @@ os.environ.setdefault("GENERATION_SERVICE_SECRET", "test-secret-that-is-at-least
 import pytest
 from fastapi.testclient import TestClient
 from no_publishing import no_publishing, published  # noqa: F401
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 from site_content.main import app
 
@@ -37,7 +37,7 @@ def not_paused(monkeypatch):
     async def off(redis):
         return False
 
-    monkeypatch.setattr("prepza_common.limits.pause.is_paused", off)
+    monkeypatch.setattr("testee_common.limits.pause.is_paused", off)
 
 
 @pytest.fixture(autouse=True)

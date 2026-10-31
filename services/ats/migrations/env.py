@@ -1,7 +1,7 @@
 from logging.config import fileConfig
 
 from alembic import context
-from prepza_common.db.db import migration_engine
+from testee_common.db.db import migration_engine
 
 import ats.models.ats
 import ats.models.outbox  # noqa: F401

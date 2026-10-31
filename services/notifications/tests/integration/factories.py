@@ -7,7 +7,7 @@ import uuid
 import httpx
 from event_pushes import push
 from fastapi import HTTPException
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
+from testee_common.events.notifications import NotificationKind, Recipient, notification
 
 from notifications.constants.campaigns import ONE_A_DAY
 from notifications.core.db import Session

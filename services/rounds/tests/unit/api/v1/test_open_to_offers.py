@@ -2,8 +2,8 @@
 (the saves themselves: tests/integration/services/test_open_to_offers.py)."""
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from rounds.constants.open_to_offers import CONSENT_VERSION
 from rounds.main import app

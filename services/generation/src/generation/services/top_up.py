@@ -1,7 +1,7 @@
 """Topping a topic up with new questions of the kinds it lacks."""
 
-from prepza_common.ai.examples import has_example
-from prepza_common.ai.multi_answer import is_multi
+from testee_common.ai.examples import has_example
+from testee_common.ai.multi_answer import is_multi
 
 from generation.constants.generation import FILL_ATTEMPTS, FILL_SPARE_QUESTIONS
 from generation.helpers.questions import missing_kinds, normalize

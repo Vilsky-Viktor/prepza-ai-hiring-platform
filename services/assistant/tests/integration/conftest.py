@@ -10,9 +10,9 @@ import httpx
 import pytest
 from alembic import command
 from alembic.config import Config
-from prepza_common.db.clean_start import start_clean, tables_left_empty
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
+from testee_common.db.clean_start import start_clean, tables_left_empty
 
 if not os.getenv("INTEGRATION_TESTS"):
     collect_ignore_glob = ["test_*.py", "*/test_*.py", "*/*/test_*.py"]
@@ -53,7 +53,7 @@ def clean_start(database):
 def run():
     """Runs a coroutine on a fresh event loop; the database pool and the Redis and HTTP clients
     are closed after, as their connections belong to that loop."""
-    from prepza_common.http import http
+    from testee_common.http import http
 
     from assistant.core.db import engine
     from assistant.integrations.redis import get_redis

@@ -5,7 +5,7 @@ from datetime import UTC, datetime, timedelta
 # The changes and post fixtures are imported from test_api_changes and named in the tests.
 # ruff: noqa: F811
 import pytest
-from prepza_common.i18n.i18n import CodedError
+from testee_common.i18n.i18n import CodedError
 
 from api.integrations import companies
 from tests.unit.api.v1.test_api_changes import changes, post  # noqa: F401 (fixture)
@@ -14,7 +14,7 @@ from tests.unit.conftest import INTERVIEW
 
 
 def test_a_missing_or_expired_key_says_which(client, companies_api, key):
-    missing = call(client, "GET", "/interviews", key="pz_unknown")
+    missing = call(client, "GET", "/interviews", key="te_unknown")
     key.expires_at = datetime.now(UTC) - timedelta(days=1)
     expired = call(client, "GET", "/interviews")
 

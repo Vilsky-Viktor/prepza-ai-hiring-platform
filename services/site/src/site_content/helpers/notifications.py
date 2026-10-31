@@ -1,4 +1,4 @@
-from prepza_common.events.notifications import EVERYONE, NotificationKind, Recipient, notification
+from testee_common.events.notifications import EVERYONE, NotificationKind, Recipient, notification
 
 
 def news_notification(post) -> dict:

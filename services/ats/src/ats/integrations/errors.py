@@ -4,5 +4,5 @@ class KeyRejected(Exception):
 
 
 class WriteRefused(Exception):
-    """The ATS refused what prepza writes (a candidate's results) while it still takes the key
+    """The ATS refused what testee writes (a candidate's results) while it still takes the key
     for reading: the key lacks write access. The connection keeps working."""

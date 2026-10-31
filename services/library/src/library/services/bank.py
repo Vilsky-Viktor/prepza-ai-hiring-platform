@@ -5,7 +5,7 @@ interview or an account never deletes a bank copy (models/bank.py)."""
 import logging
 import uuid
 
-from prepza_common.events.interviews import InterviewPrivacyChanged
+from testee_common.events.interviews import InterviewPrivacyChanged
 
 from library.constants.bank import BANK_SWEEP_BATCH
 from library.core.db import Session

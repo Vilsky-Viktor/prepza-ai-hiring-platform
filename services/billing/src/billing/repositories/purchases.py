@@ -1,10 +1,10 @@
 from collections.abc import Callable
 from datetime import datetime
 
-from prepza_common.events.audit_actions import AuditAction
 from sqlalchemy import func, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events.audit_actions import AuditAction
 
 from billing.constants.credits import Reason
 from billing.constants.products import OwnerType

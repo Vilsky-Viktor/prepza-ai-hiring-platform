@@ -2,14 +2,14 @@ from site_content.constants.legal import COMPANY
 
 # The privacy policy. Only this English text is binding; the site's translations are for reading.
 # The help chat (the signed-out assistant) answers from it too.
-PRIVACY_INTRO = f"This policy explains what personal data prepza collects, why, how long we keep it, and the rights you have. prepza is run by {COMPANY['name']} (registry code {COMPANY['registry_code']}), {COMPANY['address']}. prepza.ai also shows this document in other languages; only this English version is binding, and where a translation differs, the English version applies."
+PRIVACY_INTRO = f"This policy explains what personal data testee collects, why, how long we keep it, and the rights you have. testee is run by {COMPANY['name']} (registry code {COMPANY['registry_code']}), {COMPANY['address']}. testee.ai also shows this document in other languages; only this English version is binding, and where a translation differs, the English version applies."
 
 PRIVACY_SECTIONS = [
     {
         "heading": "Who is responsible",
         "paragraphs": [
             f"For your own account and your company's account, {COMPANY['name']} is the controller of your data. Write to {COMPANY['email']} with any question or request.",
-            "When a company invites you to an interview on prepza, that company decides why and how your results are used and is the controller of them; we process them on its behalf. You can contact the company directly, or us, and we will pass your request on.",
+            "When a company invites you to an interview on testee, that company decides why and how your results are used and is the controller of them; we process them on its behalf. You can contact the company directly, or us, and we will pass your request on.",
         ],
     },
     {
@@ -27,7 +27,7 @@ PRIVACY_SECTIONS = [
             "The \"I'm not a robot\" check: when you send the contact form, ask the help chat a first question, start an interview through a job ad's link, create your first company, or approve the topics of a company that hasn't paid yet, Cloudflare Turnstile looks at your browser (such as its type, how it behaves and the address it connects from) to tell a person from a script. We receive only whether the check passed.",
             "AI apps you connect: the app's name and the site it returns to, and when you connected it and last used it. Its access is kept only as a one-way hash.",
             "The terms you accepted: the version of the terms in force when you signed up, and when, as proof of what you agreed to. It's deleted with your account.",
-            "Tools a company connects: the keys or tokens its owner or admin creates in its applicant tracking system (Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR) or Slack, stored encrypted; a one-way hash of each prepza API key and the addresses of its web hooks; and, from its applicant tracking system, the email, name and id of each candidate it sends to prepza.",
+            "Tools a company connects: the keys or tokens its owner or admin creates in its applicant tracking system (Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR) or Slack, stored encrypted; a one-way hash of each testee API key and the addresses of its web hooks; and, from its applicant tracking system, the email, name and id of each candidate it sends to testee.",
             "Email settings: which optional emails you get, and a log of every change to them: which email, on or off, when, where (signing in, Settings, or an unsubscribe link or spam report) and which version of the checkboxes' wording you saw.",
             "Emails to company members: a record of the activity digests and reminders we sent you, and what each reminder was about, so none is sent twice.",
             "Emails to many users (notices of changes to our terms, important notices about the service, product updates, offers): whether each was sent to you, skipped or failed, and whether you unsubscribed from it or marked it as spam, so none is sent twice and we can see how each was received.",
@@ -37,37 +37,37 @@ PRIVACY_SECTIONS = [
             "Purchases: for each top-up, the company it was for, who bought it, what was bought, the total and currency, Paddle's transaction id and when. Paddle, not us, keeps the card and billing details.",
             "A company's action log: what its members do in it, such as inviting, viewing or removing a candidate, changing an interview or the team, topping up or connecting a tool, with who did it, when, and whether the assistant, an AI app or the API did it for them. The company's owner sees it. Candidates and members are named only while they're still in the company: the log keeps their ids, never their emails.",
             "AI usage and limits: for each use of AI, such as writing questions or the assistant's answer, what it was for, the model, its size and its cost, and the account and company it was for; and each time a limit refuses a request, which limit, when, and the account and company it refused. Never the text sent to the AI or its answer.",
-            "Records of AI calls: what prepza sends to the AI and what it answers each time it's used, such as writing questions from a job description, or the assistant's and the help chat's answers with what they read to answer (which can include candidates' results), and the votes on those answers. They're kept by Langfuse, below, only to monitor and improve the quality of the answers.",
+            "Records of AI calls: what testee sends to the AI and what it answers each time it's used, such as writing questions from a job description, or the assistant's and the help chat's answers with what they read to answer (which can include candidates' results), and the votes on those answers. They're kept by Langfuse, below, only to monitor and improve the quality of the answers.",
             "Usage statistics: steps such as signing up, a company being created, a candidate invited or a top-up, with counts like a score or an amount. Your account id is replaced by a code made with a secret key we hold, so the statistics don't name you, but they are pseudonymous, not anonymous: with the key, the code matches your account id. A company's id is kept as it is. No names, emails or texts are included.",
         ],
     },
     {
         "heading": "Why we use it",
         "items": [
-            "To provide prepza: generating interviews, running them for invited candidates, showing companies the results and sending the emails you ask for (contract).",
+            "To provide testee: generating interviews, running them for invited candidates, showing companies the results and sending the emails you ask for (contract).",
             "Service emails, such as invites, reports, billing problems, changes to our terms and important notices about the service (a security incident, planned downtime or a change to how it works), which are always sent (contract).",
-            "The activity digest and reminders about your companies, such as low credits or an interview with no candidates (our legitimate interest in helping you use prepza). They are on until you turn them off.",
+            "The activity digest and reminders about your companies, such as low credits or an interview with no candidates (our legitimate interest in helping you use testee). They are on until you turn them off.",
             "Product updates and news: for our own users who didn't tick \"Don't send me product updates and news\" the first time signing in offered it (article 13(2) of the ePrivacy Directive and § 103¹ of the Estonian Electronic Communications Act). You can stop them at any time, free of charge.",
             "Offers and promotions: only if you agree, by ticking the box when you sign in or in Settings (consent). You can withdraw it at any time.",
             "Choosing whom an email to many users goes to: whether your account is on a company's team (and whether as an owner or admin), has taken a company's interview or has used free practice, so a product update, an offer or an important notice can go only to those it concerns. Only that your account did so is used, never your answers, results or what a company holds about you (our legitimate interest in sending only relevant emails). Product updates and offers still go only to those who get them under the two points above.",
-            "Remembering that a candidate stopped a company's emails, so prepza doesn't email them for that company again (respecting their objection).",
-            "To keep prepza secure and working: preventing abuse, rate limits, error reports, and statistics that improve question quality (our legitimate interest).",
+            "Remembering that a candidate stopped a company's emails, so testee doesn't email them for that company again (respecting their objection).",
+            "To keep testee secure and working: preventing abuse, rate limits, error reports, and statistics that improve question quality (our legitimate interest).",
             "Question quality: we analyse how questions are answered and reported to find general, anonymised patterns of question quality that improve question generation for everyone; these patterns contain no personal data (our legitimate interest).",
-            "Reuse of generated questions: questions prepza generates may be reused in other customers' interviews and practice, without any personal data or detail that identifies a company or a person. A company can keep an interview's questions out of this in its settings.",
+            "Reuse of generated questions: questions testee generates may be reused in other customers' interviews and practice, without any personal data or detail that identifies a company or a person. A company can keep an interview's questions out of this in its settings.",
             "Records of AI calls let us monitor and improve the quality of the AI's questions and answers (our legitimate interest).",
-            "Cost control and preventing abuse: the records of AI usage and of limits reached show what AI costs and who reaches which limit, so we can keep prepza affordable and stop misuse (our legitimate interest).",
+            "Cost control and preventing abuse: the records of AI usage and of limits reached show what AI costs and who reaches which limit, so we can keep testee affordable and stop misuse (our legitimate interest).",
             "A company's action log lets its owner see who did what in the company, and our support check it when the company asks for help (the company's and our legitimate interest in accountability).",
-            "Usage statistics show which parts of prepza help people and which prices and limits work, so we can improve them (our legitimate interest).",
+            "Usage statistics show which parts of testee help people and which prices and limits work, so we can improve them (our legitimate interest).",
             "Purchase records, kept for bookkeeping as Estonian accounting law requires (legal obligation).",
             "Showing a company as verified, by checking its website against the email domains of its owners and admins (our legitimate interest).",
-            "Open to offers: only if you turn it on (consent), companies hiring on prepza see your name, your LinkedIn profile and your latest timed practice result on each subject you practised that one of their interviews covers at its level, so they can invite you to that interview. We don't rank or recommend you and make no decision about you: the company decides whom to invite. You can withdraw at any time in Settings, and you then disappear from every company's list at once. The log of your choices is kept as proof of your consent (our legal obligation to show it).",
-            "Interview results, timings and integrity signals help the hiring company assess your answers fairly (the company's legitimate interest). The signals include patterns in your answers: times about the same on every question, or hard questions right while easy ones were wrong; with them, the company is shown questions to ask you about in a live interview. People at the company make the hiring decision; prepza makes no decision about you on its own. You can ask the company for a person to review your result, and for an accommodation such as extra time before you start.",
+            "Open to offers: only if you turn it on (consent), companies hiring on testee see your name, your LinkedIn profile and your latest timed practice result on each subject you practised that one of their interviews covers at its level, so they can invite you to that interview. We don't rank or recommend you and make no decision about you: the company decides whom to invite. You can withdraw at any time in Settings, and you then disappear from every company's list at once. The log of your choices is kept as proof of your consent (our legal obligation to show it).",
+            "Interview results, timings and integrity signals help the hiring company assess your answers fairly (the company's legitimate interest). The signals include patterns in your answers: times about the same on every question, or hard questions right while easy ones were wrong; with them, the company is shown questions to ask you about in a live interview. People at the company make the hiring decision; testee makes no decision about you on its own. You can ask the company for a person to review your result, and for an accommodation such as extra time before you start.",
         ],
     },
     {
         "heading": "Who we share it with",
         "paragraphs": [
-            "We share data with the service providers that run prepza for us, under agreements that protect it, and with Paddle, which sells the top-ups:",
+            "We share data with the service providers that run testee for us, under agreements that protect it, and with Paddle, which sells the top-ups:",
         ],
         "items": [
             "Google (Firebase Authentication; Google LLC, United States, under the EU-US Data Privacy Framework): sign-in. LinkedIn and GitHub only confirm who you are when you sign in with them; we don't receive anything else from them.",
@@ -79,27 +79,27 @@ PRIVACY_SECTIONS = [
             'Cloudflare (Turnstile; Cloudflare, Inc., United States, under the EU-US Data Privacy Framework): the "I\'m not a robot" check.',
             "Google Cloud, our hosting provider, which stores the data (in the EU, Belgium).",
             "Upstash: short-lived counters for rate limits and live updates (in the EU, Belgium).",
-            "Companies, only if you turn on Open to offers: companies hiring on prepza see what is described above. Each is responsible for how it uses what it sees. If one invites you, the invite goes to your account's email, and the company sees that email as it sees any candidate's.",
+            "Companies, only if you turn on Open to offers: companies hiring on testee see what is described above. Each is responsible for how it uses what it sees. If one invites you, the invite goes to your account's email, and the company sees that email as it sees any candidate's.",
             "Paddle (Paddle.com Market Ltd, United Kingdom) isn't one of them: it sells the top-ups itself, as the merchant of record, and is the controller of the payment, tax and billing details it collects, under its own privacy policy. We pass it the email of the member buying, and it tells us what was bought and paid.",
         ],
     },
     {
         "heading": "Tools a company connects",
         "paragraphs": [
-            "A company can connect its own tools to prepza, and then we send them data on its instruction, as part of the service it asked for: its applicant tracking system (Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR) receives your grade, whether it reached the passing grade, the integrity signals and a link to your results; a Slack channel it chose receives its notifications, such as that you finished and your grade; and its own systems, through prepza's API or web hooks, receive your email, name, progress, grade, whether you reached the passing grade, the integrity signals and your invite link. The company chooses and controls these tools, which may be outside the EU, and is responsible for how they use your data.",
+            "A company can connect its own tools to testee, and then we send them data on its instruction, as part of the service it asked for: its applicant tracking system (Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR) receives your grade, whether it reached the passing grade, the integrity signals and a link to your results; a Slack channel it chose receives its notifications, such as that you finished and your grade; and its own systems, through testee's API or web hooks, receive your email, name, progress, grade, whether you reached the passing grade, the integrity signals and your invite link. The company chooses and controls these tools, which may be outside the EU, and is responsible for how they use your data.",
         ],
     },
     {
         "heading": "AI apps you connect",
         "paragraphs": [
-            "You can connect an AI app of your own, such as Claude (by Anthropic) or ChatGPT (by OpenAI), to your prepza account. Only when you do, and only for what you ask it, it reads and changes your companies' data with your access, including candidates' results, and that data reaches the app's provider under the app's own terms and privacy policy, not ours. You choose these apps and can disconnect one at any time on a company's Integrations tab; deleting your account disconnects them all. A company's owners and admins can stop AI apps from using that company's data.",
+            "You can connect an AI app of your own, such as Claude (by Anthropic) or ChatGPT (by OpenAI), to your testee account. Only when you do, and only for what you ask it, it reads and changes your companies' data with your access, including candidates' results, and that data reaches the app's provider under the app's own terms and privacy policy, not ours. You choose these apps and can disconnect one at any time on a company's Integrations tab; deleting your account disconnects them all. A company's owners and admins can stop AI apps from using that company's data.",
         ],
     },
     {
         "heading": "Emails and unsubscribing",
         "paragraphs": [
             "Service emails, such as invites, reports, billing problems, changes to our terms and important notices about the service, are always sent. You choose the others in Settings, under Emails: the activity digest, reminders, product updates and news, and offers and promotions. Every optional email has an unsubscribe link that works without signing in, and marking an optional email as spam turns it off too. If an email to you bounces for good, or you mark one of ours as spam, we stop sending product emails and notices to that address until you ask us to start again.",
-            "Invites and reminders a company sends to candidates through prepza have links to stop that company's emails, or that interview's reminders. prepza then doesn't email that address for the company again, and the company sees the invite as not delivered.",
+            "Invites and reminders a company sends to candidates through testee have links to stop that company's emails, or that interview's reminders. testee then doesn't email that address for the company again, and the company sees the invite as not delivered.",
         ],
     },
     {
@@ -122,7 +122,7 @@ PRIVACY_SECTIONS = [
             "Records of AI usage and of limits reached: 13 months, without your account id once you delete your account.",
             "Practice rounds: until you delete your account.",
             "Open to offers: until you turn it off or delete your account, and at most a year after you last turned it on or saved your LinkedIn profile; the log of your choices, until you delete your account.",
-            "A report emailed from prepza: the PDF is kept only to send the email, and deleted at most 7 days later.",
+            "A report emailed from testee: the PDF is kept only to send the email, and deleted at most 7 days later.",
             "Pasted job descriptions in our generation records: 90 days after the generation finishes. The interview made from them stays in the company's account until it's deleted.",
             "Your email settings and the log of their changes: until you delete your account.",
             "The record of digests and reminders sent to you: 30 days, or until you delete your account if that's sooner.",
@@ -154,17 +154,17 @@ PRIVACY_SECTIONS = [
     {
         "heading": "Cookies and storage",
         "paragraphs": [
-            "prepza uses only the cookies and browser storage it needs to work or that remember your own choices. There are no advertising or analytics cookies.",
-            "To keep you signed in: a cookie (prepza_token, renewed every hour while you use prepza, until you sign out) and the browser storage of our sign-in provider, Google Firebase. While you connect an AI app, a cookie (prepza_connect) lasts the few minutes it takes.",
-            "To remember your choices: your language (a cookie, prepza_locale, for a year, set when you choose a language or open prepza at a language's address), your light or dark theme, the width of the assistant's panel, how you last invited candidates, that you signed in on this browser before, the period you last chose for statistics, the notices about a changed legal document you closed, and your conversation with the assistant (until you sign in, only in this tab). They stay in your browser until you clear them.",
-            "A referral link: only if you choose to keep it, a cookie (prepza_ref) remembers the link you came through for 30 days, so the credits reach both companies.",
+            "testee uses only the cookies and browser storage it needs to work or that remember your own choices. There are no advertising or analytics cookies.",
+            "To keep you signed in: a cookie (testee_token, renewed every hour while you use testee, until you sign out) and the browser storage of our sign-in provider, Google Firebase. While you connect an AI app, a cookie (testee_connect) lasts the few minutes it takes.",
+            "To remember your choices: your language (a cookie, testee_locale, for a year, set when you choose a language or open testee at a language's address), your light or dark theme, the width of the assistant's panel, how you last invited candidates, that you signed in on this browser before, the period you last chose for statistics, the notices about a changed legal document you closed, and your conversation with the assistant (until you sign in, only in this tab). They stay in your browser until you clear them.",
+            "A referral link: only if you choose to keep it, a cookie (testee_ref) remembers the link you came through for 30 days, so the credits reach both companies.",
             'The "I\'m not a robot" check runs in a small frame from Cloudflare when a form needs it, and sets no tracking cookies.',
         ],
     },
     {
         "heading": "Children",
         "paragraphs": [
-            "prepza is not meant for anyone under 16.",
+            "testee is not meant for anyone under 16.",
         ],
     },
     {

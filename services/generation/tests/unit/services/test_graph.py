@@ -6,8 +6,8 @@ from typing import ClassVar
 import pytest
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.types import Command
-from prepza_common.ai.multi_answer import is_multi, multi_count
-from prepza_common.ai.sets import OptionIn, QuestionIn
+from testee_common.ai.multi_answer import is_multi, multi_count
+from testee_common.ai.sets import OptionIn, QuestionIn
 
 from generation.helpers.payload import build_preparation
 from generation.integrations import library, llm

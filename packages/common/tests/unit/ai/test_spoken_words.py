@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.ai.spoken_words import word_errors, words
+from testee_common.ai.spoken_words import word_errors, words
 
 
 def test_words_ignore_case_punctuation_and_hyphens():

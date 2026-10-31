@@ -1,5 +1,5 @@
-from prepza_common.ai.examples import example_range, is_formal
-from prepza_common.ai.multi_answer import multi_count
+from testee_common.ai.examples import example_range, is_formal
+from testee_common.ai.multi_answer import multi_count
 
 from generation.helpers.questions import usable_questions
 from generation.models.state import FillTask

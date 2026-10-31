@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Request, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.http.client_ip import limit_address
+from testee_common.auth.auth import CurrentUser
+from testee_common.http.client_ip import limit_address
 
 from assistant.constants.mcp import CONNECT_COOKIE
 from assistant.schemas.connect import ApproveIn, ConnectionOut, ConnectRequestOut, RedirectOut
@@ -27,7 +27,7 @@ async def connect_request(
 async def approve(
     request_id: str, user: CurrentUser, request: Request, body: ApproveIn | None = None
 ) -> RedirectOut:
-    """The user allows the app to use prepza as them (only to read, with `read_only`): back to
+    """The user allows the app to use testee as them (only to read, with `read_only`): back to
     the app with a single-use code. Only from the browser that asked to connect (its cookie); a
     403 from any other."""
     marked = request.cookies.get(CONNECT_COOKIE)

@@ -3,10 +3,10 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.config.constants import RATE_LIMITED
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.config.constants import RATE_LIMITED
+from testee_common.limits.limit_list import LIMITS
 
 from rounds.integrations import library
 from rounds.main import app

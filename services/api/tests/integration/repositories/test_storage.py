@@ -4,8 +4,8 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 from event_pushes import push
-from prepza_common.db.lock_waits import hold_first_commit, race
 from sqlalchemy import select, update
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from api.constants.api import DELIVERIES_KEPT, LAST_USED_EVERY
 from api.core.db import Session
@@ -35,7 +35,7 @@ def test_a_key_is_found_by_its_hash_and_its_use_noted_at_most_once_a_minute(run)
 
     async def scenario():
         made = await transaction(
-            keys.add, company, "Site", "pz_abc", hashed, "u1", None, READS, [], MAX_KEYS
+            keys.add, company, "Site", "te_abc", hashed, "u1", None, READS, [], MAX_KEYS
         )
         found = await transaction(keys.by_hash, hashed)
         await transaction(keys.used, made.id)
@@ -99,10 +99,10 @@ def test_a_deleted_company_loses_its_keys_web_hooks_and_their_deliveries(run):
 
     async def scenario():
         await transaction(
-            keys.add, company, "Site", "pz_a", uuid.uuid4().hex * 2, "u1", None, READS, [], MAX_KEYS
+            keys.add, company, "Site", "te_a", uuid.uuid4().hex * 2, "u1", None, READS, [], MAX_KEYS
         )
         await transaction(
-            keys.add, other, "Site", "pz_b", uuid.uuid4().hex * 2, "u1", None, READS, [], MAX_KEYS
+            keys.add, other, "Site", "te_b", uuid.uuid4().hex * 2, "u1", None, READS, [], MAX_KEYS
         )
         hook = await transaction(
             webhooks.add, company, "https://example.com/x", "sealed", "u1", MAX_WEBHOOKS
@@ -145,7 +145,7 @@ def test_a_deleted_account_leaves_the_keys_and_web_hooks_it_made_to_the_company(
             keys.add,
             company,
             "Mine",
-            "pz_m",
+            "te_m",
             uuid.uuid4().hex * 2,
             "gone",
             None,
@@ -157,7 +157,7 @@ def test_a_deleted_account_leaves_the_keys_and_web_hooks_it_made_to_the_company(
             keys.add,
             company,
             "Theirs",
-            "pz_t",
+            "te_t",
             uuid.uuid4().hex * 2,
             "stays",
             None,
@@ -202,7 +202,7 @@ def test_one_below_the_limit_a_second_add_at_the_same_time_is_refused(run, monke
 
     def new_key():
         return transaction(
-            keys.add, company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, READS, [], MAX_KEYS
+            keys.add, company, "Site", "te_x", uuid.uuid4().hex * 2, "u1", None, READS, [], MAX_KEYS
         )
 
     def new_hook():
@@ -239,7 +239,7 @@ def test_a_companys_keys_are_named_as_they_are_now_and_another_companys_never(ru
 
     def add(company_id, name):
         return transaction(
-            keys.add, company_id, name, "pz_n", uuid.uuid4().hex * 2, "u1", None, READS, [], 10
+            keys.add, company_id, name, "te_n", uuid.uuid4().hex * 2, "u1", None, READS, [], 10
         )
 
     async def scenario():

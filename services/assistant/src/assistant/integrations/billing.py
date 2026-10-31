@@ -1,8 +1,8 @@
 from uuid import UUID
 
 import httpx
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from assistant.config import settings
 from assistant.constants.tool_calls import TOOL_TIMEOUT_SECONDS

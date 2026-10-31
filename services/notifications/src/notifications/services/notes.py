@@ -8,9 +8,9 @@ is marked, so a late event about it tells nobody and the digest drops it."""
 import logging
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.events.notes import NoteDeleted, NoteWritten
-from prepza_common.events.notifications import NotificationKind, Recipient
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events.notes import NoteDeleted, NoteWritten
+from testee_common.events.notifications import NotificationKind, Recipient
 
 from notifications.config import settings
 from notifications.constants.notes import (

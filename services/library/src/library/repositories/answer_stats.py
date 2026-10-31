@@ -1,9 +1,9 @@
 import json
 import uuid
 
-from prepza_common.events import processed_events
 from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import processed_events
 
 from library.models.events import ProcessedEvent
 from library.models.sets import Question

@@ -1,6 +1,6 @@
 from fastapi import status
-from prepza_common.http import http
-from prepza_common.http.http import bearer, passed_on
+from testee_common.http import http
+from testee_common.http.http import bearer, passed_on
 
 from assistant.config import settings
 from assistant.constants.mcp import VERIFY_KEY_PATH

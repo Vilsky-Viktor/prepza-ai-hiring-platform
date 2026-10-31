@@ -142,7 +142,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -352,7 +352,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -537,7 +537,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -574,7 +574,7 @@
      "Candidates"
     ],
     "summary": "Invite a candidate",
-    "description": "Invites the candidate to the interview as the key (the action log names it) and reserves\ncredits for them, with their name if given. By default prepza emails the invitation and the\ncandidate signs in with that email; with `sign_in` false, your platform sends them to the\nresponse's `invite_url`, which opens the interview without signing in. With a `return_url`,\nthe finished page takes the candidate back to your platform. With `mode`, the candidate takes\nit by voice or click, whatever the interview's mode. Retrying is safe: inviting an\naddress whose invite is still open, or who already finished, returns that candidate as they\nare (`200`), without another email or credits; an expired invite is sent again. To send an\nopen invite again, use the resend endpoint.\n\nNeeds the `candidates:invite` permission.",
+    "description": "Invites the candidate to the interview as the key (the action log names it) and reserves\ncredits for them, with their name if given. By default testee emails the invitation and the\ncandidate signs in with that email; with `sign_in` false, your platform sends them to the\nresponse's `invite_url`, which opens the interview without signing in. With a `return_url`,\nthe finished page takes the candidate back to your platform. With `mode`, the candidate takes\nit by voice or click, whatever the interview's mode. Retrying is safe: inviting an\naddress whose invite is still open, or who already finished, returns that candidate as they\nare (`200`), without another email or credits; an expired invite is sent again. To send an\nopen invite again, use the resend endpoint.\n\nNeeds the `candidates:invite` permission.",
     "operationId": "invite_candidate",
     "security": [
      {
@@ -653,7 +653,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -801,7 +801,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -926,7 +926,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -1044,7 +1044,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -1154,7 +1154,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -1174,7 +1174,7 @@
       }
      },
      "409": {
-      "description": "The candidate already finished (`candidate_finished`), or was invited with `sign_in` false, so prepza doesn't email them (`invited_without_sign_in`)",
+      "description": "The candidate already finished (`candidate_finished`), or was invited with `sign_in` false, so testee doesn't email them (`invited_without_sign_in`)",
       "content": {
        "application/json": {
         "schema": {
@@ -1310,7 +1310,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -1346,7 +1346,7 @@
      "Notes"
     ],
     "summary": "Add a note",
-    "description": "Adds a note to the interview as the key (named as its author), for your team to read in\nprepza; candidates never see it. Retrying is safe: the same request from the same key within\n15 minutes returns the note the first one added, with `200`.\n\nNeeds the `notes:add` permission.",
+    "description": "Adds a note to the interview as the key (named as its author), for your team to read in\ntestee; candidates never see it. Retrying is safe: the same request from the same key within\n15 minutes returns the note the first one added, with `200`.\n\nNeeds the `notes:add` permission.",
     "operationId": "add_note",
     "security": [
      {
@@ -1425,7 +1425,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -1549,7 +1549,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -1678,7 +1678,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -1758,7 +1758,7 @@
       }
      },
      "503": {
-      "description": "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
+      "description": "testee is down for maintenance (`maintenance`), or what the endpoint does is paused for a while (`paused`); try again later",
       "content": {
        "application/json": {
         "schema": {
@@ -2551,7 +2551,7 @@
      "results_url": {
       "type": "string",
       "title": "Results Url",
-      "description": "Link to the candidate's full results and report in prepza"
+      "description": "Link to the candidate's full results and report in testee"
      },
      "invite_url": {
       "anyOf": [
@@ -2640,7 +2640,7 @@
       "name": "Anna Nowak",
       "passed": true,
       "progress": 100,
-      "results_url": "https://prepza.ai/companies/…/candidates/0e7a4d2c-91b3-4f6e-8a5d-2c1b9f3e7a60",
+      "results_url": "https://testee.ai/companies/…/candidates/0e7a4d2c-91b3-4f6e-8a5d-2c1b9f3e7a60",
       "signals": {
        "copies": 1,
        "fast_answers": 0,
@@ -2703,7 +2703,7 @@
        }
       ],
       "title": "Return Url",
-      "description": "Where to take the candidate once they've finished, optional: any https address (http only on `localhost` or `127.0.0.1`, while you test). The finished page shows a button to it, with `prepza_invite=<candidate id>` added to its query"
+      "description": "Where to take the candidate once they've finished, optional: any https address (http only on `localhost` or `127.0.0.1`, while you test). The finished page shows a button to it, with `testee_invite=<candidate id>` added to its query"
      },
      "theme": {
       "type": "string",
@@ -2719,7 +2719,7 @@
      "sign_in": {
       "type": "boolean",
       "title": "Sign In",
-      "description": "Whether the candidate signs in to prepza with this email, which prepza sends the invitation and its reminder to. Set it to false when your platform already knows who the candidate is and sends them to the response's `invite_url` itself: the link then opens the interview without signing in, and prepza sends no emails. Anyone with that link can take the interview, so give it only to the candidate",
+      "description": "Whether the candidate signs in to testee with this email, which testee sends the invitation and its reminder to. Set it to false when your platform already knows who the candidate is and sends them to the response's `invite_url` itself: the link then opens the interview without signing in, and testee sends no emails. Anyone with that link can take the interview, so give it only to the candidate",
       "default": true
      },
      "mode": {

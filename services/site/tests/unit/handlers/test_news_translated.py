@@ -7,7 +7,7 @@ import uuid
 import pytest
 from event_pushes import failing_handler, push
 from fastapi.testclient import TestClient
-from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH
+from testee_common.config.constants import MAX_NEWS_TEXT_LENGTH
 
 from site_content.api.v1 import events
 from site_content.main import app

@@ -15,7 +15,7 @@ from assistant.constants.mcp import (
 
 
 def describe_client(reported_name: str | None, redirect_uri: str) -> tuple[str, str, bool]:
-    """What the consent page names an app by: (its name, the site it returns to, whether prepza
+    """What the consent page names an app by: (its name, the site it returns to, whether testee
     knows it). A known site, or a known desktop app's own scheme, names the app, whatever it
     calls itself; an app on the user's own computer is named as it says; any other is unknown,
     and its name is only what it says. Only an https address is a known site

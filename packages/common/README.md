@@ -1,8 +1,8 @@
-# prepza-common
+# testee-common
 
 Contents: what the package covers, by topic (below), then [Modules](#modules), one line each.
 
-Code every prepza API service shares: sign-in, service tokens, logging, database and HTTP setup,
+Code every testee API service shares: sign-in, service tokens, logging, database and HTTP setup,
 the outbox and Pub/Sub, notifications, who may do what in a company (`company_access`, asked of companies,
 with the assistant's `X-Assistant` header passed on: a company that's gone is no access, an AI app
 the company doesn't allow and a change to a suspended company are refused as companies refuses them), translated messages, a small in-memory cache, the admin zone's
@@ -17,7 +17,7 @@ to that checked address: the api's web hooks, the assistant's AI app metadata do
 and the draw itself, by `MULTI_ANSWER_PERCENT`, a value in the admin zone's Controls).
 OpenAI chat models: `llm.chat_model` builds them one way for every service (a temperature only at
 reasoning effort `none`). It needs the package's `llm` extra (langchain-openai), so a service that
-calls OpenAI depends on `prepza-common[llm]`; the others don't install it.
+calls OpenAI depends on `testee-common[llm]`; the others don't install it.
 Tracing: `tracing` sends AI calls to Langfuse through its LangChain callback, only when
 `LANGFUSE_PUBLIC_KEY` and `LANGFUSE_SECRET_KEY` are set (`LANGFUSE_HOST`: the EU cloud unless set).
 `traced_run(name, tags, seed)` makes every LangChain call inside it (LangGraph runs too) one trace,
@@ -26,7 +26,7 @@ Personal data is masked before a trace leaves (`scrub.scrub_people`: emails, URL
 `name` and `email` fields, and the names a caller hides with `hiding`, the assistant's user's).
 Sentry's events are scrubbed by `scrub.scrub` (emails and URLs).
 `answer_votes` mirrors the chats' thumbs up and down there as a score on the answer's trace.
-Both need the `langfuse` extra: `prepza-common[llm,langfuse]` (generation and the assistant).
+Both need the `langfuse` extra: `testee-common[llm,langfuse]` (generation and the assistant).
 Limits: `limit_list.LIMITS` is every usage limit of ours (`limit_types.Limit`: its service, default,
 unit, window, lowest and highest value, scope), and the plain values tuned beside them
 (`counted=False`: nothing counts against them), and `limits.limit(redis, NAME)` its current value,
@@ -34,11 +34,11 @@ as a superadmin edited it in the admin zone (billing writes the `limits:values` 
 reads it at most every 30 seconds, and uses the default with Redis down). `limits.at_most` refuses
 one more of a count (keys, members), `limits.question_seconds` gives a new test's seconds a
 question by its level, and `limits.record_hit` records every refusal, ours or a
-provider's, as a log line (`prepza_limit_hits`) and a `limit.hit` event billing stores;
+provider's, as a log line (`testee_limit_hits`) and a `limit.hit` event billing stores;
 `limit_schemas.BudgetOut` is a shared daily budget's use today, for the AI costs page.
 AI costs: `ai_constants` holds the prices (`MODEL_PRICES`, `AUDIO_PRICES` for speech to text and text to speech, the Batch API's
 half) and every kind of AI call (`ACTIONS`), and `ai_usage.record` records one call with its tokens
-and cost as an "AI used" log line (`prepza_ai_spend`) and an `ai.used` event billing stores;
+and cost as an "AI used" log line (`testee_ai_spend`) and an `ai.used` event billing stores;
 `ai_usage.provider_refused` records OpenAI's rate limit and quota. `ai_cap` is the unpaid users'
 daily AI spend cap (`AI_SPEND_UNPAID_DAY`): `refuse_if_capped` answers 503 once today's spend
 reached it (with `Retry-After` to the next UTC day, `rate_limit.until_tomorrow`), and `add_unpaid` (billing) adds to it. Only `ai_usage` needs the `llm` extra.
@@ -129,12 +129,12 @@ and `INVOKER_AUDIENCE`, and the `<SERVICE>_SERVICE_SECRET` keys of the services 
 
 Services depend on it by path (see `[tool.uv.sources]` in each service's `pyproject.toml`). To
 publish it instead, run `uv build` and `uv publish` here, then replace the path source with a
-version requirement such as `prepza-common>=0.1`.
+version requirement such as `testee-common>=0.1`.
 
 ## Modules
 
-One line each, under its area's folder (`src/prepza_common/<area>/`; imported as
-`prepza_common.<area>.<module>`), by name (`tests/unit/test_readme_modules.py` fails on one left
+One line each, under its area's folder (`src/testee_common/<area>/`; imported as
+`testee_common.<area>.<module>`), by name (`tests/unit/test_readme_modules.py` fails on one left
 out or listed under another area):
 
 ### `ai/`
@@ -147,7 +147,7 @@ out or listed under another area):
 - `llm`: OpenAI chat models built one way, prices and token estimates.
 - `multi_answer`: "select all that apply" questions and their share of a draw.
 - `page_keys`: the pages where the assistant's panel opens, by their guide's key.
-- `scope`: what prepza's AI chats answer, and what they don't.
+- `scope`: what testee's AI chats answer, and what they don't.
 - `secret_words`: words that say a message holds a secret, in every language.
 - `secrets_check`: secrets pasted into the AI chats, found before anything keeps them.
 - `sets`: a generated test's and a template's shapes, as services pass them.
@@ -173,7 +173,7 @@ out or listed under another area):
 - `route_guards`: lists the routes that run no guard, and the `/internal` routes that take no service
   token or Google signature, for each service's test.
 - `service_auth`: short-lived, audience-bound tokens for calls between services.
-- `superadmin`: prepza's own team, signed in with Google, for the admin zone.
+- `superadmin`: testee's own team, signed in with Google, for the admin zone.
 - `tokens`: secret tokens kept as their hashes, compared in constant time.
 - `user`: the signed-in user (`User`).
 

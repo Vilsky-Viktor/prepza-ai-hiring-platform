@@ -21,7 +21,7 @@ class QuestionTask(TypedDict):
     # How many of `count` are multi-answer ("select all that apply").
     multi: int
     # How many of `count` come with an example when the subtopic is about material in a formal
-    # notation (prepza_common.ai.examples).
+    # notation (testee_common.ai.examples).
     examples: int
     level: str
     # Questions the topic already has, reused from other tests.
@@ -59,7 +59,7 @@ class FillTask(TypedDict):
 
 class State(TypedDict):
     input_text: str
-    # The code of the language content is written in (prepza_common.config.constants.LANGUAGES).
+    # The code of the language content is written in (testee_common.config.constants.LANGUAGES).
     language: str
     # A template (public practice): extraction leaves out anything naming the company.
     template: bool
@@ -83,7 +83,7 @@ class State(TypedDict):
     topic_embeddings: list[list[float]]
     reused: list[list[dict]]
     # The share of each topic's questions that are multi-answer, as it was when the questions
-    # started (prepza_common.ai.multi_answer.multi_share), so the whole run holds one.
+    # started (testee_common.ai.multi_answer.multi_share), so the whole run holds one.
     multi_share: float
     final: list[dict]
     # Fill branches append {"topic_index", "item"} here; operator.add merges the lists, and a

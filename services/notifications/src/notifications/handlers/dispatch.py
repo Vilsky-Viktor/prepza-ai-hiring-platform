@@ -2,10 +2,10 @@
 hook's work, campaigns' translations and deletions (rule 11: each is safe to repeat; an email carries the event's id as its idempotency
 key, a notification its key, and deleting twice deletes nothing more)."""
 
-from prepza_common.events.campaigns import CAMPAIGN_TRANSLATED
-from prepza_common.events.deletions import USER_DELETED
-from prepza_common.events.notes import NOTE_CREATED, NOTE_DELETED, NOTE_EDITED
-from prepza_common.events.notifications import NEWS_WITHDRAWN
+from testee_common.events.campaigns import CAMPAIGN_TRANSLATED
+from testee_common.events.deletions import USER_DELETED
+from testee_common.events.notes import NOTE_CREATED, NOTE_DELETED, NOTE_EDITED
+from testee_common.events.notifications import NEWS_WITHDRAWN
 
 from notifications.constants.events import (
     CANDIDATE_INTERVIEW_DELETED,

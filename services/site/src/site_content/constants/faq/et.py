@@ -4,18 +4,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "Mis on prepza?",
+        "question": "Mis on testee?",
         "answer": "Ajapiiranguga intervjuu sinu töökuulutuse põhjal, mis tahes rolli jaoks. Kasuta seda kandidaatide sõelumiseks enne, kui nendega kohtud, või värbamise omaette sammuna: mõlemal juhul näed, kes tööd päriselt tunneb.",
     },
     {
         "key": "roles",
         "question": "Milliste rollide jaoks saan värvata?",
-        "answer": "Iga rolli jaoks, kus teadmised loevad: klienditugi, müük, rahandus, tervishoid, oskustööd, inseneeria, turundus ja palju muud. Kui oskad tööd kirjeldada, oskab prepza selle jaoks intervjuu teha.",
+        "answer": "Iga rolli jaoks, kus teadmised loevad: klienditugi, müük, rahandus, tervishoid, oskustööd, inseneeria, turundus ja palju muud. Kui oskad tööd kirjeldada, oskab testee selle jaoks intervjuu teha.",
     },
     {
         "key": "hiring",
         "question": "Kuidas see töötab?",
-        "answer": "Kleebi avalehele töökuulutus, anna oma ettevõttele nimi ja vaata üle teemad, mida prepza pakub. Seejärel kutsu kandidaadid: kirjuta nende e-posti aadressid, kleebi nimekiri või laadi üles fail. Kandidaadid, kes pole mõne päeva jooksul alustanud, saavad ühe meeldetuletuse. Iga kandidaat saab oma küsimused, igal küsimusel on ajapiirang, ja sa näed tema tulemust ning kõiki vastuseid kohe, kui ta lõpetab.",
+        "answer": "Kleebi avalehele töökuulutus, anna oma ettevõttele nimi ja vaata üle teemad, mida testee pakub. Seejärel kutsu kandidaadid: kirjuta nende e-posti aadressid, kleebi nimekiri või laadi üles fail. Kandidaadid, kes pole mõne päeva jooksul alustanud, saavad ühe meeldetuletuse. Iga kandidaat saab oma küsimused, igal küsimusel on ajapiirang, ja sa näed tema tulemust ning kõiki vastuseid kohe, kui ta lõpetab.",
     },
     {
         "key": "link",
@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Kas ettevõtted võivad mind mu harjutamise kaudu leida?",
-        "answer": "Ainult siis, kui ise soovid. Lülita „Avatud tööpakkumistele“ sisse pärast harjutusvooru või seadetes ja lisa oma LinkedIni profiili aadress. Siis näevad prepza kaudu värbavad ettevõtted sinu nime, LinkedIni profiili ja viimast harjutuse tulemust igas nende intervjuude teemas, mida oled harjutanud, ning võivad sind intervjuule kutsuda. prepza ei järjesta ega soovita sind. Saad selle igal ajal seadetes välja lülitada ja kaod siis kohe kõigi ettevõtete loenditest; see lõpeb ka aasta pärast seda, kui selle viimati sisse lülitasid või LinkedIni profiili salvestasid.",
+        "answer": "Ainult siis, kui ise soovid. Lülita „Avatud tööpakkumistele“ sisse pärast harjutusvooru või seadetes ja lisa oma LinkedIni profiili aadress. Siis näevad testee kaudu värbavad ettevõtted sinu nime, LinkedIni profiili ja viimast harjutuse tulemust igas nende intervjuude teemas, mida oled harjutanud, ning võivad sind intervjuule kutsuda. testee ei järjesta ega soovita sind. Saad selle igal ajal seadetes välja lülitada ja kaod siis kohe kõigi ettevõtete loenditest; see lõpeb ka aasta pärast seda, kui selle viimati sisse lülitasid või LinkedIni profiili salvestasid.",
     },
     {
         "key": "cheating",
@@ -55,7 +55,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Milline on hind võrreldes teiste hindamisvahenditega?",
-        "answer": "Paljusid hindamisvahendeid müüakse kuu- või aastatellimusena, mille eest maksad ka siis, kui kedagi ei testi. prepzas maksad ainult kandidaatide eest: {candidate} krediiti ({candidate_price}) kandidaadi kohta, ilma lepingu, kasutajatasude ja intervjuu loomise tasuta. Ettevõte, kes kutsub {example_candidates} kandidaati kuus, maksab umbes {example_year_price} aastas. Kui testid igal kuul palju kandidaate, võib tellimus olla odavam, nii et võrdle oma numbritega.",
+        "answer": "Paljusid hindamisvahendeid müüakse kuu- või aastatellimusena, mille eest maksad ka siis, kui kedagi ei testi. testees maksad ainult kandidaatide eest: {candidate} krediiti ({candidate_price}) kandidaadi kohta, ilma lepingu, kasutajatasude ja intervjuu loomise tasuta. Ettevõte, kes kutsub {example_candidates} kandidaati kuus, maksab umbes {example_year_price} aastas. Kui testid igal kuul palju kandidaate, võib tellimus olla odavam, nii et võrdle oma numbritega.",
     },
     {
         "key": "expire",
@@ -80,7 +80,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Kas saan tulemusi värbava juhiga jagada?",
-        "answer": "Jah. Laadi alla PDF-aruanne ühe kandidaadi või intervjuu kõigi kandidaatide kohta, saada see e-postiga otse prepzast või saada lühike kokkuvõte WhatsAppis, Telegramis, Viberis või LINE'is.",
+        "answer": "Jah. Laadi alla PDF-aruanne ühe kandidaadi või intervjuu kõigi kandidaatide kohta, saada see e-postiga otse testeest või saada lühike kokkuvõte WhatsAppis, Telegramis, Viberis või LINE'is.",
     },
     {
         "key": "action_log",
@@ -94,13 +94,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "Kas prepza töötab minu ATS-i või muude tööriistadega?",
+        "question": "Kas testee töötab minu ATS-i või muude tööriistadega?",
         "answer": "Jah, ilma lisatasuta. Ühenda Workable, Greenhouse, Teamtailor, Recruitee või Breezy HR oma ettevõtte vahekaardil Integratsioonid: kandidaadid, kelle viid etappi, saavad intervjuu ja nende tulemused lähevad tagasi ATS-i ([kuidas ühendada oskustestid ATS-iga](/guides/ats-integration-skills-tests)). Slack saab postitada sinu ettevõtte teavitusi kanalisse ja API kaudu saab sinu enda platvorm luua intervjuusid, kandidaate kutsuda ja hallata ning nende tulemusi vastu võtta, kusjuures iga API-võti saab teha ainult seda, mille talle märgid; vaata [API dokumentatsiooni](/api-docs).",
     },
     {
         "key": "ai_apps",
-        "question": "Kas saan prepzat kasutada Claude'i, ChatGPT või oma AI-agendi kaudu?",
-        "answer": "Jah. Lisa prepza Claude'i või ChatGPT-sse konnektorina (sammud on sinu ettevõtte vahekaardil Integratsioonid) ja luba see prepzas. Seejärel töötab rakendus sinu nimel ja sinu õigustega sinu ettevõtete, intervjuude ja kandidaatide tulemustega; enamik rakendusi küsib sinult enne, kui midagi muudab. Oma kontot või ettevõtet saad kustutada ainult prepzas. See, mida rakendus loeb, jõuab selle rakenduse tingimuste alusel tema pakkujani. Ühenduse saad igal ajal samal vahekaardil katkestada. Ühendada saab ka teisi AI-rakendusi ja ise loodud agente: arendajate dokumentatsiooni [MCP-vahekaardil](/api-docs?tab=mcp) on sammud ja näidisagendid ning serveris töötav agent saab sisse logida API-võtmega, millel on AI-agentide õigus. [Juhend AI-agentide, MCP ja API-de kohta](/guides/ai-agents-mcp-and-api) selgitab, milleks igaüks neist on.",
+        "question": "Kas saan testeed kasutada Claude'i, ChatGPT või oma AI-agendi kaudu?",
+        "answer": "Jah. Lisa testee Claude'i või ChatGPT-sse konnektorina (sammud on sinu ettevõtte vahekaardil Integratsioonid) ja luba see testees. Seejärel töötab rakendus sinu nimel ja sinu õigustega sinu ettevõtete, intervjuude ja kandidaatide tulemustega; enamik rakendusi küsib sinult enne, kui midagi muudab. Oma kontot või ettevõtet saad kustutada ainult testees. See, mida rakendus loeb, jõuab selle rakenduse tingimuste alusel tema pakkujani. Ühenduse saad igal ajal samal vahekaardil katkestada. Ühendada saab ka teisi AI-rakendusi ja ise loodud agente: arendajate dokumentatsiooni [MCP-vahekaardil](/api-docs?tab=mcp) on sammud ja näidisagendid ning serveris töötav agent saab sisse logida API-võtmega, millel on AI-agentide õigus. [Juhend AI-agentide, MCP ja API-de kohta](/guides/ai-agents-mcp-and-api) selgitab, milleks igaüks neist on.",
     },
     {
         "key": "candidates",
@@ -120,22 +120,22 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Mis saab töökuulutustest ja vastustest?",
-        "answer": "Töökuulutusi kasutatakse sinu ettevõtte intervjuude loomiseks ja kandidaatide vastuseid nende hindamiseks sinu ettevõtte jaoks. prepza loodud küsimusi võidakse taaskasutada ka teiste ettevõtete intervjuudes ja harjutusintervjuudes, ilma millegita, mis tuvastaks sind, sinu ettevõtet või kedagi teist; saad intervjuu küsimused sellest välja jätta selle intervjuu seadetes. Samuti tuletab prepza sellest, kuidas küsimustele vastatakse, üldisi, anonüümitud küsimuste kvaliteedi mustreid, et parandada küsimuste loomist. [Privaatsuspoliitika](/privacy) selgitab, mida me säilitame, kui kaua ja millised on kõigi õigused.",
+        "answer": "Töökuulutusi kasutatakse sinu ettevõtte intervjuude loomiseks ja kandidaatide vastuseid nende hindamiseks sinu ettevõtte jaoks. testee loodud küsimusi võidakse taaskasutada ka teiste ettevõtete intervjuudes ja harjutusintervjuudes, ilma millegita, mis tuvastaks sind, sinu ettevõtet või kedagi teist; saad intervjuu küsimused sellest välja jätta selle intervjuu seadetes. Samuti tuletab testee sellest, kuidas küsimustele vastatakse, üldisi, anonüümitud küsimuste kvaliteedi mustreid, et parandada küsimuste loomist. [Privaatsuspoliitika](/privacy) selgitab, mida me säilitame, kui kaua ja millised on kõigi õigused.",
     },
     {
         "key": "eu_ai_law",
         "question": "Kas ELis on seaduslik kasutada tehisaru kandidaatide eelvalikuks?",
-        "answer": "Jah, reeglite järgi. ELi tehisintellekti määruse (AI Act) alusel on kandidaate hindavad tööriistad väga tõenäoliselt suure riskiga, kohustustega alates 2. detsembrist 2027, ja GDPR kehtib juba praegu: värbamisotsuse teeb inimene, kandidaatidele öeldakse, et kasutatakse tehisaru, ja kõik dokumenteeritakse. prepza töötab just nii: tehisaru koostab küsimused, sinu ettevõtte inimesed vaatavad tulemused üle ja otsustavad ning kandidaatidele öeldakse seda enne alustamist. See ei ole õigusnõustamine; [Kas AI kasutamine värbamisel on ELis seaduslik?](/guides/is-ai-hiring-legal-in-the-eu) selgitab reegleid ja tähtaegu.",
+        "answer": "Jah, reeglite järgi. ELi tehisintellekti määruse (AI Act) alusel on kandidaate hindavad tööriistad väga tõenäoliselt suure riskiga, kohustustega alates 2. detsembrist 2027, ja GDPR kehtib juba praegu: värbamisotsuse teeb inimene, kandidaatidele öeldakse, et kasutatakse tehisaru, ja kõik dokumenteeritakse. testee töötab just nii: tehisaru koostab küsimused, sinu ettevõtte inimesed vaatavad tulemused üle ja otsustavad ning kandidaatidele öeldakse seda enne alustamist. See ei ole õigusnõustamine; [Kas AI kasutamine värbamisel on ELis seaduslik?](/guides/is-ai-hiring-legal-in-the-eu) selgitab reegleid ja tähtaegu.",
     },
     {
         "key": "uk_us",
-        "question": "Kas saame kasutada prepzat Ühendkuningriigi ja USA kandidaatidega?",
+        "question": "Kas saame kasutada testeed Ühendkuningriigi ja USA kandidaatidega?",
         "answer": "Jah. Andmetöötlusleping hõlmab Ühendkuningriigi ja USA õigust ning ettevõtetele mõeldud juhised ja kandidaatide teavituste mallid (New Yorgi linna, Illinoisi ja Colorado versioonidega) katavad selle, mida pead kandidaatidele ütlema. New Yorgi linna töökohtade jaoks kasuta seda alles siis, kui oled täitnud, mida Local Law 144 sinult nõuab: sõltumatu kallutatuse audit aasta jooksul enne kasutamist, selle kokkuvõtte avaldamine ja kandidaatide teavitamine 10 tööpäeva ette. Toimingute logi kallutatuse auditi eksport annab sinu audiitorile iga lõpetanud kandidaadi hinde ja tulemuse, et siduda need kandidaatide endi antud vastustega.",
     },
     {
         "key": "emails",
-        "question": "Milliseid e-kirju prepza saadab ja kuidas neid peatada?",
-        "answer": "Teenusekirjad, nagu kutsed, aruanded, makseprobleemid ja meie tingimuste muudatused, saadetakse alati. Ülejäänud, näiteks igapäevase tegevuste kokkuvõtte, meeldetuletused ja tooteuudised, valid seadetes jaotises E-kirjad või peatad iga kirja lingiga „Loobu tellimusest“. Kandidaadid saavad sinu ettevõtte kirjad või ühe intervjuu meeldetuletused peatada oma kutsetes ja meeldetuletustes olevate linkidega. prepza uudised on sinu teavitustes, ülaosas oleva kella all; olulisemad uudised tulevad ka e-kirjaga tooteuudisena, kuid ainult siis, kui see seade on sees.",
+        "question": "Milliseid e-kirju testee saadab ja kuidas neid peatada?",
+        "answer": "Teenusekirjad, nagu kutsed, aruanded, makseprobleemid ja meie tingimuste muudatused, saadetakse alati. Ülejäänud, näiteks igapäevase tegevuste kokkuvõtte, meeldetuletused ja tooteuudised, valid seadetes jaotises E-kirjad või peatad iga kirja lingiga „Loobu tellimusest“. Kandidaadid saavad sinu ettevõtte kirjad või ühe intervjuu meeldetuletused peatada oma kutsetes ja meeldetuletustes olevate linkidega. testee uudised on sinu teavitustes, ülaosas oleva kella all; olulisemad uudised tulevad ka e-kirjaga tooteuudisena, kuid ainult siis, kui see seade on sees.",
     },
     {
         "key": "delete",

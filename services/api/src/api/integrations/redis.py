@@ -1,7 +1,7 @@
 from functools import cache
 
-from prepza_common.redis.redis_client import redis_client
 from redis.asyncio import Redis
+from testee_common.redis.redis_client import redis_client
 
 from api.config import settings
 

@@ -1,5 +1,5 @@
-from prepza_common.config.settings import ServiceSettings
 from pydantic import Field
+from testee_common.config.settings import ServiceSettings
 
 
 class Settings(ServiceSettings):

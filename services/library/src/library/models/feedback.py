@@ -1,7 +1,6 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import (
     CheckConstraint,
     DateTime,
@@ -14,6 +13,7 @@ from sqlalchemy import (
     func,
 )
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from library.constants.feedback import ReportReason, ReportStatus
 from library.models.base import Base

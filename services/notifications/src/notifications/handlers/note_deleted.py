@@ -1,4 +1,4 @@
-from prepza_common.events.notes import NoteDeleted
+from testee_common.events.notes import NoteDeleted
 
 from notifications.services import notes
 

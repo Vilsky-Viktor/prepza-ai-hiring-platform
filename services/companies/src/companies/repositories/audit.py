@@ -1,19 +1,19 @@
 from datetime import UTC, datetime
 from uuid import UUID, uuid4
 
-from prepza_common.auth.key_actor import actor_key
-from prepza_common.config.constants import DELETED_USER
-from prepza_common.db.db import delete_in_batches, update_in_batches
-from prepza_common.events.audit_actions import (
+from sqlalchemy import select
+from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
+from sqlalchemy.orm import aliased
+from testee_common.auth.key_actor import actor_key
+from testee_common.config.constants import DELETED_USER
+from testee_common.db.db import delete_in_batches, update_in_batches
+from testee_common.events.audit_actions import (
     ACTION_GROUPS,
     MAX_TARGET_LABEL,
     AuditAction,
     TargetKind,
 )
-from sqlalchemy import select
-from sqlalchemy.dialects.postgresql import insert
-from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
-from sqlalchemy.orm import aliased
 
 from companies.core.security import REQUEST_VIA
 from companies.models.audit import AuditEvent
@@ -104,7 +104,7 @@ async def record_interview(
 
 
 async def store_event(session: AsyncSession, event_id: str, data: dict, at: datetime) -> None:
-    """Another service's action (prepza_common.events.audit), once however often it comes, at the
+    """Another service's action (testee_common.events.audit), once however often it comes, at the
     time it happened. An IntegrityError when its company is gone (its foreign key): the caller
     keeps nothing then."""
     query = (

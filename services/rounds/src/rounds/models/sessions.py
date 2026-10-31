@@ -2,10 +2,10 @@ import uuid
 from datetime import UTC, datetime
 from typing import TYPE_CHECKING
 
-from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, UniqueConstraint, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+from testee_common.db.db import one_of
 
 from rounds.constants.rounds import CORRECT_SCORE, RoundStatus
 from rounds.models.base import Base

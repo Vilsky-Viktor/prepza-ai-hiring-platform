@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from prepza_common.i18n.translations import TRANSLATIONS, raised_messages
+from testee_common.i18n.translations import TRANSLATIONS, raised_messages
 
 from generation.constants.generation import GENERATIONS_PAUSED
 

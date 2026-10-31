@@ -26,7 +26,7 @@ DATA = {
 
 
 def test_the_report_email_carries_the_pdf_and_replies_go_to_the_sender():
-    email = report_email(DATA, "https://prepza.com")
+    email = report_email(DATA, "https://testee.com")
 
     assert email.to == "boss@example.com"
     assert "ann@example.com" in email.subject
@@ -41,7 +41,7 @@ def test_the_report_of_all_candidates_has_its_own_text():
     data = {key: value for key, value in DATA.items() if key != "candidate"}
     data |= {"kind": "candidates", "language": "en"}
 
-    email = report_email(data, "https://prepza.com")
+    email = report_email(data, "https://testee.com")
 
     assert "Backend" in email.subject
     assert email.attachments == [("Candidates report – Backend.pdf", PDF)]
@@ -106,10 +106,10 @@ def test_a_reminder_opens_the_same_invite_and_is_tagged_with_it():
         "language": "en",
     }
 
-    reminder = candidate_reminder_email(data, "https://prepza.com", "secret")
+    reminder = candidate_reminder_email(data, "https://testee.com", "secret")
 
     assert "Acme" in reminder.subject
-    assert "https://prepza.com/invite/abc" in reminder.text
+    assert "https://testee.com/invite/abc" in reminder.text
     assert reminder.tags == {"kind": "candidate_reminder", "id": "i-1"}
 
 
@@ -124,11 +124,11 @@ def test_an_invite_from_a_company_with_a_logo_shows_it_beside_the_title():
         "logo_path": "/api/companies/companies/c-1/logo?v=2",
     }
 
-    with_logo = candidate_invite_email(data, "https://prepza.com/", "secret")
-    without = candidate_invite_email({**data, "logo_path": None}, "https://prepza.com/", "secret")
+    with_logo = candidate_invite_email(data, "https://testee.com/", "secret")
+    without = candidate_invite_email({**data, "logo_path": None}, "https://testee.com/", "secret")
 
     assert (
-        '<img src="https://prepza.com/api/companies/companies/c-1/logo?v=2" alt="Acme &amp; Co"'
+        '<img src="https://testee.com/api/companies/companies/c-1/logo?v=2" alt="Acme &amp; Co"'
         in with_logo.html
     )
     assert "<img" not in without.html
@@ -137,7 +137,7 @@ def test_an_invite_from_a_company_with_a_logo_shows_it_beside_the_title():
     assert 'height="80"' in title_row
     assert "padding:0 0 0 16px;" in title_row
 
-    rtl = candidate_invite_email({**data, "language": "ar"}, "https://prepza.com/", "secret")
+    rtl = candidate_invite_email({**data, "language": "ar"}, "https://testee.com/", "secret")
 
     assert "padding:0 16px 0 0;" in rtl.html
 
@@ -145,7 +145,7 @@ def test_an_invite_from_a_company_with_a_logo_shows_it_beside_the_title():
 def test_an_attachment_is_named_in_the_emails_language_without_unsafe_characters():
     data = DATA | {"language": "de", "candidate": 'Ann "A/B" Lee (ann@example.com)'}
 
-    [(name, _)] = report_email(data, "https://prepza.com").attachments
+    [(name, _)] = report_email(data, "https://testee.com").attachments
 
     assert name.endswith(".pdf")
     assert not any(char in name for char in '/\\:*?"<>|')
@@ -163,6 +163,6 @@ def test_a_reminder_from_a_company_carries_its_id_for_a_complaint():
         "company": "Acme",
     }
 
-    tags = candidate_reminder_email(data, "https://prepza.com", "secret").tags
+    tags = candidate_reminder_email(data, "https://testee.com", "secret").tags
 
     assert tags == {"kind": "candidate_reminder", "id": "i-1", "company": "c-1"}

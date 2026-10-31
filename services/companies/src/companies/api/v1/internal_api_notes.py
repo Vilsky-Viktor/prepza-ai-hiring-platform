@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.db.paging import PageParams
+from testee_common.db.paging import PageParams
 
 from companies.api.dependencies import ServiceCaller
 from companies.constants.audit import VIA_API

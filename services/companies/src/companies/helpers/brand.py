@@ -1,12 +1,12 @@
-from prepza_common.i18n.i18n import translate
+from testee_common.i18n.i18n import translate
 
 from companies.constants.brand import (
     CONTRAST_RULES,
-    PREPZA_BUTTON_RADIUS,
-    PREPZA_COLORS,
-    PREPZA_HEADING_FONT,
-    PREPZA_RADIUS,
-    PREPZA_TEXT_FONT,
+    TESTEE_BUTTON_RADIUS,
+    TESTEE_COLORS,
+    TESTEE_HEADING_FONT,
+    TESTEE_RADIUS,
+    TESTEE_TEXT_FONT,
     BrandFont,
     Theme,
 )
@@ -39,13 +39,13 @@ def unreadable(colors: dict[str, str]) -> str | None:
 
 
 def color_sets(saved: dict | None) -> dict[str, dict[str, str]]:
-    """The colors a company's candidates see, by theme: its own set, or prepza's for a theme it
+    """The colors a company's candidates see, by theme: its own set, or testee's for a theme it
     has none for, or whose set a stricter check now finds hard to read (saved before it)."""
     sets = {}
 
     for theme in Theme:
         colors = (saved or {}).get(theme)
-        sets[theme] = colors if colors and not unreadable(colors) else PREPZA_COLORS[theme]
+        sets[theme] = colors if colors and not unreadable(colors) else TESTEE_COLORS[theme]
 
     return sets
 
@@ -61,18 +61,18 @@ def brand_problems(saved: dict | None, language: str) -> dict[str, str]:
 
 
 def style_of(company) -> dict:
-    """A company's fonts and corner rounding, prepza's where it has none."""
+    """A company's fonts and corner rounding, testee's where it has none."""
 
     def saved(value, default):
         return default if company is None or value is None else value
 
     def font(value, default):
-        # A font no longer offered is prepza's.
+        # A font no longer offered is testee's.
         return value if value in set(BrandFont) else default
 
     return {
-        "heading_font": font(company and company.brand_heading_font, PREPZA_HEADING_FONT),
-        "text_font": font(company and company.brand_text_font, PREPZA_TEXT_FONT),
-        "radius": saved(company and company.brand_radius, PREPZA_RADIUS),
-        "button_radius": saved(company and company.brand_button_radius, PREPZA_BUTTON_RADIUS),
+        "heading_font": font(company and company.brand_heading_font, TESTEE_HEADING_FONT),
+        "text_font": font(company and company.brand_text_font, TESTEE_TEXT_FONT),
+        "radius": saved(company and company.brand_radius, TESTEE_RADIUS),
+        "button_radius": saved(company and company.brand_button_radius, TESTEE_BUTTON_RADIUS),
     }

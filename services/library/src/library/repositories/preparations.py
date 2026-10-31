@@ -1,9 +1,9 @@
 import uuid
 
-from prepza_common.db.db import delete_in_batches
 from sqlalchemy import delete, func, or_, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import aliased, selectinload
+from testee_common.db.db import delete_in_batches
 
 from library.constants.sets import SET_DELETE_BATCH, OwnerType, Pool
 from library.models.sets import Question, QuestionSet, Topic

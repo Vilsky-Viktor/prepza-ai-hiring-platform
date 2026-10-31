@@ -2,7 +2,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.auth.key_actor import key_actor
+from testee_common.auth.key_actor import key_actor
 
 from api.api.dependencies import needs
 from api.config import settings
@@ -83,7 +83,7 @@ async def remove_candidate(
         **NOT_FOUND,
         409: refusal(
             "The candidate already finished (`candidate_finished`), or was invited with "
-            "`sign_in` false, so prepza doesn't email them (`invited_without_sign_in`)"
+            "`sign_in` false, so testee doesn't email them (`invited_without_sign_in`)"
         ),
         429: {
             **refusal("The key reached its email limits (`rate_limited`)"),

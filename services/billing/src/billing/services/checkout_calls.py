@@ -1,4 +1,4 @@
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.limits.rate_limit import hit_or_skip
 
 from billing.integrations.redis import get_redis
 

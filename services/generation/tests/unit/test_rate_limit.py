@@ -3,8 +3,8 @@ import asyncio
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
-from prepza_common.limits.limit_list import LIMITS
-from prepza_common.limits.rate_limit import hit
+from testee_common.limits.limit_list import LIMITS
+from testee_common.limits.rate_limit import hit
 
 KEY = "rate:generations:u1"
 

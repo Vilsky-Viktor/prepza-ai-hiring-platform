@@ -6,7 +6,7 @@ from datetime import UTC, datetime
 
 import httpx
 import pytest
-from prepza_common.http import http
+from testee_common.http import http
 
 from billing.constants.products import PADDLE_API_VERSION
 from billing.integrations import paddle

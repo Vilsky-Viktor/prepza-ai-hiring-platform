@@ -1,14 +1,14 @@
-"""The race helper's check (prepza_common.db.lock_waits) sees a lock wait on a connection opened after
+"""The race helper's check (testee_common.db.lock_waits) sees a lock wait on a connection opened after
 it started looking, as when a race's second call is slow to connect."""
 
 import asyncio
 import os
 
-from prepza_common.db import lock_waits
-from prepza_common.db.db import sqlalchemy_url
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.pool import NullPool
+from testee_common.db import lock_waits
+from testee_common.db.db import sqlalchemy_url
 
 LOCK_KEY = 4_242_001
 

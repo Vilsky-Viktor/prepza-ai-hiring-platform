@@ -2,7 +2,7 @@ import asyncio
 from datetime import UTC, datetime
 from types import SimpleNamespace
 
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from billing.constants.credits import CANDIDATE_CREDITS
 from billing.core.security import service_token

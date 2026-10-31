@@ -2,14 +2,14 @@ from collections.abc import AsyncIterator
 
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
 from langchain_core.messages.ai import add_usage
-from prepza_common.ai import ai_usage
-from prepza_common.ai.ai_constants import Outcome
-from prepza_common.ai.llm import estimated_input, estimated_tokens, latest_messages
-from prepza_common.ai.scope import SCOPE_RULE
-from prepza_common.ai.tracing import traced
-from prepza_common.config.constants import LANGUAGES, OPERATOR
-from prepza_common.i18n.text_language import text_language, word_hits
-from prepza_common.limits.rate_limit import add_spent
+from testee_common.ai import ai_usage
+from testee_common.ai.ai_constants import Outcome
+from testee_common.ai.llm import estimated_input, estimated_tokens, latest_messages
+from testee_common.ai.scope import SCOPE_RULE
+from testee_common.ai.tracing import traced
+from testee_common.config.constants import LANGUAGES, OPERATOR
+from testee_common.i18n.text_language import text_language, word_hits
+from testee_common.limits.rate_limit import add_spent
 
 from assistant.config import settings
 from assistant.constants.chat_words import CHAT_WORDS

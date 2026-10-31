@@ -1,8 +1,8 @@
 import uuid
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from generation.main import app
 from generation.models.generation import Generation

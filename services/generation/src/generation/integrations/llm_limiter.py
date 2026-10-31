@@ -1,6 +1,6 @@
 from langchain_core.rate_limiters import BaseRateLimiter
-from prepza_common.http.pacing import take_turn, wait_turn
-from prepza_common.limits.limits import EVERYONE, limit, record_hit
+from testee_common.http.pacing import take_turn, wait_turn
+from testee_common.limits.limits import EVERYONE, limit, record_hit
 
 from generation.constants.generation import LLM_RATE_KEY, LLM_WAIT_JITTER_SECONDS
 from generation.integrations.redis import get_redis
@@ -10,7 +10,7 @@ class SharedRateLimiter(BaseRateLimiter):
     """At most GENERATION_CALLS_PER_SECOND LLM requests a second (as set in the Controls tab)
     across every generation process.
 
-    Counted in Redis per second (prepza_common.http.pacing), so the API and all workers share one
+    Counted in Redis per second (testee_common.http.pacing), so the API and all workers share one
     budget; without Redis, generation goes on unlimited rather than stopping. Chat (rounds)
     isn't limited here, which keeps it ahead of bulk generation.
     """

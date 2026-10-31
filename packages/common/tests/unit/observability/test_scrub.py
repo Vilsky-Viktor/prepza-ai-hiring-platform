@@ -1,8 +1,8 @@
-"""What leaves us for Sentry and Langfuse (prepza_common.observability.scrub): no emails, URLs cut to their
+"""What leaves us for Sentry and Langfuse (testee_common.observability.scrub): no emails, URLs cut to their
 host, and for Langfuse people's names too."""
 
-from prepza_common.observability.scrub import scrub, scrub_people
 from pydantic import BaseModel
+from testee_common.observability.scrub import scrub, scrub_people
 
 
 def test_emails_are_scrubbed_everywhere_in_an_event():
@@ -22,7 +22,7 @@ def test_emails_are_scrubbed_everywhere_in_an_event():
 def test_urls_keep_only_their_scheme_and_host_and_queries_are_dropped():
     hook = "https://hooks.slack.com/services/T0/B0/secret"
     event = {
-        "request": {"url": "https://api.prepza.com/invites/token123", "query_string": "t=1"},
+        "request": {"url": "https://api.testee.com/invites/token123", "query_string": "t=1"},
         "breadcrumbs": [
             {"category": "httplib", "data": {"url": hook, "http.query": "key=1"}},
         ],
@@ -31,7 +31,7 @@ def test_urls_keep_only_their_scheme_and_host_and_queries_are_dropped():
     }
 
     assert scrub(event) == {
-        "request": {"url": "https://api.prepza.com"},
+        "request": {"url": "https://api.testee.com"},
         "breadcrumbs": [{"category": "httplib", "data": {"url": "https://hooks.slack.com"}}],
         "spans": [
             {"description": "POST https://hooks.slack.com", "data": {"url": "http://x.io:8080"}}
@@ -59,7 +59,7 @@ def test_name_fields_of_data_and_hidden_names_are_masked_and_the_rest_kept():
     data = {
         "messages": [
             {"role": "system", "content": r'The user is "Jos\u00e9 Ruiz".'},
-            {"role": "user", "content": "Send José Ruiz's link https://prepza.com/i/tok3n"},
+            {"role": "user", "content": "Send José Ruiz's link https://testee.com/i/tok3n"},
         ],
         "candidate": Candidate(name="Bo", grade=3),
         "update": {"candidate_name": "Cy", "title": "Backend"},
@@ -69,7 +69,7 @@ def test_name_fields_of_data_and_hidden_names_are_masked_and_the_rest_kept():
     assert scrub_people(data, ("José Ruiz", r"Jos\u00e9 Ruiz")) == {
         "messages": [
             {"role": "system", "content": 'The user is "[person]".'},
-            {"role": "user", "content": "Send [person]'s link https://prepza.com"},
+            {"role": "user", "content": "Send [person]'s link https://testee.com"},
         ],
         "candidate": {"name": "[person]", "grade": 3},
         "update": {"candidate_name": "[person]", "title": "Backend"},

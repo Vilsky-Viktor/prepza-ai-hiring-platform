@@ -1,4 +1,4 @@
-from prepza_common.events.notifications import NotificationKind, Recipient
+from testee_common.events.notifications import NotificationKind, Recipient
 
 from notifications.config import settings
 from notifications.helpers.member_emails import (

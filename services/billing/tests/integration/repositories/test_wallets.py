@@ -3,8 +3,8 @@ import os
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.lock_waits import wait_for_lock_wait
 from sqlalchemy import delete
+from testee_common.db.lock_waits import wait_for_lock_wait
 
 from billing.constants.credits import CANDIDATE_CREDITS, WELCOME_COMPANY, Reason
 from billing.constants.products import TOP_UPS, OwnerType

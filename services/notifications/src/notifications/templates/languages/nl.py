@@ -3,16 +3,16 @@
 # The footer of reminders to a company's owners and admins.
 MEMBER_FOOTER = (
     "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van een "
-    "bedrijf op prepza."
+    "bedrijf op testee."
 )
 
 TEXTS = {
     "candidate": {
         "subject": "Uitnodiging voor een interview van {company}",
-        "preheader": "Doe “{title}” op prepza. Log in met {email} om te beginnen.",
+        "preheader": "Doe “{title}” op testee. Log in met {email} om te beginnen.",
         "heading": "Uitnodiging voor een interview",
         "lines": [
-            "{company} nodigt je uit voor het interview “{title}” op prepza.",
+            "{company} nodigt je uit voor het interview “{title}” op testee.",
             (
                 "Log in met {email} om te beginnen. Alleen dit adres kan het interview "
                 "doen, en je hebt één poging."
@@ -25,7 +25,7 @@ TEXTS = {
         "preheader": "Als je het interview verlaat, ga dan verder met deze link. Log in met {email}.",
         "heading": "Je link naar het interview",
         "lines": [
-            "Je bent begonnen aan het interview “{title}” van {company} op prepza.",
+            "Je bent begonnen aan het interview “{title}” van {company} op testee.",
             (
                 "Als je het verlaat, ga dan verder met deze link: log in met {email}. Hij blijft "
                 "werken, ook als {company} de link uitzet waarmee je begon. De tijd loopt door "
@@ -34,7 +34,7 @@ TEXTS = {
         ],
         "button": "Interview voortzetten",
         "footer": (
-            "Deze e-mail is naar {email} gestuurd omdat met dit adres een interview op prepza "
+            "Deze e-mail is naar {email} gestuurd omdat met dit adres een interview op testee "
             "is begonnen."
         ),
     },
@@ -45,7 +45,7 @@ TEXTS = {
         "lines": [
             (
                 "{company} heeft je een paar dagen geleden uitgenodigd voor het interview “{title}” "
-                "op prepza, en je bent nog niet begonnen."
+                "op testee, en je bent nog niet begonnen."
             ),
             (
                 "Log in met {email} om te beginnen. Alleen dit adres kan het interview doen, en je "
@@ -55,7 +55,7 @@ TEXTS = {
         "button": "Uitnodiging openen",
     },
     "member": {
-        "subject": "Word lid van {company} op prepza",
+        "subject": "Word lid van {company} op testee",
         "preheader": (
             "Word als {role} lid van het team van {company}. Log in met {email} om de uitnodiging "
             "te accepteren."
@@ -64,7 +64,7 @@ TEXTS = {
         "lines": [
             (
                 "{inviter} nodigt je uit om als {role} lid te worden van het team van {company} op "
-                "prepza."
+                "testee."
             ),
             (
                 "Log in met {email} om de uitnodiging te accepteren. Alleen dit adres kan de "
@@ -87,8 +87,8 @@ TEXTS = {
                 "{sender} te antwoorden."
             ),
         ],
-        "button": "Naar prepza",
-        "footer": "Deze e-mail is naar {email} gestuurd omdat {sender} op prepza een "
+        "button": "Naar testee",
+        "footer": "Deze e-mail is naar {email} gestuurd omdat {sender} op testee een "
         "kandidaatrapport met dit adres heeft gedeeld. Verwachtte je hem niet, dan kun je hem "
         "negeren.",
     },
@@ -103,17 +103,17 @@ TEXTS = {
                 "kandidaat liet zien, beste eerst. Beantwoord deze e-mail om {sender} te antwoorden."
             ),
         ],
-        "button": "Naar prepza",
-        "footer": "Deze e-mail is naar {email} gestuurd omdat {sender} op prepza een "
+        "button": "Naar testee",
+        "footer": "Deze e-mail is naar {email} gestuurd omdat {sender} op testee een "
         "kandidatenrapport met dit adres heeft gedeeld. Verwachtte je hem niet, dan kun je hem "
         "negeren.",
     },
     "digest": {
-        "subject": "Je activiteitenoverzicht op prepza",
+        "subject": "Je activiteitenoverzicht op testee",
         "preheader": "Wat er de afgelopen 24 uur in je bedrijven is gebeurd.",
         "heading": "Je activiteitenoverzicht",
         "lines": [
-            "Dit is er de afgelopen 24 uur in je bedrijven op prepza gebeurd.",
+            "Dit is er de afgelopen 24 uur in je bedrijven op testee gebeurd.",
         ],
         "rows": {
             "candidate_finished": "Kandidaten die klaar zijn: {count} · “{title}”",
@@ -124,10 +124,10 @@ TEXTS = {
             "note": "{author}: “{excerpt}”",
             "note_by_former": "Een voormalig lid: “{excerpt}”",
         },
-        "button": "prepza openen",
+        "button": "testee openen",
         "footer": (
             "Deze e-mail is naar {email} gestuurd omdat je lid bent van een bedrijf op "
-            "prepza en het activiteitenoverzicht ervan ontvangt."
+            "testee en het activiteitenoverzicht ervan ontvangt."
         ),
     },
     "low_credits": {
@@ -188,17 +188,17 @@ TEXTS = {
         "heading": "We werken onze gebruiksvoorwaarden bij",
         "lines": [
             (
-                "We hebben een nieuwe versie van de gebruiksvoorwaarden van prepza gepubliceerd. "
+                "We hebben een nieuwe versie van de gebruiksvoorwaarden van testee gepubliceerd. "
                 "Deze geldt vanaf {date}; tot die tijd gelden de huidige voorwaarden."
             ),
             (
-                "Als je prepza na {date} gebruikt, ga je akkoord met de nieuwe voorwaarden. Wil "
+                "Als je testee na {date} gebruikt, ga je akkoord met de nieuwe voorwaarden. Wil "
                 "je dat niet, dan kun je je account vóór die datum verwijderen in Instellingen."
             ),
         ],
         "button": "Lees de nieuwe voorwaarden",
         "footer": (
-            "Deze e-mail is naar {email} gestuurd omdat je een prepza-account hebt. Het is "
+            "Deze e-mail is naar {email} gestuurd omdat je een testee-account hebt. Het is "
             "een bericht over onze gebruiksvoorwaarden en wordt daarom altijd verstuurd, wat "
             "je e-mailinstellingen ook zijn."
         ),
@@ -209,7 +209,7 @@ TEXTS = {
         "heading": "We werken ons privacybeleid bij",
         "lines": [
             (
-                "We hebben een nieuwe versie van het privacybeleid van prepza gepubliceerd, "
+                "We hebben een nieuwe versie van het privacybeleid van testee gepubliceerd, "
                 "waarin staat hoe we je gegevens gebruiken. Deze geldt vanaf {date}; tot die tijd "
                 "geldt de huidige versie."
             ),
@@ -217,7 +217,7 @@ TEXTS = {
         ],
         "button": "Lees het nieuwe privacybeleid",
         "footer": (
-            "Deze e-mail is naar {email} gestuurd omdat je een prepza-account hebt. Het is "
+            "Deze e-mail is naar {email} gestuurd omdat je een testee-account hebt. Het is "
             "een bericht over hoe we je gegevens gebruiken en wordt daarom altijd verstuurd, "
             "wat je e-mailinstellingen ook zijn."
         ),
@@ -229,18 +229,18 @@ TEXTS = {
         "lines": [
             (
                 "We hebben een nieuwe versie gepubliceerd van de verwerkersovereenkomst waaronder "
-                "prepza de gegevens van je kandidaten verwerkt. Deze geldt vanaf {date}; tot die "
+                "testee de gegevens van je kandidaten verwerkt. Deze geldt vanaf {date}; tot die "
                 "tijd geldt de huidige versie."
             ),
             (
                 "Een bedrijf dat om redelijke redenen van gegevensbescherming bezwaar maakt, kan "
-                "vóór die datum stoppen met prepza en zijn bedrijf verwijderen."
+                "vóór die datum stoppen met testee en zijn bedrijf verwijderen."
             ),
         ],
         "button": "Lees de nieuwe overeenkomst",
         "footer": (
             "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van een "
-            "bedrijf op prepza. Het is een bericht over onze overeenkomst met je bedrijf en "
+            "bedrijf op testee. Het is een bericht over onze overeenkomst met je bedrijf en "
             "wordt daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
     },
@@ -252,10 +252,10 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "prepza openen",
+        "open_site": "testee openen",
         "footer": (
             "Deze e-mail is naar {email} gestuurd omdat je hebt gekozen voor productupdates en"
-            " nieuws van prepza."
+            " nieuws van testee."
         ),
     },
     "promotions": {
@@ -264,13 +264,13 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "prepza openen",
+        "open_site": "testee openen",
         "footer": (
             "Deze e-mail is naar {email} gestuurd omdat je hebt gekozen voor aanbiedingen en acties"
-            " van prepza."
+            " van testee."
         ),
     },
-    # An important notice: a service email about prepza itself (a security incident, planned
+    # An important notice: a service email about testee itself (a security incident, planned
     # downtime, a change to how it works), whatever the email settings; never a promotion.
     "notices": {
         "subject": "{subject}",
@@ -278,9 +278,9 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "prepza openen",
+        "open_site": "testee openen",
         "footer": (
-            "Deze e-mail is naar {email} gestuurd omdat je een prepza-account hebt. Het is een"
+            "Deze e-mail is naar {email} gestuurd omdat je een testee-account hebt. Het is een"
             " belangrijke mededeling over de dienst, zoals de beveiliging of beschikbaarheid"
             " ervan, en wordt daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
@@ -304,7 +304,7 @@ TEXTS = {
         "button": "Opwaarderen",
         "footer": (
             "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van "
-            "{company} op prepza. Hij gaat over de facturering van je bedrijf en wordt "
+            "{company} op testee. Hij gaat over de facturering van je bedrijf en wordt "
             "daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
     },
@@ -329,7 +329,7 @@ TEXTS = {
         "button": "Kaart bijwerken",
         "footer": (
             "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van "
-            "{company} op prepza. Hij gaat over de facturering van je bedrijf en wordt "
+            "{company} op testee. Hij gaat over de facturering van je bedrijf en wordt "
             "daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
     },
@@ -359,7 +359,7 @@ TEXTS = {
         "button": "Facturering openen",
         "footer": (
             "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van "
-            "{company} op prepza. Hij gaat over de facturering van je bedrijf en wordt daarom "
+            "{company} op testee. Hij gaat over de facturering van je bedrijf en wordt daarom "
             "altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
     },
@@ -384,7 +384,7 @@ TEXTS = {
         "button": "Facturering openen",
         "footer": (
             "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van "
-            "{company} op prepza. Hij gaat over de facturering van je bedrijf en wordt daarom "
+            "{company} op testee. Hij gaat over de facturering van je bedrijf en wordt daarom "
             "altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
     },
@@ -409,20 +409,20 @@ TEXTS = {
         "button": "Facturering openen",
         "footer": (
             "Deze e-mail is naar {email} gestuurd omdat je eigenaar of beheerder bent van "
-            "{company} op prepza. Hij gaat over de facturering van je bedrijf en wordt "
+            "{company} op testee. Hij gaat over de facturering van je bedrijf en wordt "
             "daarom altijd verstuurd, wat je e-mailinstellingen ook zijn."
         ),
     },
-    "footer": "Deze e-mail is naar {email} gestuurd omdat iemand dit adres op prepza heeft "
+    "footer": "Deze e-mail is naar {email} gestuurd omdat iemand dit adres op testee heeft "
     "uitgenodigd. Verwachtte je hem niet, dan kun je hem negeren.",
-    # An invite from a company prepza hasn't verified, at the end of the footer.
-    "unverified": "prepza heeft {company} niet geverifieerd.",
+    # An invite from a company testee hasn't verified, at the end of the footer.
+    "unverified": "testee heeft {company} niet geverifieerd.",
     "paste_link": "Of plak deze link in je browser",
     # The footer's links: optional emails' unsubscribe and settings, and a candidate's own.
     "unsubscribe": "Afmelden",
     "email_settings": "E-mailinstellingen wijzigen",
     "stop_reminders": "Stuur me geen herinneringen meer voor dit interview",
     "stop_company": "Stuur me geen e-mails meer namens {company}",
-    # Who runs prepza, at the end of every email.
-    "operator": "prepza wordt beheerd door {name}, {address}.",
+    # Who runs testee, at the end of every email.
+    "operator": "testee wordt beheerd door {name}, {address}.",
 }

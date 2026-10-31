@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.db.paging import PageParams
+from testee_common.auth.auth import CurrentUser
+from testee_common.db.paging import PageParams
 
 from companies.schemas.interview_notes import NoteIn, NoteOut, PinIn
 from companies.services import interview_notes

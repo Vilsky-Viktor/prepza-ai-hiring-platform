@@ -3,7 +3,7 @@ import uuid
 from datetime import UTC, datetime
 
 import httpx
-from prepza_common.events.notifications import NEWS_WITHDRAWN
+from testee_common.events.notifications import NEWS_WITHDRAWN
 
 from notifications.handlers import dispatch
 from notifications.repositories import notifications

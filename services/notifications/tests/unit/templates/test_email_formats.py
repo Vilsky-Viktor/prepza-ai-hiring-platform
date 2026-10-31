@@ -2,7 +2,7 @@ import pytest
 
 from notifications.helpers.member_emails import digest_email, legal_email
 
-SITE = "https://prepza.ai"
+SITE = "https://testee.ai"
 
 
 def recipient(language: str) -> dict:

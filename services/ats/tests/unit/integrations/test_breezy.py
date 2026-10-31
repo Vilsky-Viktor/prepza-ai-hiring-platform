@@ -6,7 +6,7 @@ import json
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.http import http
+from testee_common.http import http
 
 from ats.helpers.ats import breezy_signed
 from ats.integrations import ats_clients, breezy
@@ -157,7 +157,7 @@ def test_the_web_hook_is_created_for_stage_changes_and_deleted_by_its_id(api):
     assert created.method == "POST"
     assert json.loads(created.content) == {
         "url": "https://x/hook",
-        "description": "prepza",
+        "description": "testee",
         "events": ["candidateStatusUpdated"],
     }
     assert (deleted.method, str(deleted.url)) == (

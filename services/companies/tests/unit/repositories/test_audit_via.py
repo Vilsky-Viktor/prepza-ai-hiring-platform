@@ -1,6 +1,6 @@
 from uuid import uuid4
 
-from prepza_common.events.audit_actions import (
+from testee_common.events.audit_actions import (
     ACTION_GROUPS,
     MAX_TARGET_LABEL,
     AuditAction,

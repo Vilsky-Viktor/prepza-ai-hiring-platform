@@ -444,7 +444,7 @@
      "companies"
     ],
     "summary": "Rename Company",
-    "description": "Owners and admins rename the company; names stay unique across prepza, ignoring case.",
+    "description": "Owners and admins rename the company; names stay unique across testee, ignoring case.",
     "operationId": "rename_company_companies__company_id__name_patch",
     "security": [
      {
@@ -760,7 +760,7 @@
      "companies"
     ],
     "summary": "Export Bias Audit",
-    "description": "A CSV for an independent bias audit (NYC Local Law 144, the EEOC's four-fifths rule): a\nrow for each candidate who finished with a grade, with their id, the email the company joins\nits own self-reported categories on, the interview, the day they finished, their grade, the\npass mark, whether they passed and whether they scored above the interview's median. Only\none interview's (`interview_id`), or those finished from `from` and before `to`. prepza holds\nno protected characteristics; for the owner only, counted per company a day, and recorded in\nthe action log.",
+    "description": "A CSV for an independent bias audit (NYC Local Law 144, the EEOC's four-fifths rule): a\nrow for each candidate who finished with a grade, with their id, the email the company joins\nits own self-reported categories on, the interview, the day they finished, their grade, the\npass mark, whether they passed and whether they scored above the interview's median. Only\none interview's (`interview_id`), or those finished from `from` and before `to`. testee holds\nno protected characteristics; for the owner only, counted per company a day, and recorded in\nthe action log.",
     "operationId": "export_bias_audit_companies__company_id__bias_audit_get",
     "security": [
      {
@@ -4034,21 +4034,21 @@
     }
    }
   },
-  "/brand/prepza": {
+  "/brand/testee": {
    "get": {
     "tags": [
      "logos"
     ],
-    "summary": "Prepza Brand",
-    "description": "prepza's own colors (by theme), fonts and rounding: where a company's start, and what they\ngo back to.",
-    "operationId": "prepza_brand_brand_prepza_get",
+    "summary": "Testee Brand",
+    "description": "testee's own colors (by theme), fonts and rounding: where a company's start, and what they\ngo back to.",
+    "operationId": "testee_brand_brand_testee_get",
     "responses": {
      "200": {
       "description": "Successful Response",
       "content": {
        "application/json": {
         "schema": {
-         "$ref": "#/components/schemas/PrepzaBrand"
+         "$ref": "#/components/schemas/TesteeBrand"
         }
        }
       }
@@ -4072,7 +4072,7 @@
      "logos"
     ],
     "summary": "Set Brand Colors",
-    "description": "Any of the company's owners and admins sets its colors for one theme, or goes back to\nprepza's with none. Colors that would make any text hard to read are refused, so no\ncandidate is tested on a page they can't read.",
+    "description": "Any of the company's owners and admins sets its colors for one theme, or goes back to\ntestee's with none. Colors that would make any text hard to read are refused, so no\ncandidate is tested on a page they can't read.",
     "operationId": "set_brand_colors_companies__company_id__brand_colors__theme__put",
     "security": [
      {
@@ -4635,7 +4635,7 @@
      "internal"
     ],
     "summary": "Access",
-    "description": "What the user may do in the company: ats, notifications and the api guard their pages\nwith it (prepza_common.auth.company_access), refusing what companies' own routes refuse: the\ncaller passes on the assistant's X-Assistant header. A company that doesn't exist is 404.",
+    "description": "What the user may do in the company: ats, notifications and the api guard their pages\nwith it (testee_common.auth.company_access), refusing what companies' own routes refuse: the\ncaller passes on the assistant's X-Assistant header. A company that doesn't exist is 404.",
     "operationId": "access_internal_companies__company_id__access_get",
     "security": [
      {
@@ -5384,7 +5384,7 @@
      "internal"
     ],
     "summary": "Resend Invite",
-    "description": "Sends the invite again, as an owner or admin does on the candidate's page: refused for a\ncandidate who finished (409) or one prepza doesn't email (invited without a sign-in, 409);\nthe invite keeps its return address and theme.",
+    "description": "Sends the invite again, as an owner or admin does on the candidate's page: refused for a\ncandidate who finished (409) or one testee doesn't email (invited without a sign-in, 409);\nthe invite keeps its return address and theme.",
     "operationId": "resend_invite_internal_companies__company_id__interviews__interview_id__candidates__invite_id__resend_post",
     "security": [
      {
@@ -7637,7 +7637,7 @@
      "companies"
     ],
     "summary": "Set Ai Apps",
-    "description": "Owners and admins allow, or stop, members using the company's data from the AI apps they\nconnected. Never through an AI app or the assistant: a person decides, in prepza itself.",
+    "description": "Owners and admins allow, or stop, members using the company's data from the AI apps they\nconnected. Never through an AI app or the assistant: a person decides, in testee itself.",
     "operationId": "set_ai_apps_companies__company_id__ai_apps_put",
     "security": [
      {
@@ -7689,7 +7689,7 @@
      "companies"
     ],
     "summary": "Set Allowed Domains",
-    "description": "Owners and admins set the sites that may embed the company's interviews with the SDK,\nand whether localhost may too; the saved list. Never through an AI app or the assistant: a\nperson decides, in prepza itself.",
+    "description": "Owners and admins set the sites that may embed the company's interviews with the SDK,\nand whether localhost may too; the saved list. Never through an AI app or the assistant: a\nperson decides, in testee itself.",
     "operationId": "set_allowed_domains_companies__company_id__allowed_domains_put",
     "security": [
      {
@@ -8427,7 +8427,7 @@
      "dark"
     ],
     "title": "BrandColorSets",
-    "description": "The colors a candidate's pages use, by theme: the company's, or prepza's where it has\nnone."
+    "description": "The colors a candidate's pages use, by theme: the company's, or testee's where it has\nnone."
    },
    "BrandColors": {
     "properties": {
@@ -11770,22 +11770,6 @@
     "title": "PracticeResultOut",
     "description": "One practice topic's latest timed result: practice, never a company's interview."
    },
-   "PrepzaBrand": {
-    "properties": {
-     "colors": {
-      "$ref": "#/components/schemas/BrandColorSets"
-     },
-     "style": {
-      "$ref": "#/components/schemas/BrandStyle"
-     }
-    },
-    "type": "object",
-    "required": [
-     "colors",
-     "style"
-    ],
-    "title": "PrepzaBrand"
-   },
    "PreviewOut": {
     "properties": {
      "session_id": {
@@ -12101,7 +12085,7 @@
     },
     "type": "object",
     "title": "SavedBrandColors",
-    "description": "The sets a company saved, by theme; a theme without one uses prepza's."
+    "description": "The sets a company saved, by theme; a theme without one uses testee's."
    },
    "ScorecardAnswer": {
     "properties": {
@@ -13210,7 +13194,7 @@
      "query"
     ],
     "title": "SupportSearchIn",
-    "description": "A link or path from prepza's site, an id (an account's, a company's, an interview's, a\ncandidate's or a Paddle transaction's), an email address, or part of a company's name."
+    "description": "A link or path from testee's site, an id (an account's, a company's, an interview's, a\ncandidate's or a Paddle transaction's), an email address, or part of a company's name."
    },
    "SupportSearchOut": {
     "properties": {
@@ -13379,6 +13363,22 @@
     ],
     "title": "SupportUserOut",
     "description": "An account as support sees it: `email` and `created_at` None once the account is gone\n(its memberships may outlive it), or when its sign-in has none."
+   },
+   "TesteeBrand": {
+    "properties": {
+     "colors": {
+      "$ref": "#/components/schemas/BrandColorSets"
+     },
+     "style": {
+      "$ref": "#/components/schemas/BrandStyle"
+     }
+    },
+    "type": "object",
+    "required": [
+     "colors",
+     "style"
+    ],
+    "title": "TesteeBrand"
    },
    "Theme": {
     "type": "string",

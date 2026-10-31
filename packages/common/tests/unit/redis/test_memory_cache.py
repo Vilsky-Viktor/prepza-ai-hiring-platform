@@ -1,6 +1,6 @@
 import time
 
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 
 def test_a_value_is_kept_until_it_expires_and_expired_ones_go(monkeypatch):

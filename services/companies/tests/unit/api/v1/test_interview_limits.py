@@ -4,9 +4,9 @@ from types import SimpleNamespace
 import httpx
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.i18n.translations import TRANSLATIONS
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.i18n.translations import TRANSLATIONS
 
 from companies.api.v1 import interviews as route
 from companies.constants.invites import (

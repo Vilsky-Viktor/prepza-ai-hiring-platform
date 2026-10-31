@@ -3,7 +3,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Query, Response
-from prepza_common.auth.auth import CurrentUser
+from testee_common.auth.auth import CurrentUser
 
 from companies.constants.bias_audit import FILE_NAME, NOT_OWNER
 from companies.services import bias_audit
@@ -24,7 +24,7 @@ async def export_bias_audit(
     row for each candidate who finished with a grade, with their id, the email the company joins
     its own self-reported categories on, the interview, the day they finished, their grade, the
     pass mark, whether they passed and whether they scored above the interview's median. Only
-    one interview's (`interview_id`), or those finished from `from` and before `to`. prepza holds
+    one interview's (`interview_id`), or those finished from `from` and before `to`. testee holds
     no protected characteristics; for the owner only, counted per company a day, and recorded in
     the action log."""
     company = await require_owner(user, company_id, NOT_OWNER)

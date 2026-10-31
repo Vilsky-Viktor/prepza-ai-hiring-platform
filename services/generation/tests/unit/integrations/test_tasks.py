@@ -3,7 +3,7 @@ import base64
 import json
 from unittest import mock
 
-from prepza_common.http import http
+from testee_common.http import http
 
 from generation.config import settings
 from generation.constants.generation import RUN_GENERATION, TASK_DEADLINE_SECONDS
@@ -28,7 +28,7 @@ class FakeClient:
 def test_in_google_cloud_a_job_becomes_a_signed_cloud_task(monkeypatch):
     client = FakeClient()
     monkeypatch.setattr(http, "get_client", lambda: client)
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "prepza-prod")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "testee-prod")
     monkeypatch.setattr(tasks, "access_token", lambda: "google-token")
     monkeypatch.setattr(settings, "worker_url", "https://worker.run.app")
     monkeypatch.setattr(settings, "tasks_queue", "projects/p/locations/l/queues/generation")

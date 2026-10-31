@@ -1,7 +1,7 @@
 import asyncio
 from datetime import timedelta
 
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from rounds.api.v1 import internal_maintenance, schedules
 from rounds.core.security import service_token

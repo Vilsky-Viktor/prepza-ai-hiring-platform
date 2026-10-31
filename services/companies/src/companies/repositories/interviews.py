@@ -2,9 +2,9 @@ import uuid
 from collections.abc import Callable
 from datetime import UTC, datetime
 
-from prepza_common.events.deletions import INTERVIEW_DELETED, InterviewDeleted
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events.deletions import INTERVIEW_DELETED, InterviewDeleted
 
 from companies.constants.events import CANDIDATE_INTERVIEW_DELETED
 from companies.constants.invites import InviteStatus

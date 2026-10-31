@@ -1,7 +1,7 @@
 import uuid
 from types import SimpleNamespace
 
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from library.repositories import practice_matches, preparations
 from tests.unit.api.v1.test_internal import token

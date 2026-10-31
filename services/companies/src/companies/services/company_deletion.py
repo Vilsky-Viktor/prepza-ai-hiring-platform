@@ -1,4 +1,4 @@
-from prepza_common.db.db import delete_in_batches
+from testee_common.db.db import delete_in_batches
 
 from companies.constants.reports import READ_BATCH
 from companies.core.db import Session

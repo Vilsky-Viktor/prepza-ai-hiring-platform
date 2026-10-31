@@ -9,7 +9,7 @@ Run from the repo root:
 import asyncio
 import logging
 
-from prepza_common.observability.logging import configure_logging
+from testee_common.observability.logging import configure_logging
 
 from generation.constants.reuse import EMBEDDING_BATCH_SIZE
 from generation.integrations import library

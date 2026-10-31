@@ -1,4 +1,4 @@
-from prepza_common.events.deletions import UserDeleted
+from testee_common.events.deletions import UserDeleted
 
 from library.services.user_data import delete_data
 

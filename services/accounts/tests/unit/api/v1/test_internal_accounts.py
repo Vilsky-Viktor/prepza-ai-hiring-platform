@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import pytest
 from firebase_admin import auth as firebase_auth
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from accounts.constants.emails import FIREBASE_LOOKUP_LIMIT
 from accounts.core.security import service_token

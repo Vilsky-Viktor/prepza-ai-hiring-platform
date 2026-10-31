@@ -1,4 +1,4 @@
-# AI agents signed in to the MCP server with a company's API key (`pz_...`) get only the tools
+# AI agents signed in to the MCP server with a company's API key (`te_...`) get only the tools
 # their key's permissions allow (the api service's src/api/constants/permissions.py): each tool
 # here and the permission it needs. KEY_ONLY_MCP needs nothing beyond the mcp permission itself: the
 # key's company, the platform's pause, its guides and prices. Any other tool (the team, brand,

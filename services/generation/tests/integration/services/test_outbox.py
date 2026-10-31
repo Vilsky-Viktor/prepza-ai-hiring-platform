@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.events import outbox, pubsub
 from sqlalchemy import select
+from testee_common.events import outbox, pubsub
 
 from generation.constants.batch_work import BatchKind
 from generation.constants.statuses import Status

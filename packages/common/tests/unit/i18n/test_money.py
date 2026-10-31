@@ -1,4 +1,4 @@
-from prepza_common.i18n.money import money
+from testee_common.i18n.money import money
 
 
 def test_whole_yen_and_won_are_written_as_paddle_counts_them():

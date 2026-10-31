@@ -10,7 +10,7 @@ from contextlib import contextmanager
 import pytest
 from langchain_core.callbacks import BaseCallbackHandler
 from langgraph.graph import END, START, StateGraph
-from prepza_common.ai import tracing
+from testee_common.ai import tracing
 from typing_extensions import TypedDict
 
 from generation.constants.actions import INTERVIEW_GENERATION

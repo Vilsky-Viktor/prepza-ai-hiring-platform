@@ -1,6 +1,6 @@
-from prepza_common.events import outbox
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import outbox
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from billing.models.outbox import OutboxEvent
 

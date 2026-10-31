@@ -4,7 +4,7 @@
 import uuid
 
 from fastapi import HTTPException, status
-from prepza_common.ai.sets import TopicAdditionIn
+from testee_common.ai.sets import TopicAdditionIn
 
 from library.core.db import Session
 from library.models.sets import QuestionSet, Topic

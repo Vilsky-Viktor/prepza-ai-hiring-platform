@@ -4,18 +4,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "Wat is prepza?",
+        "question": "Wat is testee?",
         "answer": "Een interview met tijdslimiet, gemaakt op basis van je functieomschrijving, voor elke functie. Gebruik het om kandidaten te screenen voordat je ze ontmoet, of als stap in de werving zelf: hoe dan ook zie je wie het vak echt kent.",
     },
     {
         "key": "roles",
         "question": "Voor welke functies kan ik werven?",
-        "answer": "Elke functie waarin kennis telt: support, sales, financiën, zorg, technische vakken, engineering, marketing en meer. Als je de functie kunt beschrijven, kan prepza er een interview voor maken.",
+        "answer": "Elke functie waarin kennis telt: support, sales, financiën, zorg, technische vakken, engineering, marketing en meer. Als je de functie kunt beschrijven, kan testee er een interview voor maken.",
     },
     {
         "key": "hiring",
         "question": "Hoe werkt het?",
-        "answer": "Plak een functieomschrijving op de startpagina, geef je bedrijf een naam en controleer de onderwerpen die prepza voorstelt. Nodig daarna kandidaten uit: typ hun e-mailadressen, plak een lijst of upload een bestand. Kandidaten die na een paar dagen nog niet zijn begonnen, krijgen één herinnering. Elke kandidaat krijgt eigen vragen met een timer bij elke vraag, en je ziet hun score en elk antwoord zodra ze klaar zijn.",
+        "answer": "Plak een functieomschrijving op de startpagina, geef je bedrijf een naam en controleer de onderwerpen die testee voorstelt. Nodig daarna kandidaten uit: typ hun e-mailadressen, plak een lijst of upload een bestand. Kandidaten die na een paar dagen nog niet zijn begonnen, krijgen één herinnering. Elke kandidaat krijgt eigen vragen met een timer bij elke vraag, en je ziet hun score en elk antwoord zodra ze klaar zijn.",
     },
     {
         "key": "link",
@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Kunnen bedrijven me vinden via mijn oefeningen?",
-        "answer": "Alleen als je daarvoor kiest. Zet Open voor nieuwe kansen aan na een oefenronde of in Instellingen, met het adres van je LinkedIn-profiel. Bedrijven die via prepza werven, zien dan je naam, je LinkedIn-profiel en je nieuwste oefenresultaat op elk onderwerp van hun interviews dat je hebt geoefend, en kunnen je uitnodigen voor een interview. prepza rangschikt je niet en beveelt je niet aan. Zet het op elk moment uit in Instellingen, en je verdwijnt meteen uit de lijst van elk bedrijf; het stopt ook een jaar nadat je het voor het laatst hebt aangezet of je LinkedIn-profiel hebt opgeslagen.",
+        "answer": "Alleen als je daarvoor kiest. Zet Open voor nieuwe kansen aan na een oefenronde of in Instellingen, met het adres van je LinkedIn-profiel. Bedrijven die via testee werven, zien dan je naam, je LinkedIn-profiel en je nieuwste oefenresultaat op elk onderwerp van hun interviews dat je hebt geoefend, en kunnen je uitnodigen voor een interview. testee rangschikt je niet en beveelt je niet aan. Zet het op elk moment uit in Instellingen, en je verdwijnt meteen uit de lijst van elk bedrijf; het stopt ook een jaar nadat je het voor het laatst hebt aangezet of je LinkedIn-profiel hebt opgeslagen.",
     },
     {
         "key": "cheating",
@@ -55,7 +55,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Hoe verhoudt de prijs zich tot andere assessmenttools?",
-        "answer": "Veel assessmenttools worden verkocht als maand- of jaarabonnement, dat je ook betaalt als je niemand test. Bij prepza betaal je alleen per kandidaat: {candidate} credits ({candidate_price}), zonder contract, zonder kosten per gebruiker en zonder te betalen voor het maken van een interview. Een bedrijf dat {example_candidates} kandidaten per maand uitnodigt, betaalt ongeveer {example_year_price} per jaar. Test je elke maand veel kandidaten, dan kan een abonnement goedkoper zijn, dus vergelijk met je eigen cijfers.",
+        "answer": "Veel assessmenttools worden verkocht als maand- of jaarabonnement, dat je ook betaalt als je niemand test. Bij testee betaal je alleen per kandidaat: {candidate} credits ({candidate_price}), zonder contract, zonder kosten per gebruiker en zonder te betalen voor het maken van een interview. Een bedrijf dat {example_candidates} kandidaten per maand uitnodigt, betaalt ongeveer {example_year_price} per jaar. Test je elke maand veel kandidaten, dan kan een abonnement goedkoper zijn, dus vergelijk met je eigen cijfers.",
     },
     {
         "key": "expire",
@@ -80,7 +80,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Kan ik resultaten delen met een hiring manager?",
-        "answer": "Ja. Download een PDF-rapport voor één kandidaat of voor alle kandidaten van een interview, mail het rechtstreeks vanuit prepza, of stuur een korte samenvatting via WhatsApp, Telegram, Viber of LINE.",
+        "answer": "Ja. Download een PDF-rapport voor één kandidaat of voor alle kandidaten van een interview, mail het rechtstreeks vanuit testee, of stuur een korte samenvatting via WhatsApp, Telegram, Viber of LINE.",
     },
     {
         "key": "action_log",
@@ -94,13 +94,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "Werkt prepza met mijn ATS of andere tools?",
+        "question": "Werkt testee met mijn ATS of andere tools?",
         "answer": "Ja, zonder extra kosten. Koppel Workable, Greenhouse, Teamtailor, Recruitee of Breezy HR op het tabblad Integraties van je bedrijf: kandidaten die je naar een fase verplaatst, krijgen het interview, en hun resultaten gaan terug naar het ATS ([zo koppel je vaardigheidstests aan je ATS](/guides/ats-integration-skills-tests)). Slack kan de meldingen van je bedrijf in een kanaal plaatsen, en met de API kan je eigen platform interviews aanmaken, kandidaten uitnodigen en beheren en hun resultaten ontvangen, waarbij elke API-sleutel alleen mag wat je ervoor aanvinkt; zie de [API-documentatie](/api-docs).",
     },
     {
         "key": "ai_apps",
-        "question": "Kan ik prepza vanuit Claude, ChatGPT of mijn eigen AI-agent gebruiken?",
-        "answer": "Ja. Voeg prepza als connector toe aan Claude of ChatGPT (de stappen staan op het tabblad Integraties van je bedrijf) en sta het toe in prepza. De app werkt dan namens jou en met jouw rechten met je bedrijven, interviews en de resultaten van kandidaten; de meeste apps vragen het je voordat ze iets wijzigen. Je account of een bedrijf verwijder je alleen in prepza. Wat de app leest, gaat naar de aanbieder ervan, onder de voorwaarden van die app. Je kunt de app altijd ontkoppelen op hetzelfde tabblad. Ook andere AI-apps en agents die je zelf bouwt kunnen verbinden: het [MCP-tabblad](/api-docs?tab=mcp) van de ontwikkelaarsdocumentatie heeft de stappen en voorbeeldagents, en een agent op een server kan zich aanmelden met een API-sleutel die het recht voor AI-agents heeft. De [gids over AI-agents, MCP en API's](/guides/ai-agents-mcp-and-api) legt uit waarvoor elk ervan dient.",
+        "question": "Kan ik testee vanuit Claude, ChatGPT of mijn eigen AI-agent gebruiken?",
+        "answer": "Ja. Voeg testee als connector toe aan Claude of ChatGPT (de stappen staan op het tabblad Integraties van je bedrijf) en sta het toe in testee. De app werkt dan namens jou en met jouw rechten met je bedrijven, interviews en de resultaten van kandidaten; de meeste apps vragen het je voordat ze iets wijzigen. Je account of een bedrijf verwijder je alleen in testee. Wat de app leest, gaat naar de aanbieder ervan, onder de voorwaarden van die app. Je kunt de app altijd ontkoppelen op hetzelfde tabblad. Ook andere AI-apps en agents die je zelf bouwt kunnen verbinden: het [MCP-tabblad](/api-docs?tab=mcp) van de ontwikkelaarsdocumentatie heeft de stappen en voorbeeldagents, en een agent op een server kan zich aanmelden met een API-sleutel die het recht voor AI-agents heeft. De [gids over AI-agents, MCP en API's](/guides/ai-agents-mcp-and-api) legt uit waarvoor elk ervan dient.",
     },
     {
         "key": "candidates",
@@ -120,22 +120,22 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Wat gebeurt er met functieomschrijvingen en antwoorden?",
-        "answer": "Functieomschrijvingen worden gebruikt om de interviews van jouw bedrijf te maken, en de antwoorden van kandidaten om ze voor jouw bedrijf te beoordelen. De vragen die prepza genereert, kunnen ook worden hergebruikt in interviews en oefeninterviews van andere bedrijven, zonder iets wat jou, je bedrijf of iemand anders identificeert; je kunt de vragen van een interview hiervan uitsluiten in de instellingen van dat interview. prepza leidt daarnaast uit hoe vragen worden beantwoord algemene, geanonimiseerde patronen in de kwaliteit van vragen af, om te verbeteren hoe vragen worden gegenereerd. Het [privacybeleid](/privacy) legt uit wat we bewaren, hoe lang en welke rechten iedereen heeft.",
+        "answer": "Functieomschrijvingen worden gebruikt om de interviews van jouw bedrijf te maken, en de antwoorden van kandidaten om ze voor jouw bedrijf te beoordelen. De vragen die testee genereert, kunnen ook worden hergebruikt in interviews en oefeninterviews van andere bedrijven, zonder iets wat jou, je bedrijf of iemand anders identificeert; je kunt de vragen van een interview hiervan uitsluiten in de instellingen van dat interview. testee leidt daarnaast uit hoe vragen worden beantwoord algemene, geanonimiseerde patronen in de kwaliteit van vragen af, om te verbeteren hoe vragen worden gegenereerd. Het [privacybeleid](/privacy) legt uit wat we bewaren, hoe lang en welke rechten iedereen heeft.",
     },
     {
         "key": "eu_ai_law",
         "question": "Is het legaal om AI te gebruiken voor de preselectie van kandidaten in de EU?",
-        "answer": "Ja, met regels. Onder de Europese AI-verordening (AI Act) zijn tools die kandidaten beoordelen zeer waarschijnlijk hoog risico, met verplichtingen vanaf 2 december 2027, en de AVG geldt nu al: een mens neemt het besluit om iemand aan te nemen, kandidaten horen dat er AI wordt gebruikt en alles wordt vastgelegd. prepza werkt zo: AI schrijft de vragen, mensen in jouw bedrijf bekijken de resultaten en beslissen, en kandidaten worden geïnformeerd voordat ze beginnen. Dit is geen juridisch advies; [Is AI bij werving en selectie legaal in de EU?](/guides/is-ai-hiring-legal-in-the-eu) legt de regels en de data uit.",
+        "answer": "Ja, met regels. Onder de Europese AI-verordening (AI Act) zijn tools die kandidaten beoordelen zeer waarschijnlijk hoog risico, met verplichtingen vanaf 2 december 2027, en de AVG geldt nu al: een mens neemt het besluit om iemand aan te nemen, kandidaten horen dat er AI wordt gebruikt en alles wordt vastgelegd. testee werkt zo: AI schrijft de vragen, mensen in jouw bedrijf bekijken de resultaten en beslissen, en kandidaten worden geïnformeerd voordat ze beginnen. Dit is geen juridisch advies; [Is AI bij werving en selectie legaal in de EU?](/guides/is-ai-hiring-legal-in-the-eu) legt de regels en de data uit.",
     },
     {
         "key": "uk_us",
-        "question": "Kunnen we prepza gebruiken voor kandidaten in het Verenigd Koninkrijk en de VS?",
+        "question": "Kunnen we testee gebruiken voor kandidaten in het Verenigd Koninkrijk en de VS?",
         "answer": "Ja. De verwerkersovereenkomst dekt het Britse en Amerikaanse recht, en de instructies voor bedrijven en de sjablonen voor kandidaatinformatie (met versies voor New York City, Illinois en Colorado) dekken wat je kandidaten moet vertellen. Voor vacatures in New York City gebruik je het pas als je hebt gedaan wat Local Law 144 van je vraagt: een onafhankelijke bias-audit binnen het jaar vóór het gebruik, de publicatie van een samenvatting daarvan, en een kennisgeving aan kandidaten 10 werkdagen vooraf. De export voor een bias-audit in de Actielog geeft je auditor de score en de uitslag van elke kandidaat die klaar is, om te koppelen aan de antwoorden die je kandidaten zelf gaven.",
     },
     {
         "key": "emails",
-        "question": "Welke e-mails stuurt prepza, en hoe stop ik ze?",
-        "answer": "Service-e-mails, zoals uitnodigingen, rapporten, betalingsproblemen en wijzigingen in onze voorwaarden, worden altijd verstuurd. De rest, zoals het dagelijkse activiteitenoverzicht, herinneringen en productupdates, kies je in Instellingen, onder E-mails, of stop je met de link 'Afmelden' in elke e-mail. Kandidaten kunnen de e-mails van je bedrijf, of de herinneringen voor een interview, stoppen met de links in hun uitnodigingen en herinneringen. Nieuws van prepza staat bij je meldingen, de bel bovenaan; het belangrijkste nieuws komt ook per e-mail als productupdate, alleen zolang die instelling aan staat.",
+        "question": "Welke e-mails stuurt testee, en hoe stop ik ze?",
+        "answer": "Service-e-mails, zoals uitnodigingen, rapporten, betalingsproblemen en wijzigingen in onze voorwaarden, worden altijd verstuurd. De rest, zoals het dagelijkse activiteitenoverzicht, herinneringen en productupdates, kies je in Instellingen, onder E-mails, of stop je met de link 'Afmelden' in elke e-mail. Kandidaten kunnen de e-mails van je bedrijf, of de herinneringen voor een interview, stoppen met de links in hun uitnodigingen en herinneringen. Nieuws van testee staat bij je meldingen, de bel bovenaan; het belangrijkste nieuws komt ook per e-mail als productupdate, alleen zolang die instelling aan staat.",
     },
     {
         "key": "delete",

@@ -1,5 +1,5 @@
 """A brand's font splits in two, as the site has: one for titles (brand_heading_font) and one
-for the text (brand_text_font). A saved font becomes both; prepza's pair (poppins_geist) becomes
+for the text (brand_text_font). A saved font becomes both; testee's pair (poppins_geist) becomes
 Poppins titles over Geist text. brand_font and its CHECK go. The new CHECKs are added NOT VALID
 and validated in their own transaction, which reads the rows without blocking writes
 

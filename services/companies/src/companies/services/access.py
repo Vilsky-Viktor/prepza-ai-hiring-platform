@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.auth.key_actor import actor_key
-from prepza_common.config.constants import VIA_MCP
+from testee_common.auth.auth import CurrentUser
+from testee_common.auth.key_actor import actor_key
+from testee_common.config.constants import VIA_MCP
 
 from companies.constants.ai_apps import AI_APPS_OFF, KEY_OTHER_COMPANY
 from companies.constants.invites import (

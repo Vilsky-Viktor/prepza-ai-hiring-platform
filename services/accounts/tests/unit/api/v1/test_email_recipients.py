@@ -1,7 +1,7 @@
 from types import SimpleNamespace
 
 from firebase_admin import auth as firebase_auth
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from accounts.constants.emails import DEFAULTS
 from accounts.repositories import emails

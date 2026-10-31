@@ -6,7 +6,7 @@ from companies.constants.return_urls import LOCAL_HOSTS
 def with_invite(url: str, invite_id) -> str:
     """The return address with the invite's id, so the company's platform knows who came back."""
     parts = urlsplit(url)
-    query = urlencode([*parse_qsl(parts.query), ("prepza_invite", str(invite_id))])
+    query = urlencode([*parse_qsl(parts.query), ("testee_invite", str(invite_id))])
 
     return urlunsplit(parts._replace(query=query))
 

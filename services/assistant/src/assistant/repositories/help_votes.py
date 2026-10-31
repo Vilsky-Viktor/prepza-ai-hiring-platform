@@ -1,9 +1,9 @@
 import uuid
 
-from prepza_common.ai.answer_votes import DOWN
 from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.ai.answer_votes import DOWN
 
 from assistant.models.help_votes import HelpVote
 

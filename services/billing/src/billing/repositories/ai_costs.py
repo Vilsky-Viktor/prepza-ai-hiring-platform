@@ -2,10 +2,10 @@
 
 from datetime import datetime
 
-from prepza_common.ai.ai_constants import Category
-from prepza_common.db.stats import period_range
 from sqlalchemy import ColumnElement, Float, String, cast, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.ai.ai_constants import Category
+from testee_common.db.stats import period_range
 
 from billing.constants.usage import MINUTE_ACTIONS
 from billing.models.usage import AiUsage

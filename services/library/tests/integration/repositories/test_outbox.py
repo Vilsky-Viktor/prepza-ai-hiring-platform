@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import select
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from library.core.db import Session
 from library.models.outbox import OutboxEvent

@@ -4,8 +4,8 @@ from datetime import UTC, datetime, timedelta
 from types import SimpleNamespace
 
 import jwt
-from prepza_common.http.http import bearer
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.http.http import bearer
+from testee_common.limits.limit_list import LIMITS
 
 from generation.constants.generation import VERIFY_QUESTION
 from generation.constants.quality import VERIFY_BUDGET_KEY, VERIFY_PAUSED, QualityFlag

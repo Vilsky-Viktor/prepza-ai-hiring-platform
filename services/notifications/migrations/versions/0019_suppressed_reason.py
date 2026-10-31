@@ -1,5 +1,5 @@
 """ck_suppressed_addresses_reason allows "suppressed": an address Resend suppressed an email to (on
-its own list after an earlier bounce or complaint) goes on prepza's list too. Swapped NOT VALID,
+its own list after an earlier bounce or complaint) goes on testee's list too. Swapped NOT VALID,
 so it takes the table's lock only for a moment, then validated without blocking writes
 
 Revision ID: 0019

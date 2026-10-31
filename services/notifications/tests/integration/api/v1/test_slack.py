@@ -5,10 +5,10 @@ from urllib.parse import parse_qs, urlparse
 import httpx
 import pytest
 from event_pushes import push
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.encryption import encrypt
-from prepza_common.auth.user import User
-from prepza_common.config.constants import DELETED_USER
+from testee_common.auth.auth import current_user
+from testee_common.auth.encryption import encrypt
+from testee_common.auth.user import User
+from testee_common.config.constants import DELETED_USER
 
 from notifications.config import settings
 from notifications.constants.notifications import KEEP_DAYS
@@ -144,8 +144,8 @@ def test_a_notification_posts_once_however_often_its_event_comes(run, configured
 
 
 def test_a_notification_for_an_id_no_company_has_is_handled_not_retried(run, configured):
-    # A template's owner, prepza itself, as the library once sent it.
-    event = push("notification.requested", finished("prepza"), f"o-{uuid.uuid4()}", "m-s4")
+    # A template's owner, testee itself, as the library once sent it.
+    event = push("notification.requested", finished("testee"), f"o-{uuid.uuid4()}", "m-s4")
 
     async def scenario():
         async with api() as client:

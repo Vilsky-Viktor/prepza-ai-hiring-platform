@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Response
 from fastapi.testclient import TestClient
-from prepza_common.http.no_store import NoStoreMiddleware
+from testee_common.http.no_store import NoStoreMiddleware
 
 app = FastAPI()
 app.add_middleware(NoStoreMiddleware)

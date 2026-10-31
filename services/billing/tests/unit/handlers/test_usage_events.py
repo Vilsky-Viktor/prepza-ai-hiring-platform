@@ -5,7 +5,7 @@ from datetime import UTC, datetime
 
 import pytest
 from event_pushes import push
-from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT, Category
+from testee_common.ai.ai_constants import AI_USED, LIMIT_HIT, Category
 
 from billing.handlers import ai_used, dispatch
 from billing.helpers.usage import category_of
@@ -51,8 +51,8 @@ def test_an_unpaid_call_is_stored_and_counted_toward_the_cap(stored, category):
     assert stored["unpaid"] == [0.25]
 
 
-@pytest.mark.parametrize("category", [Category.PAID, Category.PREPZA])
-def test_a_paid_companys_or_prepzas_call_never_counts_toward_the_cap(stored, category):
+@pytest.mark.parametrize("category", [Category.PAID, Category.TESTEE])
+def test_a_paid_companys_or_testees_call_never_counts_toward_the_cap(stored, category):
     stored["category"] = category
     asyncio.run(dispatch.handle(AI_USED, CALL, "e1", WHEN))
 
@@ -105,9 +105,9 @@ def test_pubsub_pushes_events_to_billing(client, stored):
     [
         ("interview_generation", "c1", True, Category.PAID),
         ("interview_generation", "c1", False, Category.UNPAID),
-        # A company's call is the company's, even of an action prepza also does for itself.
+        # A company's call is the company's, even of an action testee also does for itself.
         ("embeddings", "c1", False, Category.UNPAID),
-        ("template_generation", None, False, Category.PREPZA),
+        ("template_generation", None, False, Category.TESTEE),
         ("help_chat", None, False, Category.NO_COMPANY),
     ],
 )

@@ -1,7 +1,7 @@
 import pytest
-from prepza_common.ai.ai_constants import LIMIT_HIT
-from prepza_common.config.constants import RATE_LIMITED
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.ai.ai_constants import LIMIT_HIT
+from testee_common.config.constants import RATE_LIMITED
+from testee_common.limits.limit_list import LIMITS
 
 import site_content.api.v1.help as help_routes
 

@@ -2,7 +2,7 @@ import logging
 import time
 
 from fastapi import APIRouter, HTTPException, Request, status
-from prepza_common.config.constants import WEBHOOK_SIGNATURE_REFUSED
+from testee_common.config.constants import WEBHOOK_SIGNATURE_REFUSED
 
 from notifications.config import settings
 from notifications.constants.webhooks import WEBHOOK_FIELDS, WEBHOOK_TOLERANCE_SECONDS

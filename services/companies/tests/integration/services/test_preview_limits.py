@@ -5,8 +5,8 @@ import uuid
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.limits.limit_list import LIMITS_KEY
 from redis.asyncio import Redis
+from testee_common.limits.limit_list import LIMITS_KEY
 
 from companies.config import settings
 from companies.constants.interviews import PREVIEWS_USED_UP, VOICE_PREVIEWS_USED_UP

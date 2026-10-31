@@ -3,8 +3,8 @@ import hashlib
 import hmac
 import re
 
-from prepza_common.auth.tokens import same_secret
-from prepza_common.events.notifications import NotificationKind
+from testee_common.auth.tokens import same_secret
+from testee_common.events.notifications import NotificationKind
 
 from notifications.constants.notes import NOTES_LINK, SLACK_TEXT_CHARS
 from notifications.constants.slack import LINKABLE_DOT, ZERO_WIDTH_SPACE
@@ -118,7 +118,7 @@ def payload(summary: str, texts: list[str], url: str) -> dict:
                 "elements": [
                     {
                         "type": "button",
-                        "text": {"type": "plain_text", "text": "Open in prepza"},
+                        "text": {"type": "plain_text", "text": "Open in testee"},
                         "url": url,
                     }
                 ],

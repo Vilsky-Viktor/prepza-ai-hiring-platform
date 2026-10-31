@@ -1,8 +1,8 @@
 from unittest import mock
 
 import sentry_sdk
-from prepza_common.observability import sentry
-from prepza_common.observability.sentry import init_sentry, traces_sampler
+from testee_common.observability import sentry
+from testee_common.observability.sentry import init_sentry, traces_sampler
 
 
 def test_nothing_is_sent_without_a_dsn(monkeypatch):

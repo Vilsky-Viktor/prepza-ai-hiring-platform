@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from prepza_common.ai.sets import OptionIn
-from prepza_common.config.constants import MAX_PAGE_SIZE
 from pydantic import AwareDatetime, BaseModel, Field
+from testee_common.ai.sets import OptionIn
+from testee_common.config.constants import MAX_PAGE_SIZE
 
 
 class ReportNote(BaseModel):

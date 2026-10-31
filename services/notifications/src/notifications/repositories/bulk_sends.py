@@ -1,10 +1,10 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import update_in_batches
 from sqlalchemy import case, exists, func, select, tuple_, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.db.db import update_in_batches
 
 from notifications.constants.bulk import RecipientStatus, SkipReason
 from notifications.models.bulk import BulkRecipient, BulkSend

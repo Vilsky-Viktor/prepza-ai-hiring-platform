@@ -1,5 +1,5 @@
-from prepza_common.limits.credit_keys import invite_key, ledger_key, rekeyed
 from sqlalchemy import text
+from testee_common.limits.credit_keys import invite_key, ledger_key, rekeyed
 
 from companies.config import settings
 from companies.core.db import Session

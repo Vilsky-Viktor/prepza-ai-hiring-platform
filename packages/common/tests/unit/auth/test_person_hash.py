@@ -1,8 +1,8 @@
-"""Hashes that stand for a person are keyed (prepza_common.auth.person_hash)."""
+"""Hashes that stand for a person are keyed (testee_common.auth.person_hash)."""
 
 import hashlib
 
-from prepza_common.auth.person_hash import digest, keyed, person_hash
+from testee_common.auth.person_hash import digest, keyed, person_hash
 
 
 def test_a_persons_hash_depends_on_the_key_so_a_list_of_addresses_cant_match_it():

@@ -1,6 +1,6 @@
 import httpx
-from prepza_common.http import http
-from prepza_common.redis import memory_cache
+from testee_common.http import http
+from testee_common.redis import memory_cache
 
 from site_content.config import settings
 from site_content.constants.help import CATALOG_CACHE_SECONDS, CATALOG_KEY

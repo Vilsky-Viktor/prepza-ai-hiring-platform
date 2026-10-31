@@ -31,7 +31,7 @@ ALLOWED = {
     # Resend's idempotency key: an event's or a send's id, never the recipient.
     "services/notifications/src/notifications/integrations/resend.py idempotency_key",
     # A limit's name, as limit_list.LIMITS names it.
-    "packages/common/src/prepza_common/limits/limits.py key",
+    "packages/common/src/testee_common/limits/limits.py key",
 }
 
 
@@ -93,7 +93,7 @@ def offending(path: Path) -> list[str]:
 
 def test_no_log_call_passes_personal_data_or_a_secret():
     files = service_code(ROOT)
-    files += list(ROOT.glob("packages/common/src/prepza_common/**/*.py"))
+    files += list(ROOT.glob("packages/common/src/testee_common/**/*.py"))
     found = [line for path in files for line in offending(path)]
 
     assert len(files) > 300

@@ -1,5 +1,5 @@
-from prepza_common.ai.examples import example_range, is_formal, pick
-from prepza_common.ai.multi_answer import multi_count
+from testee_common.ai.examples import example_range, is_formal, pick
+from testee_common.ai.multi_answer import multi_count
 
 from generation.helpers.questions import (
     count_examples,
@@ -17,7 +17,7 @@ from generation.services.dedupe import distinct_by_meaning
 async def merge_questions(state: State) -> dict:
     """Barrier node: per topic, one list of distinct questions, up to what reuse left to fill: of
     multi-answer ones up to what the topic lacks, and of ones with an example within the
-    topic's range (prepza_common.ai.examples), less what the reused ones hold."""
+    topic's range (testee_common.ai.examples), less what the reused ones hold."""
     topic_questions: list[list[dict]] = []
 
     for ti in range(len(state["topics"])):

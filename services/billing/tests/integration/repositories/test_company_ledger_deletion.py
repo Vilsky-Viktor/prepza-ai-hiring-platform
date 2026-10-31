@@ -3,8 +3,8 @@ hold and entry, then the wallet; another company's stays."""
 
 import uuid
 
-from prepza_common.db import db
 from sqlalchemy import func, select
+from testee_common.db import db
 
 from billing.constants.credits import Reason
 from billing.constants.products import OwnerType

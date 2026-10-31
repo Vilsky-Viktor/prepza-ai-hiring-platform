@@ -81,7 +81,7 @@ def writes(monkeypatch):
 def users_companies(monkeypatch):
     """Companies' list of the user's companies, faked: COMPANY, unless a test says otherwise;
     nothing is kept between tests."""
-    from prepza_common.redis import memory_cache
+    from testee_common.redis import memory_cache
 
     from assistant.integrations import companies
 

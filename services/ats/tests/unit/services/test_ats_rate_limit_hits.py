@@ -4,8 +4,8 @@ import uuid
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.http import http
-from prepza_common.limits import limits
+from testee_common.http import http
+from testee_common.limits import limits
 
 from ats.constants.ats import TEAMTAILOR_HOSTS
 from ats.integrations import teamtailor

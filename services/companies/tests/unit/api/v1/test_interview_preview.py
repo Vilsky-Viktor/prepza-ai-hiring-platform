@@ -3,8 +3,8 @@ from datetime import UTC, datetime
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from companies.constants.interviews import PREVIEWS_USED_UP, VOICE_PREVIEWS_USED_UP
 from companies.constants.invites import NO_PLEDGE

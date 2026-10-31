@@ -2,7 +2,7 @@ import re
 
 from notifications.helpers.member_emails import digest_email
 
-SITE = "https://prepza.ai"
+SITE = "https://testee.ai"
 
 
 def test_an_email_has_one_h1_and_a_h2_per_section():

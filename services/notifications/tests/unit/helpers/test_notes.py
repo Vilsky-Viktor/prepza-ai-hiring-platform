@@ -20,7 +20,7 @@ from notifications.helpers.notes import (
 )
 from notifications.helpers.slack import note_message
 
-SITE = "https://prepza.ai"
+SITE = "https://testee.ai"
 
 
 def note(note_id: str, author: str | None, **fields) -> dict:

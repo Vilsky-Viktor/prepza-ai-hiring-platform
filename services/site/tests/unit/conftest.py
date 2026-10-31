@@ -1,6 +1,6 @@
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 # The modules that reach Redis, which unit tests replace.
 REDIS_USERS = [

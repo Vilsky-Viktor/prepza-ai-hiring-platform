@@ -1,7 +1,7 @@
 import uuid
 
 import pytest
-from prepza_common.config.constants import LEGAL_VERSIONS
+from testee_common.config.constants import LEGAL_VERSIONS
 
 from companies.core.db import Session
 from companies.models.companies import Member

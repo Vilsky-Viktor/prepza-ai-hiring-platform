@@ -7,8 +7,8 @@ from datetime import UTC, datetime
 
 import httpx
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from companies.main import app
 from companies.models.companies import Company, Member

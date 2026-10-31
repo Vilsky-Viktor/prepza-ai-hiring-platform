@@ -4,8 +4,8 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from notifications.constants.campaigns import CHANGED, NOT_ACKNOWLEDGED
 from notifications.main import app
@@ -84,9 +84,9 @@ def test_a_campaign_whose_kind_changed_before_it_was_marked_sent_is_refused(send
 
 @pytest.fixture
 def superadmin(monkeypatch):
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     app.dependency_overrides[current_user] = lambda: User(
-        uid="sam", email="sam@prepza.dev", email_verified=True, sign_in_provider="google.com"
+        uid="sam", email="sam@testee.dev", email_verified=True, sign_in_provider="google.com"
     )
 
 

@@ -3,9 +3,9 @@ import base64
 import json
 import logging
 
-from prepza_common.auth.google import access_token, running_locally
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.auth.google import access_token, running_locally
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from generation.config import settings
 from generation.constants.generation import (

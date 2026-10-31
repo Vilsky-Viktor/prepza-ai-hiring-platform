@@ -2,8 +2,8 @@ import uuid
 from contextlib import aclosing
 
 from langgraph.types import Command
-from prepza_common.ai.ai_constants import Outcome
-from prepza_common.limits.limits import limit
+from testee_common.ai.ai_constants import Outcome
+from testee_common.limits.limits import limit
 
 from generation.constants.actions import INTERVIEW_GENERATION, TEMPLATE_GENERATION
 from generation.constants.events import GENERATION_COMPLETED

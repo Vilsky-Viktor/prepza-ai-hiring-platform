@@ -8,9 +8,9 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.user import User
-from prepza_common.db.lock_waits import hold_first_commit, race
 from sqlalchemy import update
+from testee_common.auth.user import User
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from rounds.api.v1.sessions import answer_question
 from rounds.constants.rounds import TIME_UP

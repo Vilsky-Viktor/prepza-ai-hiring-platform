@@ -4,18 +4,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "Cos'è prepza?",
+        "question": "Cos'è testee?",
         "answer": "Un colloquio a tempo creato dalla tua descrizione del ruolo, per qualsiasi ruolo. Usalo per selezionare i candidati prima di incontrarli, o come fase vera e propria dell'assunzione: in entrambi i casi vedi chi conosce davvero il lavoro.",
     },
     {
         "key": "roles",
         "question": "Per quali ruoli posso assumere?",
-        "answer": "Qualsiasi ruolo in cui contano le conoscenze: assistenza, vendite, finanza, sanità, mestieri tecnici, ingegneria, marketing e altro. Se puoi descrivere il lavoro, prepza può creare un colloquio per esso.",
+        "answer": "Qualsiasi ruolo in cui contano le conoscenze: assistenza, vendite, finanza, sanità, mestieri tecnici, ingegneria, marketing e altro. Se puoi descrivere il lavoro, testee può creare un colloquio per esso.",
     },
     {
         "key": "hiring",
         "question": "Come funziona?",
-        "answer": "Incolla una descrizione del ruolo nella home page, indica il nome della tua azienda e controlla gli argomenti che propone prepza. Poi invita i candidati: scrivi le loro email, incolla un elenco o carica un file. I candidati che non hanno iniziato dopo qualche giorno ricevono un promemoria. Ogni candidato riceve domande tutte sue, ciascuna con un timer, e vedi il suo punteggio e ogni risposta appena finisce.",
+        "answer": "Incolla una descrizione del ruolo nella home page, indica il nome della tua azienda e controlla gli argomenti che propone testee. Poi invita i candidati: scrivi le loro email, incolla un elenco o carica un file. I candidati che non hanno iniziato dopo qualche giorno ricevono un promemoria. Ogni candidato riceve domande tutte sue, ciascuna con un timer, e vedi il suo punteggio e ogni risposta appena finisce.",
     },
     {
         "key": "link",
@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Le aziende possono trovarmi attraverso le mie simulazioni?",
-        "answer": "Solo se lo scegli tu. Attiva Aperto a nuove opportunità dopo una simulazione o nelle Impostazioni, indicando l'indirizzo del tuo profilo LinkedIn. Le aziende che assumono su prepza vedranno allora il tuo nome, il tuo profilo LinkedIn e il tuo ultimo risultato in ogni argomento dei loro colloqui su cui ti sei esercitato, e potranno invitarti a un colloquio. prepza non ti classifica né ti raccomanda. Puoi disattivarlo in qualsiasi momento nelle Impostazioni e sparisci subito dall'elenco di ogni azienda; si disattiva anche un anno dopo l'ultima volta che l'hai attivato o hai salvato il tuo profilo LinkedIn.",
+        "answer": "Solo se lo scegli tu. Attiva Aperto a nuove opportunità dopo una simulazione o nelle Impostazioni, indicando l'indirizzo del tuo profilo LinkedIn. Le aziende che assumono su testee vedranno allora il tuo nome, il tuo profilo LinkedIn e il tuo ultimo risultato in ogni argomento dei loro colloqui su cui ti sei esercitato, e potranno invitarti a un colloquio. testee non ti classifica né ti raccomanda. Puoi disattivarlo in qualsiasi momento nelle Impostazioni e sparisci subito dall'elenco di ogni azienda; si disattiva anche un anno dopo l'ultima volta che l'hai attivato o hai salvato il tuo profilo LinkedIn.",
     },
     {
         "key": "cheating",
@@ -55,7 +55,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Come si confronta il prezzo con altri strumenti di valutazione?",
-        "answer": "Molti strumenti di valutazione sono venduti in abbonamento mensile o annuale, che paghi anche se non valuti nessuno. Con prepza paghi solo per candidato: {candidate} crediti ({candidate_price}), senza contratto, senza costi per utente e senza pagare per generare un colloquio. Un’azienda che invita {example_candidates} candidati al mese paga circa {example_year_price} all’anno. Se valuti molti candidati ogni mese, un abbonamento può costare meno, quindi confronta con i tuoi numeri.",
+        "answer": "Molti strumenti di valutazione sono venduti in abbonamento mensile o annuale, che paghi anche se non valuti nessuno. Con testee paghi solo per candidato: {candidate} crediti ({candidate_price}), senza contratto, senza costi per utente e senza pagare per generare un colloquio. Un’azienda che invita {example_candidates} candidati al mese paga circa {example_year_price} all’anno. Se valuti molti candidati ogni mese, un abbonamento può costare meno, quindi confronta con i tuoi numeri.",
     },
     {
         "key": "expire",
@@ -80,7 +80,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Posso condividere i risultati con un responsabile delle assunzioni?",
-        "answer": "Sì. Scarica un report PDF per un candidato o per tutti i candidati di un colloquio, invialo via email direttamente da prepza, oppure manda un breve riepilogo su WhatsApp, Telegram, Viber o LINE.",
+        "answer": "Sì. Scarica un report PDF per un candidato o per tutti i candidati di un colloquio, invialo via email direttamente da testee, oppure manda un breve riepilogo su WhatsApp, Telegram, Viber o LINE.",
     },
     {
         "key": "action_log",
@@ -94,13 +94,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "prepza funziona con il mio ATS o con altri strumenti?",
+        "question": "testee funziona con il mio ATS o con altri strumenti?",
         "answer": "Sì, senza costi aggiuntivi. Collega Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR nella scheda Integrazioni della tua azienda: i candidati che sposti in una fase ricevono il colloquio, e i loro risultati tornano nell'ATS ([come collegare i test di competenze al tuo ATS](/guides/ats-integration-skills-tests)). Slack può pubblicare le notifiche della tua azienda in un canale, e l'API permette alla tua piattaforma di creare colloqui, invitare e gestire candidati e ricevere i loro risultati, con ogni chiave API limitata a ciò che spunti per lei; consulta la [Documentazione API](/api-docs).",
     },
     {
         "key": "ai_apps",
-        "question": "Posso usare prepza da Claude, ChatGPT o da un mio agente IA?",
-        "answer": "Sì. Aggiungi prepza a Claude o ChatGPT come connettore (i passaggi sono nella scheda Integrazioni della tua azienda) e consenti l'accesso su prepza. L'app lavora quindi con le tue aziende, i colloqui e i risultati dei candidati a tuo nome, con i tuoi permessi; la maggior parte delle app ti chiede conferma prima di modificare qualcosa. L'account o un'azienda si eliminano solo in prepza. Ciò che l'app legge arriva al suo fornitore, secondo i termini di quell'app. Puoi scollegarla in qualsiasi momento nella stessa scheda. Si collegano anche altre app di IA e gli agenti che crei tu: la [scheda MCP](/api-docs?tab=mcp) della documentazione per sviluppatori ha i passaggi e agenti di esempio, e un agente su un server può accedere con una chiave API che ha il permesso per gli agenti IA. La [guida ad agenti IA, MCP e API](/guides/ai-agents-mcp-and-api) spiega a cosa serve ciascuno.",
+        "question": "Posso usare testee da Claude, ChatGPT o da un mio agente IA?",
+        "answer": "Sì. Aggiungi testee a Claude o ChatGPT come connettore (i passaggi sono nella scheda Integrazioni della tua azienda) e consenti l'accesso su testee. L'app lavora quindi con le tue aziende, i colloqui e i risultati dei candidati a tuo nome, con i tuoi permessi; la maggior parte delle app ti chiede conferma prima di modificare qualcosa. L'account o un'azienda si eliminano solo in testee. Ciò che l'app legge arriva al suo fornitore, secondo i termini di quell'app. Puoi scollegarla in qualsiasi momento nella stessa scheda. Si collegano anche altre app di IA e gli agenti che crei tu: la [scheda MCP](/api-docs?tab=mcp) della documentazione per sviluppatori ha i passaggi e agenti di esempio, e un agente su un server può accedere con una chiave API che ha il permesso per gli agenti IA. La [guida ad agenti IA, MCP e API](/guides/ai-agents-mcp-and-api) spiega a cosa serve ciascuno.",
     },
     {
         "key": "candidates",
@@ -120,27 +120,27 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Cosa succede alle descrizioni dei ruoli e alle risposte?",
-        "answer": "Le descrizioni dei ruoli servono a creare i colloqui della tua azienda, e le risposte dei candidati a valutarli per la tua azienda. Le domande generate da prepza possono anche essere riutilizzate nei colloqui e nelle simulazioni di altre aziende, senza nulla che identifichi te, la tua azienda o chiunque altro; puoi escludere da questo riutilizzo le domande di un colloquio nelle sue impostazioni. prepza ricava inoltre dalle risposte date alle domande tendenze generali e anonimizzate sulla loro qualità, per migliorare il modo in cui le domande vengono generate. L'[informativa sulla privacy](/privacy) spiega cosa conserviamo, per quanto tempo e i diritti di ciascuno.",
+        "answer": "Le descrizioni dei ruoli servono a creare i colloqui della tua azienda, e le risposte dei candidati a valutarli per la tua azienda. Le domande generate da testee possono anche essere riutilizzate nei colloqui e nelle simulazioni di altre aziende, senza nulla che identifichi te, la tua azienda o chiunque altro; puoi escludere da questo riutilizzo le domande di un colloquio nelle sue impostazioni. testee ricava inoltre dalle risposte date alle domande tendenze generali e anonimizzate sulla loro qualità, per migliorare il modo in cui le domande vengono generate. L'[informativa sulla privacy](/privacy) spiega cosa conserviamo, per quanto tempo e i diritti di ciascuno.",
     },
     {
         "key": "eu_ai_law",
         "question": "È legale usare l'IA per la preselezione dei candidati nell'UE?",
-        "answer": "Sì, con delle regole. Secondo il regolamento europeo sull'IA (AI Act), gli strumenti che valutano i candidati sono molto probabilmente ad alto rischio, con obblighi dal 2 dicembre 2027, e il GDPR si applica già: una persona prende la decisione di assunzione, i candidati vengono informati che si usa l'IA e si conserva una documentazione. prepza funziona così: l'IA scrive le domande, le persone della tua azienda esaminano i risultati e decidono, e i candidati vengono informati prima di iniziare. Questa non è una consulenza legale; [Usare l'IA nella selezione del personale è legale nell'UE?](/guides/is-ai-hiring-legal-in-the-eu) spiega le regole e le date.",
+        "answer": "Sì, con delle regole. Secondo il regolamento europeo sull'IA (AI Act), gli strumenti che valutano i candidati sono molto probabilmente ad alto rischio, con obblighi dal 2 dicembre 2027, e il GDPR si applica già: una persona prende la decisione di assunzione, i candidati vengono informati che si usa l'IA e si conserva una documentazione. testee funziona così: l'IA scrive le domande, le persone della tua azienda esaminano i risultati e decidono, e i candidati vengono informati prima di iniziare. Questa non è una consulenza legale; [Usare l'IA nella selezione del personale è legale nell'UE?](/guides/is-ai-hiring-legal-in-the-eu) spiega le regole e le date.",
     },
     {
         "key": "uk_us",
-        "question": "Possiamo usare prepza per candidati nel Regno Unito e negli Stati Uniti?",
+        "question": "Possiamo usare testee per candidati nel Regno Unito e negli Stati Uniti?",
         "answer": "Sì. L'accordo sul trattamento dei dati copre la legge del Regno Unito e degli Stati Uniti, e le istruzioni per le aziende e i modelli di informativa per i candidati (con versioni per New York City, l'Illinois e il Colorado) coprono ciò che devi comunicare ai candidati. Per posizioni a New York City, usalo solo dopo aver fatto ciò che la Local Law 144 ti richiede: un audit indipendente sui bias nell'anno precedente all'utilizzo, la pubblicazione della sua sintesi e un avviso ai candidati 10 giorni lavorativi prima. L'export per l'audit dei bias del Registro attività dà al tuo auditor il punteggio e l'esito di ogni candidato che ha finito, da abbinare alle risposte che i tuoi candidati hanno dichiarato loro stessi.",
     },
     {
         "key": "emails",
-        "question": "Quali email invia prepza e come posso interromperle?",
+        "question": "Quali email invia testee e come posso interromperle?",
         "answer": 'Le email di servizio, come inviti, report, problemi di pagamento e modifiche ai nostri termini, vengono sempre inviate. Le altre, come il riepilogo attività giornaliero, i promemoria e le novità sul prodotto, le scegli nelle Impostazioni, alla voce Email, oppure le interrompi con il link "Annulla l\'iscrizione" in ogni email. I candidati possono interrompere le email della tua azienda, o i promemoria di un colloquio, con i link nei loro inviti e promemoria.',
     },
     {
         "key": "delete",
         "question": "Posso eliminare il mio account?",
-        "answer": "Sì, nelle Impostazioni. Il tuo account e i tuoi dati vengono eliminati, e prima puoi scaricarne una copia. Le novità di prepza compaiono nelle tue notifiche, la campanella in alto; quelle più importanti arrivano anche via email come novità sul prodotto, solo finché quell'impostazione è attiva.",
+        "answer": "Sì, nelle Impostazioni. Il tuo account e i tuoi dati vengono eliminati, e prima puoi scaricarne una copia. Le novità di testee compaiono nelle tue notifiche, la campanella in alto; quelle più importanti arrivano anche via email come novità sul prodotto, solo finché quell'impostazione è attiva.",
     },
     {
         "key": "report",

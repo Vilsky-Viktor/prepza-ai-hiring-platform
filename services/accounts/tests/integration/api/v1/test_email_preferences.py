@@ -1,7 +1,7 @@
 import asyncio
 
 import httpx
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from accounts.config import settings
 from accounts.constants.emails import CONSENT_TEXT_VERSION, DEFAULTS

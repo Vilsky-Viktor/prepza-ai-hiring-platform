@@ -4,8 +4,8 @@ import logging
 
 from cryptography.fernet import Fernet
 from fastapi import HTTPException, status
-from prepza_common.auth.encryption import decrypt, encrypt
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.auth.encryption import decrypt, encrypt
+from testee_common.limits.rate_limit import hit_or_skip
 
 from ats.config import settings
 from ats.constants.ats import (
@@ -169,7 +169,7 @@ async def subscribe(connection: AtsConnection, link_id, job_id: str, stage_id: s
 
 
 async def remove_webhook(connection: AtsConnection) -> None:
-    """Deletes the web hook prepza created in Breezy HR for the connection, as far as Breezy
+    """Deletes the web hook testee created in Breezy HR for the connection, as far as Breezy
     answers: the connection goes either way, and events for it are ignored after."""
     if connection.provider != AtsProvider.BREEZY:
         return
@@ -186,7 +186,7 @@ async def remove_webhook(connection: AtsConnection) -> None:
 
 
 async def release(connection: AtsConnection, subscription_ids: list[str]) -> None:
-    """What prepza set up in the ATS for a connection that goes (Workable's notifications,
+    """What testee set up in the ATS for a connection that goes (Workable's notifications,
     Breezy HR's web hook): cancelled as far as the ATS answers."""
     await unsubscribe(connection, subscription_ids)
     await remove_webhook(connection)

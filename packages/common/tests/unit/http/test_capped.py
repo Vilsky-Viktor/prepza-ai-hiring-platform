@@ -1,6 +1,6 @@
 import asyncio
 
-from prepza_common.http.capped import gather_capped
+from testee_common.http.capped import gather_capped
 
 
 def test_no_more_than_the_cap_run_at_once_and_results_keep_their_order():

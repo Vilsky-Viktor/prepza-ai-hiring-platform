@@ -3,10 +3,10 @@ from datetime import UTC, datetime
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.ai.multi_answer import multi_share
-from prepza_common.limits.limits import question_seconds
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.ai.multi_answer import multi_share
+from testee_common.limits.limits import question_seconds
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import hit_or_skip
 
 from rounds.constants.practice import NO_PRACTICE_QUESTIONS, STANDARD_TIMING
 from rounds.core.db import Session

@@ -6,9 +6,9 @@ import os
 import uuid
 
 import pytest
-from prepza_common.db.lock_waits import hold_first_commit, race
 from sqlalchemy import func, select, update
 from sqlalchemy.exc import IntegrityError
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from companies.core.db import Session
 from companies.models.interview_notes import InterviewNote

@@ -183,7 +183,7 @@ def test_each_group_and_company_is_kept_once():
 
 def test_a_notice_is_a_service_email_from_the_service_sender_with_nothing_to_unsubscribe():
     email = campaign_email(
-        "notices", person("ann"), TEXTS, None, "https://prepza.com", "secret", "s-1"
+        "notices", person("ann"), TEXTS, None, "https://testee.com", "secret", "s-1"
     )
 
     assert not email.optional and sender(email) == settings.mail_from

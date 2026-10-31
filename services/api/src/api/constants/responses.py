@@ -48,7 +48,7 @@ COMMON = {
         "headers": RETRY_AFTER,
     },
     503: refusal(
-        "prepza is down for maintenance (`maintenance`), or what the endpoint does is paused "
+        "testee is down for maintenance (`maintenance`), or what the endpoint does is paused "
         "for a while (`paused`); try again later"
     ),
 }

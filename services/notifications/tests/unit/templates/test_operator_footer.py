@@ -1,12 +1,12 @@
 import pytest
-from prepza_common.config.constants import OPERATOR
+from testee_common.config.constants import OPERATOR
 
 from notifications.helpers.emails import candidate_invite_email
 from notifications.templates.emails import EMAILS
 
 
 @pytest.mark.parametrize("language", sorted(EMAILS))
-def test_every_email_says_who_runs_prepza(language):
+def test_every_email_says_who_runs_testee(language):
     email = candidate_invite_email(
         {
             "email": "bob@example.com",
@@ -15,7 +15,7 @@ def test_every_email_says_who_runs_prepza(language):
             "company": "Acme",
             "language": language,
         },
-        "https://prepza.example",
+        "https://testee.example",
         "secret",
     )
 

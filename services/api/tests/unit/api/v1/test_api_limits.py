@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.limits import limits, rate_limit
+from testee_common.limits import limits, rate_limit
 
 from api.services import key_checks
 from tests.unit.api.v1.test_manage_routes import public  # noqa: F401 (fixture)

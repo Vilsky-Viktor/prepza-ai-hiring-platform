@@ -1,6 +1,6 @@
 import math
 
-from prepza_common.ai.multi_answer import draw
+from testee_common.ai.multi_answer import draw
 
 from companies.constants.interviews import (
     DEFAULT_TOPIC_QUESTIONS,
@@ -89,7 +89,7 @@ def interview_minutes(found: dict | None, limits: dict[str, int], seconds: int) 
 
 def pick_questions(questions: list, limit: int, share: float) -> list:
     """Each candidate gets a fresh random subset with `share` of multi-answer questions
-    (prepza_common.ai.multi_answer.draw), or every question when the topic has no more."""
+    (testee_common.ai.multi_answer.draw), or every question when the topic has no more."""
     if limit >= len(questions):
         return questions
 

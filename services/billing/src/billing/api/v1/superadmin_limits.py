@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status
-from prepza_common.auth.superadmin import SuperadminUser
+from testee_common.auth.superadmin import SuperadminUser
 
 from billing.constants.usage import CHANGES_SHOWN
 from billing.core.db import Session

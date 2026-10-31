@@ -9,7 +9,7 @@ Create Date: 2026-10-22
 """
 
 from alembic import op
-from prepza_common.db.tenant_columns import add_company_id, drop_company_id
+from testee_common.db.tenant_columns import add_company_id, drop_company_id
 
 revision = "0018"
 down_revision = "0017"

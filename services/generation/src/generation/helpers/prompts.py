@@ -1,5 +1,5 @@
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
-from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
+from testee_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
 
 from generation.prompts.checker import VERIFIER_ROLE
 

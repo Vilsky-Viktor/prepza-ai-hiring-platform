@@ -1,7 +1,7 @@
 """Deletions too big for one transaction: a batch at a time, each its own, so a deletion cut off
 midway goes on when run again."""
 
-from prepza_common.config.constants import DELETE_BATCH
+from testee_common.config.constants import DELETE_BATCH
 
 from companies.core.db import Session
 from companies.repositories import batch_deletion

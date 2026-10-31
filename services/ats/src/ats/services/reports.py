@@ -69,7 +69,7 @@ def comment_of(connection: AtsConnection, data: dict) -> str:
         data["passed"],
         data["flagged"],
         link,
-        # The team's language, as the member who connected the ATS uses prepza; else the test's.
+        # The team's language, as the member who connected the ATS uses testee; else the test's.
         language=connection.language or data.get("language"),
     )
 

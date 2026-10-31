@@ -1,8 +1,8 @@
 from enum import StrEnum
 from http import HTTPStatus
 
-from prepza_common.config.constants import MAX_CANDIDATE_NAME_LENGTH  # noqa: F401 (re-exported)
-from prepza_common.events.audit_actions import AuditAction
+from testee_common.config.constants import MAX_CANDIDATE_NAME_LENGTH  # noqa: F401 (re-exported)
+from testee_common.events.audit_actions import AuditAction
 
 # The longest search through candidates' emails and names (an email is at most 254 characters).
 MAX_SEARCH_LENGTH = 254
@@ -111,7 +111,7 @@ EXPIRIES_PER_BATCH = 200
 # time, read by key.
 SETTLE_BATCH = 200
 TOO_MANY_COMPANIES = "You already own as many companies as one person may: {limit}."
-# Company names are unique across prepza, ignoring case, and short enough for a heading.
+# Company names are unique across testee, ignoring case, and short enough for a heading.
 MAX_COMPANY_NAME_LENGTH = 45
 # A company name may be as short as two letters (EY, HP, 3M), spaces at either end aside.
 MIN_COMPANY_NAME_LENGTH = 2
@@ -139,8 +139,8 @@ TOO_MANY_WITHOUT_CANDIDATES_UNPAID = (
 # An interview without its questions (and so its title) yet takes no invites.
 INTERVIEW_NOT_READY = "Interview is still being generated"
 ALREADY_FINISHED = "This candidate already finished the interview."
-# A reminder asked for a candidate invited without prepza's emails or sign-in.
-NO_EMAILS_FOR_GUEST = "prepza doesn't email this candidate: send them their invite link yourself."
+# A reminder asked for a candidate invited without testee's emails or sign-in.
+NO_EMAILS_FOR_GUEST = "testee doesn't email this candidate: send them their invite link yourself."
 NOT_THE_GUEST = "Open the interview from the link the company gave you."
 # An invite not started within INVITE_EXPIRY_DAYS; sending it again makes the link work again.
 INVITE_EXPIRED = "This invite has expired. Ask the company to send it again."
@@ -149,7 +149,7 @@ EMAIL_NOT_VERIFIED = "Confirm your email first: open the link we sent you, then 
 NO_PLEDGE = "Confirm you'll answer on your own, without AI tools or other people, to start."
 # A company a superadmin suspended: its members see why, and candidates that the interview isn't
 # available (one already in it may finish).
-COMPANY_SUSPENDED = "This company is suspended. Contact hello@prepza.ai to find out more."
+COMPANY_SUSPENDED = "This company is suspended. Contact hello@testee.ai to find out more."
 INTERVIEW_UNAVAILABLE = "This interview isn't available."
 # A shareable link whose company has no credits left for another candidate.
 LINK_CLOSED = "This interview isn't taking new candidates right now."

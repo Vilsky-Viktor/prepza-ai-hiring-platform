@@ -3,8 +3,8 @@
 
 from datetime import datetime
 
-from prepza_common.config.event_constants import EVENT_ID_ATTRIBUTE
-from prepza_common.events import pubsub
+from testee_common.config.event_constants import EVENT_ID_ATTRIBUTE
+from testee_common.events import pubsub
 
 
 def push(

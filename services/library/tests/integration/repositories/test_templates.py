@@ -209,7 +209,7 @@ def test_finished_topics_count_strong_weak_and_timeouts_for_copies_and_originals
 
 
 def test_a_new_template_never_puts_questions_reused_from_the_bank_in_practice(run):
-    from prepza_common.ai.sets import PreparationIn
+    from testee_common.ai.sets import PreparationIn
 
     async def scenario():
         older = await interview("Older template", template=True, questions=33)
@@ -223,7 +223,7 @@ def test_a_new_template_never_puts_questions_reused_from_the_bank_in_practice(ru
             PreparationIn.model_validate(
                 {
                     "generation_id": str(uuid.uuid4()),
-                    "owner_uid": "prepza",
+                    "owner_uid": "testee",
                     "source_text": "job text",
                     "title": "Newer template",
                     "level": "medium",

@@ -23,7 +23,7 @@ router = APIRouter(prefix="/internal", tags=["internal"])
 @router.get("/companies/{company_id}/access")
 async def access(company_id: UUID, user_id: str, caller: ServiceCaller) -> AccessOut:
     """What the user may do in the company: ats, notifications and the api guard their pages
-    with it (prepza_common.auth.company_access), refusing what companies' own routes refuse: the
+    with it (testee_common.auth.company_access), refusing what companies' own routes refuse: the
     caller passes on the assistant's X-Assistant header. A company that doesn't exist is 404."""
     async with Session() as session:
         company = await companies.get(session, company_id)

@@ -3,7 +3,7 @@ import asyncio
 import httpx
 import openai
 from fastapi import Request
-from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT
+from testee_common.ai.ai_constants import AI_USED, LIMIT_HIT
 
 from assistant.config import settings
 from assistant.constants.help_chat import HELP_SPEND_KEY

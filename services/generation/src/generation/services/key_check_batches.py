@@ -1,7 +1,7 @@
 import logging
 
-from prepza_common.ai import ai_usage
 from pydantic import ValidationError
+from testee_common.ai import ai_usage
 
 from generation.config import settings
 from generation.constants.actions import KEY_CHECK_BATCH, QUESTION_VERIFY

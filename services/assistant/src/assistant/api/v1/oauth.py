@@ -106,7 +106,7 @@ def token_endpoint() -> ASGIApp:
 
 
 def routes() -> list[Route]:
-    """prepza as the authorization server of AI apps, at the site's root (the MCP SDK's
+    """testee as the authorization server of AI apps, at the site's root (the MCP SDK's
     handlers): its metadata, /authorize (to the consent page), /token, /register and /revoke; and
     the MCP endpoint's resource metadata, which names it. Browsers may call them only from the
     pages the MCP endpoint answers (helpers/cors.py), not from any origin as the SDK has them."""
@@ -155,7 +155,7 @@ def routes() -> list[Route]:
         found.append(route)
 
     resource = create_protected_resource_routes(
-        urls.resource_server_url, [issuer], scopes_supported=MCP_SCOPES, resource_name="prepza"
+        urls.resource_server_url, [issuer], scopes_supported=MCP_SCOPES, resource_name="testee"
     )
     resource = [
         Route(route.path, endpoint=narrowed(route.app), methods=["GET", "OPTIONS"])

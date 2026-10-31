@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from prepza_common.events.deletions import USER_DELETED
+from testee_common.events.deletions import USER_DELETED
 
 from api.constants.events import (
     CANDIDATE_EVENTS,

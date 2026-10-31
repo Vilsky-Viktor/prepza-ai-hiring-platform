@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from prepza_common.config.constants import MAX_UPDATES
+from testee_common.config.constants import MAX_UPDATES
 
 from assistant.constants.tool_calls import MAX_STRING_LENGTH
 from assistant.constants.updates import (

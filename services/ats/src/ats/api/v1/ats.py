@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.config.constants import MAX_GOAL_LENGTH
+from testee_common.auth.auth import CurrentUser
+from testee_common.config.constants import MAX_GOAL_LENGTH
 
 from ats.constants.ats import AtsProvider
 from ats.core.db import Session

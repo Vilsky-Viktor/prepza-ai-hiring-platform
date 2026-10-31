@@ -1,7 +1,7 @@
 from typing import Annotated
 
 from fastapi import Query
-from prepza_common.auth.service_auth import service_caller
+from testee_common.auth.service_auth import service_caller
 
 from billing.config import settings
 from billing.core.security import SERVICE_NAME

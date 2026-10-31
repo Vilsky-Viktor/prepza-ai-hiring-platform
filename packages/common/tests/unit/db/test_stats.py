@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from prepza_common.db.stats import period_range
+from testee_common.db.stats import period_range
 
 
 def test_a_month_runs_to_the_start_of_the_next():

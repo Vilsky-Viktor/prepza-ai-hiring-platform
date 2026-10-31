@@ -2,12 +2,12 @@
 again. Both are AI work, so the pause and the unpaid AI cap refuse them."""
 
 from fastapi import Request
-from prepza_common.ai import ai_cap
-from prepza_common.auth.human_check import require_human
-from prepza_common.events.audit_actions import AuditAction
-from prepza_common.http.http import passed_on
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit
+from testee_common.ai import ai_cap
+from testee_common.auth.human_check import require_human
+from testee_common.events.audit_actions import AuditAction
+from testee_common.http.http import passed_on
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import hit
 
 from companies.config import settings
 from companies.constants.generation import GENERATION_REFUSALS

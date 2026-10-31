@@ -1,9 +1,9 @@
 from fastapi import HTTPException
-from prepza_common.http.client_ip import limit_address
-from prepza_common.limits.rate_limit import hit_or_skip
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 from starlette.types import ASGIApp, Receive, Scope, Send
+from testee_common.http.client_ip import limit_address
+from testee_common.limits.rate_limit import hit_or_skip
 
 from assistant.integrations.redis import get_redis
 

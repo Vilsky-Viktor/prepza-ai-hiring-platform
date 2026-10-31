@@ -1,4 +1,4 @@
-# What a translation of prepza's own texts (news posts, campaign emails) must be to be saved:
+# What a translation of testee's own texts (news posts, campaign emails) must be to be saved:
 # every field within its limits (services/batch_steps.py checks each reply with it).
 from pydantic import BaseModel
 

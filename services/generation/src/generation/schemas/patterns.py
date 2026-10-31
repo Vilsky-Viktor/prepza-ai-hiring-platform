@@ -1,8 +1,8 @@
 from datetime import datetime
 from uuid import UUID
 
-from prepza_common.ai.sets import OptionIn
 from pydantic import BaseModel, Field
+from testee_common.ai.sets import OptionIn
 
 
 class QualitySignal(BaseModel):

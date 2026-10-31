@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.http import http
+from testee_common.http import http
 
 from accounts.integrations import services as account_services
 

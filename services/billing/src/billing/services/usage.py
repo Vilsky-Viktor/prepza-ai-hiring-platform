@@ -3,7 +3,7 @@ once past their retention."""
 
 from datetime import datetime
 
-from prepza_common.ai.ai_constants import Category
+from testee_common.ai.ai_constants import Category
 
 from billing.constants.usage import CHANGES_KEEP_DAYS, USAGE_KEEP_DAYS
 from billing.core.db import Session

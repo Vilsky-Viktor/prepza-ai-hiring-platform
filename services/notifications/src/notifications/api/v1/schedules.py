@@ -3,7 +3,7 @@ import time
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, status
-from prepza_common.auth.google import Invoker
+from testee_common.auth.google import Invoker
 
 from notifications.constants.member_emails import CLEANUP_SECONDS
 from notifications.integrations.resend import ResendBusy

@@ -6,7 +6,7 @@ import httpx
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from assistant.api.dependencies import user_with_token
 from assistant.api.v1 import chat as chat_router

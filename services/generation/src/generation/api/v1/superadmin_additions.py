@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.auth.superadmin import SuperadminUser
+from testee_common.auth.superadmin import SuperadminUser
 
 from generation.core.db import Session
 from generation.repositories import generations

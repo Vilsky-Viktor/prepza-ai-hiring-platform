@@ -2,7 +2,7 @@
 
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.config.constants import MAX_UPDATES
+from testee_common.config.constants import MAX_UPDATES
 
 from assistant.helpers.updates import (
     counts_of,
@@ -17,7 +17,7 @@ from assistant.helpers.updates import (
 ACME = "8c1d2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f"
 GLOBEX = "00000000-0000-4000-8000-000000000099"
 NAMES = {ACME: "Acme", GLOBEX: "Globex"}
-SITE = "https://prepza.example"
+SITE = "https://testee.example"
 START = datetime(2026, 10, 1, 9, tzinfo=UTC)
 
 

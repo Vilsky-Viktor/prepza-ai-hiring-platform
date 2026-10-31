@@ -3,11 +3,11 @@ import asyncio
 import pytest
 from fake_redis import DownRedis, FakeRedis
 from fastapi import HTTPException
-from prepza_common.ai.ai_constants import LIMIT_HIT
-from prepza_common.config.constants import PAUSE_KEY, PAUSED
-from prepza_common.i18n.translations import TRANSLATIONS
-from prepza_common.limits.limit_list import PAUSED_LIMIT
-from prepza_common.limits.pause import is_paused, refuse_if_paused, set_paused
+from testee_common.ai.ai_constants import LIMIT_HIT
+from testee_common.config.constants import PAUSE_KEY, PAUSED
+from testee_common.i18n.translations import TRANSLATIONS
+from testee_common.limits.limit_list import PAUSED_LIMIT
+from testee_common.limits.pause import is_paused, refuse_if_paused, set_paused
 
 
 def test_the_switch_turns_on_and_off_and_remembers_who():

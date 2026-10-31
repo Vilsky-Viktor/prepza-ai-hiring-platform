@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.ai.secrets_check import API, ATS, SLACK, find_secret
+from testee_common.ai.secrets_check import API, ATS, SLACK, find_secret
 
 FAKE = "a8Kq3ZpL0vW7tYx2Rn5BdF9hJ4mC6sQe1Ug"
 
@@ -7,7 +7,7 @@ FAKE = "a8Kq3ZpL0vW7tYx2Rn5BdF9hJ4mC6sQe1Ug"
 @pytest.mark.parametrize(
     "text, form",
     [
-        (f"my key pz_{FAKE}", API),
+        (f"my key te_{FAKE}", API),
         (f"whsec_{FAKE}", API),
         ("xoxb-1234567890-abcdefghijkl", SLACK),
         ("https://hooks.slack.com/services/T0000/B0000/XXXXXXXXXXXXXXXXXXXXXXXX", SLACK),
@@ -74,7 +74,7 @@ def test_ordinary_messages_have_no_secret(text):
 
 
 def test_a_secret_anywhere_in_the_chat_sent_along_is_found():
-    from prepza_common.ai.secrets_check import secret_in
+    from testee_common.ai.secrets_check import secret_in
 
     assert secret_in(["Hi", f"here: ghp_{FAKE}"]).form is None
     assert secret_in(["Hi", "How much is it?"]) is None

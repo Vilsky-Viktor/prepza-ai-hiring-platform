@@ -6,9 +6,9 @@ from datetime import UTC, datetime
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.events.audit_actions import AuditAction
-from prepza_common.events.interviews import INTERVIEW_PRIVACY_CHANGED, InterviewPrivacyChanged
-from prepza_common.i18n.i18n import TemplateError
+from testee_common.events.audit_actions import AuditAction
+from testee_common.events.interviews import INTERVIEW_PRIVACY_CHANGED, InterviewPrivacyChanged
+from testee_common.i18n.i18n import TemplateError
 
 from companies.constants import error_codes
 from companies.constants.interviews import (

@@ -2,7 +2,7 @@ import json
 from datetime import UTC, datetime
 from pathlib import Path
 
-from prepza_common.config.constants import LEGAL_VERSIONS
+from testee_common.config.constants import LEGAL_VERSIONS
 
 from site_content.constants.dpa import DPA_INTRO, DPA_SECTIONS
 from site_content.constants.privacy import PRIVACY_INTRO, PRIVACY_SECTIONS

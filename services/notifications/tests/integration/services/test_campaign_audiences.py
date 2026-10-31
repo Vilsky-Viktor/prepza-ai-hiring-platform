@@ -68,7 +68,7 @@ def people(monkeypatch):
     monkeypatch.setattr("notifications.services.audiences.rounds.user_ids", rounds_ids)
     monkeypatch.setattr(bulk.accounts, "recipients", recipients)
     monkeypatch.setattr(settings, "resend_api_key", "")
-    monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
+    monkeypatch.setattr("testee_common.limits.limits.current_values", large_resend_quota)
 
     yield ann, lea, sup
 

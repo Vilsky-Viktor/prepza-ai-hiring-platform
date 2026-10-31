@@ -1,10 +1,10 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.ai.examples import has_example
-from prepza_common.ai.multi_answer import is_multi
-from prepza_common.ai.sets import PreparationIn
-from prepza_common.db.paging import PageParams
+from testee_common.ai.examples import has_example
+from testee_common.ai.multi_answer import is_multi
+from testee_common.ai.sets import PreparationIn
+from testee_common.db.paging import PageParams
 
 from library.api.dependencies import ServiceCaller
 from library.core.db import Session

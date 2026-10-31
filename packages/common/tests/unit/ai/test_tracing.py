@@ -1,4 +1,4 @@
-"""AI calls traced to Langfuse (prepza_common.ai.tracing): only with both keys, every LangChain call
+"""AI calls traced to Langfuse (testee_common.ai.tracing): only with both keys, every LangChain call
 of a traced run reporting to its one trace with its name and tags; and LangSmith configured
 nowhere. Langfuse's callback is a fake here."""
 
@@ -10,8 +10,8 @@ from pathlib import Path
 import pytest
 from langchain_core.callbacks import BaseCallbackHandler
 from langchain_core.runnables import RunnableLambda
-from prepza_common.ai import tracing
 from service_code import service_code
+from testee_common.ai import tracing
 
 ROOT = Path(__file__).resolve().parents[5]
 TRACE_ID = re.compile(r"[0-9a-f]{32}")

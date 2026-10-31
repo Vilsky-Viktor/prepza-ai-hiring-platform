@@ -2,11 +2,11 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.ai import ai_cap
-from prepza_common.ai.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT, MICRO
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.ai import ai_cap
+from testee_common.ai.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT, MICRO
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.limits.limit_list import LIMITS
 
 from generation.api.v1 import internal
 from generation.main import app
@@ -117,7 +117,7 @@ def test_the_cap_is_its_edited_value(client, redis, started):
     assert len(started) == 1
 
 
-def test_prepzas_own_templates_arent_held_to_the_unpaid_cap(client, redis, started, monkeypatch):
+def test_testees_own_templates_arent_held_to_the_unpaid_cap(client, redis, started, monkeypatch):
     spent(redis, LIMITS["AI_SPEND_UNPAID_DAY"].default)
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     app.dependency_overrides[current_user] = lambda: User(

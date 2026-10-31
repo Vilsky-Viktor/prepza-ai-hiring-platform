@@ -1,8 +1,8 @@
 import time
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.config.constants import VIA_ASSISTANT, VIA_MCP
-from prepza_common.i18n.i18n import translate
+from testee_common.config.constants import VIA_ASSISTANT, VIA_MCP
+from testee_common.i18n.i18n import translate
 
 from assistant.config import settings
 from assistant.constants.tool_calls import INVALID_ARGUMENTS

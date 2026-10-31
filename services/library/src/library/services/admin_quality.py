@@ -3,8 +3,8 @@
 import uuid
 
 from fastapi import HTTPException, status
-from prepza_common.limits.pause import refuse_if_paused
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.limits.pause import refuse_if_paused
 
 from library.constants.sets import SetKind
 from library.core.db import Session

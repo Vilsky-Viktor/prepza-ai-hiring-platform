@@ -40,7 +40,7 @@ MCP_DESCRIPTIONS = {
         " or discuss an interview's questions."
     ),
     "get_email_preferences": (
-        "Which emails the signed-in user gets from prepza, each on or off: a candidate "
+        "Which emails the signed-in user gets from testee, each on or off: a candidate "
         "finished, an invite undelivered, an ATS candidate not invited, an interview ready, "
         "reminders, product updates and promotions. It reads the current choices, which "
         "update_email_preferences changes, and answers what emails the user gets."
@@ -51,8 +51,8 @@ MCP_DESCRIPTIONS = {
         "stage that sends candidates when linking a job with link_ats_job."
     ),
     "list_news": (
-        "prepza's product news, newest first, in pages (offset, limit): each post's title, text"
-        " and date. Use it when the user asks what's new in prepza itself, not about their "
+        "testee's product news, newest first, in pages (offset, limit): each post's title, text"
+        " and date. Use it when the user asks what's new in testee itself, not about their "
         "candidates (that's get_updates)."
     ),
     "remove_company_logo": (
@@ -99,7 +99,7 @@ MCP_DESCRIPTIONS = {
         "language."
     ),
     "search_templates": (
-        "Searches prepza's ready-made interview templates by words (q), level and languages, in"
+        "Searches testee's ready-made interview templates by words (q), level and languages, in"
         " pages (offset, limit): each template's id, title, level, language and topic count. "
         "Use it to find a template to start an interview from (create_interview_from_template);"
         " list_template_filters gives the levels and languages to filter by."
@@ -110,7 +110,7 @@ MCP_DESCRIPTIONS = {
     ),
     # The panel's names its `show` tool, which AI apps don't have.
     "get_guide": (
-        "One guide article on hiring or on how prepza works, by its slug from list_guides, in "
+        "One guide article on hiring or on how testee works, by its slug from list_guides, in "
         "the user's language: its title and full text. Answer from it and offer its link."
     ),
 }

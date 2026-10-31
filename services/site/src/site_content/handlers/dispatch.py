@@ -3,8 +3,8 @@ deleting again deletes nothing more, and a translation saved again replaces itse
 redelivery or a repeat is safe, in any order; an error answers 5xx and Pub/Sub delivers the
 event again)."""
 
-from prepza_common.events.deletions import USER_DELETED
-from prepza_common.events.news import NEWS_TRANSLATED
+from testee_common.events.deletions import USER_DELETED
+from testee_common.events.news import NEWS_TRANSLATED
 
 from site_content.handlers import news_translated, user_deleted
 

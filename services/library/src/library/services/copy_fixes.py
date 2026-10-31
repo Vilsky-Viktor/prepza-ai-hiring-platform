@@ -2,8 +2,8 @@ import time
 import uuid
 
 from fastapi import HTTPException, status
-from prepza_common.config.constants import RETRY_AFTER
-from prepza_common.events.notifications import NotificationKind
+from testee_common.config.constants import RETRY_AFTER
+from testee_common.events.notifications import NotificationKind
 
 from library.constants.quality import COPY_FIX_BATCH, COPY_FIX_SECONDS
 from library.core.db import Session

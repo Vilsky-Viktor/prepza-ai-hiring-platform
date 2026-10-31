@@ -15,7 +15,7 @@ def test_only_the_companys_keys_that_still_work_are_counted(run):
     async def key(company_id, expires_at):
         hashed = uuid.uuid4().hex * 2
         await transaction(
-            keys.add, company_id, "Site", "pz_a", hashed, "u1", expires_at, READS, [], 10
+            keys.add, company_id, "Site", "te_a", hashed, "u1", expires_at, READS, [], 10
         )
 
     async def scenario():

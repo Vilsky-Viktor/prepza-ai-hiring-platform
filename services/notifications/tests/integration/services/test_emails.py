@@ -5,8 +5,8 @@ import uuid
 import httpx
 import pytest
 from event_pushes import push
-from prepza_common.ai.ai_constants import LIMIT_HIT
-from prepza_common.http import http
+from testee_common.ai.ai_constants import LIMIT_HIT
+from testee_common.http import http
 
 from notifications.config import settings
 from notifications.helpers.member_emails import digest_email

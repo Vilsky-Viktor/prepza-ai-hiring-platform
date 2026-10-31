@@ -4,8 +4,8 @@ import re
 import struct
 
 import av
-from prepza_common.ai.spoken_words import word_errors
-from prepza_common.i18n.i18n import translate
+from testee_common.ai.spoken_words import word_errors
+from testee_common.i18n.i18n import translate
 
 from rounds.constants.voice import (
     LETTERS,

@@ -1,12 +1,12 @@
 # AI apps (Claude, ChatGPT, ...) connected over MCP: they call the assistant's tools as the user,
-# with an access token prepza issued once the user allowed them (OAuth 2.1 with PKCE).
+# with an access token testee issued once the user allowed them (OAuth 2.1 with PKCE).
 
 # What an app may do: everything the user may do, as they would in the app (MCP_SCOPE, which
 # includes reading), or only read (MCP_READ_SCOPE). An app asks for one; the user can allow a
 # full request as read only on the consent page. Connections made before scopes existed keep
 # MCP_SCOPE (the column's default).
-MCP_SCOPE = "prepza"
-MCP_READ_SCOPE = "prepza:read"
+MCP_SCOPE = "testee"
+MCP_READ_SCOPE = "testee:read"
 MCP_SCOPES = [MCP_SCOPE, MCP_READ_SCOPE]
 # Where the MCP endpoint is, on the site (the resource the access is for), and where the user
 # allows or denies an app (the frontend's page).
@@ -31,12 +31,12 @@ AUTHORIZATION_METADATA_PATH = "/.well-known/oauth-authorization-server"
 # Some apps look for the resource's metadata at the root, without the resource's path.
 ROOT_RESOURCE_METADATA_PATH = "/.well-known/oauth-protected-resource"
 # What /authorize and /token answer a request for another resource (RFC 8707, invalid_target).
-OTHER_RESOURCE = "prepza only grants access to its MCP server."
+OTHER_RESOURCE = "testee only grants access to its MCP server."
 # Apps registered without a secret (most do: Claude Code, MCP Inspector) are welcome too.
 AUTH_METHODS = ["none", "client_secret_post", "client_secret_basic"]
 
 # Tokens: this prefix and random bytes; only their hashes are kept.
-TOKEN_PREFIX = "pzm_"
+TOKEN_PREFIX = "tem_"
 TOKEN_BYTES = 32
 CODE_BYTES = 32
 # How long each lasts: the access an hour, the refresh 90 days from its last use (each refresh
@@ -97,7 +97,7 @@ FUNNEL_CLIENTS = {
 # An AI agent on a server signs in with a company's API key instead (the api service's, which
 # checks it): it acts as the key itself, never its maker, in the key's company only, if the key
 # has the mcp permission (constants/key_tools.py lists the tools each permission allows).
-API_KEY_PREFIX = "pz_"
+API_KEY_PREFIX = "te_"
 KEY_MCP_PERMISSION = "mcp"
 VERIFY_KEY_PATH = "/internal/keys/verify"
 KEY_CLIENT_NAME = "API key"
@@ -118,7 +118,7 @@ REFUSED_REDIRECT_SCHEMES = {"javascript", "data", "vbscript", "file"}
 # The browser that asked to connect (its /authorize answer sets this cookie, with the request's
 # id, for the consent page's calls only): only it can allow the request, so a consent link
 # someone else started and sent can't connect their app to this account.
-CONNECT_COOKIE = "prepza_connect"
+CONNECT_COOKIE = "testee_connect"
 CONNECT_COOKIE_PATH = "/api/assistant/connect"
 # /authorize's answer to a request it can't take: a page, never a redirect (an app registers
 # its own return address, so redirecting errors there would make /authorize an open redirect).
@@ -136,19 +136,19 @@ READ_ONLY = (
 # the app only. The panel's own tools (show, sign_out) aren't tools of the registry at all.
 MCP_EXCLUDED = frozenset({"delete_account", "delete_company"})
 EXCLUDED_TOOL = (
-    "This can only be done in prepza itself: deleting an account or a company can't be undone."
+    "This can only be done in testee itself: deleting an account or a company can't be undone."
 )
 # Tools an app doesn't see at all: the bell names candidates of every company the user is in,
 # past the companies that don't allow AI apps (companies refuses those on its own routes); a
-# page's guide is about the page the user is on in prepza, and an app has none.
+# page's guide is about the page the user is on in testee, and an app has none.
 MCP_UNLISTED = frozenset({"list_notifications", "get_page_guide"})
 # A refused call is logged with the tool's name: an unknown one is the app's own text, so only
 # this much of it (a real name is at most 64 characters).
 MAX_LOGGED_TOOL_NAME = 64
 # What an app reads when the connection's account is gone or disabled.
 ACCOUNT_GONE = (
-    "This prepza account no longer exists or is disabled: reconnect the app with an active "
-    "prepza account."
+    "This testee account no longer exists or is disabled: reconnect the app with an active "
+    "testee account."
 )
 # The tool that changes the user's language: their kept sign-in is dropped after it, so the next
 # calls answer in the new one.

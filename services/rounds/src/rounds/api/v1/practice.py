@@ -1,10 +1,10 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.db.paging import PageParams
-from prepza_common.limits.limits import question_seconds
-from prepza_common.redis import memory_cache
+from testee_common.auth.auth import CurrentUser
+from testee_common.db.paging import PageParams
+from testee_common.limits.limits import question_seconds
+from testee_common.redis import memory_cache
 
 from rounds.constants.practice import PRACTICE_SIZE_CACHE_SECONDS, STANDARD_TIMING
 from rounds.core.db import Session

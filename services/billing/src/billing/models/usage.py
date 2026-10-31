@@ -2,8 +2,6 @@ import uuid
 from datetime import datetime
 from decimal import Decimal
 
-from prepza_common.ai.ai_constants import ACTIONS, PAST_AI_SERVICES, Category, Outcome
-from prepza_common.db.db import one_of
 from sqlalchemy import (
     BigInteger,
     CheckConstraint,
@@ -16,6 +14,8 @@ from sqlalchemy import (
     Uuid,
 )
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.ai.ai_constants import ACTIONS, PAST_AI_SERVICES, Category, Outcome
+from testee_common.db.db import one_of
 
 from billing.models.base import Base
 
@@ -23,7 +23,7 @@ from billing.models.base import Base
 class AiUsage(Base):
     """One AI call (or one generation run's calls of a model), as its service recorded it.
     `category` is who it was for, decided here when it's stored: paid, unpaid, no_company or
-    prepza. Kept 13 months; a deleted account's id is emptied, and a deleted company's, keeping
+    testee. Kept 13 months; a deleted account's id is emptied, and a deleted company's, keeping
     the cost."""
 
     __tablename__ = "ai_usage"

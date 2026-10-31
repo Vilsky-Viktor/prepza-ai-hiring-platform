@@ -1154,7 +1154,7 @@ wheels = [
 ]
 
 [[package]]
-name = "prepza-common"
+name = "testee-common"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
@@ -1183,7 +1183,7 @@ money = [
 
 [package.dev-dependencies]
 dev = [
-    { name = "prepza-common", extra = ["langfuse", "llm", "money"] },
+    { name = "testee-common", extra = ["langfuse", "llm", "money"] },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-randomly" },
@@ -1209,7 +1209,7 @@ provides-extras = ["llm", "langfuse", "money"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "prepza-common", extras = ["llm", "langfuse", "money"] },
+    { name = "testee-common", extras = ["llm", "langfuse", "money"] },
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "pytest-randomly", specifier = ">=5.0.0" },

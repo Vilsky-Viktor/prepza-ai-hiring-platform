@@ -4,12 +4,12 @@ import time
 import pytest
 from fake_redis import DownRedis, FakeRedis
 from fastapi import HTTPException
-from prepza_common.ai.ai_constants import LIMIT_HIT
-from prepza_common.config.event_constants import EVENT_ID_ATTRIBUTE
-from prepza_common.events import pubsub
-from prepza_common.limits.limit_list import LIMITS, LIMITS_CACHE_SECONDS
-from prepza_common.limits.limits import at_most, limit, question_seconds, record_hit
-from prepza_common.redis import memory_cache
+from testee_common.ai.ai_constants import LIMIT_HIT
+from testee_common.config.event_constants import EVENT_ID_ATTRIBUTE
+from testee_common.events import pubsub
+from testee_common.limits.limit_list import LIMITS, LIMITS_CACHE_SECONDS
+from testee_common.limits.limits import at_most, limit, question_seconds, record_hit
+from testee_common.redis import memory_cache
 
 
 def test_every_default_is_within_its_bounds_and_every_pair_is_a_limit():

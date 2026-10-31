@@ -1,7 +1,7 @@
-from prepza_common.db.db import delete_in_batches
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
+from testee_common.db.db import delete_in_batches
 
 from rounds.constants.rounds import SESSION_DELETE_BATCH
 from rounds.models.sessions import Session as RoundSession

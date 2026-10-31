@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.events.notifications import Recipient
 from sqlalchemy import delete
+from testee_common.events.notifications import Recipient
 
 from notifications.core.db import Session
 from notifications.models.notifications import Notification

@@ -1,6 +1,6 @@
 from enum import StrEnum
 
-from prepza_common.events.notifications import NotificationKind
+from testee_common.events.notifications import NotificationKind
 
 # The wording of the email checkboxes (settings and sign-in). Change it whenever that wording
 # changes, so the consent log tells which wording each choice was made under.
@@ -25,13 +25,13 @@ class ConsentSource(StrEnum):
     SIGN_IN = "sign_in"
     SETTINGS = "settings"
     UNSUBSCRIBE = "unsubscribe"
-    # A superadmin, for someone who asked prepza (by email, say) to stop its emails.
+    # A superadmin, for someone who asked testee (by email, say) to stop its emails.
     ADMIN = "admin"
 
 
 class ConsentBasis(StrEnum):
     """Why a setting changed: the user's own choice, or product updates turned on at a first
-    sign-in that showed the opt-out unticked (a soft opt-in for prepza's own users)."""
+    sign-in that showed the opt-out unticked (a soft opt-in for testee's own users)."""
 
     CHOICE = "choice"
     SOFT_OPT_IN = "soft_opt_in"

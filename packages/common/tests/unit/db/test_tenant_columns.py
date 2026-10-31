@@ -1,6 +1,6 @@
 from contextlib import contextmanager
 
-from prepza_common.db import tenant_columns
+from testee_common.db import tenant_columns
 
 
 class FakeOp:

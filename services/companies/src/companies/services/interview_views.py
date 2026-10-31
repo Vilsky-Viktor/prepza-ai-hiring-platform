@@ -7,7 +7,7 @@ from uuid import UUID
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.config.constants import VOICE_LANGUAGES
+from testee_common.config.constants import VOICE_LANGUAGES
 
 from companies.constants.interviews import GENERATION_FAILED_STATUS, MAX_INTERVIEW_QUESTIONS
 from companies.core.db import Session

@@ -1,11 +1,11 @@
 import json
 from pathlib import Path
 
-from prepza_common.ai.page_keys import PAGE_KEYS
-from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
+from testee_common.ai.page_keys import PAGE_KEYS
+from testee_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
 
 # Each page's guide (what it's for, what you can do there, tips) in every language, one file per
-# language at <language>.json, by the page's key (prepza_common's PAGE_KEYS).
+# language at <language>.json, by the page's key (testee_common's PAGE_KEYS).
 GUIDES_FOLDER = Path(__file__).resolve().parents[1] / "page_guides"
 
 GUIDES = {

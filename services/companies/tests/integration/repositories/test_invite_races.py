@@ -1,13 +1,13 @@
 """A candidate's invite started twice at once (two tabs, a double click), or started while the
 company sends it again, proven to overlap: the first call's transaction stays open at its commit
-until the second is seen waiting on the invite's row lock (prepza_common.db.lock_waits)."""
+until the second is seen waiting on the invite's row lock (testee_common.db.lock_waits)."""
 
 import os
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.db.lock_waits import hold_first_commit, race
 from sqlalchemy import select
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from companies.constants.events import CANDIDATE_STARTED
 from companies.constants.invites import InviteStatus

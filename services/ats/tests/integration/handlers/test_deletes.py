@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.config.constants import DELETED_USER
 from sqlalchemy import select, update
+from testee_common.config.constants import DELETED_USER
 
 from ats.constants.ats import AtsProvider, ConnectionStatus
 from ats.core.db import Session
@@ -38,7 +38,7 @@ async def rows_of(model, column, value) -> list:
 
 
 def test_a_deleted_interviews_candidates_go_in_batches(run, monkeypatch):
-    monkeypatch.setattr("prepza_common.db.db.DELETE_BATCH", 1)
+    monkeypatch.setattr("testee_common.db.db.DELETE_BATCH", 1)
 
     async def scenario():
         company, deleted = uuid.uuid4(), uuid.uuid4()

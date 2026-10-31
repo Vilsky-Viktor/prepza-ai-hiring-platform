@@ -1,7 +1,7 @@
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, status
-from prepza_common.auth.auth import CurrentUser
+from testee_common.auth.auth import CurrentUser
 
 from rounds.schemas.open_to_offers import OpenToOffersIn, OpenToOffersOut
 from rounds.services import open_to_offers

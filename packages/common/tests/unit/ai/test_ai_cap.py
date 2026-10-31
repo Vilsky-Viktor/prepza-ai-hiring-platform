@@ -5,11 +5,11 @@ from datetime import UTC, datetime
 import pytest
 from fake_redis import DownRedis, FakeRedis
 from fastapi import HTTPException
-from prepza_common.ai import ai_cap
-from prepza_common.ai.ai_cap import CAP, add_unpaid, refuse_if_capped, spent_today
-from prepza_common.ai.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT
-from prepza_common.i18n.translations import TRANSLATIONS
-from prepza_common.redis import memory_cache
+from testee_common.ai import ai_cap
+from testee_common.ai.ai_cap import CAP, add_unpaid, refuse_if_capped, spent_today
+from testee_common.ai.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT
+from testee_common.i18n.translations import TRANSLATIONS
+from testee_common.redis import memory_cache
 
 
 def on(monkeypatch, moment: datetime):

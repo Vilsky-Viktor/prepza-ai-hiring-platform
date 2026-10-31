@@ -1,7 +1,7 @@
-# What the help chat knows about prepza besides the FAQ, prices, terms and privacy policy that
+# What the help chat knows about testee besides the FAQ, prices, terms and privacy policy that
 # come with it. Limits come from the services that enforce them.
 PLATFORM_GUIDE = """\
-prepza helps companies find out which candidates really know the job: a short, timed \
+testee helps companies find out which candidates really know the job: a short, timed \
 multiple-choice test made from a job description, for any role, used as a screen before \
 interviews or as an interview step itself.
 
@@ -12,11 +12,11 @@ in; "system" follows the device's light or dark setting. The footer has three co
 pre-employment testing, AI interviews, free practice and comparisons. Resources: the features \
 page (every feature, group by group, with pictures of the app), guides, the FAQ, \
 the legal docs (documents for companies), the developer docs (the API, web hooks, the SDK, MCP and \
-objects) and a news page with prepza's latest updates. The company: an about page (the company \
+objects) and a news page with testee's latest updates. The company: an about page (the company \
 and its solo founder, Viktor Vilskyi), a contact page with a form (name, email, message) that \
-reaches the prepza team, a trust page (security, privacy, what prepza provides for the GDPR, the EU AI Act, the UK and the US, where data is stored, \
+reaches the testee team, a trust page (security, privacy, what testee provides for the GDPR, the EU AI Act, the UK and the US, where data is stored, \
 the sub-processors, how long data is kept and the legal documents), the privacy policy, terms, and an accessibility statement (what works for people with disabilities, what falls short, and where to report a problem: \
-hello@prepza.ai). Signing in is with Google, LinkedIn or GitHub; taking an interview and \
+hello@testee.ai). Signing in is with Google, LinkedIn or GitHub; taking an interview and \
 creating a company need a verified email, so a GitHub sign-in that hasn't verified it gets a \
 link to verify it first; if the link never came, signing out and in again sends a new one.
 
@@ -24,7 +24,7 @@ Page guides and the assistant: the app's pages have an info button (a question m
 back arrow) with a short guide to the page: what it's for, what you can do there and tips; \
 it ends with a "contact us" button to the contact page, to report a problem, suggest an idea or \
 ask for a missing feature. \
-"ask Mira" in the header opens Mira, prepza's AI assistant (an AI, not a person), which \
+"ask Mira" in the header opens Mira, testee's AI assistant (an AI, not a person), which \
 knows the page it's asked on: "What can I \
 do on this page?" answers from that page's guide, and "Who's best here?" on an interview's \
 candidates means that interview.
@@ -45,18 +45,18 @@ member who joined.
 who, when, and whether the assistant, an AI app, the API or an ATS did it for them; an API key's \
 actions show under the key's name. Filtered by member, kind of action and days. Actions are kept 12 months. \
 Its "Bias-audit export" downloads a CSV of every candidate who finished, for all interviews or one and optionally from and to a day: \
-their grade, the passing grade, whether they passed and whether they scored above the interview's median, keyed by email. prepza holds no \
+their grade, the passing grade, whether they passed and whether they scored above the interview's median, keyed by email. testee holds no \
 data on sex, race or ethnicity, so the company adds its candidates' own self-reported answers by email and removes the email column before \
 sharing the file with its independent auditor (New York City's Local Law 144 bias audit, the EEOC's four-fifths rule). Up to {bias_audit_exports_per_day} exports a company a day; each shows in the action log.
 - A company's Brand tab (owners and admins): its logo (also set by clicking the logo beside its \
 name), colors, a set for the light theme and one for the dark, in groups: page, primary \
 (buttons), secondary (fills and gray text), dialogs and borders, then two fonts, one for the \
-titles and one for the text (prepza's Poppins titles over Geist text by default; each from \
+titles and one for the text (testee's Poppins titles over Geist text by default; each from \
 Poppins, Geist and about twenty popular web fonts such as Inter, Roboto, Open Sans, Lato or \
 Montserrat) and how round the cards' and the buttons' corners are, in px, beside a preview. Colors whose \
 text would be hard to read can't be saved; "reset" brings back what was last saved, "reset to \
-prepza defaults" prepza's colors, fonts and rounding. Candidates see the whole \
-interview process in them, and a company's interview pages never show prepza's header or \
+testee defaults" testee's colors, fonts and rounding. Candidates see the whole \
+interview process in them, and a company's interview pages never show testee's header or \
 footer. A candidate sees their own light or dark theme unless the invite (API) or the link \
 asks for one.
 
@@ -67,7 +67,7 @@ test at once, free and with no generation; it can then be changed like any test.
 ready-made for common roles; for a closer fit, generate a test from the job description.
 - Paste a job description. "Generate in" next to the text box picks the language the test is \
 written in, whatever language the description is in.
-- prepza proposes topics. Before any questions are written, review them: uncheck topics you \
+- testee proposes topics. Before any questions are written, review them: uncheck topics you \
 don't need, rename a topic, edit its subtopics, or describe bigger changes in plain words. Then \
 confirm, and the questions are written.
 - Every topic gets its own bank of multiple-choice questions with four options each: most have \
@@ -122,7 +122,7 @@ test's mode as an icon after its title.
 whatever the test's mode, on the candidate's page until they start; the \
 candidate list shows an icon when a candidate's mode differs from the test's.
 - Discover tab (only for companies that have topped up at least once): people who practise on \
-prepza's free practice tests and turned on Open to offers, whose practice covers the test's \
+testee's free practice tests and turned on Open to offers, whose practice covers the test's \
 subjects at its level, with their name, LinkedIn profile and latest practice result on each \
 matching subject, most recent first, never ranked or recommended. Owners and admins invite one \
 with Invite, like any invite (credits, email to their account's address).
@@ -163,7 +163,7 @@ questions. A fixed question applies to candidates who start after the fix; resul
 given never change.
 
 Credits and billing:
-- prepza is pay as you go with credits: a candidate takes the same credits whatever the \
+- testee is pay as you go with credits: a candidate takes the same credits whatever the \
 top-up (candidate_credits in the prices); larger top-ups buy those credits for less money. \
 Credits never expire. There are no paid subscriptions or plans. Credits belong to a company's \
 wallet.
@@ -207,7 +207,7 @@ newcomer's first top-up, of any amount (see prices).
 
 Integrations (a company's Integrations tab; owners and admins connect them, at no extra cost):
 - ATS: Workable, Greenhouse, Teamtailor, Recruitee and Breezy HR, each connected with a key the \
-company creates in its ATS. A job in the ATS is linked to a prepza test and a stage: moving a \
+company creates in its ATS. A job in the ATS is linked to a testee test and a stage: moving a \
 candidate to that stage sends them the invite, and when they finish, their grade, whether they \
 passed, integrity flags and a scorecard link go back to the candidate in the ATS. Candidates \
 who couldn't be invited (no credits, limits, the pause) are listed and can be invited again; \
@@ -228,16 +228,16 @@ and syncs its lists by what changed (updated_since); a web hook hears, signed wi
 its secret, when a candidate starts, finishes (with their results), isn't reached, expires or is \
 removed, and when an interview is ready; each web hook can be sent a test event and has a \
 delivery log of its latest sends. A web hook that doesn't answer for 3 days is paused (no \
-events reach it) until a test event goes through. An invite can skip prepza's emails and sign-in \
+events reach it) until a test event goes through. An invite can skip testee's emails and sign-in \
 (the platform sends the candidate the link itself), bring the candidate back to the \
 company's site when they finish (any https address; http only on localhost while testing), and \
-ask for the light or dark theme. With prepza's SDK (a script), the company's own page shows the \
+ask for the light or dark theme. With testee's SDK (a script), the company's own page shows the \
 interview itself, only on the domains the company allows on its API page's SDK tab (localhost \
 only when it allows it); those domains are only for embedding. The API and web hooks don't \
 depend on any domain: an API key can be limited to allowed IP addresses, on the key's own page. \
 Verification isn't needed for the API, the SDK or AI apps, it only adds the verified badge. The reference is the \
 "developer docs" page, linked in the footer.
-- AI apps: Claude, ChatGPT and other apps that support MCP connect to prepza; any member can \
+- AI apps: Claude, ChatGPT and other apps that support MCP connect to testee; any member can \
 connect one (Integrations → AI apps → Instructions has the address and the steps). Connected, an app acts as the person who \
 connected it, in every company they're in, with their role there: it reads tests, candidates \
 and results, and makes changes they ask for; it can't delete an account or a company. Turning \
@@ -253,12 +253,12 @@ Account and settings:
 - Settings has the interface language, Emails, "Your account" (a "copy id" button) and "Your data" \
 ("Download my data" and "Delete account").
 - Open to offers (after a practice round and in Settings): a practice user enters their \
-LinkedIn profile and turns it on; companies hiring on prepza then see their name, LinkedIn \
+LinkedIn profile and turns it on; companies hiring on testee then see their name, LinkedIn \
 profile and latest practice results on the matching tests' Discover tab and may invite them. \
 Turning it off removes them at once; it ends a year after it was last turned on or the profile \
 saved.
 - Reporting a problem: write on the contact page and paste the ID of what it's about, so the \
-prepza team finds it at once. "copy id" sits under the name of a company, an interview and a \
+testee team finds it at once. "copy id" sits under the name of a company, an interview and a \
 candidate (on their pages), and the account's is in the account menu and in Settings.
 
 Emails:
@@ -270,12 +270,12 @@ interviews ready, the team's new notes; each can be turned off), reminders to ow
 interviews with no candidates, topics waiting for review), product updates and news, and offers \
 and promotions. Every one of these has an "Unsubscribe" link that stops it without signing in, \
 and a link to the email settings.
-- prepza's news shows in everyone's notifications (the bell); the major news is also emailed as \
+- testee's news shows in everyone's notifications (the bell); the major news is also emailed as \
 a product update to those with product updates on, and offers only to those who turned offers \
 on. A change to the terms or the privacy policy shows in the notifications too, with a banner \
 on the site until it applies.
 - Candidates' invites have a "Don't email me for <company>" link, and reminders also "Don't \
-send me reminders for this interview". After a candidate stops a company's emails, prepza \
+send me reminders for this interview". After a candidate stops a company's emails, testee \
 doesn't email them for that company again and the company sees the invite as not delivered.
 - The site works in {language_count} languages: {languages}. On a first visit it opens in the \
 browser's language if supported. Arabic, Hebrew and Persian read right to left.

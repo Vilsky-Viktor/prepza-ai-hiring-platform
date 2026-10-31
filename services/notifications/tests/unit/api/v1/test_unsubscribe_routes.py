@@ -192,9 +192,9 @@ def test_smtp_sends_the_one_click_headers(monkeypatch):
             sent.append(message)
 
     monkeypatch.setattr(smtp.smtplib, "SMTP", Client)
-    email = candidate_reminder_email(INVITE, "https://prepza.com", "secret")
+    email = candidate_reminder_email(INVITE, "https://testee.com", "secret")
 
     smtp.send_sync(email)
 
     assert sent[0]["List-Unsubscribe-Post"] == "List-Unsubscribe=One-Click"
-    assert sent[0]["List-Unsubscribe"].startswith("<https://prepza.com/api/notifications/")
+    assert sent[0]["List-Unsubscribe"].startswith("<https://testee.com/api/notifications/")

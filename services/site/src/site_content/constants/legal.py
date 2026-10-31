@@ -1,6 +1,6 @@
-from prepza_common.config.constants import OPERATOR
+from testee_common.config.constants import OPERATOR
 
-# The company behind prepza, as named in the privacy policy and terms.
+# The company behind testee, as named in the privacy policy and terms.
 COMPANY = OPERATOR
 
 # An address asking for a version never published.

@@ -6,19 +6,19 @@ import anyio
 import httpx
 from fastapi import Request
 from langchain_core.messages import BaseMessage
-from prepza_common.ai import ai_cap
-from prepza_common.ai.ai_constants import Outcome
-from prepza_common.ai.ai_usage import provider_refused
-from prepza_common.ai.secrets_check import secret_in
-from prepza_common.ai.tracing import new_trace_id
-from prepza_common.auth.human_check import require_human
-from prepza_common.auth.user import User
-from prepza_common.events.analytics import track
-from prepza_common.http.client_ip import limit_address
-from prepza_common.http.sse import sse_event
-from prepza_common.i18n.i18n import translate
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit, spend
+from testee_common.ai import ai_cap
+from testee_common.ai.ai_constants import Outcome
+from testee_common.ai.ai_usage import provider_refused
+from testee_common.ai.secrets_check import secret_in
+from testee_common.ai.tracing import new_trace_id
+from testee_common.auth.human_check import require_human
+from testee_common.auth.user import User
+from testee_common.events.analytics import track
+from testee_common.http.client_ip import limit_address
+from testee_common.http.sse import sse_event
+from testee_common.i18n.i18n import translate
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import hit, spend
 
 from assistant.config import settings
 from assistant.constants.chat import CHAT_FAILED

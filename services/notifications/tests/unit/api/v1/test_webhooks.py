@@ -5,7 +5,7 @@ import json
 import time
 
 import pytest
-from prepza_common.config.constants import WEBHOOK_SIGNATURE_REFUSED
+from testee_common.config.constants import WEBHOOK_SIGNATURE_REFUSED
 
 from notifications.config import settings
 from notifications.constants.events import EMAIL_WEBHOOK

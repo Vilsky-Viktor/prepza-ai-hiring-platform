@@ -1,17 +1,17 @@
 from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI
-from prepza_common.auth.auth import start_firebase
-from prepza_common.auth.company_access import remember_assistant
-from prepza_common.http.body_limit import BodyLimitMiddleware
-from prepza_common.http.compression import compress_answers
-from prepza_common.http.health import health_router
-from prepza_common.http.no_store import NoStoreMiddleware
-from prepza_common.http.shutdown import close_shared
-from prepza_common.i18n.i18n import add_localized_errors
-from prepza_common.observability.logging import RequestLogMiddleware, configure_logging
-from prepza_common.observability.loop_watch import start_loop_watch
-from prepza_common.observability.sentry import init_sentry
+from testee_common.auth.auth import start_firebase
+from testee_common.auth.company_access import remember_assistant
+from testee_common.http.body_limit import BodyLimitMiddleware
+from testee_common.http.compression import compress_answers
+from testee_common.http.health import health_router
+from testee_common.http.no_store import NoStoreMiddleware
+from testee_common.http.shutdown import close_shared
+from testee_common.i18n.i18n import add_localized_errors
+from testee_common.observability.logging import RequestLogMiddleware, configure_logging
+from testee_common.observability.loop_watch import start_loop_watch
+from testee_common.observability.sentry import init_sentry
 
 from billing.api.v1 import (
     auto_top_ups,

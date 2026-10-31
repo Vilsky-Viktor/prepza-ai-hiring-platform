@@ -5,9 +5,9 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 import pytest
-from prepza_common.auth.user import User
-from prepza_common.events.deletions import USER_DELETED
 from sqlalchemy import select
+from testee_common.auth.user import User
+from testee_common.events.deletions import USER_DELETED
 
 from accounts.core.db import Session
 from accounts.integrations import services

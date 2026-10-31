@@ -1,4 +1,4 @@
-from prepza_common.config.settings import ServiceSettings
+from testee_common.config.settings import ServiceSettings
 
 
 class Settings(ServiceSettings):
@@ -22,7 +22,7 @@ class Settings(ServiceSettings):
     notifications_url: str
     api_url: str
     assistant_url: str
-    # Keys the hashes in older invites' credit keys (prepza_common.limits.credit_keys, migration 0057).
+    # Keys the hashes in older invites' credit keys (testee_common.limits.credit_keys, migration 0057).
     person_hash_key: str
 
 

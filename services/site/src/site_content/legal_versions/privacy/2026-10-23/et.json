@@ -1,11 +1,11 @@
 {
-  "intro": "See privaatsuspoliitika selgitab, milliseid isikuandmeid prepza kogub, miks, kui kaua me neid säilitame ja millised õigused sul on. prepzat käitab Arcolabs OÜ (registrikood 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Eesti. prepza.ai näitab seda dokumenti ka teistes keeltes; siduv on ainult ingliskeelne versioon ja kui tõlge sellest erineb, kehtib ingliskeelne versioon.",
+  "intro": "See privaatsuspoliitika selgitab, milliseid isikuandmeid testee kogub, miks, kui kaua me neid säilitame ja millised õigused sul on. testeed käitab Arcolabs OÜ (registrikood 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Eesti. testee.ai näitab seda dokumenti ka teistes keeltes; siduv on ainult ingliskeelne versioon ja kui tõlge sellest erineb, kehtib ingliskeelne versioon.",
   "sections": [
     {
       "heading": "Kes vastutab",
       "paragraphs": [
-        "Sinu enda konto ja sinu ettevõtte konto puhul on sinu andmete vastutav töötleja Arcolabs OÜ. Kirjuta mis tahes küsimuse või taotlusega aadressile hello@prepza.ai.",
-        "Kui ettevõte kutsub sind prepzas intervjuule, otsustab see ettevõte, miks ja kuidas sinu tulemusi kasutatakse, ning on nende vastutav töötleja; meie töötleme neid tema nimel. Võid pöörduda otse ettevõtte või meie poole ja me edastame sinu taotluse."
+        "Sinu enda konto ja sinu ettevõtte konto puhul on sinu andmete vastutav töötleja Arcolabs OÜ. Kirjuta mis tahes küsimuse või taotlusega aadressile hello@testee.ai.",
+        "Kui ettevõte kutsub sind testees intervjuule, otsustab see ettevõte, miks ja kuidas sinu tulemusi kasutatakse, ning on nende vastutav töötleja; meie töötleme neid tema nimel. Võid pöörduda otse ettevõtte või meie poole ja me edastame sinu taotluse."
       ]
     },
     {
@@ -23,7 +23,7 @@
         "Kontroll „Ma ei ole robot“: kui saadad kontaktivormi, esitad abivestlusele esimese küsimuse, alustad intervjuud töökuulutuse lingi kaudu, lood oma esimese ettevõtte või kinnitad teemad ettevõttele, kes pole veel maksnud, vaatab Cloudflare Turnstile sinu brauserit (näiteks selle tüüpi, käitumist ja aadressi, kust see ühendub), et eristada inimest skriptist. Me saame teada ainult selle, kas kontroll läbiti.",
         "Sinu ühendatud AI-rakendused: rakenduse nimi ja sait, kuhu see naaseb, ning see, millal sa selle ühendasid ja viimati kasutasid. Selle juurdepääsu säilitatakse ainult ühesuunalise räsina.",
         "Tingimused, millega nõustusid: registreerumise ajal kehtinud tingimuste versioon ja nõustumise aeg, tõendina selle kohta, millega nõustusid. See kustutatakse koos sinu kontoga.",
-        "Ettevõtte ühendatud tööriistad: võtmed või tokenid, mille ettevõtte omanik või administraator loob ettevõtte värbamissüsteemis (Workable, Greenhouse, Teamtailor, Recruitee või Breezy HR) või Slackis, salvestatuna krüpteeritult; iga prepza API-võtme ühesuunaline räsi ja ettevõtte veebikonksude aadressid; ning ettevõtte värbamissüsteemist iga prepzasse saadetud kandidaadi e-posti aadress, nimi ja ID.",
+        "Ettevõtte ühendatud tööriistad: võtmed või tokenid, mille ettevõtte omanik või administraator loob ettevõtte värbamissüsteemis (Workable, Greenhouse, Teamtailor, Recruitee või Breezy HR) või Slackis, salvestatuna krüpteeritult; iga testee API-võtme ühesuunaline räsi ja ettevõtte veebikonksude aadressid; ning ettevõtte värbamissüsteemist iga testeesse saadetud kandidaadi e-posti aadress, nimi ja ID.",
         "E-kirjade seaded: milliseid valikulisi e-kirju saad, ja logi nende iga muudatuse kohta: milline e-kiri, sees või väljas, millal, kus (sisselogimisel, jaotises Seaded või tellimusest loobumise lingi või rämpspostiteate kaudu) ja millist märkeruutude sõnastuse versiooni nägid.",
         "E-kirjad ettevõtte liikmetele: kirje sulle saadetud tegevuste kokkuvõtete ja meeldetuletuste kohta ning selle kohta, millest iga meeldetuletus oli, et ühtki ei saadetaks kaks korda.",
         "E-kirjad paljudele kasutajatele (teated meie tingimuste muudatustest, olulised teated teenuse kohta, tooteuudised, pakkumised): kas iga kiri saadeti sulle, jäeti vahele või ebaõnnestus ning kas loobusid selle tellimisest või märkisid selle rämpspostiks, et ühtki ei saadetaks kaks korda ja me näeksime, kuidas igaüks vastu võeti.",
@@ -33,37 +33,37 @@
         "Ostud: iga juurdelaadimise kohta ettevõte, kellele see oli, kes selle ostis, mida osteti, kogusumma ja valuuta, Paddle'i tehingu ID ja aeg. Kaardi- ja arveldusandmeid hoiab Paddle, mitte meie.",
         "Ettevõtte toimingute logi: mida selle liikmed ettevõttes teevad, näiteks kandidaadi kutsumine, vaatamine või eemaldamine, intervjuu või meeskonna muutmine, juurdelaadimine või tööriista ühendamine, koos sellega, kes seda tegi, millal ja kas seda tegi tema eest assistent, AI-rakendus või API. Seda näeb ettevõtte omanik. Kandidaate ja liikmeid näidatakse nimega ainult seni, kuni nad on veel ettevõttes: logi säilitab nende ID-d, mitte kunagi nende e-posti aadresse.",
         "AI kasutus ja piirangud: iga AI kasutuse kohta, näiteks küsimuste kirjutamine või assistendi vastus, milleks see oli, mudel, selle maht ja kulu ning konto ja ettevõte, kelle jaoks see oli; ning iga kord, kui piirang päringu tagasi lükkab, milline piirang, millal ning konto ja ettevõte, kelle päringu see tagasi lükkas. Mitte kunagi AI-le saadetud teksti ega selle vastust.",
-        "AI-päringute kirjed: mida prepza AI-le saadab ja mida see vastab iga kord, kui seda kasutatakse, näiteks küsimuste kirjutamisel töökuulutuse põhjal või assistendi ja abivestluse vastuste puhul koos sellega, mida nad vastamiseks lugesid (see võib hõlmata kandidaatide tulemusi), ning nende vastuste hinnangud. Neid hoiab allpool nimetatud Langfuse ainult vastuste kvaliteedi jälgimiseks ja parandamiseks.",
+        "AI-päringute kirjed: mida testee AI-le saadab ja mida see vastab iga kord, kui seda kasutatakse, näiteks küsimuste kirjutamisel töökuulutuse põhjal või assistendi ja abivestluse vastuste puhul koos sellega, mida nad vastamiseks lugesid (see võib hõlmata kandidaatide tulemusi), ning nende vastuste hinnangud. Neid hoiab allpool nimetatud Langfuse ainult vastuste kvaliteedi jälgimiseks ja parandamiseks.",
         "Kasutusstatistika: sammud, nagu registreerumine, ettevõtte loomine, kandidaadi kutsumine või juurdelaadimine, koos arvväärtustega, nagu punktisumma või summa. Sinu konto ID asendatakse koodiga, mis on loodud meie hoitava salajase võtmega, nii et statistika ei nimeta sind, kuid see on pseudonüümitud, mitte anonüümne: võtme abil vastab kood sinu konto ID-le. Ettevõtte ID jäetakse muutmata. Nimesid, e-posti aadresse ega tekste ei lisata."
       ]
     },
     {
       "heading": "Miks me neid kasutame",
       "items": [
-        "prepza pakkumiseks: intervjuude loomine, nende läbiviimine kutsutud kandidaatidele, tulemuste näitamine ettevõtetele ja sinu soovitud e-kirjade saatmine (leping).",
+        "testee pakkumiseks: intervjuude loomine, nende läbiviimine kutsutud kandidaatidele, tulemuste näitamine ettevõtetele ja sinu soovitud e-kirjade saatmine (leping).",
         "Teenusega seotud e-kirjad, näiteks kutsed, aruanded, teated makseprobleemidest ja meie tingimuste muudatustest ning olulised teated teenuse kohta (turvaintsident, plaaniline katkestus või muudatus selle toimimises), mida saadetakse alati (leping).",
-        "Tegevuste kokkuvõte ja meeldetuletused sinu ettevõtete kohta, näiteks vähese krediidi või kandidaatideta intervjuu kohta (meie õigustatud huvi aidata sul prepzat kasutada). Need on sees, kuni need välja lülitad.",
+        "Tegevuste kokkuvõte ja meeldetuletused sinu ettevõtete kohta, näiteks vähese krediidi või kandidaatideta intervjuu kohta (meie õigustatud huvi aidata sul testeed kasutada). Need on sees, kuni need välja lülitad.",
         "Tooteuudised: meie enda kasutajatele, kes ei märkinud valikut „Ma ei soovi tooteuudiseid“, kui seda esimesel sisselogimisel pakuti (eraelu puutumatuse ja elektroonilise side direktiivi artikli 13 lõige 2 ja elektroonilise side seaduse § 103¹). Saad nendest igal ajal tasuta loobuda.",
         "Pakkumised ja kampaaniad: ainult siis, kui oled nõus, märkides ruudu sisselogimisel või jaotises Seaded (nõusolek). Saad nõusoleku igal ajal tagasi võtta.",
         "Otsustamine, kellele paljudele kasutajatele mõeldud e-kiri läheb: kas sinu konto kuulub ettevõtte meeskonda (ja kas omaniku või administraatorina), on teinud ettevõtte intervjuu või kasutanud tasuta harjutamist, et tooteuudis, pakkumine või oluline teade jõuaks ainult nendeni, keda see puudutab. Kasutatakse ainult seda, et sinu konto seda tegi, mitte kunagi sinu vastuseid, tulemusi ega seda, mida ettevõte sinu kohta hoiab (meie õigustatud huvi saata ainult asjakohaseid e-kirju). Tooteuudised ja pakkumised lähevad endiselt ainult neile, kes saavad neid kahe eelmise punkti alusel.",
-        "Meeles pidamine, et kandidaat loobus ettevõtte e-kirjadest, et prepza ei saadaks talle selle ettevõtte nimel enam e-kirju (tema vastuväite austamine).",
-        "prepza turvalisuse ja toimimise tagamiseks: kuritarvitamise ennetamine, päringupiirangud, vearaportid ja statistika, mis parandab küsimuste kvaliteeti (meie õigustatud huvi).",
+        "Meeles pidamine, et kandidaat loobus ettevõtte e-kirjadest, et testee ei saadaks talle selle ettevõtte nimel enam e-kirju (tema vastuväite austamine).",
+        "testee turvalisuse ja toimimise tagamiseks: kuritarvitamise ennetamine, päringupiirangud, vearaportid ja statistika, mis parandab küsimuste kvaliteeti (meie õigustatud huvi).",
         "Küsimuste kvaliteet: analüüsime, kuidas küsimustele vastatakse ja neist teatatakse, et leida üldisi, anonüümitud küsimuste kvaliteedi mustreid, mis parandavad küsimuste loomist kõigi jaoks; need mustrid ei sisalda isikuandmeid (meie õigustatud huvi).",
-        "Loodud küsimuste taaskasutamine: prepza loodud küsimusi võidakse taaskasutada teiste klientide intervjuudes ja harjutusintervjuudes, ilma isikuandmete või üksikasjadeta, mis tuvastaksid ettevõtte või isiku. Ettevõte saab intervjuu küsimused sellest välja jätta selle intervjuu seadetes.",
+        "Loodud küsimuste taaskasutamine: testee loodud küsimusi võidakse taaskasutada teiste klientide intervjuudes ja harjutusintervjuudes, ilma isikuandmete või üksikasjadeta, mis tuvastaksid ettevõtte või isiku. Ettevõte saab intervjuu küsimused sellest välja jätta selle intervjuu seadetes.",
         "AI-päringute kirjed võimaldavad meil jälgida ja parandada AI küsimuste ja vastuste kvaliteeti (meie õigustatud huvi).",
-        "Kulude kontroll ja kuritarvitamise ennetamine: AI kasutuse ja saavutatud piirangute kirjed näitavad, palju AI maksab ja kes millise piiranguni jõuab, et saaksime hoida prepza taskukohasena ja peatada väärkasutuse (meie õigustatud huvi).",
+        "Kulude kontroll ja kuritarvitamise ennetamine: AI kasutuse ja saavutatud piirangute kirjed näitavad, palju AI maksab ja kes millise piiranguni jõuab, et saaksime hoida testee taskukohasena ja peatada väärkasutuse (meie õigustatud huvi).",
         "Ettevõtte toimingute logi võimaldab selle omanikul näha, kes mida ettevõttes tegi, ja meie toel seda kontrollida, kui ettevõte abi palub (ettevõtte ja meie õigustatud huvi vastutuse tagamise vastu).",
-        "Kasutusstatistika näitab, millised prepza osad inimesi aitavad ning millised hinnad ja piirangud toimivad, et saaksime neid parandada (meie õigustatud huvi).",
+        "Kasutusstatistika näitab, millised testee osad inimesi aitavad ning millised hinnad ja piirangud toimivad, et saaksime neid parandada (meie õigustatud huvi).",
         "Ostukirjed, mida hoiame raamatupidamise jaoks, nagu Eesti raamatupidamisseadus nõuab (juriidiline kohustus).",
         "Ettevõtte kinnitatuna näitamine, võrreldes selle veebisaiti omanike ja administraatorite e-posti domeenidega (meie õigustatud huvi).",
-        "„Avatud tööpakkumistele“: ainult siis, kui lülitad selle sisse (nõusolek), näevad prepza kaudu värbavad ettevõtted sinu nime, sinu LinkedIni profiili ja sinu viimast ajapiiranguga harjutuse tulemust igas harjutatud teemas, mida mõni nende intervjuu oma tasemel hõlmab, et nad saaksid sind sellele intervjuule kutsuda. Me ei järjesta ega soovita sind ega tee sinu kohta ühtegi otsust: kelle kutsuda, otsustab ettevõte. Saad nõusoleku igal ajal seadetes tagasi võtta ja kaod siis kohe kõigi ettevõtete loenditest. Sinu valikute logi säilitatakse sinu nõusoleku tõendina (meie juriidiline kohustus seda tõendada).",
-        "Intervjuu tulemused, ajad ja kahtlase käitumise märked aitavad värbaval ettevõttel sinu vastuseid õiglaselt hinnata (ettevõtte õigustatud huvi). Märkide hulka kuuluvad mustrid sinu vastustes: igale küsimusele kulus umbes sama palju aega või rasketele küsimustele vastasid õigesti, samal ajal kui kergetele valesti; nende põhjal näidatakse ettevõttele küsimusi, mida sinult töövestlusel silmast silma küsida. Värbamisotsuse teevad ettevõtte inimesed; prepza ei tee sinu kohta ise ühtegi otsust. Võid paluda ettevõttelt, et sinu tulemuse vaataks üle inimene, ja enne alustamist kohandust, näiteks lisaaega."
+        "„Avatud tööpakkumistele“: ainult siis, kui lülitad selle sisse (nõusolek), näevad testee kaudu värbavad ettevõtted sinu nime, sinu LinkedIni profiili ja sinu viimast ajapiiranguga harjutuse tulemust igas harjutatud teemas, mida mõni nende intervjuu oma tasemel hõlmab, et nad saaksid sind sellele intervjuule kutsuda. Me ei järjesta ega soovita sind ega tee sinu kohta ühtegi otsust: kelle kutsuda, otsustab ettevõte. Saad nõusoleku igal ajal seadetes tagasi võtta ja kaod siis kohe kõigi ettevõtete loenditest. Sinu valikute logi säilitatakse sinu nõusoleku tõendina (meie juriidiline kohustus seda tõendada).",
+        "Intervjuu tulemused, ajad ja kahtlase käitumise märked aitavad värbaval ettevõttel sinu vastuseid õiglaselt hinnata (ettevõtte õigustatud huvi). Märkide hulka kuuluvad mustrid sinu vastustes: igale küsimusele kulus umbes sama palju aega või rasketele küsimustele vastasid õigesti, samal ajal kui kergetele valesti; nende põhjal näidatakse ettevõttele küsimusi, mida sinult töövestlusel silmast silma küsida. Värbamisotsuse teevad ettevõtte inimesed; testee ei tee sinu kohta ise ühtegi otsust. Võid paluda ettevõttelt, et sinu tulemuse vaataks üle inimene, ja enne alustamist kohandust, näiteks lisaaega."
       ]
     },
     {
       "heading": "Kellega me neid jagame",
       "paragraphs": [
-        "Jagame andmeid teenusepakkujatega, kes käitavad prepzat meie jaoks, lepingute alusel, mis andmeid kaitsevad, ning Paddle'iga, kes müüb juurdelaadimisi:"
+        "Jagame andmeid teenusepakkujatega, kes käitavad testeed meie jaoks, lepingute alusel, mis andmeid kaitsevad, ning Paddle'iga, kes müüb juurdelaadimisi:"
       ],
       "items": [
         "Google (Firebase Authentication; Google LLC, Ameerika Ühendriigid, ELi–USA andmekaitseraamistiku alusel): sisselogimine. LinkedIn ja GitHub kinnitavad ainult sinu isiku, kui logid nendega sisse; me ei saa neilt midagi muud.",
@@ -75,27 +75,27 @@
         "Cloudflare (Turnstile; Cloudflare, Inc., Ameerika Ühendriigid, ELi–USA andmekaitseraamistiku alusel): kontroll „Ma ei ole robot“.",
         "Google Cloud, meie majutusteenuse pakkuja, kes andmeid säilitab (ELis, Belgias).",
         "Upstash: lühiajalised loendurid kasutuspiirangute ja reaalajas uuenduste jaoks (EL-is, Belgias).",
-        "Ettevõtted, ainult kui lülitad sisse valiku „Avatud tööpakkumistele“: prepza kaudu värbavad ettevõtted näevad seda, mida on kirjeldatud eespool. Igaüks neist vastutab selle eest, kuidas ta nähtut kasutab. Kui mõni neist sind kutsub, läheb kutse sinu konto e-posti aadressile ja ettevõte näeb seda aadressi nagu iga kandidaadi oma.",
+        "Ettevõtted, ainult kui lülitad sisse valiku „Avatud tööpakkumistele“: testee kaudu värbavad ettevõtted näevad seda, mida on kirjeldatud eespool. Igaüks neist vastutab selle eest, kuidas ta nähtut kasutab. Kui mõni neist sind kutsub, läheb kutse sinu konto e-posti aadressile ja ettevõte näeb seda aadressi nagu iga kandidaadi oma.",
         "Paddle (Paddle.com Market Ltd, Ühendkuningriik) nende hulka ei kuulu: ta müüb juurdelaadimisi ise, edasimüüjana (merchant of record), ning on enda kogutud makse-, maksu- ja arveldusandmete vastutav töötleja oma privaatsuspoliitika alusel. Edastame talle ostva liikme e-posti aadressi ja tema teatab meile, mida osteti ja mille eest maksti."
       ]
     },
     {
       "heading": "Ettevõtte ühendatud tööriistad",
       "paragraphs": [
-        "Ettevõte saab ühendada prepzaga oma tööriistad ja siis saadame neile andmeid ettevõtte juhiste alusel osana teenusest, mida ettevõte on soovinud: ettevõtte värbamissüsteem (Workable, Greenhouse, Teamtailor, Recruitee või Breezy HR) saab sinu hinde, selle, kas see ületas läbimise läve, kahtlase käitumise märked ja lingi sinu tulemustele; ettevõtte valitud Slacki kanal saab ettevõtte teavitused, näiteks et lõpetasid, ja sinu hinde; ning ettevõtte enda süsteemid saavad prepza API või veebikonksude kaudu sinu e-posti aadressi, nime, edenemise, hinde, selle, kas saavutasid läbimise läve, kahtlase käitumise märked ja sinu kutselingi. Ettevõte valib ja kontrollib neid tööriistu, mis võivad asuda väljaspool ELi, ning vastutab selle eest, kuidas need sinu andmeid kasutavad."
+        "Ettevõte saab ühendada testeega oma tööriistad ja siis saadame neile andmeid ettevõtte juhiste alusel osana teenusest, mida ettevõte on soovinud: ettevõtte värbamissüsteem (Workable, Greenhouse, Teamtailor, Recruitee või Breezy HR) saab sinu hinde, selle, kas see ületas läbimise läve, kahtlase käitumise märked ja lingi sinu tulemustele; ettevõtte valitud Slacki kanal saab ettevõtte teavitused, näiteks et lõpetasid, ja sinu hinde; ning ettevõtte enda süsteemid saavad testee API või veebikonksude kaudu sinu e-posti aadressi, nime, edenemise, hinde, selle, kas saavutasid läbimise läve, kahtlase käitumise märked ja sinu kutselingi. Ettevõte valib ja kontrollib neid tööriistu, mis võivad asuda väljaspool ELi, ning vastutab selle eest, kuidas need sinu andmeid kasutavad."
       ]
     },
     {
       "heading": "Sinu ühendatud AI-rakendused",
       "paragraphs": [
-        "Saad oma prepza kontoga ühendada oma AI-rakenduse, näiteks Claude'i (Anthropicult) või ChatGPT (OpenAI-lt). Ainult siis, kui seda teed, ja ainult selle jaoks, mida sa sellelt palud, loeb ja muudab see sinu juurdepääsuga sinu ettevõtete andmeid, sealhulgas kandidaatide tulemusi, ning need andmed jõuavad rakenduse pakkujani rakenduse enda tingimuste ja privaatsuspoliitika, mitte meie omade alusel. Sina valid need rakendused ja saad igaühe neist igal ajal lahti ühendada ettevõtte vahekaardil Integratsioonid; konto kustutamine ühendab need kõik lahti. Ettevõtte omanikud ja administraatorid saavad keelata AI-rakendustel selle ettevõtte andmete kasutamise."
+        "Saad oma testee kontoga ühendada oma AI-rakenduse, näiteks Claude'i (Anthropicult) või ChatGPT (OpenAI-lt). Ainult siis, kui seda teed, ja ainult selle jaoks, mida sa sellelt palud, loeb ja muudab see sinu juurdepääsuga sinu ettevõtete andmeid, sealhulgas kandidaatide tulemusi, ning need andmed jõuavad rakenduse pakkujani rakenduse enda tingimuste ja privaatsuspoliitika, mitte meie omade alusel. Sina valid need rakendused ja saad igaühe neist igal ajal lahti ühendada ettevõtte vahekaardil Integratsioonid; konto kustutamine ühendab need kõik lahti. Ettevõtte omanikud ja administraatorid saavad keelata AI-rakendustel selle ettevõtte andmete kasutamise."
       ]
     },
     {
       "heading": "E-kirjad ja tellimusest loobumine",
       "paragraphs": [
         "Teenusega seotud e-kirju, näiteks kutseid, aruandeid, teateid makseprobleemidest ja meie tingimuste muudatustest ning olulisi teateid teenuse kohta, saadetakse alati. Ülejäänud valid jaotises Seaded, alajaotises E-kirjad: tegevuste kokkuvõte, meeldetuletused, tooteuudised ning pakkumised ja kampaaniad. Igas valikulises e-kirjas on tellimusest loobumise link, mis töötab ilma sisse logimata, ning valikulise e-kirja rämpspostiks märkimine lülitab selle samuti välja. Kui sulle saadetud e-kiri põrkub jäädavalt tagasi või märgid mõne meie e-kirja rämpspostiks, lõpetame sellele aadressile tootekirjade ja teadete saatmise, kuni palud meil uuesti alustada.",
-        "Kutsetes ja meeldetuletustes, mida ettevõte saadab kandidaatidele prepza kaudu, on lingid, millega saab loobuda selle ettevõtte e-kirjadest või selle intervjuu meeldetuletustest. Seejärel ei saada prepza sellele aadressile selle ettevõtte nimel enam e-kirju ja ettevõte näeb kutset kohaletoimetamata kutsena."
+        "Kutsetes ja meeldetuletustes, mida ettevõte saadab kandidaatidele testee kaudu, on lingid, millega saab loobuda selle ettevõtte e-kirjadest või selle intervjuu meeldetuletustest. Seejärel ei saada testee sellele aadressile selle ettevõtte nimel enam e-kirju ja ettevõte näeb kutset kohaletoimetamata kutsena."
       ]
     },
     {
@@ -118,7 +118,7 @@
         "AI kasutuse ja saavutatud piirangute kirjed: 13 kuud, ilma sinu konto ID-ta pärast seda, kui oled oma konto kustutanud.",
         "Harjutusvoorud: kuni kustutad oma konto.",
         "„Avatud tööpakkumistele“: kuni lülitad selle välja või kustutad konto, kuid kõige rohkem aasta pärast seda, kui selle viimati sisse lülitasid või LinkedIni profiili salvestasid; sinu valikute logi kuni kustutad oma konto.",
-        "prepzast e-kirjaga saadetud aruanne: PDF-faili säilitatakse ainult e-kirja saatmiseks ja see kustutatakse hiljemalt 7 päeva pärast.",
+        "testeest e-kirjaga saadetud aruanne: PDF-faili säilitatakse ainult e-kirja saatmiseks ja see kustutatakse hiljemalt 7 päeva pärast.",
         "Kleebitud töökuulutuste kirjeldused meie loomise kirjetes: 90 päeva pärast loomise lõppu. Nende põhjal loodud intervjuu jääb ettevõtte kontole, kuni see kustutatakse.",
         "Sinu e-kirjade seaded ja nende muudatuste logi: kuni kustutad oma konto.",
         "Sulle saadetud kokkuvõtete ja meeldetuletuste kirje: 30 päeva või kuni kustutad oma konto, kui see juhtub varem.",
@@ -150,17 +150,17 @@
     {
       "heading": "Küpsised ja salvestusruum",
       "paragraphs": [
-        "prepza kasutab ainult neid küpsiseid ja brauseri salvestusruumi, mida on vaja toimimiseks või mis jätavad meelde sinu enda valikud. Reklaami- ega analüütikaküpsiseid ei ole.",
-        "Sisselogituna hoidmiseks: küpsis (prepza_token, mida uuendatakse prepza kasutamise ajal iga tund, kuni logid välja) ja meie sisselogimisteenuse pakkuja Google Firebase'i brauseri salvestusruum. AI-rakenduse ühendamise ajal kestab küpsis (prepza_connect) need mõned minutid, mis selleks kuluvad.",
-        "Sinu valikute meeldejätmiseks: sinu keel (küpsis prepza_locale, üheks aastaks, mis seatakse, kui valid keele või avad prepza mõne keele aadressil), hele või tume teema, assistendi paneeli laius, see, kuidas sa viimati kandidaate kutsusid, see, et oled selles brauseris varem sisse loginud, statistika jaoks viimati valitud periood, sinu suletud teated muudetud õigusdokumendi kohta ning sinu vestlus assistendiga (kuni sisse logid, ainult selles vahekaardis). Need jäävad sinu brauserisse, kuni need kustutad.",
-        "Soovituslink: ainult siis, kui otsustad selle alles jätta, jätab küpsis (prepza_ref) 30 päevaks meelde lingi, mille kaudu tulid, et krediidid jõuaksid mõlema ettevõtteni.",
+        "testee kasutab ainult neid küpsiseid ja brauseri salvestusruumi, mida on vaja toimimiseks või mis jätavad meelde sinu enda valikud. Reklaami- ega analüütikaküpsiseid ei ole.",
+        "Sisselogituna hoidmiseks: küpsis (testee_token, mida uuendatakse testee kasutamise ajal iga tund, kuni logid välja) ja meie sisselogimisteenuse pakkuja Google Firebase'i brauseri salvestusruum. AI-rakenduse ühendamise ajal kestab küpsis (testee_connect) need mõned minutid, mis selleks kuluvad.",
+        "Sinu valikute meeldejätmiseks: sinu keel (küpsis testee_locale, üheks aastaks, mis seatakse, kui valid keele või avad testee mõne keele aadressil), hele või tume teema, assistendi paneeli laius, see, kuidas sa viimati kandidaate kutsusid, see, et oled selles brauseris varem sisse loginud, statistika jaoks viimati valitud periood, sinu suletud teated muudetud õigusdokumendi kohta ning sinu vestlus assistendiga (kuni sisse logid, ainult selles vahekaardis). Need jäävad sinu brauserisse, kuni need kustutad.",
+        "Soovituslink: ainult siis, kui otsustad selle alles jätta, jätab küpsis (testee_ref) 30 päevaks meelde lingi, mille kaudu tulid, et krediidid jõuaksid mõlema ettevõtteni.",
         "Kontroll „Ma ei ole robot“ töötab Cloudflare'i väikeses raamis, kui vorm seda vajab, ega sea jälgimisküpsiseid."
       ]
     },
     {
       "heading": "Lapsed",
       "paragraphs": [
-        "prepza ei ole mõeldud alla 16-aastastele."
+        "testee ei ole mõeldud alla 16-aastastele."
       ]
     },
     {
@@ -172,7 +172,7 @@
     {
       "heading": "Võta ühendust",
       "paragraphs": [
-        "Küsimused selle privaatsuspoliitika või sinu andmete kohta: kirjuta aadressile hello@prepza.ai või kasuta iga lehe allosas olevat linki kontaktilehele."
+        "Küsimused selle privaatsuspoliitika või sinu andmete kohta: kirjuta aadressile hello@testee.ai või kasuta iga lehe allosas olevat linki kontaktilehele."
       ]
     }
   ]

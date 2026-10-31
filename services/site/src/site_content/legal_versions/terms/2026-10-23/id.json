@@ -1,5 +1,5 @@
 {
-  "intro": "Ketentuan ini berlaku saat kamu menggunakan prepza, layanan dari Arcolabs OÜ (kode registrasi 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. Dengan masuk, kamu menyetujuinya. prepza.ai juga menampilkan dokumen ini dalam bahasa lain; hanya versi bahasa Inggris ini yang mengikat, dan jika suatu terjemahan berbeda, yang berlaku adalah versi bahasa Inggris.",
+  "intro": "Ketentuan ini berlaku saat kamu menggunakan testee, layanan dari Arcolabs OÜ (kode registrasi 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. Dengan masuk, kamu menyetujuinya. testee.ai juga menampilkan dokumen ini dalam bahasa lain; hanya versi bahasa Inggris ini yang mengikat, dan jika suatu terjemahan berbeda, yang berlaku adalah versi bahasa Inggris.",
   "sections": [
     {
       "heading": "Akunmu",
@@ -18,13 +18,13 @@
     {
       "heading": "Kontenmu",
       "paragraphs": [
-        "Kamu tetap memegang hak atas apa yang kamu tempel dan buat. Kamu mengizinkan kami menyimpan dan memprosesnya untuk menjalankan prepza, termasuk mengirimkannya ke layanan AI yang kami gunakan. Kamu juga memberi kami lisensi yang berlaku di seluruh dunia, bebas royalti, dan tidak dapat dicabut, selama hak apa pun atasnya masih berlaku, untuk menggunakan, mengadaptasi, dan menggunakan kembali soal yang dibuat prepza untukmu dalam wawancara dan latihan bagi pelanggan lain, tanpa apa pun yang mengidentifikasi kamu, perusahaanmu, atau orang lain; kamu bisa mengecualikan soal suatu wawancara dari hal ini di pengaturannya, dan soal yang sudah digunakan kembali tetap di tempatnya. Kami juga mempelajari pola umum kualitas soal yang dianonimkan dari semua soal untuk meningkatkan cara soal dibuat. Jangan menempelkan rahasia dagang atau data pribadi ke dalam deskripsi pekerjaan."
+        "Kamu tetap memegang hak atas apa yang kamu tempel dan buat. Kamu mengizinkan kami menyimpan dan memprosesnya untuk menjalankan testee, termasuk mengirimkannya ke layanan AI yang kami gunakan. Kamu juga memberi kami lisensi yang berlaku di seluruh dunia, bebas royalti, dan tidak dapat dicabut, selama hak apa pun atasnya masih berlaku, untuk menggunakan, mengadaptasi, dan menggunakan kembali soal yang dibuat testee untukmu dalam wawancara dan latihan bagi pelanggan lain, tanpa apa pun yang mengidentifikasi kamu, perusahaanmu, atau orang lain; kamu bisa mengecualikan soal suatu wawancara dari hal ini di pengaturannya, dan soal yang sudah digunakan kembali tetap di tempatnya. Kami juga mempelajari pola umum kualitas soal yang dianonimkan dari semua soal untuk meningkatkan cara soal dibuat. Jangan menempelkan rahasia dagang atau data pribadi ke dalam deskripsi pekerjaan."
       ]
     },
     {
       "heading": "Penggunaan yang wajar",
       "items": [
-        "Jangan gunakan prepza untuk mengirim email yang tidak diinginkan, untuk melakukan scraping terhadapnya, atau untuk membebaninya secara berlebihan atau menyerangnya.",
+        "Jangan gunakan testee untuk mengirim email yang tidak diinginkan, untuk melakukan scraping terhadapnya, atau untuk membebaninya secara berlebihan atau menyerangnya.",
         "Jangan mencoba mengakali batasan, keamanan, atau akses pengguna lain.",
         "Dalam wawancara, jawablah sendiri dan ikuti aturannya; perusahaan melihat berapa lama setiap jawaban, kapan kamu meninggalkan halaman, dan kapan kamu menyalin teks. Sebelum mulai, kamu mengonfirmasi bahwa kamu akan menjawab sendiri, dan perusahaan melihat bahwa kamu telah mengonfirmasinya."
       ]
@@ -32,7 +32,7 @@
     {
       "heading": "Perusahaan",
       "paragraphs": [
-        "Perusahaan yang menggunakan prepza untuk mewawancarai kandidat bertanggung jawab untuk mengundang kandidat secara sah, untuk memberi tahu mereka bagaimana hasil mereka digunakan, dan atas keputusan perekrutannya. Kami memproses data kandidat atas nama perusahaan, berdasarkan perjanjian pemrosesan data di prepza.ai/dpa."
+        "Perusahaan yang menggunakan testee untuk mewawancarai kandidat bertanggung jawab untuk mengundang kandidat secara sah, untuk memberi tahu mereka bagaimana hasil mereka digunakan, dan atas keputusan perekrutannya. Kami memproses data kandidat atas nama perusahaan, berdasarkan perjanjian pemrosesan data di testee.ai/dpa."
       ],
       "items": [
         "Logo perusahaan harus logo yang berhak digunakan oleh perusahaan tersebut.",
@@ -42,25 +42,25 @@
         "Hasil mendukung keputusan perusahaan; hasil tidak membuat keputusan itu. Perusahaan meninjau hasil sebelum memutuskan, tidak menolak kandidat hanya berdasarkan skor, dan memungkinkan kandidat meminta agar hasilnya ditinjau oleh manusia.",
         "Perusahaan memberikan penyesuaian kepada kandidat yang membutuhkannya, seperti waktu tambahan, yang dapat diatur untuk setiap kandidat sebelum mereka mulai.",
         "Wawancara dalam mode suara dijawab secara lisan: perusahaan memberi tahu kandidatnya tentang hal ini, dan mengizinkan kandidat yang membutuhkannya menjawab dengan ketukan sebagai gantinya.",
-        "Perusahaan yang menghubungkan alatnya sendiri (sistem pelacakan pelamar, Slack, atau sistemnya melalui API dan webhook prepza) memilih ke mana hasil kandidatnya dikirim dan bertanggung jawab atas alat tersebut, serta tidak mengaturnya untuk menolak kandidat secara otomatis berdasarkan hasil prepza.",
+        "Perusahaan yang menghubungkan alatnya sendiri (sistem pelacakan pelamar, Slack, atau sistemnya melalui API dan webhook testee) memilih ke mana hasil kandidatnya dikirim dan bertanggung jawab atas alat tersebut, serta tidak mengaturnya untuk menolak kandidat secara otomatis berdasarkan hasil testee.",
         "Kunci API dan rahasia webhook wajib dirahasiakan oleh perusahaan: apa pun yang dilakukan dengan kunci yang valid dilakukan untuk perusahaan oleh kunci itu, dalam batas izin yang diberikan kepadanya, dan log tindakan perusahaan mencantumkan kunci tersebut. Kunci dan webhook adalah milik perusahaan dan tetap ada saat anggota yang membuatnya keluar. Kunci atau webhook yang mungkin bocor harus segera dihapus di halaman API perusahaan.",
-        "Perjanjian pemrosesan data di prepza.ai/dpa merupakan bagian dari ketentuan ini bagi setiap perusahaan yang menggunakan prepza untuk kandidat.",
+        "Perjanjian pemrosesan data di testee.ai/dpa merupakan bagian dari ketentuan ini bagi setiap perusahaan yang menggunakan testee untuk kandidat.",
         "Perusahaan menggunakan apa yang dilihatnya tentang orang yang terbuka untuk tawaran kerja hanya untuk mempertimbangkan mereka bagi lowongannya sendiri dan untuk mengundang mereka. Hasil mereka adalah hasil latihan, bukan kualifikasi, dan daftarnya bukan rekomendasi: urutannya hanya menunjukkan siapa yang terakhir berlatih.",
         "Perusahaan yang mengundang seseorang dari tab Temukan memberi tahu orang itu, paling lambat dalam undangan, siapa perusahaan itu, mengapa menghubunginya, apa yang dilihatnya, dan hak-haknya.",
-        "Perusahaan menggunakan prepza untuk menilai kandidat untuk pekerjaan di New York City hanya setelah memenuhi apa yang diwajibkan Local Law 144 kepadanya sebagai pemberi kerja: audit bias oleh auditor independen dalam satu tahun sebelum penggunaan, publikasi ringkasannya, dan pemberitahuan kepada kandidat paling lambat 10 hari kerja sebelum mereka dinilai."
+        "Perusahaan menggunakan testee untuk menilai kandidat untuk pekerjaan di New York City hanya setelah memenuhi apa yang diwajibkan Local Law 144 kepadanya sebagai pemberi kerja: audit bias oleh auditor independen dalam satu tahun sebelum penggunaan, publikasi ringkasannya, dan pemberitahuan kepada kandidat paling lambat 10 hari kerja sebelum mereka dinilai."
       ]
     },
     {
       "heading": "Latihan",
       "items": [
         "Wawancara latihan gratis, dan hasilnya hanya bisa dilihat olehmu kecuali kamu mengaktifkan Terbuka untuk tawaran kerja.",
-        "Terbuka untuk tawaran kerja bersifat opsional dan nonaktif kecuali kamu mengaktifkannya. Selama aktif, perusahaan yang merekrut lewat prepza melihat namamu, profil LinkedIn-mu, dan hasil latihan berwaktu terbarumu pada topik wawancara mereka, dan bisa mengundangmu ke wawancara; undangan dikirim ke email akunmu. prepza tidak memeringkat atau merekomendasikanmu. Kamu bisa mematikannya kapan saja di Pengaturan, dan kamu langsung hilang dari daftar setiap perusahaan. Fitur ini juga berakhir setahun setelah terakhir kali kamu mengaktifkannya atau menyimpan profil LinkedIn-mu."
+        "Terbuka untuk tawaran kerja bersifat opsional dan nonaktif kecuali kamu mengaktifkannya. Selama aktif, perusahaan yang merekrut lewat testee melihat namamu, profil LinkedIn-mu, dan hasil latihan berwaktu terbarumu pada topik wawancara mereka, dan bisa mengundangmu ke wawancara; undangan dikirim ke email akunmu. testee tidak memeringkat atau merekomendasikanmu. Kamu bisa mematikannya kapan saja di Pengaturan, dan kamu langsung hilang dari daftar setiap perusahaan. Fitur ini juga berakhir setahun setelah terakhir kali kamu mengaktifkannya atau menyimpan profil LinkedIn-mu."
       ]
     },
     {
       "heading": "Kredit dan pembayaran",
       "items": [
-        "prepza dibayar dengan kredit: setiap isi ulang membeli jumlah kredit yang ditampilkan sebelum kamu membayar, dan isi ulang yang lebih besar memberikan lebih banyak kredit untuk uang yang sama. Biaya setiap hal dalam kredit tercantum di halaman harga dan ditampilkan sebelum kamu menggunakannya.",
+        "testee dibayar dengan kredit: setiap isi ulang membeli jumlah kredit yang ditampilkan sebelum kamu membayar, dan isi ulang yang lebih besar memberikan lebih banyak kredit untuk uang yang sama. Biaya setiap hal dalam kredit tercantum di halaman harga dan ditampilkan sebelum kamu menggunakannya.",
         "Isi ulang dijual oleh Paddle, yang bertindak sebagai penjual kembali (merchant of record): Paddle menerima pembayaran, memungut PPN atau pajak penjualan yang berlaku, dan menerbitkan tanda terima atau faktur. Isi ulang dapat dibeli oleh pelaku usaha maupun konsumen. Harga di halaman harga belum termasuk PPN atau pajak penjualan: jika berlaku, Paddle menambahkannya saat checkout, di atas harga yang tercantum. Harga dalam mata uang lokal di Kanada (dolar Kanada), Australia (dolar Australia), Israel (shekel), Polandia (zloty), Swiss (franc Swiss), Jepang (yen), Korea Selatan (won), Taiwan (dolar Taiwan baru), Hong Kong (dolar Hong Kong), Thailand (baht), Singapura (dolar Singapura), dan India (rupee); dalam euro di negara Uni Eropa lainnya serta di Islandia, Liechtenstein, dan Norwegia; dalam pound sterling di Britania Raya; dan dalam dolar AS di tempat lain. Setiap perusahaan membayar dalam mata uangnya sendiri, yang awalnya ditentukan dari negara tempat perusahaan itu dibuat dan dapat diubah oleh pemilik dan adminnya; halaman checkout menampilkan jumlah akhirnya, termasuk pajak yang berlaku, sebelum kamu membayar. Jika kartumu dalam mata uang lain, bank atau penerbit kartumu dapat mengonversi jumlahnya.",
         "Kredit milik perusahaan dan digunakan untuk kandidatnya; pemilik dan admin perusahaan dapat mengisi ulang kredit tersebut. Kredit tidak dapat dipindahkan antarakun atau antarperusahaan, dijual, atau dicairkan sebagai uang.",
         "Isi ulang otomatis bersifat opsional dan nonaktif kecuali kamu menyalakannya, yang memerlukan centang darimu sendiri pada ketentuannya. Saat kamu menyalakannya, kamu memberi wewenang kepada Paddle untuk menyimpan kartumu dan menagihnya sebesar jumlah isi ulang yang kamu pilih, ditambah PPN atau pajak penjualan yang berlaku, setiap kali saldo tersedia perusahaan turun di bawah batas yang kamu pilih, tanpa meminta persetujuan lagi, sampai isi ulang otomatis dimatikan. Kami mengirim email kepada pemilik dan admin perusahaan saat isi ulang otomatis dinyalakan dan setelah setiap tagihan, dan Paddle mengirim tanda terima melalui email untuk setiap tagihan. Kamu bisa mengubah atau mematikannya kapan saja di tempat kamu menyalakannya, yaitu di halaman isi ulang atau di halaman tagihan perusahaan; mematikannya berlaku saat itu juga, membatalkan otorisasi kartu yang tersimpan, dan menghentikan semua tagihan berikutnya, begitu pula jika kamu membatalkannya melalui email dari Paddle. Tagihan yang sudah dilakukan mengikuti aturan pengembalian dana di bawah.",
@@ -76,21 +76,21 @@
     {
       "heading": "Ketersediaan dan perubahan",
       "paragraphs": [
-        "Kami berupaya menjaga prepza tetap tersedia dan aman, tetapi tidak dapat menjanjikan bahwa prepza akan selalu demikian. Kami dapat mengubah atau menghentikan fitur, dan dapat menangguhkan akun yang melanggar ketentuan ini. Kami mengirimimu email tentang perubahan signifikan pada ketentuan ini paling lambat 14 hari sebelum perubahan itu berlaku; menggunakan prepza setelah tanggal tersebut berarti kamu menerima ketentuan yang baru. Setiap versi sebelumnya tetap dapat dibaca di halaman ini."
+        "Kami berupaya menjaga testee tetap tersedia dan aman, tetapi tidak dapat menjanjikan bahwa testee akan selalu demikian. Kami dapat mengubah atau menghentikan fitur, dan dapat menangguhkan akun yang melanggar ketentuan ini. Kami mengirimimu email tentang perubahan signifikan pada ketentuan ini paling lambat 14 hari sebelum perubahan itu berlaku; menggunakan testee setelah tanggal tersebut berarti kamu menerima ketentuan yang baru. Setiap versi sebelumnya tetap dapat dibaca di halaman ini."
       ]
     },
     {
       "heading": "Tanggung jawab",
       "paragraphs": [
-        "prepza disediakan sebagaimana adanya. Sejauh diizinkan oleh hukum, kami tidak bertanggung jawab atas kerugian tidak langsung, dan total tanggung jawab kami terbatas pada jumlah yang kamu bayarkan untuk kredit dalam 12 bulan terakhir, atau 100 dolar AS (atau nilai yang setara dalam mata uangmu) jika kamu tidak membayar apa pun. Tidak ada ketentuan di sini yang membatasi hak yang kamu miliki sebagai konsumen berdasarkan hukum negaramu."
+        "testee disediakan sebagaimana adanya. Sejauh diizinkan oleh hukum, kami tidak bertanggung jawab atas kerugian tidak langsung, dan total tanggung jawab kami terbatas pada jumlah yang kamu bayarkan untuk kredit dalam 12 bulan terakhir, atau 100 dolar AS (atau nilai yang setara dalam mata uangmu) jika kamu tidak membayar apa pun. Tidak ada ketentuan di sini yang membatasi hak yang kamu miliki sebagai konsumen berdasarkan hukum negaramu."
       ]
     },
     {
       "heading": "Hukum yang berlaku",
       "paragraphs": [
-        "Hukum Estonia berlaku, tanpa menghilangkan perlindungan wajib di negara tempat tinggalmu. Pertanyaan tentang ketentuan ini: hello@prepza.ai.",
+        "Hukum Estonia berlaku, tanpa menghilangkan perlindungan wajib di negara tempat tinggalmu. Pertanyaan tentang ketentuan ini: hello@testee.ai.",
         "Sengketa dengan pelaku usaha diselesaikan di Pengadilan Distrik Harju (Harju Maakohus) di Tallinn. Sebagai konsumen, kamu juga dapat mengajukannya ke pengadilan di tempat tinggalmu.",
-        "Jika kamu konsumen, tulis kepada kami terlebih dahulu di hello@prepza.ai: kami menjawab dalam 15 hari. Jika kita tidak mencapai kesepakatan dan kamu tinggal di Estonia, kamu dapat mengajukan sengketa tersebut secara gratis ke Komite Sengketa Konsumen (Tarbijavaidluste komisjon) pada Otoritas Perlindungan Konsumen dan Regulasi Teknis, ttja.ee."
+        "Jika kamu konsumen, tulis kepada kami terlebih dahulu di hello@testee.ai: kami menjawab dalam 15 hari. Jika kita tidak mencapai kesepakatan dan kamu tinggal di Estonia, kamu dapat mengajukan sengketa tersebut secara gratis ke Komite Sengketa Konsumen (Tarbijavaidluste komisjon) pada Otoritas Perlindungan Konsumen dan Regulasi Teknis, ttja.ee."
       ]
     }
   ]

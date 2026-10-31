@@ -1,11 +1,11 @@
 {
-  "intro": "Niniejsza polityka wyjaśnia, jakie dane osobowe zbiera prepza, w jakim celu, jak długo je przechowujemy i jakie prawa Ci przysługują. prepza jest prowadzona przez Arcolabs OÜ (numer rejestrowy 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. prepza.ai pokazuje ten dokument także w innych językach; wiążąca jest wyłącznie wersja angielska, a jeśli tłumaczenie się od niej różni, obowiązuje wersja angielska.",
+  "intro": "Niniejsza polityka wyjaśnia, jakie dane osobowe zbiera testee, w jakim celu, jak długo je przechowujemy i jakie prawa Ci przysługują. testee jest prowadzona przez Arcolabs OÜ (numer rejestrowy 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. testee.ai pokazuje ten dokument także w innych językach; wiążąca jest wyłącznie wersja angielska, a jeśli tłumaczenie się od niej różni, obowiązuje wersja angielska.",
   "sections": [
     {
       "heading": "Kto odpowiada za dane",
       "paragraphs": [
-        "W odniesieniu do Twojego własnego konta i konta Twojej firmy administratorem danych jest Arcolabs OÜ. Z każdym pytaniem lub żądaniem napisz na adres hello@prepza.ai.",
-        "Gdy firma zaprasza Cię na rozmowę w prepza, to ta firma decyduje, w jakim celu i w jaki sposób wykorzystywane są Twoje wyniki, i jest ich administratorem danych; my przetwarzamy je w jej imieniu. Możesz skontaktować się bezpośrednio z firmą lub z nami, a my przekażemy Twoje żądanie dalej."
+        "W odniesieniu do Twojego własnego konta i konta Twojej firmy administratorem danych jest Arcolabs OÜ. Z każdym pytaniem lub żądaniem napisz na adres hello@testee.ai.",
+        "Gdy firma zaprasza Cię na rozmowę w testee, to ta firma decyduje, w jakim celu i w jaki sposób wykorzystywane są Twoje wyniki, i jest ich administratorem danych; my przetwarzamy je w jej imieniu. Możesz skontaktować się bezpośrednio z firmą lub z nami, a my przekażemy Twoje żądanie dalej."
       ]
     },
     {
@@ -23,7 +23,7 @@
         "Weryfikacja „Nie jestem robotem”: gdy wysyłasz formularz kontaktowy, zadajesz pierwsze pytanie na czacie pomocy, rozpoczynasz rozmowę przez link z ogłoszenia o pracę, tworzysz swoją pierwszą firmę lub zatwierdzasz tematy firmy, która jeszcze nie zapłaciła, Cloudflare Turnstile sprawdza Twoją przeglądarkę (np. jej typ, sposób działania i adres, z którego się łączy), aby odróżnić człowieka od skryptu. Otrzymujemy wyłącznie informację, czy weryfikacja zakończyła się powodzeniem.",
         "Podłączane przez Ciebie aplikacje AI: nazwa aplikacji i strona, na którą wraca, oraz to, kiedy ją podłączyłeś i kiedy ostatnio jej użyłeś. Jej dostęp jest przechowywany wyłącznie jako skrót jednokierunkowy (hash).",
         "Zaakceptowany regulamin: wersja regulaminu obowiązująca w chwili Twojej rejestracji oraz data akceptacji, jako dowód tego, na co się zgodziłeś. Jest usuwana wraz z Twoim kontem.",
-        "Narzędzia podłączane przez firmę: klucze lub tokeny utworzone przez jej właściciela lub administratora w jej systemie ATS (Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR) lub w Slacku, przechowywane w postaci zaszyfrowanej; skrót jednokierunkowy każdego klucza API prepza i adresy jej webhooków; a z jej systemu ATS adres e-mail, imię i nazwisko oraz identyfikator każdego kandydata, którego przesyła do prepza.",
+        "Narzędzia podłączane przez firmę: klucze lub tokeny utworzone przez jej właściciela lub administratora w jej systemie ATS (Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR) lub w Slacku, przechowywane w postaci zaszyfrowanej; skrót jednokierunkowy każdego klucza API testee i adresy jej webhooków; a z jej systemu ATS adres e-mail, imię i nazwisko oraz identyfikator każdego kandydata, którego przesyła do testee.",
         "Ustawienia e-maili: jakie opcjonalne e-maile otrzymujesz oraz rejestr każdej ich zmiany: który e-mail, włączony czy wyłączony, kiedy, gdzie (przy logowaniu, w Ustawieniach albo przez link do wypisania się lub zgłoszenie spamu) i którą wersję treści pól wyboru widziałeś.",
         "E-maile do członków firm: rejestr wysłanych Ci podsumowań aktywności i przypomnień oraz tego, czego dotyczyło każde przypomnienie, aby żadne nie zostało wysłane dwukrotnie.",
         "E-maile do wielu użytkowników (powiadomienia o zmianach naszego regulaminu, ważne powiadomienia o usłudze, nowości o produkcie, oferty): czy każdy z nich został do Ciebie wysłany, pominięty lub się nie powiódł, oraz informacja o Twojej rezygnacji z niego lub oznaczeniu go jako spam, aby żaden nie został wysłany dwukrotnie i abyśmy widzieli, jak każdy został przyjęty.",
@@ -33,37 +33,37 @@
         "Zakupy: dla każdego doładowania firma, dla której było, kto je kupił, co zostało kupione, kwota łączna i waluta, identyfikator transakcji Paddle oraz kiedy. Dane karty i dane rozliczeniowe przechowuje Paddle, nie my.",
         "Dziennik działań firmy: co robią w niej jej członkowie, na przykład zaproszenie, wyświetlenie lub usunięcie kandydata, zmiana rozmowy lub zespołu, doładowanie lub podłączenie narzędzia, wraz z tym, kto to zrobił, kiedy i czy zrobił to za niego asystent, aplikacja AI lub API. Widzi go właściciel firmy. Kandydaci i członkowie są wskazywani z imienia i nazwiska tylko dopóki nadal należą do firmy: dziennik przechowuje ich identyfikatory, nigdy ich adresów e-mail.",
         "Wykorzystanie AI i limity: dla każdego użycia AI, na przykład do napisania pytań lub odpowiedzi asystenta, w jakim celu nastąpiło, model, jego zakres i koszt oraz konto i firma, dla których nastąpiło; a za każdym razem, gdy limit odrzuca żądanie: który limit, kiedy oraz konto i firma, których żądanie odrzucił. Nigdy tekst wysłany do AI ani jej odpowiedź.",
-        "Rejestry wywołań AI: to, co prepza wysyła do AI i co AI odpowiada przy każdym jej użyciu, na przykład przy pisaniu pytań na podstawie opisu stanowiska albo odpowiedzi asystenta i czatu pomocy wraz z tym, co przeczytały, aby odpowiedzieć (co może obejmować wyniki kandydatów), oraz oceny tych odpowiedzi. Przechowuje je Langfuse (patrz niżej) wyłącznie w celu monitorowania i poprawy jakości odpowiedzi.",
+        "Rejestry wywołań AI: to, co testee wysyła do AI i co AI odpowiada przy każdym jej użyciu, na przykład przy pisaniu pytań na podstawie opisu stanowiska albo odpowiedzi asystenta i czatu pomocy wraz z tym, co przeczytały, aby odpowiedzieć (co może obejmować wyniki kandydatów), oraz oceny tych odpowiedzi. Przechowuje je Langfuse (patrz niżej) wyłącznie w celu monitorowania i poprawy jakości odpowiedzi.",
         "Statystyki użytkowania: kroki takie jak rejestracja, utworzenie firmy, zaproszenie kandydata czy doładowanie, z wartościami takimi jak wynik lub kwota. Identyfikator Twojego konta zastępowany jest kodem utworzonym za pomocą tajnego klucza, który przechowujemy, więc statystyki nie wskazują Cię z imienia i nazwiska, ale są to dane spseudonimizowane, a nie anonimowe: przy użyciu klucza kod odpowiada identyfikatorowi Twojego konta. Identyfikator firmy jest zachowywany bez zmian. Nie są uwzględniane żadne imiona, nazwiska, adresy e-mail ani teksty."
       ]
     },
     {
       "heading": "W jakim celu je wykorzystujemy",
       "items": [
-        "Świadczenie usługi prepza: generowanie rozmów, przeprowadzanie ich z zaproszonymi kandydatami, pokazywanie firmom wyników i wysyłanie e-maili, o które prosisz (umowa).",
+        "Świadczenie usługi testee: generowanie rozmów, przeprowadzanie ich z zaproszonymi kandydatami, pokazywanie firmom wyników i wysyłanie e-maili, o które prosisz (umowa).",
         "E-maile serwisowe, takie jak zaproszenia, raporty, problemy z płatnościami, zmiany naszego regulaminu i ważne powiadomienia o usłudze (incydent bezpieczeństwa, planowana przerwa w działaniu lub zmiana sposobu jej działania), które są wysyłane zawsze (umowa).",
-        "Podsumowanie aktywności i przypomnienia dotyczące Twoich firm, na przykład o małej liczbie kredytów lub o rozmowie bez kandydatów (nasz prawnie uzasadniony interes polegający na pomaganiu Ci w korzystaniu z prepza). Są włączone, dopóki ich nie wyłączysz.",
+        "Podsumowanie aktywności i przypomnienia dotyczące Twoich firm, na przykład o małej liczbie kredytów lub o rozmowie bez kandydatów (nasz prawnie uzasadniony interes polegający na pomaganiu Ci w korzystaniu z testee). Są włączone, dopóki ich nie wyłączysz.",
         "Nowości o produkcie i aktualności: dla naszych własnych użytkowników, którzy nie zaznaczyli pola „Nie chcę otrzymywać nowości o produkcie i aktualności”, gdy logowanie po raz pierwszy to zaproponowało (art. 13 ust. 2 dyrektywy o prywatności i łączności elektronicznej oraz § 103¹ estońskiej ustawy o łączności elektronicznej). Możesz z nich zrezygnować w każdej chwili, bezpłatnie.",
         "Oferty i promocje: tylko jeśli wyrazisz zgodę, zaznaczając pole przy logowaniu lub w Ustawieniach (zgoda). Możesz ją w każdej chwili wycofać.",
         "Wybór, do kogo trafia e-mail wysyłany do wielu użytkowników: czy Twoje konto należy do zespołu firmy (i czy jako właściciel lub administrator), czy z Twojego konta odbyto rozmowę w firmie lub korzystano z darmowych ćwiczeń, aby nowość o produkcie, oferta lub ważne powiadomienie trafiały tylko do osób, których dotyczą. Wykorzystujemy wyłącznie sam ten fakt, nigdy Twoje odpowiedzi, wyniki ani to, co firma przechowuje na Twój temat (nasz prawnie uzasadniony interes polegający na wysyłaniu wyłącznie istotnych e-maili). Nowości o produkcie i oferty nadal trafiają tylko do osób, które otrzymują je zgodnie z dwoma powyższymi punktami.",
-        "Zapamiętanie, że kandydat zrezygnował z e-maili firmy, aby prepza nie wysyłała mu już e-maili w imieniu tej firmy (uszanowanie jego sprzeciwu).",
-        "Zapewnienie bezpieczeństwa i działania prepza: zapobieganie nadużyciom, limity zapytań, raporty o błędach i statystyki poprawiające jakość pytań (nasz prawnie uzasadniony interes).",
+        "Zapamiętanie, że kandydat zrezygnował z e-maili firmy, aby testee nie wysyłała mu już e-maili w imieniu tej firmy (uszanowanie jego sprzeciwu).",
+        "Zapewnienie bezpieczeństwa i działania testee: zapobieganie nadużyciom, limity zapytań, raporty o błędach i statystyki poprawiające jakość pytań (nasz prawnie uzasadniony interes).",
         "Jakość pytań: analizujemy odpowiedzi na pytania i zgłoszenia pytań, aby znaleźć ogólne, zanonimizowane wzorce jakości pytań, które ulepszają generowanie pytań dla wszystkich; wzorce te nie zawierają danych osobowych (nasz prawnie uzasadniony interes).",
-        "Ponowne wykorzystywanie wygenerowanych pytań: pytania generowane przez prepza mogą być ponownie wykorzystywane w rozmowach i rozmowach ćwiczeniowych innych klientów, bez żadnych danych osobowych ani szczegółów identyfikujących firmę lub osobę. Firma może wyłączyć z tego pytania danej rozmowy w jej ustawieniach.",
+        "Ponowne wykorzystywanie wygenerowanych pytań: pytania generowane przez testee mogą być ponownie wykorzystywane w rozmowach i rozmowach ćwiczeniowych innych klientów, bez żadnych danych osobowych ani szczegółów identyfikujących firmę lub osobę. Firma może wyłączyć z tego pytania danej rozmowy w jej ustawieniach.",
         "Rejestry wywołań AI pozwalają nam monitorować i poprawiać jakość pytań i odpowiedzi AI (nasz prawnie uzasadniony interes).",
-        "Kontrola kosztów i zapobieganie nadużyciom: rejestry wykorzystania AI i osiągniętych limitów pokazują, ile kosztuje AI i kto osiąga który limit, abyśmy mogli utrzymać przystępne ceny prepza i powstrzymywać nadużycia (nasz prawnie uzasadniony interes).",
+        "Kontrola kosztów i zapobieganie nadużyciom: rejestry wykorzystania AI i osiągniętych limitów pokazują, ile kosztuje AI i kto osiąga który limit, abyśmy mogli utrzymać przystępne ceny testee i powstrzymywać nadużycia (nasz prawnie uzasadniony interes).",
         "Dziennik działań firmy pozwala jej właścicielowi zobaczyć, kto co zrobił w firmie, a naszemu wsparciu sprawdzić go, gdy firma prosi o pomoc (prawnie uzasadniony interes firmy i nasz w zakresie rozliczalności).",
-        "Statystyki użytkowania pokazują, które części prepza pomagają ludziom oraz które ceny i limity się sprawdzają, abyśmy mogli je ulepszać (nasz prawnie uzasadniony interes).",
+        "Statystyki użytkowania pokazują, które części testee pomagają ludziom oraz które ceny i limity się sprawdzają, abyśmy mogli je ulepszać (nasz prawnie uzasadniony interes).",
         "Dokumentacja zakupów, przechowywana na potrzeby księgowości zgodnie z wymogami estońskich przepisów o rachunkowości (obowiązek prawny).",
         "Oznaczanie firmy jako zweryfikowanej poprzez porównanie jej strony internetowej z domenami e-mail jej właścicieli i administratorów (nasz prawnie uzasadniony interes).",
-        "„Rozważam oferty pracy”: tylko jeśli to włączysz (zgoda), firmy, które rekrutują przez prepza, widzą Twoje imię i nazwisko, Twój profil LinkedIn i Twój najnowszy wynik ćwiczeń na czas z każdego ćwiczonego przez Ciebie tematu, który na swoim poziomie obejmuje jedna z ich rozmów, aby mogły zaprosić Cię na tę rozmowę. Nie tworzymy rankingu, nie polecamy Cię i nie podejmujemy żadnej decyzji w Twojej sprawie: to firma decyduje, kogo zaprosić. Możesz wycofać zgodę w każdej chwili w Ustawieniach i wtedy od razu znikasz z list wszystkich firm. Rejestr Twoich wyborów jest przechowywany jako dowód Twojej zgody (nasz obowiązek prawny jej wykazania).",
-        "Wyniki rozmów, czasy i ostrzeżenia o podejrzanych zachowaniach pomagają rekrutującej firmie sprawiedliwie ocenić Twoje odpowiedzi (prawnie uzasadniony interes firmy). Ostrzeżenia obejmują wzorce w Twoich odpowiedziach: czasy mniej więcej takie same przy każdym pytaniu albo poprawne odpowiedzi na trudne pytania przy błędnych na łatwe; na ich podstawie firma widzi pytania, o które może Cię zapytać na rozmowie na żywo. Decyzję o zatrudnieniu podejmują ludzie w firmie; prepza sama nie podejmuje żadnej decyzji w Twojej sprawie. Możesz poprosić firmę o weryfikację Twojego wyniku przez człowieka, a przed rozpoczęciem o dostosowanie, takie jak dodatkowy czas."
+        "„Rozważam oferty pracy”: tylko jeśli to włączysz (zgoda), firmy, które rekrutują przez testee, widzą Twoje imię i nazwisko, Twój profil LinkedIn i Twój najnowszy wynik ćwiczeń na czas z każdego ćwiczonego przez Ciebie tematu, który na swoim poziomie obejmuje jedna z ich rozmów, aby mogły zaprosić Cię na tę rozmowę. Nie tworzymy rankingu, nie polecamy Cię i nie podejmujemy żadnej decyzji w Twojej sprawie: to firma decyduje, kogo zaprosić. Możesz wycofać zgodę w każdej chwili w Ustawieniach i wtedy od razu znikasz z list wszystkich firm. Rejestr Twoich wyborów jest przechowywany jako dowód Twojej zgody (nasz obowiązek prawny jej wykazania).",
+        "Wyniki rozmów, czasy i ostrzeżenia o podejrzanych zachowaniach pomagają rekrutującej firmie sprawiedliwie ocenić Twoje odpowiedzi (prawnie uzasadniony interes firmy). Ostrzeżenia obejmują wzorce w Twoich odpowiedziach: czasy mniej więcej takie same przy każdym pytaniu albo poprawne odpowiedzi na trudne pytania przy błędnych na łatwe; na ich podstawie firma widzi pytania, o które może Cię zapytać na rozmowie na żywo. Decyzję o zatrudnieniu podejmują ludzie w firmie; testee sama nie podejmuje żadnej decyzji w Twojej sprawie. Możesz poprosić firmę o weryfikację Twojego wyniku przez człowieka, a przed rozpoczęciem o dostosowanie, takie jak dodatkowy czas."
       ]
     },
     {
       "heading": "Komu je udostępniamy",
       "paragraphs": [
-        "Udostępniamy dane dostawcom usług, którzy prowadzą prepza w naszym imieniu, na podstawie umów, które je chronią, oraz Paddle, który sprzedaje doładowania:"
+        "Udostępniamy dane dostawcom usług, którzy prowadzą testee w naszym imieniu, na podstawie umów, które je chronią, oraz Paddle, który sprzedaje doładowania:"
       ],
       "items": [
         "Google (Firebase Authentication; Google LLC, Stany Zjednoczone, w ramach Ram ochrony danych UE-USA): logowanie. LinkedIn i GitHub jedynie potwierdzają Twoją tożsamość, gdy logujesz się przez nie; nie otrzymujemy od nich niczego więcej.",
@@ -75,27 +75,27 @@
         "Cloudflare (Turnstile; Cloudflare, Inc., Stany Zjednoczone, w ramach Ram ochrony danych UE-USA): weryfikacja „Nie jestem robotem”.",
         "Google Cloud, nasz dostawca hostingu, który przechowuje dane (w UE, Belgia).",
         "Upstash: krótkotrwałe liczniki limitów użycia i aktualizacji na żywo (w UE, Belgia).",
-        "Firmy, tylko jeśli włączysz „Rozważam oferty pracy”: firmy, które rekrutują przez prepza, widzą to, co opisano powyżej. Każda z nich odpowiada za to, jak wykorzystuje to, co widzi. Jeśli któraś Cię zaprosi, zaproszenie trafia na adres e-mail Twojego konta, a firma widzi ten adres tak jak adres każdego kandydata.",
+        "Firmy, tylko jeśli włączysz „Rozważam oferty pracy”: firmy, które rekrutują przez testee, widzą to, co opisano powyżej. Każda z nich odpowiada za to, jak wykorzystuje to, co widzi. Jeśli któraś Cię zaprosi, zaproszenie trafia na adres e-mail Twojego konta, a firma widzi ten adres tak jak adres każdego kandydata.",
         "Paddle (Paddle.com Market Ltd, Wielka Brytania) nie jest jednym z nich: sam sprzedaje doładowania jako odsprzedawca (merchant of record) i jest administratorem danych dotyczących płatności, podatków i rozliczeń, które zbiera, zgodnie z własną polityką prywatności. Przekazujemy mu adres e-mail członka, który dokonuje zakupu, a on informuje nas, co zostało kupione i opłacone."
       ]
     },
     {
       "heading": "Narzędzia podłączane przez firmę",
       "paragraphs": [
-        "Firma może podłączyć do prepza własne narzędzia, a wtedy przesyłamy do nich dane na jej polecenie, w ramach usługi, o którą poprosiła: jej system ATS (Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR) otrzymuje Twój wynik, informację, czy osiągnął próg zaliczenia, ostrzeżenia o podejrzanych zachowaniach i link do Twoich wyników; wybrany przez nią kanał Slack otrzymuje jej powiadomienia, na przykład o tym, że skończyłeś, i Twój wynik; a jej własne systemy, przez API lub webhooki prepza, otrzymują Twój adres e-mail, imię i nazwisko, postęp, wynik, informację, czy osiągnąłeś próg zaliczenia, ostrzeżenia o podejrzanych zachowaniach i Twój link z zaproszeniem. Firma wybiera te narzędzia i nimi zarządza, mogą one znajdować się poza UE, a firma odpowiada za to, jak wykorzystują one Twoje dane."
+        "Firma może podłączyć do testee własne narzędzia, a wtedy przesyłamy do nich dane na jej polecenie, w ramach usługi, o którą poprosiła: jej system ATS (Workable, Greenhouse, Teamtailor, Recruitee lub Breezy HR) otrzymuje Twój wynik, informację, czy osiągnął próg zaliczenia, ostrzeżenia o podejrzanych zachowaniach i link do Twoich wyników; wybrany przez nią kanał Slack otrzymuje jej powiadomienia, na przykład o tym, że skończyłeś, i Twój wynik; a jej własne systemy, przez API lub webhooki testee, otrzymują Twój adres e-mail, imię i nazwisko, postęp, wynik, informację, czy osiągnąłeś próg zaliczenia, ostrzeżenia o podejrzanych zachowaniach i Twój link z zaproszeniem. Firma wybiera te narzędzia i nimi zarządza, mogą one znajdować się poza UE, a firma odpowiada za to, jak wykorzystują one Twoje dane."
       ]
     },
     {
       "heading": "Podłączane przez Ciebie aplikacje AI",
       "paragraphs": [
-        "Możesz podłączyć do swojego konta prepza własną aplikację AI, na przykład Claude (od Anthropic) lub ChatGPT (od OpenAI). Tylko wtedy, gdy to zrobisz, i tylko w zakresie tego, o co ją poprosisz, odczytuje ona i zmienia dane Twoich firm z Twoimi uprawnieniami dostępu, w tym wyniki kandydatów, a dane te trafiają do dostawcy aplikacji na podstawie jej własnych warunków i polityki prywatności, a nie naszych. To Ty wybierasz te aplikacje i możesz w każdej chwili odłączyć dowolną z nich w zakładce Integracje firmy; usunięcie konta odłącza je wszystkie. Właściciele i administratorzy firmy mogą zablokować aplikacjom AI korzystanie z danych tej firmy."
+        "Możesz podłączyć do swojego konta testee własną aplikację AI, na przykład Claude (od Anthropic) lub ChatGPT (od OpenAI). Tylko wtedy, gdy to zrobisz, i tylko w zakresie tego, o co ją poprosisz, odczytuje ona i zmienia dane Twoich firm z Twoimi uprawnieniami dostępu, w tym wyniki kandydatów, a dane te trafiają do dostawcy aplikacji na podstawie jej własnych warunków i polityki prywatności, a nie naszych. To Ty wybierasz te aplikacje i możesz w każdej chwili odłączyć dowolną z nich w zakładce Integracje firmy; usunięcie konta odłącza je wszystkie. Właściciele i administratorzy firmy mogą zablokować aplikacjom AI korzystanie z danych tej firmy."
       ]
     },
     {
       "heading": "E-maile i wypisywanie się",
       "paragraphs": [
         "E-maile serwisowe, takie jak zaproszenia, raporty, problemy z płatnościami, zmiany naszego regulaminu i ważne powiadomienia o usłudze, są wysyłane zawsze. Pozostałe wybierasz w Ustawieniach, w sekcji E-maile: podsumowanie aktywności, przypomnienia, nowości o produkcie i aktualności oraz oferty i promocje. Każdy opcjonalny e-mail ma link do wypisania się, który działa bez logowania, a oznaczenie opcjonalnego e-maila jako spam również go wyłącza. Jeśli e-mail do Ciebie zostanie trwale odrzucony albo oznaczysz jeden z naszych e-maili jako spam, przestajemy wysyłać na ten adres e-maile o produkcie i powiadomienia, dopóki nie poprosisz nas o ich wznowienie.",
-        "Zaproszenia i przypomnienia, które firma wysyła kandydatom przez prepza, zawierają linki do rezygnacji z e-maili tej firmy lub z przypomnień dotyczących tej rozmowy. prepza nie wysyła wtedy już na ten adres e-maili w imieniu tej firmy, a firma widzi zaproszenie jako niedostarczone."
+        "Zaproszenia i przypomnienia, które firma wysyła kandydatom przez testee, zawierają linki do rezygnacji z e-maili tej firmy lub z przypomnień dotyczących tej rozmowy. testee nie wysyła wtedy już na ten adres e-maili w imieniu tej firmy, a firma widzi zaproszenie jako niedostarczone."
       ]
     },
     {
@@ -118,7 +118,7 @@
         "Rejestry wykorzystania AI i osiągniętych limitów: 13 miesięcy, bez identyfikatora Twojego konta po usunięciu przez Ciebie konta.",
         "Rundy ćwiczeniowe: do czasu usunięcia przez Ciebie konta.",
         "„Rozważam oferty pracy”: do czasu wyłączenia tej opcji lub usunięcia konta, a najdłużej rok od jej ostatniego włączenia lub zapisania profilu LinkedIn; rejestr Twoich wyborów: do czasu usunięcia przez Ciebie konta.",
-        "Raport wysłany e-mailem z prepza: plik PDF jest przechowywany wyłącznie w celu wysłania e-maila i usuwany najpóźniej po 7 dniach.",
+        "Raport wysłany e-mailem z testee: plik PDF jest przechowywany wyłącznie w celu wysłania e-maila i usuwany najpóźniej po 7 dniach.",
         "Wklejone opisy stanowisk w naszych rejestrach generowania: 90 dni od zakończenia generowania. Utworzona na ich podstawie rozmowa pozostaje na koncie firmy do czasu jej usunięcia.",
         "Twoje ustawienia e-maili i rejestr ich zmian: do czasu usunięcia przez Ciebie konta.",
         "Rejestr wysłanych Ci podsumowań i przypomnień: 30 dni lub do czasu usunięcia przez Ciebie konta, jeśli nastąpi to wcześniej.",
@@ -150,17 +150,17 @@
     {
       "heading": "Pliki cookie i pamięć przeglądarki",
       "paragraphs": [
-        "prepza używa wyłącznie plików cookie i pamięci przeglądarki niezbędnych do działania lub zapamiętujących Twoje własne wybory. Nie ma plików cookie reklamowych ani analitycznych.",
-        "Aby utrzymać Cię w stanie zalogowania: plik cookie (prepza_token, odnawiany co godzinę, gdy korzystasz z prepza, do momentu wylogowania) oraz pamięć przeglądarki naszego dostawcy logowania, Google Firebase. Podczas podłączania aplikacji AI plik cookie (prepza_connect) istnieje przez kilka minut, które to zajmuje.",
-        "Aby zapamiętać Twoje wybory: Twój język (plik cookie prepza_locale, przez rok, ustawiany, gdy wybierasz język lub otwierasz prepza pod adresem danego języka), jasny lub ciemny motyw, szerokość panelu asystenta, sposób, w jaki ostatnio zapraszałeś kandydatów, to, że logowałeś się już wcześniej w tej przeglądarce, okres ostatnio wybrany dla statystyk, zamknięte przez Ciebie powiadomienia o zmianie dokumentu prawnego, oraz Twoją rozmowę z asystentem (do momentu zalogowania, tylko w tej karcie). Pozostają one w Twojej przeglądarce, dopóki ich nie wyczyścisz.",
-        "Link polecający: tylko jeśli zdecydujesz się go zachować, plik cookie (prepza_ref) zapamiętuje link, przez który do nas trafiłeś, przez 30 dni, aby kredyty trafiły do obu firm.",
+        "testee używa wyłącznie plików cookie i pamięci przeglądarki niezbędnych do działania lub zapamiętujących Twoje własne wybory. Nie ma plików cookie reklamowych ani analitycznych.",
+        "Aby utrzymać Cię w stanie zalogowania: plik cookie (testee_token, odnawiany co godzinę, gdy korzystasz z testee, do momentu wylogowania) oraz pamięć przeglądarki naszego dostawcy logowania, Google Firebase. Podczas podłączania aplikacji AI plik cookie (testee_connect) istnieje przez kilka minut, które to zajmuje.",
+        "Aby zapamiętać Twoje wybory: Twój język (plik cookie testee_locale, przez rok, ustawiany, gdy wybierasz język lub otwierasz testee pod adresem danego języka), jasny lub ciemny motyw, szerokość panelu asystenta, sposób, w jaki ostatnio zapraszałeś kandydatów, to, że logowałeś się już wcześniej w tej przeglądarce, okres ostatnio wybrany dla statystyk, zamknięte przez Ciebie powiadomienia o zmianie dokumentu prawnego, oraz Twoją rozmowę z asystentem (do momentu zalogowania, tylko w tej karcie). Pozostają one w Twojej przeglądarce, dopóki ich nie wyczyścisz.",
+        "Link polecający: tylko jeśli zdecydujesz się go zachować, plik cookie (testee_ref) zapamiętuje link, przez który do nas trafiłeś, przez 30 dni, aby kredyty trafiły do obu firm.",
         "Weryfikacja „Nie jestem robotem” działa w niewielkiej ramce od Cloudflare, gdy wymaga jej formularz, i nie zapisuje śledzących plików cookie."
       ]
     },
     {
       "heading": "Dzieci",
       "paragraphs": [
-        "prepza nie jest przeznaczona dla osób poniżej 16. roku życia."
+        "testee nie jest przeznaczona dla osób poniżej 16. roku życia."
       ]
     },
     {
@@ -172,7 +172,7 @@
     {
       "heading": "Kontakt",
       "paragraphs": [
-        "Pytania dotyczące niniejszej polityki lub Twoich danych: napisz na adres hello@prepza.ai lub skorzystaj ze strony kontaktowej, do której link znajduje się na dole każdej strony."
+        "Pytania dotyczące niniejszej polityki lub Twoich danych: napisz na adres hello@testee.ai lub skorzystaj ze strony kontaktowej, do której link znajduje się na dole każdej strony."
       ]
     }
   ]

@@ -2,7 +2,7 @@ from typing import Literal
 
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.db.paging import IdPageParams
+from testee_common.db.paging import IdPageParams
 
 from rounds.api.dependencies import ServiceCaller
 from rounds.core.db import Session

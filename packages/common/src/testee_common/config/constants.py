@@ -1,0 +1,294 @@
+import re
+from datetime import timedelta
+
+# Service tokens live this long; each call between services signs a new one.
+SERVICE_TOKEN_LIFETIME = timedelta(seconds=60)
+
+# A call to another service (or Google's APIs) gives up after this long, unless it sets its own:
+# enough for a callee starting cold (3-6 s) and its slowest ordinary answer. A hung callee then
+# holds its callers' requests and pool slots for 15 s, not 30, so its trouble spreads less under
+# load. Calls known to take longer (deletions, starting a generation) pass their own timeout.
+HTTP_TIMEOUT_SECONDS = 15
+# The shared client doesn't retry, not even a failed connection: each call has one layer of
+# retries, its caller's (Pub/Sub's or Cloud Tasks' redelivery, the outbox's flush, a jittered loop
+# around it, or the person), so a call is never retried both underneath and above, nor at once.
+# An idle connection to another service is closed after this long, before the service's own
+# server closes it (uvicorn's keep-alive, 5 s): a call that reused a connection as the server was
+# closing it failed with a ReadError. Under Cloud Run's front end, which keeps them far longer,
+# it only costs a new connection now and then.
+SERVICE_KEEPALIVE_SECONDS = 4
+# Looking up the address of a URL someone gave (a web hook, an AI app's metadata) gives up after
+# this long, as a lookup that found nothing: it may work on a retry.
+ADDRESS_LOOKUP_SECONDS = 5
+# Google's token-signing certificates and Firebase Admin's calls (a revocation check, an account's
+# deletion) give up after this long; their libraries' own default, 120 s, outlasts every request.
+GOOGLE_TIMEOUT_SECONDS = 10
+
+# Requests that only read: their sign-in token isn't checked for revocation (auth.py), which
+# costs a call to Firebase; every other method's is, so a deleted account can't change anything.
+READ_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
+RATE_LIMITED = "Too many requests. Try again later."
+# A 429 says in this header (RFC 9110) how many seconds are left until its limit's window ends.
+RETRY_AFTER = "Retry-After"
+# A request's body is refused past this many bytes (body_limit.py); a service that takes bigger
+# uploads (report PDFs, voice messages) passes its own limit.
+MAX_BODY_BYTES = 1_000_000
+BODY_TOO_LARGE = "The request is too large."
+# Cloud Logging's fields: a JSON log line's `severity` and `message` are read as such, and this
+# one ties the line to its request's trace, which the load balancer sends in TRACE_HEADER
+# ("TRACE_ID/SPAN_ID;o=1"), so one request can be followed across services.
+TRACE_HEADER = "X-Cloud-Trace-Context"
+TRACE_FIELD = "logging.googleapis.com/trace"
+# Cache-Control on answers to signed-in requests (no_store.py): kept by no browser or proxy.
+NO_STORE = "no-store"
+# Path parameters that are secret tokens (a link that signs its holder in or acts for them):
+# answers to them are never kept either (no_store.py).
+SECRET_PATH_PARAMS = ("token",)
+# What a request's log line names instead of a route's template when no route took it.
+UNMATCHED_ROUTE = "(no route)"
+# The admin zone's routes: refused as not found, signed out too (auth.current_user).
+SUPERADMIN_PREFIX = "/superadmin"
+# Answers logged as warnings: a sign-in or a permission refused (logging.RequestLogMiddleware).
+REFUSED_STATUSES = (401, 403)
+
+# Logged when a provider's web hook (Paddle, Resend) fails its signature check: usually a wrong
+# secret, so every event is refused. The alert in infra/terraform/monitoring.tf matches it.
+WEBHOOK_SIGNATURE_REFUSED = "web hook signature refused"
+NOT_READY = "Not ready"
+# What a call to companies came through when not a person in the app, as the issuer of the
+# X-Assistant token the assistant sends: the in-app assistant, or an AI app (Claude, ChatGPT,
+# ...) the member connected over MCP, which the assistant serves too. Audit events keep it.
+VIA_ASSISTANT = "assistant"
+VIA_MCP = "mcp"
+# That header: a service token signed for companies, so it can't be forged; other services pass
+# it on to companies' access check (testee_common.auth.company_access).
+ASSISTANT_HEADER = "X-Assistant"
+# The only service that may read the internal routes of what's new (its get_updates tool), and
+# the most updates one lists, newest first (with the counts of all).
+UPDATES_CALLER = "assistant"
+MAX_UPDATES = 50
+# The only service that may read how many integrations a company has working (its menu).
+INTEGRATIONS_CALLER = "companies"
+NOT_ALLOWED = "Not allowed"
+SIGN_IN_UNAVAILABLE = "Sign-in is temporarily unavailable. Please try again shortly."
+MINUTE_SECONDS = 60
+HOUR_SECONDS = 60 * MINUTE_SECONDS
+DAY_SECONDS = 24 * HOUR_SECONDS
+
+# Database connections per process: at most DB_POOL_SIZE + DB_MAX_OVERFLOW. Services with few,
+# short queries pass smaller ones. Every instance's total must fit the database's connection
+# budget (infra/terraform/database.tf).
+DB_POOL_SIZE = 2
+DB_MAX_OVERFLOW = 1
+# A pooled connection is replaced once it's this old, instead of pinged before each use (a
+# SELECT 1 per checkout). Nothing drops idle ones on the way (Postgres has no idle timeout set,
+# and the Cloud SQL connector none); one killed by a database restart fails one request, and
+# SQLAlchemy then replaces the whole pool.
+DB_POOL_RECYCLE_SECONDS = 1800
+# Postgres ends a session whose transaction sits idle this long: one left open by a hung await
+# would otherwise hold its pool slot and its row locks for good. No transaction waits on another
+# service or a model; the longest wait inside one is the outbox's publish call.
+IDLE_IN_TRANSACTION_TIMEOUT = "60s"
+# Postgres stops a service's statement that runs this long: the shortest request timeout (60 s),
+# after which Cloud Run has already answered the caller, while the query would go on holding a
+# connection and its locks. A job that needs longer raises it with SET LOCAL statement_timeout.
+STATEMENT_TIMEOUT = "60s"
+# Old rows (retention, published events) are deleted this many at a time, each batch its own
+# short transaction: one DELETE of a month of rows would run long, hold its locks and write its
+# whole WAL at once.
+DELETE_BATCH = 1000
+# Names SQLAlchemy gives the indexes and constraints a model leaves unnamed, so a migration can
+# drop or rename one by a name it knows. They are the names Postgres itself gives (so the
+# constraints made before keep theirs, and old migrations make the same ones); a CHECK has no
+# column to name it by, so it's named where it's made (ck_<table>_<what>).
+NAMING_CONVENTION = {
+    "ix": "ix_%(column_0_label)s",
+    "uq": "%(table_name)s_%(column_0_N_name)s_key",
+    "ck": "%(constraint_name)s",
+    "fk": "%(table_name)s_%(column_0_N_name)s_fkey",
+    "pk": "%(table_name)s_pkey",
+}
+# A migration's statement waits at most this long for a lock, then fails (and the deploy with
+# it, to be run again): the running version keeps serving during migrations, and an ALTER TABLE
+# queued behind a long transaction would hold every query on its table behind it.
+MIGRATION_LOCK_TIMEOUT = "5s"
+# A migration's statement that runs this long is stopped (and the deploy with it): a backfill or
+# rewrite past it belongs in batches. A migration that must run longer (an index built
+# concurrently on a large table) raises it for itself with SET statement_timeout.
+MIGRATION_STATEMENT_TIMEOUT = "5min"
+
+# Lists are served a page at a time; a page holds at most this many items.
+MAX_PAGE_SIZE = 100
+
+# A superadmin's adjustment of a company's credits (billing makes it, companies takes the
+# request): at most this many credits either way, and a note this long.
+MAX_ADJUSTMENT = 1_000_000
+MAX_ADJUSTMENT_NOTE = 200
+
+# The user id an API key acts as, its own and never its maker's: this prefix and the key's id.
+# The action log names the key from it; the key's own permissions decide what it may do.
+KEY_ACTOR_PREFIX = "key:"
+# How a request signed in with an API key shows as a sign-in (User.sign_in_provider).
+KEY_SIGN_IN = "api_key"
+
+# Who a kept row is by once its user deleted their account (a referral, a generation, an ATS or
+# Slack connection, an audit entry): the row stays for its company, without their id.
+DELETED_USER = "deleted-user"
+
+# Sentry: share of requests traced for performance; what's scrubbed: scrub_patterns.py.
+DEFAULT_TRACES_SAMPLE_RATE = "0.1"
+# Requests never traced unless part of a traced one: uptime checks (/ready every minute per
+# service), and scheduled jobs and Pub/Sub pushes (/internal/), thousands a day with no user
+# waiting. Their errors are still reported.
+UNTRACED_PATHS = ("/ready", "/health", "/internal/")
+EMAIL_PATTERN = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"
+
+# Google APIs our services call with their own credentials (Pub/Sub, Cloud Tasks).
+GOOGLE_SCOPE = "https://www.googleapis.com/auth/cloud-platform"
+# A Firebase ID token's sign-in provider for Google accounts, the only one the admin zone takes.
+GOOGLE_SIGN_IN = "google.com"
+
+# Languages the interface and generated content come in, by code, with the name prompts use.
+# Every language testee supports: the interface, its messages and emails, and the tests it
+# generates. Names are as prompts use them.
+LANGUAGES = {
+    "en": "English",
+    "ru": "Russian",
+    "uk": "Ukrainian",
+    "es": "Spanish",
+    "pt": "Portuguese (Brazil)",
+    "de": "German",
+    "fr": "French",
+    "it": "Italian",
+    "pl": "Polish",
+    "nl": "Dutch",
+    "tr": "Turkish",
+    "ar": "Arabic",
+    "he": "Hebrew",
+    "fa": "Persian",
+    "ja": "Japanese",
+    "zh": "Chinese (Simplified)",
+    "ko": "Korean",
+    "hi": "Hindi",
+    "id": "Indonesian",
+    "th": "Thai",
+    "vi": "Vietnamese",
+    "fil": "Filipino",
+    "et": "Estonian",
+}
+# How hard a test is, from its requirements; generation decides it and
+# library filters by it.
+LEVELS = ("basic", "medium", "hard")
+# Of those, the ones written right to left.
+RTL_LANGUAGES = {"ar", "he", "fa"}
+DEFAULT_LANGUAGE = "en"
+# The languages a test may be taken by voice in (companies' setting, rounds' speech): those where
+# OpenAI's speech recognition and synthesis are reliable; the rest offer clicks only.
+VOICE_LANGUAGES = ("en", "es", "de", "fr", "pt", "it")
+# The Firebase custom claim that carries the user's language in every ID token.
+LANGUAGE_CLAIM = "language"
+
+# $1 buys this many credits (billing sells them; the FAQ shows prices in dollars too).
+CREDITS_PER_DOLLAR = 100
+# The seconds a test's question may have, as an admin sets them (companies); each new test
+# starts with its level's (the QUESTION_SECONDS_* values in limit_list).
+MIN_QUESTION_SECONDS = 10
+MAX_QUESTION_SECONDS = 600
+# The most questions a candidate gets over all of an interview's topics (companies refuses more;
+# the help chat names it).
+MAX_INTERVIEW_QUESTIONS = 60
+
+# Funnel events for analytics go on the events topic with this type prefix; only they reach
+# BigQuery, and the services' push subscriptions leave them out.
+FUNNEL_PREFIX = "funnel."
+
+# Holds the referral code from a ?ref= link until the new person signs up or makes a company.
+REFERRAL_COOKIE = "testee_ref"
+
+# A test's title, as its company can rename it; generated titles aim for 60.
+MAX_TITLE_LENGTH = 70
+# The least an editable title (a test's, a template's) may have, spaces at either end aside.
+MIN_TITLE_LENGTH = 3
+TITLE_TOO_SHORT = "Use at least 3 characters."
+# The longest candidate name kept (from a sign-in, an inviter or an ATS); a longer one is cut.
+MAX_CANDIDATE_NAME_LENGTH = 200
+
+# A job description, as pasted to generate a test.
+MAX_GOAL_LENGTH = 10_000
+
+# A note on an interview (companies), its team's plain text; the public API takes the same.
+MAX_NOTE_LENGTH = 2000
+
+# A news post's title and text (library), written in English and translated into each language
+# (generation); a translation must fit them too.
+MAX_NEWS_TITLE_LENGTH = 120
+MAX_NEWS_TEXT_LENGTH = 500
+
+# A campaign's subject, text and button (notifications), written in English and translated into
+# each language (generation); a translation must fit them too.
+MAX_CAMPAIGN_SUBJECT_LENGTH = 120
+MAX_CAMPAIGN_TEXT_LENGTH = 2000
+MAX_CAMPAIGN_BUTTON_LENGTH = 40
+
+# The emergency pause (pause.py): one Redis key every service reads, and the message it refuses
+# with while it's on.
+PAUSE_KEY = "pause:on"
+PAUSED = "New interviews and AI features are paused for now. Please try again later."
+# Each instance reads the pause at most this often; turning it takes that long to reach them all.
+PAUSE_CACHE_SECONDS = 5
+
+# Maintenance mode (maintenance.py): one Redis key every service reads, the message every refused
+# request gets while it's on, and what stays open: health checks, the switch itself, calls
+# between services, Pub/Sub and Scheduler pushes (under /internal/) and Paddle's and Resend's
+# webhooks, so no event, job or payment is lost.
+MAINTENANCE_KEY = "maintenance:on"
+# When it was turned on: candidates' interview time stops meanwhile and is given back when it's
+# turned off.
+MAINTENANCE_STARTED_KEY = "maintenance:started"
+MAINTENANCE = "testee is under maintenance. We'll be back soon."
+MAINTENANCE_OPEN_PATHS = {"/health", "/ready", "/maintenance", "/superadmin/maintenance"}
+# Unsubscribing (a one-click link must always work) and the legal texts stay open too.
+MAINTENANCE_OPEN_PREFIXES = ("/internal/", "/webhooks/", "/unsubscribe/", "/help/legal/")
+# Each instance reads the switch at most this often; turning it takes that long to reach them all.
+MAINTENANCE_CACHE_SECONDS = 5
+
+# The company that runs testee, as the legal texts, the emails' footer and (mirrored in
+# frontend/constants/operator.ts) the site's footer and contact page name it.
+OPERATOR = {
+    "name": "Arcolabs OÜ",
+    "registry_code": "17587452",
+    "address": "Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia",
+    # Questions, requests and the contact page's messages all go here.
+    "email": "hello@testee.ai",
+}
+
+# A model call cut short (cancelled, timed out, failed) reports no tokens: they are estimated at
+# about this many characters each, as for English text. Prices are in ai_constants.py.
+CHARS_PER_TOKEN = 4
+
+# Deleting an account that owns a company others have joined (companies refuses, library says
+# so): the company would go with their access and its paid credits.
+ACCOUNT_OWNS_SHARED = (
+    "Make another member the owner of each company you share, or delete it, before deleting "
+    "your account."
+)
+
+# Each legal document's version: the day it applies from, which may come after the day it's
+# published. Site serves the documents (a changed text needs a new version and its copy:
+# python -m site_content.legal_archive in site); accounts records the terms a new account
+# accepts, and companies the DPA a new company does.
+LEGAL_VERSIONS = {
+    "terms": "2026-10-23",
+    "privacy": "2026-10-23",
+    "dpa": "2026-10-23",
+}
+
+# The sign-in a company's own platform gives its candidate with the invite link (no email, no
+# account of their own): companies signs it in, library counts it as no sign-up.
+GUEST_UID_PREFIX = "guest-"
+
+# Money as people read it (money.py): a currency pattern's decimals, left out of a whole amount
+# ("$5", not "$5.00"), and where letters of a currency's symbol meet its number ("CHF2.60"),
+# which gets a space.
+WHOLE_DECIMALS = re.compile(r"\.0+")
+CURRENCY_SPACING = re.compile(r"(?<=[A-Za-z])(?=\d)|(?<=\d)(?=[A-Za-z])")

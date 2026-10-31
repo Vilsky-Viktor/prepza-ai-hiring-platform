@@ -4,10 +4,10 @@ on unpaid AI spend) and its "I'm not a robot" check on a visitor's first questio
 import pytest
 from fastapi import HTTPException
 from firebase_admin import auth as firebase_auth
-from prepza_common.ai import ai_cap
-from prepza_common.ai.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT, MICRO
-from prepza_common.config.constants import RATE_LIMITED
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.ai import ai_cap
+from testee_common.ai.ai_constants import AI_PAUSED_TODAY, LIMIT_HIT, MICRO
+from testee_common.config.constants import RATE_LIMITED
+from testee_common.limits.limit_list import LIMITS
 
 from assistant.config import settings
 from assistant.constants.help_chat import HELP_ALL_KEY, HELP_SPEND_KEY

@@ -4,10 +4,10 @@ from datetime import UTC, datetime
 import pytest
 from fake_redis import DownRedis, FakeRedis
 from fastapi import HTTPException
-from prepza_common.ai.ai_constants import LIMIT_HIT
-from prepza_common.limits import rate_limit
-from prepza_common.limits.limit_list import LIMITS
-from prepza_common.limits.rate_limit import (
+from testee_common.ai.ai_constants import LIMIT_HIT
+from testee_common.limits import rate_limit
+from testee_common.limits.limit_list import LIMITS
+from testee_common.limits.rate_limit import (
     add_spent,
     hit,
     hit_emails,

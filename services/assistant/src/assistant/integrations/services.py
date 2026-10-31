@@ -1,14 +1,14 @@
 from contextvars import ContextVar
 
 import httpx
-from prepza_common.config.constants import (
+from testee_common.config.constants import (
     ASSISTANT_HEADER,
     REFERRAL_COOKIE,
     VIA_ASSISTANT,
     VIA_MCP,
 )
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from assistant.config import settings
 from assistant.constants.tool_calls import REFERRAL_CODE, SERVICE_URLS, TOOL_TIMEOUT_SECONDS

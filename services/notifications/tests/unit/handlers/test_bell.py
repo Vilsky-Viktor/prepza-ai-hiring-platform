@@ -3,9 +3,9 @@ from datetime import UTC, datetime
 
 import pytest
 from event_pushes import push
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.events.notifications import (
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.events.notifications import (
     NOTIFICATION_REQUESTED,
     NotificationKind,
     notification,

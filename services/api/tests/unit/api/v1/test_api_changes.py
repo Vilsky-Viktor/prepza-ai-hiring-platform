@@ -1,9 +1,9 @@
-from prepza_common.auth.key_actor import key_actor
 import asyncio
 
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
+from testee_common.auth.key_actor import key_actor
 
 from api.constants.api import IDEMPOTENCY_KEY_REUSED
 from api.integrations import companies

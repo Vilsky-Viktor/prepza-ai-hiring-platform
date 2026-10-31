@@ -1,7 +1,7 @@
 from uuid import UUID
 
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from site_content.config import settings
 from site_content.core.security import service_token

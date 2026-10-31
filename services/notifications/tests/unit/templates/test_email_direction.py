@@ -4,7 +4,7 @@ from notifications.helpers.emails import candidate_invite_email
 from notifications.helpers.markdown import markdown_html
 from notifications.helpers.member_emails import digest_email
 
-SITE = "https://prepza.ai"
+SITE = "https://testee.ai"
 INVITE = {"email": "ann@example.com", "token": "t", "title": "Backend", "company": "Acme"}
 
 
@@ -12,7 +12,7 @@ def test_an_address_and_the_pasted_link_read_left_to_right_in_arabic():
     html = candidate_invite_email({**INVITE, "language": "ar"}, SITE, "secret").html
 
     assert '<span dir="ltr">ann@example.com</span>' in html
-    assert re.search(r'<a href="https://prepza.ai/invite/t"[^>]*dir="ltr"', html)
+    assert re.search(r'<a href="https://testee.ai/invite/t"[^>]*dir="ltr"', html)
 
 
 def test_every_table_with_text_states_the_languages_direction():

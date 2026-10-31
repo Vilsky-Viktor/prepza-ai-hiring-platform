@@ -1,12 +1,12 @@
-"""prepza_common.auth.route_guards finds routes that check no one, also in included routers."""
+"""testee_common.auth.route_guards finds routes that check no one, also in included routers."""
 
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, FastAPI, WebSocket
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.auth.google import verify_invoker
-from prepza_common.auth.route_guards import not_from_a_service, unguarded, websocket_routes
-from prepza_common.auth.service_auth import service_caller
+from testee_common.auth.auth import CurrentUser
+from testee_common.auth.google import verify_invoker
+from testee_common.auth.route_guards import not_from_a_service, unguarded, websocket_routes
+from testee_common.auth.service_auth import service_caller
 
 
 def own_key():

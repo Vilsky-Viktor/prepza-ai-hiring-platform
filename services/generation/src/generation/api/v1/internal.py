@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, status
-from prepza_common.ai.ai_cap import refuse_if_capped
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit
+from testee_common.ai.ai_cap import refuse_if_capped
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import hit
 
 from generation.api.dependencies import ServiceCaller
 from generation.constants.actions import (

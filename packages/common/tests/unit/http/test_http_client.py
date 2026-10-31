@@ -7,7 +7,7 @@ import httpcore
 import httpx
 import pytest
 from httpcore._backends import auto
-from prepza_common.http import http
+from testee_common.http import http
 
 # Uvicorn's default keep-alive, which every service's server keeps.
 SERVER_KEEPALIVE_SECONDS = 5

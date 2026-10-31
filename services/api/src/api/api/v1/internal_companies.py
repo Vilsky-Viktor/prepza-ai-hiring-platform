@@ -3,9 +3,9 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Query
-from prepza_common.auth.service_auth import only_from
-from prepza_common.config.constants import INTEGRATIONS_CALLER, MAX_PAGE_SIZE
-from prepza_common.http.counts import CountOut
+from testee_common.auth.service_auth import only_from
+from testee_common.config.constants import INTEGRATIONS_CALLER, MAX_PAGE_SIZE
+from testee_common.http.counts import CountOut
 
 from api.api.dependencies import ServiceCaller
 from api.core.db import Session

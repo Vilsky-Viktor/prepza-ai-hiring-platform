@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from prepza_common.http.compression import MIN_BYTES, compress_answers
-from prepza_common.http.sse import event_stream, sse_event
+from testee_common.http.compression import MIN_BYTES, compress_answers
+from testee_common.http.sse import event_stream, sse_event
 
 app = FastAPI()
 compress_answers(app)

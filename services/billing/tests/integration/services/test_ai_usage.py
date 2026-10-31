@@ -6,9 +6,9 @@ from datetime import UTC, datetime, timedelta
 from decimal import Decimal
 
 import pytest
-from prepza_common.ai.ai_cap import spent_today
-from prepza_common.ai.ai_constants import AI_USED, Category
 from sqlalchemy import func, select
+from testee_common.ai.ai_cap import spent_today
+from testee_common.ai.ai_constants import AI_USED, Category
 
 from billing.api.v1 import internal
 from billing.constants.products import OwnerType
@@ -141,7 +141,7 @@ def test_the_ai_costs_tab_sums_a_month(run, redis, monkeypatch):
                 cost_usd=0.0045,
             ),
         ),
-        (Category.PREPZA, call(action="template_generation", cost_usd=0.2)),
+        (Category.TESTEE, call(action="template_generation", cost_usd=0.2)),
     ]
 
     async def scenario():
@@ -167,7 +167,7 @@ def test_the_ai_costs_tab_sums_a_month(run, redis, monkeypatch):
         "paid": (pytest.approx(1.5), 2),
         "unpaid": (pytest.approx(0.3), 2),
         "no_company": (pytest.approx(0.0045), 1),
-        "prepza": (pytest.approx(0.2), 1),
+        "testee": (pytest.approx(0.2), 1),
     }
     actions = {part.action: part for part in found.actions}
     # Two calls of one generation are one interview: its cost is both.

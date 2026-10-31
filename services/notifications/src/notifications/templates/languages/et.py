@@ -2,16 +2,16 @@
 
 # The footer of reminders to a company's owners and admins.
 MEMBER_FOOTER = (
-    "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte omanik või administraator."
+    "See e-kiri saadeti aadressile {email}, sest oled testees ettevõtte omanik või administraator."
 )
 
 TEXTS = {
     "candidate": {
         "subject": "Intervjuukutse ettevõttelt {company}",
-        "preheader": "Tee prepzas intervjuu „{title}“. Alustamiseks logi sisse aadressiga {email}.",
+        "preheader": "Tee testees intervjuu „{title}“. Alustamiseks logi sisse aadressiga {email}.",
         "heading": "Kutse intervjuule",
         "lines": [
-            "{company} kutsub sind prepzas intervjuule „{title}“.",
+            "{company} kutsub sind testees intervjuule „{title}“.",
             (
                 "Alustamiseks logi sisse aadressiga {email}. Intervjuud saab teha "
                 "ainult see aadress ja sul on üks katse."
@@ -24,7 +24,7 @@ TEXTS = {
         "preheader": "Kui lahkud intervjuult, jätka selle lingiga. Logi sisse aadressiga {email}.",
         "heading": "Sinu intervjuu link",
         "lines": [
-            "Alustasid prepzas ettevõtte {company} intervjuud „{title}“.",
+            "Alustasid testees ettevõtte {company} intervjuud „{title}“.",
             (
                 "Kui lahkud, jätka selle lingiga: logi sisse aadressiga {email}. See töötab ka "
                 "siis, kui {company} lülitab välja lingi, millega alustasid. Aeg jookseb edasi "
@@ -33,7 +33,7 @@ TEXTS = {
         ],
         "button": "Jätka intervjuud",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest selle aadressiga alustati prepzas intervjuud."
+            "See e-kiri saadeti aadressile {email}, sest selle aadressiga alustati testees intervjuud."
         ),
     },
     "reminder": {
@@ -42,7 +42,7 @@ TEXTS = {
         "heading": "Sinu intervjuu ootab",
         "lines": [
             (
-                "{company} kutsus sind mõni päev tagasi prepzas intervjuule „{title}“, "
+                "{company} kutsus sind mõni päev tagasi testees intervjuule „{title}“, "
                 "kuid sa pole seda veel alustanud."
             ),
             (
@@ -53,14 +53,14 @@ TEXTS = {
         "button": "Ava kutse",
     },
     "member": {
-        "subject": "Liitu prepzas ettevõttega {company}",
+        "subject": "Liitu testees ettevõttega {company}",
         "preheader": (
             "Liitu ettevõtte {company} meeskonnaga {role}. Kutse vastuvõtmiseks logi sisse "
             "aadressiga {email}."
         ),
         "heading": "Kutse meeskonda",
         "lines": [
-            "{inviter} kutsub sind prepzas ettevõtte {company} meeskonda {role}.",
+            "{inviter} kutsub sind testees ettevõtte {company} meeskonda {role}.",
             (
                 "Kutse vastuvõtmiseks logi sisse aadressiga {email}. Kutset saab vastu võtta "
                 "ainult see aadress."
@@ -82,8 +82,8 @@ TEXTS = {
                 "e-kirjale."
             ),
         ],
-        "button": "Külasta prepzat",
-        "footer": "See e-kiri saadeti aadressile {email}, sest {sender} jagas prepzas selle "
+        "button": "Külasta testeed",
+        "footer": "See e-kiri saadeti aadressile {email}, sest {sender} jagas testees selle "
         "aadressiga kandidaadi aruannet. Kui sa seda ei oodanud, võid selle tähelepanuta jätta.",
     },
     "candidates": {
@@ -98,16 +98,16 @@ TEXTS = {
                 "e-kirjale."
             ),
         ],
-        "button": "Külasta prepzat",
-        "footer": "See e-kiri saadeti aadressile {email}, sest {sender} jagas prepzas selle "
+        "button": "Külasta testeed",
+        "footer": "See e-kiri saadeti aadressile {email}, sest {sender} jagas testees selle "
         "aadressiga kandidaatide aruannet. Kui sa seda ei oodanud, võid selle tähelepanuta jätta.",
     },
     "digest": {
-        "subject": "Sinu tegevuste kokkuvõte prepzas",
+        "subject": "Sinu tegevuste kokkuvõte testees",
         "preheader": "Mis sinu ettevõtetes viimase 24 tunni jooksul juhtus.",
         "heading": "Sinu tegevuste kokkuvõte",
         "lines": [
-            "Siin on, mis sinu ettevõtetes prepzas viimase 24 tunni jooksul juhtus.",
+            "Siin on, mis sinu ettevõtetes testees viimase 24 tunni jooksul juhtus.",
         ],
         "rows": {
             "candidate_finished": "Lõpetanud kandidaadid: {count} · „{title}“",
@@ -118,9 +118,9 @@ TEXTS = {
             "note": "{author}: „{excerpt}“",
             "note_by_former": "Endine liige: „{excerpt}“",
         },
-        "button": "Ava prepza",
+        "button": "Ava testee",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest kuulud prepzas ettevõttesse ja "
+            "See e-kiri saadeti aadressile {email}, sest kuulud testees ettevõttesse ja "
             "saad selle tegevuste kokkuvõtet."
         ),
     },
@@ -180,17 +180,17 @@ TEXTS = {
         "heading": "Uuendame oma kasutustingimusi",
         "lines": [
             (
-                "Avaldasime prepza kasutustingimuste uue versiooni. See kehtib alates {date}; "
+                "Avaldasime testee kasutustingimuste uue versiooni. See kehtib alates {date}; "
                 "seni kehtivad praegused tingimused."
             ),
             (
-                "Kui kasutad prepzat ka alates {date}, nõustud uute tingimustega. Kui sa ei "
+                "Kui kasutad testeed ka alates {date}, nõustud uute tingimustega. Kui sa ei "
                 "nõustu, saad enne seda kuupäeva oma konto seadetes kustutada."
             ),
         ],
         "button": "Loe uusi tingimusi",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest sul on prepza konto. See on teade "
+            "See e-kiri saadeti aadressile {email}, sest sul on testee konto. See on teade "
             "meie kasutustingimuste kohta, seega saadetakse see sõltumata sinu e-kirjade "
             "seadetest."
         ),
@@ -201,14 +201,14 @@ TEXTS = {
         "heading": "Uuendame oma privaatsuspoliitikat",
         "lines": [
             (
-                "Avaldasime prepza privaatsuspoliitika uue versiooni, mis kirjeldab, kuidas me "
+                "Avaldasime testee privaatsuspoliitika uue versiooni, mis kirjeldab, kuidas me "
                 "sinu andmeid kasutame. See kehtib alates {date}; seni kehtib praegune versioon."
             ),
             "Saad oma andmed seadetes igal ajal alla laadida või kustutada.",
         ],
         "button": "Loe uut privaatsuspoliitikat",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest sul on prepza konto. See on teade "
+            "See e-kiri saadeti aadressile {email}, sest sul on testee konto. See on teade "
             "selle kohta, kuidas me sinu andmeid kasutame, seega saadetakse see sõltumata "
             "sinu e-kirjade seadetest."
         ),
@@ -219,18 +219,18 @@ TEXTS = {
         "heading": "Uuendame oma andmetöötluslepingut",
         "lines": [
             (
-                "Avaldasime andmetöötluslepingu uue versiooni, mille alusel prepza sinu "
+                "Avaldasime andmetöötluslepingu uue versiooni, mille alusel testee sinu "
                 "kandidaatide andmeid töötleb. See kehtib alates {date}; seni kehtib praegune "
                 "versioon."
             ),
             (
                 "Ettevõte, mis on sellele mõistlikel andmekaitselistel põhjustel vastu, saab enne "
-                "seda kuupäeva lõpetada prepza kasutamise ja oma ettevõtte kustutada."
+                "seda kuupäeva lõpetada testee kasutamise ja oma ettevõtte kustutada."
             ),
         ],
         "button": "Loe uut lepingut",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest oled prepzas mõne ettevõtte omanik "
+            "See e-kiri saadeti aadressile {email}, sest oled testees mõne ettevõtte omanik "
             "või administraator. See on teade meie lepingu kohta sinu ettevõttega, seega "
             "saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
@@ -243,8 +243,8 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Ava prepza",
-        "footer": "See e-kiri saadeti aadressile {email}, sest valisid prepzalt tooteuudiste saamise.",
+        "open_site": "Ava testee",
+        "footer": "See e-kiri saadeti aadressile {email}, sest valisid testeelt tooteuudiste saamise.",
     },
     "promotions": {
         "subject": "{subject}",
@@ -252,13 +252,13 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Ava prepza",
+        "open_site": "Ava testee",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest valisid prepzalt pakkumiste ja kampaaniate"
+            "See e-kiri saadeti aadressile {email}, sest valisid testeelt pakkumiste ja kampaaniate"
             " saamise."
         ),
     },
-    # An important notice: a service email about prepza itself (a security incident, planned
+    # An important notice: a service email about testee itself (a security incident, planned
     # downtime, a change to how it works), whatever the email settings; never a promotion.
     "notices": {
         "subject": "{subject}",
@@ -266,9 +266,9 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Ava prepza",
+        "open_site": "Ava testee",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest sul on prepza konto. See on oluline"
+            "See e-kiri saadeti aadressile {email}, sest sul on testee konto. See on oluline"
             " teade teenuse kohta, näiteks selle turvalisuse või kättesaadavuse kohta, seega"
             " saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
@@ -289,7 +289,7 @@ TEXTS = {
         ],
         "button": "Laadi juurde",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte {company} "
+            "See e-kiri saadeti aadressile {email}, sest oled testees ettevõtte {company} "
             "omanik või administraator. See puudutab sinu ettevõtte arveldust, seega "
             "saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
@@ -314,7 +314,7 @@ TEXTS = {
         ],
         "button": "Uuenda kaarti",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte {company} "
+            "See e-kiri saadeti aadressile {email}, sest oled testees ettevõtte {company} "
             "omanik või administraator. See puudutab sinu ettevõtte arveldust, seega "
             "saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
@@ -345,7 +345,7 @@ TEXTS = {
         ],
         "button": "Ava arveldus",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte {company} "
+            "See e-kiri saadeti aadressile {email}, sest oled testees ettevõtte {company} "
             "omanik või administraator. See puudutab sinu ettevõtte arveldust, seega "
             "saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
@@ -371,7 +371,7 @@ TEXTS = {
         ],
         "button": "Ava arveldus",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte {company} "
+            "See e-kiri saadeti aadressile {email}, sest oled testees ettevõtte {company} "
             "omanik või administraator. See puudutab sinu ettevõtte arveldust, seega "
             "saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
@@ -397,21 +397,21 @@ TEXTS = {
         ],
         "button": "Ava arveldus",
         "footer": (
-            "See e-kiri saadeti aadressile {email}, sest oled prepzas ettevõtte {company} "
+            "See e-kiri saadeti aadressile {email}, sest oled testees ettevõtte {company} "
             "omanik või administraator. See puudutab sinu ettevõtte arveldust, seega "
             "saadetakse see sõltumata sinu e-kirjade seadetest."
         ),
     },
     "footer": "See e-kiri saadeti aadressile {email}, sest keegi kutsus selle aadressi "
-    "prepzasse. Kui sa seda ei oodanud, võid selle tähelepanuta jätta.",
-    # An invite from a company prepza hasn't verified, at the end of the footer.
-    "unverified": "prepza ei ole ettevõtet {company} kinnitanud.",
+    "testeesse. Kui sa seda ei oodanud, võid selle tähelepanuta jätta.",
+    # An invite from a company testee hasn't verified, at the end of the footer.
+    "unverified": "testee ei ole ettevõtet {company} kinnitanud.",
     "paste_link": "Või kleebi see link oma brauserisse",
     # The footer's links: optional emails' unsubscribe and settings, and a candidate's own.
     "unsubscribe": "Loobu tellimusest",
     "email_settings": "Muuda oma e-kirjade seadeid",
     "stop_reminders": "Ära saada mulle selle intervjuu meeldetuletusi",
     "stop_company": "Ära saada mulle e-kirju ettevõttelt {company}",
-    # Who runs prepza, at the end of every email.
-    "operator": "prepzat haldab {name}, {address}.",
+    # Who runs testee, at the end of every email.
+    "operator": "testeed haldab {name}, {address}.",
 }

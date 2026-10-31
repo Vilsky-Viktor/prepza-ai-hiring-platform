@@ -1,6 +1,6 @@
 import asyncio
 
-from prepza_common.http.sse import KEEP_ALIVE, event_stream, sse_event
+from testee_common.http.sse import KEEP_ALIVE, event_stream, sse_event
 
 
 def test_an_event_is_one_data_line_of_json_and_a_blank_line():

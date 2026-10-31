@@ -1,9 +1,9 @@
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.ai.multi_answer import multi_share
-from prepza_common.auth.user import User
-from prepza_common.i18n.names import clean_name
-from prepza_common.limits.pause import refuse_if_paused
+from testee_common.ai.multi_answer import multi_share
+from testee_common.auth.user import User
+from testee_common.i18n.names import clean_name
+from testee_common.limits.pause import refuse_if_paused
 
 from companies.constants.invites import EMAIL_NOT_VERIFIED, NOT_THE_GUEST, InviteStatus
 from companies.core.db import Session

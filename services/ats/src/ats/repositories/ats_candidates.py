@@ -1,12 +1,12 @@
 from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
-from prepza_common.db.db import delete_in_batches, update_in_batches
-from prepza_common.events import outbox
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import and_, delete, func, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.db.db import delete_in_batches, update_in_batches
+from testee_common.events import outbox
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from ats.constants.ats import (
     INVITE_BATCH,

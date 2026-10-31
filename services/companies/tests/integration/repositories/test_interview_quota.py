@@ -3,7 +3,7 @@
 import os
 import uuid
 
-from prepza_common.db.lock_waits import hold_first_commit, race
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from companies.core.exceptions import OverLimit
 from companies.repositories import interviews

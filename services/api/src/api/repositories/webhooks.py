@@ -1,11 +1,11 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.events import audit
-from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import audit
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from api.constants.api import DELIVERIES_KEPT
 from api.helpers.webhooks import masked

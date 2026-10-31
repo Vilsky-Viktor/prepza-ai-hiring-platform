@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.db.paging import PageParams
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.db.paging import PageParams
 
 from companies.core.db import Session
 from companies.repositories import verification

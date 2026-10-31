@@ -1,7 +1,7 @@
 import logging
 from uuid import UUID
 
-from prepza_common.events.deletions import USER_DELETED
+from testee_common.events.deletions import USER_DELETED
 
 from assistant.constants.events import (
     CANDIDATE_INTERVIEW_DELETED,
@@ -39,7 +39,7 @@ async def handle(event_type: str, data: dict) -> None:
         return
 
     # A malformed id raises ValueError: no retry can fix it, so the event is dropped
-    # (prepza_common.events.unhandleable).
+    # (testee_common.events.unhandleable).
     deleted = await handler(UUID(str(data.get("company_id"))), data)
 
     if deleted:

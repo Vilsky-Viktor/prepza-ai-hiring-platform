@@ -24,7 +24,7 @@ def interview_of(found: dict) -> Interview:
 
 
 def candidate_of(found: dict, company_id, interview_id, site: str) -> Candidate:
-    """Companies' candidate, as the API shows it, with a link to their results in prepza and,
+    """Companies' candidate, as the API shows it, with a link to their results in testee and,
     until they finish, their invite link."""
     token = found.get("invite_token")
 

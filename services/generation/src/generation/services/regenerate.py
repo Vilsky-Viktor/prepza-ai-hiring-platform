@@ -3,7 +3,7 @@ import logging
 from uuid import UUID
 
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
-from prepza_common.ai.examples import has_example
+from testee_common.ai.examples import has_example
 
 from generation.constants.generation import REGENERATE_ATTEMPTS, REGENERATE_TIMEOUT_SECONDS
 from generation.helpers.prompts import bullet_list, language_name

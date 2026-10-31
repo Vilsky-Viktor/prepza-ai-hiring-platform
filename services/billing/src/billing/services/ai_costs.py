@@ -4,8 +4,8 @@ Redis (today's unpaid spend) and the companies' and accounts' names. The page on
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.ai.ai_cap import CAP, spent_today
-from prepza_common.limits.limits import limit
+from testee_common.ai.ai_cap import CAP, spent_today
+from testee_common.limits.limits import limit
 
 from billing.constants.usage import SPEND_DAYS, TOP_SPENDERS
 from billing.core.db import Session

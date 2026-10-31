@@ -43,7 +43,7 @@ class SkipReason(StrEnum):
 
 
 class SuppressionReason(StrEnum):
-    """Why an address is on prepza's suppression list: it bounced for good, marked an email as
+    """Why an address is on testee's suppression list: it bounced for good, marked an email as
     spam, Resend suppressed an email to it (on Resend's own list after an earlier one), or it
     bounced for a while again and again (constants/suppression.py)."""
 

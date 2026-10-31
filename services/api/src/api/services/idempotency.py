@@ -5,8 +5,8 @@ from collections.abc import Awaitable, Callable
 from uuid import UUID
 
 from fastapi import status
-from prepza_common.i18n.i18n import CodedError
 from redis.exceptions import RedisError
+from testee_common.i18n.i18n import CodedError
 
 from api.constants import error_codes
 from api.constants.api import (

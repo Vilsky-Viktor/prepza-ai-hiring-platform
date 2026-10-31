@@ -4,12 +4,12 @@ from notifications.helpers.markdown import markdown_html, markdown_plain
 
 
 def test_bold_italic_and_links_are_formatted_with_inline_styles():
-    html = markdown_html("**New** and *fresh*: [see it](https://prepza.com/news?a=1&b=2)")
+    html = markdown_html("**New** and *fresh*: [see it](https://testee.com/news?a=1&b=2)")
 
     assert re.search(r"<strong style=\"[^\"]+\">New</strong>", html)
     assert "<em>fresh</em>" in html
     assert re.search(
-        r'<a href="https://prepza.com/news\?a=1&amp;b=2" target="_blank" style="[^"]+">see it</a>',
+        r'<a href="https://testee.com/news\?a=1&amp;b=2" target="_blank" style="[^"]+">see it</a>',
         html,
     )
     assert html.startswith("<p style=")
@@ -47,7 +47,7 @@ def test_unsafe_links_are_not_links():
 
 
 def test_the_plain_text_is_the_words_alone_on_one_line():
-    text = "**New**: *code* questions.\n[See them](https://prepza.com/tests)\n\n- one\n- two"
+    text = "**New**: *code* questions.\n[See them](https://testee.com/tests)\n\n- one\n- two"
 
     assert markdown_plain(text) == "New: code questions. See them one two"
 

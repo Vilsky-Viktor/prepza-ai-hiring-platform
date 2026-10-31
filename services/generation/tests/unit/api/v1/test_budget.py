@@ -4,9 +4,9 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.ai.ai_constants import LIMIT_HIT
-from prepza_common.http.http import bearer
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.ai.ai_constants import LIMIT_HIT
+from testee_common.http.http import bearer
+from testee_common.limits.limit_list import LIMITS
 
 from generation.api.v1 import internal
 from generation.constants.generation import BUDGET_KEY, GENERATIONS_PAUSED

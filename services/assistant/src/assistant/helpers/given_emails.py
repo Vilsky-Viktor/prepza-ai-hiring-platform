@@ -1,6 +1,6 @@
 import re
 
-from prepza_common.config.constants import EMAIL_PATTERN
+from testee_common.config.constants import EMAIL_PATTERN
 
 EMAIL = re.compile(EMAIL_PATTERN)
 

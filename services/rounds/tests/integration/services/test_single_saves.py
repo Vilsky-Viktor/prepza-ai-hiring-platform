@@ -6,8 +6,8 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 import pytest
-from prepza_common.auth.user import User
 from sqlalchemy import update
+from testee_common.auth.user import User
 
 from rounds.constants.rounds import RoundStatus
 from rounds.core.db import Session

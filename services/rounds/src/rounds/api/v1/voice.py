@@ -2,8 +2,8 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Path, Query, Request, Response, WebSocket, status
-from prepza_common.auth.auth import CurrentUser
 from pydantic import Field
+from testee_common.auth.auth import CurrentUser
 
 from rounds.constants.rounds import OPTIONS_PER_QUESTION
 from rounds.constants.voice_phrases import FIXED_PHRASES, Phrase

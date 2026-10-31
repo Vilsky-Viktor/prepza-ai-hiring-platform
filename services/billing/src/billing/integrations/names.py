@@ -4,8 +4,8 @@
 import logging
 
 import httpx
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from billing.config import settings
 from billing.core.security import service_token

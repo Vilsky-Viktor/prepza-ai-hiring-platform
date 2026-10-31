@@ -1,6 +1,6 @@
 import pytest
 from cryptography.fernet import Fernet
-from prepza_common.auth.encryption import decrypt, encrypt
+from testee_common.auth.encryption import decrypt, encrypt
 
 
 def test_a_sealed_secret_is_unreadable_with_another_key():

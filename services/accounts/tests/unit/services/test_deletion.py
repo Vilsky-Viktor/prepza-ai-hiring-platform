@@ -6,12 +6,12 @@ import httpx
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.config.constants import ACCOUNT_OWNS_SHARED, GOOGLE_TIMEOUT_SECONDS
-from prepza_common.config.event_constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
-from prepza_common.events.deletions import USER_DELETED
-from prepza_common.http import http
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.config.constants import ACCOUNT_OWNS_SHARED, GOOGLE_TIMEOUT_SECONDS
+from testee_common.config.event_constants import PUBLISH_IN_REQUEST_TIMEOUT_SECONDS
+from testee_common.events.deletions import USER_DELETED
+from testee_common.http import http
 
 from accounts.api.v1 import me as me_routes
 from accounts.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
@@ -155,7 +155,7 @@ def test_the_export_holds_every_service_and_downloads_as_a_file(client, monkeypa
         app.dependency_overrides.clear()
 
     assert response.status_code == 200
-    assert response.headers["content-disposition"] == 'attachment; filename="prepza-data.json"'
+    assert response.headers["content-disposition"] == 'attachment; filename="testee-data.json"'
     assert response.json() == {
         "account": {
             "id": "ann",
@@ -204,7 +204,7 @@ def test_deletion_and_export_send_the_email_in_the_body_not_the_url(monkeypatch)
 
 
 def test_deleting_and_exporting_in_a_service_waits_longer_than_an_ordinary_call(monkeypatch):
-    from prepza_common.config.constants import HTTP_TIMEOUT_SECONDS
+    from testee_common.config.constants import HTTP_TIMEOUT_SECONDS
 
     from accounts.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS
 

@@ -13,7 +13,7 @@ REFERRAL_CODE_BYTES = 6
 
 NOT_ENOUGH = "Not enough credits. Top up to continue."
 
-# A superadmin's adjustment (its limits are in prepza_common.config.constants) removing credits the
+# A superadmin's adjustment (its limits are in testee_common.config.constants) removing credits the
 # company has set aside for candidates, or doesn't have; or moving none.
 ADJUSTMENT_BELOW_ZERO = "That would take the available balance below zero."
 ADJUSTMENT_ZERO = "The amount can't be zero."

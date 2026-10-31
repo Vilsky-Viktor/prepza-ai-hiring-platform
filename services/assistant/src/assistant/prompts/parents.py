@@ -1,6 +1,6 @@
 # How lists and actions narrow to one parent, for the panel's assistant and AI apps over MCP alike.
 PARENTS_RULE = (
-    "Things in prepza sit inside one another: a company has interviews, an interview has "
+    "Things in testee sit inside one another: a company has interviews, an interview has "
     "candidates. Never list, compare or act on things from different parents mixed together: "
     "candidates belong to one interview of one company, interviews to one company. When a list "
     "or an action needs a parent the user hasn't given, ask for it first, in one short question "

@@ -3,8 +3,8 @@ import uuid
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.ai.sets import QuestionIn
-from prepza_common.limits.limit_list import LIMITS, REVIEW_SECONDS
+from testee_common.ai.sets import QuestionIn
+from testee_common.limits.limit_list import LIMITS, REVIEW_SECONDS
 
 from generation.constants.generation import TOO_MANY_REVISIONS
 from generation.integrations import library, llm
@@ -143,7 +143,7 @@ def test_key_checks_wait_during_the_emergency_pause(monkeypatch):
     async def collect_finished():
         runs.append("collect")
 
-    monkeypatch.setattr("prepza_common.limits.pause.is_paused", on)
+    monkeypatch.setattr("testee_common.limits.pause.is_paused", on)
     monkeypatch.setattr(schedules, "get_redis", lambda: object())
     monkeypatch.setattr(schedules, "collect_finished", collect_finished)
 

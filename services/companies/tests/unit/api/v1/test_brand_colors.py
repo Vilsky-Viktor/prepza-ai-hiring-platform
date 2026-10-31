@@ -1,21 +1,21 @@
 import pytest
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.constants.brand import (
     BUTTON_TEXT_UNREADABLE,
     CARD_TEXT_UNREADABLE,
     PAGE_TEXT_UNREADABLE,
-    PREPZA_COLORS,
     PRIMARY_UNSEEN,
     QUESTION_TEXT_UNREADABLE,
     SECONDARY_TEXT_UNREADABLE,
+    TESTEE_COLORS,
 )
 from companies.helpers.brand import color_sets, contrast, unreadable
 from companies.repositories import companies
 from tests.unit.api.v1.test_logos import COMPANY_ID, company, sign_in  # noqa: F401 (fixtures)
 
-LIGHT = PREPZA_COLORS["light"]
-DARK = PREPZA_COLORS["dark"]
+LIGHT = TESTEE_COLORS["light"]
+DARK = TESTEE_COLORS["dark"]
 URL = f"/companies/{COMPANY_ID}/brand-colors"
 
 
@@ -24,7 +24,7 @@ def test_contrast_is_wcags():
     assert contrast("#777777", "#777777") == pytest.approx(1)
 
 
-def test_prepzas_own_colors_read_in_both_themes():
+def test_testees_own_colors_read_in_both_themes():
     assert unreadable(LIGHT) is None
     assert unreadable(DARK) is None
 
@@ -48,10 +48,10 @@ def test_colors_that_make_text_hard_to_read_say_which(changes, message):
     assert unreadable({**LIGHT, **changes}) == message
 
 
-def test_a_theme_without_colors_of_its_own_is_prepzas():
+def test_a_theme_without_colors_of_its_own_is_testees():
     mine = {**DARK, "primary": "#ff7a1a"}
 
-    assert color_sets(None) == PREPZA_COLORS
+    assert color_sets(None) == TESTEE_COLORS
     assert color_sets({"dark": mine}) == {"light": LIGHT, "dark": mine}
 
 
@@ -59,7 +59,7 @@ def test_a_theme_without_colors_of_its_own_is_prepzas():
 SAVED_BEFORE = {**LIGHT, "foreground": "#1a1a1a", "muted": "#767676", "muted_foreground": "#000000"}
 
 
-def test_a_theme_whose_saved_colors_a_check_now_refuses_is_prepzas_for_candidates():
+def test_a_theme_whose_saved_colors_a_check_now_refuses_is_testees_for_candidates():
     mine = {**DARK, "primary": "#ff7a1a"}
 
     assert color_sets({"light": SAVED_BEFORE, "dark": mine}) == {"light": LIGHT, "dark": mine}
@@ -77,7 +77,7 @@ def saved(monkeypatch, company):  # noqa: F811
     return calls
 
 
-def test_an_admin_saves_one_themes_colors_or_goes_back_to_prepzas(client, saved, audited):
+def test_an_admin_saves_one_themes_colors_or_goes_back_to_testees(client, saved, audited):
     sign_in("bob")
     mine = {**DARK, "primary": "#ff7a1a"}
 
@@ -112,9 +112,9 @@ def test_only_owners_and_admins_set_colors(client, saved):
     assert saved == []
 
 
-def test_prepzas_colors_font_and_rounding_are_public(client):
-    assert client.get("/brand/prepza").json() == {
-        "colors": PREPZA_COLORS,
+def test_testees_colors_font_and_rounding_are_public(client):
+    assert client.get("/brand/testee").json() == {
+        "colors": TESTEE_COLORS,
         "style": {
             "heading_font": "poppins",
             "text_font": "geist",
@@ -151,7 +151,7 @@ def test_an_admin_sets_the_fonts_and_rounding_within_their_bounds(client, styled
     assert styled == [style]
 
 
-def test_a_font_no_longer_offered_is_prepzas_in_its_role():
+def test_a_font_no_longer_offered_is_testees_in_its_role():
     from types import SimpleNamespace
 
     from companies.helpers.brand import style_of

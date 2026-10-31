@@ -7,7 +7,7 @@ from datetime import UTC, datetime, timedelta
 from uuid import uuid4
 
 import pytest
-from prepza_common.i18n.i18n import translate
+from testee_common.i18n.i18n import translate
 
 from assistant.constants.key_tools import KEY_TOOLS
 from assistant.constants.mcp import KEY_MISSING_PERMISSION

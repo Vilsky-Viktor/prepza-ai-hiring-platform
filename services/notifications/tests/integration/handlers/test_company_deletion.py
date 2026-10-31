@@ -1,7 +1,7 @@
 import uuid
 
 from event_pushes import push
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
+from testee_common.events.notifications import NotificationKind, Recipient, notification
 
 from notifications.repositories import notifications
 from notifications.services import notices
@@ -73,7 +73,7 @@ def test_an_erased_candidate_leaves_only_that_companys_bell_and_a_deleted_accoun
             code = (await client.post("/internal/events", json=removed)).status_code
 
         after_erasure = (await latest(company_id), await latest(other_id))
-        # The candidate deletes their prepza account: every company forgets them.
+        # The candidate deletes their testee account: every company forgets them.
         gone = push("user.deleted", {"user_id": f"gone-{uuid.uuid4()}", "email": "Gone@x.com"})
 
         async with api() as client:

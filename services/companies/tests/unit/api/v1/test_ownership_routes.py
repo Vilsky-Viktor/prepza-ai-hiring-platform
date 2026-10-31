@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.constants.roles import ONLY_ADMINS_OWN
 from companies.repositories import companies, members, outbox

@@ -40,7 +40,7 @@ CACHE_HINTS = {
     "server/discover": CacheHint(ttl_ms=CACHE_TTL_MS, scope="public"),
 }
 server = Server(
-    "prepza",
+    "testee",
     instructions=MCP_INSTRUCTIONS,
     on_list_tools=list_tools,
     on_call_tool=call_tool,
@@ -65,7 +65,7 @@ async def handle(scope: Scope, receive: Receive, send: Send) -> None:
 
 
 def routes() -> list[Route]:
-    """The MCP endpoint, for the bearer of an access token prepza issued for it; without one, a
+    """The MCP endpoint, for the bearer of an access token testee issued for it; without one, a
     401 naming where to learn how to get one. The token check knows the caller's address (an API
     key may be limited to some). Browser-based apps we know (MCP Inspector) may call it."""
     resource = auth_settings().resource_server_url

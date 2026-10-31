@@ -185,7 +185,7 @@ def test_company_and_reviewer_text_reach_the_topic_planner_tagged_in_the_request
 @pytest.fixture
 def rules_in_use(monkeypatch):
     """The prompts rebuilt with the rules a test puts in use, rebuilt as they were afterwards."""
-    from generation.prompts import answers, question_rules, quality_rules, questions, regenerate
+    from generation.prompts import answers, quality_rules, question_rules, questions, regenerate
 
     modules = (question_rules, questions, answers, regenerate)
 

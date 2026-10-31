@@ -3,7 +3,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db import db
+from testee_common.db import db
 
 from billing.core.db import Session
 from billing.models.usage import AiUsage

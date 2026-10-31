@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE
 from sqlalchemy import and_, case, delete, exists, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DEFAULT_LANGUAGE
 
 from billing.constants.products import AUTO_TOP_UP_COOLDOWN, AUTO_TOP_UP_UNCREDITED_WAIT
 from billing.models.billing import AutoTopUp, Entry, Wallet

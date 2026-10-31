@@ -4,10 +4,10 @@ import uuid
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth import company_invites
-from prepza_common.http import http
-from prepza_common.http.http import bearer, passed_on
-from prepza_common.observability.logging import trace_header
+from testee_common.auth import company_invites
+from testee_common.http import http
+from testee_common.http.http import bearer, passed_on
+from testee_common.observability.logging import trace_header
 
 
 def answer(code: int, body=None) -> httpx.Response:

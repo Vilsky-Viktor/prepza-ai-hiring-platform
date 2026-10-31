@@ -5,9 +5,9 @@ from datetime import UTC, datetime
 from unittest import mock
 
 import pytest
-from prepza_common.events import pubsub
-from prepza_common.events.pubsub import PushBody, event_of, publish
-from prepza_common.http import http
+from testee_common.events import pubsub
+from testee_common.events.pubsub import PushBody, event_of, publish
+from testee_common.http import http
 
 
 class FakeClient:
@@ -30,13 +30,13 @@ def client(monkeypatch):
 
 def test_publishing_to_the_emulator_sends_the_event_without_a_token(client, monkeypatch):
     monkeypatch.setenv("PUBSUB_EMULATOR_HOST", "pubsub:8085")
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "demo-prepza")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "demo-testee")
 
     asyncio.run(publish("candidate.invited", {"email": "bob@example.com"}))
 
     [(url, body, headers)] = client.calls
     [message] = body["messages"]
-    assert url == "http://pubsub:8085/v1/projects/demo-prepza/topics/events:publish"
+    assert url == "http://pubsub:8085/v1/projects/demo-testee/topics/events:publish"
     assert message["attributes"]["type"] == "candidate.invited"
     # Its family, which subscriptions filter on (infra/terraform/pubsub.tf).
     assert message["attributes"]["family"] == "candidate"
@@ -46,13 +46,13 @@ def test_publishing_to_the_emulator_sends_the_event_without_a_token(client, monk
 
 def test_publishing_to_google_carries_the_services_token(client, monkeypatch):
     monkeypatch.delenv("PUBSUB_EMULATOR_HOST", raising=False)
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "prepza-prod")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "testee-prod")
     monkeypatch.setattr(pubsub, "access_token", lambda: "google-token")
 
     asyncio.run(publish("answer.recorded", {}))
 
     [(url, _, headers)] = client.calls
-    assert url == "https://pubsub.googleapis.com/v1/projects/prepza-prod/topics/events:publish"
+    assert url == "https://pubsub.googleapis.com/v1/projects/testee-prod/topics/events:publish"
     assert headers == {"Authorization": "Bearer google-token"}
 
 
@@ -73,7 +73,7 @@ def test_a_push_decodes_to_its_type_data_and_id():
 
 def test_a_batch_goes_in_one_call_with_each_events_own_id(client, monkeypatch):
     monkeypatch.setenv("PUBSUB_EMULATOR_HOST", "pubsub:8085")
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "demo-prepza")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "demo-testee")
 
     asyncio.run(
         pubsub.publish_batch(

@@ -1,4 +1,4 @@
-from prepza_common.events.deletions import CompanyDeleted
+from testee_common.events.deletions import CompanyDeleted
 
 from library.services import sets
 

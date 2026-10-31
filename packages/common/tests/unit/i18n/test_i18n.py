@@ -1,9 +1,9 @@
 import pytest
 from fastapi import FastAPI, HTTPException
 from fastapi.testclient import TestClient
-from prepza_common.config.constants import RATE_LIMITED
-from prepza_common.i18n.i18n import CodedError, TemplateError, add_localized_errors, language_of
 from pydantic import BaseModel, field_validator
+from testee_common.config.constants import RATE_LIMITED
+from testee_common.i18n.i18n import CodedError, TemplateError, add_localized_errors, language_of
 
 
 class Body(BaseModel):
@@ -108,15 +108,15 @@ def test_validator_messages_are_translated_too():
 
 
 def test_every_translation_language_is_offered():
-    from prepza_common.config.constants import LANGUAGES
-    from prepza_common.i18n.translations import TRANSLATIONS
+    from testee_common.config.constants import LANGUAGES
+    from testee_common.i18n.translations import TRANSLATIONS
 
     assert set(TRANSLATIONS) <= set(LANGUAGES)
 
 
 def test_every_language_translates_every_message():
-    from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
-    from prepza_common.i18n.translations import TRANSLATIONS
+    from testee_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
+    from testee_common.i18n.translations import TRANSLATIONS
 
     english = set(TRANSLATIONS["ru"])
 
@@ -139,7 +139,7 @@ def test_traditional_chinese_never_gets_simplified():
 
 
 def test_raised_messages_finds_literals_and_constants_but_not_f_strings(tmp_path, monkeypatch):
-    from prepza_common.i18n.translations import raised_messages
+    from testee_common.i18n.translations import raised_messages
 
     package = tmp_path / "fakeapp"
     (package / "constants").mkdir(parents=True)
@@ -161,7 +161,7 @@ def test_raised_messages_finds_literals_and_constants_but_not_f_strings(tmp_path
 
 
 def test_raised_messages_fails_on_a_folder_without_code(tmp_path):
-    from prepza_common.i18n.translations import raised_messages
+    from testee_common.i18n.translations import raised_messages
 
     with pytest.raises(FileNotFoundError):
         raised_messages(tmp_path / "moved")

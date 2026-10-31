@@ -2,7 +2,7 @@ from enum import StrEnum
 
 # A company's own colors on its candidates' pages (invitation, questions, finished page), a set
 # for the light theme and one for the dark, each in groups like a theme's: a background and the
-# text on it. A theme without a saved set: prepza's own.
+# text on it. A theme without a saved set: testee's own.
 
 
 class Theme(StrEnum):
@@ -10,8 +10,8 @@ class Theme(StrEnum):
     DARK = "dark"
 
 
-# prepza's own colors (the site's themes), where a company starts from.
-PREPZA_COLORS = {
+# testee's own colors (the site's themes), where a company starts from.
+TESTEE_COLORS = {
     Theme.LIGHT: {
         "background": "#ffffff",
         "foreground": "#0a0a0a",
@@ -69,7 +69,7 @@ CONTRAST_RULES = [
 
 # The fonts of a company's candidates' pages, one for the titles and one for the text, as the
 # site has (the site bundles each, and a page downloads only the ones it uses), and how round
-# their cards' and buttons' corners are, in px. prepza's, as the site draws them: Poppins titles
+# their cards' and buttons' corners are, in px. testee's, as the site draws them: Poppins titles
 # over Geist text, and 14 px cards and buttons (the site's rounded-xl). A company's saved values
 # stay as they are.
 class BrandFont(StrEnum):
@@ -100,8 +100,8 @@ class BrandFont(StrEnum):
     PLAYFAIR_DISPLAY = "playfair_display"
 
 
-PREPZA_HEADING_FONT = BrandFont.POPPINS
-PREPZA_TEXT_FONT = BrandFont.GEIST
-PREPZA_RADIUS = 14
-PREPZA_BUTTON_RADIUS = 14
+TESTEE_HEADING_FONT = BrandFont.POPPINS
+TESTEE_TEXT_FONT = BrandFont.GEIST
+TESTEE_RADIUS = 14
+TESTEE_BUTTON_RADIUS = 14
 MAX_RADIUS = 24

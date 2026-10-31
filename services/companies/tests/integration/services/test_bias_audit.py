@@ -10,10 +10,10 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.events.audit_actions import AuditAction, TargetKind
-from prepza_common.limits.limit_list import LIMITS_KEY
 from redis.asyncio import Redis
 from sqlalchemy import inspect, select, update
+from testee_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.limits.limit_list import LIMITS_KEY
 
 from companies.config import settings
 from companies.constants.invites import InviteStatus
@@ -116,7 +116,7 @@ def test_the_export_lists_the_companys_finished_candidates_and_is_logged(run, re
 
         return company, backend, data, parsed(text), await logged(company.id)
 
-    company, backend, data, rows, events = run(scenario())
+    company, backend, _data, rows, events = run(scenario())
 
     by_email = {row["candidate_email"]: row for row in rows}
     assert sorted(by_email) == [
@@ -222,7 +222,7 @@ def test_exports_are_limited_per_company_a_day(run, redis):
 
 def test_no_table_holds_a_protected_characteristic(run):
     """The export brings no demographic data in: the company joins its own categories outside
-    prepza, so no column anywhere could keep one."""
+    testee, so no column anywhere could keep one."""
 
     async def scenario():
         async with engine.connect() as connection:

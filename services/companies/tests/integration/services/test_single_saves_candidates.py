@@ -5,8 +5,8 @@ nothing else is kept, so the retry finds the whole action still to do."""
 import uuid
 
 import pytest
-from prepza_common.auth.user import User
 from sqlalchemy import func, select
+from testee_common.auth.user import User
 
 from companies.constants.events import REPORT_SHARED
 from companies.constants.roles import Role

@@ -2,11 +2,11 @@ import asyncio
 
 from firebase_admin import auth as firebase_auth
 from firebase_admin.exceptions import ResourceExhaustedError
-from prepza_common.auth.auth import verify
-from prepza_common.auth.user import User
-from prepza_common.http import http
-from prepza_common.limits.limits import record_hit
-from prepza_common.redis import memory_cache
+from testee_common.auth.auth import verify
+from testee_common.auth.user import User
+from testee_common.http import http
+from testee_common.limits.limits import record_hit
+from testee_common.redis import memory_cache
 
 from assistant.config import settings
 from assistant.constants.mcp import (

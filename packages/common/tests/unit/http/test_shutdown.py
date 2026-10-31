@@ -2,8 +2,8 @@ import asyncio
 import re
 from pathlib import Path
 
-from prepza_common.http import http, shutdown
 from service_code import service_code
+from testee_common.http import http, shutdown
 
 ROOT = Path(__file__).resolve().parents[5]
 

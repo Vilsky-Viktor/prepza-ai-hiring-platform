@@ -1,5 +1,5 @@
 """Billing's races against Postgres, each proven: the first call's transaction stays open at its
-commit until the second is seen waiting on its lock (prepza_common.db.lock_waits), so the two really
+commit until the second is seen waiting on its lock (testee_common.db.lock_waits), so the two really
 overlap. Spending credits, charging a hold, a Paddle top-up and the automatic top-up. The held
 transaction is the one its service opens (holds, topups) or, for a repository's own guarded
 write, the one tests/integration/transactions.py opens for it."""
@@ -8,7 +8,7 @@ import os
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.lock_waits import hold_first_commit, race
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from billing.constants.credits import CANDIDATE_CREDITS, WELCOME_COMPANY, Reason
 from billing.constants.products import TOP_UPS, OwnerType

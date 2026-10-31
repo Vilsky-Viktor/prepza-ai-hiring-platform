@@ -14,9 +14,9 @@ EXPIRIES = {"ex", "px", "exat", "pxat", "keepttl"}
 # Keys kept without an expiry on purpose, by file and the key's name.
 ALLOWED = {
     # The switches: on until a superadmin turns them off.
-    "packages/common/src/prepza_common/limits/pause.py PAUSE_KEY",
-    "packages/common/src/prepza_common/limits/maintenance.py MAINTENANCE_KEY",
-    "packages/common/src/prepza_common/limits/maintenance.py MAINTENANCE_STARTED_KEY",
+    "packages/common/src/testee_common/limits/pause.py PAUSE_KEY",
+    "packages/common/src/testee_common/limits/maintenance.py MAINTENANCE_KEY",
+    "packages/common/src/testee_common/limits/maintenance.py MAINTENANCE_STARTED_KEY",
     # The limits edited in Controls, rewritten from Postgres every 5 minutes.
     "services/billing/src/billing/services/limit_values.py LIMITS_KEY",
 }
@@ -69,7 +69,7 @@ def unexpired(path: Path) -> list[str]:
 
 def test_every_redis_key_expires_unless_it_is_a_switch():
     files = service_code(ROOT)
-    files += list(ROOT.glob("packages/common/src/prepza_common/**/*.py"))
+    files += list(ROOT.glob("packages/common/src/testee_common/**/*.py"))
     found = [line for path in files for line in unexpired(path)]
 
     assert len(files) > 300

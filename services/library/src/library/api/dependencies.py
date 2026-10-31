@@ -1,4 +1,4 @@
-from prepza_common.auth.service_auth import service_caller
+from testee_common.auth.service_auth import service_caller
 
 from library.config import settings
 from library.core.security import SERVICE_NAME

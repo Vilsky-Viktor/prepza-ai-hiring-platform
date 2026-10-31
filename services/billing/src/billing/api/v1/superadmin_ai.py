@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.db.stats import Period
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.db.stats import Period
 
 from billing.schemas.ai_costs import AiCostsOut, AiSpendOut
 from billing.schemas.limits import LimitHitListsOut

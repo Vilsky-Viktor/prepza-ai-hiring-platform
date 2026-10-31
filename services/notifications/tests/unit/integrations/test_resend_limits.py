@@ -2,7 +2,7 @@ import asyncio
 
 import httpx
 import pytest
-from prepza_common.ai.ai_constants import LIMIT_HIT
+from testee_common.ai.ai_constants import LIMIT_HIT
 
 from notifications.config import settings
 from notifications.integrations import resend

@@ -1,8 +1,8 @@
 import json
 
 from babel.numbers import format_decimal
-from prepza_common.config.constants import LANGUAGES
-from prepza_common.i18n.money import money
+from testee_common.config.constants import LANGUAGES
+from testee_common.i18n.money import money
 
 from site_content.constants.faq import FAQS
 from site_content.constants.help import FAQ_EXAMPLE_CANDIDATES
@@ -105,7 +105,7 @@ def legal_text(intro: str, sections: list[dict]) -> str:
 
 
 def knowledge(language: str, catalog: dict | None, limits: dict) -> str:
-    """What prepza's help answers from: the platform guide, the FAQ in `language`, the prices,
+    """What testee's help answers from: the platform guide, the FAQ in `language`, the prices,
     the terms and the privacy policy. The help chat's prompt holds it, and the in-app assistant
     reads it from GET /help/guide."""
     return HELP_KNOWLEDGE.format(

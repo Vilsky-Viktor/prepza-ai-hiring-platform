@@ -1,7 +1,6 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import (
     CheckConstraint,
     DateTime,
@@ -13,6 +12,7 @@ from sqlalchemy import (
     func,
 )
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from companies.constants.brand import Theme
 from companies.constants.invites import MAX_CANDIDATE_NAME_LENGTH, InviteStatus
@@ -87,7 +87,7 @@ class CandidateInvite(Base):
     # public API's return_url: https, or http on localhost); None for everyone else.
     return_url: Mapped[str | None] = mapped_column(String(2048))
     # Sent by the company's own platform, which knows who the candidate is: the link signs them
-    # in as this invite's guest, and prepza sends no emails.
+    # in as this invite's guest, and testee sends no emails.
     guest: Mapped[bool] = mapped_column(default=False, server_default="false")
     # The theme its pages show (constants/brand.py's Theme), as the API asked; None: the
     # candidate's own.

@@ -9,7 +9,7 @@ class ConnectRequestOut(BaseModel):
 
     client_name: str
     redirect_host: str
-    # False: prepza doesn't know the site the app returns to, and the page warns about it.
+    # False: testee doesn't know the site the app returns to, and the page warns about it.
     known_client: bool
     # The app asked only to read: the page offers no choice.
     read_only: bool

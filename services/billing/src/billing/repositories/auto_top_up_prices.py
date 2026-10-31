@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from prepza_common.events import outbox
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import select, tuple_, update
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import outbox
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from billing.models.billing import AutoTopUp
 from billing.models.outbox import OutboxEvent

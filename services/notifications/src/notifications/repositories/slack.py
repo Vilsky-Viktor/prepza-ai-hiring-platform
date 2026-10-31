@@ -1,12 +1,12 @@
 import uuid
 from datetime import datetime, timedelta
 
-from prepza_common.config.constants import DELETED_USER
-from prepza_common.events import audit
-from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy import delete, exists, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DELETED_USER
+from testee_common.events import audit
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from notifications.constants.notifications import EXPIRED_PER_PRUNE, KEEP_DAYS
 from notifications.constants.slack import SlackStatus

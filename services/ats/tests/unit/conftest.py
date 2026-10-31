@@ -122,7 +122,7 @@ def stored(monkeypatch, companies_api):
 
     async def disconnect(session, company_id, provider, user_id=None):
         rows["connection"] = None
-        # Who disconnected it, for the action log (None when prepza undid its own connect).
+        # Who disconnected it, for the action log (None when testee undid its own connect).
         rows.setdefault("disconnected_by", []).append(user_id)
 
     async def add_link(session, company_id, connection_id, interview_id, job, stage, user_id):

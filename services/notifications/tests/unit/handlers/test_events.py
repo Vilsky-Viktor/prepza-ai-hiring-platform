@@ -3,7 +3,7 @@ import asyncio
 import httpx
 import pytest
 from event_pushes import push
-from prepza_common.config.constants import LANGUAGES
+from testee_common.config.constants import LANGUAGES
 
 from notifications.config import settings
 from notifications.helpers.emails import candidate_invite_email, contact_email
@@ -32,7 +32,7 @@ def test_candidate_invite_email():
     assert "Acme" in email.subject
     assert "http://localhost:8090/invite/xyz" in email.text
     assert 'href="http://localhost:8090/invite/xyz"' in email.html
-    assert "Acme invited you to the “Backend” interview on prepza." in email.text
+    assert "Acme invited you to the “Backend” interview on testee." in email.text
     assert ">Acme</strong> invited you" in email.html
 
 
@@ -212,9 +212,9 @@ CONTACT = {
 
 
 def test_contact_email_goes_to_the_inbox_and_replies_to_the_visitor():
-    email = contact_email(CONTACT, "hello@prepza.ai")
+    email = contact_email(CONTACT, "hello@testee.ai")
 
-    assert email.to == "hello@prepza.ai"
+    assert email.to == "hello@testee.ai"
     assert email.reply_to == "ann@example.com"
     assert email.subject == "Contact form: <b>Ann</b>"
     assert "From: <b>Ann</b> <ann@example.com>" in email.text

@@ -2,7 +2,7 @@ import uuid
 
 import httpx
 import pytest
-from prepza_common.http import http
+from testee_common.http import http
 
 from ats.integrations import workable
 from ats.repositories import ats_links

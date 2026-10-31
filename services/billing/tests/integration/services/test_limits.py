@@ -7,10 +7,10 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.user import User
-from prepza_common.limits import limits
-from prepza_common.limits.limit_list import LIMITS, LIMITS_KEY
-from prepza_common.redis import memory_cache
+from testee_common.auth.user import User
+from testee_common.limits import limits
+from testee_common.limits.limit_list import LIMITS, LIMITS_KEY
+from testee_common.redis import memory_cache
 
 from billing.api.v1 import schedules
 from billing.models.usage import LimitHit

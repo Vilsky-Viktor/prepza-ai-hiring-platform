@@ -1,4 +1,4 @@
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
+from testee_common.events.notifications import NotificationKind, Recipient, notification
 
 from ats.constants.ats import ATS_NAMES
 from ats.constants.notifications import ATS_LINK

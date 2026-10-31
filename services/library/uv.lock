@@ -775,7 +775,7 @@ dependencies = [
     { name = "fastapi" },
     { name = "firebase-admin" },
     { name = "httpx" },
-    { name = "prepza-common" },
+    { name = "testee-common" },
     { name = "psycopg", extra = ["binary"] },
     { name = "pydantic-settings" },
     { name = "pyjwt" },
@@ -799,7 +799,7 @@ requires-dist = [
     { name = "fastapi", specifier = ">=0.141.1" },
     { name = "firebase-admin", specifier = ">=7.7.0" },
     { name = "httpx", specifier = ">=0.28.1" },
-    { name = "prepza-common", editable = "../../packages/common" },
+    { name = "testee-common", editable = "../../packages/common" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.6" },
     { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "pyjwt", specifier = ">=2.15.1" },
@@ -943,7 +943,7 @@ wheels = [
 ]
 
 [[package]]
-name = "prepza-common"
+name = "testee-common"
 version = "0.1.0"
 source = { editable = "../../packages/common" }
 dependencies = [
@@ -979,7 +979,7 @@ provides-extras = ["llm", "langfuse", "money"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "prepza-common", extras = ["llm", "langfuse", "money"] },
+    { name = "testee-common", extras = ["llm", "langfuse", "money"] },
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "pytest-randomly", specifier = ">=5.0.0" },

@@ -1,5 +1,5 @@
 from langchain_core.messages import HumanMessage, SystemMessage
-from prepza_common.config.constants import MAX_TITLE_LENGTH
+from testee_common.config.constants import MAX_TITLE_LENGTH
 
 from generation.helpers.prompts import language_name
 from generation.integrations import llm

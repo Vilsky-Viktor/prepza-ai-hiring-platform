@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Request
-from prepza_common.auth.auth import CurrentUser, OptionalUser
+from testee_common.auth.auth import CurrentUser, OptionalUser
 
 from companies.schemas.invites import InviteStartOut, LinkIn, LinkOut, LinkView, StartIn
 from companies.services import interview_changes, invite_pages, link_start

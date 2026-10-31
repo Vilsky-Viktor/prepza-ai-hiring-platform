@@ -1,4 +1,4 @@
-from prepza_common.ai.sets import AdditionTopic
+from testee_common.ai.sets import AdditionTopic
 
 from generation.constants.additions import ADDED_QUESTIONS_STEP
 

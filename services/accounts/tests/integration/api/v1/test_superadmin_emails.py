@@ -2,9 +2,9 @@ from types import SimpleNamespace
 
 import httpx
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
 from sqlalchemy import select
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from accounts.core.db import Session
 from accounts.main import app
@@ -16,12 +16,12 @@ ACCOUNT = SimpleNamespace(uid="asked-by-email", email="asked@example.com")
 
 def test_a_superadmin_turns_settings_off_once_logged_as_admin_with_their_id(run, monkeypatch):
     """Firebase knows the account; the database is real."""
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     monkeypatch.setattr(firebase_auth, "get_user_by_email", lambda email: ACCOUNT)
     monkeypatch.setattr(firebase_auth, "get_user", lambda uid: ACCOUNT)
     app.dependency_overrides[current_user] = lambda: User(
         uid="sam",
-        email="sam@prepza.dev",
+        email="sam@testee.dev",
         email_verified=True,
         sign_in_provider="google.com",
     )

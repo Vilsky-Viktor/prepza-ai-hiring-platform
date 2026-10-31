@@ -4,9 +4,9 @@ API's (as the key itself)."""
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.auth.user import User
-from prepza_common.i18n.i18n import CodedError
-from prepza_common.limits.pause import refuse_if_paused
+from testee_common.auth.user import User
+from testee_common.i18n.i18n import CodedError
+from testee_common.limits.pause import refuse_if_paused
 
 from companies.constants import error_codes
 from companies.constants.invites import OPEN, InviteStatus

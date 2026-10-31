@@ -2,7 +2,7 @@ import json
 from collections.abc import AsyncIterator
 from uuid import UUID
 
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from assistant.constants.actions_flow import CONFIRMED_NOTE
 from assistant.constants.chat import HISTORY_CHARACTERS, HISTORY_MESSAGES

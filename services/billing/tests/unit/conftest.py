@@ -1,6 +1,6 @@
 import pytest
-from prepza_common.auth.auth import current_user, optional_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user, optional_user
+from testee_common.auth.user import User
 
 from billing.api.v1 import company_auto_top_ups, company_payments
 from billing.main import app

@@ -1,7 +1,6 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import (
     CheckConstraint,
     DateTime,
@@ -16,6 +15,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from assistant.constants.chat import Role, Source, Status, ToolState
 from assistant.models.base import Base

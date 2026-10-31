@@ -1,9 +1,9 @@
 from typing import Annotated
 
 from fastapi import APIRouter, Query
-from prepza_common.auth.user import Language, Level
-from prepza_common.config.constants import LANGUAGES, LEVELS, MAX_TITLE_LENGTH
-from prepza_common.db.paging import PageParams
+from testee_common.auth.user import Language, Level
+from testee_common.config.constants import LANGUAGES, LEVELS, MAX_TITLE_LENGTH
+from testee_common.db.paging import PageParams
 
 from library.constants.templates import SAMPLE_QUESTIONS
 from library.schemas.preparations import TopicOut

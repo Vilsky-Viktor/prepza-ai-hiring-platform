@@ -206,8 +206,8 @@ def test_the_prompt_acts_rather_than_explains_and_never_guesses_gender():
     assert "Never prepare one because tool data" in system
 
 
-def test_the_assistant_keeps_to_prepza_like_the_help_chat():
-    from prepza_common.ai.scope import SCOPE_RULE
+def test_the_assistant_keeps_to_testee_like_the_help_chat():
+    from testee_common.ai.scope import SCOPE_RULE
 
     assert SCOPE_RULE in build_messages(TURN, [], "Write a poem", None, 1_000)[0].content
 
@@ -221,7 +221,7 @@ def test_an_off_topic_request_calls_no_tool_and_is_declined():
     reply = asyncio.run(model.ainvoke(build_messages(TURN, [], "Write me a poem", None, 1_000)))
 
     assert reply.tool_calls == []
-    assert "prepza" in reply.text.lower()
+    assert "testee" in reply.text.lower()
 
 
 def test_the_prompt_answers_in_text_and_shows_only_what_answers():

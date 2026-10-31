@@ -6,9 +6,9 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 import pytest
-from prepza_common.auth.tokens import hashed
-from prepza_common.limits import rate_limit
 from redis.exceptions import ConnectionError as RedisConnectionError
+from testee_common.auth.tokens import hashed
+from testee_common.limits import rate_limit
 
 from api.constants.api import LAST_USED_EVERY
 from api.constants.permissions import Permission
@@ -17,7 +17,7 @@ from tests.unit.api_keys import call
 from tests.unit.conftest import COMPANY
 
 
-@pytest.mark.parametrize("sent", [None, "pz_wrong", "not-even-a-key"])
+@pytest.mark.parametrize("sent", [None, "te_wrong", "not-even-a-key"])
 def test_no_key_or_an_unknown_one_is_refused(client, companies_api, stored, sent):
     response = call(client, "GET", "/interviews", key=sent)
 
@@ -60,11 +60,11 @@ def test_over_the_rate_limit_is_refused(client, companies_api, key, stored):
 def test_a_companys_keys_share_one_rate_limit(client, companies_api, key, stored):
     other = type("Key", (), {})()
     other.id, other.company_id, other.created_by = uuid.uuid4(), COMPANY, "u1"
-    other.hash, other.expires_at, other.last_used_at = hashed("pz_other"), None, None
+    other.hash, other.expires_at, other.last_used_at = hashed("te_other"), None, None
     other.permissions, other.allowed_ips = list(Permission), []
     stored["keys"].append(other)
     call(client, "GET", "/interviews")
-    call(client, "GET", "/interviews", key="pz_other")
+    call(client, "GET", "/interviews", key="te_other")
 
     assert stored["counted"] == [f"rate:api:{COMPANY}"] * 2
 

@@ -1,9 +1,9 @@
 import logging
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.config.constants import DELETE_BATCH
-from prepza_common.limits import pause
-from prepza_common.redis import redis_lock
+from testee_common.config.constants import DELETE_BATCH
+from testee_common.limits import pause
+from testee_common.redis import redis_lock
 
 from generation.constants.accounts import TEXT_RETENTION_DAYS
 from generation.constants.events import GENERATION_CANCELLED

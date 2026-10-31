@@ -2,7 +2,7 @@ import asyncio
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.config.constants import ACCOUNT_OWNS_SHARED
+from testee_common.config.constants import ACCOUNT_OWNS_SHARED
 
 from companies.constants.roles import Role
 from companies.core.db import Session

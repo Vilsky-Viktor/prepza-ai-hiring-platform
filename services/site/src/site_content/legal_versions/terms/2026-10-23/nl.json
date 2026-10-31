@@ -1,5 +1,5 @@
 {
-  "intro": "Deze voorwaarden gelden wanneer je prepza gebruikt, een dienst van Arcolabs OÜ (registratienummer 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estland. Door in te loggen ga je ermee akkoord. prepza.ai toont dit document ook in andere talen; alleen de Engelse versie is bindend, en waar een vertaling afwijkt, geldt de Engelse versie.",
+  "intro": "Deze voorwaarden gelden wanneer je testee gebruikt, een dienst van Arcolabs OÜ (registratienummer 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estland. Door in te loggen ga je ermee akkoord. testee.ai toont dit document ook in andere talen; alleen de Engelse versie is bindend, en waar een vertaling afwijkt, geldt de Engelse versie.",
   "sections": [
     {
       "heading": "Je account",
@@ -18,13 +18,13 @@
     {
       "heading": "Je content",
       "paragraphs": [
-        "Je behoudt de rechten op wat je plakt en maakt. Je staat ons toe het op te slaan en te verwerken om prepza te laten werken, inclusief het doorsturen naar de AI-diensten die we gebruiken. Ook geef je ons een wereldwijde, royaltyvrije, onherroepelijke licentie om de vragen die prepza voor je genereert, zolang er rechten op die vragen bestaan, te gebruiken, te bewerken, aan te passen en te hergebruiken in interviews en oefeninterviews voor andere klanten, zonder iets wat jou, je bedrijf of iemand anders identificeert; je kunt de vragen van een interview hiervan uitsluiten in de instellingen van dat interview, en vragen die al zijn hergebruikt, blijven waar ze zijn. Daarnaast leiden we uit alle vragen algemene, geanonimiseerde patronen in de kwaliteit van vragen af, om te verbeteren hoe vragen worden gegenereerd. Plak geen bedrijfsgeheimen of persoonsgegevens in een functieomschrijving."
+        "Je behoudt de rechten op wat je plakt en maakt. Je staat ons toe het op te slaan en te verwerken om testee te laten werken, inclusief het doorsturen naar de AI-diensten die we gebruiken. Ook geef je ons een wereldwijde, royaltyvrije, onherroepelijke licentie om de vragen die testee voor je genereert, zolang er rechten op die vragen bestaan, te gebruiken, te bewerken, aan te passen en te hergebruiken in interviews en oefeninterviews voor andere klanten, zonder iets wat jou, je bedrijf of iemand anders identificeert; je kunt de vragen van een interview hiervan uitsluiten in de instellingen van dat interview, en vragen die al zijn hergebruikt, blijven waar ze zijn. Daarnaast leiden we uit alle vragen algemene, geanonimiseerde patronen in de kwaliteit van vragen af, om te verbeteren hoe vragen worden gegenereerd. Plak geen bedrijfsgeheimen of persoonsgegevens in een functieomschrijving."
       ]
     },
     {
       "heading": "Redelijk gebruik",
       "items": [
-        "Gebruik prepza niet om ongewenste e-mail te versturen, om prepza te scrapen of om prepza te overbelasten of aan te vallen.",
+        "Gebruik testee niet om ongewenste e-mail te versturen, om testee te scrapen of om testee te overbelasten of aan te vallen.",
         "Probeer geen limieten, beveiliging of de toegang van een andere gebruiker te omzeilen.",
         "Beantwoord in een interview de vragen zelf en volg de regels ervan; het bedrijf ziet hoe lang elk antwoord duurde, wanneer je de pagina verliet en wanneer je tekst kopieerde. Voordat je begint, bevestig je dat je de vragen zelf beantwoordt, en het bedrijf ziet dat je dat hebt bevestigd."
       ]
@@ -32,7 +32,7 @@
     {
       "heading": "Bedrijven",
       "paragraphs": [
-        "Een bedrijf dat prepza gebruikt om kandidaten te interviewen, is verantwoordelijk voor het rechtmatig uitnodigen van kandidaten, voor het informeren van hen over hoe hun resultaten worden gebruikt, en voor zijn wervingsbeslissingen. Wij verwerken de gegevens van kandidaten namens het bedrijf, op grond van de verwerkersovereenkomst op prepza.ai/dpa."
+        "Een bedrijf dat testee gebruikt om kandidaten te interviewen, is verantwoordelijk voor het rechtmatig uitnodigen van kandidaten, voor het informeren van hen over hoe hun resultaten worden gebruikt, en voor zijn wervingsbeslissingen. Wij verwerken de gegevens van kandidaten namens het bedrijf, op grond van de verwerkersovereenkomst op testee.ai/dpa."
       ],
       "items": [
         "Een bedrijf mag alleen een logo gebruiken waarvoor het het gebruiksrecht heeft.",
@@ -42,25 +42,25 @@
         "Resultaten ondersteunen de beslissing van een bedrijf; ze nemen die beslissing niet. Een bedrijf beoordeelt ze voordat het beslist, wijst een kandidaat niet alleen op basis van de score af en laat een kandidaat vragen om een beoordeling van zijn resultaat door een mens.",
         "Een bedrijf geeft een kandidaat die dat nodig heeft een aanpassing, zoals extra tijd, die het per kandidaat kan instellen voordat die begint.",
         "Een interview in spraakmodus wordt mondeling beantwoord: het bedrijf laat zijn kandidaten dat weten en laat een kandidaat die dat nodig heeft in plaats daarvan antwoorden door te tikken.",
-        "Een bedrijf dat zijn eigen tools koppelt (een sollicitantvolgsysteem, Slack of zijn systemen via de API en webhooks van prepza), kiest waar de resultaten van zijn kandidaten naartoe gaan, is verantwoordelijk voor die tools en stelt ze niet zo in dat ze kandidaten automatisch afwijzen op basis van de resultaten van prepza.",
+        "Een bedrijf dat zijn eigen tools koppelt (een sollicitantvolgsysteem, Slack of zijn systemen via de API en webhooks van testee), kiest waar de resultaten van zijn kandidaten naartoe gaan, is verantwoordelijk voor die tools en stelt ze niet zo in dat ze kandidaten automatisch afwijzen op basis van de resultaten van testee.",
         "API-sleutels en de secrets van webhooks moet het bedrijf geheimhouden: alles wat met een geldige sleutel wordt gedaan, doet die sleutel voor het bedrijf, binnen de rechten die hij heeft gekregen, en het actielog van het bedrijf vermeldt de sleutel. Sleutels en webhooks zijn van het bedrijf en blijven bestaan wanneer het lid dat ze heeft gemaakt het bedrijf verlaat. Een sleutel of webhook die mogelijk is uitgelekt, moet direct worden verwijderd op de API-pagina van het bedrijf.",
-        "De verwerkersovereenkomst op prepza.ai/dpa maakt deel uit van deze voorwaarden voor elk bedrijf dat prepza voor kandidaten gebruikt.",
+        "De verwerkersovereenkomst op testee.ai/dpa maakt deel uit van deze voorwaarden voor elk bedrijf dat testee voor kandidaten gebruikt.",
         "Een bedrijf gebruikt wat het ziet van mensen die openstaan voor nieuwe kansen alleen om hen te overwegen voor zijn eigen vacatures en hen uit te nodigen. Hun resultaten zijn oefenresultaten, geen kwalificatie, en de lijst is geen aanbeveling: de volgorde laat alleen zien wie het laatst heeft geoefend.",
         "Een bedrijf dat iemand uitnodigt vanuit zijn tabblad Ontdekken, vertelt die persoon uiterlijk in de uitnodiging wie het is, waarom het contact opneemt, wat het heeft gezien en welke rechten die persoon heeft.",
-        "Een bedrijf gebruikt prepza pas om kandidaten te beoordelen voor banen in New York City als het heeft gedaan wat Local Law 144 van het bedrijf als werkgever vereist: een bias-audit door een onafhankelijke auditor binnen het jaar vóór het gebruik, de publicatie van een samenvatting daarvan, en een kennisgeving aan kandidaten ten minste 10 werkdagen voordat ze worden beoordeeld."
+        "Een bedrijf gebruikt testee pas om kandidaten te beoordelen voor banen in New York City als het heeft gedaan wat Local Law 144 van het bedrijf als werkgever vereist: een bias-audit door een onafhankelijke auditor binnen het jaar vóór het gebruik, de publicatie van een samenvatting daarvan, en een kennisgeving aan kandidaten ten minste 10 werkdagen voordat ze worden beoordeeld."
       ]
     },
     {
       "heading": "Oefenen",
       "items": [
         "Oefeninterviews zijn gratis, en alleen jij ziet de resultaten ervan, tenzij je Open voor nieuwe kansen aanzet.",
-        "Open voor nieuwe kansen is optioneel en staat uit tenzij je het aanzet. Zolang het aan staat, zien bedrijven die via prepza werven je naam, je LinkedIn-profiel en je nieuwste getimede oefenresultaten op de onderwerpen van hun interviews, en kunnen ze je uitnodigen voor een interview; de uitnodiging gaat naar het e-mailadres van je account. prepza rangschikt je niet en beveelt je niet aan. Je kunt het op elk moment uitzetten in Instellingen, en dan verdwijn je meteen uit de lijst van elk bedrijf. Het stopt ook een jaar nadat je het voor het laatst hebt aangezet of je LinkedIn-profiel hebt opgeslagen."
+        "Open voor nieuwe kansen is optioneel en staat uit tenzij je het aanzet. Zolang het aan staat, zien bedrijven die via testee werven je naam, je LinkedIn-profiel en je nieuwste getimede oefenresultaten op de onderwerpen van hun interviews, en kunnen ze je uitnodigen voor een interview; de uitnodiging gaat naar het e-mailadres van je account. testee rangschikt je niet en beveelt je niet aan. Je kunt het op elk moment uitzetten in Instellingen, en dan verdwijn je meteen uit de lijst van elk bedrijf. Het stopt ook een jaar nadat je het voor het laatst hebt aangezet of je LinkedIn-profiel hebt opgeslagen."
       ]
     },
     {
       "heading": "Credits en betalingen",
       "items": [
-        "prepza wordt betaald met credits: met elke opwaardering koop je het aantal credits dat wordt getoond voordat je betaalt, en bij grotere opwaarderingen krijg je meer credits voor je geld. Wat iets in credits kost, staat op de prijzenpagina en wordt getoond voordat je het gebruikt.",
+        "testee wordt betaald met credits: met elke opwaardering koop je het aantal credits dat wordt getoond voordat je betaalt, en bij grotere opwaarderingen krijg je meer credits voor je geld. Wat iets in credits kost, staat op de prijzenpagina en wordt getoond voordat je het gebruikt.",
         "Opwaarderingen worden verkocht door Paddle, dat optreedt als wederverkoper (merchant of record): Paddle neemt de betaling in ontvangst, brengt eventuele btw of omzetbelasting in rekening en geeft het betalingsbewijs of de factuur uit. Zowel bedrijven als consumenten kunnen ze kopen. De prijzen op de prijzenpagina zijn exclusief btw of omzetbelasting: waar die van toepassing is, telt Paddle die bij het afrekenen op bij de vermelde prijs. Prijzen zijn in de lokale valuta in Canada (Canadese dollars), Australië (Australische dollars), Israël (sjekels), Polen (zloty's), Zwitserland (Zwitserse franken), Japan (yen), Zuid-Korea (won), Taiwan (nieuwe Taiwanese dollars), Hongkong (Hongkongse dollars), Thailand (baht), Singapore (Singaporese dollars) en India (roepies); in euro in de rest van de Europese Unie en in IJsland, Liechtenstein en Noorwegen; in Britse ponden in het Verenigd Koninkrijk; en elders in Amerikaanse dollars. Een bedrijf betaalt in zijn eigen valuta, die eerst wordt bepaald door het land waarin het is aangemaakt en die de eigenaren en beheerders kunnen wijzigen; bij het afrekenen zie je het eindbedrag, inclusief eventuele belasting, voordat je betaalt. Staat je kaart in een andere valuta, dan kan je bank of kaartuitgever het bedrag omrekenen.",
         "Credits behoren toe aan een bedrijf en worden gebruikt voor zijn kandidaten; de eigenaar en de beheerders ervan kunnen ze opwaarderen. Credits kunnen niet worden overgedragen tussen accounts of bedrijven, niet worden verkocht en niet in geld worden uitbetaald.",
         "Automatisch opwaarderen is optioneel en staat uit, tenzij je het aanzet, waarvoor je zelf het vakje bij de voorwaarden ervan moet aanvinken. Als je het aanzet, machtig je Paddle om je kaart op te slaan en die elke keer dat het beschikbare saldo van het bedrijf onder het door jou gekozen niveau zakt, te belasten met het door jou gekozen opwaardeerbedrag, plus eventuele btw of omzetbelasting, zonder het opnieuw te vragen, totdat het wordt uitgezet. We mailen de eigenaren en beheerders van het bedrijf wanneer het wordt aangezet en na elke afschrijving, en Paddle stuurt voor elke afschrijving een betalingsbewijs per e-mail. Je kunt het op elk moment wijzigen of uitzetten op de plek waar je het hebt aangezet, op de opwaardeerpagina of op de factureringspagina van het bedrijf; uitzetten werkt meteen, trekt de machtiging voor de opgeslagen kaart in en stopt alle verdere afschrijvingen, net als opzeggen via de e-mails van Paddle. Voor al gedane afschrijvingen gelden de terugbetalingsregels hieronder.",
@@ -76,21 +76,21 @@
     {
       "heading": "Beschikbaarheid en wijzigingen",
       "paragraphs": [
-        "We doen ons best om prepza beschikbaar en veilig te houden, maar kunnen niet beloven dat dat altijd zo is. We kunnen functies wijzigen of stopzetten, en accounts die deze voorwaarden schenden opschorten. We e-mailen je over een belangrijke wijziging in deze voorwaarden minstens 14 dagen voordat die ingaat; als je prepza na die dag gebruikt, aanvaard je de nieuwe voorwaarden. Elke eerdere versie blijft op deze pagina leesbaar."
+        "We doen ons best om testee beschikbaar en veilig te houden, maar kunnen niet beloven dat dat altijd zo is. We kunnen functies wijzigen of stopzetten, en accounts die deze voorwaarden schenden opschorten. We e-mailen je over een belangrijke wijziging in deze voorwaarden minstens 14 dagen voordat die ingaat; als je testee na die dag gebruikt, aanvaard je de nieuwe voorwaarden. Elke eerdere versie blijft op deze pagina leesbaar."
       ]
     },
     {
       "heading": "Aansprakelijkheid",
       "paragraphs": [
-        "prepza wordt geleverd zoals het is. Voor zover de wet het toestaat, zijn we niet aansprakelijk voor indirecte schade, en onze totale aansprakelijkheid is beperkt tot wat je in de afgelopen 12 maanden voor credits hebt betaald, of 100 Amerikaanse dollar (of het equivalent in je valuta) als je niets hebt betaald. Niets hierin beperkt de rechten die je als consument hebt op grond van het recht van je land."
+        "testee wordt geleverd zoals het is. Voor zover de wet het toestaat, zijn we niet aansprakelijk voor indirecte schade, en onze totale aansprakelijkheid is beperkt tot wat je in de afgelopen 12 maanden voor credits hebt betaald, of 100 Amerikaanse dollar (of het equivalent in je valuta) als je niets hebt betaald. Niets hierin beperkt de rechten die je als consument hebt op grond van het recht van je land."
       ]
     },
     {
       "heading": "Toepasselijk recht",
       "paragraphs": [
-        "Het Estse recht is van toepassing, zonder afbreuk te doen aan de dwingende bescherming van het land waar je woont. Vragen over deze voorwaarden: hello@prepza.ai.",
+        "Het Estse recht is van toepassing, zonder afbreuk te doen aan de dwingende bescherming van het land waar je woont. Vragen over deze voorwaarden: hello@testee.ai.",
         "Een geschil met een bedrijf wordt voorgelegd aan de districtsrechtbank van Harju (Harju Maakohus) in Tallinn. Als consument kun je ook naar de rechter in je woonplaats stappen.",
-        "Als je consument bent, schrijf ons dan eerst op hello@prepza.ai: we antwoorden binnen 15 dagen. Als we er niet uitkomen en je in Estland woont, kun je het geschil kosteloos voorleggen aan de Geschillencommissie voor consumentenzaken (Tarbijavaidluste komisjon) van de Autoriteit voor consumentenbescherming en technische regelgeving, ttja.ee."
+        "Als je consument bent, schrijf ons dan eerst op hello@testee.ai: we antwoorden binnen 15 dagen. Als we er niet uitkomen en je in Estland woont, kun je het geschil kosteloos voorleggen aan de Geschillencommissie voor consumentenzaken (Tarbijavaidluste komisjon) van de Autoriteit voor consumentenbescherming en technische regelgeving, ttja.ee."
       ]
     }
   ]

@@ -3,8 +3,8 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.config.constants import GUEST_UID_PREFIX
 from sqlalchemy import select
+from testee_common.config.constants import GUEST_UID_PREFIX
 
 from notifications.core.db import Session
 from notifications.models.bulk import BulkRecipient
@@ -51,7 +51,7 @@ def sending(monkeypatch):
     monkeypatch.setattr(bulk.accounts, "recipients", recipients)
     monkeypatch.setattr(delivery, "transmit", transmit)
     monkeypatch.setattr("notifications.services.bulk.asyncio.sleep", no_wait)
-    monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
+    monkeypatch.setattr("testee_common.limits.limits.current_values", large_resend_quota)
 
     return sent
 
@@ -94,7 +94,7 @@ def test_recipients_are_worked_out_once_and_two_runs_at_once_send_each_one_email
 @pytest.mark.parametrize("batch", [1000, 2])
 def test_stopping_skips_the_rest_and_keeps_what_was_sent(run, sending, monkeypatch, batch):
     """Whether the rest fit in one batch or take several."""
-    monkeypatch.setattr("prepza_common.db.db.DELETE_BATCH", batch)
+    monkeypatch.setattr("testee_common.db.db.DELETE_BATCH", batch)
     users = [f"u-{uuid.uuid4()}" for _ in range(3)]
 
     async def scenario():

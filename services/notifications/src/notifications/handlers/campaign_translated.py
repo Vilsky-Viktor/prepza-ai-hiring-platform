@@ -1,4 +1,4 @@
-from prepza_common.events.campaigns import CampaignTranslated
+from testee_common.events.campaigns import CampaignTranslated
 
 from notifications.services import campaigns
 

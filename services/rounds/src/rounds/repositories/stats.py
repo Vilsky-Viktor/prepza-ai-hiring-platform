@@ -1,8 +1,8 @@
 """The admin zone's stats from rounds' records."""
 
-from prepza_common.db.stats import counted
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.db.stats import counted
 
 from rounds.models.sessions import Session as RoundSession
 

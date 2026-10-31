@@ -1,5 +1,5 @@
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from accounts.config import settings
 from accounts.constants.accounts import ACCOUNT_CALL_TIMEOUT_SECONDS

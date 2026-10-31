@@ -1,5 +1,5 @@
 {
-  "intro": "Need tingimused kehtivad, kui kasutad prepzat – teenust, mida pakub Arcolabs OÜ (registrikood 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Eesti. Sisse logides nõustud nendega. prepza.ai näitab seda dokumenti ka teistes keeltes; siduv on ainult ingliskeelne versioon ja kui tõlge sellest erineb, kehtib ingliskeelne versioon.",
+  "intro": "Need tingimused kehtivad, kui kasutad testeed – teenust, mida pakub Arcolabs OÜ (registrikood 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Eesti. Sisse logides nõustud nendega. testee.ai näitab seda dokumenti ka teistes keeltes; siduv on ainult ingliskeelne versioon ja kui tõlge sellest erineb, kehtib ingliskeelne versioon.",
   "sections": [
     {
       "heading": "Sinu konto",
@@ -18,13 +18,13 @@
     {
       "heading": "Sinu sisu",
       "paragraphs": [
-        "Õigused sellele, mida kleebid ja lood, jäävad sulle. Lubad meil seda säilitada ja töödelda, et prepzat käitada, sealhulgas saata see meie kasutatavatele tehisintellekti teenustele. Samuti annad meile ülemaailmse, litsentsitasuta ja tagasivõtmatu litsentsi, mis kehtib seni, kuni kehtivad mis tahes õigused neile küsimustele, kasutada, töödelda, kohandada ja taaskasutada küsimusi, mille prepza sinu jaoks loob, teiste klientide intervjuudes ja harjutusintervjuudes, ilma millegita, mis tuvastaks sind, sinu ettevõtet või kedagi teist; saad intervjuu küsimused sellest välja jätta selle intervjuu seadetes ning juba taaskasutatud küsimused jäävad sinna, kus need on. Lisaks tuletame kõigist küsimustest üldisi, anonüümitud küsimuste kvaliteedi mustreid, et parandada küsimuste loomist. Ära kleebi töökuulutuse kirjeldusse ärisaladusi ega isikuandmeid."
+        "Õigused sellele, mida kleebid ja lood, jäävad sulle. Lubad meil seda säilitada ja töödelda, et testeed käitada, sealhulgas saata see meie kasutatavatele tehisintellekti teenustele. Samuti annad meile ülemaailmse, litsentsitasuta ja tagasivõtmatu litsentsi, mis kehtib seni, kuni kehtivad mis tahes õigused neile küsimustele, kasutada, töödelda, kohandada ja taaskasutada küsimusi, mille testee sinu jaoks loob, teiste klientide intervjuudes ja harjutusintervjuudes, ilma millegita, mis tuvastaks sind, sinu ettevõtet või kedagi teist; saad intervjuu küsimused sellest välja jätta selle intervjuu seadetes ning juba taaskasutatud küsimused jäävad sinna, kus need on. Lisaks tuletame kõigist küsimustest üldisi, anonüümitud küsimuste kvaliteedi mustreid, et parandada küsimuste loomist. Ära kleebi töökuulutuse kirjeldusse ärisaladusi ega isikuandmeid."
       ]
     },
     {
       "heading": "Õiglane kasutamine",
       "items": [
-        "Ära kasuta prepzat soovimatute e-kirjade saatmiseks, selle sisu automaatseks kraapimiseks ega selle ülekoormamiseks või ründamiseks.",
+        "Ära kasuta testeed soovimatute e-kirjade saatmiseks, selle sisu automaatseks kraapimiseks ega selle ülekoormamiseks või ründamiseks.",
         "Ära ürita mööda hiilida piirangutest, turvameetmetest ega teise kasutaja juurdepääsust.",
         "Vasta intervjuus iseseisvalt ja järgi selle reegleid; ettevõte näeb, kui kaua iga vastus aega võttis, millal lahkusid lehelt ja millal kopeerisid teksti. Enne alustamist kinnitad, et vastad ise, ja ettevõte näeb, et sa seda kinnitasid."
       ]
@@ -32,7 +32,7 @@
     {
       "heading": "Ettevõtted",
       "paragraphs": [
-        "Ettevõte, kes kasutab prepzat kandidaatide intervjueerimiseks, vastutab selle eest, et kandidaate kutsutakse seaduslikult, et neile öeldakse, kuidas nende tulemusi kasutatakse, ning oma värbamisotsuste eest. Töötleme kandidaatide andmeid ettevõtte nimel andmetöötluslepingu alusel, mis on aadressil prepza.ai/dpa."
+        "Ettevõte, kes kasutab testeed kandidaatide intervjueerimiseks, vastutab selle eest, et kandidaate kutsutakse seaduslikult, et neile öeldakse, kuidas nende tulemusi kasutatakse, ning oma värbamisotsuste eest. Töötleme kandidaatide andmeid ettevõtte nimel andmetöötluslepingu alusel, mis on aadressil testee.ai/dpa."
       ],
       "items": [
         "Ettevõtte logo peab olema selline, mille kasutamiseks on ettevõttel õigus.",
@@ -42,25 +42,25 @@
         "Tulemused toetavad ettevõtte otsust, kuid ei tee seda tema eest. Ettevõte vaatab need enne otsustamist üle, ei lükka kandidaati tagasi ainult punktisumma põhjal ja võimaldab kandidaadil paluda, et tema tulemuse vaataks üle inimene.",
         "Ettevõte võimaldab kandidaadile, kes seda vajab, kohandust, näiteks lisaaega, mille ta saab iga kandidaadi jaoks enne alustamist määrata.",
         "Häälerežiimis intervjuule vastatakse häälega: ettevõte ütleb seda oma kandidaatidele ja laseb kandidaadil, kes seda vajab, vastata hoopis puudutusega.",
-        "Ettevõte, kes ühendab oma tööriistad (värbamissüsteemi, Slacki või oma süsteemid prepza API ja veebikonksude kaudu), valib, kuhu tema kandidaatide tulemused lähevad, vastutab nende tööriistade eest ega seadista neid kandidaate prepza tulemuste põhjal automaatselt tagasi lükkama.",
+        "Ettevõte, kes ühendab oma tööriistad (värbamissüsteemi, Slacki või oma süsteemid testee API ja veebikonksude kaudu), valib, kuhu tema kandidaatide tulemused lähevad, vastutab nende tööriistade eest ega seadista neid kandidaate testee tulemuste põhjal automaatselt tagasi lükkama.",
         "API-võtmeid ja veebikonksude saladusi peab ettevõte hoidma salajasena: kõik, mis tehakse kehtiva võtmega, teeb ettevõtte nimel see võti talle antud õiguste piires ning ettevõtte toimingute logis on märgitud see võti. Võtmed ja veebikonksud kuuluvad ettevõttele ja jäävad alles, kui need loonud liige lahkub. Võti või veebikonks, mis võib olla lekkinud, tuleb kohe kustutada ettevõtte API lehel.",
-        "Aadressil prepza.ai/dpa olev andmetöötlusleping on nende tingimuste osa iga ettevõtte jaoks, kes kasutab prepzat kandidaatidega.",
+        "Aadressil testee.ai/dpa olev andmetöötlusleping on nende tingimuste osa iga ettevõtte jaoks, kes kasutab testeed kandidaatidega.",
         "Ettevõte kasutab seda, mida ta valikuga „Avatud tööpakkumistele“ inimeste kohta näeb, ainult selleks, et kaaluda neid oma töökohtadele ja neid kutsuda. Nende tulemused on harjutuse tulemused, mitte kvalifikatsioon, ja loend ei ole soovitus: järjekord näitab ainult, kes viimati harjutas.",
         "Ettevõte, kes kutsub kellegi vahekaardilt „Avasta“, teatab talle hiljemalt kutses, kes ta on, miks ta temaga ühendust võttis, mida ta nägi ja millised on tema õigused.",
-        "Ettevõte kasutab prepzat kandidaatide hindamiseks New Yorgi linna töökohtadele alles siis, kui ta on täitnud, mida Local Law 144 talt tööandjana nõuab: sõltumatu audiitori tehtud kallutatuse audit aasta jooksul enne kasutamist, selle kokkuvõtte avaldamine ja kandidaatide teavitamine vähemalt 10 tööpäeva enne nende hindamist."
+        "Ettevõte kasutab testeed kandidaatide hindamiseks New Yorgi linna töökohtadele alles siis, kui ta on täitnud, mida Local Law 144 talt tööandjana nõuab: sõltumatu audiitori tehtud kallutatuse audit aasta jooksul enne kasutamist, selle kokkuvõtte avaldamine ja kandidaatide teavitamine vähemalt 10 tööpäeva enne nende hindamist."
       ]
     },
     {
       "heading": "Harjutamine",
       "items": [
         "Harjutusintervjuud on tasuta ja nende tulemusi näed ainult sina, kui sa ei lülita sisse valikut „Avatud tööpakkumistele“.",
-        "„Avatud tööpakkumistele“ on vabatahtlik ja välja lülitatud, kuni sa selle sisse lülitad. Kui see on sees, näevad prepza kaudu värbavad ettevõtted sinu nime, sinu LinkedIni profiili ja sinu viimaseid ajapiiranguga harjutuse tulemusi oma intervjuude teemadel ning võivad sind intervjuule kutsuda; kutse läheb sinu konto e-posti aadressile. prepza ei järjesta ega soovita sind. Saad selle igal ajal seadetes välja lülitada ja kaod siis kohe kõigi ettevõtete loenditest. See lõpeb ka aasta pärast seda, kui selle viimati sisse lülitasid või LinkedIni profiili salvestasid."
+        "„Avatud tööpakkumistele“ on vabatahtlik ja välja lülitatud, kuni sa selle sisse lülitad. Kui see on sees, näevad testee kaudu värbavad ettevõtted sinu nime, sinu LinkedIni profiili ja sinu viimaseid ajapiiranguga harjutuse tulemusi oma intervjuude teemadel ning võivad sind intervjuule kutsuda; kutse läheb sinu konto e-posti aadressile. testee ei järjesta ega soovita sind. Saad selle igal ajal seadetes välja lülitada ja kaod siis kohe kõigi ettevõtete loenditest. See lõpeb ka aasta pärast seda, kui selle viimati sisse lülitasid või LinkedIni profiili salvestasid."
       ]
     },
     {
       "heading": "Krediidid ja maksed",
       "items": [
-        "prepza eest makstakse krediitidega: iga juurdelaadimisega saad nii palju krediiti, kui sulle enne maksmist näidatakse, ja suuremate juurdelaadimiste puhul saab sama raha eest rohkem krediiti. See, mitu krediiti miski maksab, on kirjas hinnalehel ja seda näidatakse enne kasutamist.",
+        "testee eest makstakse krediitidega: iga juurdelaadimisega saad nii palju krediiti, kui sulle enne maksmist näidatakse, ja suuremate juurdelaadimiste puhul saab sama raha eest rohkem krediiti. See, mitu krediiti miski maksab, on kirjas hinnalehel ja seda näidatakse enne kasutamist.",
         "Juurdelaadimisi müüb Paddle, kes tegutseb edasimüüjana (merchant of record): Paddle võtab makse vastu, arvestab käibemaksu või müügimaksu ning väljastab kviitungi või arve. Neid saavad osta nii ettevõtjad kui ka tarbijad. Hinnalehel olevad hinnad ei sisalda käibemaksu ega müügimaksu: kus see kehtib, lisab Paddle selle maksmisel märgitud hinnale juurde. Hinnad on kohalikus valuutas Kanadas (Kanada dollarid), Austraalias (Austraalia dollarid), Iisraelis (šeklid), Poolas (zlotid), Šveitsis (Šveitsi frangid), Jaapanis (jeenid), Lõuna-Koreas (vonid), Taiwanis (uued Taiwani dollarid), Hongkongis (Hongkongi dollarid), Tais (bahtid), Singapuris (Singapuri dollarid) ja Indias (ruupiad); ülejäänud Euroopa Liidus ning Islandil, Liechtensteinis ja Norras eurodes; Ühendkuningriigis naelsterlingites; ja mujal USA dollarites. Ettevõte maksab oma valuutas, mis määratakse esmalt riigi järgi, kus see loodi, ja mida selle omanikud ja administraatorid saavad muuta; maksmisel näidatakse lõppsummat koos võimalike maksudega enne, kui maksad. Kui sinu kaart on muus valuutas, võib sinu pank või kaardi väljastaja summa ümber arvestada.",
         "Krediidid kuuluvad ettevõttele ja neid kasutatakse selle kandidaatide jaoks; neid saavad juurde laadida ettevõtte omanik ja administraatorid. Krediite ei saa kontode ega ettevõtete vahel üle kanda, müüa ega rahana välja maksta.",
         "Automaatne juurdelaadimine on vabatahtlik ja väljas, kui sa seda sisse ei lülita, ning selle sisse lülitamiseks pead ise selle tingimustele linnukese panema. Selle sisse lülitamisega volitad Paddle'it salvestama sinu kaardi ja võtma sealt sinu valitud juurdelaadimise summa koos võimaliku käibemaksu või müügimaksuga iga kord, kui ettevõtte kasutatav saldo langeb alla sinu valitud taseme, ilma uuesti küsimata, kuni see välja lülitatakse. Saadame ettevõtte omanikele ja administraatoritele e-kirja, kui see sisse lülitatakse, ja pärast iga makset ning Paddle saadab iga makse kohta kviitungi e-kirjaga. Saad seda igal ajal muuta või välja lülitada seal, kus selle sisse lülitasid, juurdelaadimise lehel või ettevõtte arvelduse lehel; väljalülitamine jõustub kohe, tühistab salvestatud kaardi volituse ja peatab kõik edasised maksed, ning sama kehtib selle tühistamise kohta Paddle'i e-kirjade kaudu. Juba tehtud maksete suhtes kehtivad allpool toodud tagasimakse reeglid.",
@@ -76,21 +76,21 @@
     {
       "heading": "Kättesaadavus ja muudatused",
       "paragraphs": [
-        "Teeme tööd selle nimel, et prepza oleks kättesaadav ja turvaline, kuid ei saa lubada, et see on alati nii. Võime funktsioone muuta või lõpetada ning peatada kontod, mis neid tingimusi rikuvad. Teavitame sind nende tingimuste olulisest muudatusest e-kirjaga vähemalt 14 päeva enne selle kehtima hakkamist; kui kasutad prepzat pärast seda päeva, nõustud uute tingimustega. Kõik varasemad versioonid jäävad sellel lehel loetavaks."
+        "Teeme tööd selle nimel, et testee oleks kättesaadav ja turvaline, kuid ei saa lubada, et see on alati nii. Võime funktsioone muuta või lõpetada ning peatada kontod, mis neid tingimusi rikuvad. Teavitame sind nende tingimuste olulisest muudatusest e-kirjaga vähemalt 14 päeva enne selle kehtima hakkamist; kui kasutad testeed pärast seda päeva, nõustud uute tingimustega. Kõik varasemad versioonid jäävad sellel lehel loetavaks."
       ]
     },
     {
       "heading": "Vastutus",
       "paragraphs": [
-        "prepzat pakutakse sellisena, nagu see on. Seadusega lubatud ulatuses ei vastuta me kaudse kahju eest ja meie kogu vastutus on piiratud summaga, mille maksid krediitide eest viimase 12 kuu jooksul, või 100 USA dollariga (või samaväärse summaga sinu valuutas), kui sa ei maksnud midagi. Miski siin ei piira õigusi, mis sul on tarbijana oma riigi õiguse alusel."
+        "testeed pakutakse sellisena, nagu see on. Seadusega lubatud ulatuses ei vastuta me kaudse kahju eest ja meie kogu vastutus on piiratud summaga, mille maksid krediitide eest viimase 12 kuu jooksul, või 100 USA dollariga (või samaväärse summaga sinu valuutas), kui sa ei maksnud midagi. Miski siin ei piira õigusi, mis sul on tarbijana oma riigi õiguse alusel."
       ]
     },
     {
       "heading": "Kohaldatav õigus",
       "paragraphs": [
-        "Kohaldatakse Eesti õigust, ilma et see võtaks sinult sinu elukohariigi kohustuslikku kaitset. Küsimused nende tingimuste kohta: hello@prepza.ai.",
+        "Kohaldatakse Eesti õigust, ilma et see võtaks sinult sinu elukohariigi kohustuslikku kaitset. Küsimused nende tingimuste kohta: hello@testee.ai.",
         "Vaidlused ettevõtjatega lahendab Harju Maakohus Tallinnas. Tarbijana võid pöörduda ka oma elukoha kohtusse.",
-        "Kui oled tarbija, kirjuta meile esmalt aadressil hello@prepza.ai: vastame 15 päeva jooksul. Kui me kokkuleppele ei jõua ja elad Eestis, võid vaidluse tasuta esitada Tarbijakaitse ja Tehnilise Järelevalve Ameti juures tegutsevale tarbijavaidluste komisjonile, ttja.ee."
+        "Kui oled tarbija, kirjuta meile esmalt aadressil hello@testee.ai: vastame 15 päeva jooksul. Kui me kokkuleppele ei jõua ja elad Eestis, võid vaidluse tasuta esitada Tarbijakaitse ja Tehnilise Järelevalve Ameti juures tegutsevale tarbijavaidluste komisjonile, ttja.ee."
       ]
     }
   ]

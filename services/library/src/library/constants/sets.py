@@ -9,11 +9,11 @@ class SetKind(StrEnum):
 
 class OwnerType(StrEnum):
     COMPANY = "company"
-    # A template belongs to prepza itself.
+    # A template belongs to testee itself.
     PLATFORM = "platform"
 
 
-PLATFORM_OWNER = "prepza"
+PLATFORM_OWNER = "testee"
 
 
 class Pool(StrEnum):

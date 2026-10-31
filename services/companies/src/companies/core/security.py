@@ -1,6 +1,6 @@
 from contextvars import ContextVar
 
-from prepza_common.auth.service_auth import callee_secret, issue_token, token_claims
+from testee_common.auth.service_auth import callee_secret, issue_token, token_claims
 
 from companies.config import settings
 from companies.constants.audit import VIAS

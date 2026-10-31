@@ -2,8 +2,8 @@ from datetime import UTC, datetime
 from uuid import uuid4
 
 import httpx
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from rounds.integrations import feedback
 from rounds.main import app

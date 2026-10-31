@@ -2,7 +2,7 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from library.repositories import feedback, preparations
 from tests.unit.api.v1.test_internal import token

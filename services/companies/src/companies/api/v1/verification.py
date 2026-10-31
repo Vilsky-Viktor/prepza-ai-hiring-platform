@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.auth.auth import CurrentUser
+from testee_common.auth.auth import CurrentUser
 
 from companies.schemas.verification import VerificationOut, WebsiteIn
 from companies.services.access import require_editor

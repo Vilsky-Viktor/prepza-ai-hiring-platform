@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.db.schema_rules import _literals
+from testee_common.db.schema_rules import _literals
 
 
 @pytest.mark.parametrize(

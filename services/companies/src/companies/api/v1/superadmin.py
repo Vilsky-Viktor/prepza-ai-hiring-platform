@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.db.paging import PageParams
-from prepza_common.db.stats import Period, StatsOut
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.db.paging import PageParams
+from testee_common.db.stats import Period, StatsOut
 
 from companies.constants.monitoring import PassRateSort
 from companies.core.db import Session

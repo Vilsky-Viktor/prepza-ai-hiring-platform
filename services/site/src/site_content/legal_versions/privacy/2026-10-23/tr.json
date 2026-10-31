@@ -1,11 +1,11 @@
 {
-  "intro": "Bu politika, prepza'nın hangi kişisel verileri topladığını, neden topladığını, bunları ne kadar süre sakladığımızı ve sahip olduğunuz hakları açıklar. prepza, Arcolabs OÜ (sicil kodu 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonya tarafından işletilir. prepza.ai bu belgeyi başka dillerde de gösterir; yalnızca İngilizce sürüm bağlayıcıdır ve bir çeviri ondan farklı olduğunda İngilizce sürüm geçerlidir.",
+  "intro": "Bu politika, testee'nin hangi kişisel verileri topladığını, neden topladığını, bunları ne kadar süre sakladığımızı ve sahip olduğunuz hakları açıklar. testee, Arcolabs OÜ (sicil kodu 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonya tarafından işletilir. testee.ai bu belgeyi başka dillerde de gösterir; yalnızca İngilizce sürüm bağlayıcıdır ve bir çeviri ondan farklı olduğunda İngilizce sürüm geçerlidir.",
   "sections": [
     {
       "heading": "Kim sorumlu",
       "paragraphs": [
-        "Kendi hesabınız ve şirketinizin hesabı için verilerinizin veri sorumlusu Arcolabs OÜ'dür. Her türlü soru veya talebiniz için hello@prepza.ai adresine yazın.",
-        "Bir şirket sizi prepza'da bir mülakata davet ettiğinde, sonuçlarınızın neden ve nasıl kullanılacağına o şirket karar verir ve sonuçlarınızın veri sorumlusu odur; biz bunları onun adına işleriz. Doğrudan şirketle veya bizimle iletişime geçebilirsiniz; talebinizi şirkete iletiriz."
+        "Kendi hesabınız ve şirketinizin hesabı için verilerinizin veri sorumlusu Arcolabs OÜ'dür. Her türlü soru veya talebiniz için hello@testee.ai adresine yazın.",
+        "Bir şirket sizi testee'de bir mülakata davet ettiğinde, sonuçlarınızın neden ve nasıl kullanılacağına o şirket karar verir ve sonuçlarınızın veri sorumlusu odur; biz bunları onun adına işleriz. Doğrudan şirketle veya bizimle iletişime geçebilirsiniz; talebinizi şirkete iletiriz."
       ]
     },
     {
@@ -23,7 +23,7 @@
         "\"Ben robot değilim\" doğrulaması: iletişim formunu gönderdiğinizde, yardım sohbetine ilk sorunuzu sorduğunuzda, bir iş ilanının bağlantısı üzerinden mülakata başladığınızda, ilk şirketinizi oluşturduğunuzda veya henüz ödeme yapmamış bir şirketin konularını onayladığınızda, Cloudflare Turnstile bir insanı bir betikten ayırt etmek için tarayıcınıza (türü, nasıl davrandığı ve bağlandığı adres gibi) bakar. Biz yalnızca doğrulamanın geçilip geçilmediğini alırız.",
         "Bağladığınız yapay zekâ uygulamaları: uygulamanın adı ve geri döndüğü site ile uygulamayı ne zaman bağladığınız ve en son ne zaman kullandığınız. Uygulamanın erişimi yalnızca tek yönlü bir özet (hash) olarak saklanır.",
         "Kabul ettiğiniz koşullar: kaydolduğunuzda yürürlükte olan koşulların sürümü ve kabul zamanı; neyi kabul ettiğinizin kanıtı olarak. Hesabınızla birlikte silinir.",
-        "Bir şirketin bağladığı araçlar: şirketin sahibinin veya yöneticisinin şirketin aday takip sisteminde (Workable, Greenhouse, Teamtailor, Recruitee veya Breezy HR) ya da Slack'te oluşturduğu, şifrelenmiş olarak saklanan anahtarlar veya token'lar; her prepza API anahtarının tek yönlü özeti ve şirketin webhook adresleri; ve şirketin aday takip sisteminden, prepza'ya gönderdiği her adayın e-posta adresi, adı ve kimliği.",
+        "Bir şirketin bağladığı araçlar: şirketin sahibinin veya yöneticisinin şirketin aday takip sisteminde (Workable, Greenhouse, Teamtailor, Recruitee veya Breezy HR) ya da Slack'te oluşturduğu, şifrelenmiş olarak saklanan anahtarlar veya token'lar; her testee API anahtarının tek yönlü özeti ve şirketin webhook adresleri; ve şirketin aday takip sisteminden, testee'ye gönderdiği her adayın e-posta adresi, adı ve kimliği.",
         "E-posta ayarları: hangi isteğe bağlı e-postaları aldığınız ve bunlarda yapılan her değişikliğin kaydı: hangi e-posta, açık veya kapalı, ne zaman, nerede (giriş yaparken, Ayarlar'da ya da bir abonelikten çıkma bağlantısı veya spam bildirimi yoluyla) ve onay kutularının metninin hangi sürümünü gördüğünüz.",
         "Şirket üyelerine gönderilen e-postalar: size gönderdiğimiz etkinlik özetlerinin ve hatırlatmaların ve her hatırlatmanın neyle ilgili olduğunun kaydı; böylece hiçbiri iki kez gönderilmez.",
         "Çok sayıda kullanıcıya gönderilen e-postalar (koşullarımızdaki değişikliklere ilişkin bildirimler, hizmetle ilgili önemli duyurular, ürün güncellemeleri, teklifler): her birinin size gönderilip gönderilmediği, atlanıp atlanmadığı veya başarısız olup olmadığı ve aboneliğinden çıkıp çıkmadığınız ya da onu spam olarak işaretleyip işaretlemediğiniz; böylece hiçbiri iki kez gönderilmez ve her birinin nasıl karşılandığını görebiliriz.",
@@ -33,37 +33,37 @@
         "Satın almalar: her kredi yüklemesi için hangi şirket için yapıldığı, kimin satın aldığı, ne satın alındığı, toplam tutar ve para birimi, Paddle'ın işlem kimliği ve zamanı. Kart ve fatura bilgilerini biz değil, Paddle saklar.",
         "Bir şirketin işlem kaydı: üyelerinin şirkette yaptıkları, örneğin bir adayı davet etme, görüntüleme veya kaldırma, bir mülakatı ya da ekibi değiştirme, kredi yükleme veya bir araç bağlama; bunu kimin yaptığı, ne zaman yaptığı ve bunu onlar adına asistanın, bir yapay zekâ uygulamasının veya API'nin yapıp yapmadığı ile birlikte. Bunu şirketin sahibi görür. Adaylar ve üyeler yalnızca hâlâ şirkette oldukları sürece adlarıyla gösterilir: kayıt onların kimliklerini saklar, e-posta adreslerini asla saklamaz.",
         "Yapay zekâ kullanımı ve sınırlar: soru yazma veya asistanın cevabı gibi her yapay zekâ kullanımı için ne amaçla yapıldığı, model, kullanımın boyutu ve maliyeti ile hangi hesap ve şirket için yapıldığı; ve bir sınır bir isteği her reddettiğinde hangi sınır olduğu, ne zaman olduğu ve isteği reddedilen hesap ve şirket. Yapay zekâya gönderilen metin veya onun cevabı asla saklanmaz.",
-        "Yapay zekâ çağrı kayıtları: yapay zekâ her kullanıldığında prepza'nın ona ne gönderdiği ve onun ne cevap verdiği; örneğin bir iş tanımından soru yazılması ya da asistanın ve yardım sohbetinin cevapları ile cevap vermek için okudukları (bunlar adayların sonuçlarını da içerebilir) ve bu cevaplara verilen oylar. Bunlar yalnızca cevapların kalitesini izlemek ve iyileştirmek için, aşağıda belirtilen Langfuse tarafından saklanır.",
+        "Yapay zekâ çağrı kayıtları: yapay zekâ her kullanıldığında testee'nin ona ne gönderdiği ve onun ne cevap verdiği; örneğin bir iş tanımından soru yazılması ya da asistanın ve yardım sohbetinin cevapları ile cevap vermek için okudukları (bunlar adayların sonuçlarını da içerebilir) ve bu cevaplara verilen oylar. Bunlar yalnızca cevapların kalitesini izlemek ve iyileştirmek için, aşağıda belirtilen Langfuse tarafından saklanır.",
         "Kullanım istatistikleri: kaydolma, bir şirketin oluşturulması, bir adayın davet edilmesi veya kredi yükleme gibi adımlar, puan veya tutar gibi sayısal değerlerle birlikte. Hesap kimliğiniz, elimizde tuttuğumuz gizli bir anahtarla oluşturulan bir kodla değiştirilir; bu nedenle istatistikler adınızı içermez, ancak anonim değil, takma adlandırılmış (pseudonymous) verilerdir: anahtarla bu kod hesap kimliğinizle eşleşir. Bir şirketin kimliği olduğu gibi tutulur. Hiçbir ad, e-posta veya metin dahil edilmez."
       ]
     },
     {
       "heading": "Neden kullanıyoruz",
       "items": [
-        "prepza'yı sunmak için: mülakat oluşturmak, bunları davet edilen adaylara uygulamak, sonuçları şirketlere göstermek ve istediğiniz e-postaları göndermek (sözleşme).",
+        "testee'yi sunmak için: mülakat oluşturmak, bunları davet edilen adaylara uygulamak, sonuçları şirketlere göstermek ve istediğiniz e-postaları göndermek (sözleşme).",
         "Davetler, raporlar, ödeme sorunları, koşullarımızdaki değişiklikler ve hizmetle ilgili önemli duyurular (bir güvenlik olayı, planlı bir kesinti veya işleyişindeki bir değişiklik) gibi her zaman gönderilen hizmet e-postaları (sözleşme).",
-        "Şirketlerinizle ilgili etkinlik özeti ve düşük kredi veya adayı olmayan bir mülakat gibi hatırlatmalar (prepza'yı kullanmanıza yardımcı olma konusundaki meşru menfaatimiz). Siz kapatana kadar açıktır.",
+        "Şirketlerinizle ilgili etkinlik özeti ve düşük kredi veya adayı olmayan bir mülakat gibi hatırlatmalar (testee'yi kullanmanıza yardımcı olma konusundaki meşru menfaatimiz). Siz kapatana kadar açıktır.",
         "Ürün güncellemeleri ve haberler: ilk girişte sunulduğunda \"Bana ürün güncellemeleri ve haberler göndermeyin\" kutusunu işaretlemeyen kendi kullanıcılarımız için (e-Gizlilik Direktifi madde 13(2) ve Estonya Elektronik Haberleşme Kanunu § 103¹). Bunları istediğiniz zaman ücretsiz olarak durdurabilirsiniz.",
         "Teklifler ve kampanyalar: yalnızca giriş yaparken veya Ayarlar'da kutuyu işaretleyerek onay verirseniz (açık rıza). Rızanızı istediğiniz zaman geri çekebilirsiniz.",
         "Çok sayıda kullanıcıya gönderilen bir e-postanın kime gideceğini seçmek: hesabınızın bir şirketin ekibinde olup olmadığı (ve sahip veya yönetici olarak olup olmadığı), bir şirketin mülakatına girip girmediği veya ücretsiz pratiği kullanıp kullanmadığı; böylece bir ürün güncellemesi, teklif veya önemli duyuru yalnızca ilgili kişilere gider. Yalnızca hesabınızın bunu yaptığı bilgisi kullanılır; cevaplarınız, sonuçlarınız veya bir şirketin sizinle ilgili tuttuğu bilgiler asla kullanılmaz (yalnızca ilgili e-postalar gönderme konusundaki meşru menfaatimiz). Ürün güncellemeleri ve teklifler yine yalnızca bunları yukarıdaki iki madde kapsamında alanlara gider.",
-        "Bir adayın bir şirketin e-postalarını durdurduğunu hatırlamak; böylece prepza o şirket adına ona bir daha e-posta göndermez (itirazına saygı göstermek).",
-        "prepza'yı güvenli ve çalışır durumda tutmak için: kötüye kullanımı önleme, istek sınırları, hata raporları ve soru kalitesini iyileştiren istatistikler (meşru menfaatimiz).",
+        "Bir adayın bir şirketin e-postalarını durdurduğunu hatırlamak; böylece testee o şirket adına ona bir daha e-posta göndermez (itirazına saygı göstermek).",
+        "testee'yi güvenli ve çalışır durumda tutmak için: kötüye kullanımı önleme, istek sınırları, hata raporları ve soru kalitesini iyileştiren istatistikler (meşru menfaatimiz).",
         "Soru kalitesi: herkes için soru oluşturmayı iyileştiren, soru kalitesine ilişkin genel, anonimleştirilmiş örüntüleri bulmak için soruların nasıl cevaplandığını ve nasıl bildirildiğini analiz ederiz; bu örüntüler hiçbir kişisel veri içermez (meşru menfaatimiz).",
-        "Oluşturulan soruların yeniden kullanımı: prepza'nın oluşturduğu sorular, herhangi bir kişisel veri ya da bir şirketi veya kişiyi tanımlayan herhangi bir ayrıntı olmadan diğer müşterilerin mülakatlarında ve pratiklerinde yeniden kullanılabilir. Bir şirket, bir mülakatın sorularını mülakatın ayarlarından bunun dışında tutabilir.",
+        "Oluşturulan soruların yeniden kullanımı: testee'nin oluşturduğu sorular, herhangi bir kişisel veri ya da bir şirketi veya kişiyi tanımlayan herhangi bir ayrıntı olmadan diğer müşterilerin mülakatlarında ve pratiklerinde yeniden kullanılabilir. Bir şirket, bir mülakatın sorularını mülakatın ayarlarından bunun dışında tutabilir.",
         "Yapay zekâ çağrı kayıtları, yapay zekânın sorularının ve cevaplarının kalitesini izlememizi ve iyileştirmemizi sağlar (meşru menfaatimiz).",
-        "Maliyet kontrolü ve kötüye kullanımı önleme: yapay zekâ kullanımı ve ulaşılan sınırlarla ilgili kayıtlar, yapay zekânın ne kadara mal olduğunu ve kimin hangi sınıra ulaştığını gösterir; böylece prepza'yı uygun fiyatlı tutabilir ve kötüye kullanımı durdurabiliriz (meşru menfaatimiz).",
+        "Maliyet kontrolü ve kötüye kullanımı önleme: yapay zekâ kullanımı ve ulaşılan sınırlarla ilgili kayıtlar, yapay zekânın ne kadara mal olduğunu ve kimin hangi sınıra ulaştığını gösterir; böylece testee'yi uygun fiyatlı tutabilir ve kötüye kullanımı durdurabiliriz (meşru menfaatimiz).",
         "Bir şirketin işlem kaydı, şirketin sahibinin şirkette kimin ne yaptığını görmesini ve şirket yardım istediğinde destek ekibimizin bunu incelemesini sağlar (şirketin ve bizim hesap verebilirliğe ilişkin meşru menfaatimiz).",
-        "Kullanım istatistikleri, prepza'nın hangi bölümlerinin insanlara yardımcı olduğunu ve hangi fiyatların ve sınırların işe yaradığını gösterir; böylece bunları iyileştirebiliriz (meşru menfaatimiz).",
+        "Kullanım istatistikleri, testee'nin hangi bölümlerinin insanlara yardımcı olduğunu ve hangi fiyatların ve sınırların işe yaradığını gösterir; böylece bunları iyileştirebiliriz (meşru menfaatimiz).",
         "Estonya muhasebe mevzuatının gerektirdiği şekilde defter tutma için saklanan satın alma kayıtları (hukuki yükümlülük).",
         "Bir şirketin web sitesini sahiplerinin ve yöneticilerinin e-posta alan adlarıyla karşılaştırarak şirketi doğrulanmış olarak göstermek (meşru menfaatimiz).",
-        "\"İş tekliflerine açık\": yalnızca bu seçeneği açarsanız (rıza), prepza üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve pratik yaptığınız, mülakatlarından birinin kendi seviyesinde kapsadığı her konudaki en son süreli pratik sonucunuzu görür; böylece sizi o mülakata davet edebilirler. Sizi sıralamayız veya önermeyiz ve sizin hakkınızda hiçbir karar vermeyiz: kimin davet edileceğine şirket karar verir. Rızanızı istediğiniz zaman Ayarlar'dan geri çekebilirsiniz; o anda tüm şirketlerin listesinden kaybolursunuz. Seçimlerinizin kaydı, rızanızın kanıtı olarak saklanır (bunu gösterme yönündeki yasal yükümlülüğümüz).",
-        "Mülakat sonuçları, süreler ve dürüstlük sinyalleri, işe alım yapan şirketin cevaplarınızı adil bir şekilde değerlendirmesine yardımcı olur (şirketin meşru menfaati). Sinyaller cevaplarınızdaki örüntüleri de kapsar: her soruda aşağı yukarı aynı süre ya da kolay sorular yanlışken zor soruların doğru olması; bunlara dayanarak şirkete, canlı bir mülakatta size sorabileceği sorular gösterilir. İşe alım kararını şirketteki kişiler verir; prepza sizin hakkınızda kendi başına hiçbir karar vermez. Şirketten sonucunuzun bir insan tarafından incelenmesini ve başlamadan önce ek süre gibi bir uyarlama isteyebilirsiniz."
+        "\"İş tekliflerine açık\": yalnızca bu seçeneği açarsanız (rıza), testee üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve pratik yaptığınız, mülakatlarından birinin kendi seviyesinde kapsadığı her konudaki en son süreli pratik sonucunuzu görür; böylece sizi o mülakata davet edebilirler. Sizi sıralamayız veya önermeyiz ve sizin hakkınızda hiçbir karar vermeyiz: kimin davet edileceğine şirket karar verir. Rızanızı istediğiniz zaman Ayarlar'dan geri çekebilirsiniz; o anda tüm şirketlerin listesinden kaybolursunuz. Seçimlerinizin kaydı, rızanızın kanıtı olarak saklanır (bunu gösterme yönündeki yasal yükümlülüğümüz).",
+        "Mülakat sonuçları, süreler ve dürüstlük sinyalleri, işe alım yapan şirketin cevaplarınızı adil bir şekilde değerlendirmesine yardımcı olur (şirketin meşru menfaati). Sinyaller cevaplarınızdaki örüntüleri de kapsar: her soruda aşağı yukarı aynı süre ya da kolay sorular yanlışken zor soruların doğru olması; bunlara dayanarak şirkete, canlı bir mülakatta size sorabileceği sorular gösterilir. İşe alım kararını şirketteki kişiler verir; testee sizin hakkınızda kendi başına hiçbir karar vermez. Şirketten sonucunuzun bir insan tarafından incelenmesini ve başlamadan önce ek süre gibi bir uyarlama isteyebilirsiniz."
       ]
     },
     {
       "heading": "Kimlerle paylaşıyoruz",
       "paragraphs": [
-        "Verileri, prepza'yı bizim için işleten hizmet sağlayıcılarla, verileri koruyan sözleşmeler kapsamında, ve kredi yüklemelerini satan Paddle ile paylaşırız:"
+        "Verileri, testee'yi bizim için işleten hizmet sağlayıcılarla, verileri koruyan sözleşmeler kapsamında, ve kredi yüklemelerini satan Paddle ile paylaşırız:"
       ],
       "items": [
         "Google (Firebase Authentication; Google LLC, Amerika Birleşik Devletleri, AB-ABD Veri Gizliliği Çerçevesi kapsamında): giriş. LinkedIn ve GitHub, onlarla giriş yaptığınızda yalnızca kim olduğunuzu doğrular; onlardan başka hiçbir şey almayız.",
@@ -75,27 +75,27 @@
         "Cloudflare (Turnstile; Cloudflare, Inc., Amerika Birleşik Devletleri, AB-ABD Veri Gizliliği Çerçevesi kapsamında): \"Ben robot değilim\" doğrulaması.",
         "Verileri saklayan barındırma sağlayıcımız Google Cloud (AB'de, Belçika).",
         "Upstash: kullanım sınırları ve canlı güncellemeler için kısa ömürlü sayaçlar (AB'de, Belçika).",
-        "Şirketler, yalnızca \"İş tekliflerine açık\" seçeneğini açarsanız: prepza üzerinden işe alım yapan şirketler yukarıda açıklananları görür. Her biri gördüklerini nasıl kullandığından kendisi sorumludur. Biri sizi davet ederse davet hesabınızın e-posta adresine gider ve şirket bu adresi her adayınkini gördüğü gibi görür.",
+        "Şirketler, yalnızca \"İş tekliflerine açık\" seçeneğini açarsanız: testee üzerinden işe alım yapan şirketler yukarıda açıklananları görür. Her biri gördüklerini nasıl kullandığından kendisi sorumludur. Biri sizi davet ederse davet hesabınızın e-posta adresine gider ve şirket bu adresi her adayınkini gördüğü gibi görür.",
         "Paddle (Paddle.com Market Ltd, Birleşik Krallık) bunlardan biri değildir: kredi yüklemelerini yeniden satıcı (merchant of record) olarak kendisi satar ve topladığı ödeme, vergi ve fatura bilgilerinin, kendi gizlilik politikası kapsamında veri sorumlusudur. Satın alan üyenin e-posta adresini ona iletiriz, o da bize neyin satın alındığını ve ödendiğini bildirir."
       ]
     },
     {
       "heading": "Bir şirketin bağladığı araçlar",
       "paragraphs": [
-        "Bir şirket kendi araçlarını prepza'ya bağlayabilir; bu durumda, şirketin talep ettiği hizmetin bir parçası olarak, şirketin talimatıyla bu araçlara veri göndeririz: şirketin aday takip sistemi (Workable, Greenhouse, Teamtailor, Recruitee veya Breezy HR) notunuzu, geçme notuna ulaşıp ulaşmadığını, dürüstlük sinyallerini ve sonuçlarınıza bir bağlantıyı alır; şirketin seçtiği bir Slack kanalı, bitirdiğiniz ve notunuz gibi şirketin bildirimlerini alır; şirketin kendi sistemleri ise prepza'nın API'si veya webhook'ları aracılığıyla e-posta adresinizi, adınızı, ilerlemenizi, notunuzu, geçme notuna ulaşıp ulaşmadığınızı, dürüstlük sinyallerini ve davet bağlantınızı alır. AB dışında olabilecek bu araçları şirket seçer ve kontrol eder; bunların verilerinizi nasıl kullandığından da şirket sorumludur."
+        "Bir şirket kendi araçlarını testee'ye bağlayabilir; bu durumda, şirketin talep ettiği hizmetin bir parçası olarak, şirketin talimatıyla bu araçlara veri göndeririz: şirketin aday takip sistemi (Workable, Greenhouse, Teamtailor, Recruitee veya Breezy HR) notunuzu, geçme notuna ulaşıp ulaşmadığını, dürüstlük sinyallerini ve sonuçlarınıza bir bağlantıyı alır; şirketin seçtiği bir Slack kanalı, bitirdiğiniz ve notunuz gibi şirketin bildirimlerini alır; şirketin kendi sistemleri ise testee'nin API'si veya webhook'ları aracılığıyla e-posta adresinizi, adınızı, ilerlemenizi, notunuzu, geçme notuna ulaşıp ulaşmadığınızı, dürüstlük sinyallerini ve davet bağlantınızı alır. AB dışında olabilecek bu araçları şirket seçer ve kontrol eder; bunların verilerinizi nasıl kullandığından da şirket sorumludur."
       ]
     },
     {
       "heading": "Bağladığınız yapay zekâ uygulamaları",
       "paragraphs": [
-        "Claude (Anthropic'in) veya ChatGPT (OpenAI'ın) gibi kendinize ait bir yapay zekâ uygulamasını prepza hesabınıza bağlayabilirsiniz. Yalnızca bunu yaptığınızda ve yalnızca ondan istediğiniz şey için, uygulama sizin erişiminizle, adayların sonuçları dahil şirketlerinizin verilerini okur ve değiştirir; bu veriler de bizim koşullarımız değil, uygulamanın kendi koşulları ve gizlilik politikası kapsamında uygulamanın sağlayıcısına ulaşır. Bu uygulamaları siz seçersiniz ve herhangi birinin bağlantısını istediğiniz zaman bir şirketin Entegrasyonlar sekmesinden kesebilirsiniz; hesabınızı silmek hepsinin bağlantısını keser. Bir şirketin sahipleri ve yöneticileri, yapay zekâ uygulamalarının o şirketin verilerini kullanmasını engelleyebilir."
+        "Claude (Anthropic'in) veya ChatGPT (OpenAI'ın) gibi kendinize ait bir yapay zekâ uygulamasını testee hesabınıza bağlayabilirsiniz. Yalnızca bunu yaptığınızda ve yalnızca ondan istediğiniz şey için, uygulama sizin erişiminizle, adayların sonuçları dahil şirketlerinizin verilerini okur ve değiştirir; bu veriler de bizim koşullarımız değil, uygulamanın kendi koşulları ve gizlilik politikası kapsamında uygulamanın sağlayıcısına ulaşır. Bu uygulamaları siz seçersiniz ve herhangi birinin bağlantısını istediğiniz zaman bir şirketin Entegrasyonlar sekmesinden kesebilirsiniz; hesabınızı silmek hepsinin bağlantısını keser. Bir şirketin sahipleri ve yöneticileri, yapay zekâ uygulamalarının o şirketin verilerini kullanmasını engelleyebilir."
       ]
     },
     {
       "heading": "E-postalar ve abonelikten çıkma",
       "paragraphs": [
         "Davetler, raporlar, ödeme sorunları, koşullarımızdaki değişiklikler ve hizmetle ilgili önemli duyurular gibi hizmet e-postaları her zaman gönderilir. Diğerlerini Ayarlar'da, E-postalar bölümünde seçersiniz: etkinlik özeti, hatırlatmalar, ürün güncellemeleri ve haberler, teklifler ve kampanyalar. İsteğe bağlı her e-postada giriş yapmadan çalışan bir abonelikten çıkma bağlantısı bulunur; isteğe bağlı bir e-postayı spam olarak işaretlemek de onu kapatır. Size gönderilen bir e-posta kalıcı olarak teslim edilemezse veya e-postalarımızdan birini spam olarak işaretlerseniz, yeniden başlatmamızı isteyene kadar o adrese ürün e-postaları ve bildirimler göndermeyi durdururuz.",
-        "Bir şirketin prepza aracılığıyla adaylara gönderdiği davetlerde ve hatırlatmalarda, o şirketin e-postalarını veya o mülakatın hatırlatmalarını durdurmaya yarayan bağlantılar bulunur. Bunun ardından prepza o adrese o şirket adına bir daha e-posta göndermez ve şirket daveti teslim edilmemiş olarak görür."
+        "Bir şirketin testee aracılığıyla adaylara gönderdiği davetlerde ve hatırlatmalarda, o şirketin e-postalarını veya o mülakatın hatırlatmalarını durdurmaya yarayan bağlantılar bulunur. Bunun ardından testee o adrese o şirket adına bir daha e-posta göndermez ve şirket daveti teslim edilmemiş olarak görür."
       ]
     },
     {
@@ -118,7 +118,7 @@
         "Yapay zekâ kullanımı ve ulaşılan sınırlarla ilgili kayıtlar: 13 ay; hesabınızı sildiğinizde hesap kimliğiniz olmadan.",
         "Pratik denemeleri: hesabınızı silene kadar.",
         "\"İş tekliflerine açık\": seçeneği kapatana veya hesabınızı silene kadar ve en fazla, seçeneği en son açtığınız ya da LinkedIn profilinizi kaydettiğiniz tarihten bir yıl sonrasına kadar; seçimlerinizin kaydı, hesabınızı silene kadar.",
-        "prepza'dan e-postayla gönderilen bir rapor: PDF yalnızca e-postayı göndermek için saklanır ve en geç 7 gün sonra silinir.",
+        "testee'den e-postayla gönderilen bir rapor: PDF yalnızca e-postayı göndermek için saklanır ve en geç 7 gün sonra silinir.",
         "Oluşturma kayıtlarımızdaki yapıştırılmış iş tanımları: oluşturma bittikten 90 gün sonrasına kadar. Bunlardan oluşturulan mülakat, silinene kadar şirketin hesabında kalır.",
         "E-posta ayarlarınız ve bunlardaki değişikliklerin kaydı: hesabınızı silene kadar.",
         "Size gönderilen özetlerin ve hatırlatmaların kaydı: 30 gün veya daha önceyse hesabınızı silene kadar.",
@@ -150,17 +150,17 @@
     {
       "heading": "Çerezler ve depolama",
       "paragraphs": [
-        "prepza yalnızca çalışmak için ihtiyaç duyduğu veya kendi seçimlerinizi hatırlayan çerezleri ve tarayıcı depolamasını kullanır. Reklam veya analiz çerezi yoktur.",
-        "Oturumunuzu açık tutmak için: bir çerez (prepza_token, prepza'yı kullandığınız sürece her saat yenilenir, çıkış yapana kadar) ve giriş sağlayıcımız Google Firebase'in tarayıcı depolaması. Bir yapay zekâ uygulamasını bağlarken bir çerez (prepza_connect) bunun sürdüğü birkaç dakika boyunca kalır.",
-        "Seçimlerinizi hatırlamak için: diliniz (bir çerez, prepza_locale, bir yıl boyunca; bir dil seçtiğinizde veya prepza'yı bir dilin adresinden açtığınızda ayarlanır), açık veya koyu temanız, asistan panelinin genişliği, adayları en son nasıl davet ettiğiniz, bu tarayıcıda daha önce giriş yaptığınız, istatistikler için en son seçtiğiniz dönem, kapattığınız değişen yasal belge bildirimleri ve asistanla konuşmanız (giriş yapana kadar, yalnızca bu sekmede). Bunlar siz temizleyene kadar tarayıcınızda kalır.",
-        "Davet bağlantısı: yalnızca saklamayı seçerseniz, bir çerez (prepza_ref) kredilerin her iki şirkete de ulaşması için geldiğiniz bağlantıyı 30 gün boyunca hatırlar.",
+        "testee yalnızca çalışmak için ihtiyaç duyduğu veya kendi seçimlerinizi hatırlayan çerezleri ve tarayıcı depolamasını kullanır. Reklam veya analiz çerezi yoktur.",
+        "Oturumunuzu açık tutmak için: bir çerez (testee_token, testee'yi kullandığınız sürece her saat yenilenir, çıkış yapana kadar) ve giriş sağlayıcımız Google Firebase'in tarayıcı depolaması. Bir yapay zekâ uygulamasını bağlarken bir çerez (testee_connect) bunun sürdüğü birkaç dakika boyunca kalır.",
+        "Seçimlerinizi hatırlamak için: diliniz (bir çerez, testee_locale, bir yıl boyunca; bir dil seçtiğinizde veya testee'yi bir dilin adresinden açtığınızda ayarlanır), açık veya koyu temanız, asistan panelinin genişliği, adayları en son nasıl davet ettiğiniz, bu tarayıcıda daha önce giriş yaptığınız, istatistikler için en son seçtiğiniz dönem, kapattığınız değişen yasal belge bildirimleri ve asistanla konuşmanız (giriş yapana kadar, yalnızca bu sekmede). Bunlar siz temizleyene kadar tarayıcınızda kalır.",
+        "Davet bağlantısı: yalnızca saklamayı seçerseniz, bir çerez (testee_ref) kredilerin her iki şirkete de ulaşması için geldiğiniz bağlantıyı 30 gün boyunca hatırlar.",
         "\"Ben robot değilim\" doğrulaması, bir form gerektirdiğinde Cloudflare'in küçük bir çerçevesinde çalışır ve izleme çerezi yerleştirmez."
       ]
     },
     {
       "heading": "Çocuklar",
       "paragraphs": [
-        "prepza 16 yaşından küçükler için tasarlanmamıştır."
+        "testee 16 yaşından küçükler için tasarlanmamıştır."
       ]
     },
     {
@@ -172,7 +172,7 @@
     {
       "heading": "Bize ulaşın",
       "paragraphs": [
-        "Bu politika veya verilerinizle ilgili sorular için hello@prepza.ai adresine yazın ya da her sayfanın altındaki bağlantıdan ulaşabileceğiniz iletişim sayfasını kullanın."
+        "Bu politika veya verilerinizle ilgili sorular için hello@testee.ai adresine yazın ya da her sayfanın altındaki bağlantıdan ulaşabileceğiniz iletişim sayfasını kullanın."
       ]
     }
   ]

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.limits.limit_schemas import BudgetOut
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.limits.limit_schemas import BudgetOut
 
 from assistant.integrations.redis import get_redis
 from assistant.services import limits

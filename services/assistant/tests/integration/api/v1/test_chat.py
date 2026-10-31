@@ -8,9 +8,9 @@ import uuid
 import httpx
 from event_pushes import push
 from langchain_core.messages import ToolMessage
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.http.http import bearer
 from sqlalchemy import select
+from testee_common.auth.service_auth import issue_token
+from testee_common.http.http import bearer
 
 from assistant.core.db import Session
 from assistant.integrations import llm

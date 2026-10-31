@@ -5,8 +5,8 @@ currency and the automatic top-up."""
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.events.audit_actions import AUDIT_RECORDED
 from sqlalchemy import select
+from testee_common.events.audit_actions import AUDIT_RECORDED
 
 from billing.constants.currencies import Currency
 from billing.constants.products import TOP_UPS, OwnerType

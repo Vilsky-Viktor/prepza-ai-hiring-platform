@@ -114,7 +114,7 @@ NOT_YOUR_AUTO_TOP_UP = (
 # is a new agreement to its terms.
 AGREEMENT_NEEDED = "Tick the box to agree to the automatic top-up's charges."
 # Its terms as the company's action log keeps them with the buyer's agreement, in the buyer's
-# language (prepza_common.i18n messages).
+# language (testee_common.i18n messages).
 AGREED_TERMS = (
     "{price} plus tax when the balance falls under "
     "{threshold, plural, one {# credit} other {# credits}}"
@@ -125,7 +125,7 @@ PADDLE_API = {"sandbox": "https://sandbox-api.paddle.com", "production": "https:
 PADDLE_API_VERSION = "1"
 # Paddle's answers that refuse billing itself rather than the request: its API key is wrong,
 # expired or lacks a permission, or billing is over Paddle's rate limit. Every call fails until
-# fixed, so they count towards the "prepza Paddle failing" alert as an outage does.
+# fixed, so they count towards the "testee Paddle failing" alert as an outage does.
 PADDLE_REFUSES_BILLING = {401, 403, 429}
 # How Paddle starts each environment's server-side API keys and client-side tokens: a key or
 # token of the other environment stops billing from starting, so sandbox and live never mix.

@@ -1,8 +1,8 @@
 from uuid import UUID
 
-from prepza_common.ai.sets import OptionIn
-from prepza_common.i18n.titles import Title
 from pydantic import BaseModel
+from testee_common.ai.sets import OptionIn
+from testee_common.i18n.titles import Title
 
 
 class CreatedOut(BaseModel):

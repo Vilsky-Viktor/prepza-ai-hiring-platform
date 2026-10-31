@@ -1,5 +1,5 @@
-from prepza_common.auth.user import Language, User
 from pydantic import BaseModel
+from testee_common.auth.user import Language, User
 
 
 class SettingsIn(BaseModel):

@@ -1,8 +1,8 @@
 from uuid import UUID
 
-from prepza_common.auth.user import User
-from prepza_common.limits.limits import limit
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.auth.user import User
+from testee_common.limits.limits import limit
+from testee_common.limits.rate_limit import hit_or_skip
 
 from rounds.constants.integrity import IntegritySignal
 from rounds.constants.rounds import RoundStatus

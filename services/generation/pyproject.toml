@@ -3,7 +3,7 @@ name = "generation"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
-    "prepza-common[llm,langfuse]",
+    "testee-common[llm,langfuse]",
     "alembic>=1.20.0",
     "fastapi>=0.141.1",
     "firebase-admin>=7.7.0",
@@ -23,7 +23,7 @@ dependencies = [
 # The shared package, from this repo. To use a published version, drop this source and require
 # a version above instead (see packages/common/README.md).
 [tool.uv.sources]
-prepza-common = { path = "../../packages/common", editable = true }
+testee-common = { path = "../../packages/common", editable = true }
 
 [tool.pytest.ini_options]
 pythonpath = ["src", "../../packages/common/tests"]

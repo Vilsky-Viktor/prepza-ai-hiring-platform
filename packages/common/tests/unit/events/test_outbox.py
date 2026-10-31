@@ -6,8 +6,8 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common.config.event_constants import OUTBOX_BATCH, OUTBOX_MAX_ATTEMPTS
-from prepza_common.events import outbox, pubsub
+from testee_common.config.event_constants import OUTBOX_BATCH, OUTBOX_MAX_ATTEMPTS
+from testee_common.events import outbox, pubsub
 
 
 def row(name, attempts=0):

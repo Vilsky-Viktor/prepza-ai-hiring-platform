@@ -2,9 +2,9 @@
 # and the notes written in it (pending_notes).
 from datetime import datetime
 
-from prepza_common.events.notifications import Recipient
 from sqlalchemy import select, union
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events.notifications import Recipient
 
 from notifications.models.notifications import Notification
 from notifications.repositories import pending_notes

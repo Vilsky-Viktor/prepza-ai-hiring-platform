@@ -1,4 +1,4 @@
-from prepza_common.auth.service_auth import callee_secret, issue_token
+from testee_common.auth.service_auth import callee_secret, issue_token
 
 SERVICE_NAME = "site"
 

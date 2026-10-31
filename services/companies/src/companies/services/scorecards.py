@@ -1,8 +1,8 @@
 import asyncio
 
-from prepza_common.auth.user import User
-from prepza_common.config.constants import VOICE_LANGUAGES
-from prepza_common.events.analytics import track
+from testee_common.auth.user import User
+from testee_common.config.constants import VOICE_LANGUAGES
+from testee_common.events.analytics import track
 
 from companies.constants.invites import EXTRA_TIME_OPTIONS, InviteStatus
 from companies.core.db import Session

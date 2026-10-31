@@ -1,10 +1,10 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, DateTime, ForeignKey, String, Text, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from assistant.constants.mcp import MCP_SCOPES
 from assistant.models.base import Base
@@ -33,7 +33,7 @@ class OAuthClient(Base):
 
 
 class McpGrant(Base):
-    """One connection: a user allowed an app to use prepza as them. Its tokens are kept as their
+    """One connection: a user allowed an app to use testee as them. Its tokens are kept as their
     hashes only; deleting the row disconnects the app."""
 
     __tablename__ = "mcp_grants"
@@ -61,4 +61,4 @@ class McpGrant(Base):
     previous_refresh_hash: Mapped[str | None] = mapped_column(String(64), index=True)
     refreshed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     # What the user allowed: MCP_SCOPE (everything) or MCP_READ_SCOPE (only reading).
-    scope: Mapped[str] = mapped_column(String(32), server_default="prepza")
+    scope: Mapped[str] = mapped_column(String(32), server_default="testee")

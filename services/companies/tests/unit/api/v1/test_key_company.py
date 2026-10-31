@@ -2,9 +2,9 @@ import asyncio
 import uuid
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.auth.service_auth import issue_token
+from testee_common.auth.auth import current_user
+from testee_common.auth.key_actor import key_actor
+from testee_common.auth.service_auth import issue_token
 
 from companies.constants.ai_apps import KEY_OTHER_COMPANY
 from companies.main import app

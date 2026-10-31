@@ -8,10 +8,10 @@ import json
 import uuid
 
 import pytest
-from prepza_common.ai.ai_constants import AI_USED
-from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH
-from prepza_common.events.campaigns import CAMPAIGN_TRANSLATED, CampaignTranslated
-from prepza_common.events.news import NEWS_TRANSLATED, NewsTranslated
+from testee_common.ai.ai_constants import AI_USED
+from testee_common.config.constants import MAX_NEWS_TEXT_LENGTH
+from testee_common.events.campaigns import CAMPAIGN_TRANSLATED, CampaignTranslated
+from testee_common.events.news import NEWS_TRANSLATED, NewsTranslated
 
 from generation.constants.actions import NEWS_TRANSLATION
 from generation.constants.batch_work import BATCH_WORK_ATTEMPTS, BatchKind

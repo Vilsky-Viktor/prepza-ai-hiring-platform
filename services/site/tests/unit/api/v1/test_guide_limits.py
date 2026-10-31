@@ -1,7 +1,7 @@
 import pytest
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.limits.limit_list import LIMITS
-from prepza_common.redis import memory_cache
+from testee_common.auth.service_auth import issue_token
+from testee_common.limits.limit_list import LIMITS
+from testee_common.redis import memory_cache
 
 from tests.unit.api.v1.test_help import CATALOG, fake_catalog
 

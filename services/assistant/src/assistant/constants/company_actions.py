@@ -70,7 +70,7 @@ COMPANY_ACTIONS = {
         "body": ["website"],
         "confirm": True,
         "description": (
-            "Set the company's website (like acme.com), which starts its verification: prepza "
+            "Set the company's website (like acme.com), which starts its verification: testee "
             "checks it against the email domains of its owner and admins."
         ),
         "subject": COMPANY_SUBJECT,

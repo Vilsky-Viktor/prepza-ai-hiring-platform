@@ -1,18 +1,18 @@
-from prepza_common.config.constants import LANGUAGES
+from testee_common.config.constants import LANGUAGES
 
 from ats.helpers.ats import result_comment
 from ats.templates.comments import COMMENTS
 
 
 def test_a_german_interview_gets_the_note_in_german():
-    text = result_comment("Buchhalter", 82, True, True, "https://prepza.ai/s/1", "de")
+    text = result_comment("Buchhalter", 82, True, True, "https://testee.ai/s/1", "de")
 
     assert text.splitlines() == [
-        "prepza: Buchhalter",
+        "testee: Buchhalter",
         "Ergebnis: 82 % (bestanden)",
         "Hinweise auf Auffälligkeiten: ja, vom Browser des Kandidaten gemeldet; ein Grund, auf der Auswertung genauer hinzusehen, kein Beweis.",
         "Die Entscheidung trifft ein Mensch: nicht automatisch anhand dieses Ergebnisses ablehnen.",
-        "Auswertung: https://prepza.ai/s/1",
+        "Auswertung: https://testee.ai/s/1",
     ]
 
 

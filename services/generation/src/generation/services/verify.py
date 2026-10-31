@@ -3,7 +3,7 @@ import random
 from collections import Counter
 from uuid import UUID
 
-from prepza_common.ai.multi_answer import is_multi
+from testee_common.ai.multi_answer import is_multi
 
 from generation.constants.actions import QUESTION_VERIFY
 from generation.constants.generation import MAX_MULTI_CORRECT

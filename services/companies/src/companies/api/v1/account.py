@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from prepza_common.auth.auth import CurrentUser
+from testee_common.auth.auth import CurrentUser
 
 from companies.schemas.account import AccountDeletionOut
 from companies.services import accounts

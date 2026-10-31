@@ -4,18 +4,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "Apa itu prepza?",
+        "question": "Apa itu testee?",
         "answer": "Wawancara berbatas waktu yang dibuat dari deskripsi pekerjaanmu, untuk posisi apa pun. Gunakan untuk menyaring kandidat sebelum kamu bertemu mereka, atau sebagai salah satu tahap rekrutmen itu sendiri: dengan cara mana pun, kamu melihat siapa yang benar-benar menguasai pekerjaannya.",
     },
     {
         "key": "roles",
         "question": "Untuk posisi apa saja aku bisa merekrut?",
-        "answer": "Posisi apa pun yang membutuhkan pengetahuan: customer support, sales, keuangan, kesehatan, teknisi lapangan, engineering, pemasaran, dan lainnya. Jika kamu bisa menjelaskan pekerjaannya, prepza bisa membuat wawancara untuknya.",
+        "answer": "Posisi apa pun yang membutuhkan pengetahuan: customer support, sales, keuangan, kesehatan, teknisi lapangan, engineering, pemasaran, dan lainnya. Jika kamu bisa menjelaskan pekerjaannya, testee bisa membuat wawancara untuknya.",
     },
     {
         "key": "hiring",
         "question": "Bagaimana cara kerjanya?",
-        "answer": "Tempel deskripsi pekerjaan di beranda, beri nama perusahaanmu, dan periksa topik yang diusulkan prepza. Lalu undang kandidat: ketik email mereka, tempel daftar, atau unggah file. Kandidat yang belum mulai setelah beberapa hari mendapat satu pengingat. Setiap kandidat mendapat soalnya sendiri dengan batas waktu di tiap soal, dan kamu melihat skor serta setiap jawabannya begitu mereka selesai.",
+        "answer": "Tempel deskripsi pekerjaan di beranda, beri nama perusahaanmu, dan periksa topik yang diusulkan testee. Lalu undang kandidat: ketik email mereka, tempel daftar, atau unggah file. Kandidat yang belum mulai setelah beberapa hari mendapat satu pengingat. Setiap kandidat mendapat soalnya sendiri dengan batas waktu di tiap soal, dan kamu melihat skor serta setiap jawabannya begitu mereka selesai.",
     },
     {
         "key": "link",
@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Bisakah perusahaan menemukanku lewat latihanku?",
-        "answer": "Hanya jika kamu memilihnya. Aktifkan Terbuka untuk tawaran kerja setelah sesi latihan atau di Pengaturan, dengan alamat profil LinkedIn-mu. Perusahaan yang merekrut lewat prepza lalu melihat nama, profil LinkedIn, dan hasil latihan terbarumu di setiap topik wawancara mereka yang pernah kamu latih, dan bisa mengundangmu ke wawancara. prepza tidak memeringkat atau merekomendasikanmu. Matikan kapan saja di Pengaturan, dan kamu langsung hilang dari daftar setiap perusahaan; fitur ini juga berakhir setahun setelah terakhir kali kamu mengaktifkannya atau menyimpan profil LinkedIn-mu.",
+        "answer": "Hanya jika kamu memilihnya. Aktifkan Terbuka untuk tawaran kerja setelah sesi latihan atau di Pengaturan, dengan alamat profil LinkedIn-mu. Perusahaan yang merekrut lewat testee lalu melihat nama, profil LinkedIn, dan hasil latihan terbarumu di setiap topik wawancara mereka yang pernah kamu latih, dan bisa mengundangmu ke wawancara. testee tidak memeringkat atau merekomendasikanmu. Matikan kapan saja di Pengaturan, dan kamu langsung hilang dari daftar setiap perusahaan; fitur ini juga berakhir setahun setelah terakhir kali kamu mengaktifkannya atau menyimpan profil LinkedIn-mu.",
     },
     {
         "key": "cheating",
@@ -55,7 +55,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Bagaimana harganya dibanding alat asesmen lain?",
-        "answer": "Banyak alat asesmen dijual sebagai langganan bulanan atau tahunan yang tetap dibayar meski kamu tidak menguji siapa pun. Di prepza kamu hanya membayar per kandidat: {candidate} kredit ({candidate_price}), tanpa kontrak, tanpa biaya per pengguna, dan tanpa biaya untuk membuat wawancara. Perusahaan yang mengundang {example_candidates} kandidat per bulan membayar sekitar {example_year_price} per tahun. Jika kamu menguji banyak kandidat setiap bulan, langganan bisa lebih murah, jadi bandingkan dengan angkamu sendiri.",
+        "answer": "Banyak alat asesmen dijual sebagai langganan bulanan atau tahunan yang tetap dibayar meski kamu tidak menguji siapa pun. Di testee kamu hanya membayar per kandidat: {candidate} kredit ({candidate_price}), tanpa kontrak, tanpa biaya per pengguna, dan tanpa biaya untuk membuat wawancara. Perusahaan yang mengundang {example_candidates} kandidat per bulan membayar sekitar {example_year_price} per tahun. Jika kamu menguji banyak kandidat setiap bulan, langganan bisa lebih murah, jadi bandingkan dengan angkamu sendiri.",
     },
     {
         "key": "expire",
@@ -80,7 +80,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Bisakah aku membagikan hasil ke hiring manager?",
-        "answer": "Bisa. Unduh laporan PDF untuk satu kandidat atau semua kandidat sebuah wawancara, kirim lewat email langsung dari prepza, atau kirim ringkasan singkat di WhatsApp, Telegram, Viber, atau LINE.",
+        "answer": "Bisa. Unduh laporan PDF untuk satu kandidat atau semua kandidat sebuah wawancara, kirim lewat email langsung dari testee, atau kirim ringkasan singkat di WhatsApp, Telegram, Viber, atau LINE.",
     },
     {
         "key": "action_log",
@@ -94,13 +94,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "Apakah prepza bisa dipakai dengan ATS atau tools lain yang saya gunakan?",
+        "question": "Apakah testee bisa dipakai dengan ATS atau tools lain yang saya gunakan?",
         "answer": "Bisa, tanpa biaya tambahan. Hubungkan Workable, Greenhouse, Teamtailor, Recruitee, atau Breezy HR di tab Integrasi perusahaanmu: kandidat yang kamu pindahkan ke suatu tahap mendapat wawancara, dan hasilnya dikirim kembali ke ATS ([cara menghubungkan tes keterampilan ke ATS-mu](/guides/ats-integration-skills-tests)). Slack bisa memposting notifikasi perusahaanmu ke sebuah channel, dan API memungkinkan platformmu sendiri membuat wawancara, mengundang dan mengelola kandidat, serta menerima hasil mereka, dengan setiap kunci API terbatas pada yang kamu centang untuknya; lihat [Dokumentasi API](/api-docs).",
     },
     {
         "key": "ai_apps",
-        "question": "Bisakah saya memakai prepza dari Claude, ChatGPT, atau agen AI saya sendiri?",
-        "answer": "Bisa. Tambahkan prepza ke Claude atau ChatGPT sebagai konektor (langkah-langkahnya ada di tab Integrasi perusahaanmu), lalu izinkan di prepza. Setelah itu, aplikasi bekerja dengan perusahaan, wawancara, dan hasil kandidatmu atas namamu, dengan hak aksesmu; sebagian besar aplikasi bertanya dulu sebelum mengubah apa pun. Akun atau perusahaan hanya bisa dihapus di prepza. Apa yang dibaca aplikasi sampai ke penyedianya sesuai ketentuan aplikasi tersebut. Kamu bisa memutuskan sambungannya kapan saja di tab yang sama. Aplikasi AI lain dan agen yang kamu buat sendiri juga bisa terhubung: [tab MCP](/api-docs?tab=mcp) di dokumentasi pengembang berisi langkah-langkah dan contoh agen, dan agen di server bisa masuk dengan kunci API yang punya hak akses agen AI. [Panduan tentang agen AI, MCP, dan API](/guides/ai-agents-mcp-and-api) menjelaskan kegunaan masing-masing.",
+        "question": "Bisakah saya memakai testee dari Claude, ChatGPT, atau agen AI saya sendiri?",
+        "answer": "Bisa. Tambahkan testee ke Claude atau ChatGPT sebagai konektor (langkah-langkahnya ada di tab Integrasi perusahaanmu), lalu izinkan di testee. Setelah itu, aplikasi bekerja dengan perusahaan, wawancara, dan hasil kandidatmu atas namamu, dengan hak aksesmu; sebagian besar aplikasi bertanya dulu sebelum mengubah apa pun. Akun atau perusahaan hanya bisa dihapus di testee. Apa yang dibaca aplikasi sampai ke penyedianya sesuai ketentuan aplikasi tersebut. Kamu bisa memutuskan sambungannya kapan saja di tab yang sama. Aplikasi AI lain dan agen yang kamu buat sendiri juga bisa terhubung: [tab MCP](/api-docs?tab=mcp) di dokumentasi pengembang berisi langkah-langkah dan contoh agen, dan agen di server bisa masuk dengan kunci API yang punya hak akses agen AI. [Panduan tentang agen AI, MCP, dan API](/guides/ai-agents-mcp-and-api) menjelaskan kegunaan masing-masing.",
     },
     {
         "key": "candidates",
@@ -120,27 +120,27 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Apa yang terjadi pada deskripsi pekerjaan dan jawaban?",
-        "answer": "Deskripsi pekerjaan dipakai untuk membuat wawancara perusahaanmu, dan jawaban kandidat untuk menilainya bagi perusahaanmu. Soal yang dibuat prepza juga dapat digunakan kembali dalam wawancara dan latihan perusahaan lain, tanpa apa pun yang mengidentifikasi kamu, perusahaanmu, atau orang lain; kamu bisa mengecualikan soal suatu wawancara dari hal ini di pengaturannya. prepza juga mempelajari pola umum kualitas soal yang dianonimkan dari cara soal dijawab, untuk meningkatkan cara soal dibuat. [Kebijakan privasi](/privacy) menjelaskan apa yang kami simpan, berapa lama, dan hak setiap orang.",
+        "answer": "Deskripsi pekerjaan dipakai untuk membuat wawancara perusahaanmu, dan jawaban kandidat untuk menilainya bagi perusahaanmu. Soal yang dibuat testee juga dapat digunakan kembali dalam wawancara dan latihan perusahaan lain, tanpa apa pun yang mengidentifikasi kamu, perusahaanmu, atau orang lain; kamu bisa mengecualikan soal suatu wawancara dari hal ini di pengaturannya. testee juga mempelajari pola umum kualitas soal yang dianonimkan dari cara soal dijawab, untuk meningkatkan cara soal dibuat. [Kebijakan privasi](/privacy) menjelaskan apa yang kami simpan, berapa lama, dan hak setiap orang.",
     },
     {
         "key": "eu_ai_law",
         "question": "Apakah legal memakai AI untuk menyaring kandidat di UE?",
-        "answer": "Ya, dengan aturan. Menurut EU AI Act, alat yang menilai kandidat sangat mungkin tergolong berisiko tinggi, dengan kewajiban mulai 2 Desember 2027, dan GDPR sudah berlaku: keputusan perekrutan diambil oleh manusia, kandidat diberi tahu bahwa AI digunakan, dan catatan disimpan. prepza bekerja seperti itu: AI menulis soal, orang-orang di perusahaanmu meninjau hasilnya dan memutuskan, dan kandidat diberi tahu sebelum mulai. Ini bukan nasihat hukum; [Apakah rekrutmen dengan AI legal di UE?](/guides/is-ai-hiring-legal-in-the-eu) menjelaskan aturan dan tanggalnya.",
+        "answer": "Ya, dengan aturan. Menurut EU AI Act, alat yang menilai kandidat sangat mungkin tergolong berisiko tinggi, dengan kewajiban mulai 2 Desember 2027, dan GDPR sudah berlaku: keputusan perekrutan diambil oleh manusia, kandidat diberi tahu bahwa AI digunakan, dan catatan disimpan. testee bekerja seperti itu: AI menulis soal, orang-orang di perusahaanmu meninjau hasilnya dan memutuskan, dan kandidat diberi tahu sebelum mulai. Ini bukan nasihat hukum; [Apakah rekrutmen dengan AI legal di UE?](/guides/is-ai-hiring-legal-in-the-eu) menjelaskan aturan dan tanggalnya.",
     },
     {
         "key": "uk_us",
-        "question": "Bisakah kami memakai prepza untuk kandidat di Inggris dan AS?",
+        "question": "Bisakah kami memakai testee untuk kandidat di Inggris dan AS?",
         "answer": "Bisa. Perjanjian pemrosesan data mencakup hukum Inggris dan AS, dan petunjuk untuk perusahaan serta templat pemberitahuan kandidat (dengan versi untuk New York City, Illinois, dan Colorado) mencakup apa yang wajib kamu sampaikan kepada kandidat. Untuk lowongan di New York City, gunakan hanya setelah kamu memenuhi apa yang diwajibkan Local Law 144 kepadamu: audit bias independen dalam satu tahun sebelum penggunaan, publikasi ringkasannya, dan pemberitahuan kepada kandidat 10 hari kerja sebelumnya. Ekspor audit bias di Log tindakan memberi auditormu nilai dan hasil setiap kandidat yang sudah selesai, untuk dicocokkan dengan jawaban yang diisi sendiri oleh kandidatmu.",
     },
     {
         "key": "emails",
-        "question": "Email apa saja yang dikirim prepza, dan bagaimana cara menghentikannya?",
+        "question": "Email apa saja yang dikirim testee, dan bagaimana cara menghentikannya?",
         "answer": 'Email layanan, seperti undangan, laporan, masalah pembayaran, dan perubahan ketentuan kami, selalu dikirim. Sisanya, seperti ringkasan aktivitas harian, pengingat, dan pembaruan produk, kamu pilih di Pengaturan, bagian Email, atau hentikan dengan tautan "Berhenti berlangganan" di setiap email. Kandidat bisa menghentikan email dari perusahaanmu, atau pengingat sebuah wawancara, lewat tautan di undangan dan pengingat mereka.',
     },
     {
         "key": "delete",
         "question": "Bisakah aku menghapus akunku?",
-        "answer": "Bisa, di Pengaturan. Akun dan datamu dihapus, dan sebelumnya kamu bisa mengunduh salinan datamu. Berita prepza muncul di notifikasimu, ikon lonceng di bagian atas; berita penting juga dikirim lewat email sebagai pembaruan produk, hanya selama pengaturan itu aktif.",
+        "answer": "Bisa, di Pengaturan. Akun dan datamu dihapus, dan sebelumnya kamu bisa mengunduh salinan datamu. Berita testee muncul di notifikasimu, ikon lonceng di bagian atas; berita penting juga dikirim lewat email sebagai pembaruan produk, hanya selama pengaturan itu aktif.",
     },
     {
         "key": "report",

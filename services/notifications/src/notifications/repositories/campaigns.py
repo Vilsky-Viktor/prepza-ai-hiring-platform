@@ -1,10 +1,10 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
 from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
 
 from notifications.models.campaigns import Campaign, CampaignText
 

@@ -1,5 +1,5 @@
 """ck_ai_usage_service validated: the only rows it refused were AI calls an end-to-end test once stored
-as service 'e2e' (no service of prepza's), deleted first in batches; nothing in production
+as service 'e2e' (no service of testee's), deleted first in batches; nothing in production
 holds such rows. Validated, no update of an old row can stall on it
 
 Revision ID: 0028

@@ -3,7 +3,7 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 from event_pushes import push
-from prepza_common.config.constants import DELETED_USER
+from testee_common.config.constants import DELETED_USER
 
 from generation.constants.statuses import Status
 from generation.main import app

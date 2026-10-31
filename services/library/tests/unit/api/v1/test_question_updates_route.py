@@ -4,9 +4,9 @@ for the assistant's get_updates tool only; any other service is refused."""
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.config.constants import MAX_UPDATES
-from prepza_common.http.http import bearer
+from testee_common.auth.service_auth import issue_token
+from testee_common.config.constants import MAX_UPDATES
+from testee_common.http.http import bearer
 
 from library.repositories import question_updates
 

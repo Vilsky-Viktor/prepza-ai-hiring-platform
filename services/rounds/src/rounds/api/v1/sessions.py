@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.auth.auth import CurrentUser
+from testee_common.auth.auth import CurrentUser
 
 from rounds.schemas.rounds import AnswerCreate
 from rounds.schemas.sessions import SessionAnswerResult, SignalIn

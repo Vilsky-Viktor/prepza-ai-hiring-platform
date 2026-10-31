@@ -1,8 +1,8 @@
 import uuid
 
 import pytest
-from prepza_common.ai.multi_answer import is_multi
-from prepza_common.ai.sets import QuestionIn
+from testee_common.ai.multi_answer import is_multi
+from testee_common.ai.sets import QuestionIn
 
 from tests.unit.api.v1.test_additions import context, run_addition, topic
 from tests.unit.fakes import EXAMPLE, MULTI_OPTIONS, OPTIONS

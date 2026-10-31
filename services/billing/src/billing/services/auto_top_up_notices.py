@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from prepza_common.events.notifications import NotificationKind, notification
+from testee_common.events.notifications import NotificationKind, notification
 
 from billing.constants.notifications import COMPANY_BILLING_LINK
 from billing.models.billing import AutoTopUp

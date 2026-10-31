@@ -3,8 +3,8 @@ from uuid import UUID
 
 from fastapi import HTTPException, status
 from langchain_core.messages import HumanMessage, SystemMessage
-from prepza_common.limits import pause
-from prepza_common.redis import redis_lock
+from testee_common.limits import pause
+from testee_common.redis import redis_lock
 
 from generation.constants.actions import QUALITY_PATTERNS
 from generation.constants.patterns import (

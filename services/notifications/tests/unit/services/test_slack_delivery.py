@@ -3,9 +3,9 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common.auth.encryption import encrypt
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
-from prepza_common.http import http
+from testee_common.auth.encryption import encrypt
+from testee_common.events.notifications import NotificationKind, Recipient, notification
+from testee_common.http import http
 
 from notifications.config import settings
 from notifications.integrations import companies

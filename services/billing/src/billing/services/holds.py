@@ -2,7 +2,7 @@
 answer, or given back."""
 
 from fastapi import HTTPException, status
-from prepza_common.events.analytics import track
+from testee_common.events.analytics import track
 
 from billing.constants.credits import CANDIDATE_CREDITS, CANDIDATE_PREFIX, NOT_ENOUGH, Reason
 from billing.constants.products import OwnerType

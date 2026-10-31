@@ -2,7 +2,7 @@ import logging
 from typing import Literal
 
 from fastapi import APIRouter, status
-from prepza_common.auth.superadmin import SuperadminUser
+from testee_common.auth.superadmin import SuperadminUser
 
 from notifications.schemas.legal_notices import LegalNoticeOut
 from notifications.services import legal_notices

@@ -12,7 +12,7 @@ class Email:
     # Sent with the email; Resend's webhooks carry them back.
     tags: dict[str, str] = field(default_factory=dict)
     # Where a reply goes: the visitor who wrote through the contact page, or the member who
-    # shared a report; any other email's replies go to prepza's inbox (CONTACT_EMAIL).
+    # shared a report; any other email's replies go to testee's inbox (CONTACT_EMAIL).
     reply_to: str | None = None
     # Headers: Auto-Submitted on every email, and the one-click unsubscribe of optional emails
     # and candidate reminders.

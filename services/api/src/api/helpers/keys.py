@@ -1,7 +1,7 @@
 import calendar
 from datetime import datetime
 
-from prepza_common.auth.tokens import new_token
+from testee_common.auth.tokens import new_token
 
 from api.constants.api import KEY_BYTES, KEY_PREFIX, KEY_SHOWN
 from api.constants.permissions import IMPLIED, Permission

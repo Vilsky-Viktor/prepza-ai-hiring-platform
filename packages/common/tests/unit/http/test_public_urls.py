@@ -3,8 +3,8 @@ import socket
 import threading
 
 import pytest
-from prepza_common.http import public_urls
-from prepza_common.http.public_urls import pinned, public_address
+from testee_common.http import public_urls
+from testee_common.http.public_urls import pinned, public_address
 
 
 @pytest.mark.parametrize(

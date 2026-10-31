@@ -3,9 +3,9 @@
 # their latest authors.
 from datetime import datetime
 
-from prepza_common.events.notifications import NotificationKind, Recipient
 from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events.notifications import NotificationKind, Recipient
 
 from notifications.helpers.notes import authors_of
 from notifications.models.notifications import Notification, Seen

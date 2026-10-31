@@ -2,8 +2,8 @@ from datetime import datetime
 from typing import Annotated
 from uuid import UUID
 
-from prepza_common.config.constants import MAX_NOTE_LENGTH
 from pydantic import BaseModel, Field, StringConstraints
+from testee_common.config.constants import MAX_NOTE_LENGTH
 
 # A note's text: plain text with its line breaks, without leading or trailing blanks.
 NoteText = Annotated[

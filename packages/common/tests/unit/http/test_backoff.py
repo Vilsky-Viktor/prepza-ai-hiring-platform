@@ -1,4 +1,4 @@
-from prepza_common.http.backoff import wait_seconds
+from testee_common.http.backoff import wait_seconds
 
 
 def test_waits_grow_and_are_spread_out():

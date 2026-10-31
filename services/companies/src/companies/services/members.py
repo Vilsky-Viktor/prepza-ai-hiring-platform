@@ -5,11 +5,11 @@ the action log."""
 import secrets
 
 from fastapi import HTTPException, status
-from prepza_common.auth.user import User
-from prepza_common.events.audit_actions import AuditAction, TargetKind
-from prepza_common.limits.limits import at_most, limit
-from prepza_common.limits.rate_limit import hit, hit_emails, recipient_key
 from sqlalchemy.exc import IntegrityError
+from testee_common.auth.user import User
+from testee_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.limits.limits import at_most, limit
+from testee_common.limits.rate_limit import hit, hit_emails, recipient_key
 
 from companies.constants.roles import (
     ALREADY_INVITED,

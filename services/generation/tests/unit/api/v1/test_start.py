@@ -1,7 +1,7 @@
 import uuid
 
 import pytest
-from prepza_common.config.constants import LANGUAGES
+from testee_common.config.constants import LANGUAGES
 
 from generation.models.generation import Generation
 from generation.repositories import generations

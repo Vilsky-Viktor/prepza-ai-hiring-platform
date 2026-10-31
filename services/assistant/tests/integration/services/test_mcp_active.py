@@ -3,7 +3,7 @@ and app, however often the app calls."""
 
 import uuid
 
-from prepza_common.config.constants import DAY_SECONDS
+from testee_common.config.constants import DAY_SECONDS
 
 from assistant.constants.mcp import ACTIVE_KEY
 from assistant.integrations.redis import get_redis
@@ -16,9 +16,9 @@ from tests.integration.transactions import transaction
 
 def access(user: str, grant_id: uuid.UUID, client_name: str) -> Access:
     return Access(
-        token="pzm_x",
+        token="tem_x",
         client_id="c1",
-        scopes=["prepza"],
+        scopes=["testee"],
         subject=user,
         grant_id=str(grant_id),
         client_name=client_name,

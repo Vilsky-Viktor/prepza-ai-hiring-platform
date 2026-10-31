@@ -124,7 +124,7 @@ class Candidate(BaseModel):
         ),
     )
     results_url: str = Field(
-        description="Link to the candidate's full results and report in prepza"
+        description="Link to the candidate's full results and report in testee"
     )
     invite_url: str | None = Field(
         default=None,
@@ -170,7 +170,7 @@ class CandidateIn(BaseModel):
         description=(
             "Where to take the candidate once they've finished, optional: any https address "
             "(http only on `localhost` or `127.0.0.1`, while you test). The finished page shows "
-            "a button to it, with `prepza_invite=<candidate id>` added to its query"
+            "a button to it, with `testee_invite=<candidate id>` added to its query"
         ),
     )
     theme: Literal["light", "dark", "default"] = Field(
@@ -184,10 +184,10 @@ class CandidateIn(BaseModel):
     sign_in: bool = Field(
         default=True,
         description=(
-            "Whether the candidate signs in to prepza with this email, which prepza sends the "
+            "Whether the candidate signs in to testee with this email, which testee sends the "
             "invitation and its reminder to. Set it to false when your platform already knows "
             "who the candidate is and sends them to the response's `invite_url` itself: the "
-            "link then opens the interview without signing in, and prepza sends no emails. "
+            "link then opens the interview without signing in, and testee sends no emails. "
             "Anyone with that link can take the interview, so give it only to the candidate"
         ),
     )

@@ -2,7 +2,7 @@
 more, so a redelivery or a repeat is safe, in any order; an error answers 5xx and Pub/Sub
 delivers the event again)."""
 
-from prepza_common.events.deletions import USER_DELETED
+from testee_common.events.deletions import USER_DELETED
 
 from generation.handlers import user_deleted
 

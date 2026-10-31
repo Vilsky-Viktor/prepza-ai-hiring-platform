@@ -1,4 +1,4 @@
-"""Votes on the chats' answers sent to Langfuse (prepza_common.ai.answer_votes): one score a trace, created or replaced to match the vote as it is when sent, deleted when cleared,
+"""Votes on the chats' answers sent to Langfuse (testee_common.ai.answer_votes): one score a trace, created or replaced to match the vote as it is when sent, deleted when cleared,
 retried, sent within the vote's own request, and nothing at all without Langfuse's keys.
 Langfuse itself is a fake here."""
 
@@ -7,7 +7,7 @@ import threading
 
 import pytest
 from langfuse.api.core.api_error import ApiError
-from prepza_common.ai import answer_votes, tracing
+from testee_common.ai import answer_votes, tracing
 
 TRACE = "a" * 32
 

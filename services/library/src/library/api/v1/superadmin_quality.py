@@ -1,8 +1,8 @@
 from uuid import UUID, uuid5
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.db.paging import PageParams
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.db.paging import PageParams
 
 from library.constants.sets import SetKind
 from library.core.db import Session

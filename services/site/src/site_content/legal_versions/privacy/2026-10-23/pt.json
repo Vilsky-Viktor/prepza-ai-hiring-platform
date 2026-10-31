@@ -1,11 +1,11 @@
 {
-  "intro": "Esta política explica quais dados pessoais a prepza coleta, por quê, por quanto tempo os conservamos e quais são os seus direitos. A prepza é operada pela Arcolabs OÜ (código de registro 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estônia. O prepza.ai também mostra este documento em outros idiomas; apenas a versão em inglês é vinculante e, quando uma tradução divergir dela, prevalece a versão em inglês.",
+  "intro": "Esta política explica quais dados pessoais a testee coleta, por quê, por quanto tempo os conservamos e quais são os seus direitos. A testee é operada pela Arcolabs OÜ (código de registro 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estônia. O testee.ai também mostra este documento em outros idiomas; apenas a versão em inglês é vinculante e, quando uma tradução divergir dela, prevalece a versão em inglês.",
   "sections": [
     {
       "heading": "Quem é o responsável",
       "paragraphs": [
-        "Para a sua própria conta e a conta da sua empresa, a Arcolabs OÜ é a responsável pelo tratamento dos seus dados. Escreva para hello@prepza.ai com qualquer dúvida ou pedido.",
-        "Quando uma empresa convida você para uma entrevista na prepza, é essa empresa que decide por que e como seus resultados são usados e é a responsável pelo tratamento deles; nós os tratamos em nome dela. Você pode entrar em contato diretamente com a empresa, ou conosco, e encaminharemos o seu pedido."
+        "Para a sua própria conta e a conta da sua empresa, a Arcolabs OÜ é a responsável pelo tratamento dos seus dados. Escreva para hello@testee.ai com qualquer dúvida ou pedido.",
+        "Quando uma empresa convida você para uma entrevista na testee, é essa empresa que decide por que e como seus resultados são usados e é a responsável pelo tratamento deles; nós os tratamos em nome dela. Você pode entrar em contato diretamente com a empresa, ou conosco, e encaminharemos o seu pedido."
       ]
     },
     {
@@ -23,7 +23,7 @@
         "A verificação \"Não sou um robô\": quando você envia o formulário de contato, faz uma primeira pergunta no chat de ajuda, inicia uma entrevista pelo link de um anúncio de vaga, cria a sua primeira empresa ou aprova os temas de uma empresa que ainda não pagou, o Cloudflare Turnstile examina o seu navegador (como o tipo dele, como ele se comporta e o endereço de onde ele se conecta) para distinguir uma pessoa de um script. Recebemos apenas se a verificação foi aprovada.",
         "Apps de IA que você conecta: o nome do app e o site para onde ele retorna, e quando você o conectou e o usou pela última vez. O acesso dele é guardado apenas como um hash unidirecional.",
         "Os termos que você aceitou: a versão dos termos em vigor quando você se cadastrou, e quando, como prova do que você aceitou. Ela é excluída com a sua conta.",
-        "Ferramentas que uma empresa conecta: as chaves ou tokens que o proprietário ou um administrador dela cria no seu sistema de gestão de candidatos (Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR) ou no Slack, armazenados criptografados; um hash unidirecional de cada chave de API da prepza e os endereços dos seus webhooks; e, do seu sistema de gestão de candidatos, o e-mail, o nome e o ID de cada candidato que ele envia à prepza.",
+        "Ferramentas que uma empresa conecta: as chaves ou tokens que o proprietário ou um administrador dela cria no seu sistema de gestão de candidatos (Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR) ou no Slack, armazenados criptografados; um hash unidirecional de cada chave de API da testee e os endereços dos seus webhooks; e, do seu sistema de gestão de candidatos, o e-mail, o nome e o ID de cada candidato que ele envia à testee.",
         "Configurações de e-mail: quais e-mails opcionais você recebe e um registro de cada alteração neles: qual e-mail, ativado ou desativado, quando, onde (ao entrar, em Configurações, ou por um link de cancelamento de inscrição ou uma denúncia de spam) e qual versão do texto das caixas de seleção você viu.",
         "E-mails aos membros da empresa: um registro dos resumos de atividades e lembretes que enviamos a você, e do assunto de cada lembrete, para que nenhum seja enviado duas vezes.",
         "E-mails para muitos usuários (avisos de alterações dos nossos termos, avisos importantes sobre o serviço, novidades do produto, ofertas): se cada um foi enviado a você, ignorado ou falhou, e se você cancelou a inscrição ou o marcou como spam, para que nenhum seja enviado duas vezes e possamos ver como cada um foi recebido.",
@@ -33,37 +33,37 @@
         "Compras: para cada recarga, a empresa a que se destinava, quem a comprou, o que foi comprado, o total e a moeda, o ID da transação da Paddle e quando. Os dados do cartão e de faturamento ficam com a Paddle, não conosco.",
         "Registro de ações de uma empresa: o que os membros dela fazem nela, como convidar, ver ou remover um candidato, alterar uma entrevista ou a equipe, fazer uma recarga ou conectar uma ferramenta, com quem fez, quando e se o assistente, um app de IA ou a API fez isso por eles. O proprietário da empresa o vê. Candidatos e membros só aparecem pelo nome enquanto ainda fazem parte da empresa: o registro guarda os IDs deles, nunca os e-mails.",
         "Uso de IA e limites: para cada uso de IA, como escrever perguntas ou a resposta do assistente, para que foi, o modelo, o volume e o custo, e a conta e a empresa a que se destinou; e cada vez que um limite recusa uma solicitação, qual limite, quando, e a conta e a empresa cuja solicitação foi recusada. Nunca o texto enviado à IA nem a resposta dela.",
-        "Registros de chamadas à IA: o que a prepza envia à IA e o que ela responde cada vez que é usada, como ao escrever perguntas a partir de uma descrição de vaga, ou as respostas do assistente e do chat de ajuda com o que eles leram para responder (o que pode incluir resultados de candidatos), e os votos nessas respostas. Eles são guardados pela Langfuse (veja abaixo), apenas para monitorar e melhorar a qualidade das respostas.",
+        "Registros de chamadas à IA: o que a testee envia à IA e o que ela responde cada vez que é usada, como ao escrever perguntas a partir de uma descrição de vaga, ou as respostas do assistente e do chat de ajuda com o que eles leram para responder (o que pode incluir resultados de candidatos), e os votos nessas respostas. Eles são guardados pela Langfuse (veja abaixo), apenas para monitorar e melhorar a qualidade das respostas.",
         "Estatísticas de uso: etapas como o cadastro, a criação de uma empresa, um candidato convidado ou uma recarga, com valores como uma pontuação ou um montante. O ID da sua conta é substituído por um código gerado com uma chave secreta que mantemos, de modo que as estatísticas não identificam você pelo nome, mas são pseudonimizadas, não anônimas: com a chave, o código corresponde ao ID da sua conta. O ID de uma empresa é mantido como está. Nenhum nome, e-mail ou texto é incluído."
       ]
     },
     {
       "heading": "Por que os usamos",
       "items": [
-        "Para fornecer a prepza: gerar entrevistas, aplicá-las aos candidatos convidados, mostrar os resultados às empresas e enviar os e-mails que você pede (contrato).",
+        "Para fornecer a testee: gerar entrevistas, aplicá-las aos candidatos convidados, mostrar os resultados às empresas e enviar os e-mails que você pede (contrato).",
         "E-mails de serviço, como convites, relatórios, problemas de cobrança, alterações dos nossos termos e avisos importantes sobre o serviço (um incidente de segurança, uma manutenção programada ou uma mudança no seu funcionamento), que são sempre enviados (contrato).",
-        "O resumo de atividades e os lembretes sobre as suas empresas, como créditos baixos ou uma entrevista sem candidatos (nosso interesse legítimo em ajudar você a usar a prepza). Ficam ativados até você desativá-los.",
+        "O resumo de atividades e os lembretes sobre as suas empresas, como créditos baixos ou uma entrevista sem candidatos (nosso interesse legítimo em ajudar você a usar a testee). Ficam ativados até você desativá-los.",
         "Novidades do produto e notícias: para os nossos próprios usuários que não marcaram \"Não quero receber novidades do produto e notícias\" quando isso foi oferecido no primeiro acesso (artigo 13(2) da Diretiva relativa à privacidade e às comunicações eletrônicas e § 103¹ da Lei das Comunicações Eletrônicas da Estônia). Você pode cancelá-los a qualquer momento, gratuitamente.",
         "Ofertas e promoções: somente se você concordar, marcando a caixa ao entrar ou em Configurações (consentimento). Você pode retirar o consentimento a qualquer momento.",
         "Escolher para quem vai um e-mail enviado a muitos usuários: se a sua conta faz parte da equipe de uma empresa (e se como proprietário ou administrador), fez a entrevista de uma empresa ou usou a prática gratuita, para que uma novidade do produto, uma oferta ou um aviso importante chegue só a quem diz respeito. Usamos apenas o fato de a sua conta ter feito isso, nunca as suas respostas, resultados ou o que uma empresa guarda sobre você (nosso interesse legítimo em enviar apenas e-mails relevantes). As novidades do produto e as ofertas continuam indo apenas para quem as recebe pelos dois pontos acima.",
-        "Lembrar que um candidato deixou de receber os e-mails de uma empresa, para que a prepza não volte a enviar e-mails a ele em nome dessa empresa (respeitando a oposição dele).",
-        "Para manter a prepza segura e funcionando: prevenção de abusos, limites de requisições, relatórios de erros e estatísticas que melhoram a qualidade das perguntas (nosso interesse legítimo).",
+        "Lembrar que um candidato deixou de receber os e-mails de uma empresa, para que a testee não volte a enviar e-mails a ele em nome dessa empresa (respeitando a oposição dele).",
+        "Para manter a testee segura e funcionando: prevenção de abusos, limites de requisições, relatórios de erros e estatísticas que melhoram a qualidade das perguntas (nosso interesse legítimo).",
         "Qualidade das perguntas: analisamos como as perguntas são respondidas e denunciadas para encontrar padrões gerais e anonimizados de qualidade das perguntas, que melhoram a geração de perguntas para todos; esses padrões não contêm dados pessoais (nosso interesse legítimo).",
-        "Reutilização das perguntas geradas: as perguntas que a prepza gera podem ser reutilizadas em entrevistas e na prática de outros clientes, sem nenhum dado pessoal ou detalhe que identifique uma empresa ou uma pessoa. Uma empresa pode excluir disso as perguntas de uma entrevista nas configurações dela.",
+        "Reutilização das perguntas geradas: as perguntas que a testee gera podem ser reutilizadas em entrevistas e na prática de outros clientes, sem nenhum dado pessoal ou detalhe que identifique uma empresa ou uma pessoa. Uma empresa pode excluir disso as perguntas de uma entrevista nas configurações dela.",
         "Os registros de chamadas à IA nos permitem monitorar e melhorar a qualidade das perguntas e respostas da IA (nosso interesse legítimo).",
-        "Controle de custos e prevenção de abusos: os registros do uso de IA e dos limites atingidos mostram quanto custa a IA e quem atinge cada limite, para que possamos manter a prepza acessível e impedir o uso indevido (nosso interesse legítimo).",
+        "Controle de custos e prevenção de abusos: os registros do uso de IA e dos limites atingidos mostram quanto custa a IA e quem atinge cada limite, para que possamos manter a testee acessível e impedir o uso indevido (nosso interesse legítimo).",
         "O registro de ações de uma empresa permite que o proprietário dela veja quem fez o quê na empresa, e que o nosso suporte o consulte quando a empresa pede ajuda (interesse legítimo da empresa e nosso na prestação de contas).",
-        "As estatísticas de uso mostram quais partes da prepza ajudam as pessoas e quais preços e limites funcionam, para que possamos melhorá-los (nosso interesse legítimo).",
+        "As estatísticas de uso mostram quais partes da testee ajudam as pessoas e quais preços e limites funcionam, para que possamos melhorá-los (nosso interesse legítimo).",
         "Registros de compras, mantidos para a contabilidade conforme exige a legislação contábil da Estônia (obrigação legal).",
         "Mostrar uma empresa como verificada, comparando o site dela com os domínios de e-mail dos seus proprietários e administradores (nosso interesse legítimo).",
-        "Aberto a propostas: só se você ativar (consentimento), as empresas que contratam pela prepza veem o seu nome, o seu perfil do LinkedIn e o seu resultado mais recente de prática cronometrada em cada tema que você praticou e que uma das entrevistas delas cobre no nível dela, para que possam convidar você para essa entrevista. Não classificamos nem recomendamos você e não tomamos nenhuma decisão sobre você: a empresa decide quem convidar. Você pode retirar o consentimento a qualquer momento em Configurações, e então some na hora da lista de todas as empresas. O registro das suas escolhas é guardado como prova do seu consentimento (nossa obrigação legal de comprová-lo).",
-        "Os resultados da entrevista, os tempos e os sinais de integridade ajudam a empresa contratante a avaliar suas respostas de forma justa (interesse legítimo da empresa). Os sinais incluem padrões nas suas respostas: tempos quase iguais em todas as perguntas, ou perguntas difíceis certas enquanto as fáceis estavam erradas; com base neles, a empresa vê perguntas que pode fazer a você sobre isso em uma entrevista ao vivo. As pessoas da empresa tomam a decisão de contratação; a prepza não toma, por si só, nenhuma decisão sobre você. Você pode pedir à empresa que uma pessoa revise o seu resultado e, antes de começar, uma adaptação, como tempo extra."
+        "Aberto a propostas: só se você ativar (consentimento), as empresas que contratam pela testee veem o seu nome, o seu perfil do LinkedIn e o seu resultado mais recente de prática cronometrada em cada tema que você praticou e que uma das entrevistas delas cobre no nível dela, para que possam convidar você para essa entrevista. Não classificamos nem recomendamos você e não tomamos nenhuma decisão sobre você: a empresa decide quem convidar. Você pode retirar o consentimento a qualquer momento em Configurações, e então some na hora da lista de todas as empresas. O registro das suas escolhas é guardado como prova do seu consentimento (nossa obrigação legal de comprová-lo).",
+        "Os resultados da entrevista, os tempos e os sinais de integridade ajudam a empresa contratante a avaliar suas respostas de forma justa (interesse legítimo da empresa). Os sinais incluem padrões nas suas respostas: tempos quase iguais em todas as perguntas, ou perguntas difíceis certas enquanto as fáceis estavam erradas; com base neles, a empresa vê perguntas que pode fazer a você sobre isso em uma entrevista ao vivo. As pessoas da empresa tomam a decisão de contratação; a testee não toma, por si só, nenhuma decisão sobre você. Você pode pedir à empresa que uma pessoa revise o seu resultado e, antes de começar, uma adaptação, como tempo extra."
       ]
     },
     {
       "heading": "Com quem os compartilhamos",
       "paragraphs": [
-        "Compartilhamos dados com os prestadores de serviços que operam a prepza para nós, com base em acordos que os protegem, e com a Paddle, que vende as recargas:"
+        "Compartilhamos dados com os prestadores de serviços que operam a testee para nós, com base em acordos que os protegem, e com a Paddle, que vende as recargas:"
       ],
       "items": [
         "Google (Firebase Authentication; Google LLC, Estados Unidos, com base no Quadro de Privacidade de Dados UE-EUA): login. O LinkedIn e o GitHub apenas confirmam quem você é quando você entra com eles; não recebemos mais nada deles.",
@@ -75,27 +75,27 @@
         "Cloudflare (Turnstile; Cloudflare, Inc., Estados Unidos, com base no Quadro de Privacidade de Dados UE-EUA): a verificação \"Não sou um robô\".",
         "Google Cloud, nosso provedor de hospedagem, que armazena os dados (na UE, Bélgica).",
         "Upstash: contadores de curta duração para limites de uso e atualizações ao vivo (na UE, Bélgica).",
-        "Empresas, só se você ativar Aberto a propostas: as empresas que contratam pela prepza veem o que está descrito acima. Cada uma é responsável por como usa o que vê. Se uma delas convidar você, o convite vai para o e-mail da sua conta, e a empresa vê esse e-mail como vê o de qualquer candidato.",
+        "Empresas, só se você ativar Aberto a propostas: as empresas que contratam pela testee veem o que está descrito acima. Cada uma é responsável por como usa o que vê. Se uma delas convidar você, o convite vai para o e-mail da sua conta, e a empresa vê esse e-mail como vê o de qualquer candidato.",
         "A Paddle (Paddle.com Market Ltd, Reino Unido) não é um deles: ela mesma vende as recargas, como merchant of record (revendedora), e é a responsável pelo tratamento dos dados de pagamento, fiscais e de faturamento que coleta, nos termos da sua própria política de privacidade. Passamos a ela o e-mail do membro que compra, e ela nos informa o que foi comprado e pago."
       ]
     },
     {
       "heading": "Ferramentas que uma empresa conecta",
       "paragraphs": [
-        "Uma empresa pode conectar suas próprias ferramentas à prepza, e então enviamos dados a elas por instrução dela, como parte do serviço que ela solicitou: o seu sistema de gestão de candidatos (Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR) recebe a sua nota, se ela atingiu a nota de aprovação, os sinais de integridade e um link para os seus resultados; um canal do Slack escolhido por ela recebe as notificações dela, como a de que você terminou e a sua nota; e os sistemas dela, por meio da API ou dos webhooks da prepza, recebem o seu e-mail, o seu nome, o seu progresso, a sua nota, se você atingiu a nota de aprovação, os sinais de integridade e o seu link de convite. A empresa escolhe e controla essas ferramentas, que podem estar fora da UE, e é responsável pela forma como usam os seus dados."
+        "Uma empresa pode conectar suas próprias ferramentas à testee, e então enviamos dados a elas por instrução dela, como parte do serviço que ela solicitou: o seu sistema de gestão de candidatos (Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR) recebe a sua nota, se ela atingiu a nota de aprovação, os sinais de integridade e um link para os seus resultados; um canal do Slack escolhido por ela recebe as notificações dela, como a de que você terminou e a sua nota; e os sistemas dela, por meio da API ou dos webhooks da testee, recebem o seu e-mail, o seu nome, o seu progresso, a sua nota, se você atingiu a nota de aprovação, os sinais de integridade e o seu link de convite. A empresa escolhe e controla essas ferramentas, que podem estar fora da UE, e é responsável pela forma como usam os seus dados."
       ]
     },
     {
       "heading": "Apps de IA que você conecta",
       "paragraphs": [
-        "Você pode conectar um app de IA seu, como o Claude (da Anthropic) ou o ChatGPT (da OpenAI), à sua conta da prepza. Somente quando você o faz, e somente para o que você pede, ele lê e altera os dados das suas empresas com o seu acesso, incluindo os resultados dos candidatos, e esses dados chegam ao fornecedor do app nos termos e na política de privacidade do próprio app, não nos nossos. Você escolhe esses apps e pode desconectar qualquer um deles a qualquer momento na aba Integrações de uma empresa; excluir a sua conta desconecta todos. Os proprietários e administradores de uma empresa podem impedir que apps de IA usem os dados dessa empresa."
+        "Você pode conectar um app de IA seu, como o Claude (da Anthropic) ou o ChatGPT (da OpenAI), à sua conta da testee. Somente quando você o faz, e somente para o que você pede, ele lê e altera os dados das suas empresas com o seu acesso, incluindo os resultados dos candidatos, e esses dados chegam ao fornecedor do app nos termos e na política de privacidade do próprio app, não nos nossos. Você escolhe esses apps e pode desconectar qualquer um deles a qualquer momento na aba Integrações de uma empresa; excluir a sua conta desconecta todos. Os proprietários e administradores de uma empresa podem impedir que apps de IA usem os dados dessa empresa."
       ]
     },
     {
       "heading": "E-mails e cancelamento de inscrição",
       "paragraphs": [
         "Os e-mails de serviço, como convites, relatórios, problemas de cobrança, alterações dos nossos termos e avisos importantes sobre o serviço, são sempre enviados. Você escolhe os demais em Configurações, em E-mails: o resumo de atividades, os lembretes, as novidades do produto e notícias, e as ofertas e promoções. Todo e-mail opcional tem um link de cancelamento de inscrição que funciona sem entrar na conta, e marcar um e-mail opcional como spam também o desativa. Se um e-mail para você for devolvido de forma definitiva, ou se você marcar um dos nossos como spam, deixamos de enviar e-mails sobre o produto e avisos para esse endereço até que você nos peça para voltar a enviar.",
-        "Os convites e lembretes que uma empresa envia aos candidatos pela prepza têm links para deixar de receber os e-mails dessa empresa, ou os lembretes dessa entrevista. A prepza então não volta a enviar e-mails a esse endereço em nome da empresa, e a empresa vê o convite como não entregue."
+        "Os convites e lembretes que uma empresa envia aos candidatos pela testee têm links para deixar de receber os e-mails dessa empresa, ou os lembretes dessa entrevista. A testee então não volta a enviar e-mails a esse endereço em nome da empresa, e a empresa vê o convite como não entregue."
       ]
     },
     {
@@ -118,7 +118,7 @@
         "Os registros do uso de IA e dos limites atingidos: 13 meses, sem o ID da sua conta depois que você exclui a sua conta.",
         "Rodadas de prática: até você excluir a sua conta.",
         "Aberto a propostas: até você desativar ou excluir a sua conta, e no máximo um ano depois da última vez que você ativou ou salvou o seu perfil do LinkedIn; o registro das suas escolhas, até você excluir a sua conta.",
-        "Um relatório enviado por e-mail pela prepza: o PDF é guardado apenas para enviar o e-mail e excluído no máximo 7 dias depois.",
+        "Um relatório enviado por e-mail pela testee: o PDF é guardado apenas para enviar o e-mail e excluído no máximo 7 dias depois.",
         "Descrições de vagas coladas, nos nossos registros de geração: 90 dias após o término da geração. A entrevista criada a partir delas permanece na conta da empresa até ser excluída.",
         "As suas configurações de e-mail e o registro das alterações delas: até você excluir a sua conta.",
         "O registro dos resumos e lembretes enviados a você: 30 dias, ou até você excluir a sua conta, se isso ocorrer antes.",
@@ -150,17 +150,17 @@
     {
       "heading": "Cookies e armazenamento",
       "paragraphs": [
-        "A prepza usa apenas os cookies e o armazenamento do navegador de que precisa para funcionar ou que guardam as suas próprias escolhas. Não há cookies de publicidade nem de análise.",
-        "Para manter você conectado: um cookie (prepza_token, renovado a cada hora enquanto você usa a prepza, até você sair) e o armazenamento do navegador do nosso provedor de login, o Google Firebase. Enquanto você conecta um app de IA, um cookie (prepza_connect) dura os poucos minutos necessários.",
-        "Para lembrar as suas escolhas: o seu idioma (um cookie, prepza_locale, por um ano, definido quando você escolhe um idioma ou abre a prepza no endereço de um idioma), o seu tema claro ou escuro, a largura do painel do assistente, como você convidou candidatos da última vez, que você já entrou neste navegador antes, o período escolhido por último para as estatísticas, os avisos de alteração de um documento legal que você fechou, e a sua conversa com o assistente (até você entrar, apenas nesta aba). Eles ficam no seu navegador até você apagá-los.",
-        "Um link de indicação: somente se você optar por guardá-lo, um cookie (prepza_ref) lembra por 30 dias o link pelo qual você chegou, para que os créditos cheguem às duas empresas.",
+        "A testee usa apenas os cookies e o armazenamento do navegador de que precisa para funcionar ou que guardam as suas próprias escolhas. Não há cookies de publicidade nem de análise.",
+        "Para manter você conectado: um cookie (testee_token, renovado a cada hora enquanto você usa a testee, até você sair) e o armazenamento do navegador do nosso provedor de login, o Google Firebase. Enquanto você conecta um app de IA, um cookie (testee_connect) dura os poucos minutos necessários.",
+        "Para lembrar as suas escolhas: o seu idioma (um cookie, testee_locale, por um ano, definido quando você escolhe um idioma ou abre a testee no endereço de um idioma), o seu tema claro ou escuro, a largura do painel do assistente, como você convidou candidatos da última vez, que você já entrou neste navegador antes, o período escolhido por último para as estatísticas, os avisos de alteração de um documento legal que você fechou, e a sua conversa com o assistente (até você entrar, apenas nesta aba). Eles ficam no seu navegador até você apagá-los.",
+        "Um link de indicação: somente se você optar por guardá-lo, um cookie (testee_ref) lembra por 30 dias o link pelo qual você chegou, para que os créditos cheguem às duas empresas.",
         "A verificação \"Não sou um robô\" funciona em um pequeno quadro da Cloudflare quando um formulário precisa dela, e não define cookies de rastreamento."
       ]
     },
     {
       "heading": "Crianças",
       "paragraphs": [
-        "A prepza não se destina a menores de 16 anos."
+        "A testee não se destina a menores de 16 anos."
       ]
     },
     {
@@ -172,7 +172,7 @@
     {
       "heading": "Fale conosco",
       "paragraphs": [
-        "Dúvidas sobre esta política ou sobre os seus dados: escreva para hello@prepza.ai ou use a página de contato, cujo link está no rodapé de todas as páginas."
+        "Dúvidas sobre esta política ou sobre os seus dados: escreva para hello@testee.ai ou use a página de contato, cujo link está no rodapé de todas as páginas."
       ]
     }
   ]

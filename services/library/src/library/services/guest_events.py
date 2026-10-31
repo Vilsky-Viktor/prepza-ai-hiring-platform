@@ -1,6 +1,6 @@
 import logging
 
-from prepza_common.config.constants import GUEST_UID_PREFIX
+from testee_common.config.constants import GUEST_UID_PREFIX
 
 from library.services.user_data import delete_data
 

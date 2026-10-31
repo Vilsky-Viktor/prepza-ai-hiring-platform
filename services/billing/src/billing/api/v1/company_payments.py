@@ -7,9 +7,9 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, Request, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.http.visitor_country import VisitorCountry
-from prepza_common.i18n.i18n import request_language
+from testee_common.auth.auth import CurrentUser
+from testee_common.http.visitor_country import VisitorCountry
+from testee_common.i18n.i18n import request_language
 
 from billing.constants.payment_failures import TRANSACTION_ID_PATTERN
 from billing.constants.products import OwnerType

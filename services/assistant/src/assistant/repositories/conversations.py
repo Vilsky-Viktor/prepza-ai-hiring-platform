@@ -1,9 +1,9 @@
 from datetime import UTC, datetime, timedelta
 from uuid import UUID
 
-from prepza_common.db.db import delete_in_batches
 from sqlalchemy import Text, cast, delete, func, or_, select, update
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
+from testee_common.db.db import delete_in_batches
 
 from assistant.models.conversations import Conversation, Message, ToolCall
 

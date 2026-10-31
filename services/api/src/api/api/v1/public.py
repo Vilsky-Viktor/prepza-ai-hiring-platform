@@ -2,8 +2,8 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Request, Response, status
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.db.paging import PageParams
+from testee_common.auth.key_actor import key_actor
+from testee_common.db.paging import PageParams
 
 from api.api.dependencies import needs
 from api.config import settings
@@ -131,7 +131,7 @@ async def invite_candidate(
     idempotency_key: IdempotencyKey = None,
 ) -> Candidate:
     """Invites the candidate to the interview as the key (the action log names it) and reserves
-    credits for them, with their name if given. By default prepza emails the invitation and the
+    credits for them, with their name if given. By default testee emails the invitation and the
     candidate signs in with that email; with `sign_in` false, your platform sends them to the
     response's `invite_url`, which opens the interview without signing in. With a `return_url`,
     the finished page takes the candidate back to your platform. With `mode`, the candidate takes

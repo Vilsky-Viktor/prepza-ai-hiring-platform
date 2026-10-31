@@ -1,10 +1,10 @@
 from fastapi import HTTPException, Request, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.auth.human_check import require_human
-from prepza_common.config.constants import REFERRAL_COOKIE
-from prepza_common.events.analytics import track
-from prepza_common.limits.limits import at_most, limit
 from sqlalchemy.exc import IntegrityError
+from testee_common.auth.auth import CurrentUser
+from testee_common.auth.human_check import require_human
+from testee_common.config.constants import REFERRAL_COOKIE
+from testee_common.events.analytics import track
+from testee_common.limits.limits import at_most, limit
 
 from companies.config import settings
 from companies.constants.invites import COMPANY_NAME_TAKEN, EMAIL_NOT_VERIFIED, TOO_MANY_COMPANIES

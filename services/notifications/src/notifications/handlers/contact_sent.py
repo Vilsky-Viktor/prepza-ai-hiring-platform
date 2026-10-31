@@ -4,5 +4,5 @@ from notifications.services import events
 
 
 async def handle(data: dict, event_id: str) -> None:
-    """A contact page message, emailed to prepza's inbox."""
+    """A contact page message, emailed to testee's inbox."""
     await events.deliver(contact_email(data, settings.contact_email), event_id)

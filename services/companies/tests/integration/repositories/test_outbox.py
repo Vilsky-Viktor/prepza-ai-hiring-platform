@@ -1,9 +1,9 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.config.event_constants import OUTBOX_KEEP_DAYS, OUTBOX_MAX_ATTEMPTS
-from prepza_common.events import outbox
 from sqlalchemy import select
+from testee_common.config.event_constants import OUTBOX_KEEP_DAYS, OUTBOX_MAX_ATTEMPTS
+from testee_common.events import outbox
 
 from companies.core.db import Session
 from companies.models.outbox import OutboxEvent

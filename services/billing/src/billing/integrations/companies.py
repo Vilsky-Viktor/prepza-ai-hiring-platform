@@ -1,7 +1,7 @@
-"""Who may do what in a company, as companies answers it (prepza_common.auth.company_access):
+"""Who may do what in a company, as companies answers it (testee_common.auth.company_access):
 billing checks it itself on a company's payment routes."""
 
-from prepza_common.auth import company_access
+from testee_common.auth import company_access
 
 from billing.config import settings
 from billing.core.security import service_token

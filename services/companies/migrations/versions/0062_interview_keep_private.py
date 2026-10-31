@@ -1,4 +1,4 @@
-"""An interview can be kept out of prepza's shared question bank (keep_private), the opt-out the
+"""An interview can be kept out of testee's shared question bank (keep_private), the opt-out the
 2026-11-08 terms promise; off by default, so a constant default makes the column instant
 
 Revision ID: 0062

@@ -95,7 +95,7 @@ def found(query: str) -> list[tuple]:
 
 
 def test_a_link_finds_the_deepest_page_it_points_at_on_any_host_and_language():
-    company = f"https://prepza.com/de/companies/{ACME.id}"
+    company = f"https://testee.com/de/companies/{ACME.id}"
     interview = f"{company}/interviews/{INTERVIEW.id}"
 
     assert found(company) == [COMPANY]
@@ -151,7 +151,7 @@ def test_unknown_ids_find_nothing():
     unknown = uuid.uuid4()
 
     assert found(str(unknown)) == []
-    assert found(f"https://prepza.com/companies/{unknown}") == []
+    assert found(f"https://testee.com/companies/{unknown}") == []
     assert found(f"/companies/{ACME.id}/interviews/{unknown}") == []
     assert found("txn_02") == []
     assert found("nobody@example.com") == []

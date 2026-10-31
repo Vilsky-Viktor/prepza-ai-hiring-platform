@@ -1,4 +1,4 @@
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 from companies.constants.interviews import SET_CACHE_SECONDS
 from companies.integrations import library

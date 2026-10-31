@@ -6,8 +6,8 @@ import logging
 import threading
 import time
 
-from prepza_common.observability import loop_watch
-from prepza_common.observability.loop_watch import short_path, start_loop_watch
+from testee_common.observability import loop_watch
+from testee_common.observability.loop_watch import short_path, start_loop_watch
 
 BLOCK = 0.2
 

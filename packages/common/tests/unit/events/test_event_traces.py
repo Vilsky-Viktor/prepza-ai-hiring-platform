@@ -9,10 +9,10 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 from event_pushes import push
-from prepza_common.config.constants import TRACE_FIELD
-from prepza_common.events import outbox, pubsub
-from prepza_common.events.pubsub import PushBody, event_of
-from prepza_common.observability.logging import JsonFormatter, current_trace, trace_header
+from testee_common.config.constants import TRACE_FIELD
+from testee_common.events import outbox, pubsub
+from testee_common.events.pubsub import PushBody, event_of
+from testee_common.observability.logging import JsonFormatter, current_trace, trace_header
 
 HEADER = "4bf92f3577b34da6a3ce929d0e0e4736/1;o=1"
 
@@ -82,7 +82,7 @@ def test_an_event_published_without_an_outbox_carries_the_requests_trace(monkeyp
 
 
 def test_a_consumers_lines_and_calls_carry_the_events_trace(monkeypatch):
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "prepza-prod")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "testee-prod")
     body = PushBody.model_validate(push("a.done", {}, trace=HEADER))
 
     def handle():
@@ -93,7 +93,7 @@ def test_a_consumers_lines_and_calls_carry_the_events_trace(monkeypatch):
 
     line, passed_on = in_request("push/9;o=1", handle)
 
-    assert line[TRACE_FIELD] == "projects/prepza-prod/traces/4bf92f3577b34da6a3ce929d0e0e4736"
+    assert line[TRACE_FIELD] == "projects/testee-prod/traces/4bf92f3577b34da6a3ce929d0e0e4736"
     assert passed_on == HEADER
 
 

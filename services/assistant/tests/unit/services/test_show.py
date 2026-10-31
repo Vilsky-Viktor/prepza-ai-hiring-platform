@@ -114,7 +114,7 @@ def test_nothing_is_shown_for_an_unknown_page_bad_ids_or_what_the_user_cant_see(
     assert content["error"] == 404
 
 
-# The contact page for handing over to a person; the features page for "what can prepza do".
+# The contact page for handing over to a person; the features page for "what can testee do".
 @pytest.mark.parametrize(("page", "path"), [("contact", "/contact"), ("features", "/features")])
 def test_a_public_page_is_a_link_without_ids(companies, page, path):
     content, block = run({"kind": "link", "page": page}, set())

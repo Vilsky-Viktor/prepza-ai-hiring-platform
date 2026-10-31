@@ -1,4 +1,4 @@
-from prepza_common.auth.service_auth import service_caller
+from testee_common.auth.service_auth import service_caller
 
 from generation.config import settings
 from generation.core.security import SERVICE_NAME

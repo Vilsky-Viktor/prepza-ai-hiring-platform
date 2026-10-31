@@ -5,8 +5,8 @@ from types import SimpleNamespace
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
-from prepza_common.auth.auth import current_user, optional_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user, optional_user
+from testee_common.auth.user import User
 
 from companies.constants.invites import EMAIL_NOT_VERIFIED, NO_PLEDGE, InviteStatus
 from companies.integrations import billing

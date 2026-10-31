@@ -2,8 +2,8 @@ import uuid
 
 from alembic import command
 from alembic.config import Config
-from prepza_common.db.db import sqlalchemy_url
 from sqlalchemy import create_engine, select, text
+from testee_common.db.db import sqlalchemy_url
 
 from companies.config import settings
 from companies.core.db import Session

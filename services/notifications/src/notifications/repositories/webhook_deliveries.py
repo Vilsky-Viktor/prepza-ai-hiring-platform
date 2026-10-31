@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common.events import outbox
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import outbox
 
 from notifications.constants.events import EMAIL_WEBHOOK
 from notifications.models.outbox import OutboxEvent

@@ -1,7 +1,7 @@
 {
   "landing": {
-    "title": "Paano gumagana ang prepza",
-    "text": "Ginagawa ng prepza ang iyong job description na isang interview na may oras, na may sariling random na mga tanong para sa bawat aplikante. Ipinapakita ng page na ito ang buong proseso, mula sa paggawa ng interview hanggang sa pag-share ng mga resulta.",
+    "title": "Paano gumagana ang testee",
+    "text": "Ginagawa ng testee ang iyong job description na isang interview na may oras, na may sariling random na mga tanong para sa bawat aplikante. Ipinapakita ng page na ito ang buong proseso, mula sa paggawa ng interview hanggang sa pag-share ng mga resulta.",
     "actions": [
       "I-paste ang job description sa box sa itaas, o pumili ng handang template; ayusin ang mga topic, at isusulat at susuriin ang mga tanong para sa iyo.",
       "Mag-imbita ng mga aplikante sa email, mula sa file, gamit ang share link sa iyong job ad, o mula sa iyong ATS, sarili mong platform o isang AI assistant.",
@@ -17,9 +17,9 @@
   },
   "companies": {
     "title": "Mga kumpanya",
-    "text": "Ang iyong mga kumpanya. Lahat ng ginagawa mo sa prepza ay nasa loob ng isa: ang mga interview, aplikante, team, credits at integration nito.",
+    "text": "Ang iyong mga kumpanya. Lahat ng ginagawa mo sa testee ay nasa loob ng isa: ang mga interview, aplikante, team, credits at integration nito.",
     "actions": [
-      "Gumawa ng kumpanya gamit ang “bagong kumpanya”. Natatangi sa buong prepza ang pangalan nito.",
+      "Gumawa ng kumpanya gamit ang “bagong kumpanya”. Natatangi sa buong testee ang pangalan nito.",
       "Buksan ang isang kumpanya para asikasuhin ang mga interview at aplikante nito.",
       "Alisin ang kumpanyang pag-aari mo, kasama ang lahat ng interview at imbitasyon nito."
     ],
@@ -56,7 +56,7 @@
   },
   "newInterview": {
     "title": "Bagong interview",
-    "text": "Simulan ang interview mula sa job description. Babasahin ito ng prepza, magmumungkahi ng mga topic na susubukin, at isusulat ang mga tanong kapag inaprubahan mo na.",
+    "text": "Simulan ang interview mula sa job description. Babasahin ito ng testee, magmumungkahi ng mga topic na susubukin, at isusulat ang mga tanong kapag inaprubahan mo na.",
     "actions": [
       "I-paste ang job description: ang role, mga requirement nito at mga nice-to-have.",
       "Piliin ang wikang gagamitin sa interview.",
@@ -69,7 +69,7 @@
   },
   "reviewTopics": {
     "title": "I-review ang iyong mga topic",
-    "text": "Iminungkahi ng prepza ang mga topic na ito mula sa iyong description. Bawat topic na papanatilihin mo ay may sariling set ng mga tanong at sagot.",
+    "text": "Iminungkahi ng testee ang mga topic na ito mula sa iyong description. Bawat topic na papanatilihin mo ay may sariling set ng mga tanong at sagot.",
     "actions": [
       "Alisan ng check ang mga topic na hindi mo kailangan.",
       "I-edit ang pangalan at mga subtopic ng isang topic gamit ang lapis nito.",
@@ -83,7 +83,7 @@
   },
   "generating": {
     "title": "Ginagawa",
-    "text": "Ginagawa ng prepza ang iyong interview: una ang mga topic, saka ang mga tanong para sa bawat isa. Ilang minuto ito.",
+    "text": "Ginagawa ng testee ang iyong interview: una ang mga topic, saka ang mga tanong para sa bawat isa. Ilang minuto ito.",
     "actions": [
       "Puwede mong iwan ang page na ito: tuloy ang paggawa.",
       "Kanselahin ang paggawa kung hindi mo na ito kailangan; walang matitira sa nagawa na."
@@ -138,7 +138,7 @@
   },
   "interviewDiscover": {
     "title": "Discover",
-    "text": "Mga taong nagpa-practice sa prepza at piniling maging open to offers, na ang practice ay sumasaklaw sa mga topic ng interview na ito sa level nito. Makikita sa bawat isa ang pangalan, LinkedIn profile at pinakabagong resulta ng practice sa bawat katugmang topic. Ang mga kumpanyang nakapag-top up na kahit isang beses lang ang nakakakita sa tab na ito.",
+    "text": "Mga taong nagpa-practice sa testee at piniling maging open to offers, na ang practice ay sumasaklaw sa mga topic ng interview na ito sa level nito. Makikita sa bawat isa ang pangalan, LinkedIn profile at pinakabagong resulta ng practice sa bawat katugmang topic. Ang mga kumpanyang nakapag-top up na kahit isang beses lang ang nakakakita sa tab na ito.",
     "actions": [
       "Buksan ang LinkedIn profile ng isang tao para makilala pa siya.",
       "Imbitahan ang isang tao sa interview na ito (para sa mga may-ari at admin): mapupunta ito sa email ng account niya at gagastos ng credits gaya ng anumang imbitasyon."
@@ -157,7 +157,7 @@
       "Itakda ang average na oras bawat tanong, sa segundo: may sariling oras ang bawat tanong batay sa haba nito at sa anumang code na ipinapakita nito, at hindi nagbabago ang kabuuang oras ng interview.",
       "Itakda ang passing grade: pasado ang mga aplikanteng aabot dito.",
       "Markahan ang interview bilang na-hire kapag may napili ka na para sa role.",
-      "Huwag isama ang mga tanong ng interview sa shared question bank ng prepza; mananatili roon ang mga tanong na nagamit na sa ibang interview."
+      "Huwag isama ang mga tanong ng interview sa shared question bank ng testee; mananatili roon ang mga tanong na nagamit na sa ibang interview."
     ],
     "tips": [
       "Nase-save ang bawat setting pagkaalis mo sa field nito.",
@@ -248,16 +248,16 @@
       "Hindi itinatago sa log ang mga tao: ang na-delete na aplikante ay ipinapakitang ganoon, at ang miyembrong umalis ay bilang dating miyembro.",
       "Ang mga aksyon ng isang API key ay ipinapakita sa pangalan ng key, at ang sa na-delete na key ay bilang sa na-delete na key.",
       "Ang pagtingin ng isang miyembro sa mga resulta ng isang aplikante ay lumalabas isang beses bawat araw, sa pinakahuling pagtingin.",
-      "Walang data ang prepza tungkol sa kasarian, lahi o etnisidad: idagdag ang sariling sagot ng mga aplikante mo ayon sa email, saka alisin ang column ng email bago mo ibigay ang file sa independiyenteng auditor mo, para sa bias audit ng New York City (Local Law 144) o sa four-fifths rule ng EEOC. Hanggang 20 export bawat kumpanya kada araw, at lumalabas sa log ang bawat isa."
+      "Walang data ang testee tungkol sa kasarian, lahi o etnisidad: idagdag ang sariling sagot ng mga aplikante mo ayon sa email, saka alisin ang column ng email bago mo ibigay ang file sa independiyenteng auditor mo, para sa bias audit ng New York City (Local Law 144) o sa four-fifths rule ng EEOC. Hanggang 20 export bawat kumpanya kada araw, at lumalabas sa log ang bawat isa."
     ]
   },
   "integrations": {
     "title": "Mga integration",
-    "text": "Ikonekta ang prepza sa mga tool na ginagamit na ng iyong team. Bawat integration ay may sariling page na may mga hakbang sa pag-set up.",
+    "text": "Ikonekta ang testee sa mga tool na ginagamit na ng iyong team. Bawat integration ay may sariling page na may mga hakbang sa pag-set up.",
     "actions": [
       "Slack: matanggap ang mga notification ng iyong kumpanya sa isang channel.",
       "API: mga key at webhook para ikonekta ang sarili mong platform.",
-      "Mga AI app: gamitin ang prepza mula sa Claude, ChatGPT at iba pang AI app.",
+      "Mga AI app: gamitin ang testee mula sa Claude, ChatGPT at iba pang AI app.",
       "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): makakatanggap ng interview ang mga aplikanteng inilipat mo sa isang stage, at babalik doon ang kanilang resulta."
     ],
     "tips": [
@@ -274,30 +274,30 @@
       "I-unlink ang isang job, o idiskonekta ang ATS."
     ],
     "tips": [
-      "Magdagdag ng stage para lang sa prepza, gaya ng “prepza skills test”, para hindi ito mahalo sa iba mong tool.",
-      "Hindi kailanman inililipat o nire-reject ng prepza ang sinuman sa iyong ATS."
+      "Magdagdag ng stage para lang sa testee, gaya ng “testee skills test”, para hindi ito mahalo sa iba mong tool.",
+      "Hindi kailanman inililipat o nire-reject ng testee ang sinuman sa iyong ATS."
     ]
   },
   "slack": {
     "title": "Slack",
     "text": "Ang mga notification ng iyong kumpanya sa isang Slack channel, habang nangyayari.",
     "actions": [
-      "Idagdag ang prepza sa Slack at piliin ang channel, halimbawa #hiring.",
+      "Idagdag ang testee sa Slack at piliin ang channel, halimbawa #hiring.",
       "Piliin kung aling mga notification ang pupunta roon: may aplikanteng natapos, may imbitasyong hindi naihatid, may interview na handa na at iba pa.",
-      "Idiskonekta para itigil ang mga ito at alisin ang app ng prepza sa iyong Slack."
+      "Idiskonekta para itigil ang mga ito at alisin ang app ng testee sa iyong Slack."
     ],
     "tips": [
-      "Sa channel na iyon lang puwedeng mag-post ang prepza; hindi nito nababasa ang iyong Slack.",
+      "Sa channel na iyon lang puwedeng mag-post ang testee; hindi nito nababasa ang iyong Slack.",
       "Nakikita pa rin ng lahat ang bawat notification sa bell."
     ]
   },
   "api": {
     "title": "API",
-    "text": "Ikonekta ang sarili mong platform, gaya ng iyong careers site, sa prepza.",
+    "text": "Ikonekta ang sarili mong platform, gaya ng iyong careers site, sa testee.",
     "actions": [
       "Gumawa ng API key at i-check lang ang kailangan nito: basahin o gumawa ng mga interview; basahin, imbitahin, baguhin o alisin ang mga aplikante; basahin ang iyong credits; o gamitin sa mga AI agent (MCP). Kumikilos ito bilang ikaw.",
       "Buksan ang isang key para baguhin ang puwede nitong gawin, na agad nase-save ang bawat pagbabago, at ang mga IP address na puwedeng gumamit nito.",
-      "Magdagdag ng webhook: sinasabihan ng prepza ang iyong HTTPS address, may pirma, kapag nagsimula, natapos (kasama ang resulta), hindi naabot ng imbitasyon, nag-expire ang imbitasyon, o tinanggal ang isang aplikante, at kapag handa na ang isang interview.",
+      "Magdagdag ng webhook: sinasabihan ng testee ang iyong HTTPS address, may pirma, kapag nagsimula, natapos (kasama ang resulta), hindi naabot ng imbitasyon, nag-expire ang imbitasyon, o tinanggal ang isang aplikante, at kapag handa na ang isang interview.",
       "Padalhan ng test event ang isang webhook, at tingnan sa delivery log nito kung ano ang nangyari sa bawat padala.",
       "Sa tab na SDK, ilista ang mga site na puwedeng magpakita ng mga interview mo gamit ang SDK, at payagan ang localhost habang nagte-test ka.",
       "Burahin ang mga key at webhook na hindi mo na ginagamit.",
@@ -311,10 +311,10 @@
   },
   "aiApps": {
     "title": "Mga AI app",
-    "text": "Gamitin ang prepza mula sa AI chat mo: tanungin ang Claude o ChatGPT tungkol sa mga interview at aplikante mo, o ipagawa sa kanila ang mga pagbabago para sa iyo.",
+    "text": "Gamitin ang testee mula sa AI chat mo: tanungin ang Claude o ChatGPT tungkol sa mga interview at aplikante mo, o ipagawa sa kanila ang mga pagbabago para sa iyo.",
     "actions": [
       "Kopyahin ang address ng server at idagdag ito sa Claude, Claude Code o ChatGPT, ayon sa mga hakbang; nasa dokumentasyon para sa mga developer ang iba pang app at sarili mong mga agent.",
-      "Payagan ang app sa page ng prepza na magbubukas.",
+      "Payagan ang app sa page ng testee na magbubukas.",
       "I-disconnect ang app na hindi mo na ginagamit."
     ],
     "tips": [
@@ -324,7 +324,7 @@
   },
   "referrals": {
     "title": "Referrals",
-    "text": "Imbitahan ang ibang kumpanya sa prepza gamit ang link ng kumpanyang ito, at pareho kayong makakakuha ng credits.",
+    "text": "Imbitahan ang ibang kumpanya sa testee gamit ang link ng kumpanyang ito, at pareho kayong makakakuha ng credits.",
     "actions": [
       "Kopyahin o i-share ang iyong referral link.",
       "Tingnan ang bawat reward na natanggap na ng kumpanyang ito."
@@ -341,7 +341,7 @@
       "Maglagay o magpalit ng logo.",
       "Piliin ang mga font ng mga title at ng text, at kung gaano kabilog ang mga card at button.",
       "Piliin ang mga kulay ng bawat grupo, at tingnan ang mga ito sa preview.",
-      "I-save ang mga ito, o bumalik sa mga kulay ng prepza."
+      "I-save ang mga ito, o bumalik sa mga kulay ng testee."
     ],
     "tips": [
       "Hindi mase-save ang mga kulay na magpapahirap basahin ang text, para mabasa ng bawat aplikante ang mga tanong.",
@@ -376,12 +376,12 @@
   },
   "settings": {
     "title": "Mga setting",
-    "text": "Ang sarili mong account: ang wikang gamit ng prepza sa iyo, ang mga email na natatanggap mo, at ang iyong data.",
+    "text": "Ang sarili mong account: ang wikang gamit ng testee sa iyo, ang mga email na natatanggap mo, at ang iyong data.",
     "actions": [
       "Piliin ang wika ng site, ng help chat at ng iyong mga email.",
       "Piliin kung aling opsyonal na email ang matatanggap mo; laging ipinapadala ang mga email ng serbisyo, gaya ng mga imbitasyon, report at problema sa bayad.",
-      "I-on o i-off ang Open to offers: habang naka-on ito, nakikita ng mga kumpanyang nagha-hire sa prepza para sa mga topic na pinag-practice-an mo ang pangalan mo, LinkedIn profile at mga resulta ng practice, at puwede ka nilang imbitahan.",
-      "I-download ang lahat ng hawak ng prepza tungkol sa iyo, o burahin ang iyong account."
+      "I-on o i-off ang Open to offers: habang naka-on ito, nakikita ng mga kumpanyang nagha-hire sa testee para sa mga topic na pinag-practice-an mo ang pangalan mo, LinkedIn profile at mga resulta ng practice, at puwede ka nilang imbitahan.",
+      "I-download ang lahat ng hawak ng testee tungkol sa iyo, o burahin ang iyong account."
     ],
     "tips": [
       "Kapag binura mo ang iyong account, mabubura rin ang mga kumpanyang ikaw lang ang miyembro. Ang kumpanyang may iba nang sumali ay kailangan munang magkaroon ng ibang may-ari."
@@ -389,7 +389,7 @@
   },
   "join": {
     "title": "Imbitasyon sa kumpanya",
-    "text": "Inimbitahan ka na sumali sa team ng isang kumpanya sa prepza, para asikasuhin ang mga interview at aplikante nito.",
+    "text": "Inimbitahan ka na sumali sa team ng isang kumpanya sa testee, para asikasuhin ang mga interview at aplikante nito.",
     "actions": [
       "Mag-sign in gamit ang email kung saan ipinadala ang imbitasyon.",
       "Sumali sa kumpanya: lalabas na ito sa iyong mga kumpanya.",
@@ -402,21 +402,21 @@
   },
   "connect": {
     "title": "Ikonekta ang isang AI app",
-    "text": "Gustong gamitin ng isang AI app ang iyong prepza account. Dito mo pipiliin kung papayagan ito.",
+    "text": "Gustong gamitin ng isang AI app ang iyong testee account. Dito mo pipiliin kung papayagan ito.",
     "actions": [
       "Mag-sign in, kung hindi ka pa naka-sign in, para makita kung aling app ang humihingi.",
       "Basahin kung ano ang kaya at hindi kaya ng app sa iyong account.",
       "Payagan o tanggihan ang app; alinman ang piliin mo, babalik ka sa app."
     ],
     "tips": [
-      "Kapag hindi kilala ng prepza ang app, payagan lang ito kung ikaw mismo ang nagsimulang mag-connect nito.",
+      "Kapag hindi kilala ng testee ang app, payagan lang ito kung ikaw mismo ang nagsimulang mag-connect nito.",
       "I-disconnect ang app anumang oras sa Mga integration ng isang kumpanya, sa ilalim ng Mga AI app.",
       "Hindi na gumagana ang link na expired na o nagamit na: simulan ulit ang pag-connect mula sa iyong AI app."
     ]
   },
   "news": {
     "title": "Balita",
-    "text": "Ano ang bago sa prepza: mga bagong feature, pagpapahusay at update, pinakabago muna.",
+    "text": "Ano ang bago sa testee: mga bagong feature, pagpapahusay at update, pinakabago muna.",
     "actions": [
       "Mag-scroll pababa para mabasa ang mas lumang balita.",
       "Sundan ang balita sa iyong feed reader gamit ang RSS link sa itaas."
@@ -480,7 +480,7 @@
   },
   "features": {
     "title": "Mga feature",
-    "text": "Lahat ng ginagawa ng prepza para sa isang kumpanya, mula sa job description hanggang sa hire: paggawa ng mga interview, pag-imbita ng mga aplikante, ang nakikita ng mga aplikante, mga report, mga integration, compliance at presyo.",
+    "text": "Lahat ng ginagawa ng testee para sa isang kumpanya, mula sa job description hanggang sa hire: paggawa ng mga interview, pag-imbita ng mga aplikante, ang nakikita ng mga aplikante, mga report, mga integration, compliance at presyo.",
     "actions": [
       "Pumunta sa isang grupo gamit ang mga tab sa itaas: gumawa, mag-imbita, interview, magpasya, kumonekta, tiwala at presyo.",
       "Tingnan ang bawat feature katabi ng larawan ng totoong app.",
@@ -493,7 +493,7 @@
   },
   "pricing": {
     "title": "Presyo",
-    "text": "Magkano ang prepza: libre ang paggawa ng mga interview, at magbabayad ka bawat aplikanteng sumasagot, nang walang subscription.",
+    "text": "Magkano ang testee: libre ang paggawa ng mga interview, at magbabayad ka bawat aplikanteng sumasagot, nang walang subscription.",
     "actions": [
       "Tingnan ang kasalukuyang presyo bawat aplikante, at ang mas mababang presyo para sa mas malalaking top-up.",
       "Tingnan kung ilan sa mga una mong aplikante ang libre.",
@@ -533,10 +533,10 @@
   },
   "aiInterviews": {
     "title": "AI interviews",
-    "text": "Gabay sa mga uri ng AI interview tool, kung paano gumagana ang paraan ng prepza, at ang mga pangunahing kaalaman sa compliance.",
+    "text": "Gabay sa mga uri ng AI interview tool, kung paano gumagana ang paraan ng testee, at ang mga pangunahing kaalaman sa compliance.",
     "actions": [
       "Ikumpara ang mga interview tool na chatbot, video at gumagawa ng test.",
-      "Basahin, hakbang-hakbang, kung paano gumagawa at nagmamarka ng interview ang prepza, at kung ano ang hindi nito kailanman ginagawa.",
+      "Basahin, hakbang-hakbang, kung paano gumagawa at nagmamarka ng interview ang testee, at kung ano ang hindi nito kailanman ginagawa.",
       "Basahin ang mga pangunahing kaalaman sa EU AI Act, GDPR at mga patakaran ng US para sa AI sa pag-hire.",
       "Gumawa ng test para sa iyong mga aplikante mula sa card sa dulo."
     ],
@@ -550,7 +550,7 @@
     "actions": [
       "Basahin kung anong mga uri ng test ang mayroon at kailan nakakatulong ang bawat isa.",
       "Basahin ang mga pangunahing kaalaman tungkol sa pagiging patas at sa batas.",
-      "Tingnan kung ano ang hahanapin sa isang testing tool, at kung paano ito ginagawa ng prepza.",
+      "Tingnan kung ano ang hahanapin sa isang testing tool, at kung paano ito ginagawa ng testee.",
       "Gumawa ng test para sa iyong mga aplikante mula sa card sa dulo."
     ],
     "tips": [
@@ -558,8 +558,8 @@
     ]
   },
   "compare": {
-    "title": "Ikumpara ang prepza",
-    "text": "Mga paghahambing ng prepza sa ibang pre-employment testing tool, may mga source: paano ginagawa ang mga test, magkano ang mga ito at kailan mas bagay ang bawat isa.",
+    "title": "Ikumpara ang testee",
+    "text": "Mga paghahambing ng testee sa ibang pre-employment testing tool, may mga source: paano ginagawa ang mga test, magkano ang mga ito at kailan mas bagay ang bawat isa.",
     "actions": [
       "Buksan ang isang paghahambing para mabasa ito."
     ],
@@ -569,7 +569,7 @@
   },
   "comparison": {
     "title": "Paghahambing",
-    "text": "Paano ikinukumpara ang prepza sa ibang tool sa isang tanong: paano ginagawa ang mga test, magkano ang mga ito at kailan mas bagay ang bawat isa.",
+    "text": "Paano ikinukumpara ang testee sa ibang tool sa isang tanong: paano ginagawa ang mga test, magkano ang mga ito at kailan mas bagay ang bawat isa.",
     "actions": [
       "Basahin ang paghahambing at sundan ang mga link nito papunta sa mga source.",
       "Gumawa ng test para sa iyong mga aplikante mula sa card sa dulo.",
@@ -603,7 +603,7 @@
   },
   "faq": {
     "title": "Mga madalas itanong",
-    "text": "Mga sagot sa mga karaniwang tanong tungkol sa prepza: mga interview, aplikante, presyo at credits, resulta, integration, wika at ang iyong data.",
+    "text": "Mga sagot sa mga karaniwang tanong tungkol sa testee: mga interview, aplikante, presyo at credits, resulta, integration, wika at ang iyong data.",
     "actions": [
       "I-click ang isang tanong para buksan ang sagot nito."
     ],
@@ -614,9 +614,9 @@
   },
   "about": {
     "title": "Tungkol sa amin",
-    "text": "Sino ang gumagawa ng prepza at bakit: mga interview mula sa job description na kayang bayaran ng anumang team, at libreng practice para sa lahat.",
+    "text": "Sino ang gumagawa ng testee at bakit: mga interview mula sa job description na kayang bayaran ng anumang team, at libreng practice para sa lahat.",
     "actions": [
-      "Basahin kung bakit may prepza at kung paano nito nilalapitan ang pag-hire.",
+      "Basahin kung bakit may testee at kung paano nito nilalapitan ang pag-hire.",
       "Basahin ang mensahe ng founder, at buksan ang kanyang LinkedIn profile."
     ],
     "tips": [
@@ -625,7 +625,7 @@
   },
   "contact": {
     "title": "Makipag-ugnayan sa amin",
-    "text": "Sumulat sa team ng prepza tungkol sa isang tanong, ideya, alok na partnership o bagay na hindi gumagana.",
+    "text": "Sumulat sa team ng testee tungkol sa isang tanong, ideya, alok na partnership o bagay na hindi gumagana.",
     "actions": [
       "Ilagay ang iyong pangalan, email at mensahe, saka ipadala.",
       "I-paste ang ID ng kumpanya, interview, aplikante o account na tinutukoy nito, para mahanap namin agad."
@@ -637,10 +637,10 @@
   },
   "apiDocs": {
     "title": "Dokumentasyon para sa mga developer",
-    "text": "Lahat ng kailangan mo para ikonekta ang sarili mong platform o AI agent sa prepza, kinuha mula mismo sa API kaya laging tugma rito.",
+    "text": "Lahat ng kailangan mo para ikonekta ang sarili mong platform o AI agent sa testee, kinuha mula mismo sa API kaya laging tugma rito.",
     "actions": [
       "API: paano mag-sign in, ang base URL at bawat endpoint kasama ang mga parameter, body, response at error nito.",
-      "Webhook: ang mga event na ipinapadala ng prepza sa iyong address at ang laman ng bawat isa.",
+      "Webhook: ang mga event na ipinapadala ng testee sa iyong address at ang laman ng bawat isa.",
       "SDK: paano i-embed ang interview sa sarili mong site.",
       "MCP: paano ikonekta ang isang AI app o sarili mong agent, at ang mga tool na makukuha nito.",
       "Mga object: bawat object na ibinabalik ng API, isa-isang field."
@@ -652,9 +652,9 @@
   },
   "accessibility": {
     "title": "Accessibility",
-    "text": "Paano gumagana ang prepza para sa mga taong may kapansanan, ano pa ang kulang, at paano ito sabihin sa amin.",
+    "text": "Paano gumagana ang testee para sa mga taong may kapansanan, ano pa ang kulang, at paano ito sabihin sa amin.",
     "actions": [
-      "Tingnan kung ano ang ginagawa ng prepza para sa accessibility, gaya ng mga theme, layout para sa phone at paggamit ng keyboard.",
+      "Tingnan kung ano ang ginagawa ng testee para sa accessibility, gaya ng mga theme, layout para sa phone at paggamit ng keyboard.",
       "Tingnan kung ano pa ang kulang, gaya ng mga tanong na may oras.",
       "Mag-email sa amin kung may mahirap gamitin o kailangan mo ito sa ibang anyo."
     ],
@@ -664,11 +664,11 @@
   },
   "documents": {
     "title": "Mga legal na dokumento",
-    "text": "Mga dokumento para sa mga kumpanyang sumusuri ng mga aplikante gamit ang prepza: mga instruction, template at ang kasunduan sa pagproseso ng data.",
+    "text": "Mga dokumento para sa mga kumpanyang sumusuri ng mga aplikante gamit ang testee: mga instruction, template at ang kasunduan sa pagproseso ng data.",
     "actions": [
       "I-download ang mga instruction para sa mga kumpanya: ano ang ibig sabihin ng grade, review ng tao, passing grade at extra time.",
       "I-download ang mga template ng abiso na puwedeng i-edit, para ipadala sa mga aplikante bago mo sila imbitahan.",
-      "I-download ang DPIA template, na napunan na ang bahagi ng prepza, para kumpletuhin.",
+      "I-download ang DPIA template, na napunan na ang bahagi ng testee, para kumpletuhin.",
       "I-download ang kasunduan sa pagproseso ng data, o basahin ito online."
     ],
     "tips": [
@@ -677,10 +677,10 @@
   },
   "trust": {
     "title": "Tiwala at seguridad",
-    "text": "Paano pinapanatiling ligtas ng prepza ang data mo at ng mga aplikante mo: seguridad, privacy, pagsunod sa mga batas sa pag-hire, kung saan naka-store ang data, sino ang nagpo-process nito at gaano katagal ito itinatago.",
+    "text": "Paano pinapanatiling ligtas ng testee ang data mo at ng mga aplikante mo: seguridad, privacy, pagsunod sa mga batas sa pag-hire, kung saan naka-store ang data, sino ang nagpo-process nito at gaano katagal ito itinatago.",
     "actions": [
-      "Tingnan kung paano pinoprotektahan ng prepza ang data: pag-sign in, encryption, pagsusuri ng access, rate limit at backup.",
-      "Tingnan kung ano ang ibinibigay ng prepza para sa GDPR, sa EU AI Act, sa UK at sa US, kasama ang batas ng New York City sa bias audit.",
+      "Tingnan kung paano pinoprotektahan ng testee ang data: pag-sign in, encryption, pagsusuri ng access, rate limit at backup.",
+      "Tingnan kung ano ang ibinibigay ng testee para sa GDPR, sa EU AI Act, sa UK at sa US, kasama ang batas ng New York City sa bias audit.",
       "Tingnan kung saan naka-store ang data, aling mga sub-processor ang humahawak nito at gaano katagal itinatago ang bawat uri ng data.",
       "Buksan ang terms, ang privacy policy, ang data processing agreement at ang mga dokumento para sa mga kumpanya."
     ],
@@ -690,7 +690,7 @@
   },
   "terms": {
     "title": "Mga tuntunin",
-    "text": "Ang mga tuntunin sa paggamit ng prepza: mga account, kumpanya, credits at bayad, mga test para sa mga aplikante, katanggap-tanggap na paggamit at pananagutan.",
+    "text": "Ang mga tuntunin sa paggamit ng testee: mga account, kumpanya, credits at bayad, mga test para sa mga aplikante, katanggap-tanggap na paggamit at pananagutan.",
     "actions": [
       "Basahin ang bersyong may bisa, kasama ang petsa kung kailan ito nagkabisa.",
       "Buksan ang naunang bersyon o paparating na bersyon mula sa listahan ng mga bersyon sa dulo.",
@@ -702,7 +702,7 @@
   },
   "privacy": {
     "title": "Privacy",
-    "text": "Paano kinokolekta, ginagamit at pinoprotektahan ng prepza ang personal na data ng mga kumpanya, ng kanilang mga miyembro at mga aplikante, at ang mga karapatan mo.",
+    "text": "Paano kinokolekta, ginagamit at pinoprotektahan ng testee ang personal na data ng mga kumpanya, ng kanilang mga miyembro at mga aplikante, at ang mga karapatan mo.",
     "actions": [
       "Basahin ang bersyong may bisa, kasama ang petsa kung kailan ito nagkabisa.",
       "Buksan ang naunang bersyon o paparating na bersyon mula sa listahan ng mga bersyon sa dulo.",
@@ -715,7 +715,7 @@
   },
   "dpa": {
     "title": "Kasunduan sa pagproseso ng data",
-    "text": "Ang kasunduan sa pagitan ng prepza at ng mga kumpanyang nagte-test ng mga aplikante: ano ang pinoproseso ng prepza para sa iyo at paano.",
+    "text": "Ang kasunduan sa pagitan ng testee at ng mga kumpanyang nagte-test ng mga aplikante: ano ang pinoproseso ng testee para sa iyo at paano.",
     "actions": [
       "Basahin ang bersyong may bisa, kasama ang petsa kung kailan ito nagkabisa.",
       "Buksan ang naunang bersyon o paparating na bersyon mula sa listahan ng mga bersyon sa dulo.",
@@ -728,7 +728,7 @@
   },
   "unsubscribe": {
     "title": "Mag-unsubscribe",
-    "text": "Itigil ang isang uri ng email mula sa prepza, gaya ng nakasaad sa page.",
+    "text": "Itigil ang isang uri ng email mula sa testee, gaya ng nakasaad sa page.",
     "actions": [
       "Basahin kung aling mga email ang itinitigil ng link.",
       "Kumpirmahin para mag-unsubscribe; walang nababago sa pagbukas lang ng link.",

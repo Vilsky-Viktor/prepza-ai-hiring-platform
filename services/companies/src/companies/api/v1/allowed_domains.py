@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.auth.auth import CurrentUser
+from testee_common.auth.auth import CurrentUser
 
 from companies.api.dependencies import Via
 from companies.schemas.allowed_domains import AllowedDomains
@@ -16,5 +16,5 @@ async def set_allowed_domains(
 ) -> AllowedDomains:
     """Owners and admins set the sites that may embed the company's interviews with the SDK,
     and whether localhost may too; the saved list. Never through an AI app or the assistant: a
-    person decides, in prepza itself."""
+    person decides, in testee itself."""
     return await company_settings.set_allowed_domains(company_id, user, body, via)

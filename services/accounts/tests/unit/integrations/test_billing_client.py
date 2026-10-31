@@ -1,7 +1,7 @@
 import asyncio
 
 import httpx
-from prepza_common.http import http
+from testee_common.http import http
 
 from accounts.integrations import billing
 

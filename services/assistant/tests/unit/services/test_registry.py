@@ -76,7 +76,7 @@ def test_a_tool_is_described_by_its_route_or_its_override():
     assert (
         built["get_platform_guide"]
         .definition["function"]["description"]
-        .startswith("Everything prepza's help knows")
+        .startswith("Everything testee's help knows")
     )
     assert built["list_interviews"].definition["function"]["description"]
     assert built["get_api_settings"].path == "/manage"

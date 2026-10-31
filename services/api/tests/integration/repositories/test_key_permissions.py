@@ -24,7 +24,7 @@ EVERY_API_PERMISSION = [
 
 def new_key(company, permissions):
     return transaction(
-        keys.add, company, "Site", "pz_x", uuid.uuid4().hex * 2, "u1", None, permissions, [], 10
+        keys.add, company, "Site", "te_x", uuid.uuid4().hex * 2, "u1", None, permissions, [], 10
     )
 
 
@@ -104,7 +104,7 @@ def test_keys_made_before_permissions_keep_every_api_permission_but_mcp(run):
             await session.execute(
                 text(
                     "INSERT INTO api_keys (id, company_id, name, shown, hash, created_by, created_at) "
-                    "VALUES (:id, :company, 'Old', 'pz_o', :hash, 'u1', now())"
+                    "VALUES (:id, :company, 'Old', 'te_o', :hash, 'u1', now())"
                 ),
                 {"id": key_id, "company": uuid.uuid4(), "hash": uuid.uuid4().hex * 2},
             )
@@ -136,7 +136,7 @@ def test_a_keys_allowed_addresses_are_replaced_and_logged_when_they_change(run):
             keys.add,
             company,
             "Site",
-            "pz_x",
+            "te_x",
             uuid.uuid4().hex * 2,
             "u1",
             None,
@@ -171,7 +171,7 @@ def test_keys_made_before_allowed_addresses_work_from_anywhere(run):
             await session.execute(
                 text(
                     "INSERT INTO api_keys (id, company_id, name, shown, hash, created_by, "
-                    "created_at, permissions) VALUES (:id, :company, 'Old', 'pz_o', :hash, 'u1', "
+                    "created_at, permissions) VALUES (:id, :company, 'Old', 'te_o', :hash, 'u1', "
                     "now(), ARRAY['interviews:read'])"
                 ),
                 {"id": key_id, "company": company, "hash": uuid.uuid4().hex * 2},

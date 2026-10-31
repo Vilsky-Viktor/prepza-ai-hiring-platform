@@ -1,5 +1,5 @@
 {
-  "intro": "Questi termini si applicano quando usi prepza, un servizio di Arcolabs OÜ (codice di registro 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. Accedendo, li accetti. prepza.ai mostra questo documento anche in altre lingue; solo questa versione inglese è vincolante e, in caso di discordanza con una traduzione, prevale la versione inglese.",
+  "intro": "Questi termini si applicano quando usi testee, un servizio di Arcolabs OÜ (codice di registro 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. Accedendo, li accetti. testee.ai mostra questo documento anche in altre lingue; solo questa versione inglese è vincolante e, in caso di discordanza con una traduzione, prevale la versione inglese.",
   "sections": [
     {
       "heading": "Il tuo account",
@@ -18,13 +18,13 @@
     {
       "heading": "I tuoi contenuti",
       "paragraphs": [
-        "Mantieni i diritti su ciò che incolli e crei. Ci consenti di conservarlo e trattarlo per far funzionare prepza, incluso l'invio ai servizi di IA che utilizziamo. Ci concedi inoltre una licenza mondiale, esente da royalty e irrevocabile, per tutta la durata di qualsiasi diritto su di esse, per usare, adattare e riutilizzare le domande che prepza genera per te nei colloqui e nelle simulazioni di altri clienti, senza nulla che identifichi te, la tua azienda o chiunque altro; puoi escludere da questo riutilizzo le domande di un colloquio nelle sue impostazioni, e le domande già riutilizzate restano dove sono. Ricaviamo inoltre da tutte le domande tendenze generali e anonimizzate sulla qualità delle domande, per migliorare il modo in cui vengono generate. Non incollare segreti commerciali né dati personali in una descrizione del lavoro."
+        "Mantieni i diritti su ciò che incolli e crei. Ci consenti di conservarlo e trattarlo per far funzionare testee, incluso l'invio ai servizi di IA che utilizziamo. Ci concedi inoltre una licenza mondiale, esente da royalty e irrevocabile, per tutta la durata di qualsiasi diritto su di esse, per usare, adattare e riutilizzare le domande che testee genera per te nei colloqui e nelle simulazioni di altri clienti, senza nulla che identifichi te, la tua azienda o chiunque altro; puoi escludere da questo riutilizzo le domande di un colloquio nelle sue impostazioni, e le domande già riutilizzate restano dove sono. Ricaviamo inoltre da tutte le domande tendenze generali e anonimizzate sulla qualità delle domande, per migliorare il modo in cui vengono generate. Non incollare segreti commerciali né dati personali in una descrizione del lavoro."
       ]
     },
     {
       "heading": "Uso corretto",
       "items": [
-        "Non usare prepza per inviare email indesiderate, per estrarne contenuti in modo automatizzato (scraping) né per sovraccaricarlo o attaccarlo.",
+        "Non usare testee per inviare email indesiderate, per estrarne contenuti in modo automatizzato (scraping) né per sovraccaricarlo o attaccarlo.",
         "Non cercare di aggirare i limiti, la sicurezza o l'accesso di un altro utente.",
         "Durante un colloquio, rispondi da solo e rispettane le regole; l'azienda vede quanto tempo ha richiesto ogni risposta, quando hai lasciato la pagina e quando hai copiato del testo. Prima di iniziare, confermi che risponderai in autonomia, e l'azienda vede che l'hai confermato."
       ]
@@ -32,7 +32,7 @@
     {
       "heading": "Aziende",
       "paragraphs": [
-        "Un'azienda che usa prepza per sottoporre colloqui ai candidati è responsabile di invitarli in modo lecito, di informarli su come vengono usati i loro risultati e delle proprie decisioni di assunzione. Trattiamo i dati dei candidati per conto dell'azienda, ai sensi dell'accordo sul trattamento dei dati disponibile su prepza.ai/dpa."
+        "Un'azienda che usa testee per sottoporre colloqui ai candidati è responsabile di invitarli in modo lecito, di informarli su come vengono usati i loro risultati e delle proprie decisioni di assunzione. Trattiamo i dati dei candidati per conto dell'azienda, ai sensi dell'accordo sul trattamento dei dati disponibile su testee.ai/dpa."
       ],
       "items": [
         "Il logo di un'azienda deve essere un logo che essa ha il diritto di usare.",
@@ -42,25 +42,25 @@
         "I risultati supportano la decisione di un'azienda, ma non la prendono. Un'azienda li esamina prima di decidere, non scarta un candidato sulla base del solo punteggio e consente a un candidato di chiedere che una persona riesamini il suo risultato.",
         "Un'azienda concede al candidato che ne ha bisogno un accomodamento, come del tempo extra, che può impostare per ciascun candidato prima che inizi.",
         "A un colloquio in modalità vocale si risponde a voce: l'azienda lo comunica ai suoi candidati e consente al candidato che ne ha bisogno di rispondere invece con un tocco.",
-        "Un'azienda che collega i propri strumenti (un sistema di gestione delle candidature, Slack o i propri sistemi tramite l'API e i webhook di prepza) sceglie dove vanno i risultati dei suoi candidati, è responsabile di tali strumenti e non li configura per scartare automaticamente i candidati in base ai risultati di prepza.",
+        "Un'azienda che collega i propri strumenti (un sistema di gestione delle candidature, Slack o i propri sistemi tramite l'API e i webhook di testee) sceglie dove vanno i risultati dei suoi candidati, è responsabile di tali strumenti e non li configura per scartare automaticamente i candidati in base ai risultati di testee.",
         "Le chiavi API e i segreti dei webhook devono essere mantenuti riservati dall'azienda: tutto ciò che viene fatto con una chiave valida è fatto per conto dell'azienda da quella chiave, nei limiti delle autorizzazioni che le sono state concesse, e il registro attività dell'azienda indica la chiave. Le chiavi e i webhook appartengono all'azienda e restano quando il membro che li ha creati la lascia. Una chiave o un webhook che potrebbe essere stato divulgato va eliminato subito nella pagina API dell'azienda.",
-        "L'accordo sul trattamento dei dati disponibile su prepza.ai/dpa fa parte di questi termini per ogni azienda che usa prepza per i candidati.",
+        "L'accordo sul trattamento dei dati disponibile su testee.ai/dpa fa parte di questi termini per ogni azienda che usa testee per i candidati.",
         "Un'azienda usa ciò che vede delle persone aperte a nuove opportunità solo per valutarle per le proprie posizioni e invitarle. I loro risultati sono risultati di simulazioni, non una qualifica, e l'elenco non è una raccomandazione: l'ordine mostra solo chi si è esercitato per ultimo.",
         "Un'azienda che invita qualcuno dalla sua scheda Scopri gli comunica, al più tardi nell'invito, chi è, perché lo ha contattato, cosa ha visto e quali sono i suoi diritti.",
-        "Un'azienda usa prepza per valutare candidati per posizioni nella città di New York solo dopo aver fatto ciò che la Local Law 144 le richiede in quanto datore di lavoro: un audit sui bias svolto da un revisore indipendente nell'anno precedente all'utilizzo, la pubblicazione della sua sintesi e un avviso ai candidati almeno 10 giorni lavorativi prima della loro valutazione."
+        "Un'azienda usa testee per valutare candidati per posizioni nella città di New York solo dopo aver fatto ciò che la Local Law 144 le richiede in quanto datore di lavoro: un audit sui bias svolto da un revisore indipendente nell'anno precedente all'utilizzo, la pubblicazione della sua sintesi e un avviso ai candidati almeno 10 giorni lavorativi prima della loro valutazione."
       ]
     },
     {
       "heading": "Simulazioni",
       "items": [
         "Le simulazioni di colloquio sono gratuite e i loro risultati sono visibili solo a te, a meno che tu non attivi Aperto a nuove opportunità.",
-        "Aperto a nuove opportunità è facoltativo e disattivato finché non lo attivi. Finché è attivo, le aziende che assumono su prepza vedono il tuo nome, il tuo profilo LinkedIn e i tuoi ultimi risultati delle simulazioni a tempo sugli argomenti dei loro colloqui, e possono invitarti a un colloquio; l'invito arriva all'email del tuo account. prepza non ti classifica né ti raccomanda. Puoi disattivarlo in qualsiasi momento nelle Impostazioni, e sparisci subito dall'elenco di ogni azienda. Si disattiva anche un anno dopo l'ultima volta che lo hai attivato o hai salvato il tuo profilo LinkedIn."
+        "Aperto a nuove opportunità è facoltativo e disattivato finché non lo attivi. Finché è attivo, le aziende che assumono su testee vedono il tuo nome, il tuo profilo LinkedIn e i tuoi ultimi risultati delle simulazioni a tempo sugli argomenti dei loro colloqui, e possono invitarti a un colloquio; l'invito arriva all'email del tuo account. testee non ti classifica né ti raccomanda. Puoi disattivarlo in qualsiasi momento nelle Impostazioni, e sparisci subito dall'elenco di ogni azienda. Si disattiva anche un anno dopo l'ultima volta che lo hai attivato o hai salvato il tuo profilo LinkedIn."
       ]
     },
     {
       "heading": "Crediti e pagamenti",
       "items": [
-        "prepza si paga con i crediti: ogni ricarica acquista il numero di crediti mostrato prima che tu paghi, e le ricariche più grandi danno proporzionalmente più crediti. Il costo in crediti di ogni cosa è indicato nella pagina dei prezzi e viene mostrato prima che tu la usi.",
+        "testee si paga con i crediti: ogni ricarica acquista il numero di crediti mostrato prima che tu paghi, e le ricariche più grandi danno proporzionalmente più crediti. Il costo in crediti di ogni cosa è indicato nella pagina dei prezzi e viene mostrato prima che tu la usi.",
         "Le ricariche sono vendute da Paddle, che agisce come rivenditore (merchant of record): Paddle incassa il pagamento, applica l'eventuale IVA o imposta sulle vendite ed emette la ricevuta o la fattura. Possono acquistarle sia le imprese sia i consumatori. I prezzi nella pagina dei prezzi non includono l'IVA né l'imposta sulle vendite: dove si applica, Paddle la aggiunge al prezzo indicato al momento del pagamento. I prezzi sono nella valuta locale in Canada (dollari canadesi), Australia (dollari australiani), Israele (shekel), Polonia (zloty), Svizzera (franchi svizzeri), Giappone (yen), Corea del Sud (won), Taiwan (nuovi dollari taiwanesi), Hong Kong (dollari di Hong Kong), Thailandia (baht), Singapore (dollari di Singapore) e India (rupie); in euro nel resto dell'Unione europea e in Islanda, nel Liechtenstein e in Norvegia; in sterline nel Regno Unito; e in dollari statunitensi altrove. Ogni azienda paga nella propria valuta, stabilita inizialmente in base al paese in cui è stata creata e modificabile dai suoi proprietari e amministratori; la pagina di pagamento mostra l'importo finale, comprese le eventuali imposte, prima che tu paghi. Se la tua carta è in un'altra valuta, la tua banca o l'emittente della carta può convertire l'importo.",
         "I crediti appartengono a un'azienda e si usano per i suoi candidati; il proprietario e gli amministratori possono ricaricarli. I crediti non possono essere trasferiti tra account o aziende, venduti né convertiti in denaro.",
         "La ricarica automatica è facoltativa e disattivata finché non la attivi, il che richiede che tu spunti personalmente la casella delle sue condizioni. Attivandola, autorizzi Paddle a salvare la tua carta e ad addebitarle l'importo di ricarica che hai scelto, più l'eventuale IVA o imposta sulle vendite, ogni volta che il saldo disponibile dell'azienda scende sotto la soglia che hai scelto, senza chiedertelo di nuovo, finché non viene disattivata. Inviamo un'email ai proprietari e agli amministratori dell'azienda quando viene attivata e dopo ogni addebito, e Paddle invia via email una ricevuta per ogni addebito. Puoi modificarla o disattivarla in qualsiasi momento dove l'hai attivata, nella pagina di ricarica o nella pagina Fatturazione dell'azienda; la disattivazione ha effetto immediato, revoca l'autorizzazione della carta salvata e interrompe tutti gli addebiti successivi, così come il suo annullamento tramite le email di Paddle. Agli addebiti già effettuati si applicano le regole sui rimborsi riportate di seguito.",
@@ -76,21 +76,21 @@
     {
       "heading": "Disponibilità e modifiche",
       "paragraphs": [
-        "Ci impegniamo a mantenere prepza disponibile e sicuro, ma non possiamo garantire che lo sarà sempre. Possiamo modificare o interrompere funzionalità e sospendere gli account che violano questi termini. Ti informiamo via email di una modifica significativa a questi termini almeno 14 giorni prima che si applichi; usare prepza dopo tale data significa accettare i nuovi termini. Ogni versione precedente resta consultabile in questa pagina."
+        "Ci impegniamo a mantenere testee disponibile e sicuro, ma non possiamo garantire che lo sarà sempre. Possiamo modificare o interrompere funzionalità e sospendere gli account che violano questi termini. Ti informiamo via email di una modifica significativa a questi termini almeno 14 giorni prima che si applichi; usare testee dopo tale data significa accettare i nuovi termini. Ogni versione precedente resta consultabile in questa pagina."
       ]
     },
     {
       "heading": "Responsabilità",
       "paragraphs": [
-        "prepza è fornito così com'è. Nei limiti consentiti dalla legge, non siamo responsabili per perdite indirette, e la nostra responsabilità complessiva è limitata a quanto hai pagato per i crediti negli ultimi 12 mesi, o a 100 dollari statunitensi (o l'equivalente nella tua valuta) se non hai pagato nulla. Nulla di quanto qui previsto limita i diritti che ti spettano come consumatore secondo la legge del tuo paese."
+        "testee è fornito così com'è. Nei limiti consentiti dalla legge, non siamo responsabili per perdite indirette, e la nostra responsabilità complessiva è limitata a quanto hai pagato per i crediti negli ultimi 12 mesi, o a 100 dollari statunitensi (o l'equivalente nella tua valuta) se non hai pagato nulla. Nulla di quanto qui previsto limita i diritti che ti spettano come consumatore secondo la legge del tuo paese."
       ]
     },
     {
       "heading": "Legge applicabile",
       "paragraphs": [
-        "Si applica la legge estone, fatte salve le tutele inderogabili del paese in cui vivi. Domande su questi termini: hello@prepza.ai.",
+        "Si applica la legge estone, fatte salve le tutele inderogabili del paese in cui vivi. Domande su questi termini: hello@testee.ai.",
         "Le controversie con le imprese sono di competenza del Tribunale della contea di Harju (Harju Maakohus), a Tallinn. Come consumatore, puoi rivolgerti anche ai tribunali del luogo in cui vivi.",
-        "Se sei un consumatore, scrivici prima a hello@prepza.ai: rispondiamo entro 15 giorni. Se non troviamo un accordo e vivi in Estonia, puoi sottoporre gratuitamente la controversia alla Commissione per le controversie dei consumatori (Tarbijavaidluste komisjon) dell'Autorità per la tutela dei consumatori e la regolamentazione tecnica, ttja.ee."
+        "Se sei un consumatore, scrivici prima a hello@testee.ai: rispondiamo entro 15 giorni. Se non troviamo un accordo e vivi in Estonia, puoi sottoporre gratuitamente la controversia alla Commissione per le controversie dei consumatori (Tarbijavaidluste komisjon) dell'Autorità per la tutela dei consumatori e la regolamentazione tecnica, ttja.ee."
       ]
     }
   ]

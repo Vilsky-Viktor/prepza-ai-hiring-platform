@@ -23,7 +23,7 @@ CANDIDATE = {
     "extra_time": 0,
     "mode": "click",
     "sections": None,
-    "results_url": "https://prepza.ai/companies/…/candidates/0e7a4d2c-91b3-4f6e-8a5d-2c1b9f3e7a60",
+    "results_url": "https://testee.ai/companies/…/candidates/0e7a4d2c-91b3-4f6e-8a5d-2c1b9f3e7a60",
     "invite_url": None,
     "created_at": "2026-10-02T10:30:00Z",
     "updated_at": "2026-10-03T11:05:00Z",

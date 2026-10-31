@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from prepza_common.i18n.translations import TRANSLATIONS, raised_messages
+from testee_common.i18n.translations import TRANSLATIONS, raised_messages
 
 from rounds.constants import voice_phrases
 

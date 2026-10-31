@@ -3,15 +3,15 @@ from datetime import UTC, datetime
 
 import httpx
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.auth import OptionalUser
-from prepza_common.auth.superadmin import SuperadminUser, is_superadmin
-from prepza_common.limits.maintenance import is_on, put_back_start, set_on, take_start
+from testee_common.auth.auth import OptionalUser
+from testee_common.auth.superadmin import SuperadminUser, is_superadmin
+from testee_common.limits.maintenance import is_on, put_back_start, set_on, take_start
 
 from companies.integrations import rounds
 from companies.integrations.redis import get_redis
 from companies.schemas.monitoring import MaintenanceIn, MaintenanceOut, MaintenanceSwitchOut
 
-# Maintenance mode (prepza_common.limits.maintenance): every service reads the switch; it's turned here.
+# Maintenance mode (testee_common.limits.maintenance): every service reads the switch; it's turned here.
 router = APIRouter(tags=["maintenance"])
 logger = logging.getLogger(__name__)
 

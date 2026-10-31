@@ -1,12 +1,12 @@
 """An interview's notes through the public API: read and added as the key itself, within the
 key's company, a retried add answered with the first note."""
 
-from prepza_common.auth.key_actor import key_actor
 import uuid
 
 import pytest
 from fake_redis import FakeRedis
 from fastapi import HTTPException
+from testee_common.auth.key_actor import key_actor
 
 from api.constants.permissions import Permission
 from api.integrations import companies

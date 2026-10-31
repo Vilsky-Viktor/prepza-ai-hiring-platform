@@ -4,10 +4,10 @@ import pytest
 from fastapi import HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth.auth import current_user, fresh_user, optional_user, verify
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.config.constants import SIGN_IN_UNAVAILABLE
+from testee_common.auth.auth import current_user, fresh_user, optional_user, verify
+from testee_common.auth.key_actor import key_actor
+from testee_common.auth.service_auth import issue_token
+from testee_common.config.constants import SIGN_IN_UNAVAILABLE
 
 CLAIMS = {"uid": "ann", "email": "ann@example.com", "email_verified": True, "name": "Ann"}
 

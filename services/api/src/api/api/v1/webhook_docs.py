@@ -46,7 +46,7 @@ def candidate_expired(event: CandidateWebhook) -> None:
 @webhooks.post(CANDIDATE_REMOVED, summary="A candidate was removed")
 def candidate_removed(event: RemovedWebhook) -> None:
     """Sent when a candidate is removed from one of your interviews (revoked, or with the
-    interview deleted). prepza no longer has their results; delete what you keep of them if
+    interview deleted). testee no longer has their results; delete what you keep of them if
     you no longer need it."""
 
 

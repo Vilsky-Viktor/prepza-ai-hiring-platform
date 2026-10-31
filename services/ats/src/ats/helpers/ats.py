@@ -5,8 +5,8 @@ import re
 import time
 from html.parser import HTMLParser
 
-from prepza_common.auth.tokens import same_secret
-from prepza_common.config.constants import DEFAULT_LANGUAGE
+from testee_common.auth.tokens import same_secret
+from testee_common.config.constants import DEFAULT_LANGUAGE
 
 from ats.constants.ats import SUBDOMAIN, TEAMTAILOR_SIGNATURE_SECONDS
 from ats.templates.comments import COMMENTS
@@ -138,7 +138,7 @@ def result_comment(
     """The comment a finished candidate's results go back to the ATS as, in the interview's
     `language` (English when it's unknown)."""
     texts = COMMENTS.get(language or DEFAULT_LANGUAGE, COMMENTS[DEFAULT_LANGUAGE])
-    lines = [f"prepza: {title}"]
+    lines = [f"testee: {title}"]
 
     if grade is None:
         lines.append(texts["finished"])

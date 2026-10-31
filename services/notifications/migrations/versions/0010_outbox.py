@@ -1,6 +1,6 @@
 """An outbox for the events this service publishes: each is saved with the change it announces
-and published until Pub/Sub takes it (prepza_common.events.outbox). The first is a member's action for
-the company's action log (prepza_common.events.audit).
+and published until Pub/Sub takes it (testee_common.events.outbox). The first is a member's action for
+the company's action log (testee_common.events.audit).
 
 Revision ID: 0010
 Revises: 0009

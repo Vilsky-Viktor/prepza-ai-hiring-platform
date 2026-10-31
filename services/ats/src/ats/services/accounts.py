@@ -74,7 +74,7 @@ async def remove_interview(interview_id: UUID) -> None:
 
 
 async def remove_company(company_id: UUID) -> None:
-    """What prepza set up in the company's ATSs is cancelled (as far as each answers), then its
+    """What testee set up in the company's ATSs is cancelled (as far as each answers), then its
     connections go, with their linked jobs and candidates."""
     async with Session() as session:
         subscriptions = await ats_links.subscriptions(session, company_id)

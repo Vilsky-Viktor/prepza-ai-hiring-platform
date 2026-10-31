@@ -1,8 +1,8 @@
 import uuid
 
 from fastapi import HTTPException, status
-from prepza_common.limits.rate_limit import hit_or_skip
 from sqlalchemy.exc import IntegrityError
+from testee_common.limits.rate_limit import hit_or_skip
 
 from library.core.db import Session
 from library.integrations.redis import get_redis

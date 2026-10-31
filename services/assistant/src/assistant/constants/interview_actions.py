@@ -1,6 +1,6 @@
 # Actions on interviews, their questions and candidates (see actions.py for the entries' keys).
 
-from prepza_common.config.constants import MAX_INTERVIEW_QUESTIONS
+from testee_common.config.constants import MAX_INTERVIEW_QUESTIONS
 
 INTERVIEW_PAGE = "/companies/{company_id}/interviews/{interview_id}"
 CANDIDATES_PAGE = INTERVIEW_PAGE + "?tab=candidates"
@@ -56,7 +56,7 @@ INTERVIEW_ACTIONS = {
         "description": (
             "Create an interview from a job description (`text`, the user's own words or a "
             "description they pasted); `generate_in` is the language its questions are written "
-            "in (the interface's when left out). prepza then proposes topics, which the user "
+            "in (the interface's when left out). testee then proposes topics, which the user "
             "reviews before the questions are written."
         ),
         "fields": ["id", "generation_id", "title", "status"],
@@ -117,7 +117,7 @@ INTERVIEW_ACTIONS = {
     "keep_questions_private": interview_action(
         "PATCH",
         "/interviews/{interview_id}/settings",
-        "Keep an interview's questions out of prepza's shared question bank, which other "
+        "Keep an interview's questions out of testee's shared question bank, which other "
         "companies' interviews reuse questions from (true), or let them join it again (false). "
         "Questions already reused in other interviews stay there.",
         body=["keep_private"],
@@ -156,7 +156,7 @@ INTERVIEW_ACTIONS = {
     "review_generation": interview_action(
         "POST",
         "/interviews/{interview_id}/generation/review",
-        "Confirm the topics prepza proposed (get_generation), keeping the `selected` ones, "
+        "Confirm the topics testee proposed (get_generation), keeping the `selected` ones, "
         "optionally with changes described in `instructions`; then the questions are written.",
         body=["selected", "instructions"],
     ),

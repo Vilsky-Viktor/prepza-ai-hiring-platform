@@ -6,8 +6,8 @@ import logging
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.ai.secrets_check import SECRET_REMOVED
-from prepza_common.i18n.i18n import translate
+from testee_common.ai.secrets_check import SECRET_REMOVED
+from testee_common.i18n.i18n import translate
 
 from assistant.integrations import firebase_tokens
 from assistant.services import mcp_tools
@@ -61,7 +61,7 @@ def test_a_refused_call_is_logged_with_ids_and_the_tool_only(
 
 
 def test_a_write_on_a_read_only_connection_is_logged(logged):
-    read_only = ACCESS.model_copy(update={"scopes": ["prepza:read"]})
+    read_only = ACCESS.model_copy(update={"scopes": ["testee:read"]})
     arguments = {"company_id": COMPANY, "title": "New"}
 
     result = asyncio.run(mcp_tools.call("rename_company", arguments, read_only))

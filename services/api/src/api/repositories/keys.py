@@ -1,10 +1,10 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.events import audit
-from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy import delete, func, or_, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import audit
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from api.constants.api import LAST_USED_EVERY
 from api.models.api import ApiKey

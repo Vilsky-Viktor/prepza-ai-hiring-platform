@@ -1,9 +1,9 @@
-# The emails to prepza's users about their companies: the activity digest and reminders, which
+# The emails to testee's users about their companies: the activity digest and reminders, which
 # they may turn off, and the failed automatic top-up, a service email that always goes out.
 from datetime import date
 
 from babel.dates import format_date
-from prepza_common.i18n.money import money
+from testee_common.i18n.money import money
 
 from notifications.constants.member_emails import COMPANIES_LINK, TOP_UP_LINK, MemberEmail
 from notifications.constants.unsubscribe import UnsubscribeType

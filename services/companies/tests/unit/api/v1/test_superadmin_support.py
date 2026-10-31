@@ -8,7 +8,7 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common.http import http
+from testee_common.http import http
 
 from companies.integrations import accounts, billing
 from companies.models.companies import Company, Member

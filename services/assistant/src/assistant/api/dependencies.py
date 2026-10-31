@@ -2,9 +2,9 @@ from typing import Annotated
 
 from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials
-from prepza_common.auth.auth import bearer, current_user
-from prepza_common.auth.service_auth import service_caller
-from prepza_common.auth.user import User
+from testee_common.auth.auth import bearer, current_user
+from testee_common.auth.service_auth import service_caller
+from testee_common.auth.user import User
 
 from assistant.config import settings
 from assistant.core.security import SERVICE_NAME

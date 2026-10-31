@@ -1,6 +1,6 @@
-from prepza_common.config.constants import GUEST_UID_PREFIX
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import GUEST_UID_PREFIX
 
 from companies.constants.events import GUESTS_DELETED
 from companies.models.invites import CandidateInvite

@@ -1,4 +1,4 @@
-from prepza_common.events.deletions import InterviewDeleted
+from testee_common.events.deletions import InterviewDeleted
 
 from rounds.services import session_removal
 

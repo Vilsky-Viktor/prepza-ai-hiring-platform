@@ -1,7 +1,7 @@
 import asyncio
 
 import httpx
-from prepza_common.auth.service_auth import token_caller
+from testee_common.auth.service_auth import token_caller
 
 from assistant.integrations import help_knowledge as module
 from assistant.schemas.help_chat import HelpKnowledge

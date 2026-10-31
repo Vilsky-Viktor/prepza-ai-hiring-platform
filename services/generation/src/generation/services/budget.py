@@ -1,12 +1,12 @@
 from datetime import UTC, datetime
 
 from fastapi import HTTPException, status
-from prepza_common.i18n import error_codes
-from prepza_common.i18n.i18n import CodedError
-from prepza_common.limits.limit_list import LIMITS
-from prepza_common.limits.limit_schemas import BudgetOut
-from prepza_common.limits.limits import limit, record_hit
-from prepza_common.limits.rate_limit import until_tomorrow
+from testee_common.i18n import error_codes
+from testee_common.i18n.i18n import CodedError
+from testee_common.limits.limit_list import LIMITS
+from testee_common.limits.limit_schemas import BudgetOut
+from testee_common.limits.limits import limit, record_hit
+from testee_common.limits.rate_limit import until_tomorrow
 
 from generation.constants.generation import BUDGET_KEY, BUDGET_KEY_SECONDS, GENERATIONS_PAUSED
 from generation.constants.quality import VERIFY_BUDGET_KEY, VERIFY_PAUSED

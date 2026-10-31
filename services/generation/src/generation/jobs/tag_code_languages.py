@@ -12,7 +12,7 @@ import asyncio
 import logging
 import sys
 
-from prepza_common.observability.logging import configure_logging
+from testee_common.observability.logging import configure_logging
 
 from generation.constants.actions import CODE_TAGS
 from generation.constants.code import TAG_BATCH_SIZE, TEXT_FENCE, UNTAGGED_FENCE

@@ -2,16 +2,16 @@
 
 # The footer of reminders to a company's owners and admins.
 MEMBER_FOOTER = (
-    "Email ini dikirim ke {email} karena kamu pemilik atau admin sebuah perusahaan di prepza."
+    "Email ini dikirim ke {email} karena kamu pemilik atau admin sebuah perusahaan di testee."
 )
 
 TEXTS = {
     "candidate": {
         "subject": "Undangan wawancara dari {company}",
-        "preheader": "Ikuti “{title}” di prepza. Masuk dengan {email} untuk mulai.",
+        "preheader": "Ikuti “{title}” di testee. Masuk dengan {email} untuk mulai.",
         "heading": "Undangan wawancara",
         "lines": [
-            "{company} mengundangmu mengikuti wawancara “{title}” di prepza.",
+            "{company} mengundangmu mengikuti wawancara “{title}” di testee.",
             (
                 "Masuk dengan {email} untuk mulai. Hanya alamat ini yang bisa "
                 "mengikuti wawancara, dan kamu punya satu kesempatan."
@@ -24,7 +24,7 @@ TEXTS = {
         "preheader": "Jika kamu meninggalkan wawancara, lanjutkan dengan tautan ini. Masuk dengan {email}.",
         "heading": "Tautan wawancaramu",
         "lines": [
-            "Kamu memulai wawancara “{title}” dari {company} di prepza.",
+            "Kamu memulai wawancara “{title}” dari {company} di testee.",
             (
                 "Jika kamu pergi, lanjutkan dengan tautan ini: masuk dengan {email}. Tautan ini "
                 "tetap berfungsi meskipun {company} menonaktifkan tautan yang kamu gunakan untuk "
@@ -33,7 +33,7 @@ TEXTS = {
         ],
         "button": "Lanjutkan wawancara",
         "footer": (
-            "Email ini dikirim ke {email} karena sebuah wawancara di prepza dimulai dengan alamat "
+            "Email ini dikirim ke {email} karena sebuah wawancara di testee dimulai dengan alamat "
             "ini."
         ),
     },
@@ -43,7 +43,7 @@ TEXTS = {
         "heading": "Wawancaramu sedang menunggu",
         "lines": [
             (
-                "{company} mengundangmu mengikuti wawancara “{title}” di prepza beberapa hari "
+                "{company} mengundangmu mengikuti wawancara “{title}” di testee beberapa hari "
                 "lalu, dan kamu belum memulainya."
             ),
             (
@@ -54,14 +54,14 @@ TEXTS = {
         "button": "Buka undangan",
     },
     "member": {
-        "subject": "Bergabung dengan {company} di prepza",
+        "subject": "Bergabung dengan {company} di testee",
         "preheader": (
             "Bergabunglah dengan tim {company} sebagai {role}. Masuk dengan {email} untuk menerima "
             "undangan."
         ),
         "heading": "Undangan bergabung dengan tim",
         "lines": [
-            "{inviter} mengundangmu bergabung dengan tim {company} di prepza sebagai {role}.",
+            "{inviter} mengundangmu bergabung dengan tim {company} di testee sebagai {role}.",
             (
                 "Masuk dengan {email} untuk menerima undangan. Hanya alamat ini yang bisa menerima "
                 "undangan."
@@ -82,9 +82,9 @@ TEXTS = {
                 "apa yang ditunjukkan browser kandidat. Balas email ini untuk menjawab {sender}."
             ),
         ],
-        "button": "Kunjungi prepza",
+        "button": "Kunjungi testee",
         "footer": "Email ini dikirim ke {email} karena {sender} membagikan laporan kandidat "
-        "dengan alamat ini di prepza. Jika kamu tidak mengharapkannya, abaikan saja.",
+        "dengan alamat ini di testee. Jika kamu tidak mengharapkannya, abaikan saja.",
     },
     "candidates": {
         "subject": "Semua kandidat: {title}",
@@ -97,16 +97,16 @@ TEXTS = {
                 "tiap kandidat, diurutkan dari yang terbaik. Balas email ini untuk menjawab {sender}."
             ),
         ],
-        "button": "Kunjungi prepza",
+        "button": "Kunjungi testee",
         "footer": "Email ini dikirim ke {email} karena {sender} membagikan laporan kandidat "
-        "dengan alamat ini di prepza. Jika kamu tidak mengharapkannya, abaikan saja.",
+        "dengan alamat ini di testee. Jika kamu tidak mengharapkannya, abaikan saja.",
     },
     "digest": {
-        "subject": "Ringkasan aktivitasmu di prepza",
+        "subject": "Ringkasan aktivitasmu di testee",
         "preheader": "Apa yang terjadi di perusahaanmu dalam 24 jam terakhir.",
         "heading": "Ringkasan aktivitasmu",
         "lines": [
-            "Inilah yang terjadi di perusahaanmu di prepza dalam 24 jam terakhir.",
+            "Inilah yang terjadi di perusahaanmu di testee dalam 24 jam terakhir.",
         ],
         "rows": {
             "candidate_finished": "Kandidat yang selesai: {count} · “{title}”",
@@ -117,9 +117,9 @@ TEXTS = {
             "note": "{author}: “{excerpt}”",
             "note_by_former": "Mantan anggota: “{excerpt}”",
         },
-        "button": "Buka prepza",
+        "button": "Buka testee",
         "footer": (
-            "Email ini dikirim ke {email} karena kamu anggota sebuah perusahaan di prepza "
+            "Email ini dikirim ke {email} karena kamu anggota sebuah perusahaan di testee "
             "dan menerima ringkasan aktivitasnya."
         ),
     },
@@ -180,17 +180,17 @@ TEXTS = {
         "heading": "Kami memperbarui ketentuan layanan kami",
         "lines": [
             (
-                "Kami telah menerbitkan versi baru ketentuan layanan prepza. Versi ini berlaku "
+                "Kami telah menerbitkan versi baru ketentuan layanan testee. Versi ini berlaku "
                 "mulai {date}; sampai saat itu, ketentuan yang sekarang tetap berlaku."
             ),
             (
-                "Dengan menggunakan prepza setelah {date}, kamu menerima ketentuan yang baru. "
+                "Dengan menggunakan testee setelah {date}, kamu menerima ketentuan yang baru. "
                 "Jika tidak, kamu bisa menghapus akunmu di Pengaturan sebelum tanggal itu."
             ),
         ],
         "button": "Baca ketentuan yang baru",
         "footer": (
-            "Email ini dikirim ke {email} karena kamu punya akun prepza. Ini pemberitahuan "
+            "Email ini dikirim ke {email} karena kamu punya akun testee. Ini pemberitahuan "
             "tentang ketentuan layanan kami, jadi selalu dikirim apa pun pengaturan emailmu."
         ),
     },
@@ -200,7 +200,7 @@ TEXTS = {
         "heading": "Kami memperbarui kebijakan privasi kami",
         "lines": [
             (
-                "Kami telah menerbitkan versi baru kebijakan privasi prepza, yang menjelaskan "
+                "Kami telah menerbitkan versi baru kebijakan privasi testee, yang menjelaskan "
                 "cara kami menggunakan datamu. Versi ini berlaku mulai {date}; sampai saat itu, "
                 "versi yang sekarang tetap berlaku."
             ),
@@ -208,7 +208,7 @@ TEXTS = {
         ],
         "button": "Baca kebijakan privasi yang baru",
         "footer": (
-            "Email ini dikirim ke {email} karena kamu punya akun prepza. Ini pemberitahuan "
+            "Email ini dikirim ke {email} karena kamu punya akun testee. Ini pemberitahuan "
             "tentang cara kami menggunakan datamu, jadi selalu dikirim apa pun pengaturan "
             "emailmu."
         ),
@@ -220,18 +220,18 @@ TEXTS = {
         "lines": [
             (
                 "Kami telah menerbitkan versi baru perjanjian pemrosesan data yang menjadi dasar "
-                "prepza memproses data kandidatmu. Versi ini berlaku mulai {date}; sampai saat "
+                "testee memproses data kandidatmu. Versi ini berlaku mulai {date}; sampai saat "
                 "itu, versi yang sekarang tetap berlaku."
             ),
             (
                 "Perusahaan yang keberatan dengan alasan perlindungan data yang wajar dapat "
-                "berhenti menggunakan prepza dan menghapus perusahaannya sebelum tanggal itu."
+                "berhenti menggunakan testee dan menghapus perusahaannya sebelum tanggal itu."
             ),
         ],
         "button": "Baca perjanjian yang baru",
         "footer": (
             "Email ini dikirim ke {email} karena kamu pemilik atau admin sebuah perusahaan di "
-            "prepza. Ini pemberitahuan tentang perjanjian kami dengan perusahaanmu, jadi "
+            "testee. Ini pemberitahuan tentang perjanjian kami dengan perusahaanmu, jadi "
             "selalu dikirim apa pun pengaturan emailmu."
         ),
     },
@@ -243,10 +243,10 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Buka prepza",
+        "open_site": "Buka testee",
         "footer": (
             "Email ini dikirim ke {email} karena kamu memilih menerima pembaruan produk dan berita"
-            " dari prepza."
+            " dari testee."
         ),
     },
     "promotions": {
@@ -255,13 +255,13 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Buka prepza",
+        "open_site": "Buka testee",
         "footer": (
             "Email ini dikirim ke {email} karena kamu memilih menerima penawaran dan promosi dari"
-            " prepza."
+            " testee."
         ),
     },
-    # An important notice: a service email about prepza itself (a security incident, planned
+    # An important notice: a service email about testee itself (a security incident, planned
     # downtime, a change to how it works), whatever the email settings; never a promotion.
     "notices": {
         "subject": "{subject}",
@@ -269,9 +269,9 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Buka prepza",
+        "open_site": "Buka testee",
         "footer": (
-            "Email ini dikirim ke {email} karena kamu punya akun prepza. Ini pemberitahuan"
+            "Email ini dikirim ke {email} karena kamu punya akun testee. Ini pemberitahuan"
             " penting tentang layanan, seperti keamanan atau ketersediaannya, jadi selalu"
             " dikirim apa pun pengaturan emailmu."
         ),
@@ -293,7 +293,7 @@ TEXTS = {
         "button": "Isi ulang",
         "footer": (
             "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di "
-            "prepza. Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun "
+            "testee. Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun "
             "pengaturan emailmu."
         ),
     },
@@ -314,7 +314,7 @@ TEXTS = {
         "button": "Perbarui kartu",
         "footer": (
             "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di "
-            "prepza. Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun "
+            "testee. Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun "
             "pengaturan emailmu."
         ),
     },
@@ -343,7 +343,7 @@ TEXTS = {
         ],
         "button": "Buka tagihan",
         "footer": (
-            "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di prepza. "
+            "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di testee. "
             "Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun pengaturan "
             "emailmu."
         ),
@@ -367,7 +367,7 @@ TEXTS = {
         ],
         "button": "Buka tagihan",
         "footer": (
-            "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di prepza. "
+            "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di testee. "
             "Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun pengaturan "
             "emailmu."
         ),
@@ -390,20 +390,20 @@ TEXTS = {
         "button": "Buka tagihan",
         "footer": (
             "Email ini dikirim ke {email} karena kamu pemilik atau admin {company} di "
-            "prepza. Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun "
+            "testee. Email ini tentang penagihan perusahaanmu, jadi selalu dikirim apa pun "
             "pengaturan emailmu."
         ),
     },
-    "footer": "Email ini dikirim ke {email} karena seseorang mengundang alamat ini di prepza. "
+    "footer": "Email ini dikirim ke {email} karena seseorang mengundang alamat ini di testee. "
     "Jika kamu tidak mengharapkannya, abaikan saja.",
-    # An invite from a company prepza hasn't verified, at the end of the footer.
-    "unverified": "prepza belum memverifikasi {company}.",
+    # An invite from a company testee hasn't verified, at the end of the footer.
+    "unverified": "testee belum memverifikasi {company}.",
     "paste_link": "Atau tempel tautan ini di browsermu",
     # The footer's links: optional emails' unsubscribe and settings, and a candidate's own.
     "unsubscribe": "Berhenti berlangganan",
     "email_settings": "Ubah pengaturan email",
     "stop_reminders": "Jangan kirimi saya pengingat untuk wawancara ini",
     "stop_company": "Jangan kirimi saya email dari {company}",
-    # Who runs prepza, at the end of every email.
-    "operator": "prepza dijalankan oleh {name}, {address}.",
+    # Who runs testee, at the end of every email.
+    "operator": "testee dijalankan oleh {name}, {address}.",
 }

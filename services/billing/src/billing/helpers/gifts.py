@@ -1,4 +1,4 @@
-from prepza_common.auth.person_hash import person_hash
+from testee_common.auth.person_hash import person_hash
 
 from billing.constants.gifts import DOTLESS_DOMAINS, GMAIL
 

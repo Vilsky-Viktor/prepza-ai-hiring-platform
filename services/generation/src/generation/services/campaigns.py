@@ -1,4 +1,4 @@
-from prepza_common.config.constants import (
+from testee_common.config.constants import (
     MAX_CAMPAIGN_BUTTON_LENGTH,
     MAX_CAMPAIGN_SUBJECT_LENGTH,
     MAX_CAMPAIGN_TEXT_LENGTH,

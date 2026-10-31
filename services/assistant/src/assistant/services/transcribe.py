@@ -2,12 +2,12 @@ import logging
 
 from fastapi import HTTPException, Request, status
 from openai import OpenAIError
-from prepza_common.ai import ai_usage
-from prepza_common.ai.ai_constants import Outcome
-from prepza_common.ai.secrets_check import SECRET_IN_VOICE, find_secret
-from prepza_common.ai.speech import NOTHING_HEARD, audio_seconds, received_audio
-from prepza_common.ai.speech import speech_to_text as heard
-from prepza_common.limits.pause import refuse_if_paused
+from testee_common.ai import ai_usage
+from testee_common.ai.ai_constants import Outcome
+from testee_common.ai.secrets_check import SECRET_IN_VOICE, find_secret
+from testee_common.ai.speech import NOTHING_HEARD, audio_seconds, received_audio
+from testee_common.ai.speech import speech_to_text as heard
+from testee_common.limits.pause import refuse_if_paused
 
 from assistant.config import settings
 from assistant.constants.ai_usage import TRANSCRIPTION_ACTION

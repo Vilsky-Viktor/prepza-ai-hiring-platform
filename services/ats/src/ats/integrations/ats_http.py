@@ -3,9 +3,9 @@ from uuid import UUID
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.config.constants import RETRY_AFTER
-from prepza_common.http import http
-from prepza_common.limits.limits import record_hit
+from testee_common.config.constants import RETRY_AFTER
+from testee_common.http import http
+from testee_common.limits.limits import record_hit
 
 from ats.constants.ats import ATS_TIMEOUT_SECONDS
 from ats.integrations.errors import KeyRejected

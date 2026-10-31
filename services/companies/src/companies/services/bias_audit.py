@@ -6,17 +6,16 @@ import asyncio
 from datetime import datetime
 
 from fastapi import HTTPException, status
-from prepza_common.events.audit_actions import AuditAction, TargetKind
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.limits.rate_limit import hit_or_skip
 
 from companies.constants.reports import READ_BATCH
 from companies.core.db import Session
 from companies.helpers.bias_audit import audit_csv
 from companies.integrations.redis import get_redis
 from companies.models.companies import Company
-from companies.repositories import audit
+from companies.repositories import audit, interviews
 from companies.repositories import bias_audit as outcomes
-from companies.repositories import interviews
 from companies.services.candidate_results import store_missing
 
 

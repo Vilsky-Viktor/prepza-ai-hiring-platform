@@ -13,7 +13,7 @@ from tests.unit.helpers.test_teamtailor_signatures import signature as teamtailo
 from tests.unit.integrations.test_breezy import signature as breezy_signature
 from tests.unit.integrations.test_recruitee import signature as recruitee_signature
 
-# The ATSs whose web hook secret the company copies from the ATS and saves in prepza.
+# The ATSs whose web hook secret the company copies from the ATS and saves in testee.
 SAVED_SECRET = ["recruitee", "teamtailor"]
 
 

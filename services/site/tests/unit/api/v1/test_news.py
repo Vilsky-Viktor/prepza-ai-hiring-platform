@@ -5,10 +5,10 @@ from types import SimpleNamespace
 
 import jwt
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
-from prepza_common.http.http import bearer
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.config.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
+from testee_common.http.http import bearer
 
 from site_content.helpers.notifications import news_notification
 from site_content.integrations import generation
@@ -34,7 +34,7 @@ def post_row(**changes):
 def admin(monkeypatch):
     """Signed in as the superadmin Sam (or as `email`); storage keeps nothing, and every post
     sent to be translated is recorded with what generation gets."""
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     sent = []
     saved = []
 
@@ -79,7 +79,7 @@ def admin(monkeypatch):
     monkeypatch.setattr(news, "missing_languages", missing_languages)
     monkeypatch.setattr(news, "remove", remove)
 
-    def sign_in(email="sam@prepza.dev"):
+    def sign_in(email="sam@testee.dev"):
         app.dependency_overrides[current_user] = lambda: User(
             uid="sam",
             email=email,

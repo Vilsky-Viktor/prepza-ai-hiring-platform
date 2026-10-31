@@ -3,9 +3,9 @@ from datetime import UTC, datetime
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.integrations import library
 from companies.main import app

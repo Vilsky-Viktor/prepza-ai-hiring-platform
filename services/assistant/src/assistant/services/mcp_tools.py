@@ -5,13 +5,13 @@ from datetime import UTC, datetime
 
 import mcp_types as types
 from fastapi import HTTPException
-from prepza_common.ai.secrets_check import SECRET_REMOVED, secret_in
-from prepza_common.auth.user import User
-from prepza_common.config.constants import DAY_SECONDS, VIA_MCP
-from prepza_common.events.analytics import track
-from prepza_common.i18n.i18n import translate
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.ai.secrets_check import SECRET_REMOVED, secret_in
+from testee_common.auth.user import User
+from testee_common.config.constants import DAY_SECONDS, VIA_MCP
+from testee_common.events.analytics import track
+from testee_common.i18n.i18n import translate
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import hit_or_skip
 
 from assistant.config import settings
 from assistant.constants.chat import OTHER_COMPANY
@@ -195,7 +195,7 @@ async def run(
 
 async def call(name: str, arguments: dict, access: Access) -> types.CallToolResult:
     """One tool, called by an AI app as the user it acts for. A write runs at once: the app asked
-    the user before calling it. Its result is the data as JSON, with links to prepza's pages;
+    the user before calling it. Its result is the data as JSON, with links to testee's pages;
     an error is a result too, which the app explains."""
     tool = tools().get(name) if name not in MCP_UNLISTED else None
     # An API key acts as itself; an AI app as the user who connected it.
@@ -219,7 +219,7 @@ async def call(name: str, arguments: dict, access: Access) -> types.CallToolResu
     if refused:
         return refused
 
-    # Secrets are never sent through an AI app: entered in prepza itself only. Any string
+    # Secrets are never sent through an AI app: entered in testee itself only. Any string
     # counts, however deep in a list or an object.
     if secret_in(texts_in(arguments)) is not None:
         return logged("secret in arguments", name, access, translate(SECRET_REMOVED, user.language))

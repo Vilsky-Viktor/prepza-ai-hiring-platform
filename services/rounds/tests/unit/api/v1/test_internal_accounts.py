@@ -1,4 +1,4 @@
-from prepza_common.auth.service_auth import issue_token
+from testee_common.auth.service_auth import issue_token
 
 from rounds.repositories import accounts, open_to_offers
 

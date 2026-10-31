@@ -1,10 +1,10 @@
 from datetime import timedelta
 from uuid import UUID
 
-from prepza_common.ai.answer_votes import DOWN
 from sqlalchemy import func, literal, select, tuple_, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import aliased
+from testee_common.ai.answer_votes import DOWN
 
 from assistant.constants.chat import Role, Source, Status, ToolState
 from assistant.models.answers import Answer

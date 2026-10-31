@@ -1,9 +1,9 @@
 from datetime import datetime
 from uuid import UUID
 
-from prepza_common.db.db import delete_in_batches
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
+from testee_common.db.db import delete_in_batches
 
 from companies.models.invites import CandidateInvite
 from companies.models.removals import RemovedInvite

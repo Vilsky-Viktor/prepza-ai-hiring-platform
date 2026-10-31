@@ -4,10 +4,10 @@ import json
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.auth.service_auth import token_claims
-from prepza_common.http import http
-from prepza_common.i18n.i18n import translate
+from testee_common.auth.key_actor import key_actor
+from testee_common.auth.service_auth import token_claims
+from testee_common.http import http
+from testee_common.i18n.i18n import translate
 
 from assistant.constants.chat import OTHER_COMPANY
 from assistant.constants.key_tools import KEY_TOOLS
@@ -28,9 +28,9 @@ OTHER = "00000000-0000-4000-8000-000000000099"
 
 def key(*permissions: str) -> Access:
     return Access(
-        token="pz_x",
+        token="te_x",
         client_id=KEY_ID,
-        scopes=["prepza"],
+        scopes=["testee"],
         subject=key_actor(KEY_ID),
         client_name="API key",
         key_id=KEY_ID,
@@ -68,7 +68,7 @@ def test_every_key_tool_is_a_tool_an_app_may_call():
 def test_a_key_with_mcp_signs_in_as_itself_in_its_company(monkeypatch):
     verified(monkeypatch, ["candidates:read", "mcp"])
 
-    access = asyncio.run(Provider().load_access_token("pz_key"))
+    access = asyncio.run(Provider().load_access_token("te_key"))
 
     assert (access.subject, access.company_id, access.key_id) == (
         key_actor(KEY_ID),
@@ -82,7 +82,7 @@ def test_a_key_with_mcp_signs_in_as_itself_in_its_company(monkeypatch):
 def test_a_key_without_mcp_or_that_doesnt_work_is_refused(monkeypatch, permissions):
     verified(monkeypatch, permissions)
 
-    assert asyncio.run(Provider().load_access_token("pz_key")) is None
+    assert asyncio.run(Provider().load_access_token("te_key")) is None
 
 
 def test_a_key_lists_only_what_its_permissions_allow():
@@ -214,7 +214,7 @@ def test_the_api_answers_whether_a_key_works(monkeypatch, status, expected):
     class Client:
         async def post(self, url, json, headers):
             assert url == "http://api/internal/keys/verify"
-            assert json == {"key": "pz_key", "ip": "203.0.113.7"}
+            assert json == {"key": "te_key", "ip": "203.0.113.7"}
             assert token_claims(headers["Authorization"][7:], SECRET, "api")["iss"] == "assistant"
 
             request = httpx.Request("POST", url)
@@ -225,7 +225,7 @@ def test_the_api_answers_whether_a_key_works(monkeypatch, status, expected):
 
     monkeypatch.setattr(http, "get_client", Client)
 
-    assert asyncio.run(api_keys.verify("pz_key", "203.0.113.7")) == expected
+    assert asyncio.run(api_keys.verify("te_key", "203.0.113.7")) == expected
 
 
 def test_over_the_companys_api_limit_a_key_gets_a_429(monkeypatch):
@@ -241,7 +241,7 @@ def test_over_the_companys_api_limit_a_key_gets_a_429(monkeypatch):
     monkeypatch.setattr(http, "get_client", Client)
 
     with pytest.raises(HTTPException) as refused:
-        asyncio.run(api_keys.verify("pz_key", None))
+        asyncio.run(api_keys.verify("te_key", None))
 
     assert (refused.value.status_code, refused.value.detail) == (429, "Too many requests")
     assert refused.value.headers == {"Retry-After": "17"}

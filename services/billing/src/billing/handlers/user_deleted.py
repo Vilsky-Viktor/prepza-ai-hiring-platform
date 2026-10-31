@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from prepza_common.events.deletions import UserDeleted
+from testee_common.events.deletions import UserDeleted
 
 from billing.services import accounts
 

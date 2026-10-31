@@ -1,7 +1,7 @@
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.ai.examples import (
+from testee_common.ai.examples import (
     example_count,
     example_language,
     example_range,

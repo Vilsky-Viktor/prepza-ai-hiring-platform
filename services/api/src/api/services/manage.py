@@ -3,11 +3,11 @@ from datetime import UTC, datetime
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.auth.encryption import encrypt
-from prepza_common.http.public_urls import resolved_address
-from prepza_common.i18n.i18n import TemplateError
-from prepza_common.limits.limits import limit, record_hit
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.auth.encryption import encrypt
+from testee_common.http.public_urls import resolved_address
+from testee_common.i18n.i18n import TemplateError
+from testee_common.limits.limits import limit, record_hit
+from testee_common.limits.rate_limit import hit_or_skip
 
 from api.config import settings
 from api.constants.api import KEY_EXPIRY_MONTHS, SECRET_OVERLAP, KeyExpiry

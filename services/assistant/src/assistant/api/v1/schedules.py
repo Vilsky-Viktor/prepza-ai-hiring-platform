@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status
-from prepza_common.auth.google import Invoker
+from testee_common.auth.google import Invoker
 
 from assistant.integrations import trace_retention
 from assistant.services import retention as retention_service

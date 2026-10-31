@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
 
-from prepza_common.events.notifications import NotificationKind, Recipient
 from sqlalchemy import and_, delete, func, or_, select, tuple_
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events.notifications import NotificationKind, Recipient
 
 from notifications.constants.member_emails import INTERVIEW_LINK
 from notifications.constants.notifications import (

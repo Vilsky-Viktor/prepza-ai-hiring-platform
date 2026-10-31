@@ -1,6 +1,6 @@
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from rounds.main import app
 from rounds.repositories import stats

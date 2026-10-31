@@ -3,7 +3,7 @@ import uuid
 from datetime import datetime, timedelta
 
 from fastapi import status
-from prepza_common.i18n.i18n import CodedError
+from testee_common.i18n.i18n import CodedError
 
 from rounds.constants.open_to_offers import (
     CONSENT_OUTDATED,

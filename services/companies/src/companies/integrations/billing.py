@@ -3,11 +3,11 @@ from uuid import UUID
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.http import http
-from prepza_common.http.backoff import wait_seconds
-from prepza_common.http.http import bearer, passed_on
-from prepza_common.i18n import error_codes as shared_codes
-from prepza_common.i18n.i18n import CodedError
+from testee_common.http import http
+from testee_common.http.backoff import wait_seconds
+from testee_common.http.http import bearer, passed_on
+from testee_common.i18n import error_codes as shared_codes
+from testee_common.i18n.i18n import CodedError
 
 from companies.config import settings
 from companies.constants.billing import WELCOME_ATTEMPTS, WELCOME_FIRST_WAIT_SECONDS

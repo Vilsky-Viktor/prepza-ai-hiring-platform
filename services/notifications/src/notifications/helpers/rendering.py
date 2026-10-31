@@ -2,8 +2,8 @@ import re
 from html import escape
 
 from babel.numbers import format_decimal
-from prepza_common.config.constants import DEFAULT_LANGUAGE, OPERATOR, RTL_LANGUAGES
-from prepza_common.i18n.plurals import plurals
+from testee_common.config.constants import DEFAULT_LANGUAGE, OPERATOR, RTL_LANGUAGES
+from testee_common.i18n.plurals import plurals
 
 from notifications.constants.email import LTR_VALUE
 from notifications.helpers.markdown import markdown_html
@@ -89,7 +89,7 @@ def render(
     # An email with its own reason for being sent says so; the others share the general one.
     footer = template.get("footer", texts["footer"])
 
-    # An invite from a company prepza hasn't verified says so, quietly, in the footer.
+    # An invite from a company testee hasn't verified says so, quietly, in the footer.
     if data.get("verified") is False:
         footer = pattern(language, "joined").format(first=footer, second=texts["unverified"])
 

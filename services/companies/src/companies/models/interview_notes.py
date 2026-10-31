@@ -1,9 +1,9 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.config.constants import MAX_NOTE_LENGTH
 from sqlalchemy import CheckConstraint, DateTime, ForeignKey, Index, Text, func, text
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.config.constants import MAX_NOTE_LENGTH
 
 from companies.models.base import Base
 

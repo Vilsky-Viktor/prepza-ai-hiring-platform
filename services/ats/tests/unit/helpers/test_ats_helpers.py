@@ -3,7 +3,7 @@ import asyncio
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.http import http
+from testee_common.http import http
 
 from ats.helpers.ats import html_to_text, job_text, subdomain
 from ats.integrations import workable

@@ -1,9 +1,9 @@
 import uuid
 from types import SimpleNamespace
 
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.events.notifications import notification
-from prepza_common.http.http import bearer
+from testee_common.auth.service_auth import issue_token
+from testee_common.events.notifications import notification
+from testee_common.http.http import bearer
 
 from companies.repositories import interviews, invite_progress, invites
 from companies.services import outbox as outbox_service

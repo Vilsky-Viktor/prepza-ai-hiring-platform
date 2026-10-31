@@ -3,16 +3,16 @@
 # The footer of reminders to a company's owners and admins.
 MEMBER_FOOTER = (
     "Este correo se envió a {email} porque eres propietario o administrador de una empresa "
-    "en prepza."
+    "en testee."
 )
 
 TEXTS = {
     "candidate": {
         "subject": "Invitación a entrevista de {company}",
-        "preheader": "Haz «{title}» en prepza. Inicia sesión con {email} para empezar.",
+        "preheader": "Haz «{title}» en testee. Inicia sesión con {email} para empezar.",
         "heading": "Invitación a una entrevista",
         "lines": [
-            "{company} te invita a la entrevista «{title}» en prepza.",
+            "{company} te invita a la entrevista «{title}» en testee.",
             (
                 "Inicia sesión con {email} para empezar. Solo esta dirección puede "
                 "hacer la entrevista, y tienes un solo intento."
@@ -25,7 +25,7 @@ TEXTS = {
         "preheader": "Si sales de la entrevista, continúa con este enlace. Inicia sesión con {email}.",
         "heading": "Tu enlace a la entrevista",
         "lines": [
-            "Empezaste la entrevista «{title}» de {company} en prepza.",
+            "Empezaste la entrevista «{title}» de {company} en testee.",
             (
                 "Si sales, continúa con este enlace: inicia sesión con {email}. Sigue funcionando "
                 "aunque {company} retire el enlace con el que empezaste. El tiempo sigue corriendo "
@@ -34,7 +34,7 @@ TEXTS = {
         ],
         "button": "Continuar la entrevista",
         "footer": (
-            "Este correo se envió a {email} porque se empezó una entrevista en prepza con esta "
+            "Este correo se envió a {email} porque se empezó una entrevista en testee con esta "
             "dirección."
         ),
     },
@@ -44,7 +44,7 @@ TEXTS = {
         "heading": "Tu entrevista te espera",
         "lines": [
             (
-                "{company} te invitó a la entrevista «{title}» en prepza hace unos días, y aún "
+                "{company} te invitó a la entrevista «{title}» en testee hace unos días, y aún "
                 "no la has empezado."
             ),
             (
@@ -56,13 +56,13 @@ TEXTS = {
         "button": "Abrir la invitación",
     },
     "member": {
-        "subject": "Únete a {company} en prepza",
+        "subject": "Únete a {company} en testee",
         "preheader": (
             "Únete al equipo de {company} como {role}. Inicia sesión con {email} para aceptar."
         ),
         "heading": "Invitación al equipo",
         "lines": [
-            "{inviter} te invita a unirte al equipo de {company} en prepza como {role}.",
+            "{inviter} te invita a unirte al equipo de {company} en testee como {role}.",
             (
                 "Inicia sesión con {email} para aceptar. Solo esta dirección puede aceptar la "
                 "invitación."
@@ -84,9 +84,9 @@ TEXTS = {
                 "contestar a {sender}."
             ),
         ],
-        "button": "Visitar prepza",
+        "button": "Visitar testee",
         "footer": "Este correo se envió a {email} porque {sender} compartió un informe de "
-        "candidato con esta dirección en prepza. Si no lo esperabas, puedes ignorarlo.",
+        "candidato con esta dirección en testee. Si no lo esperabas, puedes ignorarlo.",
     },
     "candidates": {
         "subject": "Todos los candidatos: {title}",
@@ -99,16 +99,16 @@ TEXTS = {
                 "navegador, los mejores primero. Responde a este correo para contestar a {sender}."
             ),
         ],
-        "button": "Visitar prepza",
+        "button": "Visitar testee",
         "footer": "Este correo se envió a {email} porque {sender} compartió un informe de "
-        "candidatos con esta dirección en prepza. Si no lo esperabas, puedes ignorarlo.",
+        "candidatos con esta dirección en testee. Si no lo esperabas, puedes ignorarlo.",
     },
     "digest": {
-        "subject": "Tu resumen de actividad en prepza",
+        "subject": "Tu resumen de actividad en testee",
         "preheader": "Lo que pasó en tus empresas en las últimas 24 horas.",
         "heading": "Tu resumen de actividad",
         "lines": [
-            "Esto es lo que pasó en tus empresas en prepza en las últimas 24 horas.",
+            "Esto es lo que pasó en tus empresas en testee en las últimas 24 horas.",
         ],
         "rows": {
             "candidate_finished": "Candidatos que terminaron: {count} · «{title}»",
@@ -119,9 +119,9 @@ TEXTS = {
             "note": "{author}: «{excerpt}»",
             "note_by_former": "Un exmiembro: «{excerpt}»",
         },
-        "button": "Abrir prepza",
+        "button": "Abrir testee",
         "footer": (
-            "Este correo se envió a {email} porque eres miembro de una empresa en prepza y "
+            "Este correo se envió a {email} porque eres miembro de una empresa en testee y "
             "recibes su resumen de actividad."
         ),
     },
@@ -183,17 +183,17 @@ TEXTS = {
         "heading": "Actualizamos nuestros términos",
         "lines": [
             (
-                "Hemos publicado una nueva versión de los términos de prepza. Se aplica a partir "
+                "Hemos publicado una nueva versión de los términos de testee. Se aplica a partir "
                 "del {date}; hasta entonces, se aplican los términos actuales."
             ),
             (
-                "Si usas prepza después del {date}, aceptas los nuevos términos. Si no los "
+                "Si usas testee después del {date}, aceptas los nuevos términos. Si no los "
                 "aceptas, puedes eliminar tu cuenta en Ajustes antes de esa fecha."
             ),
         ],
         "button": "Leer los nuevos términos",
         "footer": (
-            "Este correo se envió a {email} porque tienes una cuenta en prepza. Es un aviso "
+            "Este correo se envió a {email} porque tienes una cuenta en testee. Es un aviso "
             "sobre nuestros términos, así que se envía sin importar tu configuración de "
             "correo."
         ),
@@ -204,7 +204,7 @@ TEXTS = {
         "heading": "Actualizamos nuestra política de privacidad",
         "lines": [
             (
-                "Hemos publicado una nueva versión de la política de privacidad de prepza, que "
+                "Hemos publicado una nueva versión de la política de privacidad de testee, que "
                 "explica cómo usamos tus datos. Se aplica a partir del {date}; hasta entonces, se "
                 "aplica la actual."
             ),
@@ -212,7 +212,7 @@ TEXTS = {
         ],
         "button": "Leer la nueva política de privacidad",
         "footer": (
-            "Este correo se envió a {email} porque tienes una cuenta en prepza. Es un aviso "
+            "Este correo se envió a {email} porque tienes una cuenta en testee. Es un aviso "
             "sobre cómo usamos tus datos, así que se envía sin importar tu configuración de "
             "correo."
         ),
@@ -224,18 +224,18 @@ TEXTS = {
         "lines": [
             (
                 "Hemos publicado una nueva versión del acuerdo de tratamiento de datos según el "
-                "cual prepza trata los datos de tus candidatos. Se aplica a partir del {date}; "
+                "cual testee trata los datos de tus candidatos. Se aplica a partir del {date}; "
                 "hasta entonces, se aplica el actual."
             ),
             (
                 "Una empresa que se oponga por motivos razonables de protección de datos puede "
-                "dejar de usar prepza y eliminar su empresa antes de esa fecha."
+                "dejar de usar testee y eliminar su empresa antes de esa fecha."
             ),
         ],
         "button": "Leer el nuevo acuerdo",
         "footer": (
             "Este correo se envió a {email} porque eres propietario o administrador de una "
-            "empresa en prepza. Es un aviso sobre nuestro acuerdo con tu empresa, así que se "
+            "empresa en testee. Es un aviso sobre nuestro acuerdo con tu empresa, así que se "
             "envía sin importar tu configuración de correo."
         ),
     },
@@ -247,10 +247,10 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Abrir prepza",
+        "open_site": "Abrir testee",
         "footer": (
             "Este correo se envió a {email} porque elegiste recibir novedades del producto de"
-            " prepza."
+            " testee."
         ),
     },
     "promotions": {
@@ -259,13 +259,13 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Abrir prepza",
+        "open_site": "Abrir testee",
         "footer": (
             "Este correo se envió a {email} porque elegiste recibir ofertas y promociones de"
-            " prepza."
+            " testee."
         ),
     },
-    # An important notice: a service email about prepza itself (a security incident, planned
+    # An important notice: a service email about testee itself (a security incident, planned
     # downtime, a change to how it works), whatever the email settings; never a promotion.
     "notices": {
         "subject": "{subject}",
@@ -273,9 +273,9 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Abrir prepza",
+        "open_site": "Abrir testee",
         "footer": (
-            "Este correo se envió a {email} porque tienes una cuenta en prepza. Es un aviso"
+            "Este correo se envió a {email} porque tienes una cuenta en testee. Es un aviso"
             " importante sobre el servicio, como su seguridad o disponibilidad, así que se"
             " envía sin importar tu configuración de correo."
         ),
@@ -297,7 +297,7 @@ TEXTS = {
         "button": "Recargar",
         "footer": (
             "Este correo se envió a {email} porque eres propietario o administrador de "
-            "{company} en prepza. Trata sobre la facturación de tu empresa, así que se "
+            "{company} en testee. Trata sobre la facturación de tu empresa, así que se "
             "envía sin importar tu configuración de correo."
         ),
     },
@@ -322,7 +322,7 @@ TEXTS = {
         "button": "Actualizar la tarjeta",
         "footer": (
             "Este correo se envió a {email} porque eres propietario o administrador de "
-            "{company} en prepza. Trata sobre la facturación de tu empresa, así que se "
+            "{company} en testee. Trata sobre la facturación de tu empresa, así que se "
             "envía sin importar tu configuración de correo."
         ),
     },
@@ -353,7 +353,7 @@ TEXTS = {
         "button": "Abrir facturación",
         "footer": (
             "Este correo se envió a {email} porque eres propietario o administrador de "
-            "{company} en prepza. Trata sobre la facturación de tu empresa, así que se envía "
+            "{company} en testee. Trata sobre la facturación de tu empresa, así que se envía "
             "sin importar tu configuración de correo."
         ),
     },
@@ -381,7 +381,7 @@ TEXTS = {
         "button": "Abrir facturación",
         "footer": (
             "Este correo se envió a {email} porque eres propietario o administrador de "
-            "{company} en prepza. Trata sobre la facturación de tu empresa, así que se envía "
+            "{company} en testee. Trata sobre la facturación de tu empresa, así que se envía "
             "sin importar tu configuración de correo."
         ),
     },
@@ -406,20 +406,20 @@ TEXTS = {
         "button": "Abrir facturación",
         "footer": (
             "Este correo se envió a {email} porque eres propietario o administrador de "
-            "{company} en prepza. Trata sobre la facturación de tu empresa, así que se "
+            "{company} en testee. Trata sobre la facturación de tu empresa, así que se "
             "envía sin importar tu configuración de correo."
         ),
     },
-    "footer": "Este correo se envió a {email} porque alguien invitó a esta dirección en prepza. "
+    "footer": "Este correo se envió a {email} porque alguien invitó a esta dirección en testee. "
     "Si no lo esperabas, puedes ignorarlo.",
-    # An invite from a company prepza hasn't verified, at the end of the footer.
-    "unverified": "prepza no ha verificado {company}.",
+    # An invite from a company testee hasn't verified, at the end of the footer.
+    "unverified": "testee no ha verificado {company}.",
     "paste_link": "O pega este enlace en tu navegador",
     # The footer's links: optional emails' unsubscribe and settings, and a candidate's own.
     "unsubscribe": "Cancelar la suscripción",
     "email_settings": "Cambiar tu configuración de correo",
     "stop_reminders": "No enviarme más recordatorios de esta entrevista",
     "stop_company": "No enviarme más correos de {company}",
-    # Who runs prepza, at the end of every email.
-    "operator": "prepza está gestionada por {name}, {address}.",
+    # Who runs testee, at the end of every email.
+    "operator": "testee está gestionada por {name}, {address}.",
 }

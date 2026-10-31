@@ -1,4 +1,4 @@
-"""Our models' prices in Langfuse (prepza_common.ai.trace_prices): set once, replaced when a price
+"""Our models' prices in Langfuse (testee_common.ai.trace_prices): set once, replaced when a price
 changes, nothing without Langfuse, and a failure never stops a start. Langfuse's API is a fake."""
 
 import asyncio
@@ -6,8 +6,8 @@ import re
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.ai import trace_prices
-from prepza_common.ai.ai_constants import MODEL_PRICES
+from testee_common.ai import trace_prices
+from testee_common.ai.ai_constants import MODEL_PRICES
 
 
 class Models:

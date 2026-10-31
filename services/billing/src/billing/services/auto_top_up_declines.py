@@ -3,7 +3,7 @@ from datetime import datetime
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.events.notifications import NotificationKind, notification
+from testee_common.events.notifications import NotificationKind, notification
 
 from billing.constants.declines import DECLINE_READ_TIMEOUT_SECONDS, HARD_DECLINE_CODES
 from billing.constants.notifications import COMPANY_BILLING_LINK, TOP_UP_LINK

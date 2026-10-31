@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.auth.service_auth import only_from
-from prepza_common.config.constants import INTEGRATIONS_CALLER
-from prepza_common.http.counts import CountOut
+from testee_common.auth.service_auth import only_from
+from testee_common.config.constants import INTEGRATIONS_CALLER
+from testee_common.http.counts import CountOut
 
 from notifications.api.dependencies import ServiceCaller
 from notifications.core.db import Session

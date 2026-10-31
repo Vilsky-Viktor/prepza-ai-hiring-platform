@@ -2,7 +2,7 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.events.notes import NOTE_CREATED, NOTE_DELETED, NOTE_EDITED
+from testee_common.events.notes import NOTE_CREATED, NOTE_DELETED, NOTE_EDITED
 
 
 def note(company_id: str, interview_id: str, author: str, text: str, **fields) -> dict:

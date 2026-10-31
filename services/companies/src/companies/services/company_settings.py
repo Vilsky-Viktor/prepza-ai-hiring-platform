@@ -6,9 +6,9 @@ import base64
 import binascii
 
 from fastapi import HTTPException, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy.exc import IntegrityError
+from testee_common.auth.auth import CurrentUser
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.constants.ai_apps import AI_APPS_CHANGED_BY_APP
 from companies.constants.invites import COMPANY_NAME_TAKEN
@@ -38,7 +38,7 @@ async def changed(company_id, user_id: str, action: str, change, *args, **detail
 
 
 async def rename(company: Company, user_id: str, title: str) -> None:
-    """Names stay unique across prepza, ignoring case (409)."""
+    """Names stay unique across testee, ignoring case (409)."""
     name = title.strip()
 
     if not name:
@@ -66,7 +66,7 @@ async def rename(company: Company, user_id: str, title: str) -> None:
 async def set_ai_apps(company_id, user: CurrentUser, allowed: bool, via: str | None) -> None:
     """Owners and admins allow, or stop, members using the company's data from the AI apps they
     connected. Never through an AI app or the assistant (403, before anything else): a person
-    decides, in prepza itself."""
+    decides, in testee itself."""
     if via is not None:
         raise HTTPException(status.HTTP_403_FORBIDDEN, AI_APPS_CHANGED_BY_APP)
 
@@ -81,7 +81,7 @@ async def set_allowed_domains(
 ) -> AllowedDomains:
     """Owners and admins set the sites that may embed the company's interviews with the SDK.
     Never through an AI app or the assistant (403, before anything
-    else): a security setting a person decides, in prepza itself."""
+    else): a security setting a person decides, in testee itself."""
     if via is not None:
         raise HTTPException(status.HTTP_403_FORBIDDEN, AI_APPS_CHANGED_BY_APP)
 
@@ -127,7 +127,7 @@ async def remove_logo(company: Company, user_id: str) -> None:
 
 async def set_brand_colors(company: Company, user_id: str, theme: str, colors: dict | None) -> None:
     """Colors that would make any text hard to read are refused (422), so no candidate is
-    tested on a page they can't read; none goes back to prepza's."""
+    tested on a page they can't read; none goes back to testee's."""
     problem = unreadable(colors) if colors else None
 
     if problem:

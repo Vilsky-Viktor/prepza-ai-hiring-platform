@@ -7,7 +7,7 @@ Create Date: 2026-10-11
 """
 
 from alembic import op
-from prepza_common.limits.credit_keys import ledger_key
+from testee_common.limits.credit_keys import ledger_key
 
 revision = "0011"
 down_revision = "0010"

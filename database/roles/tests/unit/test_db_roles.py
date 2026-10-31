@@ -5,7 +5,7 @@ import pytest
 
 import db_roles
 
-ADMIN = "postgresql://prepza:admin@db:5432/postgres"
+ADMIN = "postgresql://testee:admin@db:5432/postgres"
 
 
 def test_reads_each_services_database_user_and_password():
@@ -26,7 +26,7 @@ def test_reads_each_services_database_user_and_password():
     "services",
     [
         {},
-        {"DATABASE_URL_API": "postgresql://prepza:admin@db:5432/api"},
+        {"DATABASE_URL_API": "postgresql://testee:admin@db:5432/api"},
         {"DATABASE_URL_API": "postgresql://db:5432/api"},
     ],
 )

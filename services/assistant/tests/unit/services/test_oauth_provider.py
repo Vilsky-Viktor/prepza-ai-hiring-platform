@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import pytest
 from mcp.server.auth.provider import AuthorizationParams, AuthorizeError, TokenError
 from mcp.shared.auth import OAuthClientInformationFull
-from prepza_common.auth.tokens import hashed
+from testee_common.auth.tokens import hashed
 
 from assistant.repositories import oauth, oauth_requests
 from assistant.services import oauth_limits, oauth_provider
@@ -97,7 +97,7 @@ def kept(monkeypatch):
 def params(resource: str | None = RESOURCE) -> AuthorizationParams:
     return AuthorizationParams(
         state="s1",
-        scopes=["prepza"],
+        scopes=["testee"],
         code_challenge="challenge",
         redirect_uri="https://claude.ai/api/mcp/auth_callback",
         redirect_uri_provided_explicitly=True,
@@ -143,7 +143,7 @@ def test_a_code_is_exchanged_once_for_the_users_tokens(kept):
     [grant] = kept.grants.values()
     assert (grant.user_id, grant.client_name, code.resource) == ("ann", "Claude", RESOURCE)
     assert grant.access_hash == hashed(tokens.access_token)
-    assert tokens.access_token.startswith("pzm_") and tokens.expires_in == 3600
+    assert tokens.access_token.startswith("tem_") and tokens.expires_in == 3600
     assert kept.tracked == [("mcp_connected", {"user_id": "ann", "client": "claude"})]
 
     with pytest.raises(TokenError):
@@ -154,15 +154,15 @@ def test_a_read_only_connection_stays_read_only_after_a_refresh(kept):
     provider = Provider()
     asyncio.run(provider.authorize(CLIENT, params()))
     code_id = allowed(kept)
-    kept.codes[hashed(code_id)]["scopes"] = ["prepza:read"]
+    kept.codes[hashed(code_id)]["scopes"] = ["testee:read"]
     code = asyncio.run(provider.load_authorization_code(CLIENT, code_id))
     first = asyncio.run(provider.exchange_authorization_code(CLIENT, code))
     refresh = asyncio.run(provider.load_refresh_token(CLIENT, first.refresh_token))
     second = asyncio.run(provider.exchange_refresh_token(CLIENT, refresh, []))
 
     [grant] = kept.grants.values()
-    assert grant.scope == first.scope == second.scope == "prepza:read"
-    assert asyncio.run(provider.load_access_token(second.access_token)).scopes == ["prepza:read"]
+    assert grant.scope == first.scope == second.scope == "testee:read"
+    assert asyncio.run(provider.load_access_token(second.access_token)).scopes == ["testee:read"]
 
 
 def test_a_full_connection_can_also_read(kept):
@@ -171,9 +171,9 @@ def test_a_full_connection_can_also_read(kept):
     code = asyncio.run(provider.load_authorization_code(CLIENT, allowed(kept)))
     tokens = asyncio.run(provider.exchange_authorization_code(CLIENT, code))
 
-    assert tokens.scope == "prepza"
+    assert tokens.scope == "testee"
     access = asyncio.run(provider.load_access_token(tokens.access_token))
-    assert set(access.scopes) == {"prepza", "prepza:read"}
+    assert set(access.scopes) == {"testee", "testee:read"}
 
 
 def test_another_apps_code_isnt_found(kept):
@@ -190,7 +190,7 @@ def test_a_refresh_replaces_both_tokens_and_the_old_ones_stop_working(kept):
     code = asyncio.run(provider.load_authorization_code(CLIENT, allowed(kept)))
     first = asyncio.run(provider.exchange_authorization_code(CLIENT, code))
     refresh = asyncio.run(provider.load_refresh_token(CLIENT, first.refresh_token))
-    second = asyncio.run(provider.exchange_refresh_token(CLIENT, refresh, ["prepza"]))
+    second = asyncio.run(provider.exchange_refresh_token(CLIENT, refresh, ["testee"]))
 
     assert asyncio.run(provider.load_access_token(first.access_token)) is None
     assert asyncio.run(provider.load_refresh_token(CLIENT, first.refresh_token)) is None
@@ -198,7 +198,7 @@ def test_a_refresh_replaces_both_tokens_and_the_old_ones_stop_working(kept):
 
     # The same refresh token again (a race lost): refused.
     with pytest.raises(TokenError):
-        asyncio.run(provider.exchange_refresh_token(CLIENT, refresh, ["prepza"]))
+        asyncio.run(provider.exchange_refresh_token(CLIENT, refresh, ["testee"]))
 
 
 def test_a_replaced_refresh_token_used_again_later_revokes_the_connection(kept):
@@ -209,7 +209,7 @@ def test_a_replaced_refresh_token_used_again_later_revokes_the_connection(kept):
     code = asyncio.run(provider.load_authorization_code(CLIENT, allowed(kept)))
     first = asyncio.run(provider.exchange_authorization_code(CLIENT, code))
     refresh = asyncio.run(provider.load_refresh_token(CLIENT, first.refresh_token))
-    second = asyncio.run(provider.exchange_refresh_token(CLIENT, refresh, ["prepza"]))
+    second = asyncio.run(provider.exchange_refresh_token(CLIENT, refresh, ["testee"]))
     [grant] = kept.grants.values()
 
     assert asyncio.run(provider.load_refresh_token(CLIENT, first.refresh_token)) is None

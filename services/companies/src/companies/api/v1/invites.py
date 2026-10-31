@@ -1,9 +1,9 @@
 from typing import Annotated
 
 from fastapi import APIRouter, HTTPException, Query, Request, status
-from prepza_common.auth.auth import CurrentUser, OptionalUser
-from prepza_common.http.client_ip import limit_address
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.auth.auth import CurrentUser, OptionalUser
+from testee_common.http.client_ip import limit_address
+from testee_common.limits.rate_limit import hit_or_skip
 
 from companies.constants.allowed_domains import MAX_URL_LENGTH
 from companies.integrations.firebase_tokens import guest_token

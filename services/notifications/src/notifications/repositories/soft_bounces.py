@@ -1,9 +1,9 @@
 from datetime import datetime
 
-from prepza_common.db.db import delete_in_batches
 from sqlalchemy import func, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.db.db import delete_in_batches
 
 from notifications.models.soft_bounces import SoftBounce
 

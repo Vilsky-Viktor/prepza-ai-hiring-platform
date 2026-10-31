@@ -87,7 +87,7 @@ async def remove_matching(session: AsyncSession, *conditions) -> None:
 
 
 async def remove_email(session: AsyncSession, email: str) -> None:
-    """A candidate who deleted their prepza account: their results waiting to be sent again go,
+    """A candidate who deleted their testee account: their results waiting to be sent again go,
     from every company's web hooks. An empty (unverified) email matches none."""
     if not email:
         return

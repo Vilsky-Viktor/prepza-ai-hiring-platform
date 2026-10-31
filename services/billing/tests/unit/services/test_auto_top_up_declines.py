@@ -7,7 +7,7 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common.events.notifications import notification
+from testee_common.events.notifications import notification
 
 from billing.integrations import paddle
 from billing.repositories import auto_top_up_charges, events

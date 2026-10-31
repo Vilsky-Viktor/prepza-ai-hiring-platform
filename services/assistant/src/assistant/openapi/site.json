@@ -60,7 +60,7 @@
      "help"
     ],
     "summary": "Get Guide",
-    "description": "Everything prepza's help chat (in the assistant) answers from, as text: how prepza works and how to use it,\nthe FAQ in the page's language, today's prices, the terms and the privacy policy; public.",
+    "description": "Everything testee's help chat (in the assistant) answers from, as text: how testee works and how to use it,\nthe FAQ in the page's language, today's prices, the terms and the privacy policy; public.",
     "operationId": "get_guide_help_guide_get",
     "responses": {
      "200": {
@@ -290,7 +290,7 @@
      "help"
     ],
     "summary": "Contact",
-    "description": "The contact page's message; notifications emails it to prepza's inbox. Public, so the\nsender shows they're a person.",
+    "description": "The contact page's message; notifications emails it to testee's inbox. Public, so the\nsender shows they're a person.",
     "operationId": "contact_help_contact_post",
     "requestBody": {
      "content": {

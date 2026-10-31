@@ -4,18 +4,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "Ano ang prepza?",
+        "question": "Ano ang testee?",
         "answer": "Isang timed interview mula sa iyong job description, para sa kahit anong role. Gamitin ito para i-screen ang mga aplikante bago mo sila makilala, o bilang mismong hakbang ng hiring: alinman dito, makikita mo kung sino ang talagang marunong sa trabaho.",
     },
     {
         "key": "roles",
         "question": "Para sa aling mga role ako puwedeng mag-hire?",
-        "answer": "Kahit anong role kung saan mahalaga ang kaalaman: support, sales, finance, healthcare, trades, engineering, marketing at iba pa. Kung kaya mong ilarawan ang trabaho, kayang gumawa ng prepza ng interview para dito.",
+        "answer": "Kahit anong role kung saan mahalaga ang kaalaman: support, sales, finance, healthcare, trades, engineering, marketing at iba pa. Kung kaya mong ilarawan ang trabaho, kayang gumawa ng testee ng interview para dito.",
     },
     {
         "key": "hiring",
         "question": "Paano ito gumagana?",
-        "answer": "Mag-paste ng job description sa home page, pangalanan ang iyong kumpanya at tingnan ang mga topic na iminumungkahi ng prepza. Pagkatapos ay mag-imbita ng mga aplikante: i-type ang kanilang mga email, mag-paste ng listahan o mag-upload ng file. Ang mga aplikanteng hindi pa nagsisimula pagkalipas ng ilang araw ay makakatanggap ng isang paalala. Bawat aplikante ay may sariling mga tanong at timer sa bawat isa, at makikita mo ang kanilang score at bawat sagot sa sandaling matapos sila.",
+        "answer": "Mag-paste ng job description sa home page, pangalanan ang iyong kumpanya at tingnan ang mga topic na iminumungkahi ng testee. Pagkatapos ay mag-imbita ng mga aplikante: i-type ang kanilang mga email, mag-paste ng listahan o mag-upload ng file. Ang mga aplikanteng hindi pa nagsisimula pagkalipas ng ilang araw ay makakatanggap ng isang paalala. Bawat aplikante ay may sariling mga tanong at timer sa bawat isa, at makikita mo ang kanilang score at bawat sagot sa sandaling matapos sila.",
     },
     {
         "key": "link",
@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Puwede ba akong mahanap ng mga kumpanya sa pamamagitan ng practice ko?",
-        "answer": "Kung pipiliin mo lang. I-on ang Open to offers pagkatapos ng isang practice round o sa Settings, kasama ang address ng iyong LinkedIn profile. Makikita na ng mga kumpanyang nagha-hire sa prepza ang pangalan mo, LinkedIn profile at pinakabagong resulta ng practice mo sa bawat topic ng kanilang mga interview na pinag-practice-an mo, at puwede ka nilang imbitahan sa isang interview. Hindi ka nira-rank o inirerekomenda ng prepza. I-off ito kahit kailan sa Settings, at agad kang mawawala sa listahan ng bawat kumpanya; natatapos din ito isang taon matapos mo itong huling i-on o i-save ang iyong LinkedIn profile.",
+        "answer": "Kung pipiliin mo lang. I-on ang Open to offers pagkatapos ng isang practice round o sa Settings, kasama ang address ng iyong LinkedIn profile. Makikita na ng mga kumpanyang nagha-hire sa testee ang pangalan mo, LinkedIn profile at pinakabagong resulta ng practice mo sa bawat topic ng kanilang mga interview na pinag-practice-an mo, at puwede ka nilang imbitahan sa isang interview. Hindi ka nira-rank o inirerekomenda ng testee. I-off ito kahit kailan sa Settings, at agad kang mawawala sa listahan ng bawat kumpanya; natatapos din ito isang taon matapos mo itong huling i-on o i-save ang iyong LinkedIn profile.",
     },
     {
         "key": "cheating",
@@ -55,7 +55,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Paano maihahambing ang presyo sa ibang assessment tool?",
-        "answer": "Maraming assessment tool ang ibinebenta bilang buwanan o taunang subscription na binabayaran kahit wala kang tine-test. Sa prepza, nagbabayad ka lang kada aplikante: {candidate} credits ({candidate_price}), walang kontrata, walang bayad kada user, at walang bayad sa paggawa ng interview. Ang kumpanyang nag-iimbita ng {example_candidates} aplikante kada buwan ay nagbabayad ng mga {example_year_price} kada taon. Kung maraming aplikante ang tine-test mo buwan-buwan, maaaring mas mura ang subscription, kaya ihambing sa sarili mong mga numero.",
+        "answer": "Maraming assessment tool ang ibinebenta bilang buwanan o taunang subscription na binabayaran kahit wala kang tine-test. Sa testee, nagbabayad ka lang kada aplikante: {candidate} credits ({candidate_price}), walang kontrata, walang bayad kada user, at walang bayad sa paggawa ng interview. Ang kumpanyang nag-iimbita ng {example_candidates} aplikante kada buwan ay nagbabayad ng mga {example_year_price} kada taon. Kung maraming aplikante ang tine-test mo buwan-buwan, maaaring mas mura ang subscription, kaya ihambing sa sarili mong mga numero.",
     },
     {
         "key": "expire",
@@ -80,7 +80,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Puwede ko bang i-share ang mga resulta sa isang hiring manager?",
-        "answer": "Oo. Mag-download ng PDF report para sa isang aplikante o para sa lahat ng aplikante ng isang interview, i-email ito direkta mula sa prepza, o magpadala ng maikling buod sa WhatsApp, Telegram, Viber o LINE.",
+        "answer": "Oo. Mag-download ng PDF report para sa isang aplikante o para sa lahat ng aplikante ng isang interview, i-email ito direkta mula sa testee, o magpadala ng maikling buod sa WhatsApp, Telegram, Viber o LINE.",
     },
     {
         "key": "action_log",
@@ -94,13 +94,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "Gumagana ba ang prepza sa ATS ko o sa iba pang tool?",
+        "question": "Gumagana ba ang testee sa ATS ko o sa iba pang tool?",
         "answer": "Oo, nang walang dagdag na bayad. I-connect ang Workable, Greenhouse, Teamtailor, Recruitee o Breezy HR sa tab na Mga integration ng iyong kumpanya: makukuha ng mga aplikanteng ililipat mo sa isang stage ang interview, at babalik sa ATS ang mga resulta nila ([paano ikonekta ang skills tests sa iyong ATS](/guides/ats-integration-skills-tests)). Kayang i-post ng Slack ang mga notification ng iyong kumpanya sa isang channel, at sa pamamagitan ng API, makakagawa ang sarili mong platform ng mga interview, makakapag-imbita at makakapamahala ng mga aplikante, at makakatanggap ng mga resulta nila, at limitado ang bawat API key sa kung ano ang i-check mo para rito; tingnan ang [Dokumentasyon ng API](/api-docs).",
     },
     {
         "key": "ai_apps",
-        "question": "Puwede ko bang gamitin ang prepza mula sa Claude, ChatGPT o sarili kong AI agent?",
-        "answer": "Oo. Idagdag ang prepza sa Claude o ChatGPT bilang connector (nasa tab na Mga integration ng iyong kumpanya ang mga hakbang) at payagan ito sa prepza. Pagkatapos, gagamitin ng app ang iyong mga kumpanya, interview at resulta ng mga aplikante bilang ikaw, gamit ang mga pahintulot mo; karamihan sa mga app ay nagtatanong muna bago may baguhin. Sa prepza lang mabubura ang account mo o ang isang kumpanya. Ang nababasa ng app ay napupunta sa provider nito, ayon sa mga tuntunin ng app na iyon. Puwede mo itong i-disconnect anumang oras sa parehong tab. Puwede ring kumonekta ang ibang AI app at mga agent na ikaw mismo ang gumawa: nasa [tab na MCP](/api-docs?tab=mcp) ng dokumentasyon para sa mga developer ang mga hakbang at mga halimbawang agent, at puwedeng mag-sign in ang agent sa server gamit ang API key na may pahintulot para sa mga AI agent. Ipinapaliwanag ng [gabay sa AI agents, MCP at APIs](/guides/ai-agents-mcp-and-api) kung para saan ang bawat isa.",
+        "question": "Puwede ko bang gamitin ang testee mula sa Claude, ChatGPT o sarili kong AI agent?",
+        "answer": "Oo. Idagdag ang testee sa Claude o ChatGPT bilang connector (nasa tab na Mga integration ng iyong kumpanya ang mga hakbang) at payagan ito sa testee. Pagkatapos, gagamitin ng app ang iyong mga kumpanya, interview at resulta ng mga aplikante bilang ikaw, gamit ang mga pahintulot mo; karamihan sa mga app ay nagtatanong muna bago may baguhin. Sa testee lang mabubura ang account mo o ang isang kumpanya. Ang nababasa ng app ay napupunta sa provider nito, ayon sa mga tuntunin ng app na iyon. Puwede mo itong i-disconnect anumang oras sa parehong tab. Puwede ring kumonekta ang ibang AI app at mga agent na ikaw mismo ang gumawa: nasa [tab na MCP](/api-docs?tab=mcp) ng dokumentasyon para sa mga developer ang mga hakbang at mga halimbawang agent, at puwedeng mag-sign in ang agent sa server gamit ang API key na may pahintulot para sa mga AI agent. Ipinapaliwanag ng [gabay sa AI agents, MCP at APIs](/guides/ai-agents-mcp-and-api) kung para saan ang bawat isa.",
     },
     {
         "key": "candidates",
@@ -120,27 +120,27 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Ano ang nangyayari sa mga job description at mga sagot?",
-        "answer": "Ginagamit ang mga job description para buuin ang mga interview ng iyong kumpanya, at ang mga sagot ng aplikante para i-score ang mga ito para sa iyong kumpanya. Maaari ding muling gamitin ang mga tanong na ginagawa ng prepza sa mga interview at practice ng ibang mga kumpanya, nang walang anumang tumutukoy sa iyo, sa iyong kumpanya o sa sinumang iba; maaari mong hindi isama rito ang mga tanong ng isang interview sa mga setting nito. Natututo rin ang prepza ng mga pangkalahatan at anonymized na pattern ng kalidad ng tanong mula sa kung paano sinasagot ang mga tanong, para pahusayin kung paano ginagawa ang mga tanong. Ipinapaliwanag ng [privacy policy](/privacy) kung ano ang itinatago namin, gaano katagal, at ang mga karapatan ng lahat.",
+        "answer": "Ginagamit ang mga job description para buuin ang mga interview ng iyong kumpanya, at ang mga sagot ng aplikante para i-score ang mga ito para sa iyong kumpanya. Maaari ding muling gamitin ang mga tanong na ginagawa ng testee sa mga interview at practice ng ibang mga kumpanya, nang walang anumang tumutukoy sa iyo, sa iyong kumpanya o sa sinumang iba; maaari mong hindi isama rito ang mga tanong ng isang interview sa mga setting nito. Natututo rin ang testee ng mga pangkalahatan at anonymized na pattern ng kalidad ng tanong mula sa kung paano sinasagot ang mga tanong, para pahusayin kung paano ginagawa ang mga tanong. Ipinapaliwanag ng [privacy policy](/privacy) kung ano ang itinatago namin, gaano katagal, at ang mga karapatan ng lahat.",
     },
     {
         "key": "eu_ai_law",
         "question": "Legal ba ang paggamit ng AI sa pag-screen ng mga aplikante sa EU?",
-        "answer": "Oo, basta may sinusunod na patakaran. Sa ilalim ng EU AI Act, malaki ang posibilidad na high-risk ang mga tool na nag-i-score ng mga aplikante, na may mga obligasyon simula 2 Disyembre 2027, at umiiral na ang GDPR: tao ang gumagawa ng desisyon sa pag-hire, sinasabihan ang mga aplikante na ginagamit ang AI, at may itinatagong mga record. Ganito gumagana ang prepza: AI ang sumusulat ng mga tanong, ang mga tao sa iyong kumpanya ang nagre-review ng mga resulta at nagdedesisyon, at sinasabihan ang mga aplikante bago sila magsimula. Hindi ito legal advice; ipinapaliwanag ng [Legal ba ang AI hiring sa EU?](/guides/is-ai-hiring-legal-in-the-eu) ang mga patakaran at petsa.",
+        "answer": "Oo, basta may sinusunod na patakaran. Sa ilalim ng EU AI Act, malaki ang posibilidad na high-risk ang mga tool na nag-i-score ng mga aplikante, na may mga obligasyon simula 2 Disyembre 2027, at umiiral na ang GDPR: tao ang gumagawa ng desisyon sa pag-hire, sinasabihan ang mga aplikante na ginagamit ang AI, at may itinatagong mga record. Ganito gumagana ang testee: AI ang sumusulat ng mga tanong, ang mga tao sa iyong kumpanya ang nagre-review ng mga resulta at nagdedesisyon, at sinasabihan ang mga aplikante bago sila magsimula. Hindi ito legal advice; ipinapaliwanag ng [Legal ba ang AI hiring sa EU?](/guides/is-ai-hiring-legal-in-the-eu) ang mga patakaran at petsa.",
     },
     {
         "key": "uk_us",
-        "question": "Puwede ba naming gamitin ang prepza para sa mga aplikante sa UK at US?",
+        "question": "Puwede ba naming gamitin ang testee para sa mga aplikante sa UK at US?",
         "answer": "Oo. Sakop ng data processing agreement ang batas ng UK at US, at sakop ng mga tagubilin para sa mga kumpanya at ng mga template ng abiso sa aplikante (may bersyon para sa New York City, Illinois at Colorado) ang dapat mong sabihin sa mga aplikante. Para sa mga trabaho sa New York City, gamitin lang ito kapag nagawa mo na ang hinihingi sa iyo ng Local Law 144: isang independiyenteng bias audit sa loob ng isang taon bago ang paggamit, ang paglalathala ng buod nito, at abiso sa mga aplikante 10 business day bago nito. Ibinibigay ng bias-audit export sa Log ng aksyon sa auditor mo ang grade at resulta ng bawat aplikanteng natapos, para itugma sa sariling sagot ng mga aplikante mo.",
     },
     {
         "key": "emails",
-        "question": "Anong mga email ang ipinapadala ng prepza, at paano ko ito ihihinto?",
+        "question": "Anong mga email ang ipinapadala ng testee, at paano ko ito ihihinto?",
         "answer": 'Laging ipinapadala ang mga email ng serbisyo, gaya ng mga imbitasyon, report, problema sa bayad at pagbabago sa aming mga tuntunin. Ang iba, gaya ng araw-araw na buod ng aktibidad, mga paalala at mga update tungkol sa produkto, ay pinipili mo sa Mga setting, sa ilalim ng Mga email, o inihihinto gamit ang link na "Mag-unsubscribe" sa bawat email. Puwedeng ihinto ng mga aplikante ang mga email ng iyong kumpanya, o ang mga paalala ng isang interview, gamit ang mga link sa kanilang mga imbitasyon at paalala.',
     },
     {
         "key": "delete",
         "question": "Puwede ko bang burahin ang account ko?",
-        "answer": "Oo, sa Settings. Buburahin ang account at data mo, at puwede mo munang i-download ang kopya ng data mo. Lumalabas ang mga balita ng prepza sa iyong mga notification, ang kampana sa itaas; ipinapadala rin sa email ang mahahalagang balita bilang update tungkol sa produkto, habang naka-on lang ang setting na iyon.",
+        "answer": "Oo, sa Settings. Buburahin ang account at data mo, at puwede mo munang i-download ang kopya ng data mo. Lumalabas ang mga balita ng testee sa iyong mga notification, ang kampana sa itaas; ipinapadala rin sa email ang mahahalagang balita bilang update tungkol sa produkto, habang naka-on lang ang setting na iyon.",
     },
     {
         "key": "report",

@@ -1,4 +1,4 @@
-from prepza_common.ai.examples import pool_share
+from testee_common.ai.examples import pool_share
 
 from library.constants.sets import COMPANY_QUESTIONS, PRACTICE_QUESTIONS, Pool
 
@@ -6,7 +6,7 @@ from library.constants.sets import COMPANY_QUESTIONS, PRACTICE_QUESTIONS, Pool
 def assign_pools(questions: list, share: float) -> None:
     """A new template topic's pools: questions reused from the bank are company questions; of
     the fresh ones, PRACTICE_QUESTIONS go to practice, with their share of multi-answer questions
-    and of questions with an example (prepza_common.ai.examples.pool_share), and the rest to
+    and of questions with an example (testee_common.ai.examples.pool_share), and the rest to
     companies."""
     fresh = [question for question in questions if question.source_question_id is None]
     practice = pool_share(questions, fresh, PRACTICE_QUESTIONS, share)[0]

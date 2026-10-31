@@ -1,5 +1,5 @@
 {
-  "intro": "These terms apply when you use prepza, a service of Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. By signing in, you agree to them. prepza.ai also shows this document in other languages; only this English version is binding, and where a translation differs, the English version applies.",
+  "intro": "These terms apply when you use testee, a service of Arcolabs OÜ (registry code 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. By signing in, you agree to them. testee.ai also shows this document in other languages; only this English version is binding, and where a translation differs, the English version applies.",
   "sections": [
     {
       "heading": "Your account",
@@ -18,13 +18,13 @@
     {
       "heading": "Your content",
       "paragraphs": [
-        "You keep the rights to what you paste and create. You let us store and process it to run prepza, including sending it to the AI services we use. You also give us a worldwide, royalty-free, irrevocable licence, for as long as any rights in them last, to use, adapt and reuse the questions prepza generates for you in interviews and practice for other customers, without anything that identifies you, your company or anyone else; you can keep an interview's questions out of this in its settings, and questions already reused stay where they are. We also learn general, anonymised patterns of question quality from all questions to improve how questions are generated. Don't paste trade secrets or personal data into a job description."
+        "You keep the rights to what you paste and create. You let us store and process it to run testee, including sending it to the AI services we use. You also give us a worldwide, royalty-free, irrevocable licence, for as long as any rights in them last, to use, adapt and reuse the questions testee generates for you in interviews and practice for other customers, without anything that identifies you, your company or anyone else; you can keep an interview's questions out of this in its settings, and questions already reused stay where they are. We also learn general, anonymised patterns of question quality from all questions to improve how questions are generated. Don't paste trade secrets or personal data into a job description."
       ]
     },
     {
       "heading": "Fair use",
       "items": [
-        "Don't use prepza to send unwanted email, to scrape it, or to overload or attack it.",
+        "Don't use testee to send unwanted email, to scrape it, or to overload or attack it.",
         "Don't try to get around limits, security or another user's access.",
         "In an interview, answer on your own and follow its rules; the company sees how long each answer took, when you left the page and when you copied text. Before you start, you confirm you'll answer on your own, and the company sees that you did."
       ]
@@ -32,7 +32,7 @@
     {
       "heading": "Companies",
       "paragraphs": [
-        "A company using prepza to interview candidates is responsible for inviting candidates lawfully, for telling them how their results are used, and for its hiring decisions. We process candidates' data on the company's behalf, under the data processing agreement at prepza.ai/dpa."
+        "A company using testee to interview candidates is responsible for inviting candidates lawfully, for telling them how their results are used, and for its hiring decisions. We process candidates' data on the company's behalf, under the data processing agreement at testee.ai/dpa."
       ],
       "items": [
         "A company's logo must be one it has the right to use.",
@@ -42,25 +42,25 @@
         "Results support a company's decision; they don't make it. A company reviews them before deciding, doesn't reject a candidate on the score alone, and lets a candidate ask for a person to review their result.",
         "A company gives a candidate who needs it an accommodation, such as extra time, which it can set for each candidate before they start.",
         "An interview in voice mode is answered aloud: the company tells its candidates so, and lets a candidate who needs it answer by tapping instead.",
-        "A company that connects its own tools (an applicant tracking system, Slack, or its systems through prepza's API and web hooks) chooses where its candidates' results go and is responsible for those tools, and doesn't set them up to reject candidates automatically on prepza's results.",
+        "A company that connects its own tools (an applicant tracking system, Slack, or its systems through testee's API and web hooks) chooses where its candidates' results go and is responsible for those tools, and doesn't set them up to reject candidates automatically on testee's results.",
         "API keys and web hooks' secrets are the company's to keep secret: anything done with a valid key is done for the company by that key, under the permissions it was given, and the company's action log names the key. Keys and web hooks belong to the company and stay when the member who made them leaves. A key or web hook that may have leaked should be deleted at once on the company's API page.",
-        "The data processing agreement at prepza.ai/dpa forms part of these terms for every company that uses prepza for candidates.",
+        "The data processing agreement at testee.ai/dpa forms part of these terms for every company that uses testee for candidates.",
         "A company uses what it sees of people open to offers only to consider them for its own jobs and to invite them. Their results are practice results, not a qualification, and the list is not a recommendation: the order only shows who practised last.",
         "A company that invites someone from its Discover tab tells them, at the latest in the invite, who it is, why it contacted them, what it saw and their rights.",
-        "A company uses prepza to assess candidates for jobs in New York City only once it has done what Local Law 144 requires of it as the employer: a bias audit by an independent auditor within the year before use, its summary published, and a notice to candidates at least 10 business days before they are assessed."
+        "A company uses testee to assess candidates for jobs in New York City only once it has done what Local Law 144 requires of it as the employer: a bias audit by an independent auditor within the year before use, its summary published, and a notice to candidates at least 10 business days before they are assessed."
       ]
     },
     {
       "heading": "Practice",
       "items": [
         "Practice interviews are free, and their results are private to you unless you turn on Open to offers.",
-        "Open to offers is optional and off unless you turn it on. While it's on, companies hiring on prepza see your name, your LinkedIn profile and your latest timed practice results on the subjects of their interviews, and may invite you to an interview; the invite goes to your account's email. prepza doesn't rank or recommend you. You can turn it off at any time in Settings, and you then disappear from every company's list at once. It also ends a year after you last turned it on or saved your LinkedIn profile."
+        "Open to offers is optional and off unless you turn it on. While it's on, companies hiring on testee see your name, your LinkedIn profile and your latest timed practice results on the subjects of their interviews, and may invite you to an interview; the invite goes to your account's email. testee doesn't rank or recommend you. You can turn it off at any time in Settings, and you then disappear from every company's list at once. It also ends a year after you last turned it on or saved your LinkedIn profile."
       ]
     },
     {
       "heading": "Credits and payments",
       "items": [
-        "prepza is paid with credits: each top-up buys the number of credits shown before you pay, and larger top-ups buy more credits for the money. What each thing costs in credits is on the pricing page and is shown before you use it.",
+        "testee is paid with credits: each top-up buys the number of credits shown before you pay, and larger top-ups buy more credits for the money. What each thing costs in credits is on the pricing page and is shown before you use it.",
         "Top-ups are sold by Paddle, who acts as the reseller (merchant of record): Paddle takes the payment, charges any VAT or sales tax, and issues the receipt or invoice. Businesses and consumers can both buy them. The prices on the pricing page don't include VAT or sales tax: where it applies, Paddle adds it at checkout, on top of the listed price. Prices are in the local currency in Canada (Canadian dollars), Australia (Australian dollars), Israel (shekels), Poland (zlotys), Switzerland (Swiss francs), Japan (yen), South Korea (won), Taiwan (New Taiwan dollars), Hong Kong (Hong Kong dollars), Thailand (baht), Singapore (Singapore dollars) and India (rupees); in euros in the rest of the European Union and in Iceland, Liechtenstein and Norway; in pounds sterling in the United Kingdom; and in US dollars elsewhere. A company pays in its own currency, first set from the country it was created in and changeable by its owners and admins; the checkout shows the final amount, with any tax, before you pay. If your card is in another currency, your bank or card issuer may convert the amount.",
         "Credits belong to a company and are used for its candidates; its owner and admins can top them up. Credits can't be transferred between accounts or companies, sold, or paid out as money.",
         "Automatic top-up is optional and off unless you turn it on, which needs your own tick on its terms. When you turn it on, you authorise Paddle to save your card and to charge it the top-up amount you chose, plus any VAT or sales tax, each time the company's available balance falls under the level you chose, without asking again, until it is turned off. We email the company's owners and admins when it is turned on and after every charge, and Paddle emails a receipt for every charge. You can change it or turn it off at any time where you turned it on, on the top-up page or the company's billing page; turning it off takes effect at once, cancels the saved card's authorisation and stops all further charges, and so does cancelling it through Paddle's emails. Charges already made follow the refund rules below.",
@@ -76,21 +76,21 @@
     {
       "heading": "Availability and changes",
       "paragraphs": [
-        "We work to keep prepza available and safe but can't promise it will always be. We may change or stop features, and may suspend accounts that break these terms. We email you about a significant change to these terms at least 14 days before it applies; using prepza after that day means you accept the new terms. Every earlier version stays readable on this page."
+        "We work to keep testee available and safe but can't promise it will always be. We may change or stop features, and may suspend accounts that break these terms. We email you about a significant change to these terms at least 14 days before it applies; using testee after that day means you accept the new terms. Every earlier version stays readable on this page."
       ]
     },
     {
       "heading": "Liability",
       "paragraphs": [
-        "prepza is provided as it is. As far as the law allows, we are not liable for indirect losses, and our total liability is limited to what you paid for credits in the last 12 months, or 100 US dollars (or the equivalent in your currency) if you paid nothing. Nothing here limits rights you have as a consumer under the law of your country."
+        "testee is provided as it is. As far as the law allows, we are not liable for indirect losses, and our total liability is limited to what you paid for credits in the last 12 months, or 100 US dollars (or the equivalent in your currency) if you paid nothing. Nothing here limits rights you have as a consumer under the law of your country."
       ]
     },
     {
       "heading": "Law",
       "paragraphs": [
-        "Estonian law applies, without taking away the mandatory protections of the country you live in. Questions about these terms: hello@prepza.ai.",
+        "Estonian law applies, without taking away the mandatory protections of the country you live in. Questions about these terms: hello@testee.ai.",
         "A dispute with a business goes to Harju County Court (Harju Maakohus) in Tallinn. As a consumer, you can also go to the courts where you live.",
-        "If you're a consumer, write to us first at hello@prepza.ai: we answer within 15 days. If we can't agree and you live in Estonia, you can take the dispute to the Consumer Disputes Committee (Tarbijavaidluste komisjon) of the Consumer Protection and Technical Regulatory Authority, ttja.ee, free of charge."
+        "If you're a consumer, write to us first at hello@testee.ai: we answer within 15 days. If we can't agree and you live in Estonia, you can take the dispute to the Consumer Disputes Committee (Tarbijavaidluste komisjon) of the Consumer Protection and Technical Regulatory Authority, ttja.ee, free of charge."
       ]
     }
   ]

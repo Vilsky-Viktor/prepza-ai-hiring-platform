@@ -17,7 +17,7 @@ def mcp_tool(tool: Tool) -> types.Tool:
     """A registry tool as an AI app sees it: its function definition's name, description (a
     fuller one for an app where the panel's is short) and parameters, the title the app shows, and all four hints for the app's own approval prompt
     (a read, a write, one that can't be undone, one safe to repeat), never left to their
-    defaults (destructive, open world). Every tool works on prepza alone, never the open web."""
+    defaults (destructive, open world). Every tool works on testee alone, never the open web."""
     function = tool.definition["function"]
     read_only = tool.method == "GET"
     annotations = types.ToolAnnotations(

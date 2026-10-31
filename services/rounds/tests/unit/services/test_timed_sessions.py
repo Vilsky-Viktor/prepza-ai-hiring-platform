@@ -4,8 +4,8 @@ from uuid import uuid4
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.user import User
-from prepza_common.http.http import bearer
+from testee_common.auth.user import User
+from testee_common.http.http import bearer
 
 from rounds.constants.rounds import TIME_UP
 from rounds.core.security import service_token

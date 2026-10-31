@@ -10,11 +10,11 @@ import uuid
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.user import User
-from prepza_common.db.lock_waits import hold_first_commit, race
-from prepza_common.events.audit_actions import AuditAction
-from prepza_common.i18n.i18n import CodedError
 from sqlalchemy import select
+from testee_common.auth.user import User
+from testee_common.db.lock_waits import hold_first_commit, race
+from testee_common.events.audit_actions import AuditAction
+from testee_common.i18n.i18n import CodedError
 
 from companies.core.db import Session
 from companies.integrations import library, rounds

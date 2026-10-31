@@ -1,6 +1,6 @@
 import pytest
-from prepza_common.http.client_ip import client_ip, limit_address
 from starlette.requests import Request
+from testee_common.http.client_ip import client_ip, limit_address
 
 
 def request(forwarded: str | None) -> Request:

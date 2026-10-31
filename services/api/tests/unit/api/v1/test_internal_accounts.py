@@ -1,5 +1,5 @@
 from event_pushes import push
-from prepza_common.auth.service_auth import issue_token
+from testee_common.auth.service_auth import issue_token
 
 from api.repositories import keys, webhook_retries, webhooks
 

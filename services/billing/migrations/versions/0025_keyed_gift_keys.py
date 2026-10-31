@@ -1,6 +1,6 @@
 """Welcome gifts were kept by a plain SHA-256 of the owner's inbox ("{kind}:{hash}"), which
 anyone with a list of addresses can match; each becomes its keyed hash
-(prepza_common.auth.person_hash.keyed with PERSON_HASH_KEY), the same one the code now makes. One row
+(testee_common.auth.person_hash.keyed with PERSON_HASH_KEY), the same one the code now makes. One row
 per company owner, so few rows.
 
 Revision ID: 0025
@@ -10,7 +10,7 @@ Create Date: 2026-10-22
 
 import sqlalchemy as sa
 from alembic import op
-from prepza_common.auth.person_hash import keyed
+from testee_common.auth.person_hash import keyed
 
 from billing.config import settings
 

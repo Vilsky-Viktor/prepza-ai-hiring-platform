@@ -1,4 +1,4 @@
-from prepza_common.events.news import NewsTranslated
+from testee_common.events.news import NewsTranslated
 
 from site_content.services import news
 

@@ -1,6 +1,6 @@
 -- Runs only when the postgres volume is created. For an existing volume, create new
--- databases by hand: docker-compose exec postgres createdb -U prepza <name>
--- The admin (prepza) makes them; the db-roles service then gives each to its service's own user
+-- databases by hand: docker-compose exec postgres createdb -U testee <name>
+-- The admin (testee) makes them; the db-roles service then gives each to its service's own user
 -- (compose/services.yml), as the db-roles job does in production.
 CREATE DATABASE library;
 CREATE DATABASE generation;

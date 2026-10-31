@@ -2,12 +2,12 @@ import json
 import re
 
 import pytest
-from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES, LEGAL_VERSIONS
+from testee_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES, LEGAL_VERSIONS
 
 from site_content.helpers import legal
 
 # What a translation keeps exactly as the English has it: addresses, links, numbers and dates.
-KEPT = re.compile(r"[\w.+-]+@[\w.-]+\.\w+|prepza\.ai/[\w/?=-]*|\d+(?:[.,]\d+)?")
+KEPT = re.compile(r"[\w.+-]+@[\w.-]+\.\w+|testee\.ai/[\w/?=-]*|\d+(?:[.,]\d+)?")
 
 CASES = [
     (document, language)

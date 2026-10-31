@@ -2,7 +2,7 @@ import asyncio
 
 import httpx
 import pytest
-from prepza_common.http import http
+from testee_common.http import http
 
 from assistant.integrations import services
 
@@ -26,7 +26,7 @@ def sent(monkeypatch):
 @pytest.mark.parametrize(
     ("service", "referral", "cookie"),
     [
-        ("companies", "abc_12-3", "prepza_ref=abc_12-3"),
+        ("companies", "abc_12-3", "testee_ref=abc_12-3"),
         # Only companies reads it, and only a code that reads right is passed on.
         ("billing", "abc123", None),
         ("companies", "abc; other=1", None),

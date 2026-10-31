@@ -1,6 +1,6 @@
 from fastapi import status
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from notifications.config import settings
 from notifications.core.security import service_token

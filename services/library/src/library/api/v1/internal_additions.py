@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.ai.sets import AddedQuestionsIn, AdditionContext, AdditionTopic
+from testee_common.ai.sets import AddedQuestionsIn, AdditionContext, AdditionTopic
 
 from library.api.dependencies import ServiceCaller
 from library.constants.sets import Pool

@@ -26,7 +26,7 @@ CHECKS = (
         "ck_ai_usage_action",
         "action IN ('assistant_message', 'assistant_title', 'campaign_translation', 'embeddings', 'help_chat', 'interview_generation', 'key_check_batch', 'news_translation', 'quality_patterns', 'question_regeneration', 'question_verify', 'sample_key_check', 'template_generation', 'template_question_regeneration', 'transcription')",
     ),
-    ("ai_usage", "ck_ai_usage_category", "category IN ('paid', 'unpaid', 'no_company', 'prepza')"),
+    ("ai_usage", "ck_ai_usage_category", "category IN ('paid', 'unpaid', 'no_company', 'testee')"),
     ("ai_usage", "ck_ai_usage_outcome", "outcome IN ('ok', 'cut', 'failed')"),
     ("ai_usage", "ck_ai_usage_service", "service IN ('assistant', 'generation', 'rounds')"),
     ("auto_top_ups", "ck_auto_top_ups_owner_type", "owner_type IN ('company')"),

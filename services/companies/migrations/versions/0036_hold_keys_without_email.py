@@ -8,7 +8,7 @@ Create Date: 2026-10-11
 """
 
 from alembic import op
-from prepza_common.limits.credit_keys import invite_key
+from testee_common.limits.credit_keys import invite_key
 
 revision = "0036"
 down_revision = "0035"

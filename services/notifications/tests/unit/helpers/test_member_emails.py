@@ -3,8 +3,8 @@ from datetime import datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
-from prepza_common.i18n.plurals import PLURAL
+from testee_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
+from testee_common.i18n.plurals import PLURAL
 
 from notifications.constants.email import AUTOMATED_HEADERS
 from notifications.constants.member_emails import MemberEmail
@@ -24,7 +24,7 @@ from notifications.helpers.member_selection import (
 from notifications.helpers.unsubscribe import verify
 from notifications.templates.emails import EMAILS
 
-SITE = "https://prepza.ai"
+SITE = "https://testee.ai"
 SECRET = "test-email-link-secret"
 ALL_ON = dict.fromkeys(
     ["candidate_finished", "invite_undelivered", "ats_not_invited", "interview_ready"], True
@@ -99,7 +99,7 @@ def test_the_digest_is_optional_its_links_stop_the_whole_digest():
     email = digest_email(recipient(), sections, SITE, SECRET)
     token = email.headers["List-Unsubscribe"].rsplit("/", 1)[1].rstrip(">")
 
-    assert email.subject == "Your activity digest on prepza"
+    assert email.subject == "Your activity digest on testee"
     assert email.headers["List-Unsubscribe-Post"] == "List-Unsubscribe=One-Click"
     assert verify(token, SECRET) == {"type": "digest", "user_id": "ann"}
     assert "Candidates who finished: 4 · “Backend”" in email.text

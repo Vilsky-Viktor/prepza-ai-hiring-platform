@@ -6,9 +6,9 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.i18n.i18n import TemplateError
-from prepza_common.limits.limit_list import LIMITS_KEY
-from prepza_common.redis import memory_cache
+from testee_common.i18n.i18n import TemplateError
+from testee_common.limits.limit_list import LIMITS_KEY
+from testee_common.redis import memory_cache
 
 from generation.constants.statuses import Status
 from generation.integrations.redis import get_redis

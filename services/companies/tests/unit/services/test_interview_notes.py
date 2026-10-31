@@ -7,8 +7,8 @@ import json
 import uuid
 
 import httpx
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.http import http
+from testee_common.auth.key_actor import key_actor
+from testee_common.http import http
 
 from companies.integrations import accounts
 from companies.models.companies import Member

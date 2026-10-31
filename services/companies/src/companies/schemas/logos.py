@@ -3,10 +3,10 @@ from pydantic import BaseModel, Field
 from companies.constants.brand import (
     HEX_COLOR,
     MAX_RADIUS,
-    PREPZA_BUTTON_RADIUS,
-    PREPZA_HEADING_FONT,
-    PREPZA_RADIUS,
-    PREPZA_TEXT_FONT,
+    TESTEE_BUTTON_RADIUS,
+    TESTEE_HEADING_FONT,
+    TESTEE_RADIUS,
+    TESTEE_TEXT_FONT,
     BrandFont,
     Theme,
 )
@@ -38,7 +38,7 @@ class BrandColors(BaseModel):
 
 
 class BrandColorsIn(BaseModel):
-    # None goes back to prepza's own.
+    # None goes back to testee's own.
     colors: BrandColors | None
 
 
@@ -47,14 +47,14 @@ class BrandColorsOut(BaseModel):
 
 
 class SavedBrandColors(BaseModel):
-    """The sets a company saved, by theme; a theme without one uses prepza's."""
+    """The sets a company saved, by theme; a theme without one uses testee's."""
 
     light: BrandColors | None = None
     dark: BrandColors | None = None
 
 
 class BrandColorSets(BaseModel):
-    """The colors a candidate's pages use, by theme: the company's, or prepza's where it has
+    """The colors a candidate's pages use, by theme: the company's, or testee's where it has
     none."""
 
     light: BrandColors
@@ -65,13 +65,13 @@ class BrandStyle(BaseModel):
     """A company's fonts, for titles and for the text, and its cards' and buttons' corner
     rounding (px), on its candidates' pages."""
 
-    heading_font: BrandFont = PREPZA_HEADING_FONT
-    text_font: BrandFont = PREPZA_TEXT_FONT
-    radius: int = Field(default=PREPZA_RADIUS, ge=0, le=MAX_RADIUS)
-    button_radius: int = Field(default=PREPZA_BUTTON_RADIUS, ge=0, le=MAX_RADIUS)
+    heading_font: BrandFont = TESTEE_HEADING_FONT
+    text_font: BrandFont = TESTEE_TEXT_FONT
+    radius: int = Field(default=TESTEE_RADIUS, ge=0, le=MAX_RADIUS)
+    button_radius: int = Field(default=TESTEE_BUTTON_RADIUS, ge=0, le=MAX_RADIUS)
 
 
-class PrepzaBrand(BaseModel):
+class TesteeBrand(BaseModel):
     colors: BrandColorSets
     style: BrandStyle
 

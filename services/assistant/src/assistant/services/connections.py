@@ -3,10 +3,10 @@ from uuid import UUID
 
 from fastapi import HTTPException, status
 from mcp.server.auth.provider import construct_redirect_uri
-from prepza_common.auth.tokens import new_token
-from prepza_common.auth.user import User
-from prepza_common.events.analytics import track
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.auth.tokens import new_token
+from testee_common.auth.user import User
+from testee_common.events.analytics import track
+from testee_common.limits.rate_limit import hit_or_skip
 
 from assistant.constants.mcp import CODE_BYTES, CODE_SECONDS, MCP_SCOPE, NOT_FOUND, OTHER_BROWSER
 from assistant.core.db import Session
@@ -18,7 +18,7 @@ from assistant.repositories import oauth, oauth_requests
 
 async def describe(request_id: str, address: str, user_id: str) -> dict:
     """What the consent page shows of an app's request: its name, the site it returns to and
-    whether prepza knows it; a 404 once it's answered or expired. Counted per `address`
+    whether testee knows it; a 404 once it's answered or expired. Counted per `address`
     against the connection requests' limit, so request ids can't be tried in bulk."""
     await count_consent("consent", address, user_id)
     found = await oauth_requests.peek_request(request_id)
@@ -84,7 +84,7 @@ async def count_consent(step: str, address: str, user_id: str) -> None:
 
 def issuer() -> str:
     """Who answers, in every answer to an app (RFC 9207): an app talking to several
-    authorization servers can tell this answer is prepza's (mix-up attacks)."""
+    authorization servers can tell this answer is testee's (mix-up attacks)."""
 
     return str(auth_settings().issuer_url)
 

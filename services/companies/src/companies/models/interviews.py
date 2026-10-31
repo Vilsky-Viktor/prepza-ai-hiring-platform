@@ -1,7 +1,6 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE
 from sqlalchemy import (
     CheckConstraint,
     DateTime,
@@ -14,6 +13,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.config.constants import DEFAULT_LANGUAGE
 
 from companies.constants.interviews import DEFAULT_PASS_MARK
 from companies.models.base import Base
@@ -52,7 +52,7 @@ class Interview(Base):
     language: Mapped[str] = mapped_column(String(8), default=DEFAULT_LANGUAGE)
     # The company marked the test as hired; it stays usable.
     hired: Mapped[bool] = mapped_column(default=False)
-    # The company keeps the test's questions out of prepza's shared question bank (the terms'
+    # The company keeps the test's questions out of testee's shared question bank (the terms'
     # opt-out); off by default, as the terms say. Turning it on stops future reuse only.
     keep_private: Mapped[bool] = mapped_column(default=False, server_default="false")
     # Taken by voice: an interviewer reads each question aloud and candidates may answer by voice

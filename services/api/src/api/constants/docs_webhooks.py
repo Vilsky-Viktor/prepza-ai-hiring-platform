@@ -12,7 +12,7 @@ On the API page, **send test event** sends a signed `test` event to an endpoint 
 **delivery log** shows its latest 20 sends: each event's type, when, and whether it was
 delivered, the status the endpoint answered, or what went wrong.
 
-Every request carries a `Prepza-Signature` header in the form `t=<timestamp>,v1=<signature>`. The
+Every request carries a `Testee-Signature` header in the form `t=<timestamp>,v1=<signature>`. The
 signature is the hex-encoded HMAC-SHA256 of `<timestamp>.<raw request body>`, computed with the
 web hook's signing secret, which is shown once when the web hook is added. Verify the signature,
 and reject requests whose timestamp is more than a few minutes old, before processing an event.
@@ -30,7 +30,7 @@ import time
 
 
 def verify(secret: str, header: str, body: bytes, tolerance: int = 300) -> bool:
-    # Whether a request came from prepza: its Prepza-Signature header and raw body.
+    # Whether a request came from testee: its Testee-Signature header and raw body.
     parts = [part.split("=", 1) for part in header.split(",")]
     timestamp = int(next(value for name, value in parts if name == "t"))
     expected = hmac.new(
@@ -47,7 +47,7 @@ def verify(secret: str, header: str, body: bytes, tolerance: int = 300) -> bool:
 ```typescript
 import { createHmac, timingSafeEqual } from "node:crypto"
 
-/** Whether a request came from prepza: its Prepza-Signature header and raw body. */
+/** Whether a request came from testee: its Testee-Signature header and raw body. */
 export function verify(
   secret: string,
   header: string,

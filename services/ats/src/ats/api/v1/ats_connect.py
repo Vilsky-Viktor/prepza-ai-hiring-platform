@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.auth import CurrentUser
+from testee_common.auth.auth import CurrentUser
 
 from ats.config import settings
 from ats.constants.ats import PASTED_KEYS, WEBHOOKS, AtsProvider

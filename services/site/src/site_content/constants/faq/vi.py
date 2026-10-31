@@ -4,18 +4,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "prepza là gì?",
+        "question": "testee là gì?",
         "answer": "Một buổi phỏng vấn có tính giờ được tạo từ mô tả công việc của bạn, cho mọi vị trí. Dùng nó để sàng lọc ứng viên trước khi gặp họ, hoặc làm chính một bước tuyển dụng: dù cách nào, bạn cũng thấy ai thật sự thạo việc.",
     },
     {
         "key": "roles",
         "question": "Tôi có thể tuyển cho những vị trí nào?",
-        "answer": "Mọi vị trí cần đến kiến thức: hỗ trợ khách hàng, bán hàng, tài chính, y tế, nghề kỹ thuật, kỹ sư, marketing và nhiều hơn nữa. Nếu bạn mô tả được công việc, prepza có thể tạo buổi phỏng vấn cho nó.",
+        "answer": "Mọi vị trí cần đến kiến thức: hỗ trợ khách hàng, bán hàng, tài chính, y tế, nghề kỹ thuật, kỹ sư, marketing và nhiều hơn nữa. Nếu bạn mô tả được công việc, testee có thể tạo buổi phỏng vấn cho nó.",
     },
     {
         "key": "hiring",
         "question": "Cách hoạt động thế nào?",
-        "answer": "Dán mô tả công việc trên trang chủ, đặt tên công ty và kiểm tra các chủ đề prepza đề xuất. Sau đó mời ứng viên: nhập email của họ, dán danh sách hoặc tải tệp lên. Ứng viên chưa bắt đầu sau vài ngày sẽ nhận một lời nhắc. Mỗi ứng viên có bộ câu hỏi riêng với thời gian giới hạn cho từng câu, và bạn thấy điểm cùng mọi câu trả lời của họ ngay khi họ làm xong.",
+        "answer": "Dán mô tả công việc trên trang chủ, đặt tên công ty và kiểm tra các chủ đề testee đề xuất. Sau đó mời ứng viên: nhập email của họ, dán danh sách hoặc tải tệp lên. Ứng viên chưa bắt đầu sau vài ngày sẽ nhận một lời nhắc. Mỗi ứng viên có bộ câu hỏi riêng với thời gian giới hạn cho từng câu, và bạn thấy điểm cùng mọi câu trả lời của họ ngay khi họ làm xong.",
     },
     {
         "key": "link",
@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Các công ty có thể tìm thấy tôi qua phần luyện tập không?",
-        "answer": "Chỉ khi bạn chọn như vậy. Bật Sẵn sàng nhận cơ hội việc làm sau một lượt luyện tập hoặc trong Cài đặt, kèm địa chỉ hồ sơ LinkedIn của bạn. Khi đó, các công ty tuyển dụng trên prepza sẽ thấy tên, hồ sơ LinkedIn và kết quả luyện tập mới nhất của bạn ở từng chủ đề trong các buổi phỏng vấn của họ mà bạn đã luyện tập, và có thể mời bạn phỏng vấn. prepza không xếp hạng hay giới thiệu bạn. Bạn có thể tắt bất cứ lúc nào trong Cài đặt, và bạn biến mất khỏi danh sách của mọi công ty ngay lập tức; tính năng này cũng tự kết thúc sau một năm kể từ lần cuối bạn bật nó hoặc lưu hồ sơ LinkedIn.",
+        "answer": "Chỉ khi bạn chọn như vậy. Bật Sẵn sàng nhận cơ hội việc làm sau một lượt luyện tập hoặc trong Cài đặt, kèm địa chỉ hồ sơ LinkedIn của bạn. Khi đó, các công ty tuyển dụng trên testee sẽ thấy tên, hồ sơ LinkedIn và kết quả luyện tập mới nhất của bạn ở từng chủ đề trong các buổi phỏng vấn của họ mà bạn đã luyện tập, và có thể mời bạn phỏng vấn. testee không xếp hạng hay giới thiệu bạn. Bạn có thể tắt bất cứ lúc nào trong Cài đặt, và bạn biến mất khỏi danh sách của mọi công ty ngay lập tức; tính năng này cũng tự kết thúc sau một năm kể từ lần cuối bạn bật nó hoặc lưu hồ sơ LinkedIn.",
     },
     {
         "key": "cheating",
@@ -55,7 +55,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Giá so với các công cụ đánh giá khác thế nào?",
-        "answer": "Nhiều công cụ đánh giá được bán theo gói đăng ký theo tháng hoặc năm, phải trả dù bạn không kiểm tra ai. Với prepza, bạn chỉ trả theo ứng viên: {candidate} credit ({candidate_price}) mỗi ứng viên, không hợp đồng, không phí theo người dùng và không tốn phí tạo buổi phỏng vấn. Một công ty mời {example_candidates} ứng viên mỗi tháng trả khoảng {example_year_price} mỗi năm. Nếu bạn kiểm tra nhiều ứng viên mỗi tháng, gói đăng ký có thể rẻ hơn, nên hãy so sánh với số liệu của bạn.",
+        "answer": "Nhiều công cụ đánh giá được bán theo gói đăng ký theo tháng hoặc năm, phải trả dù bạn không kiểm tra ai. Với testee, bạn chỉ trả theo ứng viên: {candidate} credit ({candidate_price}) mỗi ứng viên, không hợp đồng, không phí theo người dùng và không tốn phí tạo buổi phỏng vấn. Một công ty mời {example_candidates} ứng viên mỗi tháng trả khoảng {example_year_price} mỗi năm. Nếu bạn kiểm tra nhiều ứng viên mỗi tháng, gói đăng ký có thể rẻ hơn, nên hãy so sánh với số liệu của bạn.",
     },
     {
         "key": "expire",
@@ -80,7 +80,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Tôi có thể chia sẻ kết quả với quản lý tuyển dụng không?",
-        "answer": "Có. Tải xuống báo cáo PDF cho một ứng viên hoặc cho tất cả ứng viên của một buổi phỏng vấn, gửi qua email thẳng từ prepza, hoặc gửi bản tóm tắt ngắn qua WhatsApp, Telegram, Viber hay LINE.",
+        "answer": "Có. Tải xuống báo cáo PDF cho một ứng viên hoặc cho tất cả ứng viên của một buổi phỏng vấn, gửi qua email thẳng từ testee, hoặc gửi bản tóm tắt ngắn qua WhatsApp, Telegram, Viber hay LINE.",
     },
     {
         "key": "action_log",
@@ -94,13 +94,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "prepza có hoạt động với ATS hoặc các công cụ khác của tôi không?",
+        "question": "testee có hoạt động với ATS hoặc các công cụ khác của tôi không?",
         "answer": "Có, không mất thêm phí. Kết nối Workable, Greenhouse, Teamtailor, Recruitee hoặc Breezy HR trong tab Tích hợp của công ty bạn: ứng viên bạn chuyển sang một giai đoạn sẽ nhận buổi phỏng vấn, và kết quả được gửi lại ATS ([cách kết nối bài kiểm tra kỹ năng với ATS](/guides/ats-integration-skills-tests)). Slack có thể đăng thông báo của công ty vào một kênh, còn API cho phép nền tảng của riêng bạn tạo buổi phỏng vấn, mời và quản lý ứng viên, và nhận kết quả của họ, mỗi khóa API chỉ làm được những gì bạn đánh dấu cho nó; xem [Tài liệu API](/api-docs).",
     },
     {
         "key": "ai_apps",
-        "question": "Tôi có thể dùng prepza từ Claude, ChatGPT hoặc agent AI của riêng tôi không?",
-        "answer": "Có. Thêm prepza vào Claude hoặc ChatGPT dưới dạng trình kết nối (các bước có trong tab Tích hợp của công ty bạn) rồi cho phép trên prepza. Sau đó, ứng dụng sẽ thay mặt bạn, với quyền của bạn, làm việc với các công ty, buổi phỏng vấn và kết quả của ứng viên; hầu hết ứng dụng sẽ hỏi bạn trước khi thay đổi bất cứ điều gì. Tài khoản hoặc công ty chỉ có thể xóa trong prepza. Dữ liệu ứng dụng đọc được sẽ đến nhà cung cấp của ứng dụng đó theo điều khoản của ứng dụng. Bạn có thể ngắt kết nối bất cứ lúc nào trong cùng tab. Các ứng dụng AI khác và agent do bạn tự xây dựng cũng kết nối được: [tab MCP](/api-docs?tab=mcp) trong tài liệu cho nhà phát triển có các bước và agent mẫu, và agent chạy trên máy chủ có thể đăng nhập bằng khóa API có quyền dành cho agent AI. [Hướng dẫn về agent AI, MCP và API](/guides/ai-agents-mcp-and-api) giải thích mỗi thứ dùng để làm gì.",
+        "question": "Tôi có thể dùng testee từ Claude, ChatGPT hoặc agent AI của riêng tôi không?",
+        "answer": "Có. Thêm testee vào Claude hoặc ChatGPT dưới dạng trình kết nối (các bước có trong tab Tích hợp của công ty bạn) rồi cho phép trên testee. Sau đó, ứng dụng sẽ thay mặt bạn, với quyền của bạn, làm việc với các công ty, buổi phỏng vấn và kết quả của ứng viên; hầu hết ứng dụng sẽ hỏi bạn trước khi thay đổi bất cứ điều gì. Tài khoản hoặc công ty chỉ có thể xóa trong testee. Dữ liệu ứng dụng đọc được sẽ đến nhà cung cấp của ứng dụng đó theo điều khoản của ứng dụng. Bạn có thể ngắt kết nối bất cứ lúc nào trong cùng tab. Các ứng dụng AI khác và agent do bạn tự xây dựng cũng kết nối được: [tab MCP](/api-docs?tab=mcp) trong tài liệu cho nhà phát triển có các bước và agent mẫu, và agent chạy trên máy chủ có thể đăng nhập bằng khóa API có quyền dành cho agent AI. [Hướng dẫn về agent AI, MCP và API](/guides/ai-agents-mcp-and-api) giải thích mỗi thứ dùng để làm gì.",
     },
     {
         "key": "candidates",
@@ -120,27 +120,27 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Mô tả công việc và câu trả lời được xử lý thế nào?",
-        "answer": "Mô tả công việc được dùng để tạo các buổi phỏng vấn của công ty bạn, và câu trả lời của ứng viên để chấm điểm cho công ty bạn. Các câu hỏi prepza tạo cũng có thể được tái sử dụng trong các buổi phỏng vấn và luyện tập của công ty khác, mà không kèm bất cứ thông tin nào nhận dạng bạn, công ty của bạn hay bất kỳ ai khác; bạn có thể loại các câu hỏi của một buổi phỏng vấn khỏi việc này trong phần cài đặt của buổi phỏng vấn đó. prepza cũng học các mẫu chung, đã ẩn danh hóa, về chất lượng câu hỏi từ cách các câu hỏi được trả lời, để cải thiện cách tạo câu hỏi. [Chính sách quyền riêng tư](/privacy) giải thích chúng tôi lưu gì, trong bao lâu, và quyền của mọi người.",
+        "answer": "Mô tả công việc được dùng để tạo các buổi phỏng vấn của công ty bạn, và câu trả lời của ứng viên để chấm điểm cho công ty bạn. Các câu hỏi testee tạo cũng có thể được tái sử dụng trong các buổi phỏng vấn và luyện tập của công ty khác, mà không kèm bất cứ thông tin nào nhận dạng bạn, công ty của bạn hay bất kỳ ai khác; bạn có thể loại các câu hỏi của một buổi phỏng vấn khỏi việc này trong phần cài đặt của buổi phỏng vấn đó. testee cũng học các mẫu chung, đã ẩn danh hóa, về chất lượng câu hỏi từ cách các câu hỏi được trả lời, để cải thiện cách tạo câu hỏi. [Chính sách quyền riêng tư](/privacy) giải thích chúng tôi lưu gì, trong bao lâu, và quyền của mọi người.",
     },
     {
         "key": "eu_ai_law",
         "question": "Dùng AI để sàng lọc ứng viên ở EU có hợp pháp không?",
-        "answer": "Có, nhưng phải theo quy định. Theo Đạo luật AI của EU (EU AI Act), các công cụ chấm điểm ứng viên rất có thể thuộc nhóm rủi ro cao, với các nghĩa vụ áp dụng từ ngày 2/12/2027, và GDPR thì đã áp dụng: con người đưa ra quyết định tuyển dụng, ứng viên được thông báo rằng AI được sử dụng, và hồ sơ được lưu giữ. prepza hoạt động đúng như vậy: AI soạn câu hỏi, người trong công ty bạn xem xét kết quả và quyết định, và ứng viên được thông báo trước khi bắt đầu. Đây không phải là tư vấn pháp lý; [Dùng AI trong tuyển dụng có hợp pháp ở EU không?](/guides/is-ai-hiring-legal-in-the-eu) giải thích các quy định và mốc thời gian.",
+        "answer": "Có, nhưng phải theo quy định. Theo Đạo luật AI của EU (EU AI Act), các công cụ chấm điểm ứng viên rất có thể thuộc nhóm rủi ro cao, với các nghĩa vụ áp dụng từ ngày 2/12/2027, và GDPR thì đã áp dụng: con người đưa ra quyết định tuyển dụng, ứng viên được thông báo rằng AI được sử dụng, và hồ sơ được lưu giữ. testee hoạt động đúng như vậy: AI soạn câu hỏi, người trong công ty bạn xem xét kết quả và quyết định, và ứng viên được thông báo trước khi bắt đầu. Đây không phải là tư vấn pháp lý; [Dùng AI trong tuyển dụng có hợp pháp ở EU không?](/guides/is-ai-hiring-legal-in-the-eu) giải thích các quy định và mốc thời gian.",
     },
     {
         "key": "uk_us",
-        "question": "Chúng tôi có thể dùng prepza cho ứng viên ở Vương quốc Anh và Hoa Kỳ không?",
-        "answer": "Có. Thỏa thuận xử lý dữ liệu bao quát luật của Vương quốc Anh và Hoa Kỳ, còn hướng dẫn cho các công ty và các mẫu thông báo cho ứng viên (có phiên bản cho Thành phố New York, Illinois và Colorado) bao quát những gì bạn phải cho ứng viên biết. Với các công việc tại Thành phố New York, chỉ dùng prepza sau khi bạn đã làm những gì Local Law 144 yêu cầu: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt của cuộc kiểm toán đó và thông báo cho ứng viên trước 10 ngày làm việc. Bản xuất cho kiểm toán thiên lệch trong Nhật ký thao tác cung cấp cho kiểm toán viên của bạn điểm và kết quả của từng ứng viên đã hoàn thành, để đối chiếu với câu trả lời do chính ứng viên tự khai.",
+        "question": "Chúng tôi có thể dùng testee cho ứng viên ở Vương quốc Anh và Hoa Kỳ không?",
+        "answer": "Có. Thỏa thuận xử lý dữ liệu bao quát luật của Vương quốc Anh và Hoa Kỳ, còn hướng dẫn cho các công ty và các mẫu thông báo cho ứng viên (có phiên bản cho Thành phố New York, Illinois và Colorado) bao quát những gì bạn phải cho ứng viên biết. Với các công việc tại Thành phố New York, chỉ dùng testee sau khi bạn đã làm những gì Local Law 144 yêu cầu: một cuộc kiểm toán thiên lệch độc lập trong vòng một năm trước khi sử dụng, công bố bản tóm tắt của cuộc kiểm toán đó và thông báo cho ứng viên trước 10 ngày làm việc. Bản xuất cho kiểm toán thiên lệch trong Nhật ký thao tác cung cấp cho kiểm toán viên của bạn điểm và kết quả của từng ứng viên đã hoàn thành, để đối chiếu với câu trả lời do chính ứng viên tự khai.",
     },
     {
         "key": "emails",
-        "question": "prepza gửi những email nào, và làm sao để dừng nhận?",
+        "question": "testee gửi những email nào, và làm sao để dừng nhận?",
         "answer": 'Email dịch vụ, như lời mời, báo cáo, vấn đề thanh toán và thay đổi điều khoản của chúng tôi, luôn được gửi. Những email còn lại, như tóm tắt hoạt động hằng ngày, lời nhắc và cập nhật sản phẩm, bạn chọn trong Cài đặt, mục Email, hoặc dừng bằng liên kết "Hủy đăng ký" trong mỗi email. Ứng viên có thể dừng nhận email từ công ty bạn, hoặc lời nhắc của một buổi phỏng vấn, bằng các liên kết trong lời mời và lời nhắc của họ.',
     },
     {
         "key": "delete",
         "question": "Tôi có thể xóa tài khoản không?",
-        "answer": "Có, trong Cài đặt. Tài khoản và dữ liệu của bạn bị xóa, và trước đó bạn có thể tải xuống bản sao dữ liệu. Tin tức của prepza hiển thị trong thông báo của bạn, biểu tượng chuông ở trên cùng; tin quan trọng cũng được gửi qua email dưới dạng cập nhật sản phẩm, chỉ khi cài đặt đó đang bật.",
+        "answer": "Có, trong Cài đặt. Tài khoản và dữ liệu của bạn bị xóa, và trước đó bạn có thể tải xuống bản sao dữ liệu. Tin tức của testee hiển thị trong thông báo của bạn, biểu tượng chuông ở trên cùng; tin quan trọng cũng được gửi qua email dưới dạng cập nhật sản phẩm, chỉ khi cài đặt đó đang bật.",
     },
     {
         "key": "report",

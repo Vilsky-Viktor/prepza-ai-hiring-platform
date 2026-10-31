@@ -6,9 +6,9 @@ from datetime import UTC, datetime
 import httpx
 import pytest
 from event_pushes import push
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.db.lock_waits import hold_first_commit, race
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from notifications.config import settings
 from notifications.constants.campaigns import ALREADY_SENT, ONE_A_DAY
@@ -76,7 +76,7 @@ def test_a_campaign_goes_from_start_to_mailpit_once_and_only_to_who_chose_it(
     monkeypatch.setattr("notifications.services.audiences.accounts.user_ids", user_ids)
     monkeypatch.setattr(bulk.accounts, "recipients", recipients)
     monkeypatch.setattr(settings, "resend_api_key", "")
-    monkeypatch.setattr("prepza_common.limits.limits.current_values", large_resend_quota)
+    monkeypatch.setattr("testee_common.limits.limits.current_values", large_resend_quota)
 
     async def scenario():
         campaign = await transaction(campaigns_store.create, fields("promotions"), "sam", ENGLISH)
@@ -223,10 +223,10 @@ def test_a_signed_complaint_puts_the_address_on_the_suppression_list(run, monkey
 
 def test_a_news_post_becomes_a_product_update_with_a_button_to_it(run, quiet, monkeypatch):
     news_id, gone_id = uuid.uuid4(), uuid.uuid4()
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     app.dependency_overrides[current_user] = lambda: User(
         uid="sam",
-        email="sam@prepza.dev",
+        email="sam@testee.dev",
         email_verified=True,
         sign_in_provider="google.com",
     )

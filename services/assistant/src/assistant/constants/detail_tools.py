@@ -1,8 +1,8 @@
 # More reads (see tools.py for the entries' keys): an interview's questions and their reports,
 # the company's action log, its credit history and reserved credits, the user's email settings,
-# templates to copy, an ATS job's stages and text, prepza's news and the user's own practice.
+# templates to copy, an ATS job's stages and text, testee's news and the user's own practice.
 
-from prepza_common.config.constants import MAX_GOAL_LENGTH
+from testee_common.config.constants import MAX_GOAL_LENGTH
 
 # A credited candidate, in the history and the reserved list.
 CREDIT_CANDIDATE_FIELDS = ["invite_id", "interview_id", "email", "name", "interview_title"]

@@ -1,8 +1,8 @@
-"""Recording what AI calls used (prepza_common.ai.ai_usage). A run is every model call made for one
+"""Recording what AI calls used (testee_common.ai.ai_usage). A run is every model call made for one
 action, such as a generation's pipeline run or one regenerated question: it records once per
 model when it ends, and its calls that got no answer once more, estimated. A call inside a
 nested run counts only for that one. With Langfuse set up, a run is also one trace there
-(prepza_common.ai.tracing): named by its action and tagged with it and its subject's id (the
+(testee_common.ai.tracing): named by its action and tagged with it and its subject's id (the
 generation's, for a generation), the same trace for every run of the same subject."""
 
 import asyncio
@@ -11,10 +11,10 @@ from contextvars import ContextVar
 
 from langchain_core.callbacks import UsageMetadataCallbackHandler
 from langchain_core.tracers.context import register_configure_hook
-from prepza_common.ai import ai_usage
-from prepza_common.ai.ai_constants import Outcome
-from prepza_common.ai.llm import estimated_input, estimated_tokens
-from prepza_common.ai.tracing import traced_run
+from testee_common.ai import ai_usage
+from testee_common.ai.ai_constants import Outcome
+from testee_common.ai.llm import estimated_input, estimated_tokens
+from testee_common.ai.tracing import traced_run
 
 from generation.config import settings
 from generation.constants.actions import EMBEDDINGS

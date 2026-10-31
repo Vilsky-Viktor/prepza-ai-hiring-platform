@@ -2,9 +2,9 @@
 
 from datetime import datetime
 
-from prepza_common.db.stats import period_range
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.db.stats import period_range
 
 from billing.models.usage import LimitHit
 

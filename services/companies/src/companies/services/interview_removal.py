@@ -2,9 +2,9 @@
 generation cancelled before."""
 
 from fastapi import HTTPException, status
-from prepza_common.db.db import delete_in_batches
-from prepza_common.events.audit_actions import AuditAction
-from prepza_common.http.http import passed_on
+from testee_common.db.db import delete_in_batches
+from testee_common.events.audit_actions import AuditAction
+from testee_common.http.http import passed_on
 
 from companies.constants.generation import GENERATION_REFUSALS
 from companies.core.db import Session

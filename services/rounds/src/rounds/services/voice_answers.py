@@ -3,10 +3,10 @@ import time
 
 from fastapi import HTTPException, Request, status
 from openai import OpenAIError
-from prepza_common.ai import ai_usage
-from prepza_common.ai.ai_constants import Outcome
-from prepza_common.ai.llm import estimated_tokens
-from prepza_common.ai.speech import audio_seconds, received_audio, speech_to_text
+from testee_common.ai import ai_usage
+from testee_common.ai.ai_constants import Outcome
+from testee_common.ai.llm import estimated_tokens
+from testee_common.ai.speech import audio_seconds, received_audio, speech_to_text
 
 from rounds.config import settings
 from rounds.constants.voice import (

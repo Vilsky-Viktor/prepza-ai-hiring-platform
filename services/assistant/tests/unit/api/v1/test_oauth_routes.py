@@ -56,7 +56,7 @@ def test_an_unknown_token_is_refused(client, monkeypatch):
 
     monkeypatch.setattr(oauth, "by_access", none)
 
-    response = client.post("/mcp", json={}, headers={"Authorization": "Bearer pzm_unknown"})
+    response = client.post("/mcp", json={}, headers={"Authorization": "Bearer tem_unknown"})
 
     assert response.status_code == 401
 
@@ -82,7 +82,7 @@ def test_an_app_registers_without_a_secret_within_the_limits(client, monkeypatch
 
     assert response.status_code == 201
     assert response.json().get("client_secret") is None
-    assert saved[0]["client_name"] == "Claude Code" and saved[0]["scope"] == "prepza"
+    assert saved[0]["client_name"] == "Claude Code" and saved[0]["scope"] == "testee"
     assert counted == [
         ("rate:assistant:mcp:register:testclient", "REGISTRATIONS_PER_IP_HOUR"),
         ("rate:assistant:mcp:register", "REGISTRATIONS_PER_DAY"),
@@ -106,14 +106,14 @@ def test_an_app_without_a_secret_revokes_its_token(client, monkeypatch):
         client_id="c1", redirect_uris=["http://localhost/cb"], token_endpoint_auth_method="none"
     )
     access = Access(
-        token="pzm_a", client_id="c1", scopes=["prepza"], grant_id="g", client_name="App"
+        token="tem_a", client_id="c1", scopes=["testee"], grant_id="g", client_name="App"
     )
 
     async def get_client(self, client_id):
         return app_client if client_id == "c1" else None
 
     async def load_access_token(self, token):
-        return access if token == "pzm_a" else None
+        return access if token == "tem_a" else None
 
     async def revoke_token(self, token):
         revoked.append(token)
@@ -122,7 +122,7 @@ def test_an_app_without_a_secret_revokes_its_token(client, monkeypatch):
     monkeypatch.setattr(oauth_provider.Provider, "load_access_token", load_access_token)
     monkeypatch.setattr(oauth_provider.Provider, "revoke_token", revoke_token)
 
-    response = client.post("/revoke", data={"token": "pzm_a", "client_id": "c1"})
+    response = client.post("/revoke", data={"token": "tem_a", "client_id": "c1"})
 
     assert response.status_code == 200 and revoked == [access]
 
@@ -146,7 +146,7 @@ def test_a_token_request_for_another_resource_is_refused(client, monkeypatch):
         loaded.append(token)
 
     monkeypatch.setattr(oauth_provider.Provider, "load_refresh_token", load_refresh_token)
-    body = {"grant_type": "refresh_token", "refresh_token": "pzm_r", "client_id": "c1"}
+    body = {"grant_type": "refresh_token", "refresh_token": "tem_r", "client_id": "c1"}
 
     response = client.post("/token", data={**body, "resource": "https://other.example/mcp"})
 
@@ -163,14 +163,14 @@ def test_a_token_request_for_the_mcp_server_or_none_goes_on(client, monkeypatch)
         loaded.append(token)
 
     monkeypatch.setattr(oauth_provider.Provider, "load_refresh_token", load_refresh_token)
-    body = {"grant_type": "refresh_token", "refresh_token": "pzm_r", "client_id": "c1"}
+    body = {"grant_type": "refresh_token", "refresh_token": "tem_r", "client_id": "c1"}
 
     named = client.post("/token", data={**body, "resource": f"{SITE}/mcp/"})
     unnamed = client.post("/token", data=body)
 
     # Past the resource check: the SDK's handler looked the token up (and found none).
     assert named.json()["error"] == unnamed.json()["error"] == "invalid_grant"
-    assert loaded == ["pzm_r", "pzm_r"]
+    assert loaded == ["tem_r", "tem_r"]
 
 
 def test_a_code_exchange_for_another_resource_is_refused(client, monkeypatch):
@@ -200,7 +200,7 @@ def test_a_failed_token_exchange_is_counted_too(client, monkeypatch):
 
     monkeypatch.setattr(oauth_limits, "hit_or_skip", hit)
     monkeypatch.setattr(oauth_provider.Provider, "load_refresh_token", load_refresh_token)
-    body = {"grant_type": "refresh_token", "refresh_token": "pzm_wrong", "client_id": "c1"}
+    body = {"grant_type": "refresh_token", "refresh_token": "tem_wrong", "client_id": "c1"}
 
     response = client.post("/token", data=body)
 
@@ -222,7 +222,7 @@ def test_too_many_token_requests_are_refused_before_the_lookup(client, monkeypat
 
     monkeypatch.setattr(oauth_limits, "hit_or_skip", over)
     monkeypatch.setattr(oauth_provider.Provider, "load_refresh_token", load_refresh_token)
-    body = {"grant_type": "refresh_token", "refresh_token": "pzm_r", "client_id": "c1"}
+    body = {"grant_type": "refresh_token", "refresh_token": "tem_r", "client_id": "c1"}
 
     response = client.post("/token", data=body)
 
@@ -249,6 +249,6 @@ def test_revoking_is_counted_and_refused_over_the_limit(client, monkeypatch):
     monkeypatch.setattr(oauth_limits, "hit_or_skip", over)
     monkeypatch.setattr(oauth_provider.Provider, "revoke_token", revoke_token)
 
-    response = client.post("/revoke", data={"token": "pzm_a", "client_id": "c1"})
+    response = client.post("/revoke", data={"token": "tem_a", "client_id": "c1"})
 
     assert response.status_code == 429 and revoked == []

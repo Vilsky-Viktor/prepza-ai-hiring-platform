@@ -2,7 +2,7 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from billing.constants.credits import Reason
 from billing.core.security import service_token

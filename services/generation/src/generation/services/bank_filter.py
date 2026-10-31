@@ -7,8 +7,8 @@ import asyncio
 import logging
 
 from langchain_core.messages import HumanMessage, SystemMessage
-from prepza_common.limits import pause
-from prepza_common.redis import redis_lock
+from testee_common.limits import pause
+from testee_common.redis import redis_lock
 
 from generation.constants.actions import BANK_FILTER
 from generation.constants.bank import (

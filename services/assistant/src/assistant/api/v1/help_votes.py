@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Request, status
-from prepza_common.http.client_ip import limit_address
+from testee_common.http.client_ip import limit_address
 
 from assistant.schemas.help_chat import HelpVoteIn
 from assistant.services import help_votes

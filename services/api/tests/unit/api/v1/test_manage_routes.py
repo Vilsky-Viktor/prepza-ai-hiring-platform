@@ -1,9 +1,9 @@
 import socket
 
 import pytest
-from prepza_common.auth.encryption import decrypt
-from prepza_common.auth.tokens import hashed
-from prepza_common.http import public_urls
+from testee_common.auth.encryption import decrypt
+from testee_common.auth.tokens import hashed
+from testee_common.http import public_urls
 
 from api.services import manage
 from tests.unit.conftest import COMPANY, KEY, sign_in
@@ -17,7 +17,7 @@ def test_a_new_key_is_shown_once_and_stored_as_its_hash(client, companies_api, s
     made = client.post(KEYS, json={"name": " Careers site ", "expiry": "3"}).json()
     listed = client.get(f"/manage?company_id={COMPANY}").json()
 
-    assert made["key"].startswith("pz_")
+    assert made["key"].startswith("te_")
     assert stored["keys"][0].hash == hashed(made["key"])
     assert stored["keys"][0].name == "Careers site"
     assert stored["keys"][0].created_by == "u1"

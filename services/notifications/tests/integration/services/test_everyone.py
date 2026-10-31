@@ -1,7 +1,7 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.events.notifications import EVERYONE, NotificationKind, Recipient, notification
+from testee_common.events.notifications import EVERYONE, NotificationKind, Recipient, notification
 
 from notifications.integrations import accounts, companies, site
 from notifications.repositories import notifications

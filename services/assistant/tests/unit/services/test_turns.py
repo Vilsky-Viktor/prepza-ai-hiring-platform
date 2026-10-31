@@ -8,8 +8,8 @@ import openai
 import pytest
 from fastapi import HTTPException
 from langchain_core.messages import HumanMessage
-from prepza_common.auth.user import User
-from prepza_common.http.sse import KEEP_ALIVE
+from testee_common.auth.user import User
+from testee_common.http.sse import KEEP_ALIVE
 
 from assistant.constants.chat import CHAT_FAILED, TURNS_AT_ONCE, TURNS_BUSY_RETRY_SECONDS, Status
 from assistant.integrations import llm, services
@@ -119,7 +119,7 @@ def test_a_failing_model_is_an_error_to_try_again(monkeypatch, saved):
 
 
 def test_openai_failing_is_logged_by_its_module_for_the_alert(monkeypatch, saved, caplog):
-    """The "prepza OpenAI failing" alert counts errors naming "openai."; nothing of the
+    """The "testee OpenAI failing" alert counts errors naming "openai."; nothing of the
     conversation is logged."""
     failure = openai.APIConnectionError(request=httpx.Request("POST", "https://api.openai.com"))
     script(monkeypatch, failure)

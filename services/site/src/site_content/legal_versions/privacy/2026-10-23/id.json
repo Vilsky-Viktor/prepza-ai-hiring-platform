@@ -1,11 +1,11 @@
 {
-  "intro": "Kebijakan ini menjelaskan data pribadi apa yang dikumpulkan prepza, untuk apa, berapa lama kami menyimpannya, dan hak-hak yang kamu miliki. prepza dijalankan oleh Arcolabs OÜ (kode registrasi 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. prepza.ai juga menampilkan dokumen ini dalam bahasa lain; hanya versi bahasa Inggris ini yang mengikat, dan jika suatu terjemahan berbeda, yang berlaku adalah versi bahasa Inggris.",
+  "intro": "Kebijakan ini menjelaskan data pribadi apa yang dikumpulkan testee, untuk apa, berapa lama kami menyimpannya, dan hak-hak yang kamu miliki. testee dijalankan oleh Arcolabs OÜ (kode registrasi 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia. testee.ai juga menampilkan dokumen ini dalam bahasa lain; hanya versi bahasa Inggris ini yang mengikat, dan jika suatu terjemahan berbeda, yang berlaku adalah versi bahasa Inggris.",
   "sections": [
     {
       "heading": "Siapa yang bertanggung jawab",
       "paragraphs": [
-        "Untuk akunmu sendiri dan akun perusahaanmu, Arcolabs OÜ adalah pengendali datamu. Tulis ke hello@prepza.ai untuk pertanyaan atau permintaan apa pun.",
-        "Saat sebuah perusahaan mengundangmu ke wawancara di prepza, perusahaan itu menentukan untuk apa dan bagaimana hasilmu digunakan dan merupakan pengendali hasil tersebut; kami memprosesnya atas nama perusahaan itu. Kamu bisa menghubungi perusahaan itu secara langsung, atau kami, dan kami akan meneruskan permintaanmu."
+        "Untuk akunmu sendiri dan akun perusahaanmu, Arcolabs OÜ adalah pengendali datamu. Tulis ke hello@testee.ai untuk pertanyaan atau permintaan apa pun.",
+        "Saat sebuah perusahaan mengundangmu ke wawancara di testee, perusahaan itu menentukan untuk apa dan bagaimana hasilmu digunakan dan merupakan pengendali hasil tersebut; kami memprosesnya atas nama perusahaan itu. Kamu bisa menghubungi perusahaan itu secara langsung, atau kami, dan kami akan meneruskan permintaanmu."
       ]
     },
     {
@@ -23,7 +23,7 @@
         "Pemeriksaan \"Saya bukan robot\": saat kamu mengirim formulir kontak, mengajukan pertanyaan pertama di chat bantuan, memulai wawancara melalui tautan iklan lowongan kerja, membuat perusahaan pertamamu, atau menyetujui topik perusahaan yang belum membayar, Cloudflare Turnstile memeriksa browser-mu (seperti jenisnya, perilakunya, dan alamat tempatnya terhubung) untuk membedakan manusia dari skrip. Kami hanya menerima apakah pemeriksaan itu lolos.",
         "Aplikasi AI yang kamu hubungkan: nama aplikasi dan situs tujuan kembalinya, serta kapan kamu menghubungkannya dan terakhir menggunakannya. Aksesnya hanya disimpan sebagai hash satu arah.",
         "Ketentuan yang kamu terima: versi ketentuan yang berlaku saat kamu mendaftar, dan kapan, sebagai bukti apa yang kamu setujui. Data ini dihapus bersama akunmu.",
-        "Alat yang dihubungkan perusahaan: kunci atau token yang dibuat oleh pemilik atau adminnya di sistem pelacakan pelamarnya (Workable, Greenhouse, Teamtailor, Recruitee, atau Breezy HR) atau di Slack, disimpan dalam bentuk terenkripsi; hash satu arah dari setiap kunci API prepza dan alamat webhook-nya; serta, dari sistem pelacakan pelamarnya, email, nama, dan ID setiap kandidat yang dikirimkannya ke prepza.",
+        "Alat yang dihubungkan perusahaan: kunci atau token yang dibuat oleh pemilik atau adminnya di sistem pelacakan pelamarnya (Workable, Greenhouse, Teamtailor, Recruitee, atau Breezy HR) atau di Slack, disimpan dalam bentuk terenkripsi; hash satu arah dari setiap kunci API testee dan alamat webhook-nya; serta, dari sistem pelacakan pelamarnya, email, nama, dan ID setiap kandidat yang dikirimkannya ke testee.",
         "Pengaturan email: email opsional mana yang kamu terima, dan log setiap perubahannya: email yang mana, aktif atau nonaktif, kapan, di mana (saat masuk, di Pengaturan, atau melalui tautan berhenti berlangganan atau laporan spam), dan versi teks kotak centang yang kamu lihat.",
         "Email kepada anggota perusahaan: catatan ringkasan aktivitas dan pengingat yang kami kirimkan kepadamu, dan tentang apa setiap pengingat, agar tidak ada yang terkirim dua kali.",
         "Email kepada banyak pengguna (pemberitahuan perubahan ketentuan kami, pemberitahuan penting tentang layanan, pembaruan produk, penawaran): apakah setiap email terkirim kepadamu, dilewati, atau gagal, dan apakah kamu berhenti berlangganan darinya atau menandainya sebagai spam, agar tidak ada yang terkirim dua kali dan kami dapat melihat bagaimana setiap email diterima.",
@@ -33,37 +33,37 @@
         "Pembelian: untuk setiap isi ulang, perusahaan tujuannya, siapa yang membelinya, apa yang dibeli, total dan mata uangnya, ID transaksi Paddle, serta waktunya. Paddle, bukan kami, yang menyimpan detail kartu dan penagihan.",
         "Log tindakan perusahaan: apa yang dilakukan anggotanya di perusahaan itu, seperti mengundang, melihat, atau menghapus kandidat, mengubah wawancara atau tim, melakukan isi ulang, atau menghubungkan alat, beserta siapa yang melakukannya, kapan, dan apakah asisten, aplikasi AI, atau API yang melakukannya untuk mereka. Pemilik perusahaan dapat melihatnya. Kandidat dan anggota hanya ditampilkan dengan namanya selama mereka masih berada di perusahaan: log menyimpan ID mereka, tidak pernah email mereka.",
         "Penggunaan AI dan batasan: untuk setiap penggunaan AI, seperti menulis soal atau jawaban asisten, untuk apa penggunaan itu, modelnya, ukuran dan biayanya, serta akun dan perusahaan yang menjadi tujuannya; dan setiap kali suatu batasan menolak permintaan, batasan mana, kapan, serta akun dan perusahaan yang permintaannya ditolak. Tidak pernah teks yang dikirim ke AI atau jawabannya.",
-        "Catatan panggilan AI: apa yang dikirim prepza ke AI dan apa yang dijawab AI setiap kali AI digunakan, seperti menulis soal dari deskripsi pekerjaan, atau jawaban asisten dan chat bantuan beserta apa yang dibacanya untuk menjawab (yang dapat mencakup hasil kandidat), serta penilaian atas jawaban tersebut. Catatan ini disimpan oleh Langfuse, lihat di bawah, hanya untuk memantau dan meningkatkan kualitas jawaban.",
+        "Catatan panggilan AI: apa yang dikirim testee ke AI dan apa yang dijawab AI setiap kali AI digunakan, seperti menulis soal dari deskripsi pekerjaan, atau jawaban asisten dan chat bantuan beserta apa yang dibacanya untuk menjawab (yang dapat mencakup hasil kandidat), serta penilaian atas jawaban tersebut. Catatan ini disimpan oleh Langfuse, lihat di bawah, hanya untuk memantau dan meningkatkan kualitas jawaban.",
         "Statistik penggunaan: langkah-langkah seperti mendaftar, pembuatan perusahaan, undangan kandidat, atau isi ulang, dengan angka seperti skor atau jumlah. ID akunmu diganti dengan kode yang dibuat menggunakan kunci rahasia yang kami pegang, sehingga statistik tidak menyebut namamu, tetapi statistik itu berupa data pseudonim, bukan anonim: dengan kunci tersebut, kode itu cocok dengan ID akunmu. ID perusahaan disimpan apa adanya. Tidak ada nama, email, atau teks yang disertakan."
       ]
     },
     {
       "heading": "Mengapa kami menggunakannya",
       "items": [
-        "Untuk menyediakan prepza: membuat wawancara, menjalankannya untuk kandidat yang diundang, menampilkan hasil kepada perusahaan, dan mengirim email yang kamu minta (kontrak).",
+        "Untuk menyediakan testee: membuat wawancara, menjalankannya untuk kandidat yang diundang, menampilkan hasil kepada perusahaan, dan mengirim email yang kamu minta (kontrak).",
         "Email layanan, seperti undangan, laporan, masalah pembayaran, perubahan pada ketentuan kami, dan pemberitahuan penting tentang layanan (insiden keamanan, waktu henti terjadwal, atau perubahan cara kerjanya), yang selalu dikirim (kontrak).",
-        "Ringkasan aktivitas dan pengingat tentang perusahaanmu, seperti kredit yang hampir habis atau wawancara tanpa kandidat (kepentingan sah kami untuk membantumu menggunakan prepza). Email ini aktif sampai kamu menonaktifkannya.",
+        "Ringkasan aktivitas dan pengingat tentang perusahaanmu, seperti kredit yang hampir habis atau wawancara tanpa kandidat (kepentingan sah kami untuk membantumu menggunakan testee). Email ini aktif sampai kamu menonaktifkannya.",
         "Pembaruan produk dan berita: bagi pengguna kami sendiri yang tidak mencentang “Jangan kirimi saya pembaruan produk dan berita” saat pertama kali opsi itu ditawarkan ketika masuk (Pasal 13 ayat (2) Directive ePrivacy dan § 103¹ Undang-Undang Komunikasi Elektronik Estonia). Kamu bisa menghentikannya kapan saja, tanpa biaya.",
         "Penawaran dan promosi: hanya jika kamu setuju, dengan mencentang kotaknya saat masuk atau di Pengaturan (persetujuan). Kamu bisa menariknya kembali kapan saja.",
         "Menentukan kepada siapa email untuk banyak pengguna dikirim: apakah akunmu termasuk dalam tim sebuah perusahaan (dan apakah sebagai pemilik atau admin), pernah mengikuti wawancara sebuah perusahaan, atau pernah menggunakan latihan gratis, agar pembaruan produk, penawaran, atau pemberitahuan penting hanya dikirim kepada orang yang berkepentingan. Yang digunakan hanyalah fakta bahwa akunmu melakukannya, tidak pernah jawabanmu, hasilmu, atau data yang disimpan perusahaan tentangmu (kepentingan sah kami untuk hanya mengirim email yang relevan). Pembaruan produk dan penawaran tetap hanya dikirim kepada mereka yang menerimanya berdasarkan dua poin di atas.",
-        "Mengingat bahwa seorang kandidat telah menghentikan email dari suatu perusahaan, agar prepza tidak mengirim email kepadanya atas nama perusahaan itu lagi (menghormati keberatannya).",
-        "Untuk menjaga prepza tetap aman dan berfungsi: mencegah penyalahgunaan, pembatasan laju (rate limit), laporan kesalahan, dan statistik yang meningkatkan kualitas soal (kepentingan sah kami).",
+        "Mengingat bahwa seorang kandidat telah menghentikan email dari suatu perusahaan, agar testee tidak mengirim email kepadanya atas nama perusahaan itu lagi (menghormati keberatannya).",
+        "Untuk menjaga testee tetap aman dan berfungsi: mencegah penyalahgunaan, pembatasan laju (rate limit), laporan kesalahan, dan statistik yang meningkatkan kualitas soal (kepentingan sah kami).",
         "Kualitas soal: kami menganalisis bagaimana soal dijawab dan dilaporkan untuk menemukan pola umum kualitas soal yang dianonimkan, yang meningkatkan pembuatan soal bagi semua orang; pola ini tidak berisi data pribadi (kepentingan sah kami).",
-        "Penggunaan kembali soal yang dibuat: soal yang dibuat prepza dapat digunakan kembali dalam wawancara dan latihan pelanggan lain, tanpa data pribadi atau detail apa pun yang mengidentifikasi perusahaan atau orang. Perusahaan dapat mengecualikan soal suatu wawancara dari hal ini di pengaturannya.",
+        "Penggunaan kembali soal yang dibuat: soal yang dibuat testee dapat digunakan kembali dalam wawancara dan latihan pelanggan lain, tanpa data pribadi atau detail apa pun yang mengidentifikasi perusahaan atau orang. Perusahaan dapat mengecualikan soal suatu wawancara dari hal ini di pengaturannya.",
         "Catatan panggilan AI memungkinkan kami memantau dan meningkatkan kualitas soal dan jawaban AI (kepentingan sah kami).",
-        "Pengendalian biaya dan pencegahan penyalahgunaan: catatan penggunaan AI dan batasan yang tercapai menunjukkan berapa biaya AI dan siapa yang mencapai batasan mana, agar kami bisa menjaga prepza tetap terjangkau dan menghentikan penyalahgunaan (kepentingan sah kami).",
+        "Pengendalian biaya dan pencegahan penyalahgunaan: catatan penggunaan AI dan batasan yang tercapai menunjukkan berapa biaya AI dan siapa yang mencapai batasan mana, agar kami bisa menjaga testee tetap terjangkau dan menghentikan penyalahgunaan (kepentingan sah kami).",
         "Log tindakan perusahaan memungkinkan pemiliknya melihat siapa melakukan apa di perusahaan, dan tim dukungan kami memeriksanya saat perusahaan meminta bantuan (kepentingan sah perusahaan dan kami atas akuntabilitas).",
-        "Statistik penggunaan menunjukkan bagian mana dari prepza yang membantu orang serta harga dan batasan mana yang berjalan baik, agar kami bisa memperbaikinya (kepentingan sah kami).",
+        "Statistik penggunaan menunjukkan bagian mana dari testee yang membantu orang serta harga dan batasan mana yang berjalan baik, agar kami bisa memperbaikinya (kepentingan sah kami).",
         "Catatan pembelian, disimpan untuk pembukuan sebagaimana diwajibkan oleh hukum akuntansi Estonia (kewajiban hukum).",
         "Menampilkan perusahaan sebagai terverifikasi, dengan mencocokkan situs webnya dengan domain email pemilik dan adminnya (kepentingan sah kami).",
-        "Terbuka untuk tawaran kerja: hanya jika kamu mengaktifkannya (persetujuan), perusahaan yang merekrut lewat prepza melihat namamu, profil LinkedIn-mu, dan hasil latihan berwaktu terbarumu di setiap topik yang kamu latih yang dicakup salah satu wawancara mereka di levelnya, agar mereka bisa mengundangmu ke wawancara itu. Kami tidak memeringkat atau merekomendasikanmu dan tidak mengambil keputusan apa pun tentangmu: perusahaanlah yang memutuskan siapa yang diundang. Kamu bisa menarik persetujuan kapan saja di Pengaturan, dan kamu langsung hilang dari daftar setiap perusahaan. Log pilihanmu disimpan sebagai bukti persetujuanmu (kewajiban hukum kami untuk menunjukkannya).",
-        "Hasil wawancara, waktu menjawab, dan sinyal integritas membantu perusahaan yang merekrut menilai jawabanmu secara adil (kepentingan sah perusahaan). Sinyal ini mencakup pola dalam jawabanmu: waktu yang hampir sama di setiap soal, atau soal sulit dijawab benar sementara soal mudah dijawab salah; berdasarkan sinyal ini, perusahaan ditunjukkan soal-soal yang bisa ditanyakan kepadamu dalam wawancara langsung. Orang-orang di perusahaan yang membuat keputusan perekrutan; prepza tidak membuat keputusan apa pun tentangmu secara mandiri. Kamu bisa meminta perusahaan agar hasilmu ditinjau oleh manusia, dan meminta penyesuaian seperti waktu tambahan sebelum kamu mulai."
+        "Terbuka untuk tawaran kerja: hanya jika kamu mengaktifkannya (persetujuan), perusahaan yang merekrut lewat testee melihat namamu, profil LinkedIn-mu, dan hasil latihan berwaktu terbarumu di setiap topik yang kamu latih yang dicakup salah satu wawancara mereka di levelnya, agar mereka bisa mengundangmu ke wawancara itu. Kami tidak memeringkat atau merekomendasikanmu dan tidak mengambil keputusan apa pun tentangmu: perusahaanlah yang memutuskan siapa yang diundang. Kamu bisa menarik persetujuan kapan saja di Pengaturan, dan kamu langsung hilang dari daftar setiap perusahaan. Log pilihanmu disimpan sebagai bukti persetujuanmu (kewajiban hukum kami untuk menunjukkannya).",
+        "Hasil wawancara, waktu menjawab, dan sinyal integritas membantu perusahaan yang merekrut menilai jawabanmu secara adil (kepentingan sah perusahaan). Sinyal ini mencakup pola dalam jawabanmu: waktu yang hampir sama di setiap soal, atau soal sulit dijawab benar sementara soal mudah dijawab salah; berdasarkan sinyal ini, perusahaan ditunjukkan soal-soal yang bisa ditanyakan kepadamu dalam wawancara langsung. Orang-orang di perusahaan yang membuat keputusan perekrutan; testee tidak membuat keputusan apa pun tentangmu secara mandiri. Kamu bisa meminta perusahaan agar hasilmu ditinjau oleh manusia, dan meminta penyesuaian seperti waktu tambahan sebelum kamu mulai."
       ]
     },
     {
       "heading": "Dengan siapa kami membagikannya",
       "paragraphs": [
-        "Kami membagikan data kepada penyedia layanan yang menjalankan prepza untuk kami, berdasarkan perjanjian yang melindunginya, serta kepada Paddle, yang menjual isi ulang:"
+        "Kami membagikan data kepada penyedia layanan yang menjalankan testee untuk kami, berdasarkan perjanjian yang melindunginya, serta kepada Paddle, yang menjual isi ulang:"
       ],
       "items": [
         "Google (Firebase Authentication; Google LLC, Amerika Serikat, berdasarkan EU-US Data Privacy Framework): proses masuk. LinkedIn dan GitHub hanya mengonfirmasi identitasmu saat kamu masuk dengan akun mereka; kami tidak menerima hal lain dari mereka.",
@@ -75,27 +75,27 @@
         "Cloudflare (Turnstile; Cloudflare, Inc., Amerika Serikat, berdasarkan EU-US Data Privacy Framework): pemeriksaan \"Saya bukan robot\".",
         "Google Cloud, penyedia hosting kami, yang menyimpan data (di UE, Belgia).",
         "Upstash: penghitung berumur pendek untuk batas penggunaan dan pembaruan langsung (di UE, Belgia).",
-        "Perusahaan, hanya jika kamu mengaktifkan Terbuka untuk tawaran kerja: perusahaan yang merekrut lewat prepza melihat apa yang dijelaskan di atas. Setiap perusahaan bertanggung jawab atas cara ia menggunakan apa yang dilihatnya. Jika salah satunya mengundangmu, undangan dikirim ke email akunmu, dan perusahaan melihat email itu seperti email kandidat mana pun.",
+        "Perusahaan, hanya jika kamu mengaktifkan Terbuka untuk tawaran kerja: perusahaan yang merekrut lewat testee melihat apa yang dijelaskan di atas. Setiap perusahaan bertanggung jawab atas cara ia menggunakan apa yang dilihatnya. Jika salah satunya mengundangmu, undangan dikirim ke email akunmu, dan perusahaan melihat email itu seperti email kandidat mana pun.",
         "Paddle (Paddle.com Market Ltd, Inggris Raya) bukan salah satunya: Paddle menjual isi ulang sendiri, sebagai merchant of record, dan merupakan pengendali detail pembayaran, pajak, dan penagihan yang dikumpulkannya, berdasarkan kebijakan privasinya sendiri. Kami memberikan email anggota yang membeli kepada Paddle, dan Paddle memberi tahu kami apa yang dibeli dan dibayar."
       ]
     },
     {
       "heading": "Alat yang dihubungkan perusahaan",
       "paragraphs": [
-        "Perusahaan dapat menghubungkan alatnya sendiri ke prepza, dan kemudian kami mengirimkan data kepada alat tersebut atas instruksinya, sebagai bagian dari layanan yang dimintanya: sistem pelacakan pelamarnya (Workable, Greenhouse, Teamtailor, Recruitee, atau Breezy HR) menerima nilaimu, apakah nilai itu mencapai nilai lulus, sinyal integritas, dan tautan ke hasilmu; kanal Slack yang dipilihnya menerima notifikasinya, seperti bahwa kamu sudah selesai dan nilaimu; dan sistemnya sendiri, melalui API atau webhook prepza, menerima email, nama, kemajuan, dan nilaimu, apakah kamu mencapai nilai lulus, sinyal integritas, dan tautan undanganmu. Perusahaan memilih dan mengendalikan alat-alat ini, yang mungkin berada di luar UE, dan bertanggung jawab atas cara alat tersebut menggunakan datamu."
+        "Perusahaan dapat menghubungkan alatnya sendiri ke testee, dan kemudian kami mengirimkan data kepada alat tersebut atas instruksinya, sebagai bagian dari layanan yang dimintanya: sistem pelacakan pelamarnya (Workable, Greenhouse, Teamtailor, Recruitee, atau Breezy HR) menerima nilaimu, apakah nilai itu mencapai nilai lulus, sinyal integritas, dan tautan ke hasilmu; kanal Slack yang dipilihnya menerima notifikasinya, seperti bahwa kamu sudah selesai dan nilaimu; dan sistemnya sendiri, melalui API atau webhook testee, menerima email, nama, kemajuan, dan nilaimu, apakah kamu mencapai nilai lulus, sinyal integritas, dan tautan undanganmu. Perusahaan memilih dan mengendalikan alat-alat ini, yang mungkin berada di luar UE, dan bertanggung jawab atas cara alat tersebut menggunakan datamu."
       ]
     },
     {
       "heading": "Aplikasi AI yang kamu hubungkan",
       "paragraphs": [
-        "Kamu bisa menghubungkan aplikasi AI milikmu sendiri, seperti Claude (dari Anthropic) atau ChatGPT (dari OpenAI), ke akun prepza-mu. Hanya jika kamu melakukannya, dan hanya untuk apa yang kamu minta, aplikasi itu membaca dan mengubah data perusahaanmu dengan hak aksesmu, termasuk hasil kandidat, dan data tersebut sampai ke penyedia aplikasi itu berdasarkan ketentuan dan kebijakan privasi aplikasi itu sendiri, bukan milik kami. Kamu memilih aplikasi-aplikasi ini dan bisa memutuskan sambungan salah satunya kapan saja di tab Integrasi perusahaan; menghapus akunmu memutuskan semuanya. Pemilik dan admin perusahaan dapat melarang aplikasi AI menggunakan data perusahaan itu."
+        "Kamu bisa menghubungkan aplikasi AI milikmu sendiri, seperti Claude (dari Anthropic) atau ChatGPT (dari OpenAI), ke akun testee-mu. Hanya jika kamu melakukannya, dan hanya untuk apa yang kamu minta, aplikasi itu membaca dan mengubah data perusahaanmu dengan hak aksesmu, termasuk hasil kandidat, dan data tersebut sampai ke penyedia aplikasi itu berdasarkan ketentuan dan kebijakan privasi aplikasi itu sendiri, bukan milik kami. Kamu memilih aplikasi-aplikasi ini dan bisa memutuskan sambungan salah satunya kapan saja di tab Integrasi perusahaan; menghapus akunmu memutuskan semuanya. Pemilik dan admin perusahaan dapat melarang aplikasi AI menggunakan data perusahaan itu."
       ]
     },
     {
       "heading": "Email dan berhenti berlangganan",
       "paragraphs": [
         "Email layanan, seperti undangan, laporan, masalah pembayaran, perubahan pada ketentuan kami, dan pemberitahuan penting tentang layanan, selalu dikirim. Kamu memilih email lainnya di Pengaturan, di bagian Email: ringkasan aktivitas, pengingat, pembaruan produk dan berita, serta penawaran dan promosi. Setiap email opsional memiliki tautan berhenti berlangganan yang berfungsi tanpa perlu masuk, dan menandai email opsional sebagai spam juga menonaktifkannya. Jika email kepadamu terpental secara permanen, atau kamu menandai salah satu email kami sebagai spam, kami berhenti mengirim email produk dan pemberitahuan ke alamat itu sampai kamu meminta kami memulainya lagi.",
-        "Undangan dan pengingat yang dikirim perusahaan kepada kandidat melalui prepza memiliki tautan untuk menghentikan email dari perusahaan itu, atau pengingat untuk wawancara itu. Setelah itu prepza tidak lagi mengirim email ke alamat tersebut atas nama perusahaan itu, dan perusahaan melihat undangannya sebagai tidak terkirim."
+        "Undangan dan pengingat yang dikirim perusahaan kepada kandidat melalui testee memiliki tautan untuk menghentikan email dari perusahaan itu, atau pengingat untuk wawancara itu. Setelah itu testee tidak lagi mengirim email ke alamat tersebut atas nama perusahaan itu, dan perusahaan melihat undangannya sebagai tidak terkirim."
       ]
     },
     {
@@ -118,7 +118,7 @@
         "Catatan penggunaan AI dan batasan yang tercapai: 13 bulan, tanpa ID akunmu setelah kamu menghapus akunmu.",
         "Sesi latihan: sampai kamu menghapus akunmu.",
         "Terbuka untuk tawaran kerja: sampai kamu mematikannya atau menghapus akunmu, dan paling lama setahun setelah terakhir kali kamu mengaktifkannya atau menyimpan profil LinkedIn-mu; log pilihanmu, sampai kamu menghapus akunmu.",
-        "Laporan yang dikirim lewat email dari prepza: PDF-nya hanya disimpan untuk mengirim email, dan dihapus paling lambat 7 hari kemudian.",
+        "Laporan yang dikirim lewat email dari testee: PDF-nya hanya disimpan untuk mengirim email, dan dihapus paling lambat 7 hari kemudian.",
         "Deskripsi pekerjaan yang ditempel dalam catatan pembuatan kami: 90 hari setelah pembuatan selesai. Wawancara yang dibuat darinya tetap ada di akun perusahaan sampai dihapus.",
         "Pengaturan email-mu dan log perubahannya: sampai kamu menghapus akunmu.",
         "Catatan ringkasan dan pengingat yang dikirimkan kepadamu: 30 hari, atau sampai kamu menghapus akunmu jika itu lebih cepat.",
@@ -150,17 +150,17 @@
     {
       "heading": "Cookie dan penyimpanan",
       "paragraphs": [
-        "prepza hanya menggunakan cookie dan penyimpanan browser yang diperlukan agar berfungsi atau yang mengingat pilihanmu sendiri. Tidak ada cookie iklan atau analitik.",
-        "Agar kamu tetap masuk: sebuah cookie (prepza_token, diperbarui setiap jam selama kamu memakai prepza, sampai kamu keluar) dan penyimpanan browser milik penyedia proses masuk kami, Google Firebase. Saat kamu menghubungkan aplikasi AI, sebuah cookie (prepza_connect) bertahan selama beberapa menit yang diperlukan.",
-        "Untuk mengingat pilihanmu: bahasamu (sebuah cookie, prepza_locale, selama setahun, diatur saat kamu memilih bahasa atau membuka prepza di alamat suatu bahasa), tema terang atau gelapmu, lebar panel asisten, cara terakhir kamu mengundang kandidat, bahwa kamu pernah masuk di browser ini sebelumnya, periode yang terakhir kamu pilih untuk statistik, pemberitahuan perubahan dokumen hukum yang sudah kamu tutup, dan percakapanmu dengan asisten (sampai kamu masuk, hanya di tab ini). Semuanya tetap ada di browser-mu sampai kamu menghapusnya.",
-        "Tautan referal: hanya jika kamu memilih untuk menyimpannya, sebuah cookie (prepza_ref) mengingat tautan yang kamu gunakan untuk datang selama 30 hari, agar kredit sampai ke kedua perusahaan.",
+        "testee hanya menggunakan cookie dan penyimpanan browser yang diperlukan agar berfungsi atau yang mengingat pilihanmu sendiri. Tidak ada cookie iklan atau analitik.",
+        "Agar kamu tetap masuk: sebuah cookie (testee_token, diperbarui setiap jam selama kamu memakai testee, sampai kamu keluar) dan penyimpanan browser milik penyedia proses masuk kami, Google Firebase. Saat kamu menghubungkan aplikasi AI, sebuah cookie (testee_connect) bertahan selama beberapa menit yang diperlukan.",
+        "Untuk mengingat pilihanmu: bahasamu (sebuah cookie, testee_locale, selama setahun, diatur saat kamu memilih bahasa atau membuka testee di alamat suatu bahasa), tema terang atau gelapmu, lebar panel asisten, cara terakhir kamu mengundang kandidat, bahwa kamu pernah masuk di browser ini sebelumnya, periode yang terakhir kamu pilih untuk statistik, pemberitahuan perubahan dokumen hukum yang sudah kamu tutup, dan percakapanmu dengan asisten (sampai kamu masuk, hanya di tab ini). Semuanya tetap ada di browser-mu sampai kamu menghapusnya.",
+        "Tautan referal: hanya jika kamu memilih untuk menyimpannya, sebuah cookie (testee_ref) mengingat tautan yang kamu gunakan untuk datang selama 30 hari, agar kredit sampai ke kedua perusahaan.",
         "Pemeriksaan \"Saya bukan robot\" berjalan dalam bingkai kecil dari Cloudflare saat sebuah formulir memerlukannya, dan tidak memasang cookie pelacakan."
       ]
     },
     {
       "heading": "Anak-anak",
       "paragraphs": [
-        "prepza tidak ditujukan untuk siapa pun yang berusia di bawah 16 tahun."
+        "testee tidak ditujukan untuk siapa pun yang berusia di bawah 16 tahun."
       ]
     },
     {
@@ -172,7 +172,7 @@
     {
       "heading": "Hubungi kami",
       "paragraphs": [
-        "Pertanyaan tentang kebijakan ini atau datamu: tulis ke hello@prepza.ai, atau gunakan halaman kontak yang ditautkan di bagian bawah setiap halaman."
+        "Pertanyaan tentang kebijakan ini atau datamu: tulis ke hello@testee.ai, atau gunakan halaman kontak yang ditautkan di bagian bawah setiap halaman."
       ]
     }
   ]

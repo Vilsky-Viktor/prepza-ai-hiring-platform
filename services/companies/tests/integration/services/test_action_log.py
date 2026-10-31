@@ -6,8 +6,8 @@ import asyncio
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.events.audit_actions import AuditAction, AuditGroup, TargetKind
 from sqlalchemy import select, text, update
+from testee_common.events.audit_actions import AuditAction, AuditGroup, TargetKind
 
 from companies.core.db import Session
 from companies.models.audit import AuditEvent

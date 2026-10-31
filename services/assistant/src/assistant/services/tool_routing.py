@@ -1,10 +1,10 @@
 import logging
 
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
-from prepza_common.ai import ai_usage
-from prepza_common.ai.ai_constants import Outcome
-from prepza_common.ai.llm import estimated_input
-from prepza_common.ai.tracing import hiding, new_trace_id, traced
+from testee_common.ai import ai_usage
+from testee_common.ai.ai_constants import Outcome
+from testee_common.ai.llm import estimated_input
+from testee_common.ai.tracing import hiding, new_trace_id, traced
 
 from assistant.config import settings
 from assistant.constants.ai_usage import MESSAGE_ACTION

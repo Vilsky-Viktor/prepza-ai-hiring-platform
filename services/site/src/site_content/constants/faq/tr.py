@@ -4,18 +4,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "prepza nedir?",
+        "question": "testee nedir?",
         "answer": "İş tanımınızdan hazırlanan, her pozisyon için süreli bir mülakat. Adayları onlarla tanışmadan önce elemek için ya da işe alımın bir adımı olarak kullanın: her iki durumda da işi gerçekten kimin bildiğini görürsünüz.",
     },
     {
         "key": "roles",
         "question": "Hangi pozisyonlar için işe alım yapabilirim?",
-        "answer": "Bilginin önemli olduğu her pozisyon için: destek, satış, finans, sağlık, zanaat ve teknik meslekler, mühendislik, pazarlama ve daha fazlası. İşi tarif edebiliyorsanız prepza onun için bir mülakat hazırlayabilir.",
+        "answer": "Bilginin önemli olduğu her pozisyon için: destek, satış, finans, sağlık, zanaat ve teknik meslekler, mühendislik, pazarlama ve daha fazlası. İşi tarif edebiliyorsanız testee onun için bir mülakat hazırlayabilir.",
     },
     {
         "key": "hiring",
         "question": "Nasıl çalışır?",
-        "answer": "Ana sayfaya bir iş tanımı yapıştırın, şirketinize ad verin ve prepza'nın önerdiği konuları kontrol edin. Ardından adayları davet edin: e-postalarını yazın, bir liste yapıştırın ya da dosya yükleyin. Birkaç gün içinde başlamayan adaylara bir hatırlatma gider. Her aday kendi sorularını alır ve her sorunun bir süresi vardır; adaylar bitirir bitirmez puanlarını ve tüm cevaplarını görürsünüz.",
+        "answer": "Ana sayfaya bir iş tanımı yapıştırın, şirketinize ad verin ve testee'nin önerdiği konuları kontrol edin. Ardından adayları davet edin: e-postalarını yazın, bir liste yapıştırın ya da dosya yükleyin. Birkaç gün içinde başlamayan adaylara bir hatırlatma gider. Her aday kendi sorularını alır ve her sorunun bir süresi vardır; adaylar bitirir bitirmez puanlarını ve tüm cevaplarını görürsünüz.",
     },
     {
         "key": "link",
@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Şirketler beni pratiklerim üzerinden bulabilir mi?",
-        "answer": "Yalnızca siz isterseniz. Bir pratik turundan sonra veya Ayarlar'da, LinkedIn profilinizin adresiyle \"İş tekliflerine açık\" seçeneğini açın. Bunun ardından prepza üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve mülakatlarındaki konulardan pratik yaptığınız her birindeki en son pratik sonucunuzu görür ve sizi bir mülakata davet edebilir. prepza sizi sıralamaz veya önermez. İstediğiniz zaman Ayarlar'dan kapatabilirsiniz; o anda tüm şirketlerin listesinden kaybolursunuz. Ayrıca bu seçenek, en son açtığınız veya LinkedIn profilinizi kaydettiğiniz tarihten bir yıl sonra kendiliğinden kapanır.",
+        "answer": "Yalnızca siz isterseniz. Bir pratik turundan sonra veya Ayarlar'da, LinkedIn profilinizin adresiyle \"İş tekliflerine açık\" seçeneğini açın. Bunun ardından testee üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve mülakatlarındaki konulardan pratik yaptığınız her birindeki en son pratik sonucunuzu görür ve sizi bir mülakata davet edebilir. testee sizi sıralamaz veya önermez. İstediğiniz zaman Ayarlar'dan kapatabilirsiniz; o anda tüm şirketlerin listesinden kaybolursunuz. Ayrıca bu seçenek, en son açtığınız veya LinkedIn profilinizi kaydettiğiniz tarihten bir yıl sonra kendiliğinden kapanır.",
     },
     {
         "key": "cheating",
@@ -55,7 +55,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Fiyat, diğer değerlendirme araçlarıyla nasıl karşılaştırılır?",
-        "answer": "Birçok değerlendirme aracı, kimseyi test etmeseniz bile ödediğiniz aylık veya yıllık abonelikle satılır. prepza'da yalnızca aday başına ödersiniz: {candidate} kredi ({candidate_price}); sözleşme, kullanıcı başı ücret ve mülakat oluşturma ücreti yoktur. Ayda {example_candidates} aday davet eden bir şirket yılda yaklaşık {example_year_price} öder. Her ay çok sayıda aday test ediyorsanız bir abonelik daha ucuz olabilir; kendi rakamlarınızla karşılaştırın.",
+        "answer": "Birçok değerlendirme aracı, kimseyi test etmeseniz bile ödediğiniz aylık veya yıllık abonelikle satılır. testee'de yalnızca aday başına ödersiniz: {candidate} kredi ({candidate_price}); sözleşme, kullanıcı başı ücret ve mülakat oluşturma ücreti yoktur. Ayda {example_candidates} aday davet eden bir şirket yılda yaklaşık {example_year_price} öder. Her ay çok sayıda aday test ediyorsanız bir abonelik daha ucuz olabilir; kendi rakamlarınızla karşılaştırın.",
     },
     {
         "key": "expire",
@@ -80,7 +80,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Sonuçları işe alım yöneticisiyle paylaşabilir miyim?",
-        "answer": "Evet. Tek bir aday ya da bir mülakatın tüm adayları için PDF raporu indirin, doğrudan prepza'dan e-postayla gönderin ya da WhatsApp, Telegram, Viber veya LINE'da kısa bir özet gönderin.",
+        "answer": "Evet. Tek bir aday ya da bir mülakatın tüm adayları için PDF raporu indirin, doğrudan testee'den e-postayla gönderin ya da WhatsApp, Telegram, Viber veya LINE'da kısa bir özet gönderin.",
     },
     {
         "key": "action_log",
@@ -94,13 +94,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "prepza, ATS'imle veya diğer araçlarla çalışır mı?",
+        "question": "testee, ATS'imle veya diğer araçlarla çalışır mı?",
         "answer": "Evet, ek ücret olmadan. Workable, Greenhouse, Teamtailor, Recruitee veya Breezy HR'ı şirketinizin Entegrasyonlar sekmesinden bağlayın: bir aşamaya taşıdığınız adaylar mülakatı alır ve sonuçları ATS'ye geri gönderilir ([beceri testlerini ATS'nize nasıl bağlarsınız](/guides/ats-integration-skills-tests)). Slack, şirketinizin bildirimlerini bir kanala gönderebilir; API ise kendi platformunuzun mülakat oluşturmasını, adayları davet edip yönetmesini ve sonuçlarını almasını sağlar; her API anahtarı yalnızca onun için işaretlediğiniz işlemleri yapabilir. Ayrıntılar için [API belgeleri](/api-docs) sayfasına bakın.",
     },
     {
         "key": "ai_apps",
-        "question": "prepza'yı Claude, ChatGPT veya kendi yapay zekâ ajanımdan kullanabilir miyim?",
-        "answer": "Evet. prepza'yı Claude veya ChatGPT'ye bağlayıcı olarak ekleyin (adımlar şirketinizin Entegrasyonlar sekmesinde) ve prepza'da izin verin. Uygulama bundan sonra sizin adınıza ve sizin yetkilerinizle şirketleriniz, mülakatlarınız ve adayların sonuçlarıyla çalışır; çoğu uygulama bir şeyi değiştirmeden önce size sorar. Hesabınızı veya bir şirketi yalnızca prepza'da silebilirsiniz. Uygulamanın okuduğu veriler, o uygulamanın koşullarına göre sağlayıcısına ulaşır. Bağlantıyı istediğiniz zaman aynı sekmeden kesebilirsiniz. Diğer yapay zekâ uygulamaları ve kendi geliştirdiğiniz ajanlar da bağlanabilir: geliştirici belgelerindeki [MCP sekmesinde](/api-docs?tab=mcp) adımlar ve örnek ajanlar vardır; sunucuda çalışan bir ajan, yapay zekâ ajanları yetkisine sahip bir API anahtarıyla oturum açabilir. [Yapay zekâ ajanları, MCP ve API'ler rehberi](/guides/ai-agents-mcp-and-api) her birinin ne işe yaradığını açıklar.",
+        "question": "testee'yi Claude, ChatGPT veya kendi yapay zekâ ajanımdan kullanabilir miyim?",
+        "answer": "Evet. testee'yi Claude veya ChatGPT'ye bağlayıcı olarak ekleyin (adımlar şirketinizin Entegrasyonlar sekmesinde) ve testee'de izin verin. Uygulama bundan sonra sizin adınıza ve sizin yetkilerinizle şirketleriniz, mülakatlarınız ve adayların sonuçlarıyla çalışır; çoğu uygulama bir şeyi değiştirmeden önce size sorar. Hesabınızı veya bir şirketi yalnızca testee'de silebilirsiniz. Uygulamanın okuduğu veriler, o uygulamanın koşullarına göre sağlayıcısına ulaşır. Bağlantıyı istediğiniz zaman aynı sekmeden kesebilirsiniz. Diğer yapay zekâ uygulamaları ve kendi geliştirdiğiniz ajanlar da bağlanabilir: geliştirici belgelerindeki [MCP sekmesinde](/api-docs?tab=mcp) adımlar ve örnek ajanlar vardır; sunucuda çalışan bir ajan, yapay zekâ ajanları yetkisine sahip bir API anahtarıyla oturum açabilir. [Yapay zekâ ajanları, MCP ve API'ler rehberi](/guides/ai-agents-mcp-and-api) her birinin ne işe yaradığını açıklar.",
     },
     {
         "key": "candidates",
@@ -120,27 +120,27 @@ FAQ = [
     {
         "key": "privacy",
         "question": "İş tanımları ve cevaplara ne olur?",
-        "answer": "İş tanımları şirketinizin mülakatlarını hazırlamak, adayların cevapları ise onları şirketiniz adına puanlamak için kullanılır. prepza'nın oluşturduğu sorular, sizi, şirketinizi veya başka birini tanımlayan hiçbir bilgi olmadan diğer şirketlerin mülakatlarında ve pratiklerinde de yeniden kullanılabilir; bir mülakatın sorularını mülakatın ayarlarından bunun dışında tutabilirsiniz. prepza ayrıca soruların oluşturulma şeklini iyileştirmek için, soruların nasıl cevaplandığından soru kalitesine ilişkin genel, anonimleştirilmiş örüntüler çıkarır. [Gizlilik politikası](/privacy) neleri, ne kadar süre sakladığımızı ve herkesin haklarını açıklar.",
+        "answer": "İş tanımları şirketinizin mülakatlarını hazırlamak, adayların cevapları ise onları şirketiniz adına puanlamak için kullanılır. testee'nin oluşturduğu sorular, sizi, şirketinizi veya başka birini tanımlayan hiçbir bilgi olmadan diğer şirketlerin mülakatlarında ve pratiklerinde de yeniden kullanılabilir; bir mülakatın sorularını mülakatın ayarlarından bunun dışında tutabilirsiniz. testee ayrıca soruların oluşturulma şeklini iyileştirmek için, soruların nasıl cevaplandığından soru kalitesine ilişkin genel, anonimleştirilmiş örüntüler çıkarır. [Gizlilik politikası](/privacy) neleri, ne kadar süre sakladığımızı ve herkesin haklarını açıklar.",
     },
     {
         "key": "eu_ai_law",
         "question": "AB'de adayları ön elemek için yapay zekâ kullanmak yasal mı?",
-        "answer": "Evet, kurallara uyarak. AB Yapay Zekâ Yasası'na (AI Act) göre adayları puanlayan araçlar büyük olasılıkla yüksek risklidir ve yükümlülükler 2 Aralık 2027'den itibaren başlar; GDPR ise zaten geçerlidir: işe alım kararını bir insan verir, adaylara yapay zekâ kullanıldığı söylenir ve kayıt tutulur. prepza da böyle çalışır: soruları yapay zekâ yazar, şirketinizdeki kişiler sonuçları inceleyip karar verir ve adaylar başlamadan önce bilgilendirilir. Bu bir hukuki tavsiye değildir; [AB'de yapay zekâ ile işe alım yasal mı?](/guides/is-ai-hiring-legal-in-the-eu) kuralları ve tarihleri açıklar.",
+        "answer": "Evet, kurallara uyarak. AB Yapay Zekâ Yasası'na (AI Act) göre adayları puanlayan araçlar büyük olasılıkla yüksek risklidir ve yükümlülükler 2 Aralık 2027'den itibaren başlar; GDPR ise zaten geçerlidir: işe alım kararını bir insan verir, adaylara yapay zekâ kullanıldığı söylenir ve kayıt tutulur. testee da böyle çalışır: soruları yapay zekâ yazar, şirketinizdeki kişiler sonuçları inceleyip karar verir ve adaylar başlamadan önce bilgilendirilir. Bu bir hukuki tavsiye değildir; [AB'de yapay zekâ ile işe alım yasal mı?](/guides/is-ai-hiring-legal-in-the-eu) kuralları ve tarihleri açıklar.",
     },
     {
         "key": "uk_us",
-        "question": "prepza'yı Birleşik Krallık ve ABD'deki adaylar için kullanabilir miyiz?",
+        "question": "testee'yi Birleşik Krallık ve ABD'deki adaylar için kullanabilir miyiz?",
         "answer": "Evet. Veri işleme sözleşmesi Birleşik Krallık ve ABD hukukunu kapsar; şirketlere yönelik talimatlar ve aday bilgilendirme şablonları (New York City, Illinois ve Colorado sürümleriyle) adaylara neleri söylemeniz gerektiğini açıklar. New York City'deki işler için onu ancak Local Law 144'ün sizden istediklerini yerine getirdikten sonra kullanın: kullanımdan önceki bir yıl içinde bağımsız bir yanlılık denetimi, özetinin yayımlanması ve adayların 10 iş günü önceden bilgilendirilmesi. İşlem kaydındaki yanlılık denetimi dışa aktarımı, denetçinize mülakatı bitiren her adayın notunu ve sonucunu verir; bunlar adaylarınızın kendi beyan ettiği yanıtlarla eşleştirilir.",
     },
     {
         "key": "emails",
-        "question": "prepza hangi e-postaları gönderir ve bunları nasıl durdururum?",
+        "question": "testee hangi e-postaları gönderir ve bunları nasıl durdururum?",
         "answer": 'Davetler, raporlar, ödeme sorunları ve koşullarımızdaki değişiklikler gibi hizmet e-postaları her zaman gönderilir. Günlük etkinlik özeti, hatırlatmalar ve ürün güncellemeleri gibi diğerlerini Ayarlar\'da, E-postalar bölümünde seçebilir ya da her e-postadaki "Abonelikten çık" bağlantısıyla durdurabilirsiniz. Adaylar, davet ve hatırlatma e-postalarındaki bağlantılarla şirketinizin e-postalarını ya da bir mülakatın hatırlatmalarını durdurabilir.',
     },
     {
         "key": "delete",
         "question": "Hesabımı silebilir miyim?",
-        "answer": "Evet, Ayarlar'dan. Hesabınız ve verileriniz silinir; öncesinde verilerinizin bir kopyasını indirebilirsiniz. prepza'nın haberleri, üstteki zil simgesinde, yani bildirimlerinizde görünür; önemli haberler ayrıca ürün güncellemesi olarak e-postayla da gelir, ancak yalnızca bu ayar açıkken.",
+        "answer": "Evet, Ayarlar'dan. Hesabınız ve verileriniz silinir; öncesinde verilerinizin bir kopyasını indirebilirsiniz. testee'nin haberleri, üstteki zil simgesinde, yani bildirimlerinizde görünür; önemli haberler ayrıca ürün güncellemesi olarak e-postayla da gelir, ancak yalnızca bu ayar açıkken.",
     },
     {
         "key": "report",

@@ -1,8 +1,8 @@
 from datetime import datetime
 from uuid import UUID
 
-from prepza_common.config.constants import MAX_PAGE_SIZE
 from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from testee_common.config.constants import MAX_PAGE_SIZE
 
 
 class NotificationOut(BaseModel):

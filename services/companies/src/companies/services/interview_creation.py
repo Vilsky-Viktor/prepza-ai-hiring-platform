@@ -1,12 +1,12 @@
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.events.analytics import track
-from prepza_common.events.audit_actions import AuditAction
-from prepza_common.http.http import passed_on
-from prepza_common.limits.limit_list import LIMITS
-from prepza_common.limits.limits import at_most, limit, question_seconds
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import counted, hit, hit_or_skip
+from testee_common.events.analytics import track
+from testee_common.events.audit_actions import AuditAction
+from testee_common.http.http import passed_on
+from testee_common.limits.limit_list import LIMITS
+from testee_common.limits.limits import at_most, limit, question_seconds
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import counted, hit, hit_or_skip
 
 from companies.constants import error_codes
 from companies.constants.audit import VIA_API

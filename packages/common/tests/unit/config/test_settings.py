@@ -1,18 +1,18 @@
 import pytest
-from prepza_common.config.settings import ServiceSettings
 from pydantic import ValidationError
+from testee_common.config.settings import ServiceSettings
 
 
 def test_the_auth_emulator_is_allowed_only_for_a_demo_project():
     demo = ServiceSettings(
-        firebase_project_id="demo-prepza", firebase_auth_emulator_host="auth:9199"
+        firebase_project_id="demo-testee", firebase_auth_emulator_host="auth:9199"
     )
 
     assert demo.firebase_auth_emulator_host == "auth:9199"
-    assert ServiceSettings(firebase_project_id="prepza-prod").firebase_auth_emulator_host == ""
+    assert ServiceSettings(firebase_project_id="testee-prod").firebase_auth_emulator_host == ""
 
     with pytest.raises(ValidationError):
-        ServiceSettings(firebase_project_id="prepza-prod", firebase_auth_emulator_host="auth:9199")
+        ServiceSettings(firebase_project_id="testee-prod", firebase_auth_emulator_host="auth:9199")
 
 
 class WithSecret(ServiceSettings):
@@ -24,7 +24,7 @@ class WithSecret(ServiceSettings):
 
 def test_a_refused_setting_never_repeats_the_values_given(monkeypatch):
     # From the environment, as services read them at start-up.
-    monkeypatch.setenv("FIREBASE_PROJECT_ID", "prepza-prod")
+    monkeypatch.setenv("FIREBASE_PROJECT_ID", "testee-prod")
     monkeypatch.setenv("API_KEY", "sk-very-secret-value")
     monkeypatch.setenv("PORT", "not-a-port")
 
@@ -37,4 +37,4 @@ def test_a_refused_setting_never_repeats_the_values_given(monkeypatch):
     assert "port" in message
     assert "sk-very-secret-value" not in message
     assert "not-a-port" not in message
-    assert "prepza-prod" not in message
+    assert "testee-prod" not in message

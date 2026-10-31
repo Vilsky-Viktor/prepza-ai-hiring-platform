@@ -1,7 +1,7 @@
 {
   "landing": {
-    "title": "prepza nasıl çalışır",
-    "text": "prepza iş tanımınızı süreli bir mülakata dönüştürür; her aday kendi rastgele sorularını alır. Bu sayfa, mülakat oluşturmaktan sonuçları paylaşmaya kadar tüm süreci anlatır.",
+    "title": "testee nasıl çalışır",
+    "text": "testee iş tanımınızı süreli bir mülakata dönüştürür; her aday kendi rastgele sorularını alır. Bu sayfa, mülakat oluşturmaktan sonuçları paylaşmaya kadar tüm süreci anlatır.",
     "actions": [
       "İş tanımını üstteki kutuya yapıştırın veya hazır bir şablon seçin; konuları düzenleyin, sorular sizin için yazılıp kontrol edilsin.",
       "Adayları e-postayla, bir dosyadan, iş ilanınızdaki paylaşım bağlantısıyla ya da ATS'nizden, kendi platformunuzdan veya bir yapay zekâ asistanından davet edin.",
@@ -17,9 +17,9 @@
   },
   "companies": {
     "title": "Şirketler",
-    "text": "Şirketleriniz. prepza'da yaptığınız her şey bir şirketin içinde olur: mülakatları, adayları, ekibi, kredileri ve entegrasyonları.",
+    "text": "Şirketleriniz. testee'de yaptığınız her şey bir şirketin içinde olur: mülakatları, adayları, ekibi, kredileri ve entegrasyonları.",
     "actions": [
-      "“Yeni şirket” ile bir şirket oluşturun. Adı tüm prepza'da benzersizdir.",
+      "“Yeni şirket” ile bir şirket oluşturun. Adı tüm testee'de benzersizdir.",
       "Mülakatları ve adayları üzerinde çalışmak için bir şirketi açın.",
       "Sahibi olduğunuz bir şirketi tüm mülakatları ve davetleriyle birlikte kaldırın."
     ],
@@ -56,7 +56,7 @@
   },
   "newInterview": {
     "title": "Yeni mülakat",
-    "text": "Mülakata iş tanımından başlayın. prepza onu okur, ölçülecek konuları önerir ve siz onayladığınızda soruları yazar.",
+    "text": "Mülakata iş tanımından başlayın. testee onu okur, ölçülecek konuları önerir ve siz onayladığınızda soruları yazar.",
     "actions": [
       "İş tanımını yapıştırın: pozisyon, gereksinimler ve tercih sebepleri.",
       "Mülakatın oluşturulacağı dili seçin.",
@@ -69,7 +69,7 @@
   },
   "reviewTopics": {
     "title": "Konularınızı inceleyin",
-    "text": "prepza bu konuları tanımınızdan önerdi. Tuttuğunuz her konu, cevaplarıyla birlikte kendi soru setini alır.",
+    "text": "testee bu konuları tanımınızdan önerdi. Tuttuğunuz her konu, cevaplarıyla birlikte kendi soru setini alır.",
     "actions": [
       "İhtiyacınız olmayan konuların işaretini kaldırın.",
       "Bir konunun adını ve alt konularını kalem simgesiyle düzenleyin.",
@@ -83,7 +83,7 @@
   },
   "generating": {
     "title": "Oluşturuluyor",
-    "text": "prepza mülakatınızı hazırlıyor: önce konular, sonra her birinin soruları. Birkaç dakika sürer.",
+    "text": "testee mülakatınızı hazırlıyor: önce konular, sonra her birinin soruları. Birkaç dakika sürer.",
     "actions": [
       "İsterseniz bu sayfadan ayrılın: oluşturma devam eder.",
       "Artık gerekmiyorsa oluşturmayı iptal edin; o ana kadar hazırlanan hiçbir şey saklanmaz."
@@ -138,7 +138,7 @@
   },
   "interviewDiscover": {
     "title": "Keşfet",
-    "text": "prepza'da pratik yapan, iş tekliflerine açık olmayı seçen ve pratiği bu mülakatın konularını mülakatın seviyesinde kapsayan kişiler. Her birinde adı, LinkedIn profili ve eşleşen her konudaki en son pratik sonucu görünür. Bu sekmeyi yalnızca en az bir kez kredi yüklemiş şirketler görür.",
+    "text": "testee'de pratik yapan, iş tekliflerine açık olmayı seçen ve pratiği bu mülakatın konularını mülakatın seviyesinde kapsayan kişiler. Her birinde adı, LinkedIn profili ve eşleşen her konudaki en son pratik sonucu görünür. Bu sekmeyi yalnızca en az bir kez kredi yüklemiş şirketler görür.",
     "actions": [
       "Biri hakkında daha fazla bilgi edinmek için LinkedIn profilini açın.",
       "Birini bu mülakata davet edin (sahipler ve yöneticiler): davet, kişinin hesabındaki e-posta adresine gider ve her davet gibi kredi harcar."
@@ -157,7 +157,7 @@
       "Soru başına ortalama süreyi saniye olarak belirleyin: her soru, uzunluğuna ve gösterdiği koda göre kendi süresini alır; mülakatın toplam süresi aynı kalır.",
       "Geçme notunu belirleyin: buna ulaşan adaylar geçer.",
       "Pozisyonu doldurduğunuzda mülakatı işe alındı olarak işaretleyin.",
-      "Mülakatın sorularını prepza'nın ortak soru bankasının dışında tutun; başka mülakatlarda zaten yeniden kullanılan sorular orada kalır."
+      "Mülakatın sorularını testee'nin ortak soru bankasının dışında tutun; başka mülakatlarda zaten yeniden kullanılan sorular orada kalır."
     ],
     "tips": [
       "Her ayar, alanından çıktığınız anda kaydedilir.",
@@ -248,16 +248,16 @@
       "Kayıtta kişiler saklanmaz: silinen bir aday silinmiş aday olarak, ayrılan bir üye eski üye olarak görünür.",
       "Bir API anahtarının işlemleri anahtarın adıyla, silinmiş bir anahtarınkiler ise silinmiş anahtarın işlemleri olarak görünür.",
       "Bir üyenin bir adayın sonuçlarını görüntülemesi günde bir kez, son görüntüleme zamanıyla görünür.",
-      "prepza'da cinsiyet, ırk veya etnik kökenle ilgili hiçbir veri yoktur: adaylarınızın kendi beyan ettiği yanıtları e-postaya göre ekleyin, ardından dosyayı bağımsız denetçinizle paylaşmadan önce e-posta sütununu kaldırın; New York City yanlılık denetimi (Local Law 144) veya EEOC'nin beşte dört kuralı için. Şirket başına günde en fazla 20 dışa aktarım yapılır ve her biri kayıtta görünür."
+      "testee'de cinsiyet, ırk veya etnik kökenle ilgili hiçbir veri yoktur: adaylarınızın kendi beyan ettiği yanıtları e-postaya göre ekleyin, ardından dosyayı bağımsız denetçinizle paylaşmadan önce e-posta sütununu kaldırın; New York City yanlılık denetimi (Local Law 144) veya EEOC'nin beşte dört kuralı için. Şirket başına günde en fazla 20 dışa aktarım yapılır ve her biri kayıtta görünür."
     ]
   },
   "integrations": {
     "title": "Entegrasyonlar",
-    "text": "prepza'yı ekibinizin zaten kullandığı araçlara bağlayın. Her entegrasyonun kurulum adımlarını içeren kendi sayfası vardır.",
+    "text": "testee'yi ekibinizin zaten kullandığı araçlara bağlayın. Her entegrasyonun kurulum adımlarını içeren kendi sayfası vardır.",
     "actions": [
       "Slack: şirketinizin bildirimlerini bir kanalda alın.",
       "API: kendi platformunuzu bağlamak için anahtarlar ve webhook'lar.",
-      "Yapay zekâ uygulamaları: prepza'yı Claude, ChatGPT ve diğer yapay zekâ uygulamalarından kullanın.",
+      "Yapay zekâ uygulamaları: testee'yi Claude, ChatGPT ve diğer yapay zekâ uygulamalarından kullanın.",
       "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): bir aşamaya taşıdığınız adaylar mülakatı alır, sonuçları ATS'e geri döner."
     ],
     "tips": [
@@ -274,30 +274,30 @@
       "Bir ilanın bağlantısını kaldırın veya ATS bağlantısını kesin."
     ],
     "tips": [
-      "Yalnızca prepza için bir aşama ekleyin, örneğin “prepza beceri testi”; böylece diğer araçlarınızla hiç karışmaz.",
-      "prepza ATS'nizde kimseyi asla taşımaz veya reddetmez."
+      "Yalnızca testee için bir aşama ekleyin, örneğin “testee beceri testi”; böylece diğer araçlarınızla hiç karışmaz.",
+      "testee ATS'nizde kimseyi asla taşımaz veya reddetmez."
     ]
   },
   "slack": {
     "title": "Slack",
     "text": "Şirketinizin bildirimleri, oldukları anda bir Slack kanalında.",
     "actions": [
-      "prepza'yı Slack'e ekleyin ve kanalı seçin, örneğin #hiring.",
+      "testee'yi Slack'e ekleyin ve kanalı seçin, örneğin #hiring.",
       "Oraya hangi bildirimlerin gideceğini seçin: bir adayın bitirmesi, teslim edilemeyen bir davet, bir mülakatın hazır olması ve daha fazlası.",
-      "Bildirimleri durdurmak ve prepza uygulamasını Slack'inizden kaldırmak için bağlantıyı kesin."
+      "Bildirimleri durdurmak ve testee uygulamasını Slack'inizden kaldırmak için bağlantıyı kesin."
     ],
     "tips": [
-      "prepza yalnızca o kanala mesaj gönderebilir; Slack'inizi okuyamaz.",
+      "testee yalnızca o kanala mesaj gönderebilir; Slack'inizi okuyamaz.",
       "Herkes her bildirimi zil simgesinde görmeye devam eder."
     ]
   },
   "api": {
     "title": "API",
-    "text": "Kariyer siteniz gibi kendi platformunuzu prepza'ya bağlayın.",
+    "text": "Kariyer siteniz gibi kendi platformunuzu testee'ye bağlayın.",
     "actions": [
       "Bir API anahtarı oluşturun ve yalnızca ihtiyaç duyduklarını işaretleyin: mülakatları okuma veya oluşturma; adayları okuma, davet etme, değiştirme veya kaldırma; kredilerinizi okuma; ya da yapay zekâ ajanlarıyla kullanma (MCP). Sizin adınıza çalışır.",
       "Bir anahtarı açıp neler yapabileceğini (her değişiklik hemen kaydedilir) ve hangi IP adreslerinden kullanılabileceğini değiştirin.",
-      "Bir webhook ekleyin: prepza, bir aday başladığında, bitirdiğinde (sonuçlarıyla birlikte), daveti kendisine ulaşamadığında, davetinin süresi dolduğunda veya kaldırıldığında ve bir mülakat hazır olduğunda HTTPS adresinize imzalı olarak haber verir.",
+      "Bir webhook ekleyin: testee, bir aday başladığında, bitirdiğinde (sonuçlarıyla birlikte), daveti kendisine ulaşamadığında, davetinin süresi dolduğunda veya kaldırıldığında ve bir mülakat hazır olduğunda HTTPS adresinize imzalı olarak haber verir.",
       "Bir webhook'a test olayı gönderin ve her gönderimin sonucunu teslim günlüğünde görün.",
       "SDK sekmesinde mülakatlarınızı SDK ile gösterebilecek siteleri listeleyin, test ederken de localhost'a izin verin.",
       "Artık kullanmadığınız anahtarları ve webhook'ları silin.",
@@ -311,10 +311,10 @@
   },
   "aiApps": {
     "title": "Yapay zekâ uygulamaları",
-    "text": "prepza'yı yapay zekâ sohbetinizden kullanın: Claude'a veya ChatGPT'ye mülakatlarınızı ve adaylarınızı sorun ya da sizin yerinize değişiklik yapmalarını isteyin.",
+    "text": "testee'yi yapay zekâ sohbetinizden kullanın: Claude'a veya ChatGPT'ye mülakatlarınızı ve adaylarınızı sorun ya da sizin yerinize değişiklik yapmalarını isteyin.",
     "actions": [
       "Sunucu adresini kopyalayın ve adımları izleyerek Claude, Claude Code veya ChatGPT'ye ekleyin; diğer uygulamalar ve kendi ajanlarınız geliştirici belgelerinde anlatılır.",
-      "Açılan prepza sayfasında uygulamaya izin verin.",
+      "Açılan testee sayfasında uygulamaya izin verin.",
       "Artık kullanmadığınız bir uygulamanın bağlantısını kesin."
     ],
     "tips": [
@@ -324,7 +324,7 @@
   },
   "referrals": {
     "title": "Davetler",
-    "text": "Bu şirketin bağlantısıyla diğer şirketleri prepza'ya davet edin, iki şirket de kredi kazansın.",
+    "text": "Bu şirketin bağlantısıyla diğer şirketleri testee'ye davet edin, iki şirket de kredi kazansın.",
     "actions": [
       "Davet bağlantınızı kopyalayın veya paylaşın.",
       "Bu şirketin aldığı tüm ödülleri görün."
@@ -341,7 +341,7 @@
       "Logoyu ekleyin veya değiştirin.",
       "Başlıkların ve metnin yazı tiplerini, kartların ve düğmelerin ne kadar yuvarlak olacağını seçin.",
       "Her grubun renklerini seçin ve önizlemede görün.",
-      "Kaydedin ya da prepza renklerine dönün."
+      "Kaydedin ya da testee renklerine dönün."
     ],
     "tips": [
       "Metni okumayı zorlaştıracak renkler kaydedilemez, böylece her aday soruları okuyabilir.",
@@ -376,12 +376,12 @@
   },
   "settings": {
     "title": "Ayarlar",
-    "text": "Kendi hesabınız: prepza'nın sizinle konuştuğu dil, aldığınız e-postalar ve verileriniz.",
+    "text": "Kendi hesabınız: testee'nin sizinle konuştuğu dil, aldığınız e-postalar ve verileriniz.",
     "actions": [
       "Sitenin, yardım sohbetinin ve e-postalarınızın dilini seçin.",
       "Hangi isteğe bağlı e-postaları alacağınızı seçin; davetler, raporlar ve ödeme sorunları gibi hizmet e-postaları her zaman gönderilir.",
-      "\"İş tekliflerine açık\" seçeneğini açın veya kapatın: açıkken, pratik yaptığınız konularda prepza üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve pratik sonuçlarınızı görür ve sizi davet edebilir.",
-      "prepza'nın sizin hakkınızda tuttuğu her şeyi indirin veya hesabınızı silin."
+      "\"İş tekliflerine açık\" seçeneğini açın veya kapatın: açıkken, pratik yaptığınız konularda testee üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve pratik sonuçlarınızı görür ve sizi davet edebilir.",
+      "testee'nin sizin hakkınızda tuttuğu her şeyi indirin veya hesabınızı silin."
     ],
     "tips": [
       "Hesabınızı silmek, yalnızca sizin bulunduğunuz şirketleri de siler. Başkalarının katıldığı bir şirkete önce başka bir sahip gerekir."
@@ -389,7 +389,7 @@
   },
   "join": {
     "title": "Şirket daveti",
-    "text": "prepza'da bir şirketin ekibine katılmaya, mülakatları ve adayları üzerinde çalışmaya davet edildiniz.",
+    "text": "testee'de bir şirketin ekibine katılmaya, mülakatları ve adayları üzerinde çalışmaya davet edildiniz.",
     "actions": [
       "Davetin gönderildiği e-postayla giriş yapın.",
       "Şirkete katılın: şirket ardından şirketleriniz arasında görünür.",
@@ -402,21 +402,21 @@
   },
   "connect": {
     "title": "Yapay zekâ uygulaması bağla",
-    "text": "Bir yapay zekâ uygulaması prepza hesabınızı kullanmak istiyor. Buna izin verip vermeyeceğinizi burada seçersiniz.",
+    "text": "Bir yapay zekâ uygulaması testee hesabınızı kullanmak istiyor. Buna izin verip vermeyeceğinizi burada seçersiniz.",
     "actions": [
       "Hangi uygulamanın istediğini görmek için henüz giriş yapmadıysanız giriş yapın.",
       "Uygulamanın hesabınızla neler yapabileceğini ve yapamayacağını okuyun.",
       "Uygulamaya izin verin veya reddedin; her iki durumda da uygulamaya geri dönersiniz."
     ],
     "tips": [
-      "prepza uygulamayı tanımıyorsa, yalnızca bağlamayı kendiniz başlattıysanız izin verin.",
+      "testee uygulamayı tanımıyorsa, yalnızca bağlamayı kendiniz başlattıysanız izin verin.",
       "Bir uygulamanın bağlantısını istediğiniz zaman bir şirketin Entegrasyonlar bölümünde, Yapay zekâ uygulamaları altında kesebilirsiniz.",
       "Süresi dolmuş veya daha önce kullanılmış bir bağlantı artık çalışmaz: bağlamaya yapay zekâ uygulamanızdan yeniden başlayın."
     ]
   },
   "news": {
     "title": "Haberler",
-    "text": "prepza'da neler yeni: yeni özellikler, iyileştirmeler ve güncellemeler, en yenisi önce.",
+    "text": "testee'de neler yeni: yeni özellikler, iyileştirmeler ve güncellemeler, en yenisi önce.",
     "actions": [
       "Daha eski haberleri okumak için aşağı kaydırın.",
       "Üstteki RSS bağlantısıyla haberleri akış okuyucunuzda takip edin."
@@ -480,7 +480,7 @@
   },
   "features": {
     "title": "Özellikler",
-    "text": "prepza'nın bir şirket için yaptığı her şey, iş tanımından işe alıma kadar: mülakat oluşturma, aday davet etme, adayların ne gördüğü, raporlar, entegrasyonlar, mevzuata uyum ve fiyatlar.",
+    "text": "testee'nin bir şirket için yaptığı her şey, iş tanımından işe alıma kadar: mülakat oluşturma, aday davet etme, adayların ne gördüğü, raporlar, entegrasyonlar, mevzuata uyum ve fiyatlar.",
     "actions": [
       "Üstteki sekmelerle bir gruba geçin: oluşturma, davet, mülakat, karar, entegrasyonlar, güven ve fiyatlar.",
       "Her özelliği gerçek uygulamanın bir görüntüsünün yanında görün.",
@@ -493,7 +493,7 @@
   },
   "pricing": {
     "title": "Fiyatlar",
-    "text": "prepza'nın maliyeti: mülakat oluşturmak ücretsizdir; abonelik olmadan, cevap veren aday başına ödersiniz.",
+    "text": "testee'nin maliyeti: mülakat oluşturmak ücretsizdir; abonelik olmadan, cevap veren aday başına ödersiniz.",
     "actions": [
       "Bugünkü aday başı fiyatı ve büyük yüklemelerdeki daha düşük fiyatları görün.",
       "İlk kaç adayın ücretsiz olduğunu görün.",
@@ -533,10 +533,10 @@
   },
   "aiInterviews": {
     "title": "Yapay zekâ mülakatları",
-    "text": "Yapay zekâ mülakat araçlarının türleri, prepza'nın yaklaşımının nasıl işlediği ve mevzuata uyumun temelleri üzerine bir rehber.",
+    "text": "Yapay zekâ mülakat araçlarının türleri, testee'nin yaklaşımının nasıl işlediği ve mevzuata uyumun temelleri üzerine bir rehber.",
     "actions": [
       "Sohbet botu, video ve oluşturulan teste dayalı mülakat araçlarını karşılaştırın.",
-      "prepza'nın bir mülakatı nasıl hazırlayıp puanladığını ve asla ne yapmadığını adım adım okuyun.",
+      "testee'nin bir mülakatı nasıl hazırlayıp puanladığını ve asla ne yapmadığını adım adım okuyun.",
       "AB Yapay Zekâ Yasası, GDPR ve ABD'nin işe alımda yapay zekâ kurallarının temellerini okuyun.",
       "Sondaki karttan adaylarınız için bir test oluşturun."
     ],
@@ -550,7 +550,7 @@
     "actions": [
       "Hangi test türlerinin olduğunu ve her birinin ne zaman işe yaradığını okuyun.",
       "Adalet ve hukukun temellerini okuyun.",
-      "Bir test aracında nelere dikkat edileceğini ve prepza'nın bunu nasıl yaptığını görün.",
+      "Bir test aracında nelere dikkat edileceğini ve testee'nin bunu nasıl yaptığını görün.",
       "Sondaki karttan adaylarınız için bir test oluşturun."
     ],
     "tips": [
@@ -558,8 +558,8 @@
     ]
   },
   "compare": {
-    "title": "prepza'yı karşılaştırın",
-    "text": "prepza'nın diğer işe alım öncesi test araçlarıyla kaynaklı karşılaştırmaları: testlerin nasıl hazırlandığı, ne kadara mal olduğu ve hangisinin ne zaman daha uygun olduğu.",
+    "title": "testee'yi karşılaştırın",
+    "text": "testee'nin diğer işe alım öncesi test araçlarıyla kaynaklı karşılaştırmaları: testlerin nasıl hazırlandığı, ne kadara mal olduğu ve hangisinin ne zaman daha uygun olduğu.",
     "actions": [
       "Okumak için bir karşılaştırmayı açın."
     ],
@@ -569,7 +569,7 @@
   },
   "comparison": {
     "title": "Karşılaştırma",
-    "text": "prepza'nın tek bir konuda diğer araçlarla karşılaştırması: testlerin nasıl hazırlandığı, ne kadara mal olduğu ve hangisinin ne zaman daha uygun olduğu.",
+    "text": "testee'nin tek bir konuda diğer araçlarla karşılaştırması: testlerin nasıl hazırlandığı, ne kadara mal olduğu ve hangisinin ne zaman daha uygun olduğu.",
     "actions": [
       "Karşılaştırmayı okuyun ve kaynaklara giden bağlantıları izleyin.",
       "Sondaki karttan adaylarınız için bir test oluşturun.",
@@ -603,7 +603,7 @@
   },
   "faq": {
     "title": "Sıkça sorulan sorular",
-    "text": "prepza hakkında sık sorulan soruların cevapları: mülakatlar, adaylar, fiyatlar ve krediler, sonuçlar, entegrasyonlar, diller ve verileriniz.",
+    "text": "testee hakkında sık sorulan soruların cevapları: mülakatlar, adaylar, fiyatlar ve krediler, sonuçlar, entegrasyonlar, diller ve verileriniz.",
     "actions": [
       "Cevabını açmak için bir soruya tıklayın."
     ],
@@ -614,9 +614,9 @@
   },
   "about": {
     "title": "Hakkımızda",
-    "text": "prepza'yı kim ve neden yapıyor: her ekibin karşılayabileceği, iş tanımından hazırlanan mülakatlar ve herkes için ücretsiz pratik.",
+    "text": "testee'yi kim ve neden yapıyor: her ekibin karşılayabileceği, iş tanımından hazırlanan mülakatlar ve herkes için ücretsiz pratik.",
     "actions": [
-      "prepza'nın neden var olduğunu ve işe alıma nasıl yaklaştığını okuyun.",
+      "testee'nin neden var olduğunu ve işe alıma nasıl yaklaştığını okuyun.",
       "Kurucunun mesajını okuyun ve LinkedIn profilini açın."
     ],
     "tips": [
@@ -625,7 +625,7 @@
   },
   "contact": {
     "title": "Bize ulaşın",
-    "text": "Bir soru, fikir, iş birliği teklifi veya çalışmayan bir şey için prepza ekibine yazın.",
+    "text": "Bir soru, fikir, iş birliği teklifi veya çalışmayan bir şey için testee ekibine yazın.",
     "actions": [
       "Adınızı, e-postanızı ve mesajınızı yazıp gönderin.",
       "Hemen bulabilmemiz için ilgili şirketin, mülakatın, adayın veya hesabın ID'sini yapıştırın."
@@ -637,10 +637,10 @@
   },
   "apiDocs": {
     "title": "Geliştirici belgeleri",
-    "text": "Kendi platformunuzu veya yapay zekâ ajanınızı prepza'ya bağlamak için gereken her şey; doğrudan API'den okunur, bu yüzden her zaman API ile uyumludur.",
+    "text": "Kendi platformunuzu veya yapay zekâ ajanınızı testee'ye bağlamak için gereken her şey; doğrudan API'den okunur, bu yüzden her zaman API ile uyumludur.",
     "actions": [
       "API: kimlik doğrulama, temel URL ve parametreleri, gövdesi, yanıtı ve hatalarıyla her uç nokta.",
-      "Webhook'lar: prepza'nın adresinize gönderdiği olaylar ve her birinin içeriği.",
+      "Webhook'lar: testee'nin adresinize gönderdiği olaylar ve her birinin içeriği.",
       "SDK: mülakatı kendi sitenize nasıl yerleştireceğiniz.",
       "MCP: bir yapay zekâ uygulamasını veya kendi ajanınızı nasıl bağlayacağınız ve hangi araçları alacağı.",
       "Nesneler: API'nin döndürdüğü her nesne, alan alan."
@@ -652,9 +652,9 @@
   },
   "accessibility": {
     "title": "Erişilebilirlik",
-    "text": "prepza'nın engelli kişiler için nasıl çalıştığı, nerede hâlâ yetersiz kaldığı ve bunu bize nasıl bildirebileceğiniz.",
+    "text": "testee'nin engelli kişiler için nasıl çalıştığı, nerede hâlâ yetersiz kaldığı ve bunu bize nasıl bildirebileceğiniz.",
     "actions": [
-      "prepza'nın erişilebilirlik için yaptıklarını görün: temalar, telefon düzenleri ve klavyeyle kullanım gibi.",
+      "testee'nin erişilebilirlik için yaptıklarını görün: temalar, telefon düzenleri ve klavyeyle kullanım gibi.",
       "Yetersiz kalan noktaları görün: süreli sorular gibi.",
       "Bir şeyi kullanmak zorsa veya başka bir biçimde ihtiyacınız varsa bize e-postayla yazın."
     ],
@@ -664,11 +664,11 @@
   },
   "documents": {
     "title": "Yasal belgeler",
-    "text": "Adayları prepza ile değerlendiren şirketler için belgeler: talimatlar, şablonlar ve veri işleme sözleşmesi.",
+    "text": "Adayları testee ile değerlendiren şirketler için belgeler: talimatlar, şablonlar ve veri işleme sözleşmesi.",
     "actions": [
       "Şirketler için talimatları indirin: notun ne anlama geldiği, insan incelemesi, geçme notu ve ek süre.",
       "Davet etmeden önce adaylara göndermek için düzenlenebilir bilgilendirme şablonlarını indirin.",
-      "prepza'nın kısmı doldurulmuş DPIA şablonunu indirip tamamlayın.",
+      "testee'nin kısmı doldurulmuş DPIA şablonunu indirip tamamlayın.",
       "Veri işleme sözleşmesini indirin veya çevrimiçi okuyun."
     ],
     "tips": [
@@ -677,10 +677,10 @@
   },
   "trust": {
     "title": "Güven ve güvenlik",
-    "text": "prepza'nın sizin ve adaylarınızın verilerini nasıl güvende tuttuğu: güvenlik, gizlilik, işe alım yasalarına uyum, verilerin nerede saklandığı, kimin işlediği ve ne kadar süre tutulduğu.",
+    "text": "testee'nin sizin ve adaylarınızın verilerini nasıl güvende tuttuğu: güvenlik, gizlilik, işe alım yasalarına uyum, verilerin nerede saklandığı, kimin işlediği ve ne kadar süre tutulduğu.",
     "actions": [
-      "prepza'nın verileri nasıl koruduğunu görün: oturum açma, şifreleme, erişim denetimleri, istek sınırları ve yedekler.",
-      "prepza'nın GDPR, AB Yapay Zekâ Yasası, Birleşik Krallık ve ABD için sağladıklarını görün; New York City'nin yanlılık denetimi yasası da dahil.",
+      "testee'nin verileri nasıl koruduğunu görün: oturum açma, şifreleme, erişim denetimleri, istek sınırları ve yedekler.",
+      "testee'nin GDPR, AB Yapay Zekâ Yasası, Birleşik Krallık ve ABD için sağladıklarını görün; New York City'nin yanlılık denetimi yasası da dahil.",
       "Verilerin nerede saklandığını, hangi alt işleyenlerin onları işlediğini ve her tür verinin ne kadar süre tutulduğunu görün.",
       "Koşulları, gizlilik politikasını, veri işleme sözleşmesini ve şirketlere yönelik belgeleri açın."
     ],
@@ -690,7 +690,7 @@
   },
   "terms": {
     "title": "Koşullar",
-    "text": "prepza'yı kullanma koşulları: hesaplar, şirketler, krediler ve ödemeler, adaylar için testler, kabul edilebilir kullanım ve sorumluluk.",
+    "text": "testee'yi kullanma koşulları: hesaplar, şirketler, krediler ve ödemeler, adaylar için testler, kabul edilebilir kullanım ve sorumluluk.",
     "actions": [
       "Yürürlükteki sürümü, geçerli olduğu tarihle birlikte okuyun.",
       "Sondaki sürüm listesinden önceki veya gelecek bir sürümü açın.",
@@ -702,7 +702,7 @@
   },
   "privacy": {
     "title": "Gizlilik",
-    "text": "prepza'nın şirketlerin, üyelerinin ve adayların kişisel verilerini nasıl topladığı, kullandığı ve koruduğu ile sahip olduğunuz haklar.",
+    "text": "testee'nin şirketlerin, üyelerinin ve adayların kişisel verilerini nasıl topladığı, kullandığı ve koruduğu ile sahip olduğunuz haklar.",
     "actions": [
       "Yürürlükteki sürümü, geçerli olduğu tarihle birlikte okuyun.",
       "Sondaki sürüm listesinden önceki veya gelecek bir sürümü açın.",
@@ -715,7 +715,7 @@
   },
   "dpa": {
     "title": "Veri işleme sözleşmesi",
-    "text": "prepza ile aday test eden şirketler arasındaki sözleşme: prepza'nın sizin adınıza neyi ve nasıl işlediği.",
+    "text": "testee ile aday test eden şirketler arasındaki sözleşme: testee'nin sizin adınıza neyi ve nasıl işlediği.",
     "actions": [
       "Yürürlükteki sürümü, geçerli olduğu tarihle birlikte okuyun.",
       "Sondaki sürüm listesinden önceki veya gelecek bir sürümü açın.",
@@ -728,7 +728,7 @@
   },
   "unsubscribe": {
     "title": "Abonelikten çık",
-    "text": "prepza'dan gelen, sayfada adı geçen bir tür e-postayı durdurun.",
+    "text": "testee'den gelen, sayfada adı geçen bir tür e-postayı durdurun.",
     "actions": [
       "Bağlantının hangi e-postaları durdurduğunu okuyun.",
       "Abonelikten çıkmak için onaylayın; bağlantıyı açmak tek başına hiçbir şeyi değiştirmez.",

@@ -1,4 +1,4 @@
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
+from testee_common.events.notifications import NotificationKind, Recipient, notification
 
 from companies.constants.notifications import (
     CANDIDATE_LINK,

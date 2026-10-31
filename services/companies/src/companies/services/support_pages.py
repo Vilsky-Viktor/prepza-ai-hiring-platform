@@ -4,7 +4,7 @@ never a candidate's questions or answers."""
 import logging
 
 from fastapi import HTTPException, status
-from prepza_common.config.constants import MAX_PAGE_SIZE
+from testee_common.config.constants import MAX_PAGE_SIZE
 
 from companies.constants.superadmin import CREDIT_STATES
 from companies.core.db import Session

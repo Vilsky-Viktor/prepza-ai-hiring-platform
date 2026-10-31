@@ -7,10 +7,10 @@ import logging
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.auth.key_actor import actor_key
-from prepza_common.events.audit_actions import AuditAction
-from prepza_common.i18n.i18n import CodedError
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.auth.key_actor import actor_key
+from testee_common.events.audit_actions import AuditAction
+from testee_common.i18n.i18n import CodedError
+from testee_common.limits.rate_limit import hit_or_skip
 
 from companies.constants import error_codes
 from companies.constants.interview_notes import (

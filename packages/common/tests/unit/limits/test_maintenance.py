@@ -6,23 +6,23 @@ import pytest
 from fake_redis import DownRedis, FakeRedis
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from prepza_common.auth.user import User
-from prepza_common.config.constants import (
+from testee_common.auth.user import User
+from testee_common.config.constants import (
     MAINTENANCE,
     MAINTENANCE_CACHE_SECONDS,
     MAINTENANCE_KEY,
     MAINTENANCE_STARTED_KEY,
 )
-from prepza_common.i18n.translations import TRANSLATIONS
-from prepza_common.limits import maintenance
-from prepza_common.limits.maintenance import (
+from testee_common.i18n.translations import TRANSLATIONS
+from testee_common.limits import maintenance
+from testee_common.limits.maintenance import (
     MaintenanceMiddleware,
     is_on,
     put_back_start,
     set_on,
     take_start,
 )
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 REDIS = FakeRedis()
 app = FastAPI()

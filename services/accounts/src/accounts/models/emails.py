@@ -1,9 +1,9 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, DateTime, String, false, func, true
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from accounts.constants.emails import ConsentBasis, ConsentSource, EmailSetting
 from accounts.models.base import Base

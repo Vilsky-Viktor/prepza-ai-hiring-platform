@@ -3,16 +3,16 @@
 # The footer of reminders to a company's owners and admins.
 MEMBER_FOOTER = (
     "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của một công ty"
-    " trên prepza."
+    " trên testee."
 )
 
 TEXTS = {
     "candidate": {
         "subject": "Lời mời phỏng vấn từ {company}",
-        "preheader": "Tham gia phỏng vấn “{title}” trên prepza. Đăng nhập bằng {email} để bắt đầu.",
+        "preheader": "Tham gia phỏng vấn “{title}” trên testee. Đăng nhập bằng {email} để bắt đầu.",
         "heading": "Lời mời phỏng vấn",
         "lines": [
-            "{company} mời bạn tham gia buổi phỏng vấn “{title}” trên prepza.",
+            "{company} mời bạn tham gia buổi phỏng vấn “{title}” trên testee.",
             (
                 "Đăng nhập bằng {email} để bắt đầu. Chỉ địa chỉ này mới có thể tham "
                 "gia phỏng vấn và bạn chỉ có một lần làm bài."
@@ -25,7 +25,7 @@ TEXTS = {
         "preheader": "Nếu rời buổi phỏng vấn, hãy tiếp tục bằng liên kết này. Đăng nhập bằng {email}.",
         "heading": "Liên kết phỏng vấn của bạn",
         "lines": [
-            "Bạn đã bắt đầu buổi phỏng vấn “{title}” của {company} trên prepza.",
+            "Bạn đã bắt đầu buổi phỏng vấn “{title}” của {company} trên testee.",
             (
                 "Nếu rời đi, hãy tiếp tục bằng liên kết này: đăng nhập bằng {email}. Liên kết "
                 "vẫn hoạt động ngay cả khi {company} tắt liên kết bạn đã dùng để bắt đầu. Thời "
@@ -34,7 +34,7 @@ TEXTS = {
         ],
         "button": "Tiếp tục phỏng vấn",
         "footer": (
-            "Email này được gửi đến {email} vì một buổi phỏng vấn trên prepza đã được bắt đầu "
+            "Email này được gửi đến {email} vì một buổi phỏng vấn trên testee đã được bắt đầu "
             "bằng địa chỉ này."
         ),
     },
@@ -44,7 +44,7 @@ TEXTS = {
         "heading": "Buổi phỏng vấn đang chờ bạn",
         "lines": [
             (
-                "{company} đã mời bạn tham gia buổi phỏng vấn “{title}” trên prepza vài ngày "
+                "{company} đã mời bạn tham gia buổi phỏng vấn “{title}” trên testee vài ngày "
                 "trước, và bạn vẫn chưa bắt đầu."
             ),
             (
@@ -55,14 +55,14 @@ TEXTS = {
         "button": "Mở lời mời",
     },
     "member": {
-        "subject": "Tham gia {company} trên prepza",
+        "subject": "Tham gia {company} trên testee",
         "preheader": (
             "Tham gia nhóm {company} với vai trò {role}. Đăng nhập bằng {email} để chấp nhận lời "
             "mời."
         ),
         "heading": "Lời mời tham gia nhóm",
         "lines": [
-            "{inviter} mời bạn tham gia nhóm {company} trên prepza với vai trò {role}.",
+            "{inviter} mời bạn tham gia nhóm {company} trên testee với vai trò {role}.",
             (
                 "Đăng nhập bằng {email} để chấp nhận lời mời. Chỉ địa chỉ này mới có thể chấp nhận "
                 "lời mời."
@@ -86,9 +86,9 @@ TEXTS = {
                 "những gì trình duyệt của ứng viên ghi nhận. Trả lời email này để phản hồi {sender}."
             ),
         ],
-        "button": "Truy cập prepza",
+        "button": "Truy cập testee",
         "footer": "Email này được gửi đến {email} vì {sender} đã chia sẻ một báo cáo ứng viên "
-        "với địa chỉ này trên prepza. Nếu bạn không mong đợi email này, bạn có thể bỏ qua.",
+        "với địa chỉ này trên testee. Nếu bạn không mong đợi email này, bạn có thể bỏ qua.",
     },
     "candidates": {
         "subject": "Tất cả ứng viên: {title}",
@@ -105,16 +105,16 @@ TEXTS = {
                 "{sender}."
             ),
         ],
-        "button": "Truy cập prepza",
+        "button": "Truy cập testee",
         "footer": "Email này được gửi đến {email} vì {sender} đã chia sẻ một báo cáo ứng viên "
-        "với địa chỉ này trên prepza. Nếu bạn không mong đợi email này, bạn có thể bỏ qua.",
+        "với địa chỉ này trên testee. Nếu bạn không mong đợi email này, bạn có thể bỏ qua.",
     },
     "digest": {
-        "subject": "Tóm tắt hoạt động của bạn trên prepza",
+        "subject": "Tóm tắt hoạt động của bạn trên testee",
         "preheader": "Những gì đã diễn ra ở các công ty của bạn trong 24 giờ qua.",
         "heading": "Tóm tắt hoạt động của bạn",
         "lines": [
-            "Đây là những gì đã diễn ra ở các công ty của bạn trên prepza trong 24 giờ qua.",
+            "Đây là những gì đã diễn ra ở các công ty của bạn trên testee trong 24 giờ qua.",
         ],
         "rows": {
             "candidate_finished": "Ứng viên đã hoàn thành: {count} · “{title}”",
@@ -125,10 +125,10 @@ TEXTS = {
             "note": "{author}: “{excerpt}”",
             "note_by_former": "Một cựu thành viên: “{excerpt}”",
         },
-        "button": "Mở prepza",
+        "button": "Mở testee",
         "footer": (
             "Email này được gửi đến {email} vì bạn là thành viên của một công ty trên "
-            "prepza và nhận tóm tắt hoạt động của công ty đó."
+            "testee và nhận tóm tắt hoạt động của công ty đó."
         ),
     },
     "low_credits": {
@@ -188,17 +188,17 @@ TEXTS = {
         "heading": "Chúng tôi cập nhật điều khoản sử dụng",
         "lines": [
             (
-                "Chúng tôi đã công bố phiên bản mới của điều khoản sử dụng prepza. Phiên bản này "
+                "Chúng tôi đã công bố phiên bản mới của điều khoản sử dụng testee. Phiên bản này "
                 "có hiệu lực từ {date}; trước đó, điều khoản hiện hành vẫn được áp dụng."
             ),
             (
-                "Nếu bạn tiếp tục dùng prepza sau {date}, nghĩa là bạn chấp nhận điều khoản mới. "
+                "Nếu bạn tiếp tục dùng testee sau {date}, nghĩa là bạn chấp nhận điều khoản mới. "
                 "Nếu không đồng ý, bạn có thể xóa tài khoản trong Cài đặt trước ngày đó."
             ),
         ],
         "button": "Đọc điều khoản mới",
         "footer": (
-            "Email này được gửi đến {email} vì bạn có tài khoản prepza. Đây là thông báo về "
+            "Email này được gửi đến {email} vì bạn có tài khoản testee. Đây là thông báo về "
             "điều khoản sử dụng của chúng tôi nên luôn được gửi, bất kể cài đặt email của "
             "bạn."
         ),
@@ -209,7 +209,7 @@ TEXTS = {
         "heading": "Chúng tôi cập nhật chính sách quyền riêng tư",
         "lines": [
             (
-                "Chúng tôi đã công bố phiên bản mới của chính sách quyền riêng tư prepza, cho "
+                "Chúng tôi đã công bố phiên bản mới của chính sách quyền riêng tư testee, cho "
                 "biết cách chúng tôi sử dụng dữ liệu của bạn. Phiên bản này có hiệu lực từ "
                 "{date}; trước đó, phiên bản hiện hành vẫn được áp dụng."
             ),
@@ -217,7 +217,7 @@ TEXTS = {
         ],
         "button": "Đọc chính sách quyền riêng tư mới",
         "footer": (
-            "Email này được gửi đến {email} vì bạn có tài khoản prepza. Đây là thông báo về "
+            "Email này được gửi đến {email} vì bạn có tài khoản testee. Đây là thông báo về "
             "cách chúng tôi sử dụng dữ liệu của bạn nên luôn được gửi, bất kể cài đặt email "
             "của bạn."
         ),
@@ -228,19 +228,19 @@ TEXTS = {
         "heading": "Chúng tôi cập nhật thỏa thuận xử lý dữ liệu",
         "lines": [
             (
-                "Chúng tôi đã công bố phiên bản mới của thỏa thuận xử lý dữ liệu mà prepza dựa "
+                "Chúng tôi đã công bố phiên bản mới của thỏa thuận xử lý dữ liệu mà testee dựa "
                 "vào để xử lý dữ liệu ứng viên của bạn. Phiên bản này có hiệu lực từ {date}; "
                 "trước đó, phiên bản hiện hành vẫn được áp dụng."
             ),
             (
-                "Công ty nào phản đối vì lý do bảo vệ dữ liệu hợp lý có thể ngừng sử dụng prepza "
+                "Công ty nào phản đối vì lý do bảo vệ dữ liệu hợp lý có thể ngừng sử dụng testee "
                 "và xóa công ty của mình trước ngày đó."
             ),
         ],
         "button": "Đọc thỏa thuận mới",
         "footer": (
             "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của một "
-            "công ty trên prepza. Đây là thông báo về thỏa thuận giữa chúng tôi và công ty "
+            "công ty trên testee. Đây là thông báo về thỏa thuận giữa chúng tôi và công ty "
             "bạn nên luôn được gửi, bất kể cài đặt email của bạn."
         ),
     },
@@ -252,10 +252,10 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Mở prepza",
+        "open_site": "Mở testee",
         "footer": (
             "Email này được gửi đến {email} vì bạn đã chọn nhận cập nhật sản phẩm và tin tức từ"
-            " prepza."
+            " testee."
         ),
     },
     "promotions": {
@@ -264,10 +264,10 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Mở prepza",
-        "footer": "Email này được gửi đến {email} vì bạn đã chọn nhận ưu đãi và khuyến mãi từ prepza.",
+        "open_site": "Mở testee",
+        "footer": "Email này được gửi đến {email} vì bạn đã chọn nhận ưu đãi và khuyến mãi từ testee.",
     },
-    # An important notice: a service email about prepza itself (a security incident, planned
+    # An important notice: a service email about testee itself (a security incident, planned
     # downtime, a change to how it works), whatever the email settings; never a promotion.
     "notices": {
         "subject": "{subject}",
@@ -275,9 +275,9 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Mở prepza",
+        "open_site": "Mở testee",
         "footer": (
-            "Email này được gửi đến {email} vì bạn có tài khoản prepza. Đây là thông báo quan"
+            "Email này được gửi đến {email} vì bạn có tài khoản testee. Đây là thông báo quan"
             " trọng về dịch vụ, chẳng hạn như bảo mật hoặc tính sẵn sàng của dịch vụ, nên luôn"
             " được gửi, bất kể cài đặt email của bạn."
         ),
@@ -296,7 +296,7 @@ TEXTS = {
         "button": "Nạp credit",
         "footer": (
             "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của "
-            "{company} trên prepza. Email liên quan đến việc thanh toán của công ty bạn nên"
+            "{company} trên testee. Email liên quan đến việc thanh toán của công ty bạn nên"
             " luôn được gửi, bất kể cài đặt email của bạn."
         ),
     },
@@ -317,7 +317,7 @@ TEXTS = {
         "button": "Cập nhật thẻ",
         "footer": (
             "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của "
-            "{company} trên prepza. Email liên quan đến việc thanh toán của công ty bạn nên"
+            "{company} trên testee. Email liên quan đến việc thanh toán của công ty bạn nên"
             " luôn được gửi, bất kể cài đặt email của bạn."
         ),
     },
@@ -346,7 +346,7 @@ TEXTS = {
         "button": "Mở trang thanh toán",
         "footer": (
             "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của "
-            "{company} trên prepza. Email liên quan đến việc thanh toán của công ty bạn nên "
+            "{company} trên testee. Email liên quan đến việc thanh toán của công ty bạn nên "
             "luôn được gửi, bất kể cài đặt email của bạn."
         ),
     },
@@ -369,7 +369,7 @@ TEXTS = {
         "button": "Mở trang thanh toán",
         "footer": (
             "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của "
-            "{company} trên prepza. Email liên quan đến việc thanh toán của công ty bạn nên "
+            "{company} trên testee. Email liên quan đến việc thanh toán của công ty bạn nên "
             "luôn được gửi, bất kể cài đặt email của bạn."
         ),
     },
@@ -390,20 +390,20 @@ TEXTS = {
         "button": "Mở trang thanh toán",
         "footer": (
             "Email này được gửi đến {email} vì bạn là chủ sở hữu hoặc quản trị viên của "
-            "{company} trên prepza. Email liên quan đến việc thanh toán của công ty bạn nên"
+            "{company} trên testee. Email liên quan đến việc thanh toán của công ty bạn nên"
             " luôn được gửi, bất kể cài đặt email của bạn."
         ),
     },
-    "footer": "Email này được gửi đến {email} vì có người đã mời địa chỉ này trên prepza. Nếu "
+    "footer": "Email này được gửi đến {email} vì có người đã mời địa chỉ này trên testee. Nếu "
     "bạn không mong đợi email này, bạn có thể bỏ qua.",
-    # An invite from a company prepza hasn't verified, at the end of the footer.
-    "unverified": "prepza chưa xác minh {company}.",
+    # An invite from a company testee hasn't verified, at the end of the footer.
+    "unverified": "testee chưa xác minh {company}.",
     "paste_link": "Hoặc dán liên kết này vào trình duyệt của bạn",
     # The footer's links: optional emails' unsubscribe and settings, and a candidate's own.
     "unsubscribe": "Hủy đăng ký",
     "email_settings": "Thay đổi cài đặt email",
     "stop_reminders": "Đừng gửi lời nhắc về buổi phỏng vấn này cho tôi",
     "stop_company": "Đừng gửi email từ {company} cho tôi",
-    # Who runs prepza, at the end of every email.
-    "operator": "prepza do {name}, {address} vận hành.",
+    # Who runs testee, at the end of every email.
+    "operator": "testee do {name}, {address} vận hành.",
 }

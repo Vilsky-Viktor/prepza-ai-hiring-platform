@@ -1,8 +1,8 @@
 import logging
 import math
 
-from prepza_common.ai.multi_answer import multi_share
-from prepza_common.config.constants import DEFAULT_LANGUAGE
+from testee_common.ai.multi_answer import multi_share
+from testee_common.config.constants import DEFAULT_LANGUAGE
 
 from generation.constants.reuse import MAX_REUSE_SHARE
 from generation.helpers.questions import topic_size

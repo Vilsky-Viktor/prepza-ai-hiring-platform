@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Response, status
-from prepza_common.auth.auth import CurrentUser
+from testee_common.auth.auth import CurrentUser
 
-from companies.constants.brand import PREPZA_COLORS, Theme
+from companies.constants.brand import TESTEE_COLORS, Theme
 from companies.constants.logos import LOGO_CACHE
 from companies.core.db import Session
 from companies.repositories import companies
@@ -15,7 +15,7 @@ from companies.schemas.logos import (
     BrandStyle,
     LogoIn,
     LogoOut,
-    PrepzaBrand,
+    TesteeBrand,
 )
 from companies.services import company_settings, invite_pages
 from companies.services.access import require_editor
@@ -39,11 +39,11 @@ async def remove_logo(company_id: UUID, user: CurrentUser) -> None:
     await company_settings.remove_logo(company, user.uid)
 
 
-@router.get("/brand/prepza")
-async def prepza_brand() -> PrepzaBrand:
-    """prepza's own colors (by theme), fonts and rounding: where a company's start, and what they
+@router.get("/brand/testee")
+async def testee_brand() -> TesteeBrand:
+    """testee's own colors (by theme), fonts and rounding: where a company's start, and what they
     go back to."""
-    return PrepzaBrand(colors=BrandColorSets(**PREPZA_COLORS), style=BrandStyle())
+    return TesteeBrand(colors=BrandColorSets(**TESTEE_COLORS), style=BrandStyle())
 
 
 @router.put("/companies/{company_id}/brand-colors/{theme}")
@@ -51,7 +51,7 @@ async def set_brand_colors(
     company_id: UUID, theme: Theme, body: BrandColorsIn, user: CurrentUser
 ) -> BrandColorsOut:
     """Any of the company's owners and admins sets its colors for one theme, or goes back to
-    prepza's with none. Colors that would make any text hard to read are refused, so no
+    testee's with none. Colors that would make any text hard to read are refused, so no
     candidate is tested on a page they can't read."""
     company, _ = await require_editor(user, company_id)
     colors = body.colors.model_dump() if body.colors else None

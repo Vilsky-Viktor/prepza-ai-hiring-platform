@@ -7,7 +7,7 @@ from types import SimpleNamespace
 
 import httpx
 import pytest
-from prepza_common.events.deletions import USER_DELETED
+from testee_common.events.deletions import USER_DELETED
 
 from accounts.integrations import services
 from accounts.repositories import erasures, outbox, user_data

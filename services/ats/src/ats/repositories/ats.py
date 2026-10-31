@@ -1,12 +1,12 @@
 from uuid import UUID
 
-from prepza_common.config.constants import DELETED_USER
-from prepza_common.events import audit, outbox
-from prepza_common.events.audit_actions import AuditAction, TargetKind
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import delete, func, literal_column, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DELETED_USER
+from testee_common.events import audit, outbox
+from testee_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from ats.constants.ats import ATS_NAMES, ConnectionStatus
 from ats.models.ats import AtsConnection

@@ -1,7 +1,7 @@
 import json
 
 import pytest
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from assistant.api.dependencies import user_with_token
 from assistant.main import app
@@ -9,7 +9,7 @@ from assistant.services import transcribe, turns
 
 ANN = User(uid="ann", email="ann@example.com", email_verified=True)
 COMPANY = "8c1d2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f"
-KEY = "pz_a8Kq3ZpL0vW7tYx2Rn5BdF9hJ4mC6sQe1Ug"
+KEY = "te_a8Kq3ZpL0vW7tYx2Rn5BdF9hJ4mC6sQe1Ug"
 
 
 def events(body: str) -> list[dict]:

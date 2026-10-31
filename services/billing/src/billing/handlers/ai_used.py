@@ -1,8 +1,8 @@
 import logging
 from datetime import datetime
 
-from prepza_common.ai.ai_cap import add_unpaid
-from prepza_common.ai.ai_constants import Category
+from testee_common.ai.ai_cap import add_unpaid
+from testee_common.ai.ai_constants import Category
 
 from billing.integrations.redis import get_redis
 from billing.services import usage

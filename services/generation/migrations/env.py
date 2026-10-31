@@ -2,7 +2,7 @@ from logging.config import fileConfig
 
 from alembic import context
 from langgraph.checkpoint.postgres import PostgresSaver
-from prepza_common.db.db import migration_engine
+from testee_common.db.db import migration_engine
 
 import generation.models.batch_work  # registers the tables on Base.metadata
 import generation.models.generation

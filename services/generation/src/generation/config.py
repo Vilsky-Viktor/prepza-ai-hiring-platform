@@ -1,4 +1,4 @@
-from prepza_common.config.settings import ServiceSettings
+from testee_common.config.settings import ServiceSettings
 
 from generation.constants.generation import ReasoningEffort
 

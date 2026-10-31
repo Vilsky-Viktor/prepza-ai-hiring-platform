@@ -1,7 +1,7 @@
 import asyncio
 
 from fake_redis import DownRedis, FakeRedis
-from prepza_common.http import pacing
+from testee_common.http import pacing
 
 KEY = "pace:test"
 

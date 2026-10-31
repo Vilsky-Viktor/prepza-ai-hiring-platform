@@ -1,8 +1,8 @@
 import uuid
 from types import SimpleNamespace
 
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from library.repositories import preparations, quality
 from library.services import outbox

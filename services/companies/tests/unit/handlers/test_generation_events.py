@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.events.notifications import notification
+from testee_common.events.notifications import notification
 
 from companies.repositories import interview_generations
 from companies.services import generation_events

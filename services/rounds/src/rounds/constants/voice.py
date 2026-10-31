@@ -1,5 +1,5 @@
 # Voice mode: an interview's questions read aloud and answered by voice. The candidate's audio
-# stays in memory (prepza_common.ai.speech): never written to disk, the database or the logs, and
+# stays in memory (testee_common.ai.speech): never written to disk, the database or the logs, and
 # neither is what they said.
 from enum import StrEnum
 
@@ -66,7 +66,7 @@ VOICE_UPLOAD_SECONDS = 2
 VOICE_ANSWER_GRACE_SECONDS = 15
 IN_TIME_KEY = "voice:in-time:{session_id}"
 # A request's body may be this large on the answer route: a spoken answer, with room for its
-# headers (prepza_common.ai.speech.MAX_AUDIO_BYTES).
+# headers (testee_common.ai.speech.MAX_AUDIO_BYTES).
 MAX_ANSWER_BODY_BYTES = 3_000_000
 # Spoken text is cut to this many characters: the rest is on screen.
 MAX_SPOKEN_CHARACTERS = 1_500

@@ -2,8 +2,8 @@ import asyncio
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.auth.user import User
-from prepza_common.config.constants import ACCOUNT_OWNS_SHARED
+from testee_common.auth.user import User
+from testee_common.config.constants import ACCOUNT_OWNS_SHARED
 
 from accounts.core.db import Session
 from accounts.helpers.accounts import candidate_email

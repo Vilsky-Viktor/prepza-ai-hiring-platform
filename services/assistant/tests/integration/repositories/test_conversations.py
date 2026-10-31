@@ -7,9 +7,9 @@ import httpx
 import pytest
 from event_pushes import push
 from fastapi import HTTPException
-from prepza_common.limits.limit_list import LIMITS_KEY
-from prepza_common.redis import memory_cache
 from sqlalchemy import update
+from testee_common.limits.limit_list import LIMITS_KEY
+from testee_common.redis import memory_cache
 
 from assistant.core.db import Session
 from assistant.integrations.redis import get_redis
@@ -121,7 +121,7 @@ def test_the_limits_count_in_redis_at_their_edited_values(run, published, monkey
 def test_a_visitors_chat_starts_the_new_conversation_in_its_order(run):
     user = f"earlier-{uuid.uuid4().hex[:8]}"
     turns = [
-        EarlierTurn(role="user", content="What is prepza?"),
+        EarlierTurn(role="user", content="What is testee?"),
         EarlierTurn(role="assistant", content="A hiring test."),
         EarlierTurn(role="user", content="How much?"),
         EarlierTurn(role="assistant", content="$1–3 a candidate."),
@@ -199,7 +199,7 @@ def test_an_accounts_answers_traces_are_found_to_delete_with_it(run):
 
 
 def test_a_companys_conversations_go_batch_after_batch(run, monkeypatch):
-    from prepza_common.db import db
+    from testee_common.db import db
 
     monkeypatch.setattr(db, "DELETE_BATCH", 2)
     company, other = uuid.uuid4(), uuid.uuid4()

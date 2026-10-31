@@ -2,8 +2,8 @@ from typing import Annotated
 
 from fastapi import APIRouter, HTTPException, Query, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.config.constants import MAX_PAGE_SIZE
-from prepza_common.db.paging import IdPageParams, PageParams
+from testee_common.config.constants import MAX_PAGE_SIZE
+from testee_common.db.paging import IdPageParams, PageParams
 
 from billing.api.dependencies import ServiceCaller
 from billing.constants.credits import CANDIDATE_PREFIX

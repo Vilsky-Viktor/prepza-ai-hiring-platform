@@ -5,9 +5,9 @@ import json
 import uuid
 
 from cryptography.fernet import Fernet
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.encryption import decrypt
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.encryption import decrypt
+from testee_common.auth.user import User
 
 from ats.config import settings
 from ats.integrations import breezy, greenhouse, recruitee, teamtailor
@@ -67,7 +67,7 @@ def store_connections(monkeypatch, companies_api) -> dict:
 
     async def disconnect(session, company_id, provider, user_id=None):
         rows["connection"] = None
-        # Who disconnected it, for the action log (None when prepza undid its own connect).
+        # Who disconnected it, for the action log (None when testee undid its own connect).
         rows.setdefault("disconnected_by", []).append(user_id)
 
     async def restore_broken(session, earlier):

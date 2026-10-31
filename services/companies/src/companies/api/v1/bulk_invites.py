@@ -2,10 +2,10 @@ import asyncio
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.i18n.i18n import TemplateError
-from prepza_common.i18n.names import clean_name
-from prepza_common.limits.limits import limit, record_hit
+from testee_common.auth.auth import CurrentUser
+from testee_common.i18n.i18n import TemplateError
+from testee_common.i18n.names import clean_name
+from testee_common.limits.limits import limit, record_hit
 
 from companies.constants.invites import (
     NAME_NEEDS_ONE_EMAIL,

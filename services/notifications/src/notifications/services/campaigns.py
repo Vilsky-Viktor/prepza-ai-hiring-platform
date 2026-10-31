@@ -4,8 +4,8 @@ import logging
 import uuid
 
 from fastapi import HTTPException, status
-from prepza_common.config.constants import DEFAULT_LANGUAGE
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DEFAULT_LANGUAGE
 
 from notifications.constants.bulk import BulkKind
 from notifications.constants.campaigns import (

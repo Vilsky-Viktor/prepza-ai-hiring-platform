@@ -4,8 +4,8 @@ from datetime import UTC, datetime
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from companies.constants.reports import (
     NO_FINISHED_CANDIDATES,
@@ -110,7 +110,7 @@ def test_a_member_emails_the_pdf_report_and_replies_go_to_them(client, queued):
     assert event["pdf"] == PDF
 
 
-def test_replies_go_to_prepzas_inbox_while_the_senders_email_isnt_verified(client, queued):
+def test_replies_go_to_testees_inbox_while_the_senders_email_isnt_verified(client, queued):
     app.dependency_overrides[current_user] = lambda: User(
         uid="bob", email="bob@example.com", email_verified=False, name="Bob"
     )

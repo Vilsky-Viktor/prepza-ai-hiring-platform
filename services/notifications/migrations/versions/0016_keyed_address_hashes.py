@@ -1,5 +1,5 @@
 """Candidates' opted-out and suppressed addresses were kept as a plain SHA-256, which anyone with
-a list of addresses can match; each becomes its keyed hash (prepza_common.auth.person_hash.keyed with
+a list of addresses can match; each becomes its keyed hash (testee_common.auth.person_hash.keyed with
 PERSON_HASH_KEY), the same one the code now makes from the address. Both tables hold few rows.
 
 Revision ID: 0016
@@ -9,7 +9,7 @@ Create Date: 2026-10-22
 
 import sqlalchemy as sa
 from alembic import op
-from prepza_common.auth.person_hash import keyed
+from testee_common.auth.person_hash import keyed
 
 from notifications.config import settings
 

@@ -7,9 +7,9 @@ import os
 import pytest
 from alembic import command
 from alembic.config import Config
-from prepza_common.db.clean_start import start_clean, tables_left_empty
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
+from testee_common.db.clean_start import start_clean, tables_left_empty
 
 if not os.getenv("INTEGRATION_TESTS"):
     collect_ignore_glob = ["test_*.py", "*/test_*.py"]
@@ -70,6 +70,6 @@ def run():
 def fresh_limits(monkeypatch):
     """The limits are read from Redis (database 15, see scripts/integration.sh) afresh in each
     test, not as an earlier test cached them."""
-    from prepza_common.redis import memory_cache
+    from testee_common.redis import memory_cache
 
     monkeypatch.setattr(memory_cache, "_entries", {})

@@ -1,6 +1,6 @@
-from prepza_common.config.constants import DELETE_BATCH
 from sqlalchemy import delete, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DELETE_BATCH
 
 from companies.constants.invites import InviteStatus
 from companies.models.interviews import Interview

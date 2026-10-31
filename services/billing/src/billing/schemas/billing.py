@@ -1,8 +1,8 @@
 from datetime import datetime
 from uuid import UUID
 
-from prepza_common.config.constants import MAX_ADJUSTMENT, MAX_ADJUSTMENT_NOTE, MAX_PAGE_SIZE
 from pydantic import BaseModel, Field
+from testee_common.config.constants import MAX_ADJUSTMENT, MAX_ADJUSTMENT_NOTE, MAX_PAGE_SIZE
 
 from billing.constants.currencies import Currency
 from billing.constants.payment_failures import PaymentFailure

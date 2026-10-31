@@ -3,8 +3,8 @@ from types import SimpleNamespace
 
 import pytest
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from accounts.main import app
 
@@ -19,7 +19,7 @@ def account(year, month, day, uid="user"):
 def accounts(monkeypatch):
     """Four accounts in Firebase, and a company's guest candidate who has none of their own;
     signed in as Sam, the only superadmin."""
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     made = [
         account(2025, 12, 31),
         account(2026, 10, 1),
@@ -31,7 +31,7 @@ def accounts(monkeypatch):
     monkeypatch.setattr(firebase_auth, "list_users", lambda: listed)
     app.dependency_overrides[current_user] = lambda: User(
         uid="sam",
-        email="sam@prepza.dev",
+        email="sam@testee.dev",
         email_verified=True,
         sign_in_provider="google.com",
     )

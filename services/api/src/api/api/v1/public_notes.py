@@ -2,9 +2,9 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, Response, status
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.config.constants import MAX_PAGE_SIZE
-from prepza_common.db.paging import PageParams
+from testee_common.auth.key_actor import key_actor
+from testee_common.config.constants import MAX_PAGE_SIZE
+from testee_common.db.paging import PageParams
 
 from api.api.dependencies import needs
 from api.constants.permissions import Permission
@@ -74,7 +74,7 @@ async def add_note(
     idempotency_key: IdempotencyKey = None,
 ) -> Note:
     """Adds a note to the interview as the key (named as its author), for your team to read in
-    prepza; candidates never see it. Retrying is safe: the same request from the same key within
+    testee; candidates never see it. Retrying is safe: the same request from the same key within
     15 minutes returns the note the first one added, with `200`."""
     created = None
 

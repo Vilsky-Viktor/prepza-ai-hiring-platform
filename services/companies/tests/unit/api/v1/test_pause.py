@@ -3,9 +3,9 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.config.constants import PAUSED
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.config.constants import PAUSED
 
 from companies.api.v1 import pause as pause_routes
 from companies.constants.invites import InviteStatus
@@ -30,7 +30,7 @@ def paused(monkeypatch):
     async def on(redis):
         return True
 
-    monkeypatch.setattr("prepza_common.limits.pause.is_paused", on)
+    monkeypatch.setattr("testee_common.limits.pause.is_paused", on)
     monkeypatch.setenv("SUPERADMIN_EMAILS", "ann@example.com")
     app.dependency_overrides[current_user] = lambda: User(
         uid="cand",

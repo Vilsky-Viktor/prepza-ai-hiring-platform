@@ -2,12 +2,12 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 from event_pushes import push
-from prepza_common.events.notifications import (
+from sqlalchemy import func, select, update
+from testee_common.events.notifications import (
     NOTIFICATION_REQUESTED,
     NotificationKind,
     notification,
 )
-from sqlalchemy import func, select, update
 
 from notifications.constants.notifications import GROUP_HOURS
 from notifications.core.db import Session

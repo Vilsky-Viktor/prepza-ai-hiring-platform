@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from companies.constants.interviews import DEFAULT_TOPIC_QUESTIONS
 from companies.helpers.interviews import pick_questions, session_topics, topics_out

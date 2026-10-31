@@ -1,11 +1,11 @@
 {
-  "intro": "Dit beleid legt uit welke persoonsgegevens prepza verzamelt, waarom, hoe lang we ze bewaren en welke rechten je hebt. prepza wordt beheerd door Arcolabs OÜ (registratienummer 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estland. prepza.ai toont dit document ook in andere talen; alleen de Engelse versie is bindend, en waar een vertaling afwijkt, geldt de Engelse versie.",
+  "intro": "Dit beleid legt uit welke persoonsgegevens testee verzamelt, waarom, hoe lang we ze bewaren en welke rechten je hebt. testee wordt beheerd door Arcolabs OÜ (registratienummer 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estland. testee.ai toont dit document ook in andere talen; alleen de Engelse versie is bindend, en waar een vertaling afwijkt, geldt de Engelse versie.",
   "sections": [
     {
       "heading": "Wie verantwoordelijk is",
       "paragraphs": [
-        "Voor je eigen account en het account van je bedrijf is Arcolabs OÜ de verwerkingsverantwoordelijke voor je gegevens. Schrijf naar hello@prepza.ai met elke vraag of elk verzoek.",
-        "Wanneer een bedrijf je via prepza uitnodigt voor een interview, beslist dat bedrijf waarom en hoe je resultaten worden gebruikt en is het de verwerkingsverantwoordelijke daarvoor; wij verwerken ze namens het bedrijf. Je kunt rechtstreeks contact opnemen met het bedrijf, of met ons, en dan geven wij je verzoek door."
+        "Voor je eigen account en het account van je bedrijf is Arcolabs OÜ de verwerkingsverantwoordelijke voor je gegevens. Schrijf naar hello@testee.ai met elke vraag of elk verzoek.",
+        "Wanneer een bedrijf je via testee uitnodigt voor een interview, beslist dat bedrijf waarom en hoe je resultaten worden gebruikt en is het de verwerkingsverantwoordelijke daarvoor; wij verwerken ze namens het bedrijf. Je kunt rechtstreeks contact opnemen met het bedrijf, of met ons, en dan geven wij je verzoek door."
       ]
     },
     {
@@ -23,7 +23,7 @@
         "De controle 'Ik ben geen robot': wanneer je het contactformulier verstuurt, de helpchat een eerste vraag stelt, een interview start via de link van een vacature, je eerste bedrijf aanmaakt of de onderwerpen goedkeurt van een bedrijf dat nog niet heeft betaald, bekijkt Cloudflare Turnstile je browser (zoals het type, hoe die zich gedraagt en het adres van waaruit die verbinding maakt) om een mens van een script te onderscheiden. We ontvangen alleen of de controle is geslaagd.",
         "AI-apps die je koppelt: de naam van de app en de site waarnaar die terugkeert, en wanneer je de app hebt gekoppeld en voor het laatst hebt gebruikt. De toegang ervan wordt alleen als eenrichtingshash bewaard.",
         "De voorwaarden die je hebt aanvaard: de versie van de voorwaarden die gold toen je je aanmeldde, en wanneer, als bewijs van waarmee je akkoord bent gegaan. Dit wordt met je account verwijderd.",
-        "Tools die een bedrijf koppelt: de sleutels of tokens die de eigenaar of een beheerder van het bedrijf aanmaakt in zijn sollicitantvolgsysteem (Workable, Greenhouse, Teamtailor, Recruitee of Breezy HR) of in Slack, versleuteld opgeslagen; een eenrichtingshash van elke prepza-API-sleutel en de adressen van zijn webhooks; en, uit zijn sollicitantvolgsysteem, het e-mailadres, de naam en de id van elke kandidaat die het naar prepza stuurt.",
+        "Tools die een bedrijf koppelt: de sleutels of tokens die de eigenaar of een beheerder van het bedrijf aanmaakt in zijn sollicitantvolgsysteem (Workable, Greenhouse, Teamtailor, Recruitee of Breezy HR) of in Slack, versleuteld opgeslagen; een eenrichtingshash van elke testee-API-sleutel en de adressen van zijn webhooks; en, uit zijn sollicitantvolgsysteem, het e-mailadres, de naam en de id van elke kandidaat die het naar testee stuurt.",
         "E-mailinstellingen: welke optionele e-mails je krijgt, en een logboek van elke wijziging daarin: welke e-mail, aan of uit, wanneer, waar (bij het inloggen, in Instellingen, of via een afmeldlink of een spammelding) en welke versie van de tekst bij de selectievakjes je zag.",
         "E-mails aan leden van bedrijven: een registratie van de activiteitenoverzichten en herinneringen die we je hebben gestuurd, en waarover elke herinnering ging, zodat er geen twee keer wordt verstuurd.",
         "E-mails aan veel gebruikers (berichten over wijzigingen in onze voorwaarden, belangrijke mededelingen over de dienst, productupdates, aanbiedingen): of elke e-mail naar je is verstuurd, is overgeslagen of is mislukt, en of je je ervoor hebt afgemeld of hem als spam hebt gemarkeerd, zodat er geen twee keer wordt verstuurd en we kunnen zien hoe elke e-mail is ontvangen.",
@@ -33,37 +33,37 @@
         "Aankopen: voor elke opwaardering het bedrijf waarvoor die was, wie die kocht, wat er werd gekocht, het totaal en de valuta, de transactie-id van Paddle en wanneer. Paddle, niet wij, bewaart de kaart- en factuurgegevens.",
         "Het actielog van een bedrijf: wat de leden erin doen, zoals een kandidaat uitnodigen, bekijken of verwijderen, een interview of het team wijzigen, opwaarderen of een tool koppelen, met wie het deed, wanneer en of de assistent, een AI-app of de API het voor hen deed. De eigenaar van het bedrijf ziet het. Kandidaten en leden worden alleen bij naam genoemd zolang ze nog bij het bedrijf horen: het log bewaart hun id's, nooit hun e-mailadressen.",
         "AI-gebruik en limieten: voor elk gebruik van AI, zoals het schrijven van vragen of het antwoord van de assistent, waarvoor het was, het model, de omvang en de kosten ervan, en het account en het bedrijf waarvoor het was; en telkens wanneer een limiet een verzoek weigert, welke limiet, wanneer, en het account en het bedrijf waarvan het verzoek werd geweigerd. Nooit de tekst die naar de AI is gestuurd of het antwoord ervan.",
-        "Registraties van AI-aanroepen: wat prepza naar de AI stuurt en wat die antwoordt, telkens wanneer de AI wordt gebruikt, zoals bij het schrijven van vragen op basis van een functieomschrijving, of de antwoorden van de assistent en de helpchat met wat ze hebben gelezen om te antwoorden (waaronder resultaten van kandidaten kunnen vallen), en de beoordelingen van die antwoorden. Ze worden bewaard door Langfuse, hieronder, alleen om de kwaliteit van de antwoorden te bewaken en te verbeteren.",
+        "Registraties van AI-aanroepen: wat testee naar de AI stuurt en wat die antwoordt, telkens wanneer de AI wordt gebruikt, zoals bij het schrijven van vragen op basis van een functieomschrijving, of de antwoorden van de assistent en de helpchat met wat ze hebben gelezen om te antwoorden (waaronder resultaten van kandidaten kunnen vallen), en de beoordelingen van die antwoorden. Ze worden bewaard door Langfuse, hieronder, alleen om de kwaliteit van de antwoorden te bewaken en te verbeteren.",
         "Gebruiksstatistieken: stappen zoals aanmelden, het aanmaken van een bedrijf, een uitgenodigde kandidaat of een opwaardering, met waarden zoals een score of een bedrag. Je account-id wordt vervangen door een code die is gemaakt met een geheime sleutel die wij bewaren, zodat de statistieken je niet bij naam noemen, maar ze zijn gepseudonimiseerd, niet anoniem: met de sleutel komt de code overeen met je account-id. De id van een bedrijf blijft zoals hij is. Er worden geen namen, e-mailadressen of teksten in opgenomen."
       ]
     },
     {
       "heading": "Waarvoor we het gebruiken",
       "items": [
-        "Om prepza te leveren: interviews genereren, ze afnemen bij uitgenodigde kandidaten, bedrijven de resultaten tonen en de e-mails sturen waarom je vraagt (overeenkomst).",
+        "Om testee te leveren: interviews genereren, ze afnemen bij uitgenodigde kandidaten, bedrijven de resultaten tonen en de e-mails sturen waarom je vraagt (overeenkomst).",
         "Service-e-mails, zoals uitnodigingen, rapporten, betalingsproblemen, wijzigingen in onze voorwaarden en belangrijke mededelingen over de dienst (een beveiligingsincident, gepland onderhoud of een wijziging in hoe de dienst werkt), die altijd worden verstuurd (overeenkomst).",
-        "Het activiteitenoverzicht en herinneringen over je bedrijven, zoals weinig credits of een interview zonder kandidaten (ons gerechtvaardigd belang om je te helpen prepza te gebruiken). Ze staan aan totdat je ze uitzet.",
+        "Het activiteitenoverzicht en herinneringen over je bedrijven, zoals weinig credits of een interview zonder kandidaten (ons gerechtvaardigd belang om je te helpen testee te gebruiken). Ze staan aan totdat je ze uitzet.",
         "Productupdates en nieuws: voor onze eigen gebruikers die “Stuur me geen productupdates en nieuws” niet hebben aangevinkt toen het inloggen dat de eerste keer aanbood (artikel 13, lid 2, van de e-privacyrichtlijn en § 103¹ van de Estse Wet elektronische communicatie). Je kunt ze op elk moment kosteloos stopzetten.",
         "Aanbiedingen en acties: alleen als je ermee instemt, door het vakje aan te vinken bij het inloggen of in Instellingen (toestemming). Je kunt je toestemming op elk moment intrekken.",
         "Bepalen naar wie een e-mail aan veel gebruikers gaat: of je account in het team van een bedrijf zit (en of als eigenaar of beheerder), het interview van een bedrijf heeft gedaan of gratis oefenen heeft gebruikt, zodat een productupdate, een aanbieding of een belangrijke mededeling alleen naar de mensen gaat voor wie die bedoeld is. Alleen het feit dat je account dat heeft gedaan wordt gebruikt, nooit je antwoorden, resultaten of wat een bedrijf over je bewaart (ons gerechtvaardigd belang om alleen relevante e-mails te sturen). Productupdates en aanbiedingen gaan nog steeds alleen naar wie ze volgens de twee punten hierboven ontvangt.",
-        "Onthouden dat een kandidaat de e-mails van een bedrijf heeft stopgezet, zodat prepza die kandidaat voor dat bedrijf niet meer e-mailt (respecteren van het bezwaar).",
-        "Om prepza veilig en werkend te houden: misbruik voorkomen, rate limits, foutrapporten en statistieken die de kwaliteit van vragen verbeteren (ons gerechtvaardigd belang).",
+        "Onthouden dat een kandidaat de e-mails van een bedrijf heeft stopgezet, zodat testee die kandidaat voor dat bedrijf niet meer e-mailt (respecteren van het bezwaar).",
+        "Om testee veilig en werkend te houden: misbruik voorkomen, rate limits, foutrapporten en statistieken die de kwaliteit van vragen verbeteren (ons gerechtvaardigd belang).",
         "Kwaliteit van vragen: we analyseren hoe vragen worden beantwoord en gemeld om algemene, geanonimiseerde patronen in de kwaliteit van vragen te vinden die het genereren van vragen voor iedereen verbeteren; deze patronen bevatten geen persoonsgegevens (ons gerechtvaardigd belang).",
-        "Hergebruik van gegenereerde vragen: vragen die prepza genereert, kunnen worden hergebruikt in interviews en oefeninterviews van andere klanten, zonder persoonsgegevens of details die een bedrijf of een persoon identificeren. Een bedrijf kan de vragen van een interview hiervan uitsluiten in de instellingen van dat interview.",
+        "Hergebruik van gegenereerde vragen: vragen die testee genereert, kunnen worden hergebruikt in interviews en oefeninterviews van andere klanten, zonder persoonsgegevens of details die een bedrijf of een persoon identificeren. Een bedrijf kan de vragen van een interview hiervan uitsluiten in de instellingen van dat interview.",
         "Met de registraties van AI-aanroepen kunnen we de kwaliteit van de vragen en antwoorden van de AI bewaken en verbeteren (ons gerechtvaardigd belang).",
-        "Kostenbeheersing en het voorkomen van misbruik: de registraties van AI-gebruik en van bereikte limieten laten zien wat AI kost en wie welke limiet bereikt, zodat we prepza betaalbaar kunnen houden en misbruik kunnen stoppen (ons gerechtvaardigd belang).",
+        "Kostenbeheersing en het voorkomen van misbruik: de registraties van AI-gebruik en van bereikte limieten laten zien wat AI kost en wie welke limiet bereikt, zodat we testee betaalbaar kunnen houden en misbruik kunnen stoppen (ons gerechtvaardigd belang).",
         "Met het actielog van een bedrijf kan de eigenaar zien wie wat in het bedrijf heeft gedaan, en kan onze support het raadplegen wanneer het bedrijf om hulp vraagt (het gerechtvaardigd belang van het bedrijf en van ons bij verantwoording).",
-        "Gebruiksstatistieken laten zien welke onderdelen van prepza mensen helpen en welke prijzen en limieten werken, zodat we ze kunnen verbeteren (ons gerechtvaardigd belang).",
+        "Gebruiksstatistieken laten zien welke onderdelen van testee mensen helpen en welke prijzen en limieten werken, zodat we ze kunnen verbeteren (ons gerechtvaardigd belang).",
         "Aankoopgegevens, bewaard voor de boekhouding zoals de Estse boekhoudwetgeving vereist (wettelijke verplichting).",
         "Een bedrijf als geverifieerd tonen, door de website ervan te vergelijken met de e-maildomeinen van de eigenaren en beheerders (ons gerechtvaardigd belang).",
-        "Open voor nieuwe kansen: alleen als je het aanzet (toestemming), zien bedrijven die via prepza werven je naam, je LinkedIn-profiel en je nieuwste getimede oefenresultaat op elk onderwerp dat je hebt geoefend en dat een van hun interviews op het niveau ervan dekt, zodat ze je voor dat interview kunnen uitnodigen. We rangschikken je niet, bevelen je niet aan en nemen geen beslissing over je: het bedrijf beslist wie het uitnodigt. Je kunt je toestemming op elk moment intrekken in Instellingen, en dan verdwijn je meteen uit de lijst van elk bedrijf. Het log van je keuzes wordt bewaard als bewijs van je toestemming (onze wettelijke plicht om die aan te tonen).",
-        "Interviewresultaten, tijden en integriteitssignalen helpen het wervende bedrijf je antwoorden eerlijk te beoordelen (het gerechtvaardigd belang van het bedrijf). Tot de signalen horen patronen in je antwoorden: ongeveer dezelfde tijd bij elke vraag, of moeilijke vragen goed terwijl makkelijke fout waren; op basis daarvan krijgt het bedrijf vragen te zien die het je daarover kan stellen in een live gesprek. Mensen bij het bedrijf nemen de wervingsbeslissing; prepza neemt zelf geen beslissing over jou. Je kunt het bedrijf vragen om een beoordeling van je resultaat door een mens, en vóór je begint om een aanpassing zoals extra tijd."
+        "Open voor nieuwe kansen: alleen als je het aanzet (toestemming), zien bedrijven die via testee werven je naam, je LinkedIn-profiel en je nieuwste getimede oefenresultaat op elk onderwerp dat je hebt geoefend en dat een van hun interviews op het niveau ervan dekt, zodat ze je voor dat interview kunnen uitnodigen. We rangschikken je niet, bevelen je niet aan en nemen geen beslissing over je: het bedrijf beslist wie het uitnodigt. Je kunt je toestemming op elk moment intrekken in Instellingen, en dan verdwijn je meteen uit de lijst van elk bedrijf. Het log van je keuzes wordt bewaard als bewijs van je toestemming (onze wettelijke plicht om die aan te tonen).",
+        "Interviewresultaten, tijden en integriteitssignalen helpen het wervende bedrijf je antwoorden eerlijk te beoordelen (het gerechtvaardigd belang van het bedrijf). Tot de signalen horen patronen in je antwoorden: ongeveer dezelfde tijd bij elke vraag, of moeilijke vragen goed terwijl makkelijke fout waren; op basis daarvan krijgt het bedrijf vragen te zien die het je daarover kan stellen in een live gesprek. Mensen bij het bedrijf nemen de wervingsbeslissing; testee neemt zelf geen beslissing over jou. Je kunt het bedrijf vragen om een beoordeling van je resultaat door een mens, en vóór je begint om een aanpassing zoals extra tijd."
       ]
     },
     {
       "heading": "Met wie we het delen",
       "paragraphs": [
-        "We delen gegevens met de dienstverleners die prepza voor ons draaien, op grond van overeenkomsten die de gegevens beschermen, en met Paddle, dat de opwaarderingen verkoopt:"
+        "We delen gegevens met de dienstverleners die testee voor ons draaien, op grond van overeenkomsten die de gegevens beschermen, en met Paddle, dat de opwaarderingen verkoopt:"
       ],
       "items": [
         "Google (Firebase Authentication; Google LLC, Verenigde Staten, onder het EU-VS-kader voor gegevensbescherming): inloggen. LinkedIn en GitHub bevestigen alleen wie je bent wanneer je met hen inlogt; we ontvangen verder niets van hen.",
@@ -75,27 +75,27 @@
         "Cloudflare (Turnstile; Cloudflare, Inc., Verenigde Staten, onder het EU-VS-kader voor gegevensbescherming): de controle 'Ik ben geen robot'.",
         "Google Cloud, onze hostingprovider, die de gegevens opslaat (in de EU, België).",
         "Upstash: kortlevende tellers voor gebruikslimieten en live-updates (in de EU, België).",
-        "Bedrijven, alleen als je Open voor nieuwe kansen aanzet: bedrijven die via prepza werven, zien wat hierboven staat beschreven. Elk bedrijf is zelf verantwoordelijk voor hoe het gebruikt wat het ziet. Als een bedrijf je uitnodigt, gaat de uitnodiging naar het e-mailadres van je account, en ziet het bedrijf dat e-mailadres zoals dat van elke kandidaat.",
+        "Bedrijven, alleen als je Open voor nieuwe kansen aanzet: bedrijven die via testee werven, zien wat hierboven staat beschreven. Elk bedrijf is zelf verantwoordelijk voor hoe het gebruikt wat het ziet. Als een bedrijf je uitnodigt, gaat de uitnodiging naar het e-mailadres van je account, en ziet het bedrijf dat e-mailadres zoals dat van elke kandidaat.",
         "Paddle (Paddle.com Market Ltd, Verenigd Koninkrijk) hoort daar niet bij: het verkoopt de opwaarderingen zelf, als wederverkoper (merchant of record), en is de verwerkingsverantwoordelijke voor de betalings-, belasting- en factuurgegevens die het verzamelt, onder zijn eigen privacybeleid. Wij geven het het e-mailadres van het lid dat koopt door, en het laat ons weten wat er is gekocht en betaald."
       ]
     },
     {
       "heading": "Tools die een bedrijf koppelt",
       "paragraphs": [
-        "Een bedrijf kan zijn eigen tools aan prepza koppelen, en dan sturen wij er op zijn instructie gegevens naartoe, als onderdeel van de dienst waarom het heeft gevraagd: zijn sollicitantvolgsysteem (Workable, Greenhouse, Teamtailor, Recruitee of Breezy HR) ontvangt je score, of die de slaaggrens heeft gehaald, de integriteitssignalen en een link naar je resultaten; een door het bedrijf gekozen Slack-kanaal ontvangt zijn meldingen, zoals dat je klaar bent en je score; en zijn eigen systemen ontvangen via de API of webhooks van prepza je e-mailadres, naam, voortgang en score, of je de slaaggrens hebt gehaald, de integriteitssignalen en je uitnodigingslink. Het bedrijf kiest en beheert deze tools, die zich buiten de EU kunnen bevinden, en is verantwoordelijk voor hoe ze je gegevens gebruiken."
+        "Een bedrijf kan zijn eigen tools aan testee koppelen, en dan sturen wij er op zijn instructie gegevens naartoe, als onderdeel van de dienst waarom het heeft gevraagd: zijn sollicitantvolgsysteem (Workable, Greenhouse, Teamtailor, Recruitee of Breezy HR) ontvangt je score, of die de slaaggrens heeft gehaald, de integriteitssignalen en een link naar je resultaten; een door het bedrijf gekozen Slack-kanaal ontvangt zijn meldingen, zoals dat je klaar bent en je score; en zijn eigen systemen ontvangen via de API of webhooks van testee je e-mailadres, naam, voortgang en score, of je de slaaggrens hebt gehaald, de integriteitssignalen en je uitnodigingslink. Het bedrijf kiest en beheert deze tools, die zich buiten de EU kunnen bevinden, en is verantwoordelijk voor hoe ze je gegevens gebruiken."
       ]
     },
     {
       "heading": "AI-apps die je koppelt",
       "paragraphs": [
-        "Je kunt een eigen AI-app, zoals Claude (van Anthropic) of ChatGPT (van OpenAI), aan je prepza-account koppelen. Alleen als je dat doet, en alleen voor wat je de app vraagt, leest en wijzigt de app met jouw toegang de gegevens van je bedrijven, inclusief resultaten van kandidaten, en die gegevens komen bij de aanbieder van de app terecht onder de eigen voorwaarden en het eigen privacybeleid van de app, niet de onze. Jij kiest deze apps en kunt er op elk moment een ontkoppelen op het tabblad Integraties van een bedrijf; als je je account verwijdert, worden ze allemaal ontkoppeld. De eigenaren en beheerders van een bedrijf kunnen AI-apps verbieden de gegevens van dat bedrijf te gebruiken."
+        "Je kunt een eigen AI-app, zoals Claude (van Anthropic) of ChatGPT (van OpenAI), aan je testee-account koppelen. Alleen als je dat doet, en alleen voor wat je de app vraagt, leest en wijzigt de app met jouw toegang de gegevens van je bedrijven, inclusief resultaten van kandidaten, en die gegevens komen bij de aanbieder van de app terecht onder de eigen voorwaarden en het eigen privacybeleid van de app, niet de onze. Jij kiest deze apps en kunt er op elk moment een ontkoppelen op het tabblad Integraties van een bedrijf; als je je account verwijdert, worden ze allemaal ontkoppeld. De eigenaren en beheerders van een bedrijf kunnen AI-apps verbieden de gegevens van dat bedrijf te gebruiken."
       ]
     },
     {
       "heading": "E-mails en afmelden",
       "paragraphs": [
         "Service-e-mails, zoals uitnodigingen, rapporten, betalingsproblemen, wijzigingen in onze voorwaarden en belangrijke mededelingen over de dienst, worden altijd verstuurd. De andere kies je in Instellingen, onder E-mails: het activiteitenoverzicht, herinneringen, productupdates en nieuws, en aanbiedingen en acties. Elke optionele e-mail heeft een afmeldlink die werkt zonder in te loggen, en als je een optionele e-mail als spam markeert, wordt die ook uitgezet. Als een e-mail aan jou definitief onbestelbaar is, of als je een van onze e-mails als spam markeert, sturen we geen productmails en berichten meer naar dat adres totdat je ons vraagt daar weer mee te beginnen.",
-        "Uitnodigingen en herinneringen die een bedrijf via prepza naar kandidaten stuurt, bevatten links om de e-mails van dat bedrijf, of de herinneringen van dat interview, stop te zetten. prepza e-mailt dat adres daarna niet meer voor het bedrijf, en het bedrijf ziet de uitnodiging als niet bezorgd."
+        "Uitnodigingen en herinneringen die een bedrijf via testee naar kandidaten stuurt, bevatten links om de e-mails van dat bedrijf, of de herinneringen van dat interview, stop te zetten. testee e-mailt dat adres daarna niet meer voor het bedrijf, en het bedrijf ziet de uitnodiging als niet bezorgd."
       ]
     },
     {
@@ -118,7 +118,7 @@
         "Registraties van AI-gebruik en van bereikte limieten: 13 maanden, zonder je account-id zodra je je account verwijdert.",
         "Oefenrondes: totdat je je account verwijdert.",
         "Open voor nieuwe kansen: totdat je het uitzet of je account verwijdert, en hooguit een jaar nadat je het voor het laatst hebt aangezet of je LinkedIn-profiel hebt opgeslagen; het log van je keuzes, totdat je je account verwijdert.",
-        "Een rapport dat vanuit prepza wordt gemaild: de pdf wordt alleen bewaard om de e-mail te versturen en uiterlijk 7 dagen later verwijderd.",
+        "Een rapport dat vanuit testee wordt gemaild: de pdf wordt alleen bewaard om de e-mail te versturen en uiterlijk 7 dagen later verwijderd.",
         "Geplakte functieomschrijvingen in onze generatieregistraties: 90 dagen nadat de generatie is voltooid. Het interview dat ervan is gemaakt, blijft in het account van het bedrijf totdat het wordt verwijderd.",
         "Je e-mailinstellingen en het logboek van de wijzigingen daarin: totdat je je account verwijdert.",
         "De registratie van overzichten en herinneringen die je zijn gestuurd: 30 dagen, of totdat je je account verwijdert als dat eerder is.",
@@ -150,17 +150,17 @@
     {
       "heading": "Cookies en opslag",
       "paragraphs": [
-        "prepza gebruikt alleen de cookies en browseropslag die het nodig heeft om te werken of die je eigen keuzes onthouden. Er zijn geen advertentie- of analysecookies.",
-        "Om je ingelogd te houden: een cookie (prepza_token, elk uur vernieuwd zolang je prepza gebruikt, totdat je uitlogt) en de browseropslag van onze inlogaanbieder, Google Firebase. Terwijl je een AI-app koppelt, blijft een cookie (prepza_connect) de paar minuten bestaan die dat duurt.",
-        "Om je keuzes te onthouden: je taal (een cookie, prepza_locale, voor een jaar, gezet wanneer je een taal kiest of prepza opent op het adres van een taal), je lichte of donkere thema, de breedte van het paneel van de assistent, hoe je de laatste keer kandidaten hebt uitgenodigd, dat je eerder in deze browser hebt ingelogd, de periode die je het laatst koos voor statistieken, de meldingen over een gewijzigd juridisch document die je hebt gesloten, en je gesprek met de assistent (totdat je inlogt, alleen in dit tabblad). Ze blijven in je browser totdat je ze wist.",
-        "Een doorverwijslink: alleen als je ervoor kiest die te bewaren, onthoudt een cookie (prepza_ref) de link waarlangs je binnenkwam gedurende 30 dagen, zodat de credits bij beide bedrijven terechtkomen.",
+        "testee gebruikt alleen de cookies en browseropslag die het nodig heeft om te werken of die je eigen keuzes onthouden. Er zijn geen advertentie- of analysecookies.",
+        "Om je ingelogd te houden: een cookie (testee_token, elk uur vernieuwd zolang je testee gebruikt, totdat je uitlogt) en de browseropslag van onze inlogaanbieder, Google Firebase. Terwijl je een AI-app koppelt, blijft een cookie (testee_connect) de paar minuten bestaan die dat duurt.",
+        "Om je keuzes te onthouden: je taal (een cookie, testee_locale, voor een jaar, gezet wanneer je een taal kiest of testee opent op het adres van een taal), je lichte of donkere thema, de breedte van het paneel van de assistent, hoe je de laatste keer kandidaten hebt uitgenodigd, dat je eerder in deze browser hebt ingelogd, de periode die je het laatst koos voor statistieken, de meldingen over een gewijzigd juridisch document die je hebt gesloten, en je gesprek met de assistent (totdat je inlogt, alleen in dit tabblad). Ze blijven in je browser totdat je ze wist.",
+        "Een doorverwijslink: alleen als je ervoor kiest die te bewaren, onthoudt een cookie (testee_ref) de link waarlangs je binnenkwam gedurende 30 dagen, zodat de credits bij beide bedrijven terechtkomen.",
         "De controle 'Ik ben geen robot' draait in een klein kader van Cloudflare wanneer een formulier die nodig heeft, en plaatst geen trackingcookies."
       ]
     },
     {
       "heading": "Kinderen",
       "paragraphs": [
-        "prepza is niet bedoeld voor personen jonger dan 16 jaar."
+        "testee is niet bedoeld voor personen jonger dan 16 jaar."
       ]
     },
     {
@@ -172,7 +172,7 @@
     {
       "heading": "Contact",
       "paragraphs": [
-        "Vragen over dit beleid of je gegevens: schrijf naar hello@prepza.ai, of gebruik de contactpagina waarnaar onderaan elke pagina wordt gelinkt."
+        "Vragen over dit beleid of je gegevens: schrijf naar hello@testee.ai, of gebruik de contactpagina waarnaar onderaan elke pagina wordt gelinkt."
       ]
     }
   ]

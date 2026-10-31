@@ -1,4 +1,4 @@
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.limits.limit_list import LIMITS
 
 from site_content.constants.terms import TERMS_SECTIONS
 
@@ -40,7 +40,7 @@ def test_billings_prices_are_kept_for_a_while(monkeypatch):
     import asyncio
 
     import httpx
-    from prepza_common.redis import memory_cache
+    from testee_common.redis import memory_cache
 
     from site_content.integrations import billing
 
@@ -63,7 +63,7 @@ def test_billings_prices_are_kept_for_a_while(monkeypatch):
 
 
 def test_the_platform_guide_is_served_in_the_pages_language(client, monkeypatch):
-    from prepza_common.redis import memory_cache
+    from testee_common.redis import memory_cache
 
     from site_content.constants.faq import FAQS
 

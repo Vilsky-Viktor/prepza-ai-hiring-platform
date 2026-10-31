@@ -4,7 +4,7 @@ the log's line fails, the change isn't kept, so the retry finds it still to do."
 import uuid
 
 import pytest
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from companies.constants.brand import BrandFont
 from companies.repositories import audit, companies

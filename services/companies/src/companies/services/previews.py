@@ -2,10 +2,10 @@ import logging
 from uuid import uuid4
 
 from fastapi import HTTPException, status
-from prepza_common.ai.multi_answer import multi_share
-from prepza_common.events.analytics import track
-from prepza_common.limits.limit_list import LIMITS
-from prepza_common.limits.rate_limit import counted, hit, hit_or_skip
+from testee_common.ai.multi_answer import multi_share
+from testee_common.events.analytics import track
+from testee_common.limits.limit_list import LIMITS
+from testee_common.limits.rate_limit import counted, hit, hit_or_skip
 
 from companies.constants.interviews import PREVIEWS_USED_UP, VOICE_PREVIEWS_USED_UP
 from companies.core.db import Session

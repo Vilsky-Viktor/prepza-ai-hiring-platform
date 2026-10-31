@@ -2,10 +2,10 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.ai.multi_answer import multi_count
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.http.http import bearer
+from testee_common.ai.multi_answer import multi_count
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.http.http import bearer
 
 from library.helpers.pools import assign_pools, missing
 from library.main import app

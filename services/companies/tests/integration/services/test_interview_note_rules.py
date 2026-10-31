@@ -6,13 +6,13 @@ import uuid
 
 import httpx
 import pytest
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.events.audit_actions import AuditAction, TargetKind
-from prepza_common.http.http import bearer
-from prepza_common.limits import limits
 from redis.asyncio import Redis
 from sqlalchemy import select
+from testee_common.auth.key_actor import key_actor
+from testee_common.auth.service_auth import issue_token
+from testee_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.http.http import bearer
+from testee_common.limits import limits
 
 from companies.config import settings
 from companies.constants import error_codes

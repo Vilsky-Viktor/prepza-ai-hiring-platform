@@ -2,9 +2,9 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.constants.verification import VerificationStatus
 from companies.helpers.verification import email_on_domain, is_free_domain, website_domain

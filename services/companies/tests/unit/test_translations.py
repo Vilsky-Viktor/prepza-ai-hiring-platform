@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from prepza_common.i18n.translations import TRANSLATIONS, raised_messages
+from testee_common.i18n.translations import TRANSLATIONS, raised_messages
 
 from companies.constants.invites import COMPANY_NAME_TAKEN, TOO_MANY_COMPANIES, TOO_MANY_INTERVIEWS
 

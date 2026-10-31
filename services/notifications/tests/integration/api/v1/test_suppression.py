@@ -2,9 +2,9 @@ import uuid
 
 import httpx
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.http import http
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.http import http
 
 from notifications.config import settings
 from notifications.constants.bulk import SuppressionReason
@@ -23,7 +23,7 @@ def as_user(uid: str, email: str) -> None:
 
 def test_a_superadmin_sees_why_an_address_is_suppressed_and_takes_it_off(run, monkeypatch):
     address = f"s{uuid.uuid4().hex[:12]}@example.com"
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
 
     async def scenario():
         await transaction(suppressed.add, address_hash(address), SuppressionReason.BOUNCED)
@@ -33,7 +33,7 @@ def test_a_superadmin_sees_why_an_address_is_suppressed_and_takes_it_off(run, mo
         async with api() as client:
             as_user("ann", "ann@example.com")
             outsider = await client.post("/superadmin/suppressed/lookup", json={"email": address})
-            as_user("sam", "sam@prepza.dev")
+            as_user("sam", "sam@testee.dev")
             found = (
                 await client.post("/superadmin/suppressed/lookup", json={"email": address})
             ).json()
@@ -85,7 +85,7 @@ def test_taking_an_address_off_takes_it_off_resends_list_first(
 
         return httpx.Response(answer, json={})
 
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     monkeypatch.setattr(settings, "resend_api_key", "re_test")
     monkeypatch.setattr(
         http, "get_client", lambda: httpx.AsyncClient(transport=httpx.MockTransport(resend))
@@ -95,7 +95,7 @@ def test_taking_an_address_off_takes_it_off_resends_list_first(
         await transaction(suppressed.add, address_hash(address), SuppressionReason.BOUNCED)
 
         async with api() as client:
-            as_user("sam", "sam@prepza.dev")
+            as_user("sam", "sam@testee.dev")
             response = await client.post("/superadmin/suppressed/remove", json={"email": address})
 
         return response.status_code, await transaction(suppressed.among, [address_hash(address)])

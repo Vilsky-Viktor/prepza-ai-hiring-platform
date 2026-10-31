@@ -2,7 +2,7 @@ from datetime import UTC, datetime, timedelta
 
 from mcp.server.auth.settings import AuthSettings
 from mcp.shared.auth import OAuthToken
-from prepza_common.auth.tokens import new_token
+from testee_common.auth.tokens import new_token
 
 from assistant.config import settings
 from assistant.constants.mcp import (
@@ -18,7 +18,7 @@ from assistant.constants.mcp import (
 
 
 def resource_url() -> str:
-    """The MCP endpoint, the one resource prepza's access is for."""
+    """The MCP endpoint, the one resource testee's access is for."""
     return settings.site_url.rstrip("/") + MCP_PATH
 
 

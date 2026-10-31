@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.i18n.text_language import text_language
+from testee_common.i18n.text_language import text_language
 
 # Short job descriptions as people paste them, each full of English tech terms.
 JOBS = {

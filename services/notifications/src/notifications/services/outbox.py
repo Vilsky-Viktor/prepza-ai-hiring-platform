@@ -1,4 +1,4 @@
-from prepza_common.events import outbox
+from testee_common.events import outbox
 
 from notifications.core.db import Session
 from notifications.models.outbox import OutboxEvent

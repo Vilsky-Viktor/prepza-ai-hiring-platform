@@ -26,9 +26,9 @@ with why it scopes nothing (an acting user the caller vouches for, a filter). It
 """
 
 from access_matrix import ALLOWED, REFUSED, SIGNED_OUT, Route, World, call_all, id_params
-from prepza_common.auth.route_guards import api_routes, calls
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.http.http import bearer
+from testee_common.auth.route_guards import api_routes, calls
+from testee_common.auth.service_auth import issue_token
+from testee_common.http.http import bearer
 
 
 def service_routes(app):

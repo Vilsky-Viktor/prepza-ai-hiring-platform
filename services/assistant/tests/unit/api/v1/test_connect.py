@@ -5,9 +5,9 @@ from types import SimpleNamespace
 from urllib.parse import parse_qs, urlparse
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.tokens import hashed
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.tokens import hashed
+from testee_common.auth.user import User
 
 from assistant.constants.mcp import CONNECT_COOKIE, OTHER_BROWSER
 from assistant.helpers.mcp_clients import describe_client
@@ -25,7 +25,7 @@ REQUEST = {
     "redirect_uri_provided_explicitly": True,
     "code_challenge": "challenge",
     "state": "s1",
-    "scopes": ["prepza"],
+    "scopes": ["testee"],
 }
 
 
@@ -79,7 +79,7 @@ def grant(user_id: str) -> SimpleNamespace:
         redirect_host="chatgpt.com",
         created_at=datetime(2026, 10, 1, tzinfo=UTC),
         last_used_at=None,
-        scope="prepza",
+        scope="testee",
     )
 
 
@@ -136,18 +136,18 @@ def test_a_consent_link_opened_in_another_browser_connects_nothing(client, kept,
 @pytest.mark.parametrize(
     ("asked", "body", "scope"),
     [
-        (["prepza"], None, "prepza"),
-        (["prepza"], {"read_only": True}, "prepza:read"),
-        (["prepza:read"], None, "prepza:read"),
+        (["testee"], None, "testee"),
+        (["testee"], {"read_only": True}, "testee:read"),
+        (["testee:read"], None, "testee:read"),
         # An app that asked only to read can't be given more.
-        (["prepza:read"], {"read_only": False}, "prepza:read"),
+        (["testee:read"], {"read_only": False}, "testee:read"),
     ],
 )
 def test_the_code_carries_what_the_user_allowed(client, kept, asked, body, scope):
     kept.requests["r1"]["scopes"] = asked
     client.cookies.set(CONNECT_COOKIE, "r1")
 
-    assert client.get("/connect/r1").json()["read_only"] is (asked == ["prepza:read"])
+    assert client.get("/connect/r1").json()["read_only"] is (asked == ["testee:read"])
 
     response = client.post("/connect/r1/approve", json=body)
 

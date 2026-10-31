@@ -3,9 +3,9 @@ import asyncio
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth import human_check
-from prepza_common.http import http
 from starlette.requests import Request
+from testee_common.auth import human_check
+from testee_common.http import http
 
 
 def request(token=None):

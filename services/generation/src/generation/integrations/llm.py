@@ -1,7 +1,7 @@
 from functools import cache
 
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-from prepza_common.ai.llm import chat_model
+from testee_common.ai.llm import chat_model
 
 from generation.config import settings
 from generation.constants.generation import LLM_MAX_RETRIES, LLM_TIMEOUT_SECONDS, MAX_OUTPUT_TOKENS

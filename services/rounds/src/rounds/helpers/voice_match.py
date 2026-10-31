@@ -1,7 +1,7 @@
 import re
 
 from langchain_core.messages import BaseMessage, HumanMessage, SystemMessage
-from prepza_common.config.constants import LANGUAGES
+from testee_common.config.constants import LANGUAGES
 
 from rounds.constants.voice import LETTERS, Intent
 from rounds.constants.voice_confirmations import CONFIRMATIONS

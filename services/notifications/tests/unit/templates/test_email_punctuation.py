@@ -3,7 +3,7 @@ import pytest
 from notifications.helpers.emails import candidate_invite_email
 from notifications.templates.emails import EMAILS
 
-SITE = "https://prepza.ai"
+SITE = "https://testee.ai"
 LINK = f"{SITE}/invite/t"
 INVITE = {
     "email": "ann@example.com",

@@ -3,9 +3,9 @@ from datetime import UTC, datetime
 from uuid import UUID
 
 from fastapi import status
-from prepza_common.auth.tokens import hashed
-from prepza_common.i18n.i18n import CodedError
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.auth.tokens import hashed
+from testee_common.i18n.i18n import CodedError
+from testee_common.limits.rate_limit import hit_or_skip
 
 from api.constants import error_codes
 from api.constants.api import IP_NOT_ALLOWED, LAST_USED_EVERY

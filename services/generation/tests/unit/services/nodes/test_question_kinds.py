@@ -1,7 +1,7 @@
 import asyncio
 
 import pytest
-from prepza_common.ai.examples import pick
+from testee_common.ai.examples import pick
 
 from generation.helpers.questions import build_options, count_examples, count_multi, missing_kinds
 from generation.services.nodes import merge as merge_node

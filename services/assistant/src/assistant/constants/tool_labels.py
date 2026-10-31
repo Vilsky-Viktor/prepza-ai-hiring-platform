@@ -1,4 +1,4 @@
-# What the panel shows while a tool runs, by tool; translated by its English text (prepza_common's
+# What the panel shows while a tool runs, by tool; translated by its English text (testee_common's
 # messages). A new read needs its label here and in every language; actions share one.
 
 TOOL_LABELS = {
@@ -31,7 +31,7 @@ TOOL_LABELS = {
     "get_template": "Reading the template…",
     "get_faq": "Reading the FAQ…",
     "get_page_guide": "Reading the page's guide…",
-    "get_platform_guide": "Reading prepza's guide…",
+    "get_platform_guide": "Reading testee's guide…",
     "list_guides": "Reading the guides…",
     "get_guide": "Reading the guide…",
     "list_topic_questions": "Reading the questions…",
@@ -44,7 +44,7 @@ TOOL_LABELS = {
     "list_copyable_templates": "Searching templates…",
     "list_ats_stages": "Reading the job's stages…",
     "get_ats_job_text": "Reading the job's description…",
-    "list_news": "Reading prepza's news…",
+    "list_news": "Reading testee's news…",
     "list_practice_rounds": "Reading your practice rounds…",
     "get_practice_progress": "Reading your practice progress…",
     # The panel's own: signing out.

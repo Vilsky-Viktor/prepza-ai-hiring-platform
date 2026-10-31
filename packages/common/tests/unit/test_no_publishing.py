@@ -42,7 +42,7 @@ def test_events_published_in_a_test_are_kept_for_it_to_read(pytester):
         import asyncio
 
         {IMPORT}  # noqa: F401
-        from prepza_common.events import pubsub
+        from testee_common.events import pubsub
 
 
         def test_publishes(published):

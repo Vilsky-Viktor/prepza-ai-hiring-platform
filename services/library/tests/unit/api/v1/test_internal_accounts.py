@@ -4,7 +4,7 @@ body."""
 
 import pytest
 from event_pushes import push
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from library.api.v1 import internal_accounts
 from library.handlers import user_deleted

@@ -1,6 +1,6 @@
 import json
 
-from prepza_common.config.constants import LEGAL_VERSIONS
+from testee_common.config.constants import LEGAL_VERSIONS
 
 from site_content.helpers import legal
 

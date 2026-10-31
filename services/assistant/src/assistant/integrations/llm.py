@@ -2,7 +2,7 @@ from functools import cache
 
 from langchain_openai import ChatOpenAI
 from openai import AsyncOpenAI
-from prepza_common.ai.llm import chat_model
+from testee_common.ai.llm import chat_model
 
 from assistant.config import settings
 from assistant.constants.chat import (

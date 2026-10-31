@@ -1,4 +1,4 @@
-"""company names are unique across prepza, ignoring case
+"""company names are unique across testee, ignoring case
 
 Revision ID: 0012
 Revises: 0011

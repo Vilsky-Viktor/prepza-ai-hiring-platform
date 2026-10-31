@@ -2,7 +2,7 @@ import asyncio
 from typing import Literal
 
 from fastapi import APIRouter
-from prepza_common.db.paging import IdPageParams
+from testee_common.db.paging import IdPageParams
 
 from accounts.api.dependencies import ServiceCaller
 from accounts.constants.emails import ConsentSource, EmailSetting

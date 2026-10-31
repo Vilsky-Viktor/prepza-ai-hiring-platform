@@ -2,16 +2,16 @@ import asyncio
 from unittest import mock
 
 import pytest
-from prepza_common.config.constants import (
+from sqlalchemy import Column, Integer
+from sqlalchemy.orm import declarative_base
+from testee_common.config.constants import (
     DB_POOL_RECYCLE_SECONDS,
     IDLE_IN_TRANSACTION_TIMEOUT,
     MIGRATION_LOCK_TIMEOUT,
     MIGRATION_STATEMENT_TIMEOUT,
     STATEMENT_TIMEOUT,
 )
-from prepza_common.db import db
-from sqlalchemy import Column, Integer
-from sqlalchemy.orm import declarative_base
+from testee_common.db import db
 
 Row = declarative_base()
 

@@ -1,4 +1,4 @@
-from prepza_common.db.db import database
+from testee_common.db.db import database
 
 from billing.config import settings
 

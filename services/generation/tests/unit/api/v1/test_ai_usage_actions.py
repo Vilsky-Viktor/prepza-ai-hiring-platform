@@ -3,9 +3,9 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.ai.ai_constants import AI_USED
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.ai.ai_constants import AI_USED
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from generation.constants.actions import (
     CODE_TAGS,
@@ -207,7 +207,7 @@ def test_a_flagged_questions_check_and_a_sample_key_check_are_recorded(published
     asyncio.run(verify_service.verify(QUESTION_ID, QualityFlag.REWRITE))
     asyncio.run(sample_checks.check_one(QUESTION_ID))
 
-    # The flag's check is prepza's own work; a new test's sample is its company's.
+    # The flag's check is testee's own work; a new test's sample is its company's.
     assert recorded(published) == [
         (QUESTION_VERIFY, None, None, "ok"),
         (SAMPLE_KEY_CHECK, str(COMPANY_ID), None, "ok"),

@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status
 from fastapi.encoders import jsonable_encoder
-from prepza_common.auth.user import UserEmailIn
+from testee_common.auth.user import UserEmailIn
 
 from companies.api.dependencies import ServiceCaller
 from companies.core.db import Session

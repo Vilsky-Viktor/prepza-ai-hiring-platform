@@ -1,8 +1,8 @@
 import uuid
 
-from prepza_common.events import processed_events
 from sqlalchemy import case, delete, func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import processed_events
 
 from companies.constants.events import INTERVIEW_READY
 from companies.models.events import ProcessedEvent

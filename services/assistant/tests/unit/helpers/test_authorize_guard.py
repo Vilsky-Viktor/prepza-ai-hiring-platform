@@ -19,7 +19,7 @@ def redirecting(location: str) -> TestClient:
 
 
 def test_sending_the_browser_to_the_consent_page_marks_it_for_that_request():
-    response = redirecting("https://prepza.ai/connect?request=r1").get("/authorize")
+    response = redirecting("https://testee.ai/connect?request=r1").get("/authorize")
     marked = response.headers["set-cookie"]
 
     assert marked.startswith(f"{CONNECT_COOKIE}=r1;")
@@ -38,7 +38,7 @@ def test_an_error_is_a_page_never_a_redirect_to_the_apps_address():
 
 
 def test_only_the_consent_page_carries_a_request():
-    assert request_of("https://prepza.ai/connect?request=r1") == "r1"
+    assert request_of("https://testee.ai/connect?request=r1") == "r1"
     assert request_of("https://evil.example/connect-x?request=r1") is None
 
 

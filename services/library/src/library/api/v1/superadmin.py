@@ -2,10 +2,10 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, status
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.auth.user import Language, Level
-from prepza_common.config.constants import MAX_TITLE_LENGTH
-from prepza_common.db.paging import PageParams
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.auth.user import Language, Level
+from testee_common.config.constants import MAX_TITLE_LENGTH
+from testee_common.db.paging import PageParams
 
 from library.constants.sets import SetKind
 from library.helpers.pools import missing

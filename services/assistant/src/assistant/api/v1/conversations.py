@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Request, Response, status
-from prepza_common.db.paging import PageParams
-from prepza_common.i18n.i18n import request_language
+from testee_common.db.paging import PageParams
+from testee_common.i18n.i18n import request_language
 
 from assistant.api.dependencies import UserWithToken
 from assistant.constants.chat import RESTORE_MINUTES

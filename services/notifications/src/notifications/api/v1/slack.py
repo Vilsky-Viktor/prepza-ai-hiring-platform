@@ -2,7 +2,7 @@ from uuid import UUID
 
 from fastapi import APIRouter, status
 from fastapi.responses import RedirectResponse
-from prepza_common.auth.auth import CurrentUser
+from testee_common.auth.auth import CurrentUser
 
 from notifications.integrations import companies
 from notifications.schemas.slack import SlackKindsIn, SlackOut, SlackStartOut
@@ -21,7 +21,7 @@ async def get_slack(company_id: UUID, user: CurrentUser) -> SlackOut:
 
 @router.get("/start")
 async def start(company_id: UUID, user: CurrentUser) -> SlackStartOut:
-    """Where "Add to Slack" goes: Slack's page to approve prepza and pick a channel."""
+    """Where "Add to Slack" goes: Slack's page to approve testee and pick a channel."""
     await companies.require(str(company_id), user.uid, editor=True)
 
     return SlackStartOut(url=await slack.start(str(company_id), user.uid))

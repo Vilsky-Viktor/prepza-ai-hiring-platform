@@ -1,7 +1,7 @@
-"""Every route checks who's asking (prepza_common.auth.route_guards), unless it's public on purpose:
+"""Every route checks who's asking (testee_common.auth.route_guards), unless it's public on purpose:
 a new route without a guard fails here until it gets one or is listed below with its reason."""
 
-from prepza_common.auth.route_guards import not_from_a_service, unguarded
+from testee_common.auth.route_guards import not_from_a_service, unguarded
 
 from library.main import app
 

@@ -1,4 +1,4 @@
-from prepza_common.limits.rate_limit import hit
+from testee_common.limits.rate_limit import hit
 
 from site_content.constants.events import CONTACT_SENT
 from site_content.core.db import Session
@@ -10,7 +10,7 @@ from site_content.services import outbox as outbox_service
 
 async def send(body: ContactRequest, address: str, language: str) -> None:
     """Keeps the contact page's message as an event until it's published; notifications emails
-    it to prepza's inbox. Limited per address and in all."""
+    it to testee's inbox. Limited per address and in all."""
     redis = get_redis()
     await hit(redis, f"rate:contact:ip:{address}", "CONTACT_IP_LIMIT")
     await hit(redis, "rate:contact:all", "CONTACT_DAILY_LIMIT")

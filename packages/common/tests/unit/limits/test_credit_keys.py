@@ -1,6 +1,6 @@
-"""Candidates' credit keys: both services' copies are keyed alike (prepza_common.limits.credit_keys)."""
+"""Candidates' credit keys: both services' copies are keyed alike (testee_common.limits.credit_keys)."""
 
-from prepza_common.limits.credit_keys import rekeyed
+from testee_common.limits.credit_keys import rekeyed
 
 PLAIN = "1b4e28ba-2fa1-11d2-883f-0016d3cca427:0f1e2d3c4b5a69788796a5b4c3d2e1f0"
 

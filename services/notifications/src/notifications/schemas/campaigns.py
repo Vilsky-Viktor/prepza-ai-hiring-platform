@@ -2,12 +2,12 @@ from datetime import datetime
 from typing import Annotated, Literal
 from uuid import UUID
 
-from prepza_common.config.constants import (
+from pydantic import BaseModel, Field, StringConstraints
+from testee_common.config.constants import (
     MAX_CAMPAIGN_BUTTON_LENGTH,
     MAX_CAMPAIGN_SUBJECT_LENGTH,
     MAX_CAMPAIGN_TEXT_LENGTH,
 )
-from pydantic import BaseModel, Field, StringConstraints
 
 from notifications.constants.campaigns import MAX_NOTICE_COMPANIES, AudienceGroup
 

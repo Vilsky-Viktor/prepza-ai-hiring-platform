@@ -2,9 +2,9 @@ import logging
 from datetime import UTC, datetime, timedelta
 
 from fastapi import APIRouter, status
-from prepza_common.auth.google import Invoker
-from prepza_common.events import processed_events
-from prepza_common.limits import pause
+from testee_common.auth.google import Invoker
+from testee_common.events import processed_events
+from testee_common.limits import pause
 
 from companies.constants.events import PROCESSED_EVENT_DAYS
 from companies.core.db import Session

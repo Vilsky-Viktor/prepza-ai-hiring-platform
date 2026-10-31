@@ -10,7 +10,7 @@ from contextlib import asynccontextmanager
 
 from openai import OpenAIError
 from openai.resources.realtime.realtime import AsyncRealtimeConnection
-from prepza_common.ai.speech import TRANSCRIBE_LANGUAGES
+from testee_common.ai.speech import TRANSCRIBE_LANGUAGES
 from websockets.exceptions import WebSocketException
 
 from rounds.config import settings

@@ -1,5 +1,5 @@
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.http.http import bearer
+from testee_common.auth.service_auth import issue_token
+from testee_common.http.http import bearer
 
 from tests.unit.api_keys import KEY
 from tests.unit.conftest import COMPANY, sign_in
@@ -25,7 +25,7 @@ def test_a_key_limited_to_addresses_works_only_from_them(client, companies_api, 
     assert refused.json()["code"] == "ip_not_allowed"
     assert refused.json()["detail"] == (
         "This API key can't be used from this IP address. Add the address to the key's allowed "
-        "IPs in prepza, or call from an allowed one."
+        "IPs in testee, or call from an allowed one."
     )
     assert spoofed.status_code == 403
     # A refused call doesn't use up the company's requests.

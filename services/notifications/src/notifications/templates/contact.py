@@ -1,4 +1,4 @@
-# The contact page's message, as prepza's inbox gets it. English only: it's for the team.
+# The contact page's message, as testee's inbox gets it. English only: it's for the team.
 CONTACT_SUBJECT = "Contact form: {name}"
 
 CONTACT_TEXT = """\

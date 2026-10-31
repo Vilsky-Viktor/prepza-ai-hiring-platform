@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from prepza_common.config.constants import MAX_UPDATES
+from testee_common.config.constants import MAX_UPDATES
 
 from companies.core.db import Session
 from companies.helpers.candidate_updates import candidate_updates, update_counts

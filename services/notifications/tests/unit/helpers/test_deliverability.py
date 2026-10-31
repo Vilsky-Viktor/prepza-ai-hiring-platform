@@ -5,7 +5,7 @@ from email.utils import parseaddr
 
 import httpx
 import pytest
-from prepza_common.config.constants import LANGUAGES
+from testee_common.config.constants import LANGUAGES
 
 from notifications.config import settings
 from notifications.constants.unsubscribe import UnsubscribeType
@@ -28,7 +28,7 @@ from notifications.helpers.rendering import render
 from notifications.integrations import resend, smtp
 from notifications.templates.emails import EMAILS
 
-SITE = "https://prepza.ai"
+SITE = "https://testee.ai"
 SECRET = "test-email-link-secret"
 INVITE = {
     "email": "bob@example.com",
@@ -65,7 +65,7 @@ EMAILS_SENT = {
     "joined": (lambda: candidate_joined_email(INVITE, SITE, SECRET), True),
     "candidate reminder": (lambda: candidate_reminder_email(INVITE, SITE, SECRET), True),
     "report": (lambda: report_email(REPORT, SITE), False),
-    "contact": (lambda: contact_email(CONTACT, "hello@prepza.ai"), False),
+    "contact": (lambda: contact_email(CONTACT, "hello@testee.ai"), False),
     "top-up failed": (lambda: top_up_failed_email(RECIPIENT, "Acme", SITE), False),
     "top-up paused": (lambda: top_up_paused_email(RECIPIENT, "Acme", f"{SITE}/b"), False),
     "top-up price change": (
@@ -173,7 +173,7 @@ def test_smtp_sends_from_the_streams_address_with_a_date_and_a_message_id(monkey
     smtp.send_sync(EMAILS_SENT["invite"][0]())
     digest, invite = sent
 
-    # Compared as addresses: SMTP quotes the display name ("prepza.").
+    # Compared as addresses: SMTP quotes the display name ("testee.").
     assert parseaddr(digest["From"]) == parseaddr(settings.mail_from_updates)
     assert parseaddr(invite["From"]) == parseaddr(settings.mail_from)
     assert invite["Reply-To"] == settings.contact_email

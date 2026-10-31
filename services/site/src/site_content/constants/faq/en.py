@@ -3,18 +3,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "What is prepza?",
+        "question": "What is testee?",
         "answer": "A timed interview made from your job description, for any role. Use it to screen candidates before you meet them, or as a hiring step itself: either way, you see who really knows the job.",
     },
     {
         "key": "roles",
         "question": "Which roles can I hire for?",
-        "answer": "Any role where knowledge matters: support, sales, finance, healthcare, trades, engineering, marketing and more. If you can describe the job, prepza can build an interview for it.",
+        "answer": "Any role where knowledge matters: support, sales, finance, healthcare, trades, engineering, marketing and more. If you can describe the job, testee can build an interview for it.",
     },
     {
         "key": "hiring",
         "question": "How does it work?",
-        "answer": "Paste a job description on the home page, name your company and check the topics prepza proposes. Then invite candidates: type their emails, paste a list or upload a file. Candidates who haven't started after a few days get one reminder. Each candidate gets their own questions and a timer on each one, and you see their score and every answer as soon as they finish.",
+        "answer": "Paste a job description on the home page, name your company and check the topics testee proposes. Then invite candidates: type their emails, paste a list or upload a file. Candidates who haven't started after a few days get one reminder. Each candidate gets their own questions and a timer on each one, and you see their score and every answer as soon as they finish.",
     },
     {
         "key": "link",
@@ -29,7 +29,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Can companies find me through my practice?",
-        "answer": "Only if you choose to. Turn on Open to offers after a practice round or in Settings, with your LinkedIn profile's address. Companies hiring on prepza then see your name, LinkedIn profile and latest practice result on each subject of their interviews that you practised, and may invite you to an interview. prepza doesn't rank or recommend you. Turn it off at any time in Settings, and you disappear from every company's list at once; it also ends a year after you last turned it on or saved your LinkedIn profile.",
+        "answer": "Only if you choose to. Turn on Open to offers after a practice round or in Settings, with your LinkedIn profile's address. Companies hiring on testee then see your name, LinkedIn profile and latest practice result on each subject of their interviews that you practised, and may invite you to an interview. testee doesn't rank or recommend you. Turn it off at any time in Settings, and you disappear from every company's list at once; it also ends a year after you last turned it on or saved your LinkedIn profile.",
     },
     {
         "key": "cheating",
@@ -54,7 +54,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "How does the price compare with other assessment tools?",
-        "answer": "Many assessment tools are sold as monthly or annual subscriptions, paid whether or not you test anyone. With prepza you pay only per candidate: {candidate} credits ({candidate_price}), with no contract, no seat fees and nothing to pay for generating an interview. A company inviting {example_candidates} candidates a month pays about {example_year_price} a year. If you test many candidates every month, a subscription can cost less, so compare with your own numbers.",
+        "answer": "Many assessment tools are sold as monthly or annual subscriptions, paid whether or not you test anyone. With testee you pay only per candidate: {candidate} credits ({candidate_price}), with no contract, no seat fees and nothing to pay for generating an interview. A company inviting {example_candidates} candidates a month pays about {example_year_price} a year. If you test many candidates every month, a subscription can cost less, so compare with your own numbers.",
     },
     {
         "key": "expire",
@@ -79,7 +79,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Can I share results with a hiring manager?",
-        "answer": "Yes. Download a PDF report for one candidate or for all of an interview's candidates, email it straight from prepza, or send a short summary on WhatsApp, Telegram, Viber or LINE.",
+        "answer": "Yes. Download a PDF report for one candidate or for all of an interview's candidates, email it straight from testee, or send a short summary on WhatsApp, Telegram, Viber or LINE.",
     },
     {
         "key": "action_log",
@@ -93,13 +93,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "Does prepza work with my ATS or other tools?",
+        "question": "Does testee work with my ATS or other tools?",
         "answer": "Yes, at no extra cost. Connect Workable, Greenhouse, Teamtailor, Recruitee or Breezy HR on your company's Integrations tab: candidates you move to a stage get the interview, and their results go back to the ATS ([how to connect skills tests to your ATS](/guides/ats-integration-skills-tests)). Slack can post your company's notifications to a channel, and the API lets your own platform create interviews, invite and manage candidates and receive their results, with each API key limited to what you tick for it; see the [API docs](/api-docs).",
     },
     {
         "key": "ai_apps",
-        "question": "Can I use prepza from Claude, ChatGPT or my own AI agent?",
-        "answer": "Yes. Add prepza to Claude or ChatGPT as a connector (the steps are on your company's Integrations tab) and allow it on prepza. The app then works with your companies, interviews and candidates' results as you, with your permissions; most apps ask you before they change anything. Deleting your account or a company is done only in prepza. What the app reads reaches its provider under that app's terms. You can disconnect it at any time on the same tab. Other AI apps and agents you build yourself connect too: the developer docs' [MCP tab](/api-docs?tab=mcp) has the steps and example agents, and an agent on a server can sign in with an API key that has the AI agents permission. The [guide to AI agents, MCP and APIs](/guides/ai-agents-mcp-and-api) explains what each is for.",
+        "question": "Can I use testee from Claude, ChatGPT or my own AI agent?",
+        "answer": "Yes. Add testee to Claude or ChatGPT as a connector (the steps are on your company's Integrations tab) and allow it on testee. The app then works with your companies, interviews and candidates' results as you, with your permissions; most apps ask you before they change anything. Deleting your account or a company is done only in testee. What the app reads reaches its provider under that app's terms. You can disconnect it at any time on the same tab. Other AI apps and agents you build yourself connect too: the developer docs' [MCP tab](/api-docs?tab=mcp) has the steps and example agents, and an agent on a server can sign in with an API key that has the AI agents permission. The [guide to AI agents, MCP and APIs](/guides/ai-agents-mcp-and-api) explains what each is for.",
     },
     {
         "key": "candidates",
@@ -119,22 +119,22 @@ FAQ = [
     {
         "key": "privacy",
         "question": "What happens to job descriptions and answers?",
-        "answer": "Job descriptions are used to build your company's interviews, and candidates' answers to score them for your company. The questions prepza generates may also be reused in other companies' interviews and practice, without anything that identifies you, your company or anyone else; you can keep an interview's questions out of this in its settings. prepza also learns general, anonymised patterns of question quality from how questions are answered, to improve how questions are generated. The [privacy policy](/privacy) explains what we keep, for how long, and everyone's rights.",
+        "answer": "Job descriptions are used to build your company's interviews, and candidates' answers to score them for your company. The questions testee generates may also be reused in other companies' interviews and practice, without anything that identifies you, your company or anyone else; you can keep an interview's questions out of this in its settings. testee also learns general, anonymised patterns of question quality from how questions are answered, to improve how questions are generated. The [privacy policy](/privacy) explains what we keep, for how long, and everyone's rights.",
     },
     {
         "key": "eu_ai_law",
         "question": "Is it legal to use AI to screen candidates in the EU?",
-        "answer": "Yes, with rules. Under the EU AI Act, tools that score candidates are very likely high-risk, with duties from 2 December 2027, and the GDPR already applies: a person makes the hiring decision, candidates are told AI is used, and records are kept. prepza works that way: AI writes the questions, people at your company review the results and decide, and candidates are told before they start. This isn't legal advice; [Is AI hiring legal in the EU?](/guides/is-ai-hiring-legal-in-the-eu) explains the rules and the dates.",
+        "answer": "Yes, with rules. Under the EU AI Act, tools that score candidates are very likely high-risk, with duties from 2 December 2027, and the GDPR already applies: a person makes the hiring decision, candidates are told AI is used, and records are kept. testee works that way: AI writes the questions, people at your company review the results and decide, and candidates are told before they start. This isn't legal advice; [Is AI hiring legal in the EU?](/guides/is-ai-hiring-legal-in-the-eu) explains the rules and the dates.",
     },
     {
         "key": "uk_us",
-        "question": "Can we use prepza for candidates in the UK and the US?",
+        "question": "Can we use testee for candidates in the UK and the US?",
         "answer": "Yes. The data processing agreement covers UK and US law, and the instructions for companies and the candidate notice templates (with New York City, Illinois and Colorado versions) cover what you must tell candidates. For jobs in New York City, use it only once you've done what Local Law 144 asks of you: an independent bias audit within the year before use, its summary published, and a notice to candidates 10 business days before. The Action log's bias-audit export gives your auditor each finished candidate's grade and result, to match with your candidates' own self-reported answers.",
     },
     {
         "key": "emails",
-        "question": "Which emails does prepza send, and how do I stop them?",
-        "answer": "Service emails, such as invites, reports, billing problems and changes to our terms, are always sent. The rest, such as the daily activity digest, reminders and product updates, you choose in Settings, under Emails, or stop with the Unsubscribe link in each email. Candidates can stop your company's emails, or an interview's reminders, with the links in their invites and reminders. prepza's news shows in your notifications, the bell at the top; the major news also comes by email as a product update, only while that setting is on.",
+        "question": "Which emails does testee send, and how do I stop them?",
+        "answer": "Service emails, such as invites, reports, billing problems and changes to our terms, are always sent. The rest, such as the daily activity digest, reminders and product updates, you choose in Settings, under Emails, or stop with the Unsubscribe link in each email. Candidates can stop your company's emails, or an interview's reminders, with the links in their invites and reminders. testee's news shows in your notifications, the bell at the top; the major news also comes by email as a product update, only while that setting is on.",
     },
     {
         "key": "delete",

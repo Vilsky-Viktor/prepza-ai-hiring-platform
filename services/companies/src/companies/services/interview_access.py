@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.limits.pause import refuse_if_paused
+from testee_common.auth.auth import CurrentUser
+from testee_common.limits.pause import refuse_if_paused
 
 from companies.constants.invites import INTERVIEW_NOT_READY
 from companies.core.db import Session

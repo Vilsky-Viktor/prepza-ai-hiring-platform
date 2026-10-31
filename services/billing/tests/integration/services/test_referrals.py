@@ -2,7 +2,7 @@ import os
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.lock_waits import hold_first_commit, race
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from billing.config import settings
 from billing.constants.credits import REFERRAL_REWARD, WELCOME_COMPANY, WELCOME_GIFT

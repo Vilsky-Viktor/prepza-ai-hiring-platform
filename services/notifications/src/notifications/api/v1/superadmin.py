@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.auth.user import UserEmailIn
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.auth.user import UserEmailIn
 
 from notifications.schemas.unsubscribe import (
     CandidateOptOutIn,
@@ -10,7 +10,7 @@ from notifications.schemas.unsubscribe import (
 from notifications.services.admin_opt_outs import companies_for, set_stopped
 
 # The admin zone's emails tab: a superadmin stops a company's emails to a candidate who asked
-# prepza directly. Everyone else gets "not found". Addresses go in the body, never the query
+# testee directly. Everyone else gets "not found". Addresses go in the body, never the query
 # string, which request logs record.
 router = APIRouter(prefix="/superadmin/candidate-opt-outs", tags=["superadmin"])
 

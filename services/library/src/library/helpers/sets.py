@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.ai.sets import PreparationIn
+from testee_common.ai.sets import PreparationIn
 
 from library.constants.reuse import MIN_COPY_QUESTIONS
 from library.constants.sets import PLATFORM_OWNER, OwnerType, Pool, SetKind

@@ -2,8 +2,8 @@ import logging
 from datetime import UTC, datetime
 
 import httpx
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from billing.config import settings
 from billing.constants.products import PADDLE_API, PADDLE_API_VERSION, PADDLE_REFUSES_BILLING
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 async def _call(method: str, path: str, **kwargs) -> httpx.Response:
     """One call to Paddle's API; a refusal raises. Paddle failing (no answer, or a 5xx) or
     refusing billing itself (its key wrong, expired or short of a permission; rate-limited) is
-    logged as "Paddle unavailable", which the "prepza Paddle failing" alert counts; a refusal of
+    logged as "Paddle unavailable", which the "testee Paddle failing" alert counts; a refusal of
     the request, such as a declined card, isn't."""
     try:
         response = await http.get_client().request(

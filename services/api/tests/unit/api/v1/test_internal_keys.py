@@ -1,6 +1,6 @@
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.auth.service_auth import issue_token
+from testee_common.auth.service_auth import issue_token
 
 from api.constants.permissions import Permission
 from tests.unit.api_keys import KEY
@@ -31,7 +31,7 @@ def test_a_working_key_answers_its_company_and_permissions_never_its_maker(
 
 
 def test_an_unknown_or_expired_key_is_refused(client, companies_api, key):
-    unknown = verify(client, "pz_unknown")
+    unknown = verify(client, "te_unknown")
     key.expires_at = datetime.now(UTC) - timedelta(minutes=1)
     expired = verify(client)
 

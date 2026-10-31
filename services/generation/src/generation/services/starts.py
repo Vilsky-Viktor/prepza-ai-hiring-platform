@@ -5,11 +5,11 @@ is saved in its own transaction, and its job is queued once it's committed."""
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.ai.ai_cap import refuse_if_capped
-from prepza_common.i18n.text_language import text_language
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit
 from sqlalchemy.exc import IntegrityError
+from testee_common.ai.ai_cap import refuse_if_capped
+from testee_common.i18n.text_language import text_language
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import hit
 
 from generation.constants.actions import INTERVIEW_GENERATION, TEMPLATE_GENERATION
 from generation.constants.additions import ADDITION_RUNNING, NOTHING_TO_TOP_UP

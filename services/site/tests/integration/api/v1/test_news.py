@@ -2,10 +2,10 @@ from datetime import date
 
 import httpx
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.events.news import NewsTranslation as NewsTranslationIn
 from sqlalchemy import select
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.events.news import NewsTranslation as NewsTranslationIn
 
 from site_content.core.db import Session
 from site_content.integrations import generation
@@ -114,7 +114,7 @@ def test_an_edit_drops_old_translations_and_late_ones_of_the_old_text(run, trans
 def test_the_admin_tab_and_the_public_page_end_to_end(run, monkeypatch):
     """A superadmin writes a post through the routes; it's sent to be translated, the public
     page shows it in English until it is, and the tab shows when it's translated."""
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     sent = []
 
     async def translate_news(news_id, source):
@@ -123,7 +123,7 @@ def test_the_admin_tab_and_the_public_page_end_to_end(run, monkeypatch):
     monkeypatch.setattr(generation, "translate_news", translate_news)
     app.dependency_overrides[current_user] = lambda: User(
         uid="sam",
-        email="sam@prepza.dev",
+        email="sam@testee.dev",
         email_verified=True,
         sign_in_provider="google.com",
     )

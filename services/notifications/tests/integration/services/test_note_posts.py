@@ -9,7 +9,7 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 from event_pushes import push
-from prepza_common.auth.encryption import encrypt
+from testee_common.auth.encryption import encrypt
 
 from notifications.config import settings
 from notifications.constants.notes import PENDING_NOTE_HOURS

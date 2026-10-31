@@ -2,9 +2,9 @@ import logging
 from urllib.parse import quote
 
 from fastapi import status
-from prepza_common.http import http
-from prepza_common.http.http import bearer
-from prepza_common.limits.limits import record_hit
+from testee_common.http import http
+from testee_common.http.http import bearer
+from testee_common.limits.limits import record_hit
 
 from notifications.config import settings
 from notifications.constants.email import (

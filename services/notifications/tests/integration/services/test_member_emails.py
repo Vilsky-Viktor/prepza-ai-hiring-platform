@@ -5,9 +5,9 @@ from datetime import UTC, date, datetime, timedelta
 
 import httpx
 import pytest
-from prepza_common.db.lock_waits import hold_first_commit, race
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
-from prepza_common.http import http
+from testee_common.db.lock_waits import hold_first_commit, race
+from testee_common.events.notifications import NotificationKind, Recipient, notification
+from testee_common.http import http
 
 from notifications.config import settings
 from notifications.constants.member_emails import DIGEST_HOUR
@@ -194,7 +194,7 @@ def test_the_digest_tells_yesterdays_activity_once_in_the_users_language(run, ou
     assert (first, second) == (1, 0)
     [email] = outside["sent"]
     assert email.to == f"{ann}@example.com"
-    assert email.subject == "Deine Aktivitätsübersicht auf prepza"
+    assert email.subject == "Deine Aktivitätsübersicht auf testee"
     assert "List-Unsubscribe" in email.headers
 
 

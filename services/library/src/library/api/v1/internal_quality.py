@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, status
-from prepza_common.auth.service_auth import only_from
-from prepza_common.config.constants import MAX_UPDATES, UPDATES_CALLER
+from testee_common.auth.service_auth import only_from
+from testee_common.config.constants import MAX_UPDATES, UPDATES_CALLER
 
 from library.api.dependencies import ServiceCaller
 from library.constants.quality import COMPANY_INTERVIEWS_LINK, PATTERN_SIGNALS_CALLER

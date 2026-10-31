@@ -1,6 +1,6 @@
 from itertools import groupby
 
-from prepza_common.ai.multi_answer import draw
+from testee_common.ai.multi_answer import draw
 
 from rounds.constants.practice import PRACTICE_TIMINGS, PRACTICE_TOPIC_QUESTIONS
 from rounds.constants.rounds import RoundStatus
@@ -19,7 +19,7 @@ from rounds.schemas.practice import (
 
 def practice_topics(content: dict, share: float) -> list[TopicQuestions]:
     """A round's questions: up to PRACTICE_TOPIC_QUESTIONS from each topic, fresh at random, with
-    `share` of multi-answer ones (prepza_common.ai.multi_answer.draw)."""
+    `share` of multi-answer ones (testee_common.ai.multi_answer.draw)."""
     return [
         TopicQuestions(
             id=topic["id"],

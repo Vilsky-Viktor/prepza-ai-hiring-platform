@@ -1,7 +1,7 @@
 import uuid
 
 from fastapi import HTTPException
-from prepza_common.ai.sets import PreparationIn
+from testee_common.ai.sets import PreparationIn
 
 from library.repositories import preparations
 from library.services import sets as set_service

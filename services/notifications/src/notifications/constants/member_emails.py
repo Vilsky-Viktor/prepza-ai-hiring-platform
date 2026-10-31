@@ -1,4 +1,4 @@
-# The emails to prepza's users (company members) that a schedule sends: the activity digest and
+# The emails to testee's users (company members) that a schedule sends: the activity digest and
 # reminders. Each is sent once (services/member_sends.py claim); a run sends for at most
 # RUN_SECONDS, and the next run, a minute later, goes on where it stopped.
 from enum import StrEnum

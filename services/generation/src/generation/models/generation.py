@@ -1,11 +1,11 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE
-from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, DateTime, Index, String, Text, func, text
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.config.constants import DEFAULT_LANGUAGE
+from testee_common.db.db import one_of
 
 from generation.constants.kinds import GenerationKind
 from generation.constants.statuses import Status

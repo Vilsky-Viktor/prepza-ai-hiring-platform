@@ -6,8 +6,8 @@ from datetime import datetime
 import pytest
 from fastapi import FastAPI, Response
 from fastapi.testclient import TestClient
-from prepza_common.config.constants import TRACE_FIELD, TRACE_HEADER
-from prepza_common.observability.logging import (
+from testee_common.config.constants import TRACE_FIELD, TRACE_HEADER
+from testee_common.observability.logging import (
     JsonFormatter,
     RequestLogMiddleware,
     configure_logging,
@@ -109,9 +109,9 @@ def test_emails_and_url_paths_never_reach_a_line_even_from_an_error():
 
 
 def test_the_trace_comes_from_the_load_balancers_header(monkeypatch):
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "prepza-prod")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "testee-prod")
 
-    assert trace_of("abc123/456;o=1") == "projects/prepza-prod/traces/abc123"
+    assert trace_of("abc123/456;o=1") == "projects/testee-prod/traces/abc123"
     assert trace_of(None) is None
     monkeypatch.delenv("GOOGLE_CLOUD_PROJECT")
     assert trace_of("abc123/456;o=1") is None
@@ -183,7 +183,7 @@ def test_uvicorns_access_log_is_off():
 
 
 def test_lines_logged_during_a_request_carry_its_trace(monkeypatch):
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "prepza-prod")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "testee-prod")
     lines = []
 
     class Capture(logging.Handler):
@@ -208,6 +208,6 @@ def test_lines_logged_during_a_request_carry_its_trace(monkeypatch):
         logging.getLogger().removeHandler(handler)
 
     traced = [line for line in lines if line["message"] == "working"]
-    assert traced[0][TRACE_FIELD] == "projects/prepza-prod/traces/abc123"
+    assert traced[0][TRACE_FIELD] == "projects/testee-prod/traces/abc123"
     # Outside the request, nothing carries it.
     assert TRACE_FIELD not in json.loads(JsonFormatter().format(record()))

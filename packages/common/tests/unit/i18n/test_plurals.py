@@ -1,5 +1,5 @@
 import pytest
-from prepza_common.i18n.plurals import plurals
+from testee_common.i18n.plurals import plurals
 
 CREDITS = {
     "en": "{n, plural, one {# credit} other {# credits}}",

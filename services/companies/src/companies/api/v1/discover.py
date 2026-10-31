@@ -2,8 +2,8 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Path, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.db.paging import PageParams
+from testee_common.auth.auth import CurrentUser
+from testee_common.db.paging import PageParams
 
 from companies.constants.discover import PERSON_ID_LENGTH
 from companies.schemas.discover import DiscoverPersonOut

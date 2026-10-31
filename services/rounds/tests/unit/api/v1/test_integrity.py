@@ -3,10 +3,10 @@ from uuid import uuid4
 
 import pytest
 from fastapi.testclient import TestClient
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.config.constants import RATE_LIMITED
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.config.constants import RATE_LIMITED
+from testee_common.limits.limit_list import LIMITS
 
 from rounds.helpers.review import add_signals, build_review
 from rounds.helpers.sessions import new_sections

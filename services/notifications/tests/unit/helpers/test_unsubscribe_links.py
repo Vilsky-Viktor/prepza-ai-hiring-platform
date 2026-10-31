@@ -22,7 +22,7 @@ from notifications.helpers.unsubscribe import (
 )
 
 SECRET = "test-email-link-secret"
-SITE = "https://prepza.com"
+SITE = "https://testee.com"
 INVITE = {
     "invite_id": "6f1c2c1e-0000-4000-8000-000000000001",
     "company_id": "c-1",

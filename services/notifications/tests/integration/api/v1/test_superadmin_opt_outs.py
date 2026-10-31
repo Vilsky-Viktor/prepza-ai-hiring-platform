@@ -3,10 +3,10 @@ import uuid
 
 import httpx
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.http import http
 from sqlalchemy import func, select
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.http import http
 
 from notifications.config import settings
 from notifications.core.db import Session
@@ -22,7 +22,7 @@ from tests.integration.transactions import transaction
 def acme(monkeypatch):
     """Companies at the HTTP boundary: Acme invited the address; the superadmin Sam signs in."""
     company = str(uuid.uuid4())
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     monkeypatch.setattr(settings, "companies_url", "http://companies")
 
     def answer(request: httpx.Request) -> httpx.Response:
@@ -40,7 +40,7 @@ def acme(monkeypatch):
     )
     app.dependency_overrides[current_user] = lambda: User(
         uid="sam",
-        email="sam@prepza.dev",
+        email="sam@testee.dev",
         email_verified=True,
         sign_in_provider="google.com",
     )

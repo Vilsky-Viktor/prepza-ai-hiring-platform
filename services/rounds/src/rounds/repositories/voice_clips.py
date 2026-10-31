@@ -1,10 +1,10 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.db.db import delete_in_batches
 from sqlalchemy import select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.db.db import delete_in_batches
 
 from rounds.constants.voice import CLIP_DELETE_BATCH
 from rounds.models.voice_clips import VoiceClip

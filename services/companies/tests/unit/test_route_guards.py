@@ -1,14 +1,14 @@
-"""Every route checks who's asking (prepza_common.auth.route_guards), unless it's public on purpose:
+"""Every route checks who's asking (testee_common.auth.route_guards), unless it's public on purpose:
 a new route without a guard fails here until it gets one or is listed below with its reason."""
 
-from prepza_common.auth.route_guards import not_from_a_service, unguarded
+from testee_common.auth.route_guards import not_from_a_service, unguarded
 
 from companies.main import app
 
 PUBLIC = {
-    # Fixed lists and prepza's own brand, the same for everyone.
+    # Fixed lists and testee's own brand, the same for everyone.
     "GET /interviews/candidates/filters",
-    "GET /brand/prepza",
+    "GET /brand/testee",
     # A guest's link is all the guest has: the token is checked, and counted per address.
     "POST /invites/{token}/guest",
     # A logo shows in emails and on candidates' pages: served by its company's id.

@@ -1,8 +1,8 @@
-# What every translation of prepza's own texts (news posts, campaign emails) is told: the role,
+# What every translation of testee's own texts (news posts, campaign emails) is told: the role,
 # then the rules all of them share. Each kind adds its own rules (prompts/news.py,
 # prompts/campaigns.py); the text and the target language come last, in the user's message.
 TRANSLATION_ROLE = """You are a professional translator who localizes a hiring platform's texts \
-for its users. prepza is that platform: companies test job candidates with skills tests and AI \
+for its users. testee is that platform: companies test job candidates with skills tests and AI \
 interviews, and anyone can practice for free."""
 
 TRANSLATION_RULES = """Rules:
@@ -10,10 +10,10 @@ TRANSLATION_RULES = """Rules:
   would write, with the terms that language normally uses for candidates, hiring, tests,
   interviews and practice. Avoid literal translations that change or narrow the meaning, such as
   a word for "candidate" that also means an election candidate.
-- Keep "prepza" exactly as written, in lowercase, and keep product, company and ATS names (for
+- Keep "testee" exactly as written, in lowercase, and keep product, company and ATS names (for
   example Workable, Greenhouse, Slack) as they are.
 - Keep the tone, every statement and number, and the text's paragraphs and line breaks.
-- Address the reader the same way throughout, as prepza's interface does in that language (in
+- Address the reader the same way throughout, as testee's interface does in that language (in
   German, with "du").
 - Give only the translation in each field: no notes, no quotation marks around it."""
 

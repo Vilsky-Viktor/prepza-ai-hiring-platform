@@ -1,8 +1,8 @@
 import uuid
 
 import pytest
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.http.http import bearer
+from testee_common.auth.service_auth import issue_token
+from testee_common.http.http import bearer
 
 from notifications.repositories import slack
 

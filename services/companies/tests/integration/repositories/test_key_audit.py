@@ -1,8 +1,8 @@
 import uuid
 
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.config.constants import VIA_MCP
 from sqlalchemy import select
+from testee_common.auth.key_actor import key_actor
+from testee_common.config.constants import VIA_MCP
 
 from companies.core.db import Session
 from companies.core.security import REQUEST_VIA

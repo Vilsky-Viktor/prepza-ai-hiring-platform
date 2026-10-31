@@ -3,17 +3,17 @@
 # The footer of reminders to a company's owners and admins.
 MEMBER_FOOTER = (
     "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng isang kumpanya "
-    "sa prepza."
+    "sa testee."
 )
 
 TEXTS = {
     "candidate": {
         "subject": "Imbitasyon sa interview mula sa {company}",
-        "preheader": "Sagutan ang “{title}” sa prepza. Mag-sign in gamit ang {email} "
+        "preheader": "Sagutan ang “{title}” sa testee. Mag-sign in gamit ang {email} "
         "para magsimula.",
         "heading": "Imbitasyon sa interview",
         "lines": [
-            "Iniimbitahan ka ng {company} sa interview na “{title}” sa prepza.",
+            "Iniimbitahan ka ng {company} sa interview na “{title}” sa testee.",
             (
                 "Mag-sign in gamit ang {email} para magsimula. Ang address na ito "
                 "lang ang puwedeng sumagot sa interview, at may isang pagkakataon ka "
@@ -30,7 +30,7 @@ TEXTS = {
         ),
         "heading": "Ang link ng interview mo",
         "lines": [
-            "Sinimulan mo ang interview na “{title}” ng {company} sa prepza.",
+            "Sinimulan mo ang interview na “{title}” ng {company} sa testee.",
             (
                 "Kung aalis ka, ituloy ito gamit ang link na ito: mag-sign in gamit ang {email}. "
                 "Gagana pa rin ito kahit i-off ng {company} ang link kung saan ka nagsimula. "
@@ -39,7 +39,7 @@ TEXTS = {
         ],
         "button": "Ituloy ang interview",
         "footer": (
-            "Ipinadala ang email na ito sa {email} dahil may sinimulang interview sa prepza gamit "
+            "Ipinadala ang email na ito sa {email} dahil may sinimulang interview sa testee gamit "
             "ang address na ito."
         ),
     },
@@ -49,7 +49,7 @@ TEXTS = {
         "heading": "Naghihintay ang iyong interview",
         "lines": [
             (
-                "Inimbitahan ka ng {company} sa interview na “{title}” sa prepza ilang araw na "
+                "Inimbitahan ka ng {company} sa interview na “{title}” sa testee ilang araw na "
                 "ang nakalipas, at hindi mo pa ito nasisimulan."
             ),
             (
@@ -61,14 +61,14 @@ TEXTS = {
         "button": "Buksan ang imbitasyon",
     },
     "member": {
-        "subject": "Sumali sa {company} sa prepza",
+        "subject": "Sumali sa {company} sa testee",
         "preheader": (
             "Sumali sa team ng {company} bilang {role}. Mag-sign in gamit ang {email} para "
             "tanggapin."
         ),
         "heading": "Imbitasyon sa team",
         "lines": [
-            "Iniimbitahan ka ni {inviter} na sumali sa team ng {company} sa prepza bilang {role}.",
+            "Iniimbitahan ka ni {inviter} na sumali sa team ng {company} sa testee bilang {role}.",
             (
                 "Mag-sign in gamit ang {email} para tanggapin ito. Ang address na ito lang ang "
                 "puwedeng tumanggap sa imbitasyon."
@@ -90,9 +90,9 @@ TEXTS = {
                 "para sumagot kay {sender}."
             ),
         ],
-        "button": "Bisitahin ang prepza",
+        "button": "Bisitahin ang testee",
         "footer": "Ipinadala ang email na ito sa {email} dahil nag-share si {sender} ng report ng "
-        "aplikante sa address na ito sa prepza. Kung hindi mo ito inaasahan, puwede mo itong "
+        "aplikante sa address na ito sa testee. Kung hindi mo ito inaasahan, puwede mo itong "
         "balewalain.",
     },
     "candidates": {
@@ -107,17 +107,17 @@ TEXTS = {
                 "{sender}."
             ),
         ],
-        "button": "Bisitahin ang prepza",
+        "button": "Bisitahin ang testee",
         "footer": "Ipinadala ang email na ito sa {email} dahil nag-share si {sender} ng report ng "
-        "mga aplikante sa address na ito sa prepza. Kung hindi mo ito inaasahan, puwede mo itong "
+        "mga aplikante sa address na ito sa testee. Kung hindi mo ito inaasahan, puwede mo itong "
         "balewalain.",
     },
     "digest": {
-        "subject": "Ang iyong buod ng aktibidad sa prepza",
+        "subject": "Ang iyong buod ng aktibidad sa testee",
         "preheader": "Ang nangyari sa mga kumpanya mo sa nakalipas na 24 oras.",
         "heading": "Ang iyong buod ng aktibidad",
         "lines": [
-            "Narito ang nangyari sa mga kumpanya mo sa prepza sa nakalipas na 24 oras.",
+            "Narito ang nangyari sa mga kumpanya mo sa testee sa nakalipas na 24 oras.",
         ],
         "rows": {
             "candidate_finished": "Mga aplikanteng nakatapos: {count} · “{title}”",
@@ -128,10 +128,10 @@ TEXTS = {
             "note": "{author}: “{excerpt}”",
             "note_by_former": "Isang dating miyembro: “{excerpt}”",
         },
-        "button": "Buksan ang prepza",
+        "button": "Buksan ang testee",
         "footer": (
             "Ipinadala ang email na ito sa {email} dahil miyembro ka ng isang kumpanya sa "
-            "prepza at natatanggap mo ang buod ng aktibidad nito."
+            "testee at natatanggap mo ang buod ng aktibidad nito."
         ),
     },
     "low_credits": {
@@ -192,18 +192,18 @@ TEXTS = {
         "heading": "Ina-update namin ang aming mga tuntunin",
         "lines": [
             (
-                "Naglathala kami ng bagong bersyon ng mga tuntunin ng prepza. Ipapatupad ito "
+                "Naglathala kami ng bagong bersyon ng mga tuntunin ng testee. Ipapatupad ito "
                 "simula {date}; hanggang doon, ang kasalukuyang mga tuntunin ang umiiral."
             ),
             (
-                "Kapag ginamit mo ang prepza pagkatapos ng {date}, tinatanggap mo ang bagong mga "
+                "Kapag ginamit mo ang testee pagkatapos ng {date}, tinatanggap mo ang bagong mga "
                 "tuntunin. Kung hindi, puwede mong burahin ang iyong account sa Mga setting bago "
                 "ang petsang iyon."
             ),
         ],
         "button": "Basahin ang bagong mga tuntunin",
         "footer": (
-            "Ipinadala ang email na ito sa {email} dahil may prepza account ka. Abiso ito "
+            "Ipinadala ang email na ito sa {email} dahil may testee account ka. Abiso ito "
             "tungkol sa aming mga tuntunin, kaya ipinapadala ito anuman ang iyong email "
             "settings."
         ),
@@ -214,7 +214,7 @@ TEXTS = {
         "heading": "Ina-update namin ang aming patakaran sa privacy",
         "lines": [
             (
-                "Naglathala kami ng bagong bersyon ng patakaran sa privacy ng prepza, na "
+                "Naglathala kami ng bagong bersyon ng patakaran sa privacy ng testee, na "
                 "nagsasabi kung paano namin ginagamit ang data mo. Ipapatupad ito simula {date}; "
                 "hanggang doon, ang kasalukuyang bersyon ang umiiral."
             ),
@@ -222,7 +222,7 @@ TEXTS = {
         ],
         "button": "Basahin ang bagong patakaran sa privacy",
         "footer": (
-            "Ipinadala ang email na ito sa {email} dahil may prepza account ka. Abiso ito "
+            "Ipinadala ang email na ito sa {email} dahil may testee account ka. Abiso ito "
             "tungkol sa kung paano namin ginagamit ang data mo, kaya ipinapadala ito anuman "
             "ang iyong email settings."
         ),
@@ -234,19 +234,19 @@ TEXTS = {
         "lines": [
             (
                 "Naglathala kami ng bagong bersyon ng data processing agreement na batayan ng "
-                "prepza sa pagproseso ng data ng mga aplikante mo. Ipapatupad ito simula {date}; "
+                "testee sa pagproseso ng data ng mga aplikante mo. Ipapatupad ito simula {date}; "
                 "hanggang doon, ang kasalukuyang bersyon ang umiiral."
             ),
             (
                 "Ang kumpanyang tumututol dahil sa makatwirang dahilan tungkol sa proteksyon ng "
-                "data ay puwedeng tumigil sa paggamit ng prepza at burahin ang kumpanya nito bago "
+                "data ay puwedeng tumigil sa paggamit ng testee at burahin ang kumpanya nito bago "
                 "ang petsang iyon."
             ),
         ],
         "button": "Basahin ang bagong kasunduan",
         "footer": (
             "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng isang "
-            "kumpanya sa prepza. Abiso ito tungkol sa kasunduan namin sa kumpanya mo, kaya "
+            "kumpanya sa testee. Abiso ito tungkol sa kasunduan namin sa kumpanya mo, kaya "
             "ipinapadala ito anuman ang iyong email settings."
         ),
     },
@@ -258,10 +258,10 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Buksan ang prepza",
+        "open_site": "Buksan ang testee",
         "footer": (
             "Ipinadala ang email na ito sa {email} dahil pinili mong makatanggap ng mga update at"
-            " balita tungkol sa produkto mula sa prepza."
+            " balita tungkol sa produkto mula sa testee."
         ),
     },
     "promotions": {
@@ -270,13 +270,13 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Buksan ang prepza",
+        "open_site": "Buksan ang testee",
         "footer": (
             "Ipinadala ang email na ito sa {email} dahil pinili mong makatanggap ng mga alok at"
-            " promo mula sa prepza."
+            " promo mula sa testee."
         ),
     },
-    # An important notice: a service email about prepza itself (a security incident, planned
+    # An important notice: a service email about testee itself (a security incident, planned
     # downtime, a change to how it works), whatever the email settings; never a promotion.
     "notices": {
         "subject": "{subject}",
@@ -284,9 +284,9 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "Buksan ang prepza",
+        "open_site": "Buksan ang testee",
         "footer": (
-            "Ipinadala ang email na ito sa {email} dahil may prepza account ka. Mahalagang"
+            "Ipinadala ang email na ito sa {email} dahil may testee account ka. Mahalagang"
             " abiso ito tungkol sa serbisyo, gaya ng seguridad o availability nito, kaya"
             " ipinapadala ito anuman ang iyong email settings."
         ),
@@ -310,7 +310,7 @@ TEXTS = {
         "button": "Mag-top up",
         "footer": (
             "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng "
-            "{company} sa prepza. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala "
+            "{company} sa testee. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala "
             "ito anuman ang iyong email settings."
         ),
     },
@@ -333,7 +333,7 @@ TEXTS = {
         "button": "I-update ang card",
         "footer": (
             "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng "
-            "{company} sa prepza. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala "
+            "{company} sa testee. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala "
             "ito anuman ang iyong email settings."
         ),
     },
@@ -364,7 +364,7 @@ TEXTS = {
         "button": "Buksan ang billing",
         "footer": (
             "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng {company} "
-            "sa prepza. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala ito anuman "
+            "sa testee. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala ito anuman "
             "ang iyong email settings."
         ),
     },
@@ -391,7 +391,7 @@ TEXTS = {
         "button": "Buksan ang billing",
         "footer": (
             "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng {company} "
-            "sa prepza. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala ito anuman "
+            "sa testee. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala ito anuman "
             "ang iyong email settings."
         ),
     },
@@ -415,20 +415,20 @@ TEXTS = {
         "button": "Buksan ang billing",
         "footer": (
             "Ipinadala ang email na ito sa {email} dahil ikaw ay may-ari o admin ng "
-            "{company} sa prepza. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala "
+            "{company} sa testee. Tungkol ito sa billing ng kumpanya mo, kaya ipinapadala "
             "ito anuman ang iyong email settings."
         ),
     },
     "footer": "Ipinadala ang email na ito sa {email} dahil may nag-imbita sa address na ito sa "
-    "prepza. Kung hindi mo ito inaasahan, puwede mo itong balewalain.",
-    # An invite from a company prepza hasn't verified, at the end of the footer.
-    "unverified": "Hindi pa na-verify ng prepza ang {company}.",
+    "testee. Kung hindi mo ito inaasahan, puwede mo itong balewalain.",
+    # An invite from a company testee hasn't verified, at the end of the footer.
+    "unverified": "Hindi pa na-verify ng testee ang {company}.",
     "paste_link": "O i-paste ang link na ito sa iyong browser",
     # The footer's links: optional emails' unsubscribe and settings, and a candidate's own.
     "unsubscribe": "Mag-unsubscribe",
     "email_settings": "Baguhin ang iyong mga setting sa email",
     "stop_reminders": "Huwag na akong padalhan ng paalala para sa interview na ito",
     "stop_company": "Huwag na akong padalhan ng email para sa {company}",
-    # Who runs prepza, at the end of every email.
-    "operator": "Ang prepza ay pinapatakbo ng {name}, {address}.",
+    # Who runs testee, at the end of every email.
+    "operator": "Ang testee ay pinapatakbo ng {name}, {address}.",
 }

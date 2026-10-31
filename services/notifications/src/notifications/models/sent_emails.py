@@ -1,8 +1,8 @@
 from datetime import date
 
-from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, Date, Identity, String, Text, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from notifications.constants.member_emails import MemberEmail
 from notifications.models.base import Base

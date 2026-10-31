@@ -1,7 +1,7 @@
 from datetime import UTC, datetime
 from types import SimpleNamespace
 
-from prepza_common.events.notifications import notification
+from testee_common.events.notifications import notification
 
 from billing.services.auto_top_up_notices import turned_on
 

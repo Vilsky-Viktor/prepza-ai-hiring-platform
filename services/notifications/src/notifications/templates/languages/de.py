@@ -3,16 +3,16 @@
 # The footer of reminders to a company's owners and admins.
 MEMBER_FOOTER = (
     "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin eines Unternehmens "
-    "auf prepza bist."
+    "auf testee bist."
 )
 
 TEXTS = {
     "candidate": {
         "subject": "Interview-Einladung von {company}",
-        "preheader": "Absolviere „{title}“ auf prepza. Melde dich mit {email} an, um zu beginnen.",
+        "preheader": "Absolviere „{title}“ auf testee. Melde dich mit {email} an, um zu beginnen.",
         "heading": "Einladung zum Interview",
         "lines": [
-            "{company} lädt dich zum Interview „{title}“ auf prepza ein.",
+            "{company} lädt dich zum Interview „{title}“ auf testee ein.",
             (
                 "Melde dich mit {email} an, um zu beginnen. Nur diese Adresse "
                 "kann das Interview absolvieren, und du hast einen Versuch."
@@ -28,7 +28,7 @@ TEXTS = {
         ),
         "heading": "Dein Link zum Interview",
         "lines": [
-            "Du hast das Interview „{title}“ von {company} auf prepza begonnen.",
+            "Du hast das Interview „{title}“ von {company} auf testee begonnen.",
             (
                 "Wenn du es verlässt, mach mit diesem Link weiter: Melde dich mit {email} an. "
                 "Er funktioniert auch dann, wenn {company} den Link deaktiviert, über den du "
@@ -38,7 +38,7 @@ TEXTS = {
         "button": "Interview fortsetzen",
         "footer": (
             "Diese E-Mail wurde an {email} gesendet, weil mit dieser Adresse ein Interview auf "
-            "prepza begonnen wurde."
+            "testee begonnen wurde."
         ),
     },
     "reminder": {
@@ -48,7 +48,7 @@ TEXTS = {
         "lines": [
             (
                 "{company} hat dich vor einigen Tagen zum Interview „{title}“ auf "
-                "prepza eingeladen, und du hast es noch nicht begonnen."
+                "testee eingeladen, und du hast es noch nicht begonnen."
             ),
             (
                 "Melde dich mit {email} an, um zu beginnen. Nur diese Adresse kann das "
@@ -59,14 +59,14 @@ TEXTS = {
         "button": "Einladung öffnen",
     },
     "member": {
-        "subject": "Tritt {company} auf prepza bei",
+        "subject": "Tritt {company} auf testee bei",
         "preheader": (
             "Tritt dem Team von {company} als {role} bei. Melde dich mit {email} an, um die "
             "Einladung anzunehmen."
         ),
         "heading": "Einladung ins Team",
         "lines": [
-            "{inviter} lädt dich ein, dem Team von {company} auf prepza als {role} beizutreten.",
+            "{inviter} lädt dich ein, dem Team von {company} auf testee als {role} beizutreten.",
             (
                 "Melde dich mit {email} an, um die Einladung anzunehmen. Nur diese Adresse kann "
                 "die Einladung annehmen."
@@ -88,9 +88,9 @@ TEXTS = {
                 "um {sender} zu antworten."
             ),
         ],
-        "button": "prepza besuchen",
+        "button": "testee besuchen",
         "footer": "Diese E-Mail wurde an {email} gesendet, weil {sender} einen Kandidatenbericht "
-        "mit dieser Adresse auf prepza geteilt hat. Wenn du sie nicht erwartet hast, kannst "
+        "mit dieser Adresse auf testee geteilt hat. Wenn du sie nicht erwartet hast, kannst "
         "du sie ignorieren.",
     },
     "candidates": {
@@ -105,17 +105,17 @@ TEXTS = {
                 "antworten."
             ),
         ],
-        "button": "prepza besuchen",
+        "button": "testee besuchen",
         "footer": "Diese E-Mail wurde an {email} gesendet, weil {sender} einen Kandidatenbericht "
-        "mit dieser Adresse auf prepza geteilt hat. Wenn du sie nicht erwartet hast, kannst "
+        "mit dieser Adresse auf testee geteilt hat. Wenn du sie nicht erwartet hast, kannst "
         "du sie ignorieren.",
     },
     "digest": {
-        "subject": "Deine Aktivitätsübersicht auf prepza",
+        "subject": "Deine Aktivitätsübersicht auf testee",
         "preheader": "Was in den letzten 24 Stunden in deinen Unternehmen passiert ist.",
         "heading": "Deine Aktivitätsübersicht",
         "lines": [
-            "Das ist in den letzten 24 Stunden in deinen Unternehmen auf prepza passiert.",
+            "Das ist in den letzten 24 Stunden in deinen Unternehmen auf testee passiert.",
         ],
         "rows": {
             "candidate_finished": "Kandidaten, die fertig sind: {count} · „{title}“",
@@ -126,10 +126,10 @@ TEXTS = {
             "note": "{author}: „{excerpt}“",
             "note_by_former": "Ehemaliges Mitglied: „{excerpt}“",
         },
-        "button": "prepza öffnen",
+        "button": "testee öffnen",
         "footer": (
             "Diese E-Mail wurde an {email} gesendet, weil du Mitglied eines Unternehmens "
-            "auf prepza bist und seine Aktivitätsübersicht erhältst."
+            "auf testee bist und seine Aktivitätsübersicht erhältst."
         ),
     },
     "low_credits": {
@@ -190,18 +190,18 @@ TEXTS = {
         "heading": "Wir aktualisieren unsere Nutzungsbedingungen",
         "lines": [
             (
-                "Wir haben eine neue Fassung der Nutzungsbedingungen von prepza veröffentlicht. "
+                "Wir haben eine neue Fassung der Nutzungsbedingungen von testee veröffentlicht. "
                 "Sie gilt ab {date}; bis dahin gelten die aktuellen Nutzungsbedingungen."
             ),
             (
-                "Wenn du prepza ab {date} weiter nutzt, akzeptierst du die neuen "
+                "Wenn du testee ab {date} weiter nutzt, akzeptierst du die neuen "
                 "Nutzungsbedingungen. Wenn nicht, kannst du dein Konto vorher in den "
                 "Einstellungen löschen."
             ),
         ],
         "button": "Neue Nutzungsbedingungen lesen",
         "footer": (
-            "Diese E-Mail wurde an {email} gesendet, weil du ein prepza-Konto hast. Sie ist "
+            "Diese E-Mail wurde an {email} gesendet, weil du ein testee-Konto hast. Sie ist "
             "ein Hinweis zu unseren Nutzungsbedingungen und wird daher unabhängig von deinen "
             "E-Mail-Einstellungen gesendet."
         ),
@@ -212,7 +212,7 @@ TEXTS = {
         "heading": "Wir aktualisieren unsere Datenschutzerklärung",
         "lines": [
             (
-                "Wir haben eine neue Fassung der Datenschutzerklärung von prepza veröffentlicht, "
+                "Wir haben eine neue Fassung der Datenschutzerklärung von testee veröffentlicht, "
                 "die beschreibt, wie wir deine Daten verwenden. Sie gilt ab {date}; bis dahin "
                 "gilt die aktuelle Fassung."
             ),
@@ -220,7 +220,7 @@ TEXTS = {
         ],
         "button": "Neue Datenschutzerklärung lesen",
         "footer": (
-            "Diese E-Mail wurde an {email} gesendet, weil du ein prepza-Konto hast. Sie ist "
+            "Diese E-Mail wurde an {email} gesendet, weil du ein testee-Konto hast. Sie ist "
             "ein Hinweis dazu, wie wir deine Daten verwenden, und wird daher unabhängig von "
             "deinen E-Mail-Einstellungen gesendet."
         ),
@@ -232,18 +232,18 @@ TEXTS = {
         "lines": [
             (
                 "Wir haben eine neue Fassung des Auftragsverarbeitungsvertrags veröffentlicht, "
-                "nach dem prepza die Daten deiner Kandidaten verarbeitet. Sie gilt ab {date}; bis "
+                "nach dem testee die Daten deiner Kandidaten verarbeitet. Sie gilt ab {date}; bis "
                 "dahin gilt die aktuelle Fassung."
             ),
             (
                 "Widerspricht ein Unternehmen aus berechtigten Gründen des Datenschutzes, kann es "
-                "die Nutzung von prepza vorher beenden und sein Unternehmen in prepza löschen."
+                "die Nutzung von testee vorher beenden und sein Unternehmen in testee löschen."
             ),
         ],
         "button": "Neuen Vertrag lesen",
         "footer": (
             "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin eines "
-            "Unternehmens auf prepza bist. Sie ist ein Hinweis zu unserem Vertrag mit deinem "
+            "Unternehmens auf testee bist. Sie ist ein Hinweis zu unserem Vertrag mit deinem "
             "Unternehmen und wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
     },
@@ -255,10 +255,10 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "prepza öffnen",
+        "open_site": "testee öffnen",
         "footer": (
             "Diese E-Mail wurde an {email} gesendet, weil du Produkt-Updates und Neuigkeiten von"
-            " prepza erhalten möchtest."
+            " testee erhalten möchtest."
         ),
     },
     "promotions": {
@@ -267,13 +267,13 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "prepza öffnen",
+        "open_site": "testee öffnen",
         "footer": (
-            "Diese E-Mail wurde an {email} gesendet, weil du Angebote und Aktionen von prepza"
+            "Diese E-Mail wurde an {email} gesendet, weil du Angebote und Aktionen von testee"
             " erhalten möchtest."
         ),
     },
-    # An important notice: a service email about prepza itself (a security incident, planned
+    # An important notice: a service email about testee itself (a security incident, planned
     # downtime, a change to how it works), whatever the email settings; never a promotion.
     "notices": {
         "subject": "{subject}",
@@ -281,9 +281,9 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "prepza öffnen",
+        "open_site": "testee öffnen",
         "footer": (
-            "Diese E-Mail wurde an {email} gesendet, weil du ein prepza-Konto hast. Sie ist ein"
+            "Diese E-Mail wurde an {email} gesendet, weil du ein testee-Konto hast. Sie ist ein"
             " wichtiger Hinweis zum Dienst, etwa zu seiner Sicherheit oder Verfügbarkeit, und"
             " wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
@@ -307,7 +307,7 @@ TEXTS = {
         "button": "Aufladen",
         "footer": (
             "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin von "
-            "{company} auf prepza bist. Sie betrifft die Abrechnung deines Unternehmens und"
+            "{company} auf testee bist. Sie betrifft die Abrechnung deines Unternehmens und"
             " wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
     },
@@ -333,7 +333,7 @@ TEXTS = {
         "button": "Karte aktualisieren",
         "footer": (
             "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin von "
-            "{company} auf prepza bist. Sie betrifft die Abrechnung deines Unternehmens und"
+            "{company} auf testee bist. Sie betrifft die Abrechnung deines Unternehmens und"
             " wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
     },
@@ -365,7 +365,7 @@ TEXTS = {
         "button": "Abrechnung öffnen",
         "footer": (
             "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin von {company} "
-            "auf prepza bist. Sie betrifft die Abrechnung deines Unternehmens und wird daher "
+            "auf testee bist. Sie betrifft die Abrechnung deines Unternehmens und wird daher "
             "unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
     },
@@ -390,7 +390,7 @@ TEXTS = {
         "button": "Abrechnung öffnen",
         "footer": (
             "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin von {company} "
-            "auf prepza bist. Sie betrifft die Abrechnung deines Unternehmens und wird daher "
+            "auf testee bist. Sie betrifft die Abrechnung deines Unternehmens und wird daher "
             "unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
     },
@@ -413,20 +413,20 @@ TEXTS = {
         "button": "Abrechnung öffnen",
         "footer": (
             "Diese E-Mail wurde an {email} gesendet, weil du Inhaber oder Admin von "
-            "{company} auf prepza bist. Sie betrifft die Abrechnung deines Unternehmens und"
+            "{company} auf testee bist. Sie betrifft die Abrechnung deines Unternehmens und"
             " wird daher unabhängig von deinen E-Mail-Einstellungen gesendet."
         ),
     },
-    "footer": "Diese E-Mail wurde an {email} gesendet, weil jemand diese Adresse auf prepza "
+    "footer": "Diese E-Mail wurde an {email} gesendet, weil jemand diese Adresse auf testee "
     "eingeladen hat. Wenn du sie nicht erwartet hast, kannst du sie ignorieren.",
-    # An invite from a company prepza hasn't verified, at the end of the footer.
-    "unverified": "prepza hat {company} nicht verifiziert.",
+    # An invite from a company testee hasn't verified, at the end of the footer.
+    "unverified": "testee hat {company} nicht verifiziert.",
     "paste_link": "Oder füge diesen Link in deinen Browser ein",
     # The footer's links: optional emails' unsubscribe and settings, and a candidate's own.
     "unsubscribe": "Abmelden",
     "email_settings": "E-Mail-Einstellungen ändern",
     "stop_reminders": "Keine Erinnerungen mehr zu diesem Interview",
     "stop_company": "Keine E-Mails mehr von {company}",
-    # Who runs prepza, at the end of every email.
-    "operator": "prepza wird von {name} betrieben, {address}.",
+    # Who runs testee, at the end of every email.
+    "operator": "testee wird von {name} betrieben, {address}.",
 }

@@ -4,7 +4,7 @@ import jwt
 import pytest
 from fastapi import FastAPI, HTTPException
 from fastapi.testclient import TestClient
-from prepza_common.auth.service_auth import (
+from testee_common.auth.service_auth import (
     callee_secret,
     issue_token,
     only_from,

@@ -1,4 +1,4 @@
-# Notices of a significant change to a legal document (prepza_common LEGAL_VERSIONS): a
+# Notices of a significant change to a legal document (testee_common LEGAL_VERSIONS): a
 # superadmin decides a change is significant and asks for its email, which goes out at least
 # LEGAL_NOTICE_DAYS before the new version applies (the DPA promises 14 days for a new
 # sub-processor), through the bulk sender (constants/bulk.py) in its sending hours, until everyone

@@ -1,11 +1,11 @@
 {
-  "intro": "Diese Datenschutzerklärung erklärt, welche personenbezogenen Daten prepza erhebt, warum, wie lange wir sie speichern und welche Rechte du hast. prepza wird von der Arcolabs OÜ (Registercode 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estland, betrieben. prepza.ai zeigt dieses Dokument auch in anderen Sprachen; verbindlich ist nur die englische Fassung, und wo eine Übersetzung abweicht, gilt die englische Fassung.",
+  "intro": "Diese Datenschutzerklärung erklärt, welche personenbezogenen Daten testee erhebt, warum, wie lange wir sie speichern und welche Rechte du hast. testee wird von der Arcolabs OÜ (Registercode 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estland, betrieben. testee.ai zeigt dieses Dokument auch in anderen Sprachen; verbindlich ist nur die englische Fassung, und wo eine Übersetzung abweicht, gilt die englische Fassung.",
   "sections": [
     {
       "heading": "Wer verantwortlich ist",
       "paragraphs": [
-        "Für dein eigenes Konto und das Konto deines Unternehmens ist die Arcolabs OÜ Verantwortlicher für deine Daten. Schreib bei Fragen oder Anliegen an hello@prepza.ai.",
-        "Wenn ein Unternehmen dich über prepza zu einem Interview einlädt, entscheidet dieses Unternehmen, warum und wie deine Ergebnisse verwendet werden, und ist für sie Verantwortlicher; wir verarbeiten sie in seinem Auftrag. Du kannst dich direkt an das Unternehmen oder an uns wenden, und wir leiten dein Anliegen weiter."
+        "Für dein eigenes Konto und das Konto deines Unternehmens ist die Arcolabs OÜ Verantwortlicher für deine Daten. Schreib bei Fragen oder Anliegen an hello@testee.ai.",
+        "Wenn ein Unternehmen dich über testee zu einem Interview einlädt, entscheidet dieses Unternehmen, warum und wie deine Ergebnisse verwendet werden, und ist für sie Verantwortlicher; wir verarbeiten sie in seinem Auftrag. Du kannst dich direkt an das Unternehmen oder an uns wenden, und wir leiten dein Anliegen weiter."
       ]
     },
     {
@@ -23,7 +23,7 @@
         "Die „Ich bin kein Roboter“-Prüfung: wenn du das Kontaktformular sendest, dem Hilfe-Chat eine erste Frage stellst, ein Interview über den Link einer Stellenanzeige startest, dein erstes Unternehmen anlegst oder die Themen eines Unternehmens freigibst, das noch nicht bezahlt hat, prüft Cloudflare Turnstile deinen Browser (etwa seinen Typ, sein Verhalten und die Adresse, von der aus er sich verbindet), um einen Menschen von einem Skript zu unterscheiden. Wir erhalten nur, ob die Prüfung bestanden wurde.",
         "KI-Apps, die du verbindest: der Name der App und die Website, zu der sie zurückkehrt, und wann du sie verbunden und zuletzt genutzt hast. Ihr Zugang wird nur als Einweg-Hash gespeichert.",
         "Die Nutzungsbedingungen, die du akzeptiert hast: die Fassung der Nutzungsbedingungen, die bei deiner Registrierung galt, und wann das war, als Nachweis dessen, dem du zugestimmt hast. Dieser Nachweis wird mit deinem Konto gelöscht.",
-        "Tools, die ein Unternehmen anbindet: die Schlüssel oder Tokens, die sein Inhaber oder Admin in seinem Bewerbermanagementsystem (Workable, Greenhouse, Teamtailor, Recruitee oder Breezy HR) oder in Slack erstellt, verschlüsselt gespeichert; ein Einweg-Hash jedes prepza-API-Schlüssels und die Adressen seiner Webhooks; und aus seinem Bewerbermanagementsystem die E-Mail-Adresse, der Name und die ID jedes Kandidaten, den es an prepza sendet.",
+        "Tools, die ein Unternehmen anbindet: die Schlüssel oder Tokens, die sein Inhaber oder Admin in seinem Bewerbermanagementsystem (Workable, Greenhouse, Teamtailor, Recruitee oder Breezy HR) oder in Slack erstellt, verschlüsselt gespeichert; ein Einweg-Hash jedes testee-API-Schlüssels und die Adressen seiner Webhooks; und aus seinem Bewerbermanagementsystem die E-Mail-Adresse, der Name und die ID jedes Kandidaten, den es an testee sendet.",
         "E-Mail-Einstellungen: welche optionalen E-Mails du bekommst, und ein Protokoll jeder Änderung daran: welche E-Mail, ein oder aus, wann, wo (bei der Anmeldung, in den Einstellungen oder über einen Abmeldelink oder eine Spam-Meldung) und welche Fassung des Wortlauts der Kontrollkästchen du gesehen hast.",
         "E-Mails an Mitglieder von Unternehmen: ein Protokoll der Aktivitätsübersichten und Erinnerungen, die wir dir gesendet haben, und worum es in jeder Erinnerung ging, damit keine doppelt gesendet wird.",
         "E-Mails an viele Nutzer (Hinweise auf Änderungen unserer Bedingungen, wichtige Hinweise zum Dienst, Produkt-Updates, Angebote): ob jede an dich gesendet, übersprungen oder nicht zugestellt wurde und ob du sie abbestellt oder als Spam markiert hast, damit keine doppelt gesendet wird und wir sehen, wie jede aufgenommen wurde.",
@@ -33,37 +33,37 @@
         "Käufe: für jede Aufladung das Unternehmen, für das sie war, wer sie gekauft hat, was gekauft wurde, Gesamtbetrag und Währung, die Transaktions-ID von Paddle und der Zeitpunkt. Die Karten- und Rechnungsdaten speichert Paddle, nicht wir.",
         "Das Aktionsprotokoll eines Unternehmens: was seine Mitglieder darin tun, etwa einen Kandidaten einladen, ansehen oder entfernen, ein Interview oder das Team ändern, Guthaben aufladen oder ein Tool anbinden, jeweils mit der Angabe, wer es getan hat, wann und ob der Assistent, eine KI-App oder die API es für ihn getan hat. Der Inhaber des Unternehmens sieht es. Kandidaten und Mitglieder werden nur namentlich angezeigt, solange sie noch zum Unternehmen gehören: Das Protokoll speichert ihre IDs, nie ihre E-Mail-Adressen.",
         "KI-Nutzung und Limits: für jede Nutzung von KI, etwa das Verfassen von Fragen oder die Antwort des Assistenten, wofür sie war, das Modell, ihr Umfang und ihre Kosten sowie das Konto und das Unternehmen, für die sie war; und jedes Mal, wenn ein Limit eine Anfrage ablehnt, welches Limit, wann und das Konto und das Unternehmen, deren Anfrage es abgelehnt hat. Nie der an die KI gesendete Text oder ihre Antwort.",
-        "Aufzeichnungen der KI-Aufrufe: was prepza bei jeder Nutzung an die KI sendet und was sie antwortet, etwa beim Verfassen von Fragen aus einer Stellenbeschreibung oder bei den Antworten des Assistenten und des Hilfe-Chats, zusammen mit dem, was sie für ihre Antwort gelesen haben (darunter können Ergebnisse von Kandidaten sein), sowie die Bewertungen dieser Antworten. Sie werden bei Langfuse (siehe unten) gespeichert, nur um die Qualität der Antworten zu überwachen und zu verbessern.",
+        "Aufzeichnungen der KI-Aufrufe: was testee bei jeder Nutzung an die KI sendet und was sie antwortet, etwa beim Verfassen von Fragen aus einer Stellenbeschreibung oder bei den Antworten des Assistenten und des Hilfe-Chats, zusammen mit dem, was sie für ihre Antwort gelesen haben (darunter können Ergebnisse von Kandidaten sein), sowie die Bewertungen dieser Antworten. Sie werden bei Langfuse (siehe unten) gespeichert, nur um die Qualität der Antworten zu überwachen und zu verbessern.",
         "Nutzungsstatistiken: Schritte wie die Registrierung, die Erstellung eines Unternehmens, eine Kandidateneinladung oder eine Aufladung, mit Zahlen wie einer Punktzahl oder einem Betrag. Deine Konto-ID wird durch einen Code ersetzt, der mit einem geheimen Schlüssel erzeugt wird, den wir verwahren, sodass die Statistiken dich nicht namentlich nennen; sie sind aber pseudonym, nicht anonym: Mit dem Schlüssel lässt sich der Code deiner Konto-ID zuordnen. Die ID eines Unternehmens bleibt unverändert. Es sind keine Namen, E-Mail-Adressen oder Texte enthalten."
       ]
     },
     {
       "heading": "Wofür wir sie verwenden",
       "items": [
-        "Um prepza bereitzustellen: Interviews generieren, sie für eingeladene Kandidaten durchführen, Unternehmen die Ergebnisse zeigen und die E-Mails senden, die du anforderst (Vertrag).",
+        "Um testee bereitzustellen: Interviews generieren, sie für eingeladene Kandidaten durchführen, Unternehmen die Ergebnisse zeigen und die E-Mails senden, die du anforderst (Vertrag).",
         "Service-E-Mails wie Einladungen, Berichte, Zahlungsprobleme, Änderungen unserer Bedingungen und wichtige Hinweise zum Dienst (ein Sicherheitsvorfall, eine geplante Ausfallzeit oder eine Änderung daran, wie er funktioniert), die immer gesendet werden (Vertrag).",
-        "Die Aktivitätsübersicht und Erinnerungen zu deinen Unternehmen, etwa bei wenig Credits oder einem Interview ohne Kandidaten (unser berechtigtes Interesse, dir bei der Nutzung von prepza zu helfen). Sie sind eingeschaltet, bis du sie ausschaltest.",
+        "Die Aktivitätsübersicht und Erinnerungen zu deinen Unternehmen, etwa bei wenig Credits oder einem Interview ohne Kandidaten (unser berechtigtes Interesse, dir bei der Nutzung von testee zu helfen). Sie sind eingeschaltet, bis du sie ausschaltest.",
         "Produkt-Updates und Neuigkeiten: für unsere eigenen Nutzer, die „Ich möchte keine Produkt-Updates und Neuigkeiten erhalten“ nicht angekreuzt haben, als die Anmeldung dies zum ersten Mal anbot (Artikel 13 Absatz 2 der ePrivacy-Richtlinie und § 103¹ des estnischen Gesetzes über die elektronische Kommunikation). Du kannst sie jederzeit kostenlos abbestellen.",
         "Angebote und Aktionen: nur wenn du einwilligst, indem du das Kästchen bei der Anmeldung oder in den Einstellungen ankreuzt (Einwilligung). Du kannst deine Einwilligung jederzeit widerrufen.",
         "Festlegen, an wen eine E-Mail an viele Nutzer geht: ob dein Konto zum Team eines Unternehmens gehört (und ob als Inhaber oder Admin), ein Interview eines Unternehmens gemacht oder das kostenlose Üben genutzt hat, damit ein Produkt-Update, ein Angebot oder ein wichtiger Hinweis nur an diejenigen geht, die er betrifft. Verwendet wird nur, dass dein Konto dies getan hat, niemals deine Antworten, Ergebnisse oder das, was ein Unternehmen über dich gespeichert hat (unser berechtigtes Interesse, nur relevante E-Mails zu senden). Produkt-Updates und Angebote gehen weiterhin nur an diejenigen, die sie nach den beiden vorstehenden Punkten erhalten.",
-        "Uns merken, dass ein Kandidat die E-Mails eines Unternehmens abbestellt hat, damit prepza ihm für dieses Unternehmen keine E-Mails mehr sendet (Beachtung seines Widerspruchs).",
-        "Um prepza sicher und funktionsfähig zu halten: Verhinderung von Missbrauch, Ratenbegrenzungen, Fehlerberichte und Statistiken, die die Qualität der Fragen verbessern (unser berechtigtes Interesse).",
+        "Uns merken, dass ein Kandidat die E-Mails eines Unternehmens abbestellt hat, damit testee ihm für dieses Unternehmen keine E-Mails mehr sendet (Beachtung seines Widerspruchs).",
+        "Um testee sicher und funktionsfähig zu halten: Verhinderung von Missbrauch, Ratenbegrenzungen, Fehlerberichte und Statistiken, die die Qualität der Fragen verbessern (unser berechtigtes Interesse).",
         "Qualität der Fragen: Wir analysieren, wie Fragen beantwortet und gemeldet werden, um allgemeine, anonymisierte Muster der Fragenqualität zu erkennen, die die Generierung von Fragen für alle verbessern; diese Muster enthalten keine personenbezogenen Daten (unser berechtigtes Interesse).",
-        "Wiederverwendung generierter Fragen: Fragen, die prepza generiert, können in Interviews und Übungsinterviews anderer Kunden wiederverwendet werden, ohne personenbezogene Daten oder Angaben, die ein Unternehmen oder eine Person identifizieren. Ein Unternehmen kann die Fragen eines Interviews in dessen Einstellungen davon ausnehmen.",
+        "Wiederverwendung generierter Fragen: Fragen, die testee generiert, können in Interviews und Übungsinterviews anderer Kunden wiederverwendet werden, ohne personenbezogene Daten oder Angaben, die ein Unternehmen oder eine Person identifizieren. Ein Unternehmen kann die Fragen eines Interviews in dessen Einstellungen davon ausnehmen.",
         "Die Aufzeichnungen der KI-Aufrufe ermöglichen es uns, die Qualität der Fragen und Antworten der KI zu überwachen und zu verbessern (unser berechtigtes Interesse).",
-        "Kostenkontrolle und Verhinderung von Missbrauch: Die Aufzeichnungen der KI-Nutzung und der erreichten Limits zeigen, was KI kostet und wer welches Limit erreicht, damit wir prepza bezahlbar halten und Missbrauch unterbinden können (unser berechtigtes Interesse).",
+        "Kostenkontrolle und Verhinderung von Missbrauch: Die Aufzeichnungen der KI-Nutzung und der erreichten Limits zeigen, was KI kostet und wer welches Limit erreicht, damit wir testee bezahlbar halten und Missbrauch unterbinden können (unser berechtigtes Interesse).",
         "Das Aktionsprotokoll eines Unternehmens ermöglicht es seinem Inhaber zu sehen, wer im Unternehmen was getan hat, und unserem Support, es zu prüfen, wenn das Unternehmen um Hilfe bittet (das berechtigte Interesse des Unternehmens und unser berechtigtes Interesse an Nachvollziehbarkeit).",
-        "Nutzungsstatistiken zeigen, welche Teile von prepza Menschen helfen und welche Preise und Limits funktionieren, damit wir sie verbessern können (unser berechtigtes Interesse).",
+        "Nutzungsstatistiken zeigen, welche Teile von testee Menschen helfen und welche Preise und Limits funktionieren, damit wir sie verbessern können (unser berechtigtes Interesse).",
         "Kaufbelege, die wir für die Buchführung aufbewahren, wie es das estnische Buchführungsrecht verlangt (rechtliche Verpflichtung).",
         "Ein Unternehmen als verifiziert anzeigen, indem wir seine Website mit den E-Mail-Domains seiner Inhaber und Admins abgleichen (unser berechtigtes Interesse).",
-        "Offen für Angebote: Nur wenn du es einschaltest (Einwilligung), sehen Unternehmen, die über prepza einstellen, deinen Namen, dein LinkedIn-Profil und dein neuestes Ergebnis einer Übung mit Zeitlimit in jedem von dir geübten Thema, das eines ihrer Interviews auf seinem Niveau abdeckt, damit sie dich zu diesem Interview einladen können. Wir erstellen keine Rangliste, empfehlen dich nicht und treffen keine Entscheidung über dich: Das Unternehmen entscheidet, wen es einlädt. Du kannst deine Einwilligung jederzeit in den Einstellungen widerrufen und verschwindest dann sofort aus der Liste jedes Unternehmens. Das Protokoll deiner Entscheidungen wird als Nachweis deiner Einwilligung aufbewahrt (unsere rechtliche Pflicht, sie nachzuweisen).",
-        "Interviewergebnisse, Zeiten und Hinweise auf Auffälligkeiten helfen dem einstellenden Unternehmen, deine Antworten fair zu beurteilen (berechtigtes Interesse des Unternehmens). Zu den Hinweisen gehören Muster in deinen Antworten: etwa gleich lange Zeiten bei jeder Frage oder richtig beantwortete schwere Fragen, während leichte falsch waren; anhand dieser Hinweise werden dem Unternehmen Fragen angezeigt, die es dir in einem Live-Interview dazu stellen kann. Die Einstellungsentscheidung treffen Menschen im Unternehmen; prepza selbst trifft keine Entscheidung über dich. Du kannst das Unternehmen bitten, dein Ergebnis von einem Menschen überprüfen zu lassen, und vor Beginn um einen Nachteilsausgleich wie zusätzliche Zeit bitten."
+        "Offen für Angebote: Nur wenn du es einschaltest (Einwilligung), sehen Unternehmen, die über testee einstellen, deinen Namen, dein LinkedIn-Profil und dein neuestes Ergebnis einer Übung mit Zeitlimit in jedem von dir geübten Thema, das eines ihrer Interviews auf seinem Niveau abdeckt, damit sie dich zu diesem Interview einladen können. Wir erstellen keine Rangliste, empfehlen dich nicht und treffen keine Entscheidung über dich: Das Unternehmen entscheidet, wen es einlädt. Du kannst deine Einwilligung jederzeit in den Einstellungen widerrufen und verschwindest dann sofort aus der Liste jedes Unternehmens. Das Protokoll deiner Entscheidungen wird als Nachweis deiner Einwilligung aufbewahrt (unsere rechtliche Pflicht, sie nachzuweisen).",
+        "Interviewergebnisse, Zeiten und Hinweise auf Auffälligkeiten helfen dem einstellenden Unternehmen, deine Antworten fair zu beurteilen (berechtigtes Interesse des Unternehmens). Zu den Hinweisen gehören Muster in deinen Antworten: etwa gleich lange Zeiten bei jeder Frage oder richtig beantwortete schwere Fragen, während leichte falsch waren; anhand dieser Hinweise werden dem Unternehmen Fragen angezeigt, die es dir in einem Live-Interview dazu stellen kann. Die Einstellungsentscheidung treffen Menschen im Unternehmen; testee selbst trifft keine Entscheidung über dich. Du kannst das Unternehmen bitten, dein Ergebnis von einem Menschen überprüfen zu lassen, und vor Beginn um einen Nachteilsausgleich wie zusätzliche Zeit bitten."
       ]
     },
     {
       "heading": "An wen wir sie weitergeben",
       "paragraphs": [
-        "Wir geben Daten an die Dienstleister weiter, die prepza für uns betreiben, auf Grundlage von Verträgen, die die Daten schützen, sowie an Paddle, das die Aufladungen verkauft:"
+        "Wir geben Daten an die Dienstleister weiter, die testee für uns betreiben, auf Grundlage von Verträgen, die die Daten schützen, sowie an Paddle, das die Aufladungen verkauft:"
       ],
       "items": [
         "Google (Firebase Authentication; Google LLC, Vereinigte Staaten, im Rahmen des Datenschutzrahmens EU-USA): Anmeldung. LinkedIn und GitHub bestätigen nur, wer du bist, wenn du dich mit ihnen anmeldest; wir erhalten von ihnen nichts weiter.",
@@ -75,27 +75,27 @@
         "Cloudflare (Turnstile; Cloudflare, Inc., Vereinigte Staaten, im Rahmen des Datenschutzrahmens EU-USA): die „Ich bin kein Roboter“-Prüfung.",
         "Google Cloud, unser Hosting-Anbieter, der die Daten speichert (in der EU, Belgien).",
         "Upstash: kurzlebige Zähler für Nutzungslimits und Live-Aktualisierungen (in der EU, Belgien).",
-        "Unternehmen, nur wenn du „Offen für Angebote“ einschaltest: Unternehmen, die über prepza einstellen, sehen das oben Beschriebene. Jedes ist selbst dafür verantwortlich, wie es das Gesehene nutzt. Wenn dich eines einlädt, geht die Einladung an die E-Mail-Adresse deines Kontos, und das Unternehmen sieht diese E-Mail-Adresse wie die jedes Kandidaten.",
+        "Unternehmen, nur wenn du „Offen für Angebote“ einschaltest: Unternehmen, die über testee einstellen, sehen das oben Beschriebene. Jedes ist selbst dafür verantwortlich, wie es das Gesehene nutzt. Wenn dich eines einlädt, geht die Einladung an die E-Mail-Adresse deines Kontos, und das Unternehmen sieht diese E-Mail-Adresse wie die jedes Kandidaten.",
         "Paddle (Paddle.com Market Ltd, Vereinigtes Königreich) gehört nicht dazu: Es verkauft die Aufladungen selbst, als Wiederverkäufer (Merchant of Record), und ist Verantwortlicher für die Zahlungs-, Steuer- und Rechnungsdaten, die es erhebt, gemäß seiner eigenen Datenschutzerklärung. Wir übermitteln ihm die E-Mail-Adresse des kaufenden Mitglieds, und es teilt uns mit, was gekauft und bezahlt wurde."
       ]
     },
     {
       "heading": "Tools, die ein Unternehmen anbindet",
       "paragraphs": [
-        "Ein Unternehmen kann seine eigenen Tools an prepza anbinden; dann senden wir ihnen auf seine Weisung Daten, als Teil des Dienstes, den es angefordert hat: Sein Bewerbermanagementsystem (Workable, Greenhouse, Teamtailor, Recruitee oder Breezy HR) erhält dein Ergebnis, ob es die Bestehensgrenze erreicht hat, die Hinweise auf Auffälligkeiten und einen Link zu deinen Ergebnissen; ein von ihm gewählter Slack-Kanal erhält seine Benachrichtigungen, etwa dass du fertig bist, und dein Ergebnis; und seine eigenen Systeme erhalten über die API oder Webhooks von prepza deine E-Mail-Adresse, deinen Namen, deinen Fortschritt, dein Ergebnis, ob du die Bestehensgrenze erreicht hast, die Hinweise auf Auffälligkeiten und deinen Einladungslink. Das Unternehmen wählt und kontrolliert diese Tools, die sich außerhalb der EU befinden können, und ist dafür verantwortlich, wie sie deine Daten verwenden."
+        "Ein Unternehmen kann seine eigenen Tools an testee anbinden; dann senden wir ihnen auf seine Weisung Daten, als Teil des Dienstes, den es angefordert hat: Sein Bewerbermanagementsystem (Workable, Greenhouse, Teamtailor, Recruitee oder Breezy HR) erhält dein Ergebnis, ob es die Bestehensgrenze erreicht hat, die Hinweise auf Auffälligkeiten und einen Link zu deinen Ergebnissen; ein von ihm gewählter Slack-Kanal erhält seine Benachrichtigungen, etwa dass du fertig bist, und dein Ergebnis; und seine eigenen Systeme erhalten über die API oder Webhooks von testee deine E-Mail-Adresse, deinen Namen, deinen Fortschritt, dein Ergebnis, ob du die Bestehensgrenze erreicht hast, die Hinweise auf Auffälligkeiten und deinen Einladungslink. Das Unternehmen wählt und kontrolliert diese Tools, die sich außerhalb der EU befinden können, und ist dafür verantwortlich, wie sie deine Daten verwenden."
       ]
     },
     {
       "heading": "KI-Apps, die du verbindest",
       "paragraphs": [
-        "Du kannst eine eigene KI-App, etwa Claude (von Anthropic) oder ChatGPT (von OpenAI), mit deinem prepza-Konto verbinden. Nur wenn du das tust, und nur für das, worum du sie bittest, liest und ändert sie die Daten deiner Unternehmen mit deinen Zugriffsrechten, einschließlich der Ergebnisse von Kandidaten, und diese Daten gelangen zum Anbieter der App, wo die eigenen Bedingungen und die Datenschutzerklärung der App gelten, nicht unsere. Du wählst diese Apps und kannst jede davon jederzeit im Tab „Integrationen“ eines Unternehmens trennen; wenn du dein Konto löschst, werden alle getrennt. Die Inhaber und Admins eines Unternehmens können KI-Apps die Nutzung der Daten dieses Unternehmens untersagen."
+        "Du kannst eine eigene KI-App, etwa Claude (von Anthropic) oder ChatGPT (von OpenAI), mit deinem testee-Konto verbinden. Nur wenn du das tust, und nur für das, worum du sie bittest, liest und ändert sie die Daten deiner Unternehmen mit deinen Zugriffsrechten, einschließlich der Ergebnisse von Kandidaten, und diese Daten gelangen zum Anbieter der App, wo die eigenen Bedingungen und die Datenschutzerklärung der App gelten, nicht unsere. Du wählst diese Apps und kannst jede davon jederzeit im Tab „Integrationen“ eines Unternehmens trennen; wenn du dein Konto löschst, werden alle getrennt. Die Inhaber und Admins eines Unternehmens können KI-Apps die Nutzung der Daten dieses Unternehmens untersagen."
       ]
     },
     {
       "heading": "E-Mails und Abbestellen",
       "paragraphs": [
         "Service-E-Mails wie Einladungen, Berichte, Zahlungsprobleme, Änderungen unserer Bedingungen und wichtige Hinweise zum Dienst werden immer gesendet. Die anderen wählst du in den Einstellungen unter E-Mails: die Aktivitätsübersicht, Erinnerungen, Produkt-Updates und Neuigkeiten sowie Angebote und Aktionen. Jede optionale E-Mail enthält einen Abmeldelink, der ohne Anmeldung funktioniert, und wenn du eine optionale E-Mail als Spam markierst, wird sie ebenfalls ausgeschaltet. Ist eine E-Mail an dich dauerhaft unzustellbar oder markierst du eine unserer E-Mails als Spam, senden wir an diese Adresse keine Produkt-E-Mails und Hinweise mehr, bis du uns bittest, wieder damit zu beginnen.",
-        "Einladungen und Erinnerungen, die ein Unternehmen über prepza an Kandidaten sendet, enthalten Links, um die E-Mails dieses Unternehmens oder die Erinnerungen zu diesem Interview abzubestellen. prepza sendet an diese Adresse dann keine E-Mails mehr für das Unternehmen, und das Unternehmen sieht die Einladung als nicht zugestellt."
+        "Einladungen und Erinnerungen, die ein Unternehmen über testee an Kandidaten sendet, enthalten Links, um die E-Mails dieses Unternehmens oder die Erinnerungen zu diesem Interview abzubestellen. testee sendet an diese Adresse dann keine E-Mails mehr für das Unternehmen, und das Unternehmen sieht die Einladung als nicht zugestellt."
       ]
     },
     {
@@ -118,7 +118,7 @@
         "Aufzeichnungen der KI-Nutzung und der erreichten Limits: 13 Monate, ohne deine Konto-ID, sobald du dein Konto löschst.",
         "Übungsrunden: bis du dein Konto löschst.",
         "Offen für Angebote: bis du es ausschaltest oder dein Konto löschst, höchstens aber ein Jahr, nachdem du es zuletzt eingeschaltet oder dein LinkedIn-Profil gespeichert hast; das Protokoll deiner Entscheidungen, bis du dein Konto löschst.",
-        "Ein von prepza per E-Mail gesendeter Bericht: Das PDF wird nur für den Versand der E-Mail aufbewahrt und spätestens 7 Tage danach gelöscht.",
+        "Ein von testee per E-Mail gesendeter Bericht: Das PDF wird nur für den Versand der E-Mail aufbewahrt und spätestens 7 Tage danach gelöscht.",
         "Eingefügte Stellenbeschreibungen in unseren Generierungsprotokollen: 90 Tage nach Abschluss der Generierung. Das daraus erstellte Interview bleibt im Konto des Unternehmens, bis es gelöscht wird.",
         "Deine E-Mail-Einstellungen und das Protokoll ihrer Änderungen: bis du dein Konto löschst.",
         "Das Protokoll der an dich gesendeten Übersichten und Erinnerungen: 30 Tage oder bis du dein Konto löschst, falls das früher ist.",
@@ -150,17 +150,17 @@
     {
       "heading": "Cookies und Speicher",
       "paragraphs": [
-        "prepza verwendet nur die Cookies und den Browserspeicher, die es zum Funktionieren braucht oder die deine eigenen Entscheidungen speichern. Es gibt keine Werbe- oder Analyse-Cookies.",
-        "Damit du angemeldet bleibst: ein Cookie (prepza_token, wird stündlich erneuert, solange du prepza nutzt, bis du dich abmeldest) und der Browserspeicher unseres Anmeldeanbieters Google Firebase. Während du eine KI-App verbindest, besteht ein Cookie (prepza_connect) für die wenigen Minuten, die das dauert.",
-        "Um deine Entscheidungen zu speichern: deine Sprache (ein Cookie, prepza_locale, für ein Jahr, gesetzt, wenn du eine Sprache wählst oder prepza unter der Adresse einer Sprache öffnest), dein helles oder dunkles Design, die Breite des Assistenten-Panels, wie du zuletzt Kandidaten eingeladen hast, dass du dich in diesem Browser schon einmal angemeldet hast, den Zeitraum, den du zuletzt für Statistiken gewählt hast, die Hinweise auf ein geändertes Rechtsdokument, die du geschlossen hast, und dein Gespräch mit dem Assistenten (bis du dich anmeldest, nur in diesem Tab). Sie bleiben in deinem Browser, bis du sie löschst.",
-        "Ein Empfehlungslink: nur wenn du dich entscheidest, ihn zu behalten, speichert ein Cookie (prepza_ref) den Link, über den du gekommen bist, für 30 Tage, damit die Credits beide Unternehmen erreichen.",
+        "testee verwendet nur die Cookies und den Browserspeicher, die es zum Funktionieren braucht oder die deine eigenen Entscheidungen speichern. Es gibt keine Werbe- oder Analyse-Cookies.",
+        "Damit du angemeldet bleibst: ein Cookie (testee_token, wird stündlich erneuert, solange du testee nutzt, bis du dich abmeldest) und der Browserspeicher unseres Anmeldeanbieters Google Firebase. Während du eine KI-App verbindest, besteht ein Cookie (testee_connect) für die wenigen Minuten, die das dauert.",
+        "Um deine Entscheidungen zu speichern: deine Sprache (ein Cookie, testee_locale, für ein Jahr, gesetzt, wenn du eine Sprache wählst oder testee unter der Adresse einer Sprache öffnest), dein helles oder dunkles Design, die Breite des Assistenten-Panels, wie du zuletzt Kandidaten eingeladen hast, dass du dich in diesem Browser schon einmal angemeldet hast, den Zeitraum, den du zuletzt für Statistiken gewählt hast, die Hinweise auf ein geändertes Rechtsdokument, die du geschlossen hast, und dein Gespräch mit dem Assistenten (bis du dich anmeldest, nur in diesem Tab). Sie bleiben in deinem Browser, bis du sie löschst.",
+        "Ein Empfehlungslink: nur wenn du dich entscheidest, ihn zu behalten, speichert ein Cookie (testee_ref) den Link, über den du gekommen bist, für 30 Tage, damit die Credits beide Unternehmen erreichen.",
         "Die „Ich bin kein Roboter“-Prüfung läuft in einem kleinen Rahmen von Cloudflare, wenn ein Formular sie braucht, und setzt keine Tracking-Cookies."
       ]
     },
     {
       "heading": "Kinder",
       "paragraphs": [
-        "prepza ist nicht für Personen unter 16 Jahren bestimmt."
+        "testee ist nicht für Personen unter 16 Jahren bestimmt."
       ]
     },
     {
@@ -172,7 +172,7 @@
     {
       "heading": "Kontakt",
       "paragraphs": [
-        "Fragen zu dieser Datenschutzerklärung oder zu deinen Daten: Schreib an hello@prepza.ai oder nutze die Kontaktseite, die unten auf jeder Seite verlinkt ist."
+        "Fragen zu dieser Datenschutzerklärung oder zu deinen Daten: Schreib an hello@testee.ai oder nutze die Kontaktseite, die unten auf jeder Seite verlinkt ist."
       ]
     }
   ]

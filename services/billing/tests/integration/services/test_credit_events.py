@@ -4,8 +4,8 @@ Paddle repeats a top-up or an adjustment, and a bell notice kept until Pub/Sub t
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import select
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from billing.constants.events import CREDITS_ADDED
 from billing.constants.products import OwnerType

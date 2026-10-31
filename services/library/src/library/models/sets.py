@@ -1,8 +1,6 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE, LEVELS
-from prepza_common.db.db import one_of
 from sqlalchemy import (
     CheckConstraint,
     DateTime,
@@ -16,6 +14,8 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+from testee_common.config.constants import DEFAULT_LANGUAGE, LEVELS
+from testee_common.db.db import one_of
 
 from library.constants.sets import OwnerType, Pool, SetKind
 from library.models.base import Base

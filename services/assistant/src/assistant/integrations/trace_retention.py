@@ -9,10 +9,10 @@ from collections.abc import AsyncIterator, Iterable
 from datetime import UTC, datetime, timedelta
 
 import httpx
-from prepza_common.ai.tracing import EU_CLOUD, tracing_on
-from prepza_common.config.constants import RETRY_AFTER
-from prepza_common.http import http
-from prepza_common.http.backoff import wait_seconds
+from testee_common.ai.tracing import EU_CLOUD, tracing_on
+from testee_common.config.constants import RETRY_AFTER
+from testee_common.http import http
+from testee_common.http.backoff import wait_seconds
 
 from assistant.constants.trace_retention import (
     OBSERVATIONS_PATH,

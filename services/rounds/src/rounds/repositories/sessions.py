@@ -1,11 +1,11 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import delete_in_batches
-from prepza_common.events import outbox
 from sqlalchemy import delete, func, or_, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
+from testee_common.db.db import delete_in_batches
+from testee_common.events import outbox
 
 from rounds.constants.integrity import (
     FAST_ANSWER_SECONDS,

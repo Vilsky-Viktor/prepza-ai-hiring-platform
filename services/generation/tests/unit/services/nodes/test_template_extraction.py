@@ -1,7 +1,7 @@
 import asyncio
 from types import SimpleNamespace
 
-from prepza_common.config.constants import MAX_TITLE_LENGTH
+from testee_common.config.constants import MAX_TITLE_LENGTH
 
 from generation.integrations import llm
 from generation.repositories import draft_cache

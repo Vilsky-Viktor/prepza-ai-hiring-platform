@@ -68,7 +68,7 @@ SHOW_DEFINITION = {
             "not everyone's), as `rows` of ids. kind 'link': one link to the single most "
             "relevant, most specific page (`page` and its ids), e.g. the interview's page for a "
             "question about a position, the candidate's report for a candidate, the features page "
-            "for what prepza can do. At most one rows and one link per answer; none for small "
+            "for what testee can do. At most one rows and one link per answer; none for small "
             "talk. Rows are at most 10: a list of "
             "candidates or interviews gets a link to the page with all of them by itself, so add "
             "no link of your own to that page."

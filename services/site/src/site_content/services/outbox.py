@@ -1,4 +1,4 @@
-from prepza_common.events import outbox
+from testee_common.events import outbox
 
 from site_content.core.db import Session
 from site_content.models.outbox import OutboxEvent

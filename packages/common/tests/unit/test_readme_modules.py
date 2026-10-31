@@ -19,7 +19,7 @@ def test_every_module_has_its_line_under_its_area_in_the_readme():
     }
     modules = {
         (path.parent.name, path.stem)
-        for path in (PACKAGE / "src/prepza_common").glob("*/*.py")
+        for path in (PACKAGE / "src/testee_common").glob("*/*.py")
         if path.stem != "__init__"
     }
 

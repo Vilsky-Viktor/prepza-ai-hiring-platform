@@ -1,5 +1,5 @@
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from assistant.config import settings
 from assistant.constants.help_chat import KNOWLEDGE_PATH

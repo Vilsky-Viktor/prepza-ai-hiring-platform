@@ -4,8 +4,8 @@ event comes. An interview already removed has nothing to store and nobody to tel
 
 import uuid
 
-from prepza_common.events.analytics import track
-from prepza_common.limits.limits import question_seconds
+from testee_common.events.analytics import track
+from testee_common.limits.limits import question_seconds
 
 from companies.core.db import Session
 from companies.helpers.notifications import interview_cancelled, interview_ready

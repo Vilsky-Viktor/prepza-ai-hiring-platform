@@ -45,13 +45,13 @@ MODEL_RETRIES = 2
 MODEL_INCLUDE = ["reasoning.encrypted_content"]
 # Steps that call tools in one turn; after the last, the model must answer with what it has.
 MAX_TOOL_STEPS = 6
-# A call that fails on prepza's side (a service that didn't answer or failed) hands the user
+# A call that fails on testee's side (a service that didn't answer or failed) hands the user
 # over to a person: the model stops retrying, says what didn't work and links the contact page
 # (the model already stops after one such failure, so a second rarely comes in the same turn).
 HANDOVER_FAILURES = 1
 HANDOVER = (
-    "This failed on prepza's side. Don't retry it: tell the user plainly what didn't work, that "
-    "they can try again later and that a person on prepza's team can help if it keeps failing, "
+    "This failed on testee's side. Don't retry it: tell the user plainly what didn't work, that "
+    "they can try again later and that a person on testee's team can help if it keeps failing, "
     'and call show with page "contact": its link goes under your answer, so write no link in '
     "the text."
 )

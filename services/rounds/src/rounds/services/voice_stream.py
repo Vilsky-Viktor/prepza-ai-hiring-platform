@@ -15,10 +15,10 @@ from uuid import UUID
 import sentry_sdk
 from fastapi import HTTPException, WebSocket, WebSocketDisconnect, status
 from openai import OpenAIError
-from prepza_common.ai import ai_usage
-from prepza_common.ai.ai_constants import Outcome
-from prepza_common.auth.auth import verify
-from prepza_common.auth.user import User
+from testee_common.ai import ai_usage
+from testee_common.ai.ai_constants import Outcome
+from testee_common.auth.auth import verify
+from testee_common.auth.user import User
 
 from rounds.config import settings
 from rounds.constants.voice import (

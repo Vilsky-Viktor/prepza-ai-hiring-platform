@@ -1,8 +1,8 @@
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.limits.limit_list import LIMITS
 
 from assistant.api.v1 import superadmin
 from assistant.main import app

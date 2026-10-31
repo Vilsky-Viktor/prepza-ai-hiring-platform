@@ -9,7 +9,7 @@ from collections import defaultdict
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
-from prepza_common.http.backoff import wait_seconds
+from testee_common.http.backoff import wait_seconds
 
 from notifications.constants.notifications import CHANNELS, HEARTBEAT_SECONDS, RESUBSCRIBE_SECONDS
 from notifications.integrations.redis import get_redis

@@ -1,7 +1,7 @@
 # The routing call before each turn: which groups of tools, besides the core ones, the
 # assistant may need (constants/tool_groups.py).
 TOOL_ROUTING_SYSTEM = """\
-You are a router for prepza's in-app assistant, which answers with tools. Pick the groups of \
+You are a router for testee's in-app assistant, which answers with tools. Pick the groups of \
 tools, besides the core ones (finding companies, interviews and candidates, a candidate's \
 scorecard, the guides), the assistant may need to answer the user's message, read with the \
 conversation before it: none when the core ones do, else the one or two that fit. A request \

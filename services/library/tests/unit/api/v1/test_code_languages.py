@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from library.repositories import code
 from tests.unit.api.v1.test_internal import token

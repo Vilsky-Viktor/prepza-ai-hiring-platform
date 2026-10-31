@@ -1,7 +1,7 @@
 {
   "landing": {
-    "title": "Cara kerja prepza",
-    "text": "prepza mengubah deskripsi pekerjaanmu menjadi wawancara berbatas waktu, dengan soal acak tersendiri untuk setiap kandidat. Halaman ini menunjukkan semua langkahnya, dari membuat wawancara sampai membagikan hasilnya.",
+    "title": "Cara kerja testee",
+    "text": "testee mengubah deskripsi pekerjaanmu menjadi wawancara berbatas waktu, dengan soal acak tersendiri untuk setiap kandidat. Halaman ini menunjukkan semua langkahnya, dari membuat wawancara sampai membagikan hasilnya.",
     "actions": [
       "Tempel deskripsi pekerjaan di kotak paling atas, atau pilih templat siap pakai; sesuaikan topiknya, dan soalnya ditulis serta diperiksa untukmu.",
       "Undang kandidat lewat email, dari file, dengan tautan berbagi di iklan lowonganmu, atau dari ATS-mu, platformmu sendiri, atau asisten AI.",
@@ -17,9 +17,9 @@
   },
   "companies": {
     "title": "Perusahaan",
-    "text": "Perusahaanmu. Semua yang kamu lakukan di prepza terjadi di dalam satu perusahaan: wawancara, kandidat, tim, kredit, dan integrasinya.",
+    "text": "Perusahaanmu. Semua yang kamu lakukan di testee terjadi di dalam satu perusahaan: wawancara, kandidat, tim, kredit, dan integrasinya.",
     "actions": [
-      "Buat perusahaan dengan “Perusahaan baru”. Namanya unik di seluruh prepza.",
+      "Buat perusahaan dengan “Perusahaan baru”. Namanya unik di seluruh testee.",
       "Buka perusahaan untuk mengelola wawancara dan kandidatnya.",
       "Hapus perusahaan milikmu, beserta semua wawancara dan undangannya."
     ],
@@ -56,7 +56,7 @@
   },
   "newInterview": {
     "title": "Wawancara baru",
-    "text": "Mulai wawancara dari deskripsi pekerjaan. prepza membacanya, mengusulkan topik yang akan diuji, dan menulis soal setelah kamu menyetujuinya.",
+    "text": "Mulai wawancara dari deskripsi pekerjaan. testee membacanya, mengusulkan topik yang akan diuji, dan menulis soal setelah kamu menyetujuinya.",
     "actions": [
       "Tempel deskripsi pekerjaan: posisinya, persyaratannya, dan nilai tambah yang diharapkan.",
       "Pilih bahasa wawancara yang akan dibuat.",
@@ -69,7 +69,7 @@
   },
   "reviewTopics": {
     "title": "Tinjau topikmu",
-    "text": "prepza mengusulkan topik ini dari deskripsimu. Setiap topik yang kamu pertahankan mendapat set soal sendiri beserta jawabannya.",
+    "text": "testee mengusulkan topik ini dari deskripsimu. Setiap topik yang kamu pertahankan mendapat set soal sendiri beserta jawabannya.",
     "actions": [
       "Hapus centang topik yang tidak kamu perlukan.",
       "Ubah nama topik dan subtopiknya dengan ikon pensil.",
@@ -83,7 +83,7 @@
   },
   "generating": {
     "title": "Sedang dibuat",
-    "text": "prepza sedang membuat wawancaramu: pertama topik, lalu soal untuk tiap topik. Ini butuh beberapa menit.",
+    "text": "testee sedang membuat wawancaramu: pertama topik, lalu soal untuk tiap topik. Ini butuh beberapa menit.",
     "actions": [
       "Tinggalkan halaman ini jika mau: pembuatan tetap berjalan.",
       "Batalkan pembuatan jika tidak diperlukan lagi; tidak ada yang disimpan dari yang sudah dibuat."
@@ -138,7 +138,7 @@
   },
   "interviewDiscover": {
     "title": "Temukan",
-    "text": "Orang yang berlatih di prepza dan memilih terbuka untuk tawaran kerja, yang latihannya mencakup topik wawancara ini di levelnya. Setiap orang ditampilkan dengan nama, profil LinkedIn, dan hasil latihan terbarunya di setiap topik yang cocok. Hanya perusahaan yang sudah isi ulang setidaknya sekali yang melihat tab ini.",
+    "text": "Orang yang berlatih di testee dan memilih terbuka untuk tawaran kerja, yang latihannya mencakup topik wawancara ini di levelnya. Setiap orang ditampilkan dengan nama, profil LinkedIn, dan hasil latihan terbarunya di setiap topik yang cocok. Hanya perusahaan yang sudah isi ulang setidaknya sekali yang melihat tab ini.",
     "actions": [
       "Buka profil LinkedIn seseorang untuk mengenalnya lebih jauh.",
       "Undang seseorang ke wawancara ini (pemilik dan admin): undangan dikirim ke email akunnya dan memakai kredit seperti undangan lainnya."
@@ -157,7 +157,7 @@
       "Atur rata-rata waktu per soal, dalam detik: setiap soal mendapat waktunya sendiri berdasarkan panjangnya dan kode yang ditampilkannya, dan total waktu wawancara tetap sama.",
       "Atur nilai lulus: kandidat yang mencapainya dinyatakan lulus.",
       "Tandai wawancara sebagai diterima setelah posisinya terisi.",
-      "Jangan masukkan pertanyaan wawancara ke bank soal bersama prepza; pertanyaan yang sudah dipakai ulang di wawancara lain tetap di sana."
+      "Jangan masukkan pertanyaan wawancara ke bank soal bersama testee; pertanyaan yang sudah dipakai ulang di wawancara lain tetap di sana."
     ],
     "tips": [
       "Setiap pengaturan tersimpan begitu kamu meninggalkan kolomnya.",
@@ -248,16 +248,16 @@
       "Log tidak menyimpan orang: kandidat yang dihapus tampil sebagai kandidat yang sudah dihapus, dan anggota yang keluar sebagai mantan anggota.",
       "Tindakan kunci API tampil dengan nama kunci, dan tindakan kunci yang sudah dihapus tampil sebagai tindakan kunci yang sudah dihapus.",
       "Saat anggota melihat hasil satu kandidat, itu tampil sekali sehari, dengan waktu terakhir dilihat.",
-      "prepza tidak menyimpan data jenis kelamin, ras, atau etnis: tambahkan jawaban yang diisi sendiri oleh kandidatmu berdasarkan email, lalu hapus kolom email sebelum kamu membagikan file ke auditor independenmu, untuk audit bias New York City (Local Law 144) atau aturan empat per lima EEOC. Hingga 20 ekspor per perusahaan sehari, dan setiap ekspor tampil di log."
+      "testee tidak menyimpan data jenis kelamin, ras, atau etnis: tambahkan jawaban yang diisi sendiri oleh kandidatmu berdasarkan email, lalu hapus kolom email sebelum kamu membagikan file ke auditor independenmu, untuk audit bias New York City (Local Law 144) atau aturan empat per lima EEOC. Hingga 20 ekspor per perusahaan sehari, dan setiap ekspor tampil di log."
     ]
   },
   "integrations": {
     "title": "Integrasi",
-    "text": "Hubungkan prepza ke alat yang sudah dipakai timmu. Setiap integrasi membuka halamannya sendiri dengan langkah penyiapan.",
+    "text": "Hubungkan testee ke alat yang sudah dipakai timmu. Setiap integrasi membuka halamannya sendiri dengan langkah penyiapan.",
     "actions": [
       "Slack: terima notifikasi perusahaanmu di sebuah channel.",
       "API: kunci dan webhook untuk menghubungkan platformmu sendiri.",
-      "Aplikasi AI: pakai prepza dari Claude, ChatGPT, dan aplikasi AI lainnya.",
+      "Aplikasi AI: pakai testee dari Claude, ChatGPT, dan aplikasi AI lainnya.",
       "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): kandidat yang kamu pindahkan ke suatu tahap mendapat wawancara, dan hasilnya dikirim balik."
     ],
     "tips": [
@@ -274,30 +274,30 @@
       "Lepas tautan lowongan, atau putuskan ATS."
     ],
     "tips": [
-      "Tambahkan tahap khusus untuk prepza, misalnya “Tes keterampilan prepza”, supaya tidak pernah tercampur dengan alat lainmu.",
-      "prepza tidak pernah memindahkan atau menolak siapa pun di ATS-mu."
+      "Tambahkan tahap khusus untuk testee, misalnya “Tes keterampilan testee”, supaya tidak pernah tercampur dengan alat lainmu.",
+      "testee tidak pernah memindahkan atau menolak siapa pun di ATS-mu."
     ]
   },
   "slack": {
     "title": "Slack",
     "text": "Notifikasi perusahaanmu di channel Slack, begitu terjadi.",
     "actions": [
-      "Tambahkan prepza ke Slack dan pilih channel-nya, misalnya #hiring.",
+      "Tambahkan testee ke Slack dan pilih channel-nya, misalnya #hiring.",
       "Pilih notifikasi yang dikirim ke sana: kandidat selesai, undangan yang tidak terkirim, wawancara siap, dan lainnya.",
-      "Putuskan untuk menghentikannya dan menghapus aplikasi prepza dari Slack-mu."
+      "Putuskan untuk menghentikannya dan menghapus aplikasi testee dari Slack-mu."
     ],
     "tips": [
-      "prepza hanya bisa memposting ke channel itu; prepza tidak bisa membaca Slack-mu.",
+      "testee hanya bisa memposting ke channel itu; testee tidak bisa membaca Slack-mu.",
       "Semua orang tetap melihat setiap notifikasi di ikon lonceng."
     ]
   },
   "api": {
     "title": "API",
-    "text": "Hubungkan platformmu sendiri, seperti situs karier, ke prepza.",
+    "text": "Hubungkan platformmu sendiri, seperti situs karier, ke testee.",
     "actions": [
       "Buat kunci API dan centang hanya yang dibutuhkannya: melihat atau membuat wawancara; melihat, mengundang, mengubah, atau menghapus kandidat; melihat kreditmu; atau pakai dengan agen AI (MCP). Kunci ini bertindak atas namamu.",
       "Buka kunci untuk mengubah apa yang boleh dilakukannya, setiap perubahan langsung tersimpan, dan alamat IP tempat kunci itu boleh dipakai.",
-      "Tambahkan webhook: prepza memberi tahu alamat HTTPS-mu, dengan tanda tangan, saat kandidat mulai, selesai (beserta hasilnya), atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap.",
+      "Tambahkan webhook: testee memberi tahu alamat HTTPS-mu, dengan tanda tangan, saat kandidat mulai, selesai (beserta hasilnya), atau dihapus, saat undangannya tidak sampai atau kedaluwarsa, dan saat wawancara siap.",
       "Kirim event uji ke webhook, dan lihat hasil setiap pengiriman di log pengirimannya.",
       "Di tab SDK, daftarkan situs yang boleh menampilkan wawancaramu dengan SDK, dan izinkan localhost selama kamu menguji.",
       "Hapus kunci dan webhook yang tidak lagi kamu pakai.",
@@ -311,10 +311,10 @@
   },
   "aiApps": {
     "title": "Aplikasi AI",
-    "text": "Pakai prepza dari chat AI-mu: tanya Claude atau ChatGPT tentang wawancara dan kandidatmu, atau minta mereka membuat perubahan untukmu.",
+    "text": "Pakai testee dari chat AI-mu: tanya Claude atau ChatGPT tentang wawancara dan kandidatmu, atau minta mereka membuat perubahan untukmu.",
     "actions": [
       "Salin alamat server dan tambahkan ke Claude, Claude Code, atau ChatGPT sesuai langkah-langkahnya; dokumentasi pengembang membahas aplikasi lain dan agenmu sendiri.",
-      "Izinkan aplikasinya di halaman prepza yang terbuka.",
+      "Izinkan aplikasinya di halaman testee yang terbuka.",
       "Putuskan aplikasi yang tidak kamu pakai lagi."
     ],
     "tips": [
@@ -324,7 +324,7 @@
   },
   "referrals": {
     "title": "Referal",
-    "text": "Undang perusahaan lain ke prepza dengan tautan perusahaan ini, dan kalian berdua mendapat kredit.",
+    "text": "Undang perusahaan lain ke testee dengan tautan perusahaan ini, dan kalian berdua mendapat kredit.",
     "actions": [
       "Salin atau bagikan tautan referalmu.",
       "Lihat setiap hadiah yang sudah diterima perusahaan ini."
@@ -341,7 +341,7 @@
       "Pasang atau ganti logo.",
       "Pilih font judul dan font teks, serta seberapa lengkung kartu dan tombol.",
       "Pilih warna tiap grup, dan lihat di pratinjau.",
-      "Simpan, atau kembali ke warna prepza."
+      "Simpan, atau kembali ke warna testee."
     ],
     "tips": [
       "Warna yang membuat teks sulit dibaca tidak bisa disimpan, agar setiap kandidat bisa membaca pertanyaannya.",
@@ -376,12 +376,12 @@
   },
   "settings": {
     "title": "Pengaturan",
-    "text": "Akunmu sendiri: bahasa yang dipakai prepza denganmu, email yang kamu terima, dan datamu.",
+    "text": "Akunmu sendiri: bahasa yang dipakai testee denganmu, email yang kamu terima, dan datamu.",
     "actions": [
       "Pilih bahasa untuk situs, chat bantuan, dan email yang kamu terima.",
       "Pilih email opsional mana yang kamu terima; email layanan, seperti undangan, laporan, dan masalah pembayaran, selalu dikirim.",
-      "Aktifkan atau matikan Terbuka untuk tawaran kerja: selama aktif, perusahaan yang merekrut lewat prepza untuk topik yang kamu latih melihat nama, profil LinkedIn, dan hasil latihanmu, serta bisa mengundangmu.",
-      "Unduh semua yang disimpan prepza tentangmu, atau hapus akunmu."
+      "Aktifkan atau matikan Terbuka untuk tawaran kerja: selama aktif, perusahaan yang merekrut lewat testee untuk topik yang kamu latih melihat nama, profil LinkedIn, dan hasil latihanmu, serta bisa mengundangmu.",
+      "Unduh semua yang disimpan testee tentangmu, atau hapus akunmu."
     ],
     "tips": [
       "Menghapus akunmu juga menghapus perusahaan yang hanya berisi kamu. Perusahaan yang sudah diikuti orang lain perlu pemilik lain terlebih dahulu."
@@ -389,7 +389,7 @@
   },
   "join": {
     "title": "Undangan perusahaan",
-    "text": "Kamu diundang bergabung dengan tim sebuah perusahaan di prepza, untuk mengelola wawancara dan kandidatnya.",
+    "text": "Kamu diundang bergabung dengan tim sebuah perusahaan di testee, untuk mengelola wawancara dan kandidatnya.",
     "actions": [
       "Masuk dengan email yang menerima undangan.",
       "Bergabung dengan perusahaan: perusahaan itu lalu muncul di daftar perusahaanmu.",
@@ -402,21 +402,21 @@
   },
   "connect": {
     "title": "Hubungkan aplikasi AI",
-    "text": "Sebuah aplikasi AI meminta izin memakai akun prepza-mu. Di sini kamu memilih apakah boleh.",
+    "text": "Sebuah aplikasi AI meminta izin memakai akun testee-mu. Di sini kamu memilih apakah boleh.",
     "actions": [
       "Masuk, jika belum, untuk melihat aplikasi mana yang meminta.",
       "Baca apa yang bisa dan tidak bisa dilakukan aplikasi dengan akunmu.",
       "Izinkan atau tolak aplikasinya; apa pun pilihanmu, kamu kembali ke aplikasi."
     ],
     "tips": [
-      "Jika prepza tidak mengenal aplikasinya, izinkan hanya jika kamu sendiri yang mulai menghubungkannya.",
+      "Jika testee tidak mengenal aplikasinya, izinkan hanya jika kamu sendiri yang mulai menghubungkannya.",
       "Putuskan aplikasi kapan saja di Integrasi sebuah perusahaan, di bagian Aplikasi AI.",
       "Tautan yang sudah kedaluwarsa atau sudah dipakai tidak berfungsi lagi: mulai menghubungkan lagi dari aplikasi AI-mu."
     ]
   },
   "news": {
     "title": "Berita",
-    "text": "Yang baru di prepza: fitur baru, peningkatan, dan pembaruan, yang terbaru di atas.",
+    "text": "Yang baru di testee: fitur baru, peningkatan, dan pembaruan, yang terbaru di atas.",
     "actions": [
       "Gulir ke bawah untuk membaca berita lama.",
       "Ikuti berita di pembaca feed-mu lewat tautan RSS di atas."
@@ -480,7 +480,7 @@
   },
   "features": {
     "title": "Fitur",
-    "text": "Semua yang dilakukan prepza untuk perusahaan, dari deskripsi pekerjaan sampai merekrut: membuat wawancara, mengundang kandidat, yang dilihat kandidat, laporan, integrasi, kepatuhan, dan harga.",
+    "text": "Semua yang dilakukan testee untuk perusahaan, dari deskripsi pekerjaan sampai merekrut: membuat wawancara, mengundang kandidat, yang dilihat kandidat, laporan, integrasi, kepatuhan, dan harga.",
     "actions": [
       "Lompat ke sebuah grup lewat tab di bagian atas: buat, undang, wawancara, putuskan, hubungkan, kepercayaan, dan harga.",
       "Lihat setiap fitur di samping gambar aplikasi yang sebenarnya.",
@@ -493,7 +493,7 @@
   },
   "pricing": {
     "title": "Harga",
-    "text": "Biaya prepza: membuat wawancara gratis, dan kamu membayar per kandidat yang menjawab, tanpa langganan.",
+    "text": "Biaya testee: membuat wawancara gratis, dan kamu membayar per kandidat yang menjawab, tanpa langganan.",
     "actions": [
       "Lihat harga per kandidat saat ini, dan harga yang lebih murah untuk isi ulang yang lebih besar.",
       "Lihat berapa kandidat pertama yang gratis.",
@@ -533,10 +533,10 @@
   },
   "aiInterviews": {
     "title": "Wawancara AI",
-    "text": "Panduan tentang jenis-jenis alat wawancara AI, cara kerja pendekatan prepza, dan dasar-dasar kepatuhan hukum.",
+    "text": "Panduan tentang jenis-jenis alat wawancara AI, cara kerja pendekatan testee, dan dasar-dasar kepatuhan hukum.",
     "actions": [
       "Bandingkan alat wawancara berbasis chatbot, video, dan tes yang dibuat otomatis.",
-      "Baca, langkah demi langkah, cara prepza membuat dan menilai wawancara, serta apa yang tidak pernah dilakukannya.",
+      "Baca, langkah demi langkah, cara testee membuat dan menilai wawancara, serta apa yang tidak pernah dilakukannya.",
       "Baca dasar-dasar EU AI Act, GDPR, dan aturan AS tentang AI dalam rekrutmen.",
       "Buat tes untuk kandidatmu dari kartu di bagian akhir."
     ],
@@ -550,7 +550,7 @@
     "actions": [
       "Baca jenis-jenis tes yang ada dan kapan masing-masing bermanfaat.",
       "Baca dasar-dasar keadilan dan hukum.",
-      "Lihat apa yang perlu diperhatikan dalam alat tes, dan bagaimana prepza melakukannya.",
+      "Lihat apa yang perlu diperhatikan dalam alat tes, dan bagaimana testee melakukannya.",
       "Buat tes untuk kandidatmu dari kartu di bagian akhir."
     ],
     "tips": [
@@ -558,8 +558,8 @@
     ]
   },
   "compare": {
-    "title": "Bandingkan prepza",
-    "text": "Perbandingan prepza dengan alat tes seleksi karyawan lain, lengkap dengan sumbernya: cara tes dibuat, biayanya, dan kapan masing-masing lebih cocok.",
+    "title": "Bandingkan testee",
+    "text": "Perbandingan testee dengan alat tes seleksi karyawan lain, lengkap dengan sumbernya: cara tes dibuat, biayanya, dan kapan masing-masing lebih cocok.",
     "actions": [
       "Buka perbandingan untuk membacanya."
     ],
@@ -569,7 +569,7 @@
   },
   "comparison": {
     "title": "Perbandingan",
-    "text": "Perbandingan prepza dengan alat lain dalam satu hal: cara tes dibuat, biayanya, dan kapan masing-masing lebih cocok.",
+    "text": "Perbandingan testee dengan alat lain dalam satu hal: cara tes dibuat, biayanya, dan kapan masing-masing lebih cocok.",
     "actions": [
       "Baca perbandingannya dan ikuti tautannya ke sumber.",
       "Buat tes untuk kandidatmu dari kartu di bagian akhir.",
@@ -603,7 +603,7 @@
   },
   "faq": {
     "title": "Pertanyaan yang sering diajukan",
-    "text": "Jawaban atas pertanyaan umum tentang prepza: wawancara, kandidat, harga dan kredit, hasil, integrasi, bahasa, dan datamu.",
+    "text": "Jawaban atas pertanyaan umum tentang testee: wawancara, kandidat, harga dan kredit, hasil, integrasi, bahasa, dan datamu.",
     "actions": [
       "Klik pertanyaan untuk membuka jawabannya."
     ],
@@ -614,9 +614,9 @@
   },
   "about": {
     "title": "Tentang kami",
-    "text": "Siapa yang membuat prepza dan mengapa: wawancara yang dibuat dari deskripsi pekerjaan dengan harga terjangkau untuk tim mana pun, dan latihan gratis untuk siapa saja.",
+    "text": "Siapa yang membuat testee dan mengapa: wawancara yang dibuat dari deskripsi pekerjaan dengan harga terjangkau untuk tim mana pun, dan latihan gratis untuk siapa saja.",
     "actions": [
-      "Baca mengapa prepza ada dan bagaimana pendekatannya terhadap rekrutmen.",
+      "Baca mengapa testee ada dan bagaimana pendekatannya terhadap rekrutmen.",
       "Baca pesan dari pendirinya, dan buka profil LinkedIn-nya."
     ],
     "tips": [
@@ -625,7 +625,7 @@
   },
   "contact": {
     "title": "Hubungi kami",
-    "text": "Kirim pesan ke tim prepza berisi pertanyaan, ide, tawaran kemitraan, atau sesuatu yang tidak berfungsi.",
+    "text": "Kirim pesan ke tim testee berisi pertanyaan, ide, tawaran kemitraan, atau sesuatu yang tidak berfungsi.",
     "actions": [
       "Isi nama, email, dan pesanmu, lalu kirim.",
       "Tempel ID perusahaan, wawancara, kandidat, atau akun yang dimaksud, agar kami bisa langsung menemukannya."
@@ -637,10 +637,10 @@
   },
   "apiDocs": {
     "title": "Dokumentasi pengembang",
-    "text": "Semua yang kamu perlukan untuk menghubungkan platformmu sendiri atau agen AI ke prepza, dibaca langsung dari API sehingga selalu sesuai dengannya.",
+    "text": "Semua yang kamu perlukan untuk menghubungkan platformmu sendiri atau agen AI ke testee, dibaca langsung dari API sehingga selalu sesuai dengannya.",
     "actions": [
       "API: cara masuk, URL dasar, dan setiap endpoint beserta parameter, body, respons, dan error-nya.",
-      "Webhook: event yang dikirim prepza ke alamatmu dan isi masing-masing.",
+      "Webhook: event yang dikirim testee ke alamatmu dan isi masing-masing.",
       "SDK: cara menyematkan wawancara di situsmu sendiri.",
       "MCP: cara menghubungkan aplikasi AI atau agenmu sendiri, dan tool yang didapatnya.",
       "Objek: setiap objek yang dikembalikan API, kolom demi kolom."
@@ -652,9 +652,9 @@
   },
   "accessibility": {
     "title": "Aksesibilitas",
-    "text": "Bagaimana prepza bisa dipakai oleh penyandang disabilitas, apa yang masih kurang, dan cara memberi tahu kami.",
+    "text": "Bagaimana testee bisa dipakai oleh penyandang disabilitas, apa yang masih kurang, dan cara memberi tahu kami.",
     "actions": [
-      "Lihat apa yang dilakukan prepza untuk aksesibilitas, seperti tema, tata letak ponsel, dan penggunaan keyboard.",
+      "Lihat apa yang dilakukan testee untuk aksesibilitas, seperti tema, tata letak ponsel, dan penggunaan keyboard.",
       "Lihat apa yang masih kurang, seperti soal berbatas waktu.",
       "Kirim email kepada kami jika ada yang sulit dipakai atau kamu membutuhkannya dalam bentuk lain."
     ],
@@ -664,11 +664,11 @@
   },
   "documents": {
     "title": "Dokumen hukum",
-    "text": "Dokumen untuk perusahaan yang menilai kandidat dengan prepza: petunjuk, templat, dan perjanjian pemrosesan data.",
+    "text": "Dokumen untuk perusahaan yang menilai kandidat dengan testee: petunjuk, templat, dan perjanjian pemrosesan data.",
     "actions": [
       "Unduh petunjuk untuk perusahaan: arti nilai, peninjauan oleh manusia, nilai lulus, dan waktu ekstra.",
       "Unduh templat pemberitahuan yang bisa diedit untuk dikirim ke kandidat sebelum kamu mengundang mereka.",
-      "Unduh templat DPIA, dengan bagian prepza sudah terisi, untuk kamu lengkapi.",
+      "Unduh templat DPIA, dengan bagian testee sudah terisi, untuk kamu lengkapi.",
       "Unduh perjanjian pemrosesan data, atau baca online."
     ],
     "tips": [
@@ -677,10 +677,10 @@
   },
   "trust": {
     "title": "Kepercayaan dan keamanan",
-    "text": "Cara prepza menjaga data kamu dan data kandidatmu: keamanan, privasi, kepatuhan pada hukum rekrutmen, tempat data disimpan, siapa yang memprosesnya, dan berapa lama data disimpan.",
+    "text": "Cara testee menjaga data kamu dan data kandidatmu: keamanan, privasi, kepatuhan pada hukum rekrutmen, tempat data disimpan, siapa yang memprosesnya, dan berapa lama data disimpan.",
     "actions": [
-      "Lihat cara prepza melindungi data: login, enkripsi, pemeriksaan akses, batas permintaan, dan cadangan.",
-      "Lihat apa yang disediakan prepza untuk GDPR, EU AI Act, Inggris, dan AS, termasuk undang-undang audit bias New York City.",
+      "Lihat cara testee melindungi data: login, enkripsi, pemeriksaan akses, batas permintaan, dan cadangan.",
+      "Lihat apa yang disediakan testee untuk GDPR, EU AI Act, Inggris, dan AS, termasuk undang-undang audit bias New York City.",
       "Lihat tempat data disimpan, subprosesor yang menanganinya, dan berapa lama setiap jenis data disimpan.",
       "Buka ketentuan, kebijakan privasi, perjanjian pemrosesan data, dan dokumen untuk perusahaan."
     ],
@@ -690,7 +690,7 @@
   },
   "terms": {
     "title": "Ketentuan",
-    "text": "Ketentuan penggunaan prepza: akun, perusahaan, kredit dan pembayaran, tes untuk kandidat, penggunaan yang diperbolehkan, dan tanggung jawab hukum.",
+    "text": "Ketentuan penggunaan testee: akun, perusahaan, kredit dan pembayaran, tes untuk kandidat, penggunaan yang diperbolehkan, dan tanggung jawab hukum.",
     "actions": [
       "Baca versi yang berlaku, beserta tanggal mulai berlakunya.",
       "Buka versi sebelumnya atau yang akan datang dari daftar versi di bagian akhir.",
@@ -702,7 +702,7 @@
   },
   "privacy": {
     "title": "Privasi",
-    "text": "Bagaimana prepza mengumpulkan, menggunakan, dan melindungi data pribadi perusahaan, anggotanya, dan kandidat, serta hak-hak yang kamu miliki.",
+    "text": "Bagaimana testee mengumpulkan, menggunakan, dan melindungi data pribadi perusahaan, anggotanya, dan kandidat, serta hak-hak yang kamu miliki.",
     "actions": [
       "Baca versi yang berlaku, beserta tanggal mulai berlakunya.",
       "Buka versi sebelumnya atau yang akan datang dari daftar versi di bagian akhir.",
@@ -715,7 +715,7 @@
   },
   "dpa": {
     "title": "Perjanjian pemrosesan data",
-    "text": "Perjanjian antara prepza dan perusahaan yang menguji kandidat: data apa yang diproses prepza atas namamu dan bagaimana caranya.",
+    "text": "Perjanjian antara testee dan perusahaan yang menguji kandidat: data apa yang diproses testee atas namamu dan bagaimana caranya.",
     "actions": [
       "Baca versi yang berlaku, beserta tanggal mulai berlakunya.",
       "Buka versi sebelumnya atau yang akan datang dari daftar versi di bagian akhir.",
@@ -728,7 +728,7 @@
   },
   "unsubscribe": {
     "title": "Berhenti berlangganan",
-    "text": "Hentikan satu jenis email dari prepza, sesuai yang disebutkan di halaman.",
+    "text": "Hentikan satu jenis email dari testee, sesuai yang disebutkan di halaman.",
     "actions": [
       "Baca email mana yang dihentikan oleh tautan ini.",
       "Konfirmasi untuk berhenti berlangganan; membuka tautannya saja tidak mengubah apa pun.",

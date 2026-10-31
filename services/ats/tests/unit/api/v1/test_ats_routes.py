@@ -1,7 +1,7 @@
 import uuid
 
 from fastapi import HTTPException
-from prepza_common.auth.encryption import decrypt
+from testee_common.auth.encryption import decrypt
 
 from ats.config import settings
 from ats.integrations import workable

@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.limits.limit_list import LIMITS
 
 from generation.api.v1 import sizes
 from generation.main import app

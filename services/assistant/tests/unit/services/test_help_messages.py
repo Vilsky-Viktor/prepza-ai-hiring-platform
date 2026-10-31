@@ -2,8 +2,8 @@
 fit, each of the visitor's tagged as data, and the reply's language chosen by code."""
 
 import pytest
-from prepza_common.ai.scope import SCOPE_RULE
-from prepza_common.config.constants import OPERATOR
+from testee_common.ai.scope import SCOPE_RULE
+from testee_common.config.constants import OPERATOR
 
 from assistant.constants.help_chat import HELP_HISTORY_CHARACTERS, HELP_HISTORY_MESSAGES
 from assistant.prompts.help_chat import VISITOR_MESSAGE

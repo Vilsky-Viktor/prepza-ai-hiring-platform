@@ -1,9 +1,9 @@
 import asyncio
 
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth.user import Language, User
-from prepza_common.config.constants import GUEST_UID_PREFIX, LANGUAGE_CLAIM, LEGAL_VERSIONS
-from prepza_common.events.analytics import track
+from testee_common.auth.user import Language, User
+from testee_common.config.constants import GUEST_UID_PREFIX, LANGUAGE_CLAIM, LEGAL_VERSIONS
+from testee_common.events.analytics import track
 
 from accounts.core.db import Session
 from accounts.integrations.billing import remember_currency

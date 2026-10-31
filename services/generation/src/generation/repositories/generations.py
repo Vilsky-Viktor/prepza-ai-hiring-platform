@@ -1,10 +1,10 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE, DELETE_BATCH
 from sqlalchemy import String, and_, bindparam, or_, select, text
 from sqlalchemy import update as sql_update
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DEFAULT_LANGUAGE, DELETE_BATCH
 
 from generation.constants.generation import SWEEP_BATCH
 from generation.constants.kinds import GenerationKind

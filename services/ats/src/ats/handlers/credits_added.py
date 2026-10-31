@@ -11,5 +11,5 @@ async def handle(data: dict) -> None:
         return
 
     # A malformed id raises ValueError: no retry can fix it, so the event is dropped
-    # (prepza_common.events.unhandleable).
+    # (testee_common.events.unhandleable).
     await ats_candidates.topped_up(UUID(str(data.get("owner_id"))))

@@ -11,10 +11,10 @@ import internal_matrix
 import pytest
 from access_matrix import ALLOWED, REFUSED, SIGNED_OUT, Side, World
 from fastapi import FastAPI, HTTPException
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.auth.service_auth import service_caller
-from prepza_common.auth.superadmin import SuperadminUser
 from pydantic import BaseModel
+from testee_common.auth.auth import CurrentUser
+from testee_common.auth.service_auth import service_caller
+from testee_common.auth.superadmin import SuperadminUser
 
 OWNED = {"company_id", "note_id"}
 ROLES = {("a", "ann"): "owner", ("a", "vic"): "viewer", ("b", "bob"): "owner"}

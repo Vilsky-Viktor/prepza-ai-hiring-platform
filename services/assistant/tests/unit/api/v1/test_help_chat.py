@@ -5,7 +5,7 @@ import json
 import uuid
 
 import httpx
-from prepza_common.config.constants import PAUSED
+from testee_common.config.constants import PAUSED
 
 from assistant.config import settings
 from assistant.constants.help_chat import MAX_HELP_QUESTION_LENGTH
@@ -118,7 +118,7 @@ def test_paused_the_help_chat_answers_nothing(client, monkeypatch, help_redis):
     async def on(redis):
         return True
 
-    monkeypatch.setattr("prepza_common.limits.pause.is_paused", on)
+    monkeypatch.setattr("testee_common.limits.pause.is_paused", on)
 
     refused = client.post("/help/chat", json=BODY)
 

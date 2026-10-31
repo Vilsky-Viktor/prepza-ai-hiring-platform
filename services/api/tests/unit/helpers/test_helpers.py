@@ -4,7 +4,7 @@ import json
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.auth.tokens import hashed
+from testee_common.auth.tokens import hashed
 
 from api.helpers.keys import add_months, expired, new_key
 from api.helpers.webhooks import body_of, masked, signature
@@ -13,7 +13,7 @@ from api.helpers.webhooks import body_of, masked, signature
 def test_a_new_key_is_kept_only_as_its_hash():
     key, shown, stored = new_key()
 
-    assert key.startswith("pz_") and len(key) > 30
+    assert key.startswith("te_") and len(key) > 30
     assert key.startswith(shown) and len(shown) == 10
     assert stored == hashlib.sha256(key.encode()).hexdigest() == hashed(key)
     assert new_key()[0] != key

@@ -1,8 +1,8 @@
 import jwt
 import pytest
-from prepza_common.auth.key_actor import actor_key, key_actor, key_user
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.config.constants import KEY_SIGN_IN
+from testee_common.auth.key_actor import actor_key, key_actor, key_user
+from testee_common.auth.service_auth import issue_token
+from testee_common.config.constants import KEY_SIGN_IN
 
 KEY_ID = "5b0f6a3e-2c1d-4e8f-9a0b-1c2d3e4f5a6b"
 SECRET = "companies-own-secret"

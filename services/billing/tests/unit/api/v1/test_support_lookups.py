@@ -4,7 +4,7 @@ zone's support tab; storage faked."""
 from datetime import UTC, datetime
 from types import SimpleNamespace
 
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from billing.constants.products import MAX_BUYER_PURCHASES
 from billing.core.security import service_token

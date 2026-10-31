@@ -5,7 +5,7 @@ anything twice)."""
 
 from datetime import datetime
 
-from prepza_common.events.audit_actions import AUDIT_RECORDED
+from testee_common.events.audit_actions import AUDIT_RECORDED
 
 from companies.constants.events import (
     GENERATION_CANCELLED,

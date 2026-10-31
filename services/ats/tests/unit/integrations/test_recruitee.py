@@ -6,7 +6,7 @@ import json
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.http import http
+from testee_common.http import http
 
 from ats.helpers.ats import recruitee_signed
 from ats.integrations import ats_clients, recruitee

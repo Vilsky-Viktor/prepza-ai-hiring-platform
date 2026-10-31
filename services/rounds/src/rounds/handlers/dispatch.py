@@ -2,7 +2,7 @@
 again deletes nothing more, so a redelivery or a repeat is safe, in any order; an error answers
 5xx and Pub/Sub delivers the event again)."""
 
-from prepza_common.events.deletions import COMPANY_DELETED, INTERVIEW_DELETED, USER_DELETED
+from testee_common.events.deletions import COMPANY_DELETED, INTERVIEW_DELETED, USER_DELETED
 
 from rounds.handlers import company_deleted, interview_deleted, user_deleted
 

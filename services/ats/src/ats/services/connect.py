@@ -3,8 +3,8 @@ import secrets
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.auth.encryption import decrypt
-from prepza_common.auth.user import User
+from testee_common.auth.encryption import decrypt
+from testee_common.auth.user import User
 
 from ats.config import settings
 from ats.constants.ats import BREEZY_WEBHOOK, GREENHOUSE_CANT_WRITE, RECRUITEE_DOMAIN, AtsProvider

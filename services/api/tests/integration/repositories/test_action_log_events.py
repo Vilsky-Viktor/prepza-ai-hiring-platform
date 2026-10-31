@@ -4,8 +4,8 @@ the change itself; the web hook is named by its site only. (API keys: test_key_p
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.events.audit_actions import AUDIT_RECORDED
 from sqlalchemy import select
+from testee_common.events.audit_actions import AUDIT_RECORDED
 
 from api.core.db import Session
 from api.models.outbox import OutboxEvent

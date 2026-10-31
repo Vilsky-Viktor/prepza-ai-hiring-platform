@@ -7,7 +7,7 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from companies.integrations import accounts, billing, rounds
 from companies.services import candidate_invites, discover

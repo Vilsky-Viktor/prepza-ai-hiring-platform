@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status
-from prepza_common.auth.google import Invoker
-from prepza_common.events.pubsub import PushBody, event_of, occurred_at
-from prepza_common.events.unhandleable import handle_or_drop
+from testee_common.auth.google import Invoker
+from testee_common.events.pubsub import PushBody, event_of, occurred_at
+from testee_common.events.unhandleable import handle_or_drop
 
 from api.handlers.dispatch import handle
 

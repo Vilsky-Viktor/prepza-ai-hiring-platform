@@ -55,8 +55,8 @@ def test_invite_again_and_a_top_up_put_not_invited_candidates_back_to_waiting(ru
 
 
 def test_more_not_invited_candidates_than_a_batch_all_wait_again(run, monkeypatch):
-    from prepza_common.db import db
     from sqlalchemy import select
+    from testee_common.db import db
 
     from ats.core.db import Session
     from ats.models.ats import AtsCandidate

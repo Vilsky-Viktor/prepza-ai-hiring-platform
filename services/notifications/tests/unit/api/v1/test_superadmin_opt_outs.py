@@ -2,8 +2,8 @@ import logging
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from notifications.helpers.unsubscribe import address_hash
 from notifications.integrations import companies
@@ -21,7 +21,7 @@ def signed_in(monkeypatch):
     """Acme and Bolt invited Ann; Ann stopped Acme's emails and one of Bolt's invites' reminders,
     and a superadmin stopped Cold's emails before Cold erased her. Signs in as the superadmin
     Sam, or as `email`."""
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     rows = [
         SimpleNamespace(company_id=ACME, invite_id=None, by_admin=False),
         SimpleNamespace(company_id=BOLT, invite_id="i-1", by_admin=False),
@@ -55,7 +55,7 @@ def signed_in(monkeypatch):
     monkeypatch.setattr(companies, "invited_company_ids", invited_company_ids)
     monkeypatch.setattr(companies, "members", members)
 
-    def sign_in(email="sam@prepza.dev"):
+    def sign_in(email="sam@testee.dev"):
         app.dependency_overrides[current_user] = lambda: User(
             uid="sam",
             email=email,

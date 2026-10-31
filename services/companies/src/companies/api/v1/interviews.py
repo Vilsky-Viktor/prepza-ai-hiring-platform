@@ -2,9 +2,9 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Query, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.db.paging import PageParams
-from prepza_common.limits.pause import refuse_if_paused
+from testee_common.auth.auth import CurrentUser
+from testee_common.db.paging import PageParams
+from testee_common.limits.pause import refuse_if_paused
 
 from companies.api.dependencies import Via
 from companies.constants.invites import MAX_SEARCH_LENGTH

@@ -5,8 +5,8 @@ import uuid
 import httpx
 import pytest
 from event_pushes import push
-from prepza_common.http import http
 from sqlalchemy import func, select
+from testee_common.http import http
 
 from notifications.config import settings
 from notifications.constants.unsubscribe import UnsubscribeType

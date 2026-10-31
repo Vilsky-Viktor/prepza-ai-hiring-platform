@@ -1,11 +1,11 @@
 import uuid
 from datetime import UTC, date, datetime
 
-from prepza_common.db.db import one_of
-from prepza_common.events.audit_actions import MAX_TARGET_LABEL, AuditAction, AuditGroup, TargetKind
 from sqlalchemy import CheckConstraint, Date, DateTime, ForeignKey, Index, String, func, text
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
+from testee_common.events.audit_actions import MAX_TARGET_LABEL, AuditAction, AuditGroup, TargetKind
 
 from companies.constants.audit import VIA_API, VIA_ATS, VIAS
 from companies.models.base import Base
@@ -61,9 +61,9 @@ class AuditEvent(Base):
     # did. None otherwise.
     via: Mapped[str | None] = mapped_column(String(32))
     # An API key that took it, over the API or MCP (the api service's): the key is its own author
-    # then, `user_id` being the key acting (prepza_common.auth.key_actor). None otherwise.
+    # then, `user_id` being the key acting (testee_common.auth.key_actor). None otherwise.
     key_id: Mapped[uuid.UUID | None]
-    # The event another service sent it in (prepza_common.events.audit), so a redelivery stores it once;
+    # The event another service sent it in (testee_common.events.audit), so a redelivery stores it once;
     # None for companies' own.
     event_id: Mapped[str | None] = mapped_column(String(128), unique=True)
     # The UTC day of a results view (only), fixed at its first view that day: what keeps it to

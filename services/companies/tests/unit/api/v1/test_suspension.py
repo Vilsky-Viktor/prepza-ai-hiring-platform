@@ -5,8 +5,8 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.user import User
 from sqlalchemy.exc import IntegrityError
+from testee_common.auth.user import User
 
 from companies.constants.invites import COMPANY_SUSPENDED, INTERVIEW_UNAVAILABLE, InviteStatus
 from companies.models.companies import Company, Member

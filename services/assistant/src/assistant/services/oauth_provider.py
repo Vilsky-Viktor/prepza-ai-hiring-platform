@@ -11,8 +11,8 @@ from mcp.server.auth.provider import (
     TokenError,
 )
 from mcp.shared.auth import OAuthClientInformationFull, OAuthToken
-from prepza_common.auth.tokens import hashed
-from prepza_common.events.analytics import track
+from testee_common.auth.tokens import hashed
+from testee_common.events.analytics import track
 
 from assistant.config import settings
 from assistant.constants.limits import MAX_REGISTRATION_BYTES, MAX_STATE_LENGTH
@@ -61,7 +61,7 @@ async def revoke_if_replayed(refresh_hash: str) -> None:
 
 
 class Provider:
-    """prepza as the authorization server of AI apps (the MCP SDK's
+    """testee as the authorization server of AI apps (the MCP SDK's
     OAuthAuthorizationServerProvider): apps register themselves, the user allows them on the
     site's /connect page, and they get opaque tokens, kept as hashes, one connection each."""
 
@@ -230,7 +230,7 @@ class Provider:
 
     async def revoke_token(self, token: Access | Refresh) -> None:
         """The app disconnects itself (it was removed there): the connection goes. An API key
-        is deleted in prepza only."""
+        is deleted in testee only."""
         if token.grant_id is None:
             return
 

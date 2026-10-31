@@ -1,19 +1,19 @@
 # The API reference's API tab: getting a key, signing in, errors, lists and the changelog.
 API_TAB = """# API
 
-The prepza API connects prepza to your own platform. Use it to create interviews from job
+The testee API connects testee to your own platform. Use it to create interviews from job
 descriptions, invite candidates, remind, update or remove them, read their results, find a
 candidate by email, read and add your team's notes on an interview and read your credits, and
 receive a [web hook](/api-docs?tab=webhooks) as soon as a candidate finishes.
 
 ## Getting an API key
 
-1. Sign in to prepza as an owner or admin of your company.
+1. Sign in to testee as an owner or admin of your company.
 2. Open **Hiring**, select your company and go to the **Integrations** tab.
 3. In the **API** section, open the API page and select **New key**.
 4. Name the key after the platform that will use it, choose when it expires (in 1, 3, 6 or 12
    months, or never), then select **New key**.
-5. Copy the key and store it securely. It is shown only once: prepza keeps only a hash of it.
+5. Copy the key and store it securely. It is shown only once: testee keeps only a hash of it.
 
 A company can have a limited number of keys; the API page refuses one more. An expired key
 returns `401`; make a new one before it expires. Deleting a key on the same page revokes it immediately.
@@ -24,7 +24,7 @@ each key was last used), then delete the old one.
 
 ## Authentication
 
-Send the key with every request in the `Authorization` header: `Authorization: Bearer pz_...`.
+Send the key with every request in the `Authorization` header: `Authorization: Bearer te_...`.
 A key belongs to one company and acts on behalf of the member who created it, so invitations are
 sent under that member's email limits. If the member leaves the company or is no longer an owner
 or admin, the key stops working and requests return `401`.
@@ -34,7 +34,7 @@ or admin, the key stops working and requests return `401`.
 A key can be limited to the addresses your servers call from: on the API page, give the key a
 list of IPv4 or IPv6 addresses or CIDR ranges (like `203.0.113.7` or `2001:db8::/32`). A request
 from any other address returns `403` (`ip_not_allowed`); a key without a list works from any
-address. The address checked is the one your request reached prepza from; an
+address. The address checked is the one your request reached testee from; an
 `X-Forwarded-For` header you send yourself is ignored.
 
 ## Example: inviting a candidate
@@ -43,8 +43,8 @@ Invite a candidate to an interview and get their invite link. Sending the same r
 safe: it never invites them twice.
 
 ```bash
-curl -X POST "https://prepza.ai/api/v1/interviews/$INTERVIEW_ID/candidates" \\
-  -H "Authorization: Bearer $PREPZA_API_KEY" \\
+curl -X POST "https://testee.ai/api/v1/interviews/$INTERVIEW_ID/candidates" \\
+  -H "Authorization: Bearer $TESTEE_API_KEY" \\
   -H "Content-Type: application/json" \\
   -d '{"email": "ada@example.com", "name": "Ada Lovelace"}'
 ```
@@ -55,10 +55,10 @@ import os
 import httpx
 
 interview_id = "YOUR_INTERVIEW_ID"
-api_key = os.environ["PREPZA_API_KEY"]
+api_key = os.environ["TESTEE_API_KEY"]
 
 response = httpx.post(
-    f"https://prepza.ai/api/v1/interviews/{interview_id}/candidates",
+    f"https://testee.ai/api/v1/interviews/{interview_id}/candidates",
     headers={"Authorization": f"Bearer {api_key}"},
     json={"email": "ada@example.com", "name": "Ada Lovelace"},
 )
@@ -69,11 +69,11 @@ print(response.json()["invite_url"])
 ```typescript
 const interviewId = "YOUR_INTERVIEW_ID"
 const response = await fetch(
-  `https://prepza.ai/api/v1/interviews/${interviewId}/candidates`,
+  `https://testee.ai/api/v1/interviews/${interviewId}/candidates`,
   {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.PREPZA_API_KEY}`,
+      Authorization: `Bearer ${process.env.TESTEE_API_KEY}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email: "ada@example.com", name: "Ada Lovelace" }),
@@ -93,7 +93,7 @@ console.log(candidate.invite_url)
 Your company's keys together have a limit of requests per minute; further requests return
 `429` until the minute ends, with a `Retry-After` header giving the seconds left. List endpoints return the newest items first and accept `offset` and `limit` (up to 100
 items per request). A full page comes with a `Link` header to the next one,
-`Link: <https://prepza.ai/api/v1/...>; rel="next"`; follow it until a response has none (the
+`Link: <https://testee.ai/api/v1/...>; rel="next"`; follow it until a response has none (the
 page after a full one can be empty).
 
 ## Keeping your copy in sync
@@ -136,7 +136,7 @@ you don't know by its HTTP status.
 | `interview_not_ready` | 409 | The interview's questions are still being made |
 | `candidate_finished` | 409 | The candidate already finished |
 | `candidate_started` | 409 | Extra time only before the candidate starts |
-| `invited_without_sign_in` | 409 | prepza doesn't email a candidate invited with `sign_in` false |
+| `invited_without_sign_in` | 409 | testee doesn't email a candidate invited with `sign_in` false |
 | `company_suspended` | 409 | The company is suspended; its notes can be read, not added |
 | `interview_quota_reached` | 409 | As many interviews without candidates as allowed |
 | `request_in_progress` | 409 | The same request is still running |
@@ -148,7 +148,7 @@ you don't know by its HTTP status.
 | `rate_limited` | 429 | A rate or email limit; wait `Retry-After` seconds |
 | `paused` | 503 | What the endpoint does is paused for a while |
 | `ai_budget_used_up` | 503 | Today's AI budget is used up; `Retry-After` says until when |
-| `maintenance` | 503 | prepza is down for maintenance |
+| `maintenance` | 503 | testee is down for maintenance |
 
 Any other refusal carries its status's code: `bad_request`, `unauthorized`, `forbidden`,
 `method_not_allowed`, `conflict` or `unavailable`.
@@ -169,8 +169,8 @@ or the invite has expired.
 
 ## Sending candidates from your own platform
 
-When your platform already knows who the candidate is, invite them with `sign_in` false: prepza
-sends no emails, and the `invite_url` opens the interview without signing in to prepza. Anyone
+When your platform already knows who the candidate is, invite them with `sign_in` false: testee
+sends no emails, and the `invite_url` opens the interview without signing in to testee. Anyone
 with that link can take the interview, so give it only to the candidate. Add a `return_url` to
 bring them back once they've finished: any https address (http only on `localhost` or
 `127.0.0.1`, while you test); anything else returns `422` (`return_url_invalid`). Or [embed the
@@ -202,6 +202,6 @@ added. Anything retired first answers with `Deprecation` and `Sunset` headers an
   1 May 2027 and answers with `Deprecation`, `Sunset` and `Link` (`rel="deprecation"`) headers.
 - 2026-10-22: web hook bodies carry `timestamp`, the same as `occurred_at`.
 - 2026-10-22: a web hook's secret can be rolled; for 24 hours both secrets sign, so
-  `Prepza-Signature` carries a `v1=` for each.
+  `Testee-Signature` carries a `v1=` for each.
 
 """

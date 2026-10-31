@@ -30,7 +30,7 @@ NOT_FOUND = "Not found"
 ALREADY_SENT = "This campaign was already sent, so it can't be changed."
 NOT_SENT = "This campaign hasn't been sent."
 CHANGED = "This campaign's kind was changed meanwhile. Check it and send it again."
-LINK_NOT_ON_SITE = "The button's link must be a page on prepza, starting with /."
+LINK_NOT_ON_SITE = "The button's link must be a page on testee, starting with /."
 NO_BUTTON_TEXT = "Give the button a text, or leave its link empty too."
 NOT_ACKNOWLEDGED = (
     "Confirm that this notice is about the service itself, not a promotion, before sending it."

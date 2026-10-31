@@ -1,7 +1,5 @@
 from datetime import UTC, datetime
 
-from prepza_common.config.constants import LEGAL_VERSIONS
-from prepza_common.events.deletions import COMPANY_DELETED, CompanyDeleted
 from sqlalchemy import String, and_, cast, func, literal, or_, select, update
 
 # Aliased: this module's own delete() would otherwise shadow it.
@@ -10,6 +8,8 @@ from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
+from testee_common.config.constants import LEGAL_VERSIONS
+from testee_common.events.deletions import COMPANY_DELETED, CompanyDeleted
 
 from companies.constants.roles import Role
 from companies.constants.verification import RENAME_REVIEWED, VerificationStatus
@@ -140,7 +140,7 @@ async def set_logo(
 async def set_brand_colors(
     session: AsyncSession, company_id, theme: str, colors: dict | None
 ) -> None:
-    """Saves the company's colors for one theme, or goes back to prepza's with None. In SQL, so
+    """Saves the company's colors for one theme, or goes back to testee's with None. In SQL, so
     two people saving the two themes at once both keep theirs."""
     saved = func.coalesce(Company.brand_colors, cast({}, JSONB))
     value = (

@@ -1,7 +1,7 @@
 import asyncio
 
 from fake_redis import FakeRedis
-from prepza_common.redis import redis_lock
+from testee_common.redis import redis_lock
 
 
 def test_a_second_run_waits_for_the_first_to_release_the_lock():

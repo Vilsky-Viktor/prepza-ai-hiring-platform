@@ -44,7 +44,7 @@ async def side(kind: str) -> Side:
         keys.add,
         company,
         "Matrix",
-        "pz_m",
+        "te_m",
         uuid4().hex * 2,
         owner,
         None,

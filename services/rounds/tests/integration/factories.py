@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.limits.limit_list import LIMITS
 from sqlalchemy.exc import IntegrityError
+from testee_common.limits.limit_list import LIMITS
 
 from rounds.helpers.sessions import new_sections
 from rounds.repositories import sessions

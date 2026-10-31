@@ -3,9 +3,9 @@ from datetime import UTC, datetime
 
 import httpx
 from fake_redis import FakeRedis
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 import companies.services.question_steps as question_routes
 from companies.integrations import billing, generation, library

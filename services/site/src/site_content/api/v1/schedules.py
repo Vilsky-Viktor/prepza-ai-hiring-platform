@@ -1,7 +1,7 @@
 import logging
 
 from fastapi import APIRouter, status
-from prepza_common.auth.google import Invoker
+from testee_common.auth.google import Invoker
 
 from site_content.services import news
 from site_content.services import outbox as outbox_service

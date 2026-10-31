@@ -4,7 +4,7 @@ them, as "Name <email>" or "email, Name" lines, or a CSV with name columns in it
 import csv
 import re
 
-from prepza_common.i18n.names import clean_name
+from testee_common.i18n.names import clean_name
 
 from companies.constants.invites import EMAIL_PATTERN, LineProblem
 from companies.constants.name_headers import (

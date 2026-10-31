@@ -58,7 +58,7 @@ dependencies = [
     { name = "httpx" },
     { name = "mcp" },
     { name = "openai" },
-    { name = "prepza-common", extra = ["langfuse", "llm"] },
+    { name = "testee-common", extra = ["langfuse", "llm"] },
     { name = "psycopg", extra = ["binary"] },
     { name = "pydantic-settings" },
     { name = "redis" },
@@ -82,7 +82,7 @@ requires-dist = [
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "mcp", specifier = ">=2.2,<3" },
     { name = "openai", specifier = ">=3.26.1" },
-    { name = "prepza-common", extras = ["llm", "langfuse"], editable = "../../packages/common" },
+    { name = "testee-common", extras = ["llm", "langfuse"], editable = "../../packages/common" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.3.6" },
     { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "redis", specifier = ">=8.1.0" },
@@ -1397,7 +1397,7 @@ wheels = [
 ]
 
 [[package]]
-name = "prepza-common"
+name = "testee-common"
 version = "0.1.0"
 source = { editable = "../../packages/common" }
 dependencies = [
@@ -1441,7 +1441,7 @@ provides-extras = ["llm", "langfuse", "money"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "prepza-common", extras = ["llm", "langfuse", "money"] },
+    { name = "testee-common", extras = ["llm", "langfuse", "money"] },
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "pytest-randomly", specifier = ">=5.0.0" },

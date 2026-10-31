@@ -24,15 +24,15 @@ ALLOWED = {
     "services/rounds/src/rounds/integrations/live_hearing.py",
     # The event loop's heartbeat, one per instance for its whole life, started in its lifespan:
     # no request's work. Throttled between requests, the loop then waits idle, never counted.
-    "packages/common/src/prepza_common/observability/loop_watch.py",
+    "packages/common/src/testee_common/observability/loop_watch.py",
     # Integration tests' races only: both calls are awaited before the test ends.
-    "packages/common/src/prepza_common/db/lock_waits.py",
+    "packages/common/src/testee_common/db/lock_waits.py",
 }
 
 
 def test_no_task_outlives_its_request():
     files = service_code(ROOT)
-    files += list(ROOT.glob("packages/common/src/prepza_common/**/*.py"))
+    files += list(ROOT.glob("packages/common/src/testee_common/**/*.py"))
     found = [
         str(path.relative_to(ROOT))
         for path in files

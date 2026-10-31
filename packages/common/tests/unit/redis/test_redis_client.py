@@ -1,10 +1,10 @@
-from prepza_common.redis.redis_client import redis_client
-from prepza_common.redis.redis_constants import (
+from redis.exceptions import ConnectionError, TimeoutError
+from testee_common.redis.redis_client import redis_client
+from testee_common.redis.redis_constants import (
     REDIS_HEALTH_CHECK_SECONDS,
     REDIS_RETRIES,
     REDIS_TIMEOUT_SECONDS,
 )
-from redis.exceptions import ConnectionError, TimeoutError
 
 
 def test_a_dropped_connection_is_retried_instead_of_failing_the_request():

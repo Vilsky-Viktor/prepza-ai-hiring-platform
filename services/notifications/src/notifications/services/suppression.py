@@ -1,5 +1,5 @@
-# prepza's own suppression list: addresses that bounced for good, again and again for a while, or
-# marked an email as spam, which every email skips (prepza's own inbox aside). Kept as hashes; a
+# testee's own suppression list: addresses that bounced for good, again and again for a while, or
+# marked an email as spam, which every email skips (testee's own inbox aside). Kept as hashes; a
 # superadmin sees and removes one on an account's page.
 import logging
 import uuid
@@ -98,7 +98,7 @@ async def lookup(email: str) -> dict | None:
 
 async def remove(email: str, superadmin_id: str) -> None:
     """Emails reach the address again: taken off Resend's own list first (when Resend sends),
-    then off prepza's, so a failure leaves it on both and the superadmin tries again (502).
+    then off testee's, so a failure leaves it on both and the superadmin tries again (502).
     Logged with its hash, never the address."""
     address = address_hash(email)
 

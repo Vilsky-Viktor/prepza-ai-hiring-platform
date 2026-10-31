@@ -2,11 +2,11 @@ from unittest import mock
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth import google
-from prepza_common.auth.google import verify_invoker
+from testee_common.auth import google
+from testee_common.auth.google import verify_invoker
 
 AUDIENCE = "https://companies.run.app"
-INVOKER = "invoker@prepza.iam.gserviceaccount.com"
+INVOKER = "invoker@testee.iam.gserviceaccount.com"
 
 
 def request_with(token=None):
@@ -17,13 +17,13 @@ def request_with(token=None):
 
 @pytest.fixture
 def production(monkeypatch):
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "prepza-prod")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "testee-prod")
     monkeypatch.setenv("INVOKER_AUDIENCE", AUDIENCE)
     monkeypatch.setenv("INVOKER_SERVICE_ACCOUNT", INVOKER)
 
 
 def test_nothing_is_checked_locally(monkeypatch):
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "demo-prepza")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "demo-testee")
 
     verify_invoker(request_with())
 

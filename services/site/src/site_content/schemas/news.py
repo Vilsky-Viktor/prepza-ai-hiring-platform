@@ -2,9 +2,9 @@ from datetime import date, datetime
 from typing import Annotated
 from uuid import UUID
 
-from prepza_common.auth.user import Language
-from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
 from pydantic import BaseModel, StringConstraints
+from testee_common.auth.user import Language
+from testee_common.config.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
 
 NewsTitle = Annotated[
     str, StringConstraints(strip_whitespace=True, min_length=1, max_length=MAX_NEWS_TITLE_LENGTH)

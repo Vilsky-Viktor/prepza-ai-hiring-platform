@@ -2,12 +2,12 @@
 candidate, their invite and the start itself (api/v1/links.py's start_link)."""
 
 from fastapi import HTTPException, Request, status
-from prepza_common.auth.human_check import require_human
-from prepza_common.auth.user import User
-from prepza_common.events.analytics import track
-from prepza_common.http.client_ip import limit_address
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit
+from testee_common.auth.human_check import require_human
+from testee_common.auth.user import User
+from testee_common.events.analytics import track
+from testee_common.http.client_ip import limit_address
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import hit
 
 from companies.config import settings
 from companies.constants.invites import (

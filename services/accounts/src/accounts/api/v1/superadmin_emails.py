@@ -1,8 +1,8 @@
 import logging
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.auth.user import UserEmailIn
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.auth.user import UserEmailIn
 
 from accounts.schemas.emails import (
     AdminEmailChangesIn,
@@ -13,7 +13,7 @@ from accounts.schemas.emails import (
 from accounts.services import email_preferences
 from accounts.services.accounts import account_by_email, account_by_id
 
-# The email settings of the admin zone's support tab: a superadmin stops a user's emails for someone who asked prepza
+# The email settings of the admin zone's support tab: a superadmin stops a user's emails for someone who asked testee
 # directly. Everyone else gets "not found". Addresses go in the body, never the query string,
 # which request logs record.
 router = APIRouter(prefix="/superadmin/emails", tags=["superadmin"])

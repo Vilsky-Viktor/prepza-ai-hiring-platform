@@ -3,8 +3,8 @@ from types import SimpleNamespace
 import pytest
 from fake_redis import FakeRedis
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 import companies.api.v1.invites as routes
 from companies.constants.invites import INVITE_EXPIRED, NOT_THE_GUEST, InviteStatus

@@ -1,6 +1,6 @@
 # notifications
 
-prepza's emails, Slack messages and in-app notices: invites, reminders, reports and contact
+testee's emails, Slack messages and in-app notices: invites, reminders, reports and contact
 messages from other services' events; the members' digest and reminders each morning; legal
 notices and campaigns through the bulk sender; the bell's notifications and their live stream;
 posts to a company's Slack channel (and whether it's connected, for the company's menu:

@@ -1,4 +1,4 @@
-from prepza_common.events.notes import NoteWritten
+from testee_common.events.notes import NoteWritten
 
 from notifications.services import notes
 

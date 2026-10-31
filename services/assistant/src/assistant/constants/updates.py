@@ -10,15 +10,15 @@ GET_UPDATES_DEFINITION = {
         "name": GET_UPDATES,
         "description": (
             "What's new in the user's companies since the last check through this connection (the"
-            " first time, and in prepza's own assistant, the last 7 days): each candidate who "
+            " first time, and in testee's own assistant, the last 7 days): each candidate who "
             "started or finished, with their grade and whether they passed; invites that weren't "
             "delivered; each candidate from an ATS who couldn't be invited; each question flagged"
             " or fixed; interviews ready or cancelled, automatic top-ups and the other "
-            "notifications prepza's bell shows; and companies running low on credits. First a "
+            "notifications testee's bell shows; and companies running low on credits. First a "
             "summary with counts, then the updates grouped by company and interview, newest "
-            "first, each with a link to its page in prepza. Call it when the user asks what's new"
+            "first, each with a link to its page in testee. Call it when the user asks what's new"
             " or how hiring is going, or starts a conversation about their candidates. It marks "
-            "nothing as read in prepza."
+            "nothing as read in testee."
         ),
         "parameters": {
             "type": "object",

@@ -3,7 +3,7 @@ post's; each language is queued once for the next batch."""
 
 import uuid
 
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from generation.constants.batch_work import BatchKind
 from generation.core.security import service_token

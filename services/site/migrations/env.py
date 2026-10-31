@@ -1,7 +1,7 @@
 from logging.config import fileConfig
 
 from alembic import context
-from prepza_common.db.db import migration_engine
+from testee_common.db.db import migration_engine
 
 import site_content.models.news  # registers the tables on Base.metadata
 import site_content.models.outbox  # noqa: F401

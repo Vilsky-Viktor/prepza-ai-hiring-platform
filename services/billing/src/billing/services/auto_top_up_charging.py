@@ -5,7 +5,7 @@ import asyncio
 import logging
 from datetime import UTC, datetime
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE
+from testee_common.config.constants import DEFAULT_LANGUAGE
 
 from billing.constants.currencies import DEFAULT_CURRENCY, Currency
 from billing.constants.products import AUTO_TOP_UP_WAIT_SECONDS, TOP_UPS

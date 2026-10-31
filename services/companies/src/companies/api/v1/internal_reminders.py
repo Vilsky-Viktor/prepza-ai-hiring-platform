@@ -3,7 +3,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Query
-from prepza_common.db.paging import IdPageParams
+from testee_common.db.paging import IdPageParams
 
 from companies.api.dependencies import ServiceCaller
 from companies.constants.notifications import MAX_COMPANIES_PER_CALL

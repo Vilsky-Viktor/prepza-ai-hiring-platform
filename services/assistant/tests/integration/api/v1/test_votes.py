@@ -4,7 +4,7 @@ conversation is opened, and only on the user's own answers."""
 
 import uuid
 
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from assistant.constants.chat import Status
 from assistant.models.answers import Answer

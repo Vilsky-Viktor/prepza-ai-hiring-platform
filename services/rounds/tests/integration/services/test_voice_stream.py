@@ -9,8 +9,8 @@ import uuid
 from contextlib import asynccontextmanager
 
 import pytest
-from prepza_common.auth.user import User
 from sqlalchemy import update
+from testee_common.auth.user import User
 
 from rounds.constants.voice import IN_TIME_KEY
 from rounds.core.db import Session as Db

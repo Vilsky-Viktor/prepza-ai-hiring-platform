@@ -2,10 +2,10 @@ import secrets
 from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.config.constants import DELETED_USER
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DELETED_USER
 
 from billing.constants.credits import (
     REFERRAL_CODE_BYTES,

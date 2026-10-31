@@ -3,8 +3,8 @@ import asyncio
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth import company_access
-from prepza_common.http import http
+from testee_common.auth import company_access
+from testee_common.http import http
 
 URL = "http://companies"
 

@@ -1,7 +1,7 @@
 from uuid import UUID
 
-from prepza_common.ai.page_keys import PAGE_KEYS
 from pydantic import BaseModel, Field, field_validator
+from testee_common.ai.page_keys import PAGE_KEYS
 
 from assistant.constants.chat import (
     HISTORY_MESSAGES,

@@ -40,8 +40,8 @@ import httpx
 import request_examples
 from fastapi.routing import APIRoute
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth.route_guards import api_routes, calls
-from prepza_common.config.constants import READ_METHODS
+from testee_common.auth.route_guards import api_routes, calls
+from testee_common.config.constants import READ_METHODS
 
 ALLOWED, REFUSED, SIGNED_OUT = "allowed", "refused", "signed out"
 HOST = "matrix.test"

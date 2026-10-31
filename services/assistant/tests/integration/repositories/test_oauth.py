@@ -7,10 +7,10 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 from event_pushes import push
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.auth.tokens import hashed
-from prepza_common.http.http import bearer
 from sqlalchemy import update
+from testee_common.auth.service_auth import issue_token
+from testee_common.auth.tokens import hashed
+from testee_common.http.http import bearer
 
 from assistant.core.db import Session
 from assistant.helpers.oauth import new_tokens
@@ -213,7 +213,7 @@ def test_a_request_and_a_code_are_taken_once(run):
 def test_a_metadata_document_app_keeps_its_long_id_and_newest_copy_and_connections(run):
     """An app named by its metadata document's address (longer than a registration's id): a new
     read replaces its copy and when it was read, and its connections stay."""
-    client_id = f"https://app-{uuid.uuid4().hex}.example.com/oauth/clients/prepza/metadata.json"
+    client_id = f"https://app-{uuid.uuid4().hex}.example.com/oauth/clients/testee/metadata.json"
     first = datetime(2026, 10, 1, tzinfo=UTC)
 
     async def scenario():

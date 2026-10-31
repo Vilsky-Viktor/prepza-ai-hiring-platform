@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common.events.notifications import NotificationKind
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events.notifications import NotificationKind
 
 from library.helpers.notifications import question_notification
 from library.repositories import outbox, preparations

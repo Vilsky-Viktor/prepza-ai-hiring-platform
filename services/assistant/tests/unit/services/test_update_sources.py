@@ -5,7 +5,7 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 import pytest
-from prepza_common.i18n.i18n import translate
+from testee_common.i18n.i18n import translate
 
 from assistant.constants.tool_calls import SERVICE_UNAVAILABLE
 from assistant.integrations import billing, services
@@ -85,7 +85,7 @@ def test_an_ai_app_reads_only_companies_that_allow_ai_apps(asked):
     assert names(result) == ["Open", "Viewed"]
 
 
-def test_prepzas_own_assistant_reads_every_company(asked):
+def test_testees_own_assistant_reads_every_company(asked):
     reading(via="assistant")
 
     assert asked["companies"][0] == ["open", "closed", "viewed"]

@@ -1,7 +1,7 @@
 import hashlib
 import hmac
 
-from prepza_common.auth.tokens import same_secret
+from testee_common.auth.tokens import same_secret
 
 
 def signature_valid(header: str, body: bytes, secret: str, now: float, tolerance: int) -> bool:

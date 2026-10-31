@@ -1,8 +1,8 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.auth.user import User
 from sqlalchemy import update
+from testee_common.auth.user import User
 
 from rounds.constants.rounds import TIME_GRACE_SECONDS
 from rounds.core.db import Session

@@ -1,6 +1,6 @@
 import pytest
 from langchain_core.messages import AIMessage, HumanMessage
-from prepza_common.ai.llm import (
+from testee_common.ai.llm import (
     audio_cost,
     call_cost,
     chat_model,

@@ -8,9 +8,9 @@ import uuid
 import pytest
 from alembic import command
 from alembic.config import Config
-from prepza_common.db.clean_start import start_clean, tables_left_empty
 from sqlalchemy import create_engine, text
 from sqlalchemy.engine import make_url
+from testee_common.db.clean_start import start_clean, tables_left_empty
 
 if not os.getenv("INTEGRATION_TESTS"):
     collect_ignore_glob = ["test_*.py", "*/test_*.py"]
@@ -145,7 +145,7 @@ def paddle_calls(monkeypatch):
 def redis(monkeypatch):
     """Redis database 15 (see scripts/integration.sh) for the limits and the unpaid AI spend,
     with the limits read afresh."""
-    from prepza_common.redis import memory_cache
+    from testee_common.redis import memory_cache
 
     from billing.integrations.redis import get_redis
 

@@ -3,8 +3,8 @@ from datetime import UTC, date, datetime, timedelta
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from notifications.constants.legal_notices import ALREADY_ASKED, TOO_LATE
 from notifications.main import app
@@ -157,7 +157,7 @@ def test_the_banner_shows_changes_noticed_until_they_apply_to_whom_they_concern(
 
 
 def test_only_a_superadmin_sees_and_asks_for_notices(client, notices, monkeypatch):
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     app.dependency_overrides[current_user] = lambda: User(
         uid="ann",
         email="ann@example.com",
@@ -169,7 +169,7 @@ def test_only_a_superadmin_sees_and_asks_for_notices(client, notices, monkeypatc
 
     app.dependency_overrides[current_user] = lambda: User(
         uid="sam",
-        email="sam@prepza.dev",
+        email="sam@testee.dev",
         email_verified=True,
         sign_in_provider="google.com",
     )

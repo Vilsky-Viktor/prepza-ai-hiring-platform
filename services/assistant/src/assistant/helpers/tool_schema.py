@@ -16,7 +16,7 @@ KEPT_KEYWORDS = (
 
 def check_route(name: str, entry: dict) -> None:
     """Refuses an allow-list entry the assistant must never call: a write that doesn't wait for
-    the user's confirmation, and other services' or prepza's own team's routes."""
+    the user's confirmation, and other services' or testee's own team's routes."""
     if entry["method"] not in WRITE_METHODS + ("GET",):
         raise ValueError(f"Tool {name}: method {entry['method']} isn't allowed")
 

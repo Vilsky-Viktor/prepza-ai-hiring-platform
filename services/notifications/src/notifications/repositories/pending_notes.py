@@ -1,10 +1,10 @@
 # The digest's copy of the notes written in the last PENDING_NOTE_HOURS (models/pending_notes.py).
 from datetime import datetime
 
-from prepza_common.db.db import delete_in_batches
 from sqlalchemy import String, cast, delete, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.db.db import delete_in_batches
 
 from notifications.models.pending_notes import PendingNote
 

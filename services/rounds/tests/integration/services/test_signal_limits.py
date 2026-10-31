@@ -1,8 +1,8 @@
 import uuid
 
 import pytest
-from prepza_common.auth.user import User
-from prepza_common.limits.limit_list import LIMITS_KEY
+from testee_common.auth.user import User
+from testee_common.limits.limit_list import LIMITS_KEY
 
 from rounds.integrations.redis import get_redis
 from rounds.repositories import sessions, signals

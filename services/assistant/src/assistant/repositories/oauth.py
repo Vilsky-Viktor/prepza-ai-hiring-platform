@@ -1,10 +1,10 @@
 from datetime import datetime, timedelta
 from uuid import UUID
 
-from prepza_common.db.db import delete_in_batches
 from sqlalchemy import delete, exists, func, or_, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
+from testee_common.db.db import delete_in_batches
 
 from assistant.constants.mcp import LAST_USED_EVERY_SECONDS
 from assistant.models.oauth import McpGrant, OAuthClient

@@ -2,7 +2,7 @@
 SDK_TAB = """# SDK
 
 Your page can show the interview itself, for a candidate invited with `sign_in` false. Your
-server invites them and passes the `invite_url` to your page, which embeds it with prepza's
+server invites them and passes the `invite_url` to your page, which embeds it with testee's
 script; never put your API key in a page. The page must be on one of your company's allowed
 domains (below) and served over HTTPS: anywhere else the interview isn't shown.
 
@@ -10,10 +10,10 @@ domains (below) and served over HTTPS: anywhere else the interview isn't shown.
 <div id="interview"></div>
 <script>
   // Calls made before the script has loaded wait for it.
-  window.Prepza = window.Prepza || { q: [], embed: function (o) { this.q.push(o) } }
+  window.Testee = window.Testee || { q: [], embed: function (o) { this.q.push(o) } }
   // The candidate's invite_url, which your server got when it invited them.
-  const candidateInviteUrl = "https://prepza.ai/invite/3fTq9xLk2VbN7wZr8YcP1mHd5sJ4gAe6uQo0RiKtEy"
-  Prepza.embed({
+  const candidateInviteUrl = "https://testee.ai/invite/3fTq9xLk2VbN7wZr8YcP1mHd5sJ4gAe6uQo0RiKtEy"
+  Testee.embed({
     element: "#interview",
     url: candidateInviteUrl,
     theme: "dark",
@@ -24,7 +24,7 @@ domains (below) and served over HTTPS: anywhere else the interview isn't shown.
     onError: ({ code }) => {},
   })
 </script>
-<script async src="https://prepza.ai/embed/v1.js"></script>
+<script async src="https://testee.ai/embed/v1.js"></script>
 ```
 
 `theme` is optional: `"light"` or `"dark"` always shows the interview in that theme, in your
@@ -35,12 +35,12 @@ your page can take them on; their results come with the `candidate.finished` web
 `onError` gets a `code`: `"timeout"` when the frame didn't load within 20 seconds (the page isn't
 on an allowed domain, or the network failed), `"invite_unavailable"` when the link expired or
 was revoked, `"load_failed"` when it couldn't be read (try again). Loaded without `async`, the
-script is ready at once and `Prepza.embed(...)` returns `{ destroy() }`, which removes the frame.
+script is ready at once and `Testee.embed(...)` returns `{ destroy() }`, which removes the frame.
 While the interview runs, the candidate should stay on it: leaving it, including for the rest of
 your page, is recorded as a page leave.
 
-If your site sends a Content-Security-Policy, allow `script-src https://prepza.ai` and
-`frame-src https://prepza.ai`. Don't add an `integrity` attribute: `v1.js` gets fixes in place
+If your site sends a Content-Security-Policy, allow `script-src https://testee.ai` and
+`frame-src https://testee.ai`. Don't add an `integrity` attribute: `v1.js` gets fixes in place
 (cached for 5 minutes), so a pinned hash would stop it loading; it is served over HTTPS and may
 be loaded with `crossorigin="anonymous"`. Within `v1`, options, callbacks and `onError` codes are
 only ever added; a change that isn't compatible would come as `v2.js`, with `v1.js` kept working.

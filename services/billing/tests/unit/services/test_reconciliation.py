@@ -7,7 +7,7 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 import pytest
-from prepza_common.http import http
+from testee_common.http import http
 
 from billing.constants.reconciliation import RECONCILE_MAX_PAGES, RECONCILE_WINDOW
 from billing.integrations import paddle

@@ -81,7 +81,7 @@ def test_a_deleted_interview_or_company_deletes_its_rows(client, calls):
     ]
 
 
-def test_what_prepza_set_up_in_the_ats_is_cancelled_before_the_rows_go(client, calls, monkeypatch):
+def test_what_testee_set_up_in_the_ats_is_cancelled_before_the_rows_go(client, calls, monkeypatch):
     workable = AtsConnection(id=uuid.uuid4(), provider="workable")
     breezy = AtsConnection(id=uuid.uuid4(), provider="breezy")
     linked = AtsJobLink(id=uuid.uuid4(), subscription_id="sub-1")

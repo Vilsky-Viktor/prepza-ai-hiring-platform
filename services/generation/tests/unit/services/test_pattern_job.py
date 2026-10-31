@@ -7,7 +7,7 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.ai.ai_constants import AI_USED
+from testee_common.ai.ai_constants import AI_USED
 
 from generation.constants.actions import QUALITY_PATTERNS
 from generation.constants.patterns import (
@@ -257,7 +257,7 @@ def test_the_emergency_pause_skips_the_job(monkeypatch, stored, redis):
     async def on(redis):
         return True
 
-    monkeypatch.setattr("prepza_common.limits.pause.is_paused", on)
+    monkeypatch.setattr("testee_common.limits.pause.is_paused", on)
 
     asyncio.run(job.run())
 

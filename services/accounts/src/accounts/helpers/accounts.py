@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from accounts.schemas.accounts import AccountOut
 

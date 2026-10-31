@@ -99,7 +99,7 @@ def test_nothing_goes_to_a_suppressed_address_and_an_invite_shows_undelivered(ou
 
     asyncio.run(delivery.send(invite, "k1"))
     asyncio.run(delivery.send(Email(to="dan@example.com", subject="s", html="h", text="t"), "k2"))
-    # The contact page's messages reach prepza's own inbox whatever the list says.
+    # The contact page's messages reach testee's own inbox whatever the list says.
     asyncio.run(delivery.send(contact_email(CONTACT, settings.contact_email), "k3"))
 
     assert outbox["sent"] == ["dan@example.com", settings.contact_email]

@@ -1,7 +1,7 @@
 """The limits superadmins edit in Controls, and the AI costs tab's routes."""
 
 import pytest
-from prepza_common.limits.limit_list import LIMITS, PROVIDER_LIMITS
+from testee_common.limits.limit_list import LIMITS, PROVIDER_LIMITS
 
 from billing.api.v1 import superadmin_ai as routes
 from billing.repositories import limit_hits, limit_settings

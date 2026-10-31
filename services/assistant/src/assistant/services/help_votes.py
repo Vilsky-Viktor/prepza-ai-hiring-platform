@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.ai.answer_votes import mirror_vote
-from prepza_common.auth.tokens import same_secret
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.ai.answer_votes import mirror_vote
+from testee_common.auth.tokens import same_secret
+from testee_common.limits.rate_limit import hit_or_skip
 
 from assistant.config import settings
 from assistant.constants.help_chat import NO_SUCH_ANSWER

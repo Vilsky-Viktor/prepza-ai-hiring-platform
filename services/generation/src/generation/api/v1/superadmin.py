@@ -1,10 +1,10 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.limits.limit_schemas import BudgetOut
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.limits.limit_schemas import BudgetOut
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import hit
 
 from generation.constants.actions import TEMPLATE_GENERATION, TEMPLATE_QUESTION_REGENERATION
 from generation.constants.kinds import GenerationKind

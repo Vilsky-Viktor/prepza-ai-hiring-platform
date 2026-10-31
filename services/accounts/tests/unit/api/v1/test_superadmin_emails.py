@@ -3,8 +3,8 @@ from types import SimpleNamespace
 
 import pytest
 from firebase_admin import auth as firebase_auth
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from accounts.constants.emails import ADMIN_CANT_CONSENT, DEFAULTS
 from accounts.main import app
@@ -20,7 +20,7 @@ GUEST = SimpleNamespace(uid="guest-1", email=None)
 def signed_in(monkeypatch):
     """Firebase knows Ann; storage records the changes. Signs in as the superadmin Sam, or as
     `email`."""
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     asked = []
     changes = []
 
@@ -54,7 +54,7 @@ def signed_in(monkeypatch):
     monkeypatch.setattr(emails, "preferences", preferences)
     monkeypatch.setattr(email_preferences, "change", change)
 
-    def sign_in(email="sam@prepza.dev"):
+    def sign_in(email="sam@testee.dev"):
         app.dependency_overrides[current_user] = lambda: User(
             uid="sam",
             email=email,

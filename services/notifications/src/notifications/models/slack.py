@@ -1,9 +1,9 @@
 from datetime import UTC, datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, DateTime, String, Text, Uuid, func
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from notifications.constants.slack import SlackStatus
 from notifications.models.base import Base

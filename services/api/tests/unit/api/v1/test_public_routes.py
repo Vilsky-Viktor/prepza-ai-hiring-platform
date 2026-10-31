@@ -1,7 +1,7 @@
 import uuid
 
 import pytest
-from prepza_common.auth.key_actor import key_actor
+from testee_common.auth.key_actor import key_actor
 
 from api.helpers.public import candidate_of
 from tests.unit.api_keys import call
@@ -50,7 +50,7 @@ def test_one_candidate_comes_with_the_patterns_in_their_answers_by_name():
         candidate(answer_signals=[{"kind": "timing"}, {"kind": "person_fit", "hard": 4}]),
         COMPANY,
         INTERVIEW,
-        "https://prepza.ai",
+        "https://testee.ai",
     )
 
     assert found.signals.answer_patterns == ["timing", "person_fit"]
@@ -58,10 +58,10 @@ def test_one_candidate_comes_with_the_patterns_in_their_answers_by_name():
 
 def test_a_candidate_who_hasnt_finished_comes_with_their_invite_link():
     found = candidate_of(
-        candidate(status="invited", invite_token="tok"), COMPANY, INTERVIEW, "https://prepza.ai"
+        candidate(status="invited", invite_token="tok"), COMPANY, INTERVIEW, "https://testee.ai"
     )
 
-    assert found.invite_url == "https://prepza.ai/invite/tok"
+    assert found.invite_url == "https://testee.ai/invite/tok"
 
 
 def test_an_invite_goes_out_as_the_key_itself(client, companies_api, key):
@@ -213,7 +213,7 @@ def test_a_candidate_reads_with_the_flag_extra_time_times_and_sections():
         ),
         COMPANY,
         INTERVIEW,
-        "https://prepza.ai",
+        "https://testee.ai",
     )
 
     assert (found.flagged, found.extra_time, found.mode) == (True, 25, "voice")
@@ -222,7 +222,7 @@ def test_a_candidate_reads_with_the_flag_extra_time_times_and_sections():
 
 
 def test_a_candidate_from_a_list_has_no_sections():
-    found = candidate_of(candidate(), COMPANY, INTERVIEW, "https://prepza.ai")
+    found = candidate_of(candidate(), COMPANY, INTERVIEW, "https://testee.ai")
 
     assert found.sections is None
     assert found.mode == "click"

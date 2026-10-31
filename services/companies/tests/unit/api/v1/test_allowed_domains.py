@@ -1,6 +1,6 @@
 # The company fixture is imported from the AI apps tests and named in the tests.
 # ruff: noqa: F811
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.constants.ai_apps import AI_APPS_CHANGED_BY_APP
 from companies.repositories import companies

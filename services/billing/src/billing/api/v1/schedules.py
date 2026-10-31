@@ -1,7 +1,7 @@
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, status
-from prepza_common.auth.google import Invoker
+from testee_common.auth.google import Invoker
 
 from billing.services import limit_values, usage
 from billing.services import outbox as outbox_service

@@ -1,11 +1,11 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.events import outbox
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import delete, func, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import outbox
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from library.models.feedback import QuestionRating, QuestionReport
 from library.models.outbox import OutboxEvent

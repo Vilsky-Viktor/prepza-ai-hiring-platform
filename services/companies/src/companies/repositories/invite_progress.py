@@ -1,9 +1,9 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.events import processed_events
 from sqlalchemy import func, update
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import processed_events
 
 from companies.constants.events import CANDIDATE_FINISHED, CANDIDATE_STARTED, CANDIDATE_UNDELIVERED
 from companies.constants.invites import NOT_STARTED, InviteStatus

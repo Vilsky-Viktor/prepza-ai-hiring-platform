@@ -1,9 +1,9 @@
 from uuid import UUID
 
 import httpx
-from prepza_common.ai.sets import AddedQuestionsIn, AdditionContext, PreparationIn, QuestionIn
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.ai.sets import AddedQuestionsIn, AdditionContext, PreparationIn, QuestionIn
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from generation.config import settings
 from generation.core.security import service_token

@@ -1,7 +1,7 @@
 import re
 import string
 
-from prepza_common.config.constants import LANGUAGES
+from testee_common.config.constants import LANGUAGES
 
 from site_content.constants.faq import FAQS, with_english
 from site_content.constants.faq.de import FAQ as GERMAN
@@ -148,7 +148,7 @@ def test_faq_links_lead_to_the_english_pages_in_every_language():
 
 
 def test_the_help_chat_reads_faq_links_as_their_text_and_page(client, monkeypatch):
-    from prepza_common.redis import memory_cache
+    from testee_common.redis import memory_cache
 
     from site_content.helpers.help import faq_items
 

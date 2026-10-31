@@ -1,5 +1,5 @@
-from prepza_common.ai.ai_cap import refuse_if_capped
-from prepza_common.limits.rate_limit import hit, hit_or_skip
+from testee_common.ai.ai_cap import refuse_if_capped
+from testee_common.limits.rate_limit import hit, hit_or_skip
 
 from rounds.integrations.redis import get_redis
 from rounds.models.sessions import Session

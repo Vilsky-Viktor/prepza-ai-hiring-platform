@@ -5,7 +5,7 @@ still to do."""
 import uuid
 
 import pytest
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from assistant.core.db import Session
 from assistant.repositories import conversations, messages, oauth

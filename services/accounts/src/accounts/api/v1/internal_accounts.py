@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.user import UserEmailIn
+from testee_common.auth.user import UserEmailIn
 
 from accounts.api.dependencies import ServiceCaller
 from accounts.helpers.accounts import account_out

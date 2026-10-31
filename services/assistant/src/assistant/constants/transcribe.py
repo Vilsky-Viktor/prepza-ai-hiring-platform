@@ -1,6 +1,6 @@
 # Voice messages: held, recorded in the browser, turned into text and sent as a message. The
 # audio stays in memory: never written to disk, the database or the logs. The formats taken and
-# their checks: prepza_common.ai.speech.
+# their checks: testee_common.ai.speech.
 
 # A request's body may be this large here: a voice message, with room for its headers.
 MAX_BODY_BYTES = 3_000_000

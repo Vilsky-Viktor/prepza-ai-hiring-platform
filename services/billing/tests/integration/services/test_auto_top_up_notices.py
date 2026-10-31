@@ -8,10 +8,10 @@ import os
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.lock_waits import hold_first_commit, race
-from prepza_common.events.audit_actions import AUDIT_RECORDED
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import select
+from testee_common.db.lock_waits import hold_first_commit, race
+from testee_common.events.audit_actions import AUDIT_RECORDED
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from billing.constants.credits import WELCOME_COMPANY
 from billing.constants.currencies import Currency

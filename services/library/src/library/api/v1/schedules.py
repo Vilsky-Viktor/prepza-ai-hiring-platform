@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status
-from prepza_common.auth.google import Invoker
+from testee_common.auth.google import Invoker
 
 from library.services import housekeeping
 from library.services import outbox as outbox_service

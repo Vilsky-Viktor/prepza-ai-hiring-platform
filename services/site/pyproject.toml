@@ -3,7 +3,7 @@ name = "site"
 version = "0.1.0"
 requires-python = ">=3.14"
 dependencies = [
-    "prepza-common[money]",
+    "testee-common[money]",
     "babel>=2.17",
     "alembic>=1.20.0",
     "email-validator>=2.3.0",
@@ -19,7 +19,7 @@ dependencies = [
 ]
 
 [tool.uv.sources]
-prepza-common = { path = "../../packages/common", editable = true }
+testee-common = { path = "../../packages/common", editable = true }
 
 [tool.pytest.ini_options]
 pythonpath = ["src", "../../packages/common/tests"]

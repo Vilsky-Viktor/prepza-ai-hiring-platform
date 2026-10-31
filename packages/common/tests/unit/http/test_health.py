@@ -1,7 +1,7 @@
 import pytest
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
-from prepza_common.http import health
+from testee_common.http import health
 
 
 @pytest.fixture

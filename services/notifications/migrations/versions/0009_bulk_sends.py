@@ -1,5 +1,5 @@
 """bulk_sends and bulk_recipients: one sender for legal notices and campaigns, each send's
-recipients worked out once; suppressed_addresses, prepza's own suppression list; campaigns and
+recipients worked out once; suppressed_addresses, testee's own suppression list; campaigns and
 campaign_texts. The legal notices asked for so far become bulk sends (legal_notices stays until
 no running code reads it)
 

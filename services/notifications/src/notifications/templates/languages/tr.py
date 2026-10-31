@@ -2,18 +2,18 @@
 
 # The footer of reminders to a company's owners and admins.
 MEMBER_FOOTER = (
-    "Bu e-posta {email} adresine, prepza'da bir şirketin sahibi veya yöneticisi olduğunuz "
+    "Bu e-posta {email} adresine, testee'de bir şirketin sahibi veya yöneticisi olduğunuz "
     "için gönderildi."
 )
 
 TEXTS = {
     "candidate": {
         "subject": "{company} mülakat daveti",
-        "preheader": "prepza'da “{title}” mülakatına katılın. Başlamak için {email} "
+        "preheader": "testee'de “{title}” mülakatına katılın. Başlamak için {email} "
         "ile giriş yapın.",
         "heading": "Mülakat daveti",
         "lines": [
-            "{company} sizi prepza'daki “{title}” mülakatına davet ediyor.",
+            "{company} sizi testee'deki “{title}” mülakatına davet ediyor.",
             (
                 "Başlamak için {email} ile giriş yapın. Mülakata yalnızca bu adres "
                 "katılabilir ve tek bir hakkınız var."
@@ -26,7 +26,7 @@ TEXTS = {
         "preheader": "Mülakattan ayrılırsanız bu bağlantıyla devam edin. {email} ile giriş yapın.",
         "heading": "Mülakat bağlantınız",
         "lines": [
-            "prepza'da {company} şirketinin “{title}” mülakatına başladınız.",
+            "testee'de {company} şirketinin “{title}” mülakatına başladınız.",
             (
                 "Ayrılırsanız bu bağlantıyla devam edin: {email} ile giriş yapın. {company} başladığını"
                 "z bağlantıyı kapatsa bile çalışmaya devam eder. Siz yokken süre işlemeye devam "
@@ -35,7 +35,7 @@ TEXTS = {
         ],
         "button": "Mülakata devam et",
         "footer": (
-            "Bu e-posta {email} adresine, bu adresle prepza'da bir mülakata başlandığı için gönderildi."
+            "Bu e-posta {email} adresine, bu adresle testee'de bir mülakata başlandığı için gönderildi."
         ),
     },
     "reminder": {
@@ -44,7 +44,7 @@ TEXTS = {
         "heading": "Mülakatınız sizi bekliyor",
         "lines": [
             (
-                "{company} birkaç gün önce sizi prepza'daki “{title}” mülakatına davet etti "
+                "{company} birkaç gün önce sizi testee'deki “{title}” mülakatına davet etti "
                 "ve henüz başlamadınız."
             ),
             (
@@ -55,14 +55,14 @@ TEXTS = {
         "button": "Daveti aç",
     },
     "member": {
-        "subject": "prepza'da {company} ekibine katılın",
+        "subject": "testee'de {company} ekibine katılın",
         "preheader": (
             "{company} ekibine {role} olarak katılın. Daveti kabul etmek için {email} ile giriş "
             "yapın."
         ),
         "heading": "Ekip daveti",
         "lines": [
-            "{inviter} sizi prepza'daki {company} ekibine {role} olarak davet ediyor.",
+            "{inviter} sizi testee'deki {company} ekibine {role} olarak davet ediyor.",
             (
                 "Daveti kabul etmek için {email} ile giriş yapın. Daveti yalnızca bu adres kabul "
                 "edebilir."
@@ -84,8 +84,8 @@ TEXTS = {
                 "e-postayı yanıtlayın."
             ),
         ],
-        "button": "prepza'yı ziyaret et",
-        "footer": "Bu e-posta {email} adresine, {sender} prepza'da bu adresle bir aday raporu "
+        "button": "testee'yi ziyaret et",
+        "footer": "Bu e-posta {email} adresine, {sender} testee'de bu adresle bir aday raporu "
         "paylaştığı için gönderildi. Beklemiyorsanız görmezden gelebilirsiniz.",
     },
     "candidates": {
@@ -100,16 +100,16 @@ TEXTS = {
                 "e-postayı yanıtlayın."
             ),
         ],
-        "button": "prepza'yı ziyaret et",
-        "footer": "Bu e-posta {email} adresine, {sender} prepza'da bu adresle bir aday raporu "
+        "button": "testee'yi ziyaret et",
+        "footer": "Bu e-posta {email} adresine, {sender} testee'de bu adresle bir aday raporu "
         "paylaştığı için gönderildi. Beklemiyorsanız görmezden gelebilirsiniz.",
     },
     "digest": {
-        "subject": "prepza etkinlik özetiniz",
+        "subject": "testee etkinlik özetiniz",
         "preheader": "Son 24 saatte şirketlerinizde olanlar.",
         "heading": "Etkinlik özetiniz",
         "lines": [
-            "Son 24 saatte prepza'daki şirketlerinizde olanlar şunlar.",
+            "Son 24 saatte testee'deki şirketlerinizde olanlar şunlar.",
         ],
         "rows": {
             "candidate_finished": "Mülakatı tamamlayan adaylar: {count} · “{title}”",
@@ -120,9 +120,9 @@ TEXTS = {
             "note": "{author}: “{excerpt}”",
             "note_by_former": "Eski bir üye: “{excerpt}”",
         },
-        "button": "prepza'yı aç",
+        "button": "testee'yi aç",
         "footer": (
-            "Bu e-posta {email} adresine, prepza'da bir şirketin üyesi olduğunuz ve "
+            "Bu e-posta {email} adresine, testee'de bir şirketin üyesi olduğunuz ve "
             "etkinlik özetini aldığınız için gönderildi."
         ),
     },
@@ -182,19 +182,19 @@ TEXTS = {
         "heading": "Kullanım koşullarımızı güncelliyoruz",
         "lines": [
             (
-                "prepza kullanım koşullarının yeni bir sürümünü yayımladık. Yeni sürüm {date} "
+                "testee kullanım koşullarının yeni bir sürümünü yayımladık. Yeni sürüm {date} "
                 "tarihinden itibaren geçerli; o zamana kadar mevcut koşullar geçerli olmaya devam "
                 "ediyor."
             ),
             (
-                "prepza'yı {date} tarihinden sonra kullanmanız, yeni koşulları kabul ettiğiniz "
+                "testee'yi {date} tarihinden sonra kullanmanız, yeni koşulları kabul ettiğiniz "
                 "anlamına gelir. Kabul etmiyorsanız, bu tarihten önce Ayarlar'dan hesabınızı "
                 "silebilirsiniz."
             ),
         ],
         "button": "Yeni koşulları oku",
         "footer": (
-            "Bu e-posta {email} adresine, bir prepza hesabınız olduğu için gönderildi. "
+            "Bu e-posta {email} adresine, bir testee hesabınız olduğu için gönderildi. "
             "Kullanım koşullarımızla ilgili bir bildirim olduğundan e-posta ayarlarınızdan "
             "bağımsız olarak gönderilir."
         ),
@@ -205,7 +205,7 @@ TEXTS = {
         "heading": "Gizlilik politikamızı güncelliyoruz",
         "lines": [
             (
-                "prepza gizlilik politikasının, verilerinizi nasıl kullandığımızı açıklayan yeni "
+                "testee gizlilik politikasının, verilerinizi nasıl kullandığımızı açıklayan yeni "
                 "bir sürümünü yayımladık. Yeni sürüm {date} tarihinden itibaren geçerli; o zamana "
                 "kadar mevcut sürüm geçerli olmaya devam ediyor."
             ),
@@ -213,7 +213,7 @@ TEXTS = {
         ],
         "button": "Yeni gizlilik politikasını oku",
         "footer": (
-            "Bu e-posta {email} adresine, bir prepza hesabınız olduğu için gönderildi. "
+            "Bu e-posta {email} adresine, bir testee hesabınız olduğu için gönderildi. "
             "Verilerinizi nasıl kullandığımızla ilgili bir bildirim olduğundan e-posta "
             "ayarlarınızdan bağımsız olarak gönderilir."
         ),
@@ -224,18 +224,18 @@ TEXTS = {
         "heading": "Veri işleme sözleşmemizi güncelliyoruz",
         "lines": [
             (
-                "prepza'nın adaylarınızın verilerini işlerken dayandığı veri işleme sözleşmesinin "
+                "testee'nin adaylarınızın verilerini işlerken dayandığı veri işleme sözleşmesinin "
                 "yeni bir sürümünü yayımladık. Yeni sürüm {date} tarihinden itibaren geçerli; o "
                 "zamana kadar mevcut sürüm geçerli olmaya devam ediyor."
             ),
             (
                 "Makul veri koruma gerekçeleriyle itiraz eden bir şirket, bu tarihten önce "
-                "prepza'yı kullanmayı bırakıp şirketini silebilir."
+                "testee'yi kullanmayı bırakıp şirketini silebilir."
             ),
         ],
         "button": "Yeni sözleşmeyi oku",
         "footer": (
-            "Bu e-posta {email} adresine, prepza'da bir şirketin sahibi veya yöneticisi "
+            "Bu e-posta {email} adresine, testee'de bir şirketin sahibi veya yöneticisi "
             "olduğunuz için gönderildi. Şirketinizle yaptığımız sözleşmeyle ilgili bir "
             "bildirim olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
@@ -248,9 +248,9 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "prepza'yı aç",
+        "open_site": "testee'yi aç",
         "footer": (
-            "Bu e-posta {email} adresine, prepza'dan ürün güncellemeleri ve haberler almayı"
+            "Bu e-posta {email} adresine, testee'den ürün güncellemeleri ve haberler almayı"
             " seçtiğiniz için gönderildi."
         ),
     },
@@ -260,13 +260,13 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "prepza'yı aç",
+        "open_site": "testee'yi aç",
         "footer": (
-            "Bu e-posta {email} adresine, prepza'dan teklifler ve kampanyalar almayı seçtiğiniz"
+            "Bu e-posta {email} adresine, testee'den teklifler ve kampanyalar almayı seçtiğiniz"
             " için gönderildi."
         ),
     },
-    # An important notice: a service email about prepza itself (a security incident, planned
+    # An important notice: a service email about testee itself (a security incident, planned
     # downtime, a change to how it works), whatever the email settings; never a promotion.
     "notices": {
         "subject": "{subject}",
@@ -274,9 +274,9 @@ TEXTS = {
         "heading": "{subject}",
         "lines": [],
         "button": "{button}",
-        "open_site": "prepza'yı aç",
+        "open_site": "testee'yi aç",
         "footer": (
-            "Bu e-posta {email} adresine, bir prepza hesabınız olduğu için gönderildi. Hizmetle"
+            "Bu e-posta {email} adresine, bir testee hesabınız olduğu için gönderildi. Hizmetle"
             " ilgili, örneğin güvenliği veya erişilebilirliği hakkında önemli bir duyuru"
             " olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
@@ -294,7 +294,7 @@ TEXTS = {
         ],
         "button": "Kredi yükle",
         "footer": (
-            "Bu e-posta {email} adresine, prepza'da {company} şirketinin sahibi veya "
+            "Bu e-posta {email} adresine, testee'de {company} şirketinin sahibi veya "
             "yöneticisi olduğunuz için gönderildi. Şirketinizin faturalandırmasıyla ilgili "
             "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
@@ -317,7 +317,7 @@ TEXTS = {
         ],
         "button": "Kartı güncelle",
         "footer": (
-            "Bu e-posta {email} adresine, prepza'da {company} şirketinin sahibi veya "
+            "Bu e-posta {email} adresine, testee'de {company} şirketinin sahibi veya "
             "yöneticisi olduğunuz için gönderildi. Şirketinizin faturalandırmasıyla ilgili "
             "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
@@ -347,7 +347,7 @@ TEXTS = {
         ],
         "button": "Faturalandırmayı aç",
         "footer": (
-            "Bu e-posta {email} adresine, prepza'da {company} şirketinin sahibi veya "
+            "Bu e-posta {email} adresine, testee'de {company} şirketinin sahibi veya "
             "yöneticisi olduğunuz için gönderildi. Şirketinizin faturalandırmasıyla ilgili "
             "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
@@ -371,7 +371,7 @@ TEXTS = {
         ],
         "button": "Faturalandırmayı aç",
         "footer": (
-            "Bu e-posta {email} adresine, prepza'da {company} şirketinin sahibi veya "
+            "Bu e-posta {email} adresine, testee'de {company} şirketinin sahibi veya "
             "yöneticisi olduğunuz için gönderildi. Şirketinizin faturalandırmasıyla ilgili "
             "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
@@ -396,21 +396,21 @@ TEXTS = {
         ],
         "button": "Faturalandırmayı aç",
         "footer": (
-            "Bu e-posta {email} adresine, prepza'da {company} şirketinin sahibi veya "
+            "Bu e-posta {email} adresine, testee'de {company} şirketinin sahibi veya "
             "yöneticisi olduğunuz için gönderildi. Şirketinizin faturalandırmasıyla ilgili "
             "olduğundan e-posta ayarlarınızdan bağımsız olarak gönderilir."
         ),
     },
-    "footer": "Bu e-posta {email} adresine, biri bu adresi prepza'ya davet ettiği için "
+    "footer": "Bu e-posta {email} adresine, biri bu adresi testee'ye davet ettiği için "
     "gönderildi. Beklemiyorsanız görmezden gelebilirsiniz.",
-    # An invite from a company prepza hasn't verified, at the end of the footer.
-    "unverified": "prepza, {company} şirketini doğrulamadı.",
+    # An invite from a company testee hasn't verified, at the end of the footer.
+    "unverified": "testee, {company} şirketini doğrulamadı.",
     "paste_link": "Ya da bu bağlantıyı tarayıcınıza yapıştırın",
     # The footer's links: optional emails' unsubscribe and settings, and a candidate's own.
     "unsubscribe": "Abonelikten çık",
     "email_settings": "E-posta ayarlarını değiştir",
     "stop_reminders": "Bu mülakat için bana hatırlatma gönderme",
     "stop_company": "{company} adına bana e-posta gönderme",
-    # Who runs prepza, at the end of every email.
-    "operator": "prepza, {name} tarafından işletilir, {address}.",
+    # Who runs testee, at the end of every email.
+    "operator": "testee, {name} tarafından işletilir, {address}.",
 }

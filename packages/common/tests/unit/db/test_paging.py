@@ -1,6 +1,6 @@
 import asyncio
 
-from prepza_common.db import paging
+from testee_common.db import paging
 
 
 def test_every_id_is_read_a_page_at_a_time_until_a_short_page(monkeypatch):

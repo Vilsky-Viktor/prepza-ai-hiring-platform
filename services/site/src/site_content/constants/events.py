@@ -1,2 +1,2 @@
-# A visitor wrote through the contact page; notifications emails it to prepza's inbox.
+# A visitor wrote through the contact page; notifications emails it to testee's inbox.
 CONTACT_SENT = "contact.sent"

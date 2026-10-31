@@ -1,7 +1,6 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import (
     CheckConstraint,
     DateTime,
@@ -15,6 +14,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from ats.constants.ats import AtsProvider, CandidateStatus, ConnectionStatus, FailReason
 from ats.models.base import Base
@@ -55,7 +55,7 @@ class AtsConnection(Base):
 
 
 class AtsJobLink(Base):
-    """An ATS job linked to a prepza interview: candidates who reach `stage_id` in that job get
+    """An ATS job linked to a testee interview: candidates who reach `stage_id` in that job get
     the interview."""
 
     __tablename__ = "ats_job_links"

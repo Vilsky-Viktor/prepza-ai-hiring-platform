@@ -1,7 +1,6 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import (
     CheckConstraint,
     DateTime,
@@ -18,6 +17,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+from testee_common.db.db import one_of
 
 from companies.constants.allowed_domains import MAX_DOMAIN_LENGTH
 from companies.constants.brand import BrandFont
@@ -29,7 +29,7 @@ from companies.models.base import Base
 
 class Company(Base):
     __tablename__ = "companies"
-    # Names are unique across prepza, ignoring case (migration 0012).
+    # Names are unique across testee, ignoring case (migration 0012).
     __table_args__ = (
         Index("uq_companies_lower_name", text("lower(name)"), unique=True),
         CheckConstraint(
@@ -55,10 +55,10 @@ class Company(Base):
     logo_type: Mapped[str | None] = mapped_column(String(32))
     logo_version: Mapped[int] = mapped_column(default=0, server_default="0")
     # Its own colors on candidates' pages, by theme ({"light": {...}, "dark": {...}}, each with
-    # constants/brand.py's keys as "#rrggbb"); a theme missing: prepza's.
+    # constants/brand.py's keys as "#rrggbb"); a theme missing: testee's.
     brand_colors: Mapped[dict | None] = mapped_column(JSONB)
     # Its titles' and text's fonts, and its cards' and buttons' corner rounding (px), on those
-    # pages; None: prepza's.
+    # pages; None: testee's.
     brand_heading_font: Mapped[str | None] = mapped_column(String(32))
     brand_text_font: Mapped[str | None] = mapped_column(String(32))
     brand_radius: Mapped[int | None] = mapped_column(SmallInteger)

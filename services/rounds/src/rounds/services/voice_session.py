@@ -2,7 +2,7 @@ import asyncio
 import logging
 
 from fastapi import HTTPException, status
-from prepza_common.i18n.i18n import translate
+from testee_common.i18n.i18n import translate
 
 from rounds.constants.rounds import RoundStatus
 from rounds.constants.voice import NO_QUESTION, NOT_VOICE

@@ -5,7 +5,7 @@ SIGN_OUT_DEFINITION = {
     "function": {
         "name": SIGN_OUT,
         "description": (
-            "Sign the user out of prepza at once (the panel does it). Use it only when they ask "
+            "Sign the user out of testee at once (the panel does it). Use it only when they ask "
             "to sign out or log out."
         ),
         "parameters": {

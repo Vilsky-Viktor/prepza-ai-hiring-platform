@@ -1,6 +1,6 @@
-from prepza_common.config.constants import NAMING_CONVENTION
 from sqlalchemy import MetaData
 from sqlalchemy.orm import DeclarativeBase
+from testee_common.config.constants import NAMING_CONVENTION
 
 
 class Base(DeclarativeBase):

@@ -1,6 +1,6 @@
-from prepza_common.events import audit
-from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import audit
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from billing.models.outbox import OutboxEvent
 

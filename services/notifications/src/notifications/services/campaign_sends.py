@@ -4,10 +4,10 @@ import uuid
 from datetime import UTC, datetime
 
 from fastapi import HTTPException, status
-from prepza_common.auth.user import User
-from prepza_common.i18n.i18n import TemplateError
-from prepza_common.limits.limits import limit, record_hit
-from prepza_common.limits.rate_limit import until_tomorrow
+from testee_common.auth.user import User
+from testee_common.i18n.i18n import TemplateError
+from testee_common.limits.limits import limit, record_hit
+from testee_common.limits.rate_limit import until_tomorrow
 
 from notifications.config import settings
 from notifications.constants.bulk import OPTIONAL_KINDS, BulkKind

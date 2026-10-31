@@ -6,7 +6,7 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.config.constants import LANGUAGES
+from testee_common.config.constants import LANGUAGES
 
 from billing.constants.item_names import CANDIDATES_NAMES
 from billing.helpers.item_names import candidates_name

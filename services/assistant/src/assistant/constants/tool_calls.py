@@ -10,7 +10,7 @@ DEFAULT_MAX_ITEMS = 20
 MAX_STRING_LENGTH = 300
 # The methods of the routes that change something: each waits for the user's confirmation.
 WRITE_METHODS = ("POST", "PUT", "PATCH", "DELETE")
-# Routes the assistant never calls: other services' and prepza's own team's.
+# Routes the assistant never calls: other services' and testee's own team's.
 FORBIDDEN_PATH_PREFIXES = ("/internal", "/superadmin")
 # A referral code as billing makes them (URL-safe): only one that reads right is passed on, in
 # the cookie companies reads.

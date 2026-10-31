@@ -141,7 +141,7 @@ def test_a_failure_answers_with_an_error_so_pubsub_retries(client, monkeypatch):
 
 
 def test_pushes_without_a_google_token_are_refused_in_google_cloud(client, monkeypatch):
-    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "prepza-prod")
+    monkeypatch.setenv("GOOGLE_CLOUD_PROJECT", "testee-prod")
     monkeypatch.setenv("INVOKER_AUDIENCE", "https://library.example.run.app")
 
     response = client.post("/internal/events", json=push("answer.recorded", RECORDED))

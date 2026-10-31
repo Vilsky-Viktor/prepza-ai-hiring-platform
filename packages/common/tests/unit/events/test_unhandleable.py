@@ -3,9 +3,9 @@ import logging
 
 import httpx
 import pytest
-from prepza_common.events.unhandleable import BadEvent, handle_or_drop
 from sqlalchemy.exc import DataError, IntegrityError, NoResultFound, OperationalError
 from starlette.exceptions import HTTPException
+from testee_common.events.unhandleable import BadEvent, handle_or_drop
 
 
 def answered(status):

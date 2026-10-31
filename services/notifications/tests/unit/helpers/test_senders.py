@@ -18,13 +18,13 @@ INVITE = {
     "company_id": "c-1",
     "invite_id": "i-1",
 }
-SITE = "https://prepza.ai"
+SITE = "https://testee.ai"
 
 
 @pytest.fixture
 def senders(monkeypatch):
-    monkeypatch.setattr(settings, "mail_from", "service@prepza.ai")
-    monkeypatch.setattr(settings, "mail_from_updates", "updates@mail.prepza.ai")
+    monkeypatch.setattr(settings, "mail_from", "service@testee.ai")
+    monkeypatch.setattr(settings, "mail_from_updates", "updates@mail.testee.ai")
     monkeypatch.setattr(settings, "mail_from_candidates", "")
 
 
@@ -34,16 +34,16 @@ def senders(monkeypatch):
 def test_candidates_emails_come_from_their_own_sender_once_one_is_set(senders, monkeypatch, build):
     email = build(INVITE, SITE, "secret")
 
-    assert sender(email) == "service@prepza.ai"
+    assert sender(email) == "service@testee.ai"
 
-    monkeypatch.setattr(settings, "mail_from_candidates", "invites@candidates.prepza.ai")
+    monkeypatch.setattr(settings, "mail_from_candidates", "invites@candidates.testee.ai")
 
-    assert sender(email) == "invites@candidates.prepza.ai"
+    assert sender(email) == "invites@candidates.testee.ai"
 
 
 def test_other_emails_keep_their_senders(senders, monkeypatch):
-    monkeypatch.setattr(settings, "mail_from_candidates", "invites@candidates.prepza.ai")
+    monkeypatch.setattr(settings, "mail_from_candidates", "invites@candidates.testee.ai")
     team = member_invite_email({**INVITE, "role": "admin", "inviter": "Bob"}, SITE)
     optional = Email(to="a@example.com", subject="s", html="h", text="t", optional=True)
 
-    assert (sender(team), sender(optional)) == ("service@prepza.ai", "updates@mail.prepza.ai")
+    assert (sender(team), sender(optional)) == ("service@testee.ai", "updates@mail.testee.ai")

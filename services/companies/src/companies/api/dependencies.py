@@ -1,7 +1,7 @@
 from typing import Annotated
 
 from fastapi import Depends, Header
-from prepza_common.auth.service_auth import service_caller
+from testee_common.auth.service_auth import service_caller
 
 from companies.config import settings
 from companies.core.security import (

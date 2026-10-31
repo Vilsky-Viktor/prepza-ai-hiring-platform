@@ -19,7 +19,7 @@ os.environ.setdefault("COMPANIES_SERVICE_SECRET", "test-secret-that-is-at-least-
 import pytest
 from fastapi.testclient import TestClient
 from no_publishing import no_publishing, published  # noqa: F401
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 from ats.main import app
 

@@ -1,7 +1,7 @@
 import logging
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE
-from prepza_common.redis import memory_cache
+from testee_common.config.constants import DEFAULT_LANGUAGE
+from testee_common.redis import memory_cache
 
 from rounds.constants.rounds import SET_CACHE_SECONDS
 from rounds.helpers.sessions import session_out

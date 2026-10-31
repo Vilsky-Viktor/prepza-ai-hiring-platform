@@ -3,9 +3,9 @@ from datetime import UTC, datetime
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.config.constants import DEFAULT_LANGUAGE
-from prepza_common.events.analytics import track
-from prepza_common.events.audit_actions import AuditAction
+from testee_common.config.constants import DEFAULT_LANGUAGE
+from testee_common.events.analytics import track
+from testee_common.events.audit_actions import AuditAction
 
 from billing.config import settings
 from billing.constants.currencies import Currency

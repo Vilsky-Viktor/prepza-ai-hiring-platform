@@ -1,6 +1,6 @@
 # assistant
 
-Mira, prepza's in-app AI assistant: signed-in users' conversations, streamed over server-sent
+Mira, testee's in-app AI assistant: signed-in users' conversations, streamed over server-sent
 events (`POST /chat`), voice messages turned into text (`POST /transcribe`), and tools made from
 the other services' user-facing routes, called with the user's own token, so every role and rule
 applies; actions that change something wait for the user's confirmation. It serves the same tools

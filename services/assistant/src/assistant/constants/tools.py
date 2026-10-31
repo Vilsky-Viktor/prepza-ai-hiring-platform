@@ -165,7 +165,7 @@ TOOLS = {
         "params": [],
         "fields": ["slug", "title", "description"],
         "description": (
-            "prepza's guide articles, by title and summary, in the user's language: in-depth "
+            "testee's guide articles, by title and summary, in the user's language: in-depth "
             "hiring advice and how-tos (how to hire and screen, what to test, the law on AI in "
             "hiring, connecting an ATS, AI agents and the API, setting up a test). Use it for "
             'advice, best-practice and "how should I" questions, then read the fitting one '
@@ -193,10 +193,10 @@ TOOLS = {
         # The whole guide, which is long.
         "max_length": 100_000,
         "description": (
-            "Everything prepza's help knows, in the user's language: what prepza can do and how "
+            "Everything testee's help knows, in the user's language: what testee can do and how "
             "to use each feature, the FAQ, today's prices and credits, payments and refunds, "
             "the terms of use and the privacy policy. Use it for how-to, pricing, policy and "
-            '"what can prepza do" questions, before saying you don\'t know.'
+            '"what can testee do" questions, before saying you don\'t know.'
         ),
     },
 }

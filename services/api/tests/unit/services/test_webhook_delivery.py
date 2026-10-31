@@ -200,7 +200,7 @@ def test_a_send_goes_to_the_checked_address_under_the_hosts_name(monkeypatch):
     assert str(sent[0].url) == "https://203.0.113.10:8443/x?a=1"
     assert sent[0].headers["host"] == "hooks.example:8443"
     assert sent[0].extensions["sni_hostname"] == "hooks.example"
-    assert sent[0].headers["prepza-signature"] == "s"
+    assert sent[0].headers["testee-signature"] == "s"
 
 
 class Endless(httpx.AsyncByteStream):

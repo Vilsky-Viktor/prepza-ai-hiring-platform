@@ -3,11 +3,11 @@
 from datetime import datetime, timedelta
 from decimal import Decimal
 
-from prepza_common.ai.ai_constants import Category
-from prepza_common.db.db import delete_in_batches, update_in_batches
 from sqlalchemy import exists, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.ai.ai_constants import Category
+from testee_common.db.db import delete_in_batches, update_in_batches
 
 from billing.constants.products import OwnerType
 from billing.models.billing import Purchase

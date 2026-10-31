@@ -2,11 +2,11 @@ import uuid
 from datetime import UTC, datetime
 from typing import get_args
 
-from prepza_common.config.constants import MAX_CAMPAIGN_BUTTON_LENGTH, MAX_CAMPAIGN_SUBJECT_LENGTH
-from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, DateTime, ForeignKey, String, Text, Uuid, func
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.config.constants import MAX_CAMPAIGN_BUTTON_LENGTH, MAX_CAMPAIGN_SUBJECT_LENGTH
+from testee_common.db.db import one_of
 
 from notifications.constants.campaigns import MAX_NOTICE_COMPANIES, AudienceGroup
 from notifications.models.base import Base

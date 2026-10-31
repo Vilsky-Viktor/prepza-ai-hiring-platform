@@ -2,10 +2,10 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.auth.user import User
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.auth.auth import current_user
+from testee_common.auth.service_auth import issue_token
+from testee_common.auth.user import User
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.api.v1 import companies as companies_router
 from companies.constants.ai_apps import AI_APPS_CHANGED_BY_APP, AI_APPS_OFF
@@ -81,7 +81,7 @@ def test_an_admin_turns_ai_apps_off_and_they_read_nothing_more(client, company, 
     assert client.get(path, headers=via("assistant")).status_code == 200
 
 
-def test_only_an_owner_or_admin_in_prepza_itself_changes_it(client, company):
+def test_only_an_owner_or_admin_in_testee_itself_changes_it(client, company):
     path = f"/companies/{COMPANY_ID}/ai-apps"
 
     for name in ("mcp", "assistant"):

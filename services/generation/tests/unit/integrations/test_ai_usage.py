@@ -3,8 +3,8 @@ import uuid
 
 import openai
 import pytest
-from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT
-from prepza_common.ai.llm import estimated_tokens
+from testee_common.ai.ai_constants import AI_USED, LIMIT_HIT
+from testee_common.ai.llm import estimated_tokens
 
 from generation.config import settings
 from generation.constants.actions import EMBEDDINGS, INTERVIEW_GENERATION

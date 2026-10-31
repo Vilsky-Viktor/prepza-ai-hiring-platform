@@ -1,7 +1,7 @@
 import os
 import uuid
 
-from prepza_common.db.lock_waits import hold_first_commit, race
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from rounds.repositories import sessions, signals
 from rounds.services import invite_scores

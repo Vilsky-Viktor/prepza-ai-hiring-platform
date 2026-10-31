@@ -1,5 +1,5 @@
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.auth.user import User
+from testee_common.auth.key_actor import key_actor
+from testee_common.auth.user import User
 
 from assistant.constants.key_tools import KEY_TOOLS
 from assistant.constants.mcp import (

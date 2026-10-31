@@ -7,8 +7,8 @@ import uuid
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.user import User
-from prepza_common.db.lock_waits import hold_first_commit, race
+from testee_common.auth.user import User
+from testee_common.db.lock_waits import hold_first_commit, race
 
 from companies.api.v1.interview_questions import set_topic_limit
 from companies.api.v1.interviews import get_interview

@@ -2,8 +2,8 @@ import uuid
 
 from alembic import command
 from alembic.config import Config
-from prepza_common.ai.sets import TopicAdditionIn
 from sqlalchemy import text
+from testee_common.ai.sets import TopicAdditionIn
 
 from library.constants.sets import Pool
 from library.core.db import Session

@@ -4,18 +4,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "Was ist prepza?",
+        "question": "Was ist testee?",
         "answer": "Ein Interview mit Zeitlimit, erstellt aus deiner Stellenbeschreibung, für jede Rolle. Nutze es, um Kandidaten zu prüfen, bevor du sie triffst, oder als eigenen Schritt im Einstellungsprozess: So oder so siehst du, wer den Job wirklich beherrscht.",
     },
     {
         "key": "roles",
         "question": "Für welche Rollen kann ich einstellen?",
-        "answer": "Für jede Rolle, in der Wissen zählt: Support, Vertrieb, Finanzen, Gesundheitswesen, Handwerk, Technik, Marketing und mehr. Wenn du den Job beschreiben kannst, kann prepza ein Interview dafür erstellen.",
+        "answer": "Für jede Rolle, in der Wissen zählt: Support, Vertrieb, Finanzen, Gesundheitswesen, Handwerk, Technik, Marketing und mehr. Wenn du den Job beschreiben kannst, kann testee ein Interview dafür erstellen.",
     },
     {
         "key": "hiring",
         "question": "Wie funktioniert es?",
-        "answer": "Füge auf der Startseite eine Stellenbeschreibung ein, gib den Namen deines Unternehmens an und prüfe die Themen, die prepza vorschlägt. Dann lade Kandidaten ein: Tippe ihre E-Mail-Adressen ein, füge eine Liste ein oder lade eine Datei hoch. Kandidaten, die nach ein paar Tagen noch nicht angefangen haben, bekommen eine Erinnerung. Jeder Kandidat bekommt eigene Fragen mit einem Zeitlimit für jede, und du siehst sein Ergebnis und jede Antwort, sobald er fertig ist.",
+        "answer": "Füge auf der Startseite eine Stellenbeschreibung ein, gib den Namen deines Unternehmens an und prüfe die Themen, die testee vorschlägt. Dann lade Kandidaten ein: Tippe ihre E-Mail-Adressen ein, füge eine Liste ein oder lade eine Datei hoch. Kandidaten, die nach ein paar Tagen noch nicht angefangen haben, bekommen eine Erinnerung. Jeder Kandidat bekommt eigene Fragen mit einem Zeitlimit für jede, und du siehst sein Ergebnis und jede Antwort, sobald er fertig ist.",
     },
     {
         "key": "link",
@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Können Unternehmen mich über meine Übungen finden?",
-        "answer": "Nur wenn du das willst. Schalte „Offen für Angebote“ nach einer Übungsrunde oder in den Einstellungen ein und gib dabei die Adresse deines LinkedIn-Profils an. Unternehmen, die über prepza einstellen, sehen dann deinen Namen, dein LinkedIn-Profil und dein neuestes Übungsergebnis in jedem Thema ihrer Interviews, das du geübt hast, und können dich zu einem Interview einladen. prepza erstellt keine Rangliste und empfiehlt dich nicht. Du kannst es jederzeit in den Einstellungen ausschalten und verschwindest dann sofort aus der Liste jedes Unternehmens; außerdem endet es ein Jahr, nachdem du es zuletzt eingeschaltet oder dein LinkedIn-Profil gespeichert hast.",
+        "answer": "Nur wenn du das willst. Schalte „Offen für Angebote“ nach einer Übungsrunde oder in den Einstellungen ein und gib dabei die Adresse deines LinkedIn-Profils an. Unternehmen, die über testee einstellen, sehen dann deinen Namen, dein LinkedIn-Profil und dein neuestes Übungsergebnis in jedem Thema ihrer Interviews, das du geübt hast, und können dich zu einem Interview einladen. testee erstellt keine Rangliste und empfiehlt dich nicht. Du kannst es jederzeit in den Einstellungen ausschalten und verschwindest dann sofort aus der Liste jedes Unternehmens; außerdem endet es ein Jahr, nachdem du es zuletzt eingeschaltet oder dein LinkedIn-Profil gespeichert hast.",
     },
     {
         "key": "cheating",
@@ -55,7 +55,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Wie ist der Preis im Vergleich zu anderen Bewertungstools?",
-        "answer": "Viele Tools für Eignungstests werden als Monats- oder Jahresabo verkauft, das du zahlst, auch wenn du niemanden testest. Bei prepza zahlst du nur pro Kandidat: {candidate} Credits ({candidate_price}), ohne Vertrag, ohne Gebühren pro Nutzer und ohne Kosten für das Generieren eines Interviews. Ein Unternehmen, das {example_candidates} Kandidaten im Monat einlädt, zahlt etwa {example_year_price} im Jahr. Wenn du jeden Monat viele Kandidaten testest, kann ein Abo günstiger sein, also vergleiche mit deinen eigenen Zahlen.",
+        "answer": "Viele Tools für Eignungstests werden als Monats- oder Jahresabo verkauft, das du zahlst, auch wenn du niemanden testest. Bei testee zahlst du nur pro Kandidat: {candidate} Credits ({candidate_price}), ohne Vertrag, ohne Gebühren pro Nutzer und ohne Kosten für das Generieren eines Interviews. Ein Unternehmen, das {example_candidates} Kandidaten im Monat einlädt, zahlt etwa {example_year_price} im Jahr. Wenn du jeden Monat viele Kandidaten testest, kann ein Abo günstiger sein, also vergleiche mit deinen eigenen Zahlen.",
     },
     {
         "key": "expire",
@@ -80,7 +80,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Kann ich Ergebnisse mit einem Hiring Manager teilen?",
-        "answer": "Ja. Lade einen PDF-Bericht für einen Kandidaten oder für alle Kandidaten eines Interviews herunter, sende ihn direkt aus prepza per E-Mail oder schick eine kurze Zusammenfassung über WhatsApp, Telegram, Viber oder LINE.",
+        "answer": "Ja. Lade einen PDF-Bericht für einen Kandidaten oder für alle Kandidaten eines Interviews herunter, sende ihn direkt aus testee per E-Mail oder schick eine kurze Zusammenfassung über WhatsApp, Telegram, Viber oder LINE.",
     },
     {
         "key": "action_log",
@@ -94,13 +94,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "Funktioniert prepza mit meinem ATS oder anderen Tools?",
+        "question": "Funktioniert testee mit meinem ATS oder anderen Tools?",
         "answer": "Ja, ohne Aufpreis. Verbinde Workable, Greenhouse, Teamtailor, Recruitee oder Breezy HR im Tab Integrationen deines Unternehmens: Kandidaten, die du in eine Phase verschiebst, bekommen das Interview, und ihre Ergebnisse gehen zurück an das ATS ([so verbindest du Fachtests mit deinem ATS](/guides/ats-integration-skills-tests)). Slack kann die Benachrichtigungen deines Unternehmens in einem Kanal posten, und über die API kann deine eigene Plattform Interviews erstellen, Kandidaten einladen und verwalten und ihre Ergebnisse empfangen, wobei jeder API-Schlüssel nur darf, was du für ihn ankreuzt; siehe [API-Dokumentation](/api-docs).",
     },
     {
         "key": "ai_apps",
-        "question": "Kann ich prepza aus Claude, ChatGPT oder meinem eigenen KI-Agenten heraus nutzen?",
-        "answer": "Ja. Füge prepza in Claude oder ChatGPT als Connector hinzu (die Schritte stehen im Tab Integrationen deines Unternehmens) und lass es in prepza zu. Die App arbeitet dann in deinem Namen und mit deinen Berechtigungen mit deinen Unternehmen, Interviews und den Ergebnissen der Kandidaten; die meisten Apps fragen dich, bevor sie etwas ändern. Dein Konto oder ein Unternehmen löschst du nur in prepza. Was die App liest, geht nach den Bedingungen dieser App an ihren Anbieter. Du kannst sie jederzeit im selben Tab trennen. Auch andere KI-Apps und selbst gebaute Agenten lassen sich verbinden: Im [MCP-Tab](/api-docs?tab=mcp) der Entwicklerdokumentation stehen die Schritte und Beispiel-Agenten, und ein Agent auf einem Server kann sich mit einem API-Schlüssel anmelden, der die Berechtigung für KI-Agenten hat. Der [Leitfaden zu KI-Agenten, MCP und APIs](/guides/ai-agents-mcp-and-api) erklärt, wofür jedes davon gedacht ist.",
+        "question": "Kann ich testee aus Claude, ChatGPT oder meinem eigenen KI-Agenten heraus nutzen?",
+        "answer": "Ja. Füge testee in Claude oder ChatGPT als Connector hinzu (die Schritte stehen im Tab Integrationen deines Unternehmens) und lass es in testee zu. Die App arbeitet dann in deinem Namen und mit deinen Berechtigungen mit deinen Unternehmen, Interviews und den Ergebnissen der Kandidaten; die meisten Apps fragen dich, bevor sie etwas ändern. Dein Konto oder ein Unternehmen löschst du nur in testee. Was die App liest, geht nach den Bedingungen dieser App an ihren Anbieter. Du kannst sie jederzeit im selben Tab trennen. Auch andere KI-Apps und selbst gebaute Agenten lassen sich verbinden: Im [MCP-Tab](/api-docs?tab=mcp) der Entwicklerdokumentation stehen die Schritte und Beispiel-Agenten, und ein Agent auf einem Server kann sich mit einem API-Schlüssel anmelden, der die Berechtigung für KI-Agenten hat. Der [Leitfaden zu KI-Agenten, MCP und APIs](/guides/ai-agents-mcp-and-api) erklärt, wofür jedes davon gedacht ist.",
     },
     {
         "key": "candidates",
@@ -120,22 +120,22 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Was passiert mit Stellenbeschreibungen und Antworten?",
-        "answer": "Stellenbeschreibungen werden genutzt, um die Interviews deines Unternehmens zu erstellen, und die Antworten der Kandidaten, um sie für dein Unternehmen zu bewerten. Die Fragen, die prepza generiert, können außerdem in Interviews und Übungsinterviews anderer Unternehmen wiederverwendet werden, ohne etwas, das dich, dein Unternehmen oder andere Personen identifiziert; du kannst die Fragen eines Interviews in dessen Einstellungen davon ausnehmen. Zudem leitet prepza daraus, wie Fragen beantwortet werden, allgemeine, anonymisierte Muster der Fragenqualität ab, um die Generierung von Fragen zu verbessern. Die [Datenschutzerklärung](/privacy) erklärt, was wir speichern, wie lange und welche Rechte alle haben.",
+        "answer": "Stellenbeschreibungen werden genutzt, um die Interviews deines Unternehmens zu erstellen, und die Antworten der Kandidaten, um sie für dein Unternehmen zu bewerten. Die Fragen, die testee generiert, können außerdem in Interviews und Übungsinterviews anderer Unternehmen wiederverwendet werden, ohne etwas, das dich, dein Unternehmen oder andere Personen identifiziert; du kannst die Fragen eines Interviews in dessen Einstellungen davon ausnehmen. Zudem leitet testee daraus, wie Fragen beantwortet werden, allgemeine, anonymisierte Muster der Fragenqualität ab, um die Generierung von Fragen zu verbessern. Die [Datenschutzerklärung](/privacy) erklärt, was wir speichern, wie lange und welche Rechte alle haben.",
     },
     {
         "key": "eu_ai_law",
         "question": "Darf man in der EU KI für die Vorauswahl von Kandidaten nutzen?",
-        "answer": "Ja, mit Regeln. Nach der KI-Verordnung der EU (AI Act) gelten Tools, die Kandidaten bewerten, sehr wahrscheinlich als Hochrisiko-Systeme, mit Pflichten ab dem 2. Dezember 2027, und die DSGVO gilt schon heute: Ein Mensch trifft die Einstellungsentscheidung, Kandidaten erfahren, dass KI eingesetzt wird, und alles wird dokumentiert. prepza arbeitet genau so: KI schreibt die Fragen, Menschen in deinem Unternehmen prüfen die Ergebnisse und entscheiden, und Kandidaten werden informiert, bevor sie beginnen. Das ist keine Rechtsberatung; [Ist KI im Recruiting in der EU erlaubt?](/guides/is-ai-hiring-legal-in-the-eu) erklärt die Regeln und Fristen.",
+        "answer": "Ja, mit Regeln. Nach der KI-Verordnung der EU (AI Act) gelten Tools, die Kandidaten bewerten, sehr wahrscheinlich als Hochrisiko-Systeme, mit Pflichten ab dem 2. Dezember 2027, und die DSGVO gilt schon heute: Ein Mensch trifft die Einstellungsentscheidung, Kandidaten erfahren, dass KI eingesetzt wird, und alles wird dokumentiert. testee arbeitet genau so: KI schreibt die Fragen, Menschen in deinem Unternehmen prüfen die Ergebnisse und entscheiden, und Kandidaten werden informiert, bevor sie beginnen. Das ist keine Rechtsberatung; [Ist KI im Recruiting in der EU erlaubt?](/guides/is-ai-hiring-legal-in-the-eu) erklärt die Regeln und Fristen.",
     },
     {
         "key": "uk_us",
-        "question": "Können wir prepza für Kandidaten in Großbritannien und den USA nutzen?",
+        "question": "Können wir testee für Kandidaten in Großbritannien und den USA nutzen?",
         "answer": "Ja. Der Auftragsverarbeitungsvertrag deckt britisches und US-amerikanisches Recht ab, und die Hinweise für Unternehmen sowie die Vorlagen für die Kandidateninformation (mit Fassungen für New York City, Illinois und Colorado) decken ab, was du Kandidaten mitteilen musst. Für Stellen in New York City nutze es erst, wenn du erfüllt hast, was Local Law 144 von dir verlangt: ein unabhängiges Bias-Audit innerhalb des Jahres vor der Nutzung, die Veröffentlichung seiner Zusammenfassung und eine Information der Kandidaten 10 Arbeitstage vorher. Der Export für ein Bias-Audit im Aktionsprotokoll gibt deinem Auditor das Ergebnis jedes Kandidaten, der fertig ist, und ob er bestanden hat, zum Abgleich mit den selbst angegebenen Antworten deiner Kandidaten.",
     },
     {
         "key": "emails",
-        "question": "Welche E-Mails sendet prepza und wie stelle ich sie ab?",
-        "answer": "Service-E-Mails wie Einladungen, Berichte, Zahlungsprobleme und Änderungen unserer Bedingungen werden immer gesendet. Alles andere, etwa die tägliche Aktivitätsübersicht, Erinnerungen und Produkt-Updates, wählst du in den Einstellungen unter E-Mails oder stellst es mit dem Link „Abmelden“ in jeder E-Mail ab. Kandidaten können die E-Mails deines Unternehmens oder die Erinnerungen zu einem Interview mit den Links in ihren Einladungen und Erinnerungen abstellen. Neuigkeiten von prepza erscheinen in deinen Benachrichtigungen, der Glocke oben; die wichtigsten kommen außerdem als Produkt-Update per E-Mail, aber nur, solange diese Einstellung an ist.",
+        "question": "Welche E-Mails sendet testee und wie stelle ich sie ab?",
+        "answer": "Service-E-Mails wie Einladungen, Berichte, Zahlungsprobleme und Änderungen unserer Bedingungen werden immer gesendet. Alles andere, etwa die tägliche Aktivitätsübersicht, Erinnerungen und Produkt-Updates, wählst du in den Einstellungen unter E-Mails oder stellst es mit dem Link „Abmelden“ in jeder E-Mail ab. Kandidaten können die E-Mails deines Unternehmens oder die Erinnerungen zu einem Interview mit den Links in ihren Einladungen und Erinnerungen abstellen. Neuigkeiten von testee erscheinen in deinen Benachrichtigungen, der Glocke oben; die wichtigsten kommen außerdem als Produkt-Update per E-Mail, aber nur, solange diese Einstellung an ist.",
     },
     {
         "key": "delete",

@@ -2,8 +2,8 @@ import uuid
 from datetime import UTC, datetime
 
 from event_pushes import push
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.http.http import bearer
+from testee_common.auth.service_auth import issue_token
+from testee_common.http.http import bearer
 
 from ats.models.ats import AtsCandidate, AtsConnection
 from ats.repositories import ats, ats_candidates

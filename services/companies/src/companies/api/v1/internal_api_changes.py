@@ -1,7 +1,7 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.config.constants import MAX_PAGE_SIZE
+from testee_common.config.constants import MAX_PAGE_SIZE
 
 from companies.api.dependencies import ServiceCaller
 from companies.constants.audit import VIA_API
@@ -83,7 +83,7 @@ async def resend_invite(
     company_id: UUID, interview_id: UUID, invite_id: UUID, user_id: str, caller: ServiceCaller
 ) -> None:
     """Sends the invite again, as an owner or admin does on the candidate's page: refused for a
-    candidate who finished (409) or one prepza doesn't email (invited without a sign-in, 409);
+    candidate who finished (409) or one testee doesn't email (invited without a sign-in, 409);
     the invite keeps its return address and theme."""
     interview, invite = await company_candidate(company_id, interview_id, invite_id)
     await candidate_invites.resend(company_id, interview, invite, user_id)

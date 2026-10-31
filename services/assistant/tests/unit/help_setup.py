@@ -58,7 +58,7 @@ def help_redis(monkeypatch, knowledge):
     async def off(redis):
         return False
 
-    monkeypatch.setattr("prepza_common.limits.pause.is_paused", off)
+    monkeypatch.setattr("testee_common.limits.pause.is_paused", off)
     monkeypatch.setattr(help_answers, "get_redis", lambda: fake)
     monkeypatch.setattr(help_votes, "get_redis", lambda: fake)
 

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from prepza_common.auth.service_auth import only_from
-from prepza_common.config.constants import UPDATES_CALLER
+from testee_common.auth.service_auth import only_from
+from testee_common.config.constants import UPDATES_CALLER
 
 from ats.api.dependencies import ServiceCaller
 from ats.schemas.ats import NotInvitedIn, NotInvitedListOut

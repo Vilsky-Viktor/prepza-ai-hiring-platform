@@ -28,7 +28,7 @@ def result(status_code, content=None) -> ToolResult:
         (None, {"error": 504}, True),
         (500, {"error": 500}, True),
         (502, {"error": 502}, True),
-        # The model's own mistakes and answers that are the data: not prepza failing.
+        # The model's own mistakes and answers that are the data: not testee failing.
         (None, {"error": 422}, False),
         (None, {"error": 404}, False),
         (404, {"error": 404}, False),

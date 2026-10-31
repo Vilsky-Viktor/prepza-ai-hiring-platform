@@ -1,10 +1,10 @@
 from datetime import datetime
 from uuid import UUID
 
-from prepza_common.auth.user import Language
-from prepza_common.config.constants import MAX_GOAL_LENGTH
-from prepza_common.i18n.titles import Title
 from pydantic import BaseModel, Field
+from testee_common.auth.user import Language
+from testee_common.config.constants import MAX_GOAL_LENGTH
+from testee_common.i18n.titles import Title
 
 from companies.constants.interviews import (
     MAX_PASS_MARK,
@@ -106,7 +106,7 @@ class InterviewDetail(InterviewOut):
     max_questions: int
     # Whether the user may change the test and its candidates: owners and admins, not viewers.
     can_edit: bool = False
-    # Its questions are kept out of prepza's shared question bank (the terms' opt-out).
+    # Its questions are kept out of testee's shared question bank (the terms' opt-out).
     keep_private: bool = False
     # Whether its language allows voice mode (VOICE_LANGUAGES, listed for the setting's note).
     voice_available: bool = False

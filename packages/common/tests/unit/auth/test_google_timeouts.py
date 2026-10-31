@@ -2,8 +2,8 @@
 which outlasts every request."""
 
 import firebase_admin
-from prepza_common.auth import auth, google
-from prepza_common.config.constants import GOOGLE_TIMEOUT_SECONDS
+from testee_common.auth import auth, google
+from testee_common.config.constants import GOOGLE_TIMEOUT_SECONDS
 
 
 def test_firebase_admins_calls_have_the_short_timeout(monkeypatch):

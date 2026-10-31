@@ -2,7 +2,7 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 import jwt
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from library.constants.reuse import MIN_COPY_QUESTIONS
 from library.constants.sets import Pool, SetKind

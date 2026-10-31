@@ -2,7 +2,7 @@
 # in the bell. Who it goes to: services/audiences.py.
 import uuid
 
-from prepza_common.events.notifications import EVERYONE, Recipient
+from testee_common.events.notifications import EVERYONE, Recipient
 
 from notifications.config import settings
 from notifications.constants.bulk import CAMPAIGN_KINDS, BulkKind

@@ -141,7 +141,7 @@ def test_a_limit_is_capped_at_the_tools_maximum_and_set_when_left_out(calls):
 
 
 def test_the_platform_guide_is_read_whole_as_text(calls):
-    guide = "<guide>\n" + "How prepza works. " * 2_000
+    guide = "<guide>\n" + "How testee works. " * 2_000
     calls.answer = answer(text=guide, headers={"content-type": "text/plain"})
     result = run("get_platform_guide", {})
 

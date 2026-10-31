@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.auth.user import UserEmailIn
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.auth.user import UserEmailIn
 
 from notifications.schemas.suppression import SuppressionOut
 from notifications.services import suppression

@@ -1,9 +1,9 @@
 import uuid
 from datetime import datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import CheckConstraint, DateTime, ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from rounds.constants.integrity import IntegritySignal
 from rounds.models.base import Base

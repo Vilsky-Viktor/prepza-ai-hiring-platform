@@ -95,7 +95,7 @@ GREENHOUSE_TOKEN_URL = "https://auth.greenhouse.io/token"
 # What a token may do (its scopes), and the scope writing results back (a note) needs.
 GREENHOUSE_INTROSPECT_URL = "https://auth.greenhouse.io/introspect"
 GREENHOUSE_NOTES_SCOPE = "harvest:notes:create"
-# Connecting a credential that reads but can't write notes (translated in prepza_common.i18n.messages).
+# Connecting a credential that reads but can't write notes (translated in testee_common.i18n.messages).
 GREENHOUSE_CANT_WRITE = (
     "This credential can't add notes, so results can't go back to Greenhouse: allow it the Notes "
     "endpoints too"
@@ -122,7 +122,7 @@ TEAMTAILOR_MAX_PAGES = 20
 # Jobs no longer hiring, left out of the jobs to link.
 TEAMTAILOR_CLOSED_JOBS = {"archived"}
 # Where a company's Teamtailor web hook sends its events, one address per connection; the company
-# pastes the signature key Teamtailor generates for it back into prepza.
+# pastes the signature key Teamtailor generates for it back into testee.
 TEAMTAILOR_WEBHOOK = "{site}/api/ats/webhooks/teamtailor/{connection_id}"
 # A Teamtailor event signed longer ago than this (or this far ahead) is refused: a replay.
 TEAMTAILOR_SIGNATURE_SECONDS = 300
@@ -135,13 +135,13 @@ RECRUITEE_DOMAIN = ".recruitee.com"
 # The jobs to link: hiring ones (published, or internal only), not drafts, closed or archived.
 RECRUITEE_OPEN_JOBS = ("published", "internal")
 # Where a company's Recruitee web hook sends its events, one address per connection; the company
-# pastes the secret Recruitee shows for it back into prepza.
+# pastes the secret Recruitee shows for it back into testee.
 RECRUITEE_WEBHOOK = "{site}/api/ats/webhooks/recruitee/{connection_id}"
 RECRUITEE_MOVED = "candidate_moved"
 RECRUITEE_STAGE_CHANGED = "stage_changed"
 # Breezy HR's API; a personal API key acts as the person who made it.
 BREEZY_API = "https://api.breezy.hr/v3"
-# Where Breezy sends a company's events, one address per connection; prepza creates that web hook
+# Where Breezy sends a company's events, one address per connection; testee creates that web hook
 # itself when connecting, and Breezy gives its signing secret then, once.
 BREEZY_WEBHOOK = "{site}/api/ats/webhooks/breezy/{connection_id}"
 BREEZY_STATUS_UPDATED = "candidateStatusUpdated"
@@ -151,7 +151,7 @@ WEBHOOKS = {
     AtsProvider.TEAMTAILOR: TEAMTAILOR_WEBHOOK,
     AtsProvider.RECRUITEE: RECRUITEE_WEBHOOK,
 }
-# The ATSs that make the web hook's secret key themselves: the company pastes it into prepza.
+# The ATSs that make the web hook's secret key themselves: the company pastes it into testee.
 PASTED_KEYS = {AtsProvider.TEAMTAILOR, AtsProvider.RECRUITEE}
 # A candidate's scorecard, linked in the results that go back to the ATS.
 SCORECARD_LINK = "{site}/companies/{company_id}/interviews/{interview_id}/candidates/{invite_id}"

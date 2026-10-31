@@ -3,9 +3,9 @@ from types import SimpleNamespace
 from uuid import uuid4
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.i18n.i18n import translate
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.i18n.i18n import translate
 
 from rounds.constants.voice import IN_TIME_KEY
 from rounds.constants.voice_phrases import GOT_IT, NEXT, TIME_UP, TIME_UP_SAVED

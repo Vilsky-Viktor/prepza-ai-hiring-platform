@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from fastapi.encoders import jsonable_encoder
-from prepza_common.auth.user import UserEmailIn
+from testee_common.auth.user import UserEmailIn
 
 from ats.api.dependencies import ServiceCaller
 from ats.services import accounts

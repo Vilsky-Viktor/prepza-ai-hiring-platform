@@ -139,4 +139,4 @@ def test_an_app_connects_with_oauth_and_calls_tools_as_the_user(run, user):
     assert [(grant.client_name, grant.redirect_host) for grant in grants] == [
         ("Integration app", "127.0.0.1")
     ]
-    assert storage.tokens.access_token.startswith("pzm_")
+    assert storage.tokens.access_token.startswith("tem_")

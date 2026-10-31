@@ -1,6 +1,6 @@
 import uuid
 
-from prepza_common.auth.service_auth import issue_token
+from testee_common.auth.service_auth import issue_token
 
 from api.repositories import keys, webhooks
 from tests.unit.conftest import COMPANY

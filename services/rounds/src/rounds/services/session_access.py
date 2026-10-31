@@ -2,8 +2,8 @@ from datetime import UTC, datetime
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.auth.user import User
 from sqlalchemy.exc import IntegrityError
+from testee_common.auth.user import User
 
 from rounds.constants.rounds import RoundStatus
 from rounds.core.db import Session

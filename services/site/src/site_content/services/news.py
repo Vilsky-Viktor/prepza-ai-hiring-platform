@@ -1,7 +1,7 @@
 import logging
 import uuid
 
-from prepza_common.events.news import NewsTranslated
+from testee_common.events.news import NewsTranslated
 
 from site_content.core.db import Session
 from site_content.helpers.notifications import news_notification

@@ -31,7 +31,7 @@ class AtsInviteIn(BaseModel):
     # The candidate's name from the ATS or the API caller, if any: it fills a name not known yet.
     name: str | None = None
     # The API caller's: where to take the candidate back once they've finished, and whether
-    # prepza emails them (no invite or reminders when the caller sends them itself).
+    # testee emails them (no invite or reminders when the caller sends them itself).
     return_url: str | None = Field(default=None, max_length=2048)
     # The theme the candidate's pages show; None: the candidate's own.
     theme: Theme | None = None

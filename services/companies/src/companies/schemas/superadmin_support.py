@@ -2,15 +2,15 @@ from datetime import datetime
 from typing import Annotated, Literal
 from uuid import UUID
 
-from prepza_common.config.constants import MAX_ADJUSTMENT, MAX_ADJUSTMENT_NOTE
 from pydantic import BaseModel, Field, StringConstraints
+from testee_common.config.constants import MAX_ADJUSTMENT, MAX_ADJUSTMENT_NOTE
 
 from companies.constants.superadmin import MAX_SUPPORT_QUERY, SupportKind
 from companies.constants.verification import VerificationStatus
 
 
 class SupportSearchIn(BaseModel):
-    """A link or path from prepza's site, an id (an account's, a company's, an interview's, a
+    """A link or path from testee's site, an id (an account's, a company's, an interview's, a
     candidate's or a Paddle transaction's), an email address, or part of a company's name."""
 
     query: Annotated[

@@ -4,10 +4,10 @@ recorded in the action log once they answer."""
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.events.audit_actions import AuditAction
-from prepza_common.http.http import passed_on
-from prepza_common.limits.pause import refuse_if_paused
-from prepza_common.limits.rate_limit import hit
+from testee_common.events.audit_actions import AuditAction
+from testee_common.http.http import passed_on
+from testee_common.limits.pause import refuse_if_paused
+from testee_common.limits.rate_limit import hit
 
 from companies.integrations import billing, library
 from companies.integrations import generation as generation_api

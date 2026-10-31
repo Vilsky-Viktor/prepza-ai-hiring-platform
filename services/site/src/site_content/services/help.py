@@ -1,6 +1,6 @@
-from prepza_common.config.constants import DEFAULT_LANGUAGE, MAX_INTERVIEW_QUESTIONS
-from prepza_common.limits.limits import limit, question_seconds
-from prepza_common.redis import memory_cache
+from testee_common.config.constants import DEFAULT_LANGUAGE, MAX_INTERVIEW_QUESTIONS
+from testee_common.limits.limits import limit, question_seconds
+from testee_common.redis import memory_cache
 
 from site_content.constants.help import GUIDE_CACHE_SECONDS
 from site_content.helpers.help import knowledge

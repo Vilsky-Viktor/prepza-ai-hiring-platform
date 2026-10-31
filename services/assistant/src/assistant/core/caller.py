@@ -1,8 +1,8 @@
 from contextvars import ContextVar
 
-from prepza_common.http.client_ip import client_ip
 from starlette.requests import Request
 from starlette.types import ASGIApp, Receive, Scope, Send
+from testee_common.http.client_ip import client_ip
 
 # The address an MCP call came from, as the load balancer saw it: a company's API key may be
 # limited to some addresses, which the api service checks when the key signs in.

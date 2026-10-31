@@ -1,7 +1,6 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.db.db import one_of
 from sqlalchemy import (
     BigInteger,
     CheckConstraint,
@@ -14,6 +13,7 @@ from sqlalchemy import (
     text,
 )
 from sqlalchemy.orm import Mapped, mapped_column
+from testee_common.db.db import one_of
 
 from billing.constants.credits import HOLD_STATUSES, REASONS, Reason
 from billing.constants.currencies import CURRENCY_CHECK, PRICE_CURRENCY_CHECK, ChoiceOwner

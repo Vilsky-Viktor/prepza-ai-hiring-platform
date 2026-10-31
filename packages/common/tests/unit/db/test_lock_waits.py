@@ -1,7 +1,7 @@
 import asyncio
 from contextlib import asynccontextmanager
 
-from prepza_common.db.lock_waits import HeldCommit
+from testee_common.db.lock_waits import HeldCommit
 
 
 class FakeSession:

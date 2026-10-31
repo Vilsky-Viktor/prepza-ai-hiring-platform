@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Request, status
-from prepza_common.http.client_ip import limit_address
-from prepza_common.limits.rate_limit import hit_or_skip
+from testee_common.http.client_ip import limit_address
+from testee_common.limits.rate_limit import hit_or_skip
 
 from ats.integrations.redis import get_redis
 from ats.services import ats_webhooks
@@ -58,7 +58,7 @@ async def recruitee_event(connection_id: UUID, request: Request) -> None:
 
 @router.post("/breezy/{connection_id}", status_code=status.HTTP_200_OK)
 async def breezy_event(connection_id: UUID, request: Request) -> None:
-    """The web hook prepza created in Breezy HR (candidates' stage changes), signed with its
+    """The web hook testee created in Breezy HR (candidates' stage changes), signed with its
     secret (the X-Hook-Signature header, checked on the body)."""
     await ats_webhooks.receive_breezy(
         connection_id, await request.body(), request.headers.get("x-hook-signature", "")

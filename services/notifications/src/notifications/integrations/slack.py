@@ -1,6 +1,6 @@
 import httpx
-from prepza_common.http import http
-from prepza_common.http.http import bearer
+from testee_common.http import http
+from testee_common.http.http import bearer
 
 from notifications.config import settings
 from notifications.constants.slack import (
@@ -85,7 +85,7 @@ async def post(webhook: str, payload: dict) -> None:
 
 
 async def revoke(token: str) -> None:
-    """Removes prepza's app from the company's workspace, as far as Slack answers."""
+    """Removes testee's app from the company's workspace, as far as Slack answers."""
     try:
         await http.get_client().post(
             SLACK_REVOKE_URL,

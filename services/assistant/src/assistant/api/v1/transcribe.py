@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request
-from prepza_common.i18n.i18n import request_language
+from testee_common.i18n.i18n import request_language
 
 from assistant.api.dependencies import UserWithToken
 from assistant.schemas.transcribe import TranscriptOut

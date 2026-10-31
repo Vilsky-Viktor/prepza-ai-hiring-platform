@@ -1,5 +1,5 @@
 {
-  "intro": "Bu koşullar, Arcolabs OÜ (sicil kodu 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonya tarafından sunulan bir hizmet olan prepza'yı kullandığınızda geçerlidir. Giriş yaparak bu koşulları kabul etmiş olursunuz. prepza.ai bu belgeyi başka dillerde de gösterir; yalnızca İngilizce sürüm bağlayıcıdır ve bir çeviri ondan farklı olduğunda İngilizce sürüm geçerlidir.",
+  "intro": "Bu koşullar, Arcolabs OÜ (sicil kodu 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonya tarafından sunulan bir hizmet olan testee'yi kullandığınızda geçerlidir. Giriş yaparak bu koşulları kabul etmiş olursunuz. testee.ai bu belgeyi başka dillerde de gösterir; yalnızca İngilizce sürüm bağlayıcıdır ve bir çeviri ondan farklı olduğunda İngilizce sürüm geçerlidir.",
   "sections": [
     {
       "heading": "Hesabınız",
@@ -18,13 +18,13 @@
     {
       "heading": "İçeriğiniz",
       "paragraphs": [
-        "Yapıştırdığınız ve oluşturduğunuz içerik üzerindeki haklar sizde kalır. prepza'yı işletmek için, kullandığımız yapay zekâ hizmetlerine göndermek de dahil olmak üzere, bu içeriği saklamamıza ve işlememize izin verirsiniz. Ayrıca prepza'nın sizin için oluşturduğu soruları, sizi, şirketinizi veya başka birini tanımlayan hiçbir bilgi olmadan diğer müşterilerin mülakatlarında ve pratiklerinde kullanmamız, uyarlamamız ve yeniden kullanmamız için bize dünya çapında, telif ücreti gerektirmeyen, geri alınamaz ve bu sorular üzerindeki herhangi bir hak sürdüğü sürece geçerli bir lisans verirsiniz; bir mülakatın sorularını mülakatın ayarlarından bunun dışında tutabilirsiniz ve daha önce yeniden kullanılmış sorular bulundukları yerde kalır. Ayrıca soruların oluşturulma şeklini iyileştirmek için tüm sorulardan soru kalitesine ilişkin genel, anonimleştirilmiş örüntüler çıkarırız. Bir iş tanımına ticari sır veya kişisel veri yapıştırmayın."
+        "Yapıştırdığınız ve oluşturduğunuz içerik üzerindeki haklar sizde kalır. testee'yi işletmek için, kullandığımız yapay zekâ hizmetlerine göndermek de dahil olmak üzere, bu içeriği saklamamıza ve işlememize izin verirsiniz. Ayrıca testee'nin sizin için oluşturduğu soruları, sizi, şirketinizi veya başka birini tanımlayan hiçbir bilgi olmadan diğer müşterilerin mülakatlarında ve pratiklerinde kullanmamız, uyarlamamız ve yeniden kullanmamız için bize dünya çapında, telif ücreti gerektirmeyen, geri alınamaz ve bu sorular üzerindeki herhangi bir hak sürdüğü sürece geçerli bir lisans verirsiniz; bir mülakatın sorularını mülakatın ayarlarından bunun dışında tutabilirsiniz ve daha önce yeniden kullanılmış sorular bulundukları yerde kalır. Ayrıca soruların oluşturulma şeklini iyileştirmek için tüm sorulardan soru kalitesine ilişkin genel, anonimleştirilmiş örüntüler çıkarırız. Bir iş tanımına ticari sır veya kişisel veri yapıştırmayın."
       ]
     },
     {
       "heading": "Adil kullanım",
       "items": [
-        "prepza'yı istenmeyen e-posta göndermek için kullanmayın; prepza'dan otomatik veri kazımayın, onu aşırı yüklemeyin veya ona saldırmayın.",
+        "testee'yi istenmeyen e-posta göndermek için kullanmayın; testee'den otomatik veri kazımayın, onu aşırı yüklemeyin veya ona saldırmayın.",
         "Sınırları, güvenlik önlemlerini veya başka bir kullanıcının erişimini aşmaya çalışmayın.",
         "Mülakatta kendi başınıza cevap verin ve mülakatın kurallarına uyun; şirket her cevabın ne kadar sürdüğünü, sayfadan ne zaman ayrıldığınızı ve ne zaman metin kopyaladığınızı görür. Başlamadan önce soruları kendinizin yanıtlayacağını onaylarsınız ve şirket bunu onayladığınızı görür."
       ]
@@ -32,7 +32,7 @@
     {
       "heading": "Şirketler",
       "paragraphs": [
-        "prepza'yı adaylarla mülakat yapmak için kullanan bir şirket, adayları hukuka uygun şekilde davet etmekten, onlara sonuçlarının nasıl kullanıldığını bildirmekten ve işe alım kararlarından sorumludur. Adayların verilerini, prepza.ai/dpa adresindeki veri işleme sözleşmesi kapsamında şirket adına işleriz."
+        "testee'yi adaylarla mülakat yapmak için kullanan bir şirket, adayları hukuka uygun şekilde davet etmekten, onlara sonuçlarının nasıl kullanıldığını bildirmekten ve işe alım kararlarından sorumludur. Adayların verilerini, testee.ai/dpa adresindeki veri işleme sözleşmesi kapsamında şirket adına işleriz."
       ],
       "items": [
         "Bir şirketin logosu, şirketin kullanma hakkına sahip olduğu bir logo olmalıdır.",
@@ -42,25 +42,25 @@
         "Sonuçlar şirketin kararını destekler; kararı vermez. Şirket karar vermeden önce sonuçları gözden geçirir, bir adayı yalnızca puana dayanarak reddetmez ve adayın sonucunun bir insan tarafından incelenmesini istemesine olanak tanır.",
         "Şirket, ihtiyacı olan adaya ek süre gibi bir uyarlama sağlar; bunu her aday için aday başlamadan önce ayarlayabilir.",
         "Sesli moddaki bir mülakat sesli cevaplanır: şirket bunu adaylarına bildirir ve ihtiyacı olan bir adayın bunun yerine dokunarak cevap vermesine izin verir.",
-        "Kendi araçlarını (bir aday takip sistemi, Slack veya prepza'nın API'si ve webhook'ları aracılığıyla kendi sistemleri) bağlayan bir şirket, adaylarının sonuçlarının nereye gideceğini seçer, bu araçlardan sorumludur ve bunları prepza'nın sonuçlarına dayanarak adayları otomatik olarak reddedecek şekilde ayarlamaz.",
+        "Kendi araçlarını (bir aday takip sistemi, Slack veya testee'nin API'si ve webhook'ları aracılığıyla kendi sistemleri) bağlayan bir şirket, adaylarının sonuçlarının nereye gideceğini seçer, bu araçlardan sorumludur ve bunları testee'nin sonuçlarına dayanarak adayları otomatik olarak reddedecek şekilde ayarlamaz.",
         "API anahtarlarını ve webhook gizli anahtarlarını gizli tutmak şirketin sorumluluğundadır: geçerli bir anahtarla yapılan her şey, şirket adına o anahtar tarafından, anahtara verilen izinler dahilinde yapılır ve şirketin işlem kaydında o anahtar belirtilir. Anahtarlar ve webhook'lar şirkete aittir ve onları oluşturan üye ayrıldığında da şirkette kalır. Sızmış olabilecek bir anahtar veya webhook, şirketin API sayfasında derhal silinmelidir.",
-        "prepza.ai/dpa adresindeki veri işleme sözleşmesi, prepza'yı adaylar için kullanan her şirket açısından bu koşulların bir parçasıdır.",
+        "testee.ai/dpa adresindeki veri işleme sözleşmesi, testee'yi adaylar için kullanan her şirket açısından bu koşulların bir parçasıdır.",
         "Bir şirket, \"İş tekliflerine açık\" seçeneğini açmış kişiler hakkında gördüklerini yalnızca onları kendi işleri için değerlendirmek ve davet etmek amacıyla kullanır. Onların sonuçları bir yeterlilik değil, pratik sonuçlarıdır ve liste bir öneri değildir: sıralama yalnızca en son kimin pratik yaptığını gösterir.",
         "Keşfet sekmesinden birini davet eden şirket, en geç davette, o kişiye kim olduğunu, onunla neden iletişime geçtiğini, ne gördüğünü ve haklarını bildirir.",
-        "Şirket, prepza'yı New York City'deki işler için adayları değerlendirmek amacıyla ancak Local Law 144'ün işveren olarak ondan istediklerini yerine getirdikten sonra kullanır: kullanımdan önceki bir yıl içinde bağımsız bir denetçi tarafından yapılmış bir yanlılık denetimi, bu denetimin özetinin yayımlanması ve adayların, değerlendirilmelerinden en az 10 iş günü önce bilgilendirilmesi."
+        "Şirket, testee'yi New York City'deki işler için adayları değerlendirmek amacıyla ancak Local Law 144'ün işveren olarak ondan istediklerini yerine getirdikten sonra kullanır: kullanımdan önceki bir yıl içinde bağımsız bir denetçi tarafından yapılmış bir yanlılık denetimi, bu denetimin özetinin yayımlanması ve adayların, değerlendirilmelerinden en az 10 iş günü önce bilgilendirilmesi."
       ]
     },
     {
       "heading": "Pratik",
       "items": [
         "Pratik mülakatları ücretsizdir ve sonuçlarını \"İş tekliflerine açık\" seçeneğini açmadığınız sürece yalnızca siz görürsünüz.",
-        "\"İş tekliflerine açık\" isteğe bağlıdır ve siz açmadıkça kapalıdır. Açıkken prepza üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve mülakatlarının konularındaki en son süreli pratik sonuçlarınızı görür ve sizi bir mülakata davet edebilir; davet hesabınızın e-posta adresine gider. prepza sizi sıralamaz veya önermez. Seçeneği istediğiniz zaman Ayarlar'dan kapatabilirsiniz; o anda tüm şirketlerin listesinden kaybolursunuz. Ayrıca, en son açtığınız veya LinkedIn profilinizi kaydettiğiniz tarihten bir yıl sonra sona erer."
+        "\"İş tekliflerine açık\" isteğe bağlıdır ve siz açmadıkça kapalıdır. Açıkken testee üzerinden işe alım yapan şirketler adınızı, LinkedIn profilinizi ve mülakatlarının konularındaki en son süreli pratik sonuçlarınızı görür ve sizi bir mülakata davet edebilir; davet hesabınızın e-posta adresine gider. testee sizi sıralamaz veya önermez. Seçeneği istediğiniz zaman Ayarlar'dan kapatabilirsiniz; o anda tüm şirketlerin listesinden kaybolursunuz. Ayrıca, en son açtığınız veya LinkedIn profilinizi kaydettiğiniz tarihten bir yıl sonra sona erer."
       ]
     },
     {
       "heading": "Krediler ve ödemeler",
       "items": [
-        "prepza kredilerle ödenir: her yükleme, ödeme yapmadan önce gösterilen sayıda kredi alır ve daha büyük yüklemelerde ödenen paraya oranla daha fazla kredi alınır. Her şeyin kaç kredi tuttuğu fiyatlar sayfasında yer alır ve kullanmadan önce gösterilir.",
+        "testee kredilerle ödenir: her yükleme, ödeme yapmadan önce gösterilen sayıda kredi alır ve daha büyük yüklemelerde ödenen paraya oranla daha fazla kredi alınır. Her şeyin kaç kredi tuttuğu fiyatlar sayfasında yer alır ve kullanmadan önce gösterilir.",
         "Kredi yüklemeleri, yeniden satıcı (merchant of record) olarak hareket eden Paddle tarafından satılır: ödemeyi Paddle alır, varsa KDV'yi veya satış vergisini tahsil eder ve makbuzu veya faturayı düzenler. Bunları hem işletmeler hem de tüketiciler satın alabilir. Fiyatlar sayfasındaki fiyatlara KDV veya satış vergisi dahil değildir: uygulandığı yerlerde Paddle bunu ödeme adımında belirtilen fiyatın üzerine ekler. Fiyatlar Kanada'da (Kanada doları), Avustralya'da (Avustralya doları), İsrail'de (şekel), Polonya'da (zloti), İsviçre'de (İsviçre frangı), Japonya'da (yen), Güney Kore'de (won), Tayvan'da (Yeni Tayvan doları), Hong Kong'da (Hong Kong doları), Tayland'da (baht), Singapur'da (Singapur doları) ve Hindistan'da (rupi) yerel para birimi; Avrupa Birliği'nin geri kalanında ve İzlanda, Lihtenştayn ve Norveç'te avro; Birleşik Krallık'ta sterlin; diğer yerlerde ise ABD doları cinsindendir. Her şirket kendi para biriminde öder; bu para birimi önce şirketin oluşturulduğu ülkeye göre belirlenir ve şirketin sahipleri ile yöneticileri tarafından değiştirilebilir; ödeme sayfası, ödeme yapmadan önce varsa vergiler dahil son tutarı gösterir. Kartınız başka bir para birimindeyse bankanız veya kartınızı veren kuruluş tutarı dönüştürebilir.",
         "Krediler bir şirkete aittir ve o şirketin adayları için kullanılır; şirketin sahibi ve yöneticileri kredi yükleyebilir. Krediler hesaplar veya şirketler arasında aktarılamaz, satılamaz ya da paraya çevrilerek ödenemez.",
         "Otomatik yükleme isteğe bağlıdır ve siz açmadıkça kapalıdır; açmak için koşullarını kendiniz işaretleyerek kabul etmeniz gerekir. Açtığınızda, otomatik yükleme kapatılana kadar, şirketin kullanılabilir bakiyesi seçtiğiniz seviyenin altına her düştüğünde, size tekrar sormadan, Paddle'a kartınızı kaydetme ve seçtiğiniz yükleme tutarını, varsa KDV veya satış vergisiyle birlikte, karttan tahsil etme yetkisi verirsiniz. Otomatik yükleme açıldığında ve her tahsilattan sonra şirketin sahiplerine ve yöneticilerine e-posta göndeririz; Paddle da her tahsilat için e-postayla makbuz gönderir. Otomatik yüklemeyi istediğiniz zaman açtığınız yerde, yani kredi yükleme sayfasında veya şirketin faturalandırma sayfasında, değiştirebilir veya kapatabilirsiniz; kapatma hemen geçerli olur, kayıtlı kartın yetkisini iptal eder ve sonraki tüm tahsilatları durdurur; Paddle'ın e-postaları aracılığıyla iptal etmek de aynı sonucu doğurur. Daha önce yapılmış tahsilatlar aşağıdaki iade kurallarına tabidir.",
@@ -76,21 +76,21 @@
     {
       "heading": "Erişilebilirlik ve değişiklikler",
       "paragraphs": [
-        "prepza'yı erişilebilir ve güvenli tutmak için çalışırız, ancak her zaman öyle olacağını garanti edemeyiz. Özellikleri değiştirebilir veya sonlandırabilir ve bu koşulları ihlal eden hesapları askıya alabiliriz. Bu koşullardaki önemli bir değişikliği, yürürlüğe girmesinden en az 14 gün önce size e-postayla bildiririz; o tarihten sonra prepza'yı kullanmanız yeni koşulları kabul ettiğiniz anlamına gelir. Önceki tüm sürümler bu sayfada okunabilir olarak kalır."
+        "testee'yi erişilebilir ve güvenli tutmak için çalışırız, ancak her zaman öyle olacağını garanti edemeyiz. Özellikleri değiştirebilir veya sonlandırabilir ve bu koşulları ihlal eden hesapları askıya alabiliriz. Bu koşullardaki önemli bir değişikliği, yürürlüğe girmesinden en az 14 gün önce size e-postayla bildiririz; o tarihten sonra testee'yi kullanmanız yeni koşulları kabul ettiğiniz anlamına gelir. Önceki tüm sürümler bu sayfada okunabilir olarak kalır."
       ]
     },
     {
       "heading": "Sorumluluk",
       "paragraphs": [
-        "prepza olduğu gibi sunulur. Yasaların izin verdiği ölçüde dolaylı zararlardan sorumlu değiliz ve toplam sorumluluğumuz, son 12 ayda krediler için ödediğiniz tutarla ya da hiç ödeme yapmadıysanız 100 ABD doları (veya para biriminizdeki karşılığı) ile sınırlıdır. Buradaki hiçbir hüküm, ülkenizin yasaları uyarınca tüketici olarak sahip olduğunuz hakları sınırlamaz."
+        "testee olduğu gibi sunulur. Yasaların izin verdiği ölçüde dolaylı zararlardan sorumlu değiliz ve toplam sorumluluğumuz, son 12 ayda krediler için ödediğiniz tutarla ya da hiç ödeme yapmadıysanız 100 ABD doları (veya para biriminizdeki karşılığı) ile sınırlıdır. Buradaki hiçbir hüküm, ülkenizin yasaları uyarınca tüketici olarak sahip olduğunuz hakları sınırlamaz."
       ]
     },
     {
       "heading": "Uygulanacak hukuk",
       "paragraphs": [
-        "Yaşadığınız ülkenin emredici koruma hükümlerini ortadan kaldırmaksızın Estonya hukuku uygulanır. Bu koşullarla ilgili sorular: hello@prepza.ai.",
+        "Yaşadığınız ülkenin emredici koruma hükümlerini ortadan kaldırmaksızın Estonya hukuku uygulanır. Bu koşullarla ilgili sorular: hello@testee.ai.",
         "İşletmelerle olan uyuşmazlıklar Tallinn'deki Harju İlçe Mahkemesi'nde (Harju Maakohus) görülür. Tüketici olarak, yaşadığınız yerdeki mahkemelere de başvurabilirsiniz.",
-        "Tüketiciyseniz önce bize hello@prepza.ai adresinden yazın: 15 gün içinde cevap veririz. Anlaşamazsak ve Estonya'da yaşıyorsanız, uyuşmazlığı ücretsiz olarak Tüketici Koruma ve Teknik Düzenleme Kurumu'na (ttja.ee) bağlı Tüketici Uyuşmazlıkları Komitesi'ne (Tarbijavaidluste komisjon) götürebilirsiniz."
+        "Tüketiciyseniz önce bize hello@testee.ai adresinden yazın: 15 gün içinde cevap veririz. Anlaşamazsak ve Estonya'da yaşıyorsanız, uyuşmazlığı ücretsiz olarak Tüketici Koruma ve Teknik Düzenleme Kurumu'na (ttja.ee) bağlı Tüketici Uyuşmazlıkları Komitesi'ne (Tarbijavaidluste komisjon) götürebilirsiniz."
       ]
     }
   ]

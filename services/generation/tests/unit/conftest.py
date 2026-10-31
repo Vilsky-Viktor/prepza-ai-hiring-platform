@@ -3,7 +3,7 @@ import uuid
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 from generation.api.v1 import internal, superadmin
 from generation.integrations import library, llm

@@ -1,7 +1,7 @@
 import uuid
 
 from fastapi import HTTPException, status
-from prepza_common.ai.sets import PreparationIn
+from testee_common.ai.sets import PreparationIn
 
 from library.core.db import Session
 from library.helpers.sets import new_interview

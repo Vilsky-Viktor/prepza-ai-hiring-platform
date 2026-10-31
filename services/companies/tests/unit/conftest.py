@@ -1,9 +1,9 @@
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.events.audit_actions import AuditAction, TargetKind
-from prepza_common.limits import limits
-from prepza_common.redis import memory_cache
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.limits import limits
+from testee_common.redis import memory_cache
 
 from companies.core.security import REQUEST_VIA
 from companies.integrations import billing

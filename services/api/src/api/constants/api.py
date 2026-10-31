@@ -2,7 +2,7 @@ from datetime import UTC, datetime, timedelta
 from enum import StrEnum
 
 # An API key: this prefix and random characters; the list shows the key's first characters.
-KEY_PREFIX = "pz_"
+KEY_PREFIX = "te_"
 KEY_BYTES = 30
 KEY_SHOWN = 10
 
@@ -31,7 +31,7 @@ MAX_ALLOWED_IPS = 50
 MAX_IP_LENGTH = 49
 IP_NOT_ALLOWED = (
     "This API key can't be used from this IP address. Add the address to the key's allowed IPs "
-    "in prepza, or call from an allowed one."
+    "in testee, or call from an allowed one."
 )
 MAX_URL_LENGTH = 500
 # A key's "last used" is written at most this often.
@@ -43,7 +43,7 @@ WEBHOOK_TIMEOUT_SECONDS = 10
 SECRET_OVERLAP = timedelta(hours=24)
 # The header that carries a web hook's signature: t=<unix seconds>,v1=<hex HMAC-SHA256>, one v1=
 # for each secret that signs.
-SIGNATURE_HEADER = "Prepza-Signature"
+SIGNATURE_HEADER = "Testee-Signature"
 # How long a web hook's deliveries are remembered: past Pub/Sub's redelivery of an event.
 DELIVERIES_KEPT = timedelta(days=30)
 # An event a web hook didn't take is sent again by the retry job (every 5 minutes): first after
@@ -69,7 +69,7 @@ CHANGELOG_LINK = "{site}/api-docs"
 # It still works until the sunset, at least six months after it was deprecated.
 EMAIL_QUERY_DEPRECATED_AT = datetime(2026, 10, 22, tzinfo=UTC)
 EMAIL_QUERY_SUNSET_AT = datetime(2027, 5, 1, tzinfo=UTC)
-# Where a candidate's results are in prepza.
+# Where a candidate's results are in testee.
 CANDIDATE_LINK = "{site}/companies/{company_id}/interviews/{interview_id}/candidates/{invite_id}"
 # The candidate's own invite link, to send them yourself.
 INVITE_LINK = "{site}/invite/{token}"

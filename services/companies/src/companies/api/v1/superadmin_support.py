@@ -2,9 +2,9 @@ import logging
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.superadmin import SuperadminUser
-from prepza_common.auth.user import User
-from prepza_common.db.paging import PageParams
+from testee_common.auth.superadmin import SuperadminUser
+from testee_common.auth.user import User
+from testee_common.db.paging import PageParams
 
 from companies.core.db import Session
 from companies.integrations import billing

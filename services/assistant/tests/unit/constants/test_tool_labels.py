@@ -1,4 +1,4 @@
-from prepza_common.i18n.translations import TRANSLATIONS
+from testee_common.i18n.translations import TRANSLATIONS
 
 from assistant.constants.chat import SESSION_EXPIRED
 from assistant.constants.tool_labels import ACTION_LABEL, TOOL_LABELS, UNKNOWN_TOOL_LABEL

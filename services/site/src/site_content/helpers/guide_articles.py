@@ -1,6 +1,6 @@
 import re
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE
+from testee_common.config.constants import DEFAULT_LANGUAGE
 
 from site_content.constants.help import ARTICLES_ROOT, GUIDE_PATH, GUIDE_SLUG, GUIDES_FOLDER
 

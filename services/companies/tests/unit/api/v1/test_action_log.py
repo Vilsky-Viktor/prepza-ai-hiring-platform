@@ -5,10 +5,10 @@ import uuid
 from datetime import UTC, datetime
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.auth.user import User
-from prepza_common.events.audit_actions import AUDIT_RECORDED, AuditAction, AuditGroup, TargetKind
+from testee_common.auth.auth import current_user
+from testee_common.auth.key_actor import key_actor
+from testee_common.auth.user import User
+from testee_common.events.audit_actions import AUDIT_RECORDED, AuditAction, AuditGroup, TargetKind
 
 from companies.handlers import dispatch
 from companies.integrations import api_keys

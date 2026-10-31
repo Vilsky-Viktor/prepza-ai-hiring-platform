@@ -1,5 +1,5 @@
-from prepza_common.events import outbox
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import outbox
 
 from generation.models.outbox import OutboxEvent
 

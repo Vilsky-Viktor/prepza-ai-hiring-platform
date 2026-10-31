@@ -1,6 +1,6 @@
-from prepza_common.i18n.i18n import translate
-from prepza_common.i18n.money import money
-from prepza_common.i18n.plurals import plurals
+from testee_common.i18n.i18n import translate
+from testee_common.i18n.money import money
+from testee_common.i18n.plurals import plurals
 
 from billing.constants.products import AGREED_TERMS
 

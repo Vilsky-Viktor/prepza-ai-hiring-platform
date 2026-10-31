@@ -423,7 +423,7 @@ dependencies = [
     { name = "langchain-openai" },
     { name = "langgraph" },
     { name = "langgraph-checkpoint-postgres" },
-    { name = "prepza-common", extra = ["langfuse", "llm"] },
+    { name = "testee-common", extra = ["langfuse", "llm"] },
     { name = "psycopg", extra = ["binary", "pool"] },
     { name = "pydantic-settings" },
     { name = "pyjwt" },
@@ -450,7 +450,7 @@ requires-dist = [
     { name = "langchain-openai", specifier = ">=1.6.6" },
     { name = "langgraph", specifier = ">=1.2.12" },
     { name = "langgraph-checkpoint-postgres", specifier = ">=3.1.2" },
-    { name = "prepza-common", extras = ["llm", "langfuse"], editable = "../../packages/common" },
+    { name = "testee-common", extras = ["llm", "langfuse"], editable = "../../packages/common" },
     { name = "psycopg", extras = ["binary", "pool"], specifier = ">=3.3.6" },
     { name = "pydantic-settings", specifier = ">=2.15.0" },
     { name = "pyjwt", specifier = ">=2.15.1" },
@@ -1363,7 +1363,7 @@ wheels = [
 ]
 
 [[package]]
-name = "prepza-common"
+name = "testee-common"
 version = "0.1.0"
 source = { editable = "../../packages/common" }
 dependencies = [
@@ -1407,7 +1407,7 @@ provides-extras = ["llm", "langfuse", "money"]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "prepza-common", extras = ["llm", "langfuse", "money"] },
+    { name = "testee-common", extras = ["llm", "langfuse", "money"] },
     { name = "pytest", specifier = ">=9.1.1" },
     { name = "pytest-cov", specifier = ">=7.1.0" },
     { name = "pytest-randomly", specifier = ">=5.0.0" },

@@ -1,7 +1,7 @@
 import logging
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.events import processed_events
+from testee_common.events import processed_events
 
 from library.constants.events import PROCESSED_EVENT_DAYS
 from library.core.db import Session

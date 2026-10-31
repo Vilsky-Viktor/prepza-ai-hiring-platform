@@ -3,7 +3,7 @@
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.i18n.i18n import translate
+from testee_common.i18n.i18n import translate
 
 from rounds.constants.voice_phrases import SAVED
 from rounds.schemas.voice import VoiceMatch

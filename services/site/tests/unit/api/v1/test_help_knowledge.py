@@ -3,8 +3,8 @@ and the help chat's old addresses, which send the browser to the assistant."""
 
 import asyncio
 
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.auth.service_auth import issue_token
+from testee_common.limits.limit_list import LIMITS
 
 from site_content.helpers.help import knowledge
 from site_content.helpers.page_guides import GUIDES

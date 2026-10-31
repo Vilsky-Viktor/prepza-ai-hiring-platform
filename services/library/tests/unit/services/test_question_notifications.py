@@ -3,7 +3,7 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from library.constants.events import QUESTION_FIXED
 from library.constants.quality import QualityFlag
@@ -83,7 +83,7 @@ def test_a_newly_flagged_interview_question_notifies_the_company(monkeypatch):
 
 
 def test_a_newly_flagged_template_question_notifies_no_company(monkeypatch):
-    saved, flushes = run_review(monkeypatch, None, kit("platform", "prepza"))
+    saved, flushes = run_review(monkeypatch, None, kit("platform", "testee"))
 
     assert saved == [None]
     assert flushes == []
@@ -174,7 +174,7 @@ def test_fixing_a_flagged_question_notifies_its_owner(monkeypatch):
 
 
 def test_fixing_a_flagged_template_question_notifies_no_company(monkeypatch):
-    added = fake_session(monkeypatch, QualityFlag.WRONG_KEY, question_set=kit("platform", "prepza"))
+    added = fake_session(monkeypatch, QualityFlag.WRONG_KEY, question_set=kit("platform", "testee"))
 
     asyncio.run(questions.replace(QUESTION_ID, "What is debit?", OPTIONS))
 

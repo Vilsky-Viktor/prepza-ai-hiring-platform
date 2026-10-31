@@ -1,7 +1,7 @@
 import pytest
 from event_pushes import push
 from fastapi.testclient import TestClient
-from prepza_common.config.constants import LANGUAGES
+from testee_common.config.constants import LANGUAGES
 
 from notifications.helpers.emails import member_invite_email
 from notifications.integrations import smtp
@@ -24,12 +24,12 @@ SUBJECT = EMAILS["en"]["member"]["subject"].format(company="Acme & Co", inviter=
 
 
 def test_a_member_invite_names_the_inviter_the_company_and_the_role_and_links_to_join():
-    email = member_invite_email(MEMBER, "https://prepza.com/")
+    email = member_invite_email(MEMBER, "https://testee.com/")
 
     assert email.to == "dan@example.com"
     assert "Acme & Co" in email.subject
-    assert "Ann invited you to join Acme & Co on prepza as a viewer." in email.text
-    assert "https://prepza.com/join/abc" in email.text
+    assert "Ann invited you to join Acme & Co on testee as a viewer." in email.text
+    assert "https://testee.com/join/abc" in email.text
     assert "Acme &amp; Co" in email.html
     assert "<img" not in email.html
 
@@ -37,12 +37,12 @@ def test_a_member_invite_names_the_inviter_the_company_and_the_role_and_links_to
 def test_a_member_invite_shows_the_companys_logo_beside_the_title():
     email = member_invite_email(
         {**MEMBER, "role": "admin", "logo_path": "/api/companies/companies/c-1/logo?v=2"},
-        "https://prepza.com",
+        "https://testee.com",
     )
 
     assert "as an admin." in email.text
     title_row = email.html.split("</h1></td>", 1)[1].split("</tr>", 1)[0]
-    assert '<img src="https://prepza.com/api/companies/companies/c-1/logo?v=2"' in title_row
+    assert '<img src="https://testee.com/api/companies/companies/c-1/logo?v=2"' in title_row
 
 
 @pytest.mark.parametrize("language", sorted(LANGUAGES))

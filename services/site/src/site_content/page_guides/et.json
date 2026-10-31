@@ -1,7 +1,7 @@
 {
   "landing": {
-    "title": "Kuidas prepza töötab",
-    "text": "prepza teeb sinu töökuulutusest ajapiiranguga intervjuu, kus igal kandidaadil on omad juhuslikud küsimused. See leht näitab kogu teed, intervjuu loomisest tulemuste jagamiseni.",
+    "title": "Kuidas testee töötab",
+    "text": "testee teeb sinu töökuulutusest ajapiiranguga intervjuu, kus igal kandidaadil on omad juhuslikud küsimused. See leht näitab kogu teed, intervjuu loomisest tulemuste jagamiseni.",
     "actions": [
       "Kleebi töökuulutus üleval olevasse kasti või vali valmis mall; kohanda teemasid ja küsimused kirjutatakse ning kontrollitakse sinu eest.",
       "Kutsu kandidaate e-kirjaga, failist, töökuulutuses oleva jagamislingiga või oma ATS-i, oma platvormi või AI-assistendi kaudu.",
@@ -17,9 +17,9 @@
   },
   "companies": {
     "title": "Ettevõtted",
-    "text": "Sinu ettevõtted. Kõik, mida prepzas teed, toimub ühe ettevõtte sees: selle intervjuud, kandidaadid, meeskond, krediidid ja integratsioonid.",
+    "text": "Sinu ettevõtted. Kõik, mida testees teed, toimub ühe ettevõtte sees: selle intervjuud, kandidaadid, meeskond, krediidid ja integratsioonid.",
     "actions": [
-      "Loo ettevõte nupuga „Uus ettevõte“. Selle nimi on kogu prepzas ainulaadne.",
+      "Loo ettevõte nupuga „Uus ettevõte“. Selle nimi on kogu testees ainulaadne.",
       "Ava ettevõte, et töötada selle intervjuude ja kandidaatidega.",
       "Eemalda enda ettevõte koos kõigi selle intervjuude ja kutsetega."
     ],
@@ -56,7 +56,7 @@
   },
   "newInterview": {
     "title": "Uus intervjuu",
-    "text": "Alusta intervjuud töökuulutusest. prepza loeb selle läbi, pakub välja teemad, mida testida, ja kirjutab küsimused, kui oled teemad kinnitanud.",
+    "text": "Alusta intervjuud töökuulutusest. testee loeb selle läbi, pakub välja teemad, mida testida, ja kirjutab küsimused, kui oled teemad kinnitanud.",
     "actions": [
       "Kleebi töökuulutus: roll, nõuded ja mis tuleb kasuks.",
       "Vali keel, milles intervjuu luuakse.",
@@ -69,7 +69,7 @@
   },
   "reviewTopics": {
     "title": "Vaata oma teemad üle",
-    "text": "prepza pakkus need teemad välja sinu kuulutuse põhjal. Iga alles jäetud teema saab oma küsimuste komplekti koos vastustega.",
+    "text": "testee pakkus need teemad välja sinu kuulutuse põhjal. Iga alles jäetud teema saab oma küsimuste komplekti koos vastustega.",
     "actions": [
       "Eemalda linnuke teemadelt, mida sul vaja pole.",
       "Muuda teema nime ja alateemasid selle pliiatsiga.",
@@ -83,7 +83,7 @@
   },
   "generating": {
     "title": "Loomisel",
-    "text": "prepza loob sinu intervjuud: kõigepealt teemad, siis igaühe küsimused. See võtab paar minutit.",
+    "text": "testee loob sinu intervjuud: kõigepealt teemad, siis igaühe küsimused. See võtab paar minutit.",
     "actions": [
       "Võid sellelt lehelt lahkuda: loomine jätkub.",
       "Tühista loomine, kui sul seda enam vaja pole; seni loodust ei säilitata midagi."
@@ -138,7 +138,7 @@
   },
   "interviewDiscover": {
     "title": "Avasta",
-    "text": "Inimesed, kes harjutavad prepzas ja on valinud „Avatud tööpakkumistele“ ning kelle harjutused katavad selle intervjuu teemasid selle tasemel. Igaühe juures on näha nimi, LinkedIni profiil ja viimane harjutuse tulemus igas sobivas teemas. Seda vahekaarti näevad ainult ettevõtted, kes on vähemalt korra krediiti juurde laadinud.",
+    "text": "Inimesed, kes harjutavad testees ja on valinud „Avatud tööpakkumistele“ ning kelle harjutused katavad selle intervjuu teemasid selle tasemel. Igaühe juures on näha nimi, LinkedIni profiil ja viimane harjutuse tulemus igas sobivas teemas. Seda vahekaarti näevad ainult ettevõtted, kes on vähemalt korra krediiti juurde laadinud.",
     "actions": [
       "Ava kellegi LinkedIni profiil, et tema kohta rohkem teada saada.",
       "Kutsu keegi sellele intervjuule (omanikud ja administraatorid): kutse läheb tema konto e-posti aadressile ja maksab krediite nagu iga kutse."
@@ -157,7 +157,7 @@
       "Määra keskmine aeg küsimuse kohta sekundites: iga küsimus saab oma aja vastavalt pikkusele ja koodile, mida see näitab, ning intervjuu koguaeg jääb samaks.",
       "Määra läbimise lävi: selle saavutanud kandidaadid läbivad intervjuu.",
       "Märgi intervjuu palgatuks, kui oled ametikoha täitnud.",
-      "Hoia intervjuu küsimused prepza ühisest küsimustepangast väljas; teistes intervjuudes juba kasutatavad küsimused jäävad sinna."
+      "Hoia intervjuu küsimused testee ühisest küsimustepangast väljas; teistes intervjuudes juba kasutatavad küsimused jäävad sinna."
     ],
     "tips": [
       "Iga seade salvestub kohe, kui selle väljalt lahkud.",
@@ -248,16 +248,16 @@
       "Inimesi logis ei hoita: kustutatud kandidaat on näidatud kustutatud kandidaadina ja lahkunud liige endise liikmena.",
       "API-võtme toimingud on näidatud võtme nime all ja kustutatud võtme omad kustutatud võtme omadena.",
       "Kui liige vaatab ühe kandidaadi tulemusi, näidatakse seda kord päevas, viimase vaatamise ajaga.",
-      "prepzal pole andmeid soo, rassi ega etnilise päritolu kohta: lisa kandidaatide endi antud vastused e-posti aadressi järgi ja eemalda siis e-posti veerg, enne kui jagad faili oma sõltumatu audiitoriga, New Yorgi linna kallutatuse auditi (Local Law 144) või EEOC neljaviiendiku reegli jaoks. Kuni 20 eksporti ettevõtte kohta päevas ja iga eksport on logis näha."
+      "testeel pole andmeid soo, rassi ega etnilise päritolu kohta: lisa kandidaatide endi antud vastused e-posti aadressi järgi ja eemalda siis e-posti veerg, enne kui jagad faili oma sõltumatu audiitoriga, New Yorgi linna kallutatuse auditi (Local Law 144) või EEOC neljaviiendiku reegli jaoks. Kuni 20 eksporti ettevõtte kohta päevas ja iga eksport on logis näha."
     ]
   },
   "integrations": {
     "title": "Integratsioonid",
-    "text": "Ühenda prepza tööriistadega, mida su meeskond juba kasutab. Igal integratsioonil on oma leht seadistamise sammudega.",
+    "text": "Ühenda testee tööriistadega, mida su meeskond juba kasutab. Igal integratsioonil on oma leht seadistamise sammudega.",
     "actions": [
       "Slack: saa ettevõtte teavitused kanalisse.",
       "API: võtmed ja webhookid oma platvormi ühendamiseks.",
-      "AI-rakendused: kasuta prepzat Claude'is, ChatGPT-s ja teistes AI-rakendustes.",
+      "AI-rakendused: kasuta testeed Claude'is, ChatGPT-s ja teistes AI-rakendustes.",
       "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): etappi viidud kandidaadid saavad intervjuu ja nende tulemused jõuavad tagasi ATS-i."
     ],
     "tips": [
@@ -274,30 +274,30 @@
       "Eemalda töökuulutuse seos või katkesta ATS-i ühendus."
     ],
     "tips": [
-      "Lisa etapp ainult prepza jaoks, näiteks „prepza oskuste test“, et see ei läheks kunagi segamini sinu teiste tööriistadega.",
-      "prepza ei liiguta ega lükka sinu ATS-is kunagi kedagi tagasi."
+      "Lisa etapp ainult testee jaoks, näiteks „testee oskuste test“, et see ei läheks kunagi segamini sinu teiste tööriistadega.",
+      "testee ei liiguta ega lükka sinu ATS-is kunagi kedagi tagasi."
     ]
   },
   "slack": {
     "title": "Slack",
     "text": "Sinu ettevõtte teavitused Slacki kanalis kohe, kui midagi juhtub.",
     "actions": [
-      "Lisa prepza Slacki ja vali kanal, näiteks #hiring.",
+      "Lisa testee Slacki ja vali kanal, näiteks #hiring.",
       "Vali, millised teavitused sinna lähevad: kandidaat lõpetas, kutse jäi kohale toimetamata, intervjuu on valmis ja muud.",
-      "Katkesta ühendus, et teavitused peatada ja prepza rakendus su Slackist eemaldada."
+      "Katkesta ühendus, et teavitused peatada ja testee rakendus su Slackist eemaldada."
     ],
     "tips": [
-      "prepza saab ainult sellesse kanalisse postitada; su Slacki lugeda see ei saa.",
+      "testee saab ainult sellesse kanalisse postitada; su Slacki lugeda see ei saa.",
       "Kõik näevad endiselt iga teavitust kellukese all."
     ]
   },
   "api": {
     "title": "API",
-    "text": "Ühenda prepzaga oma platvorm, näiteks karjäärileht.",
+    "text": "Ühenda testeega oma platvorm, näiteks karjäärileht.",
     "actions": [
       "Loo API-võti ja märgi ainult see, mida see vajab: intervjuude lugemine või loomine; kandidaatide lugemine, kutsumine, muutmine või eemaldamine; sinu krediitide lugemine; või kasutamine AI-agentidega (MCP). See tegutseb sinu nimel.",
       "Ava võti, et muuta, mida see teha tohib (iga muudatus salvestub kohe), ja IP-aadresse, kust seda kasutada saab.",
-      "Lisa webhook: prepza teavitab allkirjastatult sinu HTTPS-aadressi, kui kandidaat alustab, lõpetab (koos tulemustega), kutse ei jõua temani, tema kutse aegub või ta eemaldatakse, ning kui intervjuu on valmis.",
+      "Lisa webhook: testee teavitab allkirjastatult sinu HTTPS-aadressi, kui kandidaat alustab, lõpetab (koos tulemustega), kutse ei jõua temani, tema kutse aegub või ta eemaldatakse, ning kui intervjuu on valmis.",
       "Saada webhookile testsündmus ja vaata saatmislogist, kuidas iga saatmine läks.",
       "Lisa vahekaardil SDK saidid, mis võivad SDK abil sinu intervjuusid näidata, ning luba testimise ajaks localhost.",
       "Kustuta võtmed ja webhookid, mida enam ei kasuta.",
@@ -311,10 +311,10 @@
   },
   "aiApps": {
     "title": "AI-rakendused",
-    "text": "Kasuta prepzat oma AI-vestluses: küsi Claude'ilt või ChatGPT-lt oma intervjuude ja kandidaatide kohta või palu neil sinu eest muudatusi teha.",
+    "text": "Kasuta testeed oma AI-vestluses: küsi Claude'ilt või ChatGPT-lt oma intervjuude ja kandidaatide kohta või palu neil sinu eest muudatusi teha.",
     "actions": [
       "Kopeeri serveri aadress ja lisa see sammude järgi Claude'i, Claude Code'i või ChatGPT-sse; muud rakendused ja oma agendid leiad arendajate dokumentatsioonist.",
-      "Luba rakendus avanevas prepza lehel.",
+      "Luba rakendus avanevas testee lehel.",
       "Katkesta ühendus rakendusega, mida sa enam ei kasuta."
     ],
     "tips": [
@@ -324,7 +324,7 @@
   },
   "referrals": {
     "title": "Soovitused",
-    "text": "Kutsu teisi ettevõtteid prepzasse selle ettevõtte lingiga ja mõlemad ettevõtted saavad krediiti.",
+    "text": "Kutsu teisi ettevõtteid testeesse selle ettevõtte lingiga ja mõlemad ettevõtted saavad krediiti.",
     "actions": [
       "Kopeeri või jaga oma soovituslinki.",
       "Vaata kõiki preemiaid, mille see ettevõte on saanud."
@@ -341,7 +341,7 @@
       "Lisa või muuda logo.",
       "Vali pealkirjade ja teksti fondid ning kui ümarad on kaardid ja nupud.",
       "Vali iga rühma värvid ja vaata neid eelvaates.",
-      "Salvesta need või taasta prepza värvid."
+      "Salvesta need või taasta testee värvid."
     ],
     "tips": [
       "Värve, millega tekst oleks raskesti loetav, salvestada ei saa, et iga kandidaat saaks küsimusi lugeda.",
@@ -376,12 +376,12 @@
   },
   "settings": {
     "title": "Seaded",
-    "text": "Sinu enda konto: keel, milles prepza sinuga räägib, e-kirjad, mida saad, ja sinu andmed.",
+    "text": "Sinu enda konto: keel, milles testee sinuga räägib, e-kirjad, mida saad, ja sinu andmed.",
     "actions": [
       "Vali saidi, abivestluse ja oma e-kirjade keel.",
       "Vali, milliseid valikulisi e-kirju saad; teenusekirjad, näiteks kutsed, aruanded ja makseprobleemid, saadetakse alati.",
-      "Lülita „Avatud tööpakkumistele“ sisse või välja: kui see on sees, näevad prepza kaudu sinu harjutatud teemadel värbavad ettevõtted sinu nime, LinkedIni profiili ja harjutuse tulemusi ning võivad sind kutsuda.",
-      "Laadi alla kõik, mida prepza sinu kohta hoiab, või kustuta oma konto."
+      "Lülita „Avatud tööpakkumistele“ sisse või välja: kui see on sees, näevad testee kaudu sinu harjutatud teemadel värbavad ettevõtted sinu nime, LinkedIni profiili ja harjutuse tulemusi ning võivad sind kutsuda.",
+      "Laadi alla kõik, mida testee sinu kohta hoiab, või kustuta oma konto."
     ],
     "tips": [
       "Konto kustutamine kustutab ettevõtted, kus oled ainult sina. Ettevõte, millega teised on liitunud, vajab enne teist omanikku."
@@ -389,7 +389,7 @@
   },
   "join": {
     "title": "Ettevõtte kutse",
-    "text": "Sind kutsuti prepzas ettevõtte meeskonda, et töötada selle intervjuude ja kandidaatidega.",
+    "text": "Sind kutsuti testees ettevõtte meeskonda, et töötada selle intervjuude ja kandidaatidega.",
     "actions": [
       "Logi sisse e-posti aadressiga, kuhu kutse saadeti.",
       "Liitu ettevõttega: siis ilmub see sinu ettevõtete hulka.",
@@ -402,21 +402,21 @@
   },
   "connect": {
     "title": "Ühenda AI-rakendus",
-    "text": "AI-rakendus soovib kasutada sinu prepza kontot. Siin otsustad, kas lubad seda.",
+    "text": "AI-rakendus soovib kasutada sinu testee kontot. Siin otsustad, kas lubad seda.",
     "actions": [
       "Logi sisse, kui sa pole veel sisse loginud, et näha, milline rakendus luba küsib.",
       "Loe, mida rakendus sinu kontoga teha saab ja mida mitte.",
       "Luba rakendus või keeldu; mõlemal juhul jõuad tagasi rakendusse."
     ],
     "tips": [
-      "Kui prepza rakendust ei tunne, luba see ainult siis, kui alustasid ühendamist ise.",
+      "Kui testee rakendust ei tunne, luba see ainult siis, kui alustasid ühendamist ise.",
       "Ühenduse saad igal ajal katkestada ettevõtte vahekaardil Integratsioonid → AI-rakendused.",
       "Aegunud või juba kasutatud link enam ei tööta: alusta ühendamist uuesti oma AI-rakendusest."
     ]
   },
   "news": {
     "title": "Uudised",
-    "text": "Mis prepzas uut: uued funktsioonid, täiustused ja uuendused, uuemad eespool.",
+    "text": "Mis testees uut: uued funktsioonid, täiustused ja uuendused, uuemad eespool.",
     "actions": [
       "Keri alla, et lugeda vanemaid uudiseid.",
       "Jälgi uudiseid oma RSS-lugejas ülal oleva RSS-voo lingiga."
@@ -480,7 +480,7 @@
   },
   "features": {
     "title": "Võimalused",
-    "text": "Kõik, mida prepza ettevõtte jaoks teeb, töökuulutusest töötaja palkamiseni: intervjuude loomine, kandidaatide kutsumine, mida kandidaadid näevad, raportid, integratsioonid, nõuetele vastavus ja hinnad.",
+    "text": "Kõik, mida testee ettevõtte jaoks teeb, töökuulutusest töötaja palkamiseni: intervjuude loomine, kandidaatide kutsumine, mida kandidaadid näevad, raportid, integratsioonid, nõuetele vastavus ja hinnad.",
     "actions": [
       "Liigu rühma juurde ülaosa vahekaartidega: loomine, kutsumine, intervjuu, otsustamine, integratsioonid, usaldus ja hinnad.",
       "Vaata iga võimalust päris rakenduse pildi kõrval.",
@@ -493,7 +493,7 @@
   },
   "pricing": {
     "title": "Hinnad",
-    "text": "Mida prepza maksab: intervjuude loomine on tasuta ja maksad iga vastava kandidaadi eest, ilma tellimuseta.",
+    "text": "Mida testee maksab: intervjuude loomine on tasuta ja maksad iga vastava kandidaadi eest, ilma tellimuseta.",
     "actions": [
       "Vaata tänast hinda kandidaadi kohta ja madalamaid hindu suuremate juurdelaadimiste puhul.",
       "Vaata, mitu esimest kandidaati on tasuta.",
@@ -533,10 +533,10 @@
   },
   "aiInterviews": {
     "title": "AI-intervjuud",
-    "text": "Juhend AI-intervjuu tööriistade liikide, prepza lähenemise ja õigusnõuete põhitõdede kohta.",
+    "text": "Juhend AI-intervjuu tööriistade liikide, testee lähenemise ja õigusnõuete põhitõdede kohta.",
     "actions": [
       "Võrdle vestlusroboti-, video- ja genereeritud testiga intervjuutööriistu.",
-      "Loe samm-sammult, kuidas prepza intervjuu loob ja hindab ning mida see kunagi ei tee.",
+      "Loe samm-sammult, kuidas testee intervjuu loob ja hindab ning mida see kunagi ei tee.",
       "Loe ELi tehisintellekti määruse (AI Act), isikuandmete kaitse üldmääruse (GDPR) ja USA värbamisel AI kasutamise reeglite põhitõdesid.",
       "Loo lõpus oleval kaardil test oma kandidaatidele."
     ],
@@ -550,7 +550,7 @@
     "actions": [
       "Loe, milliseid teste on olemas ja millal igaüks neist aitab.",
       "Loe õigluse ja õigusnõuete põhitõdesid.",
-      "Vaata, mida testimistööriistas jälgida ja kuidas prepza seda teeb.",
+      "Vaata, mida testimistööriistas jälgida ja kuidas testee seda teeb.",
       "Loo lõpus oleval kaardil test oma kandidaatidele."
     ],
     "tips": [
@@ -558,8 +558,8 @@
     ]
   },
   "compare": {
-    "title": "prepza võrdlus",
-    "text": "Allikatega võrdlused prepza ja teiste värbamistestide tööriistade vahel: kuidas testid luuakse, mida need maksavad ja millal kumb paremini sobib.",
+    "title": "testee võrdlus",
+    "text": "Allikatega võrdlused testee ja teiste värbamistestide tööriistade vahel: kuidas testid luuakse, mida need maksavad ja millal kumb paremini sobib.",
     "actions": [
       "Ava võrdlus, et seda lugeda."
     ],
@@ -569,7 +569,7 @@
   },
   "comparison": {
     "title": "Võrdlus",
-    "text": "Kuidas prepza ühes küsimuses teiste tööriistadega võrreldes välja paistab: kuidas testid luuakse, mida need maksavad ja millal kumb paremini sobib.",
+    "text": "Kuidas testee ühes küsimuses teiste tööriistadega võrreldes välja paistab: kuidas testid luuakse, mida need maksavad ja millal kumb paremini sobib.",
     "actions": [
       "Loe võrdlust ja järgi selle linke allikatele.",
       "Loo lõpus oleval kaardil test oma kandidaatidele.",
@@ -603,7 +603,7 @@
   },
   "faq": {
     "title": "Korduma kippuvad küsimused",
-    "text": "Vastused levinud küsimustele prepza kohta: intervjuud, kandidaadid, hinnad ja krediidid, tulemused, integratsioonid, keeled ja sinu andmed.",
+    "text": "Vastused levinud küsimustele testee kohta: intervjuud, kandidaadid, hinnad ja krediidid, tulemused, integratsioonid, keeled ja sinu andmed.",
     "actions": [
       "Klõpsa küsimusel, et selle vastus avada."
     ],
@@ -614,9 +614,9 @@
   },
   "about": {
     "title": "Meist",
-    "text": "Kes prepzat teeb ja miks: töökuulutuse põhjal loodud intervjuud, mida iga meeskond saab endale lubada, ja tasuta harjutamine kõigile.",
+    "text": "Kes testeed teeb ja miks: töökuulutuse põhjal loodud intervjuud, mida iga meeskond saab endale lubada, ja tasuta harjutamine kõigile.",
     "actions": [
-      "Loe, miks prepza on olemas ja kuidas see värbamisele läheneb.",
+      "Loe, miks testee on olemas ja kuidas see värbamisele läheneb.",
       "Loe asutaja sõnumit ja ava tema LinkedIni profiil."
     ],
     "tips": [
@@ -625,7 +625,7 @@
   },
   "contact": {
     "title": "Võta meiega ühendust",
-    "text": "Kirjuta prepza meeskonnale küsimuse, idee, koostööpakkumise või millegi kohta, mis ei tööta.",
+    "text": "Kirjuta testee meeskonnale küsimuse, idee, koostööpakkumise või millegi kohta, mis ei tööta.",
     "actions": [
       "Sisesta oma nimi, e-posti aadress ja sõnum ning saada see ära.",
       "Kleebi selle ettevõtte, intervjuu, kandidaadi või konto ID, mida asi puudutab, et leiaksime selle kohe."
@@ -637,10 +637,10 @@
   },
   "apiDocs": {
     "title": "Arendajate dokumentatsioon",
-    "text": "Kõik, mida vajad oma platvormi või AI-agendi ühendamiseks prepzaga. Dokumentatsioon luuakse otse API põhjal, nii et see vastab API-le alati.",
+    "text": "Kõik, mida vajad oma platvormi või AI-agendi ühendamiseks testeega. Dokumentatsioon luuakse otse API põhjal, nii et see vastab API-le alati.",
     "actions": [
       "API: kuidas autentida, baas-URL ja iga lõpp-punkt koos parameetrite, päringu sisu, vastuse ja vigadega.",
-      "Webhookid: sündmused, mida prepza sinu aadressile saadab, ja mida igaüks neist sisaldab.",
+      "Webhookid: sündmused, mida testee sinu aadressile saadab, ja mida igaüks neist sisaldab.",
       "SDK: kuidas intervjuu oma saidile manustada.",
       "MCP: kuidas ühendada AI-rakendus või oma agent ja milliseid tööriistu see saab.",
       "Objektid: iga objekt, mille API tagastab, väli välja haaval."
@@ -652,9 +652,9 @@
   },
   "accessibility": {
     "title": "Ligipääsetavus",
-    "text": "Kuidas prepza puudega inimestele sobib, mis veel puudu jääb ja kuidas meile sellest teada anda.",
+    "text": "Kuidas testee puudega inimestele sobib, mis veel puudu jääb ja kuidas meile sellest teada anda.",
     "actions": [
-      "Vaata, mida prepza ligipääsetavuse heaks teeb, näiteks teemad, telefonivaated ja klaviatuuriga kasutamine.",
+      "Vaata, mida testee ligipääsetavuse heaks teeb, näiteks teemad, telefonivaated ja klaviatuuriga kasutamine.",
       "Vaata, mis jääb puudu, näiteks ajapiiranguga küsimused.",
       "Kirjuta meile e-kirjaga, kui midagi on raske kasutada või vajad seda teisel kujul."
     ],
@@ -664,11 +664,11 @@
   },
   "documents": {
     "title": "Juriidilised dokumendid",
-    "text": "Dokumendid ettevõtetele, kes hindavad kandidaate prepzaga: juhend, mallid ja andmetöötlusleping.",
+    "text": "Dokumendid ettevõtetele, kes hindavad kandidaate testeega: juhend, mallid ja andmetöötlusleping.",
     "actions": [
       "Laadi alla juhend ettevõtetele: mida hinne tähendab, inimese ülevaatus, läbimise lävi ja lisaaeg.",
       "Laadi alla muudetavad teatemallid, mida kandidaatidele enne kutsumist saata.",
-      "Laadi alla andmekaitsealase mõjuhinnangu (DPIA) mall, kus prepza osa on juba täidetud, ja täida see lõpuni.",
+      "Laadi alla andmekaitsealase mõjuhinnangu (DPIA) mall, kus testee osa on juba täidetud, ja täida see lõpuni.",
       "Laadi alla andmetöötlusleping või loe seda veebis."
     ],
     "tips": [
@@ -677,10 +677,10 @@
   },
   "trust": {
     "title": "Usaldus ja turvalisus",
-    "text": "Kuidas prepza hoiab sinu ja sinu kandidaatide andmeid: turvalisus, privaatsus, värbamisseaduste järgimine, kus andmeid hoitakse, kes neid töötleb ja kui kaua neid säilitatakse.",
+    "text": "Kuidas testee hoiab sinu ja sinu kandidaatide andmeid: turvalisus, privaatsus, värbamisseaduste järgimine, kus andmeid hoitakse, kes neid töötleb ja kui kaua neid säilitatakse.",
     "actions": [
-      "Vaata, kuidas prepza andmeid kaitseb: sisselogimine, krüpteerimine, juurdepääsu kontroll, päringupiirangud ja varukoopiad.",
-      "Vaata, mida prepza pakub isikuandmete kaitse üldmääruse, ELi tehisintellekti määruse, Ühendkuningriigi ja USA jaoks, sealhulgas New Yorgi linna kallutatuse auditi seaduse jaoks.",
+      "Vaata, kuidas testee andmeid kaitseb: sisselogimine, krüpteerimine, juurdepääsu kontroll, päringupiirangud ja varukoopiad.",
+      "Vaata, mida testee pakub isikuandmete kaitse üldmääruse, ELi tehisintellekti määruse, Ühendkuningriigi ja USA jaoks, sealhulgas New Yorgi linna kallutatuse auditi seaduse jaoks.",
       "Vaata, kus andmeid hoitakse, millised volitatud töötlejad neid töötlevad ja kui kaua iga liiki andmeid säilitatakse.",
       "Ava tingimused, privaatsuspoliitika, andmetöötlusleping ja dokumendid ettevõtetele."
     ],
@@ -690,7 +690,7 @@
   },
   "terms": {
     "title": "Tingimused",
-    "text": "prepza kasutamise tingimused: kontod, ettevõtted, krediidid ja maksed, testid kandidaatidele, lubatud kasutus ja vastutus.",
+    "text": "testee kasutamise tingimused: kontod, ettevõtted, krediidid ja maksed, testid kandidaatidele, lubatud kasutus ja vastutus.",
     "actions": [
       "Loe kehtivat versiooni koos kuupäevaga, millest see kehtib.",
       "Ava varasem või tulevane versioon lõpus olevast versioonide loendist.",
@@ -702,7 +702,7 @@
   },
   "privacy": {
     "title": "Privaatsus",
-    "text": "Kuidas prepza kogub, kasutab ja kaitseb ettevõtete, nende liikmete ja kandidaatide isikuandmeid ning millised õigused sul on.",
+    "text": "Kuidas testee kogub, kasutab ja kaitseb ettevõtete, nende liikmete ja kandidaatide isikuandmeid ning millised õigused sul on.",
     "actions": [
       "Loe kehtivat versiooni koos kuupäevaga, millest see kehtib.",
       "Ava varasem või tulevane versioon lõpus olevast versioonide loendist.",
@@ -715,7 +715,7 @@
   },
   "dpa": {
     "title": "Andmetöötlusleping",
-    "text": "Leping prepza ja kandidaate testivate ettevõtete vahel: mida prepza sinu nimel töötleb ja kuidas.",
+    "text": "Leping testee ja kandidaate testivate ettevõtete vahel: mida testee sinu nimel töötleb ja kuidas.",
     "actions": [
       "Loe kehtivat versiooni koos kuupäevaga, millest see kehtib.",
       "Ava varasem või tulevane versioon lõpus olevast versioonide loendist.",
@@ -728,7 +728,7 @@
   },
   "unsubscribe": {
     "title": "Loobu tellimusest",
-    "text": "Lõpeta prepzalt ühte liiki e-kirjade saamine, nagu lehel kirjas.",
+    "text": "Lõpeta testeelt ühte liiki e-kirjade saamine, nagu lehel kirjas.",
     "actions": [
       "Loe, milliseid e-kirju link peatab.",
       "Kinnita tellimusest loobumine; ainult lingi avamine ei muuda midagi.",

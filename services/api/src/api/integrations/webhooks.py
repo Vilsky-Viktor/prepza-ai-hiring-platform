@@ -2,7 +2,7 @@ import asyncio
 from functools import cache
 
 import httpx
-from prepza_common.http.public_urls import pinned
+from testee_common.http.public_urls import pinned
 
 from api.constants.api import SIGNATURE_HEADER, WEBHOOK_TIMEOUT_SECONDS
 

@@ -7,9 +7,9 @@ from datetime import UTC, datetime, timedelta
 
 import pytest
 from cryptography.fernet import Fernet
-from prepza_common.auth.encryption import encrypt
-from prepza_common.http import public_urls
 from sqlalchemy import select, update
+from testee_common.auth.encryption import encrypt
+from testee_common.http import public_urls
 
 from api.config import settings
 from api.constants.api import RETRY_GIVE_UP
@@ -38,7 +38,7 @@ async def unresolved(url):
 async def new_key(company: uuid.UUID, user: str):
     hashed = uuid.uuid4().hex * 2
 
-    return await transaction(keys.add, company, "Site", "pz_x", hashed, user, None, READS, [], 10)
+    return await transaction(keys.add, company, "Site", "te_x", hashed, user, None, READS, [], 10)
 
 
 async def new_hook(company: uuid.UUID, user: str, secret: str = "sealed"):

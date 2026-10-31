@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.google import Invoker
-from prepza_common.config.constants import RATE_LIMITED, RETRY_AFTER
-from prepza_common.events.pubsub import PushBody, event_of
-from prepza_common.events.unhandleable import handle_or_drop
+from testee_common.auth.google import Invoker
+from testee_common.config.constants import RATE_LIMITED, RETRY_AFTER
+from testee_common.events.pubsub import PushBody, event_of
+from testee_common.events.unhandleable import handle_or_drop
 
 from notifications.handlers.dispatch import handle
 from notifications.integrations.resend import ResendBusy

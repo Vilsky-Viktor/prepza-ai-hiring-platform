@@ -4,18 +4,18 @@
 FAQ = [
     {
         "key": "what",
-        "question": "Qu'est-ce que prepza ?",
+        "question": "Qu'est-ce que testee ?",
         "answer": "Un entretien chronométré créé à partir de votre fiche de poste, pour n'importe quel poste. Utilisez-le pour présélectionner les candidats avant de les rencontrer, ou comme une étape à part entière du recrutement : dans les deux cas, vous voyez qui maîtrise vraiment le poste.",
     },
     {
         "key": "roles",
         "question": "Pour quels postes puis-je recruter ?",
-        "answer": "Tout poste où les connaissances comptent : support, vente, finance, santé, métiers manuels, ingénierie, marketing et plus encore. Si vous pouvez décrire le poste, prepza peut créer un entretien pour lui.",
+        "answer": "Tout poste où les connaissances comptent : support, vente, finance, santé, métiers manuels, ingénierie, marketing et plus encore. Si vous pouvez décrire le poste, testee peut créer un entretien pour lui.",
     },
     {
         "key": "hiring",
         "question": "Comment ça marche ?",
-        "answer": "Collez une fiche de poste sur la page d'accueil, indiquez le nom de votre entreprise et vérifiez les thèmes que propose prepza. Invitez ensuite des candidats : saisissez leurs e-mails, collez une liste ou importez un fichier. Les candidats qui n'ont pas commencé après quelques jours reçoivent un rappel. Chaque candidat reçoit ses propres questions, chacune chronométrée, et vous voyez son score et chaque réponse dès qu'il a terminé.",
+        "answer": "Collez une fiche de poste sur la page d'accueil, indiquez le nom de votre entreprise et vérifiez les thèmes que propose testee. Invitez ensuite des candidats : saisissez leurs e-mails, collez une liste ou importez un fichier. Les candidats qui n'ont pas commencé après quelques jours reçoivent un rappel. Chaque candidat reçoit ses propres questions, chacune chronométrée, et vous voyez son score et chaque réponse dès qu'il a terminé.",
     },
     {
         "key": "link",
@@ -30,7 +30,7 @@ FAQ = [
     {
         "key": "open-to-offers",
         "question": "Les entreprises peuvent-elles me trouver grâce à mon entraînement ?",
-        "answer": "Seulement si vous le choisissez. Activez Ouvert aux opportunités après une session d'entraînement ou dans les Paramètres, avec l'adresse de votre profil LinkedIn. Les entreprises qui recrutent sur prepza voient alors votre nom, votre profil LinkedIn et votre dernier résultat d'entraînement sur chaque sujet de leurs entretiens sur lequel vous vous êtes entraîné, et peuvent vous inviter à un entretien. prepza ne vous classe pas et ne vous recommande pas. Désactivez-le à tout moment dans les Paramètres : vous disparaissez aussitôt de la liste de toutes les entreprises. Il prend aussi fin un an après la dernière fois que vous l'avez activé ou avez enregistré votre profil LinkedIn.",
+        "answer": "Seulement si vous le choisissez. Activez Ouvert aux opportunités après une session d'entraînement ou dans les Paramètres, avec l'adresse de votre profil LinkedIn. Les entreprises qui recrutent sur testee voient alors votre nom, votre profil LinkedIn et votre dernier résultat d'entraînement sur chaque sujet de leurs entretiens sur lequel vous vous êtes entraîné, et peuvent vous inviter à un entretien. testee ne vous classe pas et ne vous recommande pas. Désactivez-le à tout moment dans les Paramètres : vous disparaissez aussitôt de la liste de toutes les entreprises. Il prend aussi fin un an après la dernière fois que vous l'avez activé ou avez enregistré votre profil LinkedIn.",
     },
     {
         "key": "cheating",
@@ -55,7 +55,7 @@ FAQ = [
     {
         "key": "compare_hiring",
         "question": "Comment le prix se compare-t-il à celui d'autres outils d'évaluation ?",
-        "answer": "Beaucoup d'outils d'évaluation sont vendus sous forme d'abonnement mensuel ou annuel, payé même si vous n'évaluez personne. Avec prepza, vous payez uniquement par candidat : {candidate} crédits ({candidate_price}), sans contrat, sans frais par utilisateur et sans rien à payer pour générer un entretien. Une entreprise qui invite {example_candidates} candidats par mois paie environ {example_year_price} par an. Si vous évaluez beaucoup de candidats chaque mois, un abonnement peut coûter moins cher : comparez avec vos propres chiffres.",
+        "answer": "Beaucoup d'outils d'évaluation sont vendus sous forme d'abonnement mensuel ou annuel, payé même si vous n'évaluez personne. Avec testee, vous payez uniquement par candidat : {candidate} crédits ({candidate_price}), sans contrat, sans frais par utilisateur et sans rien à payer pour générer un entretien. Une entreprise qui invite {example_candidates} candidats par mois paie environ {example_year_price} par an. Si vous évaluez beaucoup de candidats chaque mois, un abonnement peut coûter moins cher : comparez avec vos propres chiffres.",
     },
     {
         "key": "expire",
@@ -80,7 +80,7 @@ FAQ = [
     {
         "key": "reports",
         "question": "Puis-je partager les résultats avec un responsable du recrutement ?",
-        "answer": "Oui. Téléchargez un rapport PDF pour un candidat ou pour tous les candidats d'un entretien, envoyez-le par e-mail directement depuis prepza, ou envoyez un court résumé sur WhatsApp, Telegram, Viber ou LINE.",
+        "answer": "Oui. Téléchargez un rapport PDF pour un candidat ou pour tous les candidats d'un entretien, envoyez-le par e-mail directement depuis testee, ou envoyez un court résumé sur WhatsApp, Telegram, Viber ou LINE.",
     },
     {
         "key": "action_log",
@@ -94,13 +94,13 @@ FAQ = [
     },
     {
         "key": "integrations",
-        "question": "prepza fonctionne-t-il avec mon ATS ou d'autres outils ?",
+        "question": "testee fonctionne-t-il avec mon ATS ou d'autres outils ?",
         "answer": "Oui, sans frais supplémentaires. Connectez Workable, Greenhouse, Teamtailor, Recruitee ou Breezy HR dans l'onglet Intégrations de votre entreprise : les candidats que vous déplacez vers une étape reçoivent l'entretien, et leurs résultats reviennent dans l'ATS ([comment connecter vos tests de compétences à votre ATS](/guides/ats-integration-skills-tests)). Slack peut publier les notifications de votre entreprise dans un canal, et l'API permet à votre propre plateforme de créer des entretiens, d'inviter et de gérer des candidats et de recevoir leurs résultats, chaque clé API étant limitée à ce que vous cochez pour elle ; consultez la [Documentation de l'API](/api-docs).",
     },
     {
         "key": "ai_apps",
-        "question": "Puis-je utiliser prepza depuis Claude, ChatGPT ou mon propre agent IA ?",
-        "answer": "Oui. Ajoutez prepza à Claude ou ChatGPT comme connecteur (les étapes sont dans l'onglet Intégrations de votre entreprise) et autorisez-le sur prepza. L'application travaille alors avec vos entreprises, vos entretiens et les résultats des candidats en votre nom, avec vos droits ; la plupart des applications vous demandent avant de modifier quoi que ce soit. La suppression de votre compte ou d'une entreprise se fait uniquement dans prepza. Ce que l'application lit parvient à son fournisseur, selon les conditions de cette application. Vous pouvez la déconnecter à tout moment dans le même onglet. D'autres applications d'IA et les agents que vous créez vous-même peuvent aussi se connecter : l'[onglet MCP](/api-docs?tab=mcp) de la documentation développeurs donne les étapes et des exemples d'agents, et un agent sur un serveur peut se connecter avec une clé API dotée de l'autorisation pour les agents IA. Le [guide des agents IA, du MCP et des API](/guides/ai-agents-mcp-and-api) explique à quoi sert chacun.",
+        "question": "Puis-je utiliser testee depuis Claude, ChatGPT ou mon propre agent IA ?",
+        "answer": "Oui. Ajoutez testee à Claude ou ChatGPT comme connecteur (les étapes sont dans l'onglet Intégrations de votre entreprise) et autorisez-le sur testee. L'application travaille alors avec vos entreprises, vos entretiens et les résultats des candidats en votre nom, avec vos droits ; la plupart des applications vous demandent avant de modifier quoi que ce soit. La suppression de votre compte ou d'une entreprise se fait uniquement dans testee. Ce que l'application lit parvient à son fournisseur, selon les conditions de cette application. Vous pouvez la déconnecter à tout moment dans le même onglet. D'autres applications d'IA et les agents que vous créez vous-même peuvent aussi se connecter : l'[onglet MCP](/api-docs?tab=mcp) de la documentation développeurs donne les étapes et des exemples d'agents, et un agent sur un serveur peut se connecter avec une clé API dotée de l'autorisation pour les agents IA. Le [guide des agents IA, du MCP et des API](/guides/ai-agents-mcp-and-api) explique à quoi sert chacun.",
     },
     {
         "key": "candidates",
@@ -120,22 +120,22 @@ FAQ = [
     {
         "key": "privacy",
         "question": "Que deviennent les fiches de poste et les réponses ?",
-        "answer": "Les fiches de poste servent à créer les entretiens de votre entreprise, et les réponses des candidats à les noter pour votre entreprise. Les questions générées par prepza peuvent aussi être réutilisées dans les entretiens et l'entraînement d'autres entreprises, sans rien qui vous identifie, vous, votre entreprise ou toute autre personne ; vous pouvez exclure de cette réutilisation les questions d'un entretien dans ses paramètres. prepza tire aussi des réponses données aux questions des tendances générales et anonymisées sur leur qualité, afin d'améliorer la façon dont les questions sont générées. La [politique de confidentialité](/privacy) explique ce que nous conservons, pendant combien de temps, et les droits de chacun.",
+        "answer": "Les fiches de poste servent à créer les entretiens de votre entreprise, et les réponses des candidats à les noter pour votre entreprise. Les questions générées par testee peuvent aussi être réutilisées dans les entretiens et l'entraînement d'autres entreprises, sans rien qui vous identifie, vous, votre entreprise ou toute autre personne ; vous pouvez exclure de cette réutilisation les questions d'un entretien dans ses paramètres. testee tire aussi des réponses données aux questions des tendances générales et anonymisées sur leur qualité, afin d'améliorer la façon dont les questions sont générées. La [politique de confidentialité](/privacy) explique ce que nous conservons, pendant combien de temps, et les droits de chacun.",
     },
     {
         "key": "eu_ai_law",
         "question": "Est-il légal d'utiliser l'IA pour présélectionner des candidats dans l'UE ?",
-        "answer": "Oui, avec des règles. Selon le règlement européen sur l'IA (AI Act), les outils qui notent des candidats sont très probablement à haut risque, avec des obligations à partir du 2 décembre 2027, et le RGPD s'applique déjà : une personne prend la décision d'embauche, les candidats sont informés de l'usage de l'IA et des traces sont conservées. prepza fonctionne ainsi : l'IA rédige les questions, des personnes de votre entreprise examinent les résultats et décident, et les candidats sont informés avant de commencer. Ceci n'est pas un conseil juridique ; [L'IA dans le recrutement est-elle légale dans l'UE ?](/guides/is-ai-hiring-legal-in-the-eu) explique les règles et les dates.",
+        "answer": "Oui, avec des règles. Selon le règlement européen sur l'IA (AI Act), les outils qui notent des candidats sont très probablement à haut risque, avec des obligations à partir du 2 décembre 2027, et le RGPD s'applique déjà : une personne prend la décision d'embauche, les candidats sont informés de l'usage de l'IA et des traces sont conservées. testee fonctionne ainsi : l'IA rédige les questions, des personnes de votre entreprise examinent les résultats et décident, et les candidats sont informés avant de commencer. Ceci n'est pas un conseil juridique ; [L'IA dans le recrutement est-elle légale dans l'UE ?](/guides/is-ai-hiring-legal-in-the-eu) explique les règles et les dates.",
     },
     {
         "key": "uk_us",
-        "question": "Pouvons-nous utiliser prepza pour des candidats au Royaume-Uni et aux États-Unis ?",
+        "question": "Pouvons-nous utiliser testee pour des candidats au Royaume-Uni et aux États-Unis ?",
         "answer": "Oui. L'accord de traitement des données couvre le droit britannique et américain, et les instructions pour les entreprises ainsi que les modèles d'information des candidats (avec des versions pour la ville de New York, l'Illinois et le Colorado) couvrent ce que vous devez dire aux candidats. Pour des postes dans la ville de New York, ne l'utilisez qu'une fois que vous avez fait ce que la Local Law 144 exige de vous : un audit de biais indépendant dans l'année précédant l'utilisation, la publication de son résumé et une information des candidats 10 jours ouvrables avant. L'export pour audit de biais du Journal des actions donne à votre auditeur la note et le résultat de chaque candidat qui a terminé, à rapprocher des réponses que vos candidats ont eux-mêmes déclarées.",
     },
     {
         "key": "emails",
-        "question": "Quels e-mails prepza envoie-t-il, et comment les arrêter ?",
-        "answer": "Les e-mails de service, comme les invitations, les rapports, les problèmes de paiement et les modifications de nos conditions, sont toujours envoyés. Les autres, comme le récapitulatif d'activité quotidien, les rappels et les nouveautés du produit, se choisissent dans les Paramètres, sous E-mails, ou s'arrêtent avec le lien « Se désabonner » de chaque e-mail. Les candidats peuvent arrêter les e-mails de votre entreprise, ou les rappels d'un entretien, avec les liens de leurs invitations et rappels. Les actualités de prepza s'affichent dans vos notifications, la cloche en haut ; les plus importantes arrivent aussi par e-mail comme nouveauté du produit, uniquement tant que ce réglage est activé.",
+        "question": "Quels e-mails testee envoie-t-il, et comment les arrêter ?",
+        "answer": "Les e-mails de service, comme les invitations, les rapports, les problèmes de paiement et les modifications de nos conditions, sont toujours envoyés. Les autres, comme le récapitulatif d'activité quotidien, les rappels et les nouveautés du produit, se choisissent dans les Paramètres, sous E-mails, ou s'arrêtent avec le lien « Se désabonner » de chaque e-mail. Les candidats peuvent arrêter les e-mails de votre entreprise, ou les rappels d'un entretien, avec les liens de leurs invitations et rappels. Les actualités de testee s'affichent dans vos notifications, la cloche en haut ; les plus importantes arrivent aussi par e-mail comme nouveauté du produit, uniquement tant que ce réglage est activé.",
     },
     {
         "key": "delete",

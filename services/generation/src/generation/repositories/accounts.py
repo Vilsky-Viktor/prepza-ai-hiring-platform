@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from prepza_common.config.constants import DELETE_BATCH, DELETED_USER
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DELETE_BATCH, DELETED_USER
 
 from generation.constants.statuses import Status
 from generation.models.generation import Generation

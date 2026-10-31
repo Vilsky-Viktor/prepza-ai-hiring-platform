@@ -1,6 +1,6 @@
 import pytest
 from no_publishing import published  # noqa: F401
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 
 @pytest.fixture(autouse=True)

@@ -1,7 +1,7 @@
 # A finished batch's calls, recorded once: each priced at batch price for its subject and traced
-# to its subject's trace (prepza_common.ai.ai_usage, prepza_common.ai.tracing).
-from prepza_common.ai import ai_usage, tracing
-from prepza_common.ai.llm import call_cost
+# to its subject's trace (testee_common.ai.ai_usage, testee_common.ai.tracing).
+from testee_common.ai import ai_usage, tracing
+from testee_common.ai.llm import call_cost
 
 from generation.constants.quality import BATCH_RECORDED_KEY, BATCH_RECORDED_SECONDS
 from generation.integrations.redis import get_redis

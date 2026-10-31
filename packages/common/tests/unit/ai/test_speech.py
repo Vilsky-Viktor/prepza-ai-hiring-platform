@@ -2,7 +2,7 @@ import asyncio
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.ai.speech import speech_to_text
+from testee_common.ai.speech import speech_to_text
 
 
 def hearing():

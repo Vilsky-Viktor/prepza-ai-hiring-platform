@@ -2,8 +2,8 @@ from datetime import datetime
 from typing import Annotated, Literal
 from uuid import UUID
 
-from prepza_common.i18n.titles import at_least
 from pydantic import AfterValidator, BaseModel, EmailStr, Field
+from testee_common.i18n.titles import at_least
 
 from companies.constants.invites import (
     COMPANY_NAME_TOO_SHORT,
@@ -75,14 +75,14 @@ class CompanyOut(BaseModel):
     member_count: int = 0
     # The logo's address on the site; None until one is set.
     logo_url: str | None = None
-    # Its own colors on candidates' pages, by theme (a theme missing: prepza's), and the colors
-    # those pages use, by theme: its own, or prepza's.
+    # Its own colors on candidates' pages, by theme (a theme missing: testee's), and the colors
+    # those pages use, by theme: its own, or testee's.
     brand_colors: SavedBrandColors | None = None
     candidate_colors: BrandColorSets | None = None
     # Why a theme's saved colors are refused now, by theme, in the user's language (a check added
-    # since they were saved); its candidates see prepza's colors for that theme until they change.
+    # since they were saved); its candidates see testee's colors for that theme until they change.
     brand_problems: dict[str, str] = {}
-    # Its fonts (titles and text) and corner rounding on those pages, prepza's where it set none.
+    # Its fonts (titles and text) and corner rounding on those pages, testee's where it set none.
     brand_style: BrandStyle | None = None
     # The website's domain, and the same once a superadmin approved it (the badge); where its
     # verification stands, and why it was declined, when the superadmin said.

@@ -1,5 +1,5 @@
 # An interview's notes: plain text its team writes about the hiring round, never shown to
-# candidates. A note is at most prepza_common's MAX_NOTE_LENGTH characters; the database holds
+# candidates. A note is at most testee_common's MAX_NOTE_LENGTH characters; the database holds
 # the same bound (ck_interview_notes_text).
 # The refusals, as the API and the tab show them.
 NOTE_NOT_FOUND = "Note not found"

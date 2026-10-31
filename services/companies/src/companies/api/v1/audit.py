@@ -3,9 +3,9 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Query, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.db.paging import PageParams
-from prepza_common.events.audit_actions import AuditGroup
+from testee_common.auth.auth import CurrentUser
+from testee_common.db.paging import PageParams
+from testee_common.events.audit_actions import AuditGroup
 
 from companies.constants.audit import LOG_NOT_OWNER
 from companies.core.db import Session

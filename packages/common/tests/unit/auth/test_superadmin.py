@@ -3,8 +3,8 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException, Request
-from prepza_common.auth.superadmin import is_superadmin, superadmin_user
-from prepza_common.auth.user import User
+from testee_common.auth.superadmin import is_superadmin, superadmin_user
+from testee_common.auth.user import User
 
 
 def user(email="Ann@Example.com", verified=True, provider="google.com"):

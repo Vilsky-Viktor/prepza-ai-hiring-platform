@@ -1,4 +1,4 @@
-# How much the assistant may be used: the limits themselves are prepza_common.limits.limit_list's (read
+# How much the assistant may be used: the limits themselves are testee_common.limits.limit_list's (read
 # by name with limits.limit), so they can be edited in the admin zone. Messages are counted as
 # they're sent; spending in tokens (input and output, every model call of a turn), added after
 # each turn, so a turn already started always finishes.

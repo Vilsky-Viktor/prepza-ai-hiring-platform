@@ -1,7 +1,7 @@
 import asyncio
 import uuid
 
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from assistant.models.answers import Turn
 from assistant.services import actions

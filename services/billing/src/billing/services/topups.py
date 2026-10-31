@@ -3,8 +3,8 @@ import logging
 from collections.abc import Callable
 from datetime import UTC, datetime
 
-from prepza_common.events.analytics import track
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
+from testee_common.events.analytics import track
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from billing.config import settings
 from billing.constants.declines import PAYMENT_METHOD_CHANGE_ORIGIN

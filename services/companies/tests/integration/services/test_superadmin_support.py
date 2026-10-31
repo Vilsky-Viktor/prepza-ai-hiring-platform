@@ -34,7 +34,7 @@ def test_a_support_search_finds_a_company_its_interview_and_its_candidate(run):
         invite, _ = await transaction(
             invites.upsert, interview.id, candidate, "Backend", acme.name, "en"
         )
-        link = f"https://prepza.com/de/companies/{acme.id}/interviews/{interview.id}"
+        link = f"https://testee.com/de/companies/{acme.id}/interviews/{interview.id}"
 
         def found(rows):
             return [(row.kind, row.id, row.title, row.company_id) for row in rows]

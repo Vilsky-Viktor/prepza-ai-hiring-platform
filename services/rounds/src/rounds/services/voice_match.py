@@ -1,5 +1,5 @@
-from prepza_common.ai.llm import call_cost
-from prepza_common.ai.tracing import traced_call
+from testee_common.ai.llm import call_cost
+from testee_common.ai.tracing import traced_call
 
 from rounds.config import settings
 from rounds.constants.voice import MATCH_ACTION, Intent

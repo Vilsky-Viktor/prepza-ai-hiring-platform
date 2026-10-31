@@ -1,8 +1,8 @@
 from collections import Counter
 from uuid import uuid4
 
-from prepza_common.http import pacing
-from prepza_common.http.pacing import wait_turn
+from testee_common.http import pacing
+from testee_common.http.pacing import wait_turn
 
 from notifications.constants.email import RESEND_PACE_KEY, RESEND_PER_SECOND
 from notifications.integrations.redis import get_redis

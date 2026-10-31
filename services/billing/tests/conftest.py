@@ -27,7 +27,7 @@ os.environ.setdefault("PADDLE_PRODUCT_CANDIDATES", "pro_candidates")
 import pytest
 from fastapi.testclient import TestClient
 from no_publishing import no_publishing, published  # noqa: F401
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 from billing.main import app
 

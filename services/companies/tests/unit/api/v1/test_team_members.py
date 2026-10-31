@@ -3,7 +3,7 @@ from datetime import UTC, datetime
 
 import pytest
 from fastapi import HTTPException, status
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.integrations import billing
 from companies.models.companies import Company, Member

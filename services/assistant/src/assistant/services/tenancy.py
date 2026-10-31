@@ -1,6 +1,6 @@
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 from assistant.constants.chat import CHAT_FAILED, COMPANY_NOT_FOUND
 from assistant.constants.tenancy import COMPANIES_KEY, COMPANIES_SECONDS

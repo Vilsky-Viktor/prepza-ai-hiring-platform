@@ -1,6 +1,6 @@
 import logging
 
-from prepza_common.http.pacing import wait_turn
+from testee_common.http.pacing import wait_turn
 
 from notifications.config import settings
 from notifications.constants.email import RESEND_PACE_KEY, RESEND_PER_SECOND
@@ -30,7 +30,7 @@ async def transmit(email: Email, idempotency_key: str) -> None:
 
 
 async def send(email: Email, idempotency_key: str) -> None:
-    """As transmit, but nothing goes to an address on prepza's suppression list (prepza's own
+    """As transmit, but nothing goes to an address on testee's suppression list (testee's own
     inbox aside: the contact page's messages), and an email Resend refuses for good isn't
     retried. Either way, like a bounce, an invite shows as undelivered, and any other email is
     logged."""

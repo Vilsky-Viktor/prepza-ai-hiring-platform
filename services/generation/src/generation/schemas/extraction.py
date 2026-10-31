@@ -1,5 +1,5 @@
-from prepza_common.auth.user import Level
 from pydantic import BaseModel, Field
+from testee_common.auth.user import Level
 
 
 class JobExtraction(BaseModel):

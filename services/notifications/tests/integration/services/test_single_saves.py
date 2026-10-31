@@ -6,8 +6,8 @@ import uuid
 from datetime import UTC, datetime, timedelta
 
 import pytest
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
 from sqlalchemy import func, select
+from testee_common.events.notifications import NotificationKind, Recipient, notification
 
 from notifications.constants.bulk import SEND_TAG
 from notifications.constants.webhooks import COMPANY_TAG, ID_TAG, KIND_TAG

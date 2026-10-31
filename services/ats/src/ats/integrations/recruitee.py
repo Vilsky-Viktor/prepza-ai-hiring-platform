@@ -1,5 +1,5 @@
 from fastapi import status
-from prepza_common.http.http import bearer
+from testee_common.http.http import bearer
 
 from ats.constants.ats import RECRUITEE_API, RECRUITEE_OPEN_JOBS, AtsProvider
 from ats.integrations.ats_http import REJECTED, checked, json_of, send

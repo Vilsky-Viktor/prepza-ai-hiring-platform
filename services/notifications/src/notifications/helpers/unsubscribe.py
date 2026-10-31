@@ -4,8 +4,8 @@ import hashlib
 import hmac
 import json
 
-from prepza_common.auth.person_hash import keyed, person_hash
-from prepza_common.auth.tokens import same_secret
+from testee_common.auth.person_hash import keyed, person_hash
+from testee_common.auth.tokens import same_secret
 
 from notifications.config import settings
 from notifications.constants.unsubscribe import (
@@ -76,7 +76,7 @@ def candidate_token(data: dict, kind: UnsubscribeType, secret: str) -> str:
 
 
 def verify(token: str, secret: str) -> dict | None:
-    """The token's payload when prepza signed it and it names everything its type needs."""
+    """The token's payload when testee signed it and it names everything its type needs."""
     body, _, received = token.partition(".")
 
     if not same_secret(signature(body, secret), received):

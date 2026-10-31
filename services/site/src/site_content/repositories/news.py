@@ -1,11 +1,11 @@
 import uuid
 
-from prepza_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
-from prepza_common.events.news import NewsTranslation as NewsTranslationIn
-from prepza_common.events.notifications import NEWS_WITHDRAWN
 from sqlalchemy import delete, func, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.config.constants import DEFAULT_LANGUAGE, LANGUAGES
+from testee_common.events.news import NewsTranslation as NewsTranslationIn
+from testee_common.events.notifications import NEWS_WITHDRAWN
 
 from site_content.constants.news import NEWS_RESEND_BATCH
 from site_content.models.news import News, NewsTranslation

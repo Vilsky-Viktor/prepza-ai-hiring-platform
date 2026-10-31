@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, status
-from prepza_common.auth.auth import CurrentUser, OptionalUser
-from prepza_common.db.paging import PageParams
+from testee_common.auth.auth import CurrentUser, OptionalUser
+from testee_common.db.paging import PageParams
 
 from companies.api.dependencies import Via
 from companies.constants.roles import Role

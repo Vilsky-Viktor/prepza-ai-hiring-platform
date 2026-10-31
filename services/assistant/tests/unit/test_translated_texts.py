@@ -2,7 +2,7 @@ import ast
 import importlib
 from pathlib import Path
 
-from prepza_common.i18n.translations import TRANSLATIONS
+from testee_common.i18n.translations import TRANSLATIONS
 
 from assistant.constants.tool_calls import INVALID_ARGUMENTS
 

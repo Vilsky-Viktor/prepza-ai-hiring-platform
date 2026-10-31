@@ -2,7 +2,7 @@ from uuid import UUID
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.ai.answer_votes import mirror_vote
+from testee_common.ai.answer_votes import mirror_vote
 
 from assistant.constants.chat import CHAT_FAILED, NOT_FOUND
 from assistant.core.db import Session

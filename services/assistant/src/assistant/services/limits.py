@@ -1,10 +1,10 @@
 from uuid import UUID
 
-from prepza_common.ai.ai_cap import refuse_if_capped
-from prepza_common.limits.limit_schemas import BudgetOut
-from prepza_common.limits.limits import limit
-from prepza_common.limits.rate_limit import add_spent, hit, spend
 from redis.exceptions import RedisError
+from testee_common.ai.ai_cap import refuse_if_capped
+from testee_common.limits.limit_schemas import BudgetOut
+from testee_common.limits.limits import limit
+from testee_common.limits.rate_limit import add_spent, hit, spend
 
 from assistant.constants.help_chat import HELP_ALL_KEY, HELP_SPEND_KEY
 from assistant.constants.limits import ALL_MESSAGES_KEY, ALL_TOKENS_KEY, PAID_CACHE_SECONDS

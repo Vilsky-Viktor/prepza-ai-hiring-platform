@@ -14,7 +14,7 @@ def now() -> datetime:
 
 
 class LimitSetting(Base):
-    """A limit a superadmin changed from its default (prepza_common.limits.limit_list); only changed
+    """A limit a superadmin changed from its default (testee_common.limits.limit_list); only changed
     ones have a row. Redis's limits:values hash, which the services read, is written from these."""
 
     __tablename__ = "limit_settings"
@@ -35,7 +35,7 @@ class LimitChange(Base):
     name: Mapped[str] = mapped_column(String(64))
     old_value: Mapped[float | None] = mapped_column(EXACT)
     new_value: Mapped[float | None] = mapped_column(EXACT)
-    # The superadmin's account id and address (prepza's own team).
+    # The superadmin's account id and address (testee's own team).
     changed_by: Mapped[str] = mapped_column(String(128))
     changed_by_email: Mapped[str] = mapped_column(String(320))
     changed_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now, index=True)

@@ -2,7 +2,7 @@ import asyncio
 
 import pytest
 from fake_redis import DownRedis, FakeRedis
-from prepza_common.ai.multi_answer import correct_count, draw, is_multi, multi_count, multi_share
+from testee_common.ai.multi_answer import correct_count, draw, is_multi, multi_count, multi_share
 
 SINGLE = [{"answer": "a", "correct": True}, {"answer": "b", "correct": False}]
 MULTI = [

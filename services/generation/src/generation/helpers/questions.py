@@ -2,9 +2,9 @@ import math
 import random
 import re
 
-from prepza_common.ai.examples import has_example
-from prepza_common.ai.multi_answer import is_multi
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.ai.examples import has_example
+from testee_common.ai.multi_answer import is_multi
+from testee_common.limits.limit_list import LIMITS
 
 from generation.constants.generation import (
     MAX_EXAMPLE_LINES,

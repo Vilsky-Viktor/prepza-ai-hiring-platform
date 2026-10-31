@@ -5,9 +5,9 @@ import re
 import httpx
 import pytest
 from fastapi import HTTPException
-from prepza_common.ai.secrets_check import SECRET_REMOVED
-from prepza_common.auth.user import User
-from prepza_common.i18n.i18n import translate
+from testee_common.ai.secrets_check import SECRET_REMOVED
+from testee_common.auth.user import User
+from testee_common.i18n.i18n import translate
 
 from assistant.constants.actions_flow import NOTHING_TO_CHANGE, SUBJECT_NOT_FOUND
 from assistant.constants.chat import OTHER_COMPANY
@@ -23,14 +23,14 @@ from assistant.services.registry import tools
 COMPANY = "8c1d2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f"
 ANN = User(uid="ann", email="ann@example.com", email_verified=True, language="de")
 ACCESS = Access(
-    token="pzm_x",
+    token="tem_x",
     client_id="c1",
-    scopes=["prepza", "prepza:read"],
+    scopes=["testee", "testee:read"],
     subject="ann",
     grant_id="6f1c2b8e-1a2b-4c3d-8e9f-0a1b2c3d4e5f",
     client_name="Claude",
 )
-FAKE_KEY = "pz_a8Kq3ZpL0vW7tYx2Rn5BdF9hJ4mC6sQe1Ug"
+FAKE_KEY = "te_a8Kq3ZpL0vW7tYx2Rn5BdF9hJ4mC6sQe1Ug"
 
 
 class Calls(list):
@@ -163,7 +163,7 @@ def test_the_account_and_company_deletion_are_refused(calls):
     assert called("delete_account", {}) == (True, {"error": EXCLUDED_TOOL})
     # The bell names candidates past the companies that don't allow AI apps.
     assert called("list_notifications", {})[0] is True
-    # A page's guide is about the page the user is on in prepza; an app has none.
+    # A page's guide is about the page the user is on in testee; an app has none.
     assert called("get_page_guide", {"key": "billing"}) == (True, {"error": UNKNOWN_TOOL})
     assert calls == []
 
@@ -242,7 +242,7 @@ def test_a_company_that_isnt_the_users_isnt_called_through_mcp(calls):
 
 
 def test_a_read_only_connection_lists_and_calls_only_reads(calls):
-    reader = ACCESS.model_copy(update={"scopes": ["prepza:read"]})
+    reader = ACCESS.model_copy(update={"scopes": ["testee:read"]})
     names = {tool.name for tool in mcp_tools.listed(reader)}
     result = asyncio.run(mcp_tools.call("create_company", {"name": "Acme"}, reader))
 

@@ -1,4 +1,4 @@
-from prepza_common.ai.tracing import tracing_on
+from testee_common.ai.tracing import tracing_on
 
 from assistant.core.db import Session
 from assistant.integrations import trace_retention

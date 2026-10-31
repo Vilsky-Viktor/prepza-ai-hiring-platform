@@ -1,4 +1,4 @@
-from prepza_common.events.deletions import USER_DELETED
+from testee_common.events.deletions import USER_DELETED
 
 from ats.constants.events import (
     ATS_CANDIDATE_ARRIVED,

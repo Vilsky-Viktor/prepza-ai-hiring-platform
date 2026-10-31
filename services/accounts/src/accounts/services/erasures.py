@@ -5,7 +5,7 @@ from datetime import UTC, datetime, timedelta
 
 import httpx
 from fastapi import status
-from prepza_common.events.deletions import USER_DELETED, UserDeleted
+from testee_common.events.deletions import USER_DELETED, UserDeleted
 
 from accounts.constants.accounts import (
     ERASURE_BATCH,

@@ -5,8 +5,8 @@ and Pub/Sub delivers it again)."""
 
 from datetime import datetime
 
-from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT
-from prepza_common.events.deletions import USER_DELETED
+from testee_common.ai.ai_constants import AI_USED, LIMIT_HIT
+from testee_common.events.deletions import USER_DELETED
 
 from billing.handlers import ai_used, limit_hit, user_deleted
 

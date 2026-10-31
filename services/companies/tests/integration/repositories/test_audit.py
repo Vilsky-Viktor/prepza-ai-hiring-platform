@@ -1,9 +1,9 @@
 import uuid
 from datetime import UTC, datetime, timedelta
 
-from prepza_common.config.constants import DELETED_USER, VIA_ASSISTANT
-from prepza_common.events.audit_actions import AuditAction
 from sqlalchemy import func, select, update
+from testee_common.config.constants import DELETED_USER, VIA_ASSISTANT
+from testee_common.events.audit_actions import AuditAction
 
 from companies.constants.audit import AUDIT_RETENTION_DAYS
 from companies.core.db import Session
@@ -116,7 +116,7 @@ def test_a_read_through_the_assistant_is_listed_and_exported_with_via(run):
 
 
 def test_old_audit_events_are_deleted_in_batches_and_new_ones_kept(run):
-    from prepza_common.db.db import delete_in_batches
+    from testee_common.db.db import delete_in_batches
 
     async def scenario():
         company = await factories.company(f"Batches {uuid.uuid4()}", "ann", "ann@example.com")
@@ -151,7 +151,7 @@ def test_old_audit_events_are_deleted_in_batches_and_new_ones_kept(run):
 
 
 def test_a_deleted_users_actions_lose_their_id_batch_after_batch(run, monkeypatch):
-    from prepza_common.db import db
+    from testee_common.db import db
 
     monkeypatch.setattr(db, "DELETE_BATCH", 2)
     user = f"gone-{uuid.uuid4()}"

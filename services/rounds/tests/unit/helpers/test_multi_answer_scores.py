@@ -2,8 +2,8 @@ from types import SimpleNamespace
 from uuid import uuid4
 
 import pytest
-from prepza_common.ai.multi_answer import multi_count
 from pydantic import ValidationError
+from testee_common.ai.multi_answer import multi_count
 
 from rounds.constants.practice import PRACTICE_TOPIC_QUESTIONS
 from rounds.helpers.export import answer_export

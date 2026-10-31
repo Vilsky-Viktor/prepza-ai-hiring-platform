@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.testclient import TestClient
-from prepza_common.http.body_limit import BodyLimitMiddleware
+from testee_common.http.body_limit import BodyLimitMiddleware
 
 
 def client(max_bytes=100):

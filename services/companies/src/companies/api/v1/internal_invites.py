@@ -1,9 +1,9 @@
 from uuid import UUID
 
 from fastapi import APIRouter, status
-from prepza_common.auth.service_auth import only_from
-from prepza_common.auth.user import UserEmailIn
-from prepza_common.config.constants import UPDATES_CALLER
+from testee_common.auth.service_auth import only_from
+from testee_common.auth.user import UserEmailIn
+from testee_common.config.constants import UPDATES_CALLER
 
 from companies.api.dependencies import ServiceCaller
 from companies.core.db import Session

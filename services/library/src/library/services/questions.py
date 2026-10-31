@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common.ai.multi_answer import is_multi
-from prepza_common.events.notifications import NotificationKind
+from testee_common.ai.multi_answer import is_multi
+from testee_common.events.notifications import NotificationKind
 
 from library.constants.events import QUESTION_FIXED
 from library.constants.sets import SetKind

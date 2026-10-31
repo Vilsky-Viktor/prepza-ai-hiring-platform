@@ -12,7 +12,7 @@ class HelpRole(StrEnum):
 # length, the bounds on what's sent, and the earlier messages the model sees with a question.
 MAX_HELP_QUESTION_LENGTH = 1_000
 MAX_HELP_MESSAGE_LENGTH = 10_000
-# What the help chat's signing key is made for (prepza_common.auth.tokens.purpose_key).
+# What the help chat's signing key is made for (testee_common.auth.tokens.purpose_key).
 HELP_SIGNING_PURPOSE = "help-signatures"
 # A reply's signature: SHA-256, in hex.
 SIGNATURE_LENGTH = 64
@@ -48,6 +48,6 @@ SIGN_IN_PREFIX = "[[sign_in"
 # A vote on a help chat answer whose signature doesn't match its id and run.
 NO_SUCH_ANSWER = "There's no such answer."
 # A visitor's question in a Latin-script language is answered in it only with at least this many
-# of its common words (prepza_common.i18n.language_words), more than of the page's language; a
+# of its common words (testee_common.i18n.language_words), more than of the page's language; a
 # short one is answered in the page's.
 HELP_LANGUAGE_WORDS = 2

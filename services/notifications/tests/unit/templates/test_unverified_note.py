@@ -7,7 +7,7 @@ DATA = {"email": "bob@example.com", "token": "xyz", "title": "Backend", "company
 
 @pytest.mark.parametrize("email", [candidate_invite_email, candidate_reminder_email])
 def test_an_invite_from_an_unverified_company_says_so_quietly(email):
-    note = "prepza hasn't verified Acme."
+    note = "testee hasn't verified Acme."
 
     unverified = email({**DATA, "verified": False}, "http://localhost:8090", "secret")
     verified = email({**DATA, "verified": True}, "http://localhost:8090", "secret")

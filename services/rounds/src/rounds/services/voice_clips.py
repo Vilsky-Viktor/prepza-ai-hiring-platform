@@ -4,10 +4,10 @@ from datetime import UTC, datetime, timedelta
 
 from fastapi import HTTPException, status
 from openai import OpenAIError
-from prepza_common.ai import ai_usage
-from prepza_common.ai.ai_constants import Outcome
-from prepza_common.config.constants import LANGUAGES
-from prepza_common.redis import redis_lock
+from testee_common.ai import ai_usage
+from testee_common.ai.ai_constants import Outcome
+from testee_common.config.constants import LANGUAGES
+from testee_common.redis import redis_lock
 
 from rounds.config import settings
 from rounds.constants.voice import (

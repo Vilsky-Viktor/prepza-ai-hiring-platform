@@ -1,10 +1,10 @@
 from uuid import UUID
 
 from fastapi import APIRouter, HTTPException, Request, status
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.db.paging import PageParams
-from prepza_common.http.visitor_country import VisitorCountry
-from prepza_common.i18n.i18n import request_language
+from testee_common.auth.auth import CurrentUser
+from testee_common.db.paging import PageParams
+from testee_common.http.visitor_country import VisitorCountry
+from testee_common.i18n.i18n import request_language
 
 from companies.api.dependencies import Via
 from companies.constants.roles import Role
@@ -188,6 +188,6 @@ async def get_company(company_id: UUID, user: CurrentUser, request: Request) -> 
 
 @router.patch("/{company_id}/name", status_code=status.HTTP_204_NO_CONTENT)
 async def rename_company(company_id: UUID, body: CompanyRename, user: CurrentUser) -> None:
-    """Owners and admins rename the company; names stay unique across prepza, ignoring case."""
+    """Owners and admins rename the company; names stay unique across testee, ignoring case."""
     company, _ = await require_editor(user, company_id)
     await company_settings.rename(company, user.uid, body.title)

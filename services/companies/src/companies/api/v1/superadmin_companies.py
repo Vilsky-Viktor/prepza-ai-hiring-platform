@@ -2,7 +2,7 @@ from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Query, status
-from prepza_common.auth.superadmin import SuperadminUser
+from testee_common.auth.superadmin import SuperadminUser
 
 from companies.constants.superadmin import COMPANIES_SHOWN
 from companies.core.db import Session

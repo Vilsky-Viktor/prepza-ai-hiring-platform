@@ -3,7 +3,7 @@ import base64
 
 import httpx
 import pytest
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
+from testee_common.events.notifications import NotificationKind, Recipient, notification
 
 from notifications.constants.slack import ZERO_WIDTH_SPACE
 from notifications.helpers.slack import message, read_state, signed_state
@@ -43,14 +43,14 @@ def button(payload: dict) -> str:
     return payload["blocks"][1]["elements"][0]["url"]
 
 
-def test_a_finished_candidate_reads_with_the_grade_and_links_to_prepza():
+def test_a_finished_candidate_reads_with_the_grade_and_links_to_testee():
     text = message(
         event(NotificationKind.CANDIDATE_FINISHED, email="a@b.c", title="Backend", grade=82),
-        "https://prepza.ai",
+        "https://testee.ai",
     )
 
     assert shown(text) == "a@b.c finished “Backend”: 82%."
-    assert button(text) == "https://prepza.ai/companies/c1/x"
+    assert button(text) == "https://testee.ai/companies/c1/x"
     assert text["blocks"][0]["text"]["type"] == "plain_text"
 
 
@@ -64,15 +64,15 @@ def test_a_finished_candidate_opens_their_results():
             title="Backend",
             candidate_link="/companies/c1/interviews/i1/candidates/v1",
         ),
-        "https://prepza.ai",
+        "https://testee.ai",
     )
 
-    assert button(text) == "https://prepza.ai/companies/c1/interviews/i1/candidates/v1"
+    assert button(text) == "https://testee.ai/companies/c1/interviews/i1/candidates/v1"
 
 
 def test_a_candidate_with_a_name_reads_with_it_escaped():
     data = {"email": "a@b.c", "title": "Backend", "candidate_name": "Ann <Lee>"}
-    text = message(event(NotificationKind.CANDIDATE_FINISHED, **data), "https://prepza.ai")
+    text = message(event(NotificationKind.CANDIDATE_FINISHED, **data), "https://testee.ai")
 
     assert shown(text).startswith("Ann &lt;Lee&gt; (a@b.c) finished “Backend”.")
 
@@ -86,7 +86,7 @@ def test_a_not_invited_candidate_names_the_ats_and_why():
             ats="Greenhouse",
             reason="credits",
         ),
-        "https://prepza.ai",
+        "https://testee.ai",
     )
 
     assert shown(text).startswith(
@@ -97,7 +97,7 @@ def test_a_not_invited_candidate_names_the_ats_and_why():
 def test_what_people_wrote_is_shown_not_read_as_slack_markup():
     text = message(
         event(NotificationKind.INTERVIEW_READY, title="<!channel> R&D <https://x|y>"),
-        "https://prepza.ai",
+        "https://testee.ai",
     )
 
     assert shown(text) == "The interview “&lt;!channel&gt; R&amp;D &lt;https://x|y&gt;” is ready."
@@ -113,7 +113,7 @@ def test_an_interview_without_a_title_is_named_without_quotes():
 
 def test_a_name_that_looks_like_a_link_or_markup_stays_plain_text():
     data = {"email": "a@b.c", "title": "Backend", "candidate_name": "John www.evil-login.com *x*"}
-    payload = message(event(NotificationKind.CANDIDATE_FINISHED, **data), "https://prepza.ai")
+    payload = message(event(NotificationKind.CANDIDATE_FINISHED, **data), "https://testee.ai")
 
     # Slack formats no plain_text block, and a broken dot isn't linked anywhere.
     assert payload["blocks"][0]["text"]["type"] == "plain_text"

@@ -2,8 +2,8 @@ import logging
 import random
 from uuid import UUID
 
-from prepza_common.http.capped import gather_capped
-from prepza_common.limits.limits import limit
+from testee_common.http.capped import gather_capped
+from testee_common.limits.limits import limit
 
 from generation.constants.actions import SAMPLE_KEY_CHECK
 from generation.constants.quality import KEY_CHECKS_PER_TOPIC

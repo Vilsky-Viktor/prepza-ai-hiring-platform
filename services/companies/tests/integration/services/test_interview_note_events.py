@@ -6,11 +6,11 @@ import uuid
 
 import httpx
 import pytest
-from prepza_common.auth.key_actor import key_actor
-from prepza_common.auth.service_auth import issue_token
-from prepza_common.events.notes import NOTE_CREATED, NOTE_DELETED, NOTE_EDITED
-from prepza_common.http.http import bearer
 from sqlalchemy import select
+from testee_common.auth.key_actor import key_actor
+from testee_common.auth.service_auth import issue_token
+from testee_common.events.notes import NOTE_CREATED, NOTE_DELETED, NOTE_EDITED
+from testee_common.http.http import bearer
 
 from companies.config import settings
 from companies.core.db import Session

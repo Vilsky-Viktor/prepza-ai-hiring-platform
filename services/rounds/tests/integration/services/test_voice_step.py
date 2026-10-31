@@ -4,8 +4,8 @@ import asyncio
 import uuid
 
 import pytest
-from prepza_common.auth.user import User
 from sqlalchemy import update
+from testee_common.auth.user import User
 
 from rounds.config import settings
 from rounds.core.db import Session as Db

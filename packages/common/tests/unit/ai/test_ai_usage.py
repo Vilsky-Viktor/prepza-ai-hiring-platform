@@ -4,9 +4,9 @@ from unittest import mock
 import httpx
 import openai
 import pytest
-from prepza_common.ai import ai_usage
-from prepza_common.ai.ai_constants import AI_USED, LIMIT_HIT, Outcome
-from prepza_common.events import pubsub
+from testee_common.ai import ai_usage
+from testee_common.ai.ai_constants import AI_USED, LIMIT_HIT, Outcome
+from testee_common.events import pubsub
 
 
 def refused(code: str) -> openai.RateLimitError:

@@ -7,9 +7,9 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.redis import memory_cache
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.redis import memory_cache
 
 from notifications.constants.campaigns import (
     ALREADY_SENT,
@@ -26,7 +26,7 @@ from notifications.schemas.campaigns import CampaignIn
 from notifications.services import campaign_sends, campaigns, unsubscribe
 
 SECRET = "test-email-link-secret"
-SITE = "https://prepza.com"
+SITE = "https://testee.com"
 TEXTS = {
     "en": {
         "subject": "Code questions",
@@ -217,7 +217,7 @@ def test_unsubscribing_from_a_campaign_turns_off_only_its_setting_and_counts_aga
 
 
 def test_only_a_superadmin_reaches_campaigns(client, monkeypatch):
-    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@prepza.dev")
+    monkeypatch.setenv("SUPERADMIN_EMAILS", "sam@testee.dev")
     app.dependency_overrides[current_user] = lambda: User(
         uid="ann", email="ann@example.com", email_verified=True
     )

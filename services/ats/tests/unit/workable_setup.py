@@ -1,7 +1,7 @@
 import uuid
 
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from ats.integrations import workable
 from ats.main import app

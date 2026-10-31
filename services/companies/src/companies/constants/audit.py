@@ -1,4 +1,4 @@
-from prepza_common.config.constants import VIA_ASSISTANT, VIA_MCP
+from testee_common.config.constants import VIA_ASSISTANT, VIA_MCP
 
 # Audit events are kept this long (12 months), then the daily retention deletes them.
 AUDIT_RETENTION_DAYS = 365

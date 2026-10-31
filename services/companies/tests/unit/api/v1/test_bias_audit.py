@@ -54,7 +54,7 @@ def test_the_owner_gets_a_csv_file_never_cached(client, monkeypatch, exported):
     assert response.status_code == 200
     assert response.headers["content-type"].startswith("text/csv")
     assert response.headers["content-disposition"].startswith(
-        'attachment; filename="prepza-bias-audit-'
+        'attachment; filename="testee-bias-audit-'
     )
     assert response.headers["cache-control"] == "no-store"
     assert response.text == "candidate_id\n"

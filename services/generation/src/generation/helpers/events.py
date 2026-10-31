@@ -1,5 +1,5 @@
-from prepza_common.events.campaigns import CAMPAIGN_TRANSLATED
-from prepza_common.events.news import NEWS_TRANSLATED
+from testee_common.events.campaigns import CAMPAIGN_TRANSLATED
+from testee_common.events.news import NEWS_TRANSLATED
 
 from generation.constants.batch_work import BatchKind
 from generation.constants.events import GENERATION_FAILED

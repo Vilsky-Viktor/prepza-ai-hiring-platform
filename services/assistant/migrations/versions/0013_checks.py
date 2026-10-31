@@ -17,7 +17,7 @@ depends_on = None
 
 # (table, name, condition), as the models build them on 2026-10-21.
 CHECKS = (
-    ("mcp_grants", "ck_mcp_grants_scope", "scope IN ('prepza', 'prepza:read')"),
+    ("mcp_grants", "ck_mcp_grants_scope", "scope IN ('testee', 'testee:read')"),
     ("messages", "ck_messages_role", "role IN ('user', 'assistant')"),
     ("messages", "ck_messages_source", "source IN ('text', 'voice')"),
     ("messages", "ck_messages_status", "status IN ('complete', 'cancelled', 'failed')"),

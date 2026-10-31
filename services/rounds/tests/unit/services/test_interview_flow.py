@@ -4,7 +4,7 @@ from uuid import uuid4
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from rounds.integrations import library
 from rounds.models.answers import Answer

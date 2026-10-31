@@ -1,6 +1,6 @@
 import pytest
-from prepza_common.ai.page_keys import PAGE_KEYS
-from prepza_common.config.constants import LANGUAGES
+from testee_common.ai.page_keys import PAGE_KEYS
+from testee_common.config.constants import LANGUAGES
 
 from site_content.constants.help import NO_SUCH_PAGE
 from site_content.helpers import page_guides

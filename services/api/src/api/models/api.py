@@ -23,7 +23,7 @@ class ApiKey(Base):
     shown: Mapped[str] = mapped_column(String(20))
     hash: Mapped[str] = mapped_column(String(64), unique=True)
     # The member who made it, a plain record for their account's export: the key belongs to the
-    # company and acts as itself (prepza_common.auth.key_actor). None once they deleted their
+    # company and acts as itself (testee_common.auth.key_actor). None once they deleted their
     # account.
     created_by: Mapped[str | None] = mapped_column(String(128), index=True)
     created_at: Mapped[datetime] = mapped_column(

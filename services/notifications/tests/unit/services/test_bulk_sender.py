@@ -3,8 +3,8 @@ from datetime import UTC, datetime
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.limits.limit_list import LIMITS
-from prepza_common.redis import memory_cache
+from testee_common.limits.limit_list import LIMITS
+from testee_common.redis import memory_cache
 
 from notifications.helpers.unsubscribe import address_hash
 from notifications.integrations.resend import EmailRefused, ResendBusy

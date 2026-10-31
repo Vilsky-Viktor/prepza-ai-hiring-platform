@@ -32,7 +32,7 @@ os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "demo-test")
 import pytest
 from fastapi.testclient import TestClient
 from no_publishing import no_publishing, published  # noqa: F401
-from prepza_common.redis import memory_cache
+from testee_common.redis import memory_cache
 
 from notifications.main import app
 

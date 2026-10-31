@@ -4,8 +4,8 @@
 # (bulk_recipients is unique per send and user), so they get one email.
 import uuid
 
-from prepza_common.config.constants import GUEST_UID_PREFIX
-from prepza_common.db.paging import ID_PAGE_SIZE
+from testee_common.config.constants import GUEST_UID_PREFIX
+from testee_common.db.paging import ID_PAGE_SIZE
 
 from notifications.constants.bulk import LEGAL_KINDS, OPTIONAL_KINDS, BulkKind
 from notifications.constants.campaigns import AudienceGroup

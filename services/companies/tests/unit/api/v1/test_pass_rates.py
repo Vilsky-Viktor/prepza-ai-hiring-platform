@@ -2,8 +2,8 @@ import uuid
 from types import SimpleNamespace
 
 import pytest
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
 
 from companies.helpers.pass_rates import outside_triggers, percent
 from companies.integrations import rounds

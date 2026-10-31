@@ -129,7 +129,7 @@ def test_results_go_back_to_workable_once_as_a_comment(finished):
 
     [(candidate_id, member, text)] = state["comments"]
     assert (candidate_id, member) == ("c-1", "m-1")
-    assert "prepza: Accountant" in text
+    assert "testee: Accountant" in text
     assert "Grade: 82% (passed)" in text
     assert text.endswith(
         f"http://localhost:8090/companies/{COMPANY_ID}/interviews/{INTERVIEW_ID}"

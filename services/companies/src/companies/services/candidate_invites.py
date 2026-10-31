@@ -1,10 +1,10 @@
 from fastapi import HTTPException, status
-from prepza_common.auth.user import User
-from prepza_common.events.analytics import track
-from prepza_common.events.audit_actions import AuditAction, TargetKind
-from prepza_common.i18n.i18n import CodedError
-from prepza_common.i18n.names import clean_name
-from prepza_common.limits.rate_limit import hit_emails, recipient_key
+from testee_common.auth.user import User
+from testee_common.events.analytics import track
+from testee_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.i18n.i18n import CodedError
+from testee_common.i18n.names import clean_name
+from testee_common.limits.rate_limit import hit_emails, recipient_key
 
 from companies.constants import error_codes
 from companies.constants.audit import VIA_API
@@ -175,7 +175,7 @@ async def give_back(interview: Interview, company: Company, email: str, current,
 
 async def resend(company_id, interview: Interview, found: CandidateInvite, user_id: str) -> None:
     """Sends the invite again, as an owner or admin does on the candidate's page, for the public
-    API: refused for a candidate who finished (409) or one prepza doesn't email (invited without
+    API: refused for a candidate who finished (409) or one testee doesn't email (invited without
     a sign-in, 409); the invite keeps its return address and theme."""
     if found.status == InviteStatus.DELETED:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Candidate not found")

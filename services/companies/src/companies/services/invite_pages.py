@@ -4,7 +4,7 @@ shareable link, and the company's brand."""
 from uuid import UUID
 
 from fastapi import HTTPException, status
-from prepza_common.auth.user import User
+from testee_common.auth.user import User
 
 from companies.core.db import Session
 from companies.helpers.allowed_domains import frame_sources

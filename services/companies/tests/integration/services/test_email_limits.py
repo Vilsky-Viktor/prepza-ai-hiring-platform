@@ -2,9 +2,9 @@ import uuid
 
 import pytest
 from fastapi import HTTPException
-from prepza_common.limits import limits
-from prepza_common.limits.rate_limit import hit_emails
 from redis.asyncio import Redis
+from testee_common.limits import limits
+from testee_common.limits.rate_limit import hit_emails
 
 from companies.config import settings
 from tests.integration import factories
@@ -60,7 +60,7 @@ def test_email_limits_count_in_real_redis(run, monkeypatch):
 def test_invites_refused_for_credits_use_up_no_email_limits(run, monkeypatch):
     """A company out of credits (an ATS sending candidates) must not use up the limits, or its
     invites are refused with 429 once it tops up."""
-    from prepza_common.auth.user import User
+    from testee_common.auth.user import User
 
     from companies.integrations import billing
     from companies.repositories import interview_generations, interviews

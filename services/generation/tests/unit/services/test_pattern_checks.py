@@ -2,7 +2,7 @@
 general wording only, nothing quoted from the questions it came from, and short."""
 
 import pytest
-from prepza_common.ai.sets import OptionIn
+from testee_common.ai.sets import OptionIn
 
 from generation.constants.patterns import DENIED_TERMS, MAX_PATTERN_CHARS
 from generation.helpers.patterns import names_something, quotes_input

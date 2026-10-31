@@ -1,7 +1,7 @@
-from prepza_common.events import outbox
-from prepza_common.events.notifications import NOTIFICATION_REQUESTED
 from sqlalchemy import delete, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events import outbox
+from testee_common.events.notifications import NOTIFICATION_REQUESTED
 
 from site_content.constants.events import CONTACT_SENT
 from site_content.models.outbox import OutboxEvent

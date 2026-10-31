@@ -75,7 +75,7 @@ async def comment(
 async def subscribe(company: str, token: str, url: str) -> tuple[str, str]:
     """Asks Breezy to send the company's stage changes to `url`: the web hook's id and its
     signing secret, which Breezy gives only now."""
-    body = {"url": url, "description": "prepza", "events": [BREEZY_STATUS_UPDATED]}
+    body = {"url": url, "description": "testee", "events": [BREEZY_STATUS_UPDATED]}
     created = await _call("POST", token, f"/company/{company}/webhook_endpoints", body=body)
 
     return created["id"], created["secret"]

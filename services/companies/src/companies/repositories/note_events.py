@@ -1,13 +1,13 @@
 # An interview's notes as events for notifications (the bell, Slack and the digest), saved in the
 # outbox with the change they tell of.
-from prepza_common.events.notes import (
+from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events.notes import (
     NOTE_CREATED,
     NOTE_DELETED,
     NOTE_EDITED,
     NoteDeleted,
     NoteWritten,
 )
-from sqlalchemy.ext.asyncio import AsyncSession
 
 from companies.models.interview_notes import InterviewNote
 from companies.models.interviews import Interview

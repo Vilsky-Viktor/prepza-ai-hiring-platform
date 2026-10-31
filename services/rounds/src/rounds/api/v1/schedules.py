@@ -2,8 +2,8 @@ import time
 from datetime import UTC, datetime
 
 from fastapi import APIRouter, status
-from prepza_common.auth.google import Invoker
-from prepza_common.limits.maintenance import is_on
+from testee_common.auth.google import Invoker
+from testee_common.limits.maintenance import is_on
 
 from rounds.constants.voice import CLIP_UNUSED_DAYS, JOB_SECONDS
 from rounds.integrations.redis import get_redis

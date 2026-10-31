@@ -1,7 +1,7 @@
 from datetime import UTC, datetime
 
-from prepza_common.events.audit_actions import AuditAction
 from sqlalchemy.ext.asyncio import AsyncSession
+from testee_common.events.audit_actions import AuditAction
 
 from billing.constants.currencies import DEFAULT_CURRENCY, ChoiceOwner, Currency
 from billing.constants.products import OwnerType

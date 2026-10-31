@@ -6,7 +6,7 @@ from accounts.constants.emails import FIREBASE_LOOKUP_LIMIT
 
 
 class AccountOut(BaseModel):
-    """A prepza account, for the admin zone's support tab: `email` is None for an account
+    """A testee account, for the admin zone's support tab: `email` is None for an account
     without one (a company's guest candidate), `created_at` when Firebase doesn't say."""
 
     user_id: str

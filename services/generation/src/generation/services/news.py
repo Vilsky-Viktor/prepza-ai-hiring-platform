@@ -1,4 +1,4 @@
-from prepza_common.config.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
+from testee_common.config.constants import MAX_NEWS_TEXT_LENGTH, MAX_NEWS_TITLE_LENGTH
 
 from generation.helpers.prompts import language_name
 from generation.prompts.news import NEWS_TRANSLATION_INPUT

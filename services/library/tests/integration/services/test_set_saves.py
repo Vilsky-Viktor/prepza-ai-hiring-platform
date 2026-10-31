@@ -4,7 +4,7 @@ same title, each end with one set, without an error."""
 import asyncio
 import uuid
 
-from prepza_common.ai.sets import PreparationIn
+from testee_common.ai.sets import PreparationIn
 
 from library.repositories import preparations
 from library.services import sets as set_service

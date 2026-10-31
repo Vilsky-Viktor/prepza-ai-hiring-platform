@@ -1,9 +1,9 @@
 import os
 import uuid
 
-from prepza_common.db.lock_waits import hold_first_commit, race
-from prepza_common.events.audit_actions import AuditAction, TargetKind
 from sqlalchemy import select
+from testee_common.db.lock_waits import hold_first_commit, race
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
 from companies.constants.roles import EDITORS
 from companies.core.db import Session

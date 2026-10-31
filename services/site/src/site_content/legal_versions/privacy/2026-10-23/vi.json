@@ -1,11 +1,11 @@
 {
-  "intro": "Chính sách này giải thích prepza thu thập những dữ liệu cá nhân nào, vì sao, chúng tôi lưu giữ trong bao lâu và bạn có những quyền gì. prepza do Arcolabs OÜ (mã số đăng ký 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia vận hành. prepza.ai cũng hiển thị tài liệu này bằng các ngôn ngữ khác; chỉ bản tiếng Anh này có giá trị ràng buộc, và nếu bản dịch có điểm khác biệt, bản tiếng Anh được áp dụng.",
+  "intro": "Chính sách này giải thích testee thu thập những dữ liệu cá nhân nào, vì sao, chúng tôi lưu giữ trong bao lâu và bạn có những quyền gì. testee do Arcolabs OÜ (mã số đăng ký 17587452), Sepapaja tn 6, 15551 Tallinn, Harju maakond, Estonia vận hành. testee.ai cũng hiển thị tài liệu này bằng các ngôn ngữ khác; chỉ bản tiếng Anh này có giá trị ràng buộc, và nếu bản dịch có điểm khác biệt, bản tiếng Anh được áp dụng.",
   "sections": [
     {
       "heading": "Ai chịu trách nhiệm",
       "paragraphs": [
-        "Đối với tài khoản của riêng bạn và tài khoản công ty của bạn, Arcolabs OÜ là bên kiểm soát dữ liệu của bạn. Hãy viết thư đến hello@prepza.ai cho mọi câu hỏi hoặc yêu cầu.",
-        "Khi một công ty mời bạn tham gia phỏng vấn trên prepza, công ty đó quyết định mục đích và cách thức sử dụng kết quả của bạn và là bên kiểm soát đối với các kết quả đó; chúng tôi xử lý chúng thay mặt công ty đó. Bạn có thể liên hệ trực tiếp với công ty, hoặc với chúng tôi, và chúng tôi sẽ chuyển yêu cầu của bạn đến công ty."
+        "Đối với tài khoản của riêng bạn và tài khoản công ty của bạn, Arcolabs OÜ là bên kiểm soát dữ liệu của bạn. Hãy viết thư đến hello@testee.ai cho mọi câu hỏi hoặc yêu cầu.",
+        "Khi một công ty mời bạn tham gia phỏng vấn trên testee, công ty đó quyết định mục đích và cách thức sử dụng kết quả của bạn và là bên kiểm soát đối với các kết quả đó; chúng tôi xử lý chúng thay mặt công ty đó. Bạn có thể liên hệ trực tiếp với công ty, hoặc với chúng tôi, và chúng tôi sẽ chuyển yêu cầu của bạn đến công ty."
       ]
     },
     {
@@ -23,7 +23,7 @@
         "Bước kiểm tra \"Tôi không phải là người máy\": khi bạn gửi biểu mẫu liên hệ, đặt câu hỏi đầu tiên trong khung trò chuyện trợ giúp, bắt đầu một buổi phỏng vấn qua liên kết của một tin tuyển dụng, tạo công ty đầu tiên của bạn, hoặc duyệt các chủ đề của một công ty chưa thanh toán, Cloudflare Turnstile xem xét trình duyệt của bạn (chẳng hạn loại trình duyệt, cách nó hoạt động và địa chỉ mà nó kết nối từ đó) để phân biệt người thật với một đoạn mã tự động. Chúng tôi chỉ nhận kết quả là bước kiểm tra có được vượt qua hay không.",
         "Ứng dụng AI bạn kết nối: tên ứng dụng và trang mà ứng dụng quay về, cùng thời điểm bạn kết nối và lần cuối bạn sử dụng. Quyền truy cập của ứng dụng chỉ được lưu dưới dạng hàm băm một chiều.",
         "Điều khoản bạn đã chấp nhận: phiên bản điều khoản có hiệu lực khi bạn đăng ký, và thời điểm đăng ký, làm bằng chứng về những gì bạn đã đồng ý. Dữ liệu này bị xóa cùng tài khoản của bạn.",
-        "Công cụ mà công ty kết nối: các khóa hoặc token do chủ sở hữu hoặc quản trị viên của công ty tạo trong hệ thống theo dõi ứng viên của công ty (Workable, Greenhouse, Teamtailor, Recruitee hoặc Breezy HR) hoặc Slack, được lưu ở dạng mã hóa; hàm băm một chiều của mỗi khóa API prepza và địa chỉ các webhook của công ty; và, từ hệ thống theo dõi ứng viên của công ty, email, tên và ID của từng ứng viên mà hệ thống đó gửi đến prepza.",
+        "Công cụ mà công ty kết nối: các khóa hoặc token do chủ sở hữu hoặc quản trị viên của công ty tạo trong hệ thống theo dõi ứng viên của công ty (Workable, Greenhouse, Teamtailor, Recruitee hoặc Breezy HR) hoặc Slack, được lưu ở dạng mã hóa; hàm băm một chiều của mỗi khóa API testee và địa chỉ các webhook của công ty; và, từ hệ thống theo dõi ứng viên của công ty, email, tên và ID của từng ứng viên mà hệ thống đó gửi đến testee.",
         "Cài đặt email: những email không bắt buộc nào bạn nhận, và nhật ký mọi thay đổi đối với chúng: email nào, bật hay tắt, khi nào, ở đâu (khi đăng nhập, trong Cài đặt, hoặc qua liên kết hủy đăng ký hay báo cáo thư rác) và bạn đã thấy phiên bản nào của nội dung các ô đánh dấu.",
         "Email gửi thành viên công ty: bản ghi các bản tóm tắt hoạt động và lời nhắc chúng tôi đã gửi cho bạn, và mỗi lời nhắc nói về điều gì, để không có email nào bị gửi hai lần.",
         "Email gửi nhiều người dùng (thông báo về thay đổi điều khoản của chúng tôi, thông báo quan trọng về dịch vụ, cập nhật sản phẩm, ưu đãi): mỗi email đã được gửi cho bạn, bị bỏ qua hay gửi thất bại, và bạn đã hủy đăng ký hoặc đánh dấu email đó là thư rác hay chưa, để không email nào bị gửi hai lần và chúng tôi biết mỗi email được đón nhận ra sao.",
@@ -33,37 +33,37 @@
         "Giao dịch mua: với mỗi lần nạp credit, công ty được nạp, người mua, những gì đã mua, tổng tiền và loại tiền tệ, mã giao dịch của Paddle và thời điểm mua. Paddle, không phải chúng tôi, lưu giữ thông tin thẻ và thông tin thanh toán.",
         "Nhật ký thao tác của công ty: những gì thành viên làm trong công ty, chẳng hạn như mời, xem hoặc xóa một ứng viên, thay đổi một buổi phỏng vấn hoặc nhóm, nạp credit hoặc kết nối một công cụ, kèm theo người thực hiện, thời điểm, và việc trợ lý, một ứng dụng AI hoặc API có thực hiện thay họ hay không. Chủ sở hữu công ty xem được nhật ký này. Ứng viên và thành viên chỉ được hiển thị bằng tên khi họ vẫn còn trong công ty: nhật ký lưu ID của họ, không bao giờ lưu email của họ.",
         "Mức sử dụng AI và giới hạn: với mỗi lần sử dụng AI, chẳng hạn như viết câu hỏi hoặc câu trả lời của trợ lý, mục đích sử dụng, mô hình, quy mô và chi phí của lần sử dụng đó, cùng tài khoản và công ty liên quan; và mỗi lần một giới hạn từ chối một yêu cầu, giới hạn nào, khi nào, cùng tài khoản và công ty bị từ chối. Không bao giờ lưu văn bản gửi đến AI hay câu trả lời của AI.",
-        "Bản ghi các lệnh gọi AI: những gì prepza gửi đến AI và những gì AI trả lời mỗi lần được sử dụng, chẳng hạn như viết câu hỏi từ một mô tả công việc, hoặc các câu trả lời của trợ lý và khung trò chuyện trợ giúp cùng những gì chúng đã đọc để trả lời (có thể bao gồm kết quả của ứng viên), và các lượt bình chọn cho những câu trả lời đó. Các bản ghi này do Langfuse, nêu dưới đây, lưu giữ, chỉ để theo dõi và cải thiện chất lượng câu trả lời.",
+        "Bản ghi các lệnh gọi AI: những gì testee gửi đến AI và những gì AI trả lời mỗi lần được sử dụng, chẳng hạn như viết câu hỏi từ một mô tả công việc, hoặc các câu trả lời của trợ lý và khung trò chuyện trợ giúp cùng những gì chúng đã đọc để trả lời (có thể bao gồm kết quả của ứng viên), và các lượt bình chọn cho những câu trả lời đó. Các bản ghi này do Langfuse, nêu dưới đây, lưu giữ, chỉ để theo dõi và cải thiện chất lượng câu trả lời.",
         "Thống kê sử dụng: các bước như đăng ký, tạo công ty, mời ứng viên hoặc nạp credit, kèm các con số như điểm hoặc số tiền. ID tài khoản của bạn được thay bằng một mã tạo từ một khóa bí mật do chúng tôi nắm giữ, nên số liệu thống kê không nêu tên bạn, nhưng chúng là dữ liệu được bí danh hóa, không phải ẩn danh: với khóa đó, mã này khớp với ID tài khoản của bạn. ID của công ty được giữ nguyên. Không bao gồm tên, email hay văn bản nào."
       ]
     },
     {
       "heading": "Vì sao chúng tôi sử dụng dữ liệu",
       "items": [
-        "Để cung cấp prepza: tạo buổi phỏng vấn, tổ chức phỏng vấn cho ứng viên được mời, hiển thị kết quả cho công ty và gửi các email bạn yêu cầu (hợp đồng).",
+        "Để cung cấp testee: tạo buổi phỏng vấn, tổ chức phỏng vấn cho ứng viên được mời, hiển thị kết quả cho công ty và gửi các email bạn yêu cầu (hợp đồng).",
         "Email dịch vụ, chẳng hạn như lời mời, báo cáo, sự cố thanh toán, thay đổi đối với điều khoản của chúng tôi và thông báo quan trọng về dịch vụ (sự cố bảo mật, thời gian ngừng hoạt động theo kế hoạch hoặc thay đổi về cách dịch vụ hoạt động), luôn được gửi (hợp đồng).",
-        "Bản tóm tắt hoạt động và lời nhắc về các công ty của bạn, chẳng hạn như sắp hết credit hoặc một buổi phỏng vấn chưa có ứng viên (lợi ích hợp pháp của chúng tôi trong việc giúp bạn sử dụng prepza). Các email này bật cho đến khi bạn tắt chúng.",
+        "Bản tóm tắt hoạt động và lời nhắc về các công ty của bạn, chẳng hạn như sắp hết credit hoặc một buổi phỏng vấn chưa có ứng viên (lợi ích hợp pháp của chúng tôi trong việc giúp bạn sử dụng testee). Các email này bật cho đến khi bạn tắt chúng.",
         "Cập nhật sản phẩm và tin tức: gửi cho người dùng của chính chúng tôi không đánh dấu ô “Không gửi cho tôi cập nhật sản phẩm và tin tức” vào lần đầu tiên tùy chọn này được đưa ra khi đăng nhập (Điều 13(2) của Chỉ thị ePrivacy và § 103¹ của Đạo luật Truyền thông Điện tử Estonia). Bạn có thể ngừng nhận bất cứ lúc nào, miễn phí.",
         "Ưu đãi và khuyến mãi: chỉ khi bạn đồng ý, bằng cách đánh dấu ô khi đăng nhập hoặc trong Cài đặt (sự đồng ý). Bạn có thể rút lại sự đồng ý bất cứ lúc nào.",
         "Chọn người nhận email gửi nhiều người dùng: tài khoản của bạn có thuộc nhóm của một công ty không (và với vai trò chủ sở hữu hay quản trị viên), đã làm phỏng vấn của một công ty hay đã dùng luyện tập miễn phí chưa, để cập nhật sản phẩm, ưu đãi hoặc thông báo quan trọng chỉ đến với những người liên quan. Chúng tôi chỉ dùng việc tài khoản của bạn đã làm điều đó, không bao giờ dùng câu trả lời, kết quả của bạn hay những gì một công ty lưu giữ về bạn (lợi ích hợp pháp của chúng tôi trong việc chỉ gửi email phù hợp). Cập nhật sản phẩm và ưu đãi vẫn chỉ được gửi cho những người nhận chúng theo hai mục ở trên.",
-        "Ghi nhớ rằng một ứng viên đã ngừng nhận email của một công ty, để prepza không gửi email cho họ thay mặt công ty đó nữa (tôn trọng sự phản đối của họ).",
-        "Để giữ prepza an toàn và hoạt động: ngăn chặn lạm dụng, giới hạn tần suất truy cập, báo cáo lỗi và thống kê giúp cải thiện chất lượng câu hỏi (lợi ích hợp pháp của chúng tôi).",
+        "Ghi nhớ rằng một ứng viên đã ngừng nhận email của một công ty, để testee không gửi email cho họ thay mặt công ty đó nữa (tôn trọng sự phản đối của họ).",
+        "Để giữ testee an toàn và hoạt động: ngăn chặn lạm dụng, giới hạn tần suất truy cập, báo cáo lỗi và thống kê giúp cải thiện chất lượng câu hỏi (lợi ích hợp pháp của chúng tôi).",
         "Chất lượng câu hỏi: chúng tôi phân tích cách các câu hỏi được trả lời và bị báo cáo để tìm ra các mẫu chung, đã ẩn danh hóa, về chất lượng câu hỏi, giúp cải thiện việc tạo câu hỏi cho tất cả mọi người; các mẫu này không chứa dữ liệu cá nhân nào (lợi ích hợp pháp của chúng tôi).",
-        "Tái sử dụng câu hỏi được tạo: các câu hỏi do prepza tạo có thể được tái sử dụng trong các buổi phỏng vấn và luyện tập của khách hàng khác, mà không kèm bất kỳ dữ liệu cá nhân hay chi tiết nào nhận dạng một công ty hoặc một người. Công ty có thể loại các câu hỏi của một buổi phỏng vấn khỏi việc này trong phần cài đặt của buổi phỏng vấn đó.",
+        "Tái sử dụng câu hỏi được tạo: các câu hỏi do testee tạo có thể được tái sử dụng trong các buổi phỏng vấn và luyện tập của khách hàng khác, mà không kèm bất kỳ dữ liệu cá nhân hay chi tiết nào nhận dạng một công ty hoặc một người. Công ty có thể loại các câu hỏi của một buổi phỏng vấn khỏi việc này trong phần cài đặt của buổi phỏng vấn đó.",
         "Bản ghi các lệnh gọi AI cho phép chúng tôi theo dõi và cải thiện chất lượng câu hỏi và câu trả lời của AI (lợi ích hợp pháp của chúng tôi).",
-        "Kiểm soát chi phí và ngăn chặn lạm dụng: bản ghi mức sử dụng AI và các giới hạn đã chạm tới cho thấy chi phí AI và ai chạm tới giới hạn nào, để chúng tôi có thể giữ prepza ở mức giá hợp lý và ngăn chặn việc lạm dụng (lợi ích hợp pháp của chúng tôi).",
+        "Kiểm soát chi phí và ngăn chặn lạm dụng: bản ghi mức sử dụng AI và các giới hạn đã chạm tới cho thấy chi phí AI và ai chạm tới giới hạn nào, để chúng tôi có thể giữ testee ở mức giá hợp lý và ngăn chặn việc lạm dụng (lợi ích hợp pháp của chúng tôi).",
         "Nhật ký thao tác của công ty cho phép chủ sở hữu xem ai đã làm gì trong công ty, và cho phép bộ phận hỗ trợ của chúng tôi kiểm tra nhật ký khi công ty yêu cầu trợ giúp (lợi ích hợp pháp của công ty và của chúng tôi về trách nhiệm giải trình).",
-        "Thống kê sử dụng cho thấy những phần nào của prepza giúp ích cho mọi người và mức giá cũng như giới hạn nào phù hợp, để chúng tôi có thể cải thiện chúng (lợi ích hợp pháp của chúng tôi).",
+        "Thống kê sử dụng cho thấy những phần nào của testee giúp ích cho mọi người và mức giá cũng như giới hạn nào phù hợp, để chúng tôi có thể cải thiện chúng (lợi ích hợp pháp của chúng tôi).",
         "Hồ sơ mua hàng, được lưu giữ cho công tác kế toán theo yêu cầu của luật kế toán Estonia (nghĩa vụ pháp lý).",
         "Hiển thị một công ty là đã xác minh, bằng cách đối chiếu trang web của công ty với tên miền email của chủ sở hữu và quản trị viên công ty (lợi ích hợp pháp của chúng tôi).",
-        "Sẵn sàng nhận cơ hội việc làm: chỉ khi bạn bật tính năng này (sự đồng ý), các công ty tuyển dụng trên prepza mới thấy tên, hồ sơ LinkedIn và kết quả luyện tập có tính giờ mới nhất của bạn ở từng chủ đề bạn đã luyện tập mà một buổi phỏng vấn của họ bao quát ở đúng cấp độ của nó, để họ có thể mời bạn tham gia buổi phỏng vấn đó. Chúng tôi không xếp hạng hay giới thiệu bạn và không đưa ra quyết định nào về bạn: công ty quyết định mời ai. Bạn có thể rút lại sự đồng ý bất cứ lúc nào trong Cài đặt, và khi đó bạn biến mất khỏi danh sách của mọi công ty ngay lập tức. Nhật ký các lựa chọn của bạn được lưu làm bằng chứng cho sự đồng ý của bạn (nghĩa vụ pháp lý của chúng tôi phải chứng minh điều đó).",
-        "Kết quả phỏng vấn, thời gian trả lời và các cảnh báo hành vi bất thường giúp công ty tuyển dụng đánh giá câu trả lời của bạn một cách công bằng (lợi ích hợp pháp của công ty). Các cảnh báo này bao gồm những quy luật trong câu trả lời của bạn: thời gian gần như như nhau ở mọi câu hỏi, hoặc trả lời đúng câu khó trong khi sai câu dễ; dựa vào đó, công ty được gợi ý những câu hỏi để hỏi bạn trong buổi phỏng vấn trực tiếp. Những người tại công ty đưa ra quyết định tuyển dụng; prepza không tự mình đưa ra quyết định nào về bạn. Bạn có thể yêu cầu công ty để một người xem xét lại kết quả của bạn, và yêu cầu sự điều chỉnh hợp lý như thêm thời gian trước khi bạn bắt đầu."
+        "Sẵn sàng nhận cơ hội việc làm: chỉ khi bạn bật tính năng này (sự đồng ý), các công ty tuyển dụng trên testee mới thấy tên, hồ sơ LinkedIn và kết quả luyện tập có tính giờ mới nhất của bạn ở từng chủ đề bạn đã luyện tập mà một buổi phỏng vấn của họ bao quát ở đúng cấp độ của nó, để họ có thể mời bạn tham gia buổi phỏng vấn đó. Chúng tôi không xếp hạng hay giới thiệu bạn và không đưa ra quyết định nào về bạn: công ty quyết định mời ai. Bạn có thể rút lại sự đồng ý bất cứ lúc nào trong Cài đặt, và khi đó bạn biến mất khỏi danh sách của mọi công ty ngay lập tức. Nhật ký các lựa chọn của bạn được lưu làm bằng chứng cho sự đồng ý của bạn (nghĩa vụ pháp lý của chúng tôi phải chứng minh điều đó).",
+        "Kết quả phỏng vấn, thời gian trả lời và các cảnh báo hành vi bất thường giúp công ty tuyển dụng đánh giá câu trả lời của bạn một cách công bằng (lợi ích hợp pháp của công ty). Các cảnh báo này bao gồm những quy luật trong câu trả lời của bạn: thời gian gần như như nhau ở mọi câu hỏi, hoặc trả lời đúng câu khó trong khi sai câu dễ; dựa vào đó, công ty được gợi ý những câu hỏi để hỏi bạn trong buổi phỏng vấn trực tiếp. Những người tại công ty đưa ra quyết định tuyển dụng; testee không tự mình đưa ra quyết định nào về bạn. Bạn có thể yêu cầu công ty để một người xem xét lại kết quả của bạn, và yêu cầu sự điều chỉnh hợp lý như thêm thời gian trước khi bạn bắt đầu."
       ]
     },
     {
       "heading": "Chúng tôi chia sẻ dữ liệu với ai",
       "paragraphs": [
-        "Chúng tôi chia sẻ dữ liệu với các nhà cung cấp dịch vụ vận hành prepza cho chúng tôi, theo các thỏa thuận bảo vệ dữ liệu đó, và với Paddle, bên bán các gói nạp credit:"
+        "Chúng tôi chia sẻ dữ liệu với các nhà cung cấp dịch vụ vận hành testee cho chúng tôi, theo các thỏa thuận bảo vệ dữ liệu đó, và với Paddle, bên bán các gói nạp credit:"
       ],
       "items": [
         "Google (Firebase Authentication; Google LLC, Hoa Kỳ, theo EU-US Data Privacy Framework): đăng nhập. LinkedIn và GitHub chỉ xác nhận bạn là ai khi bạn đăng nhập bằng họ; chúng tôi không nhận bất cứ thứ gì khác từ họ.",
@@ -75,27 +75,27 @@
         "Cloudflare (Turnstile; Cloudflare, Inc., Hoa Kỳ, theo EU-US Data Privacy Framework): bước kiểm tra \"Tôi không phải là người máy\".",
         "Google Cloud, nhà cung cấp dịch vụ lưu trữ máy chủ của chúng tôi, nơi lưu trữ dữ liệu (tại EU, Bỉ).",
         "Upstash: bộ đếm ngắn hạn cho giới hạn sử dụng và cập nhật trực tiếp (tại EU, Bỉ).",
-        "Các công ty, chỉ khi bạn bật Sẵn sàng nhận cơ hội việc làm: các công ty tuyển dụng trên prepza thấy những gì được mô tả ở trên. Mỗi công ty chịu trách nhiệm về cách họ sử dụng những gì họ thấy. Nếu một công ty mời bạn, lời mời được gửi đến email tài khoản của bạn, và công ty thấy email đó như thấy email của bất kỳ ứng viên nào.",
+        "Các công ty, chỉ khi bạn bật Sẵn sàng nhận cơ hội việc làm: các công ty tuyển dụng trên testee thấy những gì được mô tả ở trên. Mỗi công ty chịu trách nhiệm về cách họ sử dụng những gì họ thấy. Nếu một công ty mời bạn, lời mời được gửi đến email tài khoản của bạn, và công ty thấy email đó như thấy email của bất kỳ ứng viên nào.",
         "Paddle (Paddle.com Market Ltd, Vương quốc Anh) không phải là một trong số đó: Paddle tự bán các gói nạp credit với tư cách merchant of record, và là bên kiểm soát đối với thông tin thanh toán, thuế và hóa đơn mà Paddle thu thập, theo chính sách quyền riêng tư của chính Paddle. Chúng tôi chuyển cho Paddle email của thành viên mua hàng, và Paddle cho chúng tôi biết những gì đã được mua và thanh toán."
       ]
     },
     {
       "heading": "Công cụ mà công ty kết nối",
       "paragraphs": [
-        "Công ty có thể kết nối các công cụ của riêng mình với prepza, và khi đó chúng tôi gửi dữ liệu cho các công cụ này theo chỉ dẫn của công ty, như một phần của dịch vụ công ty yêu cầu: hệ thống theo dõi ứng viên của công ty (Workable, Greenhouse, Teamtailor, Recruitee hoặc Breezy HR) nhận điểm của bạn, việc điểm đó có đạt điểm đạt hay không, các cảnh báo hành vi bất thường và liên kết đến kết quả của bạn; kênh Slack mà công ty chọn nhận các thông báo của công ty, chẳng hạn như việc bạn đã hoàn thành và điểm của bạn; và các hệ thống của chính công ty, thông qua API hoặc webhook của prepza, nhận email, tên, tiến độ và điểm của bạn, việc bạn có đạt điểm đạt hay không, các cảnh báo hành vi bất thường và liên kết mời của bạn. Công ty chọn và kiểm soát các công cụ này, vốn có thể nằm ngoài EU, và chịu trách nhiệm về cách chúng sử dụng dữ liệu của bạn."
+        "Công ty có thể kết nối các công cụ của riêng mình với testee, và khi đó chúng tôi gửi dữ liệu cho các công cụ này theo chỉ dẫn của công ty, như một phần của dịch vụ công ty yêu cầu: hệ thống theo dõi ứng viên của công ty (Workable, Greenhouse, Teamtailor, Recruitee hoặc Breezy HR) nhận điểm của bạn, việc điểm đó có đạt điểm đạt hay không, các cảnh báo hành vi bất thường và liên kết đến kết quả của bạn; kênh Slack mà công ty chọn nhận các thông báo của công ty, chẳng hạn như việc bạn đã hoàn thành và điểm của bạn; và các hệ thống của chính công ty, thông qua API hoặc webhook của testee, nhận email, tên, tiến độ và điểm của bạn, việc bạn có đạt điểm đạt hay không, các cảnh báo hành vi bất thường và liên kết mời của bạn. Công ty chọn và kiểm soát các công cụ này, vốn có thể nằm ngoài EU, và chịu trách nhiệm về cách chúng sử dụng dữ liệu của bạn."
       ]
     },
     {
       "heading": "Ứng dụng AI bạn kết nối",
       "paragraphs": [
-        "Bạn có thể kết nối ứng dụng AI của riêng mình, chẳng hạn như Claude (của Anthropic) hoặc ChatGPT (của OpenAI), với tài khoản prepza của bạn. Chỉ khi bạn kết nối, và chỉ cho những gì bạn yêu cầu, ứng dụng đó mới đọc và thay đổi dữ liệu của các công ty của bạn bằng quyền truy cập của bạn, bao gồm cả kết quả của ứng viên, và dữ liệu đó đến nhà cung cấp ứng dụng theo điều khoản và chính sách quyền riêng tư của chính ứng dụng đó, không phải của chúng tôi. Bạn chọn các ứng dụng này và có thể ngắt kết nối bất kỳ ứng dụng nào bất cứ lúc nào trong thẻ Tích hợp của công ty; xóa tài khoản sẽ ngắt kết nối tất cả. Chủ sở hữu và quản trị viên của công ty có thể ngăn các ứng dụng AI sử dụng dữ liệu của công ty đó."
+        "Bạn có thể kết nối ứng dụng AI của riêng mình, chẳng hạn như Claude (của Anthropic) hoặc ChatGPT (của OpenAI), với tài khoản testee của bạn. Chỉ khi bạn kết nối, và chỉ cho những gì bạn yêu cầu, ứng dụng đó mới đọc và thay đổi dữ liệu của các công ty của bạn bằng quyền truy cập của bạn, bao gồm cả kết quả của ứng viên, và dữ liệu đó đến nhà cung cấp ứng dụng theo điều khoản và chính sách quyền riêng tư của chính ứng dụng đó, không phải của chúng tôi. Bạn chọn các ứng dụng này và có thể ngắt kết nối bất kỳ ứng dụng nào bất cứ lúc nào trong thẻ Tích hợp của công ty; xóa tài khoản sẽ ngắt kết nối tất cả. Chủ sở hữu và quản trị viên của công ty có thể ngăn các ứng dụng AI sử dụng dữ liệu của công ty đó."
       ]
     },
     {
       "heading": "Email và hủy đăng ký",
       "paragraphs": [
         "Email dịch vụ, chẳng hạn như lời mời, báo cáo, sự cố thanh toán, thay đổi đối với điều khoản của chúng tôi và thông báo quan trọng về dịch vụ, luôn được gửi. Bạn chọn các email còn lại trong Cài đặt, tại mục Email: tóm tắt hoạt động, lời nhắc, cập nhật sản phẩm và tin tức, và ưu đãi và khuyến mãi. Mỗi email không bắt buộc đều có liên kết hủy đăng ký hoạt động mà không cần đăng nhập, và việc đánh dấu một email không bắt buộc là thư rác cũng sẽ tắt email đó. Nếu email gửi cho bạn bị trả lại vĩnh viễn, hoặc bạn đánh dấu một email của chúng tôi là thư rác, chúng tôi ngừng gửi email về sản phẩm và thông báo đến địa chỉ đó cho đến khi bạn yêu cầu chúng tôi gửi lại.",
-        "Lời mời và lời nhắc mà công ty gửi cho ứng viên qua prepza có liên kết để ngừng nhận email của công ty đó, hoặc lời nhắc của buổi phỏng vấn đó. Sau đó prepza không gửi email đến địa chỉ đó thay mặt công ty nữa, và công ty thấy lời mời là chưa được gửi tới."
+        "Lời mời và lời nhắc mà công ty gửi cho ứng viên qua testee có liên kết để ngừng nhận email của công ty đó, hoặc lời nhắc của buổi phỏng vấn đó. Sau đó testee không gửi email đến địa chỉ đó thay mặt công ty nữa, và công ty thấy lời mời là chưa được gửi tới."
       ]
     },
     {
@@ -118,7 +118,7 @@
         "Bản ghi mức sử dụng AI và các giới hạn đã chạm tới: 13 tháng, không kèm ID tài khoản của bạn sau khi bạn xóa tài khoản.",
         "Các lượt luyện tập: cho đến khi bạn xóa tài khoản.",
         "Sẵn sàng nhận cơ hội việc làm: cho đến khi bạn tắt nó hoặc xóa tài khoản, và tối đa một năm sau lần cuối bạn bật nó hoặc lưu hồ sơ LinkedIn; nhật ký các lựa chọn của bạn, cho đến khi bạn xóa tài khoản.",
-        "Báo cáo được gửi qua email từ prepza: tệp PDF chỉ được giữ để gửi email, và bị xóa chậm nhất 7 ngày sau đó.",
+        "Báo cáo được gửi qua email từ testee: tệp PDF chỉ được giữ để gửi email, và bị xóa chậm nhất 7 ngày sau đó.",
         "Các mô tả công việc đã dán trong bản ghi tạo phỏng vấn của chúng tôi: 90 ngày sau khi việc tạo hoàn tất. Buổi phỏng vấn được tạo từ chúng vẫn ở trong tài khoản của công ty cho đến khi bị xóa.",
         "Cài đặt email của bạn và nhật ký thay đổi: cho đến khi bạn xóa tài khoản.",
         "Bản ghi các bản tóm tắt và lời nhắc đã gửi cho bạn: 30 ngày, hoặc cho đến khi bạn xóa tài khoản nếu việc đó xảy ra sớm hơn.",
@@ -150,17 +150,17 @@
     {
       "heading": "Cookie và bộ nhớ trình duyệt",
       "paragraphs": [
-        "prepza chỉ sử dụng các cookie và bộ nhớ trình duyệt cần thiết để hoạt động hoặc để ghi nhớ các lựa chọn của chính bạn. Không có cookie quảng cáo hay cookie phân tích.",
-        "Để duy trì trạng thái đăng nhập: một cookie (prepza_token, được gia hạn mỗi giờ khi bạn dùng prepza, cho đến khi bạn đăng xuất) và bộ nhớ trình duyệt của nhà cung cấp đăng nhập của chúng tôi, Google Firebase. Trong lúc bạn kết nối một ứng dụng AI, một cookie (prepza_connect) tồn tại trong vài phút cần thiết.",
-        "Để ghi nhớ các lựa chọn của bạn: ngôn ngữ của bạn (một cookie, prepza_locale, trong một năm, được đặt khi bạn chọn một ngôn ngữ hoặc mở prepza tại địa chỉ của một ngôn ngữ), giao diện sáng hoặc tối, độ rộng bảng điều khiển của trợ lý, cách bạn mời ứng viên lần gần nhất, việc bạn đã từng đăng nhập trên trình duyệt này, khoảng thời gian bạn chọn gần nhất cho thống kê, các thông báo về tài liệu pháp lý đã thay đổi mà bạn đã đóng, và cuộc trò chuyện của bạn với trợ lý (cho đến khi bạn đăng nhập, chỉ trong thẻ này). Chúng ở lại trong trình duyệt của bạn cho đến khi bạn xóa chúng.",
-        "Liên kết giới thiệu: chỉ khi bạn chọn giữ lại, một cookie (prepza_ref) ghi nhớ liên kết mà bạn đã dùng để đến trong 30 ngày, để credit đến được cả hai công ty.",
+        "testee chỉ sử dụng các cookie và bộ nhớ trình duyệt cần thiết để hoạt động hoặc để ghi nhớ các lựa chọn của chính bạn. Không có cookie quảng cáo hay cookie phân tích.",
+        "Để duy trì trạng thái đăng nhập: một cookie (testee_token, được gia hạn mỗi giờ khi bạn dùng testee, cho đến khi bạn đăng xuất) và bộ nhớ trình duyệt của nhà cung cấp đăng nhập của chúng tôi, Google Firebase. Trong lúc bạn kết nối một ứng dụng AI, một cookie (testee_connect) tồn tại trong vài phút cần thiết.",
+        "Để ghi nhớ các lựa chọn của bạn: ngôn ngữ của bạn (một cookie, testee_locale, trong một năm, được đặt khi bạn chọn một ngôn ngữ hoặc mở testee tại địa chỉ của một ngôn ngữ), giao diện sáng hoặc tối, độ rộng bảng điều khiển của trợ lý, cách bạn mời ứng viên lần gần nhất, việc bạn đã từng đăng nhập trên trình duyệt này, khoảng thời gian bạn chọn gần nhất cho thống kê, các thông báo về tài liệu pháp lý đã thay đổi mà bạn đã đóng, và cuộc trò chuyện của bạn với trợ lý (cho đến khi bạn đăng nhập, chỉ trong thẻ này). Chúng ở lại trong trình duyệt của bạn cho đến khi bạn xóa chúng.",
+        "Liên kết giới thiệu: chỉ khi bạn chọn giữ lại, một cookie (testee_ref) ghi nhớ liên kết mà bạn đã dùng để đến trong 30 ngày, để credit đến được cả hai công ty.",
         "Bước kiểm tra \"Tôi không phải là người máy\" chạy trong một khung nhỏ của Cloudflare khi một biểu mẫu cần đến, và không đặt cookie theo dõi nào."
       ]
     },
     {
       "heading": "Trẻ em",
       "paragraphs": [
-        "prepza không dành cho bất kỳ ai dưới 16 tuổi."
+        "testee không dành cho bất kỳ ai dưới 16 tuổi."
       ]
     },
     {
@@ -172,7 +172,7 @@
     {
       "heading": "Liên hệ với chúng tôi",
       "paragraphs": [
-        "Câu hỏi về chính sách này hoặc về dữ liệu của bạn: hãy viết thư đến hello@prepza.ai, hoặc dùng trang liên hệ có liên kết ở cuối mỗi trang."
+        "Câu hỏi về chính sách này hoặc về dữ liệu của bạn: hãy viết thư đến hello@testee.ai, hoặc dùng trang liên hệ có liên kết ở cuối mỗi trang."
       ]
     }
   ]

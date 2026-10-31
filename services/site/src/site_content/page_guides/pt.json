@@ -1,7 +1,7 @@
 {
   "landing": {
-    "title": "Como a prepza funciona",
-    "text": "A prepza transforma a descrição da vaga em uma entrevista cronometrada, com questões aleatórias próprias para cada candidato. Esta página mostra todo o processo, da criação de uma entrevista ao compartilhamento dos resultados.",
+    "title": "Como a testee funciona",
+    "text": "A testee transforma a descrição da vaga em uma entrevista cronometrada, com questões aleatórias próprias para cada candidato. Esta página mostra todo o processo, da criação de uma entrevista ao compartilhamento dos resultados.",
     "actions": [
       "Cole a descrição da vaga na caixa no topo ou escolha um modelo pronto; ajuste os tópicos, e as questões são escritas e verificadas para você.",
       "Convide candidatos por e-mail, a partir de um arquivo, com um link compartilhável no seu anúncio de vaga, ou pelo seu ATS, pela sua própria plataforma ou por um assistente de IA.",
@@ -17,9 +17,9 @@
   },
   "companies": {
     "title": "Empresas",
-    "text": "Suas empresas. Tudo o que você faz na prepza acontece dentro de uma delas: entrevistas, candidatos, equipe, créditos e integrações.",
+    "text": "Suas empresas. Tudo o que você faz na testee acontece dentro de uma delas: entrevistas, candidatos, equipe, créditos e integrações.",
     "actions": [
-      "Crie uma empresa com “Nova empresa”. O nome dela é único na prepza.",
+      "Crie uma empresa com “Nova empresa”. O nome dela é único na testee.",
       "Abra uma empresa para trabalhar nas entrevistas e nos candidatos dela.",
       "Remova uma empresa da qual você é proprietário, com todas as entrevistas e convites."
     ],
@@ -56,7 +56,7 @@
   },
   "newInterview": {
     "title": "Nova entrevista",
-    "text": "Comece uma entrevista a partir da descrição da vaga. A prepza a lê, propõe os tópicos a avaliar e escreve as questões depois que você os aprova.",
+    "text": "Comece uma entrevista a partir da descrição da vaga. A testee a lê, propõe os tópicos a avaliar e escreve as questões depois que você os aprova.",
     "actions": [
       "Cole a descrição da vaga: o cargo, os requisitos e os diferenciais.",
       "Escolha o idioma em que a entrevista será gerada.",
@@ -69,7 +69,7 @@
   },
   "reviewTopics": {
     "title": "Revise seus tópicos",
-    "text": "A prepza propôs estes tópicos a partir da sua descrição. Cada tópico que você mantém recebe seu próprio conjunto de questões com respostas.",
+    "text": "A testee propôs estes tópicos a partir da sua descrição. Cada tópico que você mantém recebe seu próprio conjunto de questões com respostas.",
     "actions": [
       "Desmarque os tópicos de que você não precisa.",
       "Edite o nome e os subtópicos de um tópico com o lápis dele.",
@@ -83,7 +83,7 @@
   },
   "generating": {
     "title": "Gerando",
-    "text": "A prepza está criando sua entrevista: primeiro os tópicos, depois as questões de cada um. Leva alguns minutos.",
+    "text": "A testee está criando sua entrevista: primeiro os tópicos, depois as questões de cada um. Leva alguns minutos.",
     "actions": [
       "Pode sair desta página se quiser: a geração continua.",
       "Cancele a geração se não precisar mais dela; nada do que foi criado até agora é mantido."
@@ -138,7 +138,7 @@
   },
   "interviewDiscover": {
     "title": "Descobrir",
-    "text": "Pessoas que praticam na prepza e escolheram ficar abertas a propostas, cuja prática cobre os temas desta entrevista no nível dela. Para cada uma aparecem o nome, o perfil do LinkedIn e o resultado de prática mais recente em cada tema correspondente. Só as empresas que recarregaram créditos pelo menos uma vez veem esta aba.",
+    "text": "Pessoas que praticam na testee e escolheram ficar abertas a propostas, cuja prática cobre os temas desta entrevista no nível dela. Para cada uma aparecem o nome, o perfil do LinkedIn e o resultado de prática mais recente em cada tema correspondente. Só as empresas que recarregaram créditos pelo menos uma vez veem esta aba.",
     "actions": [
       "Abra o perfil do LinkedIn de alguém para saber mais sobre a pessoa.",
       "Convide alguém para esta entrevista (proprietários e administradores): o convite vai para o e-mail da conta da pessoa e custa créditos como qualquer convite."
@@ -157,7 +157,7 @@
       "Defina o tempo médio por questão, em segundos: cada questão recebe seu próprio tempo de acordo com o tamanho e o código que mostra, e o tempo total da entrevista continua o mesmo.",
       "Defina a nota de aprovação: os candidatos que a atingem são aprovados.",
       "Marque a entrevista como “Contratado” quando preencher a vaga.",
-      "Mantenha as perguntas da entrevista fora do banco de perguntas compartilhado do prepza; as já reutilizadas em outras entrevistas continuam lá."
+      "Mantenha as perguntas da entrevista fora do banco de perguntas compartilhado do testee; as já reutilizadas em outras entrevistas continuam lá."
     ],
     "tips": [
       "Cada configuração é salva assim que você sai do campo.",
@@ -248,16 +248,16 @@
       "O registro não guarda pessoas: um candidato excluído aparece como tal, e um membro que saiu, como ex-membro.",
       "As ações de uma chave de API aparecem com o nome da chave, e as de uma chave excluída, como de uma chave excluída.",
       "As visualizações dos resultados de um candidato por um membro aparecem uma vez por dia, com a última visualização.",
-      "A prepza não tem dados sobre sexo, raça ou etnia: adicione as respostas que seus candidatos declararam eles mesmos pelo e-mail e depois remova a coluna de e-mail antes de compartilhar o arquivo com seu auditor independente, para uma auditoria de viés da cidade de Nova York (Local Law 144) ou a regra dos quatro quintos da EEOC. Até 20 exportações por empresa ao dia, e cada uma aparece no registro."
+      "A testee não tem dados sobre sexo, raça ou etnia: adicione as respostas que seus candidatos declararam eles mesmos pelo e-mail e depois remova a coluna de e-mail antes de compartilhar o arquivo com seu auditor independente, para uma auditoria de viés da cidade de Nova York (Local Law 144) ou a regra dos quatro quintos da EEOC. Até 20 exportações por empresa ao dia, e cada uma aparece no registro."
     ]
   },
   "integrations": {
     "title": "Integrações",
-    "text": "Conecte a prepza às ferramentas que sua equipe já usa. Cada integração abre sua própria página com as etapas de configuração.",
+    "text": "Conecte a testee às ferramentas que sua equipe já usa. Cada integração abre sua própria página com as etapas de configuração.",
     "actions": [
       "Slack: receba as notificações da sua empresa em um canal.",
       "API: chaves e webhooks para conectar sua própria plataforma.",
-      "Apps de IA: use a prepza no Claude, no ChatGPT e em outros apps de IA.",
+      "Apps de IA: use a testee no Claude, no ChatGPT e em outros apps de IA.",
       "ATS (Workable, Greenhouse, Teamtailor, Recruitee, Breezy HR): os candidatos que você move para uma etapa recebem a entrevista, e os resultados voltam para o ATS."
     ],
     "tips": [
@@ -274,30 +274,30 @@
       "Desvincule uma vaga ou desconecte o ATS."
     ],
     "tips": [
-      "Adicione uma etapa só para a prepza, como “Teste de habilidades prepza”, para que ela nunca se misture com suas outras ferramentas.",
-      "A prepza nunca move nem reprova ninguém no seu ATS."
+      "Adicione uma etapa só para a testee, como “Teste de habilidades testee”, para que ela nunca se misture com suas outras ferramentas.",
+      "A testee nunca move nem reprova ninguém no seu ATS."
     ]
   },
   "slack": {
     "title": "Slack",
     "text": "As notificações da sua empresa em um canal do Slack, na hora em que acontecem.",
     "actions": [
-      "Adicione a prepza ao Slack e escolha o canal, por exemplo #hiring.",
+      "Adicione a testee ao Slack e escolha o canal, por exemplo #hiring.",
       "Escolha quais notificações vão para lá: um candidato que termina, um convite que não foi entregue, uma entrevista pronta e mais.",
-      "Desconecte para interrompê-las e remover o app da prepza do seu Slack."
+      "Desconecte para interrompê-las e remover o app da testee do seu Slack."
     ],
     "tips": [
-      "A prepza só pode publicar nesse canal; ela não consegue ler seu Slack.",
+      "A testee só pode publicar nesse canal; ela não consegue ler seu Slack.",
       "Todos continuam vendo cada notificação no sino."
     ]
   },
   "api": {
     "title": "API",
-    "text": "Conecte sua própria plataforma, como seu site de carreiras, à prepza.",
+    "text": "Conecte sua própria plataforma, como seu site de carreiras, à testee.",
     "actions": [
       "Crie uma chave de API e marque só o que ela precisa: ver ou criar entrevistas; ver, convidar, alterar ou excluir candidatos; ver seus créditos; ou usar com agentes de IA (MCP). Ela age em seu nome.",
       "Abra uma chave para alterar o que ela pode fazer, com cada alteração salva na hora, e os endereços IP de onde ela pode ser usada.",
-      "Adicione um webhook: a prepza avisa o seu endereço HTTPS, com assinatura, quando um candidato começa ou termina (com os resultados), quando o convite não chega até ele ou expira, quando ele é removido e quando uma entrevista fica pronta.",
+      "Adicione um webhook: a testee avisa o seu endereço HTTPS, com assinatura, quando um candidato começa ou termina (com os resultados), quando o convite não chega até ele ou expira, quando ele é removido e quando uma entrevista fica pronta.",
       "Envie um evento de teste a um webhook e veja no registro de entregas o resultado de cada envio.",
       "Na aba SDK, liste os sites que podem exibir suas entrevistas com o SDK, e permita localhost enquanto você testa.",
       "Exclua as chaves e os webhooks que você não usa mais.",
@@ -311,10 +311,10 @@
   },
   "aiApps": {
     "title": "Apps de IA",
-    "text": "Use a prepza no seu chat de IA: pergunte ao Claude ou ao ChatGPT sobre suas entrevistas e candidatos, ou peça que façam alterações por você.",
+    "text": "Use a testee no seu chat de IA: pergunte ao Claude ou ao ChatGPT sobre suas entrevistas e candidatos, ou peça que façam alterações por você.",
     "actions": [
       "Copie o endereço do servidor e adicione-o ao Claude, ao Claude Code ou ao ChatGPT seguindo os passos; a documentação para desenvolvedores cobre outros apps e seus próprios agentes.",
-      "Permita o app na página da prepza que se abre.",
+      "Permita o app na página da testee que se abre.",
       "Desconecte um app que você não usa mais."
     ],
     "tips": [
@@ -324,7 +324,7 @@
   },
   "referrals": {
     "title": "Indicações",
-    "text": "Convide outras empresas para a prepza com o link desta empresa, e as duas ganham créditos.",
+    "text": "Convide outras empresas para a testee com o link desta empresa, e as duas ganham créditos.",
     "actions": [
       "Copie ou compartilhe seu link de indicação.",
       "Veja cada recompensa que esta empresa recebeu."
@@ -341,7 +341,7 @@
       "Defina ou troque o logotipo.",
       "Escolha as fontes dos títulos e do texto, e o arredondamento dos cartões e botões.",
       "Escolha as cores de cada grupo e veja-as na prévia.",
-      "Salve-as ou volte às cores da prepza."
+      "Salve-as ou volte às cores da testee."
     ],
     "tips": [
       "Cores que deixariam o texto difícil de ler não podem ser salvas, para que todo candidato consiga ler as perguntas.",
@@ -376,12 +376,12 @@
   },
   "settings": {
     "title": "Configurações",
-    "text": "Sua própria conta: o idioma em que a prepza fala com você, os e-mails que você recebe e seus dados.",
+    "text": "Sua própria conta: o idioma em que a testee fala com você, os e-mails que você recebe e seus dados.",
     "actions": [
       "Escolha o idioma do site, do chat de ajuda e dos seus e-mails.",
       "Escolha quais e-mails opcionais você recebe; e-mails de serviço, como convites, relatórios e problemas de pagamento, são sempre enviados.",
-      "Ative ou desative Aberto a propostas: enquanto estiver ativado, empresas que contratam pela prepza para os temas que você praticou veem seu nome, seu perfil do LinkedIn e seus resultados de prática, e podem convidar você.",
-      "Baixe tudo o que a prepza guarda sobre você ou exclua sua conta."
+      "Ative ou desative Aberto a propostas: enquanto estiver ativado, empresas que contratam pela testee para os temas que você praticou veem seu nome, seu perfil do LinkedIn e seus resultados de prática, e podem convidar você.",
+      "Baixe tudo o que a testee guarda sobre você ou exclua sua conta."
     ],
     "tips": [
       "Excluir sua conta exclui as empresas em que só você está. Uma empresa em que outras pessoas entraram precisa antes de outro proprietário."
@@ -389,7 +389,7 @@
   },
   "join": {
     "title": "Convite da empresa",
-    "text": "Você foi convidado para entrar na equipe de uma empresa na prepza, para trabalhar nas entrevistas e nos candidatos dela.",
+    "text": "Você foi convidado para entrar na equipe de uma empresa na testee, para trabalhar nas entrevistas e nos candidatos dela.",
     "actions": [
       "Entre com o e-mail para o qual o convite foi enviado.",
       "Entre na empresa: ela passa a aparecer nas suas empresas.",
@@ -402,21 +402,21 @@
   },
   "connect": {
     "title": "Conectar um app de IA",
-    "text": "Um app de IA pede para usar sua conta da prepza. Aqui você escolhe se ele pode.",
+    "text": "Um app de IA pede para usar sua conta da testee. Aqui você escolhe se ele pode.",
     "actions": [
       "Entre na sua conta, se ainda não entrou, para ver qual app está pedindo.",
       "Leia o que o app pode e não pode fazer com sua conta.",
       "Permita ou recuse o app; em ambos os casos, você volta para o app."
     ],
     "tips": [
-      "Quando a prepza não conhece o app, só permita se foi você quem começou a conectá-lo.",
+      "Quando a testee não conhece o app, só permita se foi você quem começou a conectá-lo.",
       "Desconecte um app quando quiser nas Integrações de uma empresa, em Apps de IA.",
       "Um link que expirou ou já foi usado não funciona mais: comece a conexão de novo pelo seu app de IA."
     ]
   },
   "news": {
     "title": "Novidades",
-    "text": "O que há de novo na prepza: novos recursos, melhorias e atualizações, das mais recentes para as mais antigas.",
+    "text": "O que há de novo na testee: novos recursos, melhorias e atualizações, das mais recentes para as mais antigas.",
     "actions": [
       "Role para baixo para ler novidades mais antigas.",
       "Acompanhe as novidades no seu leitor de feeds com o link RSS no topo."
@@ -480,7 +480,7 @@
   },
   "features": {
     "title": "Recursos",
-    "text": "Tudo o que a prepza faz por uma empresa, da descrição da vaga à contratação: criar entrevistas, convidar candidatos, o que os candidatos veem, relatórios, integrações, conformidade e preços.",
+    "text": "Tudo o que a testee faz por uma empresa, da descrição da vaga à contratação: criar entrevistas, convidar candidatos, o que os candidatos veem, relatórios, integrações, conformidade e preços.",
     "actions": [
       "Vá para um grupo com as abas no topo: criar, convidar, entrevista, decidir, conectar, confiança e preços.",
       "Veja cada recurso ao lado de uma imagem do app real.",
@@ -493,7 +493,7 @@
   },
   "pricing": {
     "title": "Preços",
-    "text": "Quanto custa a prepza: gerar entrevistas é grátis, e você paga por candidato que responde, sem assinatura.",
+    "text": "Quanto custa a testee: gerar entrevistas é grátis, e você paga por candidato que responde, sem assinatura.",
     "actions": [
       "Veja o preço atual por candidato e os preços menores das recargas maiores.",
       "Veja quantos primeiros candidatos são grátis.",
@@ -533,10 +533,10 @@
   },
   "aiInterviews": {
     "title": "Entrevistas com IA",
-    "text": "Um guia sobre os tipos de ferramentas de entrevista com IA, como funciona a abordagem da prepza e o básico de conformidade.",
+    "text": "Um guia sobre os tipos de ferramentas de entrevista com IA, como funciona a abordagem da testee e o básico de conformidade.",
     "actions": [
       "Compare ferramentas de entrevista por chatbot, por vídeo e com testes gerados.",
-      "Leia, passo a passo, como a prepza cria e corrige uma entrevista, e o que ela nunca faz.",
+      "Leia, passo a passo, como a testee cria e corrige uma entrevista, e o que ela nunca faz.",
       "Leia o básico do AI Act da UE, do RGPD e das regras dos EUA sobre IA na contratação.",
       "Crie um teste para seus candidatos pelo cartão no final."
     ],
@@ -550,7 +550,7 @@
     "actions": [
       "Leia quais tipos de testes existem e quando cada um ajuda.",
       "Leia o básico sobre imparcialidade e a lei.",
-      "Veja o que procurar em uma ferramenta de testes, e como a prepza faz isso.",
+      "Veja o que procurar em uma ferramenta de testes, e como a testee faz isso.",
       "Crie um teste para seus candidatos pelo cartão no final."
     ],
     "tips": [
@@ -558,8 +558,8 @@
     ]
   },
   "compare": {
-    "title": "prepza em comparação",
-    "text": "Comparações com fontes entre a prepza e outras ferramentas de testes pré-admissão: como os testes são criados, quanto custam e quando cada uma é mais adequada.",
+    "title": "testee em comparação",
+    "text": "Comparações com fontes entre a testee e outras ferramentas de testes pré-admissão: como os testes são criados, quanto custam e quando cada uma é mais adequada.",
     "actions": [
       "Abra uma comparação para lê-la."
     ],
@@ -569,7 +569,7 @@
   },
   "comparison": {
     "title": "Comparação",
-    "text": "Como a prepza se compara a outras ferramentas em uma questão: como os testes são criados, quanto custam e quando cada uma é mais adequada.",
+    "text": "Como a testee se compara a outras ferramentas em uma questão: como os testes são criados, quanto custam e quando cada uma é mais adequada.",
     "actions": [
       "Leia a comparação e siga os links para as fontes.",
       "Crie um teste para seus candidatos pelo cartão no final.",
@@ -603,7 +603,7 @@
   },
   "faq": {
     "title": "Perguntas frequentes",
-    "text": "Respostas a perguntas comuns sobre a prepza: entrevistas, candidatos, preços e créditos, resultados, integrações, idiomas e seus dados.",
+    "text": "Respostas a perguntas comuns sobre a testee: entrevistas, candidatos, preços e créditos, resultados, integrações, idiomas e seus dados.",
     "actions": [
       "Clique em uma pergunta para abrir a resposta."
     ],
@@ -614,9 +614,9 @@
   },
   "about": {
     "title": "Sobre nós",
-    "text": "Quem faz a prepza e por quê: entrevistas criadas a partir de uma descrição de vaga que qualquer equipe pode pagar, e prática gratuita para todos.",
+    "text": "Quem faz a testee e por quê: entrevistas criadas a partir de uma descrição de vaga que qualquer equipe pode pagar, e prática gratuita para todos.",
     "actions": [
-      "Leia por que a prepza existe e como ela aborda a contratação.",
+      "Leia por que a testee existe e como ela aborda a contratação.",
       "Leia uma mensagem do fundador e abra o perfil dele no LinkedIn."
     ],
     "tips": [
@@ -625,7 +625,7 @@
   },
   "contact": {
     "title": "Fale conosco",
-    "text": "Escreva para a equipe da prepza com uma pergunta, uma ideia, uma proposta de parceria ou algo que não está funcionando.",
+    "text": "Escreva para a equipe da testee com uma pergunta, uma ideia, uma proposta de parceria ou algo que não está funcionando.",
     "actions": [
       "Preencha seu nome, seu e-mail e sua mensagem, e envie.",
       "Cole o ID da empresa, entrevista, candidato ou conta em questão, para encontrarmos na hora."
@@ -637,10 +637,10 @@
   },
   "apiDocs": {
     "title": "Documentação para desenvolvedores",
-    "text": "Tudo o que você precisa para conectar sua própria plataforma ou seu agente de IA à prepza, lido da própria API para estar sempre de acordo com ela.",
+    "text": "Tudo o que você precisa para conectar sua própria plataforma ou seu agente de IA à testee, lido da própria API para estar sempre de acordo com ela.",
     "actions": [
       "API: como se autenticar, a URL base e cada endpoint com parâmetros, corpo, resposta e erros.",
-      "Webhooks: os eventos que a prepza envia para o seu endereço e o que cada um traz.",
+      "Webhooks: os eventos que a testee envia para o seu endereço e o que cada um traz.",
       "SDK: como incorporar a entrevista no seu próprio site.",
       "MCP: como conectar um app de IA ou seu próprio agente, e as ferramentas que ele recebe.",
       "Objetos: cada objeto que a API retorna, campo por campo."
@@ -652,9 +652,9 @@
   },
   "accessibility": {
     "title": "Acessibilidade",
-    "text": "Como a prepza funciona para pessoas com deficiência, onde ainda deixa a desejar e como nos avisar.",
+    "text": "Como a testee funciona para pessoas com deficiência, onde ainda deixa a desejar e como nos avisar.",
     "actions": [
-      "Veja o que a prepza faz pela acessibilidade, como temas, layouts para celular e uso pelo teclado.",
+      "Veja o que a testee faz pela acessibilidade, como temas, layouts para celular e uso pelo teclado.",
       "Veja onde ainda deixa a desejar, como nas questões cronometradas.",
       "Escreva para nós por e-mail se algo for difícil de usar ou se você precisar em outro formato."
     ],
@@ -664,11 +664,11 @@
   },
   "documents": {
     "title": "Documentos legais",
-    "text": "Documentos para empresas que avaliam candidatos com a prepza: instruções, modelos e o acordo de tratamento de dados.",
+    "text": "Documentos para empresas que avaliam candidatos com a testee: instruções, modelos e o acordo de tratamento de dados.",
     "actions": [
       "Baixe as instruções para empresas: o que uma nota significa, revisão humana, notas de aprovação e tempo extra.",
       "Baixe modelos editáveis de aviso para enviar aos candidatos antes de convidá-los.",
-      "Baixe o modelo de RIPD, com a parte da prepza já preenchida, para completar.",
+      "Baixe o modelo de RIPD, com a parte da testee já preenchida, para completar.",
       "Baixe o acordo de tratamento de dados ou leia-o online."
     ],
     "tips": [
@@ -677,10 +677,10 @@
   },
   "trust": {
     "title": "Confiança e segurança",
-    "text": "Como a prepza mantém seus dados e os dos seus candidatos seguros: segurança, privacidade, cumprimento das leis de contratação, onde os dados ficam armazenados, quem os trata e por quanto tempo são guardados.",
+    "text": "Como a testee mantém seus dados e os dos seus candidatos seguros: segurança, privacidade, cumprimento das leis de contratação, onde os dados ficam armazenados, quem os trata e por quanto tempo são guardados.",
     "actions": [
-      "Veja como a prepza protege os dados: login, criptografia, verificações de acesso, limites de requisições e backups.",
-      "Veja o que a prepza oferece para o RGPD, a Lei de IA da UE, o Reino Unido e os EUA, incluindo a lei de auditoria de viés da cidade de Nova York.",
+      "Veja como a testee protege os dados: login, criptografia, verificações de acesso, limites de requisições e backups.",
+      "Veja o que a testee oferece para o RGPD, a Lei de IA da UE, o Reino Unido e os EUA, incluindo a lei de auditoria de viés da cidade de Nova York.",
       "Veja onde os dados ficam armazenados, quais suboperadores os tratam e por quanto tempo cada tipo de dado é guardado.",
       "Abra os termos, a política de privacidade, o acordo de tratamento de dados e os documentos para empresas."
     ],
@@ -690,7 +690,7 @@
   },
   "terms": {
     "title": "Termos",
-    "text": "Os termos de uso da prepza: contas, empresas, créditos e pagamentos, testes para candidatos, uso aceitável e responsabilidade.",
+    "text": "Os termos de uso da testee: contas, empresas, créditos e pagamentos, testes para candidatos, uso aceitável e responsabilidade.",
     "actions": [
       "Leia a versão em vigor, com o dia a partir do qual se aplica.",
       "Abra uma versão anterior ou futura na lista de versões no final.",
@@ -702,7 +702,7 @@
   },
   "privacy": {
     "title": "Privacidade",
-    "text": "Como a prepza coleta, usa e protege os dados pessoais das empresas, de seus membros e dos candidatos, e os direitos que você tem.",
+    "text": "Como a testee coleta, usa e protege os dados pessoais das empresas, de seus membros e dos candidatos, e os direitos que você tem.",
     "actions": [
       "Leia a versão em vigor, com o dia a partir do qual se aplica.",
       "Abra uma versão anterior ou futura na lista de versões no final.",
@@ -715,7 +715,7 @@
   },
   "dpa": {
     "title": "Acordo de tratamento de dados",
-    "text": "O acordo entre a prepza e as empresas que testam candidatos: o que a prepza trata em seu nome e como.",
+    "text": "O acordo entre a testee e as empresas que testam candidatos: o que a testee trata em seu nome e como.",
     "actions": [
       "Leia a versão em vigor, com o dia a partir do qual se aplica.",
       "Abra uma versão anterior ou futura na lista de versões no final.",
@@ -728,7 +728,7 @@
   },
   "unsubscribe": {
     "title": "Cancelar inscrição",
-    "text": "Pare de receber um tipo de e-mail da prepza, indicado na página.",
+    "text": "Pare de receber um tipo de e-mail da testee, indicado na página.",
     "actions": [
       "Leia quais e-mails o link interrompe.",
       "Confirme para cancelar a inscrição; só abrir o link não muda nada.",

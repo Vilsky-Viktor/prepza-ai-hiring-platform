@@ -1053,7 +1053,7 @@
      "webhooks"
     ],
     "summary": "Breezy Event",
-    "description": "The web hook prepza created in Breezy HR (candidates' stage changes), signed with its\nsecret (the X-Hook-Signature header, checked on the body).",
+    "description": "The web hook testee created in Breezy HR (candidates' stage changes), signed with its\nsecret (the X-Hook-Signature header, checked on the body).",
     "operationId": "breezy_event_webhooks_breezy__connection_id__post",
     "parameters": [
      {

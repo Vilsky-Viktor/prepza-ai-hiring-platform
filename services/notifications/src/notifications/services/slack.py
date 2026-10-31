@@ -6,9 +6,9 @@ from urllib.parse import urlencode
 
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.auth.encryption import decrypt, encrypt
-from prepza_common.auth.tokens import purpose_key
-from prepza_common.events.notifications import NotificationKind, Recipient, notification
+from testee_common.auth.encryption import decrypt, encrypt
+from testee_common.auth.tokens import purpose_key
+from testee_common.events.notifications import NotificationKind, Recipient, notification
 
 from notifications.config import settings
 from notifications.constants.slack import (
@@ -166,7 +166,7 @@ async def remove_app(sealed_token: str) -> None:
 
 
 async def disconnect(company_id: str, user_id: str | None = None) -> None:
-    """Removes the channel, then prepza's app from the workspace (as far as Slack answers) unless
+    """Removes the channel, then testee's app from the workspace (as far as Slack answers) unless
     another company still uses it. A member's (`user_id`) goes to the company's action log."""
     async with Session.begin() as session:
         found = await storage.get(session, company_id)

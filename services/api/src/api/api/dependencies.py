@@ -2,8 +2,8 @@ from typing import Annotated
 
 from fastapi import Depends, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
-from prepza_common.auth.service_auth import service_caller
-from prepza_common.http.client_ip import client_ip
+from testee_common.auth.service_auth import service_caller
+from testee_common.http.client_ip import client_ip
 
 from api.config import settings
 from api.constants.permissions import Permission
@@ -12,7 +12,7 @@ from api.core.security import SERVICE_NAME
 from api.models.api import ApiKey
 from api.services.key_checks import checked_key
 
-bearer = HTTPBearer(auto_error=False, description="A company's API key: `Bearer pz_...`")
+bearer = HTTPBearer(auto_error=False, description="A company's API key: `Bearer te_...`")
 
 
 async def api_key(

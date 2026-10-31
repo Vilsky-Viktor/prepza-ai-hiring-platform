@@ -3,7 +3,7 @@
 from datetime import UTC, datetime
 
 from fastapi.encoders import jsonable_encoder
-from prepza_common.events.notifications import Recipient
+from testee_common.events.notifications import Recipient
 
 from notifications.core.db import Session
 from notifications.helpers.notes import without_author
@@ -95,7 +95,7 @@ async def export(user_id: str) -> dict:
 async def remove_company(company_id: str) -> None:
     """A deleted company's notifications go (and it gets none after), its members' items about
     its notes and the notes waiting for the digest, with its candidates' opt-outs, in one save;
-    then its Slack channel, and prepza's app unless another company uses it. Safe to repeat."""
+    then its Slack channel, and testee's app unless another company uses it. Safe to repeat."""
     async with Session.begin() as session:
         await notifications.remove_company(session, company_id, datetime.now(UTC))
         await note_notices.remove_company(session, company_id)

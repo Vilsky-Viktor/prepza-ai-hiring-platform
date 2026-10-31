@@ -4,8 +4,8 @@ down they keep the last state this instance read."""
 import asyncio
 
 from fake_redis import DownRedis, FakeRedis
-from prepza_common.limits import switches
-from prepza_common.redis import memory_cache
+from testee_common.limits import switches
+from testee_common.redis import memory_cache
 
 KEY = "switch:on"
 

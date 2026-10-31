@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request, status
-from prepza_common.auth.google import Invoker
+from testee_common.auth.google import Invoker
 
 from generation.services import bank_filter, patterns, schedules
 

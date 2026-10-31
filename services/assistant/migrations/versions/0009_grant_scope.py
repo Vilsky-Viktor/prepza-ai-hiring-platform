@@ -1,5 +1,5 @@
-"""mcp_grants.scope: what the user allowed an AI app, everything (`prepza`) or only reading
-(`prepza:read`). Connections made before keep everything, as they were allowed then (a constant
+"""mcp_grants.scope: what the user allowed an AI app, everything (`testee`) or only reading
+(`testee:read`). Connections made before keep everything, as they were allowed then (a constant
 default, added without rewriting the table).
 
 Revision ID: 0009
@@ -19,7 +19,7 @@ depends_on = None
 def upgrade() -> None:
     op.add_column(
         "mcp_grants",
-        sa.Column("scope", sa.String(32), nullable=False, server_default="prepza"),
+        sa.Column("scope", sa.String(32), nullable=False, server_default="testee"),
     )
 
 

@@ -11,7 +11,7 @@ class Role(StrEnum):
 # The roles that change the company, its tests and candidates, and spend its credits.
 EDITORS = (Role.OWNER, Role.ADMIN)
 
-# Team invites email whoever the owner names, from prepza's domain: a company holds at most this
+# Team invites email whoever the owner names, from testee's domain: a company holds at most this
 # many not yet accepted (MAX_PENDING_INVITES), and one that never topped up sends at most this
 # many a day (MEMBER_INVITES_PER_UNPAID_DAY).
 TOO_MANY_PENDING = "Too many invites waiting. Remove some, or wait for them to join."

@@ -4,8 +4,8 @@
 import uuid
 from datetime import UTC, datetime
 
-from prepza_common.ai.sets import PreparationIn
 from sqlalchemy import text
+from testee_common.ai.sets import PreparationIn
 
 from library.constants.quality import MIN_ANSWERS
 from library.core.db import Session

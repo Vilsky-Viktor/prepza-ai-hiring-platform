@@ -1,8 +1,8 @@
 import uuid
 
 import pytest
-from prepza_common.http.http import bearer
 from pydantic import ValidationError
+from testee_common.http.http import bearer
 
 from generation.api.v1 import internal
 from generation.constants.generation import MAX_INSTRUCTIONS_LENGTH, RUN_GENERATION

@@ -80,7 +80,7 @@ style="background-color:#f5f5f5;">
 dir="{direction}" style="max-width:560px;text-align:{align};">
 <tr><td dir="ltr" style="padding:0 8px 24px;font-family:Poppins,-apple-system,BlinkMacSystemFont,\
 'Segoe UI',Helvetica,Arial,sans-serif;font-size:26px;line-height:32px;font-weight:600;\
-letter-spacing:-0.5px;color:#0a0a0a;">prepza<span style="color:#0071e0;">.</span></td></tr>
+letter-spacing:-0.5px;color:#0a0a0a;">testee<span style="color:#0071e0;">.</span></td></tr>
 <tr><td style="padding:40px 32px;background-color:#ffffff;border:1px solid #e5e5e5;\
 border-radius:16px;text-align:{align};font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,\
 sans-serif;">

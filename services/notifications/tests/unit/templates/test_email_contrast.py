@@ -13,7 +13,7 @@ INVITE = {
     "company_id": "c-1",
     "invite_id": "i-1",
 }
-SITE = "https://prepza.ai"
+SITE = "https://testee.ai"
 # The page around the card, and the card.
 PAGE, CARD = "f5f5f5", "ffffff"
 # Where the card ends and the footer, on the page's background, starts.

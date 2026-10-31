@@ -2,7 +2,7 @@ from datetime import datetime
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.db.paging import PageParams
+from testee_common.db.paging import PageParams
 
 from companies.api.dependencies import ServiceCaller
 from companies.schemas.interviews import InterviewOut

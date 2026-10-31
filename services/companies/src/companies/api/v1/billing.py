@@ -1,8 +1,8 @@
 from uuid import UUID
 
 from fastapi import APIRouter
-from prepza_common.auth.auth import CurrentUser
-from prepza_common.db.paging import PageParams
+from testee_common.auth.auth import CurrentUser
+from testee_common.db.paging import PageParams
 
 from companies.schemas.billing import CreditCandidateOut, HistoryEntryOut
 from companies.services import credit_history

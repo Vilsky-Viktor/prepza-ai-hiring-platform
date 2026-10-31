@@ -7,12 +7,12 @@ from datetime import datetime
 import anyio
 import httpx
 from fastapi import HTTPException, status
-from prepza_common.config.constants import RATE_LIMITED, RETRY_AFTER
-from prepza_common.events.notifications import EVERYONE, NotificationKind, Recipient
-from prepza_common.http.sse import sse_event
-from prepza_common.limits.limits import limit, record_hit
-from prepza_common.limits.rate_limit import counted
-from prepza_common.redis import memory_cache
+from testee_common.config.constants import RATE_LIMITED, RETRY_AFTER
+from testee_common.events.notifications import EVERYONE, NotificationKind, Recipient
+from testee_common.http.sse import sse_event
+from testee_common.limits.limits import limit, record_hit
+from testee_common.limits.rate_limit import counted
+from testee_common.redis import memory_cache
 
 from notifications.constants.notifications import (
     ACCOUNT_CREATED_KEY,

@@ -1,6 +1,6 @@
 import asyncio
 
-from prepza_common.events import analytics
+from testee_common.events import analytics
 
 
 def test_events_carry_a_pseudonym_and_never_break_the_caller(monkeypatch):

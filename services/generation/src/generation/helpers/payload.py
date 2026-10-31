@@ -1,7 +1,7 @@
 from uuid import UUID
 
-from prepza_common.ai.sets import PreparationIn, QuestionIn, TopicIn
-from prepza_common.config.constants import DEFAULT_LANGUAGE
+from testee_common.ai.sets import PreparationIn, QuestionIn, TopicIn
+from testee_common.config.constants import DEFAULT_LANGUAGE
 
 from generation.helpers.questions import topic_size
 

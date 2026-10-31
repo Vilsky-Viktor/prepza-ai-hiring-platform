@@ -130,7 +130,7 @@ ACCOUNT_ACTIONS = {
         "api",
         "POST",
         "/manage/webhooks",
-        "Add a web hook: prepza posts candidates' results to this address.",
+        "Add a web hook: testee posts candidates' results to this address.",
         body=["url"],
         fields=["id", "url"],
         link=API_PAGE,

@@ -3,8 +3,8 @@ fixed bank questions, companies' deleted interviews and companies, interviews ke
 shared bank or let back in, and accounts' deleted accounts (rule 11: each is safe to repeat and
 in any order; an error answers 5xx and Pub/Sub delivers it again)."""
 
-from prepza_common.events.deletions import COMPANY_DELETED, INTERVIEW_DELETED, USER_DELETED
-from prepza_common.events.interviews import INTERVIEW_PRIVACY_CHANGED
+from testee_common.events.deletions import COMPANY_DELETED, INTERVIEW_DELETED, USER_DELETED
+from testee_common.events.interviews import INTERVIEW_PRIVACY_CHANGED
 
 from library.constants.events import ANSWER_RECORDED, GUESTS_DELETED, QUESTION_FIXED, SESSION_SCORED
 from library.handlers import (

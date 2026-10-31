@@ -125,7 +125,7 @@ def optional_email(
     sections: list[Section] = (),
     markdown: str = "",
 ) -> Email:
-    """An email a prepza user may turn off (the activity digest, reminders, updates, offers):
+    """An email a testee user may turn off (the activity digest, reminders, updates, offers):
     the `kind` email, with "Unsubscribe" (from `unsubscribe`) and "Change your email settings"
     under its footer, and the one-click unsubscribe headers mail clients show as a button. Sent
     from the optional emails' own address, and tagged with the user and `unsubscribe`, so a spam
@@ -159,7 +159,7 @@ def report_email(data: dict, site_url: str) -> Email:
 
 
 def contact_email(data: dict, inbox: str) -> Email:
-    """The contact page's message, to prepza's inbox; replying answers the visitor."""
+    """The contact page's message, to testee's inbox; replying answers the visitor."""
     safe = {key: escape(str(value)) for key, value in data.items()}
 
     return Email(

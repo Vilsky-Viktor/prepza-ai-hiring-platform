@@ -5,11 +5,11 @@ from datetime import UTC, datetime
 
 import pytest
 from PIL import Image
-from prepza_common.auth.auth import current_user
-from prepza_common.auth.user import User
-from prepza_common.events.audit_actions import AuditAction, TargetKind
+from testee_common.auth.auth import current_user
+from testee_common.auth.user import User
+from testee_common.events.audit_actions import AuditAction, TargetKind
 
-from companies.constants.brand import PREPZA_COLORS
+from companies.constants.brand import TESTEE_COLORS
 from companies.helpers.logos import logo_path, logo_type
 from companies.main import app
 from companies.models.companies import Company, Member
@@ -158,8 +158,8 @@ def test_the_candidate_and_members_see_the_brand_others_dont(client, company, mo
         "company": "Acme",
         "logo_url": logo_path(found),
         "return_url": None,
-        # No colors of its own: prepza's, by theme; and the candidate's own theme.
-        "brand_colors": PREPZA_COLORS,
+        # No colors of its own: testee's, by theme; and the candidate's own theme.
+        "brand_colors": TESTEE_COLORS,
         "theme": None,
         "brand_style": {
             "heading_font": "poppins",

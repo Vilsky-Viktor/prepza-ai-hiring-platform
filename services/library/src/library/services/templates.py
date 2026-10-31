@@ -1,8 +1,8 @@
 import uuid
 
 from fastapi import HTTPException, status
-from prepza_common.ai.multi_answer import multi_share
-from prepza_common.ai.sets import PreparationIn
+from testee_common.ai.multi_answer import multi_share
+from testee_common.ai.sets import PreparationIn
 
 from library.constants.sets import SetKind
 from library.core.db import Session

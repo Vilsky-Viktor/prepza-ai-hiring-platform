@@ -2,9 +2,9 @@ import uuid
 
 import pytest
 from fake_redis import FakeRedis
-from prepza_common.ai.ai_constants import LIMIT_HIT
-from prepza_common.http.http import bearer
-from prepza_common.limits.limit_list import LIMITS
+from testee_common.ai.ai_constants import LIMIT_HIT
+from testee_common.http.http import bearer
+from testee_common.limits.limit_list import LIMITS
 
 from library.repositories import feedback
 from tests.unit.api.v1.test_internal import token
