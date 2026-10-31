@@ -55,7 +55,7 @@ export function VideoButton() {
           window spans the screen, inside it. */}
       <DialogContent
         showCloseButton={false}
-        className="sm:max-w-4xl sm:overflow-visible"
+        className="sm:max-w-[min(80rem,calc((100svh-6rem)*16/9))] sm:overflow-visible"
         bodyClassName="gap-0 px-4 pt-16 pb-4 sm:p-6"
       >
         <DialogClose
@@ -63,7 +63,7 @@ export function VideoButton() {
             <Button
               variant="outline"
               size="icon"
-              className="absolute end-3 top-3 z-10 size-11 rounded-xl bg-popover sm:-end-5 sm:-top-5 dark:bg-popover"
+              className="absolute end-3 top-3 z-10 size-11 rounded-xl bg-popover transition-[background-color,scale] duration-200 hover:scale-110 hover:bg-surface sm:-end-5 sm:-top-5 dark:bg-popover dark:hover:bg-surface"
             />
           }
         >
