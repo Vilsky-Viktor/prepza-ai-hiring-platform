@@ -53,7 +53,14 @@ test("a person sees prices in their own saved currency", async ({ signInAs }) =>
   await expect(page.getByRole("option")).toContainText("JPY")
   await shots(page, "settings-search-yen")
   await page.locator("input:focus").fill("USD")
+  // The pill shows the choice at once, before billing has saved it: the home page, rendered by
+  // the server, reads the saved one, so it opens once the save has answered.
+  const saved = page.waitForResponse(
+    (response) =>
+      response.request().method() === "PUT" && response.url().endsWith("/billing/me/currency")
+  )
   await page.getByRole("option").first().click()
+  expect((await saved).ok()).toBe(true)
   await expect(mine).toHaveAttribute("data-currency", "USD")
 
   await visit(page, "/")
