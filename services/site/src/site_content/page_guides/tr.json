@@ -478,6 +478,19 @@
       "İş mi arıyorsunuz? Bu konularda işe alım yapan şirketlerin adınızı, LinkedIn profilinizi ve pratik sonuçlarınızı görmesi için \"İş tekliflerine açık\" seçeneğini açın."
     ]
   },
+  "features": {
+    "title": "Özellikler",
+    "text": "prepza'nın bir şirket için yaptığı her şey, iş tanımından işe alıma kadar: mülakat oluşturma, aday davet etme, adayların ne gördüğü, raporlar, entegrasyonlar, mevzuata uyum ve fiyatlar.",
+    "actions": [
+      "Üstteki sekmelerle bir gruba geçin: oluşturma, davet, mülakat, karar, entegrasyonlar, güven ve fiyatlar.",
+      "Her özelliği gerçek uygulamanın bir görüntüsünün yanında görün.",
+      "Mülakat oluşturmak için sayfanın sonundaki kutuya bir iş tanımı yapıştırın.",
+      "Fiyatlar sayfasını, geliştirici belgelerini veya güven sayfasını ilgili gruplarından açın."
+    ],
+    "tips": [
+      "Tüm özellikler dahil: yalnızca en az bir soruyu yanıtlayan her aday için ödeme yaparsınız."
+    ]
+  },
   "pricing": {
     "title": "Fiyatlar",
     "text": "prepza'nın maliyeti: mülakat oluşturmak ücretsizdir; abonelik olmadan, cevap veren aday başına ödersiniz.",

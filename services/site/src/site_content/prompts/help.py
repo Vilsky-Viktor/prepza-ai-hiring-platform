@@ -5,11 +5,12 @@ prepza helps companies find out which candidates really know the job: a short, t
 multiple-choice test made from a job description, for any role, used as a screen before \
 interviews or as an interview step itself.
 
-Menus: the header has "hiring" (companies) and "pricing" (on wide screens). The account menu has \
+Menus: the header has "hiring" (companies), "features" and "pricing" (on wide screens). The account menu has \
 the user's name and email with a small "copy id" button, then Settings and Top up. The site follows the device's light or dark setting until the visitor picks a theme: three buttons \
 (system, light, dark) in the header for visitors on wide screens, in the account menu once signed \
 in; "system" follows the device's light or dark setting. The footer has three columns. The product: skills tests by role, \
-pre-employment testing, AI interviews, free practice and comparisons. Resources: guides, the FAQ, \
+pre-employment testing, AI interviews, free practice and comparisons. Resources: the features \
+page (every feature, group by group, with pictures of the app), guides, the FAQ, \
 the legal docs (documents for companies), the developer docs (the API, web hooks, the SDK, MCP and \
 objects) and a news page with prepza's latest updates. The company: an about page (the company \
 and its solo founder, Viktor Vilskyi), a contact page with a form (name, email, message) that \

@@ -75,7 +75,9 @@
     "news": "Actualités",
     "accessibility": "Accessibilité",
     "trust": "Confiance",
-    "language": "Langue"
+    "language": "Langue",
+    "features": "Fonctionnalités",
+    "featuresLink": "fonctionnalités"
   },
   "signIn": {
     "title": "Se connecter",
@@ -2737,6 +2739,315 @@
       "mcp": "via une app d'IA",
       "api": "via l'API",
       "ats": "via un ATS"
+    }
+  },
+  "featuresPage": {
+    "title": "Fonctionnalités : entretiens IA pour recruter, de bout en bout",
+    "description": "Toutes les fonctionnalités de prepza : entretiens à partir d'une fiche de poste, modes clic et vocal, alertes d'intégrité, rapports, intégrations ATS et API, et conformité.",
+    "hero": {
+      "title": "De la fiche de poste\nau bon recrutement",
+      "text": "Un entretien chronométré rédigé pour votre poste, des candidats de partout et une vision claire de qui est le meilleur. Toutes les fonctionnalités sont incluses.",
+      "start": "Créer un entretien",
+      "pricing": "voir les tarifs",
+      "proof": {
+        "anyJob": "Tous les postes, tous les secteurs",
+        "languages": "{count, plural, one {# langue} other {# langues}}",
+        "ready": "Prêt en ~{minutes, plural, one {# minute} other {# minutes}}",
+        "noSubscription": "Sans abonnement"
+      }
+    },
+    "nav": {
+      "create": "créer",
+      "invite": "inviter",
+      "interview": "entretien",
+      "decide": "décider",
+      "connect": "connecter",
+      "trust": "confiance",
+      "pricing": "tarifs"
+    },
+    "groups": {
+      "create": {
+        "title": "Créez un entretien en quelques minutes",
+        "text": "Collez une fiche de poste et obtenez un entretien chronométré rédigé pour ce poste, dans n'importe quel secteur."
+      },
+      "invite": {
+        "title": "Invitez des candidats de partout",
+        "text": "Envoyez-leur un e-mail, mettez un lien dans une offre d'emploi, importez une liste, ou laissez votre ATS, votre propre plateforme ou un assistant IA les inviter."
+      },
+      "interview": {
+        "title": "Ce que voient les candidats",
+        "text": "Un entretien équitable et chronométré à vos couleurs, auquel on répond d'un clic ou à voix haute."
+      },
+      "decide": {
+        "title": "Voyez qui est le meilleur",
+        "text": "Notes, toutes les réponses et alertes d'intégrité pour chaque candidat. Une personne décide ; prepza montre ce qu'il faut regarder."
+      },
+      "connect": {
+        "title": "Fonctionne avec vos outils",
+        "text": "Votre ATS, Slack, votre propre code et vos apps IA, ou demandez simplement à Mira."
+      },
+      "trust": {
+        "title": "Confiance et conformité",
+        "text": "Une personne décide, chaque candidat a les mêmes règles, et les documents pour le GDPR, l'EU AI Act et les règles du Royaume-Uni et des États-Unis sont prêts."
+      },
+      "pricing": {
+        "title": "Tout est gratuit\nVous payez par candidat",
+        "text": "Toutes les fonctionnalités sont incluses. Un candidat ne coûte qu'à partir du moment où il a répondu à au moins une question."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "À partir d'une fiche de poste",
+        "text": "L'IA lit le poste et propose des thèmes. Vous les relisez gratuitement : gardez l'essentiel, renommez-les, modifiez les sous-thèmes ou décrivez les changements avec vos propres mots.",
+        "alt": "L'onglet des thèmes d'un entretien : le total de questions et de minutes par candidat, et les thèmes avec leur nombre de questions."
+      },
+      "invite": {
+        "title": "Invitez par e-mail, liste ou fichier",
+        "text": "Ajoutez un candidat, collez une liste ou importez un fichier CSV ou TXT. Chacun reçoit son propre lien, et un rappel s'il n'a pas commencé.",
+        "alt": "La fenêtre de nouveau candidat, avec des onglets pour un candidat, une liste et l'import d'un fichier."
+      },
+      "link": {
+        "title": "Un lien pour votre offre d'emploi",
+        "text": "Activez le lien de partage de l'entretien et mettez-le dans votre offre d'emploi. Chacun peut le passer une fois, avec une adresse e-mail vérifiée.",
+        "alt": "L'onglet des paramètres d'un entretien : le lien de partage, le choix entre mode clic et mode vocal, le temps par question et le seuil de réussite."
+      },
+      "start": {
+        "title": "Des règles claires dès le départ",
+        "text": "Avant de commencer, les candidats voient le poste, le temps par question et pour tout l'entretien, ainsi que les règles, et s'engagent à répondre sans aide extérieure, sans outils d'IA ni autres personnes.",
+        "alt": "La page de démarrage d'un entretien : le poste, le temps moyen par question, la durée totale de l'entretien en minutes, l'engagement et les règles."
+      },
+      "click": {
+        "title": "Mode clic",
+        "text": "Chaque candidat reçoit ses propres questions aléatoires, dans son propre ordre, avec un compte à rebours pour chacune.",
+        "alt": "Une question d'un candidat en mode clic : la question, son compte à rebours et quatre options de réponse, dont une sélectionnée."
+      },
+      "voice": {
+        "title": "Mode vocal avec Mira",
+        "text": "Mira, une recruteuse IA, lit à voix haute chaque question et ses options, et les candidats répondent sans les mains. Une réponse claire est enregistrée aussitôt ; toute autre est d'abord confirmée.",
+        "alt": "Un entretien vocal : Mira, la recruteuse IA, à côté de la question, avec l'indicateur montrant que c'est au tour du candidat."
+      },
+      "brand": {
+        "title": "Votre marque, pas la nôtre",
+        "text": "Définissez votre logo, vos couleurs pour les modes clair et sombre, vos polices et vos angles, avec un aperçu en direct. Les candidats ne voient que votre entreprise, sans l'en-tête ni le pied de page de prepza.",
+        "alt": "L'onglet marque : le logo, les polices et les angles, avec un aperçu en direct de l'entretien."
+      },
+      "candidates": {
+        "title": "Comparez les candidats d'un coup d'œil",
+        "text": "Le statut et la note de chaque candidat par rapport à votre seuil de réussite, dans une seule liste. Triez par note, cherchez par nom ou e-mail, filtrez qui a réussi ou qui est signalé.",
+        "alt": "La liste des candidats d'un entretien avec les noms, les statuts, les notes et un candidat signalé."
+      },
+      "signals": {
+        "title": "Alertes d'intégrité",
+        "text": "Sorties de la page, tentatives de copie et réponses trop rapides pour avoir lu la question, plus deux schémas de réponse : des temps qui ne suivent pas les questions, et des questions difficiles réussies alors que les faciles sont ratées.",
+        "alt": "Le rapport d'un candidat : la carte des schémas de réponse avec ses alertes et les questions de suivi suggérées."
+      },
+      "share": {
+        "title": "Partagez les rapports en quelques secondes",
+        "text": "Téléchargez un PDF pour un candidat ou pour tout l'entretien, envoyez-le par e-mail depuis prepza, ou partagez un court résumé par messagerie.",
+        "alt": "La fenêtre de partage du rapport d'un candidat : une adresse e-mail à laquelle envoyer le PDF, ou un résumé sur WhatsApp, Telegram, Viber ou LINE."
+      },
+      "notes": {
+        "title": "Des commentaires pour votre équipe",
+        "text": "Écrivez sur le recrutement dans l'onglet des commentaires de l'entretien et épinglez le commentaire important : il s'affiche sous le nom de l'entretien. Les candidats ne voient jamais les commentaires.",
+        "alt": "L'onglet des commentaires d'un entretien avec un commentaire épinglé et un commentaire plus récent de l'équipe."
+      },
+      "emails": {
+        "title": "Des e-mails qui font le travail",
+        "text": "Les candidats reçoivent leur invitation dans la langue de l'entretien, avec votre logo, et un rappel s'ils n'ont pas commencé. Votre équipe reçoit un seul récapitulatif d'activité par jour au lieu d'un e-mail pour chaque événement.",
+        "alt": "Un e-mail d'invitation à un entretien de Lumen Health, avec son logo et le bouton qui ouvre l'invitation"
+      },
+      "integrations": {
+        "title": "Toutes les connexions au même endroit",
+        "text": "Connectez un ATS, Slack, des clés API, des webhooks et des apps IA depuis l'onglet des intégrations de votre entreprise, chacun avec sa propre page et ses étapes.",
+        "alt": "L'onglet des intégrations d'une entreprise : un ATS connecté, Slack, l'API, les webhooks et les apps IA."
+      },
+      "biasAudit": {
+        "title": "Export pour audit des biais",
+        "text": "Exportez en CSV les résultats des candidats ayant terminé pour un audit des biais indépendant, comme celui de la Local Law 144 de New York, ou pour votre propre vérification de la règle des quatre cinquièmes.",
+        "alt": "La fenêtre d'export pour audit des biais : tous les entretiens ou un seul, et une période facultative."
+      }
+    },
+    "points": {
+      "questions": "{count, plural, one {# question rédigée} other {# questions rédigées}} par thème ; vous choisissez combien chaque candidat en reçoit",
+      "options": "Quatre options par question, certaines avec plusieurs bonnes réponses",
+      "examples": "Code, requêtes et commandes présentés en exemples quand le poste l'exige",
+      "names": "Les lignes impossibles à inviter sont indiquées, avec la raison",
+      "credits": "Les crédits reviennent pour ceux qui ne répondent jamais",
+      "expire": "Les invitations expirent d'elles-mêmes au bout d'un mois",
+      "linkOff": "Désactivable à tout moment, et quand le poste est pourvu",
+      "mode": "Mode clic ou vocal choisi sur la même page",
+      "settings": "Temps moyen par question et seuil de réussite juste à côté",
+      "time": "La durée totale affichée avant de commencer",
+      "phone": "Fonctionne sur téléphone comme sur ordinateur",
+      "saved": "La progression est enregistrée au fur et à mesure",
+      "tap": "Toucher une option fonctionne toujours aussi",
+      "kept": "La voix est seulement transcrite en texte, jamais conservée",
+      "voiceLanguages": "En anglais, espagnol, allemand, français, portugais et italien",
+      "contrast": "Les couleurs difficiles à lire sont refusées",
+      "logo": "Votre logo sur les invitations, l'entretien et les rapports PDF",
+      "sort": "Les meilleures notes en premier, en un clic",
+      "status": "Invité, en cours, terminé, expiré ou non remis",
+      "proof": "Une raison de regarder de plus près, jamais une preuve",
+      "camera": "Pas de caméra, d'enregistrement d'écran ni de suivi de l'appareil",
+      "followUps": "Des questions à approfondir lors d'un entretien en direct",
+      "pdf": "Rapports PDF avec les notes et toutes les réponses",
+      "messengers": "Résumés sur WhatsApp, Telegram, Viber ou LINE",
+      "viewers": "Les lecteurs partagent aussi, sans rien modifier",
+      "everyone": "Chaque membre écrit, les lecteurs aussi",
+      "bell": "Les nouveaux commentaires arrivent sous la cloche et dans votre canal Slack",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee et Breezy HR",
+      "results": "Candidats invités automatiquement, résultats renvoyés",
+      "docs": "Documentation développeurs pour l'API, les webhooks, le SDK et MCP",
+      "noInference": "prepza ne demande ni ne devine jamais de caractéristiques protégées",
+      "owner": "Seul le propriétaire exporte, et c'est inscrit au journal des actions",
+      "askTime": "Quiconque a besoin de plus de temps est invité à le demander avant de commencer",
+      "peopleDecide": "Informés que des personnes de votre entreprise examinent les résultats et décident",
+      "digest": "Le récapitulatif : qui a terminé, invitations non remises, candidats de l'ATS non invités, nouveaux commentaires et entretiens prêts",
+      "emailChoice": "Chaque type d'e-mail activé ou désactivé dans vos paramètres",
+      "stopEmails": "Les candidats peuvent se désabonner de vos e-mails en un clic"
+    },
+    "cards": {
+      "templates": {
+        "title": "Modèles prêts à l'emploi",
+        "text": "Copiez un entretien par poste, niveau et langue, immédiatement et gratuitement."
+      },
+      "bank": {
+        "title": "Banque de questions partagée",
+        "text": "Les nouveaux entretiens réutilisent des questions éprouvées ailleurs. Gardez les vôtres à l'écart d'une case à cocher."
+      },
+      "quality": {
+        "title": "Des questions qui se corrigent",
+        "text": "Réponses, votes et signalements repèrent les questions faibles ; elles sont corrigées ou remplacées."
+      },
+      "languages": {
+        "title": "{count, plural, one {# langue} other {# langues}}",
+        "text": "L'application, les entretiens et les e-mails, dans la langue de vos candidats."
+      },
+      "preview": {
+        "title": "Testez-le d'abord",
+        "text": "Passez l'entretien comme un candidat, gratuitement, avant d'inviter qui que ce soit."
+      },
+      "ats": {
+        "title": "Depuis votre ATS",
+        "text": "Les candidats à l'étape choisie sont invités automatiquement, et les résultats y reviennent."
+      },
+      "platform": {
+        "title": "Depuis votre plateforme",
+        "text": "Invitez via l'API, ou intégrez l'entretien à votre propre site avec le SDK."
+      },
+      "assistants": {
+        "title": "Depuis un assistant IA",
+        "text": "Demandez à Mira, ou à Claude, ChatGPT et d'autres apps IA via MCP, avec vos autorisations."
+      },
+      "extraTime": {
+        "title": "Temps supplémentaire",
+        "text": "Accordez à un candidat plus de temps par question avant qu'il commence ; sans justification."
+      },
+      "ownMode": {
+        "title": "Un mode adapté",
+        "text": "Passez un candidat en mode clic ou vocal, par exemple s'il ne peut pas répondre à voix haute."
+      },
+      "fair": {
+        "title": "Les mêmes règles pour tous",
+        "text": "Le même minuteur et le même mélange de questions pour tous, avec le temps tenu par le serveur."
+      },
+      "rate": {
+        "title": "Les candidats notent les questions",
+        "text": "Un vote et un moyen de signaler un problème sur chaque question."
+      },
+      "accessible": {
+        "title": "Accessible",
+        "text": "Conçu pour les WCAG 2.2 AA, dans toutes les langues, en mode clair et sombre."
+      },
+      "notifications": {
+        "title": "Notifications",
+        "text": "La cloche, les e-mails et votre canal Slack vous préviennent quand des candidats terminent."
+      },
+      "discover": {
+        "title": "Découvrir",
+        "text": "Après une recharge, voyez des personnes ouvertes aux opportunités dont l'entraînement gratuit correspond au poste."
+      },
+      "hired": {
+        "title": "Marquer comme recruté",
+        "text": "Fermez le poste et son lien de partage en une seule étape."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Choisissez un canal et les notifications qui y sont envoyées."
+      },
+      "api": {
+        "title": "API publique",
+        "text": "Des clés avec uniquement les autorisations que vous cochez, éventuellement limitées à vos adresses IP."
+      },
+      "webhooks": {
+        "title": "Webhooks",
+        "text": "Des événements signés quand un candidat commence ou termine, avec un envoi de test et un journal des livraisons."
+      },
+      "mcp": {
+        "title": "Apps IA via MCP",
+        "text": "Claude, ChatGPT et d'autres apps IA lisent et agissent avec vos autorisations."
+      },
+      "mira": {
+        "title": "Demander à Mira",
+        "text": "L'assistante IA lit vos résultats, explique comment faire et agit une fois que vous confirmez."
+      },
+      "person": {
+        "title": "Une personne décide",
+        "text": "Le score éclaire votre décision ; il ne la prend pas."
+      },
+      "roles": {
+        "title": "Rôles de l'équipe",
+        "text": "Propriétaires, admins et lecteurs ; les lecteurs voient les résultats mais ne modifient ni ne dépensent rien."
+      },
+      "log": {
+        "title": "Journal des actions",
+        "text": "Le propriétaire voit qui a fait quoi : dans l'application, via Mira, l'API ou un ATS."
+      },
+      "documents": {
+        "title": "Documents prêts",
+        "text": "Un accord de traitement des données, un modèle d'AIPD et des modèles d'information des candidats."
+      },
+      "privacy": {
+        "title": "Confidentialité dès la conception",
+        "text": "Aucune vente de données, rien de déduit sur les candidats, la voix jamais conservée."
+      },
+      "verified": {
+        "title": "Entreprises vérifiées",
+        "text": "Une coche à côté du nom de votre entreprise une fois son site web vérifié."
+      },
+      "free": {
+        "title": "{count, plural, one {# candidat gratuit} other {# candidats gratuits}}",
+        "text": "Votre première entreprise démarre avec eux, sans carte bancaire."
+      },
+      "answered": {
+        "title": "Seulement ceux qui répondent",
+        "text": "Les invitations sans réponse ne coûtent rien ; leurs crédits reviennent."
+      },
+      "expire": {
+        "title": "Les crédits n'expirent jamais",
+        "text": "Les recharges plus importantes coûtent moins par candidat ; les crédits payés non utilisés sont remboursables."
+      },
+      "autoTopUp": {
+        "title": "Recharge automatique",
+        "text": "Facultatif : les crédits sont rechargés quand il en reste peu, toujours sans abonnement."
+      },
+      "referrals": {
+        "title": "Parrainage",
+        "text": "Parrainez une autre entreprise et vous recevez tous deux des candidats gratuits dès qu'elle recharge."
+      },
+      "currencies": {
+        "title": "Votre devise",
+        "text": "Des prix en {count, plural, one {# devise} other {# devises}}, selon votre pays."
+      }
+    },
+    "more": {
+      "developerDocs": "documentation développeurs",
+      "trust": "page confiance",
+      "documents": "documents",
+      "pricing": "voir les tarifs"
+    },
+    "closing": {
+      "title": "Créez votre premier entretien\nC'est gratuit"
     }
   }
 }

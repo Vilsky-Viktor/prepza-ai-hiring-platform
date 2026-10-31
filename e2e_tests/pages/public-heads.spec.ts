@@ -10,6 +10,7 @@ import { REQUEST_URL } from "./helpers/env";
 // each kind.
 const LOCALIZED = [
   "/",
+  "/features",
   "/pricing",
   "/faq",
   "/about",

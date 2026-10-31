@@ -62,7 +62,7 @@ Then open the app at http://localhost:8090. Sign-in uses the Firebase Auth emula
 | [AI apps over MCP](docs/features/mcp.md) | Connecting Claude, ChatGPT and other AI apps, and agents with an API key: the consent page, OAuth, the tools, what's new since the last check, connections, limits, the developer docs' MCP tab |
 | [Admin zone](docs/features/admin-zone.md) | Superadmins' templates, news, campaigns, quality, support, pass rates, stats, AI costs, pause and maintenance mode, limits |
 | [Admin zone: Support](docs/features/admin-support.md) | Finding an account, company, interview or candidate from a complaint, their support pages, credits, suspension, stopping emails, logs |
-| [Public site](docs/features/site.md) | Home page, skills tests, articles, FAQ, legal pages, contact, SEO |
+| [Public site](docs/features/site.md) | Home page, features page, skills tests, articles, FAQ, legal pages, contact, SEO |
 | [Languages](docs/features/languages.md) | The 23 languages, language addresses, fonts, right-to-left |
 
 ### Engineering

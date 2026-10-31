@@ -75,7 +75,9 @@
     "news": "Nieuws",
     "accessibility": "Toegankelijkheid",
     "trust": "Vertrouwen",
-    "language": "Taal"
+    "language": "Taal",
+    "features": "Functionaliteiten",
+    "featuresLink": "functionaliteiten"
   },
   "signIn": {
     "title": "Inloggen",
@@ -2737,6 +2739,315 @@
       "mcp": "via een AI-app",
       "api": "via de API",
       "ats": "via een ATS"
+    }
+  },
+  "featuresPage": {
+    "title": "Functionaliteiten: AI-interviews voor werving, van begin tot eind",
+    "description": "Alle functionaliteiten van prepza: interviews vanuit een functieomschrijving, klik- en spraakmodus, integriteitssignalen, rapporten, ATS- en API-koppelingen en compliance.",
+    "hero": {
+      "title": "Van functieomschrijving\nnaar de juiste aanname",
+      "text": "Een interview met tijdslimiet, geschreven voor je functie, kandidaten van overal en een helder beeld van wie de beste is. Alle functionaliteiten zijn inbegrepen.",
+      "start": "Maak een interview",
+      "pricing": "bekijk prijzen",
+      "proof": {
+        "anyJob": "Elke functie, elke branche",
+        "languages": "{count, plural, one {# taal} other {# talen}}",
+        "ready": "Klaar in ~{minutes, plural, one {# minuut} other {# minuten}}",
+        "noSubscription": "Geen abonnement"
+      }
+    },
+    "nav": {
+      "create": "maken",
+      "invite": "uitnodigen",
+      "interview": "interview",
+      "decide": "beslissen",
+      "connect": "koppelen",
+      "trust": "vertrouwen",
+      "pricing": "prijzen"
+    },
+    "groups": {
+      "create": {
+        "title": "Maak een interview in minuten",
+        "text": "Plak een functieomschrijving en krijg een interview met tijdslimiet, geschreven voor de functie, in elk vakgebied."
+      },
+      "invite": {
+        "title": "Nodig kandidaten uit van overal",
+        "text": "Mail ze, zet één link in een vacature, upload een lijst, of laat je ATS, je eigen platform of een AI-assistent ze uitnodigen."
+      },
+      "interview": {
+        "title": "Wat kandidaten zien",
+        "text": "Een eerlijk interview met tijdslimiet in jouw huisstijl, beantwoord met een klik of met je stem."
+      },
+      "decide": {
+        "title": "Zie wie de beste is",
+        "text": "Scores, elk antwoord en integriteitssignalen voor elke kandidaat. Een mens beslist; prepza laat zien waar je op moet letten."
+      },
+      "connect": {
+        "title": "Werkt met je eigen tools",
+        "text": "Je ATS, Slack, je eigen code en AI-apps, of vraag het gewoon aan Mira."
+      },
+      "trust": {
+        "title": "Vertrouwen en compliance",
+        "text": "Een mens beslist, elke kandidaat krijgt dezelfde regels, en de documenten voor de GDPR, de EU AI Act en de regels in het VK en de VS staan klaar."
+      },
+      "pricing": {
+        "title": "Alles is gratis\nJe betaalt per kandidaat",
+        "text": "Alle functionaliteiten zijn inbegrepen. Een kandidaat kost pas iets als die minstens één vraag heeft beantwoord."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "Vanuit een functieomschrijving",
+        "text": "De AI leest de functie en stelt onderwerpen voor. Je bekijkt ze gratis: houd wat telt, geef ze een andere naam, bewerk de subonderwerpen of beschrijf wijzigingen in gewone woorden.",
+        "alt": "Het tabblad onderwerpen van een interview: het totaal aan vragen en minuten per kandidaat, en de onderwerpen met hun aantal vragen."
+      },
+      "invite": {
+        "title": "Uitnodigen per e-mail, lijst of bestand",
+        "text": "Voeg één kandidaat toe, plak een lijst of upload een CSV- of TXT-bestand. Iedereen krijgt een eigen link, en een herinnering als die nog niet begonnen is.",
+        "alt": "Het venster voor een nieuwe kandidaat, met tabbladen voor één kandidaat, een lijst en een bestandsupload."
+      },
+      "link": {
+        "title": "Eén link voor je vacature",
+        "text": "Zet de deelbare link van het interview aan en zet hem in je vacature. Iedereen kan het één keer doen, met een geverifieerd e-mailadres.",
+        "alt": "Het tabblad instellingen van een interview: de deelbare link, de schakelaar tussen klik- en spraakmodus, de tijd per vraag en de slaaggrens."
+      },
+      "start": {
+        "title": "Vooraf duidelijke regels",
+        "text": "Voordat ze beginnen, zien kandidaten de functie, de tijd per vraag en voor het hele interview, en de regels, en beloven ze zelf te antwoorden, zonder AI-tools of hulp van anderen.",
+        "alt": "De startpagina van een interview: de functie, de gemiddelde tijd per vraag, de minuten voor het hele interview, de belofte en de regels."
+      },
+      "click": {
+        "title": "Klikmodus",
+        "text": "Elke kandidaat krijgt eigen willekeurige vragen, in een eigen volgorde, met een aftelklok bij elke vraag.",
+        "alt": "Een vraag van een kandidaat in klikmodus: de vraag, de aftelklok en vier antwoordopties, waarvan één gekozen."
+      },
+      "voice": {
+        "title": "Spraakmodus met Mira",
+        "text": "Mira, een AI-interviewer, leest elke vraag en de opties voor, en kandidaten antwoorden handsfree. Een duidelijk antwoord wordt meteen opgeslagen; al het andere wordt eerst bevestigd.",
+        "alt": "Een spraakinterview: Mira, de AI-interviewer, naast de vraag, met de beurtindicator die laat zien dat de kandidaat aan de beurt is."
+      },
+      "brand": {
+        "title": "Jouw merk, niet het onze",
+        "text": "Stel je logo, kleuren voor licht en donker, lettertypen en hoeken in, met een live voorbeeld. Kandidaten zien alleen jouw bedrijf, zonder de kop- en voettekst van prepza.",
+        "alt": "Het tabblad merk: het logo, de lettertypen en de hoeken, met een live voorbeeld van het interview."
+      },
+      "candidates": {
+        "title": "Vergelijk kandidaten in één oogopslag",
+        "text": "De status en score van elke kandidaat ten opzichte van je slaaggrens, in één lijst. Sorteer op score, zoek op naam of e-mail, filter wie geslaagd of gemarkeerd is.",
+        "alt": "De kandidatenlijst van een interview met namen, statussen, scores en een gemarkeerde kandidaat."
+      },
+      "signals": {
+        "title": "Integriteitssignalen",
+        "text": "Pagina verlaten, kopieerpogingen en antwoorden die te snel kwamen om de vraag gelezen te hebben, plus twee antwoordpatronen: tijden die niet bij de vragen passen, en moeilijke vragen goed terwijl makkelijke fout zijn.",
+        "alt": "Het rapport van een kandidaat: de kaart met antwoordpatronen, de signalen en voorgestelde vervolgvragen."
+      },
+      "share": {
+        "title": "Deel rapporten in seconden",
+        "text": "Download een pdf voor één kandidaat of het hele interview, mail hem vanuit prepza, of stuur een korte samenvatting via een berichtenapp.",
+        "alt": "Het deelvenster voor het rapport van een kandidaat: een e-mailadres om de pdf naar te sturen, of een samenvatting in WhatsApp, Telegram, Viber of LINE."
+      },
+      "notes": {
+        "title": "Notities voor je team",
+        "text": "Schrijf over de wervingsronde op het tabblad notities van het interview en zet de belangrijke notitie vast: die staat onder de naam van het interview. Kandidaten zien notities nooit.",
+        "alt": "Het tabblad notities van een interview met een vastgezette notitie en een nieuwere notitie van het team."
+      },
+      "emails": {
+        "title": "E-mails die het werk doen",
+        "text": "Kandidaten krijgen hun uitnodiging in de taal van het interview, met je logo, en een herinnering als ze nog niet begonnen zijn. Je team krijgt één dagelijks activiteitenoverzicht in plaats van een e-mail voor elke gebeurtenis.",
+        "alt": "Een e-mail met een uitnodiging voor een interview van Lumen Health, met het logo en de knop die de uitnodiging opent"
+      },
+      "integrations": {
+        "title": "Alle koppelingen op één plek",
+        "text": "Koppel een ATS, Slack, API-sleutels, webhooks en AI-apps vanaf het tabblad integraties van je bedrijf, elk met een eigen pagina en stappen.",
+        "alt": "Het tabblad integraties van een bedrijf: een gekoppeld ATS, Slack, de API, webhooks en AI-apps."
+      },
+      "biasAudit": {
+        "title": "Export voor bias-audit",
+        "text": "Exporteer de resultaten van kandidaten die klaar zijn als CSV voor een onafhankelijke bias-audit, zoals die van Local Law 144 in New York City, of voor je eigen vier-vijfdetoets.",
+        "alt": "Het exportvenster voor een bias-audit: alle interviews of één, en een optionele periode."
+      }
+    },
+    "points": {
+      "questions": "{count, plural, one {# vraag} other {# vragen}} per onderwerp geschreven; jij kiest hoeveel elke kandidaat krijgt",
+      "options": "Vier opties per vraag, soms met meer dan één goed antwoord",
+      "examples": "Code, queries en commando's als voorbeeld waar de functie dat vraagt",
+      "names": "Regels die niet uitgenodigd kunnen worden, worden genoemd, met de reden",
+      "credits": "Credits komen terug voor wie nooit antwoordt",
+      "expire": "Uitnodigingen verlopen vanzelf na een maand",
+      "linkOff": "Op elk moment uit te zetten, en zodra de functie vervuld is",
+      "mode": "Klik- of spraakmodus kies je op dezelfde pagina",
+      "settings": "Gemiddelde tijd per vraag en slaaggrens ernaast",
+      "time": "De totale tijd te zien voordat ze beginnen",
+      "phone": "Werkt op een telefoon net zo goed als op een computer",
+      "saved": "Voortgang wordt onderweg opgeslagen",
+      "tap": "Een optie aantikken werkt ook altijd",
+      "kept": "De stem wordt alleen omgezet in tekst, nooit bewaard",
+      "voiceLanguages": "In het Engels, Spaans, Duits, Frans, Portugees en Italiaans",
+      "contrast": "Kleuren die slecht leesbaar zijn, worden geweigerd",
+      "logo": "Je logo op uitnodigingen, in het interview en op pdf-rapporten",
+      "sort": "Beste scores bovenaan met één klik",
+      "status": "Uitgenodigd, bezig, afgerond, verlopen of niet bezorgd",
+      "proof": "Een reden om beter te kijken, nooit een bewijs",
+      "camera": "Geen camera, schermopname of apparaattracking",
+      "followUps": "Vragen om door te nemen in een live gesprek",
+      "pdf": "Pdf-rapporten met scores en elk antwoord",
+      "messengers": "Samenvattingen via WhatsApp, Telegram, Viber of LINE",
+      "viewers": "Ook kijkers delen, zonder iets te wijzigen",
+      "everyone": "Elk teamlid schrijft, ook kijkers",
+      "bell": "Nieuwe notities komen bij de bel en in je Slack-kanaal",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee en Breezy HR",
+      "results": "Kandidaten automatisch uitgenodigd, resultaten teruggestuurd",
+      "docs": "Ontwikkelaarsdocumentatie voor de API, webhooks, de SDK en MCP",
+      "noInference": "prepza vraagt nooit naar beschermde kenmerken en leidt ze nooit af",
+      "owner": "Alleen de eigenaar exporteert, en dat staat in de actielog",
+      "askTime": "Wie meer tijd nodig heeft, wordt gevraagd dat vóór de start te melden",
+      "peopleDecide": "Ze horen dat mensen in je bedrijf de resultaten bekijken en beslissen",
+      "digest": "Het overzicht: wie klaar is, niet-bezorgde uitnodigingen, niet-uitgenodigde kandidaten uit het ATS, nieuwe notities en interviews die klaar zijn",
+      "emailChoice": "Elk soort e-mail aan of uit te zetten in je instellingen",
+      "stopEmails": "Kandidaten kunnen zich met één klik afmelden voor je e-mails"
+    },
+    "cards": {
+      "templates": {
+        "title": "Kant-en-klare sjablonen",
+        "text": "Kopieer een interview per functie, niveau en taal, direct en gratis."
+      },
+      "bank": {
+        "title": "Gedeelde vragenbank",
+        "text": "Nieuwe interviews hergebruiken vragen die zich elders bewezen hebben. Houd de jouwe erbuiten met één vinkje."
+      },
+      "quality": {
+        "title": "Vragen die zichzelf verbeteren",
+        "text": "Antwoorden, stemmen en meldingen wijzen zwakke vragen aan; die worden verbeterd of vervangen."
+      },
+      "languages": {
+        "title": "{count, plural, one {# taal} other {# talen}}",
+        "text": "De app, de interviews en de e-mails, in de taal van je kandidaten."
+      },
+      "preview": {
+        "title": "Probeer het eerst zelf",
+        "text": "Doe het interview zoals een kandidaat, gratis, voordat je iemand uitnodigt."
+      },
+      "ats": {
+        "title": "Vanuit je ATS",
+        "text": "Kandidaten in de fase die je kiest worden automatisch uitgenodigd, en de resultaten gaan terug."
+      },
+      "platform": {
+        "title": "Vanuit je platform",
+        "text": "Nodig uit via de API, of sluit het interview met de SDK in op je eigen site."
+      },
+      "assistants": {
+        "title": "Vanuit een AI-assistent",
+        "text": "Vraag het Mira, of Claude, ChatGPT en andere AI-apps via MCP, met jouw rechten."
+      },
+      "extraTime": {
+        "title": "Extra tijd",
+        "text": "Geef een kandidaat vóór de start meer tijd per vraag; zonder naar een reden te vragen."
+      },
+      "ownMode": {
+        "title": "Een eigen modus",
+        "text": "Zet één kandidaat op klik- of spraakmodus, voor wie niet hardop kan antwoorden."
+      },
+      "fair": {
+        "title": "Dezelfde regels voor iedereen",
+        "text": "Dezelfde timer en dezelfde mix van vragen voor iedereen, met de tijd bijgehouden door de server."
+      },
+      "rate": {
+        "title": "Kandidaten beoordelen vragen",
+        "text": "Bij elke vraag een stem en een manier om een probleem te melden."
+      },
+      "accessible": {
+        "title": "Toegankelijk",
+        "text": "Gebouwd volgens WCAG 2.2 AA, in elke taal, licht en donker."
+      },
+      "notifications": {
+        "title": "Meldingen",
+        "text": "De bel, e-mails en je Slack-kanaal laten weten wanneer kandidaten klaar zijn."
+      },
+      "discover": {
+        "title": "Ontdekken",
+        "text": "Zodra je hebt opgewaardeerd, zie je mensen die openstaan voor nieuwe kansen en van wie het gratis oefenen bij de functie past."
+      },
+      "hired": {
+        "title": "Markeren als aangenomen",
+        "text": "Sluit de functie en de deelbare link in één stap."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Kies een kanaal en welke meldingen daarheen gaan."
+      },
+      "api": {
+        "title": "Openbare API",
+        "text": "Sleutels met alleen de rechten die je aanvinkt, desgewenst beperkt tot je IP-adressen."
+      },
+      "webhooks": {
+        "title": "Webhooks",
+        "text": "Ondertekende events als een kandidaat begint of klaar is, met een testbericht en een bezorglog."
+      },
+      "mcp": {
+        "title": "AI-apps via MCP",
+        "text": "Claude, ChatGPT en andere AI-apps lezen en handelen met jouw rechten."
+      },
+      "mira": {
+        "title": "Vraag Mira",
+        "text": "De AI-assistent leest je resultaten, legt uit hoe iets werkt en handelt zodra jij bevestigt."
+      },
+      "person": {
+        "title": "Een mens beslist",
+        "text": "De score ondersteunt je beslissing; hij neemt hem niet."
+      },
+      "roles": {
+        "title": "Teamrollen",
+        "text": "Eigenaren, beheerders en kijkers; kijkers zien resultaten, maar wijzigen en besteden niets."
+      },
+      "log": {
+        "title": "Actielog",
+        "text": "De eigenaar ziet wie wat deed: in de app, via Mira, de API of een ATS."
+      },
+      "documents": {
+        "title": "Documenten klaar",
+        "text": "Een verwerkersovereenkomst, een DPIA-sjabloon en sjablonen voor kandidaatberichten."
+      },
+      "privacy": {
+        "title": "Privacy by design",
+        "text": "Geen verkoop van data, niets afgeleid over kandidaten, stem nooit bewaard."
+      },
+      "verified": {
+        "title": "Geverifieerde bedrijven",
+        "text": "Een vinkje naast de naam van je bedrijf zodra de website geverifieerd is."
+      },
+      "free": {
+        "title": "{count, plural, one {# gratis kandidaat} other {# gratis kandidaten}}",
+        "text": "Je eerste bedrijf begint ermee, zonder creditcard."
+      },
+      "answered": {
+        "title": "Alleen wie antwoordt",
+        "text": "Onbeantwoorde uitnodigingen kosten niets; hun credits komen terug."
+      },
+      "expire": {
+        "title": "Credits verlopen nooit",
+        "text": "Grotere opwaarderingen kosten minder per kandidaat; ongebruikte betaalde credits krijg je terug."
+      },
+      "autoTopUp": {
+        "title": "Automatisch opwaarderen",
+        "text": "Optioneel: credits aangevuld als ze bijna op zijn, nog steeds zonder abonnement."
+      },
+      "referrals": {
+        "title": "Doorverwijzingen",
+        "text": "Breng een ander bedrijf aan en jullie krijgen allebei gratis kandidaten zodra het opwaardeert."
+      },
+      "currencies": {
+        "title": "Je eigen valuta",
+        "text": "Prijzen in {count, plural, one {# valuta} other {# valuta's}}, afhankelijk van je land."
+      }
+    },
+    "more": {
+      "developerDocs": "ontwikkelaarsdocumentatie",
+      "trust": "vertrouwenspagina",
+      "documents": "documenten",
+      "pricing": "bekijk prijzen"
+    },
+    "closing": {
+      "title": "Maak je eerste interview\nHet is gratis"
     }
   }
 }

@@ -40,6 +40,7 @@ PAGE_KEYS = (
     "practiceHistory",
     "practiceRound",
     # The public pages.
+    "features",
     "pricing",
     "tests",
     "test",

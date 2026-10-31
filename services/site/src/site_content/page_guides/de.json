@@ -478,6 +478,19 @@
       "Auf Jobsuche? Schalte „Offen für Angebote“ ein, damit Unternehmen, die für diese Themen einstellen, deinen Namen, dein LinkedIn-Profil und deine Übungsergebnisse sehen."
     ]
   },
+  "features": {
+    "title": "Funktionen",
+    "text": "Alles, was prepza für ein Unternehmen tut, von der Stellenbeschreibung bis zur Einstellung: Interviews erstellen, Kandidaten einladen, was Kandidaten sehen, Berichte, Integrationen, Compliance und Preise.",
+    "actions": [
+      "Spring mit den Tabs oben zu einer Gruppe: erstellen, einladen, interview, entscheiden, verbinden, vertrauen und preise.",
+      "Sieh jede Funktion neben einem Bild der echten App.",
+      "Füge im Feld am Ende der Seite eine Stellenbeschreibung ein, um ein Interview zu erstellen.",
+      "Öffne die Preisseite, die Entwicklerdokumentation oder die Vertrauensseite aus ihren Gruppen."
+    ],
+    "tips": [
+      "Alle Funktionen sind inklusive: Du zahlst nur für jeden Kandidaten, der mindestens eine Frage beantwortet."
+    ]
+  },
   "pricing": {
     "title": "Preise",
     "text": "Was prepza kostet: Interviews zu generieren ist kostenlos, und du zahlst pro Kandidat, der antwortet, ohne Abo.",

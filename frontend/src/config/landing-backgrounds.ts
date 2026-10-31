@@ -27,3 +27,8 @@ export const SEE_THROUGH_CARD =
 // already): the Mira section's chat and cards.
 export const GLOW_CARD =
   "bg-[color-mix(in_oklab,var(--muted)_70%,transparent)] dark:bg-surface"
+
+// A bar that stays at the top of the window (the features page's tabs): the page's own colour
+// across the window, so the bands scroll away beneath it, with a line of the borders' grey under
+// it across the window, fading out only near its sides.
+export const STICKY_BAR = `${LAYER} before:inset-y-0 before:bg-background after:pointer-events-none after:absolute after:start-[calc(50%-50cqw)] after:bottom-0 after:h-px after:w-[100cqw] after:bg-[linear-gradient(to_right,transparent,var(--border)_5%,var(--border)_95%,transparent)]`

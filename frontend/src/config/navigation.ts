@@ -7,6 +7,12 @@ export const NAV_LINKS = [
     exact: false,
   },
   {
+    href: "/features",
+    label: "featuresLink",
+    signedInOnly: false,
+    exact: false,
+  },
+  {
     href: "/pricing",
     label: "pricingLink",
     signedInOnly: false,
@@ -14,8 +20,8 @@ export const NAV_LINKS = [
   },
 ] as const
 
-// The footer's links in three columns: the product, resources to read, and the company;
-// `label` is the nav message.
+// The footer's links in three columns: the product, the features page and resources to read,
+// and the company; `label` is the nav message.
 export const FOOTER_COLUMNS = [
   [
     { href: "/tests", label: "tests" },
@@ -25,6 +31,7 @@ export const FOOTER_COLUMNS = [
     { href: "/compare", label: "compare" },
   ],
   [
+    { href: "/features", label: "features" },
     { href: "/guides", label: "guides" },
     { href: "/faq", label: "faq" },
     { href: "/documents", label: "docs" },

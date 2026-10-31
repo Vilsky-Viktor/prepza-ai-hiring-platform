@@ -1,5 +1,5 @@
 import { cn } from "cn"
-import type { LucideIcon } from "lucide-react"
+import type { ComponentType } from "react"
 
 import { KeepAcronyms } from "@/components/common/keep-acronyms"
 
@@ -16,7 +16,8 @@ export function IconCard({
   className,
   children,
 }: {
-  icon: LucideIcon
+  // A lucide icon, or another icon sized by its class (McpIcon).
+  icon: ComponentType<{ className?: string }>
   title: string
   lit?: boolean
   // Its fill, when not the site's grey.

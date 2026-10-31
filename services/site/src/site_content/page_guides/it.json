@@ -478,6 +478,19 @@
       "Cerchi lavoro? Attiva Aperto a nuove opportunità per permettere alle aziende che assumono per questi argomenti di vedere il tuo nome, il tuo profilo LinkedIn e i risultati delle tue simulazioni."
     ]
   },
+  "features": {
+    "title": "Funzionalità",
+    "text": "Tutto ciò che prepza fa per un'azienda, dalla descrizione del ruolo all'assunzione: creare colloqui, invitare candidati, cosa vedono i candidati, report, integrazioni, conformità e prezzi.",
+    "actions": [
+      "Vai a un gruppo con le schede in alto: crea, invita, colloquio, decidi, collega, fiducia e prezzi.",
+      "Guarda ogni funzionalità accanto a un'immagine dell'app reale.",
+      "Incolla una descrizione del ruolo nel riquadro in fondo alla pagina per creare un colloquio.",
+      "Apri la pagina dei prezzi, la documentazione per sviluppatori o la pagina fiducia dai rispettivi gruppi."
+    ],
+    "tips": [
+      "Tutte le funzionalità sono incluse: paghi solo per ogni candidato che risponde ad almeno una domanda."
+    ]
+  },
   "pricing": {
     "title": "Prezzi",
     "text": "Quanto costa prepza: generare colloqui è gratis, e paghi per ogni candidato che risponde, senza abbonamento.",

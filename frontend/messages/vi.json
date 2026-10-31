@@ -75,7 +75,9 @@
     "news": "Tin tức",
     "accessibility": "Khả năng tiếp cận",
     "trust": "Tin cậy",
-    "language": "Ngôn ngữ"
+    "language": "Ngôn ngữ",
+    "features": "Tính năng",
+    "featuresLink": "tính năng"
   },
   "signIn": {
     "title": "Đăng nhập",
@@ -2737,6 +2739,315 @@
       "mcp": "qua một ứng dụng AI",
       "api": "qua API",
       "ats": "qua một ATS"
+    }
+  },
+  "featuresPage": {
+    "title": "Tính năng: phỏng vấn AI cho tuyển dụng, trọn quy trình",
+    "description": "Mọi tính năng của prepza: phỏng vấn từ mô tả công việc, chế độ nhấp và giọng nói, cảnh báo hành vi bất thường, báo cáo, tích hợp ATS và API, và tuân thủ.",
+    "hero": {
+      "title": "Từ mô tả công việc\nđến đúng người cần tuyển",
+      "text": "Buổi phỏng vấn có tính giờ được soạn cho vị trí của bạn, ứng viên từ mọi nơi, và cái nhìn rõ ràng ai giỏi nhất. Mọi tính năng đều có sẵn.",
+      "start": "Tạo buổi phỏng vấn",
+      "pricing": "xem bảng giá",
+      "proof": {
+        "anyJob": "Mọi vị trí, mọi lĩnh vực",
+        "languages": "{count, plural, other {# ngôn ngữ}}",
+        "ready": "Sẵn sàng sau ~{minutes, plural, other {# phút}}",
+        "noSubscription": "Không cần gói đăng ký"
+      }
+    },
+    "nav": {
+      "create": "tạo",
+      "invite": "mời",
+      "interview": "phỏng vấn",
+      "decide": "quyết định",
+      "connect": "kết nối",
+      "trust": "tin cậy",
+      "pricing": "bảng giá"
+    },
+    "groups": {
+      "create": {
+        "title": "Tạo buổi phỏng vấn trong vài phút",
+        "text": "Dán mô tả công việc và nhận một buổi phỏng vấn có tính giờ được soạn cho vị trí đó, ở bất kỳ lĩnh vực nào."
+      },
+      "invite": {
+        "title": "Mời ứng viên từ mọi nơi",
+        "text": "Gửi email, đặt một liên kết trong tin tuyển dụng, tải lên danh sách, hoặc để ATS, nền tảng của riêng bạn hay trợ lý AI gửi lời mời."
+      },
+      "interview": {
+        "title": "Ứng viên thấy gì",
+        "text": "Buổi phỏng vấn công bằng, có tính giờ, mang thương hiệu của bạn, trả lời bằng một cú nhấp hoặc bằng giọng nói."
+      },
+      "decide": {
+        "title": "Xem ai giỏi nhất",
+        "text": "Điểm, mọi câu trả lời và cảnh báo hành vi bất thường của từng ứng viên. Con người quyết định; prepza cho thấy điều cần xem xét."
+      },
+      "connect": {
+        "title": "Làm việc cùng công cụ của bạn",
+        "text": "ATS của bạn, Slack, mã và ứng dụng AI của riêng bạn, hoặc chỉ cần hỏi Mira."
+      },
+      "trust": {
+        "title": "Tin cậy và tuân thủ",
+        "text": "Con người quyết định, mọi ứng viên theo cùng một quy tắc, và tài liệu cho GDPR, Đạo luật AI của EU, quy định của Anh và Mỹ đều đã sẵn sàng."
+      },
+      "pricing": {
+        "title": "Mọi thứ đều miễn phí\nTrả tiền theo ứng viên",
+        "text": "Mọi tính năng đều có sẵn. Một ứng viên chỉ tính phí khi họ đã trả lời ít nhất một câu hỏi."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "Từ mô tả công việc",
+        "text": "AI đọc vị trí và đề xuất các chủ đề. Bạn xem lại miễn phí: giữ những gì quan trọng, đổi tên, sửa chủ đề con hoặc mô tả thay đổi bằng lời thường.",
+        "alt": "Thẻ chủ đề của buổi phỏng vấn: tổng số câu hỏi và số phút cho mỗi ứng viên, cùng các chủ đề và số câu hỏi của từng chủ đề."
+      },
+      "invite": {
+        "title": "Mời qua email, danh sách hoặc tệp",
+        "text": "Thêm một ứng viên, dán danh sách hoặc tải lên tệp CSV hay TXT. Mỗi người nhận liên kết riêng, và được nhắc nếu chưa bắt đầu.",
+        "alt": "Hộp thoại thêm ứng viên mới, với các thẻ cho một ứng viên, danh sách và tải tệp lên."
+      },
+      "link": {
+        "title": "Một liên kết cho tin tuyển dụng",
+        "text": "Bật liên kết chia sẻ của buổi phỏng vấn và đặt vào tin tuyển dụng. Ai cũng có thể làm một lần, với email đã xác minh.",
+        "alt": "Thẻ cài đặt của buổi phỏng vấn: liên kết chia sẻ, công tắc chế độ nhấp và giọng nói, thời gian mỗi câu hỏi và điểm đạt."
+      },
+      "start": {
+        "title": "Quy tắc rõ ràng ngay từ đầu",
+        "text": "Trước khi bắt đầu, ứng viên thấy vị trí, thời gian cho mỗi câu hỏi và cho cả buổi phỏng vấn, các quy tắc, và cam kết tự trả lời, không dùng công cụ AI hay nhờ người khác.",
+        "alt": "Trang bắt đầu của buổi phỏng vấn: vị trí, thời gian trung bình mỗi câu hỏi, số phút của cả buổi, lời cam kết và các quy tắc."
+      },
+      "click": {
+        "title": "Chế độ nhấp",
+        "text": "Mỗi ứng viên nhận bộ câu hỏi ngẫu nhiên riêng, theo thứ tự riêng, với đồng hồ đếm ngược ở từng câu.",
+        "alt": "Một câu hỏi của ứng viên ở chế độ nhấp: câu hỏi, đồng hồ đếm ngược và bốn phương án, một phương án đã được chọn."
+      },
+      "voice": {
+        "title": "Chế độ giọng nói với Mira",
+        "text": "Mira, người phỏng vấn AI, đọc to từng câu hỏi và các phương án, ứng viên trả lời mà không cần dùng tay. Câu trả lời rõ ràng được lưu ngay; trường hợp khác được xác nhận trước.",
+        "alt": "Buổi phỏng vấn bằng giọng nói: Mira, người phỏng vấn AI, bên cạnh câu hỏi, với nhãn cho biết đến lượt ứng viên."
+      },
+      "brand": {
+        "title": "Thương hiệu của bạn, không phải của chúng tôi",
+        "text": "Đặt logo, màu cho giao diện sáng và tối, phông chữ và góc bo, với bản xem trước trực tiếp. Ứng viên chỉ thấy công ty của bạn, không có đầu trang hay chân trang của prepza.",
+        "alt": "Thẻ thương hiệu: logo, phông chữ và góc bo, với bản xem trước trực tiếp của buổi phỏng vấn."
+      },
+      "candidates": {
+        "title": "So sánh ứng viên trong nháy mắt",
+        "text": "Trạng thái và điểm so với điểm đạt của mọi ứng viên, trong một danh sách. Sắp xếp theo điểm, tìm theo tên hoặc email, lọc theo người đạt hoặc người có cảnh báo.",
+        "alt": "Danh sách ứng viên của buổi phỏng vấn với tên, trạng thái, điểm và một ứng viên có cảnh báo."
+      },
+      "signals": {
+        "title": "Cảnh báo hành vi bất thường",
+        "text": "Rời trang, thử sao chép và trả lời quá nhanh để kịp đọc, cùng hai mẫu trả lời: thời gian không tương ứng với câu hỏi, và đúng câu khó trong khi sai câu dễ.",
+        "alt": "Báo cáo của một ứng viên: thẻ mẫu trả lời với các tín hiệu và các câu hỏi gợi ý để hỏi thêm."
+      },
+      "share": {
+        "title": "Chia sẻ báo cáo trong vài giây",
+        "text": "Tải PDF của một ứng viên hoặc cả buổi phỏng vấn, gửi email từ prepza, hoặc gửi bản tóm tắt ngắn qua ứng dụng nhắn tin.",
+        "alt": "Hộp thoại chia sẻ báo cáo của ứng viên: địa chỉ email để gửi PDF, hoặc bản tóm tắt qua WhatsApp, Telegram, Viber hay LINE."
+      },
+      "notes": {
+        "title": "Ghi chú cho nhóm của bạn",
+        "text": "Viết về đợt tuyển dụng ở thẻ ghi chú của buổi phỏng vấn và ghim ghi chú quan trọng: nó hiện dưới tên buổi phỏng vấn. Ứng viên không bao giờ thấy ghi chú.",
+        "alt": "Thẻ ghi chú của buổi phỏng vấn với một ghi chú đã ghim và một ghi chú mới hơn của nhóm."
+      },
+      "emails": {
+        "title": "Email làm việc thay bạn",
+        "text": "Ứng viên nhận lời mời bằng ngôn ngữ của buổi phỏng vấn, có logo của bạn, và được nhắc nếu chưa bắt đầu. Nhóm của bạn nhận một bản tóm tắt hoạt động mỗi ngày thay vì một email cho mỗi sự kiện.",
+        "alt": "Email mời phỏng vấn từ Lumen Health, với logo và nút mở lời mời"
+      },
+      "integrations": {
+        "title": "Mọi kết nối ở một nơi",
+        "text": "Kết nối ATS, Slack, khóa API, webhook và ứng dụng AI từ thẻ tích hợp của công ty, mỗi mục có trang và các bước riêng.",
+        "alt": "Thẻ tích hợp của công ty: ATS đã kết nối, Slack, API, webhook và ứng dụng AI."
+      },
+      "biasAudit": {
+        "title": "Xuất dữ liệu kiểm toán thiên lệch",
+        "text": "Xuất kết quả của các ứng viên đã hoàn thành ra CSV cho một cuộc kiểm toán thiên lệch độc lập, như Local Law 144 của thành phố New York, hoặc tự kiểm tra theo quy tắc bốn phần năm.",
+        "alt": "Hộp thoại xuất dữ liệu kiểm toán thiên lệch: tất cả buổi phỏng vấn hoặc một buổi, và khoảng ngày tùy chọn."
+      }
+    },
+    "points": {
+      "questions": "{count, plural, other {# câu hỏi}} được soạn cho mỗi chủ đề; bạn chọn mỗi ứng viên nhận bao nhiêu câu",
+      "options": "Bốn phương án mỗi câu, một số câu có nhiều hơn một đáp án đúng",
+      "examples": "Mã, truy vấn và lệnh được hiển thị làm ví dụ khi vị trí cần",
+      "names": "Các dòng không mời được sẽ được nêu rõ, kèm lý do",
+      "credits": "Credit được hoàn lại cho người không trả lời câu nào",
+      "expire": "Lời mời tự hết hạn sau một tháng",
+      "linkOff": "Tắt bất cứ lúc nào, và khi vị trí đã tuyển được người",
+      "mode": "Chọn chế độ nhấp hoặc giọng nói ngay trên cùng trang",
+      "settings": "Thời gian trung bình mỗi câu hỏi và điểm đạt ở ngay bên cạnh",
+      "time": "Tổng thời gian hiển thị trước khi bắt đầu",
+      "phone": "Dùng được trên điện thoại cũng như máy tính",
+      "saved": "Tiến độ được lưu trong khi làm",
+      "tap": "Chạm vào phương án vẫn luôn dùng được",
+      "kept": "Giọng nói chỉ được chuyển thành văn bản, không bao giờ được lưu",
+      "voiceLanguages": "Bằng tiếng Anh, Tây Ban Nha, Đức, Pháp, Bồ Đào Nha và Ý",
+      "contrast": "Màu khó đọc sẽ bị từ chối",
+      "logo": "Logo của bạn trên lời mời, buổi phỏng vấn và báo cáo PDF",
+      "sort": "Điểm cao nhất lên đầu chỉ với một cú nhấp",
+      "status": "Đã mời, đang làm, đã xong, đã hết hạn hoặc chưa gửi được",
+      "proof": "Lý do để xem kỹ hơn, không bao giờ là bằng chứng",
+      "camera": "Không camera, không quay màn hình, không theo dõi thiết bị",
+      "followUps": "Câu hỏi để trao đổi trong buổi phỏng vấn trực tiếp",
+      "pdf": "Báo cáo PDF với điểm và mọi câu trả lời",
+      "messengers": "Tóm tắt qua WhatsApp, Telegram, Viber hoặc LINE",
+      "viewers": "Người xem cũng chia sẻ được, mà không thay đổi gì",
+      "everyone": "Mọi thành viên đều viết được, kể cả người xem",
+      "bell": "Ghi chú mới hiện ở biểu tượng chuông và kênh Slack của bạn",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee và Breezy HR",
+      "results": "Ứng viên được mời tự động, kết quả được gửi lại",
+      "docs": "Tài liệu cho nhà phát triển về API, webhook, SDK và MCP",
+      "noInference": "prepza không bao giờ hỏi hay suy đoán các đặc điểm được pháp luật bảo vệ",
+      "owner": "Chỉ chủ sở hữu xuất được, và việc này có trong nhật ký thao tác",
+      "askTime": "Ai cần thêm thời gian được nhắc liên hệ trước khi bắt đầu",
+      "peopleDecide": "Ứng viên được biết nhân sự của công ty bạn xem xét kết quả và quyết định",
+      "digest": "Bản tóm tắt: ai đã hoàn thành, lời mời chưa được gửi đến, ứng viên từ ATS chưa được mời, ghi chú mới và buổi phỏng vấn đã sẵn sàng",
+      "emailChoice": "Bật hoặc tắt từng loại email trong phần cài đặt của bạn",
+      "stopEmails": "Ứng viên có thể ngừng nhận email của bạn chỉ với một cú nhấp"
+    },
+    "cards": {
+      "templates": {
+        "title": "Mẫu dùng ngay",
+        "text": "Sao chép một buổi phỏng vấn theo vị trí, cấp bậc và ngôn ngữ, ngay lập tức và miễn phí."
+      },
+      "bank": {
+        "title": "Ngân hàng câu hỏi dùng chung",
+        "text": "Buổi phỏng vấn mới dùng lại các câu hỏi đã được kiểm chứng ở buổi khác. Giữ câu hỏi của bạn ra ngoài chỉ với một ô đánh dấu."
+      },
+      "quality": {
+        "title": "Câu hỏi tự hoàn thiện",
+        "text": "Câu trả lời, lượt bình chọn và báo cáo chỉ ra câu hỏi yếu; chúng được sửa hoặc thay thế."
+      },
+      "languages": {
+        "title": "{count, plural, other {# ngôn ngữ}}",
+        "text": "Ứng dụng, buổi phỏng vấn và email, bằng ngôn ngữ của ứng viên."
+      },
+      "preview": {
+        "title": "Xem trước",
+        "text": "Làm thử buổi phỏng vấn như ứng viên, miễn phí, trước khi mời ai."
+      },
+      "ats": {
+        "title": "Từ ATS của bạn",
+        "text": "Ứng viên ở vòng bạn chọn được mời tự động, và kết quả được gửi lại."
+      },
+      "platform": {
+        "title": "Từ nền tảng của bạn",
+        "text": "Mời qua API, hoặc nhúng buổi phỏng vấn vào trang web của riêng bạn bằng SDK."
+      },
+      "assistants": {
+        "title": "Từ trợ lý AI",
+        "text": "Hỏi Mira, hoặc Claude, ChatGPT và các ứng dụng AI khác qua MCP, với quyền của bạn."
+      },
+      "extraTime": {
+        "title": "Thêm thời gian",
+        "text": "Cho ứng viên thêm thời gian ở mỗi câu hỏi trước khi bắt đầu; không cần lý do."
+      },
+      "ownMode": {
+        "title": "Chế độ riêng",
+        "text": "Chuyển riêng một ứng viên sang chế độ nhấp hoặc giọng nói, cho người không thể trả lời thành tiếng."
+      },
+      "fair": {
+        "title": "Cùng một quy tắc cho tất cả",
+        "text": "Cùng đồng hồ và cơ cấu câu hỏi cho mọi người, thời gian do máy chủ tính."
+      },
+      "rate": {
+        "title": "Ứng viên đánh giá câu hỏi",
+        "text": "Bình chọn và báo cáo sự cố ở mọi câu hỏi."
+      },
+      "accessible": {
+        "title": "Dễ tiếp cận",
+        "text": "Xây dựng theo WCAG 2.2 AA, ở mọi ngôn ngữ, giao diện sáng và tối."
+      },
+      "notifications": {
+        "title": "Thông báo",
+        "text": "Biểu tượng chuông, email và kênh Slack báo cho bạn khi ứng viên hoàn thành."
+      },
+      "discover": {
+        "title": "Khám phá",
+        "text": "Sau khi nạp credit, xem những người sẵn sàng nhận cơ hội việc làm có kết quả luyện tập miễn phí phù hợp với vị trí."
+      },
+      "hired": {
+        "title": "Đánh dấu đã tuyển",
+        "text": "Đóng vị trí và liên kết chia sẻ của nó chỉ trong một bước."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Chọn một kênh và những thông báo được gửi đến đó."
+      },
+      "api": {
+        "title": "API công khai",
+        "text": "Khóa chỉ có những quyền bạn chọn, có thể giới hạn theo địa chỉ IP của bạn."
+      },
+      "webhooks": {
+        "title": "Webhook",
+        "text": "Sự kiện có chữ ký khi ứng viên bắt đầu hoặc hoàn thành, kèm gửi thử và nhật ký gửi."
+      },
+      "mcp": {
+        "title": "Ứng dụng AI qua MCP",
+        "text": "Claude, ChatGPT và các ứng dụng AI khác đọc và thao tác với quyền của bạn."
+      },
+      "mira": {
+        "title": "Hỏi Mira",
+        "text": "Trợ lý AI đọc kết quả của bạn, hướng dẫn cách làm và thao tác khi bạn xác nhận."
+      },
+      "person": {
+        "title": "Con người quyết định",
+        "text": "Điểm số hỗ trợ quyết định của bạn, không thay bạn quyết định."
+      },
+      "roles": {
+        "title": "Vai trò trong nhóm",
+        "text": "Chủ sở hữu, quản trị viên và người xem; người xem thấy kết quả nhưng không thay đổi hay chi tiêu gì."
+      },
+      "log": {
+        "title": "Nhật ký thao tác",
+        "text": "Chủ sở hữu thấy ai đã làm gì, trong ứng dụng, qua Mira, API hay ATS."
+      },
+      "documents": {
+        "title": "Tài liệu sẵn sàng",
+        "text": "Thỏa thuận xử lý dữ liệu, mẫu DPIA và mẫu thông báo cho ứng viên."
+      },
+      "privacy": {
+        "title": "Quyền riêng tư từ khâu thiết kế",
+        "text": "Không bán dữ liệu, không suy đoán gì về ứng viên, không bao giờ lưu giọng nói."
+      },
+      "verified": {
+        "title": "Công ty đã xác minh",
+        "text": "Dấu tích cạnh tên công ty khi trang web của công ty đã được xác minh."
+      },
+      "free": {
+        "title": "{count, plural, other {# ứng viên miễn phí}}",
+        "text": "Công ty đầu tiên của bạn có sẵn ngay, không cần thẻ."
+      },
+      "answered": {
+        "title": "Chỉ người trả lời",
+        "text": "Lời mời không được trả lời không mất phí; credit được hoàn lại."
+      },
+      "expire": {
+        "title": "Credit không bao giờ hết hạn",
+        "text": "Nạp nhiều hơn thì giá mỗi ứng viên thấp hơn; credit đã mua chưa dùng được hoàn tiền."
+      },
+      "autoTopUp": {
+        "title": "Tự động nạp",
+        "text": "Tùy chọn: tự nạp thêm credit khi sắp hết, vẫn không có gói đăng ký."
+      },
+      "referrals": {
+        "title": "Giới thiệu",
+        "text": "Giới thiệu một công ty khác và cả hai cùng nhận ứng viên miễn phí khi công ty đó nạp credit."
+      },
+      "currencies": {
+        "title": "Tiền tệ của bạn",
+        "text": "Giá theo {count, number} loại tiền tệ, tùy theo quốc gia của bạn."
+      }
+    },
+    "more": {
+      "developerDocs": "tài liệu cho nhà phát triển",
+      "trust": "trang tin cậy",
+      "documents": "tài liệu",
+      "pricing": "xem bảng giá"
+    },
+    "closing": {
+      "title": "Tạo buổi phỏng vấn đầu tiên\nHoàn toàn miễn phí"
     }
   }
 }

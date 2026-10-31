@@ -1,7 +1,7 @@
 import { cn } from "cn"
 import type { LucideIcon } from "lucide-react"
 
-import { IconCard, PHONE_CARDS } from "@/features/landing/components/icon-card"
+import { IconCard, PHONE_CARDS } from "@/components/common/icon-card"
 
 /** A section's steps as small grey cards, one under another, on phones only: there they stand
  * in for the section's animated picture, which shows from tablets up. */

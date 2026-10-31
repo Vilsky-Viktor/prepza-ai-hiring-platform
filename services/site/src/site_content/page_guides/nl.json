@@ -478,6 +478,19 @@
       "Op zoek naar een baan? Zet Open voor nieuwe kansen aan, zodat bedrijven die voor deze onderwerpen werven je naam, je LinkedIn-profiel en je oefenresultaten zien."
     ]
   },
+  "features": {
+    "title": "Functionaliteiten",
+    "text": "Alles wat prepza voor een bedrijf doet, van functieomschrijving tot aanname: interviews maken, kandidaten uitnodigen, wat kandidaten zien, rapporten, koppelingen, compliance en prijzen.",
+    "actions": [
+      "Spring naar een groep met de tabbladen bovenaan: maken, uitnodigen, interview, beslissen, koppelen, vertrouwen en prijzen.",
+      "Bekijk elke functionaliteit naast een afbeelding van de echte app.",
+      "Plak een functieomschrijving in het vak onderaan de pagina om een interview te maken.",
+      "Open de prijzenpagina, de ontwikkelaarsdocumentatie of de vertrouwenspagina vanuit hun groep."
+    ],
+    "tips": [
+      "Alle functionaliteiten zijn inbegrepen: je betaalt alleen voor elke kandidaat die minstens één vraag beantwoordt."
+    ]
+  },
   "pricing": {
     "title": "Prijzen",
     "text": "Wat prepza kost: interviews genereren is gratis, en je betaalt per kandidaat die antwoordt, zonder abonnement.",

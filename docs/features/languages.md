@@ -17,7 +17,7 @@ Arabic, Hebrew and Persian read right to left, on the site and in emails. On the
 
 ## Language addresses
 
-The public pages have an address in every other language: home, pricing, FAQ, about, contact, documents, practice, skills tests, and the articles with their hubs.
+The public pages have an address in every other language: home, features, pricing, FAQ, about, contact, documents, practice, skills tests, and the articles with their hubs.
 
 - A prefixed address carries the language: `/de/pricing`, or `/fr` for the home page.
 - English keeps the plain address.

@@ -13,7 +13,8 @@ async function hrefs(links: import("@playwright/test").Locator) {
   return links.evaluateAll((items) => items.map((item) => item.getAttribute("href")));
 }
 
-// The footer's links in three columns: the product, resources to read, and the company.
+// The footer's links in three columns: the product, the features page and resources to read,
+// and the company.
 test("the footer groups its links by product, resources and company", { tag: "@phone" }, async ({ page }) => {
   await page.goto("/faq");
   const columns = page.getByRole("contentinfo").getByRole("navigation").getByRole("list");
@@ -26,6 +27,7 @@ test("the footer groups its links by product, resources and company", { tag: "@p
     "/compare",
   ]);
   expect(await hrefs(columns.nth(1).getByRole("link"))).toEqual([
+    "/features",
     "/guides",
     "/faq",
     "/documents",

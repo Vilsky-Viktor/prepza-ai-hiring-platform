@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server"
 
 import { AskAgentButton } from "@/components/common/ask-agent-button"
 import { DemosButton } from "@/features/landing/components/demos-button"
-import { MoreLink } from "@/features/landing/components/section"
+import { MoreLink } from "@/components/common/more-link"
 import { StartButton } from "@/features/landing/components/start-button"
 import { GLOW } from "@/config/landing-backgrounds"
 

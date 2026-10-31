@@ -478,6 +478,19 @@
       "Looking for a job? Turn on Open to offers to let companies hiring for these subjects see your name, LinkedIn profile and practice results."
     ]
   },
+  "features": {
+    "title": "Features",
+    "text": "Everything prepza does for a company, from a job description to a hire: creating interviews, inviting candidates, what candidates see, reports, integrations, compliance and pricing.",
+    "actions": [
+      "Jump to a group with the tabs at the top: create, invite, interview, decide, connect, trust and pricing.",
+      "See each feature beside a picture of the real app.",
+      "Paste a job description in the box at the end of the page to create an interview.",
+      "Open the pricing page, the developer docs or the trust page from their groups."
+    ],
+    "tips": [
+      "Every feature is included: you pay only for each candidate who answers at least one question."
+    ]
+  },
   "pricing": {
     "title": "Pricing",
     "text": "What prepza costs: generating interviews is free, and you pay per candidate who answers, with no subscription.",

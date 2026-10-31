@@ -478,6 +478,19 @@
       "Otsid tööd? Lülita sisse „Avatud tööpakkumistele“, et nendel teemadel värbavad ettevõtted näeksid sinu nime, LinkedIni profiili ja harjutuse tulemusi."
     ]
   },
+  "features": {
+    "title": "Võimalused",
+    "text": "Kõik, mida prepza ettevõtte jaoks teeb, töökuulutusest töötaja palkamiseni: intervjuude loomine, kandidaatide kutsumine, mida kandidaadid näevad, raportid, integratsioonid, nõuetele vastavus ja hinnad.",
+    "actions": [
+      "Liigu rühma juurde ülaosa vahekaartidega: loomine, kutsumine, intervjuu, otsustamine, integratsioonid, usaldus ja hinnad.",
+      "Vaata iga võimalust päris rakenduse pildi kõrval.",
+      "Kleebi töökuulutus lehe lõpus olevasse kasti, et luua intervjuu.",
+      "Ava hinnaleht, arendajate dokumentatsioon või usalduse leht nende rühmadest."
+    ],
+    "tips": [
+      "Kõik funktsioonid on hinnas: maksad ainult iga kandidaadi eest, kes vastab vähemalt ühele küsimusele."
+    ]
+  },
   "pricing": {
     "title": "Hinnad",
     "text": "Mida prepza maksab: intervjuude loomine on tasuta ja maksad iga vastava kandidaadi eest, ilma tellimuseta.",

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"
 
 import { GLOW_CARD } from "@/config/landing-backgrounds"
 
-import { IconCard, PHONE_CARDS } from "@/features/landing/components/icon-card"
+import { IconCard, PHONE_CARDS } from "@/components/common/icon-card"
 import { ASK_AGENT_CARDS } from "@/config/ask-agent-demo"
 
 const ICONS = {

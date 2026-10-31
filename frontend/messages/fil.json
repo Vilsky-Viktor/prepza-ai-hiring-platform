@@ -75,7 +75,9 @@
     "news": "Balita",
     "accessibility": "Accessibility",
     "trust": "Tiwala",
-    "language": "Wika"
+    "language": "Wika",
+    "features": "Mga feature",
+    "featuresLink": "mga feature"
   },
   "signIn": {
     "title": "Mag-sign in",
@@ -2737,6 +2739,315 @@
       "mcp": "sa pamamagitan ng isang AI app",
       "api": "sa pamamagitan ng API",
       "ats": "sa pamamagitan ng isang ATS"
+    }
+  },
+  "featuresPage": {
+    "title": "Mga feature: AI interview para sa hiring, mula umpisa hanggang dulo",
+    "description": "Lahat ng feature ng prepza: interview mula sa job description, click at voice mode, mga integrity flag, report, integration sa ATS at API, at compliance.",
+    "hero": {
+      "title": "Mula sa job description\nhanggang sa tamang hire",
+      "text": "Isang timed interview na ginawa para sa role mo, mga aplikante mula kahit saan, at malinaw na makikita kung sino ang pinakamagaling. Kasama ang lahat ng feature.",
+      "start": "Gumawa ng interview",
+      "pricing": "tingnan ang presyo",
+      "proof": {
+        "anyJob": "Anumang trabaho, anumang larangan",
+        "languages": "{count, plural, one {# wika} other {# wika}}",
+        "ready": "Handa sa ~{minutes, plural, one {# minuto} other {# minuto}}",
+        "noSubscription": "Walang subscription"
+      }
+    },
+    "nav": {
+      "create": "gumawa",
+      "invite": "mag-imbita",
+      "interview": "interview",
+      "decide": "magpasya",
+      "connect": "kumonekta",
+      "trust": "tiwala",
+      "pricing": "presyo"
+    },
+    "groups": {
+      "create": {
+        "title": "Gumawa ng interview sa loob ng ilang minuto",
+        "text": "Mag-paste ng job description at makakuha ng timed interview na ginawa para sa role, sa anumang larangan."
+      },
+      "invite": {
+        "title": "Mag-imbita ng mga aplikante mula kahit saan",
+        "text": "I-email sila, maglagay ng isang link sa job ad, mag-upload ng listahan, o hayaang ang iyong ATS, sarili mong platform o isang AI assistant ang magpadala sa kanila."
+      },
+      "interview": {
+        "title": "Ang nakikita ng mga aplikante",
+        "text": "Isang patas na timed interview na may brand mo, sinasagot sa click o sa boses."
+      },
+      "decide": {
+        "title": "Tingnan kung sino ang pinakamagaling",
+        "text": "Grade, bawat sagot at mga integrity flag para sa bawat aplikante. Tao ang nagpapasya; ipinapakita ng prepza kung ano ang dapat tingnan."
+      },
+      "connect": {
+        "title": "Gumagana kasama ng mga tool mo",
+        "text": "Ang iyong ATS, Slack, sarili mong code at mga AI app, o magtanong lang kay Mira."
+      },
+      "trust": {
+        "title": "Tiwala at compliance",
+        "text": "Tao ang nagpapasya, pare-pareho ang patakaran para sa bawat aplikante, at handa na ang mga dokumento para sa GDPR, EU AI Act, at mga patakaran ng UK at US."
+      },
+      "pricing": {
+        "title": "Libre ang lahat\nMagbayad bawat aplikante",
+        "text": "Kasama ang lahat ng feature. May bayad lang ang isang aplikante kapag nakasagot na siya ng kahit isang tanong."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "Mula sa job description",
+        "text": "Binabasa ng AI ang role at nagmumungkahi ng mga topic. Nirerebyu mo ang mga ito nang libre: itira ang mahalaga, palitan ang pangalan, i-edit ang mga subtopic o ilarawan ang mga pagbabago sa simpleng salita.",
+        "alt": "Ang tab ng mga topic ng isang interview: ang kabuuang tanong at minuto para sa bawat aplikante, at ang mga topic kasama ang bilang ng tanong ng bawat isa."
+      },
+      "invite": {
+        "title": "Mag-imbita sa email, listahan o file",
+        "text": "Magdagdag ng isang aplikante, mag-paste ng listahan o mag-upload ng CSV o TXT file. Bawat isa ay may sariling link, at paalala kung hindi pa sila nagsisimula.",
+        "alt": "Ang dialog ng bagong aplikante, may mga tab para sa isang aplikante, isang listahan at pag-upload ng file."
+      },
+      "link": {
+        "title": "Isang link para sa job ad mo",
+        "text": "I-on ang shareable link ng interview at ilagay ito sa job ad mo. Puwede itong sagutan ng kahit sino nang isang beses, gamit ang na-verify na email.",
+        "alt": "Ang tab ng settings ng isang interview: ang shareable link, ang switch ng click at voice mode, ang oras bawat tanong at ang pass mark."
+      },
+      "start": {
+        "title": "Malinaw na patakaran sa simula pa lang",
+        "text": "Bago magsimula, nakikita ng mga aplikante ang role, ang oras bawat tanong at para sa buong interview, at ang mga patakaran, at nangangakong sasagot nang mag-isa, nang walang AI tool o tulong ng ibang tao.",
+        "alt": "Ang start page ng isang interview: ang role, ang average na oras bawat tanong, ang minuto ng buong interview, ang pangako at ang mga patakaran."
+      },
+      "click": {
+        "title": "Click mode",
+        "text": "Bawat aplikante ay may sariling random na mga tanong, sa sarili nilang pagkakasunod-sunod, na may countdown sa bawat isa.",
+        "alt": "Isang tanong ng aplikante sa click mode: ang tanong, ang countdown nito at apat na pagpipiliang sagot, may isang napili."
+      },
+      "voice": {
+        "title": "Voice mode kasama si Mira",
+        "text": "Binabasa nang malakas ni Mira, isang AI interviewer, ang bawat tanong at ang mga pagpipilian nito, at sumasagot ang mga aplikante nang hindi gumagamit ng kamay. Agad na sine-save ang malinaw na sagot; kinukumpirma muna ang iba.",
+        "alt": "Isang voice interview: si Mira, ang AI interviewer, katabi ng tanong, at ipinapakita ng turn pill na turno na ng aplikante."
+      },
+      "brand": {
+        "title": "Ang brand mo, hindi amin",
+        "text": "Itakda ang logo mo, mga kulay para sa light at dark, mga font at mga sulok, na may live preview. Ang kumpanya mo lang ang nakikita ng mga aplikante, walang header o footer ng prepza.",
+        "alt": "Ang tab ng brand: ang logo, mga font at mga sulok, na may live preview ng interview."
+      },
+      "candidates": {
+        "title": "Ikumpara ang mga aplikante sa isang tingin",
+        "text": "Ang status at grade ng bawat aplikante kumpara sa pass mark mo, sa iisang listahan. I-sort ayon sa grade, maghanap ayon sa pangalan o email, i-filter kung sino ang pumasa o naka-flag.",
+        "alt": "Listahan ng mga aplikante ng isang interview na may mga pangalan, status, grade at isang naka-flag na aplikante."
+      },
+      "signals": {
+        "title": "Mga integrity flag",
+        "text": "Pag-alis sa page, pagtatangkang kumopya at mga sagot na masyadong mabilis para mabasa ang tanong, pati dalawang pattern ng sagot: oras na hindi tugma sa mga tanong, at tama ang mahihirap na tanong habang mali ang madadali.",
+        "alt": "Report ng isang aplikante: ang card ng mga pattern ng sagot kasama ang mga flag nito at mga mungkahing follow-up na tanong."
+      },
+      "share": {
+        "title": "I-share ang mga report sa ilang segundo",
+        "text": "Mag-download ng PDF para sa isang aplikante o sa buong interview, i-email ito mula sa prepza, o magpadala ng maikling buod sa messaging app.",
+        "alt": "Ang share dialog para sa report ng isang aplikante: isang email address na padadalhan ng PDF, o isang buod sa WhatsApp, Telegram, Viber o LINE."
+      },
+      "notes": {
+        "title": "Mga note para sa team mo",
+        "text": "Magsulat tungkol sa hiring round sa tab ng mga note ng interview at i-pin ang mahalagang note: lalabas ito sa ilalim ng pangalan ng interview. Hindi kailanman nakikita ng mga aplikante ang mga note.",
+        "alt": "Ang tab ng mga note ng isang interview na may naka-pin na note at mas bagong note mula sa team."
+      },
+      "emails": {
+        "title": "Mga email na gumagawa ng trabaho",
+        "text": "Natatanggap ng mga aplikante ang imbitasyon nila sa wika ng interview, kasama ang logo mo, at paalala kung hindi pa sila nagsisimula. Isang buod ng aktibidad bawat araw ang natatanggap ng team mo sa halip na email para sa bawat pangyayari.",
+        "alt": "Isang email ng imbitasyon sa interview mula sa Lumen Health, kasama ang logo nito at ang button na nagbubukas ng imbitasyon"
+      },
+      "integrations": {
+        "title": "Lahat ng koneksyon sa iisang lugar",
+        "text": "Ikonekta ang ATS, Slack, mga API key, webhook at mga AI app mula sa tab ng mga integration ng kumpanya mo, bawat isa ay may sariling page at mga hakbang.",
+        "alt": "Ang tab ng mga integration ng isang kumpanya: isang nakakonektang ATS, Slack, ang API, mga webhook at mga AI app."
+      },
+      "biasAudit": {
+        "title": "Bias audit export",
+        "text": "I-export bilang CSV ang mga resulta ng mga aplikanteng tapos na para sa isang independiyenteng bias audit, gaya ng Local Law 144 ng New York City, o sarili mong four-fifths check.",
+        "alt": "Ang dialog ng bias audit export: lahat ng interview o isa, at isang opsyonal na saklaw ng petsa."
+      }
+    },
+    "points": {
+      "questions": "{count, plural, one {# tanong} other {# tanong}} ang ginagawa bawat topic; ikaw ang pipili kung ilan ang makukuha ng bawat aplikante",
+      "options": "Apat na pagpipilian bawat tanong, may ilang may higit sa isang tamang sagot",
+      "examples": "Ipinapakita bilang halimbawa ang code, query at command kapag kailangan ng role",
+      "names": "Pinangangalanan ang mga linyang hindi ma-imbitahan, kasama ang dahilan",
+      "credits": "Bumabalik ang credits para sa sinumang hindi kailanman sumagot",
+      "expire": "Kusang nag-e-expire ang mga imbitasyon pagkalipas ng isang buwan",
+      "linkOff": "Puwedeng i-off anumang oras, at kapag may na-hire na sa role",
+      "mode": "Pinipili ang click o voice mode sa parehong page",
+      "settings": "Katabi ang average na oras bawat tanong at ang pass mark",
+      "time": "Ipinapakita ang kabuuang oras bago sila magsimula",
+      "phone": "Gumagana sa phone pati sa computer",
+      "saved": "Sine-save ang progreso habang sumasagot",
+      "tap": "Gumagana rin palagi ang pag-tap sa isang pagpipilian",
+      "kept": "Ginagawa lang na text ang boses, hindi kailanman itinatago",
+      "voiceLanguages": "Sa Ingles, Espanyol, Aleman, Pranses, Portuges at Italyano",
+      "contrast": "Tinatanggihan ang mga kulay na mahirap basahin",
+      "logo": "Ang logo mo sa mga imbitasyon, sa interview at sa mga PDF report",
+      "sort": "Pinakamataas na grade muna sa isang click",
+      "status": "Inimbitahan, in progress, tapos na, expired o hindi naihatid",
+      "proof": "Dahilan para tumingin nang mas mabuti, hindi kailanman patunay",
+      "camera": "Walang camera, screen recording o pag-track ng device",
+      "followUps": "Mga tanong na pag-uusapan sa isang live interview",
+      "pdf": "Mga PDF report na may grade at bawat sagot",
+      "messengers": "Mga buod sa WhatsApp, Telegram, Viber o LINE",
+      "viewers": "Nakakapag-share din ang mga viewer, nang walang binabago",
+      "everyone": "Nakakasulat ang bawat miyembro, pati ang mga viewer",
+      "bell": "Dumarating ang mga bagong note sa bell at sa Slack channel mo",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee at Breezy HR",
+      "results": "Awtomatikong naiimbitahan ang mga aplikante, ibinabalik ang mga resulta",
+      "docs": "Dokumentasyon para sa developer ng API, mga webhook, SDK at MCP",
+      "noInference": "Hindi kailanman nagtatanong o nanghuhula ang prepza ng mga katangiang protektado ng batas",
+      "owner": "Ang may-ari lang ang nakakapag-export, at nakatala ito sa log ng aksyon",
+      "askTime": "Sinasabihan ang sinumang nangangailangan ng mas maraming oras na magtanong bago magsimula",
+      "peopleDecide": "Sinasabihan na mga tao sa kumpanya mo ang nagrerebyu ng resulta at nagpapasya",
+      "digest": "Ang buod: sino ang nakatapos, mga imbitasyong hindi naihatid, mga aplikante mula sa ATS na hindi na-imbitahan, mga bagong note at mga interview na handa na",
+      "emailChoice": "Bawat uri ng email ay nabubuksan o napapatay sa settings mo",
+      "stopEmails": "Mapapahinto ng mga aplikante ang mga email mo sa isang click"
+    },
+    "cards": {
+      "templates": {
+        "title": "Mga handang template",
+        "text": "Kopyahin ang isang interview ayon sa role, level at wika, agad at libre."
+      },
+      "bank": {
+        "title": "Shared question bank",
+        "text": "Ginagamit muli ng mga bagong interview ang mga tanong na napatunayan na sa iba. Huwag isama ang sa iyo gamit ang isang checkbox."
+      },
+      "quality": {
+        "title": "Mga tanong na kusang naaayos",
+        "text": "Tinutukoy ng mga sagot, boto at report ang mahihinang tanong; inaayos o pinapalitan ang mga ito."
+      },
+      "languages": {
+        "title": "{count, plural, one {# wika} other {# wika}}",
+        "text": "Ang app, ang mga interview at ang mga email, sa wika ng mga aplikante mo."
+      },
+      "preview": {
+        "title": "I-preview muna",
+        "text": "Sagutan ang interview gaya ng isang aplikante, nang libre, bago mag-imbita ng sinuman."
+      },
+      "ats": {
+        "title": "Mula sa ATS mo",
+        "text": "Awtomatikong naiimbitahan ang mga aplikante sa stage na pinili mo, at ibinabalik ang mga resulta."
+      },
+      "platform": {
+        "title": "Mula sa platform mo",
+        "text": "Mag-imbita sa pamamagitan ng API, o i-embed ang interview sa sarili mong site gamit ang SDK."
+      },
+      "assistants": {
+        "title": "Mula sa isang AI assistant",
+        "text": "Magtanong kay Mira, o sa Claude, ChatGPT at iba pang AI app sa MCP, gamit ang mga permiso mo."
+      },
+      "extraTime": {
+        "title": "Dagdag na oras",
+        "text": "Bigyan ang isang aplikante ng mas maraming oras sa bawat tanong bago siya magsimula; walang tinatanong na dahilan."
+      },
+      "ownMode": {
+        "title": "Sariling mode",
+        "text": "Ilipat ang isang aplikante sa click o voice mode, para sa taong hindi makasagot nang malakas."
+      },
+      "fair": {
+        "title": "Pare-parehong patakaran para sa lahat",
+        "text": "Parehong timer at halo ng mga tanong para sa lahat, at ang server ang nagbabantay ng oras."
+      },
+      "rate": {
+        "title": "Nire-rate ng mga aplikante ang mga tanong",
+        "text": "May boto at paraan para mag-report ng problema sa bawat tanong."
+      },
+      "accessible": {
+        "title": "Accessible",
+        "text": "Ginawa para sa WCAG 2.2 AA, sa bawat wika, light at dark."
+      },
+      "notifications": {
+        "title": "Mga notification",
+        "text": "Sinasabihan ka ng bell, mga email at ng Slack channel mo kapag natapos ang mga aplikante."
+      },
+      "discover": {
+        "title": "Discover",
+        "text": "Kapag nakapag-top up ka na, makikita mo ang mga taong open to offers na tugma sa role ang libreng practice."
+      },
+      "hired": {
+        "title": "Markahan bilang na-hire",
+        "text": "Isara ang role at ang shareable link nito sa isang hakbang."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Pumili ng channel at kung aling mga notification ang mapupunta roon."
+      },
+      "api": {
+        "title": "Public API",
+        "text": "Mga key na may mga permisong tsinek mo lang, at puwedeng limitahan sa mga IP address mo."
+      },
+      "webhooks": {
+        "title": "Mga webhook",
+        "text": "Mga signed event kapag nagsimula o natapos ang isang aplikante, may test send at delivery log."
+      },
+      "mcp": {
+        "title": "Mga AI app sa MCP",
+        "text": "Nagbabasa at kumikilos ang Claude, ChatGPT at iba pang AI app gamit ang mga permiso mo."
+      },
+      "mira": {
+        "title": "Magtanong kay Mira",
+        "text": "Binabasa ng AI assistant ang mga resulta mo, sinasagot kung paano gawin ang mga bagay at kumikilos kapag kinumpirma mo."
+      },
+      "person": {
+        "title": "Tao ang nagpapasya",
+        "text": "Sinusuportahan ng score ang desisyon mo; hindi ito ang nagpapasya."
+      },
+      "roles": {
+        "title": "Mga role sa team",
+        "text": "Mga may-ari, admin at viewer; nakikita ng mga viewer ang mga resulta pero wala silang binabago o ginagastos."
+      },
+      "log": {
+        "title": "Log ng aksyon",
+        "text": "Nakikita ng may-ari kung sino ang gumawa ng ano, sa app, sa pamamagitan ni Mira, ng API o ng ATS."
+      },
+      "documents": {
+        "title": "Handa ang mga dokumento",
+        "text": "Isang data processing agreement, template ng DPIA at mga template ng abiso sa aplikante."
+      },
+      "privacy": {
+        "title": "Pribado mula sa disenyo",
+        "text": "Walang pagbebenta ng data, walang hinuhulaan tungkol sa mga aplikante, hindi kailanman itinatago ang boses."
+      },
+      "verified": {
+        "title": "Mga na-verify na kumpanya",
+        "text": "May check sa tabi ng pangalan ng kumpanya mo kapag na-verify na ang website nito."
+      },
+      "free": {
+        "title": "{count, plural, one {# libreng aplikante} other {# libreng aplikante}}",
+        "text": "Kasama na ito sa una mong kumpanya, walang card na kailangan."
+      },
+      "answered": {
+        "title": "Ang sumasagot lang",
+        "text": "Walang bayad ang mga imbitasyong hindi sinagot; bumabalik ang credits nila."
+      },
+      "expire": {
+        "title": "Hindi nag-e-expire ang credits",
+        "text": "Mas mura bawat aplikante ang mas malalaking top-up; mare-refund ang hindi nagamit na binayarang credits."
+      },
+      "autoTopUp": {
+        "title": "Awtomatikong top-up",
+        "text": "Opsyonal: pinupunan ang credits kapag paubos na, at wala pa ring subscription."
+      },
+      "referrals": {
+        "title": "Referrals",
+        "text": "Magdala ng ibang kumpanya at pareho kayong makakakuha ng libreng aplikante kapag nag-top up ito."
+      },
+      "currencies": {
+        "title": "Ang currency mo",
+        "text": "Mga presyo sa {count, plural, one {# currency} other {# currency}}, ayon sa iyong bansa."
+      }
+    },
+    "more": {
+      "developerDocs": "dokumentasyon para sa developer",
+      "trust": "page ng tiwala",
+      "documents": "mga dokumento",
+      "pricing": "tingnan ang presyo"
+    },
+    "closing": {
+      "title": "Gawin ang iyong unang interview\nLibre ito"
     }
   }
 }

@@ -75,7 +75,9 @@
     "news": "Haberler",
     "accessibility": "Erişilebilirlik",
     "trust": "Güven",
-    "language": "Dil"
+    "language": "Dil",
+    "features": "Özellikler",
+    "featuresLink": "özellikler"
   },
   "signIn": {
     "title": "Giriş yap",
@@ -2737,6 +2739,315 @@
       "mcp": "bir yapay zekâ uygulaması üzerinden",
       "api": "API üzerinden",
       "ats": "bir ATS üzerinden"
+    }
+  },
+  "featuresPage": {
+    "title": "Özellikler: işe alım için baştan sona yapay zekâ mülakatları",
+    "description": "prepza'nın tüm özellikleri: iş tanımından mülakatlar, tıklama ve sesli mod, dürüstlük uyarıları, raporlar, ATS ve API entegrasyonları ve mevzuata uyum.",
+    "hero": {
+      "title": "İş tanımından\ndoğru işe alıma",
+      "text": "Pozisyonunuz için yazılmış süreli bir mülakat, her yerden adaylar ve en iyinin kim olduğuna dair net bir görünüm. Tüm özellikler dahil.",
+      "start": "Mülakat oluştur",
+      "pricing": "fiyatları görün",
+      "proof": {
+        "anyJob": "Her pozisyon, her sektör",
+        "languages": "{count, number} dil",
+        "ready": "~{minutes, number} dakikada hazır",
+        "noSubscription": "Abonelik yok"
+      }
+    },
+    "nav": {
+      "create": "oluşturma",
+      "invite": "davet",
+      "interview": "mülakat",
+      "decide": "karar",
+      "connect": "entegrasyonlar",
+      "trust": "güven",
+      "pricing": "fiyatlar"
+    },
+    "groups": {
+      "create": {
+        "title": "Dakikalar içinde mülakat oluşturun",
+        "text": "Bir iş tanımı yapıştırın, her sektörde o pozisyon için yazılmış süreli bir mülakat alın."
+      },
+      "invite": {
+        "title": "Adayları her yerden davet edin",
+        "text": "E-postayla davet edin, iş ilanına tek bir bağlantı koyun, bir liste yükleyin ya da adayları ATS'niz, kendi platformunuz veya bir yapay zekâ asistanı göndersin."
+      },
+      "interview": {
+        "title": "Adaylar ne görür",
+        "text": "Markanıza özel, adil ve süreli bir mülakat; tıklayarak ya da sesle cevaplanır."
+      },
+      "decide": {
+        "title": "En iyisini görün",
+        "text": "Her aday için notlar, tüm cevaplar ve dürüstlük uyarıları. Kararı bir insan verir; prepza nelere bakmanız gerektiğini gösterir."
+      },
+      "connect": {
+        "title": "Araçlarınızla çalışır",
+        "text": "ATS'niz, Slack, kendi kodunuz ve yapay zekâ uygulamaları ya da sadece Mira'ya sorun."
+      },
+      "trust": {
+        "title": "Güven ve mevzuata uyum",
+        "text": "Kararı bir insan verir, her aday aynı kurallara tabidir ve GDPR, AB Yapay Zekâ Yasası, Birleşik Krallık ve ABD kuralları için belgeler hazır."
+      },
+      "pricing": {
+        "title": "Her şey ücretsiz\nAday başına ödeyin",
+        "text": "Tüm özellikler dahil. Bir aday ancak en az bir soruyu yanıtladığında ücretlendirilir."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "Bir iş tanımından",
+        "text": "Yapay zekâ pozisyonu okur ve konular önerir. Bunları ücretsiz gözden geçirirsiniz: önemli olanları tutar, yeniden adlandırır, alt konuları düzenler ya da değişiklikleri kendi sözlerinizle anlatırsınız.",
+        "alt": "Bir mülakatın konular sekmesi: her aday için toplam soru ve dakika ile soru sayılarıyla konular."
+      },
+      "invite": {
+        "title": "E-posta, liste veya dosyayla davet edin",
+        "text": "Tek bir aday ekleyin, bir liste yapıştırın ya da CSV veya TXT dosyası yükleyin. Her aday kendi bağlantısını alır, henüz başlamadıysa da bir hatırlatma.",
+        "alt": "Yeni aday penceresi: tek aday, liste ve dosya yükleme sekmeleri."
+      },
+      "link": {
+        "title": "İş ilanınız için tek bağlantı",
+        "text": "Mülakatın paylaşılabilir bağlantısını açın ve iş ilanınıza koyun. Herkes doğrulanmış bir e-postayla mülakata bir kez girebilir.",
+        "alt": "Bir mülakatın ayarlar sekmesi: paylaşılabilir bağlantı, tıklama ve sesli mod düğmesi, soru başına süre ve geçme notu."
+      },
+      "start": {
+        "title": "Baştan net kurallar",
+        "text": "Adaylar başlamadan önce pozisyonu, soru başına ve tüm mülakat için süreyi ve kuralları görür; yapay zekâ araçları veya başka kişiler olmadan kendi başlarına cevap vereceklerine söz verirler.",
+        "alt": "Bir mülakatın başlangıç sayfası: pozisyon, soru başına ortalama süre, tüm mülakatın dakikası, taahhüt ve kurallar."
+      },
+      "click": {
+        "title": "Tıklama modu",
+        "text": "Her aday kendi rastgele sorularını kendi sırasıyla alır, her soruda bir geri sayım vardır.",
+        "alt": "Tıklama modunda bir adayın sorusu: soru, geri sayımı ve biri seçilmiş dört cevap seçeneği."
+      },
+      "voice": {
+        "title": "Mira ile sesli mod",
+        "text": "Yapay zekâ mülakatçısı Mira her soruyu ve seçeneklerini sesli okur, adaylar da ellerini kullanmadan cevap verir. Net bir cevap hemen kaydedilir; diğer her şey önce onaylanır.",
+        "alt": "Sesli mülakat: sorunun yanında yapay zekâ mülakatçısı Mira ve sıranın adayda olduğunu gösteren sıra göstergesi."
+      },
+      "brand": {
+        "title": "Sizin markanız, bizimki değil",
+        "text": "Logonuzu, açık ve koyu tema renklerini, yazı tiplerini ve köşeleri canlı önizlemeyle ayarlayın. Adaylar prepza'nın üst ve alt bilgisi olmadan yalnızca şirketinizi görür.",
+        "alt": "Marka sekmesi: logo, yazı tipleri ve köşeler, mülakatın canlı önizlemesiyle."
+      },
+      "candidates": {
+        "title": "Adayları bir bakışta karşılaştırın",
+        "text": "Her adayın durumu ve geçme notunuza göre notu tek bir listede. Nota göre sıralayın, ada veya e-postaya göre arayın, geçenleri ya da işaretlenenleri filtreleyin.",
+        "alt": "Bir mülakatın aday listesi: adlar, durumlar, notlar ve işaretlenmiş bir aday."
+      },
+      "signals": {
+        "title": "Dürüstlük uyarıları",
+        "text": "Sayfadan ayrılmalar, kopyalama denemeleri ve okunmuş olamayacak kadar hızlı cevaplar, ayrıca iki cevap örüntüsü: sorulara uymayan süreler ve kolay sorular yanlışken zor soruların doğru olması.",
+        "alt": "Bir adayın raporu: uyarıları ve önerilen ek sorularıyla cevap örüntüleri kartı."
+      },
+      "share": {
+        "title": "Raporları saniyeler içinde paylaşın",
+        "text": "Tek bir aday ya da tüm mülakat için PDF indirin, prepza'dan e-postayla gönderin veya bir mesajlaşma uygulamasında kısa bir özet paylaşın.",
+        "alt": "Bir adayın raporu için paylaşım penceresi: PDF'in gönderileceği e-posta adresi ya da WhatsApp, Telegram, Viber veya LINE'da bir özet."
+      },
+      "notes": {
+        "title": "Ekibiniz için yorumlar",
+        "text": "İşe alım süreciyle ilgili yorumları mülakatın yorumlar sekmesine yazın ve önemli olanı sabitleyin: mülakatın adının altında görünür. Adaylar yorumları asla görmez.",
+        "alt": "Bir mülakatın yorumlar sekmesi: sabitlenmiş bir yorum ve ekipten daha yeni bir yorum."
+      },
+      "emails": {
+        "title": "İşi sizin yerinize yapan e-postalar",
+        "text": "Adaylar davetlerini mülakatın dilinde, logonuzla alır; henüz başlamadılarsa bir hatırlatma da. Ekibiniz her olay için ayrı bir e-posta yerine günde tek bir etkinlik özeti alır.",
+        "alt": "Lumen Health'ten bir mülakat daveti e-postası: logosu ve daveti açan düğme"
+      },
+      "integrations": {
+        "title": "Tüm bağlantılar tek yerde",
+        "text": "ATS, Slack, API anahtarları, webhook'lar ve yapay zekâ uygulamalarını şirketinizin entegrasyonlar sekmesinden bağlayın; her birinin kendi sayfası ve adımları vardır.",
+        "alt": "Bir şirketin entegrasyonlar sekmesi: bağlı bir ATS, Slack, API, webhook'lar ve yapay zekâ uygulamaları."
+      },
+      "biasAudit": {
+        "title": "Yanlılık denetimi için dışa aktarım",
+        "text": "Mülakatı bitiren adayların sonuçlarını bağımsız bir yanlılık denetimi, örneğin New York City'nin Local Law 144 yasası, ya da kendi beşte dört kontrolünüz için CSV olarak dışa aktarın.",
+        "alt": "Yanlılık denetimi dışa aktarım penceresi: tüm mülakatlar veya biri ve isteğe bağlı bir tarih aralığı."
+      }
+    },
+    "points": {
+      "questions": "Konu başına {count, plural, one {# soru} other {# soru}} yazılır; her adayın kaç soru alacağını siz seçersiniz",
+      "options": "Soru başına dört seçenek, bazılarında birden fazla doğru cevap",
+      "examples": "Pozisyon gerektiriyorsa kod, sorgular ve komutlar örnek olarak gösterilir",
+      "names": "Davet edilemeyen satırlar nedeniyle birlikte belirtilir",
+      "credits": "Hiç cevap vermeyenlerin kredileri geri gelir",
+      "expire": "Davetlerin süresi bir ay sonra kendiliğinden dolar",
+      "linkOff": "İstediğiniz zaman kapatılır, pozisyon dolduğunda da kapanır",
+      "mode": "Tıklama veya sesli mod aynı sayfada seçilir",
+      "settings": "Soru başına ortalama süre ve geçme notu hemen yanında",
+      "time": "Toplam süre başlamadan önce gösterilir",
+      "phone": "Bilgisayarda olduğu kadar telefonda da çalışır",
+      "saved": "İlerleme ilerledikçe kaydedilir",
+      "tap": "Bir seçeneğe dokunmak da her zaman işe yarar",
+      "kept": "Ses yalnızca metne çevrilir, asla saklanmaz",
+      "voiceLanguages": "İngilizce, İspanyolca, Almanca, Fransızca, Portekizce ve İtalyanca",
+      "contrast": "Okunması zor olacak renkler kabul edilmez",
+      "logo": "Logonuz davetlerde, mülakatta ve PDF raporlarda",
+      "sort": "Tek tıkla en yüksek notlar en üstte",
+      "status": "Davet edildi, devam ediyor, bitti, süresi doldu veya teslim edilmedi",
+      "proof": "Daha yakından bakmak için bir neden, asla kanıt değil",
+      "camera": "Kamera, ekran kaydı veya cihaz takibi yok",
+      "followUps": "Yüz yüze mülakatta konuşulacak sorular",
+      "pdf": "Notlar ve tüm cevaplarla PDF raporlar",
+      "messengers": "WhatsApp, Telegram, Viber veya LINE'da özetler",
+      "viewers": "Görüntüleyiciler de hiçbir şeyi değiştirmeden paylaşabilir",
+      "everyone": "Görüntüleyiciler dahil her üye yazabilir",
+      "bell": "Yeni yorumlar zil simgesine ve Slack kanalınıza düşer",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee ve Breezy HR",
+      "results": "Adaylar otomatik davet edilir, sonuçlar geri gönderilir",
+      "docs": "API, webhook'lar, SDK ve MCP için geliştirici belgeleri",
+      "noInference": "prepza korunan özellikleri asla sormaz ve tahmin etmez",
+      "owner": "Yalnızca şirket sahibi dışa aktarabilir ve bu işlem kaydına geçer",
+      "askTime": "Daha fazla süreye ihtiyacı olanlara başlamadan önce istemeleri söylenir",
+      "peopleDecide": "Sonuçları şirketinizdeki kişilerin inceleyip karar verdiği belirtilir",
+      "digest": "Özette: mülakatı tamamlayanlar, iletilemeyen davetler, davet edilmeyen ATS adayları, yeni yorumlar ve hazır mülakatlar",
+      "emailChoice": "Her e-posta türü ayarlarınızda açılıp kapatılır",
+      "stopEmails": "Adaylar e-postalarınızdan tek tıkla çıkabilir"
+    },
+    "cards": {
+      "templates": {
+        "title": "Hazır şablonlar",
+        "text": "Pozisyon, seviye ve dile göre bir mülakatı anında ve ücretsiz kopyalayın."
+      },
+      "bank": {
+        "title": "Ortak soru bankası",
+        "text": "Yeni mülakatlar başka mülakatlarda kendini kanıtlamış soruları yeniden kullanır. Kendi sorularınızı tek bir onay kutusuyla dışarıda tutun."
+      },
+      "quality": {
+        "title": "Kendini düzelten sorular",
+        "text": "Cevaplar, oylar ve bildirimler zayıf soruları gösterir; bunlar düzeltilir ya da değiştirilir."
+      },
+      "languages": {
+        "title": "{count, number} dil",
+        "text": "Uygulama, mülakatlar ve e-postalar adaylarınızın dilinde."
+      },
+      "preview": {
+        "title": "Önce önizleyin",
+        "text": "Kimseyi davet etmeden önce mülakatı bir aday gibi ücretsiz deneyin."
+      },
+      "ats": {
+        "title": "ATS'nizden",
+        "text": "Seçtiğiniz aşamadaki adaylar otomatik davet edilir, sonuçlar da geri gider."
+      },
+      "platform": {
+        "title": "Platformunuzdan",
+        "text": "API üzerinden davet edin ya da mülakatı SDK ile kendi sitenize yerleştirin."
+      },
+      "assistants": {
+        "title": "Bir yapay zekâ asistanından",
+        "text": "Mira'ya ya da MCP üzerinden Claude, ChatGPT ve diğer yapay zekâ uygulamalarına, sizin yetkilerinizle sorun."
+      },
+      "extraTime": {
+        "title": "Ek süre",
+        "text": "Başlamadan önce bir adaya her soru için daha fazla süre verin; neden sorulmaz."
+      },
+      "ownMode": {
+        "title": "Kendi modu",
+        "text": "Sesli cevap veremeyen biri için tek bir adayı tıklama veya sesli moda geçirin."
+      },
+      "fair": {
+        "title": "Herkes için aynı kurallar",
+        "text": "Herkes için aynı süre ve aynı soru karışımı; süreyi sunucu tutar."
+      },
+      "rate": {
+        "title": "Adaylar soruları değerlendirir",
+        "text": "Her soruda bir oy ve sorun bildirme imkânı."
+      },
+      "accessible": {
+        "title": "Erişilebilir",
+        "text": "WCAG 2.2 AA'ya göre tasarlandı; her dilde, açık ve koyu temada."
+      },
+      "notifications": {
+        "title": "Bildirimler",
+        "text": "Adaylar bitirdiğinde zil, e-postalar ve Slack kanalınız size haber verir."
+      },
+      "discover": {
+        "title": "Keşfet",
+        "text": "Kredi yükledikten sonra, ücretsiz pratiği pozisyona uyan ve iş tekliflerine açık kişileri görün."
+      },
+      "hired": {
+        "title": "İşe alındı olarak işaretle",
+        "text": "Pozisyonu ve paylaşılabilir bağlantısını tek adımda kapatın."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Bir kanal ve oraya hangi bildirimlerin gideceğini seçin."
+      },
+      "api": {
+        "title": "Herkese açık API",
+        "text": "Yalnızca işaretlediğiniz yetkilere sahip anahtarlar, isterseniz IP adreslerinizle sınırlı."
+      },
+      "webhooks": {
+        "title": "Webhook'lar",
+        "text": "Bir aday başladığında veya bitirdiğinde imzalı olaylar; test gönderimi ve teslimat kaydıyla."
+      },
+      "mcp": {
+        "title": "MCP üzerinden yapay zekâ uygulamaları",
+        "text": "Claude, ChatGPT ve diğer yapay zekâ uygulamaları sizin yetkilerinizle okur ve işlem yapar."
+      },
+      "mira": {
+        "title": "Mira'ya sorun",
+        "text": "Yapay zekâ asistanı sonuçlarınızı okur, “nasıl yapılır” sorularını yanıtlar ve siz onayladıktan sonra işlem yapar."
+      },
+      "person": {
+        "title": "Kararı bir insan verir",
+        "text": "Puan kararınızı destekler, kararı vermez."
+      },
+      "roles": {
+        "title": "Ekip rolleri",
+        "text": "Sahipler, yöneticiler ve görüntüleyiciler; görüntüleyiciler sonuçları görür ama hiçbir şeyi değiştirmez ve harcamaz."
+      },
+      "log": {
+        "title": "İşlem kaydı",
+        "text": "Şirket sahibi uygulamada, Mira, API veya bir ATS üzerinden kimin ne yaptığını görür."
+      },
+      "documents": {
+        "title": "Belgeler hazır",
+        "text": "Veri işleme sözleşmesi, DPIA şablonu ve aday bilgilendirme şablonları."
+      },
+      "privacy": {
+        "title": "Tasarımdan gizlilik",
+        "text": "Veri satışı yok, adaylar hakkında çıkarım yok, ses asla saklanmaz."
+      },
+      "verified": {
+        "title": "Doğrulanmış şirketler",
+        "text": "Web siteniz doğrulandığında şirketinizin adının yanında bir onay işareti."
+      },
+      "free": {
+        "title": "{count, plural, one {# ücretsiz aday} other {# ücretsiz aday}}",
+        "text": "İlk şirketiniz bunlarla başlar, kart gerekmez."
+      },
+      "answered": {
+        "title": "Yalnızca cevap verenler",
+        "text": "Yanıtlanmayan davetler ücretsizdir; kredileri geri gelir."
+      },
+      "expire": {
+        "title": "Krediler hiç sona ermez",
+        "text": "Daha büyük yüklemelerde aday başına fiyat düşer; kullanılmayan ücretli krediler iade edilebilir."
+      },
+      "autoTopUp": {
+        "title": "Otomatik yükleme",
+        "text": "İsteğe bağlı: krediler azaldığında yeniden yüklenir, yine abonelik yok."
+      },
+      "referrals": {
+        "title": "Şirket davetleri",
+        "text": "Başka bir şirket getirin; o şirket kredi yüklediğinde ikiniz de ücretsiz aday kazanırsınız."
+      },
+      "currencies": {
+        "title": "Kendi para biriminiz",
+        "text": "{count, number} para biriminde fiyatlar, ülkenize göre."
+      }
+    },
+    "more": {
+      "developerDocs": "geliştirici belgeleri",
+      "trust": "güven sayfası",
+      "documents": "belgeler",
+      "pricing": "fiyatları görün"
+    },
+    "closing": {
+      "title": "İlk mülakatınızı oluşturun\nÜcretsiz"
     }
   }
 }

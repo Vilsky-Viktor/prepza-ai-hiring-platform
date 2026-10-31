@@ -75,7 +75,9 @@
     "news": "Uudised",
     "accessibility": "Ligipääsetavus",
     "trust": "Usaldus",
-    "language": "Keel"
+    "language": "Keel",
+    "features": "Võimalused",
+    "featuresLink": "võimalused"
   },
   "signIn": {
     "title": "Logi sisse",
@@ -2737,6 +2739,315 @@
       "mcp": "AI-rakenduse kaudu",
       "api": "API kaudu",
       "ats": "ATS-i kaudu"
+    }
+  },
+  "featuresPage": {
+    "title": "Võimalused: tehisaruga intervjuud värbamiseks algusest lõpuni",
+    "description": "Kõik prepza võimalused: intervjuud töökuulutuse põhjal, klõpsu- ja häälerežiim, märked kahtlase käitumise kohta, raportid, ATS- ja API-integratsioonid ning nõuetele vastavus.",
+    "hero": {
+      "title": "Töökuulutusest\nõige töötajani",
+      "text": "Sinu ametikoha jaoks kirjutatud ajapiiranguga intervjuu, kandidaadid igalt poolt ja selge pilt sellest, kes on parim. Kõik funktsioonid on hinnas.",
+      "start": "Loo intervjuu",
+      "pricing": "vaata hindu",
+      "proof": {
+        "anyJob": "Iga ametikoht, iga valdkond",
+        "languages": "{count, plural, one {# keel} other {# keelt}}",
+        "ready": "Valmis ~{minutes, number} minutiga",
+        "noSubscription": "Ilma tellimuseta"
+      }
+    },
+    "nav": {
+      "create": "loomine",
+      "invite": "kutsumine",
+      "interview": "intervjuu",
+      "decide": "otsustamine",
+      "connect": "integratsioonid",
+      "trust": "usaldus",
+      "pricing": "hinnad"
+    },
+    "groups": {
+      "create": {
+        "title": "Loo intervjuu mõne minutiga",
+        "text": "Kleebi töökuulutus ja saad selle ametikoha jaoks kirjutatud ajapiiranguga intervjuu, mis tahes valdkonnas."
+      },
+      "invite": {
+        "title": "Kutsu kandidaate igalt poolt",
+        "text": "Saada neile e-kiri, pane üks link töökuulutusse, laadi üles nimekiri või lase neid saata oma ATS-il, oma platvormil või AI-assistendil."
+      },
+      "interview": {
+        "title": "Mida kandidaadid näevad",
+        "text": "Õiglane ajapiiranguga intervjuu sinu brändis, vastatakse klõpsu või häälega."
+      },
+      "decide": {
+        "title": "Vaata, kes on parim",
+        "text": "Iga kandidaadi hinded, kõik vastused ja märked kahtlase käitumise kohta. Otsustab inimene, prepza näitab, mida vaadata."
+      },
+      "connect": {
+        "title": "Töötab sinu tööriistadega",
+        "text": "Sinu ATS, Slack, sinu oma kood ja AI-rakendused või lihtsalt küsi Miralt."
+      },
+      "trust": {
+        "title": "Usaldus ja nõuetele vastavus",
+        "text": "Otsustab inimene, kõigil kandidaatidel on samad reeglid ning dokumendid GDPR-i, ELi tehisintellekti määruse (AI Act), Ühendkuningriigi ja USA reeglite jaoks on valmis."
+      },
+      "pricing": {
+        "title": "Kõik on tasuta\nMaksa kandidaadi kohta",
+        "text": "Kõik funktsioonid on hinnas. Kandidaat maksab alles siis, kui ta on vastanud vähemalt ühele küsimusele."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "Töökuulutuse põhjal",
+        "text": "Tehisaru loeb ametikoha kirjelduse ja pakub teemad. Vaatad need tasuta üle: jätad alles olulise, nimetad teemad ümber, muudad alateemasid või kirjeldad muudatusi oma sõnadega.",
+        "alt": "Intervjuu teemade vahekaart: küsimuste ja minutite koguarv iga kandidaadi kohta ning teemad koos küsimuste arvuga."
+      },
+      "invite": {
+        "title": "Kutsu e-kirja, nimekirja või failiga",
+        "text": "Lisa üks kandidaat, kleebi nimekiri või laadi üles CSV- või TXT-fail. Igaüks saab oma lingi ja meeldetuletuse, kui ta pole veel alustanud.",
+        "alt": "Uue kandidaadi aken vahekaartidega ühe kandidaadi, nimekirja ja faili üleslaadimise jaoks."
+      },
+      "link": {
+        "title": "Üks link töökuulutuse jaoks",
+        "text": "Lülita sisse intervjuu jagatav link ja pane see töökuulutusse. Igaüks saab intervjuu teha ühe korra, kinnitatud e-posti aadressiga.",
+        "alt": "Intervjuu seadete vahekaart: jagatav link, klõpsu- ja häälerežiimi lüliti, aeg küsimuse kohta ja läbimise piir."
+      },
+      "start": {
+        "title": "Selged reeglid enne algust",
+        "text": "Enne alustamist näevad kandidaadid ametikohta, aega küsimuse ja kogu intervjuu kohta ning reegleid ja lubavad vastata ise, ilma AI-tööriistade ja teiste inimeste abita.",
+        "alt": "Intervjuu alguslehekülg: ametikoht, keskmine aeg küsimuse kohta, kogu intervjuu minutid, lubadus ja reeglid."
+      },
+      "click": {
+        "title": "Klõpsurežiim",
+        "text": "Iga kandidaat saab oma juhuslikud küsimused oma järjekorras ja igal küsimusel on oma taimer.",
+        "alt": "Kandidaadi küsimus klõpsurežiimis: küsimus, selle taimer ja neli vastusevarianti, millest üks on valitud."
+      },
+      "voice": {
+        "title": "Häälerežiim Miraga",
+        "text": "Mira, tehisaru intervjueerija, loeb iga küsimuse ja selle vastusevariandid ette ning kandidaadid vastavad käsi kasutamata. Selge vastus salvestatakse kohe, kõik muu kinnitatakse enne.",
+        "alt": "Häälintervjuu: Mira, tehisaru intervjueerija, küsimuse kõrval ja kordade näidik, mis näitab, et on kandidaadi kord."
+      },
+      "brand": {
+        "title": "Sinu bränd, mitte meie oma",
+        "text": "Määra logo, värvid heleda ja tumeda teema jaoks, fondid ja nurgad, otse eelvaatega. Kandidaadid näevad ainult sinu ettevõtet, ilma prepza päise ja jaluseta.",
+        "alt": "Brändi vahekaart: logo, fondid ja nurgad koos intervjuu otse-eelvaatega."
+      },
+      "candidates": {
+        "title": "Võrdle kandidaate ühe pilguga",
+        "text": "Iga kandidaadi olek ja hinne võrreldes läbimise piiriga ühes nimekirjas. Sorteeri hinde järgi, otsi nime või e-posti järgi, filtreeri läbinud või märgitud kandidaadid.",
+        "alt": "Intervjuu kandidaatide nimekiri nimede, olekute, hinnete ja ühe märgitud kandidaadiga."
+      },
+      "signals": {
+        "title": "Märked kahtlase käitumise kohta",
+        "text": "Lehelt lahkumised, kopeerimiskatsed ja liiga kiired vastused, et küsimust jõuaks lugeda, ning kaks vastuste mustrit: ajad, mis ei sobi küsimustega, ja õiged vastused rasketele küsimustele, kui lihtsad on valed.",
+        "alt": "Kandidaadi raport: vastuste mustrite kaart koos märgete ja soovitatud lisaküsimustega."
+      },
+      "share": {
+        "title": "Jaga raporteid sekunditega",
+        "text": "Laadi alla PDF ühe kandidaadi või kogu intervjuu kohta, saada see e-kirjaga otse prepzast või saada lühike kokkuvõte sõnumirakenduses.",
+        "alt": "Kandidaadi raporti jagamise aken: e-posti aadress, kuhu PDF saata, või kokkuvõte WhatsAppis, Telegramis, Viberis või LINE-is."
+      },
+      "notes": {
+        "title": "Märkmed meeskonnale",
+        "text": "Kirjuta värbamisvoorust intervjuu märkmete vahekaardil ja kinnita oluline märge: see on näha intervjuu nime all. Kandidaadid märkmeid kunagi ei näe.",
+        "alt": "Intervjuu märkmete vahekaart kinnitatud märkme ja meeskonna uuema märkmega."
+      },
+      "emails": {
+        "title": "E-kirjad, mis teevad töö ära",
+        "text": "Kandidaadid saavad kutse intervjuu keeles ja sinu logoga ning meeldetuletuse, kui nad pole veel alustanud. Sinu meeskond saab iga sündmuse kohta eraldi e-kirja asemel ühe igapäevase tegevuste kokkuvõtte.",
+        "alt": "Lumen Healthi intervjuukutse e-kiri koos logo ja nupuga, mis kutse avab"
+      },
+      "integrations": {
+        "title": "Kõik ühendused ühes kohas",
+        "text": "Ühenda ATS, Slack, API-võtmed, webhookid ja AI-rakendused oma ettevõtte integratsioonide vahekaardil, igaühel oma lehekülg ja sammud.",
+        "alt": "Ettevõtte integratsioonide vahekaart: ühendatud ATS, Slack, API, webhookid ja AI-rakendused."
+      },
+      "biasAudit": {
+        "title": "Eksport kallutatuse auditiks",
+        "text": "Ekspordi lõpetanud kandidaatide tulemused CSV-failina sõltumatuks kallutatuse auditiks, näiteks New Yorgi Local Law 144 järgi, või oma neljaviiendiku reegli kontrolliks.",
+        "alt": "Kallutatuse auditi ekspordi aken: kõik intervjuud või üks ning valikuline kuupäevavahemik."
+      }
+    },
+    "points": {
+      "questions": "{count, plural, one {# küsimus} other {# küsimust}} iga teema kohta; sina valid, mitu iga kandidaat saab",
+      "options": "Neli vastusevarianti küsimuse kohta, mõnel rohkem kui üks õige vastus",
+      "examples": "Kood, päringud ja käsud näidetena, kui ametikoht seda nõuab",
+      "names": "Read, mida ei saa kutsuda, on nimetatud koos põhjusega",
+      "credits": "Krediidid tulevad tagasi kõigi eest, kes kunagi ei vasta",
+      "expire": "Kutsed aeguvad ise kuu aja pärast",
+      "linkOff": "Saab igal ajal välja lülitada ja lülitub välja, kui töötaja on palgatud",
+      "mode": "Klõpsu- või häälerežiim valitakse samal lehel",
+      "settings": "Keskmine aeg küsimuse kohta ja läbimise piir kõrval",
+      "time": "Koguaeg on näha enne alustamist",
+      "phone": "Töötab nii telefonis kui ka arvutis",
+      "saved": "Edenemine salvestatakse jooksvalt",
+      "tap": "Vastusevarianti saab alati ka puudutada",
+      "kept": "Hääl muudetakse ainult tekstiks ja seda ei säilitata kunagi",
+      "voiceLanguages": "Inglise, hispaania, saksa, prantsuse, portugali ja itaalia keeles",
+      "contrast": "Raskesti loetavaid värve ei aktsepteerita",
+      "logo": "Sinu logo kutsetel, intervjuul ja PDF-raportites",
+      "sort": "Parimad hinded eespool ühe klõpsuga",
+      "status": "Kutsutud, pooleli, lõpetatud, aegunud või kohale toimetamata",
+      "proof": "Põhjus lähemalt vaadata, mitte kunagi tõend",
+      "camera": "Ei mingit kaamerat, ekraanisalvestust ega seadme jälgimist",
+      "followUps": "Küsimused, mida vestlusintervjuul läbi arutada",
+      "pdf": "PDF-raportid hinnete ja kõigi vastustega",
+      "messengers": "Kokkuvõtted WhatsAppis, Telegramis, Viberis või LINE-is",
+      "viewers": "Ka vaatajad saavad jagada, ilma midagi muutmata",
+      "everyone": "Kirjutada saab iga liige, ka vaatajad",
+      "bell": "Uued märkmed jõuavad teavituskella alla ja sinu Slacki kanalisse",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee ja Breezy HR",
+      "results": "Kandidaadid kutsutakse automaatselt, tulemused saadetakse tagasi",
+      "docs": "Arendajate dokumentatsioon API, webhookide, SDK ja MCP kohta",
+      "noInference": "prepza ei küsi ega oleta kunagi kaitstud tunnuseid",
+      "owner": "Eksportida saab ainult omanik ja see kajastub toimingute logis",
+      "askTime": "Kes vajab rohkem aega, seda juhendatakse küsima enne alustamist",
+      "peopleDecide": "Kandidaatidele öeldakse, et tulemused vaatavad üle ja otsustavad sinu ettevõtte inimesed",
+      "digest": "Kokkuvõte: kes lõpetas, kohale jõudmata kutsed, kutsumata ATS-i kandidaadid, uued märkmed ja valmis intervjuud",
+      "emailChoice": "Iga e-kirja liiki saab seadetes sisse või välja lülitada",
+      "stopEmails": "Kandidaadid saavad sinu e-kirjadest ühe klõpsuga loobuda"
+    },
+    "cards": {
+      "templates": {
+        "title": "Valmis mallid",
+        "text": "Kopeeri intervjuu ametikoha, taseme ja keele järgi, kohe ja tasuta."
+      },
+      "bank": {
+        "title": "Ühine küsimustepank",
+        "text": "Uued intervjuud kasutavad küsimusi, mis on teistes end tõestanud. Jäta enda omad välja ühe linnukesega."
+      },
+      "quality": {
+        "title": "Küsimused, mis parandavad end ise",
+        "text": "Vastused, hääled ja teated toovad esile nõrgad küsimused ning need parandatakse või asendatakse."
+      },
+      "languages": {
+        "title": "{count, plural, one {# keel} other {# keelt}}",
+        "text": "Rakendus, intervjuud ja e-kirjad sinu kandidaatide keeles."
+      },
+      "preview": {
+        "title": "Proovi enne ise",
+        "text": "Tee intervjuu läbi nii, nagu kandidaat seda teeks, tasuta ja enne kellegi kutsumist."
+      },
+      "ats": {
+        "title": "Sinu ATS-ist",
+        "text": "Sinu valitud etapis olevad kandidaadid kutsutakse automaatselt ja tulemused lähevad tagasi."
+      },
+      "platform": {
+        "title": "Sinu platvormilt",
+        "text": "Kutsu API kaudu või põimi intervjuu SDK abil oma veebisaiti."
+      },
+      "assistants": {
+        "title": "AI-assistendist",
+        "text": "Küsi Miralt või Claude'ilt, ChatGPT-lt ja teistelt AI-rakendustelt MCP kaudu, sinu õigustega."
+      },
+      "extraTime": {
+        "title": "Lisaaeg",
+        "text": "Anna kandidaadile enne alustamist igale küsimusele rohkem aega; põhjust ei küsita."
+      },
+      "ownMode": {
+        "title": "Oma režiim",
+        "text": "Lülita üks kandidaat klõpsu- või häälerežiimile, näiteks kellelegi, kes ei saa valjult vastata."
+      },
+      "fair": {
+        "title": "Samad reeglid kõigile",
+        "text": "Sama taimer ja küsimuste segu kõigile, aega peab server."
+      },
+      "rate": {
+        "title": "Kandidaadid hindavad küsimusi",
+        "text": "Igal küsimusel on hääletus ja võimalus probleemist teatada."
+      },
+      "accessible": {
+        "title": "Ligipääsetav",
+        "text": "Loodud WCAG 2.2 AA järgi, kõigis keeltes, heledas ja tumedas teemas."
+      },
+      "notifications": {
+        "title": "Teavitused",
+        "text": "Kell, e-kirjad ja sinu Slacki kanal annavad teada, kui kandidaadid lõpetavad."
+      },
+      "discover": {
+        "title": "Avasta",
+        "text": "Kui oled krediiti juurde laadinud, näed tööpakkumistele avatud inimesi, kelle tasuta harjutamine sobib ametikohaga."
+      },
+      "hired": {
+        "title": "Märgi palgatuks",
+        "text": "Sulge ametikoht ja selle jagatav link ühe sammuga."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Vali kanal ja millised teavitused sinna lähevad."
+      },
+      "api": {
+        "title": "Avalik API",
+        "text": "Võtmed ainult nende õigustega, mille märgid, soovi korral piiratud sinu IP-aadressidega."
+      },
+      "webhooks": {
+        "title": "Webhookid",
+        "text": "Allkirjastatud sündmused, kui kandidaat alustab või lõpetab, koos testsaatmise ja kohaletoimetamise logiga."
+      },
+      "mcp": {
+        "title": "AI-rakendused MCP kaudu",
+        "text": "Claude, ChatGPT ja teised AI-rakendused loevad ja tegutsevad sinu õigustega."
+      },
+      "mira": {
+        "title": "Küsi Miralt",
+        "text": "AI-assistent loeb sinu tulemusi, vastab „kuidas teha“ küsimustele ja tegutseb pärast sinu kinnitust."
+      },
+      "person": {
+        "title": "Otsustab inimene",
+        "text": "Tulemus toetab sinu otsust, kuid ei tee seda sinu eest."
+      },
+      "roles": {
+        "title": "Meeskonna rollid",
+        "text": "Omanikud, administraatorid ja vaatajad; vaatajad näevad tulemusi, kuid ei muuda ega kuluta midagi."
+      },
+      "log": {
+        "title": "Toimingute logi",
+        "text": "Omanik näeb, kes mida tegi: rakenduses, Mira, API või ATS-i kaudu."
+      },
+      "documents": {
+        "title": "Dokumendid valmis",
+        "text": "Andmetöötlusleping, andmekaitsealase mõjuhinnangu mall ja kandidaaditeate mallid."
+      },
+      "privacy": {
+        "title": "Privaatsus algusest peale",
+        "text": "Andmeid ei müüda, kandidaatide kohta ei tehta järeldusi, häält ei säilitata kunagi."
+      },
+      "verified": {
+        "title": "Kinnitatud ettevõtted",
+        "text": "Linnuke sinu ettevõtte nime kõrval, kui selle veebisait on kinnitatud."
+      },
+      "free": {
+        "title": "{count, plural, one {# tasuta kandidaat} other {# tasuta kandidaati}}",
+        "text": "Sinu esimene ettevõte alustab nendega, kaarti pole vaja."
+      },
+      "answered": {
+        "title": "Ainult vastanute eest",
+        "text": "Vastamata kutsed ei maksa midagi, nende krediidid tulevad tagasi."
+      },
+      "expire": {
+        "title": "Krediidid ei aegu",
+        "text": "Suurema juurdelaadimise korral on kandidaat odavam; kasutamata ostetud krediidid saab tagasi."
+      },
+      "autoTopUp": {
+        "title": "Automaatne juurdelaadimine",
+        "text": "Valikuline: krediiti laaditakse juurde, kui see hakkab otsa saama, ikka ilma tellimuseta."
+      },
+      "referrals": {
+        "title": "Soovitused",
+        "text": "Too teine ettevõte ja te mõlemad saate tasuta kandidaate, kui see krediiti juurde laadib."
+      },
+      "currencies": {
+        "title": "Sinu valuuta",
+        "text": "Hinnad {count, plural, one {# valuutas} other {# valuutas}}, vastavalt sinu riigile."
+      }
+    },
+    "more": {
+      "developerDocs": "arendajate dokumentatsioon",
+      "trust": "usalduse leht",
+      "documents": "dokumendid",
+      "pricing": "vaata hindu"
+    },
+    "closing": {
+      "title": "Loo oma esimene intervjuu\nSee on tasuta"
     }
   }
 }

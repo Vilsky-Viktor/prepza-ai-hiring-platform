@@ -478,6 +478,19 @@
       "Đang tìm việc? Bật Sẵn sàng nhận cơ hội việc làm để các công ty tuyển dụng cho những chủ đề này thấy tên, hồ sơ LinkedIn và kết quả luyện tập của bạn."
     ]
   },
+  "features": {
+    "title": "Tính năng",
+    "text": "Mọi việc prepza làm cho một công ty, từ mô tả công việc đến khi tuyển được người: tạo buổi phỏng vấn, mời ứng viên, những gì ứng viên thấy, báo cáo, tích hợp, tuân thủ và bảng giá.",
+    "actions": [
+      "Chuyển đến một nhóm bằng các thẻ ở trên cùng: tạo, mời, phỏng vấn, quyết định, kết nối, tin cậy và bảng giá.",
+      "Xem từng tính năng bên cạnh hình ảnh của ứng dụng thật.",
+      "Dán mô tả công việc vào ô ở cuối trang để tạo buổi phỏng vấn.",
+      "Mở trang bảng giá, tài liệu cho nhà phát triển hoặc trang tin cậy từ nhóm tương ứng."
+    ],
+    "tips": [
+      "Mọi tính năng đều có sẵn: bạn chỉ trả tiền cho mỗi ứng viên đã trả lời ít nhất một câu hỏi."
+    ]
+  },
   "pricing": {
     "title": "Bảng giá",
     "text": "Chi phí của prepza: tạo buổi phỏng vấn miễn phí, bạn trả theo mỗi ứng viên trả lời, không có gói đăng ký.",

@@ -75,7 +75,9 @@
     "news": "News",
     "accessibility": "Accessibility",
     "trust": "Trust",
-    "language": "Language"
+    "language": "Language",
+    "features": "Features",
+    "featuresLink": "features"
   },
   "signIn": {
     "title": "Sign in",
@@ -2737,6 +2739,315 @@
       "mcp": "through an AI app",
       "api": "through the API",
       "ats": "through an ATS"
+    }
+  },
+  "featuresPage": {
+    "title": "Features: AI interviews for hiring, end to end",
+    "description": "Every prepza feature: interviews from a job description, click and voice modes, integrity signals, reports, ATS and API integrations and compliance.",
+    "hero": {
+      "title": "From job description\nto the right hire",
+      "text": "A timed interview written for your role, candidates from anywhere, and a clear view of who's best. Every feature is included.",
+      "start": "Create an interview",
+      "pricing": "see pricing",
+      "proof": {
+        "anyJob": "Any job, any field",
+        "languages": "{count, plural, one {# language} other {# languages}}",
+        "ready": "Ready in ~{minutes, plural, one {# minute} other {# minutes}}",
+        "noSubscription": "No subscription"
+      }
+    },
+    "nav": {
+      "create": "create",
+      "invite": "invite",
+      "interview": "interview",
+      "decide": "decide",
+      "connect": "connect",
+      "trust": "trust",
+      "pricing": "pricing"
+    },
+    "groups": {
+      "create": {
+        "title": "Create an interview in minutes",
+        "text": "Paste a job description and get a timed interview written for the role, in any field."
+      },
+      "invite": {
+        "title": "Invite candidates from everywhere",
+        "text": "Email them, put one link in a job ad, upload a list, or let your ATS, your own platform or an AI assistant send them in."
+      },
+      "interview": {
+        "title": "What candidates see",
+        "text": "A fair, timed interview in your brand, answered with a click or by voice."
+      },
+      "decide": {
+        "title": "See who's best",
+        "text": "Grades, every answer and integrity signals for each candidate. A person decides; prepza shows what to look at."
+      },
+      "connect": {
+        "title": "Works with your tools",
+        "text": "Your ATS, Slack, your own code and AI apps, or just ask Mira."
+      },
+      "trust": {
+        "title": "Trust and compliance",
+        "text": "A person decides, every candidate gets the same rules, and the documents for GDPR, the EU AI Act, UK and US rules are ready."
+      },
+      "pricing": {
+        "title": "Everything is free\nPay per candidate",
+        "text": "Every feature is included. A candidate costs only once they've answered at least one question."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "From a job description",
+        "text": "The AI reads the role and proposes topics. You review them for free: keep what matters, rename them, edit the subtopics or describe changes in plain words.",
+        "alt": "An interview's topics tab: the total questions and minutes for each candidate, and the topics with their question counts."
+      },
+      "invite": {
+        "title": "Invite by email, list or file",
+        "text": "Add one candidate, paste a list or upload a CSV or TXT file. Each gets their own link, and a reminder if they haven't started.",
+        "alt": "The new candidate dialog, with tabs for one candidate, a list and a file upload."
+      },
+      "link": {
+        "title": "One link for your job ad",
+        "text": "Turn on the interview's shareable link and put it in your job ad. Anyone can take it once, with a verified email.",
+        "alt": "An interview's settings tab: the shareable link, the click and voice mode switch, the time per question and the pass mark."
+      },
+      "start": {
+        "title": "Clear rules up front",
+        "text": "Before they start, candidates see the role, the time per question and for the whole interview, and the rules, and promise to answer on their own, without AI tools or other people.",
+        "alt": "An interview's start page: the role, the average time per question, the whole interview's minutes, the pledge and the rules."
+      },
+      "click": {
+        "title": "Click mode",
+        "text": "Each candidate gets their own random questions, in their own order, with a countdown on every one.",
+        "alt": "A candidate's question in click mode: the question, its countdown and four answer options, one picked."
+      },
+      "voice": {
+        "title": "Voice mode with Mira",
+        "text": "Mira, an AI interviewer, reads each question and its options aloud, and candidates answer hands-free. A clear answer is saved at once; anything else is confirmed first.",
+        "alt": "A voice interview: Mira, the AI interviewer, beside the question, with the turn pill showing it's the candidate's turn."
+      },
+      "brand": {
+        "title": "Your brand, not ours",
+        "text": "Set your logo, colors for light and dark, fonts and corners, with a live preview. Candidates see only your company, without prepza's header or footer.",
+        "alt": "The brand tab: the logo, fonts and corners, with a live preview of the interview."
+      },
+      "candidates": {
+        "title": "Compare candidates at a glance",
+        "text": "Every candidate's status and grade against your pass mark, in one list. Sort by grade, search by name or email, filter by who passed or who's flagged.",
+        "alt": "An interview's candidates list with names, statuses, grades and a flagged candidate."
+      },
+      "signals": {
+        "title": "Integrity signals",
+        "text": "Page leaves, copy attempts and answers too fast to have been read, plus two answer patterns: times that don't follow the questions, and hard questions right while easy ones are wrong.",
+        "alt": "A candidate's report: the answer patterns card with its signals and suggested follow-up questions."
+      },
+      "share": {
+        "title": "Share reports in seconds",
+        "text": "Download a PDF for one candidate or the whole interview, email it from prepza, or send a short summary in a messenger.",
+        "alt": "The share dialog for a candidate's report: an email address to send the PDF to, or a summary in WhatsApp, Telegram, Viber or LINE."
+      },
+      "notes": {
+        "title": "Notes for your team",
+        "text": "Write about the hiring round on the interview's notes tab and pin the note that matters: it shows under the interview's name. Candidates never see notes.",
+        "alt": "An interview's notes tab with a pinned note and a newer note from the team."
+      },
+      "emails": {
+        "title": "Emails that do the work",
+        "text": "Candidates get their invitation in the interview's language, with your logo, and a reminder if they haven't started. Your team gets one daily digest instead of an email for every event.",
+        "alt": "An interview invitation email from Lumen Health, with its logo and the button that opens the invite"
+      },
+      "integrations": {
+        "title": "Every connection in one place",
+        "text": "Connect an ATS, Slack, API keys, web hooks and AI apps from your company's integrations tab, each with its own page and steps.",
+        "alt": "A company's integrations tab: a connected ATS, Slack, the API, web hooks and AI apps."
+      },
+      "biasAudit": {
+        "title": "Bias-audit export",
+        "text": "Export finished candidates' results as a CSV for an independent bias audit, such as New York City's Local Law 144, or your own four-fifths check.",
+        "alt": "The bias-audit export dialog: all interviews or one, and an optional date range."
+      }
+    },
+    "points": {
+      "questions": "{count, plural, one {# question} other {# questions}} written per topic; you choose how many each candidate gets",
+      "options": "Four options per question, some with more than one right answer",
+      "examples": "Code, queries and commands shown as examples where the role needs them",
+      "names": "Lines that can't be invited are named, with the reason",
+      "credits": "Credits come back for anyone who never answers",
+      "expire": "Invites expire on their own after a month",
+      "linkOff": "Turned off at any time, and when the role is hired",
+      "mode": "Click or voice mode chosen on the same page",
+      "settings": "Average time per question and pass mark beside it",
+      "time": "The total time shown before they start",
+      "phone": "Works on a phone as well as a computer",
+      "saved": "Progress saved as they go",
+      "tap": "Tapping an option always works too",
+      "kept": "The voice is only turned into text, never kept",
+      "voiceLanguages": "In English, Spanish, German, French, Portuguese and Italian",
+      "contrast": "Colors that would be hard to read are refused",
+      "logo": "Your logo on invitations, the interview and PDF reports",
+      "sort": "Best grades first in one click",
+      "status": "Invited, in process, finished, expired or not delivered",
+      "proof": "A reason to look closer, never proof",
+      "camera": "No camera, screen recording or device tracking",
+      "followUps": "Questions to talk through in a live interview",
+      "pdf": "PDF reports with grades and every answer",
+      "messengers": "Summaries on WhatsApp, Telegram, Viber or LINE",
+      "viewers": "Viewers share too, without changing anything",
+      "everyone": "Every member writes, viewers too",
+      "bell": "New notes reach the bell and your Slack channel",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee and Breezy HR",
+      "results": "Candidates invited automatically, results sent back",
+      "docs": "Developer docs for the API, web hooks, the SDK and MCP",
+      "noInference": "prepza never asks for or guesses protected characteristics",
+      "owner": "Only the owner exports, and it's in the action log",
+      "askTime": "Anyone who needs more time is told to ask before starting",
+      "peopleDecide": "Told that people at your company review the results and decide",
+      "digest": "The digest: who finished, invites that bounced, ATS candidates not invited, new notes and interviews ready",
+      "emailChoice": "Each kind of email turned on or off in your settings",
+      "stopEmails": "Candidates can stop your emails in one click"
+    },
+    "cards": {
+      "templates": {
+        "title": "Ready-made templates",
+        "text": "Copy an interview by role, level and language, at once and free."
+      },
+      "bank": {
+        "title": "Shared question bank",
+        "text": "New interviews reuse questions proven in others. Keep yours out with one checkbox."
+      },
+      "quality": {
+        "title": "Questions that fix themselves",
+        "text": "Answers, votes and reports flag weak questions; they're fixed or replaced."
+      },
+      "languages": {
+        "title": "{count, plural, one {# language} other {# languages}}",
+        "text": "The app, the interviews and the emails, in your candidates' language."
+      },
+      "preview": {
+        "title": "Preview it first",
+        "text": "Take the interview as a candidate would, for free, before inviting anyone."
+      },
+      "ats": {
+        "title": "From your ATS",
+        "text": "Candidates at the stage you pick are invited automatically, and results go back."
+      },
+      "platform": {
+        "title": "From your platform",
+        "text": "Invite through the API, or embed the interview in your own site with the SDK."
+      },
+      "assistants": {
+        "title": "From an AI assistant",
+        "text": "Ask Mira, or Claude, ChatGPT and other AI apps over MCP, with your permissions."
+      },
+      "extraTime": {
+        "title": "Extra time",
+        "text": "Give a candidate more time on each question before they start; no reason asked."
+      },
+      "ownMode": {
+        "title": "Their own mode",
+        "text": "Switch one candidate to click or voice mode, for someone who can't answer aloud."
+      },
+      "fair": {
+        "title": "The same rules for all",
+        "text": "The same timer and mix of questions for everyone, with the clock kept by the server."
+      },
+      "rate": {
+        "title": "Candidates rate questions",
+        "text": "A vote and a way to report a problem on every question."
+      },
+      "accessible": {
+        "title": "Accessible",
+        "text": "Built for WCAG 2.2 AA, in every language, light and dark."
+      },
+      "notifications": {
+        "title": "Notifications",
+        "text": "The bell, emails and your Slack channel tell you when candidates finish."
+      },
+      "discover": {
+        "title": "Discover",
+        "text": "Once you've topped up, see people open to offers whose free practice matches the role."
+      },
+      "hired": {
+        "title": "Mark as hired",
+        "text": "Close the role and its shareable link in one step."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Pick a channel and which notifications go there."
+      },
+      "api": {
+        "title": "Public API",
+        "text": "Keys with only the permissions you tick, optionally limited to your IP addresses."
+      },
+      "webhooks": {
+        "title": "Web hooks",
+        "text": "Signed events when a candidate starts or finishes, with a test send and a delivery log."
+      },
+      "mcp": {
+        "title": "AI apps over MCP",
+        "text": "Claude, ChatGPT and other AI apps read and act with your permissions."
+      },
+      "mira": {
+        "title": "Ask Mira",
+        "text": "The AI assistant reads your results, answers how-tos and acts once you confirm."
+      },
+      "person": {
+        "title": "A person decides",
+        "text": "The score supports your decision; it doesn't make it."
+      },
+      "roles": {
+        "title": "Team roles",
+        "text": "Owners, admins and viewers; viewers see results but change and spend nothing."
+      },
+      "log": {
+        "title": "Action log",
+        "text": "The owner sees who did what, in the app, through Mira, the API or an ATS."
+      },
+      "documents": {
+        "title": "Documents ready",
+        "text": "A data processing agreement, a DPIA template and candidate notice templates."
+      },
+      "privacy": {
+        "title": "Private by design",
+        "text": "No selling of data, nothing inferred about candidates, voice never kept."
+      },
+      "verified": {
+        "title": "Verified companies",
+        "text": "A check next to your company's name once its website is verified."
+      },
+      "free": {
+        "title": "{count, plural, one {# free candidate} other {# free candidates}}",
+        "text": "Your first company starts with them, no card needed."
+      },
+      "answered": {
+        "title": "Only who answers",
+        "text": "Unanswered invites cost nothing; their credits come back."
+      },
+      "expire": {
+        "title": "Credits never expire",
+        "text": "Larger top-ups cost less per candidate; unused paid credits are refundable."
+      },
+      "autoTopUp": {
+        "title": "Automatic top-up",
+        "text": "Optional: credits refilled when they run low, still no subscription."
+      },
+      "referrals": {
+        "title": "Referrals",
+        "text": "Bring another company and you both get free candidates once it tops up."
+      },
+      "currencies": {
+        "title": "Your currency",
+        "text": "Prices in {count, plural, one {# currency} other {# currencies}}, set by your country."
+      }
+    },
+    "more": {
+      "developerDocs": "developer docs",
+      "trust": "trust page",
+      "documents": "documents",
+      "pricing": "see pricing"
+    },
+    "closing": {
+      "title": "Create your first interview\nIt's free"
     }
   }
 }

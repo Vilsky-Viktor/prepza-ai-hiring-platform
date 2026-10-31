@@ -478,6 +478,19 @@
       "Procurando emprego? Ative Aberto a propostas para que empresas que contratam para esses temas vejam seu nome, seu perfil do LinkedIn e seus resultados de prática."
     ]
   },
+  "features": {
+    "title": "Recursos",
+    "text": "Tudo o que a prepza faz por uma empresa, da descrição da vaga à contratação: criar entrevistas, convidar candidatos, o que os candidatos veem, relatórios, integrações, conformidade e preços.",
+    "actions": [
+      "Vá para um grupo com as abas no topo: criar, convidar, entrevista, decidir, conectar, confiança e preços.",
+      "Veja cada recurso ao lado de uma imagem do app real.",
+      "Cole uma descrição da vaga na caixa no fim da página para criar uma entrevista.",
+      "Abra a página de preços, a documentação para desenvolvedores ou a página de confiança a partir dos grupos delas."
+    ],
+    "tips": [
+      "Todos os recursos estão incluídos: você paga só por cada candidato que responde a pelo menos uma pergunta."
+    ]
+  },
   "pricing": {
     "title": "Preços",
     "text": "Quanto custa a prepza: gerar entrevistas é grátis, e você paga por candidato que responde, sem assinatura.",

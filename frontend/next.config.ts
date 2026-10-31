@@ -62,10 +62,11 @@ const nextConfig: NextConfig = {
     return [
       { source: "/embed/:file*", headers: EMBED_SCRIPT_HEADERS },
       { source: "/samples/:file*", headers: REPORT_SAMPLES_HEADERS },
-      // Files in public/; "+" so the /documents and /about pages themselves aren't matched.
+      // Files in public/; "+" so the /documents, /about and /features pages themselves aren't matched.
       { source: "/ats/:file+", headers: PICTURE_HEADERS },
       { source: "/integrations/:file+", headers: PICTURE_HEADERS },
       { source: "/about/:file+", headers: PICTURE_HEADERS },
+      { source: "/features/:file+", headers: PICTURE_HEADERS },
       { source: "/icon.png", headers: PICTURE_HEADERS },
       { source: "/documents/:file+", headers: DOCUMENT_HEADERS },
       { source: "/examples/:file+", headers: DOCUMENT_HEADERS },

@@ -478,6 +478,19 @@
       "Vous cherchez un emploi ? Activez Ouvert aux opportunités pour que les entreprises qui recrutent sur ces sujets voient votre nom, votre profil LinkedIn et vos résultats d'entraînement."
     ]
   },
+  "features": {
+    "title": "Fonctionnalités",
+    "text": "Tout ce que prepza fait pour une entreprise, de la fiche de poste au recrutement : créer des entretiens, inviter des candidats, ce que voient les candidats, les rapports, les intégrations, la conformité et les tarifs.",
+    "actions": [
+      "Accédez à un groupe avec les onglets en haut : créer, inviter, entretien, décider, connecter, confiance et tarifs.",
+      "Voyez chaque fonctionnalité à côté d'une image de l'application réelle.",
+      "Collez une fiche de poste dans le champ en bas de la page pour créer un entretien.",
+      "Ouvrez la page des tarifs, la documentation développeurs ou la page confiance depuis leurs groupes."
+    ],
+    "tips": [
+      "Toutes les fonctionnalités sont incluses : vous payez uniquement pour chaque candidat qui répond à au moins une question."
+    ]
+  },
   "pricing": {
     "title": "Tarifs",
     "text": "Ce que coûte prepza : générer des entretiens est gratuit, et vous payez par candidat qui répond, sans abonnement.",

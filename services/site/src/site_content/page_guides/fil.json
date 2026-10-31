@@ -478,6 +478,19 @@
       "Naghahanap ng trabaho? I-on ang Open to offers para makita ng mga kumpanyang nagha-hire para sa mga topic na ito ang pangalan mo, LinkedIn profile at mga resulta ng practice."
     ]
   },
+  "features": {
+    "title": "Mga feature",
+    "text": "Lahat ng ginagawa ng prepza para sa isang kumpanya, mula sa job description hanggang sa hire: paggawa ng mga interview, pag-imbita ng mga aplikante, ang nakikita ng mga aplikante, mga report, mga integration, compliance at presyo.",
+    "actions": [
+      "Pumunta sa isang grupo gamit ang mga tab sa itaas: gumawa, mag-imbita, interview, magpasya, kumonekta, tiwala at presyo.",
+      "Tingnan ang bawat feature katabi ng larawan ng totoong app.",
+      "Mag-paste ng job description sa box sa dulo ng page para gumawa ng interview.",
+      "Buksan ang page ng presyo, ang dokumentasyon para sa developer o ang page ng tiwala mula sa mga grupo nila."
+    ],
+    "tips": [
+      "Kasama ang lahat ng feature: magbabayad ka lang para sa bawat aplikanteng sumagot ng kahit isang tanong."
+    ]
+  },
   "pricing": {
     "title": "Presyo",
     "text": "Magkano ang prepza: libre ang paggawa ng mga interview, at magbabayad ka bawat aplikanteng sumasagot, nang walang subscription.",

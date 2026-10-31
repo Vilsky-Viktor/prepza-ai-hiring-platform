@@ -288,3 +288,13 @@
 html:has([data-round-footer]) {
   scroll-padding-bottom: 7rem;
 }
+
+/* A focused element scrolls clear of the tabs that stay at the top of the features page (WCAG
+ * 2.4.11); its sections' own margin then goes, so a tab still opens its section at the same place. */
+html:has([data-sticky-tabs]) {
+  scroll-padding-top: 3.5rem;
+}
+
+html:has([data-sticky-tabs]) section[id] {
+  scroll-margin-top: 0;
+}

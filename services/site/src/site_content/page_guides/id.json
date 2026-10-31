@@ -478,6 +478,19 @@
       "Sedang cari kerja? Aktifkan Terbuka untuk tawaran kerja agar perusahaan yang merekrut untuk topik ini bisa melihat nama, profil LinkedIn, dan hasil latihanmu."
     ]
   },
+  "features": {
+    "title": "Fitur",
+    "text": "Semua yang dilakukan prepza untuk perusahaan, dari deskripsi pekerjaan sampai merekrut: membuat wawancara, mengundang kandidat, yang dilihat kandidat, laporan, integrasi, kepatuhan, dan harga.",
+    "actions": [
+      "Lompat ke sebuah grup lewat tab di bagian atas: buat, undang, wawancara, putuskan, hubungkan, kepercayaan, dan harga.",
+      "Lihat setiap fitur di samping gambar aplikasi yang sebenarnya.",
+      "Tempel deskripsi pekerjaan di kotak di akhir halaman untuk membuat wawancara.",
+      "Buka halaman harga, dokumentasi pengembang, atau halaman kepercayaan dari grupnya."
+    ],
+    "tips": [
+      "Semua fitur sudah termasuk: kamu hanya membayar untuk setiap kandidat yang menjawab setidaknya satu soal."
+    ]
+  },
   "pricing": {
     "title": "Harga",
     "text": "Biaya prepza: membuat wawancara gratis, dan kamu membayar per kandidat yang menjawab, tanpa langganan.",

@@ -75,7 +75,9 @@
     "news": "Aktualności",
     "accessibility": "Dostępność",
     "trust": "Zaufanie",
-    "language": "Język"
+    "language": "Język",
+    "features": "Funkcje",
+    "featuresLink": "funkcje"
   },
   "signIn": {
     "title": "Zaloguj się",
@@ -2737,6 +2739,315 @@
       "mcp": "przez aplikację AI",
       "api": "przez API",
       "ats": "przez ATS"
+    }
+  },
+  "featuresPage": {
+    "title": "Funkcje: rozmowy rekrutacyjne z AI, od początku do końca",
+    "description": "Wszystkie funkcje prepza: rozmowy z opisu stanowiska, tryb kliknięć i głosowy, ostrzeżenia o podejrzanych zachowaniach, raporty, integracje z ATS i API oraz zgodność z przepisami.",
+    "hero": {
+      "title": "Od opisu stanowiska\ndo trafnego zatrudnienia",
+      "text": "Rozmowa na czas napisana pod Twoje stanowisko, kandydaci z dowolnego miejsca i jasny obraz tego, kto jest najlepszy. Wszystkie funkcje są w cenie.",
+      "start": "Utwórz rozmowę",
+      "pricing": "zobacz cennik",
+      "proof": {
+        "anyJob": "Każde stanowisko, każda branża",
+        "languages": "{count, plural, one {# język} few {# języki} many {# języków} other {# języka}}",
+        "ready": "Gotowe w ~{minutes, plural, one {# minutę} few {# minuty} many {# minut} other {# minuty}}",
+        "noSubscription": "Bez abonamentu"
+      }
+    },
+    "nav": {
+      "create": "tworzenie",
+      "invite": "zapraszanie",
+      "interview": "rozmowa",
+      "decide": "decyzja",
+      "connect": "integracje",
+      "trust": "zaufanie",
+      "pricing": "cennik"
+    },
+    "groups": {
+      "create": {
+        "title": "Utwórz rozmowę w kilka minut",
+        "text": "Wklej opis stanowiska i otrzymaj rozmowę na czas napisaną pod to stanowisko, w dowolnej branży."
+      },
+      "invite": {
+        "title": "Zapraszaj kandydatów skądkolwiek",
+        "text": "Wyślij im e-mail, umieść jeden link w ogłoszeniu o pracę, wgraj listę albo pozwól, by zaprosił ich Twój ATS, Twoja platforma lub asystent AI."
+      },
+      "interview": {
+        "title": "Co widzą kandydaci",
+        "text": "Uczciwa rozmowa na czas w barwach Twojej marki, z odpowiedziami jednym kliknięciem lub głosem."
+      },
+      "decide": {
+        "title": "Zobacz, kto jest najlepszy",
+        "text": "Wyniki, każda odpowiedź i ostrzeżenia o podejrzanych zachowaniach dla każdego kandydata. Decyduje człowiek; prepza pokazuje, na co zwrócić uwagę."
+      },
+      "connect": {
+        "title": "Działa z Twoimi narzędziami",
+        "text": "Twój ATS, Slack, Twój własny kod i aplikacje AI albo po prostu zapytaj Mirę."
+      },
+      "trust": {
+        "title": "Zaufanie i zgodność z przepisami",
+        "text": "Decyduje człowiek, każdy kandydat ma te same zasady, a dokumenty dotyczące RODO, unijnego AI Act oraz przepisów Wielkiej Brytanii i USA są gotowe."
+      },
+      "pricing": {
+        "title": "Wszystko jest za darmo\nPłacisz za kandydata",
+        "text": "Wszystkie funkcje są w cenie. Kandydat kosztuje dopiero wtedy, gdy odpowie na co najmniej jedno pytanie."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "Z opisu stanowiska",
+        "text": "AI czyta opis stanowiska i proponuje tematy. Przeglądasz je za darmo: zostaw to, co ważne, zmień nazwy, edytuj podtematy albo opisz zmiany własnymi słowami.",
+        "alt": "Karta tematów rozmowy: łączna liczba pytań i minut dla każdego kandydata oraz tematy z liczbą pytań."
+      },
+      "invite": {
+        "title": "Zaproszenia e-mailem, z listy lub z pliku",
+        "text": "Dodaj jednego kandydata, wklej listę albo wgraj plik CSV lub TXT. Każdy dostaje własny link i przypomnienie, jeśli jeszcze nie zaczął.",
+        "alt": "Okno nowego kandydata z kartami: jeden kandydat, lista i wgranie pliku."
+      },
+      "link": {
+        "title": "Jeden link do ogłoszenia o pracę",
+        "text": "Włącz link do udostępnienia rozmowy i umieść go w ogłoszeniu o pracę. Każdy może przejść rozmowę raz, ze zweryfikowanym adresem e-mail.",
+        "alt": "Karta ustawień rozmowy: link do udostępnienia, przełącznik trybu kliknięć i głosowego, czas na pytanie i próg zaliczenia."
+      },
+      "start": {
+        "title": "Jasne zasady od początku",
+        "text": "Przed startem kandydaci widzą stanowisko, czas na pytanie i na całą rozmowę oraz zasady, i obiecują odpowiadać samodzielnie, bez narzędzi AI i pomocy innych osób.",
+        "alt": "Strona startowa rozmowy: stanowisko, średni czas na pytanie, liczba minut na całą rozmowę, zobowiązanie i zasady."
+      },
+      "click": {
+        "title": "Tryb kliknięć",
+        "text": "Każdy kandydat dostaje własne losowe pytania, we własnej kolejności, z odliczaniem czasu przy każdym z nich.",
+        "alt": "Pytanie kandydata w trybie kliknięć: pytanie, odliczanie czasu i cztery odpowiedzi do wyboru, jedna zaznaczona."
+      },
+      "voice": {
+        "title": "Tryb głosowy z Mirą",
+        "text": "Mira, rekruterka AI, czyta na głos każde pytanie i odpowiedzi do wyboru, a kandydaci odpowiadają bez użycia rąk. Wyraźna odpowiedź zapisuje się od razu; każda inna jest najpierw potwierdzana.",
+        "alt": "Rozmowa głosowa: Mira, rekruterka AI, obok pytania, ze wskaźnikiem pokazującym, że teraz kolej kandydata."
+      },
+      "brand": {
+        "title": "Twoja marka, nie nasza",
+        "text": "Ustaw logo, kolory dla trybu jasnego i ciemnego, czcionki i narożniki, z podglądem na żywo. Kandydaci widzą tylko Twoją firmę, bez nagłówka i stopki prepza.",
+        "alt": "Karta marki: logo, czcionki i narożniki z podglądem rozmowy na żywo."
+      },
+      "candidates": {
+        "title": "Porównuj kandydatów na pierwszy rzut oka",
+        "text": "Status i wynik każdego kandydata na tle Twojego progu zaliczenia, na jednej liście. Sortuj według wyniku, szukaj po imieniu i nazwisku lub e-mailu, filtruj tych, którzy zaliczyli albo zostali oznaczeni.",
+        "alt": "Lista kandydatów rozmowy z imionami, statusami, wynikami i jednym oznaczonym kandydatem."
+      },
+      "signals": {
+        "title": "Ostrzeżenia o podejrzanych zachowaniach",
+        "text": "Opuszczenia strony, próby kopiowania i odpowiedzi zbyt szybkie, by zdążyć przeczytać pytanie, a do tego dwa wzorce odpowiedzi: czasy niepasujące do pytań oraz trudne pytania dobrze, gdy łatwe są źle.",
+        "alt": "Raport kandydata: karta wzorców odpowiedzi z ostrzeżeniami i proponowanymi pytaniami uzupełniającymi."
+      },
+      "share": {
+        "title": "Udostępniaj raporty w kilka sekund",
+        "text": "Pobierz PDF dla jednego kandydata lub całej rozmowy, wyślij go e-mailem z prepza albo prześlij krótkie podsumowanie przez komunikator.",
+        "alt": "Okno udostępniania raportu kandydata: adres e-mail, na który trafi PDF, albo podsumowanie przez WhatsApp, Telegram, Viber lub LINE."
+      },
+      "notes": {
+        "title": "Notatki dla Twojego zespołu",
+        "text": "Pisz o rekrutacji na karcie notatek rozmowy i przypnij najważniejszą notatkę: pojawi się pod nazwą rozmowy. Kandydaci nigdy nie widzą notatek.",
+        "alt": "Karta notatek rozmowy z przypiętą notatką i nowszą notatką od zespołu."
+      },
+      "emails": {
+        "title": "E-maile, które wykonują pracę za Ciebie",
+        "text": "Kandydaci dostają zaproszenie w języku rozmowy, z Twoim logo, i przypomnienie, jeśli jeszcze nie zaczęli. Twój zespół dostaje jedno codzienne podsumowanie aktywności zamiast e-maila o każdym zdarzeniu.",
+        "alt": "E-mail z zaproszeniem na rozmowę od Lumen Health, z jej logo i przyciskiem, który otwiera zaproszenie"
+      },
+      "integrations": {
+        "title": "Wszystkie połączenia w jednym miejscu",
+        "text": "Podłącz ATS, Slacka, klucze API, webhooki i aplikacje AI na karcie integracji Twojej firmy, każde z własną stroną i krokami.",
+        "alt": "Karta integracji firmy: podłączony ATS, Slack, API, webhooki i aplikacje AI."
+      },
+      "biasAudit": {
+        "title": "Eksport do audytu stronniczości",
+        "text": "Eksportuj wyniki kandydatów, którzy ukończyli rozmowę, do pliku CSV na potrzeby niezależnego audytu stronniczości, np. zgodnie z Local Law 144 Nowego Jorku, albo własnej kontroli reguły czterech piątych.",
+        "alt": "Okno eksportu do audytu stronniczości: wszystkie rozmowy lub jedna i opcjonalny zakres dat."
+      }
+    },
+    "points": {
+      "questions": "{count, plural, one {# pytanie} few {# pytania} many {# pytań} other {# pytania}} na każdy temat; Ty wybierasz, ile dostanie każdy kandydat",
+      "options": "Cztery odpowiedzi do wyboru w każdym pytaniu, czasem więcej niż jedna poprawna",
+      "examples": "Kod, zapytania i polecenia jako przykłady, gdy wymaga tego stanowisko",
+      "names": "Wiersze, których nie da się zaprosić, są wskazane wraz z powodem",
+      "credits": "Kredyty wracają za każdego, kto nie odpowie",
+      "expire": "Zaproszenia same wygasają po miesiącu",
+      "linkOff": "Można go wyłączyć w każdej chwili, a wyłącza się sam po zatrudnieniu",
+      "mode": "Tryb kliknięć lub głosowy wybierany na tej samej stronie",
+      "settings": "Średni czas na pytanie i próg zaliczenia tuż obok",
+      "time": "Łączny czas widoczny przed startem",
+      "phone": "Działa na telefonie i na komputerze",
+      "saved": "Postęp zapisuje się na bieżąco",
+      "tap": "Dotknięcie odpowiedzi zawsze też działa",
+      "kept": "Głos jest tylko zamieniany na tekst, nigdy nie jest przechowywany",
+      "voiceLanguages": "Po angielsku, hiszpańsku, niemiecku, francusku, portugalsku i włosku",
+      "contrast": "Kolory trudne do odczytania są odrzucane",
+      "logo": "Twoje logo w zaproszeniach, w rozmowie i w raportach PDF",
+      "sort": "Najlepsze wyniki na górze jednym kliknięciem",
+      "status": "Zaproszono, w trakcie, ukończono, wygasło lub nie dostarczono",
+      "proof": "Powód, by przyjrzeć się bliżej, nigdy dowód",
+      "camera": "Bez kamery, nagrywania ekranu i śledzenia urządzenia",
+      "followUps": "Pytania do omówienia na rozmowie na żywo",
+      "pdf": "Raporty PDF z wynikami i każdą odpowiedzią",
+      "messengers": "Podsumowania przez WhatsApp, Telegram, Viber lub LINE",
+      "viewers": "Obserwatorzy też udostępniają, niczego nie zmieniając",
+      "everyone": "Każdy członek zespołu pisze, obserwatorzy też",
+      "bell": "Nowe notatki trafiają pod dzwonek i na Twój kanał Slack",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee i Breezy HR",
+      "results": "Kandydaci zapraszani automatycznie, wyniki odsyłane z powrotem",
+      "docs": "Dokumentacja dla deweloperów: API, webhooki, SDK i MCP",
+      "noInference": "prepza nigdy nie pyta o cechy chronione ani ich nie odgaduje",
+      "owner": "Eksportuje tylko właściciel, a eksport trafia do dziennika działań",
+      "askTime": "Kto potrzebuje więcej czasu, dowiaduje się, że ma o to poprosić przed startem",
+      "peopleDecide": "Kandydaci wiedzą, że wyniki sprawdzają i decyzję podejmują ludzie z Twojej firmy",
+      "digest": "Podsumowanie: kto skończył, niedostarczone zaproszenia, niezaproszeni kandydaci z ATS, nowe notatki i gotowe rozmowy",
+      "emailChoice": "Każdy rodzaj e-maili włączany lub wyłączany w Twoich ustawieniach",
+      "stopEmails": "Kandydaci mogą wypisać się z Twoich e-maili jednym kliknięciem"
+    },
+    "cards": {
+      "templates": {
+        "title": "Gotowe szablony",
+        "text": "Skopiuj rozmowę według stanowiska, poziomu i języka, od razu i za darmo."
+      },
+      "bank": {
+        "title": "Wspólna baza pytań",
+        "text": "Nowe rozmowy korzystają z pytań sprawdzonych w innych. Swoje możesz wyłączyć jednym polem wyboru."
+      },
+      "quality": {
+        "title": "Pytania, które same się poprawiają",
+        "text": "Odpowiedzi, głosy i zgłoszenia wskazują słabe pytania; są one poprawiane lub zastępowane."
+      },
+      "languages": {
+        "title": "{count, plural, one {# język} few {# języki} many {# języków} other {# języka}}",
+        "text": "Aplikacja, rozmowy i e-maile w języku Twoich kandydatów."
+      },
+      "preview": {
+        "title": "Najpierw wypróbuj",
+        "text": "Przejdź rozmowę tak jak kandydat, za darmo, zanim kogokolwiek zaprosisz."
+      },
+      "ats": {
+        "title": "Z Twojego ATS",
+        "text": "Kandydaci na wybranym etapie są zapraszani automatycznie, a wyniki wracają."
+      },
+      "platform": {
+        "title": "Z Twojej platformy",
+        "text": "Zapraszaj przez API albo osadź rozmowę na własnej stronie za pomocą SDK."
+      },
+      "assistants": {
+        "title": "Od asystenta AI",
+        "text": "Zapytaj Mirę albo Claude'a, ChatGPT i inne aplikacje AI przez MCP, z Twoimi uprawnieniami."
+      },
+      "extraTime": {
+        "title": "Dodatkowy czas",
+        "text": "Daj kandydatowi więcej czasu na każde pytanie przed startem; bez pytania o powód."
+      },
+      "ownMode": {
+        "title": "Własny tryb",
+        "text": "Przełącz jednego kandydata na tryb kliknięć lub głosowy, np. gdy ktoś nie może odpowiadać na głos."
+      },
+      "fair": {
+        "title": "Te same zasady dla wszystkich",
+        "text": "Ten sam limit czasu i ta sama mieszanka pytań dla wszystkich, a czas mierzy serwer."
+      },
+      "rate": {
+        "title": "Kandydaci oceniają pytania",
+        "text": "Przy każdym pytaniu głos i możliwość zgłoszenia problemu."
+      },
+      "accessible": {
+        "title": "Dostępność",
+        "text": "Zgodnie z WCAG 2.2 AA, w każdym języku, w trybie jasnym i ciemnym."
+      },
+      "notifications": {
+        "title": "Powiadomienia",
+        "text": "Dzwonek, e-maile i Twój kanał Slack informują, gdy kandydaci kończą."
+      },
+      "discover": {
+        "title": "Odkrywaj",
+        "text": "Po doładowaniu zobaczysz osoby otwarte na oferty pracy, których darmowe ćwiczenia pasują do stanowiska."
+      },
+      "hired": {
+        "title": "Oznacz jako zatrudnionego",
+        "text": "Zamknij stanowisko i jego link do udostępnienia jednym krokiem."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Wybierz kanał i powiadomienia, które mają tam trafiać."
+      },
+      "api": {
+        "title": "Publiczne API",
+        "text": "Klucze tylko z zaznaczonymi przez Ciebie uprawnieniami, opcjonalnie ograniczone do Twoich adresów IP."
+      },
+      "webhooks": {
+        "title": "Webhooki",
+        "text": "Podpisane zdarzenia, gdy kandydat zaczyna lub kończy, z wysyłką testową i dziennikiem dostarczeń."
+      },
+      "mcp": {
+        "title": "Aplikacje AI przez MCP",
+        "text": "Claude, ChatGPT i inne aplikacje AI czytają i działają z Twoimi uprawnieniami."
+      },
+      "mira": {
+        "title": "Zapytaj Mirę",
+        "text": "Asystentka AI czyta Twoje wyniki, podpowiada, jak coś zrobić, i działa, gdy potwierdzisz."
+      },
+      "person": {
+        "title": "Decyduje człowiek",
+        "text": "Wynik wspiera Twoją decyzję, ale jej nie podejmuje."
+      },
+      "roles": {
+        "title": "Role w zespole",
+        "text": "Właściciele, administratorzy i obserwatorzy; obserwatorzy widzą wyniki, ale niczego nie zmieniają ani nie wydają."
+      },
+      "log": {
+        "title": "Dziennik działań",
+        "text": "Właściciel widzi, kto co zrobił: w aplikacji, przez Mirę, API lub ATS."
+      },
+      "documents": {
+        "title": "Gotowe dokumenty",
+        "text": "Umowa powierzenia przetwarzania danych, szablon DPIA i szablony informacji dla kandydatów."
+      },
+      "privacy": {
+        "title": "Prywatność w standardzie",
+        "text": "Bez sprzedaży danych, bez wnioskowania o kandydatach, głos nigdy nie jest przechowywany."
+      },
+      "verified": {
+        "title": "Zweryfikowane firmy",
+        "text": "Znaczek obok nazwy Twojej firmy, gdy jej strona internetowa zostanie zweryfikowana."
+      },
+      "free": {
+        "title": "{count, plural, one {# darmowy kandydat} few {# darmowi kandydaci} many {# darmowych kandydatów} other {# darmowego kandydata}}",
+        "text": "Twoja pierwsza firma dostaje ich na start, bez karty."
+      },
+      "answered": {
+        "title": "Tylko za tych, którzy odpowiedzą",
+        "text": "Zaproszenia bez odpowiedzi nic nie kosztują; ich kredyty wracają."
+      },
+      "expire": {
+        "title": "Kredyty nie wygasają",
+        "text": "Większe doładowania to niższa cena za kandydata; niewykorzystane opłacone kredyty podlegają zwrotowi."
+      },
+      "autoTopUp": {
+        "title": "Automatyczne doładowanie",
+        "text": "Opcjonalnie: kredyty uzupełniane, gdy się kończą, nadal bez abonamentu."
+      },
+      "referrals": {
+        "title": "Polecenia",
+        "text": "Poleć inną firmę, a obie dostaniecie darmowych kandydatów, gdy ta się doładuje."
+      },
+      "currencies": {
+        "title": "Twoja waluta",
+        "text": "Ceny w {count, plural, one {# walucie} few {# walutach} many {# walutach} other {# waluty}}, zależnie od Twojego kraju."
+      }
+    },
+    "more": {
+      "developerDocs": "dokumentacja dla deweloperów",
+      "trust": "strona zaufania",
+      "documents": "dokumenty",
+      "pricing": "zobacz cennik"
+    },
+    "closing": {
+      "title": "Utwórz swoją pierwszą rozmowę\nTo nic nie kosztuje"
     }
   }
 }

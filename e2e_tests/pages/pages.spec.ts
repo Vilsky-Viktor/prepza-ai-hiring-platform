@@ -6,6 +6,7 @@ import { loaded } from "./helpers/waits";
 const PAGES = [
   "/",
   "/companies",
+  "/features",
   "/pricing",
   "/terms",
   "/privacy",

@@ -478,6 +478,19 @@
       "Szukasz pracy? Włącz „Rozważam oferty pracy”, aby firmy rekrutujące w tych tematach widziały Twoje imię i nazwisko, profil LinkedIn i wyniki ćwiczeń."
     ]
   },
+  "features": {
+    "title": "Funkcje",
+    "text": "Wszystko, co prepza robi dla firmy, od opisu stanowiska do zatrudnienia: tworzenie rozmów, zapraszanie kandydatów, to, co widzą kandydaci, raporty, integracje, zgodność z przepisami i cennik.",
+    "actions": [
+      "Przejdź do grupy za pomocą kart na górze: tworzenie, zapraszanie, rozmowa, decyzja, integracje, zaufanie i cennik.",
+      "Zobacz każdą funkcję obok zrzutu prawdziwej aplikacji.",
+      "Wklej opis stanowiska w polu na dole strony, aby utworzyć rozmowę.",
+      "Otwórz cennik, dokumentację dla deweloperów lub stronę zaufania z ich grup."
+    ],
+    "tips": [
+      "Wszystkie funkcje są w cenie: płacisz tylko za każdego kandydata, który odpowie na co najmniej jedno pytanie."
+    ]
+  },
   "pricing": {
     "title": "Cennik",
     "text": "Ile kosztuje prepza: generowanie rozmów jest bezpłatne, a płacisz za każdego kandydata, który odpowiada, bez abonamentu.",

@@ -30,6 +30,7 @@ export const UNCRAWLED_PATHS = ["/api/", "/monitoring"]
 // Public pages listed in the sitemap.
 export const PUBLIC_PATHS = [
   "/",
+  "/features",
   "/pricing",
   "/privacy",
   "/terms",
@@ -49,6 +50,7 @@ export const PUBLIC_PATHS = [
 // each other with hreflang. Other pages have one address and follow the visitor's language.
 export const LOCALIZED_PATHS = [
   "/",
+  "/features",
   "/pricing",
   "/faq",
   "/about",

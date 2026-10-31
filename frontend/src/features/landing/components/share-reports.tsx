@@ -6,11 +6,9 @@ import { DEMO_GROUP } from "@/features/landing/components/demo-panel"
 import { NotesLine } from "@/features/landing/components/notes-line"
 import { PhoneSteps } from "@/features/landing/components/phone-steps"
 import { ReportsDemo } from "@/features/landing/components/reports-demo"
-import {
-  LandingSection,
-  OUTLINE_BUTTON,
-} from "@/features/landing/components/section"
+import { LandingSection } from "@/features/landing/components/section"
 import { StartButton } from "@/features/landing/components/start-button"
+import { OUTLINE_BUTTON } from "@/components/common/more-link"
 import { buttonVariants } from "@/components/ui/button"
 import { BAND } from "@/config/landing-backgrounds"
 import { REPORT_SAMPLES_URL } from "@/config/report-samples"

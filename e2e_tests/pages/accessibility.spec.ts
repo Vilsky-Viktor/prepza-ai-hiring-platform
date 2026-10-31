@@ -9,6 +9,7 @@ import { loaded } from "./helpers/waits";
 // caught halfway.
 const PAGES = [
   "/",
+  "/features",
   "/pricing",
   "/faq",
   "/contact",

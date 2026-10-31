@@ -75,7 +75,9 @@
     "news": "Berita",
     "accessibility": "Aksesibilitas",
     "trust": "Kepercayaan",
-    "language": "Bahasa"
+    "language": "Bahasa",
+    "features": "Fitur",
+    "featuresLink": "fitur"
   },
   "signIn": {
     "title": "Masuk",
@@ -2737,6 +2739,315 @@
       "mcp": "lewat aplikasi AI",
       "api": "lewat API",
       "ats": "lewat ATS"
+    }
+  },
+  "featuresPage": {
+    "title": "Fitur: wawancara AI untuk rekrutmen, dari awal sampai akhir",
+    "description": "Semua fitur prepza: wawancara dari deskripsi pekerjaan, mode klik dan suara, tanda integritas, laporan, integrasi ATS dan API, serta kepatuhan.",
+    "hero": {
+      "title": "Dari deskripsi pekerjaan\nsampai rekrutan yang tepat",
+      "text": "Wawancara berbatas waktu yang ditulis untuk posisimu, kandidat dari mana saja, dan gambaran jelas siapa yang terbaik. Semua fitur sudah termasuk.",
+      "start": "Buat wawancara",
+      "pricing": "lihat harga",
+      "proof": {
+        "anyJob": "Pekerjaan apa pun, bidang apa pun",
+        "languages": "{count, plural, other {# bahasa}}",
+        "ready": "Siap dalam ~{minutes, plural, other {# menit}}",
+        "noSubscription": "Tanpa langganan"
+      }
+    },
+    "nav": {
+      "create": "buat",
+      "invite": "undang",
+      "interview": "wawancara",
+      "decide": "putuskan",
+      "connect": "hubungkan",
+      "trust": "kepercayaan",
+      "pricing": "harga"
+    },
+    "groups": {
+      "create": {
+        "title": "Buat wawancara dalam hitungan menit",
+        "text": "Tempel deskripsi pekerjaan dan dapatkan wawancara berbatas waktu yang ditulis untuk posisi itu, di bidang apa pun."
+      },
+      "invite": {
+        "title": "Undang kandidat dari mana saja",
+        "text": "Kirimi mereka email, pasang satu tautan di iklan lowongan, unggah daftar, atau biarkan ATS-mu, platformmu sendiri, atau asisten AI yang mengirim mereka."
+      },
+      "interview": {
+        "title": "Yang dilihat kandidat",
+        "text": "Wawancara berbatas waktu yang adil dengan merekmu, dijawab dengan klik atau suara."
+      },
+      "decide": {
+        "title": "Lihat siapa yang terbaik",
+        "text": "Nilai, setiap jawaban, dan tanda integritas untuk tiap kandidat. Manusia yang memutuskan; prepza menunjukkan apa yang perlu diperhatikan."
+      },
+      "connect": {
+        "title": "Bekerja dengan alatmu",
+        "text": "ATS-mu, Slack, kode dan aplikasi AI-mu sendiri, atau tanya saja Mira."
+      },
+      "trust": {
+        "title": "Kepercayaan dan kepatuhan",
+        "text": "Manusia yang memutuskan, setiap kandidat mendapat aturan yang sama, dan dokumen untuk GDPR, EU AI Act, serta aturan Inggris dan AS sudah siap."
+      },
+      "pricing": {
+        "title": "Semuanya gratis\nBayar per kandidat",
+        "text": "Semua fitur sudah termasuk. Kandidat baru dikenai biaya setelah menjawab setidaknya satu soal."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "Dari deskripsi pekerjaan",
+        "text": "AI membaca posisinya dan mengusulkan topik. Kamu meninjaunya gratis: pertahankan yang penting, ganti namanya, ubah subtopiknya, atau jelaskan perubahan dengan kata-kata biasa.",
+        "alt": "Tab topik wawancara: total soal dan menit untuk setiap kandidat, serta topik dengan jumlah soalnya."
+      },
+      "invite": {
+        "title": "Undang lewat email, daftar, atau file",
+        "text": "Tambahkan satu kandidat, tempel daftar, atau unggah file CSV atau TXT. Masing-masing mendapat tautannya sendiri, dan pengingat jika belum mulai.",
+        "alt": "Dialog kandidat baru, dengan tab untuk satu kandidat, daftar, dan unggah file."
+      },
+      "link": {
+        "title": "Satu tautan untuk iklan lowonganmu",
+        "text": "Nyalakan tautan berbagi wawancara dan pasang di iklan lowonganmu. Siapa pun bisa mengikutinya sekali, dengan email yang terverifikasi.",
+        "alt": "Tab pengaturan wawancara: tautan berbagi, sakelar mode klik dan suara, waktu per soal, dan nilai lulus."
+      },
+      "start": {
+        "title": "Aturan jelas sejak awal",
+        "text": "Sebelum mulai, kandidat melihat posisinya, waktu per soal dan untuk seluruh wawancara, serta aturannya, lalu berjanji menjawab sendiri, tanpa alat AI atau bantuan orang lain.",
+        "alt": "Halaman mulai wawancara: posisi, rata-rata waktu per soal, menit seluruh wawancara, janji, dan aturan."
+      },
+      "click": {
+        "title": "Mode klik",
+        "text": "Setiap kandidat mendapat soal acaknya sendiri, dengan urutannya sendiri, dan hitung mundur di setiap soal.",
+        "alt": "Soal kandidat dalam mode klik: soal, hitung mundurnya, dan empat pilihan jawaban, satu terpilih."
+      },
+      "voice": {
+        "title": "Mode suara dengan Mira",
+        "text": "Mira, pewawancara AI, membacakan setiap soal dan pilihannya, dan kandidat menjawab tanpa perlu menyentuh apa pun. Jawaban yang jelas langsung disimpan; selain itu dikonfirmasi dulu.",
+        "alt": "Wawancara suara: Mira, pewawancara AI, di samping soal, dengan penanda giliran yang menunjukkan giliran kandidat."
+      },
+      "brand": {
+        "title": "Merekmu, bukan merek kami",
+        "text": "Atur logo, warna untuk mode terang dan gelap, font, dan sudut, dengan pratinjau langsung. Kandidat hanya melihat perusahaanmu, tanpa header atau footer prepza.",
+        "alt": "Tab merek: logo, font, dan sudut, dengan pratinjau langsung wawancara."
+      },
+      "candidates": {
+        "title": "Bandingkan kandidat sekilas",
+        "text": "Status setiap kandidat dan nilainya terhadap nilai lulusmu, dalam satu daftar. Urutkan menurut nilai, cari berdasarkan nama atau email, saring siapa yang lulus atau ditandai.",
+        "alt": "Daftar kandidat sebuah wawancara dengan nama, status, nilai, dan satu kandidat yang ditandai."
+      },
+      "signals": {
+        "title": "Tanda integritas",
+        "text": "Meninggalkan halaman, percobaan menyalin, dan jawaban yang terlalu cepat untuk sempat dibaca, ditambah dua pola jawaban: waktu yang tidak sesuai dengan soalnya, dan soal sulit benar sementara soal mudah salah.",
+        "alt": "Laporan kandidat: kartu pola jawaban dengan tandanya dan saran pertanyaan lanjutan."
+      },
+      "share": {
+        "title": "Bagikan laporan dalam hitungan detik",
+        "text": "Unduh PDF untuk satu kandidat atau seluruh wawancara, kirim lewat email dari prepza, atau kirim ringkasan singkat lewat aplikasi pesan.",
+        "alt": "Dialog berbagi laporan kandidat: alamat email untuk mengirim PDF, atau ringkasan di WhatsApp, Telegram, Viber, atau LINE."
+      },
+      "notes": {
+        "title": "Catatan untuk timmu",
+        "text": "Tulis tentang putaran rekrutmen di tab catatan wawancara dan sematkan catatan yang penting: catatan itu tampil di bawah nama wawancara. Kandidat tidak pernah melihat catatan.",
+        "alt": "Tab catatan wawancara dengan catatan yang disematkan dan catatan baru dari tim."
+      },
+      "emails": {
+        "title": "Email yang mengerjakan tugasnya",
+        "text": "Kandidat menerima undangan dalam bahasa wawancara, dengan logomu, dan pengingat jika belum mulai. Timmu menerima satu ringkasan aktivitas setiap hari, bukan email untuk setiap kejadian.",
+        "alt": "Email undangan wawancara dari Lumen Health, dengan logonya dan tombol untuk membuka undangan"
+      },
+      "integrations": {
+        "title": "Semua koneksi di satu tempat",
+        "text": "Hubungkan ATS, Slack, kunci API, webhook, dan aplikasi AI dari tab integrasi perusahaanmu, masing-masing dengan halaman dan langkahnya sendiri.",
+        "alt": "Tab integrasi perusahaan: ATS yang terhubung, Slack, API, webhook, dan aplikasi AI."
+      },
+      "biasAudit": {
+        "title": "Ekspor audit bias",
+        "text": "Ekspor hasil kandidat yang sudah selesai sebagai CSV untuk audit bias independen, seperti Local Law 144 Kota New York, atau pemeriksaan empat per lima versimu sendiri.",
+        "alt": "Dialog ekspor audit bias: semua wawancara atau satu, dan rentang tanggal opsional."
+      }
+    },
+    "points": {
+      "questions": "{count, plural, other {# soal}} ditulis per topik; kamu memilih berapa banyak yang didapat setiap kandidat",
+      "options": "Empat pilihan per soal, sebagian dengan lebih dari satu jawaban benar",
+      "examples": "Kode, kueri, dan perintah ditampilkan sebagai contoh jika posisinya membutuhkan",
+      "names": "Baris yang tidak bisa diundang disebutkan, beserta alasannya",
+      "credits": "Kredit kembali untuk siapa pun yang tidak pernah menjawab",
+      "expire": "Undangan kedaluwarsa sendiri setelah sebulan",
+      "linkOff": "Bisa dimatikan kapan saja, dan saat posisinya sudah terisi",
+      "mode": "Mode klik atau suara dipilih di halaman yang sama",
+      "settings": "Rata-rata waktu per soal dan nilai lulus ada di sebelahnya",
+      "time": "Total waktu ditampilkan sebelum mulai",
+      "phone": "Bisa di ponsel maupun komputer",
+      "saved": "Progres tersimpan selama mengerjakan",
+      "tap": "Mengetuk pilihan jawaban juga selalu bisa",
+      "kept": "Suara hanya diubah menjadi teks, tidak pernah disimpan",
+      "voiceLanguages": "Dalam bahasa Inggris, Spanyol, Jerman, Prancis, Portugis, dan Italia",
+      "contrast": "Warna yang sulit dibaca ditolak",
+      "logo": "Logomu di undangan, wawancara, dan laporan PDF",
+      "sort": "Nilai terbaik di atas dengan sekali klik",
+      "status": "Diundang, berlangsung, selesai, kedaluwarsa, atau tidak terkirim",
+      "proof": "Alasan untuk melihat lebih teliti, bukan bukti",
+      "camera": "Tanpa kamera, rekaman layar, atau pelacakan perangkat",
+      "followUps": "Pertanyaan untuk dibahas dalam wawancara langsung",
+      "pdf": "Laporan PDF dengan nilai dan setiap jawaban",
+      "messengers": "Ringkasan di WhatsApp, Telegram, Viber, atau LINE",
+      "viewers": "Pelihat juga bisa berbagi, tanpa mengubah apa pun",
+      "everyone": "Setiap anggota bisa menulis, pelihat juga",
+      "bell": "Catatan baru masuk ke ikon lonceng dan kanal Slack-mu",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee, dan Breezy HR",
+      "results": "Kandidat diundang otomatis, hasilnya dikirim balik",
+      "docs": "Dokumentasi pengembang untuk API, webhook, SDK, dan MCP",
+      "noInference": "prepza tidak pernah menanyakan atau menebak karakteristik yang dilindungi hukum",
+      "owner": "Hanya pemilik yang bisa mengekspor, dan tercatat di log tindakan",
+      "askTime": "Siapa pun yang butuh waktu lebih diminta menghubungi sebelum mulai",
+      "peopleDecide": "Diberi tahu bahwa orang di perusahaanmu meninjau hasilnya dan memutuskan",
+      "digest": "Ringkasannya: siapa yang selesai, undangan yang tidak terkirim, kandidat ATS yang tidak diundang, catatan baru, dan wawancara yang siap",
+      "emailChoice": "Setiap jenis email bisa dinyalakan atau dimatikan di pengaturanmu",
+      "stopEmails": "Kandidat bisa berhenti menerima emailmu dengan satu klik"
+    },
+    "cards": {
+      "templates": {
+        "title": "Templat siap pakai",
+        "text": "Salin wawancara berdasarkan posisi, level, dan bahasa, langsung dan gratis."
+      },
+      "bank": {
+        "title": "Bank soal bersama",
+        "text": "Wawancara baru memakai ulang soal yang sudah teruji di wawancara lain. Keluarkan soalmu dengan satu kotak centang."
+      },
+      "quality": {
+        "title": "Soal yang memperbaiki diri",
+        "text": "Jawaban, vote, dan laporan menandai soal yang lemah; soal itu diperbaiki atau diganti."
+      },
+      "languages": {
+        "title": "{count, plural, other {# bahasa}}",
+        "text": "Aplikasi, wawancara, dan email, dalam bahasa kandidatmu."
+      },
+      "preview": {
+        "title": "Pratinjau dulu",
+        "text": "Ikuti wawancaranya seperti kandidat, gratis, sebelum mengundang siapa pun."
+      },
+      "ats": {
+        "title": "Dari ATS-mu",
+        "text": "Kandidat di tahap yang kamu pilih diundang otomatis, dan hasilnya dikirim balik."
+      },
+      "platform": {
+        "title": "Dari platformmu",
+        "text": "Undang lewat API, atau sematkan wawancara di situsmu sendiri dengan SDK."
+      },
+      "assistants": {
+        "title": "Dari asisten AI",
+        "text": "Tanya Mira, atau Claude, ChatGPT, dan aplikasi AI lain lewat MCP, dengan izinmu."
+      },
+      "extraTime": {
+        "title": "Waktu tambahan",
+        "text": "Beri kandidat waktu lebih di setiap soal sebelum mereka mulai; tanpa perlu alasan."
+      },
+      "ownMode": {
+        "title": "Mode mereka sendiri",
+        "text": "Ubah satu kandidat ke mode klik atau suara, untuk orang yang tidak bisa menjawab dengan suara."
+      },
+      "fair": {
+        "title": "Aturan yang sama untuk semua",
+        "text": "Pengatur waktu dan campuran soal yang sama untuk semua orang, dengan waktu dihitung oleh server."
+      },
+      "rate": {
+        "title": "Kandidat menilai soal",
+        "text": "Vote dan cara melaporkan masalah di setiap soal."
+      },
+      "accessible": {
+        "title": "Aksesibel",
+        "text": "Dibangun untuk WCAG 2.2 AA, di setiap bahasa, mode terang dan gelap."
+      },
+      "notifications": {
+        "title": "Notifikasi",
+        "text": "Ikon lonceng, email, dan kanal Slack-mu memberi tahu saat kandidat selesai."
+      },
+      "discover": {
+        "title": "Temukan",
+        "text": "Setelah isi ulang, lihat orang yang terbuka untuk tawaran kerja yang latihan gratisnya cocok dengan posisinya."
+      },
+      "hired": {
+        "title": "Tandai diterima",
+        "text": "Tutup posisi dan tautan berbaginya dalam satu langkah."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Pilih kanal dan notifikasi mana yang dikirim ke sana."
+      },
+      "api": {
+        "title": "API publik",
+        "text": "Kunci dengan hanya izin yang kamu centang, opsional dibatasi ke alamat IP-mu."
+      },
+      "webhooks": {
+        "title": "Webhook",
+        "text": "Event bertanda tangan saat kandidat mulai atau selesai, dengan kirim uji dan log pengiriman."
+      },
+      "mcp": {
+        "title": "Aplikasi AI lewat MCP",
+        "text": "Claude, ChatGPT, dan aplikasi AI lain membaca dan bertindak dengan izinmu."
+      },
+      "mira": {
+        "title": "Tanya Mira",
+        "text": "Asisten AI membaca hasilmu, menjawab cara pakai, dan bertindak setelah kamu konfirmasi."
+      },
+      "person": {
+        "title": "Manusia yang memutuskan",
+        "text": "Skor mendukung keputusanmu; skor tidak membuat keputusan."
+      },
+      "roles": {
+        "title": "Peran tim",
+        "text": "Pemilik, admin, dan pelihat; pelihat melihat hasil tetapi tidak mengubah atau membelanjakan apa pun."
+      },
+      "log": {
+        "title": "Log tindakan",
+        "text": "Pemilik melihat siapa melakukan apa, di aplikasi, lewat Mira, API, atau ATS."
+      },
+      "documents": {
+        "title": "Dokumen siap",
+        "text": "Perjanjian pemrosesan data, templat DPIA, dan templat pemberitahuan kandidat."
+      },
+      "privacy": {
+        "title": "Privasi sejak rancangan",
+        "text": "Data tidak dijual, tidak ada yang disimpulkan tentang kandidat, suara tidak pernah disimpan."
+      },
+      "verified": {
+        "title": "Perusahaan terverifikasi",
+        "text": "Tanda centang di samping nama perusahaanmu setelah situs webnya terverifikasi."
+      },
+      "free": {
+        "title": "{count, plural, other {# kandidat gratis}}",
+        "text": "Perusahaan pertamamu langsung mendapatkannya, tanpa kartu."
+      },
+      "answered": {
+        "title": "Hanya yang menjawab",
+        "text": "Undangan yang tidak dijawab tidak dikenai biaya; kreditnya kembali."
+      },
+      "expire": {
+        "title": "Kredit tidak pernah kedaluwarsa",
+        "text": "Isi ulang yang lebih besar lebih murah per kandidat; kredit berbayar yang tidak terpakai bisa di-refund."
+      },
+      "autoTopUp": {
+        "title": "Isi ulang otomatis",
+        "text": "Opsional: kredit diisi ulang saat hampir habis, tetap tanpa langganan."
+      },
+      "referrals": {
+        "title": "Referal",
+        "text": "Ajak perusahaan lain dan kalian berdua mendapat kandidat gratis setelah perusahaan itu isi ulang."
+      },
+      "currencies": {
+        "title": "Mata uangmu",
+        "text": "Harga dalam {count, number} mata uang, sesuai negaramu."
+      }
+    },
+    "more": {
+      "developerDocs": "dokumentasi pengembang",
+      "trust": "halaman kepercayaan",
+      "documents": "dokumen",
+      "pricing": "lihat harga"
+    },
+    "closing": {
+      "title": "Buat wawancara pertamamu\nGratis"
     }
   }
 }

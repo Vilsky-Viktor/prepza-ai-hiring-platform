@@ -75,7 +75,9 @@
     "news": "Novità",
     "accessibility": "Accessibilità",
     "trust": "Fiducia",
-    "language": "Lingua"
+    "language": "Lingua",
+    "features": "Funzionalità",
+    "featuresLink": "funzionalità"
   },
   "signIn": {
     "title": "Accedi",
@@ -2737,6 +2739,315 @@
       "mcp": "tramite un'app di IA",
       "api": "tramite l'API",
       "ats": "tramite un ATS"
+    }
+  },
+  "featuresPage": {
+    "title": "Funzionalità: colloqui con IA per assumere, dall'inizio alla fine",
+    "description": "Tutte le funzionalità di prepza: colloqui da una descrizione del ruolo, modalità clic e vocale, segnalazioni di integrità, report, integrazioni con ATS e API e conformità normativa.",
+    "hero": {
+      "title": "Dalla descrizione del ruolo\nall'assunzione giusta",
+      "text": "Un colloquio a tempo scritto per il tuo ruolo, candidati da ovunque e una visione chiara di chi è il migliore. Tutte le funzionalità sono incluse.",
+      "start": "Crea un colloquio",
+      "pricing": "vedi i prezzi",
+      "proof": {
+        "anyJob": "Qualsiasi ruolo, qualsiasi settore",
+        "languages": "{count, plural, one {# lingua} other {# lingue}}",
+        "ready": "Pronto in ~{minutes, plural, one {# minuto} other {# minuti}}",
+        "noSubscription": "Nessun abbonamento"
+      }
+    },
+    "nav": {
+      "create": "crea",
+      "invite": "invita",
+      "interview": "colloquio",
+      "decide": "decidi",
+      "connect": "collega",
+      "trust": "fiducia",
+      "pricing": "prezzi"
+    },
+    "groups": {
+      "create": {
+        "title": "Crea un colloquio in pochi minuti",
+        "text": "Incolla una descrizione del ruolo e ottieni un colloquio a tempo scritto per quel ruolo, in qualsiasi settore."
+      },
+      "invite": {
+        "title": "Invita candidati da ovunque",
+        "text": "Invitali via email, metti un link in un annuncio di lavoro, carica un elenco, oppure lascia che li invii il tuo ATS, la tua piattaforma o un assistente IA."
+      },
+      "interview": {
+        "title": "Cosa vedono i candidati",
+        "text": "Un colloquio equo e a tempo con il tuo brand, a cui si risponde con un clic o a voce."
+      },
+      "decide": {
+        "title": "Scopri chi è il migliore",
+        "text": "Punteggi, ogni risposta e segnalazioni di integrità per ogni candidato. Decide una persona; prepza mostra a cosa guardare."
+      },
+      "connect": {
+        "title": "Funziona con i tuoi strumenti",
+        "text": "Il tuo ATS, Slack, il tuo codice e le app IA, oppure chiedi semplicemente a Mira."
+      },
+      "trust": {
+        "title": "Fiducia e conformità",
+        "text": "Decide una persona, ogni candidato ha le stesse regole e i documenti per il GDPR, l'EU AI Act e le norme del Regno Unito e degli Stati Uniti sono pronti."
+      },
+      "pricing": {
+        "title": "Tutto è gratis\nPaghi per candidato",
+        "text": "Tutte le funzionalità sono incluse. Un candidato costa solo dopo aver risposto ad almeno una domanda."
+      }
+    },
+    "rows": {
+      "describe": {
+        "title": "Da una descrizione del ruolo",
+        "text": "L'IA legge il ruolo e propone gli argomenti. Li rivedi gratis: tieni ciò che conta, rinominali, modifica i sottoargomenti o descrivi le modifiche con parole tue.",
+        "alt": "La scheda argomenti di un colloquio: il totale di domande e minuti per ogni candidato e gli argomenti con il numero di domande."
+      },
+      "invite": {
+        "title": "Invita via email, elenco o file",
+        "text": "Aggiungi un candidato, incolla un elenco o carica un file CSV o TXT. Ognuno riceve il proprio link e un promemoria se non ha ancora iniziato.",
+        "alt": "La finestra per un nuovo candidato, con le schede per un candidato, un elenco e il caricamento di un file."
+      },
+      "link": {
+        "title": "Un link per il tuo annuncio",
+        "text": "Attiva il link condivisibile del colloquio e mettilo nel tuo annuncio di lavoro. Chiunque può svolgerlo una volta, con un'email verificata.",
+        "alt": "La scheda impostazioni di un colloquio: il link condivisibile, l'interruttore tra modalità clic e vocale, il tempo per domanda e la soglia di superamento."
+      },
+      "start": {
+        "title": "Regole chiare fin dall'inizio",
+        "text": "Prima di iniziare, i candidati vedono il ruolo, il tempo per domanda e per l'intero colloquio, e le regole, e si impegnano a rispondere in autonomia, senza strumenti di IA né aiuto di altre persone.",
+        "alt": "La pagina iniziale di un colloquio: il ruolo, il tempo medio per domanda, i minuti dell'intero colloquio, l'impegno e le regole."
+      },
+      "click": {
+        "title": "Modalità clic",
+        "text": "Ogni candidato riceve domande casuali tutte sue, in un ordine tutto suo, con un conto alla rovescia su ognuna.",
+        "alt": "Una domanda di un candidato in modalità clic: la domanda, il conto alla rovescia e quattro opzioni di risposta, una selezionata."
+      },
+      "voice": {
+        "title": "Modalità vocale con Mira",
+        "text": "Mira, un'intervistatrice IA, legge ad alta voce ogni domanda e le sue opzioni, e i candidati rispondono senza usare le mani. Una risposta chiara viene salvata subito; tutto il resto viene prima confermato.",
+        "alt": "Un colloquio vocale: Mira, l'intervistatrice IA, accanto alla domanda, con l'indicatore che mostra che è il turno del candidato."
+      },
+      "brand": {
+        "title": "Il tuo brand, non il nostro",
+        "text": "Imposta il tuo logo, i colori per il tema chiaro e scuro, i caratteri e gli angoli, con un'anteprima dal vivo. I candidati vedono solo la tua azienda, senza l'intestazione né il piè di pagina di prepza.",
+        "alt": "La scheda brand: il logo, i caratteri e gli angoli, con un'anteprima dal vivo del colloquio."
+      },
+      "candidates": {
+        "title": "Confronta i candidati a colpo d'occhio",
+        "text": "Lo stato e il punteggio di ogni candidato rispetto alla tua soglia di superamento, in un unico elenco. Ordina per punteggio, cerca per nome o email, filtra chi ha superato o chi è segnalato.",
+        "alt": "L'elenco dei candidati di un colloquio con nomi, stati, punteggi e un candidato segnalato."
+      },
+      "signals": {
+        "title": "Segnalazioni di integrità",
+        "text": "Uscite dalla pagina, tentativi di copia e risposte troppo rapide per aver letto la domanda, più due andamenti delle risposte: tempi che non seguono le domande, e domande difficili giuste mentre quelle facili sono sbagliate.",
+        "alt": "Il report di un candidato: la scheda sull'andamento delle risposte con le sue segnalazioni e le domande di approfondimento suggerite."
+      },
+      "share": {
+        "title": "Condividi i report in pochi secondi",
+        "text": "Scarica un PDF per un candidato o per l'intero colloquio, invialo via email da prepza o manda un breve riepilogo con un'app di messaggistica.",
+        "alt": "La finestra di condivisione del report di un candidato: un indirizzo email a cui inviare il PDF, o un riepilogo su WhatsApp, Telegram, Viber o LINE."
+      },
+      "notes": {
+        "title": "Note per il tuo team",
+        "text": "Scrivi sulla selezione nella scheda note del colloquio e fissa la nota che conta: compare sotto il nome del colloquio. I candidati non vedono mai le note.",
+        "alt": "La scheda note di un colloquio con una nota fissata e una nota più recente del team."
+      },
+      "emails": {
+        "title": "Email che fanno il lavoro",
+        "text": "I candidati ricevono l'invito nella lingua del colloquio, con il tuo logo, e un promemoria se non hanno ancora iniziato. Il tuo team riceve un solo riepilogo attività al giorno invece di un'email per ogni evento.",
+        "alt": "Un'email di invito a un colloquio da Lumen Health, con il suo logo e il pulsante che apre l'invito"
+      },
+      "integrations": {
+        "title": "Tutti i collegamenti in un unico posto",
+        "text": "Collega un ATS, Slack, chiavi API, webhook e app IA dalla scheda integrazioni della tua azienda, ognuno con la sua pagina e i suoi passaggi.",
+        "alt": "La scheda integrazioni di un'azienda: un ATS collegato, Slack, l'API, i webhook e le app IA."
+      },
+      "biasAudit": {
+        "title": "Esportazione per audit sui bias",
+        "text": "Esporta in CSV i risultati dei candidati che hanno terminato per un audit sui bias indipendente, come quello previsto dalla Local Law 144 di New York, o per la tua verifica della regola dei quattro quinti.",
+        "alt": "La finestra di esportazione per audit sui bias: tutti i colloqui o uno solo, e un intervallo di date facoltativo."
+      }
+    },
+    "points": {
+      "questions": "{count, plural, one {# domanda scritta} other {# domande scritte}} per argomento; scegli tu quante ne riceve ogni candidato",
+      "options": "Quattro opzioni per domanda, alcune con più di una risposta giusta",
+      "examples": "Codice, query e comandi mostrati come esempi quando il ruolo li richiede",
+      "names": "Le righe che non si possono invitare vengono indicate, con il motivo",
+      "credits": "I crediti tornano indietro per chi non risponde mai",
+      "expire": "Gli inviti scadono da soli dopo un mese",
+      "linkOff": "Si disattiva in qualsiasi momento, e quando il ruolo è coperto",
+      "mode": "Modalità clic o vocale scelta nella stessa pagina",
+      "settings": "Tempo medio per domanda e soglia di superamento lì accanto",
+      "time": "Il tempo totale mostrato prima di iniziare",
+      "phone": "Funziona sul telefono come sul computer",
+      "saved": "I progressi vengono salvati man mano",
+      "tap": "Toccare un'opzione funziona sempre",
+      "kept": "La voce viene solo trasformata in testo, mai conservata",
+      "voiceLanguages": "In inglese, spagnolo, tedesco, francese, portoghese e italiano",
+      "contrast": "I colori difficili da leggere vengono rifiutati",
+      "logo": "Il tuo logo su inviti, colloquio e report PDF",
+      "sort": "I punteggi migliori in cima con un clic",
+      "status": "Invitato, in corso, terminato, scaduto o non recapitato",
+      "proof": "Un motivo per guardare meglio, mai una prova",
+      "camera": "Niente videocamera, registrazione dello schermo o tracciamento del dispositivo",
+      "followUps": "Domande da approfondire in un colloquio dal vivo",
+      "pdf": "Report PDF con punteggi e ogni risposta",
+      "messengers": "Riepiloghi su WhatsApp, Telegram, Viber o LINE",
+      "viewers": "Anche i visualizzatori condividono, senza modificare nulla",
+      "everyone": "Ogni membro scrive, anche i visualizzatori",
+      "bell": "Le nuove note arrivano nella campanella e nel tuo canale Slack",
+      "atsList": "Workable, Greenhouse, Teamtailor, Recruitee e Breezy HR",
+      "results": "Candidati invitati automaticamente, risultati rimandati indietro",
+      "docs": "Documentazione per sviluppatori su API, webhook, SDK e MCP",
+      "noInference": "prepza non chiede né deduce mai caratteristiche protette",
+      "owner": "Solo il proprietario esporta, e resta nel registro attività",
+      "askTime": "Chi ha bisogno di più tempo viene invitato a chiederlo prima di iniziare",
+      "peopleDecide": "Informati che sono persone della tua azienda a valutare i risultati e decidere",
+      "digest": "Il riepilogo: chi ha finito, inviti non consegnati, candidati dall'ATS non invitati, nuove note e colloqui pronti",
+      "emailChoice": "Ogni tipo di email attivato o disattivato nelle tue impostazioni",
+      "stopEmails": "I candidati possono disiscriversi dalle tue email con un clic"
+    },
+    "cards": {
+      "templates": {
+        "title": "Modelli pronti",
+        "text": "Copia un colloquio per ruolo, livello e lingua, subito e gratis."
+      },
+      "bank": {
+        "title": "Banca domande condivisa",
+        "text": "I nuovi colloqui riutilizzano domande già collaudate in altri. Escludi le tue con una casella."
+      },
+      "quality": {
+        "title": "Domande che si correggono da sole",
+        "text": "Risposte, voti e segnalazioni individuano le domande deboli, che vengono corrette o sostituite."
+      },
+      "languages": {
+        "title": "{count, plural, one {# lingua} other {# lingue}}",
+        "text": "L'app, i colloqui e le email nella lingua dei tuoi candidati."
+      },
+      "preview": {
+        "title": "Provalo prima",
+        "text": "Svolgi il colloquio come lo farebbe un candidato, gratis, prima di invitare chiunque."
+      },
+      "ats": {
+        "title": "Dal tuo ATS",
+        "text": "I candidati nella fase che scegli vengono invitati automaticamente, e i risultati tornano indietro."
+      },
+      "platform": {
+        "title": "Dalla tua piattaforma",
+        "text": "Invita tramite l'API, o integra il colloquio nel tuo sito con l'SDK."
+      },
+      "assistants": {
+        "title": "Da un assistente IA",
+        "text": "Chiedi a Mira, o a Claude, ChatGPT e altre app IA tramite MCP, con i tuoi permessi."
+      },
+      "extraTime": {
+        "title": "Tempo extra",
+        "text": "Dai a un candidato più tempo per ogni domanda prima che inizi; senza chiedere il motivo."
+      },
+      "ownMode": {
+        "title": "La sua modalità",
+        "text": "Passa un candidato alla modalità clic o vocale, per chi non può rispondere a voce."
+      },
+      "fair": {
+        "title": "Le stesse regole per tutti",
+        "text": "Lo stesso timer e lo stesso mix di domande per tutti, con il tempo tenuto dal server."
+      },
+      "rate": {
+        "title": "I candidati valutano le domande",
+        "text": "Un voto e un modo per segnalare un problema su ogni domanda."
+      },
+      "accessible": {
+        "title": "Accessibile",
+        "text": "Realizzato secondo le WCAG 2.2 AA, in ogni lingua, con tema chiaro e scuro."
+      },
+      "notifications": {
+        "title": "Notifiche",
+        "text": "La campanella, le email e il tuo canale Slack ti avvisano quando i candidati finiscono."
+      },
+      "discover": {
+        "title": "Scopri",
+        "text": "Dopo una ricarica, vedi persone aperte a nuove opportunità le cui simulazioni gratuite corrispondono al ruolo."
+      },
+      "hired": {
+        "title": "Segna come assunto",
+        "text": "Chiudi il ruolo e il suo link condivisibile in un solo passaggio."
+      },
+      "slack": {
+        "title": "Slack",
+        "text": "Scegli un canale e quali notifiche ci arrivano."
+      },
+      "api": {
+        "title": "API pubblica",
+        "text": "Chiavi con i soli permessi che spunti, limitabili ai tuoi indirizzi IP."
+      },
+      "webhooks": {
+        "title": "Webhook",
+        "text": "Eventi firmati quando un candidato inizia o finisce, con un invio di prova e un registro delle consegne."
+      },
+      "mcp": {
+        "title": "App IA tramite MCP",
+        "text": "Claude, ChatGPT e altre app IA leggono e agiscono con i tuoi permessi."
+      },
+      "mira": {
+        "title": "Chiedi a Mira",
+        "text": "L'assistente IA legge i tuoi risultati, spiega come fare le cose e agisce dopo la tua conferma."
+      },
+      "person": {
+        "title": "Decide una persona",
+        "text": "Il punteggio supporta la tua decisione; non la prende al posto tuo."
+      },
+      "roles": {
+        "title": "Ruoli del team",
+        "text": "Proprietari, amministratori e visualizzatori; i visualizzatori vedono i risultati ma non modificano né spendono nulla."
+      },
+      "log": {
+        "title": "Registro attività",
+        "text": "Il proprietario vede chi ha fatto cosa: nell'app, tramite Mira, l'API o un ATS."
+      },
+      "documents": {
+        "title": "Documenti pronti",
+        "text": "Un accordo sul trattamento dei dati, un modello di DPIA e modelli di informativa per i candidati."
+      },
+      "privacy": {
+        "title": "Privacy fin dalla progettazione",
+        "text": "Nessuna vendita di dati, nulla dedotto sui candidati, la voce mai conservata."
+      },
+      "verified": {
+        "title": "Aziende verificate",
+        "text": "Un segno di spunta accanto al nome della tua azienda una volta verificato il suo sito web."
+      },
+      "free": {
+        "title": "{count, plural, one {# candidato gratis} other {# candidati gratis}}",
+        "text": "La tua prima azienda parte con questi, senza carta."
+      },
+      "answered": {
+        "title": "Solo chi risponde",
+        "text": "Gli inviti senza risposta non costano nulla; i loro crediti tornano indietro."
+      },
+      "expire": {
+        "title": "I crediti non scadono mai",
+        "text": "Le ricariche più grandi costano meno per candidato; i crediti pagati non usati sono rimborsabili."
+      },
+      "autoTopUp": {
+        "title": "Ricarica automatica",
+        "text": "Facoltativa: i crediti si ricaricano quando stanno per finire, sempre senza abbonamento."
+      },
+      "referrals": {
+        "title": "Referral",
+        "text": "Porta un'altra azienda e ricevete entrambe candidati gratis appena ricarica."
+      },
+      "currencies": {
+        "title": "La tua valuta",
+        "text": "Prezzi in {count, plural, one {# valuta} other {# valute}}, in base al tuo paese."
+      }
+    },
+    "more": {
+      "developerDocs": "documentazione per sviluppatori",
+      "trust": "pagina fiducia",
+      "documents": "documenti",
+      "pricing": "vedi i prezzi"
+    },
+    "closing": {
+      "title": "Crea il tuo primo colloquio\nÈ gratis"
     }
   }
 }

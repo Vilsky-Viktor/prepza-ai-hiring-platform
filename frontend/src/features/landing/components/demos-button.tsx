@@ -2,7 +2,7 @@ import { cn } from "cn"
 import { PlayIcon } from "lucide-react"
 import { getTranslations } from "next-intl/server"
 
-import { OUTLINE_BUTTON } from "@/features/landing/components/section"
+import { OUTLINE_BUTTON } from "@/components/common/more-link"
 import { buttonVariants } from "@/components/ui/button"
 import {
   Tooltip,
