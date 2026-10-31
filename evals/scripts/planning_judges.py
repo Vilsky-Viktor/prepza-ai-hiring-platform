@@ -6,8 +6,8 @@ import json
 
 from common import JUDGE_MODEL, cost, judge, prompt
 from langchain_core.messages import HumanMessage
-from prepza_common.config.constants import LANGUAGES
 from pydantic import BaseModel, Field
+from testee_common.config.constants import LANGUAGES
 
 
 class ExtractionReview(BaseModel):

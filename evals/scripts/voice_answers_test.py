@@ -27,9 +27,9 @@ from collections import defaultdict
 
 from common import DATASETS, RESULTS, cost, load, run_record, save
 from openai import OpenAIError
-from prepza_common.ai.llm import audio_cost
-from prepza_common.ai.speech import audio_seconds, speech_to_text
 from stats import share
+from testee_common.ai.llm import audio_cost
+from testee_common.ai.speech import audio_seconds, speech_to_text
 from voice_live import hear_live
 
 from rounds.config import settings

@@ -8,7 +8,7 @@ import asyncio
 import time
 
 import av
-from prepza_common.ai.llm import audio_cost
+from testee_common.ai.llm import audio_cost
 
 from rounds.helpers.voice_pcm import frame_bytes, live_resampler
 from rounds.integrations.live_hearing import live_hearing

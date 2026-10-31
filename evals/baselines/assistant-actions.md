@@ -70,7 +70,7 @@ which company) passed 12 of 12 when run again (`…_narrow-recheck.json`). $0.43
 
 ## Handing over to a person when a call fails (2026-10-22, kept)
 
-A call that fails on prepza's side now tells the model, once a turn, not to retry, to say what
+A call that fails on testee's side now tells the model, once a turn, not to retry, to say what
 didn't work and to link the contact page (`show`, page `contact`). The model already stopped
 after one failed call (0.8 a turn), so a second failure, the first threshold tried, never came:
 the handover comes with the first. `assistant_handover.py` (new, 8 questions, 2 repeats, every
@@ -191,8 +191,8 @@ the reports it couldn't read); none about voice. $0.30.
 ## A link to the features page (2026-10-31, kept)
 
 The `show` tool's link pages gain `features` (`/features`), and its description names the
-features page for what prepza can do. Three new cases (79 in all, kind `features`): f01 asks what
-prepza offers, f02 for all its features, f03 for one page that lists them; each expects a link to
+features page for what testee can do. Three new cases (79 in all, kind `features`): f01 asks what
+testee offers, f02 for all its features, f03 for one page that lists them; each expects a link to
 the features page and no action. `assistant_actions.py`, 3 repeats, `gpt-6-luna` low, before on
 the 76 earlier cases (`results/assistant_actions_features-base.json`, the guide already naming
 the features page in its menus) and after on all 79 (`…_features-link.json`): task success 98.7%

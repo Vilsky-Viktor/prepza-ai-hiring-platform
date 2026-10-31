@@ -13,9 +13,9 @@ import json
 import time
 
 from common import DATASETS, RESULTS, load, run_record, save
-from prepza_common.ai.llm import audio_cost
-from prepza_common.ai.speech import audio_seconds
 from stats import mean, share
+from testee_common.ai.llm import audio_cost
+from testee_common.ai.speech import audio_seconds
 from text_checks import error_rate, in_script
 
 from assistant.config import settings

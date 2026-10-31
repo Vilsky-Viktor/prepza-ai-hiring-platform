@@ -15,8 +15,8 @@ from collections import Counter
 
 from common import RESULTS, save
 from disliked_shape import disliked, exchange
-from prepza_common.ai import tracing
-from prepza_common.ai.answer_votes import VOTE_SCORE
+from testee_common.ai import tracing
+from testee_common.ai.answer_votes import VOTE_SCORE
 
 from assistant.core.db import Session
 from assistant.repositories import help_votes, messages

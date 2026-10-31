@@ -64,7 +64,7 @@ the only failures are the known h17 (an invented retake limit).
 ## Help chat: Mira, an AI assistant that says so (2026-10-22, kept)
 
 The help chat is the same Mira as the in-app assistant, for visitors: its instructions open "You
-are Mira, prepza's AI assistant" and say that asked its name, who it is or whether it's human, it
+are Mira, testee's AI assistant" and say that asked its name, who it is or whether it's human, it
 says it's Mira, an AI, never a person; its guide calls the header's button "ask Mira".
 `help_questions.json` gained 6 identity questions (h19–h24: English, French, Korean, Polish,
 Hebrew). Same test, model and judge, 3 repeats: before (`results/help_chat_mira-base.json`)
@@ -87,7 +87,7 @@ judge. Kept: better, nothing worse.
 
 ## The scope rule names no language of its own (2026-10-22, kept)
 
-The scope rule both chats share (`prepza_common.ai.scope`) asked to decline "in the user's
+The scope rule both chats share (`testee_common.ai.scope`) asked to decline "in the user's
 language", a language the model would infer, while each prompt names the reply's language chosen
 by code; it now says "in the language you answer in". `help_chat.py`, 24 × 3, against
 `results/help_chat_h1.json` (`…_scope.json`): passed 97.2% → 95.8% (88.5–98.6), one answer;

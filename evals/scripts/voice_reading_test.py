@@ -16,10 +16,10 @@ import re
 import time
 
 from common import DATASETS, RESULTS, load, run_record, save
-from prepza_common.ai.llm import audio_cost
-from prepza_common.ai.speech import audio_seconds, speech_to_text
 from stats import mean, share
-from prepza_common.ai.spoken_words import word_errors
+from testee_common.ai.llm import audio_cost
+from testee_common.ai.speech import audio_seconds, speech_to_text
+from testee_common.ai.spoken_words import word_errors
 
 from rounds.config import settings
 from rounds.constants.voice import LETTERS, MAX_ANSWER_SECONDS

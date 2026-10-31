@@ -1,7 +1,7 @@
 """Asks datasets/assistant_handover.json's questions while every service a tool calls fails (it
 doesn't answer), with the handover (after HANDOVER_FAILURES failed calls the model is told to
 stop retrying and link the contact page) and without it. Graded by code: the contact page
-linked after a failed call (and not without one), calls that failed on prepza's side, and an
+linked after a failed call (and not without one), calls that failed on testee's side, and an
 answer given (a text or an action's card).
 
     evals/run.sh assistant assistant_handover.py --label base        # --repeat 2
@@ -32,7 +32,7 @@ async def unavailable(*args, **kwargs):
 
 
 def grade(answer: dict) -> dict:
-    # Every call fails on prepza's side here: each one refused is a failed call (the panel's
+    # Every call fails on testee's side here: each one refused is a failed call (the panel's
     # updates and an action's card don't go through the failing services).
     failed = sum(1 for item in answer["tools"] if item["refused"])
 

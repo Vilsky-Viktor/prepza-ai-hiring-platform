@@ -14,7 +14,7 @@
    "id": "q02",
    "page": "companies",
    "question": "Should I still do a coding exercise if I use a knowledge test?",
-   "expect": "Yes: a knowledge test checks what they know and code reading, not writing working code; prepza doesn't have candidates write or run code, so keep a take-home or live coding step after it.",
+   "expect": "Yes: a knowledge test checks what they know and code reading, not writing working code; testee doesn't have candidates write or run code, so keep a take-home or live coding step after it.",
    "guides": [
     "hiring-engineers"
    ]
@@ -95,7 +95,7 @@
   {
    "id": "q11",
    "page": "companies",
-   "question": "Which ATSs does prepza connect to and how does it work?",
+   "question": "Which ATSs does testee connect to and how does it work?",
    "expect": "Workable, Greenhouse, Teamtailor, Recruitee and Breezy HR; connect with a company key on the Integrations tab; link a job and trigger stage to an interview; moving a candidate sends the invite once; results come back as a note on the candidate with grade, pass, flags and scorecard link.",
    "guides": [
     "ats-integration-skills-tests"
@@ -113,8 +113,8 @@
   {
    "id": "q13",
    "page": "companies",
-   "question": "Can I use prepza from Claude or ChatGPT?",
-   "expect": "Yes, through MCP: connect prepza in the AI app and it works as the user with their permissions; actions are checked/approved; or use the built-in agent or the API.",
+   "question": "Can I use testee from Claude or ChatGPT?",
+   "expect": "Yes, through MCP: connect testee in the AI app and it works as the user with their permissions; actions are checked/approved; or use the built-in agent or the API.",
    "guides": [
     "ai-agents-mcp-and-api"
    ]

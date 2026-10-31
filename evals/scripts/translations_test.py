@@ -1,4 +1,4 @@
-"""Tests the translation of prepza's own texts (news posts and campaign emails) on
+"""Tests the translation of testee's own texts (news posts and campaign emails) on
 datasets/translations.json: each source translated into each language by generation's own batch
 request (sent at once, batch_direct.py) and checked as the service checks a reply, then checked
 by code (limits, kept names and links, Markdown, paragraphs, script) and judged by
@@ -31,9 +31,9 @@ from common import (
     save,
 )
 from langchain_core.messages import HumanMessage
-from prepza_common.config.constants import LANGUAGES
 from pydantic import BaseModel, Field
 from stats import share
+from testee_common.config.constants import LANGUAGES
 from text_checks import in_script, keeps, paragraphs
 
 from generation.config import settings
@@ -93,7 +93,7 @@ def code_checks(case: dict, language: str, fields: dict) -> dict:
     return {
         "script": in_script(whole, language, case["keep"]),
         "names": keeps(whole, case["keep"]),
-        "prepza_lowercase": "Prepza" not in whole and "PREPZA" not in whole,
+        "testee_lowercase": "Testee" not in whole and "TESTEE" not in whole,
         "links": all(link in text for link in case.get("links", [])),
         "paragraphs": paragraphs(text) == paragraphs(case["text"]),
         "bold": text.count("**") == case["text"].count("**"),

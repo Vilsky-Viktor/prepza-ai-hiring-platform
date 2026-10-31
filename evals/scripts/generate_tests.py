@@ -21,8 +21,8 @@ from common import DATASETS, RESULTS, cost, generation_models, load, run_record,
 from langchain_core.callbacks import get_usage_metadata_callback
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.types import Command
-from prepza_common.ai.multi_answer import multi_share
-from prepza_common.limits.limits import limit
+from testee_common.ai.multi_answer import multi_share
+from testee_common.limits.limits import limit
 
 import generation.helpers.questions as question_helpers
 import generation.services.graph as graph_module

@@ -28,7 +28,7 @@ SEED = 7
 # What the judges' calls cost, added up as they're made.
 SPENT = []
 ASK_BACK = "Which interview do you mean? Please tell me its name."
-MADE_UP = " prepza also guarantees every hire for 12 months and refunds a bad one in full."
+MADE_UP = " testee also guarantees every hire for 12 months and refunds a bad one in full."
 
 
 def changed_numbers(text: str) -> str:

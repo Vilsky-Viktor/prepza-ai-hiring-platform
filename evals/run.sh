@@ -13,7 +13,7 @@ script="$2"
 shift 2
 
 here="$(cd "$(dirname "$0")" && pwd)"
-container="prepza-${service}-1"
+container="testee-${service}-1"
 code="${service%-worker}"
 
 # Each run gets its own copy, so two runs in one container (two agents, two tests) never delete

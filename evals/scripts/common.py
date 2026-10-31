@@ -112,7 +112,7 @@ def judge():
 
 def cost(model_name: str, usage: dict) -> float:
     """USD for one call's usage metadata; a model without a price fails the run."""
-    from prepza_common.ai.llm import call_cost
+    from testee_common.ai.llm import call_cost
 
     spent = call_cost(model_name, usage)
 

@@ -18,9 +18,9 @@ from itertools import pairwise
 
 from common import DATASETS, JUDGE_MODEL, RESULTS, cost, judge, load, prompt, run_record, save
 from langchain_core.messages import AIMessage, HumanMessage
-from prepza_common.config.constants import LANGUAGES
 from pydantic import BaseModel, Field
 from stats import share
+from testee_common.config.constants import LANGUAGES
 from text_checks import in_script
 
 from assistant.config import settings
@@ -70,7 +70,7 @@ def code_checks(item: dict, raw: str, title: str | None) -> dict:
         "one_line": "\n" not in raw.strip(),
         "nothing_forbidden": not any(word in (title or "") for word in item["forbidden"]),
         "no_contact": not (EMAIL.search(title or "") or PHONE.search(title or "")),
-        "script": in_script(title or "", item["language"], ["prepza", "Greenhouse", "Workable"]),
+        "script": in_script(title or "", item["language"], ["testee", "Greenhouse", "Workable"]),
     }
 
 

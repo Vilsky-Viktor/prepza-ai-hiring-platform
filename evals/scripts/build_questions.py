@@ -36,7 +36,7 @@ from common import (
     tokens_of,
 )
 from langchain_core.callbacks import get_usage_metadata_callback
-from prepza_common.ai.examples import example_count
+from testee_common.ai.examples import example_count
 
 from generation.config import settings
 from generation.helpers.questions import build_options, with_example

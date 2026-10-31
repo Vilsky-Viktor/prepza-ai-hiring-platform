@@ -13,7 +13,7 @@ import uuid
 from pathlib import Path
 
 from assistant_fixture import TEMPLATES
-from prepza_common.ai.sets import OptionIn, PreparationIn, QuestionIn, TopicIn
+from testee_common.ai.sets import OptionIn, PreparationIn, QuestionIn, TopicIn
 
 from library.services import sets, templates
 

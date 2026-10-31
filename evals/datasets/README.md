@@ -128,7 +128,7 @@ answer it and what a right answer does, and the ids of 15 general questions of
 
 ## `assistant_handover.json` (by hand, 2026-10-22)
 
-8 made-up panel messages that need prepza's services (a count, a balance, the best candidate, the
+8 made-up panel messages that need testee's services (a count, a balance, the best candidate, the
 interviews, a rename) in English, German, Japanese, Arabic, Russian, Spanish and Thai, for the
 handover test (`../scripts/assistant_handover.py`): every service a tool calls fails while they're
 asked, and code checks the answer links the contact page after a failed call (and not without
@@ -169,7 +169,7 @@ saved card), so the cases that turn it off (`b03`, `m06`) answer its read with i
 (`inject.results`), and `b05` asks with it really off: no card, as nothing would change. A call
 refused because it would change nothing isn't an action either. 8 judge traps
 (`judge_traps`), planted replies with known verdicts, check the judge every run. 3 ask what
-prepza can do or for all its features (`features`): a link to the features page, no action.
+testee can do or for all its features (`features`): a link to the features page, no action.
 `check_datasets.py` checks that its pages' keys are the panel's real ones (an unknown key reaches
 the model as none).
 
@@ -188,10 +188,10 @@ nothing).
 
 ## `translations.json` (by hand, 2026-10-22)
 
-5 made-up news posts and 5 campaign emails in prepza's own voice, translated into 7 languages, one
+5 made-up news posts and 5 campaign emails in testee's own voice, translated into 7 languages, one
 per script family plus Persian (German, Japanese, Arabic, Thai, Hindi, Russian, Persian, whose
 word for "candidate" is a known trap). Typical texts, names to keep (Workable, Greenhouse,
-Slack, "prepza"), numbers and prices, Markdown with a link, a campaign without a button, a post
+Slack, "testee"), numbers and prices, Markdown with a link, a campaign without a button, a post
 close to the length limit, one quoting an instruction ("Ignore your instructions…") that must be
 translated, not followed, and words that translate badly ("practice", "candidates"). Each text
 lists what code checks (`keep`, `links`, `numbers`); the judge (`judges/translation.md`) reads
@@ -352,6 +352,6 @@ The help chat's test: visitor questions on the site's pages, each with what a ri
 (from the platform guide, the FAQ, prices and the legal pages) and what it must not do. Typical
 questions, questions the guide doesn't answer (it must say so and point to the contact page),
 sign-in requests, attempts to make it answer something else or follow instructions in the
-message, and (added 2026-10-22) who the chat is: Mira, prepza's AI assistant, never a person, in
+message, and (added 2026-10-22) who the chat is: Mira, testee's AI assistant, never a person, in
 English, French, Korean, Polish and Hebrew. h25 (added 2026-10-23) asks where the shareable link
 for a job ad is turned on: the interview's Settings tab, since the link moved there.

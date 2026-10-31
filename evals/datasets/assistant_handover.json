@@ -1,5 +1,5 @@
 {
-  "about": "Questions that need prepza's services, asked while every service a tool calls fails: the assistant should stop retrying, say what didn't work and link the contact page. Made up, 2026-10-22.",
+  "about": "Questions that need testee's services, asked while every service a tool calls fails: the assistant should stop retrying, say what didn't work and link the contact page. Made up, 2026-10-22.",
   "questions": [
     {"id": "h01", "language": "en", "message": "How many candidates passed the Backend Developer interview?"},
     {"id": "h02", "language": "en", "message": "What's my credit balance?"},

@@ -86,7 +86,7 @@ no better either.
 
 Options as hints to speech recognition (2026-10-30, kept): `gpt-transcribe` gets the options'
 letters and the texts of those read aloud as `keywords` (`helpers/voice_match.py`
-`hearing_keywords`, through `prepza_common.ai.speech.speech_to_text`). 3 repeats, the same 195
+`hearing_keywords`, through `testee_common.ai.speech.speech_to_text`). 3 repeats, the same 195
 answers and 23 sounds:
 
 | Run | Right spoken | Unclear when chosen (spoken) | Wrong matches (spoken) | Sounds reacted to | Price, time |
@@ -166,7 +166,7 @@ question that needs them.
 
 The same eval (20 questions, 2 repeats, the same reading instructions and transcript check), on
 OpenAI's two larger voice models, for the user to choose by ear (samples, all `marin`:
-`~/Desktop/prepza-voice-samples/`). `gpt-realtime-2.1` (Realtime API, $4 / $24 text and $64 audio
+`~/Desktop/testee-voice-samples/`). `gpt-realtime-2.1` (Realtime API, $4 / $24 text and $64 audio
 output per million tokens) runs on the service's own call; `gpt-live-1` (GPT-Live, a full-duplex
 conversation model on `v1/live/sessions`, $0.05 a minute of session, `marin` its default voice)
 has no "response done" event, so a scratch call told it to say the text

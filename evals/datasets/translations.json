@@ -1,5 +1,5 @@
 {
- "about": "Made-up news posts and campaign emails in prepza's own voice, translated by generation's own translate_one (news and campaigns) into one language per script family; checked by code (limits, kept names, links, Markdown, paragraphs, script) and judged by judges/translation.md. Typical posts, an overlong one, one with an instruction inside, one with numbers and money, a campaign without a button. Hand-written.",
+ "about": "Made-up news posts and campaign emails in testee's own voice, translated by generation's own translate_one (news and campaigns) into one language per script family; checked by code (limits, kept names, links, Markdown, paragraphs, script) and judged by judges/translation.md. Typical posts, an overlong one, one with an instruction inside, one with numbers and money, a campaign without a button. Hand-written.",
  "built": "2026-10-22",
  "model": "by hand",
  "languages": ["de", "ja", "ar", "th", "hi", "ru", "fa"],
@@ -8,15 +8,15 @@
    "id": "n01",
    "kind": "typical",
    "title": "Invite candidates from Workable and Greenhouse",
-   "text": "You can now connect Workable or Greenhouse to prepza. Pick a job, choose the interview, and every new candidate who reaches the chosen stage gets an invitation by email.\n\nResults go back to the candidate's profile in your ATS.",
-   "keep": ["Workable", "Greenhouse", "prepza"]
+   "text": "You can now connect Workable or Greenhouse to testee. Pick a job, choose the interview, and every new candidate who reaches the chosen stage gets an invitation by email.\n\nResults go back to the candidate's profile in your ATS.",
+   "keep": ["Workable", "Greenhouse", "testee"]
   },
   {
    "id": "n02",
    "kind": "numbers",
    "title": "Practice tests are free in 23 languages",
-   "text": "Anyone can practice for a job interview on prepza for free. Pick a role, answer 20 questions, and see which topics need more work. Companies pay only for candidates they invite: from $5 for 10 candidates.",
-   "keep": ["prepza"],
+   "text": "Anyone can practice for a job interview on testee for free. Pick a role, answer 20 questions, and see which topics need more work. Companies pay only for candidates they invite: from $5 for 10 candidates.",
+   "keep": ["testee"],
    "numbers": ["23", "20", "$5", "10"]
   },
   {
@@ -29,17 +29,17 @@
   {
    "id": "n04",
    "kind": "edge: close to the length limit",
-   "title": "Fewer reports, better questions: how prepza checks its own answer keys every week",
-   "text": "When candidates report a question or most of them pick the same wrong option, prepza checks the question again. A second model works out the answer without seeing which option is marked, and only when both checks agree does the key move; otherwise the question is replaced by a new one. Companies see every change in the question's history, can undo it, and are never charged for the candidates who answered the old version. Last month this fixed 31 questions.",
-   "keep": ["prepza"],
+   "title": "Fewer reports, better questions: how testee checks its own answer keys every week",
+   "text": "When candidates report a question or most of them pick the same wrong option, testee checks the question again. A second model works out the answer without seeing which option is marked, and only when both checks agree does the key move; otherwise the question is replaced by a new one. Companies see every change in the question's history, can undo it, and are never charged for the candidates who answered the old version. Last month this fixed 31 questions.",
+   "keep": ["testee"],
    "numbers": ["31"]
   },
   {
    "id": "n05",
    "kind": "typical: short",
    "title": "Dark mode",
-   "text": "prepza now follows your device's dark mode. You can also choose light or dark in your settings.",
-   "keep": ["prepza"]
+   "text": "testee now follows your device's dark mode. You can also choose light or dark in your settings.",
+   "keep": ["testee"]
   }
  ],
  "campaigns": [
@@ -47,10 +47,10 @@
    "id": "c01",
    "kind": "typical: Markdown, a link and a button",
    "subject": "Your first 3 candidates are on us",
-   "text": "Hi,\n\nThanks for creating a company on prepza. To help you start, your first **3 candidates** are free.\n\n- Create an interview from a job posting\n- Invite candidates by email or with a link\n- Compare their grades side by side\n\nQuestions? Read our [getting started guide](https://prepza.ai/guides/getting-started) or reply to this email.",
+   "text": "Hi,\n\nThanks for creating a company on testee. To help you start, your first **3 candidates** are free.\n\n- Create an interview from a job posting\n- Invite candidates by email or with a link\n- Compare their grades side by side\n\nQuestions? Read our [getting started guide](https://testee.ai/guides/getting-started) or reply to this email.",
    "button": "Create an interview",
-   "keep": ["prepza"],
-   "links": ["https://prepza.ai/guides/getting-started"],
+   "keep": ["testee"],
+   "links": ["https://testee.ai/guides/getting-started"],
    "numbers": ["3"]
   },
   {
@@ -66,9 +66,9 @@
    "id": "c03",
    "kind": "typical: names and an integration",
    "subject": "Get a Slack message when a candidate finishes",
-   "text": "Hi,\n\nprepza can now post to a Slack channel whenever a candidate finishes an interview, with their grade and a link to their answers.\n\nTurn it on in your company's settings under **Integrations**. It takes about *two minutes*.",
+   "text": "Hi,\n\ntestee can now post to a Slack channel whenever a candidate finishes an interview, with their grade and a link to their answers.\n\nTurn it on in your company's settings under **Integrations**. It takes about *two minutes*.",
    "button": "Connect Slack",
-   "keep": ["Slack", "prepza"]
+   "keep": ["Slack", "testee"]
   },
   {
    "id": "c04",
@@ -83,9 +83,9 @@
    "id": "c05",
    "kind": "edge: practice and candidates, words that translate badly",
    "subject": "Help your candidates prepare",
-   "text": "Hi,\n\nCandidates who practice before an interview feel calmer and show what they really know. Share prepza's free practice tests with the people you invite: they can try a test for the same role as often as they like.\n\nTheir practice results stay private and never reach you.",
+   "text": "Hi,\n\nCandidates who practice before an interview feel calmer and show what they really know. Share testee's free practice tests with the people you invite: they can try a test for the same role as often as they like.\n\nTheir practice results stay private and never reach you.",
    "button": "Share practice tests",
-   "keep": ["prepza"]
+   "keep": ["testee"]
   }
  ]
 }

@@ -11,7 +11,7 @@ OPTIONS = 4
 INTENTS = {"choose", "confirm", "reject", "unclear"}
 # The languages a test may be taken by voice in, read from the shared constants (this check runs
 # without the package installed).
-CONSTANTS = EVALS.parent / "packages/common/src/prepza_common/config/constants.py"
+CONSTANTS = EVALS.parent / "packages/common/src/testee_common/config/constants.py"
 VOICE_LANGUAGES = set(
     re.findall(r'"(\w+)"', re.search(r"VOICE_LANGUAGES = \((.*)\)", CONSTANTS.read_text())[1])
 )

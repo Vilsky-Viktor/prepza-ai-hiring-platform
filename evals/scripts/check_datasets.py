@@ -37,7 +37,7 @@ from voice_datasets import (
 EVALS = Path(__file__).resolve().parents[1]
 DATASETS = EVALS / "datasets"
 # The keys of the pages the panel opens on (an unknown one reaches the model as no key).
-PAGE_KEYS = EVALS.parent / "packages/common/src/prepza_common/ai/page_keys.py"
+PAGE_KEYS = EVALS.parent / "packages/common/src/testee_common/ai/page_keys.py"
 QUESTION_SETS = ("questions.json", "multi_questions.json", "language_questions.json")
 TRAP_SETS = {"key_traps.json": "questions.json", "multi_key_traps.json": "multi_questions.json"}
 # Two questions of one subtopic this alike, options included, are the same question reworded.

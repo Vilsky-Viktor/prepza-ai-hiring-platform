@@ -44,11 +44,11 @@ assistant before the guide tools: no `list_guides` or `get_guide`, no guide inst
 | Version | Guide: correct (with / without) | Complete | Read a right guide / linked it | Guide wins / ties / losses | General: correct | Right scope | Right tools | General wins / ties / losses |
 |---|---|---|---|---|---|---|---|---|
 | Tools and a hiring-advice instruction (`results/assistant_guides_v1.json`) | 55/60 / 32/60 | 35 / 5 | 45/60 / 45/60 | 53 / 0 / 7 | 44/45 / 44/45 | 45 / 45 | 41 / 39 | 15 / 20 / 10 |
-| Also for questions about prepza's own ATS integrations, MCP and API (in use, `…_v2.json`) | **60/60 / 28/60** | **43 / 5** | **58/60 / 58/60** | **58 / 0 / 2** | **44/45 / 44/45** | **45 / 43** | **44 / 40** | **13 / 25 / 7** |
+| Also for questions about testee's own ATS integrations, MCP and API (in use, `…_v2.json`) | **60/60 / 28/60** | **43 / 5** | **58/60 / 58/60** | **58 / 0 / 2** | **44/45 / 44/45** | **45 / 43** | **44 / 40** | **13 / 25 / 7** |
 
-In v1, "Which ATSs does prepza connect to?" and "Can I use prepza from Claude or ChatGPT?" read
+In v1, "Which ATSs does testee connect to?" and "Can I use testee from Claude or ChatGPT?" read
 the platform guide only, which has the facts but not the guide's checklist; saying that questions
-about prepza's own integrations, MCP and API read the guide too fixed it. Two questions are
+about testee's own integrations, MCP and API read the guide too fixed it. Two questions are
 answered by two guides each (structured interviews, a knowledge screen's length), and either
 counts. No general question called the guide tools; their differences are judge noise. A run
 costs about $1.50: the assistant about $0.63 for both variants, the judge about $0.90.
@@ -64,7 +64,7 @@ longer exist.
 
 ## Mira, an AI assistant that says so (2026-10-22, kept)
 
-The assistant is named Mira: its instructions open "You are Mira, prepza's AI assistant" and say
+The assistant is named Mira: its instructions open "You are Mira, testee's AI assistant" and say
 that asked its name, who it is or whether it's human, it says it's Mira, an AI assistant, in a
 sentence (the name as the user's language writes it), never claiming to be a person.
 `assistant_questions.json` gained 8 such questions (g44–g51: English, German, Japanese, Arabic,
@@ -77,7 +77,7 @@ fixture fixed first (a candidate's start now takes the pledge to answer on their
 | Before | 5/24 | 102/129 / 101/129 | 25/27 / 10/27 | 15/15 | 39/40 / 24/40 / 38/40 / 38/40 | 27/30 / 26/30 |
 | Mira (in use) | **24/24** | **99/129 / 110/129** | **25/27 / 14/27** | **15/15** | **39/40 / 26/40 / 40/40 / 38/40** | **24/30 / 22/30** |
 
-Before, the assistant answered "I'm prepza's assistant" and gave no name; now every answer names
+Before, the assistant answered "I'm testee's assistant" and gave no name; now every answer names
 Mira as an AI (ミラ, ميرا, Мира, "KI-Assistentin", "la asistente de IA"). The other questions
 moved within the judge's noise: the unchanged "without" variant, the same instructions both times
 but for the page bullet, moved by 9 of 129 between the two runs, more than "with" did (3), and

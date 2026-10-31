@@ -27,8 +27,8 @@ from common import (
 )
 from langchain_core.callbacks import get_usage_metadata_callback
 from planning_judges import ExtractionReview, RevisionReview, TopicsReview, judged, traps
-from prepza_common.config.constants import LANGUAGES
 from stats import share
+from testee_common.config.constants import LANGUAGES
 from text_checks import in_script
 
 from generation.config import settings

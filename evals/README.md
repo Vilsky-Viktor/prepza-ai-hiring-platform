@@ -39,7 +39,7 @@ are what the current setup (October 2026) reaches; a change that misses one need
 | | Extraction covers every testable item / invents nothing; topics cover every requirement / testable / coherent | Judges (`judges/extraction.md`, `judges/topics.md`), pass/fail each | ≥ 90% / ≤ 5%; ≥ 90% / 100% / 100% |
 | | Revisions do what the reviewer asked / lose nothing else | Judge (`judges/revision.md`) | ≥ 90% / ≥ 90% (capability: room to grow) |
 | | Price and time to plan a test (extraction and draft) | Measured | ≤ $0.03, ≤ 40 s |
-| **Translations** (news posts, campaign emails) | Translations that pass every code check: within the limits, names, "prepza", links, Markdown, paragraphs and numbers kept, in the language's script | Code | 100% |
+| **Translations** (news posts, campaign emails) | Translations that pass every code check: within the limits, names, "testee", links, Markdown, paragraphs and numbers kept, in the language's script | Code | 100% |
 | | Faithful (nothing left out, added or changed) / native (a hiring professional's wording) / one language | Judge (`judges/translation.md`), pass/fail each | ≥ 90% / ≥ 90% / 100% |
 | | Price and time per translation | Measured | ≤ $0.005, ≤ 10 s |
 | **Quality patterns** (the weekly job) | Planted recurring mistakes found (a kept rule citing at least 2 of its questions, matched by the judge) | Code and judge (`judges/pattern_match.md`) | ≥ 90% |
@@ -156,7 +156,7 @@ write to `results/` (not committed).
 
 ## Every AI action and its eval
 
-Each AI action billing records (`prepza_common.ai.ai_constants.ACTIONS`) and the test that measures
+Each AI action billing records (`testee_common.ai.ai_constants.ACTIONS`) and the test that measures
 it; `scripts/tests/test_ai_rules.py` fails when an action has none.
 
 | Action | Test |
